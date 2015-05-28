@@ -20,6 +20,10 @@ Two demos are provided
 
 ___
 
+@par Documentation
+  * https://rawgit.com/magore/esp8266_ili9341/master/doxygen/html/index.html
+___
+
 @par Credits
   * Built using ESP Open SDK - or esp8266-devkit by CERTS
     @see https://github.com/pfalcon/esp-open-sdk
