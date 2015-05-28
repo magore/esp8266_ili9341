@@ -1,27 +1,27 @@
-\mainpage index page
+﻿\mainpage index page
 \section README
 
 @par Documentation
- * Doxygen documenation: https://rawgit.com/magore/esp8266_ili9341/master/doxygen/html/index.html
+ * Doxygen documentation: https://rawgit.com/magore/esp8266_ili9341/master/doxygen/html/index.html
 
 @par Copyright
  * See [COPYRIGHT.md](@ref COPYRIGHT.md) for a full copyright notice for the project
 
 @par Description
- * ESP8266 ILI9341 display and support code with printf sources, wireframe viewer and cusom fonts 
+ * ESP8266 ILI9341 display and support code with printf sources, wire-frame viewer and cusom fonts 
  * I wrote the following support functions from scratch
   * CORDIC C table generator and 3D transformation code support functions
-  * Wireframe viewer and C generator for Earth coastline data
+  * Wire frame viewer and C generator for Earth coastline data
   * Small Print with full floating point support along with ftoa/atof and integer conversions
   * BDF fonts and a BDF font to C conversion code and optimized display code
    
  * Updated:
-  * I rewrote parts of Adafruit code ili9341 grapics library
-  * HSPI code now correctly handles memory size and aligment 
+  * I rewrote parts of Adafruit code ili9341 graphics library
+  * HSPI code now correctly handles memory size and alignment 
 
  * Two demos are provided
   * CUBE demo 
-  * Wireframe Earth viewer - still neads hiden line removal
+  * Wire frame Earth viewer - still needs hidden line removal
 ___
 
 @par Credits
@@ -83,7 +83,7 @@ ___
     * ili9341.h           
       * My mostly rewritten ili9341 display driver code
         * Optimized line drawing function is from CERTS
-        * Non optimized verion is also supplied that I wrote in 1984
+        * Non optimized version is also supplied that I wrote in 1984
     * util.c
     * util.h
       * Flash reading and bittest functions for system requiring specific alignment and access size of flash memory.
@@ -106,14 +106,14 @@ ___
        * 00README.txt
          * Article on coordinate transforms from stackoverflow by Daphna Shezaf
        * earth.c
-         * wireframe viewer with earth coastlines
+         * wire-frame viewer with earth coastlines
        * earth.h
        * earth_inc.h
-         * Earth wireframe coastline data as C structure
+         * Earth wire-frame coastline data as C structure
        * make_wireframe
          * earth2wireframe.c
-           * Create C structure wireframe coastline data
-           * This code could be easily adapted for any kind of wireframe
+           * Create C structure wire-frame coastline data
+           * This code could be easily adapted for any kind of wire-frame
          * Makefile
            * Create earth_inc.h from Coastline LAt/LONG pairs
          * data
