@@ -4,7 +4,7 @@
 @par Documentation
  * Doxygen documenation: https://rawgit.com/magore/esp8266_ili9341/master/doxygen/html/index.html
 
-@Copyright
+@par Copyright
  * See [COPYRIGHT.md](@ref COPYRIGHT.md) for a full copyright notice for the project
 
 @par Description
