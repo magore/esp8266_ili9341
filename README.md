@@ -1,7 +1,7 @@
+\mainpage index page
 \section README
  @par The sample ESP8266 with ili9341 display project 
- See [COPYRIGHT.md](@ref COPYRIGHT.md) for a full copyrrite notice for the proje
-ct
+ See [COPYRIGHT.md](@ref COPYRIGHT.md) for a full copyrrite notice for the project
 
 This project uses a ESP8266 to drive an ili9341 display
 I wrote the following support functions
