@@ -1,5 +1,3 @@
-\mainpage index page
-
 \section COPYRIGHT
 ** The ESP8266 ILI9341 display driver project **
 
