@@ -1,5 +1,7 @@
 \mainpage index page
 \section README
+ * Please use this link: https://rawgit.com/magore/esp8266_ili9341/master/doxygen/html/index.html
+
  @par The sample ESP8266 with ili9341 display project 
  See [COPYRIGHT.md](@ref COPYRIGHT.md) for a full copyrrite notice for the project
 
@@ -22,6 +24,8 @@ ___
 
 @par Documentation
   * https://rawgit.com/magore/esp8266_ili9341/master/doxygen/html/index.html
+
+
 ___
 
 @par Credits
