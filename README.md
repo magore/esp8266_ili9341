@@ -8,7 +8,7 @@
  * See [COPYRIGHT.md](@ref COPYRIGHT.md) for a full copyright notice for the project
 
 @par Description
- * ESP8266 ILI9341 display and support code with printf sources, wire-frame viewer and cusom fonts 
+ * ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts 
  * I wrote the following support functions from scratch
   * CORDIC C table generator and 3D transformation code support functions
   * Wire frame viewer and C generator for Earth coastline data
