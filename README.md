@@ -49,7 +49,9 @@ ___
     * README.md - Project readme file
     * COPYRIGHT.md - Project Copyright file
     * Doxyfile - Doxygen configuration file
+    * get_esp-open-sdk - shell script to download an install ESP OPEN SDK on Ubuntu 14.04LTS
     * term115200 - shell script to launch terminal 1t 115200 baud
+
   * cube 
     * cube.c
     * cube.h
