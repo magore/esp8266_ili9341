@@ -1,0 +1,271 @@
+\hypertarget{user__main_8c}{\section{user/user\-\_\-main.c File Reference}
+\label{user__main_8c}\index{user/user\-\_\-main.\-c@{user/user\-\_\-main.\-c}}
+}
+{\ttfamily \#include \char`\"{}user\-\_\-config.\-h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{user__main_8c_af84e3ac8b5878bd0ad9e185f3d27073c}{ets\-\_\-uart\-\_\-printf} (const char $\ast$fmt,...)
+\item 
+void \hyperlink{user__main_8c_a8c3a7f0ee91987679040299af24bd503}{ets\-\_\-timer\-\_\-disarm} (E\-T\-S\-Timer $\ast$ptimer)
+\item 
+void \hyperlink{user__main_8c_a6ea5d30094305d8b476b09164dd38f3f}{ets\-\_\-timer\-\_\-setfn} (E\-T\-S\-Timer $\ast$ptimer, E\-T\-S\-Timer\-Func $\ast$pfunction, void $\ast$parg)
+\item 
+static void \hyperlink{user__main_8c_a13eda00dd5efd9440b0eaf5430b73e84}{test} (void)
+\begin{DoxyCompactList}\small\item\em test task Runs corrected cube demo from Sem Optionally wireframe Earh viewer \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{user__main_8c_aec5bf646bd247f04a426c43eb3885f2e}{send\-Msg\-To\-Handler} (void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Message passing function Sends message to run task. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{user__main_8c_a1aa6f501e8a2b67a5b210658f8529747}{handler\-\_\-task} (os\-\_\-event\-\_\-t $\ast$e)
+\begin{DoxyCompactList}\small\item\em Message handler task Runs corrected cube demo from Sem Optionally wireframe Earh viewer. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{user__main_8c_aaabd07afe4d50c1a7f16f18995fc6b18}{user\-\_\-init} (void)
+\begin{DoxyCompactList}\small\item\em Initialize user tassk. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+L\-O\-C\-A\-L os\-\_\-timer\-\_\-t \hyperlink{user__main_8c_a7822f324d4e93ecc1e1ae31650c2245a}{timer\-Handler}
+\item 
+L\-O\-C\-A\-L double \hyperlink{user__main_8c_a46f4d8ebe46ec267dc7478f530e0ac07}{degree} = 0.\-0
+\item 
+L\-O\-C\-A\-L double \hyperlink{user__main_8c_aa7d569051c24f6fb09cf6569ae97e134}{scale} = 1.\-0
+\item 
+L\-O\-C\-A\-L double \hyperlink{user__main_8c_abb90bdd83d3932e812704cf121b69f2f}{deg\-\_\-inc} = 4
+\item 
+L\-O\-C\-A\-L double \hyperlink{user__main_8c_ab13530f34680731b9764f1cf20f8d3cd}{scale\-\_\-inc} = .\-1
+\item 
+L\-O\-C\-A\-L long \hyperlink{user__main_8c_aa011065eee776eb1bda73597b5d9d5d7}{count} = 0
+\item 
+int \hyperlink{user__main_8c_ace457a27a3496f1891624400f7ffa66f}{rad} = 80
+\item 
+\hyperlink{structpoint}{point} \hyperlink{user__main_8c_a11c69d8a1f17f0f3b630f41e46eabc05}{V}
+\item 
+\hyperlink{structpoint}{point} \hyperlink{user__main_8c_a8f21a381899b20c7e608be3505d09db9}{S}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyParagraph}{Copyright \copyright{} 2015 Mike Gore, G\-P\-L License}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Edit History}
+
+\begin{DoxyItemize}
+\item \mbox{[}1.\-0\mbox{]} \mbox{[}Mike Gore\mbox{]} Initial revision of file.
+\end{DoxyItemize}
+\end{DoxyParagraph}
+This is free software\-: you can redistribute it and/or modify it under the terms of the G\-N\-U General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+\hyperlink{user__main_8c}{user\-\_\-main.\-c} is distributed in the hope that it will be useful, but W\-I\-T\-H\-O\-U\-T A\-N\-Y W\-A\-R\-R\-A\-N\-T\-Y; without even the implied warranty of M\-E\-R\-C\-H\-A\-N\-T\-A\-B\-I\-L\-I\-T\-Y or F\-I\-T\-N\-E\-S\-S F\-O\-R A P\-A\-R\-T\-I\-C\-U\-L\-A\-R P\-U\-R\-P\-O\-S\-E. See the G\-N\-U General Public License for more details.
+
+You should have received a copy of the G\-N\-U General Public License along with this program. If not, see \href{http://www.gnu.org/licenses/}{\tt http\-://www.\-gnu.\-org/licenses/}. 
+
+Definition in file \hyperlink{user__main_8c_source}{user\-\_\-main.\-c}.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{user__main_8c_a8c3a7f0ee91987679040299af24bd503}{\index{user\-\_\-main.\-c@{user\-\_\-main.\-c}!ets\-\_\-timer\-\_\-disarm@{ets\-\_\-timer\-\_\-disarm}}
+\index{ets\-\_\-timer\-\_\-disarm@{ets\-\_\-timer\-\_\-disarm}!user_main.c@{user\-\_\-main.\-c}}
+\subsubsection[{ets\-\_\-timer\-\_\-disarm}]{\setlength{\rightskip}{0pt plus 5cm}void ets\-\_\-timer\-\_\-disarm (
+\begin{DoxyParamCaption}
+\item[{E\-T\-S\-Timer $\ast$}]{ptimer}
+\end{DoxyParamCaption}
+)}}\label{user__main_8c_a8c3a7f0ee91987679040299af24bd503}
+\hypertarget{user__main_8c_a6ea5d30094305d8b476b09164dd38f3f}{\index{user\-\_\-main.\-c@{user\-\_\-main.\-c}!ets\-\_\-timer\-\_\-setfn@{ets\-\_\-timer\-\_\-setfn}}
+\index{ets\-\_\-timer\-\_\-setfn@{ets\-\_\-timer\-\_\-setfn}!user_main.c@{user\-\_\-main.\-c}}
+\subsubsection[{ets\-\_\-timer\-\_\-setfn}]{\setlength{\rightskip}{0pt plus 5cm}void ets\-\_\-timer\-\_\-setfn (
+\begin{DoxyParamCaption}
+\item[{E\-T\-S\-Timer $\ast$}]{ptimer, }
+\item[{E\-T\-S\-Timer\-Func $\ast$}]{pfunction, }
+\item[{void $\ast$}]{parg}
+\end{DoxyParamCaption}
+)}}\label{user__main_8c_a6ea5d30094305d8b476b09164dd38f3f}
+\hypertarget{user__main_8c_af84e3ac8b5878bd0ad9e185f3d27073c}{\index{user\-\_\-main.\-c@{user\-\_\-main.\-c}!ets\-\_\-uart\-\_\-printf@{ets\-\_\-uart\-\_\-printf}}
+\index{ets\-\_\-uart\-\_\-printf@{ets\-\_\-uart\-\_\-printf}!user_main.c@{user\-\_\-main.\-c}}
+\subsubsection[{ets\-\_\-uart\-\_\-printf}]{\setlength{\rightskip}{0pt plus 5cm}int ets\-\_\-uart\-\_\-printf (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{fmt, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)}}\label{user__main_8c_af84e3ac8b5878bd0ad9e185f3d27073c}
+
+
+Referenced by font\-\_\-attr(), tft\-\_\-read\-Register(), and user\-\_\-init().
+
+\hypertarget{user__main_8c_a1aa6f501e8a2b67a5b210658f8529747}{\index{user\-\_\-main.\-c@{user\-\_\-main.\-c}!handler\-\_\-task@{handler\-\_\-task}}
+\index{handler\-\_\-task@{handler\-\_\-task}!user_main.c@{user\-\_\-main.\-c}}
+\subsubsection[{handler\-\_\-task}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void handler\-\_\-task (
+\begin{DoxyParamCaption}
+\item[{os\-\_\-event\-\_\-t $\ast$}]{e}
+\end{DoxyParamCaption}
+)}}\label{user__main_8c_a1aa6f501e8a2b67a5b210658f8529747}
+
+
+Message handler task Runs corrected cube demo from Sem Optionally wireframe Earh viewer. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 145 of file user\-\_\-main.\-c.
+
+
+
+Referenced by user\-\_\-init().
+
+\hypertarget{user__main_8c_aec5bf646bd247f04a426c43eb3885f2e}{\index{user\-\_\-main.\-c@{user\-\_\-main.\-c}!send\-Msg\-To\-Handler@{send\-Msg\-To\-Handler}}
+\index{send\-Msg\-To\-Handler@{send\-Msg\-To\-Handler}!user_main.c@{user\-\_\-main.\-c}}
+\subsubsection[{send\-Msg\-To\-Handler}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void send\-Msg\-To\-Handler (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{arg}
+\end{DoxyParamCaption}
+)}}\label{user__main_8c_aec5bf646bd247f04a426c43eb3885f2e}
+
+
+Message passing function Sends message to run task. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 134 of file user\-\_\-main.\-c.
+
+
+
+Referenced by user\-\_\-init().
+
+\hypertarget{user__main_8c_a13eda00dd5efd9440b0eaf5430b73e84}{\index{user\-\_\-main.\-c@{user\-\_\-main.\-c}!test@{test}}
+\index{test@{test}!user_main.c@{user\-\_\-main.\-c}}
+\subsubsection[{test}]{\setlength{\rightskip}{0pt plus 5cm}static void test (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{user__main_8c_a13eda00dd5efd9440b0eaf5430b73e84}
+
+
+test task Runs corrected cube demo from Sem Optionally wireframe Earh viewer 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 52 of file user\-\_\-main.\-c.
+
+
+
+Referenced by handler\-\_\-task().
+
+\hypertarget{user__main_8c_aaabd07afe4d50c1a7f16f18995fc6b18}{\index{user\-\_\-main.\-c@{user\-\_\-main.\-c}!user\-\_\-init@{user\-\_\-init}}
+\index{user\-\_\-init@{user\-\_\-init}!user_main.c@{user\-\_\-main.\-c}}
+\subsubsection[{user\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void user\-\_\-init (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{user__main_8c_aaabd07afe4d50c1a7f16f18995fc6b18}
+
+
+Initialize user tassk. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 162 of file user\-\_\-main.\-c.
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{user__main_8c_aa011065eee776eb1bda73597b5d9d5d7}{\index{user\-\_\-main.\-c@{user\-\_\-main.\-c}!count@{count}}
+\index{count@{count}!user_main.c@{user\-\_\-main.\-c}}
+\subsubsection[{count}]{\setlength{\rightskip}{0pt plus 5cm}L\-O\-C\-A\-L long count = 0}}\label{user__main_8c_aa011065eee776eb1bda73597b5d9d5d7}
+
+
+Definition at line 41 of file user\-\_\-main.\-c.
+
+
+
+Referenced by ftoa(), t\-\_\-vsnprintf(), test(), and tft\-\_\-putch().
+
+\hypertarget{user__main_8c_abb90bdd83d3932e812704cf121b69f2f}{\index{user\-\_\-main.\-c@{user\-\_\-main.\-c}!deg\-\_\-inc@{deg\-\_\-inc}}
+\index{deg\-\_\-inc@{deg\-\_\-inc}!user_main.c@{user\-\_\-main.\-c}}
+\subsubsection[{deg\-\_\-inc}]{\setlength{\rightskip}{0pt plus 5cm}L\-O\-C\-A\-L double deg\-\_\-inc = 4}}\label{user__main_8c_abb90bdd83d3932e812704cf121b69f2f}
+
+
+Definition at line 37 of file user\-\_\-main.\-c.
+
+
+
+Referenced by test().
+
+\hypertarget{user__main_8c_a46f4d8ebe46ec267dc7478f530e0ac07}{\index{user\-\_\-main.\-c@{user\-\_\-main.\-c}!degree@{degree}}
+\index{degree@{degree}!user_main.c@{user\-\_\-main.\-c}}
+\subsubsection[{degree}]{\setlength{\rightskip}{0pt plus 5cm}L\-O\-C\-A\-L double degree = 0.\-0}}\label{user__main_8c_a46f4d8ebe46ec267dc7478f530e0ac07}
+
+
+Definition at line 33 of file user\-\_\-main.\-c.
+
+
+
+Referenced by cordic\-\_\-quad(), and test().
+
+\hypertarget{user__main_8c_ace457a27a3496f1891624400f7ffa66f}{\index{user\-\_\-main.\-c@{user\-\_\-main.\-c}!rad@{rad}}
+\index{rad@{rad}!user_main.c@{user\-\_\-main.\-c}}
+\subsubsection[{rad}]{\setlength{\rightskip}{0pt plus 5cm}int rad = 80}}\label{user__main_8c_ace457a27a3496f1891624400f7ffa66f}
+
+
+Definition at line 42 of file user\-\_\-main.\-c.
+
+
+
+Referenced by cordic\-\_\-quad(), and test().
+
+\hypertarget{user__main_8c_a8f21a381899b20c7e608be3505d09db9}{\index{user\-\_\-main.\-c@{user\-\_\-main.\-c}!S@{S}}
+\index{S@{S}!user_main.c@{user\-\_\-main.\-c}}
+\subsubsection[{S}]{\setlength{\rightskip}{0pt plus 5cm}{\bf point} S}}\label{user__main_8c_a8f21a381899b20c7e608be3505d09db9}
+
+
+Definition at line 44 of file user\-\_\-main.\-c.
+
+\hypertarget{user__main_8c_aa7d569051c24f6fb09cf6569ae97e134}{\index{user\-\_\-main.\-c@{user\-\_\-main.\-c}!scale@{scale}}
+\index{scale@{scale}!user_main.c@{user\-\_\-main.\-c}}
+\subsubsection[{scale}]{\setlength{\rightskip}{0pt plus 5cm}L\-O\-C\-A\-L double scale = 1.\-0}}\label{user__main_8c_aa7d569051c24f6fb09cf6569ae97e134}
+
+
+Definition at line 35 of file user\-\_\-main.\-c.
+
+
+
+Referenced by etoa(), ftoa(), main(), scale\-\_\-point(), t\-\_\-scale10(), and test().
+
+\hypertarget{user__main_8c_ab13530f34680731b9764f1cf20f8d3cd}{\index{user\-\_\-main.\-c@{user\-\_\-main.\-c}!scale\-\_\-inc@{scale\-\_\-inc}}
+\index{scale\-\_\-inc@{scale\-\_\-inc}!user_main.c@{user\-\_\-main.\-c}}
+\subsubsection[{scale\-\_\-inc}]{\setlength{\rightskip}{0pt plus 5cm}L\-O\-C\-A\-L double scale\-\_\-inc = .\-1}}\label{user__main_8c_ab13530f34680731b9764f1cf20f8d3cd}
+
+
+Definition at line 39 of file user\-\_\-main.\-c.
+
+
+
+Referenced by test().
+
+\hypertarget{user__main_8c_a7822f324d4e93ecc1e1ae31650c2245a}{\index{user\-\_\-main.\-c@{user\-\_\-main.\-c}!timer\-Handler@{timer\-Handler}}
+\index{timer\-Handler@{timer\-Handler}!user_main.c@{user\-\_\-main.\-c}}
+\subsubsection[{timer\-Handler}]{\setlength{\rightskip}{0pt plus 5cm}L\-O\-C\-A\-L os\-\_\-timer\-\_\-t timer\-Handler}}\label{user__main_8c_a7822f324d4e93ecc1e1ae31650c2245a}
+
+
+Definition at line 30 of file user\-\_\-main.\-c.
+
+
+
+Referenced by user\-\_\-init().
+
+\hypertarget{user__main_8c_a11c69d8a1f17f0f3b630f41e46eabc05}{\index{user\-\_\-main.\-c@{user\-\_\-main.\-c}!V@{V}}
+\index{V@{V}!user_main.c@{user\-\_\-main.\-c}}
+\subsubsection[{V}]{\setlength{\rightskip}{0pt plus 5cm}{\bf point} V}}\label{user__main_8c_a11c69d8a1f17f0f3b630f41e46eabc05}
+
+
+Definition at line 43 of file user\-\_\-main.\-c.
+

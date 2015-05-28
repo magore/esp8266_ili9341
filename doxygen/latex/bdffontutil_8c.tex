@@ -1,0 +1,1310 @@
+\hypertarget{bdffontutil_8c}{\section{fonts/bdffontutil.c File Reference}
+\label{bdffontutil_8c}\index{fonts/bdffontutil.\-c@{fonts/bdffontutil.\-c}}
+}
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$unistd.\-h$>$}\\*
+{\ttfamily \#include $<$string.\-h$>$}\\*
+{\ttfamily \#include $<$limits.\-h$>$}\\*
+{\ttfamily \#include $<$errno.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}font.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}bdffontutil.\-h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void $\ast$ \hyperlink{bdffontutil_8c_a772bc2ec9bca317fb84673f5e9fab1d3}{db\-\_\-calloc} (size\-\_\-t size)
+\begin{DoxyCompactList}\small\item\em calloc memory or error exit \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{bdffontutil_8c_a6042d0098b72b215bcef2d21e803e51d}{db\-\_\-free} (void $\ast$p)
+\begin{DoxyCompactList}\small\item\em free memory \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{bdffontutil_8c_a8a9b8fa6a56f0303cd8c23fdf290f401}{stralloc} (char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Allocate memory and copy string into it. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{bdffontutil_8c_a907e53e4a090147ec953b18f0e1b7915}{remove\-\_\-quotes} (char $\ast$str)
+\begin{DoxyCompactList}\small\item\em S\-Trip quotes from string and leading spaces. \end{DoxyCompactList}\item 
+void \hyperlink{bdffontutil_8c_a466ba4f5e35f1e5ff2791ae4d68d2c7b}{line\-\_\-wrap} (char $\ast$str, int max)
+\begin{DoxyCompactList}\small\item\em Line wrap function A\-S\-S\-U\-M\-E\-S we write back into the string (replace space or tab with newlines. \end{DoxyCompactList}\item 
+void \hyperlink{bdffontutil_8c_a4ad12cb70b50ebf45467f22d22707acc}{trim\-\_\-tail} (char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Remove characters less then or equal to space from end of string. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{bdffontutil_8c_a77f36d5136e3d749221b33e3f23c0258}{skip\-\_\-spaces} (char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Skip spaces at start of string. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{bdffontutil_8c_a1e35df70a4e8a3c2b60cc467731636c8}{get\-\_\-token} (char $\ast$str, char $\ast$token, int max)
+\begin{DoxyCompactList}\small\item\em get first non space containing string Skip spaces at start of string \end{DoxyCompactList}\item 
+int \hyperlink{bdffontutil_8c_a236d65c81ae4bb3d079e9f2dd971cf04}{ishex} (int c)
+\begin{DoxyCompactList}\small\item\em is a character hex A\-S\-C\-I\-I character \end{DoxyCompactList}\item 
+int \hyperlink{bdffontutil_8c_aa8842f574a823375421ac5eabc13bf8c}{ishexstr} (char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Does a string only contain hex characters ? \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{bdffontutil_8c_aa8451fa4387dfafd4583f6548533d37b}{match\-\_\-token} (char $\ast$str, char $\ast$pat)
+\begin{DoxyCompactList}\small\item\em Match next token against pattern. \end{DoxyCompactList}\item 
+void \hyperlink{bdffontutil_8c_a9af4d4c4d62e109f8357e34b05514d98}{Font\-Header\-Info} (F\-I\-L\-E $\ast$out, \hyperlink{struct__font}{\-\_\-font} $\ast$\hyperlink{bdffontutil_8h_a6d9c6f27190f0f04abf55678fe81080d}{font}, char $\ast$prog)
+\begin{DoxyCompactList}\small\item\em Write Font Header Information Copyright, font family, etc. \end{DoxyCompactList}\item 
+void \hyperlink{bdffontutil_8c_a9461259743229256336c4260de7e0e0e}{Convert\-\_\-\-Font2c} (F\-I\-L\-E $\ast$out, \hyperlink{struct__font}{\-\_\-font} $\ast$\hyperlink{bdffontutil_8h_a6d9c6f27190f0f04abf55678fe81080d}{font})
+\begin{DoxyCompactList}\small\item\em Convert font to C structure Writes header information, font specification, font bitmap. \end{DoxyCompactList}\item 
+void \hyperlink{bdffontutil_8c_a052882497beff245c47eafa6b988f2c0}{emit\-\_\-number} (F\-I\-L\-E $\ast$out, char $\ast$name, int num)
+\begin{DoxyCompactList}\small\item\em Write Font Structure element as a number. \end{DoxyCompactList}\item 
+void \hyperlink{bdffontutil_8c_a083894d36a7a6960e30d21d88a0da874}{emit\-\_\-data} (F\-I\-L\-E $\ast$out, char $\ast$name, unsigned char $\ast$data, int size)
+\begin{DoxyCompactList}\small\item\em Write Font Structure element as a uint8\-\_\-t value. \end{DoxyCompactList}\item 
+void \hyperlink{bdffontutil_8c_adcb08a26399fd69fe0d607897367e4af}{emit\-\_\-str} (F\-I\-L\-E $\ast$out, char $\ast$name, unsigned char $\ast$data)
+\begin{DoxyCompactList}\small\item\em Write Font Structure string. \end{DoxyCompactList}\item 
+void \hyperlink{bdffontutil_8c_a57e8372dbdb58858e67dfaad363b0ab0}{Init\-Names} ()
+\begin{DoxyCompactList}\small\item\em Reset File and Structure names. \end{DoxyCompactList}\item 
+void \hyperlink{bdffontutil_8c_a75b1f39c4e8755dca07fd291e52aaedb}{Init\-Fonts} (\hyperlink{struct__font}{\-\_\-font} $\ast$\hyperlink{bdffontutil_8h_a6d9c6f27190f0f04abf55678fe81080d}{font})
+\begin{DoxyCompactList}\small\item\em Initialize all font structures to reset states. \end{DoxyCompactList}\item 
+void \hyperlink{bdffontutil_8c_a4afb5289fcab36022951a5d16ea7932f}{Free\-Font} (\hyperlink{struct__font}{\-\_\-font} $\ast$\hyperlink{bdffontutil_8h_a6d9c6f27190f0f04abf55678fe81080d}{font})
+\begin{DoxyCompactList}\small\item\em Free font data. \end{DoxyCompactList}\item 
+void \hyperlink{bdffontutil_8c_a6293de28b724a18693465ec67868d958}{Add\-Font\-Name} (\hyperlink{struct__font}{\-\_\-font} $\ast$\hyperlink{bdffontutil_8h_a6d9c6f27190f0f04abf55678fe81080d}{font})
+\begin{DoxyCompactList}\small\item\em Generate the font name for this font This is based on the B\-D\-F F\-A\-M\-I\-L\-Y\-\_\-\-N\-A\-M\-E,W\-E\-I\-G\-H\-T\-\_\-\-N\-A\-M\-E,S\-L\-A\-N\-T keywords. \end{DoxyCompactList}\item 
+int \hyperlink{bdffontutil_8c_aa01d93b9cf1d60cc4ce0adb717384f96}{Find\-Font\-Name} (char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Search for a font name. \end{DoxyCompactList}\item 
+void \hyperlink{bdffontutil_8c_ac01ebab75271c42afb96bb8da7db06c2}{Write\-Font\-Bits} (F\-I\-L\-E $\ast$out, \hyperlink{struct__font}{\-\_\-font} $\ast$\hyperlink{bdffontutil_8h_a6d9c6f27190f0f04abf55678fe81080d}{font})
+\begin{DoxyCompactList}\small\item\em Write Font bitmap data for all charactres in font. \end{DoxyCompactList}\item 
+void \hyperlink{bdffontutil_8c_a82e40b5e56cab7daedbe210542aa1d99}{Write\-Font\-Info} (F\-I\-L\-E $\ast$out, \hyperlink{struct__font}{\-\_\-font} $\ast$\hyperlink{bdffontutil_8h_a6d9c6f27190f0f04abf55678fe81080d}{font})
+\begin{DoxyCompactList}\small\item\em Write Information. \end{DoxyCompactList}\item 
+void \hyperlink{bdffontutil_8c_a6e780815dcb0ad1738a3710d10751824}{Write\-Font\-Table} (F\-I\-L\-E $\ast$out, \hyperlink{struct__font}{\-\_\-font} $\ast$\hyperlink{bdffontutil_8h_a6d9c6f27190f0f04abf55678fe81080d}{font})
+\begin{DoxyCompactList}\small\item\em Write Specification Table. \end{DoxyCompactList}\item 
+void \hyperlink{bdffontutil_8c_a7c2cf276db0c747638909191d76925da}{Write\-Character\-Bits} (F\-I\-L\-E $\ast$out, \hyperlink{struct__font}{\-\_\-font} $\ast$\hyperlink{bdffontutil_8h_a6d9c6f27190f0f04abf55678fe81080d}{font}, int num)
+\begin{DoxyCompactList}\small\item\em Write Font bitmap data for one charactre in font. \end{DoxyCompactList}\item 
+int \hyperlink{bdffontutil_8c_a49c59fe21a56b90ad6f8bcc5549e3dce}{Read\-Bdf} (char $\ast$name, \hyperlink{struct__font}{\-\_\-font} $\ast$\hyperlink{bdffontutil_8h_a6d9c6f27190f0f04abf55678fe81080d}{font}, int lower, int upper)
+\begin{DoxyCompactList}\small\item\em Read B\-D\-F file Read B\-D\-F file format. \end{DoxyCompactList}\item 
+void \hyperlink{bdffontutil_8c_a1b1c337030d89f81b06857192e4e0179}{Adjust\-Font\-Table} (\hyperlink{struct__font}{\-\_\-font} $\ast$\hyperlink{bdffontutil_8h_a6d9c6f27190f0f04abf55678fe81080d}{font})
+\begin{DoxyCompactList}\small\item\em Adjust Font offset, renormalize X and Y to 0 Readjust font bounding box. \end{DoxyCompactList}\item 
+void \hyperlink{bdffontutil_8c_ac2e86eac4bb6e173fbbfae929302e851}{Font\-Adjust\-Full} (\hyperlink{struct__font}{\-\_\-font} $\ast$\hyperlink{bdffontutil_8h_a6d9c6f27190f0f04abf55678fe81080d}{font})
+\begin{DoxyCompactList}\small\item\em Adjust font to full size with no offset. \end{DoxyCompactList}\item 
+void \hyperlink{bdffontutil_8c_ac8e10a9220f9a51589124690c47d099b}{Font\-Adjust\-Small} (\hyperlink{struct__font}{\-\_\-font} $\ast$\hyperlink{bdffontutil_8h_a6d9c6f27190f0f04abf55678fe81080d}{font})
+\begin{DoxyCompactList}\small\item\em Ajust font to use smallest font bounding box for each font Can be used to converting large fixed fonts to more compact form Creates font-\/$>$specs if missing. Updates font-\/$>$specs with new font size and offsets. \end{DoxyCompactList}\item 
+void \hyperlink{bdffontutil_8c_acaa9ad09e11f90b8cf7a9e37963e4690}{bsetv} (unsigned char $\ast$ptr, int addr)
+\begin{DoxyCompactList}\small\item\em bit set in byte array \end{DoxyCompactList}\item 
+void \hyperlink{bdffontutil_8c_a972599efcbe9797a7ca0b80e9c3c3707}{bclrv} (unsigned char $\ast$ptr, int addr)
+\begin{DoxyCompactList}\small\item\em bit clear in byte array \end{DoxyCompactList}\item 
+int \hyperlink{bdffontutil_8c_aa30626c7589748b8cea5fee93e17c4cf}{btestv} (unsigned char $\ast$ptr, int addr)
+\begin{DoxyCompactList}\small\item\em Test bit in byte array. \end{DoxyCompactList}\item 
+int \hyperlink{bdffontutil_8c_aa5ed287545d9d0d4361d2bd1c6ecc69d}{bittestxy} (unsigned char $\ast$ptr, int x, int y, int w, int h)
+\begin{DoxyCompactList}\small\item\em Test bit in width $\ast$ height size bit array usng x and y offsets. \end{DoxyCompactList}\item 
+void \hyperlink{bdffontutil_8c_ae492d733e8f4b66a5f106efcb9a1afa0}{bitsetxy} (unsigned char $\ast$ptr, int x, int y, int width, int height)
+\begin{DoxyCompactList}\small\item\em Set bit in width $\ast$ height size bit array usng x and y offsets. \end{DoxyCompactList}\item 
+void \hyperlink{bdffontutil_8c_a57a2a0c60cfe07cf03b14622e93ea4f4}{bitclrxy} (unsigned char $\ast$ptr, int x, int y, int width, int height)
+\begin{DoxyCompactList}\small\item\em Clear bit in width $\ast$ height size bit array usng x and y offsets. \end{DoxyCompactList}\item 
+void \hyperlink{bdffontutil_8c_a4ce02c4d977692b73ca58869344d29ad}{Font\-Preview} (F\-I\-L\-E $\ast$out, \hyperlink{struct__font}{\-\_\-font} $\ast$\hyperlink{bdffontutil_8h_a6d9c6f27190f0f04abf55678fe81080d}{font}, int num)
+\begin{DoxyCompactList}\small\item\em Write Font Preview bit bounding box in A\-S\-C\-I\-I character comments. \end{DoxyCompactList}\item 
+void \hyperlink{bdffontutil_8c_ad503e80d2656e563b9d6112ea11ef820}{Font\-Preview\-Full} (F\-I\-L\-E $\ast$out, \hyperlink{struct__font}{\-\_\-font} $\ast$\hyperlink{bdffontutil_8h_a6d9c6f27190f0f04abf55678fe81080d}{font}, int num)
+\begin{DoxyCompactList}\small\item\em Write Font Preview as full format in A\-S\-C\-I\-I character comments. \end{DoxyCompactList}\item 
+void \hyperlink{bdffontutil_8c_a85e25f42936fa2b1eb3489a17c439ed5}{Font\-Preview\-Proportional} (F\-I\-L\-E $\ast$out, \hyperlink{struct__font}{\-\_\-font} $\ast$\hyperlink{bdffontutil_8h_a6d9c6f27190f0f04abf55678fe81080d}{font}, int num)
+\begin{DoxyCompactList}\small\item\em Write Font Preview as proportional format in A\-S\-C\-I\-I character comments. \end{DoxyCompactList}\item 
+void \hyperlink{bdffontutil_8c_a6e60e1a05fd459f3af8aa691e06950a7}{Write\-Font\-Bits\-Preview} (F\-I\-L\-E $\ast$out, \hyperlink{struct__font}{\-\_\-font} $\ast$\hyperlink{bdffontutil_8h_a6d9c6f27190f0f04abf55678fe81080d}{font}, int preview)
+\begin{DoxyCompactList}\small\item\em Write all Font characters in a font as A\-S\-C\-I\-I character comments. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct__bdffile}{\-\_\-bdffile} \hyperlink{bdffontutil_8c_a8d8135c72831c5d6ca04479c82351b62}{B\-D\-Fnames} \mbox{[}\hyperlink{fonts_2font_8h_ac108d78d76235e3c7cada0c2e56b7e2d}{M\-A\-X\-F\-O\-N\-T\-S}\mbox{]}
+\begin{DoxyCompactList}\small\item\em par B\-D\-F font utils for B\-D\-F to C code converter \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{bdffontutil_8c_ae75c11efb4dd449e4fcf9f1f78e9414c}{fnames} \mbox{[}\hyperlink{fonts_2font_8h_ac108d78d76235e3c7cada0c2e56b7e2d}{M\-A\-X\-F\-O\-N\-T\-S}\mbox{]}
+\item 
+char $\ast$ \hyperlink{bdffontutil_8c_a96b7a9cca32173b734b924f9064b62e4}{E\-M\-P\-T\-Y} = \char`\"{}\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{bdffontutil_8c_a6293de28b724a18693465ec67868d958}{\index{bdffontutil.\-c@{bdffontutil.\-c}!Add\-Font\-Name@{Add\-Font\-Name}}
+\index{Add\-Font\-Name@{Add\-Font\-Name}!bdffontutil.c@{bdffontutil.\-c}}
+\subsubsection[{Add\-Font\-Name}]{\setlength{\rightskip}{0pt plus 5cm}void Add\-Font\-Name (
+\begin{DoxyParamCaption}
+\item[{{\bf \-\_\-font} $\ast$}]{font}
+\end{DoxyParamCaption}
+)}}\label{bdffontutil_8c_a6293de28b724a18693465ec67868d958}
+
+
+Generate the font name for this font This is based on the B\-D\-F F\-A\-M\-I\-L\-Y\-\_\-\-N\-A\-M\-E,W\-E\-I\-G\-H\-T\-\_\-\-N\-A\-M\-E,S\-L\-A\-N\-T keywords. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$font} & Font pointer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\-: void 
+\end{DoxyReturn}
+
+
+Definition at line 559 of file bdffontutil.\-c.
+
+
+
+Referenced by Read\-Bdf().
+
+\hypertarget{bdffontutil_8c_a1b1c337030d89f81b06857192e4e0179}{\index{bdffontutil.\-c@{bdffontutil.\-c}!Adjust\-Font\-Table@{Adjust\-Font\-Table}}
+\index{Adjust\-Font\-Table@{Adjust\-Font\-Table}!bdffontutil.c@{bdffontutil.\-c}}
+\subsubsection[{Adjust\-Font\-Table}]{\setlength{\rightskip}{0pt plus 5cm}void Adjust\-Font\-Table (
+\begin{DoxyParamCaption}
+\item[{{\bf \-\_\-font} $\ast$}]{font}
+\end{DoxyParamCaption}
+)}}\label{bdffontutil_8c_a1b1c337030d89f81b06857192e4e0179}
+
+
+Adjust Font offset, renormalize X and Y to 0 Readjust font bounding box. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$font} & Font pointer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\-: void 
+\end{DoxyReturn}
+
+
+Definition at line 1166 of file bdffontutil.\-c.
+
+
+
+Referenced by Font\-Adjust\-Small(), and Read\-Bdf().
+
+\hypertarget{bdffontutil_8c_a972599efcbe9797a7ca0b80e9c3c3707}{\index{bdffontutil.\-c@{bdffontutil.\-c}!bclrv@{bclrv}}
+\index{bclrv@{bclrv}!bdffontutil.c@{bdffontutil.\-c}}
+\subsubsection[{bclrv}]{\setlength{\rightskip}{0pt plus 5cm}void bclrv (
+\begin{DoxyParamCaption}
+\item[{unsigned char $\ast$}]{ptr, }
+\item[{int}]{addr}
+\end{DoxyParamCaption}
+)}}\label{bdffontutil_8c_a972599efcbe9797a7ca0b80e9c3c3707}
+
+
+bit clear in byte array 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$ptr} & byte array \\
+\hline
+\mbox{\tt in}  & {\em addr} & bit offset to clear \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 1511 of file bdffontutil.\-c.
+
+\hypertarget{bdffontutil_8c_a57a2a0c60cfe07cf03b14622e93ea4f4}{\index{bdffontutil.\-c@{bdffontutil.\-c}!bitclrxy@{bitclrxy}}
+\index{bitclrxy@{bitclrxy}!bdffontutil.c@{bdffontutil.\-c}}
+\subsubsection[{bitclrxy}]{\setlength{\rightskip}{0pt plus 5cm}void bitclrxy (
+\begin{DoxyParamCaption}
+\item[{unsigned char $\ast$}]{ptr, }
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{int}]{width, }
+\item[{int}]{height}
+\end{DoxyParamCaption}
+)}}\label{bdffontutil_8c_a57a2a0c60cfe07cf03b14622e93ea4f4}
+
+
+Clear bit in width $\ast$ height size bit array usng x and y offsets. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$ptr} & byte array \\
+\hline
+\mbox{\tt in}  & {\em x} & bit x offset \\
+\hline
+\mbox{\tt in}  & {\em y} & bit y offset \\
+\hline
+\mbox{\tt in}  & {\em width} & width of bit array \\
+\hline
+\mbox{\tt in}  & {\em height} & height of bit array \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 1598 of file bdffontutil.\-c.
+
+
+
+Referenced by Font\-Adjust\-Full(), and Read\-Bdf().
+
+\hypertarget{bdffontutil_8c_ae492d733e8f4b66a5f106efcb9a1afa0}{\index{bdffontutil.\-c@{bdffontutil.\-c}!bitsetxy@{bitsetxy}}
+\index{bitsetxy@{bitsetxy}!bdffontutil.c@{bdffontutil.\-c}}
+\subsubsection[{bitsetxy}]{\setlength{\rightskip}{0pt plus 5cm}void bitsetxy (
+\begin{DoxyParamCaption}
+\item[{unsigned char $\ast$}]{ptr, }
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{int}]{width, }
+\item[{int}]{height}
+\end{DoxyParamCaption}
+)}}\label{bdffontutil_8c_ae492d733e8f4b66a5f106efcb9a1afa0}
+
+
+Set bit in width $\ast$ height size bit array usng x and y offsets. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$ptr} & byte array \\
+\hline
+\mbox{\tt in}  & {\em x} & bit x offset \\
+\hline
+\mbox{\tt in}  & {\em y} & bit y offset \\
+\hline
+\mbox{\tt in}  & {\em width} & width of bit array \\
+\hline
+\mbox{\tt in}  & {\em height} & height of bit array \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 1570 of file bdffontutil.\-c.
+
+
+
+Referenced by Font\-Adjust\-Full(), Font\-Adjust\-Small(), and Read\-Bdf().
+
+\hypertarget{bdffontutil_8c_aa5ed287545d9d0d4361d2bd1c6ecc69d}{\index{bdffontutil.\-c@{bdffontutil.\-c}!bittestxy@{bittestxy}}
+\index{bittestxy@{bittestxy}!bdffontutil.c@{bdffontutil.\-c}}
+\subsubsection[{bittestxy}]{\setlength{\rightskip}{0pt plus 5cm}int bittestxy (
+\begin{DoxyParamCaption}
+\item[{unsigned char $\ast$}]{ptr, }
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{int}]{w, }
+\item[{int}]{h}
+\end{DoxyParamCaption}
+)}}\label{bdffontutil_8c_aa5ed287545d9d0d4361d2bd1c6ecc69d}
+
+
+Test bit in width $\ast$ height size bit array usng x and y offsets. 
+
+Test bit in w $\ast$ h size bit array usng x and y offsets.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$ptr} & byte array \\
+\hline
+\mbox{\tt in}  & {\em x} & bit x offset \\
+\hline
+\mbox{\tt in}  & {\em y} & bit y offset \\
+\hline
+\mbox{\tt in}  & {\em w} & the width of bit array \\
+\hline
+\mbox{\tt in}  & {\em h} & the height of bit array \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if bit is set, 0 if not 
+\end{DoxyReturn}
+
+
+Definition at line 1542 of file bdffontutil.\-c.
+
+
+
+Referenced by Font\-Adjust\-Full(), Font\-Adjust\-Small(), Font\-Preview(), Font\-Preview\-Full(), and Font\-Preview\-Proportional().
+
+\hypertarget{bdffontutil_8c_acaa9ad09e11f90b8cf7a9e37963e4690}{\index{bdffontutil.\-c@{bdffontutil.\-c}!bsetv@{bsetv}}
+\index{bsetv@{bsetv}!bdffontutil.c@{bdffontutil.\-c}}
+\subsubsection[{bsetv}]{\setlength{\rightskip}{0pt plus 5cm}void bsetv (
+\begin{DoxyParamCaption}
+\item[{unsigned char $\ast$}]{ptr, }
+\item[{int}]{addr}
+\end{DoxyParamCaption}
+)}}\label{bdffontutil_8c_acaa9ad09e11f90b8cf7a9e37963e4690}
+
+
+bit set in byte array 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$ptr} & byte array \\
+\hline
+\mbox{\tt in}  & {\em addr} & bit offset to clear \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 1497 of file bdffontutil.\-c.
+
+\hypertarget{bdffontutil_8c_aa30626c7589748b8cea5fee93e17c4cf}{\index{bdffontutil.\-c@{bdffontutil.\-c}!btestv@{btestv}}
+\index{btestv@{btestv}!bdffontutil.c@{bdffontutil.\-c}}
+\subsubsection[{btestv}]{\setlength{\rightskip}{0pt plus 5cm}int btestv (
+\begin{DoxyParamCaption}
+\item[{unsigned char $\ast$}]{ptr, }
+\item[{int}]{addr}
+\end{DoxyParamCaption}
+)}}\label{bdffontutil_8c_aa30626c7589748b8cea5fee93e17c4cf}
+
+
+Test bit in byte array. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$ptr} & byte array \\
+\hline
+\mbox{\tt in}  & {\em addr} & bit offset to clear \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if bit is set, 0 if not 
+\end{DoxyReturn}
+
+
+Definition at line 1525 of file bdffontutil.\-c.
+
+\hypertarget{bdffontutil_8c_a9461259743229256336c4260de7e0e0e}{\index{bdffontutil.\-c@{bdffontutil.\-c}!Convert\-\_\-\-Font2c@{Convert\-\_\-\-Font2c}}
+\index{Convert\-\_\-\-Font2c@{Convert\-\_\-\-Font2c}!bdffontutil.c@{bdffontutil.\-c}}
+\subsubsection[{Convert\-\_\-\-Font2c}]{\setlength{\rightskip}{0pt plus 5cm}void Convert\-\_\-\-Font2c (
+\begin{DoxyParamCaption}
+\item[{F\-I\-L\-E $\ast$}]{out, }
+\item[{{\bf \-\_\-font} $\ast$}]{font}
+\end{DoxyParamCaption}
+)}}\label{bdffontutil_8c_a9461259743229256336c4260de7e0e0e}
+
+
+Convert font to C structure Writes header information, font specification, font bitmap. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$out} & File handle \\
+\hline
+\mbox{\tt in}  & {\em $\ast$font} & Font handle \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\-: void 
+\end{DoxyReturn}
+
+
+Definition at line 346 of file bdffontutil.\-c.
+
+
+
+Referenced by main().
+
+\hypertarget{bdffontutil_8c_a772bc2ec9bca317fb84673f5e9fab1d3}{\index{bdffontutil.\-c@{bdffontutil.\-c}!db\-\_\-calloc@{db\-\_\-calloc}}
+\index{db\-\_\-calloc@{db\-\_\-calloc}!bdffontutil.c@{bdffontutil.\-c}}
+\subsubsection[{db\-\_\-calloc}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ db\-\_\-calloc (
+\begin{DoxyParamCaption}
+\item[{size\-\_\-t}]{size}
+\end{DoxyParamCaption}
+)}}\label{bdffontutil_8c_a772bc2ec9bca317fb84673f5e9fab1d3}
+
+
+calloc memory or error exit 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em size} & memory size to calloc \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\-: void $\ast$ pointer 
+\end{DoxyReturn}
+
+
+Definition at line 52 of file bdffontutil.\-c.
+
+
+
+Referenced by Font\-Adjust\-Full(), Font\-Adjust\-Small(), Init\-Fonts(), Read\-Bdf(), and stralloc().
+
+\hypertarget{bdffontutil_8c_a6042d0098b72b215bcef2d21e803e51d}{\index{bdffontutil.\-c@{bdffontutil.\-c}!db\-\_\-free@{db\-\_\-free}}
+\index{db\-\_\-free@{db\-\_\-free}!bdffontutil.c@{bdffontutil.\-c}}
+\subsubsection[{db\-\_\-free}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ db\-\_\-free (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{bdffontutil_8c_a6042d0098b72b215bcef2d21e803e51d}
+
+
+free memory 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$p} & memory pointer to free \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\-: void $\ast$ pointer 
+\end{DoxyReturn}
+
+
+Definition at line 68 of file bdffontutil.\-c.
+
+
+
+Referenced by Font\-Adjust\-Full(), Font\-Adjust\-Small(), and Free\-Font().
+
+\hypertarget{bdffontutil_8c_a083894d36a7a6960e30d21d88a0da874}{\index{bdffontutil.\-c@{bdffontutil.\-c}!emit\-\_\-data@{emit\-\_\-data}}
+\index{emit\-\_\-data@{emit\-\_\-data}!bdffontutil.c@{bdffontutil.\-c}}
+\subsubsection[{emit\-\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}void emit\-\_\-data (
+\begin{DoxyParamCaption}
+\item[{F\-I\-L\-E $\ast$}]{out, }
+\item[{char $\ast$}]{name, }
+\item[{unsigned char $\ast$}]{data, }
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}}\label{bdffontutil_8c_a083894d36a7a6960e30d21d88a0da874}
+
+
+Write Font Structure element as a uint8\-\_\-t value. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$out} & File handle \\
+\hline
+\mbox{\tt in}  & {\em $\ast$name} & structure name \\
+\hline
+\mbox{\tt in}  & {\em $\ast$data} & data \\
+\hline
+\mbox{\tt in}  & {\em size} & size of data to write \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\-: void 
+\end{DoxyReturn}
+
+
+Definition at line 437 of file bdffontutil.\-c.
+
+\hypertarget{bdffontutil_8c_a052882497beff245c47eafa6b988f2c0}{\index{bdffontutil.\-c@{bdffontutil.\-c}!emit\-\_\-number@{emit\-\_\-number}}
+\index{emit\-\_\-number@{emit\-\_\-number}!bdffontutil.c@{bdffontutil.\-c}}
+\subsubsection[{emit\-\_\-number}]{\setlength{\rightskip}{0pt plus 5cm}void emit\-\_\-number (
+\begin{DoxyParamCaption}
+\item[{F\-I\-L\-E $\ast$}]{out, }
+\item[{char $\ast$}]{name, }
+\item[{int}]{num}
+\end{DoxyParamCaption}
+)}}\label{bdffontutil_8c_a052882497beff245c47eafa6b988f2c0}
+
+
+Write Font Structure element as a number. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$out} & File output handle \\
+\hline
+\mbox{\tt in}  & {\em $\ast$name} & number structure name \\
+\hline
+\mbox{\tt in}  & {\em num} & number to display \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\-: void 
+\end{DoxyReturn}
+
+
+Definition at line 422 of file bdffontutil.\-c.
+
+
+
+Referenced by Convert\-\_\-\-Font2c().
+
+\hypertarget{bdffontutil_8c_adcb08a26399fd69fe0d607897367e4af}{\index{bdffontutil.\-c@{bdffontutil.\-c}!emit\-\_\-str@{emit\-\_\-str}}
+\index{emit\-\_\-str@{emit\-\_\-str}!bdffontutil.c@{bdffontutil.\-c}}
+\subsubsection[{emit\-\_\-str}]{\setlength{\rightskip}{0pt plus 5cm}void emit\-\_\-str (
+\begin{DoxyParamCaption}
+\item[{F\-I\-L\-E $\ast$}]{out, }
+\item[{char $\ast$}]{name, }
+\item[{unsigned char $\ast$}]{data}
+\end{DoxyParamCaption}
+)}}\label{bdffontutil_8c_adcb08a26399fd69fe0d607897367e4af}
+
+
+Write Font Structure string. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$out} & File handle \\
+\hline
+\mbox{\tt in}  & {\em $\ast$name} & structure name \\
+\hline
+\mbox{\tt in}  & {\em $\ast$data} & string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\-: void 
+\end{DoxyReturn}
+
+
+Definition at line 458 of file bdffontutil.\-c.
+
+
+
+Referenced by Write\-Font\-Info().
+
+\hypertarget{bdffontutil_8c_aa01d93b9cf1d60cc4ce0adb717384f96}{\index{bdffontutil.\-c@{bdffontutil.\-c}!Find\-Font\-Name@{Find\-Font\-Name}}
+\index{Find\-Font\-Name@{Find\-Font\-Name}!bdffontutil.c@{bdffontutil.\-c}}
+\subsubsection[{Find\-Font\-Name}]{\setlength{\rightskip}{0pt plus 5cm}int Find\-Font\-Name (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str}
+\end{DoxyParamCaption}
+)}}\label{bdffontutil_8c_aa01d93b9cf1d60cc4ce0adb717384f96}
+
+
+Search for a font name. 
+
+\begin{DoxyReturn}{Returns}
+\-: index into B\-D\-Fnames\mbox{[}\mbox{]} 
+\end{DoxyReturn}
+
+
+Definition at line 588 of file bdffontutil.\-c.
+
+
+
+Referenced by main().
+
+\hypertarget{bdffontutil_8c_ac2e86eac4bb6e173fbbfae929302e851}{\index{bdffontutil.\-c@{bdffontutil.\-c}!Font\-Adjust\-Full@{Font\-Adjust\-Full}}
+\index{Font\-Adjust\-Full@{Font\-Adjust\-Full}!bdffontutil.c@{bdffontutil.\-c}}
+\subsubsection[{Font\-Adjust\-Full}]{\setlength{\rightskip}{0pt plus 5cm}void Font\-Adjust\-Full (
+\begin{DoxyParamCaption}
+\item[{{\bf \-\_\-font} $\ast$}]{font}
+\end{DoxyParamCaption}
+)}}\label{bdffontutil_8c_ac2e86eac4bb6e173fbbfae929302e851}
+
+
+Adjust font to full size with no offset. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$font} & Font pointer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\-: void 
+\end{DoxyReturn}
+
+
+Definition at line 1215 of file bdffontutil.\-c.
+
+
+
+Referenced by main().
+
+\hypertarget{bdffontutil_8c_ac8e10a9220f9a51589124690c47d099b}{\index{bdffontutil.\-c@{bdffontutil.\-c}!Font\-Adjust\-Small@{Font\-Adjust\-Small}}
+\index{Font\-Adjust\-Small@{Font\-Adjust\-Small}!bdffontutil.c@{bdffontutil.\-c}}
+\subsubsection[{Font\-Adjust\-Small}]{\setlength{\rightskip}{0pt plus 5cm}void Font\-Adjust\-Small (
+\begin{DoxyParamCaption}
+\item[{{\bf \-\_\-font} $\ast$}]{font}
+\end{DoxyParamCaption}
+)}}\label{bdffontutil_8c_ac8e10a9220f9a51589124690c47d099b}
+
+
+Ajust font to use smallest font bounding box for each font Can be used to converting large fixed fonts to more compact form Creates font-\/$>$specs if missing. Updates font-\/$>$specs with new font size and offsets. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$font} & Font pointer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\-: void 
+\end{DoxyReturn}
+
+
+Definition at line 1299 of file bdffontutil.\-c.
+
+
+
+Referenced by main().
+
+\hypertarget{bdffontutil_8c_a9af4d4c4d62e109f8357e34b05514d98}{\index{bdffontutil.\-c@{bdffontutil.\-c}!Font\-Header\-Info@{Font\-Header\-Info}}
+\index{Font\-Header\-Info@{Font\-Header\-Info}!bdffontutil.c@{bdffontutil.\-c}}
+\subsubsection[{Font\-Header\-Info}]{\setlength{\rightskip}{0pt plus 5cm}void Font\-Header\-Info (
+\begin{DoxyParamCaption}
+\item[{F\-I\-L\-E $\ast$}]{out, }
+\item[{{\bf \-\_\-font} $\ast$}]{font, }
+\item[{char $\ast$}]{prog}
+\end{DoxyParamCaption}
+)}}\label{bdffontutil_8c_a9af4d4c4d62e109f8357e34b05514d98}
+
+
+Write Font Header Information Copyright, font family, etc. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$out} & File handle \\
+\hline
+\mbox{\tt in}  & {\em $\ast$font} & Font handle \\
+\hline
+\mbox{\tt in}  & {\em $\ast$prog} & program name \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\-: void 
+\end{DoxyReturn}
+
+
+Definition at line 312 of file bdffontutil.\-c.
+
+
+
+Referenced by main().
+
+\hypertarget{bdffontutil_8c_a4ce02c4d977692b73ca58869344d29ad}{\index{bdffontutil.\-c@{bdffontutil.\-c}!Font\-Preview@{Font\-Preview}}
+\index{Font\-Preview@{Font\-Preview}!bdffontutil.c@{bdffontutil.\-c}}
+\subsubsection[{Font\-Preview}]{\setlength{\rightskip}{0pt plus 5cm}void Font\-Preview (
+\begin{DoxyParamCaption}
+\item[{F\-I\-L\-E $\ast$}]{out, }
+\item[{{\bf \-\_\-font} $\ast$}]{font, }
+\item[{int}]{num}
+\end{DoxyParamCaption}
+)}}\label{bdffontutil_8c_a4ce02c4d977692b73ca58869344d29ad}
+
+
+Write Font Preview bit bounding box in A\-S\-C\-I\-I character comments. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$out} & File handle \\
+\hline
+\mbox{\tt in}  & {\em $\ast$font} & Font pointer \\
+\hline
+\mbox{\tt in}  & {\em num} & Font character \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\-: void 
+\end{DoxyReturn}
+
+
+Definition at line 1625 of file bdffontutil.\-c.
+
+
+
+Referenced by Write\-Font\-Bits\-Preview().
+
+\hypertarget{bdffontutil_8c_ad503e80d2656e563b9d6112ea11ef820}{\index{bdffontutil.\-c@{bdffontutil.\-c}!Font\-Preview\-Full@{Font\-Preview\-Full}}
+\index{Font\-Preview\-Full@{Font\-Preview\-Full}!bdffontutil.c@{bdffontutil.\-c}}
+\subsubsection[{Font\-Preview\-Full}]{\setlength{\rightskip}{0pt plus 5cm}void Font\-Preview\-Full (
+\begin{DoxyParamCaption}
+\item[{F\-I\-L\-E $\ast$}]{out, }
+\item[{{\bf \-\_\-font} $\ast$}]{font, }
+\item[{int}]{num}
+\end{DoxyParamCaption}
+)}}\label{bdffontutil_8c_ad503e80d2656e563b9d6112ea11ef820}
+
+
+Write Font Preview as full format in A\-S\-C\-I\-I character comments. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$out} & File handle \\
+\hline
+\mbox{\tt in}  & {\em $\ast$font} & Font pointer \\
+\hline
+\mbox{\tt in}  & {\em num} & Font character \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\-: void 
+\end{DoxyReturn}
+
+
+Definition at line 1708 of file bdffontutil.\-c.
+
+
+
+Referenced by Write\-Font\-Bits\-Preview().
+
+\hypertarget{bdffontutil_8c_a85e25f42936fa2b1eb3489a17c439ed5}{\index{bdffontutil.\-c@{bdffontutil.\-c}!Font\-Preview\-Proportional@{Font\-Preview\-Proportional}}
+\index{Font\-Preview\-Proportional@{Font\-Preview\-Proportional}!bdffontutil.c@{bdffontutil.\-c}}
+\subsubsection[{Font\-Preview\-Proportional}]{\setlength{\rightskip}{0pt plus 5cm}void Font\-Preview\-Proportional (
+\begin{DoxyParamCaption}
+\item[{F\-I\-L\-E $\ast$}]{out, }
+\item[{{\bf \-\_\-font} $\ast$}]{font, }
+\item[{int}]{num}
+\end{DoxyParamCaption}
+)}}\label{bdffontutil_8c_a85e25f42936fa2b1eb3489a17c439ed5}
+
+
+Write Font Preview as proportional format in A\-S\-C\-I\-I character comments. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$out} & File handle \\
+\hline
+\mbox{\tt in}  & {\em $\ast$font} & Font pointer \\
+\hline
+\mbox{\tt in}  & {\em num} & Font character \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\-: void 
+\end{DoxyReturn}
+
+
+Definition at line 1810 of file bdffontutil.\-c.
+
+
+
+Referenced by Write\-Font\-Bits\-Preview().
+
+\hypertarget{bdffontutil_8c_a4afb5289fcab36022951a5d16ea7932f}{\index{bdffontutil.\-c@{bdffontutil.\-c}!Free\-Font@{Free\-Font}}
+\index{Free\-Font@{Free\-Font}!bdffontutil.c@{bdffontutil.\-c}}
+\subsubsection[{Free\-Font}]{\setlength{\rightskip}{0pt plus 5cm}void Free\-Font (
+\begin{DoxyParamCaption}
+\item[{{\bf \-\_\-font} $\ast$}]{font}
+\end{DoxyParamCaption}
+)}}\label{bdffontutil_8c_a4afb5289fcab36022951a5d16ea7932f}
+
+
+Free font data. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$font} & Font pointer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\-: void 
+\end{DoxyReturn}
+
+
+Definition at line 531 of file bdffontutil.\-c.
+
+
+
+Referenced by main().
+
+\hypertarget{bdffontutil_8c_a1e35df70a4e8a3c2b60cc467731636c8}{\index{bdffontutil.\-c@{bdffontutil.\-c}!get\-\_\-token@{get\-\_\-token}}
+\index{get\-\_\-token@{get\-\_\-token}!bdffontutil.c@{bdffontutil.\-c}}
+\subsubsection[{get\-\_\-token}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ get\-\_\-token (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str, }
+\item[{char $\ast$}]{token, }
+\item[{int}]{max}
+\end{DoxyParamCaption}
+)}}\label{bdffontutil_8c_a1e35df70a4e8a3c2b60cc467731636c8}
+
+
+get first non space containing string Skip spaces at start of string 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$str} & string \\
+\hline
+\mbox{\tt out}  & {\em $\ast$token} & token characters greter then space less then 0x7f \\
+\hline
+\mbox{\tt in}  & {\em max} & maximum length of token \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\-: string pointer to character after token 
+\end{DoxyReturn}
+
+
+Definition at line 199 of file bdffontutil.\-c.
+
+
+
+Referenced by Read\-Bdf().
+
+\hypertarget{bdffontutil_8c_a75b1f39c4e8755dca07fd291e52aaedb}{\index{bdffontutil.\-c@{bdffontutil.\-c}!Init\-Fonts@{Init\-Fonts}}
+\index{Init\-Fonts@{Init\-Fonts}!bdffontutil.c@{bdffontutil.\-c}}
+\subsubsection[{Init\-Fonts}]{\setlength{\rightskip}{0pt plus 5cm}void Init\-Fonts (
+\begin{DoxyParamCaption}
+\item[{{\bf \-\_\-font} $\ast$}]{font}
+\end{DoxyParamCaption}
+)}}\label{bdffontutil_8c_a75b1f39c4e8755dca07fd291e52aaedb}
+
+
+Initialize all font structures to reset states. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$font} & Font pointer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\-: void 
+\end{DoxyReturn}
+
+
+Definition at line 492 of file bdffontutil.\-c.
+
+
+
+Referenced by Read\-Bdf().
+
+\hypertarget{bdffontutil_8c_a57e8372dbdb58858e67dfaad363b0ab0}{\index{bdffontutil.\-c@{bdffontutil.\-c}!Init\-Names@{Init\-Names}}
+\index{Init\-Names@{Init\-Names}!bdffontutil.c@{bdffontutil.\-c}}
+\subsubsection[{Init\-Names}]{\setlength{\rightskip}{0pt plus 5cm}void Init\-Names (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{bdffontutil_8c_a57e8372dbdb58858e67dfaad363b0ab0}
+
+
+Reset File and Structure names. 
+
+\begin{DoxyReturn}{Returns}
+\-: void 
+\end{DoxyReturn}
+
+
+Definition at line 471 of file bdffontutil.\-c.
+
+\hypertarget{bdffontutil_8c_a236d65c81ae4bb3d079e9f2dd971cf04}{\index{bdffontutil.\-c@{bdffontutil.\-c}!ishex@{ishex}}
+\index{ishex@{ishex}!bdffontutil.c@{bdffontutil.\-c}}
+\subsubsection[{ishex}]{\setlength{\rightskip}{0pt plus 5cm}int ishex (
+\begin{DoxyParamCaption}
+\item[{int}]{c}
+\end{DoxyParamCaption}
+)}}\label{bdffontutil_8c_a236d65c81ae4bb3d079e9f2dd971cf04}
+
+
+is a character hex A\-S\-C\-I\-I character 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & character to test \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\-: 0 .. 15 or -\/1 on error 
+\end{DoxyReturn}
+
+
+Definition at line 237 of file bdffontutil.\-c.
+
+
+
+Referenced by ishexstr(), and Read\-Bdf().
+
+\hypertarget{bdffontutil_8c_aa8842f574a823375421ac5eabc13bf8c}{\index{bdffontutil.\-c@{bdffontutil.\-c}!ishexstr@{ishexstr}}
+\index{ishexstr@{ishexstr}!bdffontutil.c@{bdffontutil.\-c}}
+\subsubsection[{ishexstr}]{\setlength{\rightskip}{0pt plus 5cm}int ishexstr (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str}
+\end{DoxyParamCaption}
+)}}\label{bdffontutil_8c_aa8842f574a823375421ac5eabc13bf8c}
+
+
+Does a string only contain hex characters ? 
+
+\begin{DoxyReturn}{Returns}
+\-: 1 if hex , 0 if not 
+\end{DoxyReturn}
+
+
+Definition at line 252 of file bdffontutil.\-c.
+
+
+
+Referenced by Read\-Bdf().
+
+\hypertarget{bdffontutil_8c_a466ba4f5e35f1e5ff2791ae4d68d2c7b}{\index{bdffontutil.\-c@{bdffontutil.\-c}!line\-\_\-wrap@{line\-\_\-wrap}}
+\index{line\-\_\-wrap@{line\-\_\-wrap}!bdffontutil.c@{bdffontutil.\-c}}
+\subsubsection[{line\-\_\-wrap}]{\setlength{\rightskip}{0pt plus 5cm}void line\-\_\-wrap (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str, }
+\item[{int}]{max}
+\end{DoxyParamCaption}
+)}}\label{bdffontutil_8c_a466ba4f5e35f1e5ff2791ae4d68d2c7b}
+
+
+Line wrap function A\-S\-S\-U\-M\-E\-S we write back into the string (replace space or tab with newlines. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$str} & string to remove quotes from \\
+\hline
+\mbox{\tt in}  & {\em max} & Maximum string length \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\-: void 
+\end{DoxyReturn}
+
+
+Definition at line 131 of file bdffontutil.\-c.
+
+\hypertarget{bdffontutil_8c_aa8451fa4387dfafd4583f6548533d37b}{\index{bdffontutil.\-c@{bdffontutil.\-c}!match\-\_\-token@{match\-\_\-token}}
+\index{match\-\_\-token@{match\-\_\-token}!bdffontutil.c@{bdffontutil.\-c}}
+\subsubsection[{match\-\_\-token}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ match\-\_\-token (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str, }
+\item[{char $\ast$}]{pat}
+\end{DoxyParamCaption}
+)}}\label{bdffontutil_8c_aa8451fa4387dfafd4583f6548533d37b}
+
+
+Match next token against pattern. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & string to search \\
+\hline
+\mbox{\tt in}  & {\em pat} & pattern Skips spaces at start of string A token is any string with caracters greter then space less then 0x7f \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\-: length of match on sucess 
+\end{DoxyReturn}
+
+
+Definition at line 269 of file bdffontutil.\-c.
+
+\hypertarget{bdffontutil_8c_a49c59fe21a56b90ad6f8bcc5549e3dce}{\index{bdffontutil.\-c@{bdffontutil.\-c}!Read\-Bdf@{Read\-Bdf}}
+\index{Read\-Bdf@{Read\-Bdf}!bdffontutil.c@{bdffontutil.\-c}}
+\subsubsection[{Read\-Bdf}]{\setlength{\rightskip}{0pt plus 5cm}int Read\-Bdf (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{name, }
+\item[{{\bf \-\_\-font} $\ast$}]{font, }
+\item[{int}]{lower, }
+\item[{int}]{upper}
+\end{DoxyParamCaption}
+)}}\label{bdffontutil_8c_a49c59fe21a56b90ad6f8bcc5549e3dce}
+
+
+Read B\-D\-F file Read B\-D\-F file format. 
+
+\begin{DoxySeeAlso}{See Also}
+\-: \href{http://en.wikipedia.org/wiki/Glyph_Bitmap_Distribution_Format}{\tt http\-://en.\-wikipedia.\-org/wiki/\-Glyph\-\_\-\-Bitmap\-\_\-\-Distribution\-\_\-\-Format} 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$name} & B\-D\-F File name \\
+\hline
+\mbox{\tt in}  & {\em $\ast$font} & Font pointer \\
+\hline
+\mbox{\tt in}  & {\em lower} & First character \\
+\hline
+\mbox{\tt in}  & {\em upper} & Last character \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\-: number of characters processed 
+\end{DoxyReturn}
+
+
+Definition at line 767 of file bdffontutil.\-c.
+
+
+
+Referenced by main().
+
+\hypertarget{bdffontutil_8c_a907e53e4a090147ec953b18f0e1b7915}{\index{bdffontutil.\-c@{bdffontutil.\-c}!remove\-\_\-quotes@{remove\-\_\-quotes}}
+\index{remove\-\_\-quotes@{remove\-\_\-quotes}!bdffontutil.c@{bdffontutil.\-c}}
+\subsubsection[{remove\-\_\-quotes}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ remove\-\_\-quotes (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str}
+\end{DoxyParamCaption}
+)}}\label{bdffontutil_8c_a907e53e4a090147ec953b18f0e1b7915}
+
+
+S\-Trip quotes from string and leading spaces. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$str} & string to remove quotes from \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\-: char $\ast$ pointer to first non-\/space character 
+\end{DoxyReturn}
+
+
+Definition at line 99 of file bdffontutil.\-c.
+
+
+
+Referenced by Read\-Bdf().
+
+\hypertarget{bdffontutil_8c_a77f36d5136e3d749221b33e3f23c0258}{\index{bdffontutil.\-c@{bdffontutil.\-c}!skip\-\_\-spaces@{skip\-\_\-spaces}}
+\index{skip\-\_\-spaces@{skip\-\_\-spaces}!bdffontutil.c@{bdffontutil.\-c}}
+\subsubsection[{skip\-\_\-spaces}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ skip\-\_\-spaces (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str}
+\end{DoxyParamCaption}
+)}}\label{bdffontutil_8c_a77f36d5136e3d749221b33e3f23c0258}
+
+
+Skip spaces at start of string. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$str} & string to remove quotes from \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\-: first non space character 
+\end{DoxyReturn}
+
+
+Definition at line 183 of file bdffontutil.\-c.
+
+
+
+Referenced by get\-\_\-token().
+
+\hypertarget{bdffontutil_8c_a8a9b8fa6a56f0303cd8c23fdf290f401}{\index{bdffontutil.\-c@{bdffontutil.\-c}!stralloc@{stralloc}}
+\index{stralloc@{stralloc}!bdffontutil.c@{bdffontutil.\-c}}
+\subsubsection[{stralloc}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ stralloc (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str}
+\end{DoxyParamCaption}
+)}}\label{bdffontutil_8c_a8a9b8fa6a56f0303cd8c23fdf290f401}
+
+
+Allocate memory and copy string into it. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$str} & string to allocate and copy memory for \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\-: char $\ast$ pointer to allocated string 
+\end{DoxyReturn}
+
+
+Definition at line 83 of file bdffontutil.\-c.
+
+
+
+Referenced by Add\-Font\-Name(), main(), and Read\-Bdf().
+
+\hypertarget{bdffontutil_8c_a4ad12cb70b50ebf45467f22d22707acc}{\index{bdffontutil.\-c@{bdffontutil.\-c}!trim\-\_\-tail@{trim\-\_\-tail}}
+\index{trim\-\_\-tail@{trim\-\_\-tail}!bdffontutil.c@{bdffontutil.\-c}}
+\subsubsection[{trim\-\_\-tail}]{\setlength{\rightskip}{0pt plus 5cm}void trim\-\_\-tail (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str}
+\end{DoxyParamCaption}
+)}}\label{bdffontutil_8c_a4ad12cb70b50ebf45467f22d22707acc}
+
+
+Remove characters less then or equal to space from end of string. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$str} & string to remove quotes from \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\-: void 
+\end{DoxyReturn}
+
+
+Definition at line 167 of file bdffontutil.\-c.
+
+
+
+Referenced by Read\-Bdf(), and remove\-\_\-quotes().
+
+\hypertarget{bdffontutil_8c_a7c2cf276db0c747638909191d76925da}{\index{bdffontutil.\-c@{bdffontutil.\-c}!Write\-Character\-Bits@{Write\-Character\-Bits}}
+\index{Write\-Character\-Bits@{Write\-Character\-Bits}!bdffontutil.c@{bdffontutil.\-c}}
+\subsubsection[{Write\-Character\-Bits}]{\setlength{\rightskip}{0pt plus 5cm}void Write\-Character\-Bits (
+\begin{DoxyParamCaption}
+\item[{F\-I\-L\-E $\ast$}]{out, }
+\item[{{\bf \-\_\-font} $\ast$}]{font, }
+\item[{int}]{num}
+\end{DoxyParamCaption}
+)}}\label{bdffontutil_8c_a7c2cf276db0c747638909191d76925da}
+
+
+Write Font bitmap data for one charactre in font. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$out} & File handle \\
+\hline
+\mbox{\tt in}  & {\em $\ast$font} & Font pointer \\
+\hline
+\mbox{\tt in}  & {\em num} & character number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\-: void 
+\end{DoxyReturn}
+
+
+Definition at line 698 of file bdffontutil.\-c.
+
+
+
+Referenced by Write\-Font\-Bits().
+
+\hypertarget{bdffontutil_8c_ac01ebab75271c42afb96bb8da7db06c2}{\index{bdffontutil.\-c@{bdffontutil.\-c}!Write\-Font\-Bits@{Write\-Font\-Bits}}
+\index{Write\-Font\-Bits@{Write\-Font\-Bits}!bdffontutil.c@{bdffontutil.\-c}}
+\subsubsection[{Write\-Font\-Bits}]{\setlength{\rightskip}{0pt plus 5cm}void Write\-Font\-Bits (
+\begin{DoxyParamCaption}
+\item[{F\-I\-L\-E $\ast$}]{out, }
+\item[{{\bf \-\_\-font} $\ast$}]{font}
+\end{DoxyParamCaption}
+)}}\label{bdffontutil_8c_ac01ebab75271c42afb96bb8da7db06c2}
+
+
+Write Font bitmap data for all charactres in font. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$out} & File handle \\
+\hline
+\mbox{\tt in}  & {\em $\ast$font} & Font pointer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\-: void 
+\end{DoxyReturn}
+
+
+Definition at line 608 of file bdffontutil.\-c.
+
+
+
+Referenced by Convert\-\_\-\-Font2c(), and main().
+
+\hypertarget{bdffontutil_8c_a6e60e1a05fd459f3af8aa691e06950a7}{\index{bdffontutil.\-c@{bdffontutil.\-c}!Write\-Font\-Bits\-Preview@{Write\-Font\-Bits\-Preview}}
+\index{Write\-Font\-Bits\-Preview@{Write\-Font\-Bits\-Preview}!bdffontutil.c@{bdffontutil.\-c}}
+\subsubsection[{Write\-Font\-Bits\-Preview}]{\setlength{\rightskip}{0pt plus 5cm}void Write\-Font\-Bits\-Preview (
+\begin{DoxyParamCaption}
+\item[{F\-I\-L\-E $\ast$}]{out, }
+\item[{{\bf \-\_\-font} $\ast$}]{font, }
+\item[{int}]{preview}
+\end{DoxyParamCaption}
+)}}\label{bdffontutil_8c_a6e60e1a05fd459f3af8aa691e06950a7}
+
+
+Write all Font characters in a font as A\-S\-C\-I\-I character comments. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$out} & File handle \\
+\hline
+\mbox{\tt in}  & {\em $\ast$font} & Font pointer \\
+\hline
+\mbox{\tt in}  & {\em preview} & 1 bit bounding box, 2 Full size, 3 proportional \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\-: void 
+\end{DoxyReturn}
+
+
+Definition at line 1913 of file bdffontutil.\-c.
+
+
+
+Referenced by main().
+
+\hypertarget{bdffontutil_8c_a82e40b5e56cab7daedbe210542aa1d99}{\index{bdffontutil.\-c@{bdffontutil.\-c}!Write\-Font\-Info@{Write\-Font\-Info}}
+\index{Write\-Font\-Info@{Write\-Font\-Info}!bdffontutil.c@{bdffontutil.\-c}}
+\subsubsection[{Write\-Font\-Info}]{\setlength{\rightskip}{0pt plus 5cm}void Write\-Font\-Info (
+\begin{DoxyParamCaption}
+\item[{F\-I\-L\-E $\ast$}]{out, }
+\item[{{\bf \-\_\-font} $\ast$}]{font}
+\end{DoxyParamCaption}
+)}}\label{bdffontutil_8c_a82e40b5e56cab7daedbe210542aa1d99}
+
+
+Write Information. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$out} & File handle \\
+\hline
+\mbox{\tt in}  & {\em $\ast$font} & Font pointer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\-: void 
+\end{DoxyReturn}
+
+
+Definition at line 631 of file bdffontutil.\-c.
+
+
+
+Referenced by Convert\-\_\-\-Font2c(), and main().
+
+\hypertarget{bdffontutil_8c_a6e780815dcb0ad1738a3710d10751824}{\index{bdffontutil.\-c@{bdffontutil.\-c}!Write\-Font\-Table@{Write\-Font\-Table}}
+\index{Write\-Font\-Table@{Write\-Font\-Table}!bdffontutil.c@{bdffontutil.\-c}}
+\subsubsection[{Write\-Font\-Table}]{\setlength{\rightskip}{0pt plus 5cm}void Write\-Font\-Table (
+\begin{DoxyParamCaption}
+\item[{F\-I\-L\-E $\ast$}]{out, }
+\item[{{\bf \-\_\-font} $\ast$}]{font}
+\end{DoxyParamCaption}
+)}}\label{bdffontutil_8c_a6e780815dcb0ad1738a3710d10751824}
+
+
+Write Specification Table. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$out} & File handle \\
+\hline
+\mbox{\tt in}  & {\em $\ast$font} & Font pointer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\-: void 
+\end{DoxyReturn}
+
+
+Definition at line 661 of file bdffontutil.\-c.
+
+
+
+Referenced by Convert\-\_\-\-Font2c(), and main().
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{bdffontutil_8c_a8d8135c72831c5d6ca04479c82351b62}{\index{bdffontutil.\-c@{bdffontutil.\-c}!B\-D\-Fnames@{B\-D\-Fnames}}
+\index{B\-D\-Fnames@{B\-D\-Fnames}!bdffontutil.c@{bdffontutil.\-c}}
+\subsubsection[{B\-D\-Fnames}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-\_\-bdffile} B\-D\-Fnames\mbox{[}{\bf M\-A\-X\-F\-O\-N\-T\-S}\mbox{]}}}\label{bdffontutil_8c_a8d8135c72831c5d6ca04479c82351b62}
+
+
+par B\-D\-F font utils for B\-D\-F to C code converter 
+
+\begin{DoxyParagraph}{Copyright \copyright{} 2015 Mike Gore, G\-P\-L License}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Edit History}
+
+\begin{DoxyItemize}
+\item \mbox{[}1.\-0\mbox{]} \mbox{[}Mike Gore\mbox{]} Initial revision of file.
+\end{DoxyItemize}
+\end{DoxyParagraph}
+This is free software\-: you can redistribute it and/or modify it under the terms of the G\-N\-U General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+bdffont2c is distributed in the hope that it will be useful, but W\-I\-T\-H\-O\-U\-T A\-N\-Y W\-A\-R\-R\-A\-N\-T\-Y; without even the implied warranty of M\-E\-R\-C\-H\-A\-N\-T\-A\-B\-I\-L\-I\-T\-Y or F\-I\-T\-N\-E\-S\-S F\-O\-R A P\-A\-R\-T\-I\-C\-U\-L\-A\-R P\-U\-R\-P\-O\-S\-E. See the G\-N\-U General Public License for more details.
+
+You should have received a copy of the G\-N\-U General Public License along with this program. If not, see \href{http://www.gnu.org/licenses/}{\tt http\-://www.\-gnu.\-org/licenses/}. B\-D\-F = Glyph Bitmap Distribution Format \begin{DoxySeeAlso}{See Also}
+\href{http://en.wikipedia.org/wiki/Glyph_Bitmap_Distribution_Format}{\tt http\-://en.\-wikipedia.\-org/wiki/\-Glyph\-\_\-\-Bitmap\-\_\-\-Distribution\-\_\-\-Format} 
+\end{DoxySeeAlso}
+
+
+Definition at line 41 of file bdffontutil.\-c.
+
+
+
+Referenced by main().
+
+\hypertarget{bdffontutil_8c_a96b7a9cca32173b734b924f9064b62e4}{\index{bdffontutil.\-c@{bdffontutil.\-c}!E\-M\-P\-T\-Y@{E\-M\-P\-T\-Y}}
+\index{E\-M\-P\-T\-Y@{E\-M\-P\-T\-Y}!bdffontutil.c@{bdffontutil.\-c}}
+\subsubsection[{E\-M\-P\-T\-Y}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ E\-M\-P\-T\-Y = \char`\"{}\char`\"{}}}\label{bdffontutil_8c_a96b7a9cca32173b734b924f9064b62e4}
+
+
+Definition at line 45 of file bdffontutil.\-c.
+
+
+
+Referenced by db\-\_\-free(), and Init\-Fonts().
+
+\hypertarget{bdffontutil_8c_ae75c11efb4dd449e4fcf9f1f78e9414c}{\index{bdffontutil.\-c@{bdffontutil.\-c}!fnames@{fnames}}
+\index{fnames@{fnames}!bdffontutil.c@{bdffontutil.\-c}}
+\subsubsection[{fnames}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ fnames\mbox{[}{\bf M\-A\-X\-F\-O\-N\-T\-S}\mbox{]}}}\label{bdffontutil_8c_ae75c11efb4dd449e4fcf9f1f78e9414c}
+
+
+Definition at line 43 of file bdffontutil.\-c.
+
+
+
+Referenced by Init\-Names(), and main().
+

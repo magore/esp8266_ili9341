@@ -1,0 +1,178 @@
+\hypertarget{font_8c}{\section{display/font.c File Reference}
+\label{font_8c}\index{display/font.\-c@{display/font.\-c}}
+}
+
+
+Font display for ili9341 driver B\-D\-F = Glyph Bitmap Distribution Format The code handles fixed, proportional and bounding box format fonts.  
+
+
+{\ttfamily \#include $<$ets\-\_\-sys.\-h$>$}\\*
+{\ttfamily \#include $<$osapi.\-h$>$}\\*
+{\ttfamily \#include $<$os\-\_\-type.\-h$>$}\\*
+{\ttfamily \#include $<$gpio.\-h$>$}\\*
+{\ttfamily \#include $<$mem.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}hspi.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}util.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}ili9341.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}font.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}fonts.\-h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{font_8c_a52d60ae7ccb513718808b5cdbb26ffa3}{M\-E\-M\-S\-P\-A\-C\-E\-\_\-\-F\-O\-N\-T}~I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R
+\begin{DoxyCompactList}\small\item\em save fonts in flash \end{DoxyCompactList}\item 
+\#define \hyperlink{font_8c_ac069b0f0b942de43fee8642c39450bab}{F\-O\-N\-T\-S\-P\-E\-C\-S}
+\begin{DoxyCompactList}\small\item\em we need to use addition width,height and offset sepcifications This is N\-O\-T required for full fonts with fixed atributes \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{font_8c_a0e5275643df2882ea470b7b4b1c9d414}{font\-\_\-attr} (int c, \hyperlink{struct__fontc}{\-\_\-fontc} $\ast$f, int index)
+\begin{DoxyCompactList}\small\item\em Get font attributes for a font. \end{DoxyCompactList}\item 
+int \hyperlink{font_8c_aa2cba7065a29fc9f7918e345d3947795}{tft\-\_\-draw\-Char} (uint8\-\_\-t c, uint16\-\_\-t x, uint16\-\_\-t y, uint8\-\_\-t index)
+\begin{DoxyCompactList}\small\item\em Display a character using font tables. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct__font}{\-\_\-font} $\ast$ \hyperlink{font_8c_ad30601ef15ca84a341c6a7a1dc1d61b1}{allfonts} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Generated Font table / Note the generated tables always include / Font specifications\-: widt, height, offsets, font type, etc / Font information\-: name, copyright, style information / F\-O\-N\-S\-P\-E\-C\-S and F\-O\-N\-T\-I\-N\-F\-O defines controls actual usage. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Font display for ili9341 driver B\-D\-F = Glyph Bitmap Distribution Format The code handles fixed, proportional and bounding box format fonts. \begin{DoxyParagraph}{bdffont2c B\-D\-F to C code converter}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Copyright \copyright{} 2015 Mike Gore, G\-P\-L License}
+
+\end{DoxyParagraph}
+\begin{DoxySeeAlso}{See Also}
+\href{http://en.wikipedia.org/wiki/Glyph_Bitmap_Distribution_Format}{\tt http\-://en.\-wikipedia.\-org/wiki/\-Glyph\-\_\-\-Bitmap\-\_\-\-Distribution\-\_\-\-Format} 
+\end{DoxySeeAlso}
+\begin{DoxyParagraph}{Edit History}
+
+\begin{DoxyItemize}
+\item \mbox{[}1.\-0\mbox{]} \mbox{[}Mike Gore\mbox{]} Initial revision of file.
+\end{DoxyItemize}
+\end{DoxyParagraph}
+This is free software\-: you can redistribute it and/or modify it under the terms of the G\-N\-U General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+bdffont2c is distributed in the hope that it will be useful, but W\-I\-T\-H\-O\-U\-T A\-N\-Y W\-A\-R\-R\-A\-N\-T\-Y; without even the implied warranty of M\-E\-R\-C\-H\-A\-N\-T\-A\-B\-I\-L\-I\-T\-Y or F\-I\-T\-N\-E\-S\-S F\-O\-R A P\-A\-R\-T\-I\-C\-U\-L\-A\-R P\-U\-R\-P\-O\-S\-E. See the G\-N\-U General Public License for more details.
+
+You should have received a copy of the G\-N\-U General Public License along with this program. If not, see \href{http://www.gnu.org/licenses/}{\tt http\-://www.\-gnu.\-org/licenses/}. 
+
+Definition in file \hyperlink{font_8c_source}{font.\-c}.
+
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{font_8c_ac069b0f0b942de43fee8642c39450bab}{\index{font.\-c@{font.\-c}!F\-O\-N\-T\-S\-P\-E\-C\-S@{F\-O\-N\-T\-S\-P\-E\-C\-S}}
+\index{F\-O\-N\-T\-S\-P\-E\-C\-S@{F\-O\-N\-T\-S\-P\-E\-C\-S}!font.c@{font.\-c}}
+\subsubsection[{F\-O\-N\-T\-S\-P\-E\-C\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\-O\-N\-T\-S\-P\-E\-C\-S}}\label{font_8c_ac069b0f0b942de43fee8642c39450bab}
+
+
+we need to use addition width,height and offset sepcifications This is N\-O\-T required for full fonts with fixed atributes 
+
+
+
+Definition at line 42 of file font.\-c.
+
+\hypertarget{font_8c_a52d60ae7ccb513718808b5cdbb26ffa3}{\index{font.\-c@{font.\-c}!M\-E\-M\-S\-P\-A\-C\-E\-\_\-\-F\-O\-N\-T@{M\-E\-M\-S\-P\-A\-C\-E\-\_\-\-F\-O\-N\-T}}
+\index{M\-E\-M\-S\-P\-A\-C\-E\-\_\-\-F\-O\-N\-T@{M\-E\-M\-S\-P\-A\-C\-E\-\_\-\-F\-O\-N\-T}!font.c@{font.\-c}}
+\subsubsection[{M\-E\-M\-S\-P\-A\-C\-E\-\_\-\-F\-O\-N\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\-E\-M\-S\-P\-A\-C\-E\-\_\-\-F\-O\-N\-T~I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R}}\label{font_8c_a52d60ae7ccb513718808b5cdbb26ffa3}
+
+
+save fonts in flash 
+
+
+
+Definition at line 38 of file font.\-c.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{font_8c_a0e5275643df2882ea470b7b4b1c9d414}{\index{font.\-c@{font.\-c}!font\-\_\-attr@{font\-\_\-attr}}
+\index{font\-\_\-attr@{font\-\_\-attr}!font.c@{font.\-c}}
+\subsubsection[{font\-\_\-attr}]{\setlength{\rightskip}{0pt plus 5cm}int font\-\_\-attr (
+\begin{DoxyParamCaption}
+\item[{int}]{c, }
+\item[{{\bf \-\_\-fontc} $\ast$}]{f, }
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)}}\label{font_8c_a0e5275643df2882ea470b7b4b1c9d414}
+
+
+Get font attributes for a font. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & character \\
+\hline
+\mbox{\tt in}  & {\em $\ast$f} & font structure \\
+\hline
+\mbox{\tt in}  & {\em index} & font index (which font table we want) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 64 of file font.\-c.
+
+
+
+Referenced by tft\-\_\-draw\-Centre\-String(), tft\-\_\-draw\-Char(), tft\-\_\-draw\-Right\-String(), and tft\-\_\-putch().
+
+\hypertarget{font_8c_aa2cba7065a29fc9f7918e345d3947795}{\index{font.\-c@{font.\-c}!tft\-\_\-draw\-Char@{tft\-\_\-draw\-Char}}
+\index{tft\-\_\-draw\-Char@{tft\-\_\-draw\-Char}!font.c@{font.\-c}}
+\subsubsection[{tft\-\_\-draw\-Char}]{\setlength{\rightskip}{0pt plus 5cm}int tft\-\_\-draw\-Char (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{c, }
+\item[{uint16\-\_\-t}]{x, }
+\item[{uint16\-\_\-t}]{y, }
+\item[{uint8\-\_\-t}]{index}
+\end{DoxyParamCaption}
+)}}\label{font_8c_aa2cba7065a29fc9f7918e345d3947795}
+
+
+Display a character using font tables. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & character \\
+\hline
+\mbox{\tt in}  & {\em x} & X offset in pixels \\
+\hline
+\mbox{\tt in}  & {\em y} & Y offset in pixels \\
+\hline
+\mbox{\tt in}  & {\em index} & Font index (with font set to use ) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 138 of file font.\-c.
+
+
+
+Referenced by tft\-\_\-draw\-Centre\-String(), tft\-\_\-draw\-Right\-String(), tft\-\_\-draw\-String(), and tft\-\_\-putch().
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{font_8c_ad30601ef15ca84a341c6a7a1dc1d61b1}{\index{font.\-c@{font.\-c}!allfonts@{allfonts}}
+\index{allfonts@{allfonts}!font.c@{font.\-c}}
+\subsubsection[{allfonts}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-\_\-font}$\ast$ allfonts\mbox{[}$\,$\mbox{]}}}\label{font_8c_ad30601ef15ca84a341c6a7a1dc1d61b1}
+
+
+Generated Font table / Note the generated tables always include / Font specifications\-: widt, height, offsets, font type, etc / Font information\-: name, copyright, style information / F\-O\-N\-S\-P\-E\-C\-S and F\-O\-N\-T\-I\-N\-F\-O defines controls actual usage. 
+
+
+
+Definition at line 18073 of file fonts.\-h.
+
+
+
+Referenced by main().
+

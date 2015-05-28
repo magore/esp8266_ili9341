@@ -1,0 +1,39 @@
+// Clear the display pixels outside of bitmap but inside main font set bounding box
+// These are all pixels NOT int the font bitmap but part of the font.
+// If We clear ALL of the pixels before writing the FONT we get flicker
+	// top:    0 .. f.Height - (f.y+f.h)
+	// left:   0 .. f.x
+	// body:   f.x,f.y .. f.x+f.w,f.y+f.h
+	// right:  f.Width - (f.x + f.w) .. f.Width
+	// bottom: f.Height - f.y .. f.Height
+
+	// reset pixel if
+	//  y < f.Height - (f.y+f.h);
+	// 	y > f.Height - f.y
+	// 	x < f.x
+	// 	x > f.x + f.w
+
+
+	if(yskip > 0)
+	{
+		tft_fillRectangle(x, x+f.Width-1, y, y+yskip-1, &win.textbgcolor,1);
+	}
+
+	// Bottom
+	if(f.y > 0)
+	{
+		tft_fillRectangle(x, x+f.Width-1, y+f.Height-f.y-1, y+f.Height-1, &win.textbgcolor,1);
+	}	
+
+	// Left
+	if(f.x > 0)
+	{
+		tft_fillRectangle(x, x+f.x-1, y+yskip, y+yskip+f.h-1, &win.textbgcolor,1);
+	}
+
+	xskip = f.Width - (f.x+f.w);
+	// Right
+	if(xskip > 0)
+	{
+		tft_fillRectangle(x+f.x+f.w, x+f.Width-1, y+yskip, y+yskip+f.h-1, &win.textbgcolor,1);
+	}

@@ -1,0 +1,175 @@
+\hypertarget{earth2wireframe_8c}{\section{earth/make\-\_\-wireframe/earth2wireframe.c File Reference}
+\label{earth2wireframe_8c}\index{earth/make\-\_\-wireframe/earth2wireframe.\-c@{earth/make\-\_\-wireframe/earth2wireframe.\-c}}
+}
+
+
+Convert Earth wireframe in Lon, Lat pairs Each group (a set of Lon, Lat pairs) is separated by one or more blank lines, \# are comments and ignored.  
+
+
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$string.\-h$>$}\\*
+{\ttfamily \#include $<$math.\-h$>$}\\*
+{\ttfamily \#include $<$unistd.\-h$>$}\\*
+{\ttfamily \#include $<$libgen.\-h$>$}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{earth2wireframe_8c_a2949b8f5adb5c1be22f77daca7c2241c}{M\-A\-P\-\_\-\-O\-N\-E}~16384 /$\ast$ 1.\-0 $\ast$/
+\item 
+\#define \hyperlink{earth2wireframe_8c_a245aaa5d992e2892e759081f909b37aa}{M\-A\-P\-S\-E\-P}~(\hyperlink{earth2wireframe_8c_a2949b8f5adb5c1be22f77daca7c2241c}{M\-A\-P\-\_\-\-O\-N\-E}$\ast$2-\/2)
+\item 
+\#define \hyperlink{earth2wireframe_8c_a26c4f42c25ac672bb2a7b61f8eb40191}{M\-A\-P\-E\-N\-D}~(\hyperlink{earth2wireframe_8c_a2949b8f5adb5c1be22f77daca7c2241c}{M\-A\-P\-\_\-\-O\-N\-E}$\ast$2-\/1)
+\item 
+\#define \hyperlink{earth2wireframe_8c_aef8e86bebe14e8d957ac158651c79d71}{M\-A\-P2\-F\-P}(a)~( (double) (a) / (double) (\hyperlink{earth2wireframe_8c_a2949b8f5adb5c1be22f77daca7c2241c}{M\-A\-P\-\_\-\-O\-N\-E}))
+\item 
+\#define \hyperlink{earth2wireframe_8c_a3c5d4002c07553bfcfaf20a93a3d96f6}{F\-P2\-M\-A\-P}(a)~((\hyperlink{earth__inc_8h_a4c939ba62f3338571903e40156a298a3}{M\-A\-P\-\_\-\-T}) (\hyperlink{earth2wireframe_8c_a2949b8f5adb5c1be22f77daca7c2241c}{M\-A\-P\-\_\-\-O\-N\-E} $\ast$ (a)))
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef short int \hyperlink{earth2wireframe_8c_a4c939ba62f3338571903e40156a298a3}{M\-A\-P\-\_\-\-T}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{earth2wireframe_8c_a8012f8bd66798ffbdd27462c9f593a54}{deg2rad} (double deg)
+\begin{DoxyCompactList}\small\item\em Convert of Radians. \end{DoxyCompactList}\item 
+int \hyperlink{earth2wireframe_8c_a0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Convert earth wireframe data to C structure Usage\-: s -\/f filename \mbox{[}-\/p\mbox{]}\par
+",argv\mbox{[}0\mbox{]}); -\/f filename is the lot,lat dataset pairs -\/p disable mapxyz typedef. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Convert Earth wireframe in Lon, Lat pairs Each group (a set of Lon, Lat pairs) is separated by one or more blank lines, \# are comments and ignored. \begin{DoxyParagraph}{Copyright \copyright{} 2015 Mike Gore, G\-P\-L License}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Edit History}
+
+\begin{DoxyItemize}
+\item \mbox{[}1.\-0\mbox{]} \mbox{[}Mike Gore\mbox{]} Initial revision of file.
+\end{DoxyItemize}
+\end{DoxyParagraph}
+This is free software\-: you can redistribute it and/or modify it under the terms of the G\-N\-U General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+earth2wireframe is distributed in the hope that it will be useful, but W\-I\-T\-H\-O\-U\-T A\-N\-Y W\-A\-R\-R\-A\-N\-T\-Y; without even the implied warranty of M\-E\-R\-C\-H\-A\-N\-T\-A\-B\-I\-L\-I\-T\-Y or F\-I\-T\-N\-E\-S\-S F\-O\-R A P\-A\-R\-T\-I\-C\-U\-L\-A\-R P\-U\-R\-P\-O\-S\-E. See the G\-N\-U General Public License for more details.
+
+You should have received a copy of the G\-N\-U General Public License along with this program. If not, see \href{http://www.gnu.org/licenses/}{\tt http\-://www.\-gnu.\-org/licenses/}. 
+
+Definition in file \hyperlink{earth2wireframe_8c_source}{earth2wireframe.\-c}.
+
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{earth2wireframe_8c_a3c5d4002c07553bfcfaf20a93a3d96f6}{\index{earth2wireframe.\-c@{earth2wireframe.\-c}!F\-P2\-M\-A\-P@{F\-P2\-M\-A\-P}}
+\index{F\-P2\-M\-A\-P@{F\-P2\-M\-A\-P}!earth2wireframe.c@{earth2wireframe.\-c}}
+\subsubsection[{F\-P2\-M\-A\-P}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\-P2\-M\-A\-P(
+\begin{DoxyParamCaption}
+\item[{}]{a}
+\end{DoxyParamCaption}
+)~(({\bf M\-A\-P\-\_\-\-T}) ({\bf M\-A\-P\-\_\-\-O\-N\-E} $\ast$ (a)))}}\label{earth2wireframe_8c_a3c5d4002c07553bfcfaf20a93a3d96f6}
+
+
+Definition at line 44 of file earth2wireframe.\-c.
+
+\hypertarget{earth2wireframe_8c_aef8e86bebe14e8d957ac158651c79d71}{\index{earth2wireframe.\-c@{earth2wireframe.\-c}!M\-A\-P2\-F\-P@{M\-A\-P2\-F\-P}}
+\index{M\-A\-P2\-F\-P@{M\-A\-P2\-F\-P}!earth2wireframe.c@{earth2wireframe.\-c}}
+\subsubsection[{M\-A\-P2\-F\-P}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\-A\-P2\-F\-P(
+\begin{DoxyParamCaption}
+\item[{}]{a}
+\end{DoxyParamCaption}
+)~( (double) (a) / (double) ({\bf M\-A\-P\-\_\-\-O\-N\-E}))}}\label{earth2wireframe_8c_aef8e86bebe14e8d957ac158651c79d71}
+
+
+Definition at line 42 of file earth2wireframe.\-c.
+
+\hypertarget{earth2wireframe_8c_a2949b8f5adb5c1be22f77daca7c2241c}{\index{earth2wireframe.\-c@{earth2wireframe.\-c}!M\-A\-P\-\_\-\-O\-N\-E@{M\-A\-P\-\_\-\-O\-N\-E}}
+\index{M\-A\-P\-\_\-\-O\-N\-E@{M\-A\-P\-\_\-\-O\-N\-E}!earth2wireframe.c@{earth2wireframe.\-c}}
+\subsubsection[{M\-A\-P\-\_\-\-O\-N\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\-A\-P\-\_\-\-O\-N\-E~16384 /$\ast$ 1.\-0 $\ast$/}}\label{earth2wireframe_8c_a2949b8f5adb5c1be22f77daca7c2241c}
+
+
+Definition at line 37 of file earth2wireframe.\-c.
+
+
+
+Referenced by main().
+
+\hypertarget{earth2wireframe_8c_a26c4f42c25ac672bb2a7b61f8eb40191}{\index{earth2wireframe.\-c@{earth2wireframe.\-c}!M\-A\-P\-E\-N\-D@{M\-A\-P\-E\-N\-D}}
+\index{M\-A\-P\-E\-N\-D@{M\-A\-P\-E\-N\-D}!earth2wireframe.c@{earth2wireframe.\-c}}
+\subsubsection[{M\-A\-P\-E\-N\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\-A\-P\-E\-N\-D~({\bf M\-A\-P\-\_\-\-O\-N\-E}$\ast$2-\/1)}}\label{earth2wireframe_8c_a26c4f42c25ac672bb2a7b61f8eb40191}
+
+
+Definition at line 39 of file earth2wireframe.\-c.
+
+
+
+Referenced by main().
+
+\hypertarget{earth2wireframe_8c_a245aaa5d992e2892e759081f909b37aa}{\index{earth2wireframe.\-c@{earth2wireframe.\-c}!M\-A\-P\-S\-E\-P@{M\-A\-P\-S\-E\-P}}
+\index{M\-A\-P\-S\-E\-P@{M\-A\-P\-S\-E\-P}!earth2wireframe.c@{earth2wireframe.\-c}}
+\subsubsection[{M\-A\-P\-S\-E\-P}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\-A\-P\-S\-E\-P~({\bf M\-A\-P\-\_\-\-O\-N\-E}$\ast$2-\/2)}}\label{earth2wireframe_8c_a245aaa5d992e2892e759081f909b37aa}
+
+
+Definition at line 38 of file earth2wireframe.\-c.
+
+
+
+Referenced by main().
+
+
+
+\subsection{Typedef Documentation}
+\hypertarget{earth2wireframe_8c_a4c939ba62f3338571903e40156a298a3}{\index{earth2wireframe.\-c@{earth2wireframe.\-c}!M\-A\-P\-\_\-\-T@{M\-A\-P\-\_\-\-T}}
+\index{M\-A\-P\-\_\-\-T@{M\-A\-P\-\_\-\-T}!earth2wireframe.c@{earth2wireframe.\-c}}
+\subsubsection[{M\-A\-P\-\_\-\-T}]{\setlength{\rightskip}{0pt plus 5cm}typedef short int {\bf M\-A\-P\-\_\-\-T}}}\label{earth2wireframe_8c_a4c939ba62f3338571903e40156a298a3}
+
+
+Definition at line 35 of file earth2wireframe.\-c.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{earth2wireframe_8c_a8012f8bd66798ffbdd27462c9f593a54}{\index{earth2wireframe.\-c@{earth2wireframe.\-c}!deg2rad@{deg2rad}}
+\index{deg2rad@{deg2rad}!earth2wireframe.c@{earth2wireframe.\-c}}
+\subsubsection[{deg2rad}]{\setlength{\rightskip}{0pt plus 5cm}double deg2rad (
+\begin{DoxyParamCaption}
+\item[{double}]{deg}
+\end{DoxyParamCaption}
+)}}\label{earth2wireframe_8c_a8012f8bd66798ffbdd27462c9f593a54}
+
+
+Convert of Radians. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em deg} & degrees \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+radians 
+\end{DoxyReturn}
+
+
+Definition at line 49 of file earth2wireframe.\-c.
+
+
+
+Referenced by main().
+
+\hypertarget{earth2wireframe_8c_a0ddf1224851353fc92bfbff6f499fa97}{\index{earth2wireframe.\-c@{earth2wireframe.\-c}!main@{main}}
+\index{main@{main}!earth2wireframe.c@{earth2wireframe.\-c}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}}\label{earth2wireframe_8c_a0ddf1224851353fc92bfbff6f499fa97}
+
+
+Convert earth wireframe data to C structure Usage\-: s -\/f filename \mbox{[}-\/p\mbox{]}\par
+",argv\mbox{[}0\mbox{]}); -\/f filename is the lot,lat dataset pairs -\/p disable mapxyz typedef. 
+
+
+
+Definition at line 58 of file earth2wireframe.\-c.
+

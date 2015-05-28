@@ -1,0 +1,1150 @@
+\hypertarget{ili9341_8h}{\section{display/ili9341.h File Reference}
+\label{ili9341_8h}\index{display/ili9341.\-h@{display/ili9341.\-h}}
+}
+{\ttfamily \#include $<$ets\-\_\-sys.\-h$>$}\\*
+{\ttfamily \#include $<$osapi.\-h$>$}\\*
+{\ttfamily \#include $<$os\-\_\-type.\-h$>$}\\*
+{\ttfamily \#include $<$gpio.\-h$>$}\\*
+{\ttfamily \#include $<$mem.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}util.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}hspi.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}font.\-h\char`\"{}}\\*
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structwindow}{window}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} uint32\-\_\-t \hyperlink{ili9341_8h_a5262b99cf2bfacda91419deef7f18d69}{tft\-\_\-init} (void)
+\begin{DoxyCompactList}\small\item\em Initialize T\-F\-T @ return diplay I\-D 9341. \end{DoxyCompactList}\item 
+uint32\-\_\-t \hyperlink{ili9341_8h_af340be5da1aae5d20fe931d988f25277}{tft\-\_\-clip} (int16\-\_\-t $\ast$xs, int16\-\_\-t $\ast$xl, int16\-\_\-t $\ast$ys, int16\-\_\-t $\ast$yl)
+\begin{DoxyCompactList}\small\item\em Constrain window to display window. \end{DoxyCompactList}\item 
+void \hyperlink{ili9341_8h_ab0f3c00d963d8eaa41bf5e043fb3ce4d}{tft\-\_\-window} (int16\-\_\-t x, int16\-\_\-t y, int16\-\_\-t xl, int16\-\_\-t yl)
+\begin{DoxyCompactList}\small\item\em Set the ili9341 update window. \end{DoxyCompactList}\item 
+void \hyperlink{ili9341_8h_a343385e2400869a634cccdace49bfd11}{tft\-\_\-write\-Cmd} (uint8\-\_\-t cmd)
+\begin{DoxyCompactList}\small\item\em ==================================== \end{DoxyCompactList}\item 
+void \hyperlink{ili9341_8h_a0959bdb4a75d759545c9c42e71b067b0}{tft\-\_\-write\-Data} (uint8\-\_\-t data)
+\begin{DoxyCompactList}\small\item\em Transmit 8 bit display data. \end{DoxyCompactList}\item 
+void \hyperlink{ili9341_8h_a7e872f77765769686e53d16260b8b2ee}{tft\-\_\-write\-Cmd\-Data} (uint8\-\_\-t cmd, uint8\-\_\-t $\ast$data, uint8\-\_\-t bytes)
+\begin{DoxyCompactList}\small\item\em Transmit 8 bit command and related data buffer. \end{DoxyCompactList}\item 
+void \hyperlink{ili9341_8h_a245e573a745574d76bf4d927fcebc700}{tft\-\_\-write\-Data16} (uint16\-\_\-t val)
+\begin{DoxyCompactList}\small\item\em Transmit 16 bit data I\-L\-I9341 defaults to M\-S\-B/\-L\-S\-B data so we have to reverse it. \end{DoxyCompactList}\item 
+void \hyperlink{ili9341_8h_ab3645fa57623c7d1d113a09896a8bed9}{tft\-\_\-write\-Color16\-Repeat} (uint16 color, uint32\-\_\-t \hyperlink{user__main_8c_aa011065eee776eb1bda73597b5d9d5d7}{count})
+\begin{DoxyCompactList}\small\item\em Buffered color fill Optimized for 16bit M\-S\-B/\-L\-S\-B S\-P\-I bus tramission I\-L\-I9341 defaults to M\-S\-B/\-L\-S\-B color data so we reverse it. \end{DoxyCompactList}\item 
+void \hyperlink{ili9341_8h_ae03d5e2484292c50d5e2eb7139a1acb9}{tft\-\_\-write\-Data\-Buffered} (uint16\-\_\-t $\ast$color\-\_\-data, uint32\-\_\-t \hyperlink{user__main_8c_aa011065eee776eb1bda73597b5d9d5d7}{count})
+\begin{DoxyCompactList}\small\item\em Write 16bit color data buffered Optimized for 16bit M\-S\-B/\-L\-S\-B S\-P\-I bus tramission I\-L\-I9341 defaults to M\-S\-B/\-L\-S\-B color data so we reverse it Warning\-: exceeding the array bounds may crash certain systems. \end{DoxyCompactList}\item 
+uint32\-\_\-t \hyperlink{ili9341_8h_a38499e41faa447beb9ab07480d3b69d5}{tft\-\_\-read\-Register} (uint8\-\_\-t reg, uint8\-\_\-t parameter)
+\begin{DoxyCompactList}\small\item\em Read I\-L\-I9341 16bit register value Special undocumented way to read registers on 4 wire S\-P\-I configurations See M\-:\mbox{[}0-\/3\mbox{]} control bits in I\-L\-I9341 documenation. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} uint32\-\_\-t \hyperlink{ili9341_8h_a79545feceb8eca011c3f424b36035010}{tft\-\_\-read\-Id} (void)
+\begin{DoxyCompactList}\small\item\em Read I\-L\-I9341 device I\-D should be 9341. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{ili9341_8h_a4c1271aab64c58f75e6de6471f430bbe}{tft\-\_\-set\-Rotation} (uint8\-\_\-t m)
+\begin{DoxyCompactList}\small\item\em \subsection*{Set soft window limits }\end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{ili9341_8h_a8cf971060dafc5b2442d732d42e8c448}{window\-\_\-init} (void)
+\begin{DoxyCompactList}\small\item\em Defines software values for current window size These are not hardware limits. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{ili9341_8h_a8bbec389cafbf8c9c601f3e946b2837e}{tft\-\_\-set\-Text\-Color} (uint16\-\_\-t c, uint16\-\_\-t b)
+\begin{DoxyCompactList}\small\item\em ==================================== \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{structwindow}{window} $\ast$ \hyperlink{ili9341_8h_a42914bc97d6a4e91b6932e345b96d5af}{tft\-\_\-setpos} (int16\-\_\-t x, int16\-\_\-t y)
+\begin{DoxyCompactList}\small\item\em Set current window offset (per current rotation) \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{structwindow}{window} $\ast$ \hyperlink{ili9341_8h_a637d96e9627f7edc71b70b73bcce97b6}{tft\-\_\-set\-\_\-fontsize} (uint16\-\_\-t index)
+\begin{DoxyCompactList}\small\item\em Set current font size (per current rotation) \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{structwindow}{window} $\ast$ \hyperlink{ili9341_8h_a1b061e516ab2bab485807c2961d59a48}{tft\-\_\-font\-\_\-fixed} (void)
+\begin{DoxyCompactList}\small\item\em Set current font type to fixed Only works if font is proportional type return\-: pointer to current windows. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{structwindow}{window} $\ast$ \hyperlink{ili9341_8h_a1d6b3f7eb4bc1b292cbd7f6ebd1742d8}{tft\-\_\-font\-\_\-var} (void)
+\begin{DoxyCompactList}\small\item\em Set current font type to variable return\-: pointer to current windows. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{structwindow}{window} $\ast$ \hyperlink{ili9341_8h_ae17b6a57470c74c6cac1bafdaa2e550d}{tft\-\_\-getwin} (void)
+\begin{DoxyCompactList}\small\item\em Return current window pointer return\-: pointer to current windows. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int16\-\_\-t \hyperlink{ili9341_8h_aee663ab72a52eedd1e0bd9cdf27965e0}{tft\-\_\-height} (void)
+\begin{DoxyCompactList}\small\item\em Return window height return\-: pointer to current windows. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int16\-\_\-t \hyperlink{ili9341_8h_a39aa1a722cb0d837b2d636c13a9f8f2e}{tft\-\_\-width} (void)
+\begin{DoxyCompactList}\small\item\em Return window width return\-: pointer to current windows. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} uint8\-\_\-t \hyperlink{ili9341_8h_ab456b7f4f7eeeadc2c7ea1ce7ff0c562}{tft\-\_\-get\-Rotation} (void)
+\begin{DoxyCompactList}\small\item\em Return window rotation return\-: window rotation. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} uint16\-\_\-t \hyperlink{ili9341_8h_aef8157caa81d7962742f4ef9455264f9}{tft\-\_\-color565} (uint8\-\_\-t r, uint8\-\_\-t g, uint8\-\_\-t b)
+\begin{DoxyCompactList}\small\item\em \subsection*{Color conversions }\end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{ili9341_8h_a845d3d47f13ba79aba1459b7630bbb90}{convert565to\-R\-G\-B} (uint16\-\_\-t color, uint8\-\_\-t $\ast$r, uint8\-\_\-t $\ast$g, uint8\-\_\-t $\ast$b)
+\begin{DoxyCompactList}\small\item\em Convert 16bit colr into 8-\/bit (each) R,G,B I\-L\-I9341 defaults to M\-S\-B/\-L\-S\-B data so we have to reverse it. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{ili9341_8h_ac276806b0f70c3a69aaefa4a7937643b}{tft\-\_\-invert\-Display} (int flag)
+\begin{DoxyCompactList}\small\item\em Invert the display. \end{DoxyCompactList}\item 
+void \hyperlink{ili9341_8h_a4a5ba68123d8ed8c0ba3f4b512f842f8}{tft\-\_\-bit\-\_\-blit} (uint8\-\_\-t $\ast$ptr, int x, int y, int w, int h, uint16\-\_\-t fg, uint16\-\_\-t bg)
+\begin{DoxyCompactList}\small\item\em \subsection*{B\-L\-I\-T functions }\end{DoxyCompactList}\item 
+void \hyperlink{ili9341_8h_a42d04fb5cc3218721871647fa6279151}{tft\-\_\-blit} (uint16\-\_\-t $\ast$ptr, int x, int y, int w, int h)
+\begin{DoxyCompactList}\small\item\em B\-L\-I\-T a color array to the display. \end{DoxyCompactList}\item 
+void \hyperlink{ili9341_8h_a6bfecb2500c8a8a6f299ffbb1fc7cdc7}{tft\-\_\-draw\-Pixel} (int16\-\_\-t x, int16\-\_\-t y, int16\-\_\-t color)
+\begin{DoxyCompactList}\small\item\em \subsection*{Pixel functions }\end{DoxyCompactList}\item 
+void \hyperlink{ili9341_8h_a75462dc42f9502d6c9e23cc23b8cd8d7}{tft\-\_\-draw\-Line} (int16\-\_\-t x0, int16\-\_\-t y0, int16\-\_\-t x1, int16\-\_\-t y1, uint16\-\_\-t color)
+\begin{DoxyCompactList}\small\item\em Draw line From my blit test code testit.\-c 1984 -\/ 1985 Mike Gore. \end{DoxyCompactList}\item 
+void \hyperlink{ili9341_8h_af55ea4b801cd778035f4b595ce2589a2}{tft\-\_\-fill\-Rect\-W\-H} (int16\-\_\-t x, int16\-\_\-t y, int16\-\_\-t w, int16\-\_\-t h, uint16\-\_\-t color)
+\begin{DoxyCompactList}\small\item\em \subsection*{Fill functions }\end{DoxyCompactList}\item 
+void \hyperlink{ili9341_8h_a2a2ecb50a9b8bb607dba934f2dd78432}{tft\-\_\-fill\-Rect\-X\-Y} (int16\-\_\-t x, int16\-\_\-t y, int16\-\_\-t xl, int16\-\_\-t yl, uint16\-\_\-t color)
+\begin{DoxyCompactList}\small\item\em Fill rectangle with color We clip the window to the current view. \end{DoxyCompactList}\item 
+void \hyperlink{ili9341_8h_a824f316cf75f03456fb6138c6d5cd0c3}{tft\-\_\-fill\-Win} (uint16\-\_\-t color)
+\begin{DoxyCompactList}\small\item\em Fill current display window specified by win. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{ili9341_8h_aca985ff576cbc2975ac0d6d58f9abcf2}{tft\-\_\-cleareol} (void)
+\begin{DoxyCompactList}\small\item\em \subsection*{Character and String functions }\end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{ili9341_8h_a78540013d67b3a4bec521650d4c74976}{tft\-\_\-putch} (int c, \hyperlink{structwindow}{window} $\ast$\hyperlink{ili9341_8c_ad4f99092b85aeca1e021fe68d605e513}{win})
+\begin{DoxyCompactList}\small\item\em put character in current winoow \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{ili9341_8h_a5cb2fc3be5e8549eb86a328716286ad6}{tft\-\_\-draw\-Number} (long long\-\_\-num, int16\-\_\-t x, int16\-\_\-t y, uint8\-\_\-t size)
+\begin{DoxyCompactList}\small\item\em print long number \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{ili9341_8h_a268df57dfc8821e16bd596a3dabad156}{tft\-\_\-draw\-String} (const char $\ast$string, int16\-\_\-t x, int16\-\_\-t y, uint8\-\_\-t size)
+\begin{DoxyCompactList}\small\item\em Draw String at x,y with size bytes. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{ili9341_8h_ac6e0146c37f6143286d79d80a32c122a}{tft\-\_\-draw\-Centre\-String} (const char $\ast$string, int16\-\_\-t xs, int16\-\_\-t y, uint8\-\_\-t index)
+\begin{DoxyCompactList}\small\item\em Draw Centered String at x,y with size bytes. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{ili9341_8h_ad0451a1e57351b646ec79ddeda38178b}{tft\-\_\-draw\-Right\-String} (const char $\ast$string, int16\-\_\-t xs, int16\-\_\-t y, uint8\-\_\-t index)
+\begin{DoxyCompactList}\small\item\em Draw String Right Justified at x,y with size bytes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyParagraph}{Copyright \copyright{} 2015 Mike Gore, Inc. All rights reserved.}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Edit History}
+
+\begin{DoxyItemize}
+\item \mbox{[}1.\-0\mbox{]} \mbox{[}Mike Gore\mbox{]} Initial revision of file.
+\end{DoxyItemize}
+\end{DoxyParagraph}
+This is free software\-: you can redistribute it and/or modify it under the terms of the G\-N\-U General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+ili9431\-\_\-sup.\-h is distributed in the hope that it will be useful, but W\-I\-T\-H\-O\-U\-T A\-N\-Y W\-A\-R\-R\-A\-N\-T\-Y; without even the implied warranty of M\-E\-R\-C\-H\-A\-N\-T\-A\-B\-I\-L\-I\-T\-Y or F\-I\-T\-N\-E\-S\-S F\-O\-R A P\-A\-R\-T\-I\-C\-U\-L\-A\-R P\-U\-R\-P\-O\-S\-E. See the G\-N\-U General Public License for more details.
+
+You should have received a copy of the G\-N\-U General Public License along with this program. If not, see \href{http://www.gnu.org/licenses/}{\tt http\-://www.\-gnu.\-org/licenses/}. 
+
+Definition in file \hyperlink{ili9341_8h_source}{ili9341.\-h}.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{ili9341_8h_a845d3d47f13ba79aba1459b7630bbb90}{\index{ili9341.\-h@{ili9341.\-h}!convert565to\-R\-G\-B@{convert565to\-R\-G\-B}}
+\index{convert565to\-R\-G\-B@{convert565to\-R\-G\-B}!ili9341.h@{ili9341.\-h}}
+\subsubsection[{convert565to\-R\-G\-B}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void convert565to\-R\-G\-B (
+\begin{DoxyParamCaption}
+\item[{uint16\-\_\-t}]{color, }
+\item[{uint8\-\_\-t $\ast$}]{r, }
+\item[{uint8\-\_\-t $\ast$}]{g, }
+\item[{uint8\-\_\-t $\ast$}]{b}
+\end{DoxyParamCaption}
+)}}\label{ili9341_8h_a845d3d47f13ba79aba1459b7630bbb90}
+
+
+Convert 16bit colr into 8-\/bit (each) R,G,B I\-L\-I9341 defaults to M\-S\-B/\-L\-S\-B data so we have to reverse it. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em color} & 16bit color \\
+\hline
+\mbox{\tt out}  & {\em $\ast$r} & red data \\
+\hline
+\mbox{\tt out}  & {\em $\ast$b} & blue data \\
+\hline
+\mbox{\tt out}  & {\em $\ast$g} & green data \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 510 of file ili9341.\-c.
+
+\hypertarget{ili9341_8h_a4a5ba68123d8ed8c0ba3f4b512f842f8}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-bit\-\_\-blit@{tft\-\_\-bit\-\_\-blit}}
+\index{tft\-\_\-bit\-\_\-blit@{tft\-\_\-bit\-\_\-blit}!ili9341.h@{ili9341.\-h}}
+\subsubsection[{tft\-\_\-bit\-\_\-blit}]{\setlength{\rightskip}{0pt plus 5cm}void tft\-\_\-bit\-\_\-blit (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t $\ast$}]{ptr, }
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{int}]{w, }
+\item[{int}]{h, }
+\item[{uint16\-\_\-t}]{fg, }
+\item[{uint16\-\_\-t}]{bg}
+\end{DoxyParamCaption}
+)}}\label{ili9341_8h_a4a5ba68123d8ed8c0ba3f4b512f842f8}
+
+
+\subsection*{B\-L\-I\-T functions }
+
+====================================B\-L\-I\-T a bit array to the display 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$ptr} & bit array w $\ast$ h in size \\
+\hline
+\mbox{\tt in}  & {\em x} & B\-L\-I\-T\-X offset \\
+\hline
+\mbox{\tt in}  & {\em y} & B\-L\-I\-T Y offset \\
+\hline
+\mbox{\tt in}  & {\em w} & B\-L\-I\-T Width \\
+\hline
+\mbox{\tt in}  & {\em h} & B\-L\-I\-T Height \\
+\hline
+\mbox{\tt in}  & {\em fg} & B\-L\-I\-T forground color \\
+\hline
+\mbox{\tt in}  & {\em bg} & B\-L\-I\-T background color \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void T\-O\-D\-O C\-L\-I\-P window -\/ depends on blit array 
+\end{DoxyReturn}
+
+
+Definition at line 543 of file ili9341.\-c.
+
+
+
+Referenced by tft\-\_\-draw\-Char().
+
+\hypertarget{ili9341_8h_a42d04fb5cc3218721871647fa6279151}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-blit@{tft\-\_\-blit}}
+\index{tft\-\_\-blit@{tft\-\_\-blit}!ili9341.h@{ili9341.\-h}}
+\subsubsection[{tft\-\_\-blit}]{\setlength{\rightskip}{0pt plus 5cm}void tft\-\_\-blit (
+\begin{DoxyParamCaption}
+\item[{uint16\-\_\-t $\ast$}]{ptr, }
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{int}]{w, }
+\item[{int}]{h}
+\end{DoxyParamCaption}
+)}}\label{ili9341_8h_a42d04fb5cc3218721871647fa6279151}
+
+
+B\-L\-I\-T a color array to the display. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$ptr} & color array w $\ast$ h in size \\
+\hline
+\mbox{\tt in}  & {\em x} & B\-L\-I\-T\-X offset \\
+\hline
+\mbox{\tt in}  & {\em y} & B\-L\-I\-T Y offset \\
+\hline
+\mbox{\tt in}  & {\em w} & B\-L\-I\-T Width \\
+\hline
+\mbox{\tt in}  & {\em h} & B\-L\-I\-T Height \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void T\-O\-D\-O C\-L\-I\-P window -\/ depends on blit array 
+\end{DoxyReturn}
+
+
+Definition at line 606 of file ili9341.\-c.
+
+\hypertarget{ili9341_8h_aca985ff576cbc2975ac0d6d58f9abcf2}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-cleareol@{tft\-\_\-cleareol}}
+\index{tft\-\_\-cleareol@{tft\-\_\-cleareol}!ili9341.h@{ili9341.\-h}}
+\subsubsection[{tft\-\_\-cleareol}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void tft\-\_\-cleareol (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{ili9341_8h_aca985ff576cbc2975ac0d6d58f9abcf2}
+
+
+\subsection*{Character and String functions }
+
+====================================Clear display to end of line return\-: void 
+
+Definition at line 856 of file ili9341.\-c.
+
+\hypertarget{ili9341_8h_af340be5da1aae5d20fe931d988f25277}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-clip@{tft\-\_\-clip}}
+\index{tft\-\_\-clip@{tft\-\_\-clip}!ili9341.h@{ili9341.\-h}}
+\subsubsection[{tft\-\_\-clip}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t tft\-\_\-clip (
+\begin{DoxyParamCaption}
+\item[{int16\-\_\-t $\ast$}]{xs, }
+\item[{int16\-\_\-t $\ast$}]{xl, }
+\item[{int16\-\_\-t $\ast$}]{ys, }
+\item[{int16\-\_\-t $\ast$}]{yl}
+\end{DoxyParamCaption}
+)}}\label{ili9341_8h_af340be5da1aae5d20fe931d988f25277}
+
+
+Constrain window to display window. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$xs} & Starting X offset \\
+\hline
+\mbox{\tt in}  & {\em $\ast$xl} & Ending X offset \\
+\hline
+\mbox{\tt in}  & {\em $\ast$ys} & Starting Y offset \\
+\hline
+\mbox{\tt in}  & {\em $\ast$yl} & Ending X offset \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+size of clipped window\-: height $\ast$ width F\-I\-X\-M\-E if the entire zoe is outside the display we must return Z\-E\-R\-O 
+\end{DoxyReturn}
+
+
+Definition at line 84 of file ili9341.\-c.
+
+
+
+Referenced by tft\-\_\-fill\-Rect\-W\-H(), and tft\-\_\-fill\-Rect\-X\-Y().
+
+\hypertarget{ili9341_8h_aef8157caa81d7962742f4ef9455264f9}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-color565@{tft\-\_\-color565}}
+\index{tft\-\_\-color565@{tft\-\_\-color565}!ili9341.h@{ili9341.\-h}}
+\subsubsection[{tft\-\_\-color565}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} uint16\-\_\-t tft\-\_\-color565 (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{r, }
+\item[{uint8\-\_\-t}]{g, }
+\item[{uint8\-\_\-t}]{b}
+\end{DoxyParamCaption}
+)}}\label{ili9341_8h_aef8157caa81d7962742f4ef9455264f9}
+
+
+\subsection*{Color conversions }
+
+====================================Pass 8-\/bit (each) R,G,B, get back 16-\/bit packed color I\-L\-I9341 defaults to M\-S\-B/\-L\-S\-B data so we have to reverse it 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em r} & red data \\
+\hline
+\mbox{\tt in}  & {\em b} & blue data \\
+\hline
+\mbox{\tt in}  & {\em g} & green data \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 497 of file ili9341.\-c.
+
+
+
+Referenced by test().
+
+\hypertarget{ili9341_8h_ac6e0146c37f6143286d79d80a32c122a}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-draw\-Centre\-String@{tft\-\_\-draw\-Centre\-String}}
+\index{tft\-\_\-draw\-Centre\-String@{tft\-\_\-draw\-Centre\-String}!ili9341.h@{ili9341.\-h}}
+\subsubsection[{tft\-\_\-draw\-Centre\-String}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int tft\-\_\-draw\-Centre\-String (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{string, }
+\item[{int16\-\_\-t}]{x, }
+\item[{int16\-\_\-t}]{y, }
+\item[{uint8\-\_\-t}]{size}
+\end{DoxyParamCaption}
+)}}\label{ili9341_8h_ac6e0146c37f6143286d79d80a32c122a}
+
+
+Draw Centered String at x,y with size bytes. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$string} & String \\
+\hline
+\mbox{\tt in}  & {\em x} & X Start \\
+\hline
+\mbox{\tt in}  & {\em y} & Y S\-Tart \\
+\hline
+\mbox{\tt in}  & {\em size} & Size of string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+X position of cursor 
+\end{DoxyReturn}
+
+
+Definition at line 980 of file ili9341.\-c.
+
+\hypertarget{ili9341_8h_a75462dc42f9502d6c9e23cc23b8cd8d7}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-draw\-Line@{tft\-\_\-draw\-Line}}
+\index{tft\-\_\-draw\-Line@{tft\-\_\-draw\-Line}!ili9341.h@{ili9341.\-h}}
+\subsubsection[{tft\-\_\-draw\-Line}]{\setlength{\rightskip}{0pt plus 5cm}void tft\-\_\-draw\-Line (
+\begin{DoxyParamCaption}
+\item[{int16\-\_\-t}]{x0, }
+\item[{int16\-\_\-t}]{y0, }
+\item[{int16\-\_\-t}]{x1, }
+\item[{int16\-\_\-t}]{y1, }
+\item[{uint16\-\_\-t}]{color}
+\end{DoxyParamCaption}
+)}}\label{ili9341_8h_a75462dc42f9502d6c9e23cc23b8cd8d7}
+
+
+Draw line From my blit test code testit.\-c 1984 -\/ 1985 Mike Gore. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em x0} & X Start \\
+\hline
+\mbox{\tt in}  & {\em y0} & Y S\-Tart \\
+\hline
+\mbox{\tt in}  & {\em x1} & X End \\
+\hline
+\mbox{\tt in}  & {\em y1} & Y End \\
+\hline
+\mbox{\tt in}  & {\em color} & color to set \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void Draw line Draw line from C\-E\-R\-T\-S \href{https://github.com/CHERTS/esp8266-devkit/tree/master/Espressif/examples/esp8266_ili9341}{\tt https\-://github.\-com/\-C\-H\-E\-R\-T\-S/esp8266-\/devkit/tree/master/\-Espressif/examples/esp8266\-\_\-ili9341} 
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em x0} & X Start \\
+\hline
+\mbox{\tt in}  & {\em y0} & Y S\-Tart \\
+\hline
+\mbox{\tt in}  & {\em x1} & X End \\
+\hline
+\mbox{\tt in}  & {\em y1} & Y End \\
+\hline
+\mbox{\tt in}  & {\em color} & color to set \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 736 of file ili9341.\-c.
+
+
+
+Referenced by draw\-Line(), and earth\-\_\-draw().
+
+\hypertarget{ili9341_8h_a5cb2fc3be5e8549eb86a328716286ad6}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-draw\-Number@{tft\-\_\-draw\-Number}}
+\index{tft\-\_\-draw\-Number@{tft\-\_\-draw\-Number}!ili9341.h@{ili9341.\-h}}
+\subsubsection[{tft\-\_\-draw\-Number}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int tft\-\_\-draw\-Number (
+\begin{DoxyParamCaption}
+\item[{long}]{long\-\_\-num, }
+\item[{int16\-\_\-t}]{x, }
+\item[{int16\-\_\-t}]{y, }
+\item[{uint8\-\_\-t}]{size}
+\end{DoxyParamCaption}
+)}}\label{ili9341_8h_a5cb2fc3be5e8549eb86a328716286ad6}
+
+
+print long number 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em long\-\_\-num} & number to print \\
+\hline
+\mbox{\tt in}  & {\em x} & X offset \\
+\hline
+\mbox{\tt in}  & {\em y} & Y offset \\
+\hline
+\mbox{\tt in}  & {\em size} & font index (index the main array of fonts ) return\-: void \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 944 of file ili9341.\-c.
+
+\hypertarget{ili9341_8h_a6bfecb2500c8a8a6f299ffbb1fc7cdc7}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-draw\-Pixel@{tft\-\_\-draw\-Pixel}}
+\index{tft\-\_\-draw\-Pixel@{tft\-\_\-draw\-Pixel}!ili9341.h@{ili9341.\-h}}
+\subsubsection[{tft\-\_\-draw\-Pixel}]{\setlength{\rightskip}{0pt plus 5cm}void tft\-\_\-draw\-Pixel (
+\begin{DoxyParamCaption}
+\item[{int16\-\_\-t}]{x, }
+\item[{int16\-\_\-t}]{y, }
+\item[{int16\-\_\-t}]{color}
+\end{DoxyParamCaption}
+)}}\label{ili9341_8h_a6bfecb2500c8a8a6f299ffbb1fc7cdc7}
+
+
+\subsection*{Pixel functions }
+
+====================================Draw one pixel set to color We clip the window to the current view 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em x} & X Start \\
+\hline
+\mbox{\tt in}  & {\em y} & Y S\-Tart \\
+\hline
+\mbox{\tt in}  & {\em color} & color to set \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 664 of file ili9341.\-c.
+
+
+
+Referenced by tft\-\_\-bit\-\_\-blit(), and tft\-\_\-blit().
+
+\hypertarget{ili9341_8h_ad0451a1e57351b646ec79ddeda38178b}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-draw\-Right\-String@{tft\-\_\-draw\-Right\-String}}
+\index{tft\-\_\-draw\-Right\-String@{tft\-\_\-draw\-Right\-String}!ili9341.h@{ili9341.\-h}}
+\subsubsection[{tft\-\_\-draw\-Right\-String}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int tft\-\_\-draw\-Right\-String (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{string, }
+\item[{int16\-\_\-t}]{x, }
+\item[{int16\-\_\-t}]{y, }
+\item[{uint8\-\_\-t}]{size}
+\end{DoxyParamCaption}
+)}}\label{ili9341_8h_ad0451a1e57351b646ec79ddeda38178b}
+
+
+Draw String Right Justified at x,y with size bytes. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$string} & String \\
+\hline
+\mbox{\tt in}  & {\em x} & X Start \\
+\hline
+\mbox{\tt in}  & {\em y} & Y S\-Tart \\
+\hline
+\mbox{\tt in}  & {\em size} & Size of string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+X position of cursor 
+\end{DoxyReturn}
+
+
+Definition at line 1027 of file ili9341.\-c.
+
+\hypertarget{ili9341_8h_a268df57dfc8821e16bd596a3dabad156}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-draw\-String@{tft\-\_\-draw\-String}}
+\index{tft\-\_\-draw\-String@{tft\-\_\-draw\-String}!ili9341.h@{ili9341.\-h}}
+\subsubsection[{tft\-\_\-draw\-String}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int tft\-\_\-draw\-String (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{string, }
+\item[{int16\-\_\-t}]{x, }
+\item[{int16\-\_\-t}]{y, }
+\item[{uint8\-\_\-t}]{size}
+\end{DoxyParamCaption}
+)}}\label{ili9341_8h_a268df57dfc8821e16bd596a3dabad156}
+
+
+Draw String at x,y with size bytes. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$string} & String \\
+\hline
+\mbox{\tt in}  & {\em x} & X Start \\
+\hline
+\mbox{\tt in}  & {\em y} & Y S\-Tart \\
+\hline
+\mbox{\tt in}  & {\em size} & Size of string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+X position of cursor 
+\end{DoxyReturn}
+
+
+Definition at line 957 of file ili9341.\-c.
+
+\hypertarget{ili9341_8h_af55ea4b801cd778035f4b595ce2589a2}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-fill\-Rect\-W\-H@{tft\-\_\-fill\-Rect\-W\-H}}
+\index{tft\-\_\-fill\-Rect\-W\-H@{tft\-\_\-fill\-Rect\-W\-H}!ili9341.h@{ili9341.\-h}}
+\subsubsection[{tft\-\_\-fill\-Rect\-W\-H}]{\setlength{\rightskip}{0pt plus 5cm}void tft\-\_\-fill\-Rect\-W\-H (
+\begin{DoxyParamCaption}
+\item[{int16\-\_\-t}]{x, }
+\item[{int16\-\_\-t}]{y, }
+\item[{int16\-\_\-t}]{w, }
+\item[{int16\-\_\-t}]{h, }
+\item[{uint16\-\_\-t}]{color}
+\end{DoxyParamCaption}
+)}}\label{ili9341_8h_af55ea4b801cd778035f4b595ce2589a2}
+
+
+\subsection*{Fill functions }
+
+====================================Fill rectangle with color We clip the window to the current view 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em x} & X Start \\
+\hline
+\mbox{\tt in}  & {\em y} & Y Start \\
+\hline
+\mbox{\tt in}  & {\em w} & Width \\
+\hline
+\mbox{\tt in}  & {\em h} & Height \\
+\hline
+\mbox{\tt in}  & {\em color} & Fill color \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 800 of file ili9341.\-c.
+
+
+
+Referenced by tft\-\_\-draw\-Char().
+
+\hypertarget{ili9341_8h_a2a2ecb50a9b8bb607dba934f2dd78432}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-fill\-Rect\-X\-Y@{tft\-\_\-fill\-Rect\-X\-Y}}
+\index{tft\-\_\-fill\-Rect\-X\-Y@{tft\-\_\-fill\-Rect\-X\-Y}!ili9341.h@{ili9341.\-h}}
+\subsubsection[{tft\-\_\-fill\-Rect\-X\-Y}]{\setlength{\rightskip}{0pt plus 5cm}void tft\-\_\-fill\-Rect\-X\-Y (
+\begin{DoxyParamCaption}
+\item[{int16\-\_\-t}]{x, }
+\item[{int16\-\_\-t}]{y, }
+\item[{int16\-\_\-t}]{xl, }
+\item[{int16\-\_\-t}]{yl, }
+\item[{uint16\-\_\-t}]{color}
+\end{DoxyParamCaption}
+)}}\label{ili9341_8h_a2a2ecb50a9b8bb607dba934f2dd78432}
+
+
+Fill rectangle with color We clip the window to the current view. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em x} & X Start \\
+\hline
+\mbox{\tt in}  & {\em y} & Y Start \\
+\hline
+\mbox{\tt in}  & {\em xl} & X End \\
+\hline
+\mbox{\tt in}  & {\em yl} & Y End \\
+\hline
+\mbox{\tt in}  & {\em color} & Fill color \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 824 of file ili9341.\-c.
+
+
+
+Referenced by tft\-\_\-fill\-Win(), and tft\-\_\-init().
+
+\hypertarget{ili9341_8h_a824f316cf75f03456fb6138c6d5cd0c3}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-fill\-Win@{tft\-\_\-fill\-Win}}
+\index{tft\-\_\-fill\-Win@{tft\-\_\-fill\-Win}!ili9341.h@{ili9341.\-h}}
+\subsubsection[{tft\-\_\-fill\-Win}]{\setlength{\rightskip}{0pt plus 5cm}void tft\-\_\-fill\-Win (
+\begin{DoxyParamCaption}
+\item[{uint16\-\_\-t}]{color}
+\end{DoxyParamCaption}
+)}}\label{ili9341_8h_a824f316cf75f03456fb6138c6d5cd0c3}
+
+
+Fill current display window specified by win. 
+
+Fill current display window specified by win 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em color} & Collor to fill \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 842 of file ili9341.\-c.
+
+\hypertarget{ili9341_8h_a1b061e516ab2bab485807c2961d59a48}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-font\-\_\-fixed@{tft\-\_\-font\-\_\-fixed}}
+\index{tft\-\_\-font\-\_\-fixed@{tft\-\_\-font\-\_\-fixed}!ili9341.h@{ili9341.\-h}}
+\subsubsection[{tft\-\_\-font\-\_\-fixed}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} {\bf window}$\ast$ tft\-\_\-font\-\_\-fixed (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{ili9341_8h_a1b061e516ab2bab485807c2961d59a48}
+
+
+Set current font type to fixed Only works if font is proportional type return\-: pointer to current windows. 
+
+
+
+Definition at line 434 of file ili9341.\-c.
+
+
+
+Referenced by user\-\_\-init().
+
+\hypertarget{ili9341_8h_a1d6b3f7eb4bc1b292cbd7f6ebd1742d8}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-font\-\_\-var@{tft\-\_\-font\-\_\-var}}
+\index{tft\-\_\-font\-\_\-var@{tft\-\_\-font\-\_\-var}!ili9341.h@{ili9341.\-h}}
+\subsubsection[{tft\-\_\-font\-\_\-var}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} {\bf window}$\ast$ tft\-\_\-font\-\_\-var (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{ili9341_8h_a1d6b3f7eb4bc1b292cbd7f6ebd1742d8}
+
+
+Set current font type to variable return\-: pointer to current windows. 
+
+
+
+Definition at line 444 of file ili9341.\-c.
+
+
+
+Referenced by user\-\_\-init().
+
+\hypertarget{ili9341_8h_ab456b7f4f7eeeadc2c7ea1ce7ff0c562}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-get\-Rotation@{tft\-\_\-get\-Rotation}}
+\index{tft\-\_\-get\-Rotation@{tft\-\_\-get\-Rotation}!ili9341.h@{ili9341.\-h}}
+\subsubsection[{tft\-\_\-get\-Rotation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} uint8\-\_\-t tft\-\_\-get\-Rotation (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{ili9341_8h_ab456b7f4f7eeeadc2c7ea1ce7ff0c562}
+
+
+Return window rotation return\-: window rotation. 
+
+
+
+Definition at line 481 of file ili9341.\-c.
+
+\hypertarget{ili9341_8h_ae17b6a57470c74c6cac1bafdaa2e550d}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-getwin@{tft\-\_\-getwin}}
+\index{tft\-\_\-getwin@{tft\-\_\-getwin}!ili9341.h@{ili9341.\-h}}
+\subsubsection[{tft\-\_\-getwin}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} {\bf window}$\ast$ tft\-\_\-getwin (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{ili9341_8h_ae17b6a57470c74c6cac1bafdaa2e550d}
+
+
+Return current window pointer return\-: pointer to current windows. 
+
+
+
+Definition at line 454 of file ili9341.\-c.
+
+\hypertarget{ili9341_8h_aee663ab72a52eedd1e0bd9cdf27965e0}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-height@{tft\-\_\-height}}
+\index{tft\-\_\-height@{tft\-\_\-height}!ili9341.h@{ili9341.\-h}}
+\subsubsection[{tft\-\_\-height}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int16\-\_\-t tft\-\_\-height (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{ili9341_8h_aee663ab72a52eedd1e0bd9cdf27965e0}
+
+
+Return window height return\-: pointer to current windows. 
+
+
+
+Definition at line 463 of file ili9341.\-c.
+
+\hypertarget{ili9341_8h_a5262b99cf2bfacda91419deef7f18d69}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-init@{tft\-\_\-init}}
+\index{tft\-\_\-init@{tft\-\_\-init}!ili9341.h@{ili9341.\-h}}
+\subsubsection[{tft\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} uint32\-\_\-t tft\-\_\-init (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{ili9341_8h_a5262b99cf2bfacda91419deef7f18d69}
+
+
+Initialize T\-F\-T @ return diplay I\-D 9341. 
+
+
+
+Definition at line 47 of file ili9341.\-c.
+
+
+
+Referenced by user\-\_\-init().
+
+\hypertarget{ili9341_8h_ac276806b0f70c3a69aaefa4a7937643b}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-invert\-Display@{tft\-\_\-invert\-Display}}
+\index{tft\-\_\-invert\-Display@{tft\-\_\-invert\-Display}!ili9341.h@{ili9341.\-h}}
+\subsubsection[{tft\-\_\-invert\-Display}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void tft\-\_\-invert\-Display (
+\begin{DoxyParamCaption}
+\item[{int}]{flag}
+\end{DoxyParamCaption}
+)}}\label{ili9341_8h_ac276806b0f70c3a69aaefa4a7937643b}
+
+
+Invert the display. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em flag} & true or false \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 522 of file ili9341.\-c.
+
+\hypertarget{ili9341_8h_a78540013d67b3a4bec521650d4c74976}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-putch@{tft\-\_\-putch}}
+\index{tft\-\_\-putch@{tft\-\_\-putch}!ili9341.h@{ili9341.\-h}}
+\subsubsection[{tft\-\_\-putch}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void tft\-\_\-putch (
+\begin{DoxyParamCaption}
+\item[{int}]{c, }
+\item[{{\bf window} $\ast$}]{win}
+\end{DoxyParamCaption}
+)}}\label{ili9341_8h_a78540013d67b3a4bec521650d4c74976}
+
+
+put character in current winoow 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & character \\
+\hline
+\mbox{\tt in}  & {\em $\ast$win} & window pointer return\-: void \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 873 of file ili9341.\-c.
+
+\hypertarget{ili9341_8h_a79545feceb8eca011c3f424b36035010}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-read\-Id@{tft\-\_\-read\-Id}}
+\index{tft\-\_\-read\-Id@{tft\-\_\-read\-Id}!ili9341.h@{ili9341.\-h}}
+\subsubsection[{tft\-\_\-read\-Id}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} uint32\-\_\-t tft\-\_\-read\-Id (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{ili9341_8h_a79545feceb8eca011c3f424b36035010}
+
+
+Read I\-L\-I9341 device I\-D should be 9341. 
+
+\begin{DoxyReturn}{Returns}
+32bit value 
+\end{DoxyReturn}
+
+
+Definition at line 303 of file ili9341.\-c.
+
+
+
+Referenced by tft\-\_\-init().
+
+\hypertarget{ili9341_8h_a38499e41faa447beb9ab07480d3b69d5}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-read\-Register@{tft\-\_\-read\-Register}}
+\index{tft\-\_\-read\-Register@{tft\-\_\-read\-Register}!ili9341.h@{ili9341.\-h}}
+\subsubsection[{tft\-\_\-read\-Register}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t tft\-\_\-read\-Register (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{reg, }
+\item[{uint8\-\_\-t}]{parameter}
+\end{DoxyParamCaption}
+)}}\label{ili9341_8h_a38499e41faa447beb9ab07480d3b69d5}
+
+
+Read I\-L\-I9341 16bit register value Special undocumented way to read registers on 4 wire S\-P\-I configurations See M\-:\mbox{[}0-\/3\mbox{]} control bits in I\-L\-I9341 documenation. 
+
+
+\begin{DoxyItemize}
+\item refer to interface I and I\-I modes. Most I\-L\-I9341 displays are using interface I rather the interface I\-I mode. It appears that direct reading has been disabled on most S\-P\-I displays. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em reg} & register to read \\
+\hline
+\mbox{\tt in}  & {\em parameter} & parameter number to read \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+16bit value 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+
+Definition at line 282 of file ili9341.\-c.
+
+
+
+Referenced by tft\-\_\-read\-Id().
+
+\hypertarget{ili9341_8h_a637d96e9627f7edc71b70b73bcce97b6}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-set\-\_\-fontsize@{tft\-\_\-set\-\_\-fontsize}}
+\index{tft\-\_\-set\-\_\-fontsize@{tft\-\_\-set\-\_\-fontsize}!ili9341.h@{ili9341.\-h}}
+\subsubsection[{tft\-\_\-set\-\_\-fontsize}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} {\bf window}$\ast$ tft\-\_\-set\-\_\-fontsize (
+\begin{DoxyParamCaption}
+\item[{uint16\-\_\-t}]{index}
+\end{DoxyParamCaption}
+)}}\label{ili9341_8h_a637d96e9627f7edc71b70b73bcce97b6}
+
+
+Set current font size (per current rotation) 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em index} & font index (for array of fonts) return\-: pointer to current windows \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 423 of file ili9341.\-c.
+
+
+
+Referenced by tft\-\_\-printf().
+
+\hypertarget{ili9341_8h_a42914bc97d6a4e91b6932e345b96d5af}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-setpos@{tft\-\_\-setpos}}
+\index{tft\-\_\-setpos@{tft\-\_\-setpos}!ili9341.h@{ili9341.\-h}}
+\subsubsection[{tft\-\_\-setpos}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} {\bf window}$\ast$ tft\-\_\-setpos (
+\begin{DoxyParamCaption}
+\item[{int16\-\_\-t}]{x, }
+\item[{int16\-\_\-t}]{y}
+\end{DoxyParamCaption}
+)}}\label{ili9341_8h_a42914bc97d6a4e91b6932e345b96d5af}
+
+
+Set current window offset (per current rotation) 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em x} & x offset \\
+\hline
+\mbox{\tt in}  & {\em y} & y oofset return\-: pointer to current windows \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 410 of file ili9341.\-c.
+
+\hypertarget{ili9341_8h_a4c1271aab64c58f75e6de6471f430bbe}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-set\-Rotation@{tft\-\_\-set\-Rotation}}
+\index{tft\-\_\-set\-Rotation@{tft\-\_\-set\-Rotation}!ili9341.h@{ili9341.\-h}}
+\subsubsection[{tft\-\_\-set\-Rotation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void tft\-\_\-set\-Rotation (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{m}
+\end{DoxyParamCaption}
+)}}\label{ili9341_8h_a4c1271aab64c58f75e6de6471f430bbe}
+
+
+\subsection*{Set soft window limits }
+
+====================================Set Display rotation Set hardware display rotation and memory fill option bits Update software display limits F\-I\-X\-M\-E Work in progress
+\begin{DoxyItemize}
+\item do we want to handle exchanging min/max values -\/ rather then set them ? \begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+
+Definition at line 327 of file ili9341.\-c.
+
+
+
+Referenced by tft\-\_\-init().
+
+\hypertarget{ili9341_8h_a8bbec389cafbf8c9c601f3e946b2837e}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-set\-Text\-Color@{tft\-\_\-set\-Text\-Color}}
+\index{tft\-\_\-set\-Text\-Color@{tft\-\_\-set\-Text\-Color}!ili9341.h@{ili9341.\-h}}
+\subsubsection[{tft\-\_\-set\-Text\-Color}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void tft\-\_\-set\-Text\-Color (
+\begin{DoxyParamCaption}
+\item[{uint16\-\_\-t}]{c, }
+\item[{uint16\-\_\-t}]{b}
+\end{DoxyParamCaption}
+)}}\label{ili9341_8h_a8bbec389cafbf8c9c601f3e946b2837e}
+
+
+==================================== 
+
+Set text forground and background color 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & forground color \\
+\hline
+\mbox{\tt in}  & {\em b} & background color \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 397 of file ili9341.\-c.
+
+\hypertarget{ili9341_8h_a39aa1a722cb0d837b2d636c13a9f8f2e}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-width@{tft\-\_\-width}}
+\index{tft\-\_\-width@{tft\-\_\-width}!ili9341.h@{ili9341.\-h}}
+\subsubsection[{tft\-\_\-width}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int16\-\_\-t tft\-\_\-width (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{ili9341_8h_a39aa1a722cb0d837b2d636c13a9f8f2e}
+
+
+Return window width return\-: pointer to current windows. 
+
+
+
+Definition at line 472 of file ili9341.\-c.
+
+\hypertarget{ili9341_8h_ab0f3c00d963d8eaa41bf5e043fb3ce4d}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-window@{tft\-\_\-window}}
+\index{tft\-\_\-window@{tft\-\_\-window}!ili9341.h@{ili9341.\-h}}
+\subsubsection[{tft\-\_\-window}]{\setlength{\rightskip}{0pt plus 5cm}void tft\-\_\-window (
+\begin{DoxyParamCaption}
+\item[{int16\-\_\-t}]{x, }
+\item[{int16\-\_\-t}]{y, }
+\item[{int16\-\_\-t}]{xl, }
+\item[{int16\-\_\-t}]{yl}
+\end{DoxyParamCaption}
+)}}\label{ili9341_8h_ab0f3c00d963d8eaa41bf5e043fb3ce4d}
+
+
+Set the ili9341 update window. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em x} & Starting X offset \\
+\hline
+\mbox{\tt in}  & {\em y} & Starting Y offset \\
+\hline
+\mbox{\tt in}  & {\em xl} & Ending X offset \\
+\hline
+\mbox{\tt in}  & {\em yl} & Ending Y offset \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 118 of file ili9341.\-c.
+
+
+
+Referenced by tft\-\_\-bit\-\_\-blit(), tft\-\_\-blit(), tft\-\_\-draw\-Pixel(), tft\-\_\-fill\-Rect\-W\-H(), and tft\-\_\-fill\-Rect\-X\-Y().
+
+\hypertarget{ili9341_8h_a343385e2400869a634cccdace49bfd11}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-write\-Cmd@{tft\-\_\-write\-Cmd}}
+\index{tft\-\_\-write\-Cmd@{tft\-\_\-write\-Cmd}!ili9341.h@{ili9341.\-h}}
+\subsubsection[{tft\-\_\-write\-Cmd}]{\setlength{\rightskip}{0pt plus 5cm}void tft\-\_\-write\-Cmd (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{cmd}
+\end{DoxyParamCaption}
+)}}\label{ili9341_8h_a343385e2400869a634cccdace49bfd11}
+
+
+==================================== 
+
+Transmit 8 bit display command 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em cmd} & command code return\-: void \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 140 of file ili9341.\-c.
+
+
+
+Referenced by tft\-\_\-bit\-\_\-blit(), tft\-\_\-blit(), tft\-\_\-draw\-Pixel(), tft\-\_\-fill\-Rect\-W\-H(), tft\-\_\-fill\-Rect\-X\-Y(), and tft\-\_\-invert\-Display().
+
+\hypertarget{ili9341_8h_a7e872f77765769686e53d16260b8b2ee}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-write\-Cmd\-Data@{tft\-\_\-write\-Cmd\-Data}}
+\index{tft\-\_\-write\-Cmd\-Data@{tft\-\_\-write\-Cmd\-Data}!ili9341.h@{ili9341.\-h}}
+\subsubsection[{tft\-\_\-write\-Cmd\-Data}]{\setlength{\rightskip}{0pt plus 5cm}void tft\-\_\-write\-Cmd\-Data (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{cmd, }
+\item[{uint8\-\_\-t $\ast$}]{data, }
+\item[{uint8\-\_\-t}]{bytes}
+\end{DoxyParamCaption}
+)}}\label{ili9341_8h_a7e872f77765769686e53d16260b8b2ee}
+
+
+Transmit 8 bit command and related data buffer. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em cmd} & display command \\
+\hline
+\mbox{\tt in}  & {\em $\ast$data} & data buffer to send after command \\
+\hline
+\mbox{\tt in}  & {\em bytes} & data buffer size return\-: void status is in data array -\/ bytes in size \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 170 of file ili9341.\-c.
+
+
+
+Referenced by tft\-\_\-draw\-Pixel(), tft\-\_\-read\-Register(), tft\-\_\-set\-Rotation(), and tft\-\_\-window().
+
+\hypertarget{ili9341_8h_ab3645fa57623c7d1d113a09896a8bed9}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-write\-Color16\-Repeat@{tft\-\_\-write\-Color16\-Repeat}}
+\index{tft\-\_\-write\-Color16\-Repeat@{tft\-\_\-write\-Color16\-Repeat}!ili9341.h@{ili9341.\-h}}
+\subsubsection[{tft\-\_\-write\-Color16\-Repeat}]{\setlength{\rightskip}{0pt plus 5cm}void tft\-\_\-write\-Color16\-Repeat (
+\begin{DoxyParamCaption}
+\item[{uint16}]{color, }
+\item[{uint32\-\_\-t}]{count}
+\end{DoxyParamCaption}
+)}}\label{ili9341_8h_ab3645fa57623c7d1d113a09896a8bed9}
+
+
+Buffered color fill Optimized for 16bit M\-S\-B/\-L\-S\-B S\-P\-I bus tramission I\-L\-I9341 defaults to M\-S\-B/\-L\-S\-B color data so we reverse it. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em color} & 16 bit color \\
+\hline
+\mbox{\tt in}  & {\em count} & repeat count \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 218 of file ili9341.\-c.
+
+
+
+Referenced by tft\-\_\-fill\-Rect\-W\-H(), and tft\-\_\-fill\-Rect\-X\-Y().
+
+\hypertarget{ili9341_8h_a0959bdb4a75d759545c9c42e71b067b0}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-write\-Data@{tft\-\_\-write\-Data}}
+\index{tft\-\_\-write\-Data@{tft\-\_\-write\-Data}!ili9341.h@{ili9341.\-h}}
+\subsubsection[{tft\-\_\-write\-Data}]{\setlength{\rightskip}{0pt plus 5cm}void tft\-\_\-write\-Data (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{data}
+\end{DoxyParamCaption}
+)}}\label{ili9341_8h_a0959bdb4a75d759545c9c42e71b067b0}
+
+
+Transmit 8 bit display data. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em data} & data return\-: void \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 154 of file ili9341.\-c.
+
+\hypertarget{ili9341_8h_a245e573a745574d76bf4d927fcebc700}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-write\-Data16@{tft\-\_\-write\-Data16}}
+\index{tft\-\_\-write\-Data16@{tft\-\_\-write\-Data16}!ili9341.h@{ili9341.\-h}}
+\subsubsection[{tft\-\_\-write\-Data16}]{\setlength{\rightskip}{0pt plus 5cm}void tft\-\_\-write\-Data16 (
+\begin{DoxyParamCaption}
+\item[{uint16\-\_\-t}]{val}
+\end{DoxyParamCaption}
+)}}\label{ili9341_8h_a245e573a745574d76bf4d927fcebc700}
+
+
+Transmit 16 bit data I\-L\-I9341 defaults to M\-S\-B/\-L\-S\-B data so we have to reverse it. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em val} & 16 bit data return void \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 197 of file ili9341.\-c.
+
+
+
+Referenced by tft\-\_\-draw\-Pixel().
+
+\hypertarget{ili9341_8h_ae03d5e2484292c50d5e2eb7139a1acb9}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-write\-Data\-Buffered@{tft\-\_\-write\-Data\-Buffered}}
+\index{tft\-\_\-write\-Data\-Buffered@{tft\-\_\-write\-Data\-Buffered}!ili9341.h@{ili9341.\-h}}
+\subsubsection[{tft\-\_\-write\-Data\-Buffered}]{\setlength{\rightskip}{0pt plus 5cm}void tft\-\_\-write\-Data\-Buffered (
+\begin{DoxyParamCaption}
+\item[{uint16\-\_\-t $\ast$}]{color\-\_\-data, }
+\item[{uint32\-\_\-t}]{count}
+\end{DoxyParamCaption}
+)}}\label{ili9341_8h_ae03d5e2484292c50d5e2eb7139a1acb9}
+
+
+Write 16bit color data buffered Optimized for 16bit M\-S\-B/\-L\-S\-B S\-P\-I bus tramission I\-L\-I9341 defaults to M\-S\-B/\-L\-S\-B color data so we reverse it Warning\-: exceeding the array bounds may crash certain systems. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$color\-\_\-data} & 16 bit data array \\
+\hline
+\mbox{\tt in}  & {\em count} & count of 16bit values to write \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 245 of file ili9341.\-c.
+
+\hypertarget{ili9341_8h_a8cf971060dafc5b2442d732d42e8c448}{\index{ili9341.\-h@{ili9341.\-h}!window\-\_\-init@{window\-\_\-init}}
+\index{window\-\_\-init@{window\-\_\-init}!ili9341.h@{ili9341.\-h}}
+\subsubsection[{window\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void window\-\_\-init (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{ili9341_8h_a8cf971060dafc5b2442d732d42e8c448}
+
+
+Defines software values for current window size These are not hardware limits. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 372 of file ili9341.\-c.
+
+
+
+Referenced by tft\-\_\-init().
+

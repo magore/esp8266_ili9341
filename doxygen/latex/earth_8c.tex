@@ -1,0 +1,116 @@
+\hypertarget{earth_8c}{\section{earth/earth.c File Reference}
+\label{earth_8c}\index{earth/earth.\-c@{earth/earth.\-c}}
+}
+
+
+D\-Isplay earth costline wireframe The code handles fixed, proportional and bounding box format fonts.  
+
+
+{\ttfamily \#include \char`\"{}user\-\_\-config.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}ili9341.\-h\char`\"{}}\\*
+{\ttfamily \#include $<$math.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}cordic.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}earth.\-h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{earth_8c_a8bd16525127e73fd2c8db66f11cf6e90}{M\-A\-P\-\_\-\-D\-A\-T\-A}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{earth_8c_a3005f1f9544b1a5299fc54b63df5414e}{map2fp} (\hyperlink{structmapxyz}{mapxyz} $\ast$in, \hyperlink{structpoint}{point} $\ast$out)
+\item 
+void \hyperlink{earth_8c_a4369d5c689e27b1dd9d8bce5e5c35f2b}{Point2\-Display} (\hyperlink{structpoint}{point} $\ast$p, int $\ast$x, int $\ast$y)
+\item 
+void \hyperlink{earth_8c_ae5b1b4bd22d4e77ff2156feb25e01658}{earth\-\_\-draw} (\hyperlink{structpoint}{point} $\ast$view, double \hyperlink{user__main_8c_aa7d569051c24f6fb09cf6569ae97e134}{scale}, uint16\-\_\-t color)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+D\-Isplay earth costline wireframe The code handles fixed, proportional and bounding box format fonts. \begin{DoxyParagraph}{earth wireframe viewer}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Copyright \copyright{} 2015 Mike Gore, G\-P\-L License}
+
+\end{DoxyParagraph}
+\begin{DoxySeeAlso}{See Also}
+\href{http://en.wikipedia.org/wiki/Glyph_Bitmap_Distribution_Format}{\tt http\-://en.\-wikipedia.\-org/wiki/\-Glyph\-\_\-\-Bitmap\-\_\-\-Distribution\-\_\-\-Format} 
+\end{DoxySeeAlso}
+\begin{DoxyParagraph}{Edit History}
+
+\begin{DoxyItemize}
+\item \mbox{[}1.\-0\mbox{]} \mbox{[}Mike Gore\mbox{]} Initial revision of file.
+\end{DoxyItemize}
+\end{DoxyParagraph}
+This is free software\-: you can redistribute it and/or modify it under the terms of the G\-N\-U General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+\hyperlink{earth_8c}{earth.\-c} is distributed in the hope that it will be useful, but W\-I\-T\-H\-O\-U\-T A\-N\-Y W\-A\-R\-R\-A\-N\-T\-Y; without even the implied warranty of M\-E\-R\-C\-H\-A\-N\-T\-A\-B\-I\-L\-I\-T\-Y or F\-I\-T\-N\-E\-S\-S F\-O\-R A P\-A\-R\-T\-I\-C\-U\-L\-A\-R P\-U\-R\-P\-O\-S\-E. See the G\-N\-U General Public License for more details.
+
+You should have received a copy of the G\-N\-U General Public License along with this program. If not, see \href{http://www.gnu.org/licenses/}{\tt http\-://www.\-gnu.\-org/licenses/}. 
+
+Definition in file \hyperlink{earth_8c_source}{earth.\-c}.
+
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{earth_8c_a8bd16525127e73fd2c8db66f11cf6e90}{\index{earth.\-c@{earth.\-c}!M\-A\-P\-\_\-\-D\-A\-T\-A@{M\-A\-P\-\_\-\-D\-A\-T\-A}}
+\index{M\-A\-P\-\_\-\-D\-A\-T\-A@{M\-A\-P\-\_\-\-D\-A\-T\-A}!earth.c@{earth.\-c}}
+\subsubsection[{M\-A\-P\-\_\-\-D\-A\-T\-A}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\-A\-P\-\_\-\-D\-A\-T\-A}}\label{earth_8c_a8bd16525127e73fd2c8db66f11cf6e90}
+
+
+Definition at line 28 of file earth.\-c.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{earth_8c_ae5b1b4bd22d4e77ff2156feb25e01658}{\index{earth.\-c@{earth.\-c}!earth\-\_\-draw@{earth\-\_\-draw}}
+\index{earth\-\_\-draw@{earth\-\_\-draw}!earth.c@{earth.\-c}}
+\subsubsection[{earth\-\_\-draw}]{\setlength{\rightskip}{0pt plus 5cm}void earth\-\_\-draw (
+\begin{DoxyParamCaption}
+\item[{{\bf point} $\ast$}]{view, }
+\item[{double}]{scale, }
+\item[{uint16\-\_\-t}]{color}
+\end{DoxyParamCaption}
+)}}\label{earth_8c_ae5b1b4bd22d4e77ff2156feb25e01658}
+
+
+Definition at line 51 of file earth.\-c.
+
+
+
+Referenced by test().
+
+\hypertarget{earth_8c_a3005f1f9544b1a5299fc54b63df5414e}{\index{earth.\-c@{earth.\-c}!map2fp@{map2fp}}
+\index{map2fp@{map2fp}!earth.c@{earth.\-c}}
+\subsubsection[{map2fp}]{\setlength{\rightskip}{0pt plus 5cm}void map2fp (
+\begin{DoxyParamCaption}
+\item[{{\bf mapxyz} $\ast$}]{in, }
+\item[{{\bf point} $\ast$}]{out}
+\end{DoxyParamCaption}
+)}}\label{earth_8c_a3005f1f9544b1a5299fc54b63df5414e}
+
+
+Definition at line 36 of file earth.\-c.
+
+
+
+Referenced by earth\-\_\-draw().
+
+\hypertarget{earth_8c_a4369d5c689e27b1dd9d8bce5e5c35f2b}{\index{earth.\-c@{earth.\-c}!Point2\-Display@{Point2\-Display}}
+\index{Point2\-Display@{Point2\-Display}!earth.c@{earth.\-c}}
+\subsubsection[{Point2\-Display}]{\setlength{\rightskip}{0pt plus 5cm}void Point2\-Display (
+\begin{DoxyParamCaption}
+\item[{{\bf point} $\ast$}]{p, }
+\item[{int $\ast$}]{x, }
+\item[{int $\ast$}]{y}
+\end{DoxyParamCaption}
+)}}\label{earth_8c_a4369d5c689e27b1dd9d8bce5e5c35f2b}
+
+
+Definition at line 44 of file earth.\-c.
+
+
+
+Referenced by earth\-\_\-draw().
+
