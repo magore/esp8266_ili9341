@@ -1,31 +1,27 @@
 \mainpage index page
 \section README
- * Please use this link: https://rawgit.com/magore/esp8266_ili9341/master/doxygen/html/index.html
-
- @par The sample ESP8266 with ili9341 display project 
- See [COPYRIGHT.md](@ref COPYRIGHT.md) for a full copyrrite notice for the project
-
-This project uses a ESP8266 to drive an ili9341 display
-I wrote the following support functions
-  CORDIC C table generator and 3D transformation code support functions
-  Wireframe viewer and C generator for Earth coastline data
-  Small Print with full floating point support - optional
-  BDF font to C conversion code and optimized display code
-  ILI9341 display driver code 
-
-I Updated:
-  HSPI code that correctly handles memory size and agligment 
-
-Two demos are provided
- * CUBE demo 
- * Wireframe Earth viewer - still neads hiden line removal
-
-___
 
 @par Documentation
-  * https://rawgit.com/magore/esp8266_ili9341/master/doxygen/html/index.html
+ * Doxygen documenation: https://rawgit.com/magore/esp8266_ili9341/master/doxygen/html/index.html
 
+@Copyright
+ * See [COPYRIGHT.md](@ref COPYRIGHT.md) for a full copyright notice for the project
 
+@par Description
+ * ESP8266 ILI9341 display and support code with printf sources, wireframe viewer and cusom fonts 
+ * I wrote the following support functions from scratch
+  * CORDIC C table generator and 3D transformation code support functions
+  * Wireframe viewer and C generator for Earth coastline data
+  * Small Print with full floating point support along with ftoa/atof and integer conversions
+  * BDF fonts and a BDF font to C conversion code and optimized display code
+   
+ * Updated:
+  * I rewrote parts of Adafruit code ili9341 grapics library
+  * HSPI code now correctly handles memory size and aligment 
+
+ * Two demos are provided
+  * CUBE demo 
+  * Wireframe Earth viewer - still neads hiden line removal
 ___
 
 @par Credits
