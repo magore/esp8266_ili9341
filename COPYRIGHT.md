@@ -20,14 +20,16 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-___
- @par ili9341.c driver code from Adafruit
- @par Adafruit-GFX-Library Copyright (c) 2013 Adafruit Industries.  
-  All rights reserved.
- @see  https://github.com/adafruit/Adafruit-GFX-Library
 
 ___
+ @par Tool chain - used by this project - pfalcon/esp-open-sdk 
+ @see  https://github.com/pfalcon/esp-open-sdk
 
+___
+ @par Alternate tool chain - CHERTS esp8266-devkit - great set of examples!
+ @see https://github.com/CHERTS/esp8266-devkit/tree/master/Espressif/examples/esp8266_ili9341
+
+___
  @par Optimized Line drawing function and Makefile from CHERTS
  @see https://github.com/CHERTS/esp8266-devkit/tree/master/Espressif/examples/esp8266_ili9341
 
@@ -35,6 +37,11 @@ ___
  @par cube.c driver by Sem 2015
  @see https://github.com/CHERTS/esp8266-devkit/tree/master/Espressif/examples/esp8266_ili9341
 
+___
+ @par ili9341.c driver code from Adafruit
+ @par Adafruit-GFX-Library Copyright (c) 2013 Adafruit Industries.  
+  All rights reserved.
+ @see  https://github.com/adafruit/Adafruit-GFX-Library
 ___
  @par UCS X11 fixed fonts by Markus Kuhn, etc
  @see http://www.cl.cam.ac.uk/~mgk25/ucs-fonts.html
