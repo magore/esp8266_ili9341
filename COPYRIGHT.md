@@ -1,6 +1,10 @@
 \section COPYRIGHT
 ** The ESP8266 ILI9341 display driver project **
 
+@par Documentation
+ * For a better view of this file
+ * Doxygen documentation: https://rawgit.com/magore/esp8266_ili9341/master/doxygen/html/index.html
+
 @par The ESP8266 ILI9341 display driver project Copyright &copy; 2014 Mike Gore
 
  This is free software: you can redistribute it and/or modify it under the 

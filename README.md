@@ -2,6 +2,7 @@
 \section README
 
 @par Documentation
+ * For a better view of this file
  * Doxygen documentation: https://rawgit.com/magore/esp8266_ili9341/master/doxygen/html/index.html
 
 @par Copyright
@@ -25,12 +26,12 @@
 ___
 
 @par Credits
-  * Built using ESP Open SDK - or esp8266-devkit by CERTS
+  * Built using ESP Open SDK - or esp8266-devkit by CHERTS
     @see https://github.com/pfalcon/esp-open-sdk
     @see https://github.com/CHERTS/esp8266-devkit
   * Original demo code from CHERTS and Sem (mostly rewritten by me)
     @see https://github.com/CHERTS/esp8266-devkit/tree/master/Espressif/examples/esp8266_ili9341
-  * Optimized Line drawing function from CHERTS 
+  * Optimized Line drawing function and Makefile from CHERTS 
     @see https://github.com/CHERTS/esp8266-devkit/tree/master/Espressif/examples/esp8266_ili9341
   * Fonts:
     @see https://www.rockbox.org
@@ -82,7 +83,7 @@ ___
     * ili9341.c           
     * ili9341.h           
       * My mostly rewritten ili9341 display driver code
-        * Optimized line drawing function is from CERTS
+        * Optimized line drawing function is from CHERTS
         * Non optimized version is also supplied that I wrote in 1984
     * util.c
     * util.h
@@ -95,7 +96,7 @@ ___
     * hspi.c              
     * hspi.h              
       * My rewritten HPSI code that avoids unaligned read and writes
-      * Origonal Code from CERTS and Sem
+      * Origonal Code from CHERTS and Sem
     * ili9341_adafruit.c  
     * ili9341_adafruit.h
       * Adafruit display - just those functions that I have not rewritten
