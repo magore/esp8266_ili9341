@@ -5,7 +5,7 @@
  * Doxygen documentation: https://rawgit.com/magore/esp8266_ili9341/master/doxygen/html/index.html
 
 @par Copyright
- * See [COPYRIGHT.md](@ref COPYRIGHT.md) for a full copyright notice for the project
+ * See [COPYRIGHT.md](COPYRIGHT.md) for a full copyright notice for the project
 
 @par Description
  * ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts 
