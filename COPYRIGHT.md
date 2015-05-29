@@ -24,13 +24,12 @@ ___
 
 ___
 
- @par Optimized Line drawing function from CERTS
- @see https://github.com/CHERTS/esp8266-devkit/tree/master/Espressif/examples/es
+ @par Optimized Line drawing function and Makefile from CHERTS
+ @see https://github.com/CHERTS/esp8266-devkit/tree/master/Espressif/examples/esp8266_ili9341
 
 ___
  @par cube.c driver by Sem 2015
- @see https://github.com/CHERTS/esp8266-devkit/tree/master/Espressif/examples/es
-p8266_ili9341
+ @see https://github.com/CHERTS/esp8266-devkit/tree/master/Espressif/examples/esp8266_ili9341
 
 ___
  @par UCS X11 fixed fonts by Markus Kuhn, etc
