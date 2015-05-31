@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['document',['DOCUMENT',['../md_DOCUMENT.html',1,'']]]
+  ['index_20page',['index page',['../index.html',1,'']]]
 ];

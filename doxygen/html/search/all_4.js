@@ -8,8 +8,6 @@ var searchData=
   ['deg_5finc',['deg_inc',['../user__main_8c.html#abb90bdd83d3932e812704cf121b69f2f',1,'user_main.c']]],
   ['degree',['degree',['../user__main_8c.html#a46f4d8ebe46ec267dc7478f530e0ac07',1,'user_main.c']]],
   ['delay_5ftimer',['DELAY_TIMER',['../user__config_8h.html#a093fb58c584374660f2459896c024b91',1,'user_config.h']]],
-  ['document_2emd',['DOCUMENT.md',['../DOCUMENT_8md.html',1,'']]],
   ['drawline',['drawLine',['../cube_8c.html#acf37e7b9a337d09a7b78cc4f98b03b8a',1,'cube.c']]],
-  ['dump_5ftables',['dump_tables',['../cordic2c_8c.html#af184b364894a86e05578b2397e13d79d',1,'cordic2c.c']]],
-  ['document',['DOCUMENT',['../md_DOCUMENT.html',1,'']]]
+  ['dump_5ftables',['dump_tables',['../cordic2c_8c.html#af184b364894a86e05578b2397e13d79d',1,'cordic2c.c']]]
 ];
