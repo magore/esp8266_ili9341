@@ -1,5 +1,11 @@
 var searchData=
 [
+  ['c_5fputs',['c_puts',['../cal__dex_8c.html#a189cc9d30a050d345a214a64a3077e1c',1,'cal_dex.c']]],
+  ['cal_5fdex_5fdump_5fformat',['CAL_DEX_DUMP_FORMAT',['../cal__dex_8c.html#ae93d6b359abf6e2fd18bba79257ba8e2',1,'cal_dex.c']]],
+  ['cal_5fdex_5fversion',['CAL_DEX_VERSION',['../cal__dex_8c.html#acc0f78bdc8572f17f1a1eedc0f4fb6f3',1,'cal_dex.c']]],
+  ['cal_5ftprintf',['cal_tprintf',['../cal__dex_8c.html#a930bc9f35121018da9e27272aab1f255',1,'cal_dex.c']]],
+  ['config_5ffor_5frx_5ftx',['CONFIG_FOR_RX_TX',['../hspi_8h.html#a0a89ba717c8b84a7c3799d310b54e5c2',1,'hspi.h']]],
+  ['config_5ffor_5ftx',['CONFIG_FOR_TX',['../hspi_8h.html#ad9632609fe3a2c77d6bca3d5252980e3',1,'hspi.h']]],
   ['constrain',['CONSTRAIN',['../util_8h.html#a16354a19da36d5370eb20304b4facb33',1,'util.h']]],
   ['cordic2fp',['Cordic2FP',['../cordic2c__inc_8h.html#a20ea29e123c9dc91c52635b0ffee975d',1,'Cordic2FP():&#160;cordic2c_inc.h'],['../cordic2c_8c.html#a20ea29e123c9dc91c52635b0ffee975d',1,'Cordic2FP():&#160;cordic2c.c']]],
   ['cordic_5fhalfpi',['Cordic_HalfPI',['../cordic2c__inc_8h.html#a1b436217d30824e9004f1e16d33abf0a',1,'Cordic_HalfPI():&#160;cordic2c_inc.h'],['../cordic2c_8c.html#a1b436217d30824e9004f1e16d33abf0a',1,'Cordic_HalfPI():&#160;cordic2c.c']]],

@@ -1,7 +1,15 @@
 var searchData=
 [
-  ['db_5fcalloc',['db_calloc',['../bdffontutil_8c.html#a772bc2ec9bca317fb84673f5e9fab1d3',1,'db_calloc(size_t size):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a772bc2ec9bca317fb84673f5e9fab1d3',1,'db_calloc(size_t size):&#160;bdffontutil.c']]],
-  ['db_5ffree',['db_free',['../bdffontutil_8c.html#a6042d0098b72b215bcef2d21e803e51d',1,'db_free(void *p):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a6042d0098b72b215bcef2d21e803e51d',1,'db_free(void *p):&#160;bdffontutil.c']]],
-  ['deg2rad',['deg2rad',['../cordic_8c.html#a3b69e5e4f1919a06d18fa7154d4678fa',1,'deg2rad(double d):&#160;cordic.c'],['../earth2wireframe_8c.html#a8012f8bd66798ffbdd27462c9f593a54',1,'deg2rad(double deg):&#160;earth2wireframe.c']]],
-  ['dump_5ftables',['dump_tables',['../cordic2c_8c.html#af184b364894a86e05578b2397e13d79d',1,'cordic2c.c']]]
+  ['cal_5fdex_5fdump',['cal_dex_dump',['../cal__dex_8c.html#a02ae9a70fb903af445b161a5f475ae21',1,'cal_dex.c']]],
+  ['cal_5fdex_5fdump_5fhex',['cal_dex_dump_hex',['../cal__dex_8c.html#a62e59349b0d7b06518b2257c04bbfc1e',1,'cal_dex.c']]],
+  ['cal_5fdex_5fdump_5fstack',['cal_dex_dump_stack',['../cal__dex_8c.html#a0e0d5f7ed6c4b3cca2869392a41627e8',1,'cal_dex.c']]],
+  ['cal_5fdex_5fhandler',['cal_dex_handler',['../cal__dex_8c.html#aaa92f95616461785d7b1a7d7591ccaa1',1,'cal_dex.c']]],
+  ['circular',['Circular',['../cordic_8c.html#a9e686d8e990a05ea18655a368e6d1918',1,'Circular(Cordic_T x, Cordic_T y, Cordic_T z):&#160;cordic.c'],['../cordic_8h.html#a9e686d8e990a05ea18655a368e6d1918',1,'Circular(Cordic_T x, Cordic_T y, Cordic_T z):&#160;cordic.c'],['../cordic2c_8c.html#a9e686d8e990a05ea18655a368e6d1918',1,'Circular(Cordic_T x, Cordic_T y, Cordic_T z):&#160;cordic2c.c']]],
+  ['convert565torgb',['convert565toRGB',['../ili9341_8c.html#a845d3d47f13ba79aba1459b7630bbb90',1,'convert565toRGB(uint16_t color, uint8_t *r, uint8_t *g, uint8_t *b):&#160;ili9341.c'],['../ili9341_8h.html#a845d3d47f13ba79aba1459b7630bbb90',1,'convert565toRGB(uint16_t color, uint8_t *r, uint8_t *g, uint8_t *b):&#160;ili9341.c']]],
+  ['convert_5ffont2c',['Convert_Font2c',['../bdffontutil_8c.html#a9461259743229256336c4260de7e0e0e',1,'Convert_Font2c(FILE *out, _font *font):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a9461259743229256336c4260de7e0e0e',1,'Convert_Font2c(FILE *out, _font *font):&#160;bdffontutil.c']]],
+  ['cordic_5fdeg',['cordic_deg',['../cordic_8c.html#a5d8ba4ae520a41add87512173a9289ef',1,'cordic_deg(double deg, double *s, double *c):&#160;cordic.c'],['../cordic_8h.html#a5d8ba4ae520a41add87512173a9289ef',1,'cordic_deg(double deg, double *s, double *c):&#160;cordic.c']]],
+  ['cordic_5fquad',['cordic_quad',['../cordic_8c.html#ab9bc8a20d99938e647047015d62f6f86',1,'cordic_quad(double angle, double *s, double *c):&#160;cordic.c'],['../cordic_8h.html#ac0271f628c28ba18f6ea6493f5206a5e',1,'cordic_quad(double angle, double *s, double *c):&#160;cordic.c']]],
+  ['cordic_5frad',['cordic_rad',['../cordic_8c.html#ab5dff4f6a6c29502d824cc7574c13f1c',1,'cordic_rad(double rad, double *s, double *c):&#160;cordic.c'],['../cordic_8h.html#ab5dff4f6a6c29502d824cc7574c13f1c',1,'cordic_rad(double rad, double *s, double *c):&#160;cordic.c']]],
+  ['cordit1',['cordit1',['../cordic2c_8c.html#aa47551f0ba056c573807f6dfa1b09d2d',1,'cordic2c.c']]],
+  ['cpy_5fflash',['cpy_flash',['../util_8c.html#a9a70a218c9d4bae2e51bda4d7219712f',1,'cpy_flash(uint8_t *src, uint8_t *dest, int size):&#160;util.c'],['../util_8h.html#a9a70a218c9d4bae2e51bda4d7219712f',1,'cpy_flash(uint8_t *src, uint8_t *dest, int size):&#160;util.c']]]
 ];

@@ -1,6 +1,7 @@
 var searchData=
 [
   ['s',['S',['../user__main_8c.html#a8f21a381899b20c7e608be3505d09db9',1,'user_main.c']]],
+  ['sar',['sar',['../structex__regs.html#a8fd11e49ee65ba875a04ab28789cf702',1,'ex_regs']]],
   ['scale',['scale',['../user__main_8c.html#aa7d569051c24f6fb09cf6569ae97e134',1,'user_main.c']]],
   ['scale_5finc',['scale_inc',['../user__main_8c.html#ab13530f34680731b9764f1cf20f8d3cd',1,'user_main.c']]],
   ['slant',['SLANT',['../struct__fontinfo.html#aff56d18df3b46ec10896d15ad3a2e164',1,'_fontinfo']]],

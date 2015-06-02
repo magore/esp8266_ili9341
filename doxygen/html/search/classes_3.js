@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['trxmsgbuff',['TrxMsgBuff',['../structTrxMsgBuff.html',1,'']]]
+  ['rcvmsgbuff',['RcvMsgBuff',['../structRcvMsgBuff.html',1,'']]]
 ];

@@ -12,6 +12,7 @@ var searchData=
   ['printf_2ec',['printf.c',['../printf_8c.html',1,'']]],
   ['printf_2eh',['printf.h',['../printf_8h.html',1,'']]],
   ['printxyz',['PrintXYZ',['../cordic2c_8c.html#afc93093d0da5da783668ca27f859a2a7',1,'cordic2c.c']]],
+  ['ps',['ps',['../structex__regs.html#a41791a7ade763f5f965ca2d412914dbb',1,'ex_regs']]],
   ['ptr',['ptr',['../struct__fontc.html#a60a3fef5ccd80dff543aac3f22f74876',1,'_fontc']]],
   ['ptrxbuff',['pTrxBuff',['../structTrxMsgBuff.html#ad16cb1fb229feafea7ce6a7142fcc4f8',1,'TrxMsgBuff']]],
   ['pwritepos',['pWritePos',['../structRcvMsgBuff.html#adcdca9d20078d517946d66d355579693',1,'RcvMsgBuff']]]

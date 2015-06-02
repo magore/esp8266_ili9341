@@ -1,6 +1,7 @@
 var searchData=
 [
   ['s',['S',['../user__main_8c.html#a8f21a381899b20c7e608be3505d09db9',1,'user_main.c']]],
+  ['sar',['sar',['../structex__regs.html#a8fd11e49ee65ba875a04ab28789cf702',1,'ex_regs']]],
   ['scale',['scale',['../user__main_8c.html#aa7d569051c24f6fb09cf6569ae97e134',1,'user_main.c']]],
   ['scale2display',['scale2display',['../wire_8c.html#a7f3fa95f9ec7cc3e8cf3d8278ca9c6fa',1,'scale2display(point *p, int *x, int *y):&#160;wire.c'],['../wire_8h.html#a7f3fa95f9ec7cc3e8cf3d8278ca9c6fa',1,'scale2display(point *p, int *x, int *y):&#160;wire.c']]],
   ['scale_5finc',['scale_inc',['../user__main_8c.html#ab13530f34680731b9764f1cf20f8d3cd',1,'user_main.c']]],
@@ -15,6 +16,7 @@ var searchData=
   ['snprintf',['snprintf',['../user__config_8h.html#a357a42eb6494ea592e9c3f96c55cebe2',1,'user_config.h']]],
   ['spacing',['SPACING',['../struct__fontinfo.html#a0e6fafc8f03c70ce9c506d7a506fbba4',1,'_fontinfo']]],
   ['specs',['specs',['../struct__font.html#a76b5b07cf75a869627eca27d7a32836a',1,'_font']]],
+  ['spi',['SPI',['../hspi_8h.html#aadd93900fc87105fa3ef514675d4133b',1,'hspi.h']]],
   ['spi_5fahb_5fendian_5fmode',['SPI_AHB_ENDIAN_MODE',['../spi__register_8h.html#ae47f66f8425bd8a5ce8ead1ccd1c5e8a',1,'spi_register.h']]],
   ['spi_5fahb_5fendian_5fmode_5fs',['SPI_AHB_ENDIAN_MODE_S',['../spi__register_8h.html#a57811b5a1e579aaa59f300fd36d5da0e',1,'spi_register.h']]],
   ['spi_5fahb_5fusr_5fcommand',['SPI_AHB_USR_COMMAND',['../spi__register_8h.html#ac4c08f79a7b0e3e41110be124f315382',1,'spi_register.h']]],
@@ -226,11 +228,13 @@ var searchData=
   ['spi_5fwr_5fbit_5foder',['SPI_WR_BIT_ODER',['../spi__register_8h.html#a19343b71bdb98235bbed13206fcec2b6',1,'spi_register.h']]],
   ['spi_5fwr_5fbyte_5forder',['SPI_WR_BYTE_ORDER',['../spi__register_8h.html#a2b6e3e187afb9d15a3b2805593e93a0a',1,'spi_register.h']]],
   ['srch_5fmsg_5fhead',['SRCH_MSG_HEAD',['../uart_8h.html#a54f1ef96cc154d2f238f56727e0597baae38394c639b4b20f93f3c19fc524d84b',1,'uart.h']]],
+  ['stackok',['stackok',['../cal__dex_8c.html#a51bf09cac6f861c3a27c59190c3c6cc5',1,'cal_dex.c']]],
   ['stick_5fparity_5fdis',['STICK_PARITY_DIS',['../uart_8h.html#a68b6c81a0e4cc772adaa5217c9b60772acbf32eb4b26daffaae7685aefb0cd8d5',1,'uart.h']]],
   ['stick_5fparity_5fen',['STICK_PARITY_EN',['../uart_8h.html#a68b6c81a0e4cc772adaa5217c9b60772aa24f99010fca5c7c06333b56ca7df95b',1,'uart.h']]],
   ['stop_5fbits',['stop_bits',['../structUartDevice.html#a4c196eb55ccaa09061a843bbe47d29dc',1,'UartDevice']]],
   ['stralloc',['stralloc',['../bdffontutil_8c.html#a8a9b8fa6a56f0303cd8c23fdf290f401',1,'stralloc(char *str):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a8a9b8fa6a56f0303cd8c23fdf290f401',1,'stralloc(char *str):&#160;bdffontutil.c']]],
   ['struct_5fname',['STRUCT_NAME',['../struct__fontinfo.html#a861ecb4b5f190ccd1e71b38270240f86',1,'_fontinfo']]],
   ['structname',['structname',['../struct__bdffile.html#a54e6c69f33cc656848ad924faba85b53',1,'_bdffile']]],
-  ['swap',['SWAP',['../util_8h.html#aac9153aee4bdb92701df902e06a74eb3',1,'util.h']]]
+  ['swap',['SWAP',['../util_8h.html#aac9153aee4bdb92701df902e06a74eb3',1,'util.h']]],
+  ['system_5fget_5fsdk_5fversion',['system_get_sdk_version',['../cal__dex_8c.html#a8e6d28af54455355a04c34d287d5ef2f',1,'cal_dex.c']]]
 ];

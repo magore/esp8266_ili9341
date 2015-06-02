@@ -1,0 +1,155 @@
+\hypertarget{uart_8c}{\section{driver/uart.c File Reference}
+\label{uart_8c}\index{driver/uart.\-c@{driver/uart.\-c}}
+}
+{\ttfamily \#include \char`\"{}ets\-\_\-sys.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}osapi.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}uart.\-h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{uart_8c_a0508661f121639ffdee7de2353a0def2}{U\-A\-R\-T0}~0
+\item 
+\#define \hyperlink{uart_8c_a8d69bf04d07af4fbbab5a8bd291f65ff}{U\-A\-R\-T1}~1
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+L\-O\-C\-A\-L void \hyperlink{uart_8c_a899cd55c7d84717f3e869e4ee5bfda84}{uart0\-\_\-rx\-\_\-intr\-\_\-handler} (void $\ast$para)
+\item 
+L\-O\-C\-A\-L void \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{uart_8c_ae6b74eef19a18b9e37b1853965328f1e}{uart\-\_\-config} (uint8 uart\-\_\-no)
+\item 
+L\-O\-C\-A\-L S\-T\-A\-T\-U\-S \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{uart_8c_a86709471f3590c5fb0c1ed0cd6c91a8f}{uart1\-\_\-tx\-\_\-one\-\_\-char} (uint8 Tx\-Char)
+\item 
+L\-O\-C\-A\-L void \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{uart_8c_a0be6ce33ee087df66448c29d9fa7dc4f}{uart1\-\_\-write\-\_\-char} (char c)
+\item 
+void \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{uart_8c_aa9781bff858a9ad3888080fa37c051ef}{uart0\-\_\-tx\-\_\-buffer} (uint8 $\ast$buf, uint16 len)
+\item 
+void \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{uart_8c_aedb0d99c7438c2c1c5ff4c561b6905a4}{uart\-\_\-init} (\hyperlink{uart_8h_a6e376e04a3f78e8319a5dcd9ee6d545d}{Uart\-Baut\-Rate} uart0\-\_\-br, \hyperlink{uart_8h_a6e376e04a3f78e8319a5dcd9ee6d545d}{Uart\-Baut\-Rate} uart1\-\_\-br)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structUartDevice}{Uart\-Device} \hyperlink{uart_8c_abe863f238818002e1dd96aad8a48c927}{Uart\-Dev}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{uart_8c_a0508661f121639ffdee7de2353a0def2}{\index{uart.\-c@{uart.\-c}!U\-A\-R\-T0@{U\-A\-R\-T0}}
+\index{U\-A\-R\-T0@{U\-A\-R\-T0}!uart.c@{uart.\-c}}
+\subsubsection[{U\-A\-R\-T0}]{\setlength{\rightskip}{0pt plus 5cm}\#define U\-A\-R\-T0~0}}\label{uart_8c_a0508661f121639ffdee7de2353a0def2}
+
+
+Definition at line 16 of file uart.\-c.
+
+
+
+Referenced by uart0\-\_\-rx\-\_\-intr\-\_\-handler(), and uart\-\_\-init().
+
+\hypertarget{uart_8c_a8d69bf04d07af4fbbab5a8bd291f65ff}{\index{uart.\-c@{uart.\-c}!U\-A\-R\-T1@{U\-A\-R\-T1}}
+\index{U\-A\-R\-T1@{U\-A\-R\-T1}!uart.c@{uart.\-c}}
+\subsubsection[{U\-A\-R\-T1}]{\setlength{\rightskip}{0pt plus 5cm}\#define U\-A\-R\-T1~1}}\label{uart_8c_a8d69bf04d07af4fbbab5a8bd291f65ff}
+
+
+Definition at line 17 of file uart.\-c.
+
+
+
+Referenced by uart1\-\_\-tx\-\_\-one\-\_\-char(), uart\-\_\-config(), and uart\-\_\-init().
+
+
+
+\subsection{Function Documentation}
+\hypertarget{uart_8c_a899cd55c7d84717f3e869e4ee5bfda84}{\index{uart.\-c@{uart.\-c}!uart0\-\_\-rx\-\_\-intr\-\_\-handler@{uart0\-\_\-rx\-\_\-intr\-\_\-handler}}
+\index{uart0\-\_\-rx\-\_\-intr\-\_\-handler@{uart0\-\_\-rx\-\_\-intr\-\_\-handler}!uart.c@{uart.\-c}}
+\subsubsection[{uart0\-\_\-rx\-\_\-intr\-\_\-handler}]{\setlength{\rightskip}{0pt plus 5cm}L\-O\-C\-A\-L void uart0\-\_\-rx\-\_\-intr\-\_\-handler (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{para}
+\end{DoxyParamCaption}
+)}}\label{uart_8c_a899cd55c7d84717f3e869e4ee5bfda84}
+
+
+Definition at line 125 of file uart.\-c.
+
+
+
+Referenced by uart\-\_\-config().
+
+\hypertarget{uart_8c_aa9781bff858a9ad3888080fa37c051ef}{\index{uart.\-c@{uart.\-c}!uart0\-\_\-tx\-\_\-buffer@{uart0\-\_\-tx\-\_\-buffer}}
+\index{uart0\-\_\-tx\-\_\-buffer@{uart0\-\_\-tx\-\_\-buffer}!uart.c@{uart.\-c}}
+\subsubsection[{uart0\-\_\-tx\-\_\-buffer}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf M\-E\-M\-S\-P\-A\-C\-E} uart0\-\_\-tx\-\_\-buffer (
+\begin{DoxyParamCaption}
+\item[{uint8 $\ast$}]{buf, }
+\item[{uint16}]{len}
+\end{DoxyParamCaption}
+)}}\label{uart_8c_aa9781bff858a9ad3888080fa37c051ef}
+
+
+Definition at line 173 of file uart.\-c.
+
+\hypertarget{uart_8c_a86709471f3590c5fb0c1ed0cd6c91a8f}{\index{uart.\-c@{uart.\-c}!uart1\-\_\-tx\-\_\-one\-\_\-char@{uart1\-\_\-tx\-\_\-one\-\_\-char}}
+\index{uart1\-\_\-tx\-\_\-one\-\_\-char@{uart1\-\_\-tx\-\_\-one\-\_\-char}!uart.c@{uart.\-c}}
+\subsubsection[{uart1\-\_\-tx\-\_\-one\-\_\-char}]{\setlength{\rightskip}{0pt plus 5cm}L\-O\-C\-A\-L S\-T\-A\-T\-U\-S {\bf M\-E\-M\-S\-P\-A\-C\-E} uart1\-\_\-tx\-\_\-one\-\_\-char (
+\begin{DoxyParamCaption}
+\item[{uint8}]{Tx\-Char}
+\end{DoxyParamCaption}
+)}}\label{uart_8c_a86709471f3590c5fb0c1ed0cd6c91a8f}
+
+
+Definition at line 76 of file uart.\-c.
+
+
+
+Referenced by uart1\-\_\-write\-\_\-char().
+
+\hypertarget{uart_8c_a0be6ce33ee087df66448c29d9fa7dc4f}{\index{uart.\-c@{uart.\-c}!uart1\-\_\-write\-\_\-char@{uart1\-\_\-write\-\_\-char}}
+\index{uart1\-\_\-write\-\_\-char@{uart1\-\_\-write\-\_\-char}!uart.c@{uart.\-c}}
+\subsubsection[{uart1\-\_\-write\-\_\-char}]{\setlength{\rightskip}{0pt plus 5cm}L\-O\-C\-A\-L void {\bf M\-E\-M\-S\-P\-A\-C\-E} uart1\-\_\-write\-\_\-char (
+\begin{DoxyParamCaption}
+\item[{char}]{c}
+\end{DoxyParamCaption}
+)}}\label{uart_8c_a0be6ce33ee087df66448c29d9fa7dc4f}
+
+
+Definition at line 100 of file uart.\-c.
+
+
+
+Referenced by uart\-\_\-init().
+
+\hypertarget{uart_8c_ae6b74eef19a18b9e37b1853965328f1e}{\index{uart.\-c@{uart.\-c}!uart\-\_\-config@{uart\-\_\-config}}
+\index{uart\-\_\-config@{uart\-\_\-config}!uart.c@{uart.\-c}}
+\subsubsection[{uart\-\_\-config}]{\setlength{\rightskip}{0pt plus 5cm}L\-O\-C\-A\-L void {\bf M\-E\-M\-S\-P\-A\-C\-E} uart\-\_\-config (
+\begin{DoxyParamCaption}
+\item[{uint8}]{uart\-\_\-no}
+\end{DoxyParamCaption}
+)}}\label{uart_8c_ae6b74eef19a18b9e37b1853965328f1e}
+
+
+Definition at line 33 of file uart.\-c.
+
+
+
+Referenced by uart\-\_\-init().
+
+\hypertarget{uart_8c_aedb0d99c7438c2c1c5ff4c561b6905a4}{\index{uart.\-c@{uart.\-c}!uart\-\_\-init@{uart\-\_\-init}}
+\index{uart\-\_\-init@{uart\-\_\-init}!uart.c@{uart.\-c}}
+\subsubsection[{uart\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf M\-E\-M\-S\-P\-A\-C\-E} uart\-\_\-init (
+\begin{DoxyParamCaption}
+\item[{{\bf Uart\-Baut\-Rate}}]{uart0\-\_\-br, }
+\item[{{\bf Uart\-Baut\-Rate}}]{uart1\-\_\-br}
+\end{DoxyParamCaption}
+)}}\label{uart_8c_aedb0d99c7438c2c1c5ff4c561b6905a4}
+
+
+Definition at line 192 of file uart.\-c.
+
+
+
+Referenced by user\-\_\-init().
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{uart_8c_abe863f238818002e1dd96aad8a48c927}{\index{uart.\-c@{uart.\-c}!Uart\-Dev@{Uart\-Dev}}
+\index{Uart\-Dev@{Uart\-Dev}!uart.c@{uart.\-c}}
+\subsubsection[{Uart\-Dev}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Uart\-Device} Uart\-Dev}}\label{uart_8c_abe863f238818002e1dd96aad8a48c927}

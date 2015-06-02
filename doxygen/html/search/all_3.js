@@ -1,6 +1,17 @@
 var searchData=
 [
+  ['c_5fputs',['c_puts',['../cal__dex_8c.html#a189cc9d30a050d345a214a64a3077e1c',1,'cal_dex.c']]],
+  ['cal_5fdex_2ec',['cal_dex.c',['../cal__dex_8c.html',1,'']]],
+  ['cal_5fdex_5fdump',['cal_dex_dump',['../cal__dex_8c.html#a02ae9a70fb903af445b161a5f475ae21',1,'cal_dex.c']]],
+  ['cal_5fdex_5fdump_5fformat',['CAL_DEX_DUMP_FORMAT',['../cal__dex_8c.html#ae93d6b359abf6e2fd18bba79257ba8e2',1,'cal_dex.c']]],
+  ['cal_5fdex_5fdump_5fhex',['cal_dex_dump_hex',['../cal__dex_8c.html#a62e59349b0d7b06518b2257c04bbfc1e',1,'cal_dex.c']]],
+  ['cal_5fdex_5fdump_5fstack',['cal_dex_dump_stack',['../cal__dex_8c.html#a0e0d5f7ed6c4b3cca2869392a41627e8',1,'cal_dex.c']]],
+  ['cal_5fdex_5fhandler',['cal_dex_handler',['../cal__dex_8c.html#aaa92f95616461785d7b1a7d7591ccaa1',1,'cal_dex.c']]],
+  ['cal_5fdex_5fversion',['CAL_DEX_VERSION',['../cal__dex_8c.html#acc0f78bdc8572f17f1a1eedc0f4fb6f3',1,'cal_dex.c']]],
+  ['cal_5ftprintf',['cal_tprintf',['../cal__dex_8c.html#a930bc9f35121018da9e27272aab1f255',1,'cal_dex.c']]],
   ['circular',['Circular',['../cordic_8c.html#a9e686d8e990a05ea18655a368e6d1918',1,'Circular(Cordic_T x, Cordic_T y, Cordic_T z):&#160;cordic.c'],['../cordic_8h.html#a9e686d8e990a05ea18655a368e6d1918',1,'Circular(Cordic_T x, Cordic_T y, Cordic_T z):&#160;cordic.c'],['../cordic2c_8c.html#a9e686d8e990a05ea18655a368e6d1918',1,'Circular(Cordic_T x, Cordic_T y, Cordic_T z):&#160;cordic2c.c']]],
+  ['config_5ffor_5frx_5ftx',['CONFIG_FOR_RX_TX',['../hspi_8h.html#a0a89ba717c8b84a7c3799d310b54e5c2',1,'hspi.h']]],
+  ['config_5ffor_5ftx',['CONFIG_FOR_TX',['../hspi_8h.html#ad9632609fe3a2c77d6bca3d5252980e3',1,'hspi.h']]],
   ['constrain',['CONSTRAIN',['../util_8h.html#a16354a19da36d5370eb20304b4facb33',1,'util.h']]],
   ['convert565torgb',['convert565toRGB',['../ili9341_8c.html#a845d3d47f13ba79aba1459b7630bbb90',1,'convert565toRGB(uint16_t color, uint8_t *r, uint8_t *g, uint8_t *b):&#160;ili9341.c'],['../ili9341_8h.html#a845d3d47f13ba79aba1459b7630bbb90',1,'convert565toRGB(uint16_t color, uint8_t *r, uint8_t *g, uint8_t *b):&#160;ili9341.c']]],
   ['convert_5ffont2c',['Convert_Font2c',['../bdffontutil_8c.html#a9461259743229256336c4260de7e0e0e',1,'Convert_Font2c(FILE *out, _font *font):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a9461259743229256336c4260de7e0e0e',1,'Convert_Font2c(FILE *out, _font *font):&#160;bdffontutil.c']]],

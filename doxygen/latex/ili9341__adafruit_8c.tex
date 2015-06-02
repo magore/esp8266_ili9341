@@ -1,0 +1,526 @@
+\hypertarget{ili9341__adafruit_8c}{\section{driver/ili9341\-\_\-adafruit.c File Reference}
+\label{ili9341__adafruit_8c}\index{driver/ili9341\-\_\-adafruit.\-c@{driver/ili9341\-\_\-adafruit.\-c}}
+}
+{\ttfamily \#include $<$ets\-\_\-sys.\-h$>$}\\*
+{\ttfamily \#include $<$osapi.\-h$>$}\\*
+{\ttfamily \#include $<$os\-\_\-type.\-h$>$}\\*
+{\ttfamily \#include $<$gpio.\-h$>$}\\*
+{\ttfamily \#include $<$mem.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}hspi.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}font.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}util.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}ili9341\-\_\-adafruit.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}ili9341.\-h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{ili9341__adafruit_8c_a70178a557e297238cb4c025b3940921c}{tft\-\_\-config\-Register} (void)
+\begin{DoxyCompactList}\small\item\em Initialize I\-L\-I9341 display. \end{DoxyCompactList}\item 
+void \hyperlink{ili9341__adafruit_8c_a96dacff8b2cd7c4c6c2e6a3da1c18128}{tft\-\_\-draw\-Fast\-V\-Line} (int16\-\_\-t x, int16\-\_\-t y, int16\-\_\-t h, uint16\-\_\-t color)
+\begin{DoxyCompactList}\small\item\em Fast virtical line drawing F\-I\-X\-M\-E use M\-A\-D\-C\-T\-L and fill. \end{DoxyCompactList}\item 
+void \hyperlink{ili9341__adafruit_8c_a061933098488623fdf692aecf7fa1c98}{tft\-\_\-draw\-Fast\-H\-Line} (int16\-\_\-t x, int16\-\_\-t y, int16\-\_\-t w, uint16\-\_\-t color)
+\begin{DoxyCompactList}\small\item\em Fast virtical line drawing F\-I\-X\-M\-E use M\-A\-D\-C\-T\-L and fill. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{ili9341__adafruit_8c_a97bdaf601a58490c5a7880068901f7d5}{tft\-\_\-draw\-Bitmap} (int16\-\_\-t x, int16\-\_\-t y, const uint16\-\_\-t $\ast$bitmap, int16\-\_\-t w, int16\-\_\-t h)
+\begin{DoxyCompactList}\small\item\em Draw bitmap F\-I\-X\-M\-E use M\-A\-D\-C\-T\-L and fill. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{ili9341__adafruit_8c_a53727b1a1bbc4ee0dd995473907a6aab}{tft\-\_\-draw\-Circle} (int16\-\_\-t x0, int16\-\_\-t y0, int16\-\_\-t r, uint16\-\_\-t color)
+\begin{DoxyCompactList}\small\item\em Draw a circle outline. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{ili9341__adafruit_8c_a194692f92b4308d8810e6d66418c1f29}{tft\-\_\-draw\-Circle\-Helper} (int16\-\_\-t x0, int16\-\_\-t y0, int16\-\_\-t r, uint8\-\_\-t cornername, uint16\-\_\-t color)
+\begin{DoxyCompactList}\small\item\em Draw a circle helper. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{ili9341__adafruit_8c_a0d2e26bb33204448acb9a2796c2fdb14}{tft\-\_\-fill\-Circle\-Helper} (int16\-\_\-t x0, int16\-\_\-t y0, int16\-\_\-t r, uint8\-\_\-t cornername, int16\-\_\-t delta, uint16\-\_\-t color)
+\begin{DoxyCompactList}\small\item\em Fill circle helper. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{ili9341__adafruit_8c_aaca67c8003ff4c6d5c7502496788beff}{tft\-\_\-fill\-Circle} (int16\-\_\-t x0, int16\-\_\-t y0, int16\-\_\-t r, uint16\-\_\-t color)
+\begin{DoxyCompactList}\small\item\em Fill circle. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{ili9341__adafruit_8c_a20ace45ed8b39d09b47cadac55495283}{tft\-\_\-draw\-Rect} (int16\-\_\-t x, int16\-\_\-t y, int16\-\_\-t w, int16\-\_\-t h, uint16\-\_\-t color)
+\begin{DoxyCompactList}\small\item\em Draw a rectangle. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{ili9341__adafruit_8c_a4c0fdd8e0b5f6d9478ebbcda86c45718}{tft\-\_\-draw\-Round\-Rect} (int16\-\_\-t x, int16\-\_\-t y, int16\-\_\-t w, int16\-\_\-t h, int16\-\_\-t r, uint16\-\_\-t color)
+\begin{DoxyCompactList}\small\item\em Draw a rounded rectangle. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{ili9341__adafruit_8c_afd409344e3e9adb147ded0a8bbcdf5a1}{tft\-\_\-fill\-Round\-Rect} (int16\-\_\-t x, int16\-\_\-t y, int16\-\_\-t w, int16\-\_\-t h, int16\-\_\-t r, uint16\-\_\-t color)
+\begin{DoxyCompactList}\small\item\em Fill a rounded rectangle. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{ili9341__adafruit_8c_a0b96d2f8c222b13181dccf531af3755e}{tft\-\_\-draw\-Triangle} (int16\-\_\-t x0, int16\-\_\-t y0, int16\-\_\-t x1, int16\-\_\-t y1, int16\-\_\-t x2, int16\-\_\-t y2, uint16\-\_\-t color)
+\begin{DoxyCompactList}\small\item\em Draw a triangle. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{ili9341__adafruit_8c_a4ca93dbeb1cd4beb03163539961d00bf}{tft\-\_\-fill\-Triangle} (int16\-\_\-t x0, int16\-\_\-t y0, int16\-\_\-t x1, int16\-\_\-t y1, int16\-\_\-t x2, int16\-\_\-t y2, uint16\-\_\-t color)
+\begin{DoxyCompactList}\small\item\em Fill a triangle. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{ili9341__adafruit_8c_a70178a557e297238cb4c025b3940921c}{\index{ili9341\-\_\-adafruit.\-c@{ili9341\-\_\-adafruit.\-c}!tft\-\_\-config\-Register@{tft\-\_\-config\-Register}}
+\index{tft\-\_\-config\-Register@{tft\-\_\-config\-Register}!ili9341_adafruit.c@{ili9341\-\_\-adafruit.\-c}}
+\subsubsection[{tft\-\_\-config\-Register}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void tft\-\_\-config\-Register (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{ili9341__adafruit_8c_a70178a557e297238cb4c025b3940921c}
+
+
+Initialize I\-L\-I9341 display. 
+
+This is the core graphics library for all our displays, providing a common set of graphics primitives (points, lines, circles, etc.). It needs to be paired with a hardware-\/specific library for each display device we carry (to handle the lower-\/level functions).
+
+Adafruit invests time and resources providing this open source code, please support Adafruit \& open-\/source hardware by purchasing products from Adafruit!
+
+Copyright (c) 2013 Adafruit Industries. All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met\-:
+
+
+\begin{DoxyItemize}
+\item Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+\item Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+\end{DoxyItemize}
+
+T\-H\-I\-S S\-O\-F\-T\-W\-A\-R\-E I\-S P\-R\-O\-V\-I\-D\-E\-D B\-Y T\-H\-E C\-O\-P\-Y\-R\-I\-G\-H\-T H\-O\-L\-D\-E\-R\-S A\-N\-D C\-O\-N\-T\-R\-I\-B\-U\-T\-O\-R\-S \char`\"{}\-A\-S I\-S\char`\"{} A\-N\-D A\-N\-Y E\-X\-P\-R\-E\-S\-S O\-R I\-M\-P\-L\-I\-E\-D W\-A\-R\-R\-A\-N\-T\-I\-E\-S, I\-N\-C\-L\-U\-D\-I\-N\-G, B\-U\-T N\-O\-T L\-I\-M\-I\-T\-E\-D T\-O, T\-H\-E I\-M\-P\-L\-I\-E\-D W\-A\-R\-R\-A\-N\-T\-I\-E\-S O\-F M\-E\-R\-C\-H\-A\-N\-T\-A\-B\-I\-L\-I\-T\-Y A\-N\-D F\-I\-T\-N\-E\-S\-S F\-O\-R A P\-A\-R\-T\-I\-C\-U\-L\-A\-R P\-U\-R\-P\-O\-S\-E A\-R\-E D\-I\-S\-C\-L\-A\-I\-M\-E\-D. I\-N N\-O E\-V\-E\-N\-T S\-H\-A\-L\-L T\-H\-E C\-O\-P\-Y\-R\-I\-G\-H\-T H\-O\-L\-D\-E\-R O\-R C\-O\-N\-T\-R\-I\-B\-U\-T\-O\-R\-S B\-E L\-I\-A\-B\-L\-E F\-O\-R A\-N\-Y D\-I\-R\-E\-C\-T, I\-N\-D\-I\-R\-E\-C\-T, I\-N\-C\-I\-D\-E\-N\-T\-A\-L, S\-P\-E\-C\-I\-A\-L, E\-X\-E\-M\-P\-L\-A\-R\-Y, O\-R C\-O\-N\-S\-E\-Q\-U\-E\-N\-T\-I\-A\-L D\-A\-M\-A\-G\-E\-S (I\-N\-C\-L\-U\-D\-I\-N\-G, B\-U\-T N\-O\-T L\-I\-M\-I\-T\-E\-D T\-O, P\-R\-O\-C\-U\-R\-E\-M\-E\-N\-T O\-F S\-U\-B\-S\-T\-I\-T\-U\-T\-E G\-O\-O\-D\-S O\-R S\-E\-R\-V\-I\-C\-E\-S; L\-O\-S\-S O\-F U\-S\-E, D\-A\-T\-A, O\-R P\-R\-O\-F\-I\-T\-S; O\-R B\-U\-S\-I\-N\-E\-S\-S I\-N\-T\-E\-R\-R\-U\-P\-T\-I\-O\-N) H\-O\-W\-E\-V\-E\-R C\-A\-U\-S\-E\-D A\-N\-D O\-N A\-N\-Y T\-H\-E\-O\-R\-Y O\-F L\-I\-A\-B\-I\-L\-I\-T\-Y, W\-H\-E\-T\-H\-E\-R I\-N C\-O\-N\-T\-R\-A\-C\-T, S\-T\-R\-I\-C\-T L\-I\-A\-B\-I\-L\-I\-T\-Y, O\-R T\-O\-R\-T (I\-N\-C\-L\-U\-D\-I\-N\-G N\-E\-G\-L\-I\-G\-E\-N\-C\-E O\-R O\-T\-H\-E\-R\-W\-I\-S\-E) A\-R\-I\-S\-I\-N\-G I\-N A\-N\-Y W\-A\-Y O\-U\-T O\-F T\-H\-E U\-S\-E O\-F T\-H\-I\-S S\-O\-F\-T\-W\-A\-R\-E, E\-V\-E\-N I\-F A\-D\-V\-I\-S\-E\-D O\-F T\-H\-E P\-O\-S\-S\-I\-B\-I\-L\-I\-T\-Y O\-F S\-U\-C\-H D\-A\-M\-A\-G\-E.\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 58 of file ili9341\-\_\-adafruit.\-c.
+
+
+
+Referenced by tft\-\_\-init().
+
+\hypertarget{ili9341__adafruit_8c_a97bdaf601a58490c5a7880068901f7d5}{\index{ili9341\-\_\-adafruit.\-c@{ili9341\-\_\-adafruit.\-c}!tft\-\_\-draw\-Bitmap@{tft\-\_\-draw\-Bitmap}}
+\index{tft\-\_\-draw\-Bitmap@{tft\-\_\-draw\-Bitmap}!ili9341_adafruit.c@{ili9341\-\_\-adafruit.\-c}}
+\subsubsection[{tft\-\_\-draw\-Bitmap}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void tft\-\_\-draw\-Bitmap (
+\begin{DoxyParamCaption}
+\item[{int16\-\_\-t}]{x, }
+\item[{int16\-\_\-t}]{y, }
+\item[{const uint16\-\_\-t $\ast$}]{bitmap, }
+\item[{int16\-\_\-t}]{w, }
+\item[{int16\-\_\-t}]{h}
+\end{DoxyParamCaption}
+)}}\label{ili9341__adafruit_8c_a97bdaf601a58490c5a7880068901f7d5}
+
+
+Draw bitmap F\-I\-X\-M\-E use M\-A\-D\-C\-T\-L and fill. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em x} & X offset \\
+\hline
+\mbox{\tt in}  & {\em y} & Y offset \\
+\hline
+\mbox{\tt in}  & {\em w} & Width of bitmap \\
+\hline
+\mbox{\tt in}  & {\em h} & Height of bitmap \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 206 of file ili9341\-\_\-adafruit.\-c.
+
+\hypertarget{ili9341__adafruit_8c_a53727b1a1bbc4ee0dd995473907a6aab}{\index{ili9341\-\_\-adafruit.\-c@{ili9341\-\_\-adafruit.\-c}!tft\-\_\-draw\-Circle@{tft\-\_\-draw\-Circle}}
+\index{tft\-\_\-draw\-Circle@{tft\-\_\-draw\-Circle}!ili9341_adafruit.c@{ili9341\-\_\-adafruit.\-c}}
+\subsubsection[{tft\-\_\-draw\-Circle}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void tft\-\_\-draw\-Circle (
+\begin{DoxyParamCaption}
+\item[{int16\-\_\-t}]{x0, }
+\item[{int16\-\_\-t}]{y0, }
+\item[{int16\-\_\-t}]{r, }
+\item[{uint16\-\_\-t}]{color}
+\end{DoxyParamCaption}
+)}}\label{ili9341__adafruit_8c_a53727b1a1bbc4ee0dd995473907a6aab}
+
+
+Draw a circle outline. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em x} & X offset \\
+\hline
+\mbox{\tt in}  & {\em y} & Y offset \\
+\hline
+\mbox{\tt in}  & {\em r} & Radius of circle \\
+\hline
+\mbox{\tt in}  & {\em color} & Color \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 230 of file ili9341\-\_\-adafruit.\-c.
+
+
+
+Referenced by test().
+
+\hypertarget{ili9341__adafruit_8c_a194692f92b4308d8810e6d66418c1f29}{\index{ili9341\-\_\-adafruit.\-c@{ili9341\-\_\-adafruit.\-c}!tft\-\_\-draw\-Circle\-Helper@{tft\-\_\-draw\-Circle\-Helper}}
+\index{tft\-\_\-draw\-Circle\-Helper@{tft\-\_\-draw\-Circle\-Helper}!ili9341_adafruit.c@{ili9341\-\_\-adafruit.\-c}}
+\subsubsection[{tft\-\_\-draw\-Circle\-Helper}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void tft\-\_\-draw\-Circle\-Helper (
+\begin{DoxyParamCaption}
+\item[{int16\-\_\-t}]{x0, }
+\item[{int16\-\_\-t}]{y0, }
+\item[{int16\-\_\-t}]{r, }
+\item[{uint8\-\_\-t}]{cornername, }
+\item[{uint16\-\_\-t}]{color}
+\end{DoxyParamCaption}
+)}}\label{ili9341__adafruit_8c_a194692f92b4308d8810e6d66418c1f29}
+
+
+Draw a circle helper. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em x0} & X offset \\
+\hline
+\mbox{\tt in}  & {\em y0} & Y offset \\
+\hline
+\mbox{\tt in}  & {\em r} & Radius of circle \\
+\hline
+\mbox{\tt in}  & {\em cornername} & Corner to draw \\
+\hline
+\mbox{\tt in}  & {\em color} & Color \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 276 of file ili9341\-\_\-adafruit.\-c.
+
+
+
+Referenced by tft\-\_\-draw\-Round\-Rect().
+
+\hypertarget{ili9341__adafruit_8c_a061933098488623fdf692aecf7fa1c98}{\index{ili9341\-\_\-adafruit.\-c@{ili9341\-\_\-adafruit.\-c}!tft\-\_\-draw\-Fast\-H\-Line@{tft\-\_\-draw\-Fast\-H\-Line}}
+\index{tft\-\_\-draw\-Fast\-H\-Line@{tft\-\_\-draw\-Fast\-H\-Line}!ili9341_adafruit.c@{ili9341\-\_\-adafruit.\-c}}
+\subsubsection[{tft\-\_\-draw\-Fast\-H\-Line}]{\setlength{\rightskip}{0pt plus 5cm}void tft\-\_\-draw\-Fast\-H\-Line (
+\begin{DoxyParamCaption}
+\item[{int16\-\_\-t}]{x, }
+\item[{int16\-\_\-t}]{y, }
+\item[{int16\-\_\-t}]{w, }
+\item[{uint16\-\_\-t}]{color}
+\end{DoxyParamCaption}
+)}}\label{ili9341__adafruit_8c_a061933098488623fdf692aecf7fa1c98}
+
+
+Fast virtical line drawing F\-I\-X\-M\-E use M\-A\-D\-C\-T\-L and fill. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em x} & X offset \\
+\hline
+\mbox{\tt in}  & {\em y} & Y offset \\
+\hline
+\mbox{\tt in}  & {\em w} & Width of line \\
+\hline
+\mbox{\tt in}  & {\em color} & Color \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 191 of file ili9341\-\_\-adafruit.\-c.
+
+
+
+Referenced by tft\-\_\-draw\-Rect(), tft\-\_\-draw\-Round\-Rect(), and tft\-\_\-fill\-Triangle().
+
+\hypertarget{ili9341__adafruit_8c_a96dacff8b2cd7c4c6c2e6a3da1c18128}{\index{ili9341\-\_\-adafruit.\-c@{ili9341\-\_\-adafruit.\-c}!tft\-\_\-draw\-Fast\-V\-Line@{tft\-\_\-draw\-Fast\-V\-Line}}
+\index{tft\-\_\-draw\-Fast\-V\-Line@{tft\-\_\-draw\-Fast\-V\-Line}!ili9341_adafruit.c@{ili9341\-\_\-adafruit.\-c}}
+\subsubsection[{tft\-\_\-draw\-Fast\-V\-Line}]{\setlength{\rightskip}{0pt plus 5cm}void tft\-\_\-draw\-Fast\-V\-Line (
+\begin{DoxyParamCaption}
+\item[{int16\-\_\-t}]{x, }
+\item[{int16\-\_\-t}]{y, }
+\item[{int16\-\_\-t}]{h, }
+\item[{uint16\-\_\-t}]{color}
+\end{DoxyParamCaption}
+)}}\label{ili9341__adafruit_8c_a96dacff8b2cd7c4c6c2e6a3da1c18128}
+
+
+Fast virtical line drawing F\-I\-X\-M\-E use M\-A\-D\-C\-T\-L and fill. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em x} & X offset \\
+\hline
+\mbox{\tt in}  & {\em y} & Y offset \\
+\hline
+\mbox{\tt in}  & {\em h} & Height of line \\
+\hline
+\mbox{\tt in}  & {\em color} & Color \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 177 of file ili9341\-\_\-adafruit.\-c.
+
+
+
+Referenced by tft\-\_\-draw\-Rect(), tft\-\_\-draw\-Round\-Rect(), tft\-\_\-fill\-Circle(), and tft\-\_\-fill\-Circle\-Helper().
+
+\hypertarget{ili9341__adafruit_8c_a20ace45ed8b39d09b47cadac55495283}{\index{ili9341\-\_\-adafruit.\-c@{ili9341\-\_\-adafruit.\-c}!tft\-\_\-draw\-Rect@{tft\-\_\-draw\-Rect}}
+\index{tft\-\_\-draw\-Rect@{tft\-\_\-draw\-Rect}!ili9341_adafruit.c@{ili9341\-\_\-adafruit.\-c}}
+\subsubsection[{tft\-\_\-draw\-Rect}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void tft\-\_\-draw\-Rect (
+\begin{DoxyParamCaption}
+\item[{int16\-\_\-t}]{x, }
+\item[{int16\-\_\-t}]{y, }
+\item[{int16\-\_\-t}]{w, }
+\item[{int16\-\_\-t}]{h, }
+\item[{uint16\-\_\-t}]{color}
+\end{DoxyParamCaption}
+)}}\label{ili9341__adafruit_8c_a20ace45ed8b39d09b47cadac55495283}
+
+
+Draw a rectangle. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em x} & X offset \\
+\hline
+\mbox{\tt in}  & {\em y} & Y offset \\
+\hline
+\mbox{\tt in}  & {\em w} & Width \\
+\hline
+\mbox{\tt in}  & {\em h} & Height \\
+\hline
+\mbox{\tt in}  & {\em color} & Color \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 380 of file ili9341\-\_\-adafruit.\-c.
+
+\hypertarget{ili9341__adafruit_8c_a4c0fdd8e0b5f6d9478ebbcda86c45718}{\index{ili9341\-\_\-adafruit.\-c@{ili9341\-\_\-adafruit.\-c}!tft\-\_\-draw\-Round\-Rect@{tft\-\_\-draw\-Round\-Rect}}
+\index{tft\-\_\-draw\-Round\-Rect@{tft\-\_\-draw\-Round\-Rect}!ili9341_adafruit.c@{ili9341\-\_\-adafruit.\-c}}
+\subsubsection[{tft\-\_\-draw\-Round\-Rect}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void tft\-\_\-draw\-Round\-Rect (
+\begin{DoxyParamCaption}
+\item[{int16\-\_\-t}]{x, }
+\item[{int16\-\_\-t}]{y, }
+\item[{int16\-\_\-t}]{w, }
+\item[{int16\-\_\-t}]{h, }
+\item[{int16\-\_\-t}]{r, }
+\item[{uint16\-\_\-t}]{color}
+\end{DoxyParamCaption}
+)}}\label{ili9341__adafruit_8c_a4c0fdd8e0b5f6d9478ebbcda86c45718}
+
+
+Draw a rounded rectangle. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em x} & X offset \\
+\hline
+\mbox{\tt in}  & {\em y} & Y offset \\
+\hline
+\mbox{\tt in}  & {\em w} & Width \\
+\hline
+\mbox{\tt in}  & {\em h} & Height \\
+\hline
+\mbox{\tt in}  & {\em r} & Radius \\
+\hline
+\mbox{\tt in}  & {\em color} & Color \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 400 of file ili9341\-\_\-adafruit.\-c.
+
+\hypertarget{ili9341__adafruit_8c_a0b96d2f8c222b13181dccf531af3755e}{\index{ili9341\-\_\-adafruit.\-c@{ili9341\-\_\-adafruit.\-c}!tft\-\_\-draw\-Triangle@{tft\-\_\-draw\-Triangle}}
+\index{tft\-\_\-draw\-Triangle@{tft\-\_\-draw\-Triangle}!ili9341_adafruit.c@{ili9341\-\_\-adafruit.\-c}}
+\subsubsection[{tft\-\_\-draw\-Triangle}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void tft\-\_\-draw\-Triangle (
+\begin{DoxyParamCaption}
+\item[{int16\-\_\-t}]{x0, }
+\item[{int16\-\_\-t}]{y0, }
+\item[{int16\-\_\-t}]{x1, }
+\item[{int16\-\_\-t}]{y1, }
+\item[{int16\-\_\-t}]{x2, }
+\item[{int16\-\_\-t}]{y2, }
+\item[{uint16\-\_\-t}]{color}
+\end{DoxyParamCaption}
+)}}\label{ili9341__adafruit_8c_a0b96d2f8c222b13181dccf531af3755e}
+
+
+Draw a triangle. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em x0} & X0 offset \\
+\hline
+\mbox{\tt in}  & {\em y0} & Y0 offset \\
+\hline
+\mbox{\tt in}  & {\em x1} & X1 offset \\
+\hline
+\mbox{\tt in}  & {\em y1} & Y1 offset \\
+\hline
+\mbox{\tt in}  & {\em x2} & X2 offset \\
+\hline
+\mbox{\tt in}  & {\em y2} & Y2 offset \\
+\hline
+\mbox{\tt in}  & {\em color} & Color \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 448 of file ili9341\-\_\-adafruit.\-c.
+
+\hypertarget{ili9341__adafruit_8c_aaca67c8003ff4c6d5c7502496788beff}{\index{ili9341\-\_\-adafruit.\-c@{ili9341\-\_\-adafruit.\-c}!tft\-\_\-fill\-Circle@{tft\-\_\-fill\-Circle}}
+\index{tft\-\_\-fill\-Circle@{tft\-\_\-fill\-Circle}!ili9341_adafruit.c@{ili9341\-\_\-adafruit.\-c}}
+\subsubsection[{tft\-\_\-fill\-Circle}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void tft\-\_\-fill\-Circle (
+\begin{DoxyParamCaption}
+\item[{int16\-\_\-t}]{x0, }
+\item[{int16\-\_\-t}]{y0, }
+\item[{int16\-\_\-t}]{r, }
+\item[{uint16\-\_\-t}]{color}
+\end{DoxyParamCaption}
+)}}\label{ili9341__adafruit_8c_aaca67c8003ff4c6d5c7502496788beff}
+
+
+Fill circle. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em x0} & X offset \\
+\hline
+\mbox{\tt in}  & {\em y0} & Y offset \\
+\hline
+\mbox{\tt in}  & {\em color} & Color \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 364 of file ili9341\-\_\-adafruit.\-c.
+
+\hypertarget{ili9341__adafruit_8c_a0d2e26bb33204448acb9a2796c2fdb14}{\index{ili9341\-\_\-adafruit.\-c@{ili9341\-\_\-adafruit.\-c}!tft\-\_\-fill\-Circle\-Helper@{tft\-\_\-fill\-Circle\-Helper}}
+\index{tft\-\_\-fill\-Circle\-Helper@{tft\-\_\-fill\-Circle\-Helper}!ili9341_adafruit.c@{ili9341\-\_\-adafruit.\-c}}
+\subsubsection[{tft\-\_\-fill\-Circle\-Helper}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void tft\-\_\-fill\-Circle\-Helper (
+\begin{DoxyParamCaption}
+\item[{int16\-\_\-t}]{x0, }
+\item[{int16\-\_\-t}]{y0, }
+\item[{int16\-\_\-t}]{r, }
+\item[{uint8\-\_\-t}]{cornername, }
+\item[{int16\-\_\-t}]{delta, }
+\item[{uint16\-\_\-t}]{color}
+\end{DoxyParamCaption}
+)}}\label{ili9341__adafruit_8c_a0d2e26bb33204448acb9a2796c2fdb14}
+
+
+Fill circle helper. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em x0} & X offset \\
+\hline
+\mbox{\tt in}  & {\em y0} & Y offset \\
+\hline
+\mbox{\tt in}  & {\em r} & Radius of circle \\
+\hline
+\mbox{\tt in}  & {\em cornername} & Corner to draw \\
+\hline
+\mbox{\tt in}  & {\em delta} & X or X offset \\
+\hline
+\mbox{\tt in}  & {\em color} & Color \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 328 of file ili9341\-\_\-adafruit.\-c.
+
+
+
+Referenced by tft\-\_\-fill\-Circle(), and tft\-\_\-fill\-Round\-Rect().
+
+\hypertarget{ili9341__adafruit_8c_afd409344e3e9adb147ded0a8bbcdf5a1}{\index{ili9341\-\_\-adafruit.\-c@{ili9341\-\_\-adafruit.\-c}!tft\-\_\-fill\-Round\-Rect@{tft\-\_\-fill\-Round\-Rect}}
+\index{tft\-\_\-fill\-Round\-Rect@{tft\-\_\-fill\-Round\-Rect}!ili9341_adafruit.c@{ili9341\-\_\-adafruit.\-c}}
+\subsubsection[{tft\-\_\-fill\-Round\-Rect}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void tft\-\_\-fill\-Round\-Rect (
+\begin{DoxyParamCaption}
+\item[{int16\-\_\-t}]{x, }
+\item[{int16\-\_\-t}]{y, }
+\item[{int16\-\_\-t}]{w, }
+\item[{int16\-\_\-t}]{h, }
+\item[{int16\-\_\-t}]{r, }
+\item[{uint16\-\_\-t}]{color}
+\end{DoxyParamCaption}
+)}}\label{ili9341__adafruit_8c_afd409344e3e9adb147ded0a8bbcdf5a1}
+
+
+Fill a rounded rectangle. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em x} & X offset \\
+\hline
+\mbox{\tt in}  & {\em y} & Y offset \\
+\hline
+\mbox{\tt in}  & {\em w} & Width \\
+\hline
+\mbox{\tt in}  & {\em h} & Height \\
+\hline
+\mbox{\tt in}  & {\em r} & Radius \\
+\hline
+\mbox{\tt in}  & {\em color} & Color \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 425 of file ili9341\-\_\-adafruit.\-c.
+
+\hypertarget{ili9341__adafruit_8c_a4ca93dbeb1cd4beb03163539961d00bf}{\index{ili9341\-\_\-adafruit.\-c@{ili9341\-\_\-adafruit.\-c}!tft\-\_\-fill\-Triangle@{tft\-\_\-fill\-Triangle}}
+\index{tft\-\_\-fill\-Triangle@{tft\-\_\-fill\-Triangle}!ili9341_adafruit.c@{ili9341\-\_\-adafruit.\-c}}
+\subsubsection[{tft\-\_\-fill\-Triangle}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void tft\-\_\-fill\-Triangle (
+\begin{DoxyParamCaption}
+\item[{int16\-\_\-t}]{x0, }
+\item[{int16\-\_\-t}]{y0, }
+\item[{int16\-\_\-t}]{x1, }
+\item[{int16\-\_\-t}]{y1, }
+\item[{int16\-\_\-t}]{x2, }
+\item[{int16\-\_\-t}]{y2, }
+\item[{uint16\-\_\-t}]{color}
+\end{DoxyParamCaption}
+)}}\label{ili9341__adafruit_8c_a4ca93dbeb1cd4beb03163539961d00bf}
+
+
+Fill a triangle. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em x0} & X0 offset \\
+\hline
+\mbox{\tt in}  & {\em y0} & Y0 offset \\
+\hline
+\mbox{\tt in}  & {\em x1} & X1 offset \\
+\hline
+\mbox{\tt in}  & {\em y1} & Y1 offset \\
+\hline
+\mbox{\tt in}  & {\em x2} & X2 offset \\
+\hline
+\mbox{\tt in}  & {\em y2} & Y2 offset \\
+\hline
+\mbox{\tt in}  & {\em color} & Color \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 468 of file ili9341\-\_\-adafruit.\-c.
+

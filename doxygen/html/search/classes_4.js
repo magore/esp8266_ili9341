@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['uartdevice',['UartDevice',['../structUartDevice.html',1,'']]]
+  ['trxmsgbuff',['TrxMsgBuff',['../structTrxMsgBuff.html',1,'']]]
 ];

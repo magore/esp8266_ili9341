@@ -1,0 +1,368 @@
+\hypertarget{cal__dex_8c}{\section{driver/cal\-\_\-dex.c File Reference}
+\label{cal__dex_8c}\index{driver/cal\-\_\-dex.\-c@{driver/cal\-\_\-dex.\-c}}
+}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structex__regs}{ex\-\_\-regs}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{cal__dex_8c_acc0f78bdc8572f17f1a1eedc0f4fb6f3}{C\-A\-L\-\_\-\-D\-E\-X\-\_\-\-V\-E\-R\-S\-I\-O\-N}~\char`\"{}0.\-1\char`\"{}
+\item 
+\#define \hyperlink{cal__dex_8c_ae93d6b359abf6e2fd18bba79257ba8e2}{C\-A\-L\-\_\-\-D\-E\-X\-\_\-\-D\-U\-M\-P\-\_\-\-F\-O\-R\-M\-A\-T}~\char`\"{}0.\-1\char`\"{}
+\item 
+\#define \hyperlink{cal__dex_8c_a7577d49f3bfffb1cf048eef843177784}{L}(x)~(((unsigned int)(x)) \& 0x\-F\-F\-F\-F)
+\item 
+\#define \hyperlink{cal__dex_8c_ace605bda5adf4d197d62796c54bef1b0}{U\-S\-E\-\_\-\-E\-T\-S\-\_\-\-P\-R\-I\-N\-T\-F}~1
+\item 
+\#define \hyperlink{cal__dex_8c_a189cc9d30a050d345a214a64a3077e1c}{c\-\_\-puts}(a)~\hyperlink{cal__dex_8c_a930bc9f35121018da9e27272aab1f255}{cal\-\_\-tprintf}(a)
+\item 
+\#define \hyperlink{cal__dex_8c_a930bc9f35121018da9e27272aab1f255}{cal\-\_\-tprintf}~\hyperlink{user__main_8c_af84e3ac8b5878bd0ad9e185f3d27073c}{ets\-\_\-uart\-\_\-printf}
+\item 
+\#define \hyperlink{cal__dex_8c_aaf0952059602752258dccaa015d7b54a}{N\-U\-M}~8
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void $\ast$ \hyperlink{cal__dex_8c_a35c6b20120a115839944c07cf7089ee1}{\-\_\-\-\_\-real\-\_\-\-\_\-xtos\-\_\-set\-\_\-exception\-\_\-handler} (int exno, void($\ast$exhandler)())
+\item 
+char $\ast$ \hyperlink{cal__dex_8c_a8e6d28af54455355a04c34d287d5ef2f}{system\-\_\-get\-\_\-sdk\-\_\-version} ()
+\item 
+static void \hyperlink{cal__dex_8c_aaa92f95616461785d7b1a7d7591ccaa1}{cal\-\_\-dex\-\_\-handler} (int exccause, \hyperlink{structex__regs}{ex\-\_\-regs} regs)
+\item 
+void \hyperlink{cal__dex_8c_ad1d295b450767463df56e622d0989157}{ets\-\_\-printf} (char $\ast$fmt,...)
+\item 
+void \hyperlink{cal__dex_8c_a13b7de6e7c126209e587ac1cd5ccb4fc}{ets\-\_\-uart\-\_\-printf} (char $\ast$fmt,...)
+\item 
+void \hyperlink{cal__dex_8c_a62e59349b0d7b06518b2257c04bbfc1e}{cal\-\_\-dex\-\_\-dump\-\_\-hex} (int $\ast$p, int cnt)
+\item 
+int \hyperlink{cal__dex_8c_a51bf09cac6f861c3a27c59190c3c6cc5}{stackok} (int $\ast$sp)
+\item 
+void \hyperlink{cal__dex_8c_a0e0d5f7ed6c4b3cca2869392a41627e8}{cal\-\_\-dex\-\_\-dump\-\_\-stack} (int $\ast$sp)
+\item 
+static int \hyperlink{cal__dex_8c_ac71f7a3cad2b1fea5cf85a828e29e644}{get\-\_\-excvaddr} ()
+\item 
+static int \hyperlink{cal__dex_8c_acf957f6fef532e6ea549b42081a2592a}{get\-\_\-depc} ()
+\item 
+void \hyperlink{cal__dex_8c_a02ae9a70fb903af445b161a5f475ae21}{cal\-\_\-dex\-\_\-dump} (int $\ast$sp)
+\item 
+void $\ast$ \hyperlink{cal__dex_8c_a26d67b0638e4ea778c53b436403194dd}{\-\_\-\-\_\-wrap\-\_\-\-\_\-xtos\-\_\-set\-\_\-exception\-\_\-handler} (int exno, void($\ast$exhandler)())
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+char \hyperlink{cal__dex_8c_ac66534749fb69896f1a473745b07aff8}{\-\_\-text\-\_\-start}
+\item 
+char \hyperlink{cal__dex_8c_af0ad9d4bf681198482b41f2cc86f0f8b}{\-\_\-text\-\_\-end}
+\item 
+char \hyperlink{cal__dex_8c_a9b0d08ce55c1dd45663ece989b591af3}{\-\_\-rodata\-\_\-start}
+\item 
+char \hyperlink{cal__dex_8c_a9088afdf082e7273471de67d7a306299}{\-\_\-rodata\-\_\-end}
+\item 
+char \hyperlink{cal__dex_8c_a52ac470a9c391e36c01d0f292c65cf19}{\-\_\-data\-\_\-start}
+\item 
+char \hyperlink{cal__dex_8c_a631d10379fb6298dec3a091dff85fbfe}{\-\_\-data\-\_\-end}
+\item 
+char \hyperlink{cal__dex_8c_ab8dbbb399a1fef76400b4f00478e0988}{\-\_\-bss\-\_\-start}
+\item 
+char \hyperlink{cal__dex_8c_aaa26ff984a04eba58325fdd495b7acd8}{\-\_\-bss\-\_\-end}
+\item 
+static void($\ast$ \hyperlink{cal__dex_8c_a2c7db7064dd6e7dc2e87f2cef90989ed}{orighandler} )(int code)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{cal__dex_8c_a189cc9d30a050d345a214a64a3077e1c}{\index{cal\-\_\-dex.\-c@{cal\-\_\-dex.\-c}!c\-\_\-puts@{c\-\_\-puts}}
+\index{c\-\_\-puts@{c\-\_\-puts}!cal_dex.c@{cal\-\_\-dex.\-c}}
+\subsubsection[{c\-\_\-puts}]{\setlength{\rightskip}{0pt plus 5cm}\#define c\-\_\-puts(
+\begin{DoxyParamCaption}
+\item[{}]{a}
+\end{DoxyParamCaption}
+)~{\bf cal\-\_\-tprintf}(a)}}\label{cal__dex_8c_a189cc9d30a050d345a214a64a3077e1c}
+
+
+Definition at line 60 of file cal\-\_\-dex.\-c.
+
+
+
+Referenced by \-\_\-\-\_\-wrap\-\_\-\-\_\-xtos\-\_\-set\-\_\-exception\-\_\-handler(), cal\-\_\-dex\-\_\-dump(), cal\-\_\-dex\-\_\-dump\-\_\-hex(), and cal\-\_\-dex\-\_\-dump\-\_\-stack().
+
+\hypertarget{cal__dex_8c_ae93d6b359abf6e2fd18bba79257ba8e2}{\index{cal\-\_\-dex.\-c@{cal\-\_\-dex.\-c}!C\-A\-L\-\_\-\-D\-E\-X\-\_\-\-D\-U\-M\-P\-\_\-\-F\-O\-R\-M\-A\-T@{C\-A\-L\-\_\-\-D\-E\-X\-\_\-\-D\-U\-M\-P\-\_\-\-F\-O\-R\-M\-A\-T}}
+\index{C\-A\-L\-\_\-\-D\-E\-X\-\_\-\-D\-U\-M\-P\-\_\-\-F\-O\-R\-M\-A\-T@{C\-A\-L\-\_\-\-D\-E\-X\-\_\-\-D\-U\-M\-P\-\_\-\-F\-O\-R\-M\-A\-T}!cal_dex.c@{cal\-\_\-dex.\-c}}
+\subsubsection[{C\-A\-L\-\_\-\-D\-E\-X\-\_\-\-D\-U\-M\-P\-\_\-\-F\-O\-R\-M\-A\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-L\-\_\-\-D\-E\-X\-\_\-\-D\-U\-M\-P\-\_\-\-F\-O\-R\-M\-A\-T~\char`\"{}0.\-1\char`\"{}}}\label{cal__dex_8c_ae93d6b359abf6e2fd18bba79257ba8e2}
+
+
+Definition at line 8 of file cal\-\_\-dex.\-c.
+
+
+
+Referenced by cal\-\_\-dex\-\_\-dump().
+
+\hypertarget{cal__dex_8c_acc0f78bdc8572f17f1a1eedc0f4fb6f3}{\index{cal\-\_\-dex.\-c@{cal\-\_\-dex.\-c}!C\-A\-L\-\_\-\-D\-E\-X\-\_\-\-V\-E\-R\-S\-I\-O\-N@{C\-A\-L\-\_\-\-D\-E\-X\-\_\-\-V\-E\-R\-S\-I\-O\-N}}
+\index{C\-A\-L\-\_\-\-D\-E\-X\-\_\-\-V\-E\-R\-S\-I\-O\-N@{C\-A\-L\-\_\-\-D\-E\-X\-\_\-\-V\-E\-R\-S\-I\-O\-N}!cal_dex.c@{cal\-\_\-dex.\-c}}
+\subsubsection[{C\-A\-L\-\_\-\-D\-E\-X\-\_\-\-V\-E\-R\-S\-I\-O\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-L\-\_\-\-D\-E\-X\-\_\-\-V\-E\-R\-S\-I\-O\-N~\char`\"{}0.\-1\char`\"{}}}\label{cal__dex_8c_acc0f78bdc8572f17f1a1eedc0f4fb6f3}
+cal\-\_\-dex 0.\-1
+
+Debug exception support. (20150421, cal) 
+
+Definition at line 7 of file cal\-\_\-dex.\-c.
+
+
+
+Referenced by cal\-\_\-dex\-\_\-dump().
+
+\hypertarget{cal__dex_8c_a930bc9f35121018da9e27272aab1f255}{\index{cal\-\_\-dex.\-c@{cal\-\_\-dex.\-c}!cal\-\_\-tprintf@{cal\-\_\-tprintf}}
+\index{cal\-\_\-tprintf@{cal\-\_\-tprintf}!cal_dex.c@{cal\-\_\-dex.\-c}}
+\subsubsection[{cal\-\_\-tprintf}]{\setlength{\rightskip}{0pt plus 5cm}\#define cal\-\_\-tprintf~{\bf ets\-\_\-uart\-\_\-printf}}}\label{cal__dex_8c_a930bc9f35121018da9e27272aab1f255}
+
+
+Definition at line 64 of file cal\-\_\-dex.\-c.
+
+
+
+Referenced by cal\-\_\-dex\-\_\-dump(), and cal\-\_\-dex\-\_\-dump\-\_\-stack().
+
+\hypertarget{cal__dex_8c_a7577d49f3bfffb1cf048eef843177784}{\index{cal\-\_\-dex.\-c@{cal\-\_\-dex.\-c}!L@{L}}
+\index{L@{L}!cal_dex.c@{cal\-\_\-dex.\-c}}
+\subsubsection[{L}]{\setlength{\rightskip}{0pt plus 5cm}\#define L(
+\begin{DoxyParamCaption}
+\item[{}]{x}
+\end{DoxyParamCaption}
+)~(((unsigned int)(x)) \& 0x\-F\-F\-F\-F)}}\label{cal__dex_8c_a7577d49f3bfffb1cf048eef843177784}
+
+
+Definition at line 54 of file cal\-\_\-dex.\-c.
+
+
+
+Referenced by cal\-\_\-dex\-\_\-dump(), main(), and user\-\_\-init().
+
+\hypertarget{cal__dex_8c_aaf0952059602752258dccaa015d7b54a}{\index{cal\-\_\-dex.\-c@{cal\-\_\-dex.\-c}!N\-U\-M@{N\-U\-M}}
+\index{N\-U\-M@{N\-U\-M}!cal_dex.c@{cal\-\_\-dex.\-c}}
+\subsubsection[{N\-U\-M}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\-U\-M~8}}\label{cal__dex_8c_aaf0952059602752258dccaa015d7b54a}
+
+
+Definition at line 120 of file cal\-\_\-dex.\-c.
+
+
+
+Referenced by cal\-\_\-dex\-\_\-dump\-\_\-hex().
+
+\hypertarget{cal__dex_8c_ace605bda5adf4d197d62796c54bef1b0}{\index{cal\-\_\-dex.\-c@{cal\-\_\-dex.\-c}!U\-S\-E\-\_\-\-E\-T\-S\-\_\-\-P\-R\-I\-N\-T\-F@{U\-S\-E\-\_\-\-E\-T\-S\-\_\-\-P\-R\-I\-N\-T\-F}}
+\index{U\-S\-E\-\_\-\-E\-T\-S\-\_\-\-P\-R\-I\-N\-T\-F@{U\-S\-E\-\_\-\-E\-T\-S\-\_\-\-P\-R\-I\-N\-T\-F}!cal_dex.c@{cal\-\_\-dex.\-c}}
+\subsubsection[{U\-S\-E\-\_\-\-E\-T\-S\-\_\-\-P\-R\-I\-N\-T\-F}]{\setlength{\rightskip}{0pt plus 5cm}\#define U\-S\-E\-\_\-\-E\-T\-S\-\_\-\-P\-R\-I\-N\-T\-F~1}}\label{cal__dex_8c_ace605bda5adf4d197d62796c54bef1b0}
+
+
+Definition at line 57 of file cal\-\_\-dex.\-c.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{cal__dex_8c_a35c6b20120a115839944c07cf7089ee1}{\index{cal\-\_\-dex.\-c@{cal\-\_\-dex.\-c}!\-\_\-\-\_\-real\-\_\-\-\_\-xtos\-\_\-set\-\_\-exception\-\_\-handler@{\-\_\-\-\_\-real\-\_\-\-\_\-xtos\-\_\-set\-\_\-exception\-\_\-handler}}
+\index{\-\_\-\-\_\-real\-\_\-\-\_\-xtos\-\_\-set\-\_\-exception\-\_\-handler@{\-\_\-\-\_\-real\-\_\-\-\_\-xtos\-\_\-set\-\_\-exception\-\_\-handler}!cal_dex.c@{cal\-\_\-dex.\-c}}
+\subsubsection[{\-\_\-\-\_\-real\-\_\-\-\_\-xtos\-\_\-set\-\_\-exception\-\_\-handler}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ \-\_\-\-\_\-real\-\_\-\-\_\-xtos\-\_\-set\-\_\-exception\-\_\-handler (
+\begin{DoxyParamCaption}
+\item[{int}]{exno, }
+\item[{void($\ast$)()}]{exhandler}
+\end{DoxyParamCaption}
+)}}\label{cal__dex_8c_a35c6b20120a115839944c07cf7089ee1}
+
+
+Referenced by \-\_\-\-\_\-wrap\-\_\-\-\_\-xtos\-\_\-set\-\_\-exception\-\_\-handler().
+
+\hypertarget{cal__dex_8c_a26d67b0638e4ea778c53b436403194dd}{\index{cal\-\_\-dex.\-c@{cal\-\_\-dex.\-c}!\-\_\-\-\_\-wrap\-\_\-\-\_\-xtos\-\_\-set\-\_\-exception\-\_\-handler@{\-\_\-\-\_\-wrap\-\_\-\-\_\-xtos\-\_\-set\-\_\-exception\-\_\-handler}}
+\index{\-\_\-\-\_\-wrap\-\_\-\-\_\-xtos\-\_\-set\-\_\-exception\-\_\-handler@{\-\_\-\-\_\-wrap\-\_\-\-\_\-xtos\-\_\-set\-\_\-exception\-\_\-handler}!cal_dex.c@{cal\-\_\-dex.\-c}}
+\subsubsection[{\-\_\-\-\_\-wrap\-\_\-\-\_\-xtos\-\_\-set\-\_\-exception\-\_\-handler}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ \-\_\-\-\_\-wrap\-\_\-\-\_\-xtos\-\_\-set\-\_\-exception\-\_\-handler (
+\begin{DoxyParamCaption}
+\item[{int}]{exno, }
+\item[{void($\ast$)()}]{exhandler}
+\end{DoxyParamCaption}
+)}}\label{cal__dex_8c_a26d67b0638e4ea778c53b436403194dd}
+This intercepts calls to \-\_\-xtos\-\_\-set\-\_\-exception\-\_\-handler which is reached via symbol \-\_\-\-\_\-real\-\_\-\-\_\-xtos\-\_\-set\-\_\-exception\-\_\-handler.
+
+Calls to exception handler are intercepted by cal\-\_\-dex\-\_\-handler before delegating to original handler. 
+
+Definition at line 357 of file cal\-\_\-dex.\-c.
+
+\hypertarget{cal__dex_8c_a02ae9a70fb903af445b161a5f475ae21}{\index{cal\-\_\-dex.\-c@{cal\-\_\-dex.\-c}!cal\-\_\-dex\-\_\-dump@{cal\-\_\-dex\-\_\-dump}}
+\index{cal\-\_\-dex\-\_\-dump@{cal\-\_\-dex\-\_\-dump}!cal_dex.c@{cal\-\_\-dex.\-c}}
+\subsubsection[{cal\-\_\-dex\-\_\-dump}]{\setlength{\rightskip}{0pt plus 5cm}void cal\-\_\-dex\-\_\-dump (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{sp}
+\end{DoxyParamCaption}
+)}}\label{cal__dex_8c_a02ae9a70fb903af445b161a5f475ae21}
+
+
+Definition at line 215 of file cal\-\_\-dex.\-c.
+
+
+
+Referenced by cal\-\_\-dex\-\_\-handler().
+
+\hypertarget{cal__dex_8c_a62e59349b0d7b06518b2257c04bbfc1e}{\index{cal\-\_\-dex.\-c@{cal\-\_\-dex.\-c}!cal\-\_\-dex\-\_\-dump\-\_\-hex@{cal\-\_\-dex\-\_\-dump\-\_\-hex}}
+\index{cal\-\_\-dex\-\_\-dump\-\_\-hex@{cal\-\_\-dex\-\_\-dump\-\_\-hex}!cal_dex.c@{cal\-\_\-dex.\-c}}
+\subsubsection[{cal\-\_\-dex\-\_\-dump\-\_\-hex}]{\setlength{\rightskip}{0pt plus 5cm}void cal\-\_\-dex\-\_\-dump\-\_\-hex (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{p, }
+\item[{int}]{cnt}
+\end{DoxyParamCaption}
+)}}\label{cal__dex_8c_a62e59349b0d7b06518b2257c04bbfc1e}
+
+
+Definition at line 124 of file cal\-\_\-dex.\-c.
+
+
+
+Referenced by cal\-\_\-dex\-\_\-dump\-\_\-stack().
+
+\hypertarget{cal__dex_8c_a0e0d5f7ed6c4b3cca2869392a41627e8}{\index{cal\-\_\-dex.\-c@{cal\-\_\-dex.\-c}!cal\-\_\-dex\-\_\-dump\-\_\-stack@{cal\-\_\-dex\-\_\-dump\-\_\-stack}}
+\index{cal\-\_\-dex\-\_\-dump\-\_\-stack@{cal\-\_\-dex\-\_\-dump\-\_\-stack}!cal_dex.c@{cal\-\_\-dex.\-c}}
+\subsubsection[{cal\-\_\-dex\-\_\-dump\-\_\-stack}]{\setlength{\rightskip}{0pt plus 5cm}void cal\-\_\-dex\-\_\-dump\-\_\-stack (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{sp}
+\end{DoxyParamCaption}
+)}}\label{cal__dex_8c_a0e0d5f7ed6c4b3cca2869392a41627e8}
+
+
+Definition at line 160 of file cal\-\_\-dex.\-c.
+
+
+
+Referenced by cal\-\_\-dex\-\_\-dump().
+
+\hypertarget{cal__dex_8c_aaa92f95616461785d7b1a7d7591ccaa1}{\index{cal\-\_\-dex.\-c@{cal\-\_\-dex.\-c}!cal\-\_\-dex\-\_\-handler@{cal\-\_\-dex\-\_\-handler}}
+\index{cal\-\_\-dex\-\_\-handler@{cal\-\_\-dex\-\_\-handler}!cal_dex.c@{cal\-\_\-dex.\-c}}
+\subsubsection[{cal\-\_\-dex\-\_\-handler}]{\setlength{\rightskip}{0pt plus 5cm}void cal\-\_\-dex\-\_\-handler (
+\begin{DoxyParamCaption}
+\item[{int}]{exccause, }
+\item[{{\bf ex\-\_\-regs}}]{regs}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{cal__dex_8c_aaa92f95616461785d7b1a7d7591ccaa1}
+
+
+Definition at line 327 of file cal\-\_\-dex.\-c.
+
+
+
+Referenced by \-\_\-\-\_\-wrap\-\_\-\-\_\-xtos\-\_\-set\-\_\-exception\-\_\-handler(), and cal\-\_\-dex\-\_\-dump().
+
+\hypertarget{cal__dex_8c_ad1d295b450767463df56e622d0989157}{\index{cal\-\_\-dex.\-c@{cal\-\_\-dex.\-c}!ets\-\_\-printf@{ets\-\_\-printf}}
+\index{ets\-\_\-printf@{ets\-\_\-printf}!cal_dex.c@{cal\-\_\-dex.\-c}}
+\subsubsection[{ets\-\_\-printf}]{\setlength{\rightskip}{0pt plus 5cm}void ets\-\_\-printf (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{fmt, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)}}\label{cal__dex_8c_ad1d295b450767463df56e622d0989157}
+
+
+Referenced by cal\-\_\-dex\-\_\-dump\-\_\-hex().
+
+\hypertarget{cal__dex_8c_a13b7de6e7c126209e587ac1cd5ccb4fc}{\index{cal\-\_\-dex.\-c@{cal\-\_\-dex.\-c}!ets\-\_\-uart\-\_\-printf@{ets\-\_\-uart\-\_\-printf}}
+\index{ets\-\_\-uart\-\_\-printf@{ets\-\_\-uart\-\_\-printf}!cal_dex.c@{cal\-\_\-dex.\-c}}
+\subsubsection[{ets\-\_\-uart\-\_\-printf}]{\setlength{\rightskip}{0pt plus 5cm}void ets\-\_\-uart\-\_\-printf (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{fmt, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)}}\label{cal__dex_8c_a13b7de6e7c126209e587ac1cd5ccb4fc}
+
+
+Referenced by font\-\_\-attr(), and tft\-\_\-read\-Register().
+
+\hypertarget{cal__dex_8c_acf957f6fef532e6ea549b42081a2592a}{\index{cal\-\_\-dex.\-c@{cal\-\_\-dex.\-c}!get\-\_\-depc@{get\-\_\-depc}}
+\index{get\-\_\-depc@{get\-\_\-depc}!cal_dex.c@{cal\-\_\-dex.\-c}}
+\subsubsection[{get\-\_\-depc}]{\setlength{\rightskip}{0pt plus 5cm}static int get\-\_\-depc (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{cal__dex_8c_acf957f6fef532e6ea549b42081a2592a}
+
+
+Definition at line 203 of file cal\-\_\-dex.\-c.
+
+
+
+Referenced by cal\-\_\-dex\-\_\-dump().
+
+\hypertarget{cal__dex_8c_ac71f7a3cad2b1fea5cf85a828e29e644}{\index{cal\-\_\-dex.\-c@{cal\-\_\-dex.\-c}!get\-\_\-excvaddr@{get\-\_\-excvaddr}}
+\index{get\-\_\-excvaddr@{get\-\_\-excvaddr}!cal_dex.c@{cal\-\_\-dex.\-c}}
+\subsubsection[{get\-\_\-excvaddr}]{\setlength{\rightskip}{0pt plus 5cm}static int get\-\_\-excvaddr (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{cal__dex_8c_ac71f7a3cad2b1fea5cf85a828e29e644}
+
+
+Definition at line 192 of file cal\-\_\-dex.\-c.
+
+
+
+Referenced by cal\-\_\-dex\-\_\-dump().
+
+\hypertarget{cal__dex_8c_a51bf09cac6f861c3a27c59190c3c6cc5}{\index{cal\-\_\-dex.\-c@{cal\-\_\-dex.\-c}!stackok@{stackok}}
+\index{stackok@{stackok}!cal_dex.c@{cal\-\_\-dex.\-c}}
+\subsubsection[{stackok}]{\setlength{\rightskip}{0pt plus 5cm}int stackok (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{sp}
+\end{DoxyParamCaption}
+)}}\label{cal__dex_8c_a51bf09cac6f861c3a27c59190c3c6cc5}
+
+
+Definition at line 152 of file cal\-\_\-dex.\-c.
+
+
+
+Referenced by cal\-\_\-dex\-\_\-dump(), and cal\-\_\-dex\-\_\-dump\-\_\-stack().
+
+\hypertarget{cal__dex_8c_a8e6d28af54455355a04c34d287d5ef2f}{\index{cal\-\_\-dex.\-c@{cal\-\_\-dex.\-c}!system\-\_\-get\-\_\-sdk\-\_\-version@{system\-\_\-get\-\_\-sdk\-\_\-version}}
+\index{system\-\_\-get\-\_\-sdk\-\_\-version@{system\-\_\-get\-\_\-sdk\-\_\-version}!cal_dex.c@{cal\-\_\-dex.\-c}}
+\subsubsection[{system\-\_\-get\-\_\-sdk\-\_\-version}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ system\-\_\-get\-\_\-sdk\-\_\-version (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{cal__dex_8c_a8e6d28af54455355a04c34d287d5ef2f}
+
+
+Referenced by cal\-\_\-dex\-\_\-dump().
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{cal__dex_8c_aaa26ff984a04eba58325fdd495b7acd8}{\index{cal\-\_\-dex.\-c@{cal\-\_\-dex.\-c}!\-\_\-bss\-\_\-end@{\-\_\-bss\-\_\-end}}
+\index{\-\_\-bss\-\_\-end@{\-\_\-bss\-\_\-end}!cal_dex.c@{cal\-\_\-dex.\-c}}
+\subsubsection[{\-\_\-bss\-\_\-end}]{\setlength{\rightskip}{0pt plus 5cm}char \-\_\-bss\-\_\-end}}\label{cal__dex_8c_aaa26ff984a04eba58325fdd495b7acd8}
+\hypertarget{cal__dex_8c_ab8dbbb399a1fef76400b4f00478e0988}{\index{cal\-\_\-dex.\-c@{cal\-\_\-dex.\-c}!\-\_\-bss\-\_\-start@{\-\_\-bss\-\_\-start}}
+\index{\-\_\-bss\-\_\-start@{\-\_\-bss\-\_\-start}!cal_dex.c@{cal\-\_\-dex.\-c}}
+\subsubsection[{\-\_\-bss\-\_\-start}]{\setlength{\rightskip}{0pt plus 5cm}char \-\_\-bss\-\_\-start}}\label{cal__dex_8c_ab8dbbb399a1fef76400b4f00478e0988}
+\hypertarget{cal__dex_8c_a631d10379fb6298dec3a091dff85fbfe}{\index{cal\-\_\-dex.\-c@{cal\-\_\-dex.\-c}!\-\_\-data\-\_\-end@{\-\_\-data\-\_\-end}}
+\index{\-\_\-data\-\_\-end@{\-\_\-data\-\_\-end}!cal_dex.c@{cal\-\_\-dex.\-c}}
+\subsubsection[{\-\_\-data\-\_\-end}]{\setlength{\rightskip}{0pt plus 5cm}char \-\_\-data\-\_\-end}}\label{cal__dex_8c_a631d10379fb6298dec3a091dff85fbfe}
+\hypertarget{cal__dex_8c_a52ac470a9c391e36c01d0f292c65cf19}{\index{cal\-\_\-dex.\-c@{cal\-\_\-dex.\-c}!\-\_\-data\-\_\-start@{\-\_\-data\-\_\-start}}
+\index{\-\_\-data\-\_\-start@{\-\_\-data\-\_\-start}!cal_dex.c@{cal\-\_\-dex.\-c}}
+\subsubsection[{\-\_\-data\-\_\-start}]{\setlength{\rightskip}{0pt plus 5cm}char \-\_\-data\-\_\-start}}\label{cal__dex_8c_a52ac470a9c391e36c01d0f292c65cf19}
+\hypertarget{cal__dex_8c_a9088afdf082e7273471de67d7a306299}{\index{cal\-\_\-dex.\-c@{cal\-\_\-dex.\-c}!\-\_\-rodata\-\_\-end@{\-\_\-rodata\-\_\-end}}
+\index{\-\_\-rodata\-\_\-end@{\-\_\-rodata\-\_\-end}!cal_dex.c@{cal\-\_\-dex.\-c}}
+\subsubsection[{\-\_\-rodata\-\_\-end}]{\setlength{\rightskip}{0pt plus 5cm}char \-\_\-rodata\-\_\-end}}\label{cal__dex_8c_a9088afdf082e7273471de67d7a306299}
+\hypertarget{cal__dex_8c_a9b0d08ce55c1dd45663ece989b591af3}{\index{cal\-\_\-dex.\-c@{cal\-\_\-dex.\-c}!\-\_\-rodata\-\_\-start@{\-\_\-rodata\-\_\-start}}
+\index{\-\_\-rodata\-\_\-start@{\-\_\-rodata\-\_\-start}!cal_dex.c@{cal\-\_\-dex.\-c}}
+\subsubsection[{\-\_\-rodata\-\_\-start}]{\setlength{\rightskip}{0pt plus 5cm}char \-\_\-rodata\-\_\-start}}\label{cal__dex_8c_a9b0d08ce55c1dd45663ece989b591af3}
+\hypertarget{cal__dex_8c_af0ad9d4bf681198482b41f2cc86f0f8b}{\index{cal\-\_\-dex.\-c@{cal\-\_\-dex.\-c}!\-\_\-text\-\_\-end@{\-\_\-text\-\_\-end}}
+\index{\-\_\-text\-\_\-end@{\-\_\-text\-\_\-end}!cal_dex.c@{cal\-\_\-dex.\-c}}
+\subsubsection[{\-\_\-text\-\_\-end}]{\setlength{\rightskip}{0pt plus 5cm}char \-\_\-text\-\_\-end}}\label{cal__dex_8c_af0ad9d4bf681198482b41f2cc86f0f8b}
+\hypertarget{cal__dex_8c_ac66534749fb69896f1a473745b07aff8}{\index{cal\-\_\-dex.\-c@{cal\-\_\-dex.\-c}!\-\_\-text\-\_\-start@{\-\_\-text\-\_\-start}}
+\index{\-\_\-text\-\_\-start@{\-\_\-text\-\_\-start}!cal_dex.c@{cal\-\_\-dex.\-c}}
+\subsubsection[{\-\_\-text\-\_\-start}]{\setlength{\rightskip}{0pt plus 5cm}char \-\_\-text\-\_\-start}}\label{cal__dex_8c_ac66534749fb69896f1a473745b07aff8}
+\hypertarget{cal__dex_8c_a2c7db7064dd6e7dc2e87f2cef90989ed}{\index{cal\-\_\-dex.\-c@{cal\-\_\-dex.\-c}!orighandler@{orighandler}}
+\index{orighandler@{orighandler}!cal_dex.c@{cal\-\_\-dex.\-c}}
+\subsubsection[{orighandler}]{\setlength{\rightskip}{0pt plus 5cm}void($\ast$ orighandler)(int code)\hspace{0.3cm}{\ttfamily [static]}}}\label{cal__dex_8c_a2c7db7064dd6e7dc2e87f2cef90989ed}
+
+
+Definition at line 51 of file cal\-\_\-dex.\-c.
+
+
+
+Referenced by \-\_\-\-\_\-wrap\-\_\-\-\_\-xtos\-\_\-set\-\_\-exception\-\_\-handler(), and cal\-\_\-dex\-\_\-handler().
+

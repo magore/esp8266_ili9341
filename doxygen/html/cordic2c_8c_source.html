@@ -290,7 +290,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;    <span class="keywordflow">for</span>(d=0;d&lt;=1;d+=.1)</div>
 <div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;    {</div>
 <div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;        x1 = <a class="code" href="cordic2c_8c.html#ad614e1a545ad0fd263ea0afb0456cb7a">FP2Cordic</a>(d);</div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;        <a class="code" href="cordic2c_8c.html#a9e686d8e990a05ea18655a368e6d1918">Circular</a> (<a class="code" href="cordic2c_8c.html#a4b976fbfc7fdff42650fe0419698cabf">Cordic_K</a>, 0L, x1);</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;        <a class="code" href="cordic2c_8c.html#a9e686d8e990a05ea18655a368e6d1918">Circular</a> (<a class="code" href="cordic2c_8c.html#a4b976fbfc7fdff42650fe0419698cabf">Cordic_K</a>, 0<a class="code" href="cal__dex_8c.html#a7577d49f3bfffb1cf048eef843177784">L</a>, x1);</div>
 <div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;        a = (int) 100 * d + 0.000005;   <span class="comment">// rounding - 0.1 is not exact</span></div>
 <div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;        sprintf(str,<span class="stringliteral">&quot;%d Gradians&quot;</span>, a);</div>
 <div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;        <a class="code" href="cordic2c_8c.html#afc93093d0da5da783668ca27f859a2a7">PrintXYZ</a> (str);</div>
@@ -323,6 +323,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="cordic2c_8c_html_af184b364894a86e05578b2397e13d79d"><div class="ttname"><a href="cordic2c_8c.html#af184b364894a86e05578b2397e13d79d">dump_tables</a></div><div class="ttdeci">void dump_tables(char *str)</div><div class="ttdoc">Create Cordic tables Normalize base number system to 1.0 == Cordic_One == PI/2 (90 degrees) Example ...</div><div class="ttdef"><b>Definition:</b> <a href="cordic2c_8c_source.html#l00135">cordic2c.c:135</a></div></div>
 <div class="ttc" id="cordic2c_8c_html_a38f46d7f72ed48712304af6f64b896f2"><div class="ttname"><a href="cordic2c_8c.html#a38f46d7f72ed48712304af6f64b896f2">Cordic_INVK</a></div><div class="ttdeci">#define Cordic_INVK</div><div class="ttdef"><b>Definition:</b> <a href="cordic2c_8c_source.html#l00116">cordic2c.c:116</a></div></div>
 <div class="ttc" id="cordic2c_8c_html_ab746e677f466f17031e92ed577fc3c15"><div class="ttname"><a href="cordic2c_8c.html#ab746e677f466f17031e92ed577fc3c15">Y</a></div><div class="ttdeci">static Cordic_T Y</div><div class="ttdef"><b>Definition:</b> <a href="cordic2c_8c_source.html#l00111">cordic2c.c:111</a></div></div>
+<div class="ttc" id="cal__dex_8c_html_a7577d49f3bfffb1cf048eef843177784"><div class="ttname"><a href="cal__dex_8c.html#a7577d49f3bfffb1cf048eef843177784">L</a></div><div class="ttdeci">#define L(x)</div><div class="ttdef"><b>Definition:</b> <a href="cal__dex_8c_source.html#l00054">cal_dex.c:54</a></div></div>
 <div class="ttc" id="cordic2c_8c_html_a01817682b78da8cc004b6f0e9dd0d889"><div class="ttname"><a href="cordic2c_8c.html#a01817682b78da8cc004b6f0e9dd0d889">Cordic_INVKP</a></div><div class="ttdeci">#define Cordic_INVKP</div><div class="ttdef"><b>Definition:</b> <a href="cordic2c_8c_source.html#l00118">cordic2c.c:118</a></div></div>
 <div class="ttc" id="cordic2c_8c_html_a87f33f8b076298d511ca73b9e458a3ac"><div class="ttname"><a href="cordic2c_8c.html#a87f33f8b076298d511ca73b9e458a3ac">v_atan</a></div><div class="ttdeci">static Cordic_T v_atan[Cordic_T_Bits+1]</div><div class="ttdef"><b>Definition:</b> <a href="cordic2c_8c_source.html#l00109">cordic2c.c:109</a></div></div>
 <div class="ttc" id="cordic2c_8c_html_a0d2210939130fe06cdbba9248686fa03"><div class="ttname"><a href="cordic2c_8c.html#a0d2210939130fe06cdbba9248686fa03">UCordic_T</a></div><div class="ttdeci">unsigned int UCordic_T</div><div class="ttdef"><b>Definition:</b> <a href="cordic2c_8c_source.html#l00095">cordic2c.c:95</a></div></div>
@@ -330,7 +331,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jun 2 2015 00:12:45 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jun 2 2015 00:14:28 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

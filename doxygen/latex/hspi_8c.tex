@@ -1,0 +1,425 @@
+\hypertarget{hspi_8c}{\section{driver/hspi.c File Reference}
+\label{hspi_8c}\index{driver/hspi.\-c@{driver/hspi.\-c}}
+}
+
+
+H\-S\-P\-I driver for E\-S\-P8255 Based on work from Sem 2015.  
+
+
+{\ttfamily \#include \char`\"{}hspi.\-h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{hspi_8c_ac0b594f74d77f8ac1ee56fd39fcfecdc}{H\-S\-P\-I\-\_\-\-P\-R\-E\-S\-C\-A\-L\-E\-R}~2
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{hspi_8c_ad67527dcfce518bc041439e8baa7c46b}{hspi\-\_\-init} (void)
+\begin{DoxyCompactList}\small\item\em H\-S\-P\-I Initiaization -\/ with automatic chip sellect Pins\-: M\-I\-S\-O G\-P\-I\-O12 M\-O\-S\-I G\-P\-I\-O13 C\-L\-K G\-P\-I\-O14 C\-S G\-P\-I\-O15 D\-C G\-P\-I\-O2. \end{DoxyCompactList}\item 
+void \hyperlink{hspi_8c_ac14f0398698936dcf2ffbb735611c2e6}{hspi\-\_\-config} (int config\-State)
+\begin{DoxyCompactList}\small\item\em H\-S\-P\-I Configuration for tranasmit and receive. \end{DoxyCompactList}\item 
+void \hyperlink{hspi_8c_acb47a9f26ec1023536dba1db70a6c120}{hspi\-\_\-set\-Bits} (uint16\-\_\-t bytes)
+\begin{DoxyCompactList}\small\item\em H\-S\-P\-I F\-I\-F\-O send or receive byte count. \end{DoxyCompactList}\item 
+void \hyperlink{hspi_8c_a34c41331dd49e4e0f3aa300dfb88234f}{hspi\-\_\-start\-Send} (void)
+\begin{DoxyCompactList}\small\item\em H\-S\-P\-I Start Send. \end{DoxyCompactList}\item 
+void \hyperlink{hspi_8c_af1a0f7a7dd3cac5dd6b8489f7ff308dc}{hspi\-\_\-wait\-Ready} (void)
+\begin{DoxyCompactList}\small\item\em H\-S\-P\-I Ready wait. \end{DoxyCompactList}\item 
+void \hyperlink{hspi_8c_ab4920c99a66fe082f4c441b27d08f1d7}{hspi\-\_\-write\-F\-I\-F\-O} (uint8\-\_\-t $\ast$write\-\_\-data, uint16\-\_\-t bytes)
+\begin{DoxyCompactList}\small\item\em H\-S\-P\-I F\-I\-F\-O write in units of 32 bits (4 byte words) \end{DoxyCompactList}\item 
+void \hyperlink{hspi_8c_a744fb4ddb01b77242becd418b8ba6a46}{hspi\-\_\-read\-F\-I\-F\-O} (uint8\-\_\-t $\ast$read\-\_\-data, uint16\-\_\-t bytes)
+\begin{DoxyCompactList}\small\item\em H\-S\-P\-I F\-I\-F\-O Read in units of 32 bits (4 byte words) \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{hspi_8c_a4b95a4995e2eda91b486922399556478}{hspi\-\_\-stream\-\_\-init} (void)
+\item 
+void \hyperlink{hspi_8c_ae628a21798ab6b04d11300aba22454af}{hspi\-\_\-stream\-\_\-flush} (void)
+\item 
+void \hyperlink{hspi_8c_ae58eb89be86e2c23e98f71d357c785b2}{hspi\-\_\-stream} (uint8\-\_\-t data)
+\item 
+void \hyperlink{hspi_8c_a5ac551a53430a5014d38082ee1be32f6}{hspi\-\_\-\-Tx\-Rx} (uint8\-\_\-t $\ast$data, uint16\-\_\-t bytes)
+\begin{DoxyCompactList}\small\item\em Used only for small (less then H\-S\-P\-I\-\_\-\-F\-I\-F\-O\-\_\-\-S\-I\-Z\-E) write / read Write and Read uses same buffer and same byte count. \end{DoxyCompactList}\item 
+void \hyperlink{hspi_8c_aa16c031fe914c256a5c9e24c4c84f1a8}{hspi\-\_\-\-Tx} (uint8\-\_\-t $\ast$data, uint16\-\_\-t bytes)
+\begin{DoxyCompactList}\small\item\em Used only for small (less then H\-S\-P\-I\-\_\-\-F\-I\-F\-O\-\_\-\-S\-I\-Z\-E) write Used for small (less then H\-S\-P\-I\-\_\-\-F\-I\-F\-O\-\_\-\-S\-I\-Z\-E) packet send only. \end{DoxyCompactList}\item 
+void \hyperlink{hspi_8c_a9c3e16850f5483b34b579e6258847029}{hspi\-\_\-\-Tx\-Buffered} (uint8\-\_\-t $\ast$write\-\_\-data, uint32\-\_\-t bytes, uint32\-\_\-t repeats)
+\begin{DoxyCompactList}\small\item\em Send large buffer (datasize bytes in size) repeat times Send repeats times Note\-: a repeat of zero will cause N\-O data to be sent Used for small (less then H\-S\-P\-I\-\_\-\-F\-I\-F\-O\-\_\-\-S\-I\-Z\-E) packet send only. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static uint16\-\_\-t \hyperlink{hspi_8c_aa6a57ceab70df59f457e69cce09958e5}{\-\_\-f\-\_\-ind} = 0
+\item 
+static uint8\-\_\-t \hyperlink{hspi_8c_a6c076278b2b65a60bcace9600f14abde}{\-\_\-f\-\_\-buf} \mbox{[}\hyperlink{hspi_8h_a1eaecab4a7e4f328f38ce57d4d3012d1}{H\-S\-P\-I\-\_\-\-F\-I\-F\-O\-\_\-\-S\-I\-Z\-E}+2\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+H\-S\-P\-I driver for E\-S\-P8255 Based on work from Sem 2015. \begin{DoxyParagraph}{Edit History}
+
+\begin{DoxyItemize}
+\item \mbox{[}1.\-0\mbox{]} \mbox{[}Mike Gore\mbox{]} Initial revision of file.
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Copyright \copyright{} 2015 Mike Gore, G\-P\-L License}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Copyright \copyright{} 2015 Sem}
+
+\end{DoxyParagraph}
+
+
+Definition in file \hyperlink{hspi_8c_source}{hspi.\-c}.
+
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{hspi_8c_ac0b594f74d77f8ac1ee56fd39fcfecdc}{\index{hspi.\-c@{hspi.\-c}!H\-S\-P\-I\-\_\-\-P\-R\-E\-S\-C\-A\-L\-E\-R@{H\-S\-P\-I\-\_\-\-P\-R\-E\-S\-C\-A\-L\-E\-R}}
+\index{H\-S\-P\-I\-\_\-\-P\-R\-E\-S\-C\-A\-L\-E\-R@{H\-S\-P\-I\-\_\-\-P\-R\-E\-S\-C\-A\-L\-E\-R}!hspi.c@{hspi.\-c}}
+\subsubsection[{H\-S\-P\-I\-\_\-\-P\-R\-E\-S\-C\-A\-L\-E\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define H\-S\-P\-I\-\_\-\-P\-R\-E\-S\-C\-A\-L\-E\-R~2}}\label{hspi_8c_ac0b594f74d77f8ac1ee56fd39fcfecdc}
+
+
+Definition at line 17 of file hspi.\-c.
+
+
+
+Referenced by hspi\-\_\-init().
+
+
+
+\subsection{Function Documentation}
+\hypertarget{hspi_8c_ac14f0398698936dcf2ffbb735611c2e6}{\index{hspi.\-c@{hspi.\-c}!hspi\-\_\-config@{hspi\-\_\-config}}
+\index{hspi\-\_\-config@{hspi\-\_\-config}!hspi.c@{hspi.\-c}}
+\subsubsection[{hspi\-\_\-config}]{\setlength{\rightskip}{0pt plus 5cm}void hspi\-\_\-config (
+\begin{DoxyParamCaption}
+\item[{int}]{config\-State}
+\end{DoxyParamCaption}
+)}}\label{hspi_8c_ac14f0398698936dcf2ffbb735611c2e6}
+
+
+H\-S\-P\-I Configuration for tranasmit and receive. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em onfig\-State} & C\-O\-N\-F\-I\-G\-\_\-\-F\-O\-R\-\_\-\-R\-X\-\_\-\-T\-X or C\-O\-N\-F\-I\-G\-\_\-\-F\-O\-R\-\_\-\-R\-X \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 64 of file hspi.\-c.
+
+
+
+Referenced by hspi\-\_\-stream\-\_\-flush(), hspi\-\_\-\-Tx(), and hspi\-\_\-\-Tx\-Rx().
+
+\hypertarget{hspi_8c_ad67527dcfce518bc041439e8baa7c46b}{\index{hspi.\-c@{hspi.\-c}!hspi\-\_\-init@{hspi\-\_\-init}}
+\index{hspi\-\_\-init@{hspi\-\_\-init}!hspi.c@{hspi.\-c}}
+\subsubsection[{hspi\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void hspi\-\_\-init (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{hspi_8c_ad67527dcfce518bc041439e8baa7c46b}
+
+
+H\-S\-P\-I Initiaization -\/ with automatic chip sellect Pins\-: M\-I\-S\-O G\-P\-I\-O12 M\-O\-S\-I G\-P\-I\-O13 C\-L\-K G\-P\-I\-O14 C\-S G\-P\-I\-O15 D\-C G\-P\-I\-O2. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 31 of file hspi.\-c.
+
+
+
+Referenced by tft\-\_\-init().
+
+\hypertarget{hspi_8c_a744fb4ddb01b77242becd418b8ba6a46}{\index{hspi.\-c@{hspi.\-c}!hspi\-\_\-read\-F\-I\-F\-O@{hspi\-\_\-read\-F\-I\-F\-O}}
+\index{hspi\-\_\-read\-F\-I\-F\-O@{hspi\-\_\-read\-F\-I\-F\-O}!hspi.c@{hspi.\-c}}
+\subsubsection[{hspi\-\_\-read\-F\-I\-F\-O}]{\setlength{\rightskip}{0pt plus 5cm}void hspi\-\_\-read\-F\-I\-F\-O (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t $\ast$}]{read\-\_\-data, }
+\item[{uint16\-\_\-t}]{bytes}
+\end{DoxyParamCaption}
+)}}\label{hspi_8c_a744fb4ddb01b77242becd418b8ba6a46}
+
+
+H\-S\-P\-I F\-I\-F\-O Read in units of 32 bits (4 byte words) 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em read\-\_\-data} & read buffer \\
+\hline
+\mbox{\tt in}  & {\em bytes} & bytes to write \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 181 of file hspi.\-c.
+
+
+
+Referenced by hspi\-\_\-\-Tx\-Rx().
+
+\hypertarget{hspi_8c_acb47a9f26ec1023536dba1db70a6c120}{\index{hspi.\-c@{hspi.\-c}!hspi\-\_\-set\-Bits@{hspi\-\_\-set\-Bits}}
+\index{hspi\-\_\-set\-Bits@{hspi\-\_\-set\-Bits}!hspi.c@{hspi.\-c}}
+\subsubsection[{hspi\-\_\-set\-Bits}]{\setlength{\rightskip}{0pt plus 5cm}void hspi\-\_\-set\-Bits (
+\begin{DoxyParamCaption}
+\item[{uint16\-\_\-t}]{bytes}
+\end{DoxyParamCaption}
+)}}\label{hspi_8c_acb47a9f26ec1023536dba1db70a6c120}
+
+
+H\-S\-P\-I F\-I\-F\-O send or receive byte count. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em bytes} & bytes to send or receive \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 100 of file hspi.\-c.
+
+
+
+Referenced by hspi\-\_\-read\-F\-I\-F\-O(), and hspi\-\_\-write\-F\-I\-F\-O().
+
+\hypertarget{hspi_8c_a34c41331dd49e4e0f3aa300dfb88234f}{\index{hspi.\-c@{hspi.\-c}!hspi\-\_\-start\-Send@{hspi\-\_\-start\-Send}}
+\index{hspi\-\_\-start\-Send@{hspi\-\_\-start\-Send}!hspi.c@{hspi.\-c}}
+\subsubsection[{hspi\-\_\-start\-Send}]{\setlength{\rightskip}{0pt plus 5cm}void hspi\-\_\-start\-Send (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{hspi_8c_a34c41331dd49e4e0f3aa300dfb88234f}
+
+
+H\-S\-P\-I Start Send. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 111 of file hspi.\-c.
+
+
+
+Referenced by hspi\-\_\-stream\-\_\-flush(), hspi\-\_\-\-Tx(), and hspi\-\_\-\-Tx\-Rx().
+
+\hypertarget{hspi_8c_ae58eb89be86e2c23e98f71d357c785b2}{\index{hspi.\-c@{hspi.\-c}!hspi\-\_\-stream@{hspi\-\_\-stream}}
+\index{hspi\-\_\-stream@{hspi\-\_\-stream}!hspi.c@{hspi.\-c}}
+\subsubsection[{hspi\-\_\-stream}]{\setlength{\rightskip}{0pt plus 5cm}void hspi\-\_\-stream (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{data}
+\end{DoxyParamCaption}
+)}}\label{hspi_8c_ae58eb89be86e2c23e98f71d357c785b2}
+
+
+Definition at line 243 of file hspi.\-c.
+
+
+
+Referenced by tft\-\_\-bit\-\_\-blit(), tft\-\_\-blit(), tft\-\_\-write\-Color16\-Repeat(), and tft\-\_\-write\-Data\-Buffered().
+
+\hypertarget{hspi_8c_ae628a21798ab6b04d11300aba22454af}{\index{hspi.\-c@{hspi.\-c}!hspi\-\_\-stream\-\_\-flush@{hspi\-\_\-stream\-\_\-flush}}
+\index{hspi\-\_\-stream\-\_\-flush@{hspi\-\_\-stream\-\_\-flush}!hspi.c@{hspi.\-c}}
+\subsubsection[{hspi\-\_\-stream\-\_\-flush}]{\setlength{\rightskip}{0pt plus 5cm}void hspi\-\_\-stream\-\_\-flush (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{hspi_8c_ae628a21798ab6b04d11300aba22454af}
+
+
+Definition at line 229 of file hspi.\-c.
+
+
+
+Referenced by hspi\-\_\-stream(), tft\-\_\-bit\-\_\-blit(), tft\-\_\-blit(), tft\-\_\-write\-Color16\-Repeat(), and tft\-\_\-write\-Data\-Buffered().
+
+\hypertarget{hspi_8c_a4b95a4995e2eda91b486922399556478}{\index{hspi.\-c@{hspi.\-c}!hspi\-\_\-stream\-\_\-init@{hspi\-\_\-stream\-\_\-init}}
+\index{hspi\-\_\-stream\-\_\-init@{hspi\-\_\-stream\-\_\-init}!hspi.c@{hspi.\-c}}
+\subsubsection[{hspi\-\_\-stream\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void hspi\-\_\-stream\-\_\-init (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{hspi_8c_a4b95a4995e2eda91b486922399556478}
+
+
+Definition at line 222 of file hspi.\-c.
+
+
+
+Referenced by tft\-\_\-bit\-\_\-blit(), tft\-\_\-blit(), tft\-\_\-write\-Color16\-Repeat(), and tft\-\_\-write\-Data\-Buffered().
+
+\hypertarget{hspi_8c_aa16c031fe914c256a5c9e24c4c84f1a8}{\index{hspi.\-c@{hspi.\-c}!hspi\-\_\-\-Tx@{hspi\-\_\-\-Tx}}
+\index{hspi\-\_\-\-Tx@{hspi\-\_\-\-Tx}!hspi.c@{hspi.\-c}}
+\subsubsection[{hspi\-\_\-\-Tx}]{\setlength{\rightskip}{0pt plus 5cm}void hspi\-\_\-\-Tx (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t $\ast$}]{data, }
+\item[{uint16\-\_\-t}]{bytes}
+\end{DoxyParamCaption}
+)}}\label{hspi_8c_aa16c031fe914c256a5c9e24c4c84f1a8}
+
+
+Used only for small (less then H\-S\-P\-I\-\_\-\-F\-I\-F\-O\-\_\-\-S\-I\-Z\-E) write Used for small (less then H\-S\-P\-I\-\_\-\-F\-I\-F\-O\-\_\-\-S\-I\-Z\-E) packet send only. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em data} & buffer \\
+\hline
+\mbox{\tt in}  & {\em bytes} & bytes to write \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 278 of file hspi.\-c.
+
+
+
+Referenced by hspi\-\_\-\-Tx\-Buffered(), tft\-\_\-write\-Cmd(), tft\-\_\-write\-Cmd\-Data(), tft\-\_\-write\-Data(), and tft\-\_\-write\-Data16().
+
+\hypertarget{hspi_8c_a9c3e16850f5483b34b579e6258847029}{\index{hspi.\-c@{hspi.\-c}!hspi\-\_\-\-Tx\-Buffered@{hspi\-\_\-\-Tx\-Buffered}}
+\index{hspi\-\_\-\-Tx\-Buffered@{hspi\-\_\-\-Tx\-Buffered}!hspi.c@{hspi.\-c}}
+\subsubsection[{hspi\-\_\-\-Tx\-Buffered}]{\setlength{\rightskip}{0pt plus 5cm}void hspi\-\_\-\-Tx\-Buffered (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t $\ast$}]{write\-\_\-data, }
+\item[{uint32\-\_\-t}]{bytes, }
+\item[{uint32\-\_\-t}]{repeats}
+\end{DoxyParamCaption}
+)}}\label{hspi_8c_a9c3e16850f5483b34b579e6258847029}
+
+
+Send large buffer (datasize bytes in size) repeat times Send repeats times Note\-: a repeat of zero will cause N\-O data to be sent Used for small (less then H\-S\-P\-I\-\_\-\-F\-I\-F\-O\-\_\-\-S\-I\-Z\-E) packet send only. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em write\-\_\-data} & buffer \\
+\hline
+\mbox{\tt in}  & {\em bytes} & bytes to write \\
+\hline
+\mbox{\tt in}  & {\em repeats} & repeates to send \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 297 of file hspi.\-c.
+
+\hypertarget{hspi_8c_a5ac551a53430a5014d38082ee1be32f6}{\index{hspi.\-c@{hspi.\-c}!hspi\-\_\-\-Tx\-Rx@{hspi\-\_\-\-Tx\-Rx}}
+\index{hspi\-\_\-\-Tx\-Rx@{hspi\-\_\-\-Tx\-Rx}!hspi.c@{hspi.\-c}}
+\subsubsection[{hspi\-\_\-\-Tx\-Rx}]{\setlength{\rightskip}{0pt plus 5cm}void hspi\-\_\-\-Tx\-Rx (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t $\ast$}]{data, }
+\item[{uint16\-\_\-t}]{bytes}
+\end{DoxyParamCaption}
+)}}\label{hspi_8c_a5ac551a53430a5014d38082ee1be32f6}
+
+
+Used only for small (less then H\-S\-P\-I\-\_\-\-F\-I\-F\-O\-\_\-\-S\-I\-Z\-E) write / read Write and Read uses same buffer and same byte count. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em in} & out\mbox{]} data\-: buffer \\
+\hline
+\mbox{\tt in}  & {\em bytes} & bytes to write and or read \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 260 of file hspi.\-c.
+
+
+
+Referenced by tft\-\_\-read\-Register(), and tft\-\_\-write\-Cmd\-Data().
+
+\hypertarget{hspi_8c_af1a0f7a7dd3cac5dd6b8489f7ff308dc}{\index{hspi.\-c@{hspi.\-c}!hspi\-\_\-wait\-Ready@{hspi\-\_\-wait\-Ready}}
+\index{hspi\-\_\-wait\-Ready@{hspi\-\_\-wait\-Ready}!hspi.c@{hspi.\-c}}
+\subsubsection[{hspi\-\_\-wait\-Ready}]{\setlength{\rightskip}{0pt plus 5cm}void hspi\-\_\-wait\-Ready (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{hspi_8c_af1a0f7a7dd3cac5dd6b8489f7ff308dc}
+
+
+H\-S\-P\-I Ready wait. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 122 of file hspi.\-c.
+
+
+
+Referenced by hspi\-\_\-config(), hspi\-\_\-stream\-\_\-flush(), hspi\-\_\-stream\-\_\-init(), hspi\-\_\-\-Tx(), hspi\-\_\-\-Tx\-Rx(), tft\-\_\-read\-Register(), tft\-\_\-write\-Cmd(), tft\-\_\-write\-Cmd\-Data(), tft\-\_\-write\-Data(), and tft\-\_\-write\-Data16().
+
+\hypertarget{hspi_8c_ab4920c99a66fe082f4c441b27d08f1d7}{\index{hspi.\-c@{hspi.\-c}!hspi\-\_\-write\-F\-I\-F\-O@{hspi\-\_\-write\-F\-I\-F\-O}}
+\index{hspi\-\_\-write\-F\-I\-F\-O@{hspi\-\_\-write\-F\-I\-F\-O}!hspi.c@{hspi.\-c}}
+\subsubsection[{hspi\-\_\-write\-F\-I\-F\-O}]{\setlength{\rightskip}{0pt plus 5cm}void hspi\-\_\-write\-F\-I\-F\-O (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t $\ast$}]{write\-\_\-data, }
+\item[{uint16\-\_\-t}]{bytes}
+\end{DoxyParamCaption}
+)}}\label{hspi_8c_ab4920c99a66fe082f4c441b27d08f1d7}
+
+
+H\-S\-P\-I F\-I\-F\-O write in units of 32 bits (4 byte words) 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em write\-\_\-data} & write buffer \\
+\hline
+\mbox{\tt in}  & {\em bytes} & bytes to write \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 135 of file hspi.\-c.
+
+
+
+Referenced by hspi\-\_\-stream\-\_\-flush(), hspi\-\_\-\-Tx(), and hspi\-\_\-\-Tx\-Rx().
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{hspi_8c_a6c076278b2b65a60bcace9600f14abde}{\index{hspi.\-c@{hspi.\-c}!\-\_\-f\-\_\-buf@{\-\_\-f\-\_\-buf}}
+\index{\-\_\-f\-\_\-buf@{\-\_\-f\-\_\-buf}!hspi.c@{hspi.\-c}}
+\subsubsection[{\-\_\-f\-\_\-buf}]{\setlength{\rightskip}{0pt plus 5cm}uint8\-\_\-t \-\_\-f\-\_\-buf\mbox{[}{\bf H\-S\-P\-I\-\_\-\-F\-I\-F\-O\-\_\-\-S\-I\-Z\-E}+2\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}}\label{hspi_8c_a6c076278b2b65a60bcace9600f14abde}
+
+
+Definition at line 20 of file hspi.\-c.
+
+
+
+Referenced by hspi\-\_\-stream(), and hspi\-\_\-stream\-\_\-flush().
+
+\hypertarget{hspi_8c_aa6a57ceab70df59f457e69cce09958e5}{\index{hspi.\-c@{hspi.\-c}!\-\_\-f\-\_\-ind@{\-\_\-f\-\_\-ind}}
+\index{\-\_\-f\-\_\-ind@{\-\_\-f\-\_\-ind}!hspi.c@{hspi.\-c}}
+\subsubsection[{\-\_\-f\-\_\-ind}]{\setlength{\rightskip}{0pt plus 5cm}uint16\-\_\-t \-\_\-f\-\_\-ind = 0\hspace{0.3cm}{\ttfamily [static]}}}\label{hspi_8c_aa6a57ceab70df59f457e69cce09958e5}
+
+
+Definition at line 19 of file hspi.\-c.
+
+
+
+Referenced by hspi\-\_\-stream(), hspi\-\_\-stream\-\_\-flush(), and hspi\-\_\-stream\-\_\-init().
+
