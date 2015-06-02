@@ -50,11 +50,14 @@ ___
     * get_esp-open-sdk - shell script to download an install ESP OPEN SDK on Ubuntu 14.04LTS
     * term115200 - shell script to launch terminal to 115200 baud
 
-  * cube 
-    * cube.c
-    * cube.h
-      * Demo by Sem - using my updated fully working CORDIC routines 
-      * Orginal code do not work correctly above/below +/-90 degrees
+  * wire
+    * wire.c
+    * wire.h
+      * Wireframe viewer code - uses CORDIC
+    * cube_data.h    
+      * Wireframe CUBE data
+    * earth_data.h
+      * Wireframe EARTH data
 
   * docs 
     * ili9431 and esp8266 related documents
@@ -107,17 +110,12 @@ ___
      * Still need to add hidden vector removal
        * 00README.txt
          * Article on coordinate transforms from stackoverflow by Daphna Shezaf
-       * earth.c
-         * wire-frame viewer with earth coastlines
-       * earth.h
-       * earth_inc.h
-         * Earth wire-frame coastline data as C structure
        * make_wireframe
          * earth2wireframe.c
            * Create C structure wire-frame coastline data
            * This code could be easily adapted for any kind of wire-frame
          * Makefile
-           * Create earth_inc.h from Coastline LAt/LONG pairs
+           * earth_data.h from Coastline LAt/LONG pairs
          * data
            * world.dat      
            * world_10m.txt  

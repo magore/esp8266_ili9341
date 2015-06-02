@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['earth_5fdraw',['earth_draw',['../earth_8c.html#ae5b1b4bd22d4e77ff2156feb25e01658',1,'earth_draw(point *view, double scale, uint16_t color):&#160;earth.c'],['../earth_8h.html#ae5b1b4bd22d4e77ff2156feb25e01658',1,'earth_draw(point *view, double scale, uint16_t color):&#160;earth.c']]],
   ['emit_5fdata',['emit_data',['../bdffontutil_8c.html#a083894d36a7a6960e30d21d88a0da874',1,'emit_data(FILE *out, char *name, unsigned char *data, int size):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a083894d36a7a6960e30d21d88a0da874',1,'emit_data(FILE *out, char *name, unsigned char *data, int size):&#160;bdffontutil.c']]],
   ['emit_5fnumber',['emit_number',['../bdffontutil_8c.html#a052882497beff245c47eafa6b988f2c0',1,'emit_number(FILE *out, char *name, int num):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a052882497beff245c47eafa6b988f2c0',1,'emit_number(FILE *out, char *name, int num):&#160;bdffontutil.c']]],
   ['emit_5fstr',['emit_str',['../bdffontutil_8c.html#adcb08a26399fd69fe0d607897367e4af',1,'emit_str(FILE *out, char *name, unsigned char *data):&#160;bdffontutil.c'],['../bdffontutil_8h.html#adcb08a26399fd69fe0d607897367e4af',1,'emit_str(FILE *out, char *name, unsigned char *data):&#160;bdffontutil.c']]],

@@ -1,10 +1,5 @@
 var searchData=
 [
-  ['map2fp',['MAP2FP',['../earth__inc_8h.html#aef8e86bebe14e8d957ac158651c79d71',1,'MAP2FP():&#160;earth_inc.h'],['../earth2wireframe_8c.html#aef8e86bebe14e8d957ac158651c79d71',1,'MAP2FP():&#160;earth2wireframe.c']]],
-  ['map_5fdata',['MAP_DATA',['../earth_8c.html#a8bd16525127e73fd2c8db66f11cf6e90',1,'earth.c']]],
-  ['map_5fone',['MAP_ONE',['../earth__inc_8h.html#a2949b8f5adb5c1be22f77daca7c2241c',1,'MAP_ONE():&#160;earth_inc.h'],['../earth2wireframe_8c.html#a2949b8f5adb5c1be22f77daca7c2241c',1,'MAP_ONE():&#160;earth2wireframe.c']]],
-  ['mapend',['MAPEND',['../earth__inc_8h.html#a26c4f42c25ac672bb2a7b61f8eb40191',1,'MAPEND():&#160;earth_inc.h'],['../earth2wireframe_8c.html#a26c4f42c25ac672bb2a7b61f8eb40191',1,'MAPEND():&#160;earth2wireframe.c']]],
-  ['mapsep',['MAPSEP',['../earth__inc_8h.html#a245aaa5d992e2892e759081f909b37aa',1,'MAPSEP():&#160;earth_inc.h'],['../earth2wireframe_8c.html#a245aaa5d992e2892e759081f909b37aa',1,'MAPSEP():&#160;earth2wireframe.c']]],
   ['match',['MATCH',['../bdffontutil_8h.html#a4d192fe48cb19d0ef5a88c52ed23cf4c',1,'bdffontutil.h']]],
   ['max',['MAX',['../util_8h.html#aacc3ee1a7f283f8ef65cea31f4436a95',1,'util.h']]],
   ['maxfonts',['MAXFONTS',['../display_2font_8h.html#ac108d78d76235e3c7cada0c2e56b7e2d',1,'MAXFONTS():&#160;font.h'],['../fonts_2font_8h.html#ac108d78d76235e3c7cada0c2e56b7e2d',1,'MAXFONTS():&#160;font.h']]],

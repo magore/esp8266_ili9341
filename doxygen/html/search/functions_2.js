@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['calcperspectiveprojection',['calcPerspectiveProjection',['../cube_8c.html#afd1d7aacb8a85ae9ddcf451446546c28',1,'cube.c']]],
   ['circular',['Circular',['../cordic_8c.html#a9e686d8e990a05ea18655a368e6d1918',1,'Circular(Cordic_T x, Cordic_T y, Cordic_T z):&#160;cordic.c'],['../cordic_8h.html#a9e686d8e990a05ea18655a368e6d1918',1,'Circular(Cordic_T x, Cordic_T y, Cordic_T z):&#160;cordic.c'],['../cordic2c_8c.html#a9e686d8e990a05ea18655a368e6d1918',1,'Circular(Cordic_T x, Cordic_T y, Cordic_T z):&#160;cordic2c.c']]],
   ['convert565torgb',['convert565toRGB',['../ili9341_8c.html#a845d3d47f13ba79aba1459b7630bbb90',1,'convert565toRGB(uint16_t color, uint8_t *r, uint8_t *g, uint8_t *b):&#160;ili9341.c'],['../ili9341_8h.html#a845d3d47f13ba79aba1459b7630bbb90',1,'convert565toRGB(uint16_t color, uint8_t *r, uint8_t *g, uint8_t *b):&#160;ili9341.c']]],
   ['convert_5ffont2c',['Convert_Font2c',['../bdffontutil_8c.html#a9461259743229256336c4260de7e0e0e',1,'Convert_Font2c(FILE *out, _font *font):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a9461259743229256336c4260de7e0e0e',1,'Convert_Font2c(FILE *out, _font *font):&#160;bdffontutil.c']]],
@@ -8,7 +7,5 @@ var searchData=
   ['cordic_5fquad',['cordic_quad',['../cordic_8c.html#ab9bc8a20d99938e647047015d62f6f86',1,'cordic_quad(double angle, double *s, double *c):&#160;cordic.c'],['../cordic_8h.html#ac0271f628c28ba18f6ea6493f5206a5e',1,'cordic_quad(double angle, double *s, double *c):&#160;cordic.c']]],
   ['cordic_5frad',['cordic_rad',['../cordic_8c.html#ab5dff4f6a6c29502d824cc7574c13f1c',1,'cordic_rad(double rad, double *s, double *c):&#160;cordic.c'],['../cordic_8h.html#ab5dff4f6a6c29502d824cc7574c13f1c',1,'cordic_rad(double rad, double *s, double *c):&#160;cordic.c']]],
   ['cordit1',['cordit1',['../cordic2c_8c.html#aa47551f0ba056c573807f6dfa1b09d2d',1,'cordic2c.c']]],
-  ['cpy_5fflash',['cpy_flash',['../util_8c.html#a9a70a218c9d4bae2e51bda4d7219712f',1,'cpy_flash(uint8_t *src, uint8_t *dest, int size):&#160;util.c'],['../util_8h.html#a9a70a218c9d4bae2e51bda4d7219712f',1,'cpy_flash(uint8_t *src, uint8_t *dest, int size):&#160;util.c']]],
-  ['cube_5fcalculate',['cube_calculate',['../cube_8c.html#a44a17c6f8212b80462398a88b6cb25aa',1,'cube_calculate(double degreeX, double degreeY, double degreeZ, double scale, int16_t shiftX, int16_t shiftY, int16_t shiftZ):&#160;cube.c'],['../cube_8h.html#a44a17c6f8212b80462398a88b6cb25aa',1,'cube_calculate(double degreeX, double degreeY, double degreeZ, double scale, int16_t shiftX, int16_t shiftY, int16_t shiftZ):&#160;cube.c']]],
-  ['cube_5fdraw',['cube_draw',['../cube_8c.html#a113025802ac11dbf2fe27aba55a427d1',1,'cube_draw(uint16_t color):&#160;cube.c'],['../cube_8h.html#a113025802ac11dbf2fe27aba55a427d1',1,'cube_draw(uint16_t color):&#160;cube.c']]]
+  ['cpy_5fflash',['cpy_flash',['../util_8c.html#a9a70a218c9d4bae2e51bda4d7219712f',1,'cpy_flash(uint8_t *src, uint8_t *dest, int size):&#160;util.c'],['../util_8h.html#a9a70a218c9d4bae2e51bda4d7219712f',1,'cpy_flash(uint8_t *src, uint8_t *dest, int size):&#160;util.c']]]
 ];

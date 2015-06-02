@@ -23,6 +23,16 @@
 
 #include "user_config.h"
 
+#ifdef WIRECUBE
+	#include "wire.h"
+	#include "cube_data.h"
+#endif
+
+#ifdef EARTH
+	#include "wire.h"
+	#include "earth_data.h"
+#endif
+
 extern int ets_uart_printf(const char *fmt, ...);
 void ets_timer_disarm(ETSTimer *ptimer);
 void ets_timer_setfn(ETSTimer *ptimer, ETSTimerFunc *pfunction, void *parg);
@@ -56,8 +66,11 @@ static void test(void)
 
 	uint8_t red, blue,green;
 
-#ifdef CUBE
-    cube_draw(0);
+#ifdef WIRECUBE
+	V.x = degree;
+	V.y = degree;
+	V.z = degree;
+	wire_draw(wire_cube, &V, scale, 0);
 #endif
 
 #ifdef EARTH
@@ -65,7 +78,7 @@ static void test(void)
 	V.x = -90;
 	V.y = -90;
 	V.z = -90;
-	earth_draw(&V, scale, 0);
+	wire_draw(earth_data, &V, scale, 0);
 #endif
 
 #ifdef CIRCLE
@@ -102,22 +115,24 @@ static void test(void)
         scale_inc = -.1;
 
 #ifdef EARTH
-	scale = 1.0;
-#endif
+	scale = 2.5;
 
-#ifdef CUBE
-	time1 = system_get_time();
-    cube_calculate(degree, degree, degree, scale, 0, 0, 0);
-	time2 = system_get_time();
-    cube_draw(0xFFFF);
-#endif
-
-#ifdef EARTH
 	V.x = -90;
 	V.y = -90;
 	V.z = -90;
 	// draw earth
-	earth_draw(&V, scale, 0xffff);
+	time1 = system_get_time();
+	wire_draw(earth_data, &V, scale, 0xffff);
+	time2 = system_get_time();
+#endif
+
+#ifdef WIRECUBE
+	V.x = degree;
+	V.y = degree;
+	V.z = degree;
+	time1 = system_get_time();
+	wire_draw(wire_cube, &V, scale, 0xffff);
+	time2 = system_get_time();
 #endif
 
 	// ets_uart_printf("Degree: %d \r\n", (int)degree);

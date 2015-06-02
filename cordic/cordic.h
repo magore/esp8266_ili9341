@@ -34,7 +34,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef _CORDIC_H_
 #define _CORDIC_H_
 #ifndef TEST
-#include <user_config.h>
+	#include <user_config.h>
 #endif
 #include "cordic2c_inc.h"
 

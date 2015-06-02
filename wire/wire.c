@@ -1,12 +1,11 @@
 /**
- @file earth.c
+ @file wireframe.c
 
- @par earth  wireframe viewer
+ @par wireframe viewer
  @par Copyright &copy; 2015 Mike Gore, GPL License
 
- @brief DIsplay earth costline wireframe
+ @brief Display wireframe object 
  The code handles fixed, proportional and bounding box format fonts
- @see http://en.wikipedia.org/wiki/Glyph_Bitmap_Distribution_Format
  @par Edit History
  - [1.0]   [Mike Gore]  Initial revision of file.
 
@@ -15,7 +14,7 @@
  Foundation, either version 3 of the License, or (at your option)
  any later version.
 
- earth.c is distributed in the hope that it will be useful,
+ wireframe.c is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  GNU General Public License for more details.
@@ -24,89 +23,92 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
-#define MAP_DATA
 #include "user_config.h"
 
 #include "ili9341.h"
 #include <math.h>
 #include "cordic.h"
-#include "earth.h"
+#include "wire.h"
 
-void map2fp(mapxyz *in, point *out)
+
+void wire2fp(wire_p *in, point *out)
 {
 	// Point
-	out->x = MAP2FP(in->x);
-	out->y = MAP2FP(in->y);
-	out->z = MAP2FP(in->z);
+	out->x = WIRE_2FP(in->x);
+	out->y = WIRE_2FP(in->y);
+	out->z = WIRE_2FP(in->z);
 }
 
-void Point2Display(point *p, int *x, int *y)
+void scale2display(point *p, int *x, int *y)
 {
-	*x = (p->x *100) + MAX_TFT_X/2;
-	*y = (p->y *100) + MAX_TFT_Y/2;
+	*x = (p->x *25) + MAX_TFT_X/2;
+	*y = (p->y *25) + MAX_TFT_Y/2;
 }
 
 // Draw a wireframe
-void earth_draw(point *view, double scale, uint16_t color)
+void wire_draw(wire_p *wire, point *view, double scale, uint16_t color)
 {
 	int i;
-	int last = MAPSEP;
+	int last = WIRE_SEP;
 	int x0 = 0;
 	int y0 = 0;
 	int x1 = 0;
 	int y1 = 0;
-	mapxyz M;
+	wire_p W;
 	point P,R;
 
-	M.x = 0;
-	M.y = 0;
-	M.z = 0;
+	W.x = 0;
+	W.y = 0;
+	W.z = 0;
 
 	for (i = 0; ; i++)
 	{
-		// M = map[i];
-		cpy_flash((uint8_t *) &(map[i]), (uint8_t *) &M, sizeof(M));
+		// W = wire[i];
+		cpy_flash((uint8_t *) &wire[i], (uint8_t *) &W, sizeof(W));
 
-		if(M.x == MAPEND)
+		if(W.x == WIRE_END)
 		{
 			break;
 		}
-		if(M.x == MAPSEP)
+		if(W.x == WIRE_SEP)
 		{
-			last = MAPSEP;
-			continue;
-		}
-
-		// Grab first point
-		if(last == MAPSEP)	
-		{
-			map2fp(&M, &P);
-			rotate(&P,view);
-			scale_point(&P, scale);
-			PerspectiveProjection(&P);
-			Point2Display(&P, &x0,&y0);
-			last = 0;
+			last = WIRE_SEP;
 			continue;
 		}
 
 		// Get next point
-		map2fp(&M, &P);
+		wire2fp(&W, &P);
+
+		// CORDIC Rotate
 		rotate(&P,view);
+
+		// CORDIC Scale
 		scale_point(&P, scale);
+
+		// CORDIC Project
 		PerspectiveProjection(&P);
-		Point2Display(&P, &x1,&y1);
+
+		if(last == WIRE_SEP)	
+		{
+			// first point in list ??
+			scale2display(&P, &x0,&y0);
+			last = 0;
+			continue;
+		}
+
+		scale2display(&P, &x1,&y1);
 		last = 0;
 
 		// tft_printf(0,300,1,"i:%d", i);
-		//tft_printf(0,300,1,"i:%d,x:%d,y:%d-x1:%d,y1:%d", i,(int)x0, (int)y0, (int)x1, (int)y1);
+//ets_uart_printf("i:%d,x:%d,y:%d-x1:%d,y1:%d,color:%04x", i,(int)x0, (int)y0, (int)x1, (int)y1, (int)color);
 
 		// Draw line
 		tft_drawLine(x0, y0, x1, y1, color);
 		// First is Next
 		x0 = x1;
 		y0 = y1;
- ets_wdt_disable();
+
+		ets_wdt_disable();
 	}
-	// tft_printf(0,300,1,"DONE");
+//ets_uart_printf("i:%d,done\n",(int) i);
 }

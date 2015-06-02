@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts: earth/make_wireframe/earth2wireframe.c File Reference</title>
+<title>ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts: earth/earth2wireframe.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -82,13 +82,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_b44197f6f148ce6fec6230f7e732dde4.html">earth</a></li><li class="navelem"><a class="el" href="dir_ddbf0233d28c3b9c5f07b6c97c7fac57.html">make_wireframe</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_b44197f6f148ce6fec6230f7e732dde4.html">earth</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#define-members">Macros</a> &#124;
-<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">earth2wireframe.c File Reference</div>  </div>
@@ -103,27 +101,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <code>#include &lt;math.h&gt;</code><br/>
 <code>#include &lt;unistd.h&gt;</code><br/>
 <code>#include &lt;libgen.h&gt;</code><br/>
+<code>#include &quot;../wire/wire.h&quot;</code><br/>
 </div>
 <p><a href="earth2wireframe_8c_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:a2949b8f5adb5c1be22f77daca7c2241c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="earth2wireframe_8c.html#a2949b8f5adb5c1be22f77daca7c2241c">MAP_ONE</a>&#160;&#160;&#160;16384 /* 1.0 */</td></tr>
-<tr class="separator:a2949b8f5adb5c1be22f77daca7c2241c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a245aaa5d992e2892e759081f909b37aa"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="earth2wireframe_8c.html#a245aaa5d992e2892e759081f909b37aa">MAPSEP</a>&#160;&#160;&#160;(<a class="el" href="earth2wireframe_8c.html#a2949b8f5adb5c1be22f77daca7c2241c">MAP_ONE</a>*2-2)</td></tr>
-<tr class="separator:a245aaa5d992e2892e759081f909b37aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a26c4f42c25ac672bb2a7b61f8eb40191"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="earth2wireframe_8c.html#a26c4f42c25ac672bb2a7b61f8eb40191">MAPEND</a>&#160;&#160;&#160;(<a class="el" href="earth2wireframe_8c.html#a2949b8f5adb5c1be22f77daca7c2241c">MAP_ONE</a>*2-1)</td></tr>
-<tr class="separator:a26c4f42c25ac672bb2a7b61f8eb40191"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef8e86bebe14e8d957ac158651c79d71"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="earth2wireframe_8c.html#aef8e86bebe14e8d957ac158651c79d71">MAP2FP</a>(a)&#160;&#160;&#160;( (double) (a) / (double) (<a class="el" href="earth2wireframe_8c.html#a2949b8f5adb5c1be22f77daca7c2241c">MAP_ONE</a>))</td></tr>
-<tr class="separator:aef8e86bebe14e8d957ac158651c79d71"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3c5d4002c07553bfcfaf20a93a3d96f6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="earth2wireframe_8c.html#a3c5d4002c07553bfcfaf20a93a3d96f6">FP2MAP</a>(a)&#160;&#160;&#160;((<a class="el" href="earth__inc_8h.html#a4c939ba62f3338571903e40156a298a3">MAP_T</a>) (<a class="el" href="earth2wireframe_8c.html#a2949b8f5adb5c1be22f77daca7c2241c">MAP_ONE</a> * (a)))</td></tr>
-<tr class="separator:a3c5d4002c07553bfcfaf20a93a3d96f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr class="memitem:a4c939ba62f3338571903e40156a298a3"><td class="memItemLeft" align="right" valign="top">typedef short int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="earth2wireframe_8c.html#a4c939ba62f3338571903e40156a298a3">MAP_T</a></td></tr>
-<tr class="separator:a4c939ba62f3338571903e40156a298a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a8012f8bd66798ffbdd27462c9f593a54"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="earth2wireframe_8c.html#a8012f8bd66798ffbdd27462c9f593a54">deg2rad</a> (double deg)</td></tr>
@@ -146,107 +127,7 @@ Functions</h2></td></tr>
 <p>You should have received a copy of the GNU General Public License along with this program. If not, see <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>. </p>
 
 <p>Definition in file <a class="el" href="earth2wireframe_8c_source.html">earth2wireframe.c</a>.</p>
-</div><h2 class="groupheader">Macro Definition Documentation</h2>
-<a class="anchor" id="a3c5d4002c07553bfcfaf20a93a3d96f6"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define FP2MAP</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">a</td><td>)</td>
-          <td>&#160;&#160;&#160;((<a class="el" href="earth__inc_8h.html#a4c939ba62f3338571903e40156a298a3">MAP_T</a>) (<a class="el" href="earth2wireframe_8c.html#a2949b8f5adb5c1be22f77daca7c2241c">MAP_ONE</a> * (a)))</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="earth2wireframe_8c_source.html#l00044">44</a> of file <a class="el" href="earth2wireframe_8c_source.html">earth2wireframe.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aef8e86bebe14e8d957ac158651c79d71"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define MAP2FP</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">a</td><td>)</td>
-          <td>&#160;&#160;&#160;( (double) (a) / (double) (<a class="el" href="earth2wireframe_8c.html#a2949b8f5adb5c1be22f77daca7c2241c">MAP_ONE</a>))</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="earth2wireframe_8c_source.html#l00042">42</a> of file <a class="el" href="earth2wireframe_8c_source.html">earth2wireframe.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a2949b8f5adb5c1be22f77daca7c2241c"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define MAP_ONE&#160;&#160;&#160;16384 /* 1.0 */</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="earth2wireframe_8c_source.html#l00037">37</a> of file <a class="el" href="earth2wireframe_8c_source.html">earth2wireframe.c</a>.</p>
-
-<p>Referenced by <a class="el" href="earth2wireframe_8c_source.html#l00058">main()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a26c4f42c25ac672bb2a7b61f8eb40191"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define MAPEND&#160;&#160;&#160;(<a class="el" href="earth2wireframe_8c.html#a2949b8f5adb5c1be22f77daca7c2241c">MAP_ONE</a>*2-1)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="earth2wireframe_8c_source.html#l00039">39</a> of file <a class="el" href="earth2wireframe_8c_source.html">earth2wireframe.c</a>.</p>
-
-<p>Referenced by <a class="el" href="earth2wireframe_8c_source.html#l00058">main()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a245aaa5d992e2892e759081f909b37aa"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define MAPSEP&#160;&#160;&#160;(<a class="el" href="earth2wireframe_8c.html#a2949b8f5adb5c1be22f77daca7c2241c">MAP_ONE</a>*2-2)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="earth2wireframe_8c_source.html#l00038">38</a> of file <a class="el" href="earth2wireframe_8c_source.html">earth2wireframe.c</a>.</p>
-
-<p>Referenced by <a class="el" href="earth2wireframe_8c_source.html#l00058">main()</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Typedef Documentation</h2>
-<a class="anchor" id="a4c939ba62f3338571903e40156a298a3"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef short int <a class="el" href="earth__inc_8h.html#a4c939ba62f3338571903e40156a298a3">MAP_T</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="earth2wireframe_8c_source.html#l00035">35</a> of file <a class="el" href="earth2wireframe_8c_source.html">earth2wireframe.c</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Function Documentation</h2>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="a8012f8bd66798ffbdd27462c9f593a54"></a>
 <div class="memitem">
 <div class="memproto">
@@ -270,9 +151,9 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>radians </dd></dl>
 
-<p>Definition at line <a class="el" href="earth2wireframe_8c_source.html#l00049">49</a> of file <a class="el" href="earth2wireframe_8c_source.html">earth2wireframe.c</a>.</p>
+<p>Definition at line <a class="el" href="earth2wireframe_8c_source.html#l00041">41</a> of file <a class="el" href="earth2wireframe_8c_source.html">earth2wireframe.c</a>.</p>
 
-<p>Referenced by <a class="el" href="earth2wireframe_8c_source.html#l00058">main()</a>.</p>
+<p>Referenced by <a class="el" href="earth2wireframe_8c_source.html#l00050">main()</a>.</p>
 
 </div>
 </div>
@@ -303,14 +184,14 @@ Functions</h2></td></tr>
 <p>Convert earth wireframe data to C structure Usage: s -f filename [-p]<br/>
 ",argv[0]); -f filename is the lot,lat dataset pairs -p disable mapxyz typedef. </p>
 
-<p>Definition at line <a class="el" href="earth2wireframe_8c_source.html#l00058">58</a> of file <a class="el" href="earth2wireframe_8c_source.html">earth2wireframe.c</a>.</p>
+<p>Definition at line <a class="el" href="earth2wireframe_8c_source.html#l00050">50</a> of file <a class="el" href="earth2wireframe_8c_source.html">earth2wireframe.c</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat May 30 2015 22:10:33 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jun 1 2015 22:33:20 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

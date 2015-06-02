@@ -32,11 +32,10 @@ var searchData=
   ['fontpreview',['FontPreview',['../bdffontutil_8c.html#a4ce02c4d977692b73ca58869344d29ad',1,'FontPreview(FILE *out, _font *font, int num):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a4ce02c4d977692b73ca58869344d29ad',1,'FontPreview(FILE *out, _font *font, int num):&#160;bdffontutil.c']]],
   ['fontpreviewfull',['FontPreviewFull',['../bdffontutil_8c.html#ad503e80d2656e563b9d6112ea11ef820',1,'FontPreviewFull(FILE *out, _font *font, int num):&#160;bdffontutil.c'],['../bdffontutil_8h.html#ad503e80d2656e563b9d6112ea11ef820',1,'FontPreviewFull(FILE *out, _font *font, int num):&#160;bdffontutil.c']]],
   ['fontpreviewproportional',['FontPreviewProportional',['../bdffontutil_8c.html#a85e25f42936fa2b1eb3489a17c439ed5',1,'FontPreviewProportional(FILE *out, _font *font, int num):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a85e25f42936fa2b1eb3489a17c439ed5',1,'FontPreviewProportional(FILE *out, _font *font, int num):&#160;bdffontutil.c']]],
-  ['fonts_2eh',['fonts.h',['../display_2fonts_8h.html',1,'']]],
   ['fonts_2eh',['fonts.h',['../fonts_2fonts_8h.html',1,'']]],
+  ['fonts_2eh',['fonts.h',['../display_2fonts_8h.html',1,'']]],
   ['fontspecs',['FONTSPECS',['../font_8c.html#ac069b0f0b942de43fee8642c39450bab',1,'FONTSPECS():&#160;font.c'],['../bdfview_8c.html#ac069b0f0b942de43fee8642c39450bab',1,'FONTSPECS():&#160;bdfview.c'],['../user__config_8h.html#ac069b0f0b942de43fee8642c39450bab',1,'FONTSPECS():&#160;user_config.h']]],
   ['fp2cordic',['FP2Cordic',['../cordic2c__inc_8h.html#ad614e1a545ad0fd263ea0afb0456cb7a',1,'FP2Cordic():&#160;cordic2c_inc.h'],['../cordic2c_8c.html#ad614e1a545ad0fd263ea0afb0456cb7a',1,'FP2Cordic():&#160;cordic2c.c']]],
-  ['fp2map',['FP2MAP',['../earth__inc_8h.html#a3c5d4002c07553bfcfaf20a93a3d96f6',1,'FP2MAP():&#160;earth_inc.h'],['../earth2wireframe_8c.html#a3c5d4002c07553bfcfaf20a93a3d96f6',1,'FP2MAP():&#160;earth2wireframe.c']]],
   ['freefont',['FreeFont',['../bdffontutil_8c.html#a4afb5289fcab36022951a5d16ea7932f',1,'FreeFont(_font *font):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a4afb5289fcab36022951a5d16ea7932f',1,'FreeFont(_font *font):&#160;bdffontutil.c']]],
   ['ftoa',['ftoa',['../printf_8c.html#a1d1cab8ef0a0104ee1408f519136abfd',1,'ftoa(double val, char *str, int intprec, int prec, int sign):&#160;printf.c'],['../printf_8h.html#a1d1cab8ef0a0104ee1408f519136abfd',1,'ftoa(double val, char *str, int intprec, int prec, int sign):&#160;printf.h']]]
 ];

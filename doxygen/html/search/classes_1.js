@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['mapxyz',['mapxyz',['../structmapxyz.html',1,'']]]
+  ['point',['point',['../structpoint.html',1,'']]]
 ];

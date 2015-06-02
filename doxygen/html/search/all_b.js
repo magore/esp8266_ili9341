@@ -1,14 +1,6 @@
 var searchData=
 [
   ['main',['main',['../cordic2c_8c.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main(int argc, char *argv[]):&#160;cordic2c.c'],['../earth2wireframe_8c.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main(int argc, char *argv[]):&#160;earth2wireframe.c'],['../bdffont2c_8c.html#af3ed9c200de85b53c94cd18764b246a2',1,'main(int argc, char *const argv[]):&#160;bdffont2c.c'],['../bdfview_8c.html#ae0665038b72011f5c680c660fcb59459',1,'main(int argc, char *argv[]):&#160;bdfview.c']]],
-  ['map',['map',['../earth__inc_8h.html#acaa098e9c8e80f4c7a09436873fb9240',1,'earth_inc.h']]],
-  ['map2fp',['MAP2FP',['../earth__inc_8h.html#aef8e86bebe14e8d957ac158651c79d71',1,'MAP2FP():&#160;earth_inc.h'],['../earth2wireframe_8c.html#aef8e86bebe14e8d957ac158651c79d71',1,'MAP2FP():&#160;earth2wireframe.c'],['../earth_8c.html#a3005f1f9544b1a5299fc54b63df5414e',1,'map2fp(mapxyz *in, point *out):&#160;earth.c'],['../earth_8h.html#a3005f1f9544b1a5299fc54b63df5414e',1,'map2fp(mapxyz *in, point *out):&#160;earth.c']]],
-  ['map_5fdata',['MAP_DATA',['../earth_8c.html#a8bd16525127e73fd2c8db66f11cf6e90',1,'earth.c']]],
-  ['map_5fone',['MAP_ONE',['../earth__inc_8h.html#a2949b8f5adb5c1be22f77daca7c2241c',1,'MAP_ONE():&#160;earth_inc.h'],['../earth2wireframe_8c.html#a2949b8f5adb5c1be22f77daca7c2241c',1,'MAP_ONE():&#160;earth2wireframe.c']]],
-  ['map_5ft',['MAP_T',['../earth__inc_8h.html#a4c939ba62f3338571903e40156a298a3',1,'MAP_T():&#160;earth_inc.h'],['../earth2wireframe_8c.html#a4c939ba62f3338571903e40156a298a3',1,'MAP_T():&#160;earth2wireframe.c']]],
-  ['mapend',['MAPEND',['../earth__inc_8h.html#a26c4f42c25ac672bb2a7b61f8eb40191',1,'MAPEND():&#160;earth_inc.h'],['../earth2wireframe_8c.html#a26c4f42c25ac672bb2a7b61f8eb40191',1,'MAPEND():&#160;earth2wireframe.c']]],
-  ['mapsep',['MAPSEP',['../earth__inc_8h.html#a245aaa5d992e2892e759081f909b37aa',1,'MAPSEP():&#160;earth_inc.h'],['../earth2wireframe_8c.html#a245aaa5d992e2892e759081f909b37aa',1,'MAPSEP():&#160;earth2wireframe.c']]],
-  ['mapxyz',['mapxyz',['../structmapxyz.html',1,'']]],
   ['match',['MATCH',['../bdffontutil_8h.html#a4d192fe48cb19d0ef5a88c52ed23cf4c',1,'bdffontutil.h']]],
   ['match_5ftoken',['match_token',['../bdffontutil_8c.html#aa8451fa4387dfafd4583f6548533d37b',1,'match_token(char *str, char *pat):&#160;bdffontutil.c'],['../bdffontutil_8h.html#aa8451fa4387dfafd4583f6548533d37b',1,'match_token(char *str, char *pat):&#160;bdffontutil.c']]],
   ['max',['MAX',['../util_8h.html#aacc3ee1a7f283f8ef65cea31f4436a95',1,'util.h']]],

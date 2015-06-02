@@ -1,10 +1,6 @@
 var searchData=
 [
-  ['earth_2ec',['earth.c',['../earth_8c.html',1,'']]],
-  ['earth_2eh',['earth.h',['../earth_8h.html',1,'']]],
   ['earth2wireframe_2ec',['earth2wireframe.c',['../earth2wireframe_8c.html',1,'']]],
-  ['earth_5fdraw',['earth_draw',['../earth_8c.html#ae5b1b4bd22d4e77ff2156feb25e01658',1,'earth_draw(point *view, double scale, uint16_t color):&#160;earth.c'],['../earth_8h.html#ae5b1b4bd22d4e77ff2156feb25e01658',1,'earth_draw(point *view, double scale, uint16_t color):&#160;earth.c']]],
-  ['earth_5finc_2eh',['earth_inc.h',['../earth__inc_8h.html',1,'']]],
   ['eight_5fbits',['EIGHT_BITS',['../uart_8h.html#a1a800ab02eb9805becdea40a047e2e25a2764598629b0667f4c0175eaa321f593',1,'uart.h']]],
   ['emit_5fdata',['emit_data',['../bdffontutil_8c.html#a083894d36a7a6960e30d21d88a0da874',1,'emit_data(FILE *out, char *name, unsigned char *data, int size):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a083894d36a7a6960e30d21d88a0da874',1,'emit_data(FILE *out, char *name, unsigned char *data, int size):&#160;bdffontutil.c']]],
   ['emit_5fnumber',['emit_number',['../bdffontutil_8c.html#a052882497beff245c47eafa6b988f2c0',1,'emit_number(FILE *out, char *name, int num):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a052882497beff245c47eafa6b988f2c0',1,'emit_number(FILE *out, char *name, int num):&#160;bdffontutil.c']]],

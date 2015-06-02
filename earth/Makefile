@@ -5,7 +5,7 @@ DATA = data/world.dat
 #DATA = data/world_110m.txt
 
 earthdata:	earth2wireframe
-	./earth2wireframe -f $(DATA) >../earth_inc.h
+	./earth2wireframe -f $(DATA) >../wire/earth_data.h
 
 earth2wireframe:	earth2wireframe.c
 	gcc earth2wireframe.c -o earth2wireframe -lm

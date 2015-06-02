@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['map_5ft',['MAP_T',['../earth__inc_8h.html#a4c939ba62f3338571903e40156a298a3',1,'MAP_T():&#160;earth_inc.h'],['../earth2wireframe_8c.html#a4c939ba62f3338571903e40156a298a3',1,'MAP_T():&#160;earth2wireframe.c']]]
+  ['ucordic_5ft',['UCordic_T',['../cordic2c__inc_8h.html#a0d2210939130fe06cdbba9248686fa03',1,'UCordic_T():&#160;cordic2c_inc.h'],['../cordic2c_8c.html#a0d2210939130fe06cdbba9248686fa03',1,'UCordic_T():&#160;cordic2c.c']]]
 ];

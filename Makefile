@@ -12,7 +12,7 @@ FW_BASE		= firmware
 SOFTCS = 
 USE_FIFO =  1
 ILI9341_DEBUG = 
-CUBE = 1
+WIRECUBE = 1
 EARTH = 
 
 ROOT_DIR=/opt/Espressif/esp-open-sdk
@@ -179,13 +179,13 @@ endif
 
 CFLAGS  += -DMIKE_PRINTF
 
-ifdef CUBE
-	MODULES	+= cube
-	CFLAGS  += -DCUBE
+ifdef WIRECUBE
+	MODULES	+= wire
+	CFLAGS  += -DWIRECUBE
 endif
 
 ifdef EARTH
-	MODULES	+= earth
+	MODULES	+= wire
 	CFLAGS  += -DEARTH
 endif
 
@@ -256,7 +256,6 @@ vpath %.c $(SRC_DIR)
 define compile-objects
 $1/%.o: %.c
 	$(vecho) "CC $$<"
-	echo $(CC) $(INCDIR) $(MODULE_INCDIR) $(EXTRA_INCDIR) $(SDK_INCDIR) $(CFLAGS)  -c $$< -o $$@
 	$(Q) $(CC) $(INCDIR) $(MODULE_INCDIR) $(EXTRA_INCDIR) $(SDK_INCDIR) $(CFLAGS)  -c $$< -o $$@
 endef
 
@@ -382,7 +381,7 @@ clean:
 $(foreach bdir,$(BUILD_DIR),$(eval $(call compile-objects,$(bdir))))
 
 # If makefile changes, maybe the list of sources has changed, so update doxygens list
-DOCDIRS = $(MODULES) cube earth fonts include cordic/make_cordic earth/make_wireframe 
+DOCDIRS = $(MODULES) cube wire earth fonts include cordic/make_cordic earth/make_wireframe 
 
 # If makefile changes, maybe the list of sources has changed, so update doxygens list
 doxyfile.inc:

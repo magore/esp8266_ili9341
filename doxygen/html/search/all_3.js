@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['calcperspectiveprojection',['calcPerspectiveProjection',['../cube_8c.html#afd1d7aacb8a85ae9ddcf451446546c28',1,'cube.c']]],
   ['circular',['Circular',['../cordic_8c.html#a9e686d8e990a05ea18655a368e6d1918',1,'Circular(Cordic_T x, Cordic_T y, Cordic_T z):&#160;cordic.c'],['../cordic_8h.html#a9e686d8e990a05ea18655a368e6d1918',1,'Circular(Cordic_T x, Cordic_T y, Cordic_T z):&#160;cordic.c'],['../cordic2c_8c.html#a9e686d8e990a05ea18655a368e6d1918',1,'Circular(Cordic_T x, Cordic_T y, Cordic_T z):&#160;cordic2c.c']]],
   ['constrain',['CONSTRAIN',['../util_8h.html#a16354a19da36d5370eb20304b4facb33',1,'util.h']]],
   ['convert565torgb',['convert565toRGB',['../ili9341_8c.html#a845d3d47f13ba79aba1459b7630bbb90',1,'convert565toRGB(uint16_t color, uint8_t *r, uint8_t *g, uint8_t *b):&#160;ili9341.c'],['../ili9341_8h.html#a845d3d47f13ba79aba1459b7630bbb90',1,'convert565toRGB(uint16_t color, uint8_t *r, uint8_t *g, uint8_t *b):&#160;ili9341.c']]],
@@ -29,9 +28,5 @@ var searchData=
   ['cordit1',['cordit1',['../cordic2c_8c.html#aa47551f0ba056c573807f6dfa1b09d2d',1,'cordic2c.c']]],
   ['count',['count',['../user__main_8c.html#aa011065eee776eb1bda73597b5d9d5d7',1,'user_main.c']]],
   ['cpy_5fflash',['cpy_flash',['../util_8c.html#a9a70a218c9d4bae2e51bda4d7219712f',1,'cpy_flash(uint8_t *src, uint8_t *dest, int size):&#160;util.c'],['../util_8h.html#a9a70a218c9d4bae2e51bda4d7219712f',1,'cpy_flash(uint8_t *src, uint8_t *dest, int size):&#160;util.c']]],
-  ['cube_2ec',['cube.c',['../cube_8c.html',1,'']]],
-  ['cube_2eh',['cube.h',['../cube_8h.html',1,'']]],
-  ['cube_5fcalculate',['cube_calculate',['../cube_8c.html#a44a17c6f8212b80462398a88b6cb25aa',1,'cube_calculate(double degreeX, double degreeY, double degreeZ, double scale, int16_t shiftX, int16_t shiftY, int16_t shiftZ):&#160;cube.c'],['../cube_8h.html#a44a17c6f8212b80462398a88b6cb25aa',1,'cube_calculate(double degreeX, double degreeY, double degreeZ, double scale, int16_t shiftX, int16_t shiftY, int16_t shiftZ):&#160;cube.c']]],
-  ['cube_5fdraw',['cube_draw',['../cube_8c.html#a113025802ac11dbf2fe27aba55a427d1',1,'cube_draw(uint16_t color):&#160;cube.c'],['../cube_8h.html#a113025802ac11dbf2fe27aba55a427d1',1,'cube_draw(uint16_t color):&#160;cube.c']]],
   ['copyright',['COPYRIGHT',['../md_COPYRIGHT.html',1,'']]]
 ];

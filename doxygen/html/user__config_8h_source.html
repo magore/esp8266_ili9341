@@ -107,40 +107,30 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="util_8h.html">util.h</a>&gt;</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="uart_8h.html">uart.h</a>&gt;</span></div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;newlib.h&quot;</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keywordtype">int</span> <a class="code" href="user__config_8h.html#a357a42eb6494ea592e9c3f96c55cebe2">snprintf</a>(<span class="keywordtype">char</span> *, <span class="keywordtype">size_t</span>, <span class="keyword">const</span> <span class="keywordtype">char</span> *, ...);</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#ifdef FORMAT_PRINTF</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #include &quot;format.h&quot;</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">    #include &quot;format_config.h&quot;</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#ifdef MIKE_PRINTF</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #include &quot;<a class="code" href="printf_8h.html">printf.h</a>&quot;</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="user__config_8h.html#ac069b0f0b942de43fee8642c39450bab">   27</a></span>&#160;<span class="preprocessor">#define FONTSPECS</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="user__config_8h.html#a52d60ae7ccb513718808b5cdbb26ffa3">   28</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MEMSPACE_FONT ICACHE_FLASH_ATTR</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;font.h&quot;</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;ili9341_adafruit.h&quot;</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ili9341_8h.html">ili9341.h</a>&quot;</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="cordic_8h.html">cordic.h</a>&quot;</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#ifdef EARTH</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #include &quot;<a class="code" href="earth_8h.html">earth.h</a>&quot;</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#ifdef CUBE</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #include &quot;<a class="code" href="cube_8h.html">cube.h</a>&quot;</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="user__config_8h.html#a093fb58c584374660f2459896c024b91">   41</a></span>&#160;<span class="preprocessor">#define DELAY_TIMER     10 // Delay timer in milliseconds</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="user__config_8h.html#a338adb9f062605032a20b13dbfe172e0">   42</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define RUN_TEST  0</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="user__config_8h.html#a95f16b0055aa7cc411bf2575ca77bb05">   43</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define TEST_QUEUE_LEN  4</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#ifndef __USER_CONFIG_H__</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="user__config_8h.html#a04f474cbfdf2913fd2ee587ef1e8cc79">   46</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define __USER_CONFIG_H__</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keywordtype">int</span> <a class="code" href="user__config_8h.html#a357a42eb6494ea592e9c3f96c55cebe2">snprintf</a>(<span class="keywordtype">char</span> *, <span class="keywordtype">size_t</span>, <span class="keyword">const</span> <span class="keywordtype">char</span> *, ...);</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#ifdef MIKE_PRINTF</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #include &quot;<a class="code" href="printf_8h.html">printf.h</a>&quot;</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="user__config_8h.html#ac069b0f0b942de43fee8642c39450bab">   25</a></span>&#160;<span class="preprocessor">#define FONTSPECS</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="user__config_8h.html#a52d60ae7ccb513718808b5cdbb26ffa3">   26</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MEMSPACE_FONT ICACHE_FLASH_ATTR</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;font.h&quot;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;ili9341_adafruit.h&quot;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ili9341_8h.html">ili9341.h</a>&quot;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="cordic_8h.html">cordic.h</a>&quot;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="user__config_8h.html#a093fb58c584374660f2459896c024b91">   33</a></span>&#160;<span class="preprocessor">#define DELAY_TIMER     10 // Delay timer in milliseconds</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="user__config_8h.html#a338adb9f062605032a20b13dbfe172e0">   34</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define RUN_TEST  0</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="user__config_8h.html#a95f16b0055aa7cc411bf2575ca77bb05">   35</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define TEST_QUEUE_LEN  4</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#ifndef __USER_CONFIG_H__</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="user__config_8h.html#a04f474cbfdf2913fd2ee587ef1e8cc79">   38</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define __USER_CONFIG_H__</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="uart_8h_html"><div class="ttname"><a href="uart_8h.html">uart.h</a></div></div>
 <div class="ttc" id="printf_8h_html"><div class="ttname"><a href="printf_8h.html">printf.h</a></div></div>
-<div class="ttc" id="earth_8h_html"><div class="ttname"><a href="earth_8h.html">earth.h</a></div></div>
-<div class="ttc" id="cube_8h_html"><div class="ttname"><a href="cube_8h.html">cube.h</a></div></div>
 <div class="ttc" id="cordic_8h_html"><div class="ttname"><a href="cordic_8h.html">cordic.h</a></div></div>
 <div class="ttc" id="util_8h_html"><div class="ttname"><a href="util_8h.html">util.h</a></div><div class="ttdoc">Flash and bit utilities. </div></div>
 <div class="ttc" id="ili9341_8h_html"><div class="ttname"><a href="ili9341_8h.html">ili9341.h</a></div></div>
@@ -148,7 +138,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat May 30 2015 22:10:33 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jun 1 2015 22:33:20 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
