@@ -1,13 +1,13 @@
 /**
  @file wire.c
 
- @par wireframe viewer
- @par Copyright &copy; 2015 Mike Gore, GPL License
-
  @brief Display wireframe object 
- The code handles fixed, proportional and bounding box format fonts
+  Can process either connected point lists or points and edges
  @par Edit History
  - [1.0]   [Mike Gore]  Initial revision of file.
+
+ @par wireframe viewer
+ @par Copyright &copy; 2015 Mike Gore, GPL License
 
  This is free software: you can redistribute it and/or modify it under the
  terms of the GNU General Public License as published by the Free Software

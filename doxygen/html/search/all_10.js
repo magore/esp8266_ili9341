@@ -2,6 +2,7 @@ var searchData=
 [
   ['s',['S',['../user__main_8c.html#a8f21a381899b20c7e608be3505d09db9',1,'user_main.c']]],
   ['scale',['scale',['../user__main_8c.html#aa7d569051c24f6fb09cf6569ae97e134',1,'user_main.c']]],
+  ['scale2display',['scale2display',['../wire_8c.html#a7f3fa95f9ec7cc3e8cf3d8278ca9c6fa',1,'scale2display(point *p, int *x, int *y):&#160;wire.c'],['../wire_8h.html#a7f3fa95f9ec7cc3e8cf3d8278ca9c6fa',1,'scale2display(point *p, int *x, int *y):&#160;wire.c']]],
   ['scale_5finc',['scale_inc',['../user__main_8c.html#ab13530f34680731b9764f1cf20f8d3cd',1,'user_main.c']]],
   ['scale_5fpoint',['scale_point',['../cordic_8c.html#a7ff2d6cf60ac1ddedb6ff639dedd06d8',1,'scale_point(point *p, double scale):&#160;cordic.c'],['../cordic_8h.html#a7ff2d6cf60ac1ddedb6ff639dedd06d8',1,'scale_point(point *p, double scale):&#160;cordic.c']]],
   ['sendmsgtohandler',['sendMsgToHandler',['../user__main_8c.html#aec5bf646bd247f04a426c43eb3885f2e',1,'user_main.c']]],

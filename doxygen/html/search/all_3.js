@@ -28,5 +28,8 @@ var searchData=
   ['cordit1',['cordit1',['../cordic2c_8c.html#aa47551f0ba056c573807f6dfa1b09d2d',1,'cordic2c.c']]],
   ['count',['count',['../user__main_8c.html#aa011065eee776eb1bda73597b5d9d5d7',1,'user_main.c']]],
   ['cpy_5fflash',['cpy_flash',['../util_8c.html#a9a70a218c9d4bae2e51bda4d7219712f',1,'cpy_flash(uint8_t *src, uint8_t *dest, int size):&#160;util.c'],['../util_8h.html#a9a70a218c9d4bae2e51bda4d7219712f',1,'cpy_flash(uint8_t *src, uint8_t *dest, int size):&#160;util.c']]],
+  ['cube_5fdata_2eh',['cube_data.h',['../cube__data_8h.html',1,'']]],
+  ['cube_5fedges',['cube_edges',['../cube__data_8h.html#a78d7d928e1e362be3b768f133f3af968',1,'cube_data.h']]],
+  ['cube_5fpoints',['cube_points',['../cube__data_8h.html#a7fcb338af61341ce6748fc19915891ae',1,'cube_data.h']]],
   ['copyright',['COPYRIGHT',['../md_COPYRIGHT.html',1,'']]]
 ];

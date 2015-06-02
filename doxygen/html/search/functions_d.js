@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['scale2display',['scale2display',['../wire_8c.html#a7f3fa95f9ec7cc3e8cf3d8278ca9c6fa',1,'scale2display(point *p, int *x, int *y):&#160;wire.c'],['../wire_8h.html#a7f3fa95f9ec7cc3e8cf3d8278ca9c6fa',1,'scale2display(point *p, int *x, int *y):&#160;wire.c']]],
   ['scale_5fpoint',['scale_point',['../cordic_8c.html#a7ff2d6cf60ac1ddedb6ff639dedd06d8',1,'scale_point(point *p, double scale):&#160;cordic.c'],['../cordic_8h.html#a7ff2d6cf60ac1ddedb6ff639dedd06d8',1,'scale_point(point *p, double scale):&#160;cordic.c']]],
   ['sendmsgtohandler',['sendMsgToHandler',['../user__main_8c.html#aec5bf646bd247f04a426c43eb3885f2e',1,'user_main.c']]],
   ['shift_5fpoint',['shift_point',['../cordic_8c.html#ad9ef1c8f50bddeba6503e9110d6e2782',1,'shift_point(point *p, point *shift):&#160;cordic.c'],['../cordic_8h.html#ad9ef1c8f50bddeba6503e9110d6e2782',1,'shift_point(point *p, point *shift):&#160;cordic.c']]],
