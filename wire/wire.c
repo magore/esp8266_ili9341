@@ -31,6 +31,12 @@
 #include "wire.h"
 
 
+/*
+ @brief convert fixed point coordinate to floating point
+ @param [in] *in: fixed point coordinate
+ @param [out] *out: floating point coordinate
+ @return void
+*/
 void wire2fp(wire_p *in, point *out)
 {
 	// Point
@@ -39,13 +45,28 @@ void wire2fp(wire_p *in, point *out)
 	out->z = WIRE_2FP(in->z);
 }
 
+/*
+ @brief scale X,Y point to working display
+ @param [in] *p: X,Y point
+ @param [out] *x: X result
+ @param [out] *y: Y result
+ @return void
+*/
 void scale2display(point *p, int *x, int *y)
 {
 	*x = (p->x *25) + MAX_TFT_X/2;
 	*y = (p->y *25) + MAX_TFT_Y/2;
 }
 
-// Draw a wireframe
+/*
+ @brief Draw a wireframe
+ @param [in] *wire: fixed point  points
+ @param [in] *edge: fixed point  edges - optional or NULL
+ @param [in] *view: view point
+ @param [in] scale: scale factor
+ @param [in] color: color
+ @return void
+*/
 void wire_draw(const wire_p *wire, const wire_e *edge, point *view, double scale, uint16_t color)
 {
 	int i;
@@ -103,6 +124,8 @@ void wire_draw(const wire_p *wire, const wire_e *edge, point *view, double scale
 		return;
 	}
 
+	/* edge == NULL */
+	/* We have a list of connected points and no edge data */
 	for (i = 0; ; i++)
 	{
 		// W = wire[i];
