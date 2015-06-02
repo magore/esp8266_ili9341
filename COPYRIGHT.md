@@ -20,7 +20,6 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-
 ___
  @par Tool chain - used by this project - pfalcon/esp-open-sdk 
  @see  https://github.com/pfalcon/esp-open-sdk
@@ -32,11 +31,6 @@ ___
 ___
  @par Optimized Line drawing function and Makefile from CHERTS
  @see https://github.com/CHERTS/esp8266-devkit/tree/master/Espressif/examples/esp8266_ili9341
-
-___
- @par cube.c driver by Sem 2015
- @see https://github.com/CHERTS/esp8266-devkit/tree/master/Espressif/examples/esp8266_ili9341
-
 ___
  @par ili9341.c driver code from Adafruit
  @par Adafruit-GFX-Library Copyright (c) 2013 Adafruit Industries.  

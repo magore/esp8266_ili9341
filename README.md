@@ -21,9 +21,9 @@
   * I rewrote parts of Adafruit code ili9341 graphics library
   * HSPI code now correctly handles memory size and alignment 
 
- * Two demos are provided
-  * CUBE demo 
-  * Wire frame Earth viewer - still needs hidden line removal
+ * I created a wireframe viewed and two wireframe demos 
+  * Cube wireframe dataset
+  * Earth coastline dataset - wireframe view still needs hidden line removal option
 ___
 
 @par Credits
