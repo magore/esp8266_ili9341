@@ -18,6 +18,7 @@ var searchData=
   ['wire_5fp',['wire_p',['../structwire__p.html',1,'']]],
   ['wire_5fsep',['WIRE_SEP',['../wire_8h.html#ae89732b187eff02c0d03083d111d598e',1,'wire.h']]],
   ['wire_5ft',['wire_t',['../wire_8h.html#ace84d5e6e326f6a52d978bd9900baee6',1,'wire.h']]],
+  ['wl',['Wl',['../Makefile.html#afb1782b240d70229ae5bc6b111f9794a',1,'Makefile']]],
   ['wrap',['wrap',['../structwindow.html#aee853dc29d3cf708890faff063ce9afb',1,'window']]],
   ['write_5fover',['WRITE_OVER',['../uart_8h.html#ad2f40c3db0de470af22077a2f9a4a136af25ad614280b763056ef7b8e23695108',1,'uart.h']]],
   ['writecharacterbits',['WriteCharacterBits',['../bdffontutil_8c.html#a7c2cf276db0c747638909191d76925da',1,'WriteCharacterBits(FILE *out, _font *font, int num):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a7c2cf276db0c747638909191d76925da',1,'WriteCharacterBits(FILE *out, _font *font, int num):&#160;bdffontutil.c']]],

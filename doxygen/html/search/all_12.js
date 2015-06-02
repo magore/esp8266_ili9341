@@ -115,6 +115,7 @@ var searchData=
   ['uartstopbitsnum',['UartStopBitsNum',['../uart_8h.html#a0ecb1f01cc124cfef8bb7dbfe6c9c1d5',1,'uart.h']]],
   ['ucordic_5ft',['UCordic_T',['../cordic2c__inc_8h.html#a0d2210939130fe06cdbba9248686fa03',1,'UCordic_T():&#160;cordic2c_inc.h'],['../cordic2c_8c.html#a0d2210939130fe06cdbba9248686fa03',1,'UCordic_T():&#160;cordic2c.c']]],
   ['ucordic_5ft_5fstr',['UCordic_T_STR',['../cordic2c_8c.html#a27092bec667d3da85622cfa613527520',1,'cordic2c.c']]],
+  ['undefined',['undefined',['../Makefile.html#a9324bb2c20136255586f3b51593c4291',1,'Makefile']]],
   ['under_5fwrite',['UNDER_WRITE',['../uart_8h.html#ad2f40c3db0de470af22077a2f9a4a136abc1635648bd3dd3a4bc33cccc6441b34',1,'uart.h']]],
   ['usage',['usage',['../bdffont2c_8c.html#aa4817482b1728bf62acf8030cab9842c',1,'bdffont2c.c']]],
   ['use_5foptimization_5fdrawline',['USE_OPTIMIZATION_DRAWLINE',['../ili9341_8c.html#a3bc3999315888a41dcf1417cdae450e3',1,'ili9341.c']]],
