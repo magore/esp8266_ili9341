@@ -1,7 +1,7 @@
 #ifndef _WIRE_H_
 #define _WIRE_H_
 /**
- @file wireframe.c
+ @file wire.h
 
  @par wireframe viewer
  @par Copyright &copy; 2015 Mike Gore, GPL License

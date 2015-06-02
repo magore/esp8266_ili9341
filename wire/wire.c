@@ -1,5 +1,5 @@
 /**
- @file wireframe.c
+ @file wire.c
 
  @par wireframe viewer
  @par Copyright &copy; 2015 Mike Gore, GPL License
