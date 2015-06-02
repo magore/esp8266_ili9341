@@ -1,0 +1,192 @@
+\hypertarget{wire_8h}{\section{wire/wire.h File Reference}
+\label{wire_8h}\index{wire/wire.\-h@{wire/wire.\-h}}
+}
+
+
+Display wireframe object The code handles fixed, proportional and bounding box format fonts.  
+
+
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structwire__p}{wire\-\_\-p}
+\item 
+struct \hyperlink{structwire__e}{wire\-\_\-e}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{wire_8h_a82b0906447b00ab4a0de3e70dea1838f}{W\-I\-R\-E\-\_\-\-O\-N\-E}~16384 /$\ast$ 1.\-0 $\ast$/
+\item 
+\#define \hyperlink{wire_8h_ae89732b187eff02c0d03083d111d598e}{W\-I\-R\-E\-\_\-\-S\-E\-P}~32766  /$\ast$ pen up $\ast$/
+\item 
+\#define \hyperlink{wire_8h_ab77fdc8aba86e1a03e2385821e86ec31}{W\-I\-R\-E\-\_\-\-E\-N\-D}~32767  /$\ast$ E\-N\-D $\ast$/
+\item 
+\#define \hyperlink{wire_8h_aac0d606ebb0121e068fddb41f0a8a9f5}{W\-I\-R\-E\-\_\-2\-F\-P}(a)~( (double) (a) / (double) (\hyperlink{wire_8h_a82b0906447b00ab4a0de3e70dea1838f}{W\-I\-R\-E\-\_\-\-O\-N\-E}))
+\item 
+\#define \hyperlink{wire_8h_a6ab980e5a0d260bf5baacc41f7cabbbd}{F\-P2\-\_\-\-W\-I\-R\-E}(a)~((\hyperlink{wire_8h_ace84d5e6e326f6a52d978bd9900baee6}{wire\-\_\-t}) (\hyperlink{wire_8h_a82b0906447b00ab4a0de3e70dea1838f}{W\-I\-R\-E\-\_\-\-O\-N\-E} $\ast$ (a)))
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef short int \hyperlink{wire_8h_ace84d5e6e326f6a52d978bd9900baee6}{wire\-\_\-t}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{wire_8h_a86a09b73c1cd047d1ef464da418bf414}{wire2fp} (\hyperlink{structwire__p}{wire\-\_\-p} $\ast$in, \hyperlink{structpoint}{point} $\ast$out)
+\item 
+void \hyperlink{wire_8h_a7f3fa95f9ec7cc3e8cf3d8278ca9c6fa}{scale2display} (\hyperlink{structpoint}{point} $\ast$p, int $\ast$x, int $\ast$y)
+\item 
+void \hyperlink{wire_8h_a2233ddaf3dedfeb536cb0121cb8e5c7d}{wire\-\_\-draw} (const \hyperlink{structwire__p}{wire\-\_\-p} $\ast$wire, const \hyperlink{structwire__e}{wire\-\_\-e} $\ast$edge, \hyperlink{structpoint}{point} $\ast$view, double \hyperlink{user__main_8c_aa7d569051c24f6fb09cf6569ae97e134}{scale}, uint16\-\_\-t color)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Display wireframe object The code handles fixed, proportional and bounding box format fonts. \begin{DoxyParagraph}{wireframe viewer}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Copyright \copyright{} 2015 Mike Gore, G\-P\-L License}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Edit History}
+
+\begin{DoxyItemize}
+\item \mbox{[}1.\-0\mbox{]} \mbox{[}Mike Gore\mbox{]} Initial revision of file.
+\end{DoxyItemize}
+\end{DoxyParagraph}
+This is free software\-: you can redistribute it and/or modify it under the terms of the G\-N\-U General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+wireframe.\-c is distributed in the hope that it will be useful, but W\-I\-T\-H\-O\-U\-T A\-N\-Y W\-A\-R\-R\-A\-N\-T\-Y; without even the implied warranty of M\-E\-R\-C\-H\-A\-N\-T\-A\-B\-I\-L\-I\-T\-Y or F\-I\-T\-N\-E\-S\-S F\-O\-R A P\-A\-R\-T\-I\-C\-U\-L\-A\-R P\-U\-R\-P\-O\-S\-E. See the G\-N\-U General Public License for more details.
+
+You should have received a copy of the G\-N\-U General Public License along with this program. If not, see \href{http://www.gnu.org/licenses/}{\tt http\-://www.\-gnu.\-org/licenses/}. 
+
+Definition in file \hyperlink{wire_8h_source}{wire.\-h}.
+
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{wire_8h_a6ab980e5a0d260bf5baacc41f7cabbbd}{\index{wire.\-h@{wire.\-h}!F\-P2\-\_\-\-W\-I\-R\-E@{F\-P2\-\_\-\-W\-I\-R\-E}}
+\index{F\-P2\-\_\-\-W\-I\-R\-E@{F\-P2\-\_\-\-W\-I\-R\-E}!wire.h@{wire.\-h}}
+\subsubsection[{F\-P2\-\_\-\-W\-I\-R\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\-P2\-\_\-\-W\-I\-R\-E(
+\begin{DoxyParamCaption}
+\item[{}]{a}
+\end{DoxyParamCaption}
+)~(({\bf wire\-\_\-t}) ({\bf W\-I\-R\-E\-\_\-\-O\-N\-E} $\ast$ (a)))}}\label{wire_8h_a6ab980e5a0d260bf5baacc41f7cabbbd}
+
+
+Definition at line 44 of file wire.\-h.
+
+\hypertarget{wire_8h_aac0d606ebb0121e068fddb41f0a8a9f5}{\index{wire.\-h@{wire.\-h}!W\-I\-R\-E\-\_\-2\-F\-P@{W\-I\-R\-E\-\_\-2\-F\-P}}
+\index{W\-I\-R\-E\-\_\-2\-F\-P@{W\-I\-R\-E\-\_\-2\-F\-P}!wire.h@{wire.\-h}}
+\subsubsection[{W\-I\-R\-E\-\_\-2\-F\-P}]{\setlength{\rightskip}{0pt plus 5cm}\#define W\-I\-R\-E\-\_\-2\-F\-P(
+\begin{DoxyParamCaption}
+\item[{}]{a}
+\end{DoxyParamCaption}
+)~( (double) (a) / (double) ({\bf W\-I\-R\-E\-\_\-\-O\-N\-E}))}}\label{wire_8h_aac0d606ebb0121e068fddb41f0a8a9f5}
+
+
+Definition at line 43 of file wire.\-h.
+
+
+
+Referenced by wire2fp().
+
+\hypertarget{wire_8h_ab77fdc8aba86e1a03e2385821e86ec31}{\index{wire.\-h@{wire.\-h}!W\-I\-R\-E\-\_\-\-E\-N\-D@{W\-I\-R\-E\-\_\-\-E\-N\-D}}
+\index{W\-I\-R\-E\-\_\-\-E\-N\-D@{W\-I\-R\-E\-\_\-\-E\-N\-D}!wire.h@{wire.\-h}}
+\subsubsection[{W\-I\-R\-E\-\_\-\-E\-N\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define W\-I\-R\-E\-\_\-\-E\-N\-D~32767  /$\ast$ E\-N\-D $\ast$/}}\label{wire_8h_ab77fdc8aba86e1a03e2385821e86ec31}
+
+
+Definition at line 42 of file wire.\-h.
+
+
+
+Referenced by main(), and wire\-\_\-draw().
+
+\hypertarget{wire_8h_a82b0906447b00ab4a0de3e70dea1838f}{\index{wire.\-h@{wire.\-h}!W\-I\-R\-E\-\_\-\-O\-N\-E@{W\-I\-R\-E\-\_\-\-O\-N\-E}}
+\index{W\-I\-R\-E\-\_\-\-O\-N\-E@{W\-I\-R\-E\-\_\-\-O\-N\-E}!wire.h@{wire.\-h}}
+\subsubsection[{W\-I\-R\-E\-\_\-\-O\-N\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define W\-I\-R\-E\-\_\-\-O\-N\-E~16384 /$\ast$ 1.\-0 $\ast$/}}\label{wire_8h_a82b0906447b00ab4a0de3e70dea1838f}
+
+
+Definition at line 40 of file wire.\-h.
+
+
+
+Referenced by main().
+
+\hypertarget{wire_8h_ae89732b187eff02c0d03083d111d598e}{\index{wire.\-h@{wire.\-h}!W\-I\-R\-E\-\_\-\-S\-E\-P@{W\-I\-R\-E\-\_\-\-S\-E\-P}}
+\index{W\-I\-R\-E\-\_\-\-S\-E\-P@{W\-I\-R\-E\-\_\-\-S\-E\-P}!wire.h@{wire.\-h}}
+\subsubsection[{W\-I\-R\-E\-\_\-\-S\-E\-P}]{\setlength{\rightskip}{0pt plus 5cm}\#define W\-I\-R\-E\-\_\-\-S\-E\-P~32766  /$\ast$ pen up $\ast$/}}\label{wire_8h_ae89732b187eff02c0d03083d111d598e}
+
+
+Definition at line 41 of file wire.\-h.
+
+
+
+Referenced by main(), and wire\-\_\-draw().
+
+
+
+\subsection{Typedef Documentation}
+\hypertarget{wire_8h_ace84d5e6e326f6a52d978bd9900baee6}{\index{wire.\-h@{wire.\-h}!wire\-\_\-t@{wire\-\_\-t}}
+\index{wire\-\_\-t@{wire\-\_\-t}!wire.h@{wire.\-h}}
+\subsubsection[{wire\-\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}typedef short int {\bf wire\-\_\-t}}}\label{wire_8h_ace84d5e6e326f6a52d978bd9900baee6}
+
+
+Definition at line 28 of file wire.\-h.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{wire_8h_a7f3fa95f9ec7cc3e8cf3d8278ca9c6fa}{\index{wire.\-h@{wire.\-h}!scale2display@{scale2display}}
+\index{scale2display@{scale2display}!wire.h@{wire.\-h}}
+\subsubsection[{scale2display}]{\setlength{\rightskip}{0pt plus 5cm}void scale2display (
+\begin{DoxyParamCaption}
+\item[{{\bf point} $\ast$}]{p, }
+\item[{int $\ast$}]{x, }
+\item[{int $\ast$}]{y}
+\end{DoxyParamCaption}
+)}}\label{wire_8h_a7f3fa95f9ec7cc3e8cf3d8278ca9c6fa}
+
+
+Definition at line 55 of file wire.\-c.
+
+
+
+Referenced by wire\-\_\-draw().
+
+\hypertarget{wire_8h_a86a09b73c1cd047d1ef464da418bf414}{\index{wire.\-h@{wire.\-h}!wire2fp@{wire2fp}}
+\index{wire2fp@{wire2fp}!wire.h@{wire.\-h}}
+\subsubsection[{wire2fp}]{\setlength{\rightskip}{0pt plus 5cm}void wire2fp (
+\begin{DoxyParamCaption}
+\item[{{\bf wire\-\_\-p} $\ast$}]{in, }
+\item[{{\bf point} $\ast$}]{out}
+\end{DoxyParamCaption}
+)}}\label{wire_8h_a86a09b73c1cd047d1ef464da418bf414}
+
+
+Definition at line 40 of file wire.\-c.
+
+
+
+Referenced by wire\-\_\-draw().
+
+\hypertarget{wire_8h_a2233ddaf3dedfeb536cb0121cb8e5c7d}{\index{wire.\-h@{wire.\-h}!wire\-\_\-draw@{wire\-\_\-draw}}
+\index{wire\-\_\-draw@{wire\-\_\-draw}!wire.h@{wire.\-h}}
+\subsubsection[{wire\-\_\-draw}]{\setlength{\rightskip}{0pt plus 5cm}void wire\-\_\-draw (
+\begin{DoxyParamCaption}
+\item[{const {\bf wire\-\_\-p} $\ast$}]{wire, }
+\item[{const {\bf wire\-\_\-e} $\ast$}]{edge, }
+\item[{{\bf point} $\ast$}]{view, }
+\item[{double}]{scale, }
+\item[{uint16\-\_\-t}]{color}
+\end{DoxyParamCaption}
+)}}\label{wire_8h_a2233ddaf3dedfeb536cb0121cb8e5c7d}
+
+
+Definition at line 70 of file wire.\-c.
+
+
+
+Referenced by test().
+
