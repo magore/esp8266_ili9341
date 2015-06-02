@@ -70,7 +70,7 @@ static void test(void)
 	V.x = degree;
 	V.y = degree;
 	V.z = degree;
-	wire_draw(wire_cube, &V, scale, 0);
+	wire_draw(cube_points, cube_edges, &V, scale, 0);
 #endif
 
 #ifdef EARTH
@@ -78,7 +78,7 @@ static void test(void)
 	V.x = -90;
 	V.y = -90;
 	V.z = -90;
-	wire_draw(earth_data, &V, scale, 0);
+	wire_draw(earth_data, NULL, &V, scale, 0);
 #endif
 
 #ifdef CIRCLE
@@ -121,24 +121,24 @@ static void test(void)
 	V.y = -90;
 	V.z = -90;
 	// draw earth
-	time1 = system_get_time();
-	wire_draw(earth_data, &V, scale, 0xffff);
-	time2 = system_get_time();
+	//time1 = system_get_time();
+	wire_draw(earth_data, NULL, &V, scale, 0xffff);
+	//time2 = system_get_time();
 #endif
 
 #ifdef WIRECUBE
 	V.x = degree;
 	V.y = degree;
 	V.z = degree;
-	time1 = system_get_time();
-	wire_draw(wire_cube, &V, scale, 0xffff);
-	time2 = system_get_time();
+	//time1 = system_get_time();
+	wire_draw(cube_points, cube_edges, &V, scale, 0xffff);
+	//time2 = system_get_time();
 #endif
 
 	// ets_uart_printf("Degree: %d \r\n", (int)degree);
 	count += 1;
 	tft_printf(0,20,0,"c:% 9ld, %+7.2f", count, degree);
-	tft_printf(0,40,0,"t:% 9ld", time2-time1);
+	//tft_printf(0,40,0,"t:% 9ld", time2-time1);
 }
 
 /**

@@ -32,10 +32,20 @@ typedef struct {
   wire_t z;
 } wire_p;
 
+typedef struct {
+	wire_t p1;
+	wire_t p2;
+} wire_e;
+
 #define WIRE_ONE  16384 /* 1.0 */
 #define WIRE_SEP 32766  /* pen up */
 #define WIRE_END 32767  /* END */
 #define WIRE_2FP(a)  ( (double) (a) / (double) (WIRE_ONE))
 #define FP2_WIRE(a)  ((wire_t) (WIRE_ONE * (a)))
+
+/* wire.c */
+void wire2fp ( wire_p *in , point *out );
+void scale2display ( point *p , int *x , int *y );
+void wire_draw ( const wire_p *wire , const wire_e *edge , point *view , double scale , uint16_t color );
 
 #endif

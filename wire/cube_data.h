@@ -32,44 +32,45 @@
 
 //ICACHE_FLASH_ATTR
 MEMSPACE_RO
-wire_p wire_cube[] = {
+wire_p cube_points[] = {
 /* TOP FACE */
 	{WIRE_ONE,WIRE_ONE,WIRE_ONE}, 	/*  x, y, z */
 	{-WIRE_ONE,WIRE_ONE,WIRE_ONE},	/* -x, y, z */
 	{-WIRE_ONE,-WIRE_ONE,WIRE_ONE}, /* -x,-y, z */
 	{WIRE_ONE,-WIRE_ONE,WIRE_ONE},	/*  x,-y, z */
-	{WIRE_ONE,WIRE_ONE,WIRE_ONE}, 	/*  x, y, z */
-	{WIRE_SEP,WIRE_SEP,WIRE_SEP },
-
 /* BOTTOM FACE */
 	{WIRE_ONE,WIRE_ONE,-WIRE_ONE},	/*  x, y,-z */
 	{-WIRE_ONE,WIRE_ONE,-WIRE_ONE},	/* -x, y,-z */
 	{-WIRE_ONE,-WIRE_ONE,-WIRE_ONE},/* -x,-y,-z */
 	{WIRE_ONE,-WIRE_ONE,-WIRE_ONE},	/*  x,-y,-z */
 	{WIRE_ONE,WIRE_ONE,-WIRE_ONE},	/*  x, y,-z */
-	{WIRE_SEP,WIRE_SEP,WIRE_SEP },
-
-/* Renaming 4 TOP to BOTTOM edges */
-	{WIRE_ONE,WIRE_ONE,WIRE_ONE}, 	/*  x, y, z */
-	{WIRE_ONE,WIRE_ONE,-WIRE_ONE},	/*  x, y,-z */
-	{WIRE_SEP,WIRE_SEP,WIRE_SEP },
-
-	{-WIRE_ONE,WIRE_ONE,WIRE_ONE},	/* -x, y, z */
-	{-WIRE_ONE,WIRE_ONE,-WIRE_ONE},	/* -x, y,-z */
-	{WIRE_SEP,WIRE_SEP,WIRE_SEP },
-
-	{-WIRE_ONE,-WIRE_ONE,WIRE_ONE}, /* -x,-y, z */
-	{-WIRE_ONE,-WIRE_ONE,-WIRE_ONE},/* -x,-y,-z */
-	{WIRE_SEP,WIRE_SEP,WIRE_SEP },
-
-	{WIRE_ONE,-WIRE_ONE,WIRE_ONE}, 	/*  x,-y, z */
-	{WIRE_ONE,-WIRE_ONE,-WIRE_ONE},	/*  x,-y,-z */
-	{WIRE_SEP,WIRE_SEP,WIRE_SEP },
-
-
-	{WIRE_SEP,WIRE_SEP,WIRE_SEP },	
-	{WIRE_END,WIRE_END,WIRE_END }	/* end */
 };
+
+MEMSPACE_RO
+wire_e cube_edges[] = {
+/* TOP FACE */
+	{ 0,1 },
+	{ 1,2 },
+	{ 2,3 },
+	{ 3,0 },
+
+/* BOTTOM FACE */
+	{ 4,5 },
+	{ 5,6 },
+	{ 6,7 },
+	{ 7,4 },
+
+/* Remaining Edges */
+	{ 0,4 },
+	{ 1,5 },
+	{ 2,6 },
+	{ 3,7 },
+
+/* END */
+	{ -1,-1},
+};
+	
 #else
-	extern wire_p wire_cube[];
+	extern wire_p cube_points[];
+	extern wire_e cube_edges[];
 #endif 	// _CUBE_DATA_H_

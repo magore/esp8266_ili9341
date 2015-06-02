@@ -46,7 +46,7 @@ void scale2display(point *p, int *x, int *y)
 }
 
 // Draw a wireframe
-void wire_draw(wire_p *wire, point *view, double scale, uint16_t color)
+void wire_draw(const wire_p *wire, const wire_e *edge, point *view, double scale, uint16_t color)
 {
 	int i;
 	int last = WIRE_SEP;
@@ -55,11 +55,53 @@ void wire_draw(wire_p *wire, point *view, double scale, uint16_t color)
 	int x1 = 0;
 	int y1 = 0;
 	wire_p W;
+	wire_e E;
 	point P,R;
 
 	W.x = 0;
 	W.y = 0;
 	W.z = 0;
+
+	if(edge != NULL )
+	{
+		for (i = 0;; i++)
+		{
+			// E = edge[i];
+			cpy_flash((uint8_t *) &edge[i], (uint8_t *) &E, sizeof(E));
+			if(E.p1 == -1)
+				break;
+
+			// P1 
+			cpy_flash((uint8_t *) &wire[E.p1], (uint8_t *) &W, sizeof(W));
+			wire2fp(&W, &P);
+			// CORDIC Rotate
+			rotate(&P,view);
+			// CORDIC Scale
+			scale_point(&P, scale);
+			// CORDIC Project
+			PerspectiveProjection(&P);
+			// SCALE to Display
+			scale2display(&P, &x0,&y0);
+
+			// P2 
+			cpy_flash((uint8_t *) &wire[E.p2], (uint8_t *) &W, sizeof(W));
+			wire2fp(&W, &P);
+			// CORDIC Rotate
+			rotate(&P,view);
+			// CORDIC Scale
+			scale_point(&P, scale);
+			// CORDIC Project
+			PerspectiveProjection(&P);
+			// SCALE to Display
+			scale2display(&P, &x1,&y1);
+
+			// Draw line
+			tft_drawLine(x0, y0, x1, y1, color);
+
+			ets_wdt_disable();
+		}
+		return;
+	}
 
 	for (i = 0; ; i++)
 	{
