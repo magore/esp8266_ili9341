@@ -12,8 +12,8 @@ FW_BASE		= firmware
 SOFTCS = 
 USE_FIFO =  1
 ILI9341_DEBUG = 
-WIRECUBE = 
-EARTH = 1
+WIRECUBE = 1
+EARTH = 
 
 ROOT_DIR=/opt/Espressif/esp-open-sdk
 # Base directory for the compiler
