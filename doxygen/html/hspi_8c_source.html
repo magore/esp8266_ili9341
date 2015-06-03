@@ -271,91 +271,91 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;}</div>
 <div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;</div>
 <div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;<a class="code" href="fonts_2font_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
-<div class="line"><a name="l00222"></a><span class="lineno"><a class="line" href="hspi_8h.html#ac5a9490bbae15367dc587f0ff8116ed1">  222</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="hspi_8c.html#a4b95a4995e2eda91b486922399556478">hspi_stream_init</a>(<span class="keywordtype">void</span>)</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;{</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    <a class="code" href="hspi_8c.html#aa6a57ceab70df59f457e69cce09958e5">_f_ind</a> = 0;</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;    <a class="code" href="hspi_8c.html#af1a0f7a7dd3cac5dd6b8489f7ff308dc">hspi_waitReady</a>();</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;}</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;</div>
-<div class="line"><a name="l00229"></a><span class="lineno"><a class="line" href="hspi_8h.html#ae628a21798ab6b04d11300aba22454af">  229</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="hspi_8c.html#ae628a21798ab6b04d11300aba22454af">hspi_stream_flush</a>( <span class="keywordtype">void</span> )</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;{</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;<span class="comment">// Send a full FIFO block - or - remaining data</span></div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="hspi_8c.html#aa6a57ceab70df59f457e69cce09958e5">_f_ind</a> )</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    {</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;        <a class="code" href="hspi_8c.html#ac14f0398698936dcf2ffbb735611c2e6">hspi_config</a>(<a class="code" href="hspi_8h.html#ad9632609fe3a2c77d6bca3d5252980e3">CONFIG_FOR_TX</a>);               <span class="comment">// Does hspi_waitReady(); first</span></div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;        <a class="code" href="hspi_8c.html#ab4920c99a66fe082f4c441b27d08f1d7">hspi_writeFIFO</a>(<a class="code" href="hspi_8c.html#a6c076278b2b65a60bcace9600f14abde">_f_buf</a>, <a class="code" href="hspi_8c.html#aa6a57ceab70df59f457e69cce09958e5">_f_ind</a>);</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;        <a class="code" href="hspi_8c.html#a34c41331dd49e4e0f3aa300dfb88234f">hspi_startSend</a>();</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;        <a class="code" href="hspi_8c.html#aa6a57ceab70df59f457e69cce09958e5">_f_ind</a> = 0;</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    }</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;    <a class="code" href="hspi_8c.html#af1a0f7a7dd3cac5dd6b8489f7ff308dc">hspi_waitReady</a>();</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;}</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;</div>
-<div class="line"><a name="l00243"></a><span class="lineno"><a class="line" href="hspi_8h.html#ae58eb89be86e2c23e98f71d357c785b2">  243</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="hspi_8c.html#ae58eb89be86e2c23e98f71d357c785b2">hspi_stream</a>(uint8_t data)</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;{</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;<span class="comment">// Queue sent data</span></div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    <a class="code" href="hspi_8c.html#a6c076278b2b65a60bcace9600f14abde">_f_buf</a>[<a class="code" href="hspi_8c.html#aa6a57ceab70df59f457e69cce09958e5">_f_ind</a>++] = data;</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;<span class="comment">// Send a full FIFO block - or - remaining data</span></div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="hspi_8c.html#aa6a57ceab70df59f457e69cce09958e5">_f_ind</a> &gt;= <a class="code" href="hspi_8h.html#a1eaecab4a7e4f328f38ce57d4d3012d1">HSPI_FIFO_SIZE</a>)</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;    {</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;        <a class="code" href="hspi_8c.html#ae628a21798ab6b04d11300aba22454af">hspi_stream_flush</a>();</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    }</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;}</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;</div>
-<div class="line"><a name="l00260"></a><span class="lineno"><a class="line" href="hspi_8h.html#a5ac551a53430a5014d38082ee1be32f6">  260</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="hspi_8c.html#a5ac551a53430a5014d38082ee1be32f6">hspi_TxRx</a>(uint8_t *data, uint16_t bytes)</div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;{</div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;    <span class="keywordflow">if</span>(bytes &gt; <a class="code" href="hspi_8h.html#a1eaecab4a7e4f328f38ce57d4d3012d1">HSPI_FIFO_SIZE</a>)</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;        <span class="keywordflow">return</span>;                                   <span class="comment">// Error</span></div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;    <a class="code" href="hspi_8c.html#ac14f0398698936dcf2ffbb735611c2e6">hspi_config</a>(<a class="code" href="hspi_8h.html#a0a89ba717c8b84a7c3799d310b54e5c2">CONFIG_FOR_RX_TX</a>);</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    <a class="code" href="hspi_8c.html#ab4920c99a66fe082f4c441b27d08f1d7">hspi_writeFIFO</a>(data, bytes);</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;    <a class="code" href="hspi_8c.html#a34c41331dd49e4e0f3aa300dfb88234f">hspi_startSend</a>();</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;    <a class="code" href="hspi_8c.html#af1a0f7a7dd3cac5dd6b8489f7ff308dc">hspi_waitReady</a>();</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;<span class="comment">// read result</span></div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;    <a class="code" href="hspi_8c.html#a744fb4ddb01b77242becd418b8ba6a46">hspi_readFIFO</a>(data, bytes);</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;}</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;</div>
-<div class="line"><a name="l00278"></a><span class="lineno"><a class="line" href="hspi_8h.html#aa16c031fe914c256a5c9e24c4c84f1a8">  278</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="hspi_8c.html#aa16c031fe914c256a5c9e24c4c84f1a8">hspi_Tx</a>(uint8_t *data, uint16_t bytes)</div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;{</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;    <span class="keywordflow">if</span>(bytes &gt; <a class="code" href="hspi_8h.html#a1eaecab4a7e4f328f38ce57d4d3012d1">HSPI_FIFO_SIZE</a>)</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;        <span class="keywordflow">return</span>;                                   <span class="comment">// Error</span></div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;    <a class="code" href="hspi_8c.html#ac14f0398698936dcf2ffbb735611c2e6">hspi_config</a>(<a class="code" href="hspi_8h.html#ad9632609fe3a2c77d6bca3d5252980e3">CONFIG_FOR_TX</a>);                   <span class="comment">// Does hspi_waitReady(); first</span></div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;    <a class="code" href="hspi_8c.html#ab4920c99a66fe082f4c441b27d08f1d7">hspi_writeFIFO</a>(data, bytes);</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;    <a class="code" href="hspi_8c.html#a34c41331dd49e4e0f3aa300dfb88234f">hspi_startSend</a>();</div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;    <a class="code" href="hspi_8c.html#af1a0f7a7dd3cac5dd6b8489f7ff308dc">hspi_waitReady</a>();</div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;}</div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;</div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;</div>
-<div class="line"><a name="l00297"></a><span class="lineno"><a class="line" href="hspi_8h.html#a9c3e16850f5483b34b579e6258847029">  297</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="hspi_8c.html#a9c3e16850f5483b34b579e6258847029">hspi_TxBuffered</a>(uint8_t *write_data, uint32_t bytes, uint32_t repeats)</div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;{</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;    uint16_t d_ind = 0;                           <span class="comment">// data index, size of write_data (bytes)</span></div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    uint16_t f_ind = 0;                           <span class="comment">// fifo buffer index</span></div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;    uint8_t buffer[<a class="code" href="hspi_8h.html#a1eaecab4a7e4f328f38ce57d4d3012d1">HSPI_FIFO_SIZE</a>];               <span class="comment">// fifo buffer, same as HSPI FIFO</span></div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;    <span class="keywordflow">if</span> ((bytes &lt; 1) || (repeats &lt; 1))</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;        <span class="keywordflow">return</span>;                                   <span class="comment">// Error parameter</span></div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;    <span class="keywordflow">while</span>(repeats)</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;    {</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;        buffer[f_ind++] = write_data[d_ind++];</div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;        <span class="keywordflow">if</span>(d_ind &gt;= bytes)                        <span class="comment">// size of data</span></div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;        {</div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;            d_ind = 0;</div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;            --repeats;                            <span class="comment">// data has been copied once</span></div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;        }</div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;<span class="comment">// Send a full FIFO block - or - remaining data</span></div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;        <span class="keywordflow">if</span>(!repeats || f_ind &gt;= <a class="code" href="hspi_8h.html#a1eaecab4a7e4f328f38ce57d4d3012d1">HSPI_FIFO_SIZE</a>)</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;        {</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;            <a class="code" href="hspi_8c.html#aa16c031fe914c256a5c9e24c4c84f1a8">hspi_Tx</a>(buffer,f_ind);</div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;            f_ind = 0;</div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;        }</div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;    }</div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;}</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;<a class="code" href="fonts_2font_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
+<div class="line"><a name="l00225"></a><span class="lineno"><a class="line" href="hspi_8h.html#ac5a9490bbae15367dc587f0ff8116ed1">  225</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="hspi_8c.html#a4b95a4995e2eda91b486922399556478">hspi_stream_init</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;{</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    <a class="code" href="hspi_8c.html#aa6a57ceab70df59f457e69cce09958e5">_f_ind</a> = 0;</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    <a class="code" href="hspi_8c.html#af1a0f7a7dd3cac5dd6b8489f7ff308dc">hspi_waitReady</a>();</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;}</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;</div>
+<div class="line"><a name="l00236"></a><span class="lineno"><a class="line" href="hspi_8h.html#ae628a21798ab6b04d11300aba22454af">  236</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="hspi_8c.html#ae628a21798ab6b04d11300aba22454af">hspi_stream_flush</a>( <span class="keywordtype">void</span> )</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;{</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;<span class="comment">// Send a full FIFO block - or - remaining data</span></div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="hspi_8c.html#aa6a57ceab70df59f457e69cce09958e5">_f_ind</a> )</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    {</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;        <a class="code" href="hspi_8c.html#ac14f0398698936dcf2ffbb735611c2e6">hspi_config</a>(<a class="code" href="hspi_8h.html#ad9632609fe3a2c77d6bca3d5252980e3">CONFIG_FOR_TX</a>);               <span class="comment">// Does hspi_waitReady(); first</span></div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;        <a class="code" href="hspi_8c.html#ab4920c99a66fe082f4c441b27d08f1d7">hspi_writeFIFO</a>(<a class="code" href="hspi_8c.html#a6c076278b2b65a60bcace9600f14abde">_f_buf</a>, <a class="code" href="hspi_8c.html#aa6a57ceab70df59f457e69cce09958e5">_f_ind</a>);</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;        <a class="code" href="hspi_8c.html#a34c41331dd49e4e0f3aa300dfb88234f">hspi_startSend</a>();</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;        <a class="code" href="hspi_8c.html#aa6a57ceab70df59f457e69cce09958e5">_f_ind</a> = 0;</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;    }</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    <a class="code" href="hspi_8c.html#af1a0f7a7dd3cac5dd6b8489f7ff308dc">hspi_waitReady</a>();</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;}</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;</div>
+<div class="line"><a name="l00255"></a><span class="lineno"><a class="line" href="hspi_8h.html#ae58eb89be86e2c23e98f71d357c785b2">  255</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="hspi_8c.html#ae58eb89be86e2c23e98f71d357c785b2">hspi_stream</a>(uint8_t data)</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;{</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;<span class="comment">// Queue sent data</span></div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;    <a class="code" href="hspi_8c.html#a6c076278b2b65a60bcace9600f14abde">_f_buf</a>[<a class="code" href="hspi_8c.html#aa6a57ceab70df59f457e69cce09958e5">_f_ind</a>++] = data;</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;<span class="comment">// Send a full FIFO block - or - remaining data</span></div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="hspi_8c.html#aa6a57ceab70df59f457e69cce09958e5">_f_ind</a> &gt;= <a class="code" href="hspi_8h.html#a1eaecab4a7e4f328f38ce57d4d3012d1">HSPI_FIFO_SIZE</a>)</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;    {</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;        <a class="code" href="hspi_8c.html#ae628a21798ab6b04d11300aba22454af">hspi_stream_flush</a>();</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;    }</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;}</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;</div>
+<div class="line"><a name="l00272"></a><span class="lineno"><a class="line" href="hspi_8h.html#a5ac551a53430a5014d38082ee1be32f6">  272</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="hspi_8c.html#a5ac551a53430a5014d38082ee1be32f6">hspi_TxRx</a>(uint8_t *data, uint16_t bytes)</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;{</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;    <span class="keywordflow">if</span>(bytes &gt; <a class="code" href="hspi_8h.html#a1eaecab4a7e4f328f38ce57d4d3012d1">HSPI_FIFO_SIZE</a>)</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;        <span class="keywordflow">return</span>;                                   <span class="comment">// Error</span></div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;    <a class="code" href="hspi_8c.html#ac14f0398698936dcf2ffbb735611c2e6">hspi_config</a>(<a class="code" href="hspi_8h.html#a0a89ba717c8b84a7c3799d310b54e5c2">CONFIG_FOR_RX_TX</a>);</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;    <a class="code" href="hspi_8c.html#ab4920c99a66fe082f4c441b27d08f1d7">hspi_writeFIFO</a>(data, bytes);</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;    <a class="code" href="hspi_8c.html#a34c41331dd49e4e0f3aa300dfb88234f">hspi_startSend</a>();</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;    <a class="code" href="hspi_8c.html#af1a0f7a7dd3cac5dd6b8489f7ff308dc">hspi_waitReady</a>();</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;<span class="comment">// read result</span></div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;    <a class="code" href="hspi_8c.html#a744fb4ddb01b77242becd418b8ba6a46">hspi_readFIFO</a>(data, bytes);</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;}</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;</div>
+<div class="line"><a name="l00290"></a><span class="lineno"><a class="line" href="hspi_8h.html#aa16c031fe914c256a5c9e24c4c84f1a8">  290</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="hspi_8c.html#aa16c031fe914c256a5c9e24c4c84f1a8">hspi_Tx</a>(uint8_t *data, uint16_t bytes)</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;{</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;    <span class="keywordflow">if</span>(bytes &gt; <a class="code" href="hspi_8h.html#a1eaecab4a7e4f328f38ce57d4d3012d1">HSPI_FIFO_SIZE</a>)</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;        <span class="keywordflow">return</span>;                                   <span class="comment">// Error</span></div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;    <a class="code" href="hspi_8c.html#ac14f0398698936dcf2ffbb735611c2e6">hspi_config</a>(<a class="code" href="hspi_8h.html#ad9632609fe3a2c77d6bca3d5252980e3">CONFIG_FOR_TX</a>);                   <span class="comment">// Does hspi_waitReady(); first</span></div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;    <a class="code" href="hspi_8c.html#ab4920c99a66fe082f4c441b27d08f1d7">hspi_writeFIFO</a>(data, bytes);</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;    <a class="code" href="hspi_8c.html#a34c41331dd49e4e0f3aa300dfb88234f">hspi_startSend</a>();</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;    <a class="code" href="hspi_8c.html#af1a0f7a7dd3cac5dd6b8489f7ff308dc">hspi_waitReady</a>();</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;}</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;</div>
+<div class="line"><a name="l00309"></a><span class="lineno"><a class="line" href="hspi_8h.html#a9c3e16850f5483b34b579e6258847029">  309</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="hspi_8c.html#a9c3e16850f5483b34b579e6258847029">hspi_TxBuffered</a>(uint8_t *write_data, uint32_t bytes, uint32_t repeats)</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;{</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;    uint16_t d_ind = 0;                           <span class="comment">// data index, size of write_data (bytes)</span></div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;    uint16_t f_ind = 0;                           <span class="comment">// fifo buffer index</span></div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;    uint8_t buffer[<a class="code" href="hspi_8h.html#a1eaecab4a7e4f328f38ce57d4d3012d1">HSPI_FIFO_SIZE</a>];               <span class="comment">// fifo buffer, same as HSPI FIFO</span></div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;    <span class="keywordflow">if</span> ((bytes &lt; 1) || (repeats &lt; 1))</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;        <span class="keywordflow">return</span>;                                   <span class="comment">// Error parameter</span></div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;    <span class="keywordflow">while</span>(repeats)</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;    {</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;        buffer[f_ind++] = write_data[d_ind++];</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;        <span class="keywordflow">if</span>(d_ind &gt;= bytes)                        <span class="comment">// size of data</span></div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;        {</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;            d_ind = 0;</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;            --repeats;                            <span class="comment">// data has been copied once</span></div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;        }</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;<span class="comment">// Send a full FIFO block - or - remaining data</span></div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;        <span class="keywordflow">if</span>(!repeats || f_ind &gt;= <a class="code" href="hspi_8h.html#a1eaecab4a7e4f328f38ce57d4d3012d1">HSPI_FIFO_SIZE</a>)</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;        {</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;            <a class="code" href="hspi_8c.html#aa16c031fe914c256a5c9e24c4c84f1a8">hspi_Tx</a>(buffer,f_ind);</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;            f_ind = 0;</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;        }</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;    }</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;}</div>
 <div class="ttc" id="spi__register_8h_html_a985ecc8150c9d2a866a274959872053f"><div class="ttname"><a href="spi__register_8h.html#a985ecc8150c9d2a866a274959872053f">SPI_FLASH_C0</a></div><div class="ttdeci">#define SPI_FLASH_C0(i)</div><div class="ttdef"><b>Definition:</b> <a href="spi__register_8h_source.html#l00209">spi_register.h:209</a></div></div>
-<div class="ttc" id="hspi_8c_html_ae628a21798ab6b04d11300aba22454af"><div class="ttname"><a href="hspi_8c.html#ae628a21798ab6b04d11300aba22454af">hspi_stream_flush</a></div><div class="ttdeci">void hspi_stream_flush(void)</div><div class="ttdef"><b>Definition:</b> <a href="hspi_8c_source.html#l00229">hspi.c:229</a></div></div>
+<div class="ttc" id="hspi_8c_html_ae628a21798ab6b04d11300aba22454af"><div class="ttname"><a href="hspi_8c.html#ae628a21798ab6b04d11300aba22454af">hspi_stream_flush</a></div><div class="ttdeci">void hspi_stream_flush(void)</div><div class="ttdoc">HSPI stream flush We use the fifo - or a buffer to queue spi writes The overhead of N writes done at ...</div><div class="ttdef"><b>Definition:</b> <a href="hspi_8c_source.html#l00236">hspi.c:236</a></div></div>
 <div class="ttc" id="spi__register_8h_html_a4ce55c15793ed51792c2cfe24eae4227"><div class="ttname"><a href="spi__register_8h.html#a4ce55c15793ed51792c2cfe24eae4227">SPI_DOUTDIN</a></div><div class="ttdeci">#define SPI_DOUTDIN</div><div class="ttdef"><b>Definition:</b> <a href="spi__register_8h_source.html#l00131">spi_register.h:131</a></div></div>
 <div class="ttc" id="spi__register_8h_html_ae39144a54ce07c1cf860f366b6235cee"><div class="ttname"><a href="spi__register_8h.html#ae39144a54ce07c1cf860f366b6235cee">SPI_CLKDIV_PRE_S</a></div><div class="ttdeci">#define SPI_CLKDIV_PRE_S</div><div class="ttdef"><b>Definition:</b> <a href="spi__register_8h_source.html#l00092">spi_register.h:92</a></div></div>
 <div class="ttc" id="spi__register_8h_html_a3ad62dc9ccd056ca416114564ff1e0b2"><div class="ttname"><a href="spi__register_8h.html#a3ad62dc9ccd056ca416114564ff1e0b2">SPI_USR_DIN_BITLEN_S</a></div><div class="ttdeci">#define SPI_USR_DIN_BITLEN_S</div><div class="ttdef"><b>Definition:</b> <a href="spi__register_8h_source.html#l00139">spi_register.h:139</a></div></div>
@@ -367,8 +367,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="hspi_8h_html_a1eaecab4a7e4f328f38ce57d4d3012d1"><div class="ttname"><a href="hspi_8h.html#a1eaecab4a7e4f328f38ce57d4d3012d1">HSPI_FIFO_SIZE</a></div><div class="ttdeci">#define HSPI_FIFO_SIZE</div><div class="ttdef"><b>Definition:</b> <a href="hspi_8h_source.html#l00019">hspi.h:19</a></div></div>
 <div class="ttc" id="spi__register_8h_html_a3c3adde4c17e0cb25d458987a20d86b4"><div class="ttname"><a href="spi__register_8h.html#a3c3adde4c17e0cb25d458987a20d86b4">SPI_CLKCNT_N_S</a></div><div class="ttdeci">#define SPI_CLKCNT_N_S</div><div class="ttdef"><b>Definition:</b> <a href="spi__register_8h_source.html#l00094">spi_register.h:94</a></div></div>
 <div class="ttc" id="spi__register_8h_html_af102aefcd36fbd7f60de993e4fd401b3"><div class="ttname"><a href="spi__register_8h.html#af102aefcd36fbd7f60de993e4fd401b3">SPI_FLASH_CMD</a></div><div class="ttdeci">#define SPI_FLASH_CMD(i)</div><div class="ttdef"><b>Definition:</b> <a href="spi__register_8h_source.html#l00012">spi_register.h:12</a></div></div>
-<div class="ttc" id="hspi_8c_html_a5ac551a53430a5014d38082ee1be32f6"><div class="ttname"><a href="hspi_8c.html#a5ac551a53430a5014d38082ee1be32f6">hspi_TxRx</a></div><div class="ttdeci">void hspi_TxRx(uint8_t *data, uint16_t bytes)</div><div class="ttdoc">Used only for small (less then HSPI_FIFO_SIZE) write / read Write and Read uses same buffer and same ...</div><div class="ttdef"><b>Definition:</b> <a href="hspi_8c_source.html#l00260">hspi.c:260</a></div></div>
-<div class="ttc" id="hspi_8c_html_ae58eb89be86e2c23e98f71d357c785b2"><div class="ttname"><a href="hspi_8c.html#ae58eb89be86e2c23e98f71d357c785b2">hspi_stream</a></div><div class="ttdeci">void hspi_stream(uint8_t data)</div><div class="ttdef"><b>Definition:</b> <a href="hspi_8c_source.html#l00243">hspi.c:243</a></div></div>
+<div class="ttc" id="hspi_8c_html_a5ac551a53430a5014d38082ee1be32f6"><div class="ttname"><a href="hspi_8c.html#a5ac551a53430a5014d38082ee1be32f6">hspi_TxRx</a></div><div class="ttdeci">void hspi_TxRx(uint8_t *data, uint16_t bytes)</div><div class="ttdoc">Used only for small (less then HSPI_FIFO_SIZE) write / read Write and Read uses same buffer and same ...</div><div class="ttdef"><b>Definition:</b> <a href="hspi_8c_source.html#l00272">hspi.c:272</a></div></div>
+<div class="ttc" id="hspi_8c_html_ae58eb89be86e2c23e98f71d357c785b2"><div class="ttname"><a href="hspi_8c.html#ae58eb89be86e2c23e98f71d357c785b2">hspi_stream</a></div><div class="ttdeci">void hspi_stream(uint8_t data)</div><div class="ttdoc">HSPI stream byte to buffer We use the fifo - or a buffer to queue spi writes The overhead of N writes...</div><div class="ttdef"><b>Definition:</b> <a href="hspi_8c_source.html#l00255">hspi.c:255</a></div></div>
 <div class="ttc" id="spi__register_8h_html_a98938b083f6a99fd4d2e96f078e17033"><div class="ttname"><a href="spi__register_8h.html#a98938b083f6a99fd4d2e96f078e17033">SPI_FLASH_USR_ADDR</a></div><div class="ttdeci">#define SPI_FLASH_USR_ADDR</div><div class="ttdef"><b>Definition:</b> <a href="spi__register_8h_source.html#l00102">spi_register.h:102</a></div></div>
 <div class="ttc" id="spi__register_8h_html_a78727df9e0fe66463f3dbc6b4a0747cd"><div class="ttname"><a href="spi__register_8h.html#a78727df9e0fe66463f3dbc6b4a0747cd">SPI_FLASH_DOUT</a></div><div class="ttdeci">#define SPI_FLASH_DOUT</div><div class="ttdef"><b>Definition:</b> <a href="spi__register_8h_source.html#l00105">spi_register.h:105</a></div></div>
 <div class="ttc" id="spi__register_8h_html_ac193cd0f592914f5c5632b7f81dcf9d1"><div class="ttname"><a href="spi__register_8h.html#ac193cd0f592914f5c5632b7f81dcf9d1">SPI_FLASH_CLOCK</a></div><div class="ttdeci">#define SPI_FLASH_CLOCK(i)</div><div class="ttdef"><b>Definition:</b> <a href="spi__register_8h_source.html#l00089">spi_register.h:89</a></div></div>
@@ -377,7 +377,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="hspi_8c_html_acb47a9f26ec1023536dba1db70a6c120"><div class="ttname"><a href="hspi_8c.html#acb47a9f26ec1023536dba1db70a6c120">hspi_setBits</a></div><div class="ttdeci">void hspi_setBits(uint16_t bytes)</div><div class="ttdoc">HSPI FIFO send or receive byte count. </div><div class="ttdef"><b>Definition:</b> <a href="hspi_8c_source.html#l00100">hspi.c:100</a></div></div>
 <div class="ttc" id="spi__register_8h_html_ad0a99a332976f6b98318941f76d706a0"><div class="ttname"><a href="spi__register_8h.html#ad0a99a332976f6b98318941f76d706a0">SPI_CLKCNT_N</a></div><div class="ttdeci">#define SPI_CLKCNT_N</div><div class="ttdef"><b>Definition:</b> <a href="spi__register_8h_source.html#l00093">spi_register.h:93</a></div></div>
 <div class="ttc" id="spi__register_8h_html_a41fe427479b2f4e5b97549034e9d6425"><div class="ttname"><a href="spi__register_8h.html#a41fe427479b2f4e5b97549034e9d6425">SPI_FLASH_USER1</a></div><div class="ttdeci">#define SPI_FLASH_USER1(i)</div><div class="ttdef"><b>Definition:</b> <a href="spi__register_8h_source.html#l00133">spi_register.h:133</a></div></div>
-<div class="ttc" id="hspi_8c_html_aa16c031fe914c256a5c9e24c4c84f1a8"><div class="ttname"><a href="hspi_8c.html#aa16c031fe914c256a5c9e24c4c84f1a8">hspi_Tx</a></div><div class="ttdeci">void hspi_Tx(uint8_t *data, uint16_t bytes)</div><div class="ttdoc">Used only for small (less then HSPI_FIFO_SIZE) write Used for small (less then HSPI_FIFO_SIZE) packet...</div><div class="ttdef"><b>Definition:</b> <a href="hspi_8c_source.html#l00278">hspi.c:278</a></div></div>
+<div class="ttc" id="hspi_8c_html_aa16c031fe914c256a5c9e24c4c84f1a8"><div class="ttname"><a href="hspi_8c.html#aa16c031fe914c256a5c9e24c4c84f1a8">hspi_Tx</a></div><div class="ttdeci">void hspi_Tx(uint8_t *data, uint16_t bytes)</div><div class="ttdoc">Used only for small (less then HSPI_FIFO_SIZE) write Used for small (less then HSPI_FIFO_SIZE) packet...</div><div class="ttdef"><b>Definition:</b> <a href="hspi_8c_source.html#l00290">hspi.c:290</a></div></div>
 <div class="ttc" id="hspi_8c_html_a744fb4ddb01b77242becd418b8ba6a46"><div class="ttname"><a href="hspi_8c.html#a744fb4ddb01b77242becd418b8ba6a46">hspi_readFIFO</a></div><div class="ttdeci">void hspi_readFIFO(uint8_t *read_data, uint16_t bytes)</div><div class="ttdoc">HSPI FIFO Read in units of 32 bits (4 byte words) </div><div class="ttdef"><b>Definition:</b> <a href="hspi_8c_source.html#l00181">hspi.c:181</a></div></div>
 <div class="ttc" id="hspi_8c_html_a34c41331dd49e4e0f3aa300dfb88234f"><div class="ttname"><a href="hspi_8c.html#a34c41331dd49e4e0f3aa300dfb88234f">hspi_startSend</a></div><div class="ttdeci">void hspi_startSend(void)</div><div class="ttdoc">HSPI Start Send. </div><div class="ttdef"><b>Definition:</b> <a href="hspi_8c_source.html#l00111">hspi.c:111</a></div></div>
 <div class="ttc" id="spi__register_8h_html_ae57220219a50225bbb53f59bdfdc52c8"><div class="ttname"><a href="spi__register_8h.html#ae57220219a50225bbb53f59bdfdc52c8">SPI_CLKCNT_H_S</a></div><div class="ttdeci">#define SPI_CLKCNT_H_S</div><div class="ttdef"><b>Definition:</b> <a href="spi__register_8h_source.html#l00096">spi_register.h:96</a></div></div>
@@ -393,19 +393,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="hspi_8h_html_a22bd615ece7185b5f635eae8facd0994"><div class="ttname"><a href="hspi_8h.html#a22bd615ece7185b5f635eae8facd0994">HSPI</a></div><div class="ttdeci">#define HSPI</div><div class="ttdef"><b>Definition:</b> <a href="hspi_8h_source.html#l00018">hspi.h:18</a></div></div>
 <div class="ttc" id="hspi_8c_html_ac14f0398698936dcf2ffbb735611c2e6"><div class="ttname"><a href="hspi_8c.html#ac14f0398698936dcf2ffbb735611c2e6">hspi_config</a></div><div class="ttdeci">void hspi_config(int configState)</div><div class="ttdoc">HSPI Configuration for tranasmit and receive. </div><div class="ttdef"><b>Definition:</b> <a href="hspi_8c_source.html#l00064">hspi.c:64</a></div></div>
 <div class="ttc" id="hspi_8h_html"><div class="ttname"><a href="hspi_8h.html">hspi.h</a></div></div>
-<div class="ttc" id="hspi_8c_html_a4b95a4995e2eda91b486922399556478"><div class="ttname"><a href="hspi_8c.html#a4b95a4995e2eda91b486922399556478">hspi_stream_init</a></div><div class="ttdeci">MEMSPACE void hspi_stream_init(void)</div><div class="ttdef"><b>Definition:</b> <a href="hspi_8c_source.html#l00222">hspi.c:222</a></div></div>
+<div class="ttc" id="hspi_8c_html_a4b95a4995e2eda91b486922399556478"><div class="ttname"><a href="hspi_8c.html#a4b95a4995e2eda91b486922399556478">hspi_stream_init</a></div><div class="ttdeci">MEMSPACE void hspi_stream_init(void)</div><div class="ttdoc">HSPI stream init We use the fifo - or a buffer to queue spi writes The overhead of N writes done at o...</div><div class="ttdef"><b>Definition:</b> <a href="hspi_8c_source.html#l00225">hspi.c:225</a></div></div>
 <div class="ttc" id="spi__register_8h_html_a1b0366fbace7cbdafb476ef11377b4e6"><div class="ttname"><a href="spi__register_8h.html#a1b0366fbace7cbdafb476ef11377b4e6">SPI_CLKDIV_PRE</a></div><div class="ttdeci">#define SPI_CLKDIV_PRE</div><div class="ttdef"><b>Definition:</b> <a href="spi__register_8h_source.html#l00091">spi_register.h:91</a></div></div>
 <div class="ttc" id="spi__register_8h_html_aa9feb30cc658107619ff5876aeee0940"><div class="ttname"><a href="spi__register_8h.html#aa9feb30cc658107619ff5876aeee0940">SPI_CLKCNT_H</a></div><div class="ttdeci">#define SPI_CLKCNT_H</div><div class="ttdef"><b>Definition:</b> <a href="spi__register_8h_source.html#l00095">spi_register.h:95</a></div></div>
 <div class="ttc" id="spi__register_8h_html_a2a52c366cf9b24b19233cdaffbbce4a4"><div class="ttname"><a href="spi__register_8h.html#a2a52c366cf9b24b19233cdaffbbce4a4">SPI_USR_OUT_BITLEN</a></div><div class="ttdeci">#define SPI_USR_OUT_BITLEN</div><div class="ttdef"><b>Definition:</b> <a href="spi__register_8h_source.html#l00136">spi_register.h:136</a></div></div>
 <div class="ttc" id="spi__register_8h_html_a1edd73a3e0f94a6edb37e6423a2a91d6"><div class="ttname"><a href="spi__register_8h.html#a1edd73a3e0f94a6edb37e6423a2a91d6">SPI_CLKCNT_L_S</a></div><div class="ttdeci">#define SPI_CLKCNT_L_S</div><div class="ttdef"><b>Definition:</b> <a href="spi__register_8h_source.html#l00098">spi_register.h:98</a></div></div>
 <div class="ttc" id="hspi_8c_html_aa6a57ceab70df59f457e69cce09958e5"><div class="ttname"><a href="hspi_8c.html#aa6a57ceab70df59f457e69cce09958e5">_f_ind</a></div><div class="ttdeci">static uint16_t _f_ind</div><div class="ttdef"><b>Definition:</b> <a href="hspi_8c_source.html#l00019">hspi.c:19</a></div></div>
-<div class="ttc" id="hspi_8c_html_a9c3e16850f5483b34b579e6258847029"><div class="ttname"><a href="hspi_8c.html#a9c3e16850f5483b34b579e6258847029">hspi_TxBuffered</a></div><div class="ttdeci">void hspi_TxBuffered(uint8_t *write_data, uint32_t bytes, uint32_t repeats)</div><div class="ttdoc">Send large buffer (datasize bytes in size) repeat times Send repeats times Note: a repeat of zero wil...</div><div class="ttdef"><b>Definition:</b> <a href="hspi_8c_source.html#l00297">hspi.c:297</a></div></div>
+<div class="ttc" id="hspi_8c_html_a9c3e16850f5483b34b579e6258847029"><div class="ttname"><a href="hspi_8c.html#a9c3e16850f5483b34b579e6258847029">hspi_TxBuffered</a></div><div class="ttdeci">void hspi_TxBuffered(uint8_t *write_data, uint32_t bytes, uint32_t repeats)</div><div class="ttdoc">Send large buffer (datasize bytes in size) repeat times Send repeats times Note: a repeat of zero wil...</div><div class="ttdef"><b>Definition:</b> <a href="hspi_8c_source.html#l00309">hspi.c:309</a></div></div>
 <div class="ttc" id="hspi_8c_html_ab4920c99a66fe082f4c441b27d08f1d7"><div class="ttname"><a href="hspi_8c.html#ab4920c99a66fe082f4c441b27d08f1d7">hspi_writeFIFO</a></div><div class="ttdeci">void hspi_writeFIFO(uint8_t *write_data, uint16_t bytes)</div><div class="ttdoc">HSPI FIFO write in units of 32 bits (4 byte words) </div><div class="ttdef"><b>Definition:</b> <a href="hspi_8c_source.html#l00135">hspi.c:135</a></div></div>
 <div class="ttc" id="hspi_8c_html_ad67527dcfce518bc041439e8baa7c46b"><div class="ttname"><a href="hspi_8c.html#ad67527dcfce518bc041439e8baa7c46b">hspi_init</a></div><div class="ttdeci">MEMSPACE void hspi_init(void)</div><div class="ttdoc">HSPI Initiaization - with automatic chip sellect Pins: MISO GPIO12 MOSI GPIO13 CLK GPIO14 CS GPIO15 D...</div><div class="ttdef"><b>Definition:</b> <a href="hspi_8c_source.html#l00031">hspi.c:31</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jun 2 2015 00:14:28 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jun 2 2015 22:05:44 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

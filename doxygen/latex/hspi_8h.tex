@@ -37,11 +37,11 @@ void \hyperlink{hspi_8h_ab4920c99a66fe082f4c441b27d08f1d7}{hspi\-\_\-write\-F\-I
 void \hyperlink{hspi_8h_a744fb4ddb01b77242becd418b8ba6a46}{hspi\-\_\-read\-F\-I\-F\-O} (uint8\-\_\-t $\ast$read\-\_\-data, uint16\-\_\-t bytes)
 \begin{DoxyCompactList}\small\item\em H\-S\-P\-I F\-I\-F\-O Read in units of 32 bits (4 byte words) \end{DoxyCompactList}\item 
 void \hyperlink{hspi_8h_ac5a9490bbae15367dc587f0ff8116ed1}{hspi\-\_\-stream\-\_\-init} (void)
-\item 
+\begin{DoxyCompactList}\small\item\em H\-S\-P\-I stream init We use the fifo -\/ or a buffer to queue spi writes The overhead of N writes done at once is less N writes done one at a time. \end{DoxyCompactList}\item 
 void \hyperlink{hspi_8h_ae58eb89be86e2c23e98f71d357c785b2}{hspi\-\_\-stream} (uint8\-\_\-t data)
-\item 
+\begin{DoxyCompactList}\small\item\em H\-S\-P\-I stream byte to buffer We use the fifo -\/ or a buffer to queue spi writes The overhead of N writes done at once is less N writes done one at a time. \end{DoxyCompactList}\item 
 void \hyperlink{hspi_8h_ae628a21798ab6b04d11300aba22454af}{hspi\-\_\-stream\-\_\-flush} (void)
-\item 
+\begin{DoxyCompactList}\small\item\em H\-S\-P\-I stream flush We use the fifo -\/ or a buffer to queue spi writes The overhead of N writes done at once is less N writes done one at a time. \end{DoxyCompactList}\item 
 void \hyperlink{hspi_8h_a5ac551a53430a5014d38082ee1be32f6}{hspi\-\_\-\-Tx\-Rx} (uint8\-\_\-t $\ast$data, uint16\-\_\-t bytes)
 \begin{DoxyCompactList}\small\item\em Used only for small (less then H\-S\-P\-I\-\_\-\-F\-I\-F\-O\-\_\-\-S\-I\-Z\-E) write / read Write and Read uses same buffer and same byte count. \end{DoxyCompactList}\item 
 void \hyperlink{hspi_8h_aa16c031fe914c256a5c9e24c4c84f1a8}{hspi\-\_\-\-Tx} (uint8\-\_\-t $\ast$data, uint16\-\_\-t bytes)
@@ -242,7 +242,19 @@ Referenced by hspi\-\_\-stream\-\_\-flush(), hspi\-\_\-\-Tx(), and hspi\-\_\-\-T
 )}}\label{hspi_8h_ae58eb89be86e2c23e98f71d357c785b2}
 
 
-Definition at line 243 of file hspi.\-c.
+H\-S\-P\-I stream byte to buffer We use the fifo -\/ or a buffer to queue spi writes The overhead of N writes done at once is less N writes done one at a time. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em data} & byte to add to buffer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 255 of file hspi.\-c.
 
 
 
@@ -257,7 +269,14 @@ Referenced by tft\-\_\-bit\-\_\-blit(), tft\-\_\-blit(), tft\-\_\-write\-Color16
 )}}\label{hspi_8h_ae628a21798ab6b04d11300aba22454af}
 
 
-Definition at line 229 of file hspi.\-c.
+H\-S\-P\-I stream flush We use the fifo -\/ or a buffer to queue spi writes The overhead of N writes done at once is less N writes done one at a time. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 236 of file hspi.\-c.
 
 
 
@@ -272,7 +291,11 @@ Referenced by hspi\-\_\-stream(), tft\-\_\-bit\-\_\-blit(), tft\-\_\-blit(), tft
 )}}\label{hspi_8h_ac5a9490bbae15367dc587f0ff8116ed1}
 
 
-Definition at line 222 of file hspi.\-c.
+H\-S\-P\-I stream init We use the fifo -\/ or a buffer to queue spi writes The overhead of N writes done at once is less N writes done one at a time. 
+
+
+
+Definition at line 225 of file hspi.\-c.
 
 
 
@@ -302,7 +325,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 278 of file hspi.\-c.
+Definition at line 290 of file hspi.\-c.
 
 
 
@@ -335,7 +358,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 297 of file hspi.\-c.
+Definition at line 309 of file hspi.\-c.
 
 \hypertarget{hspi_8h_a5ac551a53430a5014d38082ee1be32f6}{\index{hspi.\-h@{hspi.\-h}!hspi\-\_\-\-Tx\-Rx@{hspi\-\_\-\-Tx\-Rx}}
 \index{hspi\-\_\-\-Tx\-Rx@{hspi\-\_\-\-Tx\-Rx}!hspi.h@{hspi.\-h}}
@@ -361,7 +384,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 260 of file hspi.\-c.
+Definition at line 272 of file hspi.\-c.
 
 
 

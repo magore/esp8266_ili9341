@@ -17,7 +17,7 @@ terms of the GNU General Public License as published by the Free Software
 Foundation, either version 3 of the License, or (at your option)
 any later version.
 
-bdffont2c is distributed in the hope that it will be useful,
+cordic.c is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
@@ -175,7 +175,7 @@ void cordic_quad(double angle, double *s, double *c)
     *c = cc;
     *s = cs;
 
-// Fixe defference between CORDIC and LIBC cos() and sin()
+// Test difference between CORDIC and LIBC cos() and sin()
 #ifdef TEST
     degree = angle * 90;
     rad = angle * M_PI / 2.0;

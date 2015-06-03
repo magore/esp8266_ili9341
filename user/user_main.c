@@ -71,6 +71,7 @@ static void test(void)
 	V.y = degree;
 	V.z = degree;
 	wire_draw(cube_points, cube_edges, &V, scale, 0);
+	wire_draw(cube_points, cube_edges, &V, scale/2, 0);
 #endif
 
 #ifdef EARTH
@@ -111,7 +112,7 @@ static void test(void)
 
     if (scale < 0.5)
         scale_inc = .1;
-    if (scale > 2.5)
+    if (scale > 2.0)
         scale_inc = -.1;
 
 #ifdef EARTH
@@ -132,6 +133,7 @@ static void test(void)
 	V.z = degree;
 	//time1 = system_get_time();
 	wire_draw(cube_points, cube_edges, &V, scale, 0xffff);
+	wire_draw(cube_points, cube_edges, &V, scale/2, 0xffff);
 	//time2 = system_get_time();
 #endif
 

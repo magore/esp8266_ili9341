@@ -218,6 +218,9 @@ void hspi_readFIFO(uint8_t *read_data, uint16_t bytes)
 }
 
 
+/// @brief HSPI stream init
+/// We use the fifo - or a buffer to queue spi writes
+/// The overhead of N writes done at once is less N writes done one at a time
 MEMSPACE
 void hspi_stream_init(void)
 {
@@ -226,6 +229,10 @@ void hspi_stream_init(void)
 }
 
 
+/// @brief HSPI stream flush 
+/// We use the fifo - or a buffer to queue spi writes
+/// The overhead of N writes done at once is less N writes done one at a time
+/// @return  void
 void hspi_stream_flush( void )
 {
 // Send a full FIFO block - or - remaining data
@@ -240,6 +247,11 @@ void hspi_stream_flush( void )
 }
 
 
+/// @brief HSPI stream byte to buffer
+/// We use the fifo - or a buffer to queue spi writes
+/// The overhead of N writes done at once is less N writes done one at a time
+/// @param[in] data: byte to add to buffer
+/// @return  void
 void hspi_stream(uint8_t data)
 {
 // Queue sent data
