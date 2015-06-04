@@ -1,5 +1,5 @@
 /**
- @par bdffont2c BDF to C code converter
+ @file cordic.h
  @par Copyright &copy; 2015 Mike Gore, GPL License
  @par Edit History
       - [1.0]   [Mike Gore]  Initial revision of file.
@@ -11,9 +11,6 @@
  See http://en.wikipedia.org/wiki/CORDIC
 See cordic.h, we use fixed point numbers, where 1.0=Cordic_One
 Note: 1.0 = 90 degrees
-BDF = Glyph Bitmap Distribution Format
-The code handles fixed, proportional and bounding box format fonts
-@see: http://en.wikipedia.org/wiki/Glyph_Bitmap_Distribution_Format
 @par Edit History
 - [1.0]   [Mike Gore]  Initial revision of file.
 
@@ -22,7 +19,7 @@ terms of the GNU General Public License as published by the Free Software
 Foundation, either version 3 of the License, or (at your option)
 any later version.
 
-bdffont2c is distributed in the hope that it will be useful,
+cordic.h is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.

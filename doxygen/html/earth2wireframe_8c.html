@@ -87,36 +87,63 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#define-members">Macros</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">earth2wireframe.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Convert Earth wireframe in Lon, Lat pairs Each group (a set of Lon, Lat pairs) is separated by one or more blank lines, # are comments and ignored.  
+<p>Convert Earth wireframe in Lon, Lat pairs into X,Y,Z integer fixed point Each group (a set of Lon, Lat pairs) is separated by one or more blank lines, # are comments and ignored.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;stdio.h&gt;</code><br/>
 <code>#include &lt;stdlib.h&gt;</code><br/>
 <code>#include &lt;string.h&gt;</code><br/>
 <code>#include &lt;math.h&gt;</code><br/>
+<code>#include &lt;time.h&gt;</code><br/>
 <code>#include &lt;unistd.h&gt;</code><br/>
 <code>#include &lt;libgen.h&gt;</code><br/>
+<code>#include &quot;<a class="el" href="cordic_8h_source.html">../cordic/cordic.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="wire_8h_source.html">../wire/wire.h</a>&quot;</code><br/>
 </div>
 <p><a href="earth2wireframe_8c_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:ab946e2e7f7679350627acfded8e2658b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="earth2wireframe_8c.html#ab946e2e7f7679350627acfded8e2658b">TEST</a></td></tr>
+<tr class="separator:ab946e2e7f7679350627acfded8e2658b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0fe97585b8891f5e4f2b9a6426330a4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></td></tr>
+<tr class="separator:ad0fe97585b8891f5e4f2b9a6426330a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:aba7bc1797add20fe3efdf37ced1182c5"><td class="memItemLeft" align="right" valign="top">typedef unsigned char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="earth2wireframe_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a></td></tr>
+<tr class="separator:aba7bc1797add20fe3efdf37ced1182c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef44329758059c91c76d334e8fc09700"><td class="memItemLeft" align="right" valign="top">typedef signed char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="earth2wireframe_8c.html#aef44329758059c91c76d334e8fc09700">int8_t</a></td></tr>
+<tr class="separator:aef44329758059c91c76d334e8fc09700"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a273cf69d639a59973b6019625df33e30"><td class="memItemLeft" align="right" valign="top">typedef unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="earth2wireframe_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a></td></tr>
+<tr class="separator:a273cf69d639a59973b6019625df33e30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a435d1572bf3f880d55459d9805097f62"><td class="memItemLeft" align="right" valign="top">typedef unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="earth2wireframe_8c.html#a435d1572bf3f880d55459d9805097f62">uint32_t</a></td></tr>
+<tr class="separator:a435d1572bf3f880d55459d9805097f62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32f2e37ee053cf2ce8ca28d1f74630e5"><td class="memItemLeft" align="right" valign="top">typedef int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="earth2wireframe_8c.html#a32f2e37ee053cf2ce8ca28d1f74630e5">int32_t</a></td></tr>
+<tr class="separator:a32f2e37ee053cf2ce8ca28d1f74630e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a8012f8bd66798ffbdd27462c9f593a54"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="earth2wireframe_8c.html#a8012f8bd66798ffbdd27462c9f593a54">deg2rad</a> (double deg)</td></tr>
 <tr class="memdesc:a8012f8bd66798ffbdd27462c9f593a54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert of Radians.  <a href="#a8012f8bd66798ffbdd27462c9f593a54">More...</a><br/></td></tr>
 <tr class="separator:a8012f8bd66798ffbdd27462c9f593a54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4bc7ca5cbf08837c18c54b7a754d7900"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="earth2wireframe_8c.html#a4bc7ca5cbf08837c18c54b7a754d7900">get_date</a> ()</td></tr>
+<tr class="memdesc:a4bc7ca5cbf08837c18c54b7a754d7900"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current date in a string.  <a href="#a4bc7ca5cbf08837c18c54b7a754d7900">More...</a><br/></td></tr>
+<tr class="separator:a4bc7ca5cbf08837c18c54b7a754d7900"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="earth2wireframe_8c.html#a0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
-<tr class="memdesc:a0ddf1224851353fc92bfbff6f499fa97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert earth wireframe data to C structure Usage: s -f filename [-p]<br/>
-",argv[0]); -f filename is the lot,lat dataset pairs -p disable mapxyz typedef.  <a href="#a0ddf1224851353fc92bfbff6f499fa97">More...</a><br/></td></tr>
+<tr class="memdesc:a0ddf1224851353fc92bfbff6f499fa97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert earth wireframe data to C structure Usage: s -f source -o result<br/>
+",argv[0]); -f source is the lot,lat dataset pairs -o result is the con=verted file into CORDIC fixed point format.  <a href="#a0ddf1224851353fc92bfbff6f499fa97">More...</a><br/></td></tr>
 <tr class="separator:a0ddf1224851353fc92bfbff6f499fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Convert Earth wireframe in Lon, Lat pairs Each group (a set of Lon, Lat pairs) is separated by one or more blank lines, # are comments and ignored. </p>
+<div class="textblock"><p>Convert Earth wireframe in Lon, Lat pairs into X,Y,Z integer fixed point Each group (a set of Lon, Lat pairs) is separated by one or more blank lines, # are comments and ignored. </p>
 <dl class="section user"><dt>Copyright &copy; 2015 Mike Gore, GPL License</dt><dd></dd></dl>
 <dl class="section user"><dt>Edit History</dt><dd><ul>
 <li>[1.0] [Mike Gore] Initial revision of file.</li>
@@ -127,7 +154,107 @@ Functions</h2></td></tr>
 <p>You should have received a copy of the GNU General Public License along with this program. If not, see <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>. </p>
 
 <p>Definition in file <a class="el" href="earth2wireframe_8c_source.html">earth2wireframe.c</a>.</p>
-</div><h2 class="groupheader">Function Documentation</h2>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="ad0fe97585b8891f5e4f2b9a6426330a4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MEMSPACE</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="earth2wireframe_8c_source.html#l00044">44</a> of file <a class="el" href="earth2wireframe_8c_source.html">earth2wireframe.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab946e2e7f7679350627acfded8e2658b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TEST</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="earth2wireframe_8c_source.html#l00037">37</a> of file <a class="el" href="earth2wireframe_8c_source.html">earth2wireframe.c</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a class="anchor" id="a32f2e37ee053cf2ce8ca28d1f74630e5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef int <a class="el" href="earth2wireframe_8c.html#a32f2e37ee053cf2ce8ca28d1f74630e5">int32_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="earth2wireframe_8c_source.html#l00042">42</a> of file <a class="el" href="earth2wireframe_8c_source.html">earth2wireframe.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aef44329758059c91c76d334e8fc09700"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef signed char <a class="el" href="earth2wireframe_8c.html#aef44329758059c91c76d334e8fc09700">int8_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="earth2wireframe_8c_source.html#l00039">39</a> of file <a class="el" href="earth2wireframe_8c_source.html">earth2wireframe.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a273cf69d639a59973b6019625df33e30"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef unsigned short <a class="el" href="earth2wireframe_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="earth2wireframe_8c_source.html#l00040">40</a> of file <a class="el" href="earth2wireframe_8c_source.html">earth2wireframe.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a435d1572bf3f880d55459d9805097f62"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef unsigned int <a class="el" href="earth2wireframe_8c.html#a435d1572bf3f880d55459d9805097f62">uint32_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="earth2wireframe_8c_source.html#l00041">41</a> of file <a class="el" href="earth2wireframe_8c_source.html">earth2wireframe.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aba7bc1797add20fe3efdf37ced1182c5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef unsigned char <a class="el" href="earth2wireframe_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="earth2wireframe_8c_source.html#l00038">38</a> of file <a class="el" href="earth2wireframe_8c_source.html">earth2wireframe.c</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="a8012f8bd66798ffbdd27462c9f593a54"></a>
 <div class="memitem">
 <div class="memproto">
@@ -151,9 +278,37 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>radians </dd></dl>
 
-<p>Definition at line <a class="el" href="earth2wireframe_8c_source.html#l00041">41</a> of file <a class="el" href="earth2wireframe_8c_source.html">earth2wireframe.c</a>.</p>
+<p>Definition at line <a class="el" href="earth2wireframe_8c_source.html#l00051">51</a> of file <a class="el" href="earth2wireframe_8c_source.html">earth2wireframe.c</a>.</p>
 
-<p>Referenced by <a class="el" href="earth2wireframe_8c_source.html#l00050">main()</a>.</p>
+<p>Referenced by <a class="el" href="earth2wireframe_8c_source.html#l00076">main()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4bc7ca5cbf08837c18c54b7a754d7900"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* get_date </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the current date in a string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">str</td><td>string to fille with data and time </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
+<p>Definition at line <a class="el" href="earth2wireframe_8c_source.html#l00059">59</a> of file <a class="el" href="earth2wireframe_8c_source.html">earth2wireframe.c</a>.</p>
+
+<p>Referenced by <a class="el" href="earth2wireframe_8c_source.html#l00076">main()</a>.</p>
 
 </div>
 </div>
@@ -181,17 +336,17 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Convert earth wireframe data to C structure Usage: s -f filename [-p]<br/>
-",argv[0]); -f filename is the lot,lat dataset pairs -p disable mapxyz typedef. </p>
+<p>Convert earth wireframe data to C structure Usage: s -f source -o result<br/>
+",argv[0]); -f source is the lot,lat dataset pairs -o result is the con=verted file into CORDIC fixed point format. </p>
 
-<p>Definition at line <a class="el" href="earth2wireframe_8c_source.html#l00050">50</a> of file <a class="el" href="earth2wireframe_8c_source.html">earth2wireframe.c</a>.</p>
+<p>Definition at line <a class="el" href="earth2wireframe_8c_source.html#l00076">76</a> of file <a class="el" href="earth2wireframe_8c_source.html">earth2wireframe.c</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jun 2 2015 22:05:45 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jun 3 2015 21:40:59 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

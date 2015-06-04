@@ -3,7 +3,9 @@
 }
 {\ttfamily \#include $<$stdio.\-h$>$}\\*
 {\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$string.\-h$>$}\\*
 {\ttfamily \#include $<$math.\-h$>$}\\*
+{\ttfamily \#include $<$time.\-h$>$}\\*
 {\ttfamily \#include $<$unistd.\-h$>$}\\*
 {\ttfamily \#include $<$libgen.\-h$>$}\\*
 \subsection*{Macros}
@@ -49,7 +51,9 @@ typedef double \hyperlink{cordic2c_8c_a1ba532e6cdd503e97977432406864cdd}{F\-Cord
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{cordic2c_8c_af184b364894a86e05578b2397e13d79d}{dump\-\_\-tables} (char $\ast$str)
+char $\ast$ \hyperlink{cordic2c_8c_a4bc7ca5cbf08837c18c54b7a754d7900}{get\-\_\-date} ()
+\begin{DoxyCompactList}\small\item\em Get the current date in a string. \end{DoxyCompactList}\item 
+void \hyperlink{cordic2c_8c_a3281e2a9f8144b206e9e782543ed8da6}{dump\-\_\-tables} (F\-I\-L\-E $\ast$F\-O)
 \begin{DoxyCompactList}\small\item\em Create Cordic tables Normalize base number system to 1.\-0 == Cordic\-\_\-\-One == P\-I/2 (90 degrees) Example .5 is 50 gradians or P\-I/4 This value as great adavantages\-: \end{DoxyCompactList}\item 
 void \hyperlink{cordic2c_8c_afc93093d0da5da783668ca27f859a2a7}{Print\-X\-Y\-Z} (char $\ast$str)
 \begin{DoxyCompactList}\small\item\em Display X,Y,Z as floating point. \end{DoxyCompactList}\item 
@@ -84,7 +88,7 @@ static \hyperlink{cordic2c__inc_8h_a97ad155ac7434ee543385126cd1d3313}{Cordic\-\_
 )~( (double) (a) / (double) ({\bf Cordic\-\_\-\-One}))}}\label{cordic2c_8c_a20ea29e123c9dc91c52635b0ffee975d}
 
 
-Definition at line 120 of file cordic2c.\-c.
+Definition at line 123 of file cordic2c.\-c.
 
 
 
@@ -95,60 +99,60 @@ Referenced by Print\-X\-Y\-Z().
 \subsubsection[{Cordic\-\_\-\-Half\-P\-I}]{\setlength{\rightskip}{0pt plus 5cm}\#define Cordic\-\_\-\-Half\-P\-I~(({\bf U\-Cordic\-\_\-\-T}) ({\bf Cordic\-\_\-\-One} $\ast$ M\-\_\-\-P\-I\-\_\-2) )}}\label{cordic2c_8c_a1b436217d30824e9004f1e16d33abf0a}
 
 
-Definition at line 119 of file cordic2c.\-c.
+Definition at line 122 of file cordic2c.\-c.
 
 \hypertarget{cordic2c_8c_a38f46d7f72ed48712304af6f64b896f2}{\index{cordic2c.\-c@{cordic2c.\-c}!Cordic\-\_\-\-I\-N\-V\-K@{Cordic\-\_\-\-I\-N\-V\-K}}
 \index{Cordic\-\_\-\-I\-N\-V\-K@{Cordic\-\_\-\-I\-N\-V\-K}!cordic2c.c@{cordic2c.\-c}}
 \subsubsection[{Cordic\-\_\-\-I\-N\-V\-K}]{\setlength{\rightskip}{0pt plus 5cm}\#define Cordic\-\_\-\-I\-N\-V\-K~({\bf Cordic\-\_\-\-One} / 0.\-6072529350088812561694)}}\label{cordic2c_8c_a38f46d7f72ed48712304af6f64b896f2}
 
 
-Definition at line 116 of file cordic2c.\-c.
+Definition at line 119 of file cordic2c.\-c.
 
 \hypertarget{cordic2c_8c_a01817682b78da8cc004b6f0e9dd0d889}{\index{cordic2c.\-c@{cordic2c.\-c}!Cordic\-\_\-\-I\-N\-V\-K\-P@{Cordic\-\_\-\-I\-N\-V\-K\-P}}
 \index{Cordic\-\_\-\-I\-N\-V\-K\-P@{Cordic\-\_\-\-I\-N\-V\-K\-P}!cordic2c.c@{cordic2c.\-c}}
 \subsubsection[{Cordic\-\_\-\-I\-N\-V\-K\-P}]{\setlength{\rightskip}{0pt plus 5cm}\#define Cordic\-\_\-\-I\-N\-V\-K\-P~({\bf Cordic\-\_\-\-One} $\ast$ 1/1.\-20749706776307212887772)}}\label{cordic2c_8c_a01817682b78da8cc004b6f0e9dd0d889}
 
 
-Definition at line 118 of file cordic2c.\-c.
+Definition at line 121 of file cordic2c.\-c.
 
 \hypertarget{cordic2c_8c_a4b976fbfc7fdff42650fe0419698cabf}{\index{cordic2c.\-c@{cordic2c.\-c}!Cordic\-\_\-\-K@{Cordic\-\_\-\-K}}
 \index{Cordic\-\_\-\-K@{Cordic\-\_\-\-K}!cordic2c.c@{cordic2c.\-c}}
 \subsubsection[{Cordic\-\_\-\-K}]{\setlength{\rightskip}{0pt plus 5cm}\#define Cordic\-\_\-\-K~({\bf Cordic\-\_\-\-One} $\ast$ 0.\-6072529350088812561694)}}\label{cordic2c_8c_a4b976fbfc7fdff42650fe0419698cabf}
 
 
-Definition at line 115 of file cordic2c.\-c.
+Definition at line 118 of file cordic2c.\-c.
 
 
 
-Referenced by asin\-Cordic(), and main().
+Referenced by asin\-Cordic().
 
 \hypertarget{cordic2c_8c_a77653d895effdbff8323975329805fc9}{\index{cordic2c.\-c@{cordic2c.\-c}!Cordic\-\_\-\-K\-P@{Cordic\-\_\-\-K\-P}}
 \index{Cordic\-\_\-\-K\-P@{Cordic\-\_\-\-K\-P}!cordic2c.c@{cordic2c.\-c}}
 \subsubsection[{Cordic\-\_\-\-K\-P}]{\setlength{\rightskip}{0pt plus 5cm}\#define Cordic\-\_\-\-K\-P~({\bf Cordic\-\_\-\-One} $\ast$ 1.\-20749706776307212887772)}}\label{cordic2c_8c_a77653d895effdbff8323975329805fc9}
 
 
-Definition at line 117 of file cordic2c.\-c.
+Definition at line 120 of file cordic2c.\-c.
 
 \hypertarget{cordic2c_8c_a75d478dd9c919ea7ecf27cc49b9dab58}{\index{cordic2c.\-c@{cordic2c.\-c}!Cordic\-\_\-\-One@{Cordic\-\_\-\-One}}
 \index{Cordic\-\_\-\-One@{Cordic\-\_\-\-One}!cordic2c.c@{cordic2c.\-c}}
 \subsubsection[{Cordic\-\_\-\-One}]{\setlength{\rightskip}{0pt plus 5cm}\#define Cordic\-\_\-\-One~(1\-U\-L $<$$<$ Cordic\-\_\-\-T\-\_\-\-Fraction\-Bits)}}\label{cordic2c_8c_a75d478dd9c919ea7ecf27cc49b9dab58}
 
 
-Definition at line 114 of file cordic2c.\-c.
+Definition at line 117 of file cordic2c.\-c.
 
 \hypertarget{cordic2c_8c_ad0c9c86596235ca7b3e113b12aeeafa0}{\index{cordic2c.\-c@{cordic2c.\-c}!Cordic\-\_\-\-T\-\_\-\-Bits@{Cordic\-\_\-\-T\-\_\-\-Bits}}
 \index{Cordic\-\_\-\-T\-\_\-\-Bits@{Cordic\-\_\-\-T\-\_\-\-Bits}!cordic2c.c@{cordic2c.\-c}}
 \subsubsection[{Cordic\-\_\-\-T\-\_\-\-Bits}]{\setlength{\rightskip}{0pt plus 5cm}\#define Cordic\-\_\-\-T\-\_\-\-Bits~(int)(sizeof({\bf Cordic\-\_\-\-T}) $<$$<$ 3)}}\label{cordic2c_8c_ad0c9c86596235ca7b3e113b12aeeafa0}
 
 
-Definition at line 99 of file cordic2c.\-c.
+Definition at line 102 of file cordic2c.\-c.
 
 \hypertarget{cordic2c_8c_a77433404a778cb9a148b6db69eedea93}{\index{cordic2c.\-c@{cordic2c.\-c}!Cordic\-\_\-\-T\-\_\-\-Fraction\-Bits@{Cordic\-\_\-\-T\-\_\-\-Fraction\-Bits}}
 \index{Cordic\-\_\-\-T\-\_\-\-Fraction\-Bits@{Cordic\-\_\-\-T\-\_\-\-Fraction\-Bits}!cordic2c.c@{cordic2c.\-c}}
 \subsubsection[{Cordic\-\_\-\-T\-\_\-\-Fraction\-Bits}]{\setlength{\rightskip}{0pt plus 5cm}\#define Cordic\-\_\-\-T\-\_\-\-Fraction\-Bits~(int)({\bf Cordic\-\_\-\-T\-\_\-\-Bits} -\/ 3 -\/ 1)}}\label{cordic2c_8c_a77433404a778cb9a148b6db69eedea93}
 
 
-Definition at line 102 of file cordic2c.\-c.
+Definition at line 105 of file cordic2c.\-c.
 
 
 
@@ -159,21 +163,21 @@ Referenced by Circular(), and cordit1().
 \subsubsection[{Cordic\-\_\-\-T\-\_\-\-S\-T\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define Cordic\-\_\-\-T\-\_\-\-S\-T\-R~\char`\"{}typedef int {\bf Cordic\-\_\-\-T};\char`\"{}}}\label{cordic2c_8c_a7c5645f685b278110b72d4003b2aee52}
 
 
-Definition at line 104 of file cordic2c.\-c.
+Definition at line 107 of file cordic2c.\-c.
 
 \hypertarget{cordic2c_8c_a867ec3a5cd66a315ef2c1ad6b54ee9b2}{\index{cordic2c.\-c@{cordic2c.\-c}!F\-Cordic\-\_\-\-T\-\_\-\-Bits@{F\-Cordic\-\_\-\-T\-\_\-\-Bits}}
 \index{F\-Cordic\-\_\-\-T\-\_\-\-Bits@{F\-Cordic\-\_\-\-T\-\_\-\-Bits}!cordic2c.c@{cordic2c.\-c}}
 \subsubsection[{F\-Cordic\-\_\-\-T\-\_\-\-Bits}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\-Cordic\-\_\-\-T\-\_\-\-Bits~(int)(sizeof({\bf F\-Cordic\-\_\-\-T}) $<$$<$ 3)}}\label{cordic2c_8c_a867ec3a5cd66a315ef2c1ad6b54ee9b2}
 
 
-Definition at line 100 of file cordic2c.\-c.
+Definition at line 103 of file cordic2c.\-c.
 
 \hypertarget{cordic2c_8c_a435917aacf957393509563ef16007425}{\index{cordic2c.\-c@{cordic2c.\-c}!F\-Cordic\-\_\-\-T\-\_\-\-S\-T\-R@{F\-Cordic\-\_\-\-T\-\_\-\-S\-T\-R}}
 \index{F\-Cordic\-\_\-\-T\-\_\-\-S\-T\-R@{F\-Cordic\-\_\-\-T\-\_\-\-S\-T\-R}!cordic2c.c@{cordic2c.\-c}}
 \subsubsection[{F\-Cordic\-\_\-\-T\-\_\-\-S\-T\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\-Cordic\-\_\-\-T\-\_\-\-S\-T\-R~\char`\"{}typedef double {\bf F\-Cordic\-\_\-\-T};\char`\"{}}}\label{cordic2c_8c_a435917aacf957393509563ef16007425}
 
 
-Definition at line 106 of file cordic2c.\-c.
+Definition at line 109 of file cordic2c.\-c.
 
 \hypertarget{cordic2c_8c_ad614e1a545ad0fd263ea0afb0456cb7a}{\index{cordic2c.\-c@{cordic2c.\-c}!F\-P2\-Cordic@{F\-P2\-Cordic}}
 \index{F\-P2\-Cordic@{F\-P2\-Cordic}!cordic2c.c@{cordic2c.\-c}}
@@ -184,7 +188,7 @@ Definition at line 106 of file cordic2c.\-c.
 )~(({\bf Cordic\-\_\-\-T}) ({\bf Cordic\-\_\-\-One} $\ast$ (a)))}}\label{cordic2c_8c_ad614e1a545ad0fd263ea0afb0456cb7a}
 
 
-Definition at line 121 of file cordic2c.\-c.
+Definition at line 124 of file cordic2c.\-c.
 
 
 
@@ -195,7 +199,7 @@ Referenced by main().
 \subsubsection[{U\-Cordic\-\_\-\-T\-\_\-\-S\-T\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define U\-Cordic\-\_\-\-T\-\_\-\-S\-T\-R~\char`\"{}typedef unsigned int {\bf U\-Cordic\-\_\-\-T};\char`\"{}}}\label{cordic2c_8c_a27092bec667d3da85622cfa613527520}
 
 
-Definition at line 105 of file cordic2c.\-c.
+Definition at line 108 of file cordic2c.\-c.
 
 
 
@@ -209,21 +213,21 @@ cordic\-C.\-c -- J. Pitts Jarvis, I\-I\-I cordic\-C.\-c computes C\-O\-R\-D\-I\-
 
 {\itshape I\-M\-P\-L\-E\-M\-E\-N\-T\-I\-N\-G C\-O\-R\-D\-I\-C A\-L\-G\-O\-R\-I\-T\-H\-M\-S} by Pitts Jarvis cordic algorithm identities for circular functions starting with \mbox{[}x, y, z\mbox{]} and then driving z to 0 gives\-: \mbox{[}P$\ast$(x$\ast$cos(z)-\/y$\ast$sin(z)), P$\ast$(y$\ast$cos(z)+x$\ast$sin(z)), 0\mbox{]} driving y to 0 gives\-: \mbox{[}P$\ast$sqrt(x$^\wedge$2+y$^\wedge$2), 0, z+atan(y/x)\mbox{]} where K = 1/\-P = sqrt(1+1)$\ast$ . . . {\itshape sqrt(1+(2$^\wedge$(-\/2$\ast$i))) special cases which compute interesting functions sin, cos \mbox{[}K, 0, a\mbox{]} -\/$>$ \mbox{[}cos(a), sin(a), 0\mbox{]} atan \mbox{[}1, a, 0\mbox{]} -\/$>$ \mbox{[}sqrt(1+a$^\wedge$2)/\-K, 0, atan(a)\mbox{]} \mbox{[}x, y, 0\mbox{]} -\/$>$ \mbox{[}sqrt(x$^\wedge$2+y$^\wedge$2)/\-K, 0, atan(y/x)\mbox{]} for hyperbolic functions, starting with \mbox{[}x, y, z\mbox{]} and then driving z to 0 gives\-: \mbox{[}P}(x$\ast$cosh(z)+y$\ast$sinh(z)), P$\ast$(y$\ast$cosh(z)+x$\ast$sinh(z)), 0\mbox{]} driving y to 0 gives\-: \mbox{[}P$\ast$sqrt(x$^\wedge$2-\/y$^\wedge$2), 0, z+atanh(y/x)\mbox{]} where K = 1/\-P = sqrt(1-\/(1/2)$^\wedge$2)$\ast$ . . . {\itshape sqrt(1-\/(2$^\wedge$(-\/2$\ast$i))) sinh, cosh \mbox{[}K, 0, a\mbox{]} -\/$>$ \mbox{[}cosh(a), sinh(a), 0\mbox{]} exponential \mbox{[}K, K, a\mbox{]} -\/$>$ \mbox{[}e$^\wedge$a, e$^\wedge$a, 0\mbox{]} atanh \mbox{[}1, a, 0\mbox{]} -\/$>$ \mbox{[}sqrt(1-\/a$^\wedge$2)/\-K, 0, atanh(a)\mbox{]} \mbox{[}x, y, 0\mbox{]} -\/$>$ \mbox{[}sqrt(x$^\wedge$2-\/y$^\wedge$2)/\-K, 0, atanh(y/x)\mbox{]} ln \mbox{[}a+1, a-\/1, 0\mbox{]} -\/$>$ \mbox{[}2$\ast$sqrt(a)/\-K, 0, ln(a)/2\mbox{]} sqrt \mbox{[}a+(K/2)$^\wedge$2, a-\/(K/2)$^\wedge$2, 0\mbox{]} -\/$>$ \mbox{[}sqrt(a), 0, ln(a}(2/\-K)$^\wedge$2)/2\mbox{]} sqrt, ln \mbox{[}a+(K/2)$^\wedge$2, a-\/(K/2)$^\wedge$2, -\/ln(K/2)\mbox{]} -\/$>$ \mbox{[}sqrt(a), 0, ln(a)/2\mbox{]} for linear functions, starting with \mbox{[}x, y, z\mbox{]} and then driving z to 0 gives\-: \mbox{[}x, y+x$\ast$z, 0\mbox{]} driving y to 0 gives\-: \mbox{[}x, 0, z+y/x\mbox{]} compute atan(x) and atanh(x) using infinite series atan(x) = x -\/ x$^\wedge$3/3 + x$^\wedge$5/5 -\/ x$^\wedge$7/7 + . . . for x$^\wedge$2 $<$ 1 atanh(x) = x + x$^\wedge$3/3 + x$^\wedge$5/5 + x$^\wedge$7/7 + . . . for x$^\wedge$2 $<$ 1 To calcuate these functions to 32 bits of precision, pick terms\mbox{[}i\mbox{]} s.\-t. ((2$^\wedge$-\/i)$^\wedge$(terms\mbox{[}i\mbox{]}))/(terms\mbox{[}i\mbox{]}) $<$ 2$^\wedge$-\/32 For x $<$= 2$^\wedge$(-\/11), atan(x) = atanh(x) = x with 32 bits of accuracy 
 
-Definition at line 94 of file cordic2c.\-c.
+Definition at line 97 of file cordic2c.\-c.
 
 \hypertarget{cordic2c_8c_a1ba532e6cdd503e97977432406864cdd}{\index{cordic2c.\-c@{cordic2c.\-c}!F\-Cordic\-\_\-\-T@{F\-Cordic\-\_\-\-T}}
 \index{F\-Cordic\-\_\-\-T@{F\-Cordic\-\_\-\-T}!cordic2c.c@{cordic2c.\-c}}
 \subsubsection[{F\-Cordic\-\_\-\-T}]{\setlength{\rightskip}{0pt plus 5cm}typedef double {\bf F\-Cordic\-\_\-\-T}}}\label{cordic2c_8c_a1ba532e6cdd503e97977432406864cdd}
 
 
-Definition at line 96 of file cordic2c.\-c.
+Definition at line 99 of file cordic2c.\-c.
 
 \hypertarget{cordic2c_8c_a0d2210939130fe06cdbba9248686fa03}{\index{cordic2c.\-c@{cordic2c.\-c}!U\-Cordic\-\_\-\-T@{U\-Cordic\-\_\-\-T}}
 \index{U\-Cordic\-\_\-\-T@{U\-Cordic\-\_\-\-T}!cordic2c.c@{cordic2c.\-c}}
 \subsubsection[{U\-Cordic\-\_\-\-T}]{\setlength{\rightskip}{0pt plus 5cm}typedef unsigned int {\bf U\-Cordic\-\_\-\-T}}}\label{cordic2c_8c_a0d2210939130fe06cdbba9248686fa03}
 
 
-Definition at line 95 of file cordic2c.\-c.
+Definition at line 98 of file cordic2c.\-c.
 
 
 
@@ -249,7 +253,7 @@ Arc\-Sine (a)
 \end{DoxyReturn}
 
 
-Definition at line 287 of file cordic2c.\-c.
+Definition at line 293 of file cordic2c.\-c.
 
 \hypertarget{cordic2c_8c_a9e686d8e990a05ea18655a368e6d1918}{\index{cordic2c.\-c@{cordic2c.\-c}!Circular@{Circular}}
 \index{Circular@{Circular}!cordic2c.c@{cordic2c.\-c}}
@@ -281,7 +285,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 211 of file cordic2c.\-c.
+Definition at line 217 of file cordic2c.\-c.
 
 
 
@@ -320,19 +324,19 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 254 of file cordic2c.\-c.
+Definition at line 260 of file cordic2c.\-c.
 
 
 
 Referenced by asin\-Cordic().
 
-\hypertarget{cordic2c_8c_af184b364894a86e05578b2397e13d79d}{\index{cordic2c.\-c@{cordic2c.\-c}!dump\-\_\-tables@{dump\-\_\-tables}}
+\hypertarget{cordic2c_8c_a3281e2a9f8144b206e9e782543ed8da6}{\index{cordic2c.\-c@{cordic2c.\-c}!dump\-\_\-tables@{dump\-\_\-tables}}
 \index{dump\-\_\-tables@{dump\-\_\-tables}!cordic2c.c@{cordic2c.\-c}}
 \subsubsection[{dump\-\_\-tables}]{\setlength{\rightskip}{0pt plus 5cm}void dump\-\_\-tables (
 \begin{DoxyParamCaption}
-\item[{char $\ast$}]{str}
+\item[{F\-I\-L\-E $\ast$}]{F\-O}
 \end{DoxyParamCaption}
-)}}\label{cordic2c_8c_af184b364894a86e05578b2397e13d79d}
+)}}\label{cordic2c_8c_a3281e2a9f8144b206e9e782543ed8da6}
 
 
 Create Cordic tables Normalize base number system to 1.\-0 == Cordic\-\_\-\-One == P\-I/2 (90 degrees) Example .5 is 50 gradians or P\-I/4 This value as great adavantages\-: 
@@ -351,7 +355,34 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 135 of file cordic2c.\-c.
+Definition at line 154 of file cordic2c.\-c.
+
+
+
+Referenced by main().
+
+\hypertarget{cordic2c_8c_a4bc7ca5cbf08837c18c54b7a754d7900}{\index{cordic2c.\-c@{cordic2c.\-c}!get\-\_\-date@{get\-\_\-date}}
+\index{get\-\_\-date@{get\-\_\-date}!cordic2c.c@{cordic2c.\-c}}
+\subsubsection[{get\-\_\-date}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ get\-\_\-date (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{cordic2c_8c_a4bc7ca5cbf08837c18c54b7a754d7900}
+
+
+Get the current date in a string. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em str} & string to fille with data and time \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 129 of file cordic2c.\-c.
 
 
 
@@ -374,7 +405,7 @@ Create C Cordic Tables andd test the results.
 \end{DoxyReturn}
 
 
-Definition at line 312 of file cordic2c.\-c.
+Definition at line 318 of file cordic2c.\-c.
 
 \hypertarget{cordic2c_8c_afc93093d0da5da783668ca27f859a2a7}{\index{cordic2c.\-c@{cordic2c.\-c}!Print\-X\-Y\-Z@{Print\-X\-Y\-Z}}
 \index{Print\-X\-Y\-Z@{Print\-X\-Y\-Z}!cordic2c.c@{cordic2c.\-c}}
@@ -397,7 +428,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 195 of file cordic2c.\-c.
+Definition at line 201 of file cordic2c.\-c.
 
 
 
@@ -411,7 +442,7 @@ Referenced by main().
 \subsubsection[{v\-\_\-atan}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Cordic\-\_\-\-T} v\-\_\-atan\mbox{[}{\bf Cordic\-\_\-\-T\-\_\-\-Bits}+1\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}}\label{cordic2c_8c_a87f33f8b076298d511ca73b9e458a3ac}
 
 
-Definition at line 109 of file cordic2c.\-c.
+Definition at line 112 of file cordic2c.\-c.
 
 
 
@@ -422,7 +453,7 @@ Referenced by Circular(), and cordit1().
 \subsubsection[{X}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Cordic\-\_\-\-T} X\hspace{0.3cm}{\ttfamily [static]}}}\label{cordic2c_8c_a46b4b48ef8c0c01099eb3bcdde8aa8db}
 
 
-Definition at line 110 of file cordic2c.\-c.
+Definition at line 113 of file cordic2c.\-c.
 
 
 
@@ -433,7 +464,7 @@ Referenced by Circular(), cordit1(), and Print\-X\-Y\-Z().
 \subsubsection[{Y}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Cordic\-\_\-\-T} Y\hspace{0.3cm}{\ttfamily [static]}}}\label{cordic2c_8c_ab746e677f466f17031e92ed577fc3c15}
 
 
-Definition at line 111 of file cordic2c.\-c.
+Definition at line 114 of file cordic2c.\-c.
 
 
 
@@ -444,7 +475,7 @@ Referenced by Circular(), cordit1(), and Print\-X\-Y\-Z().
 \subsubsection[{Z}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Cordic\-\_\-\-T} Z\hspace{0.3cm}{\ttfamily [static]}}}\label{cordic2c_8c_a3da94d1c83a43c30add6c05fbbe1f194}
 
 
-Definition at line 112 of file cordic2c.\-c.
+Definition at line 115 of file cordic2c.\-c.
 
 
 
