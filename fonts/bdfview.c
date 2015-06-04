@@ -106,7 +106,7 @@ main(int argc, char *argv[])
 
 	}
 	p = allfonts[fontind];
-	FontHeaderInfo( stdout, p, argv[0]);
+	FontHeaderInfo( stdout, p, argv[0], NULL);
 
 	WriteFontInfo( stdout, p);
 

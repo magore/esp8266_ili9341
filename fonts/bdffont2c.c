@@ -83,7 +83,7 @@ int main(int argc, char *const argv[])
 	int i;
 	struct stat buf;
 	_font fx;
-    char *name, *fonts, *ptr;;
+    char *name, *cfonts, *ptr;;
 	// Dump font ascii preview
 	int font_preview = 0;
 	int font_adjust_full = 0;
@@ -105,7 +105,7 @@ int main(int argc, char *const argv[])
 	FILE *FI;
 
 	FILE *FO = NULL;
-	fonts = NULL;
+	cfonts = NULL;
 
 	for(i=1;i<argc;++i)
 	{
@@ -118,11 +118,11 @@ int main(int argc, char *const argv[])
 				++ptr;
 				if(*ptr)
 				{
-					fonts = ptr;
+					cfonts = ptr;
 				}
 				else
 				{
-					fonts = argv[++i];
+					cfonts = argv[++i];
 
 				}
 				continue;
@@ -206,23 +206,23 @@ int main(int argc, char *const argv[])
 		exit(1);
 	}
 
-	if(fonts == NULL)
+	if(cfonts == NULL)
 	{
 		FO = stdout;
-		fonts = "stdout";
+		cfonts = "stdout";
 	}
 	else
 	{
-        if(stat(fonts, (struct stat *) &buf) == 0)
+        if(stat(cfonts, (struct stat *) &buf) == 0)
 		{
-			fprintf(stderr,"Font file: %s - exists - not overwritting\n", fonts);
+			fprintf(stderr,"Font file: %s - exists - not overwritting\n", cfonts);
 			exit(1);
 
 		}
-		FO = fopen(fonts,"w");
+		FO = fopen(cfonts,"w");
 		if(!FO)
 		{
-			fprintf(stderr,"Can't open: %s\n", fonts);
+			fprintf(stderr,"Can't open: %s\n", cfonts);
 			exit(1);
 		}
 	}
@@ -273,7 +273,7 @@ int main(int argc, char *const argv[])
 		BDFnames[bdfind].structname = stralloc(fx.info->STRUCT_NAME);
 
 		
-		FontHeaderInfo(FO, &fx, argv[0]);
+		FontHeaderInfo(FO, &fx, argv[0], cfonts);
 
 		if(fontinfo_f = 0)
 		{
@@ -291,7 +291,7 @@ int main(int argc, char *const argv[])
 	}
 
 	fprintf(FO, "\n\n\n");
-	fprintf(FO, "/* All fonts */\n");
+	fprintf(FO, "/* All cfonts */\n");
 	fprintf(FO, "_font *allfonts[%d] = {\n", bdfind+1);
 	for(i=0;i<bdfind;++i)
 	{

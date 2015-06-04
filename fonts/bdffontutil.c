@@ -309,9 +309,17 @@ char *match_token(char *str, char *pat)
  @param[in] *prog: program name
  @return: void
 */
-void FontHeaderInfo(FILE *out, _font *font, char *prog)
+void FontHeaderInfo(FILE *out, _font *font, char *prog, char *target)
 {
+	if(target == NULL)
+	{
+		if(font->info)
+			target = basename(font->info->FILE_NAME);
+		else
+			target = "";
+	}
 	fprintf(out,"/**\n");
+	fprintf(out," @file %s\n", target);
 	fprintf(out,"  Created using %s (c) 2015 by Mike Gore\n"
 		"  License GPL3\n"
 		"\n", basename(prog));
@@ -1544,15 +1552,15 @@ int bittestxy(unsigned char *ptr, int x, int y, int w, int h)
     int byte, bit;
     int addr;
 
-    if(y < 0 || y > height)
+    if(y < 0 || y > h)
     {
         return 0;
     }
-    if(x < 0 || x > width)
+    if(x < 0 || x > w)
     {
         return 0;
     }
-    addr = y * width + x;
+    addr = y * w + x;
     byte = addr >> 3;
     bit = (addr & 7);
     return( (ptr[byte] & (0x80 >> bit)) );
@@ -1563,24 +1571,24 @@ int bittestxy(unsigned char *ptr, int x, int y, int w, int h)
   @param[in] *ptr: byte array
   @param[in] x: bit x offset
   @param[in] y: bit y offset
-  @param[in] width: width of bit array
-  @param[in] height: height of bit array
+  @param[in] w: width of bit array
+  @param[in] h: height of bit array
   @return  void
 */
-void bitsetxy(unsigned char *ptr, int x, int y, int width, int height)
+void bitsetxy(unsigned char *ptr, int x, int y, int w, int h)
 {
     int byte, bit;
     int addr;
 
-    if(y < 0 || y > height)
+    if(y < 0 || y > h)
     {
         return;
     }
-    if(x < 0 || x > width)
+    if(x < 0 || x > w)
     {
         return;
     }
-    addr = y * width + x;
+    addr = y * w + x;
     byte = addr >> 3;
     bit = (addr & 7);
     ptr[byte] |= (0x80 >> bit);

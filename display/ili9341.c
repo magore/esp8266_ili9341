@@ -1,10 +1,9 @@
 /**
  @file ili9341.c
 
+ @brief ili9341 driver based on Adafruit mostly rewritten by Mike Gore
  @par Copyright &copy; 2015 Mike Gore, GPL License
-
- @brief Adafruit ili9341 code mostly rewritten by Mike Gore
- @par Copyright (c) 2013 Adafruit Industries.  All rights reserved.
+ @par Copyright &copy; 2013 Adafruit Industries.  All rights reserved.
  @see https://github.com/adafruit/Adafruit-GFX-Library
 
  @par Line drawing function CERTS
@@ -20,7 +19,7 @@ terms of the GNU General Public License as published by the Free Software
 Foundation, either version 3 of the License, or (at your option)
 any later version.
 
-bdffont2c is distributed in the hope that it will be useful,
+ili9341 is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.

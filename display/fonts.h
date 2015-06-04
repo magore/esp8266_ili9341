@@ -1,4 +1,5 @@
 /**
+ @file fonts.h
   Created using bdffont2c (c) 2015 by Mike Gore
   License GPL3
 
@@ -1902,6 +1903,7 @@ MEMSPACE_FONT unsigned char Fixed_Medium_R_X7_Y13_bitmap[1140]= { /* Fixed_Mediu
 /* |       | */
 /* |-------| */
 /**
+ @file fonts.h
   Created using bdffont2c (c) 2015 by Mike Gore
   License GPL3
 
@@ -3805,6 +3807,7 @@ MEMSPACE_FONT unsigned char Fixed_Bold_R_X7_Y13_bitmap[1140]= { /* Fixed_Bold_R_
 /* |       | */
 /* |-------| */
 /**
+ @file fonts.h
   Created using bdffont2c (c) 2015 by Mike Gore
   License GPL3
 
@@ -6943,6 +6946,7 @@ MEMSPACE_FONT unsigned char Terminus_Medium_R_X12_Y24_bitmap[3420]= { /* Terminu
 /* |            | */
 /* |------------| */
 /**
+ @file fonts.h
   Created using bdffont2c (c) 2015 by Mike Gore
   License GPL3
 
@@ -10081,6 +10085,7 @@ MEMSPACE_FONT unsigned char Terminus_Bold_R_X12_Y24_bitmap[3420]= { /* Terminus_
 /* |            | */
 /* |------------| */
 /**
+ @file fonts.h
   Created using bdffont2c (c) 2015 by Mike Gore
   License GPL3
 
@@ -14074,6 +14079,7 @@ MEMSPACE_FONT unsigned char Terminus_Medium_R_X16_Y32_bitmap[6080]= { /* Terminu
 /* |                | */
 /* |----------------| */
 /**
+ @file fonts.h
   Created using bdffont2c (c) 2015 by Mike Gore
   License GPL3
 
@@ -18069,7 +18075,7 @@ MEMSPACE_FONT unsigned char Terminus_Bold_R_X16_Y32_bitmap[6080]= { /* Terminus_
 
 
 
-/* All fonts */
+/* All cfonts */
 _font *allfonts[7] = {
 	&Fixed_Medium_R_X7_Y13,
 	&Fixed_Bold_R_X7_Y13,

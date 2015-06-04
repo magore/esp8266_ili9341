@@ -126,7 +126,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordtype">int</span> i;</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keyword">struct </span>stat buf;</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <a class="code" href="struct__font.html">_font</a> fx;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keywordtype">char</span> *name, *fonts, *ptr;;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keywordtype">char</span> *name, *cfonts, *ptr;;</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="comment">// Dump font ascii preview</span></div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordtype">int</span> font_preview = 0;</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keywordtype">int</span> font_adjust_full = 0;</div>
@@ -148,7 +148,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    FILE *FI;</div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    FILE *FO = NULL;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    fonts = NULL;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    cfonts = NULL;</div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keywordflow">for</span>(i=1;i&lt;argc;++i)</div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    {</div>
@@ -161,11 +161,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                ++ptr;</div>
 <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                <span class="keywordflow">if</span>(*ptr)</div>
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                {</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;                    fonts = ptr;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;                    cfonts = ptr;</div>
 <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;                }</div>
 <div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;                <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;                {</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                    fonts = argv[++i];</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                    cfonts = argv[++i];</div>
 <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;</div>
 <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                }</div>
 <div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;                <span class="keywordflow">continue</span>;</div>
@@ -249,23 +249,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;        exit(1);</div>
 <div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    }</div>
 <div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    <span class="keywordflow">if</span>(fonts == NULL)</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    <span class="keywordflow">if</span>(cfonts == NULL)</div>
 <div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    {</div>
 <div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;        FO = stdout;</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;        fonts = <span class="stringliteral">&quot;stdout&quot;</span>;</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;        cfonts = <span class="stringliteral">&quot;stdout&quot;</span>;</div>
 <div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    }</div>
 <div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;    {</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;        <span class="keywordflow">if</span>(stat(fonts, (<span class="keyword">struct</span> stat *) &amp;buf) == 0)</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;        <span class="keywordflow">if</span>(stat(cfonts, (<span class="keyword">struct</span> stat *) &amp;buf) == 0)</div>
 <div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;        {</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;            fprintf(stderr,<span class="stringliteral">&quot;Font file: %s - exists - not overwritting\n&quot;</span>, fonts);</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;            fprintf(stderr,<span class="stringliteral">&quot;Font file: %s - exists - not overwritting\n&quot;</span>, cfonts);</div>
 <div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;            exit(1);</div>
 <div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;</div>
 <div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;        }</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;        FO = fopen(fonts,<span class="stringliteral">&quot;w&quot;</span>);</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;        FO = fopen(cfonts,<span class="stringliteral">&quot;w&quot;</span>);</div>
 <div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;        <span class="keywordflow">if</span>(!FO)</div>
 <div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;        {</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;            fprintf(stderr,<span class="stringliteral">&quot;Can&#39;t open: %s\n&quot;</span>, fonts);</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;            fprintf(stderr,<span class="stringliteral">&quot;Can&#39;t open: %s\n&quot;</span>, cfonts);</div>
 <div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;            exit(1);</div>
 <div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;        }</div>
 <div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    }</div>
@@ -316,7 +316,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;        <a class="code" href="bdffontutil_8c.html#a8d8135c72831c5d6ca04479c82351b62">BDFnames</a>[bdfind].<a class="code" href="struct__bdffile.html#a54e6c69f33cc656848ad924faba85b53">structname</a> = <a class="code" href="bdffontutil_8c.html#a8a9b8fa6a56f0303cd8c23fdf290f401">stralloc</a>(fx.info-&gt;STRUCT_NAME);</div>
 <div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;</div>
 <div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;        </div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;        <a class="code" href="bdffontutil_8c.html#a9af4d4c4d62e109f8357e34b05514d98">FontHeaderInfo</a>(FO, &amp;fx, argv[0]);</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;        <a class="code" href="bdffontutil_8c.html#a3f0f4f7839e40a64f7cfd43752d8a602">FontHeaderInfo</a>(FO, &amp;fx, argv[0], cfonts);</div>
 <div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;</div>
 <div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;        <span class="keywordflow">if</span>(fontinfo_f = 0)</div>
 <div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;        {</div>
@@ -334,7 +334,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;    }</div>
 <div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;</div>
 <div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;    fprintf(FO, <span class="stringliteral">&quot;\n\n\n&quot;</span>);</div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;    fprintf(FO, <span class="stringliteral">&quot;/* All fonts */\n&quot;</span>);</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;    fprintf(FO, <span class="stringliteral">&quot;/* All cfonts */\n&quot;</span>);</div>
 <div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;    fprintf(FO, <span class="stringliteral">&quot;_font *allfonts[%d] = {\n&quot;</span>, bdfind+1);</div>
 <div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;    <span class="keywordflow">for</span>(i=0;i&lt;bdfind;++i)</div>
 <div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;    {</div>
@@ -347,30 +347,30 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;        fclose(FO);</div>
 <div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;    <span class="keywordflow">return</span>(0);</div>
 <div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;}</div>
-<div class="ttc" id="bdffontutil_8c_html_a49c59fe21a56b90ad6f8bcc5549e3dce"><div class="ttname"><a href="bdffontutil_8c.html#a49c59fe21a56b90ad6f8bcc5549e3dce">ReadBdf</a></div><div class="ttdeci">int ReadBdf(char *name, _font *font, int lower, int upper)</div><div class="ttdoc">Read BDF file Read BDF file format. </div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8c_source.html#l00767">bdffontutil.c:767</a></div></div>
+<div class="ttc" id="bdffontutil_8c_html_a49c59fe21a56b90ad6f8bcc5549e3dce"><div class="ttname"><a href="bdffontutil_8c.html#a49c59fe21a56b90ad6f8bcc5549e3dce">ReadBdf</a></div><div class="ttdeci">int ReadBdf(char *name, _font *font, int lower, int upper)</div><div class="ttdoc">Read BDF file Read BDF file format. </div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8c_source.html#l00775">bdffontutil.c:775</a></div></div>
 <div class="ttc" id="bdffontutil_8c_html_ae75c11efb4dd449e4fcf9f1f78e9414c"><div class="ttname"><a href="bdffontutil_8c.html#ae75c11efb4dd449e4fcf9f1f78e9414c">fnames</a></div><div class="ttdeci">char * fnames[MAXFONTS]</div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8c_source.html#l00043">bdffontutil.c:43</a></div></div>
-<div class="ttc" id="bdffontutil_8c_html_a4afb5289fcab36022951a5d16ea7932f"><div class="ttname"><a href="bdffontutil_8c.html#a4afb5289fcab36022951a5d16ea7932f">FreeFont</a></div><div class="ttdeci">void FreeFont(_font *font)</div><div class="ttdoc">Free font data. </div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8c_source.html#l00531">bdffontutil.c:531</a></div></div>
+<div class="ttc" id="bdffontutil_8c_html_a4afb5289fcab36022951a5d16ea7932f"><div class="ttname"><a href="bdffontutil_8c.html#a4afb5289fcab36022951a5d16ea7932f">FreeFont</a></div><div class="ttdeci">void FreeFont(_font *font)</div><div class="ttdoc">Free font data. </div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8c_source.html#l00539">bdffontutil.c:539</a></div></div>
 <div class="ttc" id="bdffontutil_8h_html"><div class="ttname"><a href="bdffontutil_8h.html">bdffontutil.h</a></div></div>
+<div class="ttc" id="bdffontutil_8c_html_a3f0f4f7839e40a64f7cfd43752d8a602"><div class="ttname"><a href="bdffontutil_8c.html#a3f0f4f7839e40a64f7cfd43752d8a602">FontHeaderInfo</a></div><div class="ttdeci">void FontHeaderInfo(FILE *out, _font *font, char *prog, char *target)</div><div class="ttdoc">Write Font Header Information Copyright, font family, etc. </div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8c_source.html#l00312">bdffontutil.c:312</a></div></div>
 <div class="ttc" id="bdffontutil_8h_html_a3e937c42922f7601edb17b747602c471"><div class="ttname"><a href="bdffontutil_8h.html#a3e937c42922f7601edb17b747602c471">MAXLINE</a></div><div class="ttdeci">#define MAXLINE</div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8h_source.html#l00032">bdffontutil.h:32</a></div></div>
 <div class="ttc" id="bdffontutil_8c_html_a8a9b8fa6a56f0303cd8c23fdf290f401"><div class="ttname"><a href="bdffontutil_8c.html#a8a9b8fa6a56f0303cd8c23fdf290f401">stralloc</a></div><div class="ttdeci">char * stralloc(char *str)</div><div class="ttdoc">Allocate memory and copy string into it. </div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8c_source.html#l00083">bdffontutil.c:83</a></div></div>
 <div class="ttc" id="fonts_2font_8h_html"><div class="ttname"><a href="fonts_2font_8h.html">font.h</a></div></div>
-<div class="ttc" id="bdffontutil_8c_html_a9af4d4c4d62e109f8357e34b05514d98"><div class="ttname"><a href="bdffontutil_8c.html#a9af4d4c4d62e109f8357e34b05514d98">FontHeaderInfo</a></div><div class="ttdeci">void FontHeaderInfo(FILE *out, _font *font, char *prog)</div><div class="ttdoc">Write Font Header Information Copyright, font family, etc. </div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8c_source.html#l00312">bdffontutil.c:312</a></div></div>
-<div class="ttc" id="bdffontutil_8c_html_a6e60e1a05fd459f3af8aa691e06950a7"><div class="ttname"><a href="bdffontutil_8c.html#a6e60e1a05fd459f3af8aa691e06950a7">WriteFontBitsPreview</a></div><div class="ttdeci">void WriteFontBitsPreview(FILE *out, _font *font, int preview)</div><div class="ttdoc">Write all Font characters in a font as ASCII character comments. </div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8c_source.html#l01913">bdffontutil.c:1913</a></div></div>
-<div class="ttc" id="bdffontutil_8c_html_aa01d93b9cf1d60cc4ce0adb717384f96"><div class="ttname"><a href="bdffontutil_8c.html#aa01d93b9cf1d60cc4ce0adb717384f96">FindFontName</a></div><div class="ttdeci">int FindFontName(char *str)</div><div class="ttdoc">Search for a font name. </div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8c_source.html#l00588">bdffontutil.c:588</a></div></div>
+<div class="ttc" id="bdffontutil_8c_html_a6e60e1a05fd459f3af8aa691e06950a7"><div class="ttname"><a href="bdffontutil_8c.html#a6e60e1a05fd459f3af8aa691e06950a7">WriteFontBitsPreview</a></div><div class="ttdeci">void WriteFontBitsPreview(FILE *out, _font *font, int preview)</div><div class="ttdoc">Write all Font characters in a font as ASCII character comments. </div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8c_source.html#l01921">bdffontutil.c:1921</a></div></div>
+<div class="ttc" id="bdffontutil_8c_html_aa01d93b9cf1d60cc4ce0adb717384f96"><div class="ttname"><a href="bdffontutil_8c.html#aa01d93b9cf1d60cc4ce0adb717384f96">FindFontName</a></div><div class="ttdeci">int FindFontName(char *str)</div><div class="ttdoc">Search for a font name. </div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8c_source.html#l00596">bdffontutil.c:596</a></div></div>
 <div class="ttc" id="bdffont2c_8c_html_af3ed9c200de85b53c94cd18764b246a2"><div class="ttname"><a href="bdffont2c_8c.html#af3ed9c200de85b53c94cd18764b246a2">main</a></div><div class="ttdeci">int main(int argc, char *const argv[])</div><div class="ttdoc">convert BDF fonts to C structures </div><div class="ttdef"><b>Definition:</b> <a href="bdffont2c_8c_source.html#l00081">bdffont2c.c:81</a></div></div>
-<div class="ttc" id="bdffontutil_8c_html_ac8e10a9220f9a51589124690c47d099b"><div class="ttname"><a href="bdffontutil_8c.html#ac8e10a9220f9a51589124690c47d099b">FontAdjustSmall</a></div><div class="ttdeci">void FontAdjustSmall(_font *font)</div><div class="ttdoc">Ajust font to use smallest font bounding box for each font Can be used to converting large fixed font...</div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8c_source.html#l01299">bdffontutil.c:1299</a></div></div>
-<div class="ttc" id="display_2font_8h_html_ac108d78d76235e3c7cada0c2e56b7e2d"><div class="ttname"><a href="display_2font_8h.html#ac108d78d76235e3c7cada0c2e56b7e2d">MAXFONTS</a></div><div class="ttdeci">#define MAXFONTS</div><div class="ttdef"><b>Definition:</b> <a href="display_2font_8h_source.html#l00035">font.h:35</a></div></div>
+<div class="ttc" id="bdffontutil_8c_html_ac8e10a9220f9a51589124690c47d099b"><div class="ttname"><a href="bdffontutil_8c.html#ac8e10a9220f9a51589124690c47d099b">FontAdjustSmall</a></div><div class="ttdeci">void FontAdjustSmall(_font *font)</div><div class="ttdoc">Ajust font to use smallest font bounding box for each font Can be used to converting large fixed font...</div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8c_source.html#l01307">bdffontutil.c:1307</a></div></div>
+<div class="ttc" id="display_2font_8h_html_ac108d78d76235e3c7cada0c2e56b7e2d"><div class="ttname"><a href="display_2font_8h.html#ac108d78d76235e3c7cada0c2e56b7e2d">MAXFONTS</a></div><div class="ttdeci">#define MAXFONTS</div><div class="ttdef"><b>Definition:</b> <a href="display_2font_8h_source.html#l00038">font.h:38</a></div></div>
 <div class="ttc" id="bdffont2c_8c_html_aa4817482b1728bf62acf8030cab9842c"><div class="ttname"><a href="bdffont2c_8c.html#aa4817482b1728bf62acf8030cab9842c">usage</a></div><div class="ttdeci">void usage(char *prog)</div><div class="ttdoc">BDF to C code converter Copyright © 2015 Mike Gore. </div><div class="ttdef"><b>Definition:</b> <a href="bdffont2c_8c_source.html#l00048">bdffont2c.c:48</a></div></div>
-<div class="ttc" id="bdffontutil_8c_html_a9461259743229256336c4260de7e0e0e"><div class="ttname"><a href="bdffontutil_8c.html#a9461259743229256336c4260de7e0e0e">Convert_Font2c</a></div><div class="ttdeci">void Convert_Font2c(FILE *out, _font *font)</div><div class="ttdoc">Convert font to C structure Writes header information, font specification, font bitmap. </div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8c_source.html#l00346">bdffontutil.c:346</a></div></div>
+<div class="ttc" id="bdffontutil_8c_html_a9461259743229256336c4260de7e0e0e"><div class="ttname"><a href="bdffontutil_8c.html#a9461259743229256336c4260de7e0e0e">Convert_Font2c</a></div><div class="ttdeci">void Convert_Font2c(FILE *out, _font *font)</div><div class="ttdoc">Convert font to C structure Writes header information, font specification, font bitmap. </div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8c_source.html#l00354">bdffontutil.c:354</a></div></div>
 <div class="ttc" id="bdffontutil_8c_html_a8d8135c72831c5d6ca04479c82351b62"><div class="ttname"><a href="bdffontutil_8c.html#a8d8135c72831c5d6ca04479c82351b62">BDFnames</a></div><div class="ttdeci">_bdffile BDFnames[MAXFONTS]</div><div class="ttdoc">par BDF font utils for BDF to C code converter </div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8c_source.html#l00041">bdffontutil.c:41</a></div></div>
-<div class="ttc" id="struct__bdffile_html_a040674bb1df0a8d4b1bedeae616e9b65"><div class="ttname"><a href="struct__bdffile.html#a040674bb1df0a8d4b1bedeae616e9b65">_bdffile::filename</a></div><div class="ttdeci">char * filename</div><div class="ttdef"><b>Definition:</b> <a href="display_2font_8h_source.html#l00042">font.h:42</a></div></div>
-<div class="ttc" id="bdffontutil_8c_html_ac2e86eac4bb6e173fbbfae929302e851"><div class="ttname"><a href="bdffontutil_8c.html#ac2e86eac4bb6e173fbbfae929302e851">FontAdjustFull</a></div><div class="ttdeci">void FontAdjustFull(_font *font)</div><div class="ttdoc">Adjust font to full size with no offset. </div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8c_source.html#l01215">bdffontutil.c:1215</a></div></div>
-<div class="ttc" id="struct__font_html"><div class="ttname"><a href="struct__font.html">_font</a></div><div class="ttdef"><b>Definition:</b> <a href="display_2font_8h_source.html#l00067">font.h:67</a></div></div>
-<div class="ttc" id="struct__bdffile_html_a54e6c69f33cc656848ad924faba85b53"><div class="ttname"><a href="struct__bdffile.html#a54e6c69f33cc656848ad924faba85b53">_bdffile::structname</a></div><div class="ttdeci">char * structname</div><div class="ttdef"><b>Definition:</b> <a href="display_2font_8h_source.html#l00043">font.h:43</a></div></div>
+<div class="ttc" id="struct__bdffile_html_a040674bb1df0a8d4b1bedeae616e9b65"><div class="ttname"><a href="struct__bdffile.html#a040674bb1df0a8d4b1bedeae616e9b65">_bdffile::filename</a></div><div class="ttdeci">char * filename</div><div class="ttdef"><b>Definition:</b> <a href="display_2font_8h_source.html#l00045">font.h:45</a></div></div>
+<div class="ttc" id="bdffontutil_8c_html_ac2e86eac4bb6e173fbbfae929302e851"><div class="ttname"><a href="bdffontutil_8c.html#ac2e86eac4bb6e173fbbfae929302e851">FontAdjustFull</a></div><div class="ttdeci">void FontAdjustFull(_font *font)</div><div class="ttdoc">Adjust font to full size with no offset. </div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8c_source.html#l01223">bdffontutil.c:1223</a></div></div>
+<div class="ttc" id="struct__font_html"><div class="ttname"><a href="struct__font.html">_font</a></div><div class="ttdef"><b>Definition:</b> <a href="display_2font_8h_source.html#l00070">font.h:70</a></div></div>
+<div class="ttc" id="struct__bdffile_html_a54e6c69f33cc656848ad924faba85b53"><div class="ttname"><a href="struct__bdffile.html#a54e6c69f33cc656848ad924faba85b53">_bdffile::structname</a></div><div class="ttdeci">char * structname</div><div class="ttdef"><b>Definition:</b> <a href="display_2font_8h_source.html#l00046">font.h:46</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jun 3 2015 21:40:59 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jun 3 2015 22:20:45 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

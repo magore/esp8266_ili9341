@@ -16,10 +16,13 @@ FONTS_P = fonts/P/12-Adobe-Helvetica.bdf \
 	fonts/P/35-Adobe-Helvetica-Bold.bdf
 
     
-all:	bdffont2c bigF
+all:	bdffont2c copyfont bigF 
 
-install:	all
+install:	all 
 	cp -p bdffont2c /usr/local/bin
+
+copyfont: bdffont2c
+	cp -p font.h ../display
 
 bdffont2c.o:	bdffont2c.c
 	$(CC) $(CFLAGS) -g -c bdffont2c.c 

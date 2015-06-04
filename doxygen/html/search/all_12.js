@@ -131,6 +131,7 @@ var searchData=
   ['undefined',['undefined',['../Makefile.html#a9324bb2c20136255586f3b51593c4291',1,'Makefile']]],
   ['under_5fwrite',['UNDER_WRITE',['../uart_8h.html#ad2f40c3db0de470af22077a2f9a4a136abc1635648bd3dd3a4bc33cccc6441b34',1,'uart.h']]],
   ['usage',['usage',['../bdffont2c_8c.html#aa4817482b1728bf62acf8030cab9842c',1,'bdffont2c.c']]],
+  ['use_5fcache',['USE_CACHE',['../util_8c.html#a2565afea33c9e3255c67f748f425543a',1,'util.c']]],
   ['use_5fets_5fprintf',['USE_ETS_PRINTF',['../cal__dex_8c.html#ace605bda5adf4d197d62796c54bef1b0',1,'cal_dex.c']]],
   ['use_5foptimization_5fdrawline',['USE_OPTIMIZATION_DRAWLINE',['../ili9341_8c.html#a3bc3999315888a41dcf1417cdae450e3',1,'ili9341.c']]],
   ['user_5fconfig_2eh',['user_config.h',['../user__config_8h.html',1,'']]],

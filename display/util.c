@@ -1,9 +1,9 @@
 /**
  @file util.c
 
- @par Copyright &copy; 2015 Mike Gore, GPL License
+ @brief Flash read and bit utilities
 
- @brief Flash and bit utilities
+ @par Copyright &copy; 2015 Mike Gore, GPL License
 
  @par Edit History
  - [1.0]   [Mike Gore]  Initial revision of file.
@@ -13,7 +13,7 @@ terms of the GNU General Public License as published by the Free Software
 Foundation, either version 3 of the License, or (at your option)
 any later version.
 
-bdffont2c is distributed in the hope that it will be useful,
+util.c is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
@@ -24,8 +24,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "user_config.h"
 
+#define USE_CACHE
 // Cached flash read on 32bit boundry
-#if 1
+#ifdef USE_CACHE
 
 /// @brief  Read bit bit value from flash
 /// Supports 8 bits reads from memory spaced that must have 32bit aligned data
