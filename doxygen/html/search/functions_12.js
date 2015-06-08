@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['window_5finit',['window_init',['../ili9341_8c.html#ae59d206ad37346b7fec11d09192284ee',1,'window_init(window *win, uint16_t xoff, uint16_t yoff, uint16_t w, uint16_t h):&#160;ili9341.c'],['../ili9341_8h.html#ae59d206ad37346b7fec11d09192284ee',1,'window_init(window *win, uint16_t xoff, uint16_t yoff, uint16_t w, uint16_t h):&#160;ili9341.c']]],
   ['wire2fp',['wire2fp',['../wire_8c.html#a86a09b73c1cd047d1ef464da418bf414',1,'wire2fp(wire_p *in, point *out):&#160;wire.c'],['../wire_8h.html#a86a09b73c1cd047d1ef464da418bf414',1,'wire2fp(wire_p *in, point *out):&#160;wire.c']]],
   ['wire_5fdraw',['wire_draw',['../wire_8c.html#a6032c357c29e2854243ee86f93fee4e5',1,'wire_draw(window *win, const wire_p *wire, const wire_e *edge, point *view, int x, int y, double scale, uint16_t color):&#160;wire.c'],['../wire_8h.html#a6032c357c29e2854243ee86f93fee4e5',1,'wire_draw(window *win, const wire_p *wire, const wire_e *edge, point *view, int x, int y, double scale, uint16_t color):&#160;wire.c']]],
   ['writecharacterbits',['WriteCharacterBits',['../bdffontutil_8c.html#a7c2cf276db0c747638909191d76925da',1,'WriteCharacterBits(FILE *out, _font *font, int num):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a7c2cf276db0c747638909191d76925da',1,'WriteCharacterBits(FILE *out, _font *font, int num):&#160;bdffontutil.c']]],

@@ -86,7 +86,7 @@ ___
       * Fonts data structures converted BDF fonts
     * ili9341.c           
     * ili9341.h           
-      * My mostly rewritten ili9341 display driver code
+      * My mostly rewritten ili9341 display driver code handles multiple windows
         * Optimized line drawing function is from CHERTS
         * Non optimized version is also supplied that I wrote in 1984
     * util.c
@@ -154,6 +154,10 @@ ___
    * include 
      * misc esp8266 include files
 
+   * network
+     * Simple network server - displays message from send.c
+      * network.c
+
    * printf  
      * My small printf with floating support, misc I/O functions
         * Makefile       
@@ -163,6 +167,9 @@ ___
         * printf.c       
         * printf.h       
           * My printf code
+
+   * send.c
+     * Send message to network server 
 
    * user    
      * Main user demo task

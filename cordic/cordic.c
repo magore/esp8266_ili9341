@@ -47,12 +47,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "cordic2c_inc.h"
 
 /// @brief  Convert Degrees to Rads
-/// @param[in] d: degrees
+/// @param[in] deg: degrees
 /// @return  radians
 MEMSPACE
-double deg2rad(double d)
+double deg2rad(double deg)
 {
-    return (d * M_PI / 180.0);
+    return (deg * M_PI / 180.0);
 }
 
 

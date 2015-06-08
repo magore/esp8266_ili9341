@@ -35,6 +35,19 @@ void \hyperlink{ili9341__adafruit_8c_ae425260d907faa87a1b8e336f24ba54c}{tft\-\_\
 \begin{DoxyCompactList}\small\item\em Fill a triangle. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
+\subsection{Detailed Description}
+\begin{DoxyParagraph}{Copyright (c) 2013 Adafruit Industries. All rights reserved.}
+Minor Revisions by 2015 Mike Gore to add multiple window support 
+\end{DoxyParagraph}
+\begin{DoxySeeAlso}{See Also}
+\href{https://github.com/adafruit/Adafruit-GFX-Library}{\tt https\-://github.\-com/adafruit/\-Adafruit-\/\-G\-F\-X-\/\-Library} 
+\end{DoxySeeAlso}
+
+
+Definition in file \hyperlink{ili9341__adafruit_8c_source}{ili9341\-\_\-adafruit.\-c}.
+
+
+
 \subsection{Function Documentation}
 \hypertarget{ili9341__adafruit_8c_a70178a557e297238cb4c025b3940921c}{\index{ili9341\-\_\-adafruit.\-c@{ili9341\-\_\-adafruit.\-c}!tft\-\_\-config\-Register@{tft\-\_\-config\-Register}}
 \index{tft\-\_\-config\-Register@{tft\-\_\-config\-Register}!ili9341_adafruit.c@{ili9341\-\_\-adafruit.\-c}}
@@ -66,7 +79,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 51 of file ili9341\-\_\-adafruit.\-c.
+Definition at line 50 of file ili9341\-\_\-adafruit.\-c.
 
 
 
@@ -95,6 +108,8 @@ Draw bitmap F\-I\-X\-M\-E use M\-A\-D\-C\-T\-L and fill.
 \mbox{\tt in}  & {\em x} & X offset \\
 \hline
 \mbox{\tt in}  & {\em y} & Y offset \\
+\hline
+\mbox{\tt in}  & {\em $\ast$bitmap} & bitmap \\
 \hline
 \mbox{\tt in}  & {\em w} & Width of bitmap \\
 \hline
@@ -127,9 +142,9 @@ Draw a circle outline.
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\tt in}  & {\em $\ast$win} & window structure \\
 \hline
-\mbox{\tt in}  & {\em x} & X offset \\
+\mbox{\tt in}  & {\em x0} & X offset \\
 \hline
-\mbox{\tt in}  & {\em y} & Y offset \\
+\mbox{\tt in}  & {\em y0} & Y offset \\
 \hline
 \mbox{\tt in}  & {\em r} & Radius of circle \\
 \hline
@@ -222,7 +237,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 186 of file ili9341\-\_\-adafruit.\-c.
+Definition at line 185 of file ili9341\-\_\-adafruit.\-c.
 
 
 
@@ -261,7 +276,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 171 of file ili9341\-\_\-adafruit.\-c.
+Definition at line 170 of file ili9341\-\_\-adafruit.\-c.
 
 
 
@@ -303,7 +318,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 381 of file ili9341\-\_\-adafruit.\-c.
+Definition at line 382 of file ili9341\-\_\-adafruit.\-c.
 
 \hypertarget{ili9341__adafruit_8c_a80857f260fb5efd7f955a728f3c139b9}{\index{ili9341\-\_\-adafruit.\-c@{ili9341\-\_\-adafruit.\-c}!tft\-\_\-draw\-Round\-Rect@{tft\-\_\-draw\-Round\-Rect}}
 \index{tft\-\_\-draw\-Round\-Rect@{tft\-\_\-draw\-Round\-Rect}!ili9341_adafruit.c@{ili9341\-\_\-adafruit.\-c}}
@@ -324,6 +339,8 @@ Draw a rounded rectangle.
 
 
 \begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$win} & window structure \\
+\hline
 \mbox{\tt in}  & {\em x} & X offset \\
 \hline
 \mbox{\tt in}  & {\em y} & Y offset \\
@@ -342,7 +359,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 401 of file ili9341\-\_\-adafruit.\-c.
+Definition at line 403 of file ili9341\-\_\-adafruit.\-c.
 
 \hypertarget{ili9341__adafruit_8c_aa5c14c0f98729b37500233548eff4664}{\index{ili9341\-\_\-adafruit.\-c@{ili9341\-\_\-adafruit.\-c}!tft\-\_\-draw\-Triangle@{tft\-\_\-draw\-Triangle}}
 \index{tft\-\_\-draw\-Triangle@{tft\-\_\-draw\-Triangle}!ili9341_adafruit.c@{ili9341\-\_\-adafruit.\-c}}
@@ -386,7 +403,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 451 of file ili9341\-\_\-adafruit.\-c.
+Definition at line 453 of file ili9341\-\_\-adafruit.\-c.
 
 \hypertarget{ili9341__adafruit_8c_a964954bfbc54b4b4e3d5ecf731f1380e}{\index{ili9341\-\_\-adafruit.\-c@{ili9341\-\_\-adafruit.\-c}!tft\-\_\-fill\-Circle@{tft\-\_\-fill\-Circle}}
 \index{tft\-\_\-fill\-Circle@{tft\-\_\-fill\-Circle}!ili9341_adafruit.c@{ili9341\-\_\-adafruit.\-c}}
@@ -411,6 +428,8 @@ Fill circle.
 \hline
 \mbox{\tt in}  & {\em y0} & Y offset \\
 \hline
+\mbox{\tt in}  & {\em r} & Radius \\
+\hline
 \mbox{\tt in}  & {\em color} & Color \\
 \hline
 \end{DoxyParams}
@@ -419,7 +438,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 364 of file ili9341\-\_\-adafruit.\-c.
+Definition at line 365 of file ili9341\-\_\-adafruit.\-c.
 
 \hypertarget{ili9341__adafruit_8c_a33b9d8c2ce553e56d4996f2a8dc55773}{\index{ili9341\-\_\-adafruit.\-c@{ili9341\-\_\-adafruit.\-c}!tft\-\_\-fill\-Circle\-Helper@{tft\-\_\-fill\-Circle\-Helper}}
 \index{tft\-\_\-fill\-Circle\-Helper@{tft\-\_\-fill\-Circle\-Helper}!ili9341_adafruit.c@{ili9341\-\_\-adafruit.\-c}}
@@ -505,7 +524,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 427 of file ili9341\-\_\-adafruit.\-c.
+Definition at line 429 of file ili9341\-\_\-adafruit.\-c.
 
 \hypertarget{ili9341__adafruit_8c_ae5a07f4dcd1a2347a49e9e7d6af7ded8}{\index{ili9341\-\_\-adafruit.\-c@{ili9341\-\_\-adafruit.\-c}!tft\-\_\-fill\-Triangle@{tft\-\_\-fill\-Triangle}}
 \index{tft\-\_\-fill\-Triangle@{tft\-\_\-fill\-Triangle}!ili9341_adafruit.c@{ili9341\-\_\-adafruit.\-c}}
@@ -527,6 +546,8 @@ Fill a triangle.
 
 
 \begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$win} & window structure \\
+\hline
 \mbox{\tt in}  & {\em x0} & X0 offset \\
 \hline
 \mbox{\tt in}  & {\em y0} & Y0 offset \\
@@ -547,5 +568,5 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 471 of file ili9341\-\_\-adafruit.\-c.
+Definition at line 474 of file ili9341\-\_\-adafruit.\-c.
 

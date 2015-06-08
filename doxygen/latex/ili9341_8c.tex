@@ -57,8 +57,8 @@ void \hyperlink{ili9341_8c_a49f75769b08991ac4a56bfb2f4e1fa05}{tft\-\_\-fill\-Rec
 \subsection*{==================================== }\end{DoxyCompactList}\item 
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{ili9341_8c_a4c1271aab64c58f75e6de6471f430bbe}{tft\-\_\-set\-Rotation} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} m)
 \begin{DoxyCompactList}\small\item\em Set Display rotation, applies to the master window only Set hardware display rotation and memory fill option bits Update software display limits F\-I\-X\-M\-E Work in progress. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{ili9341_8c_ae59d206ad37346b7fec11d09192284ee}{window\-\_\-init} (\hyperlink{structwindow}{window} $\ast$win, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\-\_\-t} xoff, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\-\_\-t} yoff, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\-\_\-t} w, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\-\_\-t} h)
-\begin{DoxyCompactList}\small\item\em Initialize window structure we default values F\-I\-X\-M\-E check absolute limits against T\-F\-T limuts These are not hardware limits. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{ili9341_8c_ad93354e0742a28811fa11c9246bced93}{tft\-\_\-window\-\_\-init} (\hyperlink{structwindow}{window} $\ast$win, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\-\_\-t} xoff, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\-\_\-t} yoff, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\-\_\-t} w, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\-\_\-t} h)
+\begin{DoxyCompactList}\small\item\em Initialize window structure we default values F\-I\-X\-M\-E check x+w, y+h absolute limits against T\-F\-T limuts. \end{DoxyCompactList}\item 
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{ili9341_8c_a87f7dbae2f9e506b658b7234822d7b49}{tft\-\_\-set\-Text\-Color} (\hyperlink{structwindow}{window} $\ast$win, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\-\_\-t} c, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\-\_\-t} b)
 \begin{DoxyCompactList}\small\item\em ==================================== \end{DoxyCompactList}\item 
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{ili9341_8c_adaf98866e7cbd787fde096143d394699}{tft\-\_\-setpos} (\hyperlink{structwindow}{window} $\ast$win, int16\-\_\-t x, int16\-\_\-t y)
@@ -293,7 +293,7 @@ Definition at line 444 of file ili9341.\-c.
 \end{DoxyParams}
 
 
-Definition at line 869 of file ili9341.\-c.
+Definition at line 871 of file ili9341.\-c.
 
 \hypertarget{ili9341_8c_aef8157caa81d7962742f4ef9455264f9}{\index{ili9341.\-c@{ili9341.\-c}!tft\-\_\-color565@{tft\-\_\-color565}}
 \index{tft\-\_\-color565@{tft\-\_\-color565}!ili9341.c@{ili9341.\-c}}
@@ -379,7 +379,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 810 of file ili9341.\-c.
+Definition at line 812 of file ili9341.\-c.
 
 
 
@@ -415,7 +415,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 733 of file ili9341.\-c.
+Definition at line 735 of file ili9341.\-c.
 
 
 
@@ -542,7 +542,7 @@ Only works if font is proportional type
 \end{DoxyParams}
 
 
-Definition at line 706 of file ili9341.\-c.
+Definition at line 708 of file ili9341.\-c.
 
 
 
@@ -566,7 +566,7 @@ Set current font type to variable.
 \end{DoxyParams}
 
 
-Definition at line 716 of file ili9341.\-c.
+Definition at line 718 of file ili9341.\-c.
 
 
 
@@ -585,14 +585,12 @@ Get font height.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em win$\ast$} & window structure \\
-\hline
-\mbox{\tt in}  & {\em index} & font size return\-: font Height or zero on error \\
+\mbox{\tt in}  & {\em win$\ast$} & window structure return\-: font Height or zero on error \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 691 of file ili9341.\-c.
+Definition at line 693 of file ili9341.\-c.
 
 \hypertarget{ili9341_8c_a5262b99cf2bfacda91419deef7f18d69}{\index{ili9341.\-c@{ili9341.\-c}!tft\-\_\-init@{tft\-\_\-init}}
 \index{tft\-\_\-init@{tft\-\_\-init}!ili9341.c@{ili9341.\-c}}
@@ -657,7 +655,7 @@ put character in current winoow
 \end{DoxyParams}
 
 
-Definition at line 886 of file ili9341.\-c.
+Definition at line 888 of file ili9341.\-c.
 
 
 
@@ -782,7 +780,7 @@ Set current font size (per current rotation)
 \end{DoxyParams}
 
 
-Definition at line 681 of file ili9341.\-c.
+Definition at line 684 of file ili9341.\-c.
 
 
 
@@ -812,7 +810,7 @@ Set current window offset (per current rotation)
 \end{DoxyParams}
 
 
-Definition at line 669 of file ili9341.\-c.
+Definition at line 672 of file ili9341.\-c.
 
 
 
@@ -870,11 +868,50 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 656 of file ili9341.\-c.
+Definition at line 659 of file ili9341.\-c.
 
 
 
 Referenced by user\-\_\-init().
+
+\hypertarget{ili9341_8c_ad93354e0742a28811fa11c9246bced93}{\index{ili9341.\-c@{ili9341.\-c}!tft\-\_\-window\-\_\-init@{tft\-\_\-window\-\_\-init}}
+\index{tft\-\_\-window\-\_\-init@{tft\-\_\-window\-\_\-init}!ili9341.c@{ili9341.\-c}}
+\subsubsection[{tft\-\_\-window\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void tft\-\_\-window\-\_\-init (
+\begin{DoxyParamCaption}
+\item[{{\bf window} $\ast$}]{win, }
+\item[{{\bf uint16\-\_\-t}}]{xoff, }
+\item[{{\bf uint16\-\_\-t}}]{yoff, }
+\item[{{\bf uint16\-\_\-t}}]{w, }
+\item[{{\bf uint16\-\_\-t}}]{h}
+\end{DoxyParamCaption}
+)}}\label{ili9341_8c_ad93354e0742a28811fa11c9246bced93}
+
+
+Initialize window structure we default values F\-I\-X\-M\-E check x+w, y+h absolute limits against T\-F\-T limuts. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em win$\ast$} & window structure \\
+\hline
+\mbox{\tt in}  & {\em xoff} & X offset to window start -\/ absolute \\
+\hline
+\mbox{\tt in}  & {\em yoff} & Y offset to window start -\/ absolute \\
+\hline
+\mbox{\tt in}  & {\em w} & Window width \\
+\hline
+\mbox{\tt in}  & {\em h} & Window Height \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 634 of file ili9341.\-c.
+
+
+
+Referenced by tft\-\_\-init(), and user\-\_\-init().
 
 \hypertarget{ili9341_8c_a343385e2400869a634cccdace49bfd11}{\index{ili9341.\-c@{ili9341.\-c}!tft\-\_\-write\-Cmd@{tft\-\_\-write\-Cmd}}
 \index{tft\-\_\-write\-Cmd@{tft\-\_\-write\-Cmd}!ili9341.c@{ili9341.\-c}}
@@ -1029,37 +1066,6 @@ void
 
 
 Definition at line 250 of file ili9341.\-c.
-
-\hypertarget{ili9341_8c_ae59d206ad37346b7fec11d09192284ee}{\index{ili9341.\-c@{ili9341.\-c}!window\-\_\-init@{window\-\_\-init}}
-\index{window\-\_\-init@{window\-\_\-init}!ili9341.c@{ili9341.\-c}}
-\subsubsection[{window\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void window\-\_\-init (
-\begin{DoxyParamCaption}
-\item[{{\bf window} $\ast$}]{win, }
-\item[{{\bf uint16\-\_\-t}}]{xoff, }
-\item[{{\bf uint16\-\_\-t}}]{yoff, }
-\item[{{\bf uint16\-\_\-t}}]{w, }
-\item[{{\bf uint16\-\_\-t}}]{h}
-\end{DoxyParamCaption}
-)}}\label{ili9341_8c_ae59d206ad37346b7fec11d09192284ee}
-
-
-Initialize window structure we default values F\-I\-X\-M\-E check absolute limits against T\-F\-T limuts These are not hardware limits. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em win$\ast$} & window structure \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-void 
-\end{DoxyReturn}
-
-
-Definition at line 631 of file ili9341.\-c.
-
-
-
-Referenced by tft\-\_\-init(), and user\-\_\-init().
 
 
 

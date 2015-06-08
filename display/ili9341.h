@@ -77,7 +77,7 @@ void tft_fillRectWH ( window *win , int16_t x , int16_t y , int16_t w , int16_t 
 void tft_fillRectXY ( window *win , int16_t x , int16_t y , int16_t xl , int16_t yl , uint16_t color );
 uint32_t tft_rel_window ( window *win , int16_t x , int16_t y , int16_t w , int16_t h );
 MEMSPACE void tft_setRotation ( uint8_t m );
-MEMSPACE void window_init ( window *win , uint16_t xoff , uint16_t yoff , uint16_t w , uint16_t h );
+MEMSPACE void tft_window_init ( window *win , uint16_t xoff , uint16_t yoff , uint16_t w , uint16_t h );
 MEMSPACE void tft_setTextColor ( window *win , uint16_t c , uint16_t b );
 MEMSPACE void tft_setpos ( window *win , int16_t x , int16_t y );
 MEMSPACE tft_set_font( window *win , uint16_t index );

@@ -174,7 +174,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;      * Fonts data structures converted BDF fonts</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    * ili9341.c           </div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    * ili9341.h           </div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;      * My mostly rewritten ili9341 display driver code</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;      * My mostly rewritten ili9341 display driver code handles multiple windows</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        * Optimized line drawing <span class="keyword">function</span> is from CHERTS</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        * Non optimized version is also supplied that I wrote in 1984</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    * util.c</div>
@@ -242,19 +242,26 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;   * include </div>
 <div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;     * misc esp8266 include files</div>
 <div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;   * printf  </div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;     * My small printf with floating support, misc I/O functions</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        * Makefile       </div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;          * Build and test printf</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;        * pr.c           </div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;          * Printf <span class="keyword">interface </span>to display library <a class="code" href="pr_8c.html#ad6d6dda4facdc045d477c0cc9403e0c1">tft_printf</a>()</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        * printf.c       </div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        * printf.h       </div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;          * My printf code</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;   * user    </div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;     * Main user demo task</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;   * network</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;     * Simple network server - displays message from send.c</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;      * network.c</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;   * printf  </div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;     * My small printf with floating support, misc I/O functions</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        * Makefile       </div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;          * Build and test printf</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        * pr.c           </div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;          * Printf <span class="keyword">interface </span>to display library <a class="code" href="pr_8c.html#ad6d6dda4facdc045d477c0cc9403e0c1">tft_printf</a>()</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        * printf.c       </div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        * printf.h       </div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;          * My printf code</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;   * send.c</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;     * Send message to network server </div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;   * user    </div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;     * Main user demo task</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;</div>
 <div class="ttc" id="earth__data_8h_html_afd20dbd7595a2c5971d5661cc598a113"><div class="ttname"><a href="earth__data_8h.html#afd20dbd7595a2c5971d5661cc598a113">earth_data</a></div><div class="ttdeci">MEMSPACE_RO wire_p earth_data[]</div><div class="ttdef"><b>Definition:</b> <a href="earth__data_8h_source.html#l00010">earth_data.h:10</a></div></div>
 <div class="ttc" id="pr_8c_html_ad6d6dda4facdc045d477c0cc9403e0c1"><div class="ttname"><a href="pr_8c.html#ad6d6dda4facdc045d477c0cc9403e0c1">tft_printf</a></div><div class="ttdeci">MEMSPACE int tft_printf(window *win, const char *fmt,...)</div><div class="ttdoc">tft_printf function </div><div class="ttdef"><b>Definition:</b> <a href="pr_8c_source.html#l00037">pr.c:37</a></div></div>
 <div class="ttc" id="printf_8c_html_a1d1cab8ef0a0104ee1408f519136abfd"><div class="ttname"><a href="printf_8c.html#a1d1cab8ef0a0104ee1408f519136abfd">ftoa</a></div><div class="ttdeci">static MEMSPACE int ftoa(double val, char *str, int intprec, int prec, int sign)</div><div class="ttdoc">ftoa float to ASCII </div><div class="ttdef"><b>Definition:</b> <a href="printf_8c_source.html#l00449">printf.c:449</a></div></div>
@@ -265,7 +272,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jun 7 2015 22:34:32 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jun 7 2015 23:15:53 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

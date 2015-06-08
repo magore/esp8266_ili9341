@@ -5,7 +5,6 @@ var searchData=
   ['weight_5fname',['WEIGHT_NAME',['../struct__fontinfo.html#a2f528cb5c1bceb6afd91ad138472d071',1,'_fontinfo']]],
   ['width',['Width',['../struct__fontspecs.html#a8404888a24a2b065d91c4424e1907439',1,'_fontspecs::Width()'],['../struct__font.html#ae3d3b48670f1bf4bf6dbf42794f81b31',1,'_font::Width()'],['../struct__fontc.html#ae3c802e1c35ae9a4e37c8eb2e9644325',1,'_fontc::Width()']]],
   ['window',['window',['../structwindow.html',1,'']]],
-  ['window_5finit',['window_init',['../ili9341_8c.html#ae59d206ad37346b7fec11d09192284ee',1,'window_init(window *win, uint16_t xoff, uint16_t yoff, uint16_t w, uint16_t h):&#160;ili9341.c'],['../ili9341_8h.html#ae59d206ad37346b7fec11d09192284ee',1,'window_init(window *win, uint16_t xoff, uint16_t yoff, uint16_t w, uint16_t h):&#160;ili9341.c']]],
   ['wire_2ec',['wire.c',['../wire_8c.html',1,'']]],
   ['wire_2eh',['wire.h',['../wire_8h.html',1,'']]],
   ['wire2fp',['wire2fp',['../wire_8c.html#a86a09b73c1cd047d1ef464da418bf414',1,'wire2fp(wire_p *in, point *out):&#160;wire.c'],['../wire_8h.html#a86a09b73c1cd047d1ef464da418bf414',1,'wire2fp(wire_p *in, point *out):&#160;wire.c']]],

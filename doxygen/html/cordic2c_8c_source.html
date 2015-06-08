@@ -130,232 +130,232 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00123"></a><span class="lineno"><a class="line" href="cordic2c_8c.html#a20ea29e123c9dc91c52635b0ffee975d">  123</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define Cordic2FP(a)    ( (double) (a) / (double) (Cordic_One)) </span></div>
 <div class="line"><a name="l00124"></a><span class="lineno"><a class="line" href="cordic2c_8c.html#ad614e1a545ad0fd263ea0afb0456cb7a">  124</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define FP2Cordic(a)    ((Cordic_T) (Cordic_One * (a)))</span></div>
 <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00129"></a><span class="lineno"><a class="line" href="cordic2c_8c.html#a4bc7ca5cbf08837c18c54b7a754d7900">  129</a></span>&#160;<span class="keywordtype">char</span> *<a class="code" href="cordic2c_8c.html#a4bc7ca5cbf08837c18c54b7a754d7900">get_date</a>()</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;{</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <span class="keywordtype">int</span> len;</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <span class="keywordtype">char</span> *ptr;</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    time_t timev;</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        timev = time(0);</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        ptr = asctime(localtime(&amp;timev));</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    len = strlen(ptr);</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    ptr[len-1] = 0;</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    <span class="keywordflow">return</span>(ptr);</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;}</div>
+<div class="line"><a name="l00128"></a><span class="lineno"><a class="line" href="cordic2c_8c.html#a4bc7ca5cbf08837c18c54b7a754d7900">  128</a></span>&#160;<span class="keywordtype">char</span> *<a class="code" href="cordic2c_8c.html#a4bc7ca5cbf08837c18c54b7a754d7900">get_date</a>()</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;{</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <span class="keywordtype">int</span> len;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <span class="keywordtype">char</span> *ptr;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    time_t timev;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        timev = time(0);</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        ptr = asctime(localtime(&amp;timev));</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    len = strlen(ptr);</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    ptr[len-1] = 0;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    <span class="keywordflow">return</span>(ptr);</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;}</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;</div>
 <div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="keywordtype">void</span> <a class="code" href="cordic2c_8c.html#a3281e2a9f8144b206e9e782543ed8da6">dump_tables</a>(FILE *FO)</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;{</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    <span class="keywordtype">int</span> i;</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    <a class="code" href="cordic2c__inc_8h.html#a97ad155ac7434ee543385126cd1d3313">Cordic_T</a> xx;</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;<span class="comment">// Dump types</span></div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    fprintf(FO,<span class="stringliteral">&quot;%s /* %u */\n&quot;</span>, <a class="code" href="cordic2c_8c.html#a7c5645f685b278110b72d4003b2aee52">Cordic_T_STR</a>, <a class="code" href="cordic2c_8c.html#ad0c9c86596235ca7b3e113b12aeeafa0">Cordic_T_Bits</a>);</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    fprintf(FO,<span class="stringliteral">&quot;%s /* %u */\n&quot;</span>, <a class="code" href="cordic2c_8c.html#a27092bec667d3da85622cfa613527520">UCordic_T_STR</a>, <a class="code" href="cordic2c_8c.html#ad0c9c86596235ca7b3e113b12aeeafa0">Cordic_T_Bits</a>);</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    fprintf(FO,<span class="stringliteral">&quot;%s /* %u */\n&quot;</span>, <a class="code" href="cordic2c_8c.html#a435917aacf957393509563ef16007425">FCordic_T_STR</a>, <a class="code" href="cordic2c_8c.html#a867ec3a5cd66a315ef2c1ad6b54ee9b2">FCordic_T_Bits</a>);</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    fprintf(FO,<span class="stringliteral">&quot;#define Cordic_T_Bits     %d\n&quot;</span>, (<span class="keywordtype">int</span>) <a class="code" href="cordic2c_8c.html#ad0c9c86596235ca7b3e113b12aeeafa0">Cordic_T_Bits</a>);</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    fprintf(FO,<span class="stringliteral">&quot;#define Cordic_T_FractionBits  %d\n&quot;</span>, (<span class="keywordtype">int</span>) <a class="code" href="cordic2c_8c.html#a77433404a778cb9a148b6db69eedea93">Cordic_T_FractionBits</a>);</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="keywordtype">void</span> <a class="code" href="cordic2c_8c.html#a3281e2a9f8144b206e9e782543ed8da6">dump_tables</a>(FILE *FO)</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;{</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <span class="keywordtype">int</span> i;</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    <a class="code" href="cordic2c__inc_8h.html#a97ad155ac7434ee543385126cd1d3313">Cordic_T</a> xx;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="comment">// Dump types</span></div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    fprintf(FO,<span class="stringliteral">&quot;%s /* %u */\n&quot;</span>, <a class="code" href="cordic2c_8c.html#a7c5645f685b278110b72d4003b2aee52">Cordic_T_STR</a>, <a class="code" href="cordic2c_8c.html#ad0c9c86596235ca7b3e113b12aeeafa0">Cordic_T_Bits</a>);</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    fprintf(FO,<span class="stringliteral">&quot;%s /* %u */\n&quot;</span>, <a class="code" href="cordic2c_8c.html#a27092bec667d3da85622cfa613527520">UCordic_T_STR</a>, <a class="code" href="cordic2c_8c.html#ad0c9c86596235ca7b3e113b12aeeafa0">Cordic_T_Bits</a>);</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    fprintf(FO,<span class="stringliteral">&quot;%s /* %u */\n&quot;</span>, <a class="code" href="cordic2c_8c.html#a435917aacf957393509563ef16007425">FCordic_T_STR</a>, <a class="code" href="cordic2c_8c.html#a867ec3a5cd66a315ef2c1ad6b54ee9b2">FCordic_T_Bits</a>);</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    fprintf(FO,<span class="stringliteral">&quot;#define Cordic_T_Bits     %d\n&quot;</span>, (<span class="keywordtype">int</span>) <a class="code" href="cordic2c_8c.html#ad0c9c86596235ca7b3e113b12aeeafa0">Cordic_T_Bits</a>);</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    fprintf(FO,<span class="stringliteral">&quot;#define Cordic_T_FractionBits  %d\n&quot;</span>, (<span class="keywordtype">int</span>) <a class="code" href="cordic2c_8c.html#a77433404a778cb9a148b6db69eedea93">Cordic_T_FractionBits</a>);</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;</div>
 <div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;<span class="comment">// Dump defines</span></div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    fprintf(FO,<span class="stringliteral">&quot;#define Cordic_One    0x%lx /* %.15le */\n&quot;</span>, </div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        (<span class="keywordtype">long</span>) <a class="code" href="cordic2c_8c.html#a75d478dd9c919ea7ecf27cc49b9dab58">Cordic_One</a>, <a class="code" href="cordic2c_8c.html#a20ea29e123c9dc91c52635b0ffee975d">Cordic2FP</a>(Cordic_One));</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    fprintf(FO,<span class="stringliteral">&quot;#define Cordic_K      0x%lx /* %.15le */\n&quot;</span>, </div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        (<span class="keywordtype">long</span>) <a class="code" href="cordic2c_8c.html#a4b976fbfc7fdff42650fe0419698cabf">Cordic_K</a> ,<a class="code" href="cordic2c_8c.html#a20ea29e123c9dc91c52635b0ffee975d">Cordic2FP</a>(Cordic_K));</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    fprintf(FO,<span class="stringliteral">&quot;#define Cordic_INVK   0x%lx /* %.15le */\n&quot;</span>, </div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        (<span class="keywordtype">long</span>) <a class="code" href="cordic2c_8c.html#a38f46d7f72ed48712304af6f64b896f2">Cordic_INVK</a> ,<a class="code" href="cordic2c_8c.html#a20ea29e123c9dc91c52635b0ffee975d">Cordic2FP</a>(Cordic_INVK));</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    fprintf(FO,<span class="stringliteral">&quot;#define Cordic_KP     0x%lx /* %.15le */\n&quot;</span>, </div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;        (<span class="keywordtype">long</span>) <a class="code" href="cordic2c_8c.html#a77653d895effdbff8323975329805fc9">Cordic_KP</a> ,<a class="code" href="cordic2c_8c.html#a20ea29e123c9dc91c52635b0ffee975d">Cordic2FP</a>(Cordic_KP));</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    fprintf(FO,<span class="stringliteral">&quot;#define Cordic_INVKP  0x%lx /* %.15le */\n&quot;</span>, </div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;        (<span class="keywordtype">long</span>) <a class="code" href="cordic2c_8c.html#a01817682b78da8cc004b6f0e9dd0d889">Cordic_INVKP</a> ,<a class="code" href="cordic2c_8c.html#a20ea29e123c9dc91c52635b0ffee975d">Cordic2FP</a>(Cordic_INVKP));</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    fprintf(FO,<span class="stringliteral">&quot;#define Cordic_HalfPI 0x%lx /* %.15le */\n&quot;</span>, </div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;        (<span class="keywordtype">long</span>) <a class="code" href="cordic2c_8c.html#a1b436217d30824e9004f1e16d33abf0a">Cordic_HalfPI</a> ,<a class="code" href="cordic2c_8c.html#a20ea29e123c9dc91c52635b0ffee975d">Cordic2FP</a>(Cordic_HalfPI));</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    fprintf(FO,<span class="stringliteral">&quot;#define Cordic2FP(a)  ( (double) (a) / (double) (Cordic_One)) \n&quot;</span>);</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    fprintf(FO,<span class="stringliteral">&quot;#define FP2Cordic(a)  ((Cordic_T) (Cordic_One * (a)))\n&quot;</span>);</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    fprintf(FO,<span class="stringliteral">&quot;#ifdef CORDIC_TABLE\n&quot;</span>);</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;<span class="comment">// Dump normalize atan table</span></div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    xx = <a class="code" href="cordic2c_8c.html#a75d478dd9c919ea7ecf27cc49b9dab58">Cordic_One</a>;</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    <span class="keywordflow">for</span>(i=0;i&lt;<a class="code" href="cordic2c_8c.html#ad0c9c86596235ca7b3e113b12aeeafa0">Cordic_T_Bits</a>;++i) {</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;            <a class="code" href="cordic2c_8c.html#a87f33f8b076298d511ca73b9e458a3ac">v_atan</a>[i] = Cordic_One * atan( <a class="code" href="cordic2c_8c.html#a20ea29e123c9dc91c52635b0ffee975d">Cordic2FP</a>(xx)) * (2.0/M_PI);</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;            xx &gt;&gt;= 1;</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    }</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    fprintf(FO,<span class="stringliteral">&quot;static const Cordic_T v_atangrad[] = {\n&quot;</span>);</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    <span class="keywordflow">for</span>(i=0;i&lt;=<a class="code" href="cordic2c_8c.html#a77433404a778cb9a148b6db69eedea93">Cordic_T_FractionBits</a>;++i) {</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        fprintf(FO,<span class="stringliteral">&quot;\t0x%lx, /* %.8le */\n&quot;</span>, </div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;        (<span class="keywordtype">long</span>) <a class="code" href="cordic2c_8c.html#a87f33f8b076298d511ca73b9e458a3ac">v_atan</a>[i], <a class="code" href="cordic2c_8c.html#a20ea29e123c9dc91c52635b0ffee975d">Cordic2FP</a>(<a class="code" href="cordic2c_8c.html#a87f33f8b076298d511ca73b9e458a3ac">v_atan</a>[i]));</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    }</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    fprintf(FO,<span class="stringliteral">&quot;\t0\n};\n&quot;</span>);</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;}</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;</div>
-<div class="line"><a name="l00201"></a><span class="lineno"><a class="line" href="cordic2c_8c.html#afc93093d0da5da783668ca27f859a2a7">  201</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="cordic2c_8c.html#afc93093d0da5da783668ca27f859a2a7">PrintXYZ</a> (<span class="keywordtype">char</span> *str)</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;{</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    printf(<span class="stringliteral">&quot;/* %s\n&quot;</span>,str);</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    printf(<span class="stringliteral">&quot;X: %.8lf\n&quot;</span>, <a class="code" href="cordic2c_8c.html#a20ea29e123c9dc91c52635b0ffee975d">Cordic2FP</a>(<a class="code" href="cordic2c_8c.html#a46b4b48ef8c0c01099eb3bcdde8aa8db">X</a>));</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    printf(<span class="stringliteral">&quot;Y: %.8lf\n&quot;</span>, <a class="code" href="cordic2c_8c.html#a20ea29e123c9dc91c52635b0ffee975d">Cordic2FP</a>(<a class="code" href="cordic2c_8c.html#ab746e677f466f17031e92ed577fc3c15">Y</a>));</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    printf(<span class="stringliteral">&quot;Z: %.8lf\n&quot;</span>, <a class="code" href="cordic2c_8c.html#a20ea29e123c9dc91c52635b0ffee975d">Cordic2FP</a>(<a class="code" href="cordic2c_8c.html#a3da94d1c83a43c30add6c05fbbe1f194">Z</a>));</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    printf(<span class="stringliteral">&quot;*/\n&quot;</span>);</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;}</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<span class="comment">// Dump defines</span></div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    fprintf(FO,<span class="stringliteral">&quot;#define Cordic_One    0x%lx /* %.15le */\n&quot;</span>, </div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        (<span class="keywordtype">long</span>) <a class="code" href="cordic2c_8c.html#a75d478dd9c919ea7ecf27cc49b9dab58">Cordic_One</a>, <a class="code" href="cordic2c_8c.html#a20ea29e123c9dc91c52635b0ffee975d">Cordic2FP</a>(Cordic_One));</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    fprintf(FO,<span class="stringliteral">&quot;#define Cordic_K      0x%lx /* %.15le */\n&quot;</span>, </div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        (<span class="keywordtype">long</span>) <a class="code" href="cordic2c_8c.html#a4b976fbfc7fdff42650fe0419698cabf">Cordic_K</a> ,<a class="code" href="cordic2c_8c.html#a20ea29e123c9dc91c52635b0ffee975d">Cordic2FP</a>(Cordic_K));</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    fprintf(FO,<span class="stringliteral">&quot;#define Cordic_INVK   0x%lx /* %.15le */\n&quot;</span>, </div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;        (<span class="keywordtype">long</span>) <a class="code" href="cordic2c_8c.html#a38f46d7f72ed48712304af6f64b896f2">Cordic_INVK</a> ,<a class="code" href="cordic2c_8c.html#a20ea29e123c9dc91c52635b0ffee975d">Cordic2FP</a>(Cordic_INVK));</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    fprintf(FO,<span class="stringliteral">&quot;#define Cordic_KP     0x%lx /* %.15le */\n&quot;</span>, </div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;        (<span class="keywordtype">long</span>) <a class="code" href="cordic2c_8c.html#a77653d895effdbff8323975329805fc9">Cordic_KP</a> ,<a class="code" href="cordic2c_8c.html#a20ea29e123c9dc91c52635b0ffee975d">Cordic2FP</a>(Cordic_KP));</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    fprintf(FO,<span class="stringliteral">&quot;#define Cordic_INVKP  0x%lx /* %.15le */\n&quot;</span>, </div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;        (<span class="keywordtype">long</span>) <a class="code" href="cordic2c_8c.html#a01817682b78da8cc004b6f0e9dd0d889">Cordic_INVKP</a> ,<a class="code" href="cordic2c_8c.html#a20ea29e123c9dc91c52635b0ffee975d">Cordic2FP</a>(Cordic_INVKP));</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    fprintf(FO,<span class="stringliteral">&quot;#define Cordic_HalfPI 0x%lx /* %.15le */\n&quot;</span>, </div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        (<span class="keywordtype">long</span>) <a class="code" href="cordic2c_8c.html#a1b436217d30824e9004f1e16d33abf0a">Cordic_HalfPI</a> ,<a class="code" href="cordic2c_8c.html#a20ea29e123c9dc91c52635b0ffee975d">Cordic2FP</a>(Cordic_HalfPI));</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    fprintf(FO,<span class="stringliteral">&quot;#define Cordic2FP(a)  ( (double) (a) / (double) (Cordic_One)) \n&quot;</span>);</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    fprintf(FO,<span class="stringliteral">&quot;#define FP2Cordic(a)  ((Cordic_T) (Cordic_One * (a)))\n&quot;</span>);</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    fprintf(FO,<span class="stringliteral">&quot;#ifdef CORDIC_TABLE\n&quot;</span>);</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;<span class="comment">// Dump normalize atan table</span></div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    xx = <a class="code" href="cordic2c_8c.html#a75d478dd9c919ea7ecf27cc49b9dab58">Cordic_One</a>;</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    <span class="keywordflow">for</span>(i=0;i&lt;<a class="code" href="cordic2c_8c.html#ad0c9c86596235ca7b3e113b12aeeafa0">Cordic_T_Bits</a>;++i) {</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;            <a class="code" href="cordic2c_8c.html#a87f33f8b076298d511ca73b9e458a3ac">v_atan</a>[i] = Cordic_One * atan( <a class="code" href="cordic2c_8c.html#a20ea29e123c9dc91c52635b0ffee975d">Cordic2FP</a>(xx)) * (2.0/M_PI);</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;            xx &gt;&gt;= 1;</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    }</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    fprintf(FO,<span class="stringliteral">&quot;static const Cordic_T v_atangrad[] = {\n&quot;</span>);</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    <span class="keywordflow">for</span>(i=0;i&lt;=<a class="code" href="cordic2c_8c.html#a77433404a778cb9a148b6db69eedea93">Cordic_T_FractionBits</a>;++i) {</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;        fprintf(FO,<span class="stringliteral">&quot;\t0x%lx, /* %.8le */\n&quot;</span>, </div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        (<span class="keywordtype">long</span>) <a class="code" href="cordic2c_8c.html#a87f33f8b076298d511ca73b9e458a3ac">v_atan</a>[i], <a class="code" href="cordic2c_8c.html#a20ea29e123c9dc91c52635b0ffee975d">Cordic2FP</a>(<a class="code" href="cordic2c_8c.html#a87f33f8b076298d511ca73b9e458a3ac">v_atan</a>[i]));</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    }</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    fprintf(FO,<span class="stringliteral">&quot;\t0\n};\n&quot;</span>);</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;}</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;</div>
+<div class="line"><a name="l00200"></a><span class="lineno"><a class="line" href="cordic2c_8c.html#afc93093d0da5da783668ca27f859a2a7">  200</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="cordic2c_8c.html#afc93093d0da5da783668ca27f859a2a7">PrintXYZ</a> (<span class="keywordtype">char</span> *str)</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;{</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    printf(<span class="stringliteral">&quot;/* %s\n&quot;</span>,str);</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    printf(<span class="stringliteral">&quot;X: %.8lf\n&quot;</span>, <a class="code" href="cordic2c_8c.html#a20ea29e123c9dc91c52635b0ffee975d">Cordic2FP</a>(<a class="code" href="cordic2c_8c.html#a46b4b48ef8c0c01099eb3bcdde8aa8db">X</a>));</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    printf(<span class="stringliteral">&quot;Y: %.8lf\n&quot;</span>, <a class="code" href="cordic2c_8c.html#a20ea29e123c9dc91c52635b0ffee975d">Cordic2FP</a>(<a class="code" href="cordic2c_8c.html#ab746e677f466f17031e92ed577fc3c15">Y</a>));</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    printf(<span class="stringliteral">&quot;Z: %.8lf\n&quot;</span>, <a class="code" href="cordic2c_8c.html#a20ea29e123c9dc91c52635b0ffee975d">Cordic2FP</a>(<a class="code" href="cordic2c_8c.html#a3da94d1c83a43c30add6c05fbbe1f194">Z</a>));</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    printf(<span class="stringliteral">&quot;*/\n&quot;</span>);</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;}</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;</div>
 <div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;</div>
-<div class="line"><a name="l00217"></a><span class="lineno"><a class="line" href="cordic2c_8c.html#a9e686d8e990a05ea18655a368e6d1918">  217</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="cordic2c_8c.html#a9e686d8e990a05ea18655a368e6d1918">Circular</a> (<a class="code" href="cordic2c__inc_8h.html#a97ad155ac7434ee543385126cd1d3313">Cordic_T</a> x, <a class="code" href="cordic2c__inc_8h.html#a97ad155ac7434ee543385126cd1d3313">Cordic_T</a> y, <a class="code" href="cordic2c__inc_8h.html#a97ad155ac7434ee543385126cd1d3313">Cordic_T</a> z)</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;{</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    <span class="keywordtype">int</span> i;</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    <a class="code" href="cordic2c_8c.html#a46b4b48ef8c0c01099eb3bcdde8aa8db">X</a> = x;</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    <a class="code" href="cordic2c_8c.html#ab746e677f466f17031e92ed577fc3c15">Y</a> = y;</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    <a class="code" href="cordic2c_8c.html#a3da94d1c83a43c30add6c05fbbe1f194">Z</a> = z;</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;    <span class="keywordflow">for</span> (i = 0; i &lt;= <a class="code" href="cordic2c_8c.html#a77433404a778cb9a148b6db69eedea93">Cordic_T_FractionBits</a>; ++i)</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;    {</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;        x = <a class="code" href="cordic2c_8c.html#a46b4b48ef8c0c01099eb3bcdde8aa8db">X</a> &gt;&gt; i;</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;        y = <a class="code" href="cordic2c_8c.html#ab746e677f466f17031e92ed577fc3c15">Y</a> &gt;&gt; i;</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;        <span class="keywordflow">if</span>(i &lt; 14)</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;            z = <a class="code" href="cordic2c_8c.html#a87f33f8b076298d511ca73b9e458a3ac">v_atan</a>[i];</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;            z &gt;&gt;= 1;</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;        <span class="keywordflow">if</span>(<a class="code" href="cordic2c_8c.html#a3da94d1c83a43c30add6c05fbbe1f194">Z</a> &gt;= 0) {</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;            <a class="code" href="cordic2c_8c.html#a46b4b48ef8c0c01099eb3bcdde8aa8db">X</a> -= y;</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;            <a class="code" href="cordic2c_8c.html#ab746e677f466f17031e92ed577fc3c15">Y</a> += x;</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;            <a class="code" href="cordic2c_8c.html#a3da94d1c83a43c30add6c05fbbe1f194">Z</a> -= z;</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;        }</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;        <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;            <a class="code" href="cordic2c_8c.html#a46b4b48ef8c0c01099eb3bcdde8aa8db">X</a> += y;</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;            <a class="code" href="cordic2c_8c.html#ab746e677f466f17031e92ed577fc3c15">Y</a> -= x;</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;            <a class="code" href="cordic2c_8c.html#a3da94d1c83a43c30add6c05fbbe1f194">Z</a> += z;</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;        }</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;    }</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;}</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;</div>
-<div class="line"><a name="l00260"></a><span class="lineno"><a class="line" href="cordic2c_8c.html#aa47551f0ba056c573807f6dfa1b09d2d">  260</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="cordic2c_8c.html#aa47551f0ba056c573807f6dfa1b09d2d">cordit1</a>(<a class="code" href="cordic2c__inc_8h.html#a97ad155ac7434ee543385126cd1d3313">Cordic_T</a> x, <a class="code" href="cordic2c__inc_8h.html#a97ad155ac7434ee543385126cd1d3313">Cordic_T</a> y, <a class="code" href="cordic2c__inc_8h.html#a97ad155ac7434ee543385126cd1d3313">Cordic_T</a> z, <a class="code" href="cordic2c__inc_8h.html#a97ad155ac7434ee543385126cd1d3313">Cordic_T</a> vecmode)</div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;{</div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;    <span class="keywordtype">int</span> i;</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    <a class="code" href="cordic2c_8c.html#a46b4b48ef8c0c01099eb3bcdde8aa8db">X</a> = x;</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;    <a class="code" href="cordic2c_8c.html#ab746e677f466f17031e92ed577fc3c15">Y</a> = y;</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;    <a class="code" href="cordic2c_8c.html#a3da94d1c83a43c30add6c05fbbe1f194">Z</a> = z;</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;    <span class="keywordflow">for</span> (i = 0; i &lt; <a class="code" href="cordic2c_8c.html#a77433404a778cb9a148b6db69eedea93">Cordic_T_FractionBits</a>; ++i) {</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;        x = <a class="code" href="cordic2c_8c.html#a46b4b48ef8c0c01099eb3bcdde8aa8db">X</a> &gt;&gt; i;</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;        y = <a class="code" href="cordic2c_8c.html#ab746e677f466f17031e92ed577fc3c15">Y</a> &gt;&gt; i;</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;        <span class="keywordflow">if</span>(i &lt; 14)</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;            z = <a class="code" href="cordic2c_8c.html#a87f33f8b076298d511ca73b9e458a3ac">v_atan</a>[i];</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;            z &gt;&gt;= 1;</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;        <span class="keywordflow">if</span> (vecmode &gt;= 0 &amp;&amp; <a class="code" href="cordic2c_8c.html#ab746e677f466f17031e92ed577fc3c15">Y</a> &lt; vecmode || vecmode &lt; 0  &amp;&amp; Z &gt;= 0) {</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;            <a class="code" href="cordic2c_8c.html#a46b4b48ef8c0c01099eb3bcdde8aa8db">X</a> -= y;</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;            <a class="code" href="cordic2c_8c.html#ab746e677f466f17031e92ed577fc3c15">Y</a> += x;</div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;            <a class="code" href="cordic2c_8c.html#a3da94d1c83a43c30add6c05fbbe1f194">Z</a> -= z;</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;        }</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;        <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;            <a class="code" href="cordic2c_8c.html#a46b4b48ef8c0c01099eb3bcdde8aa8db">X</a> += y;</div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;            <a class="code" href="cordic2c_8c.html#ab746e677f466f17031e92ed577fc3c15">Y</a> -= x;</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;            <a class="code" href="cordic2c_8c.html#a3da94d1c83a43c30add6c05fbbe1f194">Z</a> += z;</div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;        }</div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;    }</div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;}</div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;</div>
-<div class="line"><a name="l00293"></a><span class="lineno"><a class="line" href="cordic2c_8c.html#a6797cc1f28fd7c359145ea548dc302d0">  293</a></span>&#160;<a class="code" href="cordic2c__inc_8h.html#a97ad155ac7434ee543385126cd1d3313">Cordic_T</a> <a class="code" href="cordic2c_8c.html#a6797cc1f28fd7c359145ea548dc302d0">asinCordic</a>(<a class="code" href="cordic2c__inc_8h.html#a97ad155ac7434ee543385126cd1d3313">Cordic_T</a> a)</div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;{</div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;    <a class="code" href="cordic2c__inc_8h.html#a97ad155ac7434ee543385126cd1d3313">Cordic_T</a> x, y, z;</div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;    </div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;</div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;    x = <a class="code" href="cordic2c_8c.html#a4b976fbfc7fdff42650fe0419698cabf">Cordic_K</a>;</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;    y = 0;</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    z = 0;</div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;</div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;    <span class="keywordtype">int</span> neg = 1;</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;    <span class="keywordflow">if</span> (a &lt; 0) {</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;        a = -a;</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;        neg = 0;</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;    }</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;        </div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;</div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;    <a class="code" href="cordic2c_8c.html#aa47551f0ba056c573807f6dfa1b09d2d">cordit1</a>(x, y, z, a);</div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;</div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;    <span class="keywordflow">if</span> (neg) <a class="code" href="cordic2c_8c.html#a3da94d1c83a43c30add6c05fbbe1f194">Z</a> = -<a class="code" href="cordic2c_8c.html#a3da94d1c83a43c30add6c05fbbe1f194">Z</a>;</div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="cordic2c_8c.html#a3da94d1c83a43c30add6c05fbbe1f194">Z</a>;</div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;}</div>
+<div class="line"><a name="l00216"></a><span class="lineno"><a class="line" href="cordic2c_8c.html#a9e686d8e990a05ea18655a368e6d1918">  216</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="cordic2c_8c.html#a9e686d8e990a05ea18655a368e6d1918">Circular</a> (<a class="code" href="cordic2c__inc_8h.html#a97ad155ac7434ee543385126cd1d3313">Cordic_T</a> x, <a class="code" href="cordic2c__inc_8h.html#a97ad155ac7434ee543385126cd1d3313">Cordic_T</a> y, <a class="code" href="cordic2c__inc_8h.html#a97ad155ac7434ee543385126cd1d3313">Cordic_T</a> z)</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;{</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    <span class="keywordtype">int</span> i;</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    <a class="code" href="cordic2c_8c.html#a46b4b48ef8c0c01099eb3bcdde8aa8db">X</a> = x;</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    <a class="code" href="cordic2c_8c.html#ab746e677f466f17031e92ed577fc3c15">Y</a> = y;</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    <a class="code" href="cordic2c_8c.html#a3da94d1c83a43c30add6c05fbbe1f194">Z</a> = z;</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    <span class="keywordflow">for</span> (i = 0; i &lt;= <a class="code" href="cordic2c_8c.html#a77433404a778cb9a148b6db69eedea93">Cordic_T_FractionBits</a>; ++i)</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;    {</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;        x = <a class="code" href="cordic2c_8c.html#a46b4b48ef8c0c01099eb3bcdde8aa8db">X</a> &gt;&gt; i;</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;        y = <a class="code" href="cordic2c_8c.html#ab746e677f466f17031e92ed577fc3c15">Y</a> &gt;&gt; i;</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;        <span class="keywordflow">if</span>(i &lt; 14)</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;            z = <a class="code" href="cordic2c_8c.html#a87f33f8b076298d511ca73b9e458a3ac">v_atan</a>[i];</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;            z &gt;&gt;= 1;</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;        <span class="keywordflow">if</span>(<a class="code" href="cordic2c_8c.html#a3da94d1c83a43c30add6c05fbbe1f194">Z</a> &gt;= 0) {</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;            <a class="code" href="cordic2c_8c.html#a46b4b48ef8c0c01099eb3bcdde8aa8db">X</a> -= y;</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;            <a class="code" href="cordic2c_8c.html#ab746e677f466f17031e92ed577fc3c15">Y</a> += x;</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;            <a class="code" href="cordic2c_8c.html#a3da94d1c83a43c30add6c05fbbe1f194">Z</a> -= z;</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;        }</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;        <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;            <a class="code" href="cordic2c_8c.html#a46b4b48ef8c0c01099eb3bcdde8aa8db">X</a> += y;</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;            <a class="code" href="cordic2c_8c.html#ab746e677f466f17031e92ed577fc3c15">Y</a> -= x;</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;            <a class="code" href="cordic2c_8c.html#a3da94d1c83a43c30add6c05fbbe1f194">Z</a> += z;</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;        }</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    }</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;}</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;</div>
+<div class="line"><a name="l00259"></a><span class="lineno"><a class="line" href="cordic2c_8c.html#aa47551f0ba056c573807f6dfa1b09d2d">  259</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="cordic2c_8c.html#aa47551f0ba056c573807f6dfa1b09d2d">cordit1</a>(<a class="code" href="cordic2c__inc_8h.html#a97ad155ac7434ee543385126cd1d3313">Cordic_T</a> x, <a class="code" href="cordic2c__inc_8h.html#a97ad155ac7434ee543385126cd1d3313">Cordic_T</a> y, <a class="code" href="cordic2c__inc_8h.html#a97ad155ac7434ee543385126cd1d3313">Cordic_T</a> z, <a class="code" href="cordic2c__inc_8h.html#a97ad155ac7434ee543385126cd1d3313">Cordic_T</a> vecmode)</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;{</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;    <span class="keywordtype">int</span> i;</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;    <a class="code" href="cordic2c_8c.html#a46b4b48ef8c0c01099eb3bcdde8aa8db">X</a> = x;</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    <a class="code" href="cordic2c_8c.html#ab746e677f466f17031e92ed577fc3c15">Y</a> = y;</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;    <a class="code" href="cordic2c_8c.html#a3da94d1c83a43c30add6c05fbbe1f194">Z</a> = z;</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;    <span class="keywordflow">for</span> (i = 0; i &lt; <a class="code" href="cordic2c_8c.html#a77433404a778cb9a148b6db69eedea93">Cordic_T_FractionBits</a>; ++i) {</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;        x = <a class="code" href="cordic2c_8c.html#a46b4b48ef8c0c01099eb3bcdde8aa8db">X</a> &gt;&gt; i;</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;        y = <a class="code" href="cordic2c_8c.html#ab746e677f466f17031e92ed577fc3c15">Y</a> &gt;&gt; i;</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;        <span class="keywordflow">if</span>(i &lt; 14)</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;            z = <a class="code" href="cordic2c_8c.html#a87f33f8b076298d511ca73b9e458a3ac">v_atan</a>[i];</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;            z &gt;&gt;= 1;</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;        <span class="keywordflow">if</span> (vecmode &gt;= 0 &amp;&amp; <a class="code" href="cordic2c_8c.html#ab746e677f466f17031e92ed577fc3c15">Y</a> &lt; vecmode || vecmode &lt; 0  &amp;&amp; Z &gt;= 0) {</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;            <a class="code" href="cordic2c_8c.html#a46b4b48ef8c0c01099eb3bcdde8aa8db">X</a> -= y;</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;            <a class="code" href="cordic2c_8c.html#ab746e677f466f17031e92ed577fc3c15">Y</a> += x;</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;            <a class="code" href="cordic2c_8c.html#a3da94d1c83a43c30add6c05fbbe1f194">Z</a> -= z;</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;        }</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;        <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;            <a class="code" href="cordic2c_8c.html#a46b4b48ef8c0c01099eb3bcdde8aa8db">X</a> += y;</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;            <a class="code" href="cordic2c_8c.html#ab746e677f466f17031e92ed577fc3c15">Y</a> -= x;</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;            <a class="code" href="cordic2c_8c.html#a3da94d1c83a43c30add6c05fbbe1f194">Z</a> += z;</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;        }</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;    }</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;}</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;</div>
+<div class="line"><a name="l00292"></a><span class="lineno"><a class="line" href="cordic2c_8c.html#a6797cc1f28fd7c359145ea548dc302d0">  292</a></span>&#160;<a class="code" href="cordic2c__inc_8h.html#a97ad155ac7434ee543385126cd1d3313">Cordic_T</a> <a class="code" href="cordic2c_8c.html#a6797cc1f28fd7c359145ea548dc302d0">asinCordic</a>(<a class="code" href="cordic2c__inc_8h.html#a97ad155ac7434ee543385126cd1d3313">Cordic_T</a> a)</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;{</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;    <a class="code" href="cordic2c__inc_8h.html#a97ad155ac7434ee543385126cd1d3313">Cordic_T</a> x, y, z;</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;    </div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;    x = <a class="code" href="cordic2c_8c.html#a4b976fbfc7fdff42650fe0419698cabf">Cordic_K</a>;</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;    y = 0;</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;    z = 0;</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;    <span class="keywordtype">int</span> neg = 1;</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;    <span class="keywordflow">if</span> (a &lt; 0) {</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;        a = -a;</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;        neg = 0;</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;    }</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;        </div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;    <a class="code" href="cordic2c_8c.html#aa47551f0ba056c573807f6dfa1b09d2d">cordit1</a>(x, y, z, a);</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;    <span class="keywordflow">if</span> (neg) <a class="code" href="cordic2c_8c.html#a3da94d1c83a43c30add6c05fbbe1f194">Z</a> = -<a class="code" href="cordic2c_8c.html#a3da94d1c83a43c30add6c05fbbe1f194">Z</a>;</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="cordic2c_8c.html#a3da94d1c83a43c30add6c05fbbe1f194">Z</a>;</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;}</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;</div>
 <div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;</div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;</div>
-<div class="line"><a name="l00318"></a><span class="lineno"><a class="line" href="cordic2c_8c.html#a0ddf1224851353fc92bfbff6f499fa97">  318</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="cordic2c_8c.html#a0ddf1224851353fc92bfbff6f499fa97">main</a> (<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[])</div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;{</div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;    <a class="code" href="cordic2c__inc_8h.html#a97ad155ac7434ee543385126cd1d3313">Cordic_T</a> x1;</div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;    <span class="keywordtype">char</span> str[256];</div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;    <span class="keywordtype">char</span> *oname;</div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;    <span class="keywordtype">char</span> *p;</div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;    <span class="keywordtype">double</span> d;</div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;    <span class="keywordtype">int</span> a;</div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;    <span class="keywordtype">int</span> i;</div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;    FILE *FO;</div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;</div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;    <span class="keywordflow">for</span>(i=1; i&lt;argc;++i)</div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;    {</div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;        p = argv[i];</div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;        <span class="keywordflow">if</span>(*p != <span class="charliteral">&#39;-&#39;</span>)</div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;                <span class="keywordflow">continue</span>;</div>
-<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;        ++p;</div>
-<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;        <span class="keywordflow">if</span>(*p == <span class="charliteral">&#39;o&#39;</span>)</div>
-<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;        {</div>
-<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;                oname = argv[++i];</div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;        }</div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;    }</div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;    <span class="keywordflow">if</span>(!oname)</div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;    {</div>
-<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;        fprintf(stderr,<span class="stringliteral">&quot;Usage: %s -o filename [-p]\n&quot;</span>,argv[0]);</div>
-<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;        fprintf(stderr,<span class="stringliteral">&quot;-o filename is CORDIC C table output file\n&quot;</span>);</div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;        exit(1);</div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;    }</div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;</div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;    FO = fopen(oname,<span class="stringliteral">&quot;w&quot;</span>);</div>
-<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;    <span class="keywordflow">if</span>(FO == NULL)</div>
-<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;    {</div>
-<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;            fprintf(stderr,<span class="stringliteral">&quot;Can not open: [%s]\n&quot;</span>, oname);</div>
-<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;            exit (1);</div>
-<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;    }</div>
+<div class="line"><a name="l00317"></a><span class="lineno"><a class="line" href="cordic2c_8c.html#a0ddf1224851353fc92bfbff6f499fa97">  317</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="cordic2c_8c.html#a0ddf1224851353fc92bfbff6f499fa97">main</a> (<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[])</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;{</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;    <a class="code" href="cordic2c__inc_8h.html#a97ad155ac7434ee543385126cd1d3313">Cordic_T</a> x1;</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;    <span class="keywordtype">char</span> str[256];</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;    <span class="keywordtype">char</span> *oname;</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;    <span class="keywordtype">char</span> *p;</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;    <span class="keywordtype">double</span> d;</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;    <span class="keywordtype">int</span> a;</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;    <span class="keywordtype">int</span> i;</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;    FILE *FO;</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;    <span class="keywordflow">for</span>(i=1; i&lt;argc;++i)</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;    {</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;        p = argv[i];</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;        <span class="keywordflow">if</span>(*p != <span class="charliteral">&#39;-&#39;</span>)</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;                <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;        ++p;</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;        <span class="keywordflow">if</span>(*p == <span class="charliteral">&#39;o&#39;</span>)</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;        {</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;                oname = argv[++i];</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;        }</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;    }</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;    <span class="keywordflow">if</span>(!oname)</div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;    {</div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;        fprintf(stderr,<span class="stringliteral">&quot;Usage: %s -o filename [-p]\n&quot;</span>,argv[0]);</div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;        fprintf(stderr,<span class="stringliteral">&quot;-o filename is CORDIC C table output file\n&quot;</span>);</div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;        exit(1);</div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;    }</div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;</div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;    FO = fopen(oname,<span class="stringliteral">&quot;w&quot;</span>);</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;    <span class="keywordflow">if</span>(FO == NULL)</div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;    {</div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;            fprintf(stderr,<span class="stringliteral">&quot;Can not open: [%s]\n&quot;</span>, oname);</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;            exit (1);</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;    }</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;</div>
 <div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;</div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;</div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;    fprintf(FO,<span class="stringliteral">&quot;#ifndef _CORDIC_INC_H\n&quot;</span>);</div>
-<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;    fprintf(FO,<span class="stringliteral">&quot;#define _CORDIC_INC_H\n&quot;</span>);</div>
-<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;</div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;    fprintf(FO,<span class="stringliteral">&quot;/**\n&quot;</span>);</div>
-<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;    fprintf(FO,<span class="stringliteral">&quot; @file %s\n&quot;</span>, basename(oname));</div>
-<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;    fprintf(FO,<span class="stringliteral">&quot; Generated by:[%s]\n&quot;</span>, basename(argv[0]));</div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;    fprintf(FO,<span class="stringliteral">&quot; On: %s\n&quot;</span>, <a class="code" href="cordic2c_8c.html#a4bc7ca5cbf08837c18c54b7a754d7900">get_date</a>());</div>
-<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;    fprintf(FO,<span class="stringliteral">&quot; By Mike Gore 2015, Cordic C Table\n&quot;</span>);</div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;    fprintf(FO,<span class="stringliteral">&quot;*/\n&quot;</span>);</div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;    fprintf(FO,<span class="stringliteral">&quot;#ifndef _CORDIC_INC_H\n&quot;</span>);</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;    fprintf(FO,<span class="stringliteral">&quot;#define _CORDIC_INC_H\n&quot;</span>);</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;</div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;    fprintf(FO,<span class="stringliteral">&quot;/**\n&quot;</span>);</div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;    fprintf(FO,<span class="stringliteral">&quot; @file %s\n&quot;</span>, basename(oname));</div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;    fprintf(FO,<span class="stringliteral">&quot; Generated by:[%s]\n&quot;</span>, basename(argv[0]));</div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;    fprintf(FO,<span class="stringliteral">&quot; On: %s\n&quot;</span>, <a class="code" href="cordic2c_8c.html#a4bc7ca5cbf08837c18c54b7a754d7900">get_date</a>());</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;    fprintf(FO,<span class="stringliteral">&quot; By Mike Gore 2015, Cordic C Table\n&quot;</span>);</div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;    fprintf(FO,<span class="stringliteral">&quot;*/\n&quot;</span>);</div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;</div>
 <div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;</div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;</div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;    <a class="code" href="cordic2c_8c.html#a3281e2a9f8144b206e9e782543ed8da6">dump_tables</a>( FO);</div>
-<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;</div>
-<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;    fprintf(FO,<span class="stringliteral">&quot;#else // CORDIC_TABLE\n&quot;</span>);</div>
-<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;    fprintf(FO,<span class="stringliteral">&quot;extern const Cordic_T v_atangrad[];\n&quot;</span>);</div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;    fprintf(FO,<span class="stringliteral">&quot;#endif // CORDIC_TABLE\n&quot;</span>);</div>
-<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;    fprintf(FO,<span class="stringliteral">&quot;#endif // _CORDIC_INC_H\n&quot;</span>);</div>
-<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;</div>
-<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;    printf(<span class="stringliteral">&quot;// Verify CORDIC table \n&quot;</span>);</div>
-<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;    <span class="keywordflow">for</span>(d=0;d&lt;=1;d+=.1)</div>
-<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;    {</div>
-<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;        x1 = <a class="code" href="cordic2c_8c.html#ad614e1a545ad0fd263ea0afb0456cb7a">FP2Cordic</a>(d);</div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;        <a class="code" href="cordic2c_8c.html#a9e686d8e990a05ea18655a368e6d1918">Circular</a> (Cordic_K, 0<a class="code" href="cal__dex_8c.html#a7577d49f3bfffb1cf048eef843177784">L</a>, x1);</div>
-<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;        a = (int) 100 * d + 0.000005;   <span class="comment">// rounding - 0.1 is not exact</span></div>
-<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;        sprintf(str,<span class="stringliteral">&quot;%d Gradians&quot;</span>, a);</div>
-<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;        <a class="code" href="cordic2c_8c.html#afc93093d0da5da783668ca27f859a2a7">PrintXYZ</a> (str);</div>
-<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;    }</div>
-<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;    printf(<span class="stringliteral">&quot;// End of CORDIC verify\n&quot;</span>);</div>
-<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;</div>
-<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;    <span class="keywordflow">return</span> (0);</div>
-<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;}</div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;    <a class="code" href="cordic2c_8c.html#a3281e2a9f8144b206e9e782543ed8da6">dump_tables</a>( FO);</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;</div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;    fprintf(FO,<span class="stringliteral">&quot;#else // CORDIC_TABLE\n&quot;</span>);</div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;    fprintf(FO,<span class="stringliteral">&quot;extern const Cordic_T v_atangrad[];\n&quot;</span>);</div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;    fprintf(FO,<span class="stringliteral">&quot;#endif // CORDIC_TABLE\n&quot;</span>);</div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;    fprintf(FO,<span class="stringliteral">&quot;#endif // _CORDIC_INC_H\n&quot;</span>);</div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;    printf(<span class="stringliteral">&quot;// Verify CORDIC table \n&quot;</span>);</div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;    <span class="keywordflow">for</span>(d=0;d&lt;=1;d+=.1)</div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;    {</div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;        x1 = <a class="code" href="cordic2c_8c.html#ad614e1a545ad0fd263ea0afb0456cb7a">FP2Cordic</a>(d);</div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;        <a class="code" href="cordic2c_8c.html#a9e686d8e990a05ea18655a368e6d1918">Circular</a> (Cordic_K, 0<a class="code" href="cal__dex_8c.html#a7577d49f3bfffb1cf048eef843177784">L</a>, x1);</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;        a = (int) 100 * d + 0.000005;   <span class="comment">// rounding - 0.1 is not exact</span></div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;        sprintf(str,<span class="stringliteral">&quot;%d Gradians&quot;</span>, a);</div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;        <a class="code" href="cordic2c_8c.html#afc93093d0da5da783668ca27f859a2a7">PrintXYZ</a> (str);</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;    }</div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;    printf(<span class="stringliteral">&quot;// End of CORDIC verify\n&quot;</span>);</div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;</div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;    <span class="keywordflow">return</span> (0);</div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;}</div>
 <div class="ttc" id="cordic2c_8c_html_ad0c9c86596235ca7b3e113b12aeeafa0"><div class="ttname"><a href="cordic2c_8c.html#ad0c9c86596235ca7b3e113b12aeeafa0">Cordic_T_Bits</a></div><div class="ttdeci">#define Cordic_T_Bits</div><div class="ttdef"><b>Definition:</b> <a href="cordic2c_8c_source.html#l00102">cordic2c.c:102</a></div></div>
-<div class="ttc" id="cordic2c_8c_html_a6797cc1f28fd7c359145ea548dc302d0"><div class="ttname"><a href="cordic2c_8c.html#a6797cc1f28fd7c359145ea548dc302d0">asinCordic</a></div><div class="ttdeci">Cordic_T asinCordic(Cordic_T a)</div><div class="ttdoc">Comutute ArcSine (a) Only works for |a| &lt; 0.98. </div><div class="ttdef"><b>Definition:</b> <a href="cordic2c_8c_source.html#l00293">cordic2c.c:293</a></div></div>
+<div class="ttc" id="cordic2c_8c_html_a6797cc1f28fd7c359145ea548dc302d0"><div class="ttname"><a href="cordic2c_8c.html#a6797cc1f28fd7c359145ea548dc302d0">asinCordic</a></div><div class="ttdeci">Cordic_T asinCordic(Cordic_T a)</div><div class="ttdoc">Comutute ArcSine (a) Only works for |a| &lt; 0.98. </div><div class="ttdef"><b>Definition:</b> <a href="cordic2c_8c_source.html#l00292">cordic2c.c:292</a></div></div>
 <div class="ttc" id="cordic2c_8c_html_a867ec3a5cd66a315ef2c1ad6b54ee9b2"><div class="ttname"><a href="cordic2c_8c.html#a867ec3a5cd66a315ef2c1ad6b54ee9b2">FCordic_T_Bits</a></div><div class="ttdeci">#define FCordic_T_Bits</div><div class="ttdef"><b>Definition:</b> <a href="cordic2c_8c_source.html#l00103">cordic2c.c:103</a></div></div>
 <div class="ttc" id="cordic2c_8c_html_a27092bec667d3da85622cfa613527520"><div class="ttname"><a href="cordic2c_8c.html#a27092bec667d3da85622cfa613527520">UCordic_T_STR</a></div><div class="ttdeci">#define UCordic_T_STR</div><div class="ttdef"><b>Definition:</b> <a href="cordic2c_8c_source.html#l00108">cordic2c.c:108</a></div></div>
 <div class="ttc" id="cordic2c_8c_html_a75d478dd9c919ea7ecf27cc49b9dab58"><div class="ttname"><a href="cordic2c_8c.html#a75d478dd9c919ea7ecf27cc49b9dab58">Cordic_One</a></div><div class="ttdeci">#define Cordic_One</div><div class="ttdef"><b>Definition:</b> <a href="cordic2c_8c_source.html#l00117">cordic2c.c:117</a></div></div>
-<div class="ttc" id="cordic2c_8c_html_aa47551f0ba056c573807f6dfa1b09d2d"><div class="ttname"><a href="cordic2c_8c.html#aa47551f0ba056c573807f6dfa1b09d2d">cordit1</a></div><div class="ttdeci">void cordit1(Cordic_T x, Cordic_T y, Cordic_T z, Cordic_T vecmode)</div><div class="ttdoc">This is the circular method. One slight change from the other methods is the y &lt; vecmode test...</div><div class="ttdef"><b>Definition:</b> <a href="cordic2c_8c_source.html#l00260">cordic2c.c:260</a></div></div>
-<div class="ttc" id="cordic2c_8c_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="cordic2c_8c.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdoc">Create C Cordic Tables andd test the results. </div><div class="ttdef"><b>Definition:</b> <a href="cordic2c_8c_source.html#l00318">cordic2c.c:318</a></div></div>
-<div class="ttc" id="cordic2c_8c_html_a3281e2a9f8144b206e9e782543ed8da6"><div class="ttname"><a href="cordic2c_8c.html#a3281e2a9f8144b206e9e782543ed8da6">dump_tables</a></div><div class="ttdeci">void dump_tables(FILE *FO)</div><div class="ttdoc">Create Cordic tables Normalize base number system to 1.0 == Cordic_One == PI/2 (90 degrees) Example ...</div><div class="ttdef"><b>Definition:</b> <a href="cordic2c_8c_source.html#l00154">cordic2c.c:154</a></div></div>
+<div class="ttc" id="cordic2c_8c_html_aa47551f0ba056c573807f6dfa1b09d2d"><div class="ttname"><a href="cordic2c_8c.html#aa47551f0ba056c573807f6dfa1b09d2d">cordit1</a></div><div class="ttdeci">void cordit1(Cordic_T x, Cordic_T y, Cordic_T z, Cordic_T vecmode)</div><div class="ttdoc">This is the circular method. One slight change from the other methods is the y &lt; vecmode test...</div><div class="ttdef"><b>Definition:</b> <a href="cordic2c_8c_source.html#l00259">cordic2c.c:259</a></div></div>
+<div class="ttc" id="cordic2c_8c_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="cordic2c_8c.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdoc">Create C Cordic Tables andd test the results. </div><div class="ttdef"><b>Definition:</b> <a href="cordic2c_8c_source.html#l00317">cordic2c.c:317</a></div></div>
+<div class="ttc" id="cordic2c_8c_html_a3281e2a9f8144b206e9e782543ed8da6"><div class="ttname"><a href="cordic2c_8c.html#a3281e2a9f8144b206e9e782543ed8da6">dump_tables</a></div><div class="ttdeci">void dump_tables(FILE *FO)</div><div class="ttdoc">Create Cordic tables Normalize base number system to 1.0 == Cordic_One == PI/2 (90 degrees) Example ...</div><div class="ttdef"><b>Definition:</b> <a href="cordic2c_8c_source.html#l00153">cordic2c.c:153</a></div></div>
 <div class="ttc" id="cordic2c_8c_html_a77433404a778cb9a148b6db69eedea93"><div class="ttname"><a href="cordic2c_8c.html#a77433404a778cb9a148b6db69eedea93">Cordic_T_FractionBits</a></div><div class="ttdeci">#define Cordic_T_FractionBits</div><div class="ttdef"><b>Definition:</b> <a href="cordic2c_8c_source.html#l00105">cordic2c.c:105</a></div></div>
 <div class="ttc" id="cordic2c_8c_html_a7c5645f685b278110b72d4003b2aee52"><div class="ttname"><a href="cordic2c_8c.html#a7c5645f685b278110b72d4003b2aee52">Cordic_T_STR</a></div><div class="ttdeci">#define Cordic_T_STR</div><div class="ttdef"><b>Definition:</b> <a href="cordic2c_8c_source.html#l00107">cordic2c.c:107</a></div></div>
 <div class="ttc" id="cordic2c_8c_html_a46b4b48ef8c0c01099eb3bcdde8aa8db"><div class="ttname"><a href="cordic2c_8c.html#a46b4b48ef8c0c01099eb3bcdde8aa8db">X</a></div><div class="ttdeci">static Cordic_T X</div><div class="ttdef"><b>Definition:</b> <a href="cordic2c_8c_source.html#l00113">cordic2c.c:113</a></div></div>
@@ -364,7 +364,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="cordic2c_8c_html_a77653d895effdbff8323975329805fc9"><div class="ttname"><a href="cordic2c_8c.html#a77653d895effdbff8323975329805fc9">Cordic_KP</a></div><div class="ttdeci">#define Cordic_KP</div><div class="ttdef"><b>Definition:</b> <a href="cordic2c_8c_source.html#l00120">cordic2c.c:120</a></div></div>
 <div class="ttc" id="cordic2c_8c_html_ad614e1a545ad0fd263ea0afb0456cb7a"><div class="ttname"><a href="cordic2c_8c.html#ad614e1a545ad0fd263ea0afb0456cb7a">FP2Cordic</a></div><div class="ttdeci">#define FP2Cordic(a)</div><div class="ttdef"><b>Definition:</b> <a href="cordic2c_8c_source.html#l00124">cordic2c.c:124</a></div></div>
 <div class="ttc" id="cordic2c__inc_8h_html_a97ad155ac7434ee543385126cd1d3313"><div class="ttname"><a href="cordic2c__inc_8h.html#a97ad155ac7434ee543385126cd1d3313">Cordic_T</a></div><div class="ttdeci">int Cordic_T</div><div class="ttdef"><b>Definition:</b> <a href="cordic2c__inc_8h_source.html#l00009">cordic2c_inc.h:9</a></div></div>
-<div class="ttc" id="cordic2c_8c_html_a9e686d8e990a05ea18655a368e6d1918"><div class="ttname"><a href="cordic2c_8c.html#a9e686d8e990a05ea18655a368e6d1918">Circular</a></div><div class="ttdeci">void Circular(Cordic_T x, Cordic_T y, Cordic_T z)</div><div class="ttdoc">Main Cordic rountine - used for basic trig and vector rotations. </div><div class="ttdef"><b>Definition:</b> <a href="cordic2c_8c_source.html#l00217">cordic2c.c:217</a></div></div>
+<div class="ttc" id="cordic2c_8c_html_a9e686d8e990a05ea18655a368e6d1918"><div class="ttname"><a href="cordic2c_8c.html#a9e686d8e990a05ea18655a368e6d1918">Circular</a></div><div class="ttdeci">void Circular(Cordic_T x, Cordic_T y, Cordic_T z)</div><div class="ttdoc">Main Cordic rountine - used for basic trig and vector rotations. </div><div class="ttdef"><b>Definition:</b> <a href="cordic2c_8c_source.html#l00216">cordic2c.c:216</a></div></div>
 <div class="ttc" id="cordic2c_8c_html_a20ea29e123c9dc91c52635b0ffee975d"><div class="ttname"><a href="cordic2c_8c.html#a20ea29e123c9dc91c52635b0ffee975d">Cordic2FP</a></div><div class="ttdeci">#define Cordic2FP(a)</div><div class="ttdef"><b>Definition:</b> <a href="cordic2c_8c_source.html#l00123">cordic2c.c:123</a></div></div>
 <div class="ttc" id="cordic2c_8c_html_a435917aacf957393509563ef16007425"><div class="ttname"><a href="cordic2c_8c.html#a435917aacf957393509563ef16007425">FCordic_T_STR</a></div><div class="ttdeci">#define FCordic_T_STR</div><div class="ttdef"><b>Definition:</b> <a href="cordic2c_8c_source.html#l00109">cordic2c.c:109</a></div></div>
 <div class="ttc" id="cordic2c_8c_html_a97ad155ac7434ee543385126cd1d3313"><div class="ttname"><a href="cordic2c_8c.html#a97ad155ac7434ee543385126cd1d3313">Cordic_T</a></div><div class="ttdeci">int Cordic_T</div><div class="ttdoc">cordicC.c – J. Pitts Jarvis, III cordicC.c computes CORDIC constants and exercises the basic algorith...</div><div class="ttdef"><b>Definition:</b> <a href="cordic2c_8c_source.html#l00097">cordic2c.c:97</a></div></div>
@@ -372,16 +372,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="cordic2c_8c_html_a1b436217d30824e9004f1e16d33abf0a"><div class="ttname"><a href="cordic2c_8c.html#a1b436217d30824e9004f1e16d33abf0a">Cordic_HalfPI</a></div><div class="ttdeci">#define Cordic_HalfPI</div><div class="ttdef"><b>Definition:</b> <a href="cordic2c_8c_source.html#l00122">cordic2c.c:122</a></div></div>
 <div class="ttc" id="cordic2c_8c_html_a38f46d7f72ed48712304af6f64b896f2"><div class="ttname"><a href="cordic2c_8c.html#a38f46d7f72ed48712304af6f64b896f2">Cordic_INVK</a></div><div class="ttdeci">#define Cordic_INVK</div><div class="ttdef"><b>Definition:</b> <a href="cordic2c_8c_source.html#l00119">cordic2c.c:119</a></div></div>
 <div class="ttc" id="cordic2c_8c_html_ab746e677f466f17031e92ed577fc3c15"><div class="ttname"><a href="cordic2c_8c.html#ab746e677f466f17031e92ed577fc3c15">Y</a></div><div class="ttdeci">static Cordic_T Y</div><div class="ttdef"><b>Definition:</b> <a href="cordic2c_8c_source.html#l00114">cordic2c.c:114</a></div></div>
-<div class="ttc" id="cordic2c_8c_html_a4bc7ca5cbf08837c18c54b7a754d7900"><div class="ttname"><a href="cordic2c_8c.html#a4bc7ca5cbf08837c18c54b7a754d7900">get_date</a></div><div class="ttdeci">char * get_date()</div><div class="ttdoc">Get the current date in a string. </div><div class="ttdef"><b>Definition:</b> <a href="cordic2c_8c_source.html#l00129">cordic2c.c:129</a></div></div>
+<div class="ttc" id="cordic2c_8c_html_a4bc7ca5cbf08837c18c54b7a754d7900"><div class="ttname"><a href="cordic2c_8c.html#a4bc7ca5cbf08837c18c54b7a754d7900">get_date</a></div><div class="ttdeci">char * get_date()</div><div class="ttdoc">Get the current date in a string. </div><div class="ttdef"><b>Definition:</b> <a href="cordic2c_8c_source.html#l00128">cordic2c.c:128</a></div></div>
 <div class="ttc" id="cal__dex_8c_html_a7577d49f3bfffb1cf048eef843177784"><div class="ttname"><a href="cal__dex_8c.html#a7577d49f3bfffb1cf048eef843177784">L</a></div><div class="ttdeci">#define L(x)</div><div class="ttdef"><b>Definition:</b> <a href="cal__dex_8c_source.html#l00054">cal_dex.c:54</a></div></div>
 <div class="ttc" id="cordic2c_8c_html_a01817682b78da8cc004b6f0e9dd0d889"><div class="ttname"><a href="cordic2c_8c.html#a01817682b78da8cc004b6f0e9dd0d889">Cordic_INVKP</a></div><div class="ttdeci">#define Cordic_INVKP</div><div class="ttdef"><b>Definition:</b> <a href="cordic2c_8c_source.html#l00121">cordic2c.c:121</a></div></div>
 <div class="ttc" id="cordic2c_8c_html_a87f33f8b076298d511ca73b9e458a3ac"><div class="ttname"><a href="cordic2c_8c.html#a87f33f8b076298d511ca73b9e458a3ac">v_atan</a></div><div class="ttdeci">static Cordic_T v_atan[Cordic_T_Bits+1]</div><div class="ttdef"><b>Definition:</b> <a href="cordic2c_8c_source.html#l00112">cordic2c.c:112</a></div></div>
 <div class="ttc" id="cordic2c_8c_html_a0d2210939130fe06cdbba9248686fa03"><div class="ttname"><a href="cordic2c_8c.html#a0d2210939130fe06cdbba9248686fa03">UCordic_T</a></div><div class="ttdeci">unsigned int UCordic_T</div><div class="ttdef"><b>Definition:</b> <a href="cordic2c_8c_source.html#l00098">cordic2c.c:98</a></div></div>
-<div class="ttc" id="cordic2c_8c_html_afc93093d0da5da783668ca27f859a2a7"><div class="ttname"><a href="cordic2c_8c.html#afc93093d0da5da783668ca27f859a2a7">PrintXYZ</a></div><div class="ttdeci">void PrintXYZ(char *str)</div><div class="ttdoc">Display X,Y,Z as floating point. </div><div class="ttdef"><b>Definition:</b> <a href="cordic2c_8c_source.html#l00201">cordic2c.c:201</a></div></div>
+<div class="ttc" id="cordic2c_8c_html_afc93093d0da5da783668ca27f859a2a7"><div class="ttname"><a href="cordic2c_8c.html#afc93093d0da5da783668ca27f859a2a7">PrintXYZ</a></div><div class="ttdeci">void PrintXYZ(char *str)</div><div class="ttdoc">Display X,Y,Z as floating point. </div><div class="ttdef"><b>Definition:</b> <a href="cordic2c_8c_source.html#l00200">cordic2c.c:200</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jun 7 2015 22:34:32 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jun 7 2015 23:15:53 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

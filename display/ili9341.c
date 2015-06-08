@@ -43,7 +43,7 @@ uint32_t tft_init(void)
 
     hspi_init();
 
-    window_init(tft, TFT_XOFF, TFT_YOFF, TFT_W, TFT_H);
+    tft_window_init(tft, TFT_XOFF, TFT_YOFF, TFT_W, TFT_H);
 
     TFT_CS_INIT;
     TFT_INIT;
@@ -623,12 +623,15 @@ void tft_setRotation(uint8_t m)
 
 
 /// @brief Initialize window structure we default values
-/// FIXME check absolute limits against TFT limuts
-/// These are not hardware limits
+/// FIXME check x+w, y+h absolute limits against TFT limuts
 /// @param[in] win*: window structure
+/// @param[in] xoff: X offset to window start - absolute
+/// @param[in] yoff: Y offset to window start - absolute
+/// @param[in] w: Window width
+/// @param[in] h: Window Height
 /// @return  void
 MEMSPACE
-void window_init(window *win, uint16_t xoff, uint16_t yoff, uint16_t w, uint16_t h)
+void tft_window_init(window *win, uint16_t xoff, uint16_t yoff, uint16_t w, uint16_t h)
 {
     win->x         = 0;                            // current X
     win->y         = 0;                            // current Y
@@ -685,7 +688,6 @@ tft_set_font(window *win, uint16_t index)
 
 /// @brief  Get font height
 /// @param[in] win*: window structure
-/// @param[in] index: font size
 /// return: font Height or zero on error
 MEMSPACE
 int tft_get_font_height(window *win)

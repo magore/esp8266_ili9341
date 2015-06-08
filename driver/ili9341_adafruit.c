@@ -1,9 +1,8 @@
 /**
- @file ili9431.c
-
+ @file ili9341_adafruit.c
  @par Copyright (c) 2013 Adafruit Industries.  All rights reserved.
- @ref: https://github.com/adafruit/Adafruit-GFX-Library
-  Minor Revisions by 2015 Mike Gore
+  Minor Revisions by 2015 Mike Gore to add multiple window support
+ @see https://github.com/adafruit/Adafruit-GFX-Library
 */
 
 /**
@@ -195,6 +194,7 @@ int16_t w, uint16_t color)
 /// @param[in] *win: window structure
 /// @param[in] x: X offset
 /// @param[in] y: Y offset
+/// @param[in] *bitmap: bitmap
 /// @param[in] w: Width of bitmap
 /// @param[in] h: Height of bitmap
 /// @return  void
@@ -218,8 +218,8 @@ const uint16_t *bitmap, int16_t w, int16_t h)
 
 /// @brief  Draw a circle outline
 /// @param[in] *win: window structure
-/// @param[in] x: X offset
-/// @param[in] y: Y offset
+/// @param[in] x0 X offset
+/// @param[in] y0: Y offset
 /// @param[in] r: Radius of circle
 /// @param[in] color: Color
 /// @return  void
@@ -358,6 +358,7 @@ void tft_fillCircleHelper(window *win, int16_t x0, int16_t y0, int16_t r,
 /// @param[in] *win: window structure
 /// @param[in] x0: X offset
 /// @param[in] y0: Y offset
+/// @param[in] r: Radius
 /// @param[in] color: Color
 /// @return  void
 MEMSPACE
@@ -390,6 +391,7 @@ uint16_t color)
 
 
 /// @brief  Draw a rounded rectangle
+/// @param[in] *win: window structure
 /// @param[in] x: X offset
 /// @param[in] y: Y offset
 /// @param[in] w: Width
@@ -459,6 +461,7 @@ int16_t x2, int16_t y2, uint16_t color)
 
 
 /// @brief Fill a triangle
+/// @param[in] *win: window structure
 /// @param[in] x0: X0 offset
 /// @param[in] y0: Y0 offset
 /// @param[in] x1: X1 offset

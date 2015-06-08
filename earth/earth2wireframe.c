@@ -55,7 +55,6 @@ double deg2rad(double  deg)
 }
 
 /// @brief Get the current date in a string
-/// @param[out] str: string to fille with data and time
 /// @return void
 char *get_date()
 {

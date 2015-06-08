@@ -307,7 +307,7 @@ LOCAL void user_task(void)
 	}
 	
 #ifdef NETWORK_TEST
-	poll_network_message(tft);
+	poll_network_message(twin);
 #endif
 }
 
@@ -350,7 +350,7 @@ void user_init(void)
 
 
 /* Setup second window for testing*/
-	window_init(twin, 100,100, 200, 100);
+	tft_window_init(twin,0,tft->h/2, tft->w, tft->h/2);
 	tft_setTextColor(twin, 0xffff,ILI9341_BLUE);
     tft_fillWin(twin, twin->bg);
 	tft_set_font(twin,3);

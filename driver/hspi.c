@@ -71,7 +71,7 @@ void hspi_init(void)
 
 
 /// @brief HSPI Configuration for tranasmit and receive
-/// @param[in] onfigState: CONFIG_FOR_RX_TX or CONFIG_FOR_RX
+/// @param[in] configState: CONFIG_FOR_RX_TX or CONFIG_FOR_RX
 /// @return  void
 void hspi_config(int configState)
 {
@@ -278,7 +278,7 @@ void hspi_stream(uint8_t data)
 
 /// @brief Used only for small (less then HSPI_FIFO_SIZE) write / read
 /// Write and Read uses same buffer and same byte count
-/// @param[in out] data: buffer
+/// @param[in,out] data: buffer
 /// @param[in] bytes: bytes to write and or read
 /// @return  void
 void hspi_TxRx(uint8_t *data, uint16_t bytes)

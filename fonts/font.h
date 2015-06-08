@@ -99,7 +99,4 @@ typedef struct
     uint8_t *ptr;
 } _fontc;
 
-/* font.c */
-int font_attr ( int c , _fontc *f , int index );
-int tft_drawChar ( uint8_t c , uint16_t x , uint16_t y , uint8_t index );
 #endif                                            //_FONT_H_

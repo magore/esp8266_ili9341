@@ -124,7 +124,6 @@ static Cordic_T Z;
 #define FP2Cordic(a)    ((Cordic_T) (Cordic_One * (a)))
 
 /// @brief Get the current date in a string
-/// @param[out] str: string to fille with data and time
 /// @return void
 char *get_date()
 {
@@ -149,7 +148,7 @@ char *get_date()
 */
 
 /// @brief  Dump Cordic C structure
-/// @param [in] str: program name
+/// @param [in] *FO: File handle to write tables to
 /// @return  void
 void dump_tables(FILE *FO)
 {

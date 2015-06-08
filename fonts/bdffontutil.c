@@ -315,6 +315,7 @@ char *match_token(char *str, char *pat)
  @param[in] *out: File handle
  @param[in] *font: Font handle
  @param[in] *prog: program name
+ @param[in] *target: file name comments
  @return: void
 */
 void FontHeaderInfo(FILE *out, _font *font, char *prog, char *target)
