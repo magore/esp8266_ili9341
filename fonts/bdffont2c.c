@@ -1,25 +1,33 @@
 
+
 /**
- @par Copyright &copy; 2015 Mike Gore, GPL License
+ @file bdffont2c.c
 
  @brief BDF to C code converter Copyright &copy; 2015 Mike Gore
 
- @par Edit History
- - [1.0]   [Mike Gore]  Initial revision of file.
+ BDF = Glyph Bitmap Distribution Format
+ The code handles fixed, proportional and bounding box format fonts
+ @see http://en.wikipedia.org/wiki/Glyph_Bitmap_Distribution_Format
 
- This is free software: you can redistribute it and/or modify it under the 
- terms of the GNU General Public License as published by the Free Software 
- Foundation, either version 3 of the License, or (at your option)
- any later version.
+ @par Copyright &copy; 2015 Mike Gore, GPL License
+ @par You are free to use this code under the terms of GPL
+   please retain a copy of this notice in any code you use it in.
 
- bdffont2c is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU General Public License for more details.
+This is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.
 
- You should have received a copy of the GNU General Public License
- along with this program.  If not, see <http://www.gnu.org/licenses/>.
+This software is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+
 
 /**
 * BDF = Glyph Bitmap Distribution Format 

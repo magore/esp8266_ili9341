@@ -39,14 +39,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include <ets_sys.h>
-#include <osapi.h>
-#include <os_type.h>
-#include <gpio.h>
-#include <mem.h>
-#include "hspi.h"
-#include "font.h"
-#include "util.h"
+#include <user_config.h>
 #include "ili9341_adafruit.h"
 #include "ili9341.h"
 
@@ -169,41 +162,44 @@ void tft_configRegister(void)
 
 /// @brief  Fast virtical line drawing
 /// FIXME use MADCTL and fill
+/// @param[in] *win: window structure
 /// @param[in] x: X offset
 /// @param[in] y: Y offset
 /// @param[in] h: Height of line
 /// @param[in] color: Color
 /// @return  void
-void tft_drawFastVLine(int16_t x, int16_t y,
+void tft_drawFastVLine(window *win,int16_t x, int16_t y,
 int16_t h, uint16_t color)
 {
-    tft_drawLine(x, y, x, y+h-1, color);
+    tft_drawLine(win,x, y, x, y+h-1, color);
 }
 
 
 /// @brief  Fast virtical line drawing
+/// @param[in] *win: window structure
 /// FIXME use MADCTL and fill
 /// @param[in] x: X offset
 /// @param[in] y: Y offset
 /// @param[in] w: Width of line
 /// @param[in] color: Color
 /// @return  void
-void tft_drawFastHLine(int16_t x, int16_t y,
+void tft_drawFastHLine(window *win, int16_t x, int16_t y,
 int16_t w, uint16_t color)
 {
-    tft_drawLine(x, y, x+w-1, y, color);
+    tft_drawLine(win, x, y, x+w-1, y, color);
 }
 
 
 /// @brief  Draw bitmap
 /// FIXME use MADCTL and fill
+/// @param[in] *win: window structure
 /// @param[in] x: X offset
 /// @param[in] y: Y offset
 /// @param[in] w: Width of bitmap
 /// @param[in] h: Height of bitmap
 /// @return  void
 MEMSPACE
-void tft_drawBitmap(int16_t x, int16_t y,
+void tft_drawBitmap(window *win, int16_t x, int16_t y,
 const uint16_t *bitmap, int16_t w, int16_t h)
 {
 
@@ -212,7 +208,7 @@ const uint16_t *bitmap, int16_t w, int16_t h)
     {
         for(i=0; i<w; i++ )
         {
-            tft_drawPixel(x+i, y+j, bitmap[j * w + i]);
+            tft_drawPixel(win, x+i, y+j, bitmap[j * w + i]);
         }
     }
 }
@@ -221,13 +217,14 @@ const uint16_t *bitmap, int16_t w, int16_t h)
 // ====================================================
 
 /// @brief  Draw a circle outline
+/// @param[in] *win: window structure
 /// @param[in] x: X offset
 /// @param[in] y: Y offset
 /// @param[in] r: Radius of circle
 /// @param[in] color: Color
 /// @return  void
 MEMSPACE
-void tft_drawCircle(int16_t x0, int16_t y0, int16_t r,
+void tft_drawCircle(window *win, int16_t x0, int16_t y0, int16_t r,
 uint16_t color)
 {
     int16_t f = 1 - r;
@@ -236,10 +233,10 @@ uint16_t color)
     int16_t x = 0;
     int16_t y = r;
 
-    tft_drawPixel(x0  , y0+r, color);
-    tft_drawPixel(x0  , y0-r, color);
-    tft_drawPixel(x0+r, y0  , color);
-    tft_drawPixel(x0-r, y0  , color);
+    tft_drawPixel(win,x0  , y0+r, color);
+    tft_drawPixel(win,x0  , y0-r, color);
+    tft_drawPixel(win,x0+r, y0  , color);
+    tft_drawPixel(win,x0-r, y0  , color);
 
     while (x<y)
     {
@@ -253,19 +250,20 @@ uint16_t color)
         ddF_x += 2;
         f += ddF_x;
 
-        tft_drawPixel(x0 + x, y0 + y, color);
-        tft_drawPixel(x0 - x, y0 + y, color);
-        tft_drawPixel(x0 + x, y0 - y, color);
-        tft_drawPixel(x0 - x, y0 - y, color);
-        tft_drawPixel(x0 + y, y0 + x, color);
-        tft_drawPixel(x0 - y, y0 + x, color);
-        tft_drawPixel(x0 + y, y0 - x, color);
-        tft_drawPixel(x0 - y, y0 - x, color);
+        tft_drawPixel(win,x0 + x, y0 + y, color);
+        tft_drawPixel(win,x0 - x, y0 + y, color);
+        tft_drawPixel(win,x0 + x, y0 - y, color);
+        tft_drawPixel(win,x0 - x, y0 - y, color);
+        tft_drawPixel(win,x0 + y, y0 + x, color);
+        tft_drawPixel(win,x0 - y, y0 + x, color);
+        tft_drawPixel(win,x0 + y, y0 - x, color);
+        tft_drawPixel(win,x0 - y, y0 - x, color);
     }
 }
 
 
 /// @brief  Draw a circle helper
+/// @param[in] *win: window structure
 /// @param[in] x0: X offset
 /// @param[in] y0: Y offset
 /// @param[in] r: Radius of circle
@@ -273,7 +271,7 @@ uint16_t color)
 /// @param[in] color: Color
 /// @return  void
 MEMSPACE
-void tft_drawCircleHelper( int16_t x0, int16_t y0,
+void tft_drawCircleHelper(window *win, int16_t x0, int16_t y0,
 int16_t r, uint8_t cornername, uint16_t color)
 {
     int16_t f     = 1 - r;
@@ -295,28 +293,29 @@ int16_t r, uint8_t cornername, uint16_t color)
         f     += ddF_x;
         if (cornername & 0x4)
         {
-            tft_drawPixel(x0 + x, y0 + y, color);
-            tft_drawPixel(x0 + y, y0 + x, color);
+            tft_drawPixel(win,x0 + x, y0 + y, color);
+            tft_drawPixel(win,x0 + y, y0 + x, color);
         }
         if (cornername & 0x2)
         {
-            tft_drawPixel(x0 + x, y0 - y, color);
-            tft_drawPixel(x0 + y, y0 - x, color);
+            tft_drawPixel(win,x0 + x, y0 - y, color);
+            tft_drawPixel(win,x0 + y, y0 - x, color);
         }
         if (cornername & 0x8)
         {
-            tft_drawPixel(x0 - y, y0 + x, color);
-            tft_drawPixel(x0 - x, y0 + y, color);
+            tft_drawPixel(win,x0 - y, y0 + x, color);
+            tft_drawPixel(win,x0 - x, y0 + y, color);
         }
         if (cornername & 0x1)
         {
-            tft_drawPixel(x0 - y, y0 - x, color);
-            tft_drawPixel(x0 - x, y0 - y, color);
+            tft_drawPixel(win,x0 - y, y0 - x, color);
+            tft_drawPixel(win,x0 - x, y0 - y, color);
         }
     }
 }
 
 /// @brief  Fill circle helper
+/// @param[in] *win: window structure
 /// @param[in] x0: X offset
 /// @param[in] y0: Y offset
 /// @param[in] r: Radius of circle
@@ -325,7 +324,7 @@ int16_t r, uint8_t cornername, uint16_t color)
 /// @param[in] color: Color
 /// @return  void
 MEMSPACE
-void tft_fillCircleHelper(int16_t x0, int16_t y0, int16_t r,
+void tft_fillCircleHelper(window *win, int16_t x0, int16_t y0, int16_t r,
     uint8_t cornername, int16_t delta, uint16_t color) {
 
   int16_t f     = 1 - r;
@@ -345,31 +344,33 @@ void tft_fillCircleHelper(int16_t x0, int16_t y0, int16_t r,
     f     += ddF_x;
 
     if (cornername & 0x1) {
-      tft_drawFastVLine(x0+x, y0-y, 2*y+1+delta, color);
-      tft_drawFastVLine(x0+y, y0-x, 2*x+1+delta, color);
+      tft_drawFastVLine(win,x0+x, y0-y, 2*y+1+delta, color);
+      tft_drawFastVLine(win,x0+y, y0-x, 2*x+1+delta, color);
     }
     if (cornername & 0x2) {
-      tft_drawFastVLine(x0-x, y0-y, 2*y+1+delta, color);
-      tft_drawFastVLine(x0-y, y0-x, 2*x+1+delta, color);
+      tft_drawFastVLine(win,x0-x, y0-y, 2*y+1+delta, color);
+      tft_drawFastVLine(win,x0-y, y0-x, 2*x+1+delta, color);
     }
   }
 }
 
 /// @brief  Fill circle 
+/// @param[in] *win: window structure
 /// @param[in] x0: X offset
 /// @param[in] y0: Y offset
 /// @param[in] color: Color
 /// @return  void
 MEMSPACE
-void tft_fillCircle(int16_t x0, int16_t y0, int16_t r,
+void tft_fillCircle(window *win, int16_t x0, int16_t y0, int16_t r,
 uint16_t color)
 {
-    tft_drawFastVLine(x0, y0-r, 2*r+1, color);
-    tft_fillCircleHelper(x0, y0, r, 3, 0, color);
+    tft_drawFastVLine(win,x0, y0-r, 2*r+1, color);
+    tft_fillCircleHelper(win, x0, y0, r, 3, 0, color);
 }
 
 
 /// @brief  Draw a rectangle
+/// @param[in] *win: window structure
 /// @param[in] x: X offset
 /// @param[in] y: Y offset
 /// @param[in] w: Width
@@ -377,14 +378,14 @@ uint16_t color)
 /// @param[in] color: Color
 /// @return  void
 MEMSPACE
-void tft_drawRect(int16_t x, int16_t y,
+void tft_drawRect(window *win, int16_t x, int16_t y,
 int16_t w, int16_t h,
 uint16_t color)
 {
-    tft_drawFastHLine(x, y, w, color);
-    tft_drawFastHLine(x, y+h-1, w, color);
-    tft_drawFastVLine(x, y, h, color);
-    tft_drawFastVLine(x+w-1, y, h, color);
+    tft_drawFastHLine(win,x, y, w, color);
+    tft_drawFastHLine(win,x, y+h-1, w, color);
+    tft_drawFastVLine(win,x, y, h, color);
+    tft_drawFastVLine(win,x+w-1, y, h, color);
 }
 
 
@@ -397,23 +398,24 @@ uint16_t color)
 /// @param[in] color: Color
 /// @return  void
 MEMSPACE
-void tft_drawRoundRect(int16_t x, int16_t y, int16_t w,
+void tft_drawRoundRect(window *win, int16_t x, int16_t y, int16_t w,
 int16_t h, int16_t r, uint16_t color)
 {
 // smarter version
-    tft_drawFastHLine(x+r  , y    , w-2*r, color);// Top
-    tft_drawFastHLine(x+r  , y+h-1, w-2*r, color);// Bottom
-    tft_drawFastVLine(x    , y+r  , h-2*r, color);// Left
-    tft_drawFastVLine(x+w-1, y+r  , h-2*r, color);// Right
+    tft_drawFastHLine(win,x+r  , y    , w-2*r, color);// Top
+    tft_drawFastHLine(win,x+r  , y+h-1, w-2*r, color);// Bottom
+    tft_drawFastVLine(win,x    , y+r  , h-2*r, color);// Left
+    tft_drawFastVLine(win,x+w-1, y+r  , h-2*r, color);// Right
 // draw four corners
-    tft_drawCircleHelper(x+r    , y+r    , r, 1, color);
-    tft_drawCircleHelper(x+w-r-1, y+r    , r, 2, color);
-    tft_drawCircleHelper(x+w-r-1, y+h-r-1, r, 4, color);
-    tft_drawCircleHelper(x+r    , y+h-r-1, r, 8, color);
+    tft_drawCircleHelper(win,x+r    , y+r    , r, 1, color);
+    tft_drawCircleHelper(win,x+w-r-1, y+r    , r, 2, color);
+    tft_drawCircleHelper(win,x+w-r-1, y+h-r-1, r, 4, color);
+    tft_drawCircleHelper(win,x+r    , y+h-r-1, r, 8, color);
 }
 
 
 /// @brief  Fill a rounded rectangle
+/// @param[in] *win: window structure
 /// @param[in] x: X offset
 /// @param[in] y: Y offset
 /// @param[in] w: Width
@@ -422,20 +424,21 @@ int16_t h, int16_t r, uint16_t color)
 /// @param[in] color: Color
 /// @return  void
 MEMSPACE
-void tft_fillRoundRect(int16_t x, int16_t y, int16_t w,
+void tft_fillRoundRect(window *win, int16_t x, int16_t y, int16_t w,
 int16_t h, int16_t r, uint16_t color)
 {
 // smarter version
-    tft_fillRectWH(x+r, y, w-2*r, h, color);
+    tft_fillRectWH(win,x+r, y, w-2*r, h, color);
 
 // draw four corners
-    tft_fillCircleHelper(x+w-r-1, y+r, r, 1, h-2*r-1, color);
-    tft_fillCircleHelper(x+r    , y+r, r, 2, h-2*r-1, color);
+    tft_fillCircleHelper(win,x+w-r-1, y+r, r, 1, h-2*r-1, color);
+    tft_fillCircleHelper(win,x+r    , y+r, r, 2, h-2*r-1, color);
 }
 
 
 
 /// @brief Draw a triangle
+/// @param[in] *win: window structure
 /// @param[in] x0: X0 offset
 /// @param[in] y0: Y0 offset
 /// @param[in] x1: X1 offset
@@ -445,13 +448,13 @@ int16_t h, int16_t r, uint16_t color)
 /// @param[in] color: Color
 /// @return  void
 MEMSPACE
-void tft_drawTriangle(int16_t x0, int16_t y0,
+void tft_drawTriangle(window *win, int16_t x0, int16_t y0,
 int16_t x1, int16_t y1,
 int16_t x2, int16_t y2, uint16_t color)
 {
-    tft_drawLine(x0, y0, x1, y1, color);
-    tft_drawLine(x1, y1, x2, y2, color);
-    tft_drawLine(x2, y2, x0, y0, color);
+    tft_drawLine(win,x0, y0, x1, y1, color);
+    tft_drawLine(win,x1, y1, x2, y2, color);
+    tft_drawLine(win,x2, y2, x0, y0, color);
 }
 
 
@@ -465,7 +468,7 @@ int16_t x2, int16_t y2, uint16_t color)
 /// @param[in] color: Color
 /// @return  void
 MEMSPACE
-void tft_fillTriangle ( int16_t x0, int16_t y0,
+void tft_fillTriangle ( window *win, int16_t x0, int16_t y0,
 int16_t x1, int16_t y1,
 int16_t x2, int16_t y2, uint16_t color)
 {
@@ -493,7 +496,7 @@ int16_t x2, int16_t y2, uint16_t color)
         else if(x1 > b) b = x1;
         if(x2 < a)      a = x2;
         else if(x2 > b) b = x2;
-        tft_drawFastHLine(a, y0, b-a+1, color);
+        tft_drawFastHLine(win,a, y0, b-a+1, color);
         return;
     }
 
@@ -527,7 +530,7 @@ a = x0 + (x1 - x0) * (y - y0) / (y1 - y0);
 b = x0 + (x2 - x0) * (y - y0) / (y2 - y0);
  */
         if(a > b) SWAP(a,b);
-        tft_drawFastHLine(a, y, b-a+1, color);
+        tft_drawFastHLine(win,a, y, b-a+1, color);
     }
 
 // For lower part of triangle, find scanline crossings for segments
@@ -545,6 +548,6 @@ a = x1 + (x2 - x1) * (y - y1) / (y2 - y1);
 b = x0 + (x2 - x0) * (y - y0) / (y2 - y0);
  */
         if(a > b) SWAP(a,b);
-        tft_drawFastHLine(a, y, b-a+1, color);
+        tft_drawFastHLine(win,a, y, b-a+1, color);
     }
 }

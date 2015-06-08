@@ -3,11 +3,9 @@
 }
 
 
-Cordic Routines Handle angle outside of the first quadrant Added standalone test to verify C\-O\-R\-D\-I\-C against math library Add Documenation and references See \href{http://en.wikipedia.org/wiki/CORDIC}{\tt http\-://en.\-wikipedia.\-org/wiki/\-C\-O\-R\-D\-I\-C} See \hyperlink{cordic_8h}{cordic.\-h}, we use fixed point numbers, where 1.\-0=Cordic\-\_\-\-One Note\-: 1.\-0 = 90 degrees.  
+Cordic Routines Handle angle outside of the first quadrant Added standalone test to verify C\-O\-R\-D\-I\-C against math library Add Documenation and references.  
 
 
-{\ttfamily \#include $<$user\-\_\-config.\-h$>$}\\*
-{\ttfamily \#include \char`\"{}cordic2c\-\_\-inc.\-h\char`\"{}}\\*
 \subsection*{Data Structures}
 \begin{DoxyCompactItemize}
 \item 
@@ -16,45 +14,43 @@ struct \hyperlink{structpoint}{point}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} double \hyperlink{cordic_8h_a3b69e5e4f1919a06d18fa7154d4678fa}{deg2rad} (double d)
+\begin{DoxyCompactList}\small\item\em Convert Degrees to Rads. \end{DoxyCompactList}\item 
 double \hyperlink{cordic_8h_a132f4d86aeaa02138e534f93cbf69757}{angle\-\_\-quad} (double quads, int $\ast$quad)
 \begin{DoxyCompactList}\small\item\em Compute quadrant of angle and the quadrant modulus Note\-: Integer part is quadrant. \end{DoxyCompactList}\item 
 void \hyperlink{cordic_8h_a9e686d8e990a05ea18655a368e6d1918}{Circular} (\hyperlink{cordic2c__inc_8h_a97ad155ac7434ee543385126cd1d3313}{Cordic\-\_\-\-T} x, \hyperlink{cordic2c__inc_8h_a97ad155ac7434ee543385126cd1d3313}{Cordic\-\_\-\-T} y, \hyperlink{cordic2c__inc_8h_a97ad155ac7434ee543385126cd1d3313}{Cordic\-\_\-\-T} z)
 \begin{DoxyCompactList}\small\item\em Main Cordic rountine -\/ used for basic trig and vector rotations. \end{DoxyCompactList}\item 
-void \hyperlink{cordic_8h_ac0271f628c28ba18f6ea6493f5206a5e}{cordic\-\_\-quad} (double angle, double $\ast$s, double $\ast$c)
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{cordic_8h_ab9bc8a20d99938e647047015d62f6f86}{cordic\-\_\-quad} (double angle, double $\ast$s, double $\ast$c)
 \begin{DoxyCompactList}\small\item\em Compute Sin and Cos from angle in quads using Cordic. \end{DoxyCompactList}\item 
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{cordic_8h_a5d8ba4ae520a41add87512173a9289ef}{cordic\-\_\-deg} (double deg, double $\ast$s, double $\ast$c)
 \begin{DoxyCompactList}\small\item\em Compute Sin and Cos from angle in degrees using Cordic. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{cordic_8h_ab5dff4f6a6c29502d824cc7574c13f1c}{cordic\-\_\-rad} (double \hyperlink{user__main_8c_ace457a27a3496f1891624400f7ffa66f}{rad}, double $\ast$s, double $\ast$c)
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{cordic_8h_ab5dff4f6a6c29502d824cc7574c13f1c}{cordic\-\_\-rad} (double \hyperlink{user__main_8c_a6cd0a6a37bb53a8363aadc8640107f8d}{rad}, double $\ast$s, double $\ast$c)
 \begin{DoxyCompactList}\small\item\em Compute Sin and Cos from angle in rads using Cordic. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{cordic_8h_a7ff2d6cf60ac1ddedb6ff639dedd06d8}{scale\-\_\-point} (\hyperlink{structpoint}{point} $\ast$p, double \hyperlink{user__main_8c_aa7d569051c24f6fb09cf6569ae97e134}{scale})
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{cordic_8h_ae708dfda7767e28c3faeedf2c46deafd}{scale\-\_\-point} (\hyperlink{structpoint}{point} $\ast$P, double \hyperlink{user__main_8c_aa7d569051c24f6fb09cf6569ae97e134}{scale})
 \begin{DoxyCompactList}\small\item\em Scale x,y,z by scale factor. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{cordic_8h_ad9ef1c8f50bddeba6503e9110d6e2782}{shift\-\_\-point} (\hyperlink{structpoint}{point} $\ast$p, \hyperlink{structpoint}{point} $\ast$shift)
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{cordic_8h_a11f885e103030cb15b2f3477e21b780f}{shift\-\_\-point} (\hyperlink{structpoint}{point} $\ast$P, \hyperlink{structpoint}{point} $\ast$shift)
 \begin{DoxyCompactList}\small\item\em Shift x,y,z by shift. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{cordic_8h_a11674104e89537aef6922d07f34e62ae}{rotate} (\hyperlink{structpoint}{point} $\ast$P, \hyperlink{structpoint}{point} $\ast$\hyperlink{user__main_8c_a11c69d8a1f17f0f3b630f41e46eabc05}{V})
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{cordic_8h_a11674104e89537aef6922d07f34e62ae}{rotate} (\hyperlink{structpoint}{point} $\ast$P, \hyperlink{structpoint}{point} $\ast$\hyperlink{user__main_8c_a521e17d9ccfd7b07bf3a1f6fa1a15e0c}{V})
 \begin{DoxyCompactList}\small\item\em Rotate point P by View point. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{cordic_8h_ad6bcc540cbfe9cd1272feed04cea0e07}{Perspective\-Projection} (\hyperlink{structpoint}{point} $\ast$P)
-\begin{DoxyCompactList}\small\item\em Compute Perspective Projection of point. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{cordic_8h_a793b036235e0fdd6e799866fcb14e7e4}{Perspective\-Projection} (\hyperlink{structpoint}{point} $\ast$P, double \hyperlink{user__main_8c_aa7d569051c24f6fb09cf6569ae97e134}{scale}, int x, int y)
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Cordic Routines Handle angle outside of the first quadrant Added standalone test to verify C\-O\-R\-D\-I\-C against math library Add Documenation and references See \href{http://en.wikipedia.org/wiki/CORDIC}{\tt http\-://en.\-wikipedia.\-org/wiki/\-C\-O\-R\-D\-I\-C} See \hyperlink{cordic_8h}{cordic.\-h}, we use fixed point numbers, where 1.\-0=Cordic\-\_\-\-One Note\-: 1.\-0 = 90 degrees. \begin{DoxyParagraph}{Copyright \copyright{} 2015 Mike Gore, G\-P\-L License}
+Cordic Routines Handle angle outside of the first quadrant Added standalone test to verify C\-O\-R\-D\-I\-C against math library Add Documenation and references. \begin{DoxySeeAlso}{See Also}
+\href{http://en.wikipedia.org/wiki/CORDIC}{\tt http\-://en.\-wikipedia.\-org/wiki/\-C\-O\-R\-D\-I\-C} 
+
+\hyperlink{cordic_8h}{cordic.\-h}, we use fixed \hyperlink{structpoint}{point} numbers, where 1.\-0=\hyperlink{cordic2c_8c_a75d478dd9c919ea7ecf27cc49b9dab58}{Cordic\-\_\-\-One} Note\-: 1.\-0 = 90 degrees
+\end{DoxySeeAlso}
+\begin{DoxyParagraph}{Copyright \copyright{} 2015 Mike Gore, G\-P\-L License}
 
 \end{DoxyParagraph}
-\begin{DoxyParagraph}{Edit History}
-
-\begin{DoxyItemize}
-\item \mbox{[}1.\-0\mbox{]} \mbox{[}Mike Gore\mbox{]} Initial revision of file.
-\end{DoxyItemize}
-\end{DoxyParagraph}
-\begin{DoxyParagraph}{Edit History}
-
-\begin{DoxyItemize}
-\item \mbox{[}1.\-0\mbox{]} \mbox{[}Mike Gore\mbox{]} Initial revision of file.
-\end{DoxyItemize}
+\begin{DoxyParagraph}{You are free to use this code under the terms of G\-P\-L}
+please retain a copy of this notice in any code you use it in.
 \end{DoxyParagraph}
 This is free software\-: you can redistribute it and/or modify it under the terms of the G\-N\-U General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
-\hyperlink{cordic_8h}{cordic.\-h} is distributed in the hope that it will be useful, but W\-I\-T\-H\-O\-U\-T A\-N\-Y W\-A\-R\-R\-A\-N\-T\-Y; without even the implied warranty of M\-E\-R\-C\-H\-A\-N\-T\-A\-B\-I\-L\-I\-T\-Y or F\-I\-T\-N\-E\-S\-S F\-O\-R A P\-A\-R\-T\-I\-C\-U\-L\-A\-R P\-U\-R\-P\-O\-S\-E. See the G\-N\-U General Public License for more details.
+This software is distributed in the hope that it will be useful, but W\-I\-T\-H\-O\-U\-T A\-N\-Y W\-A\-R\-R\-A\-N\-T\-Y; without even the implied warranty of M\-E\-R\-C\-H\-A\-N\-T\-A\-B\-I\-L\-I\-T\-Y or F\-I\-T\-N\-E\-S\-S F\-O\-R A P\-A\-R\-T\-I\-C\-U\-L\-A\-R P\-U\-R\-P\-O\-S\-E. See the G\-N\-U General Public License for more details.
 
 You should have received a copy of the G\-N\-U General Public License along with this program. If not, see \href{http://www.gnu.org/licenses/}{\tt http\-://www.\-gnu.\-org/licenses/}. 
 
@@ -90,7 +86,7 @@ fractional part of quads
 \end{DoxyReturn}
 
 
-Definition at line 61 of file cordic.\-c.
+Definition at line 67 of file cordic.\-c.
 
 
 
@@ -126,7 +122,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 93 of file cordic.\-c.
+Definition at line 99 of file cordic.\-c.
 
 
 
@@ -162,21 +158,21 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 205 of file cordic.\-c.
+Definition at line 211 of file cordic.\-c.
 
 
 
 Referenced by rotate().
 
-\hypertarget{cordic_8h_ac0271f628c28ba18f6ea6493f5206a5e}{\index{cordic.\-h@{cordic.\-h}!cordic\-\_\-quad@{cordic\-\_\-quad}}
+\hypertarget{cordic_8h_ab9bc8a20d99938e647047015d62f6f86}{\index{cordic.\-h@{cordic.\-h}!cordic\-\_\-quad@{cordic\-\_\-quad}}
 \index{cordic\-\_\-quad@{cordic\-\_\-quad}!cordic.h@{cordic.\-h}}
-\subsubsection[{cordic\-\_\-quad}]{\setlength{\rightskip}{0pt plus 5cm}void cordic\-\_\-quad (
+\subsubsection[{cordic\-\_\-quad}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void cordic\-\_\-quad (
 \begin{DoxyParamCaption}
 \item[{double}]{angle, }
 \item[{double $\ast$}]{s, }
 \item[{double $\ast$}]{c}
 \end{DoxyParamCaption}
-)}}\label{cordic_8h_ac0271f628c28ba18f6ea6493f5206a5e}
+)}}\label{cordic_8h_ab9bc8a20d99938e647047015d62f6f86}
 
 
 Compute Sin and Cos from angle in quads using Cordic. 
@@ -198,7 +194,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 134 of file cordic.\-c.
+Definition at line 140 of file cordic.\-c.
 
 
 
@@ -234,30 +230,58 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 218 of file cordic.\-c.
+Definition at line 224 of file cordic.\-c.
 
-\hypertarget{cordic_8h_ad6bcc540cbfe9cd1272feed04cea0e07}{\index{cordic.\-h@{cordic.\-h}!Perspective\-Projection@{Perspective\-Projection}}
-\index{Perspective\-Projection@{Perspective\-Projection}!cordic.h@{cordic.\-h}}
-\subsubsection[{Perspective\-Projection}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void Perspective\-Projection (
+\hypertarget{cordic_8h_a3b69e5e4f1919a06d18fa7154d4678fa}{\index{cordic.\-h@{cordic.\-h}!deg2rad@{deg2rad}}
+\index{deg2rad@{deg2rad}!cordic.h@{cordic.\-h}}
+\subsubsection[{deg2rad}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} double deg2rad (
 \begin{DoxyParamCaption}
-\item[{{\bf point} $\ast$}]{P}
+\item[{double}]{deg}
 \end{DoxyParamCaption}
-)}}\label{cordic_8h_ad6bcc540cbfe9cd1272feed04cea0e07}
+)}}\label{cordic_8h_a3b69e5e4f1919a06d18fa7154d4678fa}
 
 
-Compute Perspective Projection of point. 
+Convert Degrees to Rads. 
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em $\ast$\-P} & x,y,z point, out\-: x,y ( z = 0 ) \\
+\mbox{\tt in}  & {\em d} & degrees \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-void 
+radians
+\end{DoxyReturn}
+Convert Degrees to Rads.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em deg} & degrees \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+radians 
 \end{DoxyReturn}
 
 
-Definition at line 295 of file cordic.\-c.
+Definition at line 53 of file cordic.\-c.
+
+
+
+Referenced by main().
+
+\hypertarget{cordic_8h_a793b036235e0fdd6e799866fcb14e7e4}{\index{cordic.\-h@{cordic.\-h}!Perspective\-Projection@{Perspective\-Projection}}
+\index{Perspective\-Projection@{Perspective\-Projection}!cordic.h@{cordic.\-h}}
+\subsubsection[{Perspective\-Projection}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void Perspective\-Projection (
+\begin{DoxyParamCaption}
+\item[{{\bf point} $\ast$}]{P, }
+\item[{double}]{scale, }
+\item[{int}]{x, }
+\item[{int}]{y}
+\end{DoxyParamCaption}
+)}}\label{cordic_8h_a793b036235e0fdd6e799866fcb14e7e4}
+
+
+Definition at line 306 of file cordic.\-c.
 
 
 
@@ -287,27 +311,27 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 255 of file cordic.\-c.
+Definition at line 261 of file cordic.\-c.
 
 
 
 Referenced by wire\-\_\-draw().
 
-\hypertarget{cordic_8h_a7ff2d6cf60ac1ddedb6ff639dedd06d8}{\index{cordic.\-h@{cordic.\-h}!scale\-\_\-point@{scale\-\_\-point}}
+\hypertarget{cordic_8h_ae708dfda7767e28c3faeedf2c46deafd}{\index{cordic.\-h@{cordic.\-h}!scale\-\_\-point@{scale\-\_\-point}}
 \index{scale\-\_\-point@{scale\-\_\-point}!cordic.h@{cordic.\-h}}
 \subsubsection[{scale\-\_\-point}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void scale\-\_\-point (
 \begin{DoxyParamCaption}
-\item[{{\bf point} $\ast$}]{p, }
+\item[{{\bf point} $\ast$}]{P, }
 \item[{double}]{scale}
 \end{DoxyParamCaption}
-)}}\label{cordic_8h_a7ff2d6cf60ac1ddedb6ff639dedd06d8}
+)}}\label{cordic_8h_ae708dfda7767e28c3faeedf2c46deafd}
 
 
 Scale x,y,z by scale factor. 
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em $\ast$p} & x,y,z point \\
+\mbox{\tt in}  & {\em $\ast$\-P} & x,y,z point \\
 \hline
 \mbox{\tt in}  & {\em scale} & scale factor \\
 \hline
@@ -317,27 +341,23 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 229 of file cordic.\-c.
+Definition at line 235 of file cordic.\-c.
 
-
-
-Referenced by wire\-\_\-draw().
-
-\hypertarget{cordic_8h_ad9ef1c8f50bddeba6503e9110d6e2782}{\index{cordic.\-h@{cordic.\-h}!shift\-\_\-point@{shift\-\_\-point}}
+\hypertarget{cordic_8h_a11f885e103030cb15b2f3477e21b780f}{\index{cordic.\-h@{cordic.\-h}!shift\-\_\-point@{shift\-\_\-point}}
 \index{shift\-\_\-point@{shift\-\_\-point}!cordic.h@{cordic.\-h}}
 \subsubsection[{shift\-\_\-point}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void shift\-\_\-point (
 \begin{DoxyParamCaption}
-\item[{{\bf point} $\ast$}]{p, }
+\item[{{\bf point} $\ast$}]{P, }
 \item[{{\bf point} $\ast$}]{shift}
 \end{DoxyParamCaption}
-)}}\label{cordic_8h_ad9ef1c8f50bddeba6503e9110d6e2782}
+)}}\label{cordic_8h_a11f885e103030cb15b2f3477e21b780f}
 
 
 Shift x,y,z by shift. 
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em $\ast$p} & x,y,z point \\
+\mbox{\tt in}  & {\em $\ast$\-P} & x,y,z point \\
 \hline
 \mbox{\tt in}  & {\em shift} & shift to apply to x,y,z \\
 \hline
@@ -347,5 +367,5 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 242 of file cordic.\-c.
+Definition at line 248 of file cordic.\-c.
 

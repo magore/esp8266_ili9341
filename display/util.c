@@ -4,16 +4,15 @@
  @brief Flash read and bit utilities
 
  @par Copyright &copy; 2015 Mike Gore, GPL License
+ @par You are free to use this code under the terms of GPL
+   please retain a copy of this notice in any code you use it in.
 
- @par Edit History
- - [1.0]   [Mike Gore]  Initial revision of file.
-
- This is free software: you can redistribute it and/or modify it under the
+This is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
 Foundation, either version 3 of the License, or (at your option)
 any later version.
 
-util.c is distributed in the hope that it will be useful,
+This software is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
@@ -22,7 +21,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "user_config.h"
+
+#include <user_config.h>
 
 #define USE_CACHE
 // Cached flash read on 32bit boundry
@@ -172,3 +172,26 @@ int bittestxy(unsigned char *ptr, int x, int y, int w, int h)
     off = y * w + x;
     return(bittestv(ptr, off));
 }
+
+#ifdef TEST_FLASH
+ICACHE_RODATA_ATTR uint8_t xxx[] = { 1,2,3,4,5,6,7,8 };
+/// @brief Test flash read code
+/// @param[in] *win: window structure
+/// @return  void
+MEMSPACE 
+void test_flashio(window *win)
+{
+	uint16_t xpros,ypos;
+	tft_set_font(win,1);
+	//tft_printf(win, "%x,%x", xxxp[0],xxxp[1]);
+	xpos = win->x;
+	ypos = win->y;
+	for(i=0;i<8;++i)
+	{
+		tft_setpos(win, i*16,ypos);
+		tft_printf(win, "%02x", read_flash8((uint32_t) &xxx+i));
+	}
+	tft_printf(win, "\n");
+	tft_printf(win, "%08x, %08x", read_flash32((uint8_t *)&xxx), read_flash16((uint8_t *)&xxx));
+}
+#endif

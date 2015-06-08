@@ -140,20 +140,20 @@ typedef union
 
 // ============================================================
 
-/* ili9341.c */
+/* ili9341_adafruit.c */
 MEMSPACE void tft_configRegister ( void );
-void tft_drawFastVLine ( int16_t x , int16_t y , int16_t h , uint16_t color );
-void tft_drawFastHLine ( int16_t x , int16_t y , int16_t w , uint16_t color );
-MEMSPACE void tft_drawBitmap ( int16_t x , int16_t y , const uint16_t *bitmap , int16_t w , int16_t h );
-MEMSPACE void tft_drawCircle ( int16_t x0 , int16_t y0 , int16_t r , uint16_t color );
-MEMSPACE void tft_drawCircleHelper ( int16_t x0 , int16_t y0 , int16_t r , uint8_t cornername , uint16_t color );
-MEMSPACE void tft_fillCircleHelper ( int16_t x0 , int16_t y0 , int16_t r , uint8_t cornername , int16_t delta , uint16_t color );
-MEMSPACE void tft_fillCircle ( int16_t x0 , int16_t y0 , int16_t r , uint16_t color );
-MEMSPACE void tft_drawRect ( int16_t x , int16_t y , int16_t w , int16_t h , uint16_t color );
-MEMSPACE void tft_drawRoundRect ( int16_t x , int16_t y , int16_t w , int16_t h , int16_t r , uint16_t color );
-MEMSPACE void tft_fillRoundRect ( int16_t x , int16_t y , int16_t w , int16_t h , int16_t r , uint16_t color );
-MEMSPACE void tft_drawTriangle ( int16_t x0 , int16_t y0 , int16_t x1 , int16_t y1 , int16_t x2 , int16_t y2 , uint16_t color );
-MEMSPACE void tft_fillTriangle ( int16_t x0 , int16_t y0 , int16_t x1 , int16_t y1 , int16_t x2 , int16_t y2 , uint16_t color );
+void tft_drawFastVLine ( window *win , int16_t x , int16_t y , int16_t h , uint16_t color );
+void tft_drawFastHLine ( window *win , int16_t x , int16_t y , int16_t w , uint16_t color );
+MEMSPACE void tft_drawBitmap ( window *win , int16_t x , int16_t y , const uint16_t *bitmap , int16_t w , int16_t h );
+MEMSPACE void tft_drawCircle ( window *win , int16_t x0 , int16_t y0 , int16_t r , uint16_t color );
+MEMSPACE void tft_drawCircleHelper ( window *win , int16_t x0 , int16_t y0 , int16_t r , uint8_t cornername , uint16_t color );
+MEMSPACE void tft_fillCircleHelper ( window *win , int16_t x0 , int16_t y0 , int16_t r , uint8_t cornername , int16_t delta , uint16_t color );
+MEMSPACE void tft_fillCircle ( window *win , int16_t x0 , int16_t y0 , int16_t r , uint16_t color );
+MEMSPACE void tft_drawRect ( window *win , int16_t x , int16_t y , int16_t w , int16_t h , uint16_t color );
+MEMSPACE void tft_drawRoundRect ( window *win, int16_t x , int16_t y , int16_t w , int16_t h , int16_t r , uint16_t color );
+MEMSPACE void tft_fillRoundRect ( window *win , int16_t x , int16_t y , int16_t w , int16_t h , int16_t r , uint16_t color );
+MEMSPACE void tft_drawTriangle ( window *win , int16_t x0 , int16_t y0 , int16_t x1 , int16_t y1 , int16_t x2 , int16_t y2 , uint16_t color );
+MEMSPACE void tft_fillTriangle ( window *win , int16_t x0 , int16_t y0 , int16_t x1 , int16_t y1 , int16_t x2 , int16_t y2 , uint16_t color );
 
 
 #endif // _ILI9341_ADAFRUIT_H_

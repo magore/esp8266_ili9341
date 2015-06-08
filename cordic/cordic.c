@@ -1,5 +1,7 @@
+
 /**
  @file cordic.c
+
  @brief Cordic Routines
  Handle angle outside of the first quadrant
  Added standalone test to verify CORDIC against math library
@@ -8,16 +10,16 @@
  @see cordic.h, we use fixed point numbers, where 1.0=Cordic_One
  Note: 1.0 = 90 degrees
 
- @par Copyright &copy; 2015 Mike Gore, Inc. All rights reserved.
-@par Edit History
-- [1.0]   [Mike Gore]  Initial revision of file.
+ @par Copyright &copy; 2015 Mike Gore, GPL License
+ @par You are free to use this code under the terms of GPL
+   please retain a copy of this notice in any code you use it in.
 
 This is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
 Foundation, either version 3 of the License, or (at your option)
 any later version.
 
-cordic.c is distributed in the hope that it will be useful,
+This software is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
@@ -26,19 +28,23 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+
 // Run a stand alone test
 // #define TEST
+
+#define CORDIC_TABLE                              /* include the generated cordic table */
 
 #ifdef TEST
 #define MEMSPACE                                  /* */
 #include <stdio.h>
 #include <stdlib.h>
+#else
+#include <user_config.h>
 #endif
 
 #include <math.h>
-
-#define CORDIC_TABLE                              /* include the generated cordic table */
 #include "cordic.h"
+#include "cordic2c_inc.h"
 
 /// @brief  Convert Degrees to Rads
 /// @param[in] d: degrees
@@ -222,28 +228,28 @@ void cordic_rad(double rad, double *s, double *c)
 
 
 /// @brief  Scale x,y,z by scale factor
-/// @param[in] *p: x,y,z point
+/// @param[in] *P: x,y,z point
 /// @param[in] scale: scale factor
 /// @return void
 MEMSPACE
-void scale_point(point *p, double scale)
+void scale_point(point *P, double scale)
 {
-    p->x *= scale;
-    p->y *= scale;
-    p->z *= scale;
+    P->x *= scale;
+    P->y *= scale;
+    P->z *= scale;
 }
 
 
 /// @brief  Shift x,y,z by shift
-/// @param[in] *p: x,y,z point
+/// @param[in] *P: x,y,z point
 /// @param[in] shift: shift to apply to x,y,z
 /// @return void
 MEMSPACE
-void shift_point(point *p, point *shift)
+void shift_point(point *P, point *shift)
 {
-    p->x += shift->x;
-    p->y += shift->y;
-    p->z += shift->x;
+    P->x += shift->x;
+    P->y += shift->y;
+    P->z += shift->x;
 }
 
 
@@ -288,17 +294,21 @@ void rotate(point *P, point *V)
 }
 
 
-/// @brief  Compute Perspective Projection of point
-/// @param[in] *P: x,y,z point, out: x,y ( z = 0 )
-/// @return void
-MEMSPACE
-void PerspectiveProjection(point *P)
+/*
+ @brief // Perspective Projection with Offset and Scale
+ @param[in] *P: x,y,z point, out: x,y ( z = 0 )
+ @param [in] scale: scale factor
+ @param [out] x: X offset
+ @param [out] y: Y offset
+ @return void
+*/
+MEMSPACE 
+void PerspectiveProjection(point *P, double scale, int x, int y)
 {
-    P->x = P->x + P->z / 2;
-    P->y = P->y - P->z / 2;
+    P->x = (P->x + P->z / 2) * scale + x;
+    P->y = (P->y - P->z / 2) * scale + y;
     P->z = 0;
 }
-
 
 #ifdef TEST
 /// @brief  STand alone test program to verify cordic conversions

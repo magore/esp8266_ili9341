@@ -39,7 +39,7 @@ bigF:	bdffont2c
 	./bdffont2c -f -p 2 -l 32 -u 127 -o fonts.h $(FONTS_C)
 	$(CC) $(CFLAGS) -g -o bdfview bdfview.c bdffontutil.o
 	cp -f fonts.h ../display
-	./bdfview -n 5 -p 2 -t | more
+	./bdfview -n 5 -p 2 -t 
 
 # Proprtional font set
 bigP:	bdffont2c 
@@ -47,32 +47,32 @@ bigP:	bdffont2c
 	./bdffont2c -p 2 -l 32 -u 127 -o fonts.h $(FONTS_P)
 	$(CC) $(CFLAGS) -g -o bdfview bdfview.c bdffontutil.o
 	cp -f fonts.h ../display
-	./bdfview -n 5 -p 2 -t | more
+	./bdfview -n 5 -p 2 -t 
 
 bigS:	bdffont2c 
 	-rm fonts.h
 	./bdffont2c -s -p 2 -l 32 -u 127 -o fonts.h $(FONTS_C)
 	$(CC) $(CFLAGS) -g -o bdfview bdfview.c bdffontutil.o
 	cp -f fonts.h ../display
-	./bdfview -n 5 -p 2 -t | more
+	./bdfview -n 5 -p 2 -t 
 
 testP:    bdffont2c 
 	-rm fonts.h
 	./bdffont2c -o fonts.h -l 32 -u 127 fonts/P/10-Adobe*.bdf 
 	$(CC) $(CFLAGS) -g -o bdfview bdfview.c bdffontutil.o
-	./bdfview -p 2 -t | more
+	./bdfview -p 2 -t 
 
 testF:    bdffont2c 
 	-rm fonts.h
 	./bdffont2c -p 1 -f -o fonts.h -l 32 -u 127 fonts/P/10-Adobe*.bdf 
 	$(CC) $(CFLAGS) -g -o bdfview bdfview.c bdffontutil.o
-	#./bdfview -p 2 -t | more
+	#./bdfview -p 2 -t 
 
 testS:    bdffont2c 
 	-rm fonts.h
 	./bdffont2c -s -p 2 -o fonts.h -l 32 -u 127 fonts/P/10-Adobe*.bdf
 	$(CC) $(CFLAGS) -g -o bdfview bdfview.c bdffontutil.o
-	./bdfview -p 2 -t | more
+	./bdfview -p 2 -t 
 	
 clean:
 	rm -f bdffont2c *\.o fonts.h bdfview

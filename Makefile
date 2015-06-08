@@ -10,10 +10,19 @@ BUILD_BASE	= build
 FW_BASE		= firmware
 
 SOFTCS = 
-USE_FIFO =  1
 ILI9341_DEBUG = 
-WIRECUBE = 1
+
+# wireframe earth
 EARTH = 
+# rotaing Cube
+WIRECUBE = 1
+# NETWORK Client test
+NETWORK_TEST = 1
+# SPI FIFO CODE
+USE_FIFO =  1
+
+# Netwokr PORT for listener
+TCP_PORT = 31415
 
 ROOT_DIR=/opt/Espressif/esp-open-sdk
 # Base directory for the compiler
@@ -165,6 +174,9 @@ CFLAGS	= -Os -g -O2 -Wpointer-arith -Wundef -Werror -Wl,-EL \
 MODULES	= driver user printf cordic display
 # which modules (subdirectories) of the project to include in compiling
 
+# Include font specifications - used by proportional fonts 
+	CFLAGS  += -DFONTSPECS 
+
 ifdef USE_FIFO
 	CFLAGS  += -DUSE_FIFO
 endif
@@ -189,6 +201,10 @@ ifdef EARTH
 	CFLAGS  += -DEARTH
 endif
 
+ifdef NETWORK_TEST
+	MODULES	+= network
+	CFLAGS  += -DNETWORK_TEST -DTCP_PORT=$(TCP_PORT)
+endif
 
 # linker flags used to generate the main object file
 LDFLAGS		= -nostdlib -Wl,--no-check-sections -u call_user_start -Wl,-static \
@@ -261,7 +277,7 @@ endef
 
 .PHONY: all checkdirs clean
 
-all: checkdirs $(TARGET_OUT)
+all: checkdirs $(TARGET_OUT) send
 
 $(TARGET_OUT): $(APP_AR)
 	$(vecho) "$(Q) $(LD) -L$(SDK_LIBDIR) $(LD_SCRIPT) $(LDFLAGS) -Wl,--start-group $(LIBS) $(APP_AR) -Wl,--end-group -o $@"
@@ -376,6 +392,7 @@ clean:
 	rm -f map.txt
 	rm -f log
 	rm -f eagle.app.*bin
+	rm -f send
 	#rm -rf doxygen
 
 $(foreach bdir,$(BUILD_DIR),$(eval $(call compile-objects,$(bdir))))
@@ -392,3 +409,8 @@ doxyfile.inc:
 doxy:   doxyfile.inc $(SRCS)
 	#export PYTHONPATH=$(PYTHONPATH):/share/embedded/testgen-0.11/extras
 	doxygen Doxyfile
+
+#Network message sending code
+
+send:	send.c
+	gcc send.c -DTCP_PORT=$(TCP_PORT) -o send

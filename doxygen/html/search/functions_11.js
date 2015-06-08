@@ -1,11 +1,13 @@
 var searchData=
 [
-  ['window_5finit',['window_init',['../ili9341_8c.html#ac305af0aa93e05aa1a4e7ee18c07857e',1,'window_init():&#160;ili9341.c'],['../ili9341_8h.html#a8cf971060dafc5b2442d732d42e8c448',1,'window_init(void):&#160;ili9341.c']]],
-  ['wire2fp',['wire2fp',['../wire_8c.html#a86a09b73c1cd047d1ef464da418bf414',1,'wire2fp(wire_p *in, point *out):&#160;wire.c'],['../wire_8h.html#a86a09b73c1cd047d1ef464da418bf414',1,'wire2fp(wire_p *in, point *out):&#160;wire.c']]],
-  ['wire_5fdraw',['wire_draw',['../wire_8c.html#a2233ddaf3dedfeb536cb0121cb8e5c7d',1,'wire_draw(const wire_p *wire, const wire_e *edge, point *view, double scale, uint16_t color):&#160;wire.c'],['../wire_8h.html#a2233ddaf3dedfeb536cb0121cb8e5c7d',1,'wire_draw(const wire_p *wire, const wire_e *edge, point *view, double scale, uint16_t color):&#160;wire.c']]],
-  ['writecharacterbits',['WriteCharacterBits',['../bdffontutil_8c.html#a7c2cf276db0c747638909191d76925da',1,'WriteCharacterBits(FILE *out, _font *font, int num):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a7c2cf276db0c747638909191d76925da',1,'WriteCharacterBits(FILE *out, _font *font, int num):&#160;bdffontutil.c']]],
-  ['writefontbits',['WriteFontBits',['../bdffontutil_8c.html#ac01ebab75271c42afb96bb8da7db06c2',1,'WriteFontBits(FILE *out, _font *font):&#160;bdffontutil.c'],['../bdffontutil_8h.html#ac01ebab75271c42afb96bb8da7db06c2',1,'WriteFontBits(FILE *out, _font *font):&#160;bdffontutil.c']]],
-  ['writefontbitspreview',['WriteFontBitsPreview',['../bdffontutil_8c.html#a6e60e1a05fd459f3af8aa691e06950a7',1,'WriteFontBitsPreview(FILE *out, _font *font, int preview):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a6e60e1a05fd459f3af8aa691e06950a7',1,'WriteFontBitsPreview(FILE *out, _font *font, int preview):&#160;bdffontutil.c']]],
-  ['writefontinfo',['WriteFontInfo',['../bdffontutil_8c.html#a82e40b5e56cab7daedbe210542aa1d99',1,'WriteFontInfo(FILE *out, _font *font):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a82e40b5e56cab7daedbe210542aa1d99',1,'WriteFontInfo(FILE *out, _font *font):&#160;bdffontutil.c']]],
-  ['writefonttable',['WriteFontTable',['../bdffontutil_8c.html#a6e780815dcb0ad1738a3710d10751824',1,'WriteFontTable(FILE *out, _font *font):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a6e780815dcb0ad1738a3710d10751824',1,'WriteFontTable(FILE *out, _font *font):&#160;bdffontutil.c']]]
+  ['uart0_5frx_5fintr_5fhandler',['uart0_rx_intr_handler',['../uart_8c.html#a899cd55c7d84717f3e869e4ee5bfda84',1,'uart.c']]],
+  ['uart0_5ftx_5fbuffer',['uart0_tx_buffer',['../uart_8c.html#aa9781bff858a9ad3888080fa37c051ef',1,'uart.c']]],
+  ['uart1_5ftx_5fone_5fchar',['uart1_tx_one_char',['../uart_8c.html#a86709471f3590c5fb0c1ed0cd6c91a8f',1,'uart.c']]],
+  ['uart1_5fwrite_5fchar',['uart1_write_char',['../uart_8c.html#a0be6ce33ee087df66448c29d9fa7dc4f',1,'uart.c']]],
+  ['uart_5fconfig',['uart_config',['../uart_8c.html#ae6b74eef19a18b9e37b1853965328f1e',1,'uart.c']]],
+  ['uart_5finit',['uart_init',['../uart_8c.html#aedb0d99c7438c2c1c5ff4c561b6905a4',1,'uart_init(UartBautRate uart0_br, UartBautRate uart1_br):&#160;uart.c'],['../uart_8h.html#a1fdfa60721412bedfeb7be0ebc4d1700',1,'uart_init(UartBautRate uart0_br, UartBautRate uart1_br):&#160;uart.c']]],
+  ['usage',['usage',['../bdffont2c_8c.html#aa4817482b1728bf62acf8030cab9842c',1,'bdffont2c.c']]],
+  ['user_5finit',['user_init',['../user__main_8c.html#aaabd07afe4d50c1a7f16f18995fc6b18',1,'user_main.c']]],
+  ['user_5ftask',['user_task',['../user__main_8c.html#aae1f6c69437b33a122512f4a5934af2b',1,'user_main.c']]],
+  ['usertask',['UserTask',['../user__main_8c.html#a1a6298ceb314c1707e92070ad4a9416d',1,'user_main.c']]]
 ];

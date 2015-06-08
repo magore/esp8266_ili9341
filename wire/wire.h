@@ -1,29 +1,29 @@
-#ifndef _WIRE_H_
-#define _WIRE_H_
 /**
  @file wire.h
 
- @par wireframe viewer
+ @brief wireframe view code
+
  @par Copyright &copy; 2015 Mike Gore, GPL License
+ @par You are free to use this code under the terms of GPL
+   please retain a copy of this notice in any code you use it in.
 
- @brief Display wireframe object 
- The code handles fixed, proportional and bounding box format fonts
- @par Edit History
- - [1.0]   [Mike Gore]  Initial revision of file.
+This is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.
 
- This is free software: you can redistribute it and/or modify it under the
- terms of the GNU General Public License as published by the Free Software
- Foundation, either version 3 of the License, or (at your option)
- any later version.
+This software is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
- wireframe.c is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU General Public License for more details.
-
- You should have received a copy of the GNU General Public License
- along with this program.  If not, see <http://www.gnu.org/licenses/>.
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+#ifndef _WIRE_H_
+#define _WIRE_H_
+#include <user_config.h>
 
 typedef short int wire_t;
 typedef struct {
@@ -43,9 +43,9 @@ typedef struct {
 #define WIRE_2FP(a)  ( (double) (a) / (double) (WIRE_ONE))
 #define FP2_WIRE(a)  ((wire_t) (WIRE_ONE * (a)))
 
+
 /* wire.c */
 void wire2fp ( wire_p *in , point *out );
-void scale2display ( point *p , int *x , int *y );
-void wire_draw ( const wire_p *wire , const wire_e *edge , point *view , double scale , uint16_t color );
+void wire_draw ( window *win, const wire_p *wire , const wire_e *edge , point *view , int x , int y , double scale , uint16_t color );
 
 #endif

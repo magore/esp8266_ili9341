@@ -3,7 +3,7 @@
 }
 
 
-Small printf with floating point support.  
+Small printf user function.  
 
 
 {\ttfamily \#include \char`\"{}user\-\_\-config.\-h\char`\"{}}\\*
@@ -11,32 +11,20 @@ Small printf with floating point support.
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{structwindow}{window} $\ast$ \hyperlink{pr_8c_a42914bc97d6a4e91b6932e345b96d5af}{tft\-\_\-setpos} (int16\-\_\-t x, int16\-\_\-t y)
-\begin{DoxyCompactList}\small\item\em Set current window offset (per current rotation) \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{structwindow}{window} $\ast$ \hyperlink{pr_8c_a377d54d2e7aa22ef20729c66029e20f6}{tft\-\_\-setsize} (\hyperlink{earth2wireframe_8c_a273cf69d639a59973b6019625df33e30}{uint16\-\_\-t} size)
-\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{pr_8c_a78540013d67b3a4bec521650d4c74976}{tft\-\_\-putch} (int c, \hyperlink{structwindow}{window} $\ast$\hyperlink{ili9341_8c_ad4f99092b85aeca1e021fe68d605e513}{win})
-\begin{DoxyCompactList}\small\item\em put character in current winoow \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{pr_8c_a2d4b0a4bb23937481d2e28522eb7e5eb}{tft\-\_\-printf} (int x, int y, int size, const char $\ast$fmt,...)
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{pr_8c_ad6d6dda4facdc045d477c0cc9403e0c1}{tft\-\_\-printf} (\hyperlink{structwindow}{window} $\ast$win, const char $\ast$fmt,...)
 \begin{DoxyCompactList}\small\item\em tft\-\_\-printf function \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Small printf with floating point support. \begin{DoxyParagraph}{Copyright \copyright{} 2015 Mike Gore, G\-P\-L License}
+Small printf user function. \begin{DoxyParagraph}{Copyright \copyright{} 2015 Mike Gore, G\-P\-L License}
 
 \end{DoxyParagraph}
-\begin{DoxySeeAlso}{See Also}
-\-: \href{http://en.wikipedia.org/wiki/Glyph_Bitmap_Distribution_Format}{\tt http\-://en.\-wikipedia.\-org/wiki/\-Glyph\-\_\-\-Bitmap\-\_\-\-Distribution\-\_\-\-Format} 
-\end{DoxySeeAlso}
-\begin{DoxyParagraph}{Edit History}
-
-\begin{DoxyItemize}
-\item \mbox{[}1.\-0\mbox{]} \mbox{[}Mike Gore\mbox{]} Initial revision of file.
-\end{DoxyItemize}
+\begin{DoxyParagraph}{You are free to use this code under the terms of G\-P\-L}
+please retain a copy of this notice in any code you use it in.
 \end{DoxyParagraph}
 This is free software\-: you can redistribute it and/or modify it under the terms of the G\-N\-U General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
-printf is distributed in the hope that it will be useful, but W\-I\-T\-H\-O\-U\-T A\-N\-Y W\-A\-R\-R\-A\-N\-T\-Y; without even the implied warranty of M\-E\-R\-C\-H\-A\-N\-T\-A\-B\-I\-L\-I\-T\-Y or F\-I\-T\-N\-E\-S\-S F\-O\-R A P\-A\-R\-T\-I\-C\-U\-L\-A\-R P\-U\-R\-P\-O\-S\-E. See the G\-N\-U General Public License for more details.
+This software is distributed in the hope that it will be useful, but W\-I\-T\-H\-O\-U\-T A\-N\-Y W\-A\-R\-R\-A\-N\-T\-Y; without even the implied warranty of M\-E\-R\-C\-H\-A\-N\-T\-A\-B\-I\-L\-I\-T\-Y or F\-I\-T\-N\-E\-S\-S F\-O\-R A P\-A\-R\-T\-I\-C\-U\-L\-A\-R P\-U\-R\-P\-O\-S\-E. See the G\-N\-U General Public License for more details.
 
 You should have received a copy of the G\-N\-U General Public License along with this program. If not, see \href{http://www.gnu.org/licenses/}{\tt http\-://www.\-gnu.\-org/licenses/}. 
 
@@ -45,28 +33,22 @@ Definition in file \hyperlink{pr_8c_source}{pr.\-c}.
 
 
 \subsection{Function Documentation}
-\hypertarget{pr_8c_a2d4b0a4bb23937481d2e28522eb7e5eb}{\index{pr.\-c@{pr.\-c}!tft\-\_\-printf@{tft\-\_\-printf}}
+\hypertarget{pr_8c_ad6d6dda4facdc045d477c0cc9403e0c1}{\index{pr.\-c@{pr.\-c}!tft\-\_\-printf@{tft\-\_\-printf}}
 \index{tft\-\_\-printf@{tft\-\_\-printf}!pr.c@{pr.\-c}}
 \subsubsection[{tft\-\_\-printf}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int tft\-\_\-printf (
 \begin{DoxyParamCaption}
-\item[{int}]{x, }
-\item[{int}]{y, }
-\item[{int}]{size, }
+\item[{{\bf window} $\ast$}]{win, }
 \item[{const char $\ast$}]{fmt, }
 \item[{}]{...}
 \end{DoxyParamCaption}
-)}}\label{pr_8c_a2d4b0a4bb23937481d2e28522eb7e5eb}
+)}}\label{pr_8c_ad6d6dda4facdc045d477c0cc9403e0c1}
 
 
 tft\-\_\-printf function 
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em x} & X offset \\
-\hline
-\mbox{\tt in}  & {\em y} & Y offset \\
-\hline
-\mbox{\tt in}  & {\em size} & font index (index into font array) \\
+\mbox{\tt in}  & {\em $\ast$win} & Window Structure \\
 \hline
 \mbox{\tt in}  & {\em fmt} & printf forat string \\
 \hline
@@ -78,70 +60,9 @@ size of string
 \end{DoxyReturn}
 
 
-Definition at line 42 of file pr.\-c.
+Definition at line 37 of file pr.\-c.
 
 
 
-Referenced by test(), tft\-\_\-draw\-Number(), and user\-\_\-init().
+Referenced by user\-\_\-init(), and user\-\_\-task().
 
-\hypertarget{pr_8c_a78540013d67b3a4bec521650d4c74976}{\index{pr.\-c@{pr.\-c}!tft\-\_\-putch@{tft\-\_\-putch}}
-\index{tft\-\_\-putch@{tft\-\_\-putch}!pr.c@{pr.\-c}}
-\subsubsection[{tft\-\_\-putch}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void tft\-\_\-putch (
-\begin{DoxyParamCaption}
-\item[{int}]{c, }
-\item[{{\bf window} $\ast$}]{win}
-\end{DoxyParamCaption}
-)}}\label{pr_8c_a78540013d67b3a4bec521650d4c74976}
-
-
-put character in current winoow 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em c} & character \\
-\hline
-\mbox{\tt in}  & {\em $\ast$win} & window pointer return\-: void \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 872 of file ili9341.\-c.
-
-
-
-Referenced by tft\-\_\-cleareol(), tft\-\_\-printf(), and tft\-\_\-putch().
-
-\hypertarget{pr_8c_a42914bc97d6a4e91b6932e345b96d5af}{\index{pr.\-c@{pr.\-c}!tft\-\_\-setpos@{tft\-\_\-setpos}}
-\index{tft\-\_\-setpos@{tft\-\_\-setpos}!pr.c@{pr.\-c}}
-\subsubsection[{tft\-\_\-setpos}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} {\bf window}$\ast$ tft\-\_\-setpos (
-\begin{DoxyParamCaption}
-\item[{int16\-\_\-t}]{x, }
-\item[{int16\-\_\-t}]{y}
-\end{DoxyParamCaption}
-)}}\label{pr_8c_a42914bc97d6a4e91b6932e345b96d5af}
-
-
-Set current window offset (per current rotation) 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em x} & x offset \\
-\hline
-\mbox{\tt in}  & {\em y} & y oofset return\-: pointer to current windows \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 409 of file ili9341.\-c.
-
-
-
-Referenced by tft\-\_\-printf().
-
-\hypertarget{pr_8c_a377d54d2e7aa22ef20729c66029e20f6}{\index{pr.\-c@{pr.\-c}!tft\-\_\-setsize@{tft\-\_\-setsize}}
-\index{tft\-\_\-setsize@{tft\-\_\-setsize}!pr.c@{pr.\-c}}
-\subsubsection[{tft\-\_\-setsize}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} {\bf window}$\ast$ tft\-\_\-setsize (
-\begin{DoxyParamCaption}
-\item[{{\bf uint16\-\_\-t}}]{size}
-\end{DoxyParamCaption}
-)}}\label{pr_8c_a377d54d2e7aa22ef20729c66029e20f6}

@@ -3,41 +3,29 @@
 }
 
 
-Display wireframe object Can process either connected point lists or points and edges.  
+wireframe view code  
 
 
-{\ttfamily \#include \char`\"{}user\-\_\-config.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}ili9341.\-h\char`\"{}}\\*
-{\ttfamily \#include $<$math.\-h$>$}\\*
-{\ttfamily \#include \char`\"{}cordic.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}wire.\-h\char`\"{}}\\*
+{\ttfamily \#include $<$user\-\_\-config.\-h$>$}\\*
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 void \hyperlink{wire_8c_a86a09b73c1cd047d1ef464da418bf414}{wire2fp} (\hyperlink{structwire__p}{wire\-\_\-p} $\ast$in, \hyperlink{structpoint}{point} $\ast$out)
 \item 
-void \hyperlink{wire_8c_a7f3fa95f9ec7cc3e8cf3d8278ca9c6fa}{scale2display} (\hyperlink{structpoint}{point} $\ast$p, int $\ast$x, int $\ast$y)
-\item 
-void \hyperlink{wire_8c_a2233ddaf3dedfeb536cb0121cb8e5c7d}{wire\-\_\-draw} (const \hyperlink{structwire__p}{wire\-\_\-p} $\ast$wire, const \hyperlink{structwire__e}{wire\-\_\-e} $\ast$edge, \hyperlink{structpoint}{point} $\ast$view, double \hyperlink{user__main_8c_aa7d569051c24f6fb09cf6569ae97e134}{scale}, \hyperlink{earth2wireframe_8c_a273cf69d639a59973b6019625df33e30}{uint16\-\_\-t} color)
+void \hyperlink{wire_8c_a6032c357c29e2854243ee86f93fee4e5}{wire\-\_\-draw} (\hyperlink{structwindow}{window} $\ast$win, const \hyperlink{structwire__p}{wire\-\_\-p} $\ast$wire, const \hyperlink{structwire__e}{wire\-\_\-e} $\ast$edge, \hyperlink{structpoint}{point} $\ast$view, int x, int y, double \hyperlink{user__main_8c_aa7d569051c24f6fb09cf6569ae97e134}{scale}, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\-\_\-t} color)
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Display wireframe object Can process either connected point lists or points and edges. \begin{DoxyParagraph}{Edit History}
-
-\begin{DoxyItemize}
-\item \mbox{[}1.\-0\mbox{]} \mbox{[}Mike Gore\mbox{]} Initial revision of file.
-\end{DoxyItemize}
-\end{DoxyParagraph}
-\begin{DoxyParagraph}{wireframe viewer}
+wireframe view code \begin{DoxyParagraph}{Copyright \copyright{} 2015 Mike Gore, G\-P\-L License}
 
 \end{DoxyParagraph}
-\begin{DoxyParagraph}{Copyright \copyright{} 2015 Mike Gore, G\-P\-L License}
-
+\begin{DoxyParagraph}{You are free to use this code under the terms of G\-P\-L}
+please retain a copy of this notice in any code you use it in.
 \end{DoxyParagraph}
 This is free software\-: you can redistribute it and/or modify it under the terms of the G\-N\-U General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
-wireframe.\-c is distributed in the hope that it will be useful, but W\-I\-T\-H\-O\-U\-T A\-N\-Y W\-A\-R\-R\-A\-N\-T\-Y; without even the implied warranty of M\-E\-R\-C\-H\-A\-N\-T\-A\-B\-I\-L\-I\-T\-Y or F\-I\-T\-N\-E\-S\-S F\-O\-R A P\-A\-R\-T\-I\-C\-U\-L\-A\-R P\-U\-R\-P\-O\-S\-E. See the G\-N\-U General Public License for more details.
+This software is distributed in the hope that it will be useful, but W\-I\-T\-H\-O\-U\-T A\-N\-Y W\-A\-R\-R\-A\-N\-T\-Y; without even the implied warranty of M\-E\-R\-C\-H\-A\-N\-T\-A\-B\-I\-L\-I\-T\-Y or F\-I\-T\-N\-E\-S\-S F\-O\-R A P\-A\-R\-T\-I\-C\-U\-L\-A\-R P\-U\-R\-P\-O\-S\-E. See the G\-N\-U General Public License for more details.
 
 You should have received a copy of the G\-N\-U General Public License along with this program. If not, see \href{http://www.gnu.org/licenses/}{\tt http\-://www.\-gnu.\-org/licenses/}. 
 
@@ -46,23 +34,6 @@ Definition in file \hyperlink{wire_8c_source}{wire.\-c}.
 
 
 \subsection{Function Documentation}
-\hypertarget{wire_8c_a7f3fa95f9ec7cc3e8cf3d8278ca9c6fa}{\index{wire.\-c@{wire.\-c}!scale2display@{scale2display}}
-\index{scale2display@{scale2display}!wire.c@{wire.\-c}}
-\subsubsection[{scale2display}]{\setlength{\rightskip}{0pt plus 5cm}void scale2display (
-\begin{DoxyParamCaption}
-\item[{{\bf point} $\ast$}]{p, }
-\item[{int $\ast$}]{x, }
-\item[{int $\ast$}]{y}
-\end{DoxyParamCaption}
-)}}\label{wire_8c_a7f3fa95f9ec7cc3e8cf3d8278ca9c6fa}
-
-
-Definition at line 55 of file wire.\-c.
-
-
-
-Referenced by wire\-\_\-draw().
-
 \hypertarget{wire_8c_a86a09b73c1cd047d1ef464da418bf414}{\index{wire.\-c@{wire.\-c}!wire2fp@{wire2fp}}
 \index{wire2fp@{wire2fp}!wire.c@{wire.\-c}}
 \subsubsection[{wire2fp}]{\setlength{\rightskip}{0pt plus 5cm}void wire2fp (
@@ -73,28 +44,31 @@ Referenced by wire\-\_\-draw().
 )}}\label{wire_8c_a86a09b73c1cd047d1ef464da418bf414}
 
 
-Definition at line 40 of file wire.\-c.
+Definition at line 33 of file wire.\-c.
 
 
 
 Referenced by wire\-\_\-draw().
 
-\hypertarget{wire_8c_a2233ddaf3dedfeb536cb0121cb8e5c7d}{\index{wire.\-c@{wire.\-c}!wire\-\_\-draw@{wire\-\_\-draw}}
+\hypertarget{wire_8c_a6032c357c29e2854243ee86f93fee4e5}{\index{wire.\-c@{wire.\-c}!wire\-\_\-draw@{wire\-\_\-draw}}
 \index{wire\-\_\-draw@{wire\-\_\-draw}!wire.c@{wire.\-c}}
 \subsubsection[{wire\-\_\-draw}]{\setlength{\rightskip}{0pt plus 5cm}void wire\-\_\-draw (
 \begin{DoxyParamCaption}
+\item[{{\bf window} $\ast$}]{win, }
 \item[{const {\bf wire\-\_\-p} $\ast$}]{wire, }
 \item[{const {\bf wire\-\_\-e} $\ast$}]{edge, }
 \item[{{\bf point} $\ast$}]{view, }
+\item[{int}]{x, }
+\item[{int}]{y, }
 \item[{double}]{scale, }
 \item[{{\bf uint16\-\_\-t}}]{color}
 \end{DoxyParamCaption}
-)}}\label{wire_8c_a2233ddaf3dedfeb536cb0121cb8e5c7d}
+)}}\label{wire_8c_a6032c357c29e2854243ee86f93fee4e5}
 
 
-Definition at line 70 of file wire.\-c.
+Definition at line 52 of file wire.\-c.
 
 
 
-Referenced by test().
+Referenced by user\-\_\-init(), and user\-\_\-task().
 

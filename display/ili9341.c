@@ -1,25 +1,25 @@
 /**
  @file ili9341.c
 
- @brief ili9341 driver based on Adafruit mostly rewritten by Mike Gore
+ @brief ili9341 driver inspired by Adafruit ili9341 code
+        All code in this file has been rewritten by Mike Gore
  @par Copyright &copy; 2015 Mike Gore, GPL License
+ @par You are free to use this code under the terms of GPL
+   please retain a copy of this notice in any code you use it in.
+
  @par Copyright &copy; 2013 Adafruit Industries.  All rights reserved.
  @see https://github.com/adafruit/Adafruit-GFX-Library
 
  @par Line drawing function CERTS
  @see https://github.com/CHERTS/esp8266-devkit/tree/master/Espressif/examples/esp8266_ili9341
 
-  Line drawing function from
 
- @par Edit History
- - [1.0]   [Mike Gore]  Initial revision of file.
-
- This is free software: you can redistribute it and/or modify it under the
+This is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
 Foundation, either version 3 of the License, or (at your option)
 any later version.
 
-ili9341 is distributed in the hope that it will be useful,
+This software is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
@@ -28,17 +28,11 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <ets_sys.h>
-#include <osapi.h>
-#include <os_type.h>
-#include <gpio.h>
-#include <mem.h>
-#include "hspi.h"
-#include "font.h"
-#include "util.h"
-#include "ili9341_adafruit.h"
+#include <user_config.h>
 
-window win;
+// TFT master window definition
+window tftwin;
+window *tft = &tftwin;
 
 /// @brief Initialize TFT
 /// @ return diplay ID 9341
@@ -49,7 +43,7 @@ uint32_t tft_init(void)
 
     hspi_init();
 
-    window_init();
+    window_init(tft, TFT_XOFF, TFT_YOFF, TFT_W, TFT_H);
 
     TFT_CS_INIT;
     TFT_INIT;
@@ -66,57 +60,65 @@ uint32_t tft_init(void)
 
     tft_setRotation(0);
 
-    tft_fillRectXY(win.min_x,win.min_y,win.max_x,win.max_y, win.textbgcolor);
+    tft_fillWin(tft, tft->bg);
     return ( ID );
-}
-
-
-
-/// @brief Constrain window to display window
-/// @param[in] *xs: Starting X offset
-/// @param[in] *xl: Ending X offset
-/// @param[in] *ys: Starting Y offset
-/// @param[in] *yl: Ending X offset
-/// @return  size of clipped window: height * width
-/// FIXME if the entire zoe is outside the display we must return ZERO
-
-uint32_t tft_clip(int16_t *xs, int16_t *xl, int16_t *ys, int16_t *yl)
-{
-    uint32_t bytes;
-
-// Make sure starting X offset is <= ending offset, else swap
-    if(*xs > *xl)
-        SWAP(*xs,*xl);
-// Is the window totally off screen
-    if(*xs > win.max_x || *xl < win.min_x)
-        return(0);
-
-// Make sure starting Y offset is <= ending offset, else swap
-    if(*ys > *yl)
-        SWAP(*ys,*yl);
-// Is the window totally off screen
-    if(*ys > win.max_y || *yl < win.min_y)
-        return(0);
-
-//Constrain xs,xl,ys,yl to current window
-    CONSTRAIN(*xs,win.min_x, win.max_x);
-    CONSTRAIN(*xl,win.min_x, win.max_x);
-    CONSTRAIN(*ys,win.min_y, win.max_y);
-    CONSTRAIN(*yl,win.min_y, win.max_y);
-    bytes = (*xl - *xs + 1) * (*yl - *ys + 1);
-    return(bytes);
 }
 
 
 /// @brief Set the ili9341 update window
 /// @param[in] x: Starting X offset
 /// @param[in] y: Starting Y offset
-/// @param[in] xl: Ending X offset
-/// @param[in] yl: Ending Y offset
-/// @return  void
-void tft_window(int16_t x, int16_t y, int16_t xl, int16_t yl)
+/// @param[in] w: Width
+/// @param[in] h: Height
+/// @return  w * h after clipping
+uint32_t tft_abs_window(int16_t x, int16_t y, int16_t w, int16_t h)
 {
     uint8_t tmp[4];
+
+	uint16_t xl,yl;
+
+	int16_t ww,hh;
+	uint32_t bytes;
+
+	// Check for basic out of bounds conditions
+
+	// Width or Height <= 0 ? Bogus range
+	if(w <= 0 || h <= 0)
+		return(0);
+
+	// X >= Width ??
+	if(x >= tft->w)
+		return(0);
+
+	// Y >= Height ??
+	if(y >= tft->h)
+		return(0);
+
+	// Clipping tests for < 0
+	// X < 0 ? Clip
+	if(x < 0)
+		x = 0;
+	// Y < 0 ? Clip
+	if(y < 0)
+		y = 0;
+
+	// Clip check X + W
+	ww = (x + w) - tft->w;
+	if(ww > 0)
+		w -= ww;
+	if(w <= 0)
+		return(0);
+
+	// Clip check Y + H
+	hh = (y + h) - tft->h;
+	if(hh > 0)
+		h -= hh;
+	if(h <= 0)
+		return(0);
+
+	// Now We know the result will fit
+	xl = x + w - 1;
+	yl = y + h - 1;
 
     tmp[0] = x >> 8;
     tmp[1] = x & 0xff;
@@ -128,13 +130,17 @@ void tft_window(int16_t x, int16_t y, int16_t xl, int16_t yl)
     tmp[2] = yl >> 8;
     tmp[3] = yl & 0xff;
     tft_writeCmdData(0x2B, tmp, 4);
+
+	bytes = w;
+	bytes *= h;
+	return( bytes);
 }
 
 
 ///  ====================================
 
 /// @brief  Transmit 8 bit display command
-/// @param [in] cmd: command code
+/// @param[in] cmd: command code
 /// return: void
 void tft_writeCmd(uint8_t cmd)
 {
@@ -148,7 +154,7 @@ void tft_writeCmd(uint8_t cmd)
 
 
 /// @brief  Transmit 8 bit display data
-/// @param [in] data: data
+/// @param[in] data: data
 /// return: void
 void tft_writeData(uint8_t data)
 {
@@ -162,9 +168,9 @@ void tft_writeData(uint8_t data)
 
 
 /// @brief  Transmit 8 bit command and related data buffer
-/// @param [in] cmd: display command
-/// @param [in] *data: data buffer to send after command
-/// @param [in] bytes: data buffer size
+/// @param[in] cmd: display command
+/// @param[in] *data: data buffer to send after command
+/// @param[in] bytes: data buffer size
 /// return: void status is in data array - bytes in size
 void tft_writeCmdData(uint8_t cmd, uint8_t * data, uint8_t bytes)
 {
@@ -191,7 +197,7 @@ void tft_writeCmdData(uint8_t cmd, uint8_t * data, uint8_t bytes)
 
 /// @brief  Transmit 16 bit data
 /// ILI9341 defaults to MSB/LSB data so we have to reverse it
-/// @param [in] val: 16 bit data
+/// @param[in] val: 16 bit data
 /// return void
 void tft_writeData16(uint16_t val)
 {
@@ -211,8 +217,8 @@ void tft_writeData16(uint16_t val)
 /// @brief  Buffered color fill
 /// Optimized for 16bit MSB/LSB SPI bus tramission
 /// ILI9341 defaults to MSB/LSB color data so we reverse it
-/// @param [in] color: 16 bit color
-/// @param [in] count: repeat count
+/// @param[in] color: 16 bit color
+/// @param[in] count: repeat count
 /// @return void
 void tft_writeColor16Repeat(uint16 color, uint32_t count)
 {
@@ -238,8 +244,8 @@ void tft_writeColor16Repeat(uint16 color, uint32_t count)
 /// Optimized for 16bit MSB/LSB SPI bus tramission
 /// ILI9341 defaults to MSB/LSB color data so we reverse it
 /// Warning: exceeding the array bounds may crash certain systems
-/// @param [in] *color_data: 16 bit data array
-/// @param [in] count: count of 16bit values to write
+/// @param[in] *color_data: 16 bit data array
+/// @param[in] count: count of 16bit values to write
 /// @return void
 void tft_writeDataBuffered(uint16_t *color_data, uint32_t count)
 {
@@ -275,8 +281,8 @@ void tft_writeDataBuffered(uint16_t *color_data, uint32_t count)
 ///      rather the interface II mode.
 /// It appears that direct reading has been disabled on most
 /// SPI displays.
-/// @param [in] reg: register to read
-/// @param [in] parameter: parameter number to read
+/// @param[in] reg: register to read
+/// @param[in] parameter: parameter number to read
 /// @return 16bit value
 uint32_t tft_readRegister(uint8_t reg, uint8_t parameter)
 {
@@ -312,176 +318,6 @@ uint32_t tft_readId(void)
 }
 
 
-/// ====================================
-/// @brief Set soft window limits
-/// ====================================
-
-/// @brief Set Display rotation
-/// Set hardware display rotation and memory fill option bits
-/// Update software display limits
-/// FIXME Work in progress
-/// - do we want to handle exchanging min/max values - rather then set them ?
-/// @return void
-MEMSPACE
-void tft_setRotation(uint8_t m)
-{
-
-    uint8_t data;
-    win.rotation = m % 4;                         // can't be higher than 3
-    data = MADCTL_BGR;
-    switch (win.rotation)
-    {
-        case 0:
-            data |= MADCTL_MX;
-            win.min_x  = MIN_TFT_X;
-            win.max_x  = MAX_TFT_X;
-            win.min_y = MIN_TFT_Y;
-            win.max_y = MAX_TFT_Y;
-            break;
-        case 1:
-            data |= MADCTL_MV;
-            win.max_x  = MAX_TFT_Y;
-            win.min_x  = MIN_TFT_Y;
-            win.min_y  = MIN_TFT_X;
-            win.max_y  = MAX_TFT_X;
-            break;
-        case 2:
-            data |= MADCTL_MY;
-            win.min_x  = MIN_TFT_X;
-            win.max_x  = MAX_TFT_X;
-            win.min_y = MIN_TFT_Y;
-            win.max_y = MAX_TFT_Y;
-            break;
-        case 3:
-            data = MADCTL_MX | MADCTL_MY | MADCTL_MV;
-            win.min_x  = MIN_TFT_Y;
-            win.max_x  = MAX_TFT_Y;
-            win.min_y = MIN_TFT_X;
-            win.max_y = MAX_TFT_X;
-            break;
-    }
-    tft_writeCmdData(ILI9341_MADCTL, &data, 1);
-}
-
-
-/// @brief Defines software values for current window size
-/// These are not hardware limits
-/// @return  void
-MEMSPACE
-void window_init()
-{
-    win.x         = 0;                            // current X
-    win.y         = 0;                            // current Y
-    win.fontindex = 0;                            // current font size
-    win.fontfixed     = 0;
-    win.min_x     = MIN_TFT_X;
-    win.max_x     = MAX_TFT_X;
-    win.min_y     = MIN_TFT_Y;
-    win.max_y     = MAX_TFT_Y;
-    win.rotation  = 0;
-    win.wrap      = true;
-    win.tabcolor  = 0;
-    win.textcolor = 0xFFFF;
-    win.textbgcolor = 0;
-}
-
-
-/// ====================================
-
-/// @brief  Set text forground and background color
-/// @param [in] c: forground color
-/// @param [in] b: background color
-/// @return void
-MEMSPACE
-void tft_setTextColor(uint16_t c, uint16_t b)
-{
-    win.textcolor   = c;
-    win.textbgcolor = b;
-}
-
-
-/// @brief  Set current window offset
-/// (per current rotation)
-/// @param [in] x: x offset
-/// @param [in] y: y oofset
-/// return: pointer to current windows
-MEMSPACE
-window *tft_setpos(int16_t x, int16_t y)
-{
-    win.x = x;
-    win.y = y;
-    return (window *) &win;
-}
-
-
-/// @brief  Set current font size
-/// (per current rotation)
-/// @param [in] index: font index (for array of fonts)
-/// return: pointer to current windows
-MEMSPACE
-window *tft_set_fontsize(uint16_t index)
-{
-    win.fontindex = index;
-    return (window *) &win;
-}
-
-
-/// @brief  Set current font type to fixed
-/// Only works if font is proportional type
-/// return: pointer to current windows
-MEMSPACE
-window *tft_font_fixed()
-{
-    win.fontfixed = 1;
-    return (window *) &win;
-}
-
-
-/// @brief  Set current font type to variable
-/// return: pointer to current windows
-MEMSPACE
-window *tft_font_var()
-{
-    win.fontfixed = 0;
-    return (window *) &win;
-}
-
-
-/// @brief  Return current window pointer
-/// return: pointer to current windows
-MEMSPACE
-window *tft_getwin()
-{
-    return (window *) &win;
-}
-
-
-/// @brief  Return window height
-/// return: pointer to current windows
-MEMSPACE
-int16_t tft_height(void)
-{
-    return win.max_y;
-}
-
-
-/// @brief  Return window width
-/// return: pointer to current windows
-MEMSPACE
-int16_t tft_width(void)
-{
-    return win.max_x;
-}
-
-
-/// @brief  Return window rotation
-/// return: window rotation
-MEMSPACE
-uint8_t tft_getRotation(void)
-{
-    return win.rotation;
-}
-
 
 /// ====================================
 /// @brief Color conversions
@@ -489,9 +325,9 @@ uint8_t tft_getRotation(void)
 
 /// @brief  Pass 8-bit (each) R,G,B, get back 16-bit packed color
 /// ILI9341 defaults to MSB/LSB data so we have to reverse it
-/// @param [in] r: red data
-/// @param [in] b: blue data
-/// @param [in] g: green data
+/// @param[in] r: red data
+/// @param[in] b: blue data
+/// @param[in] g: green data
 MEMSPACE
 uint16_t tft_color565(uint8_t r, uint8_t g, uint8_t b)
 {
@@ -501,10 +337,10 @@ uint16_t tft_color565(uint8_t r, uint8_t g, uint8_t b)
 
 /// @brief  Convert 16bit colr into 8-bit (each) R,G,B
 /// ILI9341 defaults to MSB/LSB data so we have to reverse it
-/// @param [in] color: 16bit color
-/// @param [out] *r: red data
-/// @param [out] *b: blue data
-/// @param [out] *g: green data
+/// @param[in] color: 16bit color
+/// @param[out] *r: red data
+/// @param[out] *b: blue data
+/// @param[out] *g: green data
 MEMSPACE
 void convert565toRGB(uint16_t color, uint8_t *r, uint8_t *g, uint8_t *b)
 {
@@ -515,7 +351,7 @@ void convert565toRGB(uint16_t color, uint8_t *r, uint8_t *g, uint8_t *b)
 
 
 /// @brief  Invert the display
-/// @param [in] flag: true or false
+/// @param[in] flag: true or false
 /// @return void
 MEMSPACE
 void tft_invertDisplay(int flag)
@@ -530,6 +366,7 @@ void tft_invertDisplay(int flag)
 /// ====================================
 
 /// @brief  BLIT a bit array to the display
+/// @param[in] win*: window structure
 /// @param[in] *ptr: bit array w * h in size
 /// @param[in] x: BLITX offset
 /// @param[in] y: BLIT Y offset
@@ -539,7 +376,7 @@ void tft_invertDisplay(int flag)
 /// @param[in] bg: BLIT background color
 /// @return  void
 /// TODO CLIP window - depends on blit array
-void tft_bit_blit(uint8_t *ptr, int x, int y, int w, int h, uint16_t fg, uint16_t bg)
+void tft_bit_blit(window *win, uint8_t *ptr, int x, int y, int w, int h, uint16_t fg, uint16_t bg)
 {
 
     uint16_t color;
@@ -552,11 +389,12 @@ void tft_bit_blit(uint8_t *ptr, int x, int y, int w, int h, uint16_t fg, uint16_
 #if 1
 // BIT BLIT
 
-// TODO CLIP window - depends on blit array offset also
+// TODO CLIP window 
+// Note: Clipping modifies offsets which in turn modifies blit array offsets
 // We could use tft_drawPixel, and it clips - but that is slow
 // We use hspi_stream to make it FAST
 
-    tft_window(x, y, x+w-1, y+h-1);
+    tft_rel_window(win, x, y, w, h);
     tft_writeCmd(0x2c);
 
     hspi_stream_init();
@@ -595,6 +433,7 @@ void tft_bit_blit(uint8_t *ptr, int x, int y, int w, int h, uint16_t fg, uint16_
 
 
 /// @brief  BLIT a color array to the display
+/// @param[in] win*: window structure
 /// @param[in] *ptr: color array w * h in size
 /// @param[in] x: BLITX offset
 /// @param[in] y: BLIT Y offset
@@ -602,7 +441,7 @@ void tft_bit_blit(uint8_t *ptr, int x, int y, int w, int h, uint16_t fg, uint16_
 /// @param[in] h: BLIT Height
 /// @return  void
 /// TODO CLIP window - depends on blit array
-void tft_blit(uint16_t *ptr, int x, int y, int w, int h)
+void tft_blit(window *win, uint16_t *ptr, int x, int y, int w, int h)
 {
 
     uint16_t color;
@@ -618,7 +457,7 @@ void tft_blit(uint16_t *ptr, int x, int y, int w, int h)
 
 #if 1
 // BLIT
-    tft_window(x, y, x+w-1, y+h-1);
+    tft_rel_window(win, x, y, w, h);
     tft_writeCmd(0x2c);
 
     hspi_stream_init();
@@ -642,11 +481,241 @@ void tft_blit(uint16_t *ptr, int x, int y, int w, int h)
     {
         for (xx=0;xx < w; ++xx)
         {
-            tft_drawPixel(x+xx,y+yy,*ptr++);
+            tft_drawPixel(win, x+xx,y+yy,*ptr++);
         }
         off += w;
     }
 #endif
+}
+
+
+
+/// ====================================
+/// @brief Fill functions
+/// ====================================
+
+/// @brief Fill window 
+/// @param[in] win*: window structure
+/// @param[in] color: Fill color
+void tft_fillWin(window *win, uint16_t color)
+{
+    tft_fillRectWH(win, 0,0, win->w, win->h, color);
+}
+
+/// @brief  Partial window Fill with color
+/// We clip the window to the current view
+/// @param[in] win*: window structure
+/// @param[in] x: X Start
+/// @param[in] y: Y Start
+/// @param[in] w: Width
+/// @param[in] h: Height
+/// @param[in] color: Fill color
+/// @return void
+void tft_fillRectWH(window *win, int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color)
+{
+    uint32_t repeat;
+
+//ets_uart_printf("x:%d,y:%d,w:%d,h:%d\n",x,y,w,h);
+
+//ets_uart_printf("repeat: %d\n",repeat);
+
+	repeat = tft_rel_window(win, x,y,w,h);
+    if(repeat)
+    {
+        tft_writeCmd(0x2c);
+// Send one *colors value a total of count times.
+        tft_writeColor16Repeat(color, repeat);
+    }
+}
+
+/// @brief  Fill rectangle with color
+/// We clip the window to the current view
+/// @param[in] win*: window structure
+/// @param[in] x: X Start
+/// @param[in] y: Y Start
+/// @param[in] xl: X End
+/// @param[in] yl: Y End
+/// @param[in] color: Fill color
+/// @return void
+void tft_fillRectXY(window *win, int16_t x, int16_t y, int16_t xl, int16_t yl, uint16_t color)
+{
+    uint32_t repeat;
+	uint16_t w,h;
+
+    if(x > xl)
+        SWAP(x,xl);
+    if(y > yl)
+        SWAP(y,yl);
+
+	w = xl - x + 1;
+	h = yl - y + 1;
+	tft_fillRectWH(win, x, y, w, h, color);
+}
+
+/// ====================================
+/// ====================================
+/// ====================================
+/// @brief Set soft window limits
+/// ====================================
+/// ====================================
+/// ====================================
+
+/// @brief Set the ili9341 update window
+/// @param[in] win*: window structure
+/// @param[in] x: Starting X offset
+/// @param[in] y: Starting Y offset
+/// @param[in] w: Width
+/// @param[in] h: Height
+/// @return  bytes w * h after clipping, 0 on error
+uint32_t tft_rel_window(window *win, int16_t x, int16_t y, int16_t w, int16_t h)
+{
+	return( tft_abs_window(x+win->xoff, y+win->yoff, w,h) );
+}
+
+
+
+/// @brief Set Display rotation, applies to the master window only
+/// Set hardware display rotation and memory fill option bits
+/// Update software display limits
+/// FIXME Work in progress
+/// - do we want to handle exchanging min/max values - rather then set them ?
+/// @return void
+MEMSPACE
+void tft_setRotation(uint8_t m)
+{
+
+    uint8_t data;
+    tft->rotation = m & 3; // can't be higher than 3
+    data = MADCTL_BGR;
+    switch (tft->rotation)
+    {
+        case 0:
+            data 		|= 	MADCTL_MX;
+            tft->w 	= 	TFT_W;
+            tft->xoff = 	TFT_XOFF;
+            tft->h 	= 	TFT_H;
+            tft->yoff = 	TFT_YOFF;
+            break;
+        case 1:
+            data 		|= 	MADCTL_MV;
+            tft->w 	= 	TFT_H;
+            tft->xoff	= 	TFT_YOFF;
+            tft->h 	= 	TFT_W;
+            tft->yoff	= 	TFT_XOFF;
+            break;
+        case 2:
+            data 		|= 	MADCTL_MY;
+            tft->w 	= 	TFT_W;
+            tft->xoff	= 	TFT_XOFF;
+            tft->h 	= 	TFT_H;
+            tft->yoff = 	TFT_YOFF;
+            break;
+        case 3:
+            data = MADCTL_MX | MADCTL_MY | MADCTL_MV;
+            tft->w 	= 	TFT_H;
+            tft->xoff = 	TFT_YOFF;
+            tft->h 	= 	TFT_W;
+            tft->yoff = 	TFT_XOFF;
+            break;
+    }
+    tft_writeCmdData(ILI9341_MADCTL, &data, 1);
+}
+
+
+/// @brief Initialize window structure we default values
+/// FIXME check absolute limits against TFT limuts
+/// These are not hardware limits
+/// @param[in] win*: window structure
+/// @return  void
+MEMSPACE
+void window_init(window *win, uint16_t xoff, uint16_t yoff, uint16_t w, uint16_t h)
+{
+    win->x         = 0;                            // current X
+    win->y         = 0;                            // current Y
+    win->font      = 0;                            // current font size
+    win->fixed     = 0;
+    win->wrap      = true;
+    win->w 		   = w;
+    win->xoff      = xoff;
+    win->h 		   = h;
+    win->yoff      = yoff;
+    win->rotation  = 0;
+    win->fg = 0xFFFF;
+    win->bg = 0;
+}
+
+
+/// ====================================
+
+/// @brief  Set text forground and background color
+/// @param[in] win*: window structure
+/// @param[in] c: forground color
+/// @param[in] b: background color
+/// @return void
+MEMSPACE
+void tft_setTextColor(window *win,uint16_t c, uint16_t b)
+{
+    win->fg = c;
+    win->bg = b;
+}
+
+/// @brief  Set current window offset
+/// (per current rotation)
+/// @param[in] win*: window structure
+/// @param[in] x: x offset
+/// @param[in] y: y oofset
+/// return: void
+MEMSPACE
+void tft_setpos(window *win, int16_t x, int16_t y)
+{
+    win->x = x;
+    win->y = y;
+}
+
+/// @brief  Set current font size
+/// (per current rotation)
+/// @param[in] win*: window structure
+/// @param[in] index: font index (for array of fonts)
+/// return: void
+MEMSPACE
+tft_set_font(window *win, uint16_t index)
+{
+    win->font = index;
+}
+
+/// @brief  Get font height
+/// @param[in] win*: window structure
+/// @param[in] index: font size
+/// return: font Height or zero on error
+MEMSPACE
+int tft_get_font_height(window *win)
+{
+	int ret;
+    _fontc f;
+    ret = font_attr(win, ' ', &f);
+    if(ret < 0)
+        return 0;
+	return(f.Height);
+}
+
+
+/// Only works if font is proportional type
+/// @param[in] win*: window structure
+/// return: void
+MEMSPACE
+tft_font_fixed(window *win)
+{
+    win->fixed = 1;
+}
+
+
+/// @brief  Set current font type to variable
+/// @param[in] win*: window structure
+/// return: void
+MEMSPACE
+void tft_font_var(window *win)
+{
+    win->fixed = 0;
 }
 
 
@@ -656,20 +725,23 @@ void tft_blit(uint16_t *ptr, int x, int y, int w, int h)
 
 /// @brief Draw one pixel set to color
 /// We clip the window to the current view
+/// @param[in] win*: window structure
 /// @param[in] x: X Start
 /// @param[in] y: Y STart
 /// @param[in] color: color to set
 /// @return void
-void tft_drawPixel(int16_t x, int16_t y, int16_t color)
+void tft_drawPixel(window *win, int16_t x, int16_t y, int16_t color)
 {
     uint8_t data[2];
+	uint16_t xx, yy;
+
 // Clip pixel
-    if(x < win.min_x || x > win.max_x)
+    if(x < 0 || x >= win->w)
         return;
-    if(y < win.min_y || y > win.max_y)
+    if(y < 0 || y >= win->h)
         return;
 
-    tft_window(x, y, x, y);
+    tft_rel_window(win, x,y,1,1);
 
 #ifdef JUNK
     tft_writeCmd(0x2c);
@@ -682,8 +754,10 @@ void tft_drawPixel(int16_t x, int16_t y, int16_t color)
 
 }
 
+
 /// @brief Draw line
 /// From my blit test code testit.c 1984 - 1985 Mike Gore
+/// @param[in] win*: window structure
 /// @param[in] x0: X Start
 /// @param[in] y0: Y STart
 /// @param[in] x1: X End
@@ -691,7 +765,7 @@ void tft_drawPixel(int16_t x, int16_t y, int16_t color)
 /// @param[in] color: color to set
 /// @return void
 #if 0
-void tft_drawLine(int16_t x0, int16_t y0, int16_t x1, int16_t y1, uint16_t color)
+void tft_drawLine(window *win, int16_t x0, int16_t y0, int16_t x1, int16_t y1, uint16_t color)
 {
 	int npts, i, delx, dely, xi, yi, diff;
 
@@ -702,7 +776,7 @@ void tft_drawLine(int16_t x0, int16_t y0, int16_t x1, int16_t y1, uint16_t color
 
 	for(i=0;i<=npts;++i) 
 	{
-		tft_drawPixel(x0, y0, color);
+		tft_drawPixel(win, x0, y0, color);
 		if(diff >= 0) 
 		{
 			diff -= dely; x0 += xi;
@@ -726,13 +800,14 @@ void tft_drawLine(int16_t x0, int16_t y0, int16_t x1, int16_t y1, uint16_t color
 /// @brief Draw line
 /// Draw line from CERTS
 /// https://github.com/CHERTS/esp8266-devkit/tree/master/Espressif/examples/esp8266_ili9341
+/// @param[in] win*: window structure
 /// @param[in] x0: X Start
 /// @param[in] y0: Y STart
 /// @param[in] x1: X End
 /// @param[in] y1: Y End
 /// @param[in] color: color to set
 /// @return void
-void tft_drawLine(int16_t x0, int16_t y0, int16_t x1, int16_t y1, uint16_t color)
+void tft_drawLine(window *win, int16_t x0, int16_t y0, int16_t x1, int16_t y1, uint16_t color)
 {
 
 #define USE_OPTIMIZATION_DRAWLINE
@@ -755,12 +830,12 @@ void tft_drawLine(int16_t x0, int16_t y0, int16_t x1, int16_t y1, uint16_t color
             // Require correction
             if ((startX != x0) && (startY != y0)) // draw line and not draw point
             {
-                tft_fillRectXY(startX, startY, x0 - sx, y0 - sy, color);
+                tft_fillRectXY(win, startX, startY, x0 - sx, y0 - sy, color);
                 startX = x0;
                 startY = y0;
             }
 #else
-            tft_drawPixel(x0, y0, color);
+            tft_drawPixel(win, x0, y0, color);
 #endif
 
         e2 = 2*err;
@@ -778,117 +853,52 @@ void tft_drawLine(int16_t x0, int16_t y0, int16_t x1, int16_t y1, uint16_t color
         }
     }
 #ifdef USE_OPTIMIZATION_DRAWLINE
-    tft_fillRectXY(startX, startY, x0, y0, color);
+    tft_fillRectXY(win, startX, startY, x0, y0, color);
 #endif
 }
 #endif
-
-
-/// ====================================
-/// @brief Fill functions
-/// ====================================
-
-/// @brief  Fill rectangle with color
-/// We clip the window to the current view
-/// @param[in] x: X Start
-/// @param[in] y: Y Start
-/// @param[in] w: Width
-/// @param[in] h: Height
-/// @param[in] color: Fill color
-/// @return void
-void tft_fillRectWH(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color)
-{
-    uint32_t repeat;
-    int16_t xl = x + w - 1;
-    int16_t yl = y + h - 1;
-
-    repeat = tft_clip(&x,&xl,&y,&yl);
-    if(repeat)
-    {
-        tft_window(x,y,xl,yl);
-        tft_writeCmd(0x2c);
-// Send one *colors value a total of count times.
-        tft_writeColor16Repeat(color, repeat);
-    }
-}
-
-/// @brief  Fill rectangle with color
-/// We clip the window to the current view
-/// @param[in] x: X Start
-/// @param[in] y: Y Start
-/// @param[in] xl: X End
-/// @param[in] yl: Y End
-/// @param[in] color: Fill color
-/// @return void
-void tft_fillRectXY(int16_t x, int16_t y, int16_t xl, int16_t yl, uint16_t color)
-{
-    uint32_t repeat;
-
-    repeat = tft_clip(&x,&xl,&y,&yl);
-    if(repeat)
-    {
-        tft_window(x,y,xl,yl);
-        tft_writeCmd(0x2c);
-// Send one *colors value a total of count times.
-        tft_writeColor16Repeat(color, repeat);
-    }
-}
-
-/// @brief Fill current display window specified by win
-/// @brief Fill current display window specified by win
-/// @param[in] color: Collor to fill
-/// @return void
-void tft_fillWin(uint16_t color)
-{
-	int16_t w = win.max_x - win.min_x + 1;
-	int16_t h = win.max_y - win.min_y + 1;
-    tft_fillRectXY(win.min_x,win.min_y,win.max_x,win.max_y, win.textbgcolor);
-}
 
 ///  ====================================
 /// @brief Character and String functions
 ///  ====================================
 
 /// @brief  Clear display to end of line
+/// @param[in] win*: window structure
 /// return: void
 MEMSPACE
-void tft_cleareol()
+void tft_cleareol(window *win)
 {
-    int x = win.x;
-    int flag = win.wrap;
-    win.wrap = 0;
-    while(x < win.max_x)
-        tft_putch(' ', &win);
-    win.x = 0;
-    win.wrap = flag;
+    int x = win->x;
+    int flag = win->wrap;
+    win->wrap = 0;
+    while(x < win->w)
+        tft_putch(win,' ');
+    win->x = 0;
+    win->wrap = flag;
 }
 
 
 /// @brief  put character in current winoow
-/// @param [in] c: character
-/// @param [in] *win: window pointer
+/// @param[in] win*: window structure
+/// @param[in] c: character
 /// return: void
 MEMSPACE
-void tft_putch(int c, window *win)
+void tft_putch(window *win, int c)
 {
     _fontc f;
     int ret;
     int width;
     int count;
 
-    ret = font_attr(c, &f, win->fontindex);
-    if(ret < 0)
-        return;
-
 // control characters
     if(c < ' ')
     {
-        if(c == '\n')
+        if(c == '\n' && win->wrap)
         {
             win->x = 0;
             win->y += f.Height;
         }
-        if(win->y > win->max_y)
+        if(win->y >= (win->h))
         {
             win->y = 0;
         }
@@ -898,13 +908,19 @@ void tft_putch(int c, window *win)
             count &= 3;                           // MOD 4
             count = 4 - count;                    // Number of spaces
             while(count)
-                tft_putch(' ', win);
+                tft_putch(win,' ');
         }
         return;
     }
+	else 
+	{
+		ret = font_attr(win, c, &f);
+		if(ret < 0)
+			return;
+	}
 
 // if the character will not fix then wrap
-    if((win->x + f.w) >= win->max_x)
+    if((win->x + f.w) >= win->w)
     {
         if(win->wrap)
         {
@@ -917,7 +933,7 @@ void tft_putch(int c, window *win)
         }
     }
 
-    if(win->y > win->max_y)
+    if(win->y >= win->h)
     {
         if(win->wrap)
         {
@@ -928,136 +944,9 @@ void tft_putch(int c, window *win)
             return;                               // no wrap
         }
     }
-    (void) tft_drawChar(c, win->x, win->y, win->fontindex);
+    (void) tft_drawChar(win, c);
     win->x += f.gap;
 }
 
 
-/// @brief  print long number
-/// @param [in] long_num: number to print
-/// @param [in] x: X offset
-/// @param [in] y: Y offset
-/// @param [in] size: font index (index the main array of fonts )
-/// return: void
-MEMSPACE
-int tft_drawNumber(long long_num,int16_t x, int16_t y, uint8_t size)
-{
-    tft_printf(x, y, size, "%ld", long_num);
-}
-
-
-/// @brief  Draw String at x,y with size bytes
-/// @param[in] *string: String
-/// @param[in] x: X Start
-/// @param[in] y: Y STart
-/// @param[in] size: Size of string
-/// @return X position of cursor
-MEMSPACE
-int tft_drawString(const char *string, int16_t x, int16_t y, uint8_t size)
-{
-    int16_t sumX = 0;
-    int16_t xPlus;
-
-    while(*string)
-    {
-        xPlus = tft_drawChar(*string, x, y, size);
-        sumX += xPlus;
-        x += xPlus;                               /* Move cursor right            */
-        *string++;
-    }
-    return sumX;
-}
-
-
-/// @brief  Draw Centered String at x,y with size bytes
-/// @param[in] *string: String
-/// @param[in] x: X Start
-/// @param[in] y: Y STart
-/// @param[in] size: Size of string
-/// @return X position of cursor
-MEMSPACE
-int tft_drawCentreString(const char *string, int16_t x, int16_t y, uint8_t size)
-{
-    int16_t sumX = 0;
-    int16_t len = 0;
-    int16_t xPlus;
-    const char *pointer = string;
-    char ascii;
-    _fontc f;
-    int ret;
-
-    while(*pointer)
-    {
-        ret = font_attr(*pointer, &f, size);
-        if(ret < 0)
-            len += 0;
-        len += f.gap;
-        pointer++;
-    }
-
-    int xs = x - len/2;
-
-    if (xs < 0) xs = 0;
-
-    while(*string)
-    {
-        uint16_t xPlus = tft_drawChar(*string, xs, y, size);
-        sumX += xPlus;
-        *string++;
-
-// Advance cursor if it does not overflow the line
-        if(xs <= win.max_x)
-        {
-            xs += xPlus;                           /* Move cursor right            */
-        }
-    }
-
-    return sumX;
-}
-
-
-/// @brief  Draw String Right Justified at x,y with size bytes
-/// @param[in] *string: String
-/// @param[in] x: X Start
-/// @param[in] y: Y STart
-/// @param[in] size: Size of string
-/// @return X position of cursor
-MEMSPACE
-int tft_drawRightString(const char *string, int16_t x, int16_t y, uint8_t size)
-{
-    int sumX = 0;
-    int len = 0;
-    const char *pointer = string;
-    char ascii;
-    _fontc f;
-    int ret;
-
-    while(*pointer)
-    {
-        ascii = *pointer;
-        ret = font_attr(ascii, &f, size);
-        if(ret < 0)
-            len += 0;
-        len += f.gap;
-        pointer++;
-    }
-
-    int xs = x - len;
-
-    if (xs < 0) xs = 0;
-
-    while(*string)
-    {
-
-        int16_t xPlus = tft_drawChar(*string, xs, y, size);
-        sumX += xPlus;
-        *string++;
-
-        if(xs <= win.max_x)
-        {
-            xs += xPlus;                           /* Move cursor right            */
-        }
-    }
-
-    return sumX;
-}
+/* tft_prinf removes the need for most of the draw string functions */

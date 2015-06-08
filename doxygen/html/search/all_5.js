@@ -9,6 +9,7 @@ var searchData=
   ['emit_5fstr',['emit_str',['../bdffontutil_8c.html#adcb08a26399fd69fe0d607897367e4af',1,'emit_str(FILE *out, char *name, unsigned char *data):&#160;bdffontutil.c'],['../bdffontutil_8h.html#adcb08a26399fd69fe0d607897367e4af',1,'emit_str(FILE *out, char *name, unsigned char *data):&#160;bdffontutil.c']]],
   ['empty',['EMPTY',['../bdffontutil_8c.html#a96b7a9cca32173b734b924f9064b62e4',1,'EMPTY():&#160;bdffontutil.c'],['../uart_8h.html#ad2f40c3db0de470af22077a2f9a4a136a2f0d18fc0d0fa4a6cd92dc328501874d',1,'EMPTY():&#160;uart.h']]],
   ['epc1',['epc1',['../structex__regs.html#a907bf7dfc14dd0b4f3c1e35416551590',1,'ex_regs']]],
+  ['escape',['escape',['../send_8c.html#ad694096646db9ef480b7bd9e5afe6ab8',1,'send.c']]],
   ['etoa',['etoa',['../printf_8c.html#aacfee6f671f24ae2eae55410d0ce496e',1,'etoa(double x, char *str, int prec, int sign):&#160;printf.c'],['../printf_8h.html#aacfee6f671f24ae2eae55410d0ce496e',1,'etoa(double x, char *str, int prec, int sign):&#160;printf.h']]],
   ['ets_5fprintf',['ets_printf',['../cal__dex_8c.html#ad1d295b450767463df56e622d0989157',1,'cal_dex.c']]],
   ['ets_5ftimer_5fdisarm',['ets_timer_disarm',['../user__main_8c.html#a8c3a7f0ee91987679040299af24bd503',1,'user_main.c']]],

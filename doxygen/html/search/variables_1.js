@@ -15,6 +15,8 @@ var searchData=
   ['a7',['a7',['../structex__regs.html#a73f04b635c3699e9b83fadeacdb1eda2',1,'ex_regs']]],
   ['a8',['a8',['../structex__regs.html#a4a700b056da9b3ea0917603b9c4f9b28',1,'ex_regs']]],
   ['a9',['a9',['../structex__regs.html#a513f72e66ad69090bdbb06fb37f177d1',1,'ex_regs']]],
+  ['adc_5fcount',['adc_count',['../user__main_8c.html#af0b90931de805bdcc50d15962a9e9ec1',1,'user_main.c']]],
+  ['adc_5fsum',['adc_sum',['../user__main_8c.html#a7e7fef853020935f2a4b8e0da7ef6325',1,'user_main.c']]],
   ['all',['all',['../unionuint32__t__bytes.html#a83b0c87830b60d185365dbadf8efd4a0',1,'uint32_t_bytes']]],
   ['allfonts',['allfonts',['../font_8c.html#ad30601ef15ca84a341c6a7a1dc1d61b1',1,'allfonts():&#160;fonts.h'],['../display_2fonts_8h.html#a3f464f88808d341deea0d2538617fdb7',1,'allfonts():&#160;fonts.h'],['../fonts_2fonts_8h.html#a3f464f88808d341deea0d2538617fdb7',1,'allfonts():&#160;fonts.h']]],
   ['ascent',['Ascent',['../struct__font.html#a998e54724f56879aa85c5ec169873f39',1,'_font']]]

@@ -1,5 +1,8 @@
 var searchData=
 [
-  ['x',['x',['../structpoint.html#a9c6b34deaf4900ad4193c17935fd384a',1,'point::x()'],['../structwire__p.html#a7a555c323bd3699ff2db08a3b3e791ed',1,'wire_p::x()'],['../struct__fontc.html#ad15d00ed46ebe52a085cf05b5ca5da90',1,'_fontc::x()'],['../structwindow.html#a879b99940dfc34772f0257f54c67b817',1,'window::x()'],['../struct__fontspecs.html#a7273a891c79308389718266cb0b66f56',1,'_fontspecs::X()'],['../struct__font.html#a64a08fdbdaa19418a9b7a34a2db33150',1,'_font::X()'],['../cordic_8c.html#a46b4b48ef8c0c01099eb3bcdde8aa8db',1,'X():&#160;cordic.c'],['../cordic2c_8c.html#a46b4b48ef8c0c01099eb3bcdde8aa8db',1,'X():&#160;cordic2c.c']]],
-  ['xx1',['xx1',['../structex__regs.html#a12379b0b3152b878eebc8f18a6efeaf0',1,'ex_regs']]]
+  ['w',['w',['../struct__fontc.html#a9c2af0354d2b2009e7b6684e25fd479b',1,'_fontc::w()'],['../structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae',1,'window::w()']]],
+  ['weight_5fname',['WEIGHT_NAME',['../struct__fontinfo.html#a2f528cb5c1bceb6afd91ad138472d071',1,'_fontinfo']]],
+  ['width',['Width',['../struct__fontspecs.html#a8404888a24a2b065d91c4424e1907439',1,'_fontspecs::Width()'],['../struct__font.html#ae3d3b48670f1bf4bf6dbf42794f81b31',1,'_font::Width()'],['../struct__fontc.html#ae3c802e1c35ae9a4e37c8eb2e9644325',1,'_fontc::Width()']]],
+  ['wl',['Wl',['../Makefile.html#afb1782b240d70229ae5bc6b111f9794a',1,'Makefile']]],
+  ['wrap',['wrap',['../structwindow.html#aee853dc29d3cf708890faff063ce9afb',1,'window']]]
 ];

@@ -1,26 +1,25 @@
+
 /**
  @file printf.c
 
+ @brief Small printf, and verious conversion code with floating point support
+
  @par Copyright &copy; 2015 Mike Gore, GPL License
+ @par You are free to use this code under the terms of GPL
+   please retain a copy of this notice in any code you use it in.
 
- @brief Small printf with floating point support
+This is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.
 
- @see http://en.wikipedia.org/wiki/Glyph_Bitmap_Distribution_Format
- @par Edit History
- - [1.0]   [Mike Gore]  Initial revision of file.
+This software is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
- This is free software: you can redistribute it and/or modify it under the
- terms of the GNU General Public License as published by the Free Software
- Foundation, either version 3 of the License, or (at your option)
- any later version.
-
- printf is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU General Public License for more details.
-
- You should have received a copy of the GNU General Public License
- along with this program.  If not, see <http://www.gnu.org/licenses/>.
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 
@@ -40,17 +39,13 @@
 	typedef unsigned int uint32_t;
 	typedef int int32_t;
 #else
-	#include <ets_sys.h>
-	#include <os_type.h>
-	#include <osapi.h>
-	#include "user_config.h"
+	#include <user_config.h>
 	#include "printf.h"
 #endif
 
 #include <string.h>
 #include <stdarg.h>
 #include <math.h>
-
 
 
 /// @brief String Length
@@ -1003,8 +998,7 @@ t_snprintf(char* buffer, int buffer_len, const char *fmt, ...)
 
 
 #ifdef TEST
-
-/// @brief snprintf function
+/// @brief printf function
 /// @param[in] fmt: printf forat string
 /// @param[in] va_list: vararg list or arguments
 /// @return size of printed string 

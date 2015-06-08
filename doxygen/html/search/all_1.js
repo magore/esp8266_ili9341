@@ -16,6 +16,8 @@ var searchData=
   ['a8',['a8',['../structex__regs.html#a4a700b056da9b3ea0917603b9c4f9b28',1,'ex_regs']]],
   ['a9',['a9',['../structex__regs.html#a513f72e66ad69090bdbb06fb37f177d1',1,'ex_regs']]],
   ['abs',['ABS',['../util_8h.html#a996f7be338ccb40d1a2a5abc1ad61759',1,'util.h']]],
+  ['adc_5fcount',['adc_count',['../user__main_8c.html#af0b90931de805bdcc50d15962a9e9ec1',1,'user_main.c']]],
+  ['adc_5fsum',['adc_sum',['../user__main_8c.html#a7e7fef853020935f2a4b8e0da7ef6325',1,'user_main.c']]],
   ['addfontname',['AddFontName',['../bdffontutil_8c.html#a6293de28b724a18693465ec67868d958',1,'AddFontName(_font *font):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a6293de28b724a18693465ec67868d958',1,'AddFontName(_font *font):&#160;bdffontutil.c']]],
   ['adjustfonttable',['AdjustFontTable',['../bdffontutil_8c.html#a1b1c337030d89f81b06857192e4e0179',1,'AdjustFontTable(_font *font):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a1b1c337030d89f81b06857192e4e0179',1,'AdjustFontTable(_font *font):&#160;bdffontutil.c']]],
   ['all',['all',['../unionuint32__t__bytes.html#a83b0c87830b60d185365dbadf8efd4a0',1,'uint32_t_bytes']]],

@@ -1,19 +1,18 @@
 /**
  @file util.h
 
+ @brief Flash read and bit utilities
+
  @par Copyright &copy; 2015 Mike Gore, GPL License
+ @par You are free to use this code under the terms of GPL
+   please retain a copy of this notice in any code you use it in.
 
- @brief Flash and bit utilities
-
- @par Edit History
- - [1.0]   [Mike Gore]  Initial revision of file.
-
- This is free software: you can redistribute it and/or modify it under the
+This is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
 Foundation, either version 3 of the License, or (at your option)
 any later version.
 
-bdffont2c is distributed in the hope that it will be useful,
+This software is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.

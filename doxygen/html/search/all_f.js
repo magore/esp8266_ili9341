@@ -1,7 +1,7 @@
 var searchData=
 [
   ['readme',['README',['../md_README.html',1,'']]],
-  ['rad',['rad',['../user__main_8c.html#ace457a27a3496f1891624400f7ffa66f',1,'user_main.c']]],
+  ['rad',['rad',['../user__main_8c.html#a6cd0a6a37bb53a8363aadc8640107f8d',1,'user_main.c']]],
   ['rcv_5fbuff',['rcv_buff',['../structUartDevice.html#a9daa6a5b871ff1c87427231dff168f41',1,'UartDevice']]],
   ['rcv_5fesc_5fchar',['RCV_ESC_CHAR',['../uart_8h.html#a54f1ef96cc154d2f238f56727e0597baa698f93026ae26104dd3fed1f8235ca6b',1,'uart.h']]],
   ['rcv_5fmsg_5fbody',['RCV_MSG_BODY',['../uart_8h.html#a54f1ef96cc154d2f238f56727e0597baa6d83ef20b8556211302e2f639133949b',1,'uart.h']]],
@@ -23,6 +23,6 @@ var searchData=
   ['remove_5fquotes',['remove_quotes',['../bdffontutil_8c.html#a907e53e4a090147ec953b18f0e1b7915',1,'remove_quotes(char *str):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a907e53e4a090147ec953b18f0e1b7915',1,'remove_quotes(char *str):&#160;bdffontutil.c']]],
   ['rotate',['rotate',['../cordic_8c.html#a11674104e89537aef6922d07f34e62ae',1,'rotate(point *P, point *V):&#160;cordic.c'],['../cordic_8h.html#a11674104e89537aef6922d07f34e62ae',1,'rotate(point *P, point *V):&#160;cordic.c']]],
   ['rotation',['rotation',['../structwindow.html#afbd48ebcb41e68d0f458dac593578aa8',1,'window']]],
-  ['run_5ftest',['RUN_TEST',['../user__config_8h.html#a338adb9f062605032a20b13dbfe172e0',1,'user_config.h']]],
+  ['run_5ftask',['RUN_TASK',['../user__main_8c.html#a5e44d8e696f8115eb5cb490de0d6e456',1,'user_main.c']]],
   ['rx_5fbuff_5fsize',['RX_BUFF_SIZE',['../uart_8h.html#a9ffd460647ecd927786c7d3db9297e05',1,'uart.h']]]
 ];

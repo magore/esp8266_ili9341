@@ -6,7 +6,7 @@
 H\-S\-P\-I driver for E\-S\-P8255 Based on work from Sem 2015.  
 
 
-{\ttfamily \#include \char`\"{}hspi.\-h\char`\"{}}\\*
+{\ttfamily \#include $<$user\-\_\-config.\-h$>$}\\*
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
@@ -19,51 +19,52 @@ H\-S\-P\-I driver for E\-S\-P8255 Based on work from Sem 2015.
 \begin{DoxyCompactList}\small\item\em H\-S\-P\-I Initiaization -\/ with automatic chip sellect Pins\-: M\-I\-S\-O G\-P\-I\-O12 M\-O\-S\-I G\-P\-I\-O13 C\-L\-K G\-P\-I\-O14 C\-S G\-P\-I\-O15 D\-C G\-P\-I\-O2. \end{DoxyCompactList}\item 
 void \hyperlink{hspi_8c_ac14f0398698936dcf2ffbb735611c2e6}{hspi\-\_\-config} (int config\-State)
 \begin{DoxyCompactList}\small\item\em H\-S\-P\-I Configuration for tranasmit and receive. \end{DoxyCompactList}\item 
-void \hyperlink{hspi_8c_acb47a9f26ec1023536dba1db70a6c120}{hspi\-\_\-set\-Bits} (\hyperlink{earth2wireframe_8c_a273cf69d639a59973b6019625df33e30}{uint16\-\_\-t} bytes)
+void \hyperlink{hspi_8c_acb47a9f26ec1023536dba1db70a6c120}{hspi\-\_\-set\-Bits} (\hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\-\_\-t} bytes)
 \begin{DoxyCompactList}\small\item\em H\-S\-P\-I F\-I\-F\-O send or receive byte count. \end{DoxyCompactList}\item 
 void \hyperlink{hspi_8c_a34c41331dd49e4e0f3aa300dfb88234f}{hspi\-\_\-start\-Send} (void)
 \begin{DoxyCompactList}\small\item\em H\-S\-P\-I Start Send. \end{DoxyCompactList}\item 
 void \hyperlink{hspi_8c_af1a0f7a7dd3cac5dd6b8489f7ff308dc}{hspi\-\_\-wait\-Ready} (void)
 \begin{DoxyCompactList}\small\item\em H\-S\-P\-I Ready wait. \end{DoxyCompactList}\item 
-void \hyperlink{hspi_8c_ab4920c99a66fe082f4c441b27d08f1d7}{hspi\-\_\-write\-F\-I\-F\-O} (\hyperlink{earth2wireframe_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$write\-\_\-data, \hyperlink{earth2wireframe_8c_a273cf69d639a59973b6019625df33e30}{uint16\-\_\-t} bytes)
+void \hyperlink{hspi_8c_ab4920c99a66fe082f4c441b27d08f1d7}{hspi\-\_\-write\-F\-I\-F\-O} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$write\-\_\-data, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\-\_\-t} bytes)
 \begin{DoxyCompactList}\small\item\em H\-S\-P\-I F\-I\-F\-O write in units of 32 bits (4 byte words) \end{DoxyCompactList}\item 
-void \hyperlink{hspi_8c_a744fb4ddb01b77242becd418b8ba6a46}{hspi\-\_\-read\-F\-I\-F\-O} (\hyperlink{earth2wireframe_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$read\-\_\-data, \hyperlink{earth2wireframe_8c_a273cf69d639a59973b6019625df33e30}{uint16\-\_\-t} bytes)
+void \hyperlink{hspi_8c_a744fb4ddb01b77242becd418b8ba6a46}{hspi\-\_\-read\-F\-I\-F\-O} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$read\-\_\-data, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\-\_\-t} bytes)
 \begin{DoxyCompactList}\small\item\em H\-S\-P\-I F\-I\-F\-O Read in units of 32 bits (4 byte words) \end{DoxyCompactList}\item 
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{hspi_8c_a4b95a4995e2eda91b486922399556478}{hspi\-\_\-stream\-\_\-init} (void)
 \begin{DoxyCompactList}\small\item\em H\-S\-P\-I stream init We use the fifo -\/ or a buffer to queue spi writes The overhead of N writes done at once is less N writes done one at a time. \end{DoxyCompactList}\item 
 void \hyperlink{hspi_8c_ae628a21798ab6b04d11300aba22454af}{hspi\-\_\-stream\-\_\-flush} (void)
 \begin{DoxyCompactList}\small\item\em H\-S\-P\-I stream flush We use the fifo -\/ or a buffer to queue spi writes The overhead of N writes done at once is less N writes done one at a time. \end{DoxyCompactList}\item 
-void \hyperlink{hspi_8c_ae58eb89be86e2c23e98f71d357c785b2}{hspi\-\_\-stream} (\hyperlink{earth2wireframe_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} data)
+void \hyperlink{hspi_8c_ae58eb89be86e2c23e98f71d357c785b2}{hspi\-\_\-stream} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} data)
 \begin{DoxyCompactList}\small\item\em H\-S\-P\-I stream byte to buffer We use the fifo -\/ or a buffer to queue spi writes The overhead of N writes done at once is less N writes done one at a time. \end{DoxyCompactList}\item 
-void \hyperlink{hspi_8c_a5ac551a53430a5014d38082ee1be32f6}{hspi\-\_\-\-Tx\-Rx} (\hyperlink{earth2wireframe_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$data, \hyperlink{earth2wireframe_8c_a273cf69d639a59973b6019625df33e30}{uint16\-\_\-t} bytes)
+void \hyperlink{hspi_8c_a5ac551a53430a5014d38082ee1be32f6}{hspi\-\_\-\-Tx\-Rx} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$data, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\-\_\-t} bytes)
 \begin{DoxyCompactList}\small\item\em Used only for small (less then H\-S\-P\-I\-\_\-\-F\-I\-F\-O\-\_\-\-S\-I\-Z\-E) write / read Write and Read uses same buffer and same byte count. \end{DoxyCompactList}\item 
-void \hyperlink{hspi_8c_aa16c031fe914c256a5c9e24c4c84f1a8}{hspi\-\_\-\-Tx} (\hyperlink{earth2wireframe_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$data, \hyperlink{earth2wireframe_8c_a273cf69d639a59973b6019625df33e30}{uint16\-\_\-t} bytes)
+void \hyperlink{hspi_8c_aa16c031fe914c256a5c9e24c4c84f1a8}{hspi\-\_\-\-Tx} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$data, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\-\_\-t} bytes)
 \begin{DoxyCompactList}\small\item\em Used only for small (less then H\-S\-P\-I\-\_\-\-F\-I\-F\-O\-\_\-\-S\-I\-Z\-E) write Used for small (less then H\-S\-P\-I\-\_\-\-F\-I\-F\-O\-\_\-\-S\-I\-Z\-E) packet send only. \end{DoxyCompactList}\item 
-void \hyperlink{hspi_8c_a9c3e16850f5483b34b579e6258847029}{hspi\-\_\-\-Tx\-Buffered} (\hyperlink{earth2wireframe_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$write\-\_\-data, \hyperlink{earth2wireframe_8c_a435d1572bf3f880d55459d9805097f62}{uint32\-\_\-t} bytes, \hyperlink{earth2wireframe_8c_a435d1572bf3f880d55459d9805097f62}{uint32\-\_\-t} repeats)
+void \hyperlink{hspi_8c_a9c3e16850f5483b34b579e6258847029}{hspi\-\_\-\-Tx\-Buffered} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$write\-\_\-data, \hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\-\_\-t} bytes, \hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\-\_\-t} repeats)
 \begin{DoxyCompactList}\small\item\em Send large buffer (datasize bytes in size) repeat times Send repeats times Note\-: a repeat of zero will cause N\-O data to be sent Used for small (less then H\-S\-P\-I\-\_\-\-F\-I\-F\-O\-\_\-\-S\-I\-Z\-E) packet send only. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-static \hyperlink{earth2wireframe_8c_a273cf69d639a59973b6019625df33e30}{uint16\-\_\-t} \hyperlink{hspi_8c_aa6a57ceab70df59f457e69cce09958e5}{\-\_\-f\-\_\-ind} = 0
+static \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\-\_\-t} \hyperlink{hspi_8c_aa6a57ceab70df59f457e69cce09958e5}{\-\_\-f\-\_\-ind} = 0
 \item 
-static \hyperlink{earth2wireframe_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} \hyperlink{hspi_8c_a6c076278b2b65a60bcace9600f14abde}{\-\_\-f\-\_\-buf} \mbox{[}\hyperlink{hspi_8h_a1eaecab4a7e4f328f38ce57d4d3012d1}{H\-S\-P\-I\-\_\-\-F\-I\-F\-O\-\_\-\-S\-I\-Z\-E}+2\mbox{]}
+static \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} \hyperlink{hspi_8c_a6c076278b2b65a60bcace9600f14abde}{\-\_\-f\-\_\-buf} \mbox{[}\hyperlink{hspi_8h_a1eaecab4a7e4f328f38ce57d4d3012d1}{H\-S\-P\-I\-\_\-\-F\-I\-F\-O\-\_\-\-S\-I\-Z\-E}+2\mbox{]}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-H\-S\-P\-I driver for E\-S\-P8255 Based on work from Sem 2015. \begin{DoxyParagraph}{Edit History}
+H\-S\-P\-I driver for E\-S\-P8255 Based on work from Sem 2015. \begin{DoxyParagraph}{Copyright \copyright{} 2015 Sem}
 
-\begin{DoxyItemize}
-\item \mbox{[}1.\-0\mbox{]} \mbox{[}Mike Gore\mbox{]} Initial revision of file.
-\end{DoxyItemize}
 \end{DoxyParagraph}
 \begin{DoxyParagraph}{Copyright \copyright{} 2015 Mike Gore, G\-P\-L License}
 
 \end{DoxyParagraph}
-\begin{DoxyParagraph}{Copyright \copyright{} 2015 Sem}
-
+\begin{DoxyParagraph}{You are free to use this code under the terms of G\-P\-L}
+please retain a copy of this notice in any code you use it in.
 \end{DoxyParagraph}
+This is free software\-: you can redistribute it and/or modify it under the terms of the G\-N\-U General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
+This software is distributed in the hope that it will be useful, but W\-I\-T\-H\-O\-U\-T A\-N\-Y W\-A\-R\-R\-A\-N\-T\-Y; without even the implied warranty of M\-E\-R\-C\-H\-A\-N\-T\-A\-B\-I\-L\-I\-T\-Y or F\-I\-T\-N\-E\-S\-S F\-O\-R A P\-A\-R\-T\-I\-C\-U\-L\-A\-R P\-U\-R\-P\-O\-S\-E. See the G\-N\-U General Public License for more details.
+
+You should have received a copy of the G\-N\-U General Public License along with this program. If not, see \href{http://www.gnu.org/licenses/}{\tt http\-://www.\-gnu.\-org/licenses/}. 
 
 Definition in file \hyperlink{hspi_8c_source}{hspi.\-c}.
 
@@ -75,7 +76,7 @@ Definition in file \hyperlink{hspi_8c_source}{hspi.\-c}.
 \subsubsection[{H\-S\-P\-I\-\_\-\-P\-R\-E\-S\-C\-A\-L\-E\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define H\-S\-P\-I\-\_\-\-P\-R\-E\-S\-C\-A\-L\-E\-R~2}}\label{hspi_8c_ac0b594f74d77f8ac1ee56fd39fcfecdc}
 
 
-Definition at line 17 of file hspi.\-c.
+Definition at line 29 of file hspi.\-c.
 
 
 
@@ -105,7 +106,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 64 of file hspi.\-c.
+Definition at line 76 of file hspi.\-c.
 
 
 
@@ -127,7 +128,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 31 of file hspi.\-c.
+Definition at line 43 of file hspi.\-c.
 
 
 
@@ -157,7 +158,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 181 of file hspi.\-c.
+Definition at line 193 of file hspi.\-c.
 
 
 
@@ -184,7 +185,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 100 of file hspi.\-c.
+Definition at line 112 of file hspi.\-c.
 
 
 
@@ -206,7 +207,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 111 of file hspi.\-c.
+Definition at line 123 of file hspi.\-c.
 
 
 
@@ -233,7 +234,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 255 of file hspi.\-c.
+Definition at line 267 of file hspi.\-c.
 
 
 
@@ -255,7 +256,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 236 of file hspi.\-c.
+Definition at line 248 of file hspi.\-c.
 
 
 
@@ -274,7 +275,7 @@ H\-S\-P\-I stream init We use the fifo -\/ or a buffer to queue spi writes The o
 
 
 
-Definition at line 225 of file hspi.\-c.
+Definition at line 237 of file hspi.\-c.
 
 
 
@@ -304,7 +305,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 290 of file hspi.\-c.
+Definition at line 302 of file hspi.\-c.
 
 
 
@@ -337,7 +338,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 309 of file hspi.\-c.
+Definition at line 321 of file hspi.\-c.
 
 \hypertarget{hspi_8c_a5ac551a53430a5014d38082ee1be32f6}{\index{hspi.\-c@{hspi.\-c}!hspi\-\_\-\-Tx\-Rx@{hspi\-\_\-\-Tx\-Rx}}
 \index{hspi\-\_\-\-Tx\-Rx@{hspi\-\_\-\-Tx\-Rx}!hspi.c@{hspi.\-c}}
@@ -363,7 +364,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 272 of file hspi.\-c.
+Definition at line 284 of file hspi.\-c.
 
 
 
@@ -385,7 +386,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 122 of file hspi.\-c.
+Definition at line 134 of file hspi.\-c.
 
 
 
@@ -415,7 +416,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 135 of file hspi.\-c.
+Definition at line 147 of file hspi.\-c.
 
 
 
@@ -429,7 +430,7 @@ Referenced by hspi\-\_\-stream\-\_\-flush(), hspi\-\_\-\-Tx(), and hspi\-\_\-\-T
 \subsubsection[{\-\_\-f\-\_\-buf}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint8\-\_\-t} \-\_\-f\-\_\-buf\mbox{[}{\bf H\-S\-P\-I\-\_\-\-F\-I\-F\-O\-\_\-\-S\-I\-Z\-E}+2\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}}\label{hspi_8c_a6c076278b2b65a60bcace9600f14abde}
 
 
-Definition at line 20 of file hspi.\-c.
+Definition at line 32 of file hspi.\-c.
 
 
 
@@ -440,7 +441,7 @@ Referenced by hspi\-\_\-stream(), and hspi\-\_\-stream\-\_\-flush().
 \subsubsection[{\-\_\-f\-\_\-ind}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint16\-\_\-t} \-\_\-f\-\_\-ind = 0\hspace{0.3cm}{\ttfamily [static]}}}\label{hspi_8c_aa6a57ceab70df59f457e69cce09958e5}
 
 
-Definition at line 19 of file hspi.\-c.
+Definition at line 31 of file hspi.\-c.
 
 
 

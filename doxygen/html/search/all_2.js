@@ -12,6 +12,7 @@ var searchData=
   ['bdffontutil_2eh',['bdffontutil.h',['../bdffontutil_8h.html',1,'']]],
   ['bdfnames',['BDFnames',['../bdffontutil_8c.html#a8d8135c72831c5d6ca04479c82351b62',1,'BDFnames():&#160;bdffontutil.c'],['../bdffontutil_8h.html#a8d8135c72831c5d6ca04479c82351b62',1,'BDFnames():&#160;bdffontutil.c']]],
   ['bdfview_2ec',['bdfview.c',['../bdfview_8c.html',1,'']]],
+  ['bg',['bg',['../structwindow.html#affcf5d29153103c2537542f5a4f8ba87',1,'window']]],
   ['bit_5frate_5f115200',['BIT_RATE_115200',['../uart_8h.html#a6e376e04a3f78e8319a5dcd9ee6d545dace379f00ef7ff498cbee2a444d896e63',1,'uart.h']]],
   ['bit_5frate_5f19200',['BIT_RATE_19200',['../uart_8h.html#a6e376e04a3f78e8319a5dcd9ee6d545da530955746b4cc1a29cb53197000205a0',1,'uart.h']]],
   ['bit_5frate_5f230400',['BIT_RATE_230400',['../uart_8h.html#a6e376e04a3f78e8319a5dcd9ee6d545da7fa0bd72210bce17149d35bd48fb106e',1,'uart.h']]],
