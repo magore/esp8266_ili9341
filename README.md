@@ -10,20 +10,24 @@
  * See [COPYRIGHT.md](COPYRIGHT.md) for a full copyright notice for the project
 
 @par Description
- * ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts 
+ * ESP8266 ILI9341 display demo with multiple window support and simple networking
  * I wrote the following support functions from scratch
+ * Font compiler and display code
   * CORDIC C table generator and 3D transformation code support functions
   * Wire frame viewer and C generator for Earth coastline data
   * Small Print with full floating point support along with ftoa/atof and integer conversions
   * BDF fonts and a BDF font to C conversion code and optimized display code
+  * Network server client example
+  * ILI9341 display driver
    
  * Updated:
-  * I rewrote parts of Adafruit code ili9341 graphics library
+  * I rewrote most of Adafruit code ili9341 graphics library
   * HSPI code now correctly handles memory size and alignment 
 
  * I created a wireframe viewed and two wireframe demos 
   * Cube wireframe dataset
   * Earth coastline dataset - wireframe view still needs hidden line removal option
+ 
 ___
 
 @par Credits
