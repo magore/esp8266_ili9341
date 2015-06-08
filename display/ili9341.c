@@ -909,7 +909,7 @@ void tft_putch(window *win, int c)
             count = win->x - 1;                   // 0 based
             count &= 3;                           // MOD 4
             count = 4 - count;                    // Number of spaces
-            while(count)
+            while(count--)
                 tft_putch(win,' ');
         }
         return;
