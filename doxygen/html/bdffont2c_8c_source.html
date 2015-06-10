@@ -321,33 +321,37 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;</div>
 <div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;        <span class="keywordflow">if</span>(fontinfo_f = 0)</div>
 <div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;        {</div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;            fprintf(FO,<span class="stringliteral">&quot;#define FONTINFO\n&quot;</span>);</div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;        }</div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;        <span class="keywordflow">if</span>(fontspecs_f)</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;        {</div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;            fprintf(FO,<span class="stringliteral">&quot;#define FONTSPECS\n&quot;</span>);</div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;        }</div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;</div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;        <a class="code" href="bdffontutil_8c.html#a9461259743229256336c4260de7e0e0e">Convert_Font2c</a>(FO, &amp;fx);</div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;        <a class="code" href="bdffontutil_8c.html#a6e60e1a05fd459f3af8aa691e06950a7">WriteFontBitsPreview</a> ( FO, &amp;fx, font_preview);</div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;        <a class="code" href="bdffontutil_8c.html#a4afb5289fcab36022951a5d16ea7932f">FreeFont</a>(&amp;fx);</div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;        ++bdfind;</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;    }</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;</div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;    fprintf(FO, <span class="stringliteral">&quot;\n\n\n&quot;</span>);</div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;    fprintf(FO, <span class="stringliteral">&quot;/* All cfonts */\n&quot;</span>);</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;    fprintf(FO, <span class="stringliteral">&quot;_font *allfonts[%d] = {\n&quot;</span>, bdfind+1);</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;    <span class="keywordflow">for</span>(i=0;i&lt;bdfind;++i)</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;    {</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;        fprintf(FO, <span class="stringliteral">&quot;\t&amp;%s,\n&quot;</span>, <a class="code" href="bdffontutil_8c.html#a8d8135c72831c5d6ca04479c82351b62">BDFnames</a>[i].structname);</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;    }</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;    fprintf(FO, <span class="stringliteral">&quot;\tNULL\n&quot;</span>);</div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;    fprintf(FO, <span class="stringliteral">&quot;};\n&quot;</span>);</div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;</div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;    <span class="keywordflow">if</span>(FO != stdout)</div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;        fclose(FO);</div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;    <span class="keywordflow">return</span>(0);</div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;}</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;            fprintf(FO,<span class="stringliteral">&quot;#ifndef FONTINFO\n&quot;</span>);</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;            fprintf(FO,<span class="stringliteral">&quot;   #define FONTINFO\n&quot;</span>);</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;            fprintf(FO,<span class="stringliteral">&quot;#endif\n&quot;</span>);</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;        }</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;        <span class="keywordflow">if</span>(fontspecs_f)</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;        {</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;            fprintf(FO,<span class="stringliteral">&quot;#ifndef FONTSPECS\n&quot;</span>);</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;            fprintf(FO,<span class="stringliteral">&quot;   #define FONTSPECS\n&quot;</span>);</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;            fprintf(FO,<span class="stringliteral">&quot;#endif\n&quot;</span>);</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;        }</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;        <a class="code" href="bdffontutil_8c.html#a9461259743229256336c4260de7e0e0e">Convert_Font2c</a>(FO, &amp;fx);</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;        <a class="code" href="bdffontutil_8c.html#a6e60e1a05fd459f3af8aa691e06950a7">WriteFontBitsPreview</a> ( FO, &amp;fx, font_preview);</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;        <a class="code" href="bdffontutil_8c.html#a4afb5289fcab36022951a5d16ea7932f">FreeFont</a>(&amp;fx);</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;        ++bdfind;</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;    }</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;    fprintf(FO, <span class="stringliteral">&quot;\n\n\n&quot;</span>);</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;    fprintf(FO, <span class="stringliteral">&quot;/* All cfonts */\n&quot;</span>);</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;    fprintf(FO, <span class="stringliteral">&quot;_font *allfonts[%d] = {\n&quot;</span>, bdfind+1);</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;    <span class="keywordflow">for</span>(i=0;i&lt;bdfind;++i)</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;    {</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;        fprintf(FO, <span class="stringliteral">&quot;\t&amp;%s,\n&quot;</span>, <a class="code" href="bdffontutil_8c.html#a8d8135c72831c5d6ca04479c82351b62">BDFnames</a>[i].structname);</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;    }</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;    fprintf(FO, <span class="stringliteral">&quot;\tNULL\n&quot;</span>);</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;    fprintf(FO, <span class="stringliteral">&quot;};\n&quot;</span>);</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;    <span class="keywordflow">if</span>(FO != stdout)</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;        fclose(FO);</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;    <span class="keywordflow">return</span>(0);</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;}</div>
 <div class="ttc" id="bdffontutil_8c_html_a49c59fe21a56b90ad6f8bcc5549e3dce"><div class="ttname"><a href="bdffontutil_8c.html#a49c59fe21a56b90ad6f8bcc5549e3dce">ReadBdf</a></div><div class="ttdeci">int ReadBdf(char *name, _font *font, int lower, int upper)</div><div class="ttdoc">Read BDF file Read BDF file format. </div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8c_source.html#l00784">bdffontutil.c:784</a></div></div>
 <div class="ttc" id="bdffontutil_8c_html_ae75c11efb4dd449e4fcf9f1f78e9414c"><div class="ttname"><a href="bdffontutil_8c.html#ae75c11efb4dd449e4fcf9f1f78e9414c">fnames</a></div><div class="ttdeci">char * fnames[MAXFONTS]</div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8c_source.html#l00051">bdffontutil.c:51</a></div></div>
 <div class="ttc" id="bdffontutil_8c_html_a4afb5289fcab36022951a5d16ea7932f"><div class="ttname"><a href="bdffontutil_8c.html#a4afb5289fcab36022951a5d16ea7932f">FreeFont</a></div><div class="ttdeci">void FreeFont(_font *font)</div><div class="ttdoc">Free font data. </div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8c_source.html#l00548">bdffontutil.c:548</a></div></div>
@@ -371,7 +375,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jun 7 2015 23:26:53 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jun 9 2015 23:47:21 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

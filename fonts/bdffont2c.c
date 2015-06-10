@@ -285,11 +285,15 @@ int main(int argc, char *const argv[])
 
 		if(fontinfo_f = 0)
 		{
-			fprintf(FO,"#define FONTINFO\n");
+			fprintf(FO,"#ifndef FONTINFO\n");
+			fprintf(FO,"   #define FONTINFO\n");
+			fprintf(FO,"#endif\n");
 		}
 		if(fontspecs_f)
 		{
-			fprintf(FO,"#define FONTSPECS\n");
+			fprintf(FO,"#ifndef FONTSPECS\n");
+			fprintf(FO,"   #define FONTSPECS\n");
+			fprintf(FO,"#endif\n");
 		}
 
 		Convert_Font2c(FO, &fx);

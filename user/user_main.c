@@ -324,6 +324,7 @@ void user_init(void)
 	uint32_t ID;
     char time[20];
 	int ret;
+	uint16_t *ptr;
 	uint32_t time1,time2;
 
 	os_delay_us(200000L);	// Power Up dalay - lets power supplies and devices settle

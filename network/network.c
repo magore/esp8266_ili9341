@@ -69,6 +69,7 @@ void poll_network_message(window *win)
 		tft_fillWin(win, win->bg);
 		tft_setpos(win,0,0);
 		tft_set_font(win,5);
+		tft_font_fixed(win);
 		tft_printf(win,"%s", network_msg);
 		received = 0;
 	}

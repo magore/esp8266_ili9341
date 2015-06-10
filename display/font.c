@@ -55,6 +55,7 @@ int font_attr(window *win, int c, _fontc *f)
     int offset;
     int num;
     unsigned char *ptr;
+	int gap;
 
 // check font
     _font *z = allfonts[win->font];
@@ -84,27 +85,42 @@ int font_attr(window *win, int c, _fontc *f)
         offset = s.Offset;
         f->ptr += offset;
 
+		gap = (z->Width+3)/4;
+		if(gap <= 1)
+			gap++;
 // Override only if we have specs
+// FIXME - if the width is faked (proportional font with fixed flag on)  - it may be too small!
+// We need to save was font originally fixed in the font data
         f->fixed = win->fixed;
-
         if(f->fixed)
-            f->gap = f->Width;
+            f->gap = f->Width + gap;
         else
-            f->gap = f->w + (f->Width+3)/4;
+            f->gap = f->w + gap;
     }
 
-    else                                          // Create the font specificatio for the main font spec
+    else   // No Specs, Create the font specification using main font size spec
     {
         f->Width = z->Width;
         f->Height = z->Height;
-        f->gap = f->w + (f->Width+3)/4;
+
+		gap = (z->Width+3)/4;
+		if(gap <= 1)
+			gap++;
 
         f->w = z->Width;
         f->h = z->Height;
         f->x = 0;
         f->y = 0;
 
-        offset = ((z->Width * z->Height)+7)/8;
+// FIXME - if the width is faked (proportional font with fixed flag on)  - it may be too small!
+// We need to save was font originally fixed in the font data
+        f->fixed = win->fixed;
+        if(f->fixed)
+            f->gap = f->Width + gap;
+        else
+            f->gap = f->w + gap;
+
+        offset = ((z->Width * z->Height)+7)/8; /* round to byte boundry */
         f->ptr += (offset * num);
 
     }

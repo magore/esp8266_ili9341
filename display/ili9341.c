@@ -295,7 +295,7 @@ uint32_t tft_readRegister(uint8_t reg, uint8_t parameter)
     TFT_COMMAND;
 	tmp[0] = reg;
 	tmp[1] = 0;
-    hspi_TxRx(tmp,2);
+    hspi_TxRx(tmp,4);
     ets_uart_printf("data: %02x,%02x,%02x,%02x\r\n", tmp[0],tmp[1],tmp[2],tmp[3]);
 	data = tmp[1];
     return data;
@@ -318,6 +318,28 @@ uint32_t tft_readId(void)
 }
 
 
+/// @brief  Read 16 bit data
+/// ILI9341 defaults to MSB/LSB data so we have to reverse it
+/// return 16 bit data
+uint16_t tft_readData16()
+{
+    uint16_t color;
+    uint8_t data[2];
+
+// Do not change Command/Data control until SPI bus clear
+    hspi_waitReady();
+    TFT_CS_ACTIVE;
+    TFT_DATA;
+    data[0] = 0xff;
+    data[1] = 0xff;
+    hspi_TxRx(data, 2);
+    color = data[0];
+	color <<=8;
+    color |= data[1];
+    hspi_waitReady();
+    TFT_CS_DEACTIVE;
+	return(color);
+}
 
 /// ====================================
 /// @brief Color conversions
