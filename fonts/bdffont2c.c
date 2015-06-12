@@ -67,6 +67,7 @@ void usage(char *prog)
 	printf(" -s Compact font to smallest bounding box\n");
 	printf("    Notes: modifies or creates font specs\n");
 	printf(" bdf files...: One of more BDF format font files\n");
+
 }
 
 /**
@@ -280,6 +281,7 @@ int main(int argc, char *const argv[])
 		BDFnames[bdfind].filename = name;
 		BDFnames[bdfind].structname = stralloc(fx.info->STRUCT_NAME);
 
+		ComputeGapSize(&fx);
 		
 		FontHeaderInfo(FO, &fx, argv[0], cfonts);
 

@@ -340,7 +340,7 @@ void user_init(void)
 	/* Setup main window */
 	tft_setRotation(1);
 	tft_setpos(tft, 0,0);
-	tft_set_font(tft,3);
+	tft_set_font(tft,5);
 	tft_font_var(tft);
 	tft->wrap = 1;
 
@@ -358,7 +358,7 @@ void user_init(void)
 	tft_font_var(twin);
 	twin->wrap = 1;
 
-	tft_setpos(twin, 0,3);
+	tft_setpos(twin, 0,5);
 	tft_printf(twin, "Test1\nTest2\nTest3");
 #ifdef WIRECUBE
 	V.x = 45;

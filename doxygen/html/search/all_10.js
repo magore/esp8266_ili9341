@@ -14,6 +14,7 @@ var searchData=
   ['shift_5fpoint',['shift_point',['../cordic_8c.html#a11f885e103030cb15b2f3477e21b780f',1,'shift_point(point *P, point *shift):&#160;cordic.c'],['../cordic_8h.html#a11f885e103030cb15b2f3477e21b780f',1,'shift_point(point *P, point *shift):&#160;cordic.c']]],
   ['sign',['SIGN',['../util_8h.html#a8c5ff70b6b28cd0157c50a22406f92c4',1,'util.h']]],
   ['six_5fbits',['SIX_BITS',['../uart_8h.html#a1a800ab02eb9805becdea40a047e2e25a07f580aba08720d7d03d4d10e25acff6',1,'uart.h']]],
+  ['skip',['skip',['../struct__fontc.html#a44c94e91afa006cb2ffe55a99b3e2d3c',1,'_fontc']]],
   ['skip_5fspaces',['skip_spaces',['../bdffontutil_8c.html#a77f36d5136e3d749221b33e3f23c0258',1,'skip_spaces(char *str):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a77f36d5136e3d749221b33e3f23c0258',1,'skip_spaces(char *str):&#160;bdffontutil.c']]],
   ['slant',['SLANT',['../struct__fontinfo.html#aff56d18df3b46ec10896d15ad3a2e164',1,'_fontinfo']]],
   ['snprintf',['snprintf',['../user__config_8h.html#a357a42eb6494ea592e9c3f96c55cebe2',1,'user_config.h']]],

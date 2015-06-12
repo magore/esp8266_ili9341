@@ -5,6 +5,7 @@ var searchData=
   ['scale',['scale',['../user__main_8c.html#aa7d569051c24f6fb09cf6569ae97e134',1,'user_main.c']]],
   ['scale_5finc',['scale_inc',['../user__main_8c.html#ab13530f34680731b9764f1cf20f8d3cd',1,'user_main.c']]],
   ['seconds',['seconds',['../user__main_8c.html#a22628cd27509457105950155be480898',1,'user_main.c']]],
+  ['skip',['skip',['../struct__fontc.html#a44c94e91afa006cb2ffe55a99b3e2d3c',1,'_fontc']]],
   ['slant',['SLANT',['../struct__fontinfo.html#aff56d18df3b46ec10896d15ad3a2e164',1,'_fontinfo']]],
   ['spacing',['SPACING',['../struct__fontinfo.html#a0e6fafc8f03c70ce9c506d7a506fbba4',1,'_fontinfo']]],
   ['specs',['specs',['../struct__font.html#a76b5b07cf75a869627eca27d7a32836a',1,'_font']]],

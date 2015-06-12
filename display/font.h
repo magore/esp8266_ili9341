@@ -78,6 +78,7 @@ typedef struct
     int8_t Y;                                     /* Glyph Y orgin for this font set */
     int8_t Ascent;                                /* Glyph Ascent for this font set */
     int8_t Decent;                                /* Glyph Decent for this font set */
+	int8_t gap;                                   /* Glyph gap */
 /* Working font bitmap buffer */
     int  Bytes;                                   /* Number of bytes in bitmap */
     uint8_t *bitmap;                              /* Font Bitmap */
@@ -95,7 +96,7 @@ typedef struct
     int8_t y;                                     // font hight
     int8_t Width;                                 // font max width
     int8_t Height;                                // font max width
-    int8_t gap;                                   // font gap
+    int8_t skip;                                  // font spacing - zero for fixed fonts
     uint8_t *ptr;
 } _fontc;
 

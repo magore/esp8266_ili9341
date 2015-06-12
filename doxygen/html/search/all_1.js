@@ -21,7 +21,7 @@ var searchData=
   ['addfontname',['AddFontName',['../bdffontutil_8c.html#a6293de28b724a18693465ec67868d958',1,'AddFontName(_font *font):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a6293de28b724a18693465ec67868d958',1,'AddFontName(_font *font):&#160;bdffontutil.c']]],
   ['adjustfonttable',['AdjustFontTable',['../bdffontutil_8c.html#a1b1c337030d89f81b06857192e4e0179',1,'AdjustFontTable(_font *font):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a1b1c337030d89f81b06857192e4e0179',1,'AdjustFontTable(_font *font):&#160;bdffontutil.c']]],
   ['all',['all',['../unionuint32__t__bytes.html#a83b0c87830b60d185365dbadf8efd4a0',1,'uint32_t_bytes']]],
-  ['allfonts',['allfonts',['../font_8c.html#ad30601ef15ca84a341c6a7a1dc1d61b1',1,'allfonts():&#160;fonts.h'],['../fonts_8h.html#a3f464f88808d341deea0d2538617fdb7',1,'allfonts():&#160;fonts.h']]],
+  ['allfonts',['allfonts',['../font_8c.html#ad30601ef15ca84a341c6a7a1dc1d61b1',1,'allfonts():&#160;fonts.h'],['../display_2fonts_8h.html#a3f464f88808d341deea0d2538617fdb7',1,'allfonts():&#160;fonts.h'],['../fonts_2fonts_8h.html#a3f464f88808d341deea0d2538617fdb7',1,'allfonts():&#160;fonts.h']]],
   ['angle_5fquad',['angle_quad',['../cordic_8c.html#a132f4d86aeaa02138e534f93cbf69757',1,'angle_quad(double quads, int *quad):&#160;cordic.c'],['../cordic_8h.html#a132f4d86aeaa02138e534f93cbf69757',1,'angle_quad(double quads, int *quad):&#160;cordic.c']]],
   ['ascent',['Ascent',['../struct__font.html#a998e54724f56879aa85c5ec169873f39',1,'_font']]],
   ['asincordic',['asinCordic',['../cordic2c_8c.html#a6797cc1f28fd7c359145ea548dc302d0',1,'cordic2c.c']]],

@@ -969,7 +969,7 @@ void tft_putch(window *win, int c)
         }
     }
     (void) tft_drawChar(win, c);
-    win->x += f.gap;
+    win->x += f.skip;
 }
 
 

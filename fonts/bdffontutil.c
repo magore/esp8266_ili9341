@@ -404,6 +404,7 @@ void Convert_Font2c(FILE *out, _font *font)
     emit_number(out,"Font Orgin Y", font->Y);
     emit_number(out,"Font Ascent", font->Ascent);
     emit_number(out,"Font Decent", font->Decent);
+    emit_number(out,"Font Gap", font->gap);
 	emit_number(out,"Font Bytes for entire Bitmap", font->Bytes);
 
 
@@ -521,12 +522,15 @@ void InitFonts(_font *font)
 	info->SPACING = EMPTY;
 
 	font->info = info;
-	font->Width =  0;
-	font->Height = 0;
-	font->Ascent = 0;
-	font->Decent = 0;
 	font->First = 0;
 	font->Fixed = 0;
+	font->Width =  0;
+	font->Height = 0;
+	font->X      = 0;
+	font->Y      = 0;
+	font->Ascent = 0;
+	font->Decent = 0;
+	font->gap = 0;
 	font->Bytes = 0;
 	font->bitmap = NULL;
 	font->specs = db_calloc(sizeof(_fontspecs) * MAXGLYPHS);
@@ -1167,9 +1171,11 @@ int ReadBdf(char *name, _font *font, int lower, int upper)
 
 	AdjustFontTable(font);
 
+
 	AddFontName(font);
 	fclose(bdf);
 
+	ComputeGapSize(font);
 	return(font->Glyphs);
 }
 
@@ -1502,6 +1508,94 @@ void FontAdjustSmall(_font *font)
 	// renormalize if needed - should not matter
 	AdjustFontTable(font);
 }
+// ======================================================
+
+/**
+ @brief Find gap size for proportional font (gap between characters) 
+  Searching for the smallest width feature in a font 
+  Set update font->gap
+  Work in progress
+ @param[in] *font: Font pointer
+ @return: void
+*/
+void ComputeGapSize(_font *font)
+{
+	int x,y;
+	int w,h;
+	int Width;
+	int i;
+	int offset = 0;
+
+	int minx,maxx;
+	int flag = 0;
+
+
+	// Compute the gap between fonts
+	// Most fixed fonts have a built in gap
+	// Most proportional fonts do not have a gap built in
+	// Scan the font and find the maximal width
+
+	Width = 0;
+	for(i=0;i<font->Glyphs;++i)
+	{
+		// Does font->specs exist ?
+		if(font->specs)
+		{
+			w = font->specs[i].Width;
+			h = font->specs[i].Height;
+			offset = font->specs[i].Offset;
+		}
+		else	/* We must create fixed specs entry it */
+		{
+			// fixed fonts without specs rely on main font bounding box
+			w = font->Width;
+			h = font->Height;
+			offset = i * ((w*h)+7)/8;
+		}
+		
+		flag = 0;
+		minx = MAXWIDTH ;
+		maxx = 0;
+		// Compute the smallest font bounding box for this Glyph
+		// scan font maxy to miny
+		for (y=0;y <h; ++y) {
+			for (x=0;x < w; ++x) 
+			{
+				if(bittestxy(font->bitmap+offset, x,y, w,h))
+				{
+					flag = 1;
+					if(x < minx)
+						minx = x;
+					if(x > maxx)
+						maxx = x;
+				}
+		
+			}
+		}
+		// if flag is set we do not have to test minx == MAXWIDTH
+		if(flag && (maxx - minx + 1) > Width)
+			Width = (maxx - minx + 1);
+	}
+
+	// Some fixed width fonts may not have built in gaps
+    // If not add one
+	// We scan all fonts looking for the widest one - then compare to font->Width
+
+	if(font->Fixed)
+	{
+		// If there is no gap, then add one
+		if(Width >= font->Width)
+			font->gap = (Width+3)/4;
+		else
+			font->gap = 0;
+		return;
+	}
+	// Porportional fonts do not have gaps built in - so add one
+	font->gap = (Width+3)/4;
+	if(!font->gap)
+		font->gap++;
+}
+
 
 // ======================================================
 
@@ -1874,7 +1968,7 @@ void FontPreviewProportional(FILE * out, _font *font, int num)
 
 	// Top border
 	fprintf(out,"/* |");
-	for (x = 0; x < w+1; ++x)
+	for (x = 0; x < w; ++x)
 	{
 			fprintf(out,"-");
 	}
@@ -1885,7 +1979,7 @@ void FontPreviewProportional(FILE * out, _font *font, int num)
 	for (y = 0; y < font->Height-(yoff+h); ++y) 
 	{
 		fprintf(out,"/* |");
-		for (x = 0; x < w+1; ++x) 
+		for (x = 0; x < w; ++x) 
 				fprintf(out," ");
 		fprintf(out,"| */\n");
 	}
@@ -1898,7 +1992,6 @@ void FontPreviewProportional(FILE * out, _font *font, int num)
 			else
 				fprintf(out," ");
 		}
-		fprintf(out," ");
 		fprintf(out,"| */\n");
 	}
 
@@ -1906,14 +1999,14 @@ void FontPreviewProportional(FILE * out, _font *font, int num)
 	for (y = 0; y < yoff+1; ++y) 
 	{
 		fprintf(out,"/* |");
-		for (x = 0; x < w+1; ++x) 
+		for (x = 0; x < w; ++x) 
 				fprintf(out," ");
 		fprintf(out,"| */\n");
 	}
 
 	// Bottom border
 	fprintf(out,"/* |");
-	for (x = 0; x < w+1; ++x)
+	for (x = 0; x < w; ++x)
 	{
 		fprintf(out,"-");
 	}

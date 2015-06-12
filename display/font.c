@@ -55,7 +55,6 @@ int font_attr(window *win, int c, _fontc *f)
     int offset;
     int num;
     unsigned char *ptr;
-	int gap;
 
 // check font
     _font *z = allfonts[win->font];
@@ -68,6 +67,7 @@ int font_attr(window *win, int c, _fontc *f)
     f->ptr = z->bitmap;
 
 // If we have font specifications use them
+// Normally they are not included for fixed fonts - but they may
     if(z->specs)
     {
         f->Width = z->Width;
@@ -75,6 +75,7 @@ int font_attr(window *win, int c, _fontc *f)
 
 // Copy the full font specification into ram for easy access
 // This does not use much memory as it does not include the bitmap
+
         cpy_flash((uint8_t *)&(z->specs[num]), (uint8_t *)&s,sizeof(_fontspecs));
 
         f->w = s.Width;
@@ -85,45 +86,44 @@ int font_attr(window *win, int c, _fontc *f)
         offset = s.Offset;
         f->ptr += offset;
 
-		gap = (z->Width+3)/4;
-		if(gap <= 1)
-			gap++;
-// Override only if we have specs
-// FIXME - if the width is faked (proportional font with fixed flag on)  - it may be too small!
-// We need to save was font originally fixed in the font data
+		// FIXME
+		// We assume for fixed fonts that z->Width is the character AND gap size
+		// It may not be big enough for the largest character
+
         f->fixed = win->fixed;
-        if(f->fixed)
-            f->gap = f->Width + gap;
+
+        if(f->fixed || !f->w)
+            f->skip = z->Width + z->gap;
         else
-            f->gap = f->w + gap;
+			f->skip = f->x + f->w + z->gap;
     }
 
-    else   // No Specs, Create the font specification using main font size spec
+    else   
     {
+		// No Specs, fo font must be fixed
+		// We create the font specification using main font size spec
+		// Theer are no proportional options
         f->Width = z->Width;
         f->Height = z->Height;
-
-		gap = (z->Width+3)/4;
-		if(gap <= 1)
-			gap++;
 
         f->w = z->Width;
         f->h = z->Height;
         f->x = 0;
         f->y = 0;
 
-// FIXME - if the width is faked (proportional font with fixed flag on)  - it may be too small!
-// We need to save was font originally fixed in the font data
+		// FIXME - fixed fonts without specs have no proportional modes to use
         f->fixed = win->fixed;
-        if(f->fixed)
-            f->gap = f->Width + gap;
-        else
-            f->gap = f->w + gap;
+
+		f->skip = z->Width + z->gap;
 
         offset = ((z->Width * z->Height)+7)/8; /* round to byte boundry */
         f->ptr += (offset * num);
 
     }
+
+	if(!f->skip)
+		f->skip++;
+// =====================================
 
 #ifdef ILI9341_DEBUG
     ets_uart_printf("c: %02x font:%d w:%d h:%d x:%d y:%d gap:%d, W:%d, H:%d\r\n",
@@ -147,17 +147,17 @@ int tft_drawChar(window *win, uint8_t c)
     if(ret < 0)
         return (0);
 
-    if(!f.h || !f.w)
-        return (0);
-
 // Alternate clear - all pixels inside the font bounding box
     if(f.h != f.Height ||  f.w != f.Width || f.x != 0 || f.y != 0)
-        tft_fillRectWH(win, win->x, win->y, f.Width, f.Height, win->bg);
+        tft_fillRectWH(win, win->x, win->y, f.skip, f.Height, win->bg);
+
+    if(!f.h || !f.w)
+        return (f.skip);
 
 // top of bit bounding box ( first row with a 1 bit in it)
     yskip = f.Height - (f.y+f.h);
 
     tft_bit_blit(win, f.ptr, win->x+f.x, win->y+yskip, f.w, f.h, win->fg, win->bg);
 
-    return (f.gap);
+    return (f.skip);
 }
