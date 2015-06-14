@@ -33,17 +33,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // TFT master window definition
 window tftwin;
 window *tft = &tftwin;
+uint16_t tft_ID;
 
 /// @brief Initialize TFT
 /// @ return diplay ID 9341
 MEMSPACE
-uint32_t tft_init(void)
+window *tft_init(void)
 {
-    uint32_t ID;
 
     hspi_init();
-
-    tft_window_init(tft, TFT_XOFF, TFT_YOFF, TFT_W, TFT_H);
 
     TFT_CS_INIT;
     TFT_INIT;
@@ -54,14 +52,18 @@ uint32_t tft_init(void)
     TFT_RST_DEACTIVE;
     os_delay_us(1000);
 
-    ID = tft_readId();
-
+	/* Adafruit 9341 TFT Display Initialization */
     tft_configRegister();
 
-    tft_setRotation(0);
+	/* Read the TFT ID value */
+    tft_ID = tft_readId();
 
+	/* Setup the master window */
+    tft_window_init(tft, TFT_XOFF, TFT_YOFF, TFT_W, TFT_H);
+    tft_setRotation(0);
     tft_fillWin(tft, tft->bg);
-    return ( ID );
+
+    return (tft);
 }
 
 

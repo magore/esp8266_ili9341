@@ -43,8 +43,9 @@ typedef unsigned int uint32_t;
 typedef int int32_t;
 
 #define MEMSPACE /**/
+#include "../wire/wire_types.h"
+#include "../cordic/cordic2c_inc.h"
 #include "../cordic/cordic.h"
-#include "../wire/wire.h"
 
 /// @brief Convert of Radians
 /// @param[in] deg: degrees
@@ -199,9 +200,10 @@ int main(int argc, char *argv[])
         }
         else
         {
-			x = (cos(lat_rad) * cos(lon_rad)) * WIRE_ONE;
-            y = (cos(lat_rad) * sin(lon_rad)) * WIRE_ONE;
-            z = sin(lat_rad) * WIRE_ONE;
+			// WIRE_HALF gives cale factor of 1 (+/-0.5)
+			x = (cos(lat_rad) * cos(lon_rad)) * WIRE_HALF;
+            y = (cos(lat_rad) * sin(lon_rad)) * WIRE_HALF;
+            z = sin(lat_rad) * WIRE_HALF;
             // reverse is
             // lat = asin(z / R)
             // lon = atan2(y, x)
@@ -210,7 +212,6 @@ int main(int argc, char *argv[])
 				lon, lat);
             //printf("\t{%f,%f,%f},\n", x,y,z);
         }
-                                                                    
     }
 	fclose(FI);
     // this point is the end of a vector - not plotted

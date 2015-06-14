@@ -32,16 +32,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /// @brief save fonts in flash
 #define MEMSPACE_FONT ICACHE_FLASH_ATTR
 
-/// @brief we need to use addition width,height and offset sepcifications
-/// This is NOT required for full fonts with fixed atributes
-// #define FONTSPECS
-
-/// @brief Generated Font table
-//// Note the generated tables always include
-//// Font specifications: widt, height, offsets, font type, etc
-//// Font information: name, copyright, style information
-//// FONSPECS and FONTINFO defines controls actual usage.
+/// @brief Include the Generated Font table
+/// The generated tables always include Font specifications:
+/// width, height, offsets, font type, etc
+/// Font information: name, copyright, style information
+/// Note: FONSPECS and FONTINFO defines controls actual usage.
+/// We can also overide FONTSPECS here or in the Makefile for testing.
+/// #define FONTSPECS
 #include "fonts.h"
+
 // All the fonts - defined in fonts.h
 extern _font *allfonts[];
 
@@ -66,43 +65,51 @@ int font_attr(window *win, int c, _fontc *f)
 
     f->ptr = z->bitmap;
 
-// If we have font specifications use them
-// Normally they are not included for fixed fonts - but they may
+// If we have font specifications defined and included we can use them.
+// Notes: Normally for small fixed fonts we do not want to included them.
+// However; if the font is large we can define just the active part of 
+// the charater to reduce the overall size. 
+
     if(z->specs)
     {
         f->Width = z->Width;
         f->Height = z->Height;
 
 // Copy the full font specification into ram for easy access
-// This does not use much memory as it does not include the bitmap
+// This does not use much memory as it does not include the bitmap itself
+// This method avoids memory agignment access errors on the ESP8266.
 
         cpy_flash((uint8_t *)&(z->specs[num]), (uint8_t *)&s,sizeof(_fontspecs));
 
+		// Fonts Width,Height,X,Y
         f->w = s.Width;
         f->h = s.Height;
         f->x = s.X;
         f->y = s.Y;
 
+		// Bitmap offset
         offset = s.Offset;
         f->ptr += offset;
 
-		// FIXME
-		// We assume for fixed fonts that z->Width is the character AND gap size
-		// It may not be big enough for the largest character
-
+	
+		// The user may override the fixed variable font flag
+        // This reduces the width of fixed fonts to just the active pixels.
         f->fixed = win->fixed;
 
+		// Skip is the combined width, and an optional character spacing gap
+		// Some characters have no active size (like the space character )
+		// so we just use the master font width and gap
         if(f->fixed || !f->w)
             f->skip = z->Width + z->gap;
         else
-			f->skip = f->x + f->w + z->gap;
+			f->skip = f->x + f->w + z->gap;	// Include the X offset, Width and Gap
     }
 
     else   
     {
-		// No Specs, fo font must be fixed
-		// We create the font specification using main font size spec
-		// Theer are no proportional options
+		// No Specifications, therefore the font must be fixed.
+		// We create one using the master font size spec
+		// There are no proportional options here.
         f->Width = z->Width;
         f->Height = z->Height;
 
@@ -116,11 +123,15 @@ int font_attr(window *win, int c, _fontc *f)
 
 		f->skip = z->Width + z->gap;
 
+		// Each bitmap is a bit array w by h in size without any padding
+		// except at the end of the array which is rounded to the next byte boundry.
         offset = ((z->Width * z->Height)+7)/8; /* round to byte boundry */
         f->ptr += (offset * num);
 
     }
 
+	// FIXME
+	// This zero size skip test should never be needed - for now we increase to 1..
 	if(!f->skip)
 		f->skip++;
 // =====================================
@@ -137,6 +148,14 @@ int font_attr(window *win, int c, _fontc *f)
 /// @param[in] *win: Window Structure
 /// @param[in] c: character
 /// @return  void
+/// TODO: To make proportional fonts render even better we should reduce
+/// the font gap so that all of the active pixels between two fonts come no 
+/// nearer then gap.
+/// Example: consider the case of "Td", the 'd' can actually be part way INSIDE the 
+/// T's area without touching.
+/// We could keep a list of all left most active pixels of the previous character
+/// and test then against all the right most active pixels of the current character 
+/// to adjust the skip spacing value to a fixed gap.
 int tft_drawChar(window *win, uint8_t c)
 {
     _fontc f;
@@ -147,17 +166,29 @@ int tft_drawChar(window *win, uint8_t c)
     if(ret < 0)
         return (0);
 
-// Alternate clear - all pixels inside the font bounding box
-    if(f.h != f.Height ||  f.w != f.Width || f.x != 0 || f.y != 0)
+// Conditionally clear the character area - not needed for full size fixed fonts..
+// If the character is not full size then pre-clear the full font bit array
+// (saves the more complex tests of clearing additional areas around the active font)
+// Note: We use skip instead of Width because of the additiional gap that must also
+// be cleared..
+
+// FIXME we should do this in two parts - font area and then the gap area.
+// Since we alwasy want to clear the gap - but not always the font - when fixed.
+
+// Optionally clear the font area, then the gap
+    if(f.h != f.Height ||  f.w != f.skip || f.x != 0 || f.y != 0)
         tft_fillRectWH(win, win->x, win->y, f.skip, f.Height, win->bg);
 
+// This can happen for characters with no active pixels like the space character.
     if(!f.h || !f.w)
         return (f.skip);
 
-// top of bit bounding box ( first row with a 1 bit in it)
+// Top of bit bounding box ( first row with a 1 bit in it)
     yskip = f.Height - (f.y+f.h);
 
+// WRite the font to the screen
     tft_bit_blit(win, f.ptr, win->x+f.x, win->y+yskip, f.w, f.h, win->fg, win->bg);
 
+	// skip is the offset to the next character
     return (f.skip);
 }

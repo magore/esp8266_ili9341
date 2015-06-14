@@ -52,12 +52,10 @@ typedef struct
 #define TFT_XOFF (MIN_TFT_X)
 #define TFT_YOFF (MIN_TFT_Y)
 
-extern window *tft;
-
 // ============================================================
 
 /* ili9341.c */
-MEMSPACE uint32_t tft_init ( void );
+MEMSPACE window *tft_init ( void );
 uint32_t tft_abs_window ( int16_t x , int16_t y , int16_t w , int16_t h );
 void tft_writeCmd ( uint8_t cmd );
 void tft_writeData ( uint8_t data );
@@ -90,7 +88,6 @@ void tft_drawLine ( window *win , int16_t x0 , int16_t y0 , int16_t x1 , int16_t
 void tft_drawLine ( window *win , int16_t x0 , int16_t y0 , int16_t x1 , int16_t y1 , uint16_t color );
 MEMSPACE void tft_cleareol ( window *win );
 MEMSPACE void tft_putch ( window *win , int c );
-
 
 
 #endif // _ILI9341_SUP_H_

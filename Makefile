@@ -13,7 +13,7 @@ SOFTCS =
 ILI9341_DEBUG = 
 
 # wireframe earth
-EARTH = 
+EARTH = 1
 # rotaing Cube
 WIRECUBE = 1
 # NETWORK Client test

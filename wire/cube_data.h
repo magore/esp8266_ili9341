@@ -30,20 +30,21 @@
 #error WIRE_ONE
 #endif
 
+/// @brief CUBE data +/- 0.5 is a cube with sides of 1.0 
 //ICACHE_FLASH_ATTR
 MEMSPACE_RO
 wire_p cube_points[] = {
 /* TOP FACE */
-	{WIRE_ONE,WIRE_ONE,WIRE_ONE}, 	/*  x, y, z */
-	{-WIRE_ONE,WIRE_ONE,WIRE_ONE},	/* -x, y, z */
-	{-WIRE_ONE,-WIRE_ONE,WIRE_ONE}, /* -x,-y, z */
-	{WIRE_ONE,-WIRE_ONE,WIRE_ONE},	/*  x,-y, z */
+	{WIRE_ONE/2,WIRE_ONE/2,WIRE_ONE/2}, 	/*  x, y, z */
+	{-WIRE_ONE/2,WIRE_ONE/2,WIRE_ONE/2},	/* -x, y, z */
+	{-WIRE_ONE/2,-WIRE_ONE/2,WIRE_ONE/2}, /* -x,-y, z */
+	{WIRE_ONE/2,-WIRE_ONE/2,WIRE_ONE/2},	/*  x,-y, z */
 /* BOTTOM FACE */
-	{WIRE_ONE,WIRE_ONE,-WIRE_ONE},	/*  x, y,-z */
-	{-WIRE_ONE,WIRE_ONE,-WIRE_ONE},	/* -x, y,-z */
-	{-WIRE_ONE,-WIRE_ONE,-WIRE_ONE},/* -x,-y,-z */
-	{WIRE_ONE,-WIRE_ONE,-WIRE_ONE},	/*  x,-y,-z */
-	{WIRE_ONE,WIRE_ONE,-WIRE_ONE},	/*  x, y,-z */
+	{WIRE_ONE/2,WIRE_ONE/2,-WIRE_ONE/2},	/*  x, y,-z */
+	{-WIRE_ONE/2,WIRE_ONE/2,-WIRE_ONE/2},	/* -x, y,-z */
+	{-WIRE_ONE/2,-WIRE_ONE/2,-WIRE_ONE/2},/* -x,-y,-z */
+	{WIRE_ONE/2,-WIRE_ONE/2,-WIRE_ONE/2},	/*  x,-y,-z */
+	{WIRE_ONE/2,WIRE_ONE/2,-WIRE_ONE/2},	/*  x, y,-z */
 };
 
 MEMSPACE_RO

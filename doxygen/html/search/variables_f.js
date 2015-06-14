@@ -2,9 +2,7 @@ var searchData=
 [
   ['s',['S',['../user__main_8c.html#aa6a210803a601a3b71e9d6d66f1f387d',1,'user_main.c']]],
   ['sar',['sar',['../structex__regs.html#a8fd11e49ee65ba875a04ab28789cf702',1,'ex_regs']]],
-  ['scale',['scale',['../user__main_8c.html#aa7d569051c24f6fb09cf6569ae97e134',1,'user_main.c']]],
-  ['scale_5finc',['scale_inc',['../user__main_8c.html#ab13530f34680731b9764f1cf20f8d3cd',1,'user_main.c']]],
-  ['seconds',['seconds',['../user__main_8c.html#a22628cd27509457105950155be480898',1,'user_main.c']]],
+  ['seconds',['seconds',['../user__main_8c.html#ab2f04dacd2b2ea549a32bfa90f50b12c',1,'user_main.c']]],
   ['skip',['skip',['../struct__fontc.html#a44c94e91afa006cb2ffe55a99b3e2d3c',1,'_fontc']]],
   ['slant',['SLANT',['../struct__fontinfo.html#aff56d18df3b46ec10896d15ad3a2e164',1,'_fontinfo']]],
   ['spacing',['SPACING',['../struct__fontinfo.html#a0e6fafc8f03c70ce9c506d7a506fbba4',1,'_fontinfo']]],

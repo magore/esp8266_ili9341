@@ -38,9 +38,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	#include "earth_data.h"
 #endif
 
-extern window *tft;
-window twindow;
-window *twin = &twindow;
+/* Master Full size Window */
+window *master;
+
+/* Top Left status window */
+window winstatsdow;
+window *winstats = &winstatsdow;
+
+/* Top Right Wireframe window */
+window windemodow;
+window *windemo = &windemodow;
+
+/* Top Left status window */
+window wintestdow;
+window *wintest = &wintestdow;
 
 extern int ets_uart_printf(const char *fmt, ...);
 void ets_timer_disarm(ETSTimer *ptimer);
@@ -62,12 +73,14 @@ MEMSPACE void user_init ( void );
 int16_t xpos,ypos;
 // Rotation angle
 LOCAL double degree = 0.0;
-// Scale factor
-LOCAL double scale = 10.0;
 // Rotation increment
 LOCAL double deg_inc = 4;
 // Scale increment
-LOCAL double scale_inc = 1.0;
+LOCAL double dscale_inc;
+// Scale factor
+LOCAL double dscale;
+// Scale maximum
+LOCAL double dscale_max;
 
 LOCAL long count = 0;
 LOCAL int rad;
@@ -76,6 +89,7 @@ LOCAL point S;
 
 LOCAL adc_sum = 0;
 LOCAL adc_count = 0;
+double voltage = 0;
 
 // Delay timer in milliseconds
 #define DELAY_TIMER     	10 
@@ -104,7 +118,7 @@ os_event_t    IdleTaskQueue[IdleTaskQueueLen];
 	@brief 1 Second timer task data
 */
 LOCAL ETSTimer timer1sec;
-LOCAL uint32_t seconds;
+LOCAL long seconds;
 
 /**
  @brief 1 Second timer task
@@ -206,39 +220,26 @@ LOCAL void user_task(void)
 {
     char time[20];
 	uint32_t time1,time2;
-	window *win;
-	uint16_t xcenter;
-	uint16_t ycenter;
 	uint8_t red, blue,green;
-
+	long timer = 0;
 	uint16 system_adc_read(void);
 
-
-	xcenter = tft->w - 50;
-	ycenter = 50;
 
 #ifdef WIRECUBE
 	V.x = degree;
 	V.y = degree;
 	V.z = degree;
-	wire_draw(tft, cube_points, cube_edges, &V, xcenter, ycenter, scale, 0);
-	//wire_draw(tft, cube_points, cube_edges, &V, xcenter, ycenter, scale/2, 0);
-#endif
-
-#ifdef EARTH
-	scale = 10;
-	// erase earth
-	V.x = -90;
-	V.y = -90;
-	V.z = -90;
-	wire_draw(tft, earth_data, NULL, &V, xcenter, ycenter, scale, 0);
+// Cube points were defined with sides of 1.0 
+// We want a scale of +/- w/2
+	wire_draw(windemo, cube_points, cube_edges, &V, windemo->w/2, windemo->h/2, dscale, 0);
+	//wire_draw(windemo, cube_points, cube_edges, &V, windemo->w/2, windemo->h/2, dscale, 0);
 #endif
 
 #ifdef CIRCLE
-	rad = scale; // +/- 90
-    tft_drawCircle(tft, xcenter, ycenter, rad ,0);
+	rad = dscale; // +/- 90
+    tft_drawCircle(windemo, windemo->w/2, windemo->h/2, rad ,0);
 	Display bounding circle that changes color around the cube
-	if(scale_inc < 0.0)
+	if(dscale_inc < 0.0)
 	{
 		red = 255;
 		blue = 0;
@@ -251,63 +252,60 @@ LOCAL void user_task(void)
 		green = 0;
 	}
 	// RGB - YELLOW
-    tft_drawCircle(tft, xcenter, ycenter, scale, tft_color565(red,green,blue));
+    tft_drawCircle(windemo, windemo->w/2, windemo->h/2, dscale, tft_color565(red,green,blue));
 #endif
 
     degree += deg_inc;
-    scale += scale_inc;
+    dscale += dscale_inc;
 
 	if(degree <= -360)
 		deg_inc = 4;
 	if(degree >= 360)
 		deg_inc = -4;
 
-    if(scale < 10.0)
-        scale_inc = 1;
-    if(scale > 25.0)
-        scale_inc = -1;
+    if(dscale < dscale_max/2)
+	{
+	   dscale_inc = -dscale_inc;
+	}
+    if(dscale > dscale_max)
+	{
+	   dscale_inc = -dscale_inc;
+	}
 
-#ifdef EARTH
-	scale = 25.0;
-
-	V.x = -90;
-	V.y = -90;
-	V.z = -90;
-	// draw earth
-	//time1 = system_get_time();
-	wire_draw(tft, earth_data, NULL, &V, xcenter, ycenter, scale, 0xffff);
-	//time2 = system_get_time();
-#endif
 
 #ifdef WIRECUBE
 	V.x = degree;
 	V.y = degree;
 	V.z = degree;
 	//time1 = system_get_time();
-	wire_draw(tft, cube_points, cube_edges, &V, xcenter, ycenter, scale, 0xffff);
-	//wire_draw(tft, cube_points, cube_edges, &V, xcenter, ycenter, scale/2, 0xffff);
+	wire_draw(windemo, cube_points, cube_edges, &V, windemo->w/2, windemo->h/2, dscale, 0xffff);
+	//wire_draw(windemo, cube_points, cube_edges, &V, windemo->w/2, windemo->h/2, dscale, 0xffff);
 	//time2 = system_get_time();
 #endif
 
-	// ets_uart_printf("Degree: %d \r\n",(int)degree);
-	count += 1;
-	tft_setpos(tft,xpos,ypos);
-	tft_set_font(tft,0);
-	tft_printf(tft,"c:% 9ld, %+7.2f\n", count, degree);
 
 // Get system voltage 33 = 3.3 volts
 	adc_sum += system_adc_read();
 
+	// FIXME atomic access
 	if(++adc_count == 10)
 	{
-		float voltage = ((float) adc_sum / 100.0); 
-		tft_printf(tft,"Voltage: %2.2f\n", voltage);
+		voltage = ((double) adc_sum / 100.0); 
 		adc_count = 0;
 		adc_sum = 0;
 	}
+
+	// ets_uart_printf("Degree: %d \r\n",(int)degree);
+	count += 1;
+	tft_setpos(winstats,xpos,ypos);
+	tft_set_font(winstats,0);
+	tft_printf(winstats,"c:% 9ld, %+7.2f\n", count, degree);
+	// FIXME atomic access
+	timer = seconds;
+	tft_printf(winstats,"Voltage: %2.2f\nTime: %9ld", (float)voltage, timer);
 	
 #ifdef NETWORK_TEST
-	poll_network_message(twin);
+	poll_network_message(wintest);
 #endif
 }
 
@@ -321,11 +319,13 @@ void user_init(void)
 {
 	int i;
 	os_event_t *handlerQueue;
-	uint32_t ID;
     char time[20];
 	int ret;
 	uint16_t *ptr;
 	uint32_t time1,time2;
+	uint32_t ID;
+	extern uint16_t tft_ID;
+	double ang;
 
 	os_delay_us(200000L);	// Power Up dalay - lets power supplies and devices settle
 
@@ -335,41 +335,83 @@ void user_init(void)
 	ets_uart_printf("\r\nDisplay Init\r\n");
 
 	// Initialize TFT
-	ID = tft_init();
-
-	/* Setup main window */
+	master = tft_init();
+	ID = tft_ID;
+	// Set master rotation
 	tft_setRotation(1);
-	tft_setpos(tft, 0,0);
-	tft_set_font(tft,5);
-	tft_font_var(tft);
-	tft->wrap = 1;
 
-	tft_printf(tft, "DISP ID: %04lx\n", ID);
+	/* Setup main status window */
+	tft_window_init(winstats,0,0, master->w * 6 / 10, master->h/2);
+	winstats->wrap = 1;
+
+	tft_setpos(winstats, 0,0);
+	tft_set_font(winstats,5);
+	tft_font_var(winstats);
+	tft_printf(winstats, "DISP ID: %04lx\n", ID);
 	ets_uart_printf("\r\nDisplay ID=%08lx\r\n",ID);
+	tft_font_fixed(winstats);
 
-	tft_font_fixed(tft);
+	// Save last display offset of the status update line - used in the demo task
+	xpos = winstats->x;
+	ypos = winstats->y;
 
+	/* Setup cube/wireframe demo window */
+	tft_window_init(windemo,winstats->w,0, master->w - winstats->w, master->h/2);
 
-/* Setup second window for testing*/
-	tft_window_init(twin,0,tft->h/2, tft->w, tft->h/2);
-	tft_setTextColor(twin, 0xffff,ILI9341_BLUE);
-    tft_fillWin(twin, twin->bg);
-	tft_set_font(twin,3);
-	tft_font_var(twin);
-	twin->wrap = 1;
+// Cube points were defined with sides of 1.0 
+// We want a scale of +/- w/2
+	if(windemo->w < windemo->h) 
+		dscale_max = windemo->w/2;
+	else
+		dscale_max = windemo->h/2;
 
-	tft_setpos(twin, 0,5);
-	tft_printf(twin, "Test1\nTest2\nTest3");
-#ifdef WIRECUBE
-	V.x = 45;
-	V.y = 45;
-	V.z = 45;
-	wire_draw(twin, cube_points, cube_edges, &V, 150, 50, 20, ILI9341_RED);
+	dscale = dscale_max;
+	dscale_inc = dscale_max / 100;
+
+/* Setup second window for window testing*/
+	tft_window_init(wintest,0,master->h/2, master->w, master->h/2);
+	tft_setTextColor(wintest, 0xffff,ILI9341_NAVY);
+    tft_fillWin(wintest, wintest->bg);
+
+	tft_set_font(wintest,3);
+	tft_font_var(wintest);
+	wintest->wrap = 1;
+	tft_setpos(wintest, 0,0);
+	tft_printf(wintest, "Test1\nTest2\nTest3");
+
+/* Draw cube in the second window as a test */
+#if defined(WIRECUBE) && !defined(EARTH)
+// Cube points were defined with sides of 1.0 
+// We want a scale of +/- w/2
+	double tscale_max;
+	if(wintest->w < wintest->h) 
+		tscale_max = wintest->w/2;
+	else
+		tscale_max = wintest->h/2;
+	ang = 45.0;
+	V.x = ang;
+	V.y = ang;
+	V.z = ang;
+	wire_draw(wintest, cube_points, cube_edges, &V, wintest->w/2, wintest->h/2, tscale_max, ILI9341_RED);
 #endif
 
-	// Save last display offset for user task
-	xpos = tft->x;
-	ypos = tft->y;
+#ifdef EARTH
+// Earth points were defined with radius of 0.5, diameter of 1.0
+// We want a scale of +/- w/2
+	double tscale_max;
+	if(wintest->w < wintest->h) 
+		tscale_max = wintest->w/2;
+	else
+		tscale_max = wintest->h/2;
+	V.x = -90;
+	V.y = -90;
+	V.z = -90;
+	// draw earth
+	//time1 = system_get_time();
+// Earth points were defined over with a scale of -0.5/+0.5 scale - so scale must be 1 or less
+	wire_draw(wintest, earth_data, NULL, &V, wintest->w/2, wintest->h/2, tscale_max, 0xffff);
+	//time2 = system_get_time();
+#endif
 	ets_uart_printf("\r\nDisplay Init Done\r\n");
 
 	ets_wdt_disable();
@@ -400,5 +442,3 @@ void user_init(void)
     ets_uart_printf("Heap Size(%d) bytes\n" , system_get_free_heap_size());
 	ets_uart_printf("System init done \r\n");
 }
-
-

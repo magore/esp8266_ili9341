@@ -40,8 +40,9 @@ typedef struct
     double z;
 } point;
 
-/* cordic/cordic.c */
-MEMSPACE double deg2rad ( double d );
+
+/* cordic.c */
+MEMSPACE double deg2rad ( double deg );
 double angle_quad ( double quads , int *quad );
 void Circular ( Cordic_T x , Cordic_T y , Cordic_T z );
 MEMSPACE void cordic_quad ( double angle , double *s , double *c );
@@ -51,5 +52,6 @@ MEMSPACE void scale_point ( point *P , double scale );
 MEMSPACE void shift_point ( point *P , point *shift );
 MEMSPACE void rotate ( point *P , point *V );
 MEMSPACE void PerspectiveProjection ( point *P , double scale , int x , int y );
+
 
 #endif // _CORDIC_H_

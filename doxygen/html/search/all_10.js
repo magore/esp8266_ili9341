@@ -2,10 +2,8 @@ var searchData=
 [
   ['s',['S',['../user__main_8c.html#aa6a210803a601a3b71e9d6d66f1f387d',1,'user_main.c']]],
   ['sar',['sar',['../structex__regs.html#a8fd11e49ee65ba875a04ab28789cf702',1,'ex_regs']]],
-  ['scale',['scale',['../user__main_8c.html#aa7d569051c24f6fb09cf6569ae97e134',1,'user_main.c']]],
-  ['scale_5finc',['scale_inc',['../user__main_8c.html#ab13530f34680731b9764f1cf20f8d3cd',1,'user_main.c']]],
   ['scale_5fpoint',['scale_point',['../cordic_8c.html#ae708dfda7767e28c3faeedf2c46deafd',1,'scale_point(point *P, double scale):&#160;cordic.c'],['../cordic_8h.html#ae708dfda7767e28c3faeedf2c46deafd',1,'scale_point(point *P, double scale):&#160;cordic.c']]],
-  ['seconds',['seconds',['../user__main_8c.html#a22628cd27509457105950155be480898',1,'user_main.c']]],
+  ['seconds',['seconds',['../user__main_8c.html#ab2f04dacd2b2ea549a32bfa90f50b12c',1,'user_main.c']]],
   ['seconds_5ftask',['seconds_task',['../user__main_8c.html#a907377595f82c75994091e62eb47d87c',1,'user_main.c']]],
   ['send_2ec',['send.c',['../send_8c.html',1,'']]],
   ['send_5fmessage',['send_message',['../send_8c.html#a1acc7a487f162adccd664393be5b606e',1,'send.c']]],

@@ -10,7 +10,7 @@ var searchData=
   ['cal_5fdex_5fversion',['CAL_DEX_VERSION',['../cal__dex_8c.html#acc0f78bdc8572f17f1a1eedc0f4fb6f3',1,'cal_dex.c']]],
   ['cal_5ftprintf',['cal_tprintf',['../cal__dex_8c.html#a930bc9f35121018da9e27272aab1f255',1,'cal_dex.c']]],
   ['circular',['Circular',['../cordic_8c.html#a9e686d8e990a05ea18655a368e6d1918',1,'Circular(Cordic_T x, Cordic_T y, Cordic_T z):&#160;cordic.c'],['../cordic_8h.html#a9e686d8e990a05ea18655a368e6d1918',1,'Circular(Cordic_T x, Cordic_T y, Cordic_T z):&#160;cordic.c'],['../cordic2c_8c.html#a9e686d8e990a05ea18655a368e6d1918',1,'Circular(Cordic_T x, Cordic_T y, Cordic_T z):&#160;cordic2c.c']]],
-  ['computegapsize',['ComputeGapSize',['../bdffontutil_8c.html#a5452adc13af52bed8d199861362037e0',1,'bdffontutil.c']]],
+  ['computegapsize',['ComputeGapSize',['../bdffontutil_8c.html#a5452adc13af52bed8d199861362037e0',1,'ComputeGapSize(_font *font):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a5452adc13af52bed8d199861362037e0',1,'ComputeGapSize(_font *font):&#160;bdffontutil.c']]],
   ['config_5ffor_5frx_5ftx',['CONFIG_FOR_RX_TX',['../hspi_8h.html#a0a89ba717c8b84a7c3799d310b54e5c2',1,'hspi.h']]],
   ['config_5ffor_5ftx',['CONFIG_FOR_TX',['../hspi_8h.html#ad9632609fe3a2c77d6bca3d5252980e3',1,'hspi.h']]],
   ['constrain',['CONSTRAIN',['../util_8h.html#a16354a19da36d5370eb20304b4facb33',1,'util.h']]],

@@ -36,7 +36,7 @@ var searchData=
   ['fonts_2eh',['fonts.h',['../fonts_2fonts_8h.html',1,'']]],
   ['fonts_2eh',['fonts.h',['../display_2fonts_8h.html',1,'']]],
   ['fontspecs',['FONTSPECS',['../bdfview_8c.html#ac069b0f0b942de43fee8642c39450bab',1,'bdfview.c']]],
-  ['fp2_5fwire',['FP2_WIRE',['../wire_8h.html#a6ab980e5a0d260bf5baacc41f7cabbbd',1,'wire.h']]],
+  ['fp2_5fwire',['FP2_WIRE',['../wire__types_8h.html#a6ab980e5a0d260bf5baacc41f7cabbbd',1,'wire_types.h']]],
   ['fp2cordic',['FP2Cordic',['../cordic2c__inc_8h.html#ad614e1a545ad0fd263ea0afb0456cb7a',1,'FP2Cordic():&#160;cordic2c_inc.h'],['../cordic2c_8c.html#ad614e1a545ad0fd263ea0afb0456cb7a',1,'FP2Cordic():&#160;cordic2c.c']]],
   ['freefont',['FreeFont',['../bdffontutil_8c.html#a4afb5289fcab36022951a5d16ea7932f',1,'FreeFont(_font *font):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a4afb5289fcab36022951a5d16ea7932f',1,'FreeFont(_font *font):&#160;bdffontutil.c']]],
   ['ftoa',['ftoa',['../printf_8c.html#a1d1cab8ef0a0104ee1408f519136abfd',1,'ftoa(double val, char *str, int intprec, int prec, int sign):&#160;printf.c'],['../printf_8h.html#a1d1cab8ef0a0104ee1408f519136abfd',1,'ftoa(double val, char *str, int intprec, int prec, int sign):&#160;printf.h']]]

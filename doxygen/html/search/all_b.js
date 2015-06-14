@@ -14,6 +14,7 @@ var searchData=
   ['makefile',['Makefile',['../earth_2Makefile.html',1,'']]],
   ['makefile',['Makefile',['../Makefile.html',1,'']]],
   ['map',['Map',['../Makefile.html#a3f923b64cf6726ab0bfdd17b9aff0a96',1,'Makefile']]],
+  ['master',['master',['../user__main_8c.html#a3c3825d702360b467501feca5bd25dab',1,'user_main.c']]],
   ['match',['MATCH',['../bdffontutil_8h.html#a4d192fe48cb19d0ef5a88c52ed23cf4c',1,'bdffontutil.h']]],
   ['match_5ftoken',['match_token',['../bdffontutil_8c.html#aa8451fa4387dfafd4583f6548533d37b',1,'match_token(char *str, char *pat):&#160;bdffontutil.c'],['../bdffontutil_8h.html#aa8451fa4387dfafd4583f6548533d37b',1,'match_token(char *str, char *pat):&#160;bdffontutil.c']]],
   ['max',['MAX',['../util_8h.html#aacc3ee1a7f283f8ef65cea31f4436a95',1,'util.h']]],

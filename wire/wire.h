@@ -23,29 +23,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #ifndef _WIRE_H_
 #define _WIRE_H_
-#include <user_config.h>
-
-typedef short int wire_t;
-typedef struct {
-  wire_t x;
-  wire_t y;
-  wire_t z;
-} wire_p;
-
-typedef struct {
-	wire_t p1;
-	wire_t p2;
-} wire_e;
-
-#define WIRE_ONE  16384 /* 1.0 */
-#define WIRE_SEP 32766  /* pen up */
-#define WIRE_END 32767  /* END */
-#define WIRE_2FP(a)  ( (double) (a) / (double) (WIRE_ONE))
-#define FP2_WIRE(a)  ((wire_t) (WIRE_ONE * (a)))
-
 
 /* wire.c */
 void wire2fp ( wire_p *in , point *out );
-void wire_draw ( window *win, const wire_p *wire , const wire_e *edge , point *view , int x , int y , double scale , uint16_t color );
+void wire_draw ( window *win , const wire_p *wire , const wire_e *edge , point *view , int x , int y , double scale , uint16_t color );
 
 #endif

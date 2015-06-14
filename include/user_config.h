@@ -48,10 +48,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "font.h"
 #include "ili9341_adafruit.h"
 #include "ili9341.h"
+#include "wire_types.h"
+
 #include "cordic2c_inc.h"
 #include "cordic.h"
 
 #include "wire.h"
+
 #include "hspi.h"
 #include "util.h"
 

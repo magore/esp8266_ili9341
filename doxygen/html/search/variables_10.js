@@ -12,12 +12,11 @@ var searchData=
   ['terminus_5fmedium_5fr_5fx16_5fy32',['Terminus_Medium_R_X16_Y32',['../display_2fonts_8h.html#a111d088b5d7ba7c5e38475f0688bae3e',1,'Terminus_Medium_R_X16_Y32():&#160;fonts.h'],['../fonts_2fonts_8h.html#a111d088b5d7ba7c5e38475f0688bae3e',1,'Terminus_Medium_R_X16_Y32():&#160;fonts.h']]],
   ['terminus_5fmedium_5fr_5fx16_5fy32_5fbitmap',['Terminus_Medium_R_X16_Y32_bitmap',['../display_2fonts_8h.html#a78d8eb8482cd839b1335a82261410fb8',1,'Terminus_Medium_R_X16_Y32_bitmap():&#160;fonts.h'],['../fonts_2fonts_8h.html#ab1284dc3a8ff4e11e2de792272251a77',1,'Terminus_Medium_R_X16_Y32_bitmap():&#160;fonts.h']]],
   ['terminus_5fmedium_5fr_5fx16_5fy32_5fspecs',['Terminus_Medium_R_X16_Y32_specs',['../display_2fonts_8h.html#ae7f579b56a7f01b7e4fec78d1109ee9b',1,'Terminus_Medium_R_X16_Y32_specs():&#160;fonts.h'],['../fonts_2fonts_8h.html#a1c21f8c5ae14e9293f8255d4fbaa91be',1,'Terminus_Medium_R_X16_Y32_specs():&#160;fonts.h']]],
-  ['tft',['tft',['../ili9341_8c.html#aa55d6901951c7fe057e8d32477b5e122',1,'tft():&#160;ili9341.c'],['../ili9341_8h.html#aa55d6901951c7fe057e8d32477b5e122',1,'tft():&#160;ili9341.c'],['../user__main_8c.html#aa55d6901951c7fe057e8d32477b5e122',1,'tft():&#160;ili9341.c']]],
+  ['tft',['tft',['../ili9341_8c.html#aa55d6901951c7fe057e8d32477b5e122',1,'ili9341.c']]],
+  ['tft_5fid',['tft_ID',['../ili9341_8c.html#afd0704ffdcfd5d17f5437814c2860130',1,'ili9341.c']]],
   ['tftwin',['tftwin',['../ili9341_8c.html#a460d9cc0fd386002d9485f2a0ed585d8',1,'ili9341.c']]],
   ['timer1sec',['timer1sec',['../user__main_8c.html#a7ec6e61fd93a873528abd7fa4ec962d2',1,'user_main.c']]],
   ['triglvl',['TrigLvl',['../structRcvMsgBuff.html#a142735d44b7fefc09c930d58b5e70d4d',1,'RcvMsgBuff']]],
   ['trx_5fbuff',['trx_buff',['../structUartDevice.html#ab83762d1f1257fbbc3ba728520fa0231',1,'UartDevice']]],
-  ['trxbuffsize',['TrxBuffSize',['../structTrxMsgBuff.html#aee542f95d3ce814656ea3bdc22460c59',1,'TrxMsgBuff']]],
-  ['twin',['twin',['../user__main_8c.html#a22b2701bf1669f45795714797646c6fd',1,'user_main.c']]],
-  ['twindow',['twindow',['../user__main_8c.html#a506a985cf0f69a7a83ea71f8749efa4b',1,'user_main.c']]]
+  ['trxbuffsize',['TrxBuffSize',['../structTrxMsgBuff.html#aee542f95d3ce814656ea3bdc22460c59',1,'TrxMsgBuff']]]
 ];

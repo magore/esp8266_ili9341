@@ -69,6 +69,7 @@ int ReadBdf ( char *name , _font *font , int lower , int upper );
 void AdjustFontTable ( _font *font );
 void FontAdjustFull ( _font *font );
 void FontAdjustSmall ( _font *font );
+void ComputeGapSize ( _font *font );
 void bsetv ( unsigned char *ptr , int addr );
 void bclrv ( unsigned char *ptr , int addr );
 int btestv ( unsigned char *ptr , int addr );
@@ -79,6 +80,7 @@ void FontPreview ( FILE *out , _font *font , int num );
 void FontPreviewFull ( FILE *out , _font *font , int num );
 void FontPreviewProportional ( FILE *out , _font *font , int num );
 void WriteFontBitsPreview ( FILE *out , _font *font , int preview );
+
 
 #endif // _UTIL_H_
 
