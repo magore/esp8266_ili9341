@@ -667,7 +667,7 @@ void tft_window_init(window *win, uint16_t xoff, uint16_t yoff, uint16_t w, uint
     win->h 		   = h;
     win->yoff      = yoff;
     win->rotation  = 0;
-    win->tabstop   = 4;
+    win->tabstop   = w/8;
     win->fg = 0xFFFF;
     win->bg = 0;
 }
@@ -953,10 +953,7 @@ void tft_putch(window *win, int c)
 	}
 	if(c == '\t')
 	{
-		count = win->x;
-		count %= (f.Width * win->tabstop);			// tab stop size
-		count = (f.Width * win->tabstop) - count;   // Remaining Width 
-
+		count = win->tabstop - (win->x % win->tabstop);// skip size to next tabstop
 		// Will we overflow ?
 		if(win->x + count > win->w)
 		{
