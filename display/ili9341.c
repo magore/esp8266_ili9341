@@ -667,6 +667,7 @@ void tft_window_init(window *win, uint16_t xoff, uint16_t yoff, uint16_t w, uint
     win->h 		   = h;
     win->yoff      = yoff;
     win->rotation  = 0;
+    win->tabstop   = 4;
     win->fg = 0xFFFF;
     win->bg = 0;
 }
@@ -894,15 +895,18 @@ void tft_drawLine(window *win, int16_t x0, int16_t y0, int16_t x1, int16_t y1, u
 MEMSPACE
 void tft_cleareol(window *win)
 {
-    int x = win->x;
-    int flag = win->wrap;
-    win->wrap = 0;
-    while(x < win->w)
-        tft_putch(win,' ');
-    win->x = 0;
-    win->wrap = flag;
+	int ret, rem;
+    _fontc f;
+	ret = font_attr(win,' ', &f);
+	if(ret < 0)
+		return;
+	rem = (win->w - 1 - win->x);
+	if(rem > 0)
+	{
+		tft_fillRectWH(win, win->x, win->y, rem, f.Height, win->bg);
+	}
+	win->x = win->w;	// one past end
 }
-
 
 /// @brief  put character in current winoow
 /// @param[in] win*: window structure
@@ -915,64 +919,63 @@ void tft_putch(window *win, int c)
     int ret;
     int width;
     int count;
+	int rem;
 
-// control characters
-    if(c < ' ')
-    {
-        if(c == '\n' && win->wrap)
-        {
-            win->x = 0;
-            win->y += f.Height;
-        }
-        if(win->y >= (win->h))
-        {
-            win->y = 0;
-        }
-        if(c == '\t')
-        {
-            count = win->x - 1;                   // 0 based
-            count &= 3;                           // MOD 4
-            count = 4 - count;                    // Number of spaces
-            while(count--)
-                tft_putch(win,' ');
-        }
-        return;
-    }
-	else 
+	if(c < 0 || c > 0x7e)
+		return;
+
+	if(c >= ' ')
 	{
 		ret = font_attr(win, c, &f);
 		if(ret < 0)
 			return;
 	}
+	else 
+	{
+		// use space to get font attributes 
+		ret = font_attr(win,' ', &f);
+		if(ret < 0)
+			return;
+	}
 
-// if the character will not fix then wrap
-    if((win->x + f.w) >= win->w)
-    {
-        if(win->wrap)
-        {
-            win->y += f.h;
-            win->x = 0;
-        }
-        else
-        {
-            return;                               // no wrap
-        }
-    }
+	// Normal visible characters
+	if(c >= ' ')
+	{
+		(void) tft_drawChar(win, c);
+		return;
+	}
 
-    if(win->y >= win->h)
-    {
-        if(win->wrap)
-        {
-            win->y = 0;
-        }
-        else
-        {
-            return;                               // no wrap
-        }
-    }
-    (void) tft_drawChar(win, c);
-    win->x += f.skip;
+	// Control characters
+	if(c == '\n')
+	{
+		win->x = 0;
+		win->y += f.Height;
+	}
+	if(c == '\t')
+	{
+		count = win->x;
+		count %= (f.Width * win->tabstop);			// tab stop size
+		count = (f.Width * win->tabstop) - count;   // Remaining Width 
+
+		// Will we overflow ?
+		if(win->x + count > win->w)
+		{
+			count = (win->x + count) - win->w -1;
+			tft_cleareol(win);
+			if(win->wrap)
+			{
+				tft_fillRectWH(win, 0, win->y, count, f.Height, win->bg);
+				win->x = count;
+				win->y += f.Height;
+			}
+		}
+		else
+		{
+			tft_fillRectWH(win, win->x, win->y, count, f.Height, win->bg);
+			win->x += count;
+		}
+	}
 }
 
 
-/* tft_prinf removes the need for most of the draw string functions */
+/* tft_printf removes the need for most of the draw string functions */

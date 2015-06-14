@@ -144,8 +144,10 @@ int font_attr(window *win, int c, _fontc *f)
 }
 
 
-/// @brief  Display a character using font tables
-/// @param[in] *win: Window Structure
+/// @brief Display a character and optionally wrap the graphic cursor
+/// @see tft_putch  for main output function
+/// Does not handle control characters
+/// @param[in] *win: Window Structure of active window
 /// @param[in] c: character
 /// @return  void
 /// TODO: To make proportional fonts render even better we should reduce
@@ -156,7 +158,8 @@ int font_attr(window *win, int c, _fontc *f)
 /// We could keep a list of all left most active pixels of the previous character
 /// and test then against all the right most active pixels of the current character 
 /// to adjust the skip spacing value to a fixed gap.
-int tft_drawChar(window *win, uint8_t c)
+///
+void tft_drawChar(window *win, uint8_t c)
 {
     _fontc f;
     int ret;
@@ -164,7 +167,32 @@ int tft_drawChar(window *win, uint8_t c)
 
     ret = font_attr(win, c, &f);
     if(ret < 0)
-        return (0);
+        return;
+
+// process wrapping - will the character fit ?
+	if(win->x + f.skip >= win->w)
+	{
+		if(win->wrap)
+		{
+			win->y += f.Height;
+			win->x = 0;
+		}
+		else
+		{
+			return;
+		}
+	}
+	if(win->y >= win->h)
+	{
+		if(win->wrap)
+		{
+			win->y = 0;
+		}
+		else
+		{
+			return;
+		}
+	}
 
 // Conditionally clear the character area - not needed for full size fixed fonts..
 // If the character is not full size then pre-clear the full font bit array
@@ -181,14 +209,17 @@ int tft_drawChar(window *win, uint8_t c)
 
 // This can happen for characters with no active pixels like the space character.
     if(!f.h || !f.w)
-        return (f.skip);
+	{
+		win->x += f.skip;
+        return;
+	}
 
 // Top of bit bounding box ( first row with a 1 bit in it)
     yskip = f.Height - (f.y+f.h);
 
-// WRite the font to the screen
+// Write the font to the screen
     tft_bit_blit(win, f.ptr, win->x+f.x, win->y+yskip, f.w, f.h, win->fg, win->bg);
 
 	// skip is the offset to the next character
-    return (f.skip);
+	win->x += f.skip;
 }

@@ -45,6 +45,7 @@ typedef struct
     uint16_t fg;
     uint16_t bg;
     uint8_t rotation;
+	uint8_t tabstop;
 } window;
 
 #define TFT_W (MAX_TFT_X-MIN_TFT_X+1)
@@ -89,5 +90,8 @@ void tft_drawLine ( window *win , int16_t x0 , int16_t y0 , int16_t x1 , int16_t
 MEMSPACE void tft_cleareol ( window *win );
 MEMSPACE void tft_putch ( window *win , int c );
 
+/* font.c */
+int font_attr ( window *win , int c , _fontc *f );
+void tft_drawChar ( window *win , uint8_t c );
 
 #endif // _ILI9341_SUP_H_

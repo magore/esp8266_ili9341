@@ -24,7 +24,7 @@ var searchData=
   ['font_2ec',['font.c',['../font_8c.html',1,'']]],
   ['font_2eh',['font.h',['../display_2font_8h.html',1,'']]],
   ['font_2eh',['font.h',['../fonts_2font_8h.html',1,'']]],
-  ['font_5fattr',['font_attr',['../font_8c.html#acea4413f1d84d044b7d83a96bb0bcb79',1,'font.c']]],
+  ['font_5fattr',['font_attr',['../font_8c.html#acea4413f1d84d044b7d83a96bb0bcb79',1,'font_attr(window *win, int c, _fontc *f):&#160;font.c'],['../ili9341_8h.html#acea4413f1d84d044b7d83a96bb0bcb79',1,'font_attr(window *win, int c, _fontc *f):&#160;font.c']]],
   ['font_5fname',['FONT_NAME',['../struct__fontinfo.html#a6c0f76f2668446a1c37ecab8d4e286a5',1,'_fontinfo']]],
   ['fontadjustfull',['FontAdjustFull',['../bdffontutil_8c.html#ac2e86eac4bb6e173fbbfae929302e851',1,'FontAdjustFull(_font *font):&#160;bdffontutil.c'],['../bdffontutil_8h.html#ac2e86eac4bb6e173fbbfae929302e851',1,'FontAdjustFull(_font *font):&#160;bdffontutil.c']]],
   ['fontadjustsmall',['FontAdjustSmall',['../bdffontutil_8c.html#ac8e10a9220f9a51589124690c47d099b',1,'FontAdjustSmall(_font *font):&#160;bdffontutil.c'],['../bdffontutil_8h.html#ac8e10a9220f9a51589124690c47d099b',1,'FontAdjustSmall(_font *font):&#160;bdffontutil.c']]],

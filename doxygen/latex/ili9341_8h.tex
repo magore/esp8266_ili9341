@@ -90,7 +90,11 @@ void \hyperlink{ili9341_8h_a7cef55bef133e9918955b4d2a53cf230}{tft\-\_\-draw\-Lin
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{ili9341_8h_a9e2f1c5c213183804492d12ab89a1b43}{tft\-\_\-cleareol} (\hyperlink{structwindow}{window} $\ast$win)
 \begin{DoxyCompactList}\small\item\em \subsection*{Character and String functions }\end{DoxyCompactList}\item 
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{ili9341_8h_af577ed6737059ccbe04d4e2cd476a0e1}{tft\-\_\-putch} (\hyperlink{structwindow}{window} $\ast$win, int c)
-\begin{DoxyCompactList}\small\item\em put character in current winoow \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em put character in current winoow \end{DoxyCompactList}\item 
+int \hyperlink{ili9341_8h_acea4413f1d84d044b7d83a96bb0bcb79}{font\-\_\-attr} (\hyperlink{structwindow}{window} $\ast$win, int c, \hyperlink{struct__fontc}{\-\_\-fontc} $\ast$f)
+\begin{DoxyCompactList}\small\item\em Get font attributes for a font. \end{DoxyCompactList}\item 
+void \hyperlink{ili9341_8h_a87fb749b0b5887e26f76d1292b93b0ed}{tft\-\_\-draw\-Char} (\hyperlink{structwindow}{window} $\ast$win, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} c)
+\begin{DoxyCompactList}\small\item\em Display a character and optionally wrap the graphic cursor. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -128,7 +132,7 @@ Definition in file \hyperlink{ili9341_8h_source}{ili9341.\-h}.
 \subsubsection[{T\-F\-T\-\_\-\-H}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-F\-T\-\_\-\-H~({\bf M\-A\-X\-\_\-\-T\-F\-T\-\_\-\-Y}-\/{\bf M\-I\-N\-\_\-\-T\-F\-T\-\_\-\-Y}+1)}}\label{ili9341_8h_a27547bc8807c95c9e8e541e8cc92fece}
 
 
-Definition at line 51 of file ili9341.\-h.
+Definition at line 52 of file ili9341.\-h.
 
 
 
@@ -139,7 +143,7 @@ Referenced by tft\-\_\-init(), and tft\-\_\-set\-Rotation().
 \subsubsection[{T\-F\-T\-\_\-\-W}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-F\-T\-\_\-\-W~({\bf M\-A\-X\-\_\-\-T\-F\-T\-\_\-\-X}-\/{\bf M\-I\-N\-\_\-\-T\-F\-T\-\_\-\-X}+1)}}\label{ili9341_8h_acd1bbb4cc5c0b122517e6dc6030ba441}
 
 
-Definition at line 50 of file ili9341.\-h.
+Definition at line 51 of file ili9341.\-h.
 
 
 
@@ -150,7 +154,7 @@ Referenced by tft\-\_\-init(), and tft\-\_\-set\-Rotation().
 \subsubsection[{T\-F\-T\-\_\-\-X\-O\-F\-F}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-F\-T\-\_\-\-X\-O\-F\-F~({\bf M\-I\-N\-\_\-\-T\-F\-T\-\_\-\-X})}}\label{ili9341_8h_a9d8bf18fe27c3b37d767477f93515780}
 
 
-Definition at line 52 of file ili9341.\-h.
+Definition at line 53 of file ili9341.\-h.
 
 
 
@@ -161,7 +165,7 @@ Referenced by tft\-\_\-init(), and tft\-\_\-set\-Rotation().
 \subsubsection[{T\-F\-T\-\_\-\-Y\-O\-F\-F}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-F\-T\-\_\-\-Y\-O\-F\-F~({\bf M\-I\-N\-\_\-\-T\-F\-T\-\_\-\-Y})}}\label{ili9341_8h_a9e86747a04cc5cca5f61042d742b7e40}
 
 
-Definition at line 53 of file ili9341.\-h.
+Definition at line 54 of file ili9341.\-h.
 
 
 
@@ -198,6 +202,39 @@ Convert 16bit colr into 8-\/bit (each) R,G,B I\-L\-I9341 defaults to M\-S\-B/\-L
 
 
 Definition at line 369 of file ili9341.\-c.
+
+\hypertarget{ili9341_8h_acea4413f1d84d044b7d83a96bb0bcb79}{\index{ili9341.\-h@{ili9341.\-h}!font\-\_\-attr@{font\-\_\-attr}}
+\index{font\-\_\-attr@{font\-\_\-attr}!ili9341.h@{ili9341.\-h}}
+\subsubsection[{font\-\_\-attr}]{\setlength{\rightskip}{0pt plus 5cm}int font\-\_\-attr (
+\begin{DoxyParamCaption}
+\item[{{\bf window} $\ast$}]{win, }
+\item[{int}]{c, }
+\item[{{\bf \-\_\-fontc} $\ast$}]{f}
+\end{DoxyParamCaption}
+)}}\label{ili9341_8h_acea4413f1d84d044b7d83a96bb0bcb79}
+
+
+Get font attributes for a font. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$win} & Window Structure \\
+\hline
+\mbox{\tt in}  & {\em c} & character \\
+\hline
+\mbox{\tt in}  & {\em $\ast$f} & font structure \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 52 of file font.\-c.
+
+
+
+Referenced by tft\-\_\-cleareol(), tft\-\_\-draw\-Char(), tft\-\_\-get\-\_\-font\-\_\-height(), and tft\-\_\-putch().
 
 \hypertarget{ili9341_8h_a8ccc4d21526cb068ee51c041547c9980}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-abs\-\_\-window@{tft\-\_\-abs\-\_\-window}}
 \index{tft\-\_\-abs\-\_\-window@{tft\-\_\-abs\-\_\-window}!ili9341.h@{ili9341.\-h}}
@@ -339,7 +376,11 @@ Definition at line 468 of file ili9341.\-c.
 \end{DoxyParams}
 
 
-Definition at line 895 of file ili9341.\-c.
+Definition at line 896 of file ili9341.\-c.
+
+
+
+Referenced by tft\-\_\-putch().
 
 \hypertarget{ili9341_8h_aef8157caa81d7962742f4ef9455264f9}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-color565@{tft\-\_\-color565}}
 \index{tft\-\_\-color565@{tft\-\_\-color565}!ili9341.h@{ili9341.\-h}}
@@ -370,6 +411,39 @@ Definition at line 356 of file ili9341.\-c.
 
 
 Referenced by user\-\_\-task().
+
+\hypertarget{ili9341_8h_a87fb749b0b5887e26f76d1292b93b0ed}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-draw\-Char@{tft\-\_\-draw\-Char}}
+\index{tft\-\_\-draw\-Char@{tft\-\_\-draw\-Char}!ili9341.h@{ili9341.\-h}}
+\subsubsection[{tft\-\_\-draw\-Char}]{\setlength{\rightskip}{0pt plus 5cm}void tft\-\_\-draw\-Char (
+\begin{DoxyParamCaption}
+\item[{{\bf window} $\ast$}]{win, }
+\item[{{\bf uint8\-\_\-t}}]{c}
+\end{DoxyParamCaption}
+)}}\label{ili9341_8h_a87fb749b0b5887e26f76d1292b93b0ed}
+
+
+Display a character and optionally wrap the graphic cursor. 
+
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{ili9341_8h_af577ed6737059ccbe04d4e2cd476a0e1}{tft\-\_\-putch} for \hyperlink{bdfview_8c_ae0665038b72011f5c680c660fcb59459}{main} output function Does not handle control characters 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$win} & Window Structure of active window \\
+\hline
+\mbox{\tt in}  & {\em c} & character \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void T\-O\-D\-O\-: To make proportional fonts render even better we should reduce the font gap so that all of the active pixels between two fonts come no nearer then gap. Example\-: consider the case of \char`\"{}\-Td\char`\"{}, the 'd' can actually be part way I\-N\-S\-I\-D\-E the T's area without touching. We could keep a list of all left most active pixels of the previous character and test then against all the right most active pixels of the current character to adjust the skip spacing value to a fixed gap. 
+\end{DoxyReturn}
+
+
+Definition at line 162 of file font.\-c.
+
+
+
+Referenced by tft\-\_\-putch().
 
 \hypertarget{ili9341_8h_a7cef55bef133e9918955b4d2a53cf230}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-draw\-Line@{tft\-\_\-draw\-Line}}
 \index{tft\-\_\-draw\-Line@{tft\-\_\-draw\-Line}!ili9341.h@{ili9341.\-h}}
@@ -425,7 +499,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 836 of file ili9341.\-c.
+Definition at line 837 of file ili9341.\-c.
 
 
 
@@ -461,7 +535,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 759 of file ili9341.\-c.
+Definition at line 760 of file ili9341.\-c.
 
 
 
@@ -507,7 +581,7 @@ Definition at line 538 of file ili9341.\-c.
 
 
 
-Referenced by tft\-\_\-draw\-Char(), tft\-\_\-fill\-Rect\-X\-Y(), tft\-\_\-fill\-Round\-Rect(), and tft\-\_\-fill\-Win().
+Referenced by tft\-\_\-cleareol(), tft\-\_\-draw\-Char(), tft\-\_\-fill\-Rect\-X\-Y(), tft\-\_\-fill\-Round\-Rect(), tft\-\_\-fill\-Win(), and tft\-\_\-putch().
 
 \hypertarget{ili9341_8h_a49f75769b08991ac4a56bfb2f4e1fa05}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-fill\-Rect\-X\-Y@{tft\-\_\-fill\-Rect\-X\-Y}}
 \index{tft\-\_\-fill\-Rect\-X\-Y@{tft\-\_\-fill\-Rect\-X\-Y}!ili9341.h@{ili9341.\-h}}
@@ -588,7 +662,7 @@ Only works if font is proportional type
 \end{DoxyParams}
 
 
-Definition at line 732 of file ili9341.\-c.
+Definition at line 733 of file ili9341.\-c.
 
 
 
@@ -612,7 +686,7 @@ Set current font type to variable.
 \end{DoxyParams}
 
 
-Definition at line 742 of file ili9341.\-c.
+Definition at line 743 of file ili9341.\-c.
 
 
 
@@ -636,7 +710,7 @@ Get font height.
 \end{DoxyParams}
 
 
-Definition at line 717 of file ili9341.\-c.
+Definition at line 718 of file ili9341.\-c.
 
 \hypertarget{ili9341_8h_a14e5cdfbb744c04570df508551f77add}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-init@{tft\-\_\-init}}
 \index{tft\-\_\-init@{tft\-\_\-init}!ili9341.h@{ili9341.\-h}}
@@ -701,11 +775,11 @@ put character in current winoow
 \end{DoxyParams}
 
 
-Definition at line 912 of file ili9341.\-c.
+Definition at line 916 of file ili9341.\-c.
 
 
 
-Referenced by tft\-\_\-cleareol(), tft\-\_\-printf(), and tft\-\_\-putch().
+Referenced by tft\-\_\-printf().
 
 \hypertarget{ili9341_8h_a0ab0e2c6fd7e60a8f15da8e4fbbe8ac8}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-read\-Data16@{tft\-\_\-read\-Data16}}
 \index{tft\-\_\-read\-Data16@{tft\-\_\-read\-Data16}!ili9341.h@{ili9341.\-h}}
@@ -841,7 +915,7 @@ Set current font size (per current rotation)
 \end{DoxyParams}
 
 
-Definition at line 708 of file ili9341.\-c.
+Definition at line 709 of file ili9341.\-c.
 
 
 
@@ -871,7 +945,7 @@ Set current window offset (per current rotation)
 \end{DoxyParams}
 
 
-Definition at line 696 of file ili9341.\-c.
+Definition at line 697 of file ili9341.\-c.
 
 
 
@@ -929,7 +1003,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 683 of file ili9341.\-c.
+Definition at line 684 of file ili9341.\-c.
 
 
 

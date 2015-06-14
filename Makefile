@@ -251,7 +251,7 @@ TARGET_OUT	:= $(addprefix $(BUILD_BASE)/,$(TARGET).out)
 #/opt/Espressif/esp-open-sdk/ESP8266_SDK/ld/eagle.app.v6.ld
 #LD_SCRIPT	:= $(addprefix -T$(SDK_BASE)/$(SDK_LDDIR)/,$(LD_SCRIPT))
 #LD_SCRIPT	:= $(addprefix -T$(SDK_BASE)/$(SDK_LDDIR)/,$(LD_SCRIPT))
-LD_SCRIPT	:= $(addprefix -T/opt/Espressif/projects/mike/ld/,$(LD_SCRIPT))
+LD_SCRIPT	:= $(addprefix -T/opt/Espressif/projects/esp8266_ili9341/ld/,$(LD_SCRIPT))
 #LD_SCRIPT   := $(addprefix -T/opt/Espressif/CHERTS/esp8266-devkit/Espressif/examples/esp8266_ili9341/ld/,$(LD_SCRIPT))
 
 INCDIR	:= $(addprefix -I,$(SRC_DIR))
