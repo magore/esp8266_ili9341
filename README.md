@@ -18,7 +18,7 @@
   * Small Print with full floating point support along with ftoa/atof and integer conversions
   * BDF fonts and a BDF font to C conversion code and optimized display code
   * Network server client example
-  * ILI9341 display driver
+  * ILI9341 display driver with multiple window support 
    
  * Updated:
   * I rewrote most of Adafruit code ili9341 graphics library
