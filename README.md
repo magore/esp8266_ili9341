@@ -19,6 +19,7 @@
   * BDF fonts and a BDF font to C conversion code and optimized display code
   * Network server client example
   * ILI9341 display driver with multiple window support 
+  * readPixel() works on most all 4 wire displays
    
  * Updated:
   * I rewrote most of Adafruit code ili9341 graphics library
@@ -93,6 +94,8 @@ ___
       * My mostly rewritten ili9341 display driver code handles multiple windows
         * Optimized line drawing function is from CHERTS
         * Non optimized version is also supplied that I wrote in 1984
+        * multiple window support 
+        * readPixel() works on most all 4 wire displays now
     * util.c
     * util.h
       * Flash reading and bittest functions for system requiring specific alignment and access size of flash memory.
