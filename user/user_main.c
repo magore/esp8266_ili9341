@@ -309,6 +309,21 @@ LOCAL void user_task(void)
 #endif
 }
 
+#ifdef READ_PIXEL_DEBUG
+MEMSPACE
+void read_tests(window *win)
+{
+	int x,y;
+	uint16_t color;
+	y = 4;
+	for(x=0;x<16;++x)
+	{
+		color = tft_readPixel(win,x,y);
+		ets_uart_printf("x:%d,y:%d,c:%04x\n", x,y,color);
+	}
+	 ets_uart_printf("\n");
+}
+#endif
 
 /**
  @brief Initialize user task
@@ -378,6 +393,11 @@ void user_init(void)
 	wintest->wrap = 1;
 	tft_setpos(wintest, 0,0);
 	tft_printf(wintest, "Test1\nTest2\nTest3");
+
+#ifdef READ_PIXEL_DEBUG
+	read_tests(wintest);
+#endif
+
 
 /* Draw cube in the second window as a test */
 #if defined(WIRECUBE) && !defined(EARTH)

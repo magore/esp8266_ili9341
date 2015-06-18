@@ -14,7 +14,6 @@ var searchData=
   ['config_5ffor_5frx_5ftx',['CONFIG_FOR_RX_TX',['../hspi_8h.html#a0a89ba717c8b84a7c3799d310b54e5c2',1,'hspi.h']]],
   ['config_5ffor_5ftx',['CONFIG_FOR_TX',['../hspi_8h.html#ad9632609fe3a2c77d6bca3d5252980e3',1,'hspi.h']]],
   ['constrain',['CONSTRAIN',['../util_8h.html#a16354a19da36d5370eb20304b4facb33',1,'util.h']]],
-  ['convert565torgb',['convert565toRGB',['../ili9341_8c.html#a845d3d47f13ba79aba1459b7630bbb90',1,'convert565toRGB(uint16_t color, uint8_t *r, uint8_t *g, uint8_t *b):&#160;ili9341.c'],['../ili9341_8h.html#a845d3d47f13ba79aba1459b7630bbb90',1,'convert565toRGB(uint16_t color, uint8_t *r, uint8_t *g, uint8_t *b):&#160;ili9341.c']]],
   ['convert_5ffont2c',['Convert_Font2c',['../bdffontutil_8c.html#a9461259743229256336c4260de7e0e0e',1,'Convert_Font2c(FILE *out, _font *font):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a9461259743229256336c4260de7e0e0e',1,'Convert_Font2c(FILE *out, _font *font):&#160;bdffontutil.c']]],
   ['copyright',['COPYRIGHT',['../struct__fontinfo.html#a7f4b0949fe49cf3fac04f225e1f36ed2',1,'_fontinfo']]],
   ['copyright_2emd',['COPYRIGHT.md',['../COPYRIGHT_8md.html',1,'']]],

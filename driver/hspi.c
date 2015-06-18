@@ -26,7 +26,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <user_config.h>
 
-#define HSPI_PRESCALER 2
+#ifndef HSPI_PRESCALER
+	#define HSPI_PRESCALER 16
+#endif
 
 static uint16_t _f_ind = 0;                       // fifo buffer index
 static uint8_t _f_buf[HSPI_FIFO_SIZE+2];          // fifo buffer, same as HSPI FIFO

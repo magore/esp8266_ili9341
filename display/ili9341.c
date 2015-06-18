@@ -274,33 +274,45 @@ void tft_writeDataBuffered(uint16_t *color_data, uint32_t count)
 }
 
 
-/// @brief  Read ILI9341 16bit register value
-/// Special undocumented way to read registers on 4 wire
+/// @brief  Read parameters on SPI bus ILI9341 displays without memory interface II enabled.
+/// Note: Most of the available SPI enabled ILI9341 displays are hardwired to interface I mode.
+/// This means most of the read commands do not work! 
+/// (They are artifically crippled by the manufactures for reasons unknown)..
+/// However; This undocumented command overrides the restriction for reading command parameters.
 /// SPI configurations
 /// See M:[0-3] control bits in ILI9341 documenation
 ///      - refer to interface I and II
 ///      modes. Most ILI9341 displays are using interface I
 ///      rather the interface II mode.
-/// It appears that direct reading has been disabled on most
-/// SPI displays.
-/// @param[in] reg: register to read
-/// @param[in] parameter: parameter number to read
+/// @param[in] command: command whose parameters we want to read 
+/// @param[in] parameter: parameter number
 /// @return 16bit value
-uint32_t tft_readRegister(uint8_t reg, uint8_t parameter)
+uint32_t tft_readRegister(uint8_t command, uint8_t parameter)
 {
-    uint8_t data;
+    uint32_t result;
 	uint8_t tmp[4];
 
+	// We do not know what the 0x10 offset implies - but it is required.
+	// ILI9341 parameter
 	tmp[0] = 0x10 + parameter;
+	// Undocumented 0xd9 command
     tft_writeCmdData(0xd9,tmp,1);
     hspi_waitReady();
     TFT_COMMAND;
-	tmp[0] = reg;
+	// The real ILI9341 Command whose parameters we want to read
+	tmp[0] = command;	
 	tmp[1] = 0;
+	tmp[2] = 0;
+	tmp[3] = 0;
     hspi_TxRx(tmp,4);
-    ets_uart_printf("data: %02x,%02x,%02x,%02x\r\n", tmp[0],tmp[1],tmp[2],tmp[3]);
-	data = tmp[1];
-    return data;
+    ets_uart_printf("command:%02x, data: %02x,%02x,%02x,%02x\r\n", 
+		0xff & command, 
+		0xff & tmp[0],
+		0xff & tmp[1],
+		0xff & tmp[2],
+		0xff & tmp[3]);
+	result = tmp[1];
+    return (result);
 }
 
 
@@ -312,9 +324,11 @@ uint32_t tft_readId(void)
     uint32_t_bytes id;
 
     id.all = 0;
-    id.bytes.b2 = tft_readRegister(0xd3, 1);
-    id.bytes.b1 = tft_readRegister(0xd3, 2);
-    id.bytes.b0 = tft_readRegister(0xd3, 3);
+	/// Paramter 0 is unused
+	/// See Read ID4 Command ( 0xd3 ) for a description of the parameters
+    id.bytes.b2 = tft_readRegister(0xd3, 1);	// Parameter 1
+    id.bytes.b1 = tft_readRegister(0xd3, 2);	// Parameter 2
+    id.bytes.b0 = tft_readRegister(0xd3, 3);	// Parameter 3
 
     return  id.all;
 }
@@ -353,11 +367,10 @@ uint16_t tft_readData16()
 /// @param[in] b: blue data
 /// @param[in] g: green data
 MEMSPACE
-uint16_t tft_color565(uint8_t r, uint8_t g, uint8_t b)
+uint16_t tft_RGBto565(uint8_t r, uint8_t g, uint8_t b)
 {
-    return ((r >> 3) << 11) | ((g >> 2) << 5) | (b >>3);
+    return ((r & 0xf8) << 8) | ((g & 0xfc) << 3) | ((b & 0xf8) >>3);
 }
-
 
 /// @brief  Convert 16bit colr into 8-bit (each) R,G,B
 /// ILI9341 defaults to MSB/LSB data so we have to reverse it
@@ -366,7 +379,7 @@ uint16_t tft_color565(uint8_t r, uint8_t g, uint8_t b)
 /// @param[out] *b: blue data
 /// @param[out] *g: green data
 MEMSPACE
-void convert565toRGB(uint16_t color, uint8_t *r, uint8_t *g, uint8_t *b)
+void tft_565toRGB(uint16_t color, uint8_t *r, uint8_t *g, uint8_t *b)
 {
     *r = ((0xf800 & color)>>8);
     *g = ((0x7e0 & color)>>3);
@@ -750,11 +763,11 @@ void tft_font_var(window *win)
 /// @brief Pixel functions
 /// ====================================
 
-/// @brief Draw one pixel set to color
+/// @brief Draw one pixel set to color in 16bit 565 RGB format
 /// We clip the window to the current view
 /// @param[in] win*: window structure
 /// @param[in] x: X Start
-/// @param[in] y: Y STart
+/// @param[in] y: Y Start
 /// @param[in] color: color to set
 /// @return void
 void tft_drawPixel(window *win, int16_t x, int16_t y, int16_t color)
@@ -769,16 +782,36 @@ void tft_drawPixel(window *win, int16_t x, int16_t y, int16_t color)
         return;
 
     tft_rel_window(win, x,y,1,1);
-
-#ifdef JUNK
-    tft_writeCmd(0x2c);
-    tft_writeData16(color);
-#else
     data[0] = color >>8;
     data[1] = color;
     tft_writeCmdData(0x2c, data, 2);
-#endif
 
+}
+
+/// @brief Read one pixel and return color in 16bit 565 RGB format
+/// We clip the window to the current view
+/// Note: Read Memory must be don in a continious write/read operation
+/// If we try to use one hspi_TxRx followed by another it will always fail
+/// @param[in] win*: window structure
+/// @param[in] x: X Start
+/// @param[in] y: Y Start
+/// @return color in 565 format
+MEMSPACE
+uint16_t tft_readPixel(window *win, int16_t x, int16_t y)
+{
+    uint8_t data[5];
+    uint16_t color;
+	// set window
+    tft_rel_window(win, x,y,1,1);
+    data[0] = 0x2e;
+    data[1]; // send dummy NOP
+    hspi_waitReady();
+    TFT_COMMAND;
+    TFT_CS_ACTIVE;
+    hspi_TxRx(data, 5);
+    TFT_CS_DEACTIVE;
+    color = tft_RGBto565(data[2],data[3],data[4]);
+    return(color);
 }
 
 
@@ -786,7 +819,7 @@ void tft_drawPixel(window *win, int16_t x, int16_t y, int16_t color)
 /// From my blit test code testit.c 1984 - 1985 Mike Gore
 /// @param[in] win*: window structure
 /// @param[in] x0: X Start
-/// @param[in] y0: Y STart
+/// @param[in] y0: Y Start
 /// @param[in] x1: X End
 /// @param[in] y1: Y End
 /// @param[in] color: color to set
@@ -829,7 +862,7 @@ void tft_drawLine(window *win, int16_t x0, int16_t y0, int16_t x1, int16_t y1, u
 /// https://github.com/CHERTS/esp8266-devkit/tree/master/Espressif/examples/esp8266_ili9341
 /// @param[in] win*: window structure
 /// @param[in] x0: X Start
-/// @param[in] y0: Y STart
+/// @param[in] y0: Y Start
 /// @param[in] x1: X End
 /// @param[in] y1: Y End
 /// @param[in] color: color to set

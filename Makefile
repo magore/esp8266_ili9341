@@ -12,6 +12,12 @@ FW_BASE		= firmware
 SOFTCS = 
 ILI9341_DEBUG = 
 
+# Test readPixel() function
+READ_PIXEL_DEBUG = 1
+
+# HSPI Prescaler
+HSPI_PRESCALER = 2
+
 # wireframe earth
 EARTH = 1
 # rotaing Cube
@@ -171,8 +177,12 @@ CFLAGS	= -Os -g -O2 -Wpointer-arith -Wundef -Werror -Wl,-EL \
 	-nostdlib -mlongcalls -mtext-section-literals  -D__ets__ -DICACHE_FLASH \
 	-ffunction-sections 
 
-MODULES	= driver user printf cordic display
 # which modules (subdirectories) of the project to include in compiling
+MODULES	= driver user printf cordic display
+
+ifdef HSPI_PRESCALER
+	CFLAGS += -DHSPI_PRESCALER=$(HSPI_PRESCALER)
+endif
 
 # Include font specifications - used by proportional fonts 
 	CFLAGS  += -DFONTSPECS 
@@ -181,8 +191,13 @@ ifdef USE_FIFO
 	CFLAGS  += -DUSE_FIFO
 endif
 
+
 ifdef ILI9341_DEBUG
 	CFLAGS  += -DILI9341_DEBUG
+endif
+
+ifdef READ_PIXEL_DEBUG
+	CFLAGS  += -DREAD_PIXEL_DEBUG
 endif
     
 ifdef SOFTCS

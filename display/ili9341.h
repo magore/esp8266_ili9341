@@ -55,6 +55,10 @@ typedef struct
 
 // ============================================================
 
+/* font.c */
+int font_attr ( window *win , int c , _fontc *f );
+void tft_drawChar ( window *win , uint8_t c );
+
 /* ili9341.c */
 MEMSPACE window *tft_init ( void );
 uint32_t tft_abs_window ( int16_t x , int16_t y , int16_t w , int16_t h );
@@ -64,11 +68,11 @@ void tft_writeCmdData ( uint8_t cmd , uint8_t *data , uint8_t bytes );
 void tft_writeData16 ( uint16_t val );
 void tft_writeColor16Repeat ( uint16 color , uint32_t count );
 void tft_writeDataBuffered ( uint16_t *color_data , uint32_t count );
-uint32_t tft_readRegister ( uint8_t reg , uint8_t parameter );
+uint32_t tft_readRegister ( uint8_t command , uint8_t parameter );
 MEMSPACE uint32_t tft_readId ( void );
 uint16_t tft_readData16 ( void );
-MEMSPACE uint16_t tft_color565 ( uint8_t r , uint8_t g , uint8_t b );
-MEMSPACE void convert565toRGB ( uint16_t color , uint8_t *r , uint8_t *g , uint8_t *b );
+MEMSPACE uint16_t tft_RGBto565 ( uint8_t r , uint8_t g , uint8_t b );
+MEMSPACE void tft_565toRGB ( uint16_t color , uint8_t *r , uint8_t *g , uint8_t *b );
 MEMSPACE void tft_invertDisplay ( int flag );
 void tft_bit_blit ( window *win , uint8_t *ptr , int x , int y , int w , int h , uint16_t fg , uint16_t bg );
 void tft_blit ( window *win , uint16_t *ptr , int x , int y , int w , int h );
@@ -85,13 +89,10 @@ MEMSPACE int tft_get_font_height ( window *win );
 MEMSPACE tft_font_fixed ( window *win );
 MEMSPACE void tft_font_var ( window *win );
 void tft_drawPixel ( window *win , int16_t x , int16_t y , int16_t color );
+MEMSPACE uint16_t tft_readPixel ( window *win , int16_t x , int16_t y );
 void tft_drawLine ( window *win , int16_t x0 , int16_t y0 , int16_t x1 , int16_t y1 , uint16_t color );
 void tft_drawLine ( window *win , int16_t x0 , int16_t y0 , int16_t x1 , int16_t y1 , uint16_t color );
 MEMSPACE void tft_cleareol ( window *win );
 MEMSPACE void tft_putch ( window *win , int c );
-
-/* font.c */
-int font_attr ( window *win , int c , _fontc *f );
-void tft_drawChar ( window *win , uint8_t c );
 
 #endif // _ILI9341_SUP_H_

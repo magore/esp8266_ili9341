@@ -51,7 +51,9 @@ void tft_configRegister(void)
 {
     uint8_t data[15] = {0};
 
-    data[0] = 0x39;
+	
+// // POWER_ON_SEQ_CONTROL
+    data[0] = 0x39; 
     data[1] = 0x2C;
     data[2] = 0x00;
     data[3] = 0x34;
@@ -94,11 +96,13 @@ void tft_configRegister(void)
     data[0] = 0x86;                               //--
     tft_writeCmdData(0xC7, data, 1);              //VCM control2
 
-    data[0] = 0x40;                               // column address order
+// MG was 0x40
+    data[0] = 0x48;                               // column address order
     tft_writeCmdData(0x36, data, 1);              // Memory Access Control
 
     data[0] = 0x55;
     tft_writeCmdData(0x3A, data, 1);
+
 
     data[0] = 0x00;
     data[1] = 0x18;
@@ -150,9 +154,12 @@ void tft_configRegister(void)
     tft_writeCmdData(0xE1, data, 15);             //Set Gamma
 
     tft_writeCmdData(0x11, 0, 0);                 //Exit Sleep
-    os_delay_us(120000);
+	// MG was 120000
+    os_delay_us(150000);
 
     tft_writeCmdData(0x29, 0, 0);                 //Display on
+	// MG added
+    os_delay_us(150000);
     tft_writeCmdData(0x2c, 0, 0);
 }
 
