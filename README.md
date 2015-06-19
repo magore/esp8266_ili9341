@@ -187,5 +187,6 @@ ___
         * Intializes ESP8266 and sets up demo with 4 active windows with independent attributes
 
 @par Demo Images
-   * ![](https://github.com/magore/esp8266_ili9341/blob/master/display.jpg)
-      * ./send -i 192.168.200.116 -m 'testing\n2\nscrolling\ntext\n1\n2'
+   * Running demo and sending a message to the network window
+   * ./send -i 192.168.200.116 -m 'testing\n2\nscrolling\ntext\n1\n2'
+     * Result: ![](https://github.com/magore/esp8266_ili9341/blob/master/display.jpg)
