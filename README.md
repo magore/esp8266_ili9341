@@ -188,3 +188,4 @@ ___
 
 @par Demo Images
    * ![](https://github.com/magore/esp8266_ili9341/blob/master/display.jpg)
+      * ./send -i 192.168.200.116 -m 'testing\n2\nscrolling\ntext\n1\n2'
