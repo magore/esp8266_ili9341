@@ -185,3 +185,6 @@ ___
      * Main user demo task
      * user_main.c
         * Intializes ESP8266 and sets up demo with 4 active windows with independent attributes
+
+@par Demo Images
+   * ![](https://github.com/magore/esp8266_ili9341/blob/master/display.jpg)
