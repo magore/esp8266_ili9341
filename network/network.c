@@ -40,6 +40,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 uint8_t network_msg[256];
+uint8_t ip_msg[20];
 static struct espconn *TCP_Server;
 
 #ifndef TCP_PORT
@@ -128,6 +129,10 @@ void wifi_event_cb( System_Event_t *event_p)
                     IP2STR( & event_p->event_info.got_ip.gw) );
             ets_uart_printf( "MAC:[" MACSTR "]\n" ,
                     MAC2STR( event_p->event_info.sta_connected.mac) );
+
+			t_snprintf(ip_msg, sizeof(ip_msg), "IP:" IPSTR , 
+					IP2STR( & event_p->event_info.got_ip.ip));
+
             break;
         case EVENT_SOFTAPMODE_STACONNECTED :
             ets_uart_printf( "STACONNECTED MAC:[" MACSTR "], AID:%02x\n " ,
@@ -180,6 +185,7 @@ void setup_networking(void)
 	const char *password = SSID_PASS;
 
 	os_memset(network_msg,0,sizeof(network_msg));
+	os_memset(ip_msg,0,sizeof(ip_msg));
 
     if(wifi_get_opmode() != STATION_MODE)
     {

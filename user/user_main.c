@@ -75,6 +75,7 @@ MEMSPACE void user_init ( void );
 
 // Display offset
 int16_t xpos,ypos;
+int16_t ip_xpos,ip_ypos;
 // Rotation angle
 LOCAL double degree = 0.0;
 // Rotation increment
@@ -227,6 +228,7 @@ LOCAL void user_task(void)
 	uint8_t red, blue,green;
 	long timer = 0;
 	uint16 system_adc_read(void);
+	extern uint8_t ip_msg[];
 
 
 #ifdef WIRECUBE
@@ -301,6 +303,8 @@ LOCAL void user_task(void)
 
 	// ets_uart_printf("Degree: %d \r\n",(int)degree);
 	count += 1;
+	tft_setpos(winstats,ip_xpos,ip_ypos);
+	tft_printf(winstats,"%s\n", ip_msg);
 	tft_setpos(winstats,xpos,ypos);
 	tft_set_font(winstats,0);
 	tft_printf(winstats,"c:% 9ld, %+7.2f\n", count, degree);
@@ -370,6 +374,9 @@ void user_init(void)
 	tft_font_var(winstats);
 	tft_setTextColor(winstats, ILI9341_RED,0);
 	tft_printf(winstats, "DISP ID: %04lx\n", ID);
+	ip_xpos = winstats->x;
+	ip_ypos = winstats->y;
+	tft_printf(winstats, "\n");
 	tft_setTextColor(winstats, ILI9341_WHITE,0);
 #if ILI9341_DEBUG & 1
 	ets_uart_printf("\r\nDisplay ID=%08lx\r\n",ID);
