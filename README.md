@@ -18,8 +18,9 @@
   * Small Print with full floating point support along with ftoa/atof and integer conversions
   * BDF fonts and a BDF font to C conversion code and optimized display code
   * Network server client example
-  * ILI9341 display driver with multiple window support 
-  * readPixel() works on most all 4 wire displays
+  * ILI9341 display driver with multiple custom sized window support 
+  * readPixel() and custom sized window scrolling 
+     * Not limited by ILI9341 hardware scroll restrictions.
    
  * Updated:
   * I rewrote most of Adafruit code ili9341 graphics library
@@ -96,6 +97,7 @@ ___
         * Non optimized version is also supplied that I wrote in 1984
         * multiple window support 
         * readPixel() works on most all 4 wire displays now
+        * scrolling window support
     * util.c
     * util.h
       * Flash reading and bittest functions for system requiring specific alignment and access size of flash memory.
@@ -177,7 +179,9 @@ ___
 
    * send.c
      * Send message to network server 
-
-   * user    
+     * Example: ./send -i 192.168.200.116 -m '\fscrolling\ntext\n1\n2\n3\n4'
+        * These escape characters are processed on the display: \n, \t, \f
+  * user    
      * Main user demo task
-
+     * user_main.c
+        * Intializes ESP8266 and sets up demo with 4 active windows with independent attributes

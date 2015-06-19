@@ -89,7 +89,7 @@ typedef struct
 typedef struct
 {
     int8_t index;                                 // font index
-    int8_t fixed;
+    int8_t flags;								  // font and window attributes
     int8_t w;                                     // font width - caries for each character
     int8_t h;                                     // font hight
     int8_t x;                                     // font width - caries for each character

@@ -42,16 +42,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 window *master;
 
 /* Top Left status window */
-window winstatsdow;
-window *winstats = &winstatsdow;
+window _winstats;
+window *winstats = &_winstats;
 
 /* Top Right Wireframe window */
-window windemodow;
-window *windemo = &windemodow;
+window _windemo;
+window *windemo = &_windemo;
 
 /* Top Left status window */
-window wintestdow;
-window *wintest = &wintestdow;
+window _wintest;
+window *wintest = &_wintest;
+
+/* Top Left status window */
+window _wintestdemo;
+window *wintestdemo = &_wintestdemo;
 
 extern int ets_uart_printf(const char *fmt, ...);
 void ets_timer_disarm(ETSTimer *ptimer);
@@ -278,8 +282,8 @@ LOCAL void user_task(void)
 	V.y = degree;
 	V.z = degree;
 	//time1 = system_get_time();
-	wire_draw(windemo, cube_points, cube_edges, &V, windemo->w/2, windemo->h/2, dscale, 0xffff);
-	//wire_draw(windemo, cube_points, cube_edges, &V, windemo->w/2, windemo->h/2, dscale, 0xffff);
+	wire_draw(windemo, cube_points, cube_edges, &V, windemo->w/2, windemo->h/2, dscale, ILI9341_WHITE);
+	//wire_draw(windemo, cube_points, cube_edges, &V, windemo->w/2, windemo->h/2, dscale, ILI9341_WHITE);
 	//time2 = system_get_time();
 #endif
 
@@ -309,17 +313,20 @@ LOCAL void user_task(void)
 #endif
 }
 
-#ifdef READ_PIXEL_DEBUG
+#if ILI9341_DEBUG & 1
 MEMSPACE
 void read_tests(window *win)
 {
 	int x,y;
 	uint16_t color;
+	uint16_t buffer[3*16];
 	y = 4;
+	tft_readRect(win, x, y, 16, 1, buffer);
 	for(x=0;x<16;++x)
 	{
-		color = tft_readPixel(win,x,y);
-		ets_uart_printf("x:%d,y:%d,c:%04x\n", x,y,color);
+		//color = tft_readPixel(win,x,y);
+		// ets_uart_printf("x:%d,y:%d,c:%04x\n", x,y,color);
+		ets_uart_printf("x:%d,y:%d,c:%04x\n", x,y,buffer[x]);
 	}
 	 ets_uart_printf("\n");
 }
@@ -357,13 +364,16 @@ void user_init(void)
 
 	/* Setup main status window */
 	tft_window_init(winstats,0,0, master->w * 6 / 10, master->h/2);
-	winstats->wrap = 1;
 
 	tft_setpos(winstats, 0,0);
 	tft_set_font(winstats,5);
 	tft_font_var(winstats);
+	tft_setTextColor(winstats, ILI9341_RED,0);
 	tft_printf(winstats, "DISP ID: %04lx\n", ID);
+	tft_setTextColor(winstats, ILI9341_WHITE,0);
+#if ILI9341_DEBUG & 1
 	ets_uart_printf("\r\nDisplay ID=%08lx\r\n",ID);
+#endif
 	tft_font_fixed(winstats);
 
 	// Save last display offset of the status update line - used in the demo task
@@ -384,55 +394,63 @@ void user_init(void)
 	dscale_inc = dscale_max / 100;
 
 /* Setup second window for window testing*/
-	tft_window_init(wintest,0,master->h/2, master->w, master->h/2);
-	tft_setTextColor(wintest, 0xffff,ILI9341_NAVY);
+	tft_window_init(wintest,0,master->h/2, master->w/2, master->h/2);
+	tft_setTextColor(wintest, ILI9341_WHITE,ILI9341_NAVY);
     tft_fillWin(wintest, wintest->bg);
-
 	tft_set_font(wintest,3);
-	tft_font_var(wintest);
-	wintest->wrap = 1;
+	//tft_font_var(wintest);
+
+	// write some text
 	tft_setpos(wintest, 0,0);
 	tft_printf(wintest, "Test1\nTest2\nTest3");
 
-#ifdef READ_PIXEL_DEBUG
+	/* Test demo area window */
+	tft_window_init(wintestdemo,master->w/2,master->h/2,master->w/2, master->h/2);
+	tft_setTextColor(wintestdemo, ILI9341_WHITE,0);
+    tft_fillWin(wintestdemo, wintestdemo->bg);
+	tft_set_font(wintestdemo,3);
+	tft_font_var(wintestdemo);
+
+#if ILI9341_DEBUG & 1
 	read_tests(wintest);
 #endif
-
 
 /* Draw cube in the second window as a test */
 #if defined(WIRECUBE) && !defined(EARTH)
 // Cube points were defined with sides of 1.0 
 // We want a scale of +/- w/2
 	double tscale_max;
-	if(wintest->w < wintest->h) 
-		tscale_max = wintest->w/2;
+	if(wintestdemo->w < wintestdemo->h) 
+		tscale_max = wintestdemo->w/2;
 	else
-		tscale_max = wintest->h/2;
+		tscale_max = wintestdemo->h/2;
 	ang = 45.0;
 	V.x = ang;
 	V.y = ang;
 	V.z = ang;
-	wire_draw(wintest, cube_points, cube_edges, &V, wintest->w/2, wintest->h/2, tscale_max, ILI9341_RED);
+	wire_draw(wintestdemo, cube_points, cube_edges, &V, wintestdemo->w/2, wintestdemo->h/2, tscale_max, ILI9341_RED);
 #endif
 
 #ifdef EARTH
 // Earth points were defined with radius of 0.5, diameter of 1.0
 // We want a scale of +/- w/2
 	double tscale_max;
-	if(wintest->w < wintest->h) 
-		tscale_max = wintest->w/2;
+	if(wintestdemo->w < wintestdemo->h) 
+		tscale_max = wintestdemo->w;
 	else
-		tscale_max = wintest->h/2;
+		tscale_max = wintestdemo->h;
 	V.x = -90;
 	V.y = -90;
 	V.z = -90;
 	// draw earth
 	//time1 = system_get_time();
 // Earth points were defined over with a scale of -0.5/+0.5 scale - so scale must be 1 or less
-	wire_draw(wintest, earth_data, NULL, &V, wintest->w/2, wintest->h/2, tscale_max, 0xffff);
+	wire_draw(wintestdemo, earth_data, NULL, &V, wintestdemo->w/2, wintestdemo->h/2, tscale_max, wintestdemo->fg);
 	//time2 = system_get_time();
 #endif
 	ets_uart_printf("\r\nDisplay Init Done\r\n");
+
+
 
 	ets_wdt_disable();
 

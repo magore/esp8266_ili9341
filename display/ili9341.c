@@ -66,8 +66,11 @@ window *tft_init(void)
     return (tft);
 }
 
+/// ====================================
+/// @brief window limits
+/// ====================================
 
-/// @brief Set the ili9341 update window
+/// @brief Set the ili9341 working window by absolute position and size
 /// @param[in] x: Starting X offset
 /// @param[in] y: Starting Y offset
 /// @param[in] w: Width
@@ -126,25 +129,36 @@ uint32_t tft_abs_window(int16_t x, int16_t y, int16_t w, int16_t h)
     tmp[1] = x & 0xff;
     tmp[2] = xl >> 8;
     tmp[3] = xl & 0xff;
-    tft_writeCmdData(0x2A, tmp, 4);
+    tft_Cmd_Data_TXRX(0x2A, tmp, 4);
     tmp[0] = y >> 8;
     tmp[1] = y & 0xff;
     tmp[2] = yl >> 8;
     tmp[3] = yl & 0xff;
-    tft_writeCmdData(0x2B, tmp, 4);
+    tft_Cmd_Data_TXRX(0x2B, tmp, 4);
 
 	bytes = w;
 	bytes *= h;
 	return( bytes);
 }
 
+/// @brief Set the ili9341 working window by relative position and size
+/// @param[in] win*: window structure
+/// @param[in] x: Starting X offset
+/// @param[in] y: Starting Y offset
+/// @param[in] w: Width
+/// @param[in] h: Height
+/// @return  bytes w * h after clipping, 0 on error
+uint32_t tft_rel_window(window *win, int16_t x, int16_t y, int16_t w, int16_t h)
+{
+	return( tft_abs_window(x+win->xoff, y+win->yoff, w,h) );
+}
 
 ///  ====================================
 
 /// @brief  Transmit 8 bit display command
 /// @param[in] cmd: command code
 /// return: void
-void tft_writeCmd(uint8_t cmd)
+void tft_Cmd(uint8_t cmd)
 {
 // Do not change Command/Data control until SPI bus clear
     hspi_waitReady();
@@ -155,26 +169,40 @@ void tft_writeCmd(uint8_t cmd)
 }
 
 
-/// @brief  Transmit 8 bit display data
-/// @param[in] data: data
-/// return: void
-void tft_writeData(uint8_t data)
-{
-// Do not change Command/Data control until SPI bus clear
-    hspi_waitReady();
-    TFT_DATA;
-    TFT_CS_ACTIVE;
-    hspi_Tx(&data, 1);
-    TFT_CS_DEACTIVE;
-}
-
+/// ====================================
 
 /// @brief  Transmit 8 bit command and related data buffer
 /// @param[in] cmd: display command
 /// @param[in] *data: data buffer to send after command
 /// @param[in] bytes: data buffer size
 /// return: void status is in data array - bytes in size
-void tft_writeCmdData(uint8_t cmd, uint8_t * data, uint8_t bytes)
+void tft_Cmd_Data_TX(uint8_t cmd, uint8_t * data, uint8_t bytes)
+{
+// FIXME can we insert the command into data buffer and do both at once ?
+
+// Do not change Command/Data control until SPI bus clear
+    hspi_waitReady();
+    TFT_CS_ACTIVE;
+    TFT_COMMAND;
+    hspi_Tx(&cmd, 1);
+
+// Read result
+    if (bytes > 0)
+    {
+// Do not change Command/Data control until SPI bus clear
+        hspi_waitReady();
+        TFT_DATA;
+        hspi_Tx(data,bytes);
+    }
+    TFT_CS_DEACTIVE;
+}
+
+/// @brief  Transmit 8 bit command and send/receive data buffer
+/// @param[in] cmd: display command
+/// @param[in] *data: data buffer to send after command
+/// @param[in] bytes: data buffer size
+/// return: void status is in data array - bytes in size
+void tft_Cmd_Data_TXRX(uint8_t cmd, uint8_t * data, uint8_t bytes)
 {
 // FIXME can we insert the command into data buffer and do both at once ?
 
@@ -197,25 +225,6 @@ void tft_writeCmdData(uint8_t cmd, uint8_t * data, uint8_t bytes)
 }
 
 
-/// @brief  Transmit 16 bit data
-/// ILI9341 defaults to MSB/LSB data so we have to reverse it
-/// @param[in] val: 16 bit data
-/// return void
-void tft_writeData16(uint16_t val)
-{
-    uint8_t data[2];
-
-// Do not change Command/Data control until SPI bus clear
-    hspi_waitReady();
-    TFT_DATA;
-    TFT_CS_ACTIVE;
-    data[0] = val >>8;
-    data[1] = val;
-    hspi_Tx(data, 2);
-    TFT_CS_DEACTIVE;
-}
-
-
 /// @brief  Buffered color fill
 /// Optimized for 16bit MSB/LSB SPI bus tramission
 /// ILI9341 defaults to MSB/LSB color data so we reverse it
@@ -227,57 +236,21 @@ void tft_writeColor16Repeat(uint16 color, uint32_t count)
     if (!count)
         return;
 
-    hspi_stream_init();
+    hspi_TX_stream_init();
     TFT_DATA;
 
 //We are sending words
 
     while(count--)
     {
-        hspi_stream(color >> 8);
-        hspi_stream(color & 0xff);
+        hspi_TX_stream_byte(color >> 8);
+        hspi_TX_stream_byte(color & 0xff);
     }
-    hspi_stream_flush();
+    hspi_TX_stream_flush();
 
 }
 
-
-/// @brief  Write 16bit color data buffered
-/// Optimized for 16bit MSB/LSB SPI bus tramission
-/// ILI9341 defaults to MSB/LSB color data so we reverse it
-/// Warning: exceeding the array bounds may crash certain systems
-/// @param[in] *color_data: 16 bit data array
-/// @param[in] count: count of 16bit values to write
-/// @return void
-void tft_writeDataBuffered(uint16_t *color_data, uint32_t count)
-{
-    uint32_t d_ind = 0;                           // data index, size of write_data (bytes)
-    uint16_t color;
-
-    if (!count)
-        return;                                   // Error parameter
-
-// Do not change Command/Data control until SPI bus clear
-    hspi_stream_init();
-    TFT_DATA;
-
-//We are sending words
-
-    while(count--)
-    {
-// MSB/LSB byte swap
-        color = color_data[d_ind++];
-        hspi_stream(color >> 8);
-        hspi_stream(color & 0xff);
-    }
-    hspi_stream_flush();
-}
-
-
-/// @brief  Read parameters on SPI bus ILI9341 displays without memory interface II enabled.
-/// Note: Most of the available SPI enabled ILI9341 displays are hardwired to interface I mode.
-/// This means most of the read commands do not work! 
-/// (They are artifically crippled by the manufactures for reasons unknown)..
+/// @brief  Read parameters on SPI bus ILI9341 displays when EXTC is not asserted
 /// However; This undocumented command overrides the restriction for reading command parameters.
 /// SPI configurations
 /// See M:[0-3] control bits in ILI9341 documenation
@@ -287,6 +260,7 @@ void tft_writeDataBuffered(uint16_t *color_data, uint32_t count)
 /// @param[in] command: command whose parameters we want to read 
 /// @param[in] parameter: parameter number
 /// @return 16bit value
+MEMSPACE
 uint32_t tft_readRegister(uint8_t command, uint8_t parameter)
 {
     uint32_t result;
@@ -295,8 +269,11 @@ uint32_t tft_readRegister(uint8_t command, uint8_t parameter)
 	// We do not know what the 0x10 offset implies - but it is required.
 	// ILI9341 parameter
 	tmp[0] = 0x10 + parameter;
+	tmp[1] = 0;
+	tmp[2] = 0;
+	tmp[3] = 0;
 	// Undocumented 0xd9 command
-    tft_writeCmdData(0xd9,tmp,1);
+    tft_Cmd_Data_TXRX(0xd9,tmp,4);
     hspi_waitReady();
     TFT_COMMAND;
 	// The real ILI9341 Command whose parameters we want to read
@@ -305,18 +282,23 @@ uint32_t tft_readRegister(uint8_t command, uint8_t parameter)
 	tmp[2] = 0;
 	tmp[3] = 0;
     hspi_TxRx(tmp,4);
-    ets_uart_printf("command:%02x, data: %02x,%02x,%02x,%02x\r\n", 
-		0xff & command, 
-		0xff & tmp[0],
-		0xff & tmp[1],
-		0xff & tmp[2],
-		0xff & tmp[3]);
 	result = tmp[1];
+
+#ifdef ILI9341_DEBUG
+ets_uart_printf("command:%02x, data: %02x,%02x,%02x,%02x\r\n", 
+	0xff & command, 
+	0xff & tmp[0],
+	0xff & tmp[1],
+	0xff & tmp[2],
+	0xff & tmp[3]);
+#endif
+
     return (result);
 }
 
 
 /// @brief  Read ILI9341 device ID should be 9341
+/// This does not work for really high SPI clock speeds
 /// @return 32bit value
 MEMSPACE
 uint32_t tft_readId(void)
@@ -334,71 +316,6 @@ uint32_t tft_readId(void)
 }
 
 
-/// @brief  Read 16 bit data
-/// ILI9341 defaults to MSB/LSB data so we have to reverse it
-/// return 16 bit data
-uint16_t tft_readData16()
-{
-    uint16_t color;
-    uint8_t data[2];
-
-// Do not change Command/Data control until SPI bus clear
-    hspi_waitReady();
-    TFT_CS_ACTIVE;
-    TFT_DATA;
-    data[0] = 0xff;
-    data[1] = 0xff;
-    hspi_TxRx(data, 2);
-    color = data[0];
-	color <<=8;
-    color |= data[1];
-    hspi_waitReady();
-    TFT_CS_DEACTIVE;
-	return(color);
-}
-
-/// ====================================
-/// @brief Color conversions
-/// ====================================
-
-/// @brief  Pass 8-bit (each) R,G,B, get back 16-bit packed color
-/// ILI9341 defaults to MSB/LSB data so we have to reverse it
-/// @param[in] r: red data
-/// @param[in] b: blue data
-/// @param[in] g: green data
-MEMSPACE
-uint16_t tft_RGBto565(uint8_t r, uint8_t g, uint8_t b)
-{
-    return ((r & 0xf8) << 8) | ((g & 0xfc) << 3) | ((b & 0xf8) >>3);
-}
-
-/// @brief  Convert 16bit colr into 8-bit (each) R,G,B
-/// ILI9341 defaults to MSB/LSB data so we have to reverse it
-/// @param[in] color: 16bit color
-/// @param[out] *r: red data
-/// @param[out] *b: blue data
-/// @param[out] *g: green data
-MEMSPACE
-void tft_565toRGB(uint16_t color, uint8_t *r, uint8_t *g, uint8_t *b)
-{
-    *r = ((0xf800 & color)>>8);
-    *g = ((0x7e0 & color)>>3);
-    *b = (0x1f & color) << 3;
-}
-
-
-/// @brief  Invert the display
-/// @param[in] flag: true or false
-/// @return void
-MEMSPACE
-void tft_invertDisplay(int flag)
-{
-    uint8_t cmd = flag ? ILI9341_INVON : ILI9341_INVOFF;
-    tft_writeCmd(cmd);
-}
-
-
-/// ====================================
 /// @brief BLIT functions
 /// ====================================
 
@@ -409,16 +326,15 @@ void tft_invertDisplay(int flag)
 /// @param[in] y: BLIT Y offset
 /// @param[in] w: BLIT Width
 /// @param[in] h: BLIT Height
-/// @param[in] fg: BLIT forground color
-/// @param[in] bg: BLIT background color
 /// @return  void
 /// TODO CLIP window - depends on blit array
-void tft_bit_blit(window *win, uint8_t *ptr, int x, int y, int w, int h, uint16_t fg, uint16_t bg)
+void tft_bit_blit(window *win, uint8_t *ptr, int x, int y, int w, int h)
 {
 
     uint16_t color;
     int off;
     int xx,yy;
+	uint32_t pixels;
 
     if(!w || !h)
         return;
@@ -429,12 +345,12 @@ void tft_bit_blit(window *win, uint8_t *ptr, int x, int y, int w, int h, uint16_
 // TODO CLIP window 
 // Note: Clipping modifies offsets which in turn modifies blit array offsets
 // We could use tft_drawPixel, and it clips - but that is slow
-// We use hspi_stream to make it FAST
+// We use hspi_TX_stream to make it FAST
 
-    tft_rel_window(win, x, y, w, h);
-    tft_writeCmd(0x2c);
+    pixels = tft_rel_window(win, x, y, w, h);
+    tft_Cmd(0x2c);
 
-    hspi_stream_init();
+    hspi_TX_stream_init();
     TFT_DATA;
 
     off = 0;
@@ -443,15 +359,15 @@ void tft_bit_blit(window *win, uint8_t *ptr, int x, int y, int w, int h, uint16_
         for (xx=0;xx < w; ++xx)
         {
             if(bittestv(ptr, xx + off))
-                color = fg;
+                color = win->fg;
             else
-                color = bg;
-            hspi_stream(color >> 8);
-            hspi_stream(color & 0xff);
+                color = win->bg;
+            hspi_TX_stream_byte(color >> 8);
+            hspi_TX_stream_byte(color & 0xff);
         }
         off += w;
     }
-    hspi_stream_flush();
+    hspi_TX_stream_flush();
 #else
     off = 0;
     for (yy=0; yy < h; ++yy)
@@ -469,62 +385,6 @@ void tft_bit_blit(window *win, uint8_t *ptr, int x, int y, int w, int h, uint16_
 }
 
 
-/// @brief  BLIT a color array to the display
-/// @param[in] win*: window structure
-/// @param[in] *ptr: color array w * h in size
-/// @param[in] x: BLITX offset
-/// @param[in] y: BLIT Y offset
-/// @param[in] w: BLIT Width
-/// @param[in] h: BLIT Height
-/// @return  void
-/// TODO CLIP window - depends on blit array
-void tft_blit(window *win, uint16_t *ptr, int x, int y, int w, int h)
-{
-
-    uint16_t color;
-    int off;
-    int xx,yy;
-
-    if(!w || !h)
-        return;
-
-// TODO CLIP window - depends on blit array offset also
-// We could use tft_drawPixel, and it clips - but that is slow
-// We use hspi_stream to make it FAST
-
-#if 1
-// BLIT
-    tft_rel_window(win, x, y, w, h);
-    tft_writeCmd(0x2c);
-
-    hspi_stream_init();
-    TFT_DATA;
-
-    off = 0;
-    for (yy=0; yy < h; ++yy)
-    {
-        for (xx=0;xx < w; ++xx)
-        {
-            color = *ptr++;
-            hspi_stream(color >> 8);
-            hspi_stream(color & 0xff);
-        }
-        off += w;
-    }
-    hspi_stream_flush();
-#else
-    off = 0;
-    for (yy=0; yy < h; ++yy)
-    {
-        for (xx=0;xx < w; ++xx)
-        {
-            tft_drawPixel(win, x+xx,y+yy,*ptr++);
-        }
-        off += w;
-    }
-#endif
-}
-
 
 
 /// ====================================
@@ -534,6 +394,7 @@ void tft_blit(window *win, uint16_t *ptr, int x, int y, int w, int h)
 /// @brief Fill window 
 /// @param[in] win*: window structure
 /// @param[in] color: Fill color
+MEMSPACE
 void tft_fillWin(window *win, uint16_t color)
 {
     tft_fillRectWH(win, 0,0, win->w, win->h, color);
@@ -552,14 +413,10 @@ void tft_fillRectWH(window *win, int16_t x, int16_t y, int16_t w, int16_t h, uin
 {
     uint32_t repeat;
 
-//ets_uart_printf("x:%d,y:%d,w:%d,h:%d\n",x,y,w,h);
-
-//ets_uart_printf("repeat: %d\n",repeat);
-
 	repeat = tft_rel_window(win, x,y,w,h);
     if(repeat)
     {
-        tft_writeCmd(0x2c);
+        tft_Cmd(0x2c);
 // Send one *colors value a total of count times.
         tft_writeColor16Repeat(color, repeat);
     }
@@ -574,6 +431,7 @@ void tft_fillRectWH(window *win, int16_t x, int16_t y, int16_t w, int16_t h, uin
 /// @param[in] yl: Y End
 /// @param[in] color: Fill color
 /// @return void
+MEMSPACE
 void tft_fillRectXY(window *win, int16_t x, int16_t y, int16_t xl, int16_t yl, uint16_t color)
 {
     uint32_t repeat;
@@ -590,25 +448,194 @@ void tft_fillRectXY(window *win, int16_t x, int16_t y, int16_t xl, int16_t yl, u
 }
 
 /// ====================================
-/// ====================================
-/// ====================================
-/// @brief Set soft window limits
-/// ====================================
-/// ====================================
+/// @brief Pixel functions
 /// ====================================
 
-/// @brief Set the ili9341 update window
+/// @brief Draw one pixel set to color in 16bit 565 RGB format
+/// We clip the window to the current view
 /// @param[in] win*: window structure
-/// @param[in] x: Starting X offset
-/// @param[in] y: Starting Y offset
-/// @param[in] w: Width
-/// @param[in] h: Height
-/// @return  bytes w * h after clipping, 0 on error
-uint32_t tft_rel_window(window *win, int16_t x, int16_t y, int16_t w, int16_t h)
+/// @param[in] x: X Start
+/// @param[in] y: Y Start
+/// @param[in] color: color to set
+/// @return void
+void tft_drawPixel(window *win, int16_t x, int16_t y, int16_t color)
 {
-	return( tft_abs_window(x+win->xoff, y+win->yoff, w,h) );
+    uint8_t data[2];
+	uint16_t xx, yy;
+
+// Clip pixel
+    if(x < 0 || x >= win->w)
+        return;
+    if(y < 0 || y >= win->h)
+        return;
+
+    tft_rel_window(win, x,y,1,1);
+    data[0] = color >>8;
+    data[1] = color;
+    tft_Cmd_Data_TXRX(0x2c, data, 2);
+
 }
 
+/// @brief  Write a rectangle pixel array
+/// @param[in] win*: window structure
+/// @param[in] x: X offset
+/// @param[in] y: Y offset
+/// @param[in] w: Width
+/// @param[in] h: Height
+/// @param[in] *color: pixel array in 565 format
+/// @return  void
+/// TODO CLIP window - depends on blit array also
+void tft_writeRect(window *win, int16_t x, int16_t y, int16_t w, int16_t h, uint16_t *color)
+{
+
+	uint32_t pixels;
+	uint16 pixel;
+    int xx,yy;
+
+    if(!w || !h)
+        return;
+
+// TODO CLIP window - depends on blit array offset also
+// We could use tft_drawPixel, and it clips - but that is slow
+// We use hspi_TX_stream to make it FAST
+
+#if 1
+    pixels = tft_rel_window(win, x, y, w, h);
+    tft_Cmd(0x2c);
+    hspi_TX_stream_init();
+    TFT_DATA;
+	while(pixels--)
+	{
+		pixel = *color++;
+		hspi_TX_stream_byte(pixel >> 8);
+		hspi_TX_stream_byte(pixel & 0xff);
+	}
+    hspi_TX_stream_flush();
+#else
+    for (yy=0; yy < h; ++yy)
+    {
+        for (xx=0;xx < w; ++xx)
+        {
+            tft_drawPixel(win, x+xx,y+yy,*ptr++);
+        }
+    }
+#endif
+}
+
+
+/// @brief Read Rectangle and return 16bit color array in 565 RGB format
+/// We clip the window to the current view
+/// Note: TFT Chip Select must be asserted for each block read
+/// We break up the data into chunks with a Memory Read, followed by Memory Read Continue
+/// So we use Memory Read and Memory Read Continue
+/// @param[in] win*: window structure
+/// @param[in] x: X offset
+/// @param[in] y: Y offset
+/// @param[in] w: Width
+/// @param[in] h: Height
+/// @param[in] *color: pixel array in 565 format
+
+/// @brief Number of pixels FIFO can hold
+///  We also include the 2 byte Memory Read / Continue opcodes;
+#define HSPI_PIX ((HSPI_FIFO_SIZE-2)/3)
+
+void tft_readRect(window *win, int16_t x, int16_t y, int16_t w, int16_t h, uint16_t *color)
+{
+	uint32_t pixels;
+	int rem;
+	uint8_t cmd;
+	uint8_t *ptr;
+	// Command and Pixel buffer
+	uint8_t data[2+HSPI_PIX*3];
+
+	// set window
+    pixels = tft_rel_window(win, x,y,w,h);
+    hspi_waitReady();
+    TFT_COMMAND;
+    TFT_CS_ACTIVE;
+
+	cmd = 0x2e;	// Memory Read
+
+	while(pixels)
+	{
+		data[0] = cmd;
+		data[1]; // send dummy NOP
+		if(pixels > HSPI_PIX)
+			rem = HSPI_PIX;
+		else
+			rem = pixels;
+		pixels -= rem;
+
+		// Send/Receive
+		hspi_waitReady();
+		TFT_COMMAND;
+		TFT_CS_ACTIVE;
+		// Command and 3 byte pixel data
+		hspi_TxRx(data, 2+rem*3);
+
+		ptr = data + 2;
+		// reconvert data into 2 byte pixel array
+		while(rem--)
+		{
+			// reuse the color buffer
+			// overwrite the 3 byte pixle and command with 2 byte pixle only data
+			*color++ = tft_RGBto565(ptr[0],ptr[1],ptr[2]);
+			ptr += 3;
+		}
+		cmd = 0x2e;	// Memory Read Continue
+		cmd = 0x3e;
+		TFT_CS_DEACTIVE;
+	}
+}
+
+
+/// @brief Scroll window up by dir lines
+/// @param[in] win*: window structure
+/// @param[in] dir: direction and count
+/// TODO +/- scroll direction
+MEMSPACE
+void tft_Vscroll(window *win, int dir)
+{
+	int i;
+	uint8_t buff[TFT_W*3];
+	if(dir >= win->h)
+		dir = win->h-1;
+	if(dir <= 0)
+		return;
+
+	for(i=0;i<win->h-dir;++i)
+	{
+		tft_readRect(win, 0, i+dir, win->w, 1, (uint16_t *) buff);
+		tft_writeRect(win, 0, i, win->w, 1, (uint16_t *)buff);
+	}
+	tft_fillRectWH(win, 0, win->h-1-dir, win->w, dir, win->bg);
+	win->y -= dir;
+}
+
+/// @brief Read one pixel and return color in 1bit 565 RGB format
+/// We clip the window to the current view
+/// Note: Read Memory must be don in a continious write/read operation
+/// If we try to use one hspi_TxRx followed by another it will always fail
+/// @param[in] win*: window structure
+/// @param[in] x: X Start
+/// @param[in] y: Y Start
+/// @return color in 565 format
+uint16_t tft_readPixel(window *win, int16_t x, int16_t y)
+{
+    uint8_t data[5];
+    uint16_t color;
+	// set window
+    tft_rel_window(win, x,y,1,1);
+    data[0] = 0x2e;
+    data[1]; // send dummy NOP
+    hspi_waitReady();
+    TFT_COMMAND;
+    TFT_CS_ACTIVE;
+    hspi_TxRx(data, 5);
+    TFT_CS_DEACTIVE;
+    color = tft_RGBto565(data[2],data[3],data[4]);
+    return(color);
+}
 
 
 /// @brief Set Display rotation, applies to the master window only
@@ -655,8 +682,51 @@ void tft_setRotation(uint8_t m)
             tft->yoff = 	TFT_XOFF;
             break;
     }
-    tft_writeCmdData(ILI9341_MADCTL, &data, 1);
+    tft_Cmd_Data_TXRX(ILI9341_MADCTL, &data, 1);
 }
+
+/// ====================================
+/// @brief Color conversions
+/// ====================================
+
+#if 0
+/// @brief  Pass 8-bit (each) R,G,B, get back 16-bit packed color
+/// ILI9341 defaults to MSB/LSB data so we have to reverse it
+/// @param[in] r: red data
+/// @param[in] b: blue data
+/// @param[in] g: green data
+MEMSPACE
+uint16_t tft_RGBto565(uint8_t r, uint8_t g, uint8_t b)
+{
+    return ((r & 0xf8) << 8) | ((g & 0xfc) << 3) | ((b & 0xf8) >>3);
+}
+#endif
+
+/// @brief  Convert 16bit colr into 8-bit (each) R,G,B
+/// ILI9341 defaults to MSB/LSB data so we have to reverse it
+/// @param[in] color: 16bit color
+/// @param[out] *r: red data
+/// @param[out] *b: blue data
+/// @param[out] *g: green data
+MEMSPACE
+void tft_565toRGB(uint16_t color, uint8_t *r, uint8_t *g, uint8_t *b)
+{
+    *r = ((0xf800 & color)>>8);
+    *g = ((0x7e0 & color)>>3);
+    *b = (0x1f & color) << 3;
+}
+
+
+/// @brief  Invert the display
+/// @param[in] flag: true or false
+/// @return void
+MEMSPACE
+void tft_invertDisplay(int flag)
+{
+    uint8_t cmd = flag ? ILI9341_INVON : ILI9341_INVOFF;
+    tft_Cmd(cmd);
+}
+
 
 
 /// @brief Initialize window structure we default values
@@ -673,14 +743,13 @@ void tft_window_init(window *win, uint16_t xoff, uint16_t yoff, uint16_t w, uint
     win->x         = 0;                            // current X
     win->y         = 0;                            // current Y
     win->font      = 0;                            // current font size
-    win->fixed     = 0;
-    win->wrap      = true;
+    win->flags     = WRAP_H;
     win->w 		   = w;
     win->xoff      = xoff;
     win->h 		   = h;
     win->yoff      = yoff;
     win->rotation  = 0;
-    win->tabstop   = w/8;
+    win->tabstop   = w/4;
     win->fg = 0xFFFF;
     win->bg = 0;
 }
@@ -694,10 +763,10 @@ void tft_window_init(window *win, uint16_t xoff, uint16_t yoff, uint16_t w, uint
 /// @param[in] b: background color
 /// @return void
 MEMSPACE
-void tft_setTextColor(window *win,uint16_t c, uint16_t b)
+void tft_setTextColor(window *win,uint16_t fg, uint16_t bg)
 {
-    win->fg = c;
-    win->bg = b;
+    win->fg = fg;
+    win->bg = bg;
 }
 
 /// @brief  Set current window offset
@@ -745,7 +814,7 @@ int tft_get_font_height(window *win)
 MEMSPACE
 tft_font_fixed(window *win)
 {
-    win->fixed = 1;
+    win->flags &= ~FONT_VAR;
 }
 
 
@@ -755,63 +824,35 @@ tft_font_fixed(window *win)
 MEMSPACE
 void tft_font_var(window *win)
 {
-    win->fixed = 0;
+    win->flags |= FONT_VAR;
 }
 
 
-/// ====================================
-/// @brief Pixel functions
-/// ====================================
-
-/// @brief Draw one pixel set to color in 16bit 565 RGB format
-/// We clip the window to the current view
-/// @param[in] win*: window structure
-/// @param[in] x: X Start
-/// @param[in] y: Y Start
-/// @param[in] color: color to set
-/// @return void
-void tft_drawPixel(window *win, int16_t x, int16_t y, int16_t color)
+/// @brief  Fast virtical line drawing
+/// @param[in] *win: window structure
+/// @param[in] x: X offset
+/// @param[in] y: Y offset
+/// @param[in] h: Height of line
+/// @param[in] color: Color
+/// @return  void
+void tft_drawFastVLine(window *win,int16_t x, int16_t y,
+int16_t h, uint16_t color)
 {
-    uint8_t data[2];
-	uint16_t xx, yy;
-
-// Clip pixel
-    if(x < 0 || x >= win->w)
-        return;
-    if(y < 0 || y >= win->h)
-        return;
-
-    tft_rel_window(win, x,y,1,1);
-    data[0] = color >>8;
-    data[1] = color;
-    tft_writeCmdData(0x2c, data, 2);
-
+	tft_fillRectWH(win, x,y ,1, h, color);
 }
 
-/// @brief Read one pixel and return color in 16bit 565 RGB format
-/// We clip the window to the current view
-/// Note: Read Memory must be don in a continious write/read operation
-/// If we try to use one hspi_TxRx followed by another it will always fail
-/// @param[in] win*: window structure
-/// @param[in] x: X Start
-/// @param[in] y: Y Start
-/// @return color in 565 format
-MEMSPACE
-uint16_t tft_readPixel(window *win, int16_t x, int16_t y)
+
+/// @brief  Fast virtical line drawing
+/// @param[in] *win: window structure
+/// @param[in] x: X offset
+/// @param[in] y: Y offset
+/// @param[in] w: Width of line
+/// @param[in] color: Color
+/// @return  void
+void tft_drawFastHLine(window *win, int16_t x, int16_t y,
+int16_t w, uint16_t color)
 {
-    uint8_t data[5];
-    uint16_t color;
-	// set window
-    tft_rel_window(win, x,y,1,1);
-    data[0] = 0x2e;
-    data[1]; // send dummy NOP
-    hspi_waitReady();
-    TFT_COMMAND;
-    TFT_CS_ACTIVE;
-    hspi_TxRx(data, 5);
-    TFT_CS_DEACTIVE;
-    color = tft_RGBto565(data[2],data[3],data[4]);
-    return(color);
+	tft_fillRectWH(win, x,y ,w, 1, color);
 }
 
 
@@ -984,6 +1025,12 @@ void tft_putch(window *win, int c)
 		win->x = 0;
 		win->y += f.Height;
 	}
+	if(c == '\f')
+	{
+		tft_fillWin(win,win->bg);
+		win->x = 0;
+		win->y = 0;
+	}
 	if(c == '\t')
 	{
 		count = win->tabstop - (win->x % win->tabstop);// skip size to next tabstop
@@ -992,7 +1039,7 @@ void tft_putch(window *win, int c)
 		{
 			count = (win->x + count) - win->w -1;
 			tft_cleareol(win);
-			if(win->wrap)
+			if(win->flags & WRAP_H)
 			{
 				tft_fillRectWH(win, 0, win->y, count, f.Height, win->bg);
 				win->x = count;

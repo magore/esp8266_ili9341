@@ -28,8 +28,11 @@
 \item Small Print with full floating point support along with ftoa/atof and integer conversions
 \item B\-D\-F fonts and a B\-D\-F font to C conversion code and optimized display code
 \item Network server client example
-\item I\-L\-I9341 display driver with multiple window support
-\item read\-Pixel() works on most all 4 wire displays
+\item I\-L\-I9341 display driver with multiple custom sized window support
+\item read\-Pixel() and custom sized window scrolling
+\begin{DoxyItemize}
+\item Not limited by I\-L\-I9341 hardware scroll restrictions.
+\end{DoxyItemize}
 \end{DoxyItemize}
 \item Updated\-:
 \begin{DoxyItemize}
@@ -162,6 +165,7 @@
 \item Non optimized version is also supplied that I wrote in 1984
 \item multiple window support
 \item read\-Pixel() works on most all 4 wire displays now
+\item scrolling window support
 \end{DoxyItemize}
 \end{DoxyItemize}
 \item \hyperlink{util_8c}{util.\-c}
@@ -309,9 +313,19 @@
 \item \hyperlink{send_8c}{send.\-c}
 \begin{DoxyItemize}
 \item Send message to network server
-\end{DoxyItemize}
-\item user
+\item Example\-: ./send -\/i 192.\-168.\-200.\-116 -\/m ''
 \begin{DoxyItemize}
-\item Main user demo task 
+\item These escape characters are processed on the display\-: \par
+, , 
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+user
+\begin{DoxyItemize}
+\item Main user demo task
+\item \hyperlink{user__main_8c}{user\-\_\-main.\-c}
+\begin{DoxyItemize}
+\item Intializes E\-S\-P8266 and sets up demo with 4 active windows with independent attributes 
 \end{DoxyItemize}
 \end{DoxyItemize}

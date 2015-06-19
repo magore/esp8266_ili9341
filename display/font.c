@@ -94,12 +94,12 @@ int font_attr(window *win, int c, _fontc *f)
 	
 		// The user may override the fixed variable font flag
         // This reduces the width of fixed fonts to just the active pixels.
-        f->fixed = win->fixed;
+        f->flags = win->flags;
 
 		// Skip is the combined width, and an optional character spacing gap
 		// Some characters have no active size (like the space character )
 		// so we just use the master font width and gap
-        if(f->fixed || !f->w)
+        if(!(f->flags & FONT_VAR) || !f->w)
             f->skip = z->Width + z->gap;
         else
 			f->skip = f->x + f->w + z->gap;	// Include the X offset, Width and Gap
@@ -119,7 +119,7 @@ int font_attr(window *win, int c, _fontc *f)
         f->y = 0;
 
 		// FIXME - fixed fonts without specs have no proportional modes to use
-        f->fixed = win->fixed;
+        f->flags = win->flags;
 
 		f->skip = z->Width + z->gap;
 
@@ -136,9 +136,9 @@ int font_attr(window *win, int c, _fontc *f)
 		f->skip++;
 // =====================================
 
-#ifdef ILI9341_DEBUG
-    ets_uart_printf("c: %02x font:%d w:%d h:%d x:%d y:%d gap:%d, W:%d, H:%d\r\n",
-        0xff & c, 0xff & win->font, f->w, f->h, f->x, f->y, f->gap, f->Width, f->Height);
+#if ILI9341_DEBUG & 2
+    ets_uart_printf("c: %02x font:%d w:%d h:%d x:%d y:%d skip:%d, W:%d, H:%d\r\n",
+        0xff & c, 0xff & win->font, f->w, f->h, f->x, f->y, f->skip, f->Width, f->Height);
 #endif
     return(win->font);
 }
@@ -152,12 +152,8 @@ int font_attr(window *win, int c, _fontc *f)
 /// @return  void
 /// TODO: To make proportional fonts render even better we should reduce
 /// the font gap so that all of the active pixels between two fonts come no 
-/// nearer then gap.
-/// Example: consider the case of "Td", the 'd' can actually be part way INSIDE the 
-/// T's area without touching.
-/// We could keep a list of all left most active pixels of the previous character
-/// and test then against all the right most active pixels of the current character 
-/// to adjust the skip spacing value to a fixed gap.
+/// nearer then a defined value.
+/// Example: consider the characters "Td", the 'd' can actually be part way INSIDE the T
 ///
 void tft_drawChar(window *win, uint8_t c)
 {
@@ -172,25 +168,26 @@ void tft_drawChar(window *win, uint8_t c)
 // process wrapping - will the character fit ?
 	if(win->x + f.skip >= win->w)
 	{
-		if(win->wrap)
+		if(win->flags & WRAP_H)
 		{
 			win->y += f.Height;
 			win->x = 0;
 		}
 		else
 		{
+			// TODO H scroll
 			return;
 		}
 	}
 	if(win->y >= win->h)
 	{
-		if(win->wrap)
+		if(win->flags & WRAP_V)
 		{
 			win->y = 0;
 		}
 		else
 		{
-			return;
+			tft_Vscroll(win,f.Height);
 		}
 	}
 
@@ -218,7 +215,7 @@ void tft_drawChar(window *win, uint8_t c)
     yskip = f.Height - (f.y+f.h);
 
 // Write the font to the screen
-    tft_bit_blit(win, f.ptr, win->x+f.x, win->y+yskip, f.w, f.h, win->fg, win->bg);
+    tft_bit_blit(win, f.ptr, win->x+f.x, win->y+yskip, f.w, f.h);
 
 	// skip is the offset to the next character
 	win->x += f.skip;

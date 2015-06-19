@@ -102,8 +102,11 @@ README</h1>
 <li>Small Print with full floating point support along with ftoa/atof and integer conversions</li>
 <li>BDF fonts and a BDF font to C conversion code and optimized display code</li>
 <li>Network server client example</li>
-<li>ILI9341 display driver with multiple window support</li>
-<li>readPixel() works on most all 4 wire displays</li>
+<li>ILI9341 display driver with multiple custom sized window support</li>
+<li>readPixel() and custom sized window scrolling<ul>
+<li>Not limited by ILI9341 hardware scroll restrictions.</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>Updated:<ul>
@@ -224,6 +227,7 @@ README</h1>
 <li>Non optimized version is also supplied that I wrote in 1984</li>
 <li>multiple window support</li>
 <li>readPixel() works on most all 4 wire displays now</li>
+<li>scrolling window support</li>
 </ul>
 </li>
 </ul>
@@ -372,17 +376,26 @@ README</h1>
 </li>
 <li><a class="el" href="send_8c.html">send.c</a><ul>
 <li>Send message to network server</li>
+<li>Example: ./send -i 192.168.200.116 -m ''<ul>
+<li>These escape characters are processed on the display: <br/>
+, , </li>
 </ul>
 </li>
-<li>user<ul>
-<li>Main user demo task </li>
+</ul>
+</li>
+</ul>
+<p>user</p>
+<ul>
+<li>Main user demo task</li>
+<li><a class="el" href="user__main_8c.html" title="Main user and initialization code This initialize the platform and runs the main user task...">user_main.c</a><ul>
+<li>Intializes ESP8266 and sets up demo with 4 active windows with independent attributes </li>
 </ul>
 </li>
 </ul>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jun 18 2015 00:20:30 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jun 19 2015 00:38:33 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

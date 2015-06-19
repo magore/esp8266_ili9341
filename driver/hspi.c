@@ -26,12 +26,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <user_config.h>
 
+// @brief HSPI Prescale value - You should set this in your Makefile
 #ifndef HSPI_PRESCALER
 	#define HSPI_PRESCALER 16
 #endif
 
-static uint16_t _f_ind = 0;                       // fifo buffer index
-static uint8_t _f_buf[HSPI_FIFO_SIZE+2];          // fifo buffer, same as HSPI FIFO
+static uint16_t _f_tx_ind = 0;                       // fifo buffer index
+static uint8_t _f_tx_buf[HSPI_FIFO_SIZE+2];          // fifo buffer, same as HSPI FIFO
 
 /// @brief HSPI Initiaization - with automatic chip sellect
 /// Pins:
@@ -232,52 +233,6 @@ void hspi_readFIFO(uint8_t *read_data, uint16_t bytes)
 }
 
 
-/// @brief HSPI stream init
-/// We use the fifo - or a buffer to queue spi writes
-/// The overhead of N writes done at once is less N writes done one at a time
-MEMSPACE
-void hspi_stream_init(void)
-{
-    _f_ind = 0;
-    hspi_waitReady();
-}
-
-
-/// @brief HSPI stream flush 
-/// We use the fifo - or a buffer to queue spi writes
-/// The overhead of N writes done at once is less N writes done one at a time
-/// @return  void
-void hspi_stream_flush( void )
-{
-// Send a full FIFO block - or - remaining data
-    if(_f_ind )
-    {
-        hspi_config(CONFIG_FOR_TX);               // Does hspi_waitReady(); first
-        hspi_writeFIFO(_f_buf, _f_ind);
-        hspi_startSend();
-        _f_ind = 0;
-    }
-    hspi_waitReady();
-}
-
-
-/// @brief HSPI stream byte to buffer
-/// We use the fifo - or a buffer to queue spi writes
-/// The overhead of N writes done at once is less N writes done one at a time
-/// @param[in] data: byte to add to buffer
-/// @return  void
-void hspi_stream(uint8_t data)
-{
-// Queue sent data
-    _f_buf[_f_ind++] = data;
-// Send a full FIFO block - or - remaining data
-    if(_f_ind >= HSPI_FIFO_SIZE)
-    {
-        hspi_stream_flush();
-    }
-}
-
-
 /// @brief Used only for small (less then HSPI_FIFO_SIZE) write / read
 /// Write and Read uses same buffer and same byte count
 /// @param[in,out] data: buffer
@@ -312,6 +267,56 @@ void hspi_Tx(uint8_t *data, uint16_t bytes)
 }
 
 
+
+/// =================================================================
+/// @brief
+/// SPI buffered write functions
+
+/// @brief HSPI stream byte to buffer
+/// We use the fifo - or a buffer to queue spi writes
+/// The overhead of N writes done at once is less N writes done one at a time
+/// @param[in] data: byte to add to buffer
+/// @return  void
+void hspi_TX_stream_byte(uint8_t data)
+{
+// Queue sent data
+    _f_tx_buf[_f_tx_ind] = data;
+// Send a full FIFO block - or - remaining data
+    if(++_f_tx_ind >= HSPI_FIFO_SIZE)
+    {
+        hspi_TX_stream_flush();
+    }
+}
+
+
+/// @brief HSPI stream init
+/// We use the fifo - or a buffer to queue spi writes
+/// The overhead of N writes done at once is less N writes done one at a time
+MEMSPACE
+void hspi_TX_stream_init(void)
+{
+    _f_tx_ind = 0;
+    hspi_waitReady();
+}
+
+
+/// @brief HSPI stream flush 
+/// We use the fifo - or a buffer to queue spi writes
+/// The overhead of N writes done at once is less N writes done one at a time
+/// @return  void
+void hspi_TX_stream_flush( void )
+{
+// Send a full FIFO block - or - remaining data
+    if(_f_tx_ind )
+    {
+        hspi_config(CONFIG_FOR_TX);               // Does hspi_waitReady(); first
+        hspi_writeFIFO(_f_tx_buf, _f_tx_ind);
+        hspi_startSend();
+        _f_tx_ind = 0;
+    }
+    hspi_waitReady();
+}
+
 /// @brief Send large buffer (datasize bytes in size) repeat times
 /// Send repeats times
 /// Note: a repeat of zero will cause NO data to be sent
@@ -320,28 +325,22 @@ void hspi_Tx(uint8_t *data, uint16_t bytes)
 /// @param[in] bytes: bytes to write
 /// @param[in] repeats: repeates to send
 /// @return  void
-void hspi_TxBuffered(uint8_t *write_data, uint32_t bytes, uint32_t repeats)
+void hspi_TX_buffer_repeat(uint8_t *write_data, uint32_t bytes, uint32_t repeats)
 {
-    uint16_t d_ind = 0;                           // data index, size of write_data (bytes)
-    uint16_t f_ind = 0;                           // fifo buffer index
-    uint8_t buffer[HSPI_FIFO_SIZE];               // fifo buffer, same as HSPI FIFO
+    uint32_t d_ind = 0;                           // data index, size of write_data (bytes)
 
     if ((bytes < 1) || (repeats < 1))
         return;                                   // Error parameter
 
+	hspi_TX_stream_init();
     while(repeats)
     {
-        buffer[f_ind++] = write_data[d_ind++];
-        if(d_ind >= bytes)                        // size of data
+		hspi_TX_stream_byte( write_data[d_ind]);
+        if(++d_ind >= bytes)                        // size of data
         {
             d_ind = 0;
             --repeats;                            // data has been copied once
         }
-// Send a full FIFO block - or - remaining data
-        if(!repeats || f_ind >= HSPI_FIFO_SIZE)
-        {
-            hspi_Tx(buffer,f_ind);
-            f_ind = 0;
-        }
     }
+	hspi_TX_stream_flush();
 }

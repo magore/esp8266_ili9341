@@ -10,12 +10,10 @@ BUILD_BASE	= build
 FW_BASE		= firmware
 
 SOFTCS = 
-ILI9341_DEBUG = 
-
-# Test readPixel() function
-READ_PIXEL_DEBUG = 1
+ILI9341_DEBUG = 0
 
 # HSPI Prescaler
+# A value of 1 works with all except tft_readId() tft_readRegister
 HSPI_PRESCALER = 2
 
 # wireframe earth
@@ -193,13 +191,9 @@ endif
 
 
 ifdef ILI9341_DEBUG
-	CFLAGS  += -DILI9341_DEBUG
+	CFLAGS  += -DILI9341_DEBUG=$(ILI9341_DEBUG)
 endif
 
-ifdef READ_PIXEL_DEBUG
-	CFLAGS  += -DREAD_PIXEL_DEBUG
-endif
-    
 ifdef SOFTCS
 	CFLAGS  += -DSOFTCS
 endif

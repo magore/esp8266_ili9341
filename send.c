@@ -70,6 +70,11 @@ int escape(char *message, int size)
 					c = '\t';
 					mptr++;
 				}
+				else if( c == 'f')
+				{
+					c = '\f';
+					mptr++;
+				}
 			}
 		}
 		*bptr++ = c;
@@ -158,7 +163,7 @@ int main(int argc,char *argv[])
 		exit(1);
 	}
 	escape(message, sizeof(message)-1);
-	printf("ip:%s, port:%d, nessage:%s\n",ip,port_no,message);
+	printf("ip:%s, port:%d, message:\n%s\n",ip,port_no,message);
 	fflush(stdout);
 	send_message(message, ip, port_no);
 	return(0);

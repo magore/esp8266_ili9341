@@ -66,10 +66,12 @@ void poll_network_message(window *win)
 	if(received)
 	{
 		//ets_uart_printf("%s\n", network_msg);
-		tft_fillWin(win, win->bg);
-		tft_setpos(win,0,0);
-		tft_set_font(win,5);
-		tft_font_fixed(win);
+		//tft_fillWin(win, win->bg);
+		//tft_setpos(win,0,0);
+		//tft_set_font(win,5);
+		//tft_font_fixed(win);
+		if(win->x > 0)
+			tft_printf(win,"\n");
 		tft_printf(win,"%s", network_msg);
 		received = 0;
 	}

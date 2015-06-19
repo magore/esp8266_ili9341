@@ -36,8 +36,7 @@ typedef struct
     int16_t x;       // x pos
     int16_t y;       // y pos
     uint16_t  font;	// font index
-    uint16_t  fixed;// font fixed == 1, var == 0
-    uint8_t wrap;   // wrap mode
+    uint16_t  flags;// font fixed == 1, var == 0
     int16_t w;
     int16_t xoff;
     int16_t h;
@@ -53,46 +52,54 @@ typedef struct
 #define TFT_XOFF (MIN_TFT_X)
 #define TFT_YOFF (MIN_TFT_Y)
 
+// FIXED font is default
+#define FONT_VAR   1
+#define WRAP_H	   2
+#define WRAP_V	   4
+#define WRAP	   (WRAP_H | WRAP_V)
+
+#define tft_RGBto565(r, g, b) ((uint16_t) (((r) & 0xf8) << 8) | (((g) & 0xfc) << 3) | (((b) & 0xf8) >>3))
+
 // ============================================================
 
 /* font.c */
 int font_attr ( window *win , int c , _fontc *f );
 void tft_drawChar ( window *win , uint8_t c );
 
-/* ili9341.c */
+/* display/ili9341.c */
 MEMSPACE window *tft_init ( void );
 uint32_t tft_abs_window ( int16_t x , int16_t y , int16_t w , int16_t h );
-void tft_writeCmd ( uint8_t cmd );
-void tft_writeData ( uint8_t data );
-void tft_writeCmdData ( uint8_t cmd , uint8_t *data , uint8_t bytes );
-void tft_writeData16 ( uint16_t val );
+uint32_t tft_rel_window ( window *win , int16_t x , int16_t y , int16_t w , int16_t h );
+void tft_Cmd ( uint8_t cmd );
+void tft_Cmd_Data_TX ( uint8_t cmd , uint8_t *data , uint8_t bytes );
+void tft_Cmd_Data_TXRX ( uint8_t cmd , uint8_t *data , uint8_t bytes );
 void tft_writeColor16Repeat ( uint16 color , uint32_t count );
-void tft_writeDataBuffered ( uint16_t *color_data , uint32_t count );
-uint32_t tft_readRegister ( uint8_t command , uint8_t parameter );
+MEMSPACE uint32_t tft_readRegister ( uint8_t command , uint8_t parameter );
 MEMSPACE uint32_t tft_readId ( void );
-uint16_t tft_readData16 ( void );
-MEMSPACE uint16_t tft_RGBto565 ( uint8_t r , uint8_t g , uint8_t b );
+void tft_bit_blit ( window *win , uint8_t *ptr , int x , int y , int w , int h );
+MEMSPACE void tft_fillWin ( window *win , uint16_t color );
+void tft_fillRectWH ( window *win , int16_t x , int16_t y , int16_t w , int16_t h , uint16_t color );
+MEMSPACE void tft_fillRectXY ( window *win , int16_t x , int16_t y , int16_t xl , int16_t yl , uint16_t color );
+void tft_drawPixel ( window *win , int16_t x , int16_t y , int16_t color );
+void tft_writeRect ( window *win , int16_t x , int16_t y , int16_t w , int16_t h , uint16_t *color );
+void tft_readRect ( window *win , int16_t x , int16_t y , int16_t w , int16_t h , uint16_t *color );
+uint16_t tft_readPixel ( window *win , int16_t x , int16_t y );
+MEMSPACE void tft_setRotation ( uint8_t m );
 MEMSPACE void tft_565toRGB ( uint16_t color , uint8_t *r , uint8_t *g , uint8_t *b );
 MEMSPACE void tft_invertDisplay ( int flag );
-void tft_bit_blit ( window *win , uint8_t *ptr , int x , int y , int w , int h , uint16_t fg , uint16_t bg );
-void tft_blit ( window *win , uint16_t *ptr , int x , int y , int w , int h );
-void tft_fillWin ( window *win , uint16_t color );
-void tft_fillRectWH ( window *win , int16_t x , int16_t y , int16_t w , int16_t h , uint16_t color );
-void tft_fillRectXY ( window *win , int16_t x , int16_t y , int16_t xl , int16_t yl , uint16_t color );
-uint32_t tft_rel_window ( window *win , int16_t x , int16_t y , int16_t w , int16_t h );
-MEMSPACE void tft_setRotation ( uint8_t m );
 MEMSPACE void tft_window_init ( window *win , uint16_t xoff , uint16_t yoff , uint16_t w , uint16_t h );
-MEMSPACE void tft_setTextColor ( window *win , uint16_t c , uint16_t b );
+MEMSPACE void tft_setTextColor ( window *win , uint16_t fg , uint16_t bg );
 MEMSPACE void tft_setpos ( window *win , int16_t x , int16_t y );
 MEMSPACE tft_set_font ( window *win , uint16_t index );
 MEMSPACE int tft_get_font_height ( window *win );
 MEMSPACE tft_font_fixed ( window *win );
 MEMSPACE void tft_font_var ( window *win );
-void tft_drawPixel ( window *win , int16_t x , int16_t y , int16_t color );
-MEMSPACE uint16_t tft_readPixel ( window *win , int16_t x , int16_t y );
+void tft_drawFastVLine ( window *win , int16_t x , int16_t y , int16_t h , uint16_t color );
+void tft_drawFastHLine ( window *win , int16_t x , int16_t y , int16_t w , uint16_t color );
 void tft_drawLine ( window *win , int16_t x0 , int16_t y0 , int16_t x1 , int16_t y1 , uint16_t color );
 void tft_drawLine ( window *win , int16_t x0 , int16_t y0 , int16_t x1 , int16_t y1 , uint16_t color );
 MEMSPACE void tft_cleareol ( window *win );
 MEMSPACE void tft_putch ( window *win , int c );
+
 
 #endif // _ILI9341_SUP_H_

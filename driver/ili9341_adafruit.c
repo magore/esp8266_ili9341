@@ -58,66 +58,66 @@ void tft_configRegister(void)
     data[2] = 0x00;
     data[3] = 0x34;
     data[4] = 0x02;
-    tft_writeCmdData(0xCB, data, 5);
+    tft_Cmd_Data_TX(0xCB, data, 5);
 
     data[0] = 0x00;
     data[1] = 0XC1;
     data[2] = 0X30;
-    tft_writeCmdData(0xCF, data, 3);
+    tft_Cmd_Data_TX(0xCF, data, 3);
 
     data[0] = 0x85;
     data[1] = 0x00;
     data[2] = 0x78;
-    tft_writeCmdData(0xE8, data, 3);
+    tft_Cmd_Data_TX(0xE8, data, 3);
 
     data[0] = 0x00;
     data[1] = 0x00;
-    tft_writeCmdData(0xEA, data, 2);
+    tft_Cmd_Data_TX(0xEA, data, 2);
 
     data[0] = 0x64;
     data[1] = 0x03;
     data[2] = 0X12;
     data[3] = 0X81;
-    tft_writeCmdData(0xED, data, 4);
+    tft_Cmd_Data_TX(0xED, data, 4);
 
     data[0] = 0x20;
-    tft_writeCmdData(0xF7, data, 1);
+    tft_Cmd_Data_TX(0xF7, data, 1);
 
     data[0] = 0x23;                               //VRH[5:0]
-    tft_writeCmdData(0xC0, data, 1);              //Power control
+    tft_Cmd_Data_TX(0xC0, data, 1);              //Power control
 
     data[0] = 0x10;                               //SAP[2:0];BT[3:0]
-    tft_writeCmdData(0xC1, data, 1);              //Power control
+    tft_Cmd_Data_TX(0xC1, data, 1);              //Power control
 
     data[0] = 0x3e;                               //Contrast
     data[1] = 0x28;
-    tft_writeCmdData(0xC5, data, 2);              //VCM control
+    tft_Cmd_Data_TX(0xC5, data, 2);              //VCM control
 
     data[0] = 0x86;                               //--
-    tft_writeCmdData(0xC7, data, 1);              //VCM control2
+    tft_Cmd_Data_TX(0xC7, data, 1);              //VCM control2
 
 // MG was 0x40
     data[0] = 0x48;                               // column address order
-    tft_writeCmdData(0x36, data, 1);              // Memory Access Control
+    tft_Cmd_Data_TX(0x36, data, 1);              // Memory Access Control
 
     data[0] = 0x55;
-    tft_writeCmdData(0x3A, data, 1);
+    tft_Cmd_Data_TX(0x3A, data, 1);
 
 
     data[0] = 0x00;
     data[1] = 0x18;
-    tft_writeCmdData(0xB1, data, 2);
+    tft_Cmd_Data_TX(0xB1, data, 2);
 
     data[0] = 0x08;
     data[1] = 0x82;
     data[2] = 0x27;
-    tft_writeCmdData(0xB6, data, 3);              // Display Function Control
+    tft_Cmd_Data_TX(0xB6, data, 3);              // Display Function Control
 
     data[0] = 0x00;
-    tft_writeCmdData(0xF2, data, 1);              // 3Gamma Function Disable
+    tft_Cmd_Data_TX(0xF2, data, 1);              // 3Gamma Function Disable
 
     data[0] = 0x01;
-    tft_writeCmdData(0x26, data, 1);              //Gamma curve selected
+    tft_Cmd_Data_TX(0x26, data, 1);              //Gamma curve selected
 
     data[0] = 0x0F;
     data[1] = 0x31;
@@ -134,7 +134,7 @@ void tft_configRegister(void)
     data[12] = 0x0E;
     data[13] = 0x09;
     data[14] = 0x00;
-    tft_writeCmdData(0xE0, data, 15);             //Set Gamma
+    tft_Cmd_Data_TX(0xE0, data, 15);             //Set Gamma
 
     data[0] = 0x00;
     data[1] = 0x0E;
@@ -151,53 +151,23 @@ void tft_configRegister(void)
     data[12] = 0x31;
     data[13] = 0x36;
     data[14] = 0x0F;
-    tft_writeCmdData(0xE1, data, 15);             //Set Gamma
+    tft_Cmd_Data_TX(0xE1, data, 15);             //Set Gamma
 
-    tft_writeCmdData(0x11, 0, 0);                 //Exit Sleep
+    tft_Cmd_Data_TX(0x11, 0, 0);                 //Exit Sleep
 	// MG was 120000
     os_delay_us(150000);
 
-    tft_writeCmdData(0x29, 0, 0);                 //Display on
+    tft_Cmd_Data_TX(0x29, 0, 0);                 //Display on
 	// MG added
     os_delay_us(150000);
-    tft_writeCmdData(0x2c, 0, 0);
+    tft_Cmd_Data_TX(0x2c, 0, 0);
 }
 
 
 // =======================================================================
 
-/// @brief  Fast virtical line drawing
-/// FIXME use MADCTL and fill
-/// @param[in] *win: window structure
-/// @param[in] x: X offset
-/// @param[in] y: Y offset
-/// @param[in] h: Height of line
-/// @param[in] color: Color
-/// @return  void
-void tft_drawFastVLine(window *win,int16_t x, int16_t y,
-int16_t h, uint16_t color)
-{
-    tft_drawLine(win,x, y, x, y+h-1, color);
-}
-
-
-/// @brief  Fast virtical line drawing
-/// @param[in] *win: window structure
-/// FIXME use MADCTL and fill
-/// @param[in] x: X offset
-/// @param[in] y: Y offset
-/// @param[in] w: Width of line
-/// @param[in] color: Color
-/// @return  void
-void tft_drawFastHLine(window *win, int16_t x, int16_t y,
-int16_t w, uint16_t color)
-{
-    tft_drawLine(win, x, y, x+w-1, y, color);
-}
-
-
 /// @brief  Draw bitmap
-/// FIXME use MADCTL and fill
+/// Replaced by tft_writeRect()
 /// @param[in] *win: window structure
 /// @param[in] x: X offset
 /// @param[in] y: Y offset
@@ -209,15 +179,7 @@ MEMSPACE
 void tft_drawBitmap(window *win, int16_t x, int16_t y,
 const uint16_t *bitmap, int16_t w, int16_t h)
 {
-
-    uint16_t i,j;
-    for(j=0; j<h; j++)
-    {
-        for(i=0; i<w; i++ )
-        {
-            tft_drawPixel(win, x+i, y+j, bitmap[j * w + i]);
-        }
-    }
+	tft_writeRect(win, x, y, w, h, (uint16_t *)bitmap);
 }
 
 
