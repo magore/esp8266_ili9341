@@ -526,6 +526,7 @@ void tft_writeRect(window *win, int16_t x, int16_t y, int16_t w, int16_t h, uint
 /// @brief Read Rectangle and return 16bit color array in 565 RGB format
 /// We clip the window to the current view
 /// Note: TFT Chip Select must be asserted for each block read
+///       As soon as chip select goes high the read aborts!
 /// We break up the data into chunks with a Memory Read, followed by Memory Read Continue
 /// So we use Memory Read and Memory Read Continue
 /// @param[in] win*: window structure

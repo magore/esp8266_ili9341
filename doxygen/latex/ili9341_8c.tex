@@ -11,7 +11,7 @@ ili9341 driver inspired by Adafruit ili9341 code All code in this file has been 
 \begin{DoxyCompactItemize}
 \item 
 \#define \hyperlink{ili9341_8c_a4ae7ac40c6ea3d1e5a457adf60a6bf5b}{H\-S\-P\-I\-\_\-\-P\-I\-X}~((\hyperlink{hspi_8h_a1eaecab4a7e4f328f38ce57d4d3012d1}{H\-S\-P\-I\-\_\-\-F\-I\-F\-O\-\_\-\-S\-I\-Z\-E}-\/2)/3)
-\begin{DoxyCompactList}\small\item\em Read Rectangle and return 16bit color array in 565 R\-G\-B format We clip the window to the current view Note\-: T\-F\-T Chip Select must be asserted for each block read We break up the data into chunks with a Memory Read, followed by Memory Read Continue So we use Memory Read and Memory Read Continue. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Read Rectangle and return 16bit color array in 565 R\-G\-B format We clip the window to the current view Note\-: T\-F\-T Chip Select must be asserted for each block read As soon as chip select goes high the read aborts! We break up the data into chunks with a Memory Read, followed by Memory Read Continue So we use Memory Read and Memory Read Continue. \end{DoxyCompactList}\item 
 \#define \hyperlink{ili9341_8c_a3bc3999315888a41dcf1417cdae450e3}{U\-S\-E\-\_\-\-O\-P\-T\-I\-M\-I\-Z\-A\-T\-I\-O\-N\-\_\-\-D\-R\-A\-W\-L\-I\-N\-E}
 \end{DoxyCompactItemize}
 \subsection*{Functions}
@@ -129,7 +129,7 @@ Definition in file \hyperlink{ili9341_8c_source}{ili9341.\-c}.
 \subsubsection[{H\-S\-P\-I\-\_\-\-P\-I\-X}]{\setlength{\rightskip}{0pt plus 5cm}\#define H\-S\-P\-I\-\_\-\-P\-I\-X~(({\bf H\-S\-P\-I\-\_\-\-F\-I\-F\-O\-\_\-\-S\-I\-Z\-E}-\/2)/3)}}\label{ili9341_8c_a4ae7ac40c6ea3d1e5a457adf60a6bf5b}
 
 
-Read Rectangle and return 16bit color array in 565 R\-G\-B format We clip the window to the current view Note\-: T\-F\-T Chip Select must be asserted for each block read We break up the data into chunks with a Memory Read, followed by Memory Read Continue So we use Memory Read and Memory Read Continue. 
+Read Rectangle and return 16bit color array in 565 R\-G\-B format We clip the window to the current view Note\-: T\-F\-T Chip Select must be asserted for each block read As soon as chip select goes high the read aborts! We break up the data into chunks with a Memory Read, followed by Memory Read Continue So we use Memory Read and Memory Read Continue. 
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -148,7 +148,7 @@ Read Rectangle and return 16bit color array in 565 R\-G\-B format We clip the wi
 \end{DoxyParams}
 
 
-Definition at line 540 of file ili9341.\-c.
+Definition at line 541 of file ili9341.\-c.
 
 
 
@@ -187,7 +187,7 @@ Referenced by tft\-\_\-read\-Rect().
 \end{DoxyParams}
 
 
-Definition at line 712 of file ili9341.\-c.
+Definition at line 713 of file ili9341.\-c.
 
 \hypertarget{ili9341_8c_a8ccc4d21526cb068ee51c041547c9980}{\index{ili9341.\-c@{ili9341.\-c}!tft\-\_\-abs\-\_\-window@{tft\-\_\-abs\-\_\-window}}
 \index{tft\-\_\-abs\-\_\-window@{tft\-\_\-abs\-\_\-window}!ili9341.c@{ili9341.\-c}}
@@ -285,7 +285,7 @@ Referenced by tft\-\_\-draw\-Char().
 \end{DoxyParams}
 
 
-Definition at line 970 of file ili9341.\-c.
+Definition at line 971 of file ili9341.\-c.
 
 
 
@@ -408,7 +408,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 852 of file ili9341.\-c.
+Definition at line 853 of file ili9341.\-c.
 
 
 
@@ -447,7 +447,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 838 of file ili9341.\-c.
+Definition at line 839 of file ili9341.\-c.
 
 
 
@@ -507,7 +507,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 911 of file ili9341.\-c.
+Definition at line 912 of file ili9341.\-c.
 
 
 
@@ -670,7 +670,7 @@ Only works if font is proportional type
 \end{DoxyParams}
 
 
-Definition at line 815 of file ili9341.\-c.
+Definition at line 816 of file ili9341.\-c.
 
 
 
@@ -694,7 +694,7 @@ Set current font type to variable.
 \end{DoxyParams}
 
 
-Definition at line 825 of file ili9341.\-c.
+Definition at line 826 of file ili9341.\-c.
 
 
 
@@ -718,7 +718,7 @@ Get font height.
 \end{DoxyParams}
 
 
-Definition at line 800 of file ili9341.\-c.
+Definition at line 801 of file ili9341.\-c.
 
 \hypertarget{ili9341_8c_a14e5cdfbb744c04570df508551f77add}{\index{ili9341.\-c@{ili9341.\-c}!tft\-\_\-init@{tft\-\_\-init}}
 \index{tft\-\_\-init@{tft\-\_\-init}!ili9341.c@{ili9341.\-c}}
@@ -760,7 +760,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 724 of file ili9341.\-c.
+Definition at line 725 of file ili9341.\-c.
 
 \hypertarget{ili9341_8c_af577ed6737059ccbe04d4e2cd476a0e1}{\index{ili9341.\-c@{ili9341.\-c}!tft\-\_\-putch@{tft\-\_\-putch}}
 \index{tft\-\_\-putch@{tft\-\_\-putch}!ili9341.c@{ili9341.\-c}}
@@ -783,7 +783,7 @@ put character in current winoow
 \end{DoxyParams}
 
 
-Definition at line 990 of file ili9341.\-c.
+Definition at line 991 of file ili9341.\-c.
 
 
 
@@ -838,7 +838,7 @@ color in 565 format
 \end{DoxyReturn}
 
 
-Definition at line 623 of file ili9341.\-c.
+Definition at line 624 of file ili9341.\-c.
 
 \hypertarget{ili9341_8c_a08bf5b6422229993b5d68e48c7b39619}{\index{ili9341.\-c@{ili9341.\-c}!tft\-\_\-read\-Rect@{tft\-\_\-read\-Rect}}
 \index{tft\-\_\-read\-Rect@{tft\-\_\-read\-Rect}!ili9341.c@{ili9341.\-c}}
@@ -854,7 +854,7 @@ Definition at line 623 of file ili9341.\-c.
 )}}\label{ili9341_8c_a08bf5b6422229993b5d68e48c7b39619}
 
 
-Definition at line 542 of file ili9341.\-c.
+Definition at line 543 of file ili9341.\-c.
 
 
 
@@ -953,7 +953,7 @@ Set current font size (per current rotation)
 \end{DoxyParams}
 
 
-Definition at line 791 of file ili9341.\-c.
+Definition at line 792 of file ili9341.\-c.
 
 
 
@@ -983,7 +983,7 @@ Set current window offset (per current rotation)
 \end{DoxyParams}
 
 
-Definition at line 779 of file ili9341.\-c.
+Definition at line 780 of file ili9341.\-c.
 
 
 
@@ -1008,7 +1008,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 648 of file ili9341.\-c.
+Definition at line 649 of file ili9341.\-c.
 
 
 
@@ -1041,7 +1041,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 766 of file ili9341.\-c.
+Definition at line 767 of file ili9341.\-c.
 
 
 
@@ -1068,7 +1068,7 @@ Scroll window up by dir lines.
 \end{DoxyParams}
 
 
-Definition at line 597 of file ili9341.\-c.
+Definition at line 598 of file ili9341.\-c.
 
 
 
@@ -1107,7 +1107,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 741 of file ili9341.\-c.
+Definition at line 742 of file ili9341.\-c.
 
 
 

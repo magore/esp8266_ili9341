@@ -11,6 +11,7 @@
 
 @par Description
  * ESP8266 ILI9341 display demo with multiple window support and simple networking
+    * The specific display is an TM022HDH26 display I got from ebay.
  * I wrote the following support functions from scratch
  * Font compiler and display code
   * CORDIC C table generator and 3D transformation code support functions
