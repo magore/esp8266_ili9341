@@ -360,6 +360,13 @@ void user_init(void)
 	ets_uart_printf("\r\nSystem init...\r\n");
 	ets_uart_printf("\r\nDisplay Init\r\n");
 
+// CPU
+// 160MHZ
+//  REG_SET_BIT(0x3ff00014, BIT(0));
+// 80MHZ
+//   REG_CLR_BIT(0x3ff00014, BIT(0));
+
+	hspi_init(1);
 	// Initialize TFT
 	master = tft_init();
 	ID = tft_ID;

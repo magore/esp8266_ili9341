@@ -4,6 +4,8 @@
 # ASSUME Ubuntu 14.04LTS
 # Mike Gore May 2015
 
+
+
 sep()
 {
 	echo "====================================================="
@@ -12,7 +14,6 @@ sep()
 	echo
 }
 
-# Install required packages
 update_packages()
 {
 	sudo apt-get install git make automake autoconf build-essential \
@@ -84,7 +85,6 @@ check_cd()
 }
 
 
-# Verify a list of directories exist
 check_dir()
 {
 	declare i
@@ -97,7 +97,6 @@ check_dir()
 	done
 }
 
-# Verify a list of files exist
 check_files()
 {
 	declare i
@@ -109,8 +108,6 @@ check_files()
 		fi
 	done
 }
-
-# Set SDK paths 
 set_path()
 {
 	# See: https://nurdspace.nl/ESP8266/First_setup
@@ -126,7 +123,6 @@ set_path()
 	sep
 }
 
-# Make a script that will set search paths
 make_path()
 {
 	set_path
@@ -142,7 +138,18 @@ EOF
 	sep
 }
 
-# DOanload and build Open SDK
+
+#Save a list of libraries we can use in the sdk home directory
+list_libs()
+{
+	LIST="sdk/lib xtensa-lx106-elf/xtensa-lx106-elf/sysroot/usr/lib xtensa-lx106-elf/xtensa-lx106-elf/sysroot/lib xtensa-lx106-elf/lib lx106-hal/src"
+
+	for i in $LIST
+	do
+		find "$SDK_HOME"/$i -type f | grep "\.a$" 
+	done
+}
+
 install_open_sdk()
 {
 	echo Installing Open SDK
@@ -154,11 +161,11 @@ install_open_sdk()
 	check_cd $SDK_HOME
 	make STANDALONE=y
 
+
 	check_dir $SDK_HOME/esptool
 	sep
 }
 
-# Add a few tools
 add_tools()
 {
 	check_dir $SDK_HOME/sdk/bin
@@ -173,9 +180,66 @@ add_tools()
 
 #  ==============================================================
 
-# Now execute the shell functions to do the work
+
+build_examples()
+{
+	echo Building Exampless
+	check_cd $SDK_HOME
+	get_git https://github.com/esp8266 source-code-examples
+	if [ ! -d source-code-examples/blinky ]
+	then
+		echo "source-code-examples missing"
+		exit 1
+	fi
+
+	check_cd source-code-examples/blinky
+
+	sed -i -e "s;^XTENSA_TOOLS_ROOT.*$;XTENSA_TOOLS_ROOT=$SDK_BIN;" Makefile
+	sed -i -e "s;^SDK_BASE.*$;SDK_BASE=$SDK_HOME/sdk;" Makefile
+	sed -i -e "s;^EXTRA_INCDIR.*$;EXTRA_INCDIR= $SDK_HOME/sdk/include;" Makefile
+
+	make clean
+	make
+	sep
+}
+
+build_nodemcu()
+{
+	echo "Building Nodemcu Firemware"
+	check_cd "$ROOT_DIR"
+	get_git https://github.com/nodemcu nodemcu-firmware
+ 	check_cd "$ROOT_DIR/nodemcu-firmware"
+	make
+	sep
+}
+
+
+
+flash_nodemcu()
+{
+	echo "Flashinf Nodemcu Firemware"
+ 	check_cd "$ROOT_DIR/nodemcu-firmware"
+	make flash
+	sep
+}
+
+# ===================================================================
+
 set_path
+
 update_packages
+
 install_open_sdk
+
+list_libs >"$SDK_HOME"/libs.txt
+
 add_tools
+
 make_path
+
+
+#build_examples
+
+#build_nodemcu
+#flash_nodemcu
+

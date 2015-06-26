@@ -36,17 +36,18 @@ window *tft = &tftwin;
 uint16_t tft_ID;
 
 /// @brief Initialize TFT
-/// @ return diplay ID 9341
+/// @return diplay ID 9341
 MEMSPACE
 window *tft_init(void)
 {
-
-    hspi_init();
 
     TFT_CS_INIT;
     TFT_INIT;
     TFT_RST_INIT;
     TFT_RST_ACTIVE;
+
+	// start with slow SPI
+	hspi_init(2);
 
     os_delay_us(10000);
     TFT_RST_DEACTIVE;
@@ -57,6 +58,10 @@ window *tft_init(void)
 
 	/* Read the TFT ID value */
     tft_ID = tft_readId();
+
+	// fast SPI
+	hspi_init(1);
+
 
 	/* Setup the master window */
     tft_window_init(tft, TFT_XOFF, TFT_YOFF, TFT_W, TFT_H);
@@ -394,7 +399,6 @@ void tft_bit_blit(window *win, uint8_t *ptr, int x, int y, int w, int h)
 /// @brief Fill window 
 /// @param[in] win*: window structure
 /// @param[in] color: Fill color
-MEMSPACE
 void tft_fillWin(window *win, uint16_t color)
 {
     tft_fillRectWH(win, 0,0, win->w, win->h, color);
@@ -431,7 +435,6 @@ void tft_fillRectWH(window *win, int16_t x, int16_t y, int16_t w, int16_t h, uin
 /// @param[in] yl: Y End
 /// @param[in] color: Fill color
 /// @return void
-MEMSPACE
 void tft_fillRectXY(window *win, int16_t x, int16_t y, int16_t xl, int16_t yl, uint16_t color)
 {
     uint32_t repeat;
@@ -594,7 +597,6 @@ void tft_readRect(window *win, int16_t x, int16_t y, int16_t w, int16_t h, uint1
 /// @param[in] win*: window structure
 /// @param[in] dir: direction and count
 /// TODO +/- scroll direction
-MEMSPACE
 void tft_Vscroll(window *win, int dir)
 {
 	int i;
@@ -608,6 +610,8 @@ void tft_Vscroll(window *win, int dir)
 	{
 		tft_readRect(win, 0, i+dir, win->w, 1, (uint16_t *) buff);
 		tft_writeRect(win, 0, i, win->w, 1, (uint16_t *)buff);
+		ets_wdt_disable();
+
 	}
 	tft_fillRectWH(win, 0, win->h-1-dir, win->w, dir, win->bg);
 	win->y -= dir;
@@ -696,7 +700,6 @@ void tft_setRotation(uint8_t m)
 /// @param[in] r: red data
 /// @param[in] b: blue data
 /// @param[in] g: green data
-MEMSPACE
 uint16_t tft_RGBto565(uint8_t r, uint8_t g, uint8_t b)
 {
     return ((r & 0xf8) << 8) | ((g & 0xfc) << 3) | ((b & 0xf8) >>3);
@@ -709,7 +712,6 @@ uint16_t tft_RGBto565(uint8_t r, uint8_t g, uint8_t b)
 /// @param[out] *r: red data
 /// @param[out] *b: blue data
 /// @param[out] *g: green data
-MEMSPACE
 void tft_565toRGB(uint16_t color, uint8_t *r, uint8_t *g, uint8_t *b)
 {
     *r = ((0xf800 & color)>>8);
@@ -797,7 +799,6 @@ tft_set_font(window *win, uint16_t index)
 /// @brief  Get font height
 /// @param[in] win*: window structure
 /// return: font Height or zero on error
-MEMSPACE
 int tft_get_font_height(window *win)
 {
 	int ret;
@@ -987,7 +988,6 @@ void tft_cleareol(window *win)
 /// @param[in] win*: window structure
 /// @param[in] c: character
 /// return: void
-MEMSPACE
 void tft_putch(window *win, int c)
 {
     _fontc f;

@@ -64,6 +64,7 @@ double deg2rad(double deg)
 /// @param[in] quads: 1.0 = 90 degrees
 /// @param[out] quad: quadrant 0 = 0 .. 89.9999, 1 = 90 ... 179.999 ..., etc
 /// @return  fractional part of quads
+MEMSPACE
 double angle_quad(double quads,int *quad)
 {
 

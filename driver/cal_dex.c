@@ -75,6 +75,7 @@ c_puts(TINYBUF); \
 
 #if !USE_ETS_PRINTF
 // quick and dirty print hex bytes to avoid printf.
+MEMSPACE
 void print8x(unsigned int n)
 {
     int i = 0;
@@ -89,6 +90,7 @@ void print8x(unsigned int n)
 }
 
 
+MEMSPACE
 void print4x(unsigned int n)
 {
     int i = 0;
@@ -103,6 +105,7 @@ void print4x(unsigned int n)
 }
 
 
+MEMSPACE
 void print2d(unsigned int n)
 {
     int i = 0;

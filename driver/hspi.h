@@ -21,8 +21,8 @@
 #define CONFIG_FOR_TX           1
 #define CONFIG_FOR_RX_TX        2
 
-/* driver/hspi.c */
-MEMSPACE void hspi_init ( void );
+/* hspi.c */
+MEMSPACE void hspi_init ( uint16_t prescale );
 void hspi_config ( int configState );
 void hspi_setBits ( uint16_t bytes );
 void hspi_startSend ( void );
@@ -34,6 +34,5 @@ void hspi_Tx ( uint8_t *data , uint16_t bytes );
 void hspi_TX_stream_byte ( uint8_t data );
 MEMSPACE void hspi_TX_stream_init ( void );
 void hspi_TX_stream_flush ( void );
-void hspi_TX_buffer_repeat ( uint8_t *write_data , uint32_t bytes , uint32_t repeats );
 
 #endif                                            /* INCLUDE_HSPI_H_ */

@@ -42,8 +42,7 @@ static uint8_t _f_tx_buf[HSPI_FIFO_SIZE+2];          // fifo buffer, same as HSP
 /// 	CS GPIO15
 /// 	DC GPIO2
 /// @return  void
-MEMSPACE
-void hspi_init(void)
+void hspi_init(uint16_t prescale)
 {
 
     WRITE_PERI_REG(PERIPHS_IO_MUX, 0x105);        //clear bit9
@@ -63,13 +62,12 @@ void hspi_init(void)
 // time length HIGHT level = (CPU clock / 10 / 2) ^ -1,
 // time length LOW level = (CPU clock / 10 / 2) ^ -1
     WRITE_PERI_REG(SPI_FLASH_CLOCK(HSPI),
-        (((HSPI_PRESCALER - 1) & SPI_CLKDIV_PRE) << SPI_CLKDIV_PRE_S) |
+        (((prescale - 1) & SPI_CLKDIV_PRE) << SPI_CLKDIV_PRE_S) |
         ((1 & SPI_CLKCNT_N) << SPI_CLKCNT_N_S) |
         ((0 & SPI_CLKCNT_H) << SPI_CLKCNT_H_S) |
         ((1 & SPI_CLKCNT_L) << SPI_CLKCNT_L_S));
 
     WRITE_PERI_REG(SPI_FLASH_CTRL1(HSPI), 0);
-
 }
 
 
@@ -292,7 +290,6 @@ void hspi_TX_stream_byte(uint8_t data)
 /// @brief HSPI stream init
 /// We use the fifo - or a buffer to queue spi writes
 /// The overhead of N writes done at once is less N writes done one at a time
-MEMSPACE
 void hspi_TX_stream_init(void)
 {
     _f_tx_ind = 0;
@@ -315,32 +312,4 @@ void hspi_TX_stream_flush( void )
         _f_tx_ind = 0;
     }
     hspi_waitReady();
-}
-
-/// @brief Send large buffer (datasize bytes in size) repeat times
-/// Send repeats times
-/// Note: a repeat of zero will cause NO data to be sent
-/// Used for small (less then HSPI_FIFO_SIZE) packet send only
-/// @param[in] write_data: buffer
-/// @param[in] bytes: bytes to write
-/// @param[in] repeats: repeates to send
-/// @return  void
-void hspi_TX_buffer_repeat(uint8_t *write_data, uint32_t bytes, uint32_t repeats)
-{
-    uint32_t d_ind = 0;                           // data index, size of write_data (bytes)
-
-    if ((bytes < 1) || (repeats < 1))
-        return;                                   // Error parameter
-
-	hspi_TX_stream_init();
-    while(repeats)
-    {
-		hspi_TX_stream_byte( write_data[d_ind]);
-        if(++d_ind >= bytes)                        // size of data
-        {
-            d_ind = 0;
-            --repeats;                            // data has been copied once
-        }
-    }
-	hspi_TX_stream_flush();
 }

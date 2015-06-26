@@ -60,7 +60,7 @@ uint8_t read_flash8(uint8_t *p)
 /// No cached version
 /// @param[in] *p: address to read
 /// @return  uint8_t
-MEMSPACE uint8_t read_flash8(uint8_t *p)
+uint8_t read_flash8(uint8_t *p)
 {
     uint8_t offset;
     uint32_t data;
@@ -94,7 +94,7 @@ void cpy_flash(uint8_t *src, uint8_t *dest, int size)
 /// Uses cpy_flash() to avoid alighnment problems
 /// @param[in] *p: address to read
 /// @return  uint16_t
-MEMSPACE uint16_t read_flash16(uint8_t *p)
+uint16_t read_flash16(uint8_t *p)
 {
     uint16_t tmp;
     cpy_flash(p,(uint8_t *)&tmp, 2);
@@ -106,7 +106,7 @@ MEMSPACE uint16_t read_flash16(uint8_t *p)
 /// Uses cpy_flash() to avoid alighnment problems
 /// @param[in] *p: address to read
 /// @return  uint32_t
-MEMSPACE uint32_t read_flash32(uint8_t *p)
+uint32_t read_flash32(uint8_t *p)
 {
     uint32_t tmp;
     cpy_flash(p,(uint8_t *) &tmp, 4);
@@ -118,7 +118,7 @@ MEMSPACE uint32_t read_flash32(uint8_t *p)
 /// Uses cpy_flash() to avoid alighnment problems
 /// @param[in] *p: address to read
 /// @return  uint64_t
-MEMSPACE uint64_t read_flash64(uint8_t *p)
+uint64_t read_flash64(uint8_t *p)
 {
     uint64_t tmp;
     cpy_flash(p,(uint8_t *) &tmp, 8);
@@ -130,7 +130,7 @@ MEMSPACE uint64_t read_flash64(uint8_t *p)
 /// Uses cpy_flash() to avoid alighnment problems
 /// @param[in] *p: address to read
 /// @return  uint32_t
-MEMSPACE uint32_t read_flash_ptr(uint8_t *p)
+uint32_t read_flash_ptr(uint8_t *p)
 {
     uint32_t tmp;
     cpy_flash(p,(uint8_t *) &tmp, 4);

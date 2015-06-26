@@ -246,7 +246,6 @@ static int t_itoa(long num, uint8_t *str, int max, int prec, int sign)
 /// @param[in] prec:  minumum number of digits, zero padded if needed
 ///            NOT counted as part of prec length (just like printf)
 /// @return returns size of string
-MEMSPACE 
 
 MEMSPACE 
 static int t_ntoa(unsigned long num, uint8_t *str, int max, int radix, int prec)
@@ -647,7 +646,6 @@ static int etoa(double x,char *str, int prec, int sign)
 /// @param[in] fmt: printf forat string
 /// @param[in] va: va_list arguments
 /// @return size of string
-MEMSPACE 
 MEMSPACE 
 int t_vsnprintf(char *buffer, int len, const char *fmt, va_list va)
 {

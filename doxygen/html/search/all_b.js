@@ -13,7 +13,7 @@ var searchData=
   ['makefile',['Makefile',['../printf_2Makefile.html',1,'']]],
   ['makefile',['Makefile',['../earth_2Makefile.html',1,'']]],
   ['makefile',['Makefile',['../Makefile.html',1,'']]],
-  ['map',['Map',['../Makefile.html#a3f923b64cf6726ab0bfdd17b9aff0a96',1,'Makefile']]],
+  ['map',['Map',['../Makefile.html#a3d2682475b097eef42d87fa20f765794',1,'Makefile']]],
   ['master',['master',['../user__main_8c.html#a3c3825d702360b467501feca5bd25dab',1,'user_main.c']]],
   ['match',['MATCH',['../bdffontutil_8h.html#a4d192fe48cb19d0ef5a88c52ed23cf4c',1,'bdffontutil.h']]],
   ['match_5ftoken',['match_token',['../bdffontutil_8c.html#aa8451fa4387dfafd4583f6548533d37b',1,'match_token(char *str, char *pat):&#160;bdffontutil.c'],['../bdffontutil_8h.html#aa8451fa4387dfafd4583f6548533d37b',1,'match_token(char *str, char *pat):&#160;bdffontutil.c']]],
@@ -30,5 +30,5 @@ var searchData=
   ['memspace_5fro',['MEMSPACE_RO',['../user__config_8h.html#a9946b5a72f8c16945877e78578df6a7f',1,'user_config.h']]],
   ['min_5ftft_5fx',['MIN_TFT_X',['../ili9341__adafruit_8h.html#a435c01f99d8b3103fb913fe285dd4792',1,'ili9341_adafruit.h']]],
   ['min_5ftft_5fy',['MIN_TFT_Y',['../ili9341__adafruit_8h.html#a67e6b135b49133e3d6ce16e754383a64',1,'ili9341_adafruit.h']]],
-  ['modules',['MODULES',['../Makefile.html#af8b8a61c029c5ab0a5518b7f5421c6ac',1,'Makefile']]]
+  ['modules',['MODULES',['../Makefile.html#a61c8d9ae20beeb28ac4075403cc4ea41',1,'Makefile']]]
 ];

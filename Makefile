@@ -9,6 +9,7 @@
 BUILD_BASE	= build
 FW_BASE		= firmware
 
+
 SOFTCS = 
 ILI9341_DEBUG = 0
 
@@ -38,6 +39,7 @@ SDK_BASE	?= $(ROOT_DIR)/sdk
 SDK_TOOLS	?= $(SDK_BASE)/tools
 ESPTOOL		?= $(SDK_TOOLS)/esptool.py
 ESPPORT		?= /dev/ttyUSB0
+BAUD=256000
 
 # BOOT = none
 # BOOT = old - boot_v1.1
@@ -166,14 +168,16 @@ EXTRA_INCDIR    = user include $(SDK_BASE)/../include
 
 # libraries used in this project, mainly provided by the SDK
 #LIBS		= gcc hal phy pp net80211 lwip wpa main m
-LIBS		= cirom gcc hal phy pp net80211 ssc ssl lwip wpa main m
+#LIBS		= cirom gcc hal phy pp net80211 ssc ssl lwip wpa main m
+LIBS		= cirom gcc hal phy pp net80211 ssl lwip wpa main m
 
 
 # compiler flags using during compilation of source files
 CFLAGS	= -Os -g -O2 -Wpointer-arith -Wundef -Werror -Wl,-EL \
     -fno-inline-functions \
 	-nostdlib -mlongcalls -mtext-section-literals  -D__ets__ -DICACHE_FLASH \
-	-ffunction-sections 
+	-ffunction-sections \
+    -fdata-sections
 
 # which modules (subdirectories) of the project to include in compiling
 MODULES	= driver user printf cordic display
@@ -215,10 +219,13 @@ ifdef NETWORK_TEST
 	CFLAGS  += -DNETWORK_TEST -DTCP_PORT=$(TCP_PORT)
 endif
 
+
+
 # linker flags used to generate the main object file
 LDFLAGS		= -nostdlib -Wl,--no-check-sections -u call_user_start -Wl,-static \
 -Wl,-gc-sections -Wl,-Map=map.txt  \
--Wl,--undefined=_xtos_set_exception_handler -Wl,--wrap=_xtos_set_exception_handler
+-Wl,--undefined=_xtos_set_exception_handler -Wl,--wrap=_xtos_set_exception_handler 
+
 
 # linker script used for the above linkier step
 LD_SCRIPT	= eagle.app.v6.ld
@@ -357,11 +364,11 @@ flashonefile:   all
 flashboot: all flashinit
 ifeq ($(boot), new)
 	$(vecho) "Flash boot_v1.3 and +"
-	$(ESPTOOL) -p $(ESPPORT) -b 256000 write_flash $(flashimageoptions) 0x00000 $(SDK_BASE)/bin/boot_v1.3\(b3\).bin
+	$(ESPTOOL) -p $(ESPPORT) -b $(BAUD) write_flash $(flashimageoptions) 0x00000 $(SDK_BASE)/bin/boot_v1.3\(b3\).bin
 endif
 ifeq ($(boot), old)
 	$(vecho) "Flash boot_v1.1 and +"
-	$(ESPTOOL) -p $(ESPPORT) -b 256000 write_flash $(flashimageoptions) 0x00000 $(SDK_BASE)/bin/boot_v1.1.bin
+	$(ESPTOOL) -p $(ESPPORT) -b $(BAUD) write_flash $(flashimageoptions) 0x00000 $(SDK_BASE)/bin/boot_v1.1.bin
 endif
 ifeq ($(boot), none)
 	$(vecho) "No boot needed."
@@ -369,12 +376,12 @@ endif
 
 flash: all
 ifeq ($(app), 0) 
-	$(ESPTOOL) -p $(ESPPORT) -b 256000 write_flash $(flashimageoptions) 0x00000 $(FW_BASE)/eagle.flash.bin 0x40000 $(FW_BASE)/eagle.irom0text.bin
+	$(ESPTOOL) -p $(ESPPORT) -b $(BAUD) write_flash $(flashimageoptions) 0x00000 $(FW_BASE)/eagle.flash.bin 0x40000 $(FW_BASE)/eagle.irom0text.bin
 else
 ifeq ($(boot), none)
-	$(ESPTOOL) -p $(ESPPORT) -b 256000 write_flash $(flashimageoptions) 0x00000 $(FW_BASE)/eagle.flash.bin 0x40000 $(FW_BASE)/eagle.irom0text.bin
+	$(ESPTOOL) -p $(ESPPORT) -b $(BAUD) write_flash $(flashimageoptions) 0x00000 $(FW_BASE)/eagle.flash.bin 0x40000 $(FW_BASE)/eagle.irom0text.bin
 else
-	$(ESPTOOL) -p $(ESPPORT) -b 256000 write_flash $(flashimageoptions) $(addr) $(FW_BASE)/upgrade/$(BIN_NAME).bin
+	$(ESPTOOL) -p $(ESPPORT) -b $(BAUD) write_flash $(flashimageoptions) $(addr) $(FW_BASE)/upgrade/$(BIN_NAME).bin
 endif
 endif
 
