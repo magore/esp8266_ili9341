@@ -34,6 +34,7 @@ BAUD=256000
 # ===============================================================
 # Project Defines
 
+
 # SOFTCS not yet working
 # SPI chip select in software ?
 SOFTCS = 
@@ -52,6 +53,8 @@ WIRECUBE = 1
 
 # NETWORK Client test
 NETWORK_TEST = 1
+# The ipaddress of the module - either fixed or by DHCP
+IPADDR=192.168.200.116
 
 # SPI FIFO CODE enabled
 USE_FIFO =  1
@@ -423,3 +426,6 @@ doxy:   doxyfile.inc $(SRCS)
 
 send:	send.c
 	gcc send.c -DTCP_PORT=$(TCP_PORT) -o send
+
+sendtest:	send
+	./send -i $(IPADDR) -m 'testing\nTest3\nscrolling\ntext and even more text\n1\n3'
