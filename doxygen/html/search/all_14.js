@@ -23,7 +23,7 @@ var searchData=
   ['wire_5ft',['wire_t',['../wire__types_8h.html#ace84d5e6e326f6a52d978bd9900baee6',1,'wire_types.h']]],
   ['wire_5ftypes_2eh',['wire_types.h',['../wire__types_8h.html',1,'']]],
   ['wl',['Wl',['../Makefile.html#a1af3a6ecef406b93f1a1db145b2cfd43',1,'Makefile']]],
-  ['wrap',['WRAP',['../ili9341_8h.html#a43c1de45dbd91827a260224c9c40221b',1,'ili9341.h']]],
+  ['wrap',['wrap',['../Makefile.html#a6b04d3dc9ff8a69521845b59ef6c33f1',1,'wrap():&#160;Makefile'],['../ili9341_8h.html#a43c1de45dbd91827a260224c9c40221b',1,'WRAP():&#160;ili9341.h']]],
   ['wrap_5fh',['WRAP_H',['../ili9341_8h.html#ab73b6f81ca48b2c6565e527a069914b3',1,'ili9341.h']]],
   ['wrap_5fv',['WRAP_V',['../ili9341_8h.html#ae48f725a443ce4210c725908799554af',1,'ili9341.h']]],
   ['write_5fover',['WRITE_OVER',['../uart_8h.html#ad2f40c3db0de470af22077a2f9a4a136af25ad614280b763056ef7b8e23695108',1,'uart.h']]],

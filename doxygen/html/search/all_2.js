@@ -31,6 +31,5 @@ var searchData=
   ['btestv',['btestv',['../bdffontutil_8c.html#aa30626c7589748b8cea5fee93e17c4cf',1,'btestv(unsigned char *ptr, int addr):&#160;bdffontutil.c'],['../bdffontutil_8h.html#aa30626c7589748b8cea5fee93e17c4cf',1,'btestv(unsigned char *ptr, int addr):&#160;bdffontutil.c']]],
   ['buff_5fuart_5fno',['buff_uart_no',['../structUartDevice.html#af828558385d4b66a04288b5d631f0501',1,'UartDevice']]],
   ['buffstate',['BuffState',['../structRcvMsgBuff.html#a834e373c1fa1798f35fa38fd197674e0',1,'RcvMsgBuff']]],
-  ['build_5fbase',['BUILD_BASE',['../Makefile.html#aaa9bbf75d7f8fc94a5c7dd9504b7a178',1,'Makefile']]],
   ['bytes',['bytes',['../unionuint32__t__bytes.html#a50aeebe398ee3b740421f1cc8d8583b8',1,'uint32_t_bytes::bytes()'],['../struct__font.html#a13b0b0e4e91f4d663ba4c3c11bfbda8a',1,'_font::Bytes()']]]
 ];

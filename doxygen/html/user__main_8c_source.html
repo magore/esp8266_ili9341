@@ -323,165 +323,165 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;    }</div>
 <div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;</div>
 <div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;    <span class="comment">// ets_uart_printf(&quot;Degree: %d \r\n&quot;,(int)degree);</span></div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;    <a class="code" href="user__main_8c.html#aa011065eee776eb1bda73597b5d9d5d7">count</a> += 1;</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;    <a class="code" href="ili9341_8c.html#adaf98866e7cbd787fde096143d394699">tft_setpos</a>(winstats,<a class="code" href="user__main_8c.html#a36dcaa24f334c780fbcc57e21395da3c">ip_xpos</a>,<a class="code" href="user__main_8c.html#a6fa71c7132fade09e9a721b07fb7c9e5">ip_ypos</a>);</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;    <a class="code" href="pr_8c.html#ad6d6dda4facdc045d477c0cc9403e0c1">tft_printf</a>(winstats,<span class="stringliteral">&quot;%s\n&quot;</span>, ip_msg);</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;    <a class="code" href="ili9341_8c.html#adaf98866e7cbd787fde096143d394699">tft_setpos</a>(winstats,<a class="code" href="user__main_8c.html#a63c29917affdd3f9245e88324643e961">xpos</a>,<a class="code" href="user__main_8c.html#a1f3dca5f78953126e573fa7188addfaf">ypos</a>);</div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;    <a class="code" href="ili9341_8c.html#a439a47a3afc781f1f2dd1fff2efefe42">tft_set_font</a>(winstats,0);</div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;    <a class="code" href="pr_8c.html#ad6d6dda4facdc045d477c0cc9403e0c1">tft_printf</a>(winstats,<span class="stringliteral">&quot;c:% 9ld, %+7.2f\n&quot;</span>, <a class="code" href="user__main_8c.html#aa011065eee776eb1bda73597b5d9d5d7">count</a>, <a class="code" href="user__main_8c.html#a46f4d8ebe46ec267dc7478f530e0ac07">degree</a>);</div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;    <span class="comment">// FIXME atomic access</span></div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;    timer = <a class="code" href="user__main_8c.html#ab2f04dacd2b2ea549a32bfa90f50b12c">seconds</a>;</div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;    <a class="code" href="pr_8c.html#ad6d6dda4facdc045d477c0cc9403e0c1">tft_printf</a>(winstats,<span class="stringliteral">&quot;Voltage: %2.2f\nTime: %9ld&quot;</span>, (<span class="keywordtype">float</span>)<a class="code" href="user__main_8c.html#ad3c64efcaba662da1a2f4393d00584e9">voltage</a>, timer);</div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;    </div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;<span class="preprocessor">#ifdef NETWORK_TEST</span></div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;<span class="preprocessor"></span>    poll_network_message(wintest);</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;<span class="preprocessor"></span>}</div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;</div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;<span class="preprocessor">#if ILI9341_DEBUG &amp; 1</span></div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;<span class="preprocessor"></span><a class="code" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;<span class="keywordtype">void</span> read_tests(<a class="code" href="structwindow.html">window</a> *win)</div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;{</div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;    <span class="keywordtype">int</span> x,y;</div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;    <a class="code" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> color;</div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;    <a class="code" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> buffer[3*16];</div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;    y = 4;</div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;    <a class="code" href="ili9341_8c.html#a08bf5b6422229993b5d68e48c7b39619">tft_readRect</a>(win, x, y, 16, 1, buffer);</div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;    <span class="keywordflow">for</span>(x=0;x&lt;16;++x)</div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;    {</div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;        <span class="comment">//color = tft_readPixel(win,x,y);</span></div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;        <span class="comment">// ets_uart_printf(&quot;x:%d,y:%d,c:%04x\n&quot;, x,y,color);</span></div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;        <a class="code" href="user__main_8c.html#af84e3ac8b5878bd0ad9e185f3d27073c">ets_uart_printf</a>(<span class="stringliteral">&quot;x:%d,y:%d,c:%04x\n&quot;</span>, x,y,buffer[x]);</div>
-<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;    }</div>
-<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;     <a class="code" href="user__main_8c.html#af84e3ac8b5878bd0ad9e185f3d27073c">ets_uart_printf</a>(<span class="stringliteral">&quot;\n&quot;</span>);</div>
-<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;}</div>
-<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;<a class="code" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> </div>
-<div class="line"><a name="l00344"></a><span class="lineno"><a class="line" href="user__main_8c.html#aaabd07afe4d50c1a7f16f18995fc6b18">  344</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="user__main_8c.html#aaabd07afe4d50c1a7f16f18995fc6b18">user_init</a>(<span class="keywordtype">void</span>)</div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;{</div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;    <span class="keywordtype">int</span> i;</div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;    os_event_t *handlerQueue;</div>
-<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;    <span class="keywordtype">char</span> time[20];</div>
-<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;    <span class="keywordtype">int</span> ret;</div>
-<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;    <a class="code" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> *ptr;</div>
-<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;    <a class="code" href="send_8c.html#a435d1572bf3f880d55459d9805097f62">uint32_t</a> time1,time2;</div>
-<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;    <a class="code" href="send_8c.html#a435d1572bf3f880d55459d9805097f62">uint32_t</a> ID;</div>
-<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;    <span class="keyword">extern</span> <a class="code" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> <a class="code" href="ili9341_8c.html#afd0704ffdcfd5d17f5437814c2860130">tft_ID</a>;</div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;    <span class="keywordtype">double</span> ang;</div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;</div>
-<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;    os_delay_us(200000<a class="code" href="cal__dex_8c.html#a7577d49f3bfffb1cf048eef843177784">L</a>);   <span class="comment">// Power Up dalay - lets power supplies and devices settle</span></div>
-<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;</div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;    <span class="comment">// Configure the UART</span></div>
-<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;    <a class="code" href="uart_8c.html#aedb0d99c7438c2c1c5ff4c561b6905a4">uart_init</a>(<a class="code" href="uart_8h.html#a6e376e04a3f78e8319a5dcd9ee6d545dace379f00ef7ff498cbee2a444d896e63">BIT_RATE_115200</a>,<a class="code" href="uart_8h.html#a6e376e04a3f78e8319a5dcd9ee6d545dace379f00ef7ff498cbee2a444d896e63">BIT_RATE_115200</a>);</div>
-<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;    <a class="code" href="user__main_8c.html#af84e3ac8b5878bd0ad9e185f3d27073c">ets_uart_printf</a>(<span class="stringliteral">&quot;\r\nSystem init...\r\n&quot;</span>);</div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;    <a class="code" href="user__main_8c.html#af84e3ac8b5878bd0ad9e185f3d27073c">ets_uart_printf</a>(<span class="stringliteral">&quot;\r\nDisplay Init\r\n&quot;</span>);</div>
-<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;</div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;<span class="comment">// CPU</span></div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;<span class="comment">// 160MHZ</span></div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;<span class="comment">//  REG_SET_BIT(0x3ff00014, BIT(0));</span></div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;<span class="comment">// 80MHZ</span></div>
-<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;<span class="comment">//   REG_CLR_BIT(0x3ff00014, BIT(0));</span></div>
-<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;</div>
-<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;    <a class="code" href="hspi_8c.html#a1cb8461537da95ced28db4ea8086936a">hspi_init</a>(1);</div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;    <span class="comment">// Initialize TFT</span></div>
-<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;    master = <a class="code" href="ili9341_8c.html#a14e5cdfbb744c04570df508551f77add">tft_init</a>();</div>
-<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;    ID = <a class="code" href="ili9341_8c.html#afd0704ffdcfd5d17f5437814c2860130">tft_ID</a>;</div>
-<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;    <span class="comment">// Set master rotation</span></div>
-<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;    <a class="code" href="ili9341_8c.html#a4c1271aab64c58f75e6de6471f430bbe">tft_setRotation</a>(1);</div>
-<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;</div>
-<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;    <span class="comment">/* Setup main status window */</span></div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;    <a class="code" href="ili9341_8c.html#ad93354e0742a28811fa11c9246bced93">tft_window_init</a>(winstats,0,0, master-&gt;<a class="code" href="structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae">w</a> * 6 / 10, master-&gt;<a class="code" href="structwindow.html#a822391abd5d09e6ce7152f68cff3ef2b">h</a>/2);</div>
-<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;</div>
-<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;    <a class="code" href="ili9341_8c.html#adaf98866e7cbd787fde096143d394699">tft_setpos</a>(winstats, 0,0);</div>
-<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;    <a class="code" href="ili9341_8c.html#a439a47a3afc781f1f2dd1fff2efefe42">tft_set_font</a>(winstats,5);</div>
-<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;    <a class="code" href="ili9341_8c.html#a6a3d78858315dd032ed3b31099867584">tft_font_var</a>(winstats);</div>
-<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;    <a class="code" href="ili9341_8c.html#aeedc758e5bf61e7ffb28d4a85de854e6">tft_setTextColor</a>(winstats, <a class="code" href="ili9341__adafruit_8h.html#a4ebe718620305116033cb3f969cfc08b">ILI9341_RED</a>,0);</div>
-<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;    <a class="code" href="pr_8c.html#ad6d6dda4facdc045d477c0cc9403e0c1">tft_printf</a>(winstats, <span class="stringliteral">&quot;DISP ID: %04lx\n&quot;</span>, ID);</div>
-<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;    <a class="code" href="user__main_8c.html#a36dcaa24f334c780fbcc57e21395da3c">ip_xpos</a> = winstats-&gt;<a class="code" href="structwindow.html#a879b99940dfc34772f0257f54c67b817">x</a>;</div>
-<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;    <a class="code" href="user__main_8c.html#a6fa71c7132fade09e9a721b07fb7c9e5">ip_ypos</a> = winstats-&gt;<a class="code" href="structwindow.html#a95c7023fc42e79ab42c291b90a490776">y</a>;</div>
-<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;    <a class="code" href="pr_8c.html#ad6d6dda4facdc045d477c0cc9403e0c1">tft_printf</a>(winstats, <span class="stringliteral">&quot;\n&quot;</span>);</div>
-<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;    <a class="code" href="ili9341_8c.html#aeedc758e5bf61e7ffb28d4a85de854e6">tft_setTextColor</a>(winstats, <a class="code" href="ili9341__adafruit_8h.html#a604507ef031b95291b2d177088fe03e4">ILI9341_WHITE</a>,0);</div>
-<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;<span class="preprocessor">#if ILI9341_DEBUG &amp; 1</span></div>
-<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;<span class="preprocessor"></span>    <a class="code" href="user__main_8c.html#af84e3ac8b5878bd0ad9e185f3d27073c">ets_uart_printf</a>(<span class="stringliteral">&quot;\r\nDisplay ID=%08lx\r\n&quot;</span>,ID);</div>
-<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;<span class="preprocessor"></span>    <a class="code" href="ili9341_8c.html#a16c17b6c49729dabf2eee1d575486e74">tft_font_fixed</a>(winstats);</div>
-<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;</div>
-<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;    <span class="comment">// Save last display offset of the status update line - used in the demo task</span></div>
-<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;    <a class="code" href="user__main_8c.html#a63c29917affdd3f9245e88324643e961">xpos</a> = winstats-&gt;<a class="code" href="structwindow.html#a879b99940dfc34772f0257f54c67b817">x</a>;</div>
-<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;    <a class="code" href="user__main_8c.html#a1f3dca5f78953126e573fa7188addfaf">ypos</a> = winstats-&gt;<a class="code" href="structwindow.html#a95c7023fc42e79ab42c291b90a490776">y</a>;</div>
-<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;</div>
-<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;    <span class="comment">/* Setup cube/wireframe demo window */</span></div>
-<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;    <a class="code" href="ili9341_8c.html#ad93354e0742a28811fa11c9246bced93">tft_window_init</a>(windemo,winstats-&gt;<a class="code" href="structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae">w</a>,0, master-&gt;<a class="code" href="structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae">w</a> - winstats-&gt;<a class="code" href="structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae">w</a>, master-&gt;<a class="code" href="structwindow.html#a822391abd5d09e6ce7152f68cff3ef2b">h</a>/2);</div>
-<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;</div>
-<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;<span class="comment">// Cube points were defined with sides of 1.0 </span></div>
-<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;<span class="comment">// We want a scale of +/- w/2</span></div>
-<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;    <span class="keywordflow">if</span>(windemo-&gt;<a class="code" href="structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae">w</a> &lt; windemo-&gt;<a class="code" href="structwindow.html#a822391abd5d09e6ce7152f68cff3ef2b">h</a>) </div>
-<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;        <a class="code" href="user__main_8c.html#ae329b479eb10cea05f428899d63b089a">dscale_max</a> = windemo-&gt;<a class="code" href="structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae">w</a>/2;</div>
-<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;        <a class="code" href="user__main_8c.html#ae329b479eb10cea05f428899d63b089a">dscale_max</a> = windemo-&gt;<a class="code" href="structwindow.html#a822391abd5d09e6ce7152f68cff3ef2b">h</a>/2;</div>
-<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;</div>
-<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;    <a class="code" href="user__main_8c.html#a5a7fc18a07b95d683fd3b5d82528953b">dscale</a> = <a class="code" href="user__main_8c.html#ae329b479eb10cea05f428899d63b089a">dscale_max</a>;</div>
-<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;    <a class="code" href="user__main_8c.html#af78937f9d73b46da7a6fe2c35cf6d682">dscale_inc</a> = <a class="code" href="user__main_8c.html#ae329b479eb10cea05f428899d63b089a">dscale_max</a> / 100;</div>
-<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;</div>
-<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;<span class="comment">/* Setup second window for window testing*/</span></div>
-<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;    <a class="code" href="ili9341_8c.html#ad93354e0742a28811fa11c9246bced93">tft_window_init</a>(wintest,0,master-&gt;<a class="code" href="structwindow.html#a822391abd5d09e6ce7152f68cff3ef2b">h</a>/2, master-&gt;<a class="code" href="structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae">w</a>/2, master-&gt;<a class="code" href="structwindow.html#a822391abd5d09e6ce7152f68cff3ef2b">h</a>/2);</div>
-<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;    <a class="code" href="ili9341_8c.html#aeedc758e5bf61e7ffb28d4a85de854e6">tft_setTextColor</a>(wintest, <a class="code" href="ili9341__adafruit_8h.html#a604507ef031b95291b2d177088fe03e4">ILI9341_WHITE</a>,<a class="code" href="ili9341__adafruit_8h.html#acaae04786d06f0ba08c8bea6b714b572">ILI9341_NAVY</a>);</div>
-<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;    <a class="code" href="ili9341_8c.html#a90dda5b7ba495fcca6ab4e5259f6c6fe">tft_fillWin</a>(wintest, wintest-&gt;<a class="code" href="structwindow.html#affcf5d29153103c2537542f5a4f8ba87">bg</a>);</div>
-<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;    <a class="code" href="ili9341_8c.html#a439a47a3afc781f1f2dd1fff2efefe42">tft_set_font</a>(wintest,3);</div>
-<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;    <span class="comment">//tft_font_var(wintest);</span></div>
-<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;</div>
-<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;    <span class="comment">// write some text</span></div>
-<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;    <a class="code" href="ili9341_8c.html#adaf98866e7cbd787fde096143d394699">tft_setpos</a>(wintest, 0,0);</div>
-<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;    <a class="code" href="pr_8c.html#ad6d6dda4facdc045d477c0cc9403e0c1">tft_printf</a>(wintest, <span class="stringliteral">&quot;Test1\nTest2\nTest3&quot;</span>);</div>
-<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;</div>
-<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;    <span class="comment">/* Test demo area window */</span></div>
-<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;    <a class="code" href="ili9341_8c.html#ad93354e0742a28811fa11c9246bced93">tft_window_init</a>(wintestdemo,master-&gt;<a class="code" href="structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae">w</a>/2,master-&gt;<a class="code" href="structwindow.html#a822391abd5d09e6ce7152f68cff3ef2b">h</a>/2,master-&gt;<a class="code" href="structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae">w</a>/2, master-&gt;<a class="code" href="structwindow.html#a822391abd5d09e6ce7152f68cff3ef2b">h</a>/2);</div>
-<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;    <a class="code" href="ili9341_8c.html#aeedc758e5bf61e7ffb28d4a85de854e6">tft_setTextColor</a>(wintestdemo, <a class="code" href="ili9341__adafruit_8h.html#a604507ef031b95291b2d177088fe03e4">ILI9341_WHITE</a>,0);</div>
-<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;    <a class="code" href="ili9341_8c.html#a90dda5b7ba495fcca6ab4e5259f6c6fe">tft_fillWin</a>(wintestdemo, wintestdemo-&gt;<a class="code" href="structwindow.html#affcf5d29153103c2537542f5a4f8ba87">bg</a>);</div>
-<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;    <a class="code" href="ili9341_8c.html#a439a47a3afc781f1f2dd1fff2efefe42">tft_set_font</a>(wintestdemo,3);</div>
-<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;    <a class="code" href="ili9341_8c.html#a6a3d78858315dd032ed3b31099867584">tft_font_var</a>(wintestdemo);</div>
-<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;</div>
-<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;<span class="preprocessor">#if ILI9341_DEBUG &amp; 1</span></div>
-<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;<span class="preprocessor"></span>    read_tests(wintest);</div>
-<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;<span class="comment">/* Draw cube in the second window as a test */</span></div>
-<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;<span class="preprocessor">#if defined(WIRECUBE) &amp;&amp; !defined(EARTH)</span></div>
-<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;<span class="preprocessor"></span><span class="comment">// Cube points were defined with sides of 1.0 </span></div>
-<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;<span class="comment">// We want a scale of +/- w/2</span></div>
-<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;    <span class="keywordtype">double</span> tscale_max;</div>
-<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;    <span class="keywordflow">if</span>(wintestdemo-&gt;<a class="code" href="structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae">w</a> &lt; wintestdemo-&gt;<a class="code" href="structwindow.html#a822391abd5d09e6ce7152f68cff3ef2b">h</a>) </div>
-<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;        tscale_max = wintestdemo-&gt;<a class="code" href="structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae">w</a>/2;</div>
-<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;        tscale_max = wintestdemo-&gt;<a class="code" href="structwindow.html#a822391abd5d09e6ce7152f68cff3ef2b">h</a>/2;</div>
-<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;    ang = 45.0;</div>
-<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;    <a class="code" href="user__main_8c.html#a521e17d9ccfd7b07bf3a1f6fa1a15e0c">V</a>.<a class="code" href="structpoint.html#a9c6b34deaf4900ad4193c17935fd384a">x</a> = ang;</div>
-<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;    <a class="code" href="user__main_8c.html#a521e17d9ccfd7b07bf3a1f6fa1a15e0c">V</a>.<a class="code" href="structpoint.html#a613f8f0d7352731638b0094e1b958b87">y</a> = ang;</div>
-<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;    <a class="code" href="user__main_8c.html#a521e17d9ccfd7b07bf3a1f6fa1a15e0c">V</a>.<a class="code" href="structpoint.html#aab1f0c3682401083b5bf252e7001874f">z</a> = ang;</div>
-<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;    <a class="code" href="wire_8c.html#a6032c357c29e2854243ee86f93fee4e5">wire_draw</a>(wintestdemo, <a class="code" href="cube__data_8h.html#a7fcb338af61341ce6748fc19915891ae">cube_points</a>, <a class="code" href="cube__data_8h.html#a78d7d928e1e362be3b768f133f3af968">cube_edges</a>, &amp;<a class="code" href="user__main_8c.html#a521e17d9ccfd7b07bf3a1f6fa1a15e0c">V</a>, wintestdemo-&gt;<a class="code" href="structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae">w</a>/2, wintestdemo-&gt;<a class="code" href="structwindow.html#a822391abd5d09e6ce7152f68cff3ef2b">h</a>/2, tscale_max, <a class="code" href="ili9341__adafruit_8h.html#a4ebe718620305116033cb3f969cfc08b">ILI9341_RED</a>);</div>
-<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;<span class="preprocessor">#ifdef EARTH</span></div>
-<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;<span class="preprocessor"></span><span class="comment">// Earth points were defined with radius of 0.5, diameter of 1.0</span></div>
-<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;<span class="comment">// We want a scale of +/- w/2</span></div>
-<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;    <span class="keywordtype">double</span> tscale_max;</div>
-<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;    <span class="keywordflow">if</span>(wintestdemo-&gt;<a class="code" href="structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae">w</a> &lt; wintestdemo-&gt;<a class="code" href="structwindow.html#a822391abd5d09e6ce7152f68cff3ef2b">h</a>) </div>
-<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;        tscale_max = wintestdemo-&gt;<a class="code" href="structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae">w</a>;</div>
-<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;        tscale_max = wintestdemo-&gt;<a class="code" href="structwindow.html#a822391abd5d09e6ce7152f68cff3ef2b">h</a>;</div>
-<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;    <a class="code" href="user__main_8c.html#a521e17d9ccfd7b07bf3a1f6fa1a15e0c">V</a>.<a class="code" href="structpoint.html#a9c6b34deaf4900ad4193c17935fd384a">x</a> = -90;</div>
-<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;    <a class="code" href="user__main_8c.html#a521e17d9ccfd7b07bf3a1f6fa1a15e0c">V</a>.<a class="code" href="structpoint.html#a613f8f0d7352731638b0094e1b958b87">y</a> = -90;</div>
-<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;    <a class="code" href="user__main_8c.html#a521e17d9ccfd7b07bf3a1f6fa1a15e0c">V</a>.<a class="code" href="structpoint.html#aab1f0c3682401083b5bf252e7001874f">z</a> = -90;</div>
-<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;    <span class="comment">// draw earth</span></div>
-<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;    <span class="comment">//time1 = system_get_time();</span></div>
-<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;<span class="comment">// Earth points were defined over with a scale of -0.5/+0.5 scale - so scale must be 1 or less</span></div>
-<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;    <a class="code" href="wire_8c.html#a6032c357c29e2854243ee86f93fee4e5">wire_draw</a>(wintestdemo, <a class="code" href="earth__data_8h.html#afd20dbd7595a2c5971d5661cc598a113">earth_data</a>, NULL, &amp;<a class="code" href="user__main_8c.html#a521e17d9ccfd7b07bf3a1f6fa1a15e0c">V</a>, wintestdemo-&gt;<a class="code" href="structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae">w</a>/2, wintestdemo-&gt;<a class="code" href="structwindow.html#a822391abd5d09e6ce7152f68cff3ef2b">h</a>/2, tscale_max, wintestdemo-&gt;<a class="code" href="structwindow.html#ac8739cdb3c50efcc1deaa5ab955a5e62">fg</a>);</div>
-<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;    <span class="comment">//time2 = system_get_time();</span></div>
-<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;<span class="preprocessor"></span>    <a class="code" href="user__main_8c.html#af84e3ac8b5878bd0ad9e185f3d27073c">ets_uart_printf</a>(<span class="stringliteral">&quot;\r\nDisplay Init Done\r\n&quot;</span>);</div>
-<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;</div>
-<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;    <span class="comment">// cube redraw count</span></div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;    <a class="code" href="user__main_8c.html#aa011065eee776eb1bda73597b5d9d5d7">count</a> += 1;</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;    <a class="code" href="ili9341_8c.html#a439a47a3afc781f1f2dd1fff2efefe42">tft_set_font</a>(winstats,0);</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;    <a class="code" href="ili9341_8c.html#adaf98866e7cbd787fde096143d394699">tft_setpos</a>(winstats,<a class="code" href="user__main_8c.html#a36dcaa24f334c780fbcc57e21395da3c">ip_xpos</a>,<a class="code" href="user__main_8c.html#a6fa71c7132fade09e9a721b07fb7c9e5">ip_ypos</a>);</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;    <a class="code" href="pr_8c.html#ad6d6dda4facdc045d477c0cc9403e0c1">tft_printf</a>(winstats,<span class="stringliteral">&quot;%s\n&quot;</span>, ip_msg);</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;    <a class="code" href="ili9341_8c.html#adaf98866e7cbd787fde096143d394699">tft_setpos</a>(winstats,<a class="code" href="user__main_8c.html#a63c29917affdd3f9245e88324643e961">xpos</a>,<a class="code" href="user__main_8c.html#a1f3dca5f78953126e573fa7188addfaf">ypos</a>);</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;    <a class="code" href="pr_8c.html#ad6d6dda4facdc045d477c0cc9403e0c1">tft_printf</a>(winstats,<span class="stringliteral">&quot;Iter:% 9ld, %+7.2f\n&quot;</span>, <a class="code" href="user__main_8c.html#aa011065eee776eb1bda73597b5d9d5d7">count</a>, <a class="code" href="user__main_8c.html#a46f4d8ebe46ec267dc7478f530e0ac07">degree</a>);</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;    <span class="comment">// FIXME make this an atomic access</span></div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;    timer = <a class="code" href="user__main_8c.html#ab2f04dacd2b2ea549a32bfa90f50b12c">seconds</a>;</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;    <a class="code" href="pr_8c.html#ad6d6dda4facdc045d477c0cc9403e0c1">tft_printf</a>(winstats,<span class="stringliteral">&quot;Voltage: %2.2f\nTime: %9ld&quot;</span>, (<span class="keywordtype">float</span>)<a class="code" href="user__main_8c.html#ad3c64efcaba662da1a2f4393d00584e9">voltage</a>, timer);</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;    </div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;<span class="preprocessor">#ifdef NETWORK_TEST</span></div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;<span class="preprocessor"></span>    poll_network_message(wintest);</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;<span class="preprocessor"></span>}</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;<span class="preprocessor">#if ILI9341_DEBUG &amp; 1</span></div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;<span class="preprocessor"></span><a class="code" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;<span class="keywordtype">void</span> read_tests(<a class="code" href="structwindow.html">window</a> *win)</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;{</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;    <span class="keywordtype">int</span> x,y;</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;    <a class="code" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> color;</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;    <a class="code" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> buffer[3*16];  <span class="comment">// 16 RGB sets</span></div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;    y = 4;</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;    <a class="code" href="ili9341_8c.html#a08bf5b6422229993b5d68e48c7b39619">tft_readRect</a>(win, x, y, 16, 1, buffer);</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;    <span class="keywordflow">for</span>(x=0;x&lt;16;++x)</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;    {</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;        <span class="comment">//color = tft_readPixel(win,x,y);</span></div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;        <span class="comment">// ets_uart_printf(&quot;x:%d,y:%d,c:%04x\n&quot;, x,y,color);</span></div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;        <a class="code" href="user__main_8c.html#af84e3ac8b5878bd0ad9e185f3d27073c">ets_uart_printf</a>(<span class="stringliteral">&quot;x:%d,y:%d,c:%04x\n&quot;</span>, x,y,buffer[x]);</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;    }</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;     <a class="code" href="user__main_8c.html#af84e3ac8b5878bd0ad9e185f3d27073c">ets_uart_printf</a>(<span class="stringliteral">&quot;\n&quot;</span>);</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;}</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;<a class="code" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> </div>
+<div class="line"><a name="l00345"></a><span class="lineno"><a class="line" href="user__main_8c.html#aaabd07afe4d50c1a7f16f18995fc6b18">  345</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="user__main_8c.html#aaabd07afe4d50c1a7f16f18995fc6b18">user_init</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;{</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;    <span class="keywordtype">int</span> i;</div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;    os_event_t *handlerQueue;</div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;    <span class="keywordtype">char</span> time[20];</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;    <span class="keywordtype">int</span> ret;</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;    <a class="code" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> *ptr;</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;    <a class="code" href="send_8c.html#a435d1572bf3f880d55459d9805097f62">uint32_t</a> time1,time2;</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;    <a class="code" href="send_8c.html#a435d1572bf3f880d55459d9805097f62">uint32_t</a> ID;</div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;    <span class="keyword">extern</span> <a class="code" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> <a class="code" href="ili9341_8c.html#afd0704ffdcfd5d17f5437814c2860130">tft_ID</a>;</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;    <span class="keywordtype">double</span> ang;</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;</div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;    os_delay_us(200000<a class="code" href="cal__dex_8c.html#a7577d49f3bfffb1cf048eef843177784">L</a>);   <span class="comment">// Power Up dalay - lets power supplies and devices settle</span></div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;</div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;    <span class="comment">// Configure the UART</span></div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;    <a class="code" href="uart_8c.html#aedb0d99c7438c2c1c5ff4c561b6905a4">uart_init</a>(<a class="code" href="uart_8h.html#a6e376e04a3f78e8319a5dcd9ee6d545dace379f00ef7ff498cbee2a444d896e63">BIT_RATE_115200</a>,<a class="code" href="uart_8h.html#a6e376e04a3f78e8319a5dcd9ee6d545dace379f00ef7ff498cbee2a444d896e63">BIT_RATE_115200</a>);</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;    <a class="code" href="user__main_8c.html#af84e3ac8b5878bd0ad9e185f3d27073c">ets_uart_printf</a>(<span class="stringliteral">&quot;\r\nSystem init...\r\n&quot;</span>);</div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;    <a class="code" href="user__main_8c.html#af84e3ac8b5878bd0ad9e185f3d27073c">ets_uart_printf</a>(<span class="stringliteral">&quot;\r\nDisplay Init\r\n&quot;</span>);</div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;</div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;<span class="comment">// CPU</span></div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;<span class="comment">// 160MHZ</span></div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;<span class="comment">//  REG_SET_BIT(0x3ff00014, BIT(0));</span></div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;<span class="comment">// 80MHZ</span></div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;<span class="comment">//   REG_CLR_BIT(0x3ff00014, BIT(0));</span></div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;</div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;    <a class="code" href="hspi_8c.html#a1cb8461537da95ced28db4ea8086936a">hspi_init</a>(1);</div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;    <span class="comment">// Initialize TFT</span></div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;    master = <a class="code" href="ili9341_8c.html#a14e5cdfbb744c04570df508551f77add">tft_init</a>();</div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;    ID = <a class="code" href="ili9341_8c.html#afd0704ffdcfd5d17f5437814c2860130">tft_ID</a>;</div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;    <span class="comment">// Set master rotation</span></div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;    <a class="code" href="ili9341_8c.html#a4c1271aab64c58f75e6de6471f430bbe">tft_setRotation</a>(1);</div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;    <span class="comment">/* Setup main status window */</span></div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;    <a class="code" href="ili9341_8c.html#ad93354e0742a28811fa11c9246bced93">tft_window_init</a>(winstats,0,0, master-&gt;<a class="code" href="structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae">w</a> * 6 / 10, master-&gt;<a class="code" href="structwindow.html#a822391abd5d09e6ce7152f68cff3ef2b">h</a>/2);</div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;    <a class="code" href="ili9341_8c.html#adaf98866e7cbd787fde096143d394699">tft_setpos</a>(winstats, 0,0);</div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;    <a class="code" href="ili9341_8c.html#a439a47a3afc781f1f2dd1fff2efefe42">tft_set_font</a>(winstats,5);</div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;    <a class="code" href="ili9341_8c.html#a6a3d78858315dd032ed3b31099867584">tft_font_var</a>(winstats);</div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;    <a class="code" href="ili9341_8c.html#aeedc758e5bf61e7ffb28d4a85de854e6">tft_setTextColor</a>(winstats, <a class="code" href="ili9341__adafruit_8h.html#a4ebe718620305116033cb3f969cfc08b">ILI9341_RED</a>,0);</div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;    <a class="code" href="pr_8c.html#ad6d6dda4facdc045d477c0cc9403e0c1">tft_printf</a>(winstats, <span class="stringliteral">&quot;DISP ID: %04lx\n&quot;</span>, ID);</div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;    <a class="code" href="user__main_8c.html#a36dcaa24f334c780fbcc57e21395da3c">ip_xpos</a> = winstats-&gt;<a class="code" href="structwindow.html#a879b99940dfc34772f0257f54c67b817">x</a>;</div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;    <a class="code" href="user__main_8c.html#a6fa71c7132fade09e9a721b07fb7c9e5">ip_ypos</a> = winstats-&gt;<a class="code" href="structwindow.html#a95c7023fc42e79ab42c291b90a490776">y</a>;</div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;    <a class="code" href="pr_8c.html#ad6d6dda4facdc045d477c0cc9403e0c1">tft_printf</a>(winstats, <span class="stringliteral">&quot;\n&quot;</span>);</div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;    <a class="code" href="ili9341_8c.html#aeedc758e5bf61e7ffb28d4a85de854e6">tft_setTextColor</a>(winstats, <a class="code" href="ili9341__adafruit_8h.html#a604507ef031b95291b2d177088fe03e4">ILI9341_WHITE</a>,0);</div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;<span class="preprocessor">#if ILI9341_DEBUG &amp; 1</span></div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;<span class="preprocessor"></span>    <a class="code" href="user__main_8c.html#af84e3ac8b5878bd0ad9e185f3d27073c">ets_uart_printf</a>(<span class="stringliteral">&quot;\r\nDisplay ID=%08lx\r\n&quot;</span>,ID);</div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;<span class="preprocessor"></span>    <a class="code" href="ili9341_8c.html#a16c17b6c49729dabf2eee1d575486e74">tft_font_fixed</a>(winstats);</div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;</div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;    <span class="comment">// Save last display offset of the status update line - used in the demo task</span></div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;    <a class="code" href="user__main_8c.html#a63c29917affdd3f9245e88324643e961">xpos</a> = winstats-&gt;<a class="code" href="structwindow.html#a879b99940dfc34772f0257f54c67b817">x</a>;</div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;    <a class="code" href="user__main_8c.html#a1f3dca5f78953126e573fa7188addfaf">ypos</a> = winstats-&gt;<a class="code" href="structwindow.html#a95c7023fc42e79ab42c291b90a490776">y</a>;</div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;</div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;    <span class="comment">/* Setup cube/wireframe demo window */</span></div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;    <a class="code" href="ili9341_8c.html#ad93354e0742a28811fa11c9246bced93">tft_window_init</a>(windemo,winstats-&gt;<a class="code" href="structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae">w</a>,0, master-&gt;<a class="code" href="structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae">w</a> - winstats-&gt;<a class="code" href="structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae">w</a>, master-&gt;<a class="code" href="structwindow.html#a822391abd5d09e6ce7152f68cff3ef2b">h</a>/2);</div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;</div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;<span class="comment">// Cube points were defined with sides of 1.0 </span></div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;<span class="comment">// We want a scale of +/- w/2</span></div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;    <span class="keywordflow">if</span>(windemo-&gt;<a class="code" href="structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae">w</a> &lt; windemo-&gt;<a class="code" href="structwindow.html#a822391abd5d09e6ce7152f68cff3ef2b">h</a>) </div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;        <a class="code" href="user__main_8c.html#ae329b479eb10cea05f428899d63b089a">dscale_max</a> = windemo-&gt;<a class="code" href="structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae">w</a>/2;</div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;        <a class="code" href="user__main_8c.html#ae329b479eb10cea05f428899d63b089a">dscale_max</a> = windemo-&gt;<a class="code" href="structwindow.html#a822391abd5d09e6ce7152f68cff3ef2b">h</a>/2;</div>
+<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;</div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;    <a class="code" href="user__main_8c.html#a5a7fc18a07b95d683fd3b5d82528953b">dscale</a> = <a class="code" href="user__main_8c.html#ae329b479eb10cea05f428899d63b089a">dscale_max</a>;</div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;    <a class="code" href="user__main_8c.html#af78937f9d73b46da7a6fe2c35cf6d682">dscale_inc</a> = <a class="code" href="user__main_8c.html#ae329b479eb10cea05f428899d63b089a">dscale_max</a> / 100;</div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;</div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;<span class="comment">/* Setup second window for window testing*/</span></div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;    <a class="code" href="ili9341_8c.html#ad93354e0742a28811fa11c9246bced93">tft_window_init</a>(wintest,0,master-&gt;<a class="code" href="structwindow.html#a822391abd5d09e6ce7152f68cff3ef2b">h</a>/2, master-&gt;<a class="code" href="structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae">w</a>/2, master-&gt;<a class="code" href="structwindow.html#a822391abd5d09e6ce7152f68cff3ef2b">h</a>/2);</div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;    <a class="code" href="ili9341_8c.html#aeedc758e5bf61e7ffb28d4a85de854e6">tft_setTextColor</a>(wintest, <a class="code" href="ili9341__adafruit_8h.html#a604507ef031b95291b2d177088fe03e4">ILI9341_WHITE</a>,<a class="code" href="ili9341__adafruit_8h.html#acaae04786d06f0ba08c8bea6b714b572">ILI9341_NAVY</a>);</div>
+<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;    <a class="code" href="ili9341_8c.html#a90dda5b7ba495fcca6ab4e5259f6c6fe">tft_fillWin</a>(wintest, wintest-&gt;<a class="code" href="structwindow.html#affcf5d29153103c2537542f5a4f8ba87">bg</a>);</div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;    <a class="code" href="ili9341_8c.html#a439a47a3afc781f1f2dd1fff2efefe42">tft_set_font</a>(wintest,3);</div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;    <span class="comment">//tft_font_var(wintest);</span></div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;</div>
+<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;    <span class="comment">// write some text</span></div>
+<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;    <a class="code" href="ili9341_8c.html#adaf98866e7cbd787fde096143d394699">tft_setpos</a>(wintest, 0,0);</div>
+<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;    <a class="code" href="pr_8c.html#ad6d6dda4facdc045d477c0cc9403e0c1">tft_printf</a>(wintest, <span class="stringliteral">&quot;Test1\nTest2\nTest3&quot;</span>);</div>
+<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;</div>
+<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;    <span class="comment">/* Test demo area window */</span></div>
+<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;    <a class="code" href="ili9341_8c.html#ad93354e0742a28811fa11c9246bced93">tft_window_init</a>(wintestdemo,master-&gt;<a class="code" href="structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae">w</a>/2,master-&gt;<a class="code" href="structwindow.html#a822391abd5d09e6ce7152f68cff3ef2b">h</a>/2,master-&gt;<a class="code" href="structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae">w</a>/2, master-&gt;<a class="code" href="structwindow.html#a822391abd5d09e6ce7152f68cff3ef2b">h</a>/2);</div>
+<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;    <a class="code" href="ili9341_8c.html#aeedc758e5bf61e7ffb28d4a85de854e6">tft_setTextColor</a>(wintestdemo, <a class="code" href="ili9341__adafruit_8h.html#a604507ef031b95291b2d177088fe03e4">ILI9341_WHITE</a>,0);</div>
+<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;    <a class="code" href="ili9341_8c.html#a90dda5b7ba495fcca6ab4e5259f6c6fe">tft_fillWin</a>(wintestdemo, wintestdemo-&gt;<a class="code" href="structwindow.html#affcf5d29153103c2537542f5a4f8ba87">bg</a>);</div>
+<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;    <a class="code" href="ili9341_8c.html#a439a47a3afc781f1f2dd1fff2efefe42">tft_set_font</a>(wintestdemo,3);</div>
+<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;    <a class="code" href="ili9341_8c.html#a6a3d78858315dd032ed3b31099867584">tft_font_var</a>(wintestdemo);</div>
+<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;</div>
+<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;<span class="preprocessor">#if ILI9341_DEBUG &amp; 1</span></div>
+<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;<span class="preprocessor"></span>    read_tests(wintest);</div>
+<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;<span class="comment">/* Draw cube in the second window as a test */</span></div>
+<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;<span class="preprocessor">#if defined(WIRECUBE) &amp;&amp; !defined(EARTH)</span></div>
+<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;<span class="preprocessor"></span><span class="comment">// Cube points were defined with sides of 1.0 </span></div>
+<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;<span class="comment">// We want a scale of +/- w/2</span></div>
+<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;    <span class="keywordtype">double</span> tscale_max;</div>
+<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;    <span class="keywordflow">if</span>(wintestdemo-&gt;<a class="code" href="structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae">w</a> &lt; wintestdemo-&gt;<a class="code" href="structwindow.html#a822391abd5d09e6ce7152f68cff3ef2b">h</a>) </div>
+<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;        tscale_max = wintestdemo-&gt;<a class="code" href="structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae">w</a>/2;</div>
+<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;        tscale_max = wintestdemo-&gt;<a class="code" href="structwindow.html#a822391abd5d09e6ce7152f68cff3ef2b">h</a>/2;</div>
+<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;    ang = 45.0;</div>
+<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;    <a class="code" href="user__main_8c.html#a521e17d9ccfd7b07bf3a1f6fa1a15e0c">V</a>.<a class="code" href="structpoint.html#a9c6b34deaf4900ad4193c17935fd384a">x</a> = ang;</div>
+<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;    <a class="code" href="user__main_8c.html#a521e17d9ccfd7b07bf3a1f6fa1a15e0c">V</a>.<a class="code" href="structpoint.html#a613f8f0d7352731638b0094e1b958b87">y</a> = ang;</div>
+<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;    <a class="code" href="user__main_8c.html#a521e17d9ccfd7b07bf3a1f6fa1a15e0c">V</a>.<a class="code" href="structpoint.html#aab1f0c3682401083b5bf252e7001874f">z</a> = ang;</div>
+<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;    <a class="code" href="wire_8c.html#a6032c357c29e2854243ee86f93fee4e5">wire_draw</a>(wintestdemo, <a class="code" href="cube__data_8h.html#a7fcb338af61341ce6748fc19915891ae">cube_points</a>, <a class="code" href="cube__data_8h.html#a78d7d928e1e362be3b768f133f3af968">cube_edges</a>, &amp;<a class="code" href="user__main_8c.html#a521e17d9ccfd7b07bf3a1f6fa1a15e0c">V</a>, wintestdemo-&gt;<a class="code" href="structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae">w</a>/2, wintestdemo-&gt;<a class="code" href="structwindow.html#a822391abd5d09e6ce7152f68cff3ef2b">h</a>/2, tscale_max, <a class="code" href="ili9341__adafruit_8h.html#a4ebe718620305116033cb3f969cfc08b">ILI9341_RED</a>);</div>
+<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;<span class="preprocessor">#ifdef EARTH</span></div>
+<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;<span class="preprocessor"></span><span class="comment">// Earth points were defined with radius of 0.5, diameter of 1.0</span></div>
+<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;<span class="comment">// We want a scale of +/- w/2</span></div>
+<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;    <span class="keywordtype">double</span> tscale_max;</div>
+<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;    <span class="keywordflow">if</span>(wintestdemo-&gt;<a class="code" href="structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae">w</a> &lt; wintestdemo-&gt;<a class="code" href="structwindow.html#a822391abd5d09e6ce7152f68cff3ef2b">h</a>) </div>
+<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;        tscale_max = wintestdemo-&gt;<a class="code" href="structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae">w</a>;</div>
+<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;        tscale_max = wintestdemo-&gt;<a class="code" href="structwindow.html#a822391abd5d09e6ce7152f68cff3ef2b">h</a>;</div>
+<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;    <a class="code" href="user__main_8c.html#a521e17d9ccfd7b07bf3a1f6fa1a15e0c">V</a>.<a class="code" href="structpoint.html#a9c6b34deaf4900ad4193c17935fd384a">x</a> = -90;</div>
+<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;    <a class="code" href="user__main_8c.html#a521e17d9ccfd7b07bf3a1f6fa1a15e0c">V</a>.<a class="code" href="structpoint.html#a613f8f0d7352731638b0094e1b958b87">y</a> = -90;</div>
+<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;    <a class="code" href="user__main_8c.html#a521e17d9ccfd7b07bf3a1f6fa1a15e0c">V</a>.<a class="code" href="structpoint.html#aab1f0c3682401083b5bf252e7001874f">z</a> = -90;</div>
+<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;    <span class="comment">// draw earth</span></div>
+<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;    <span class="comment">//time1 = system_get_time();</span></div>
+<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;<span class="comment">// Earth points were defined over with a scale of -0.5/+0.5 scale - so scale must be 1 or less</span></div>
+<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;    <a class="code" href="wire_8c.html#a6032c357c29e2854243ee86f93fee4e5">wire_draw</a>(wintestdemo, <a class="code" href="earth__data_8h.html#afd20dbd7595a2c5971d5661cc598a113">earth_data</a>, NULL, &amp;<a class="code" href="user__main_8c.html#a521e17d9ccfd7b07bf3a1f6fa1a15e0c">V</a>, wintestdemo-&gt;<a class="code" href="structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae">w</a>/2, wintestdemo-&gt;<a class="code" href="structwindow.html#a822391abd5d09e6ce7152f68cff3ef2b">h</a>/2, tscale_max, wintestdemo-&gt;<a class="code" href="structwindow.html#ac8739cdb3c50efcc1deaa5ab955a5e62">fg</a>);</div>
+<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;    <span class="comment">//time2 = system_get_time();</span></div>
+<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;    <a class="code" href="user__main_8c.html#af84e3ac8b5878bd0ad9e185f3d27073c">ets_uart_printf</a>(<span class="stringliteral">&quot;\r\nDisplay Init Done\r\n&quot;</span>);</div>
 <div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;</div>
 <div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;    ets_wdt_disable();</div>
 <div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;</div>
@@ -543,7 +543,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="user__main_8c_html_a1c07392725f8ce9719872dd267291407"><div class="ttname"><a href="user__main_8c.html#a1c07392725f8ce9719872dd267291407">NormalTaskQueueLen</a></div><div class="ttdeci">#define NormalTaskQueueLen</div><div class="ttdef"><b>Definition:</b> <a href="user__main_8c_source.html#l00109">user_main.c:109</a></div></div>
 <div class="ttc" id="user__main_8c_html_af93c276fcf04883c775a3a7dced494b2"><div class="ttname"><a href="user__main_8c.html#af93c276fcf04883c775a3a7dced494b2">UserTaskPrio</a></div><div class="ttdeci">#define UserTaskPrio</div><div class="ttdef"><b>Definition:</b> <a href="user__main_8c_source.html#l00102">user_main.c:102</a></div></div>
 <div class="ttc" id="user__main_8c_html_ad3c64efcaba662da1a2f4393d00584e9"><div class="ttname"><a href="user__main_8c.html#ad3c64efcaba662da1a2f4393d00584e9">voltage</a></div><div class="ttdeci">double voltage</div><div class="ttdef"><b>Definition:</b> <a href="user__main_8c_source.html#l00097">user_main.c:97</a></div></div>
-<div class="ttc" id="user__main_8c_html_aaabd07afe4d50c1a7f16f18995fc6b18"><div class="ttname"><a href="user__main_8c.html#aaabd07afe4d50c1a7f16f18995fc6b18">user_init</a></div><div class="ttdeci">MEMSPACE void user_init(void)</div><div class="ttdoc">Initialize user task. </div><div class="ttdef"><b>Definition:</b> <a href="user__main_8c_source.html#l00344">user_main.c:344</a></div></div>
+<div class="ttc" id="user__main_8c_html_aaabd07afe4d50c1a7f16f18995fc6b18"><div class="ttname"><a href="user__main_8c.html#aaabd07afe4d50c1a7f16f18995fc6b18">user_init</a></div><div class="ttdeci">MEMSPACE void user_init(void)</div><div class="ttdoc">Initialize user task. </div><div class="ttdef"><b>Definition:</b> <a href="user__main_8c_source.html#l00345">user_main.c:345</a></div></div>
 <div class="ttc" id="user__main_8c_html_a7ec6e61fd93a873528abd7fa4ec962d2"><div class="ttname"><a href="user__main_8c.html#a7ec6e61fd93a873528abd7fa4ec962d2">timer1sec</a></div><div class="ttdeci">LOCAL ETSTimer timer1sec</div><div class="ttdoc">1 Second timer task data </div><div class="ttdef"><b>Definition:</b> <a href="user__main_8c_source.html#l00125">user_main.c:125</a></div></div>
 <div class="ttc" id="user__main_8c_html_a7e7fef853020935f2a4b8e0da7ef6325"><div class="ttname"><a href="user__main_8c.html#a7e7fef853020935f2a4b8e0da7ef6325">adc_sum</a></div><div class="ttdeci">LOCAL adc_sum</div><div class="ttdef"><b>Definition:</b> <a href="user__main_8c_source.html#l00095">user_main.c:95</a></div></div>
 <div class="ttc" id="pr_8c_html_ad6d6dda4facdc045d477c0cc9403e0c1"><div class="ttname"><a href="pr_8c.html#ad6d6dda4facdc045d477c0cc9403e0c1">tft_printf</a></div><div class="ttdeci">MEMSPACE int tft_printf(window *win, const char *fmt,...)</div><div class="ttdoc">tft_printf function </div><div class="ttdef"><b>Definition:</b> <a href="pr_8c_source.html#l00037">pr.c:37</a></div></div>
@@ -611,7 +611,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jun 25 2015 20:19:56 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jun 28 2015 17:28:16 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

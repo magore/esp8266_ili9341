@@ -185,7 +185,9 @@ void setup_networking(void)
 	const char *password = SSID_PASS;
 
 	os_memset(network_msg,0,sizeof(network_msg));
+
 	os_memset(ip_msg,0,sizeof(ip_msg));
+	strcpy(ip_msg,"Not Connected");
 
     if(wifi_get_opmode() != STATION_MODE)
     {
@@ -229,6 +231,9 @@ void setup_networking(void)
 	// Wifi Connect
     if(!wifi_station_set_reconnect_policy(TRUE))
 		ets_uart_printf( "ERROR wifi_station_set_reconnect_policy(TRUE)\n");
+
+	if(!wifi_station_set_auto_connect(TRUE) ) 
+		ets_uart_printf( "ERROR wifi_station_set_auto_connect(TRUE)\n");
 
 	if(!wifi_station_connect())
 		ets_uart_printf( "ERROR wifi_station_connect()\n");

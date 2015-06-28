@@ -302,13 +302,14 @@ LOCAL void user_task(void)
 	}
 
 	// ets_uart_printf("Degree: %d \r\n",(int)degree);
+	// cube redraw count
 	count += 1;
+	tft_set_font(winstats,0);
 	tft_setpos(winstats,ip_xpos,ip_ypos);
 	tft_printf(winstats,"%s\n", ip_msg);
 	tft_setpos(winstats,xpos,ypos);
-	tft_set_font(winstats,0);
-	tft_printf(winstats,"c:% 9ld, %+7.2f\n", count, degree);
-	// FIXME atomic access
+	tft_printf(winstats,"Iter:% 9ld, %+7.2f\n", count, degree);
+	// FIXME make this an atomic access
 	timer = seconds;
 	tft_printf(winstats,"Voltage: %2.2f\nTime: %9ld", (float)voltage, timer);
 	
@@ -323,7 +324,7 @@ void read_tests(window *win)
 {
 	int x,y;
 	uint16_t color;
-	uint16_t buffer[3*16];
+	uint16_t buffer[3*16];	// 16 RGB sets
 	y = 4;
 	tft_readRect(win, x, y, 16, 1, buffer);
 	for(x=0;x<16;++x)
@@ -462,9 +463,8 @@ void user_init(void)
 	wire_draw(wintestdemo, earth_data, NULL, &V, wintestdemo->w/2, wintestdemo->h/2, tscale_max, wintestdemo->fg);
 	//time2 = system_get_time();
 #endif
+
 	ets_uart_printf("\r\nDisplay Init Done\r\n");
-
-
 
 	ets_wdt_disable();
 

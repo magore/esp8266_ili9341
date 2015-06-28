@@ -1,7 +1,12 @@
 var searchData=
 [
-  ['x',['X',['../struct__fontspecs.html#a7273a891c79308389718266cb0b66f56',1,'_fontspecs::X()'],['../struct__font.html#a64a08fdbdaa19418a9b7a34a2db33150',1,'_font::X()'],['../structpoint.html#a9c6b34deaf4900ad4193c17935fd384a',1,'point::x()'],['../structwire__p.html#a7a555c323bd3699ff2db08a3b3e791ed',1,'wire_p::x()'],['../struct__fontc.html#ad15d00ed46ebe52a085cf05b5ca5da90',1,'_fontc::x()'],['../structwindow.html#a879b99940dfc34772f0257f54c67b817',1,'window::x()'],['../cordic_8c.html#a46b4b48ef8c0c01099eb3bcdde8aa8db',1,'X():&#160;cordic.c'],['../cordic2c_8c.html#a46b4b48ef8c0c01099eb3bcdde8aa8db',1,'X():&#160;cordic2c.c']]],
-  ['xoff',['xoff',['../structwindow.html#a12d0408f393bc8d23cc3f1ce46c39879',1,'window']]],
-  ['xpos',['xpos',['../user__main_8c.html#a63c29917affdd3f9245e88324643e961',1,'user_main.c']]],
-  ['xx1',['xx1',['../structex__regs.html#a12379b0b3152b878eebc8f18a6efeaf0',1,'ex_regs']]]
+  ['w',['w',['../struct__fontc.html#a9c2af0354d2b2009e7b6684e25fd479b',1,'_fontc::w()'],['../structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae',1,'window::w()']]],
+  ['weight_5fname',['WEIGHT_NAME',['../struct__fontinfo.html#a2f528cb5c1bceb6afd91ad138472d071',1,'_fontinfo']]],
+  ['width',['Width',['../struct__fontspecs.html#a8404888a24a2b065d91c4424e1907439',1,'_fontspecs::Width()'],['../struct__font.html#ae3d3b48670f1bf4bf6dbf42794f81b31',1,'_font::Width()'],['../struct__fontc.html#ae3c802e1c35ae9a4e37c8eb2e9644325',1,'_fontc::Width()']]],
+  ['windemo',['windemo',['../user__main_8c.html#a15fd0dabcdbdce44797371e375bb5e7e',1,'user_main.c']]],
+  ['winstats',['winstats',['../user__main_8c.html#a0f65d6a6a30307cee8115d8e0ef64185',1,'user_main.c']]],
+  ['wintest',['wintest',['../user__main_8c.html#a79d4b2ee4fcc458fcece5cc3dfaf3648',1,'user_main.c']]],
+  ['wintestdemo',['wintestdemo',['../user__main_8c.html#a92b6f4efc7620eefb7b39d84223b1551',1,'user_main.c']]],
+  ['wl',['Wl',['../Makefile.html#a1af3a6ecef406b93f1a1db145b2cfd43',1,'Makefile']]],
+  ['wrap',['wrap',['../Makefile.html#a6b04d3dc9ff8a69521845b59ef6c33f1',1,'Makefile']]]
 ];

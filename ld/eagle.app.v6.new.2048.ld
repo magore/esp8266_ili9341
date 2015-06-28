@@ -5,7 +5,7 @@ MEMORY
   dport0_0_seg :                        org = 0x3FF00000, len = 0x10
   dram0_0_seg :                         org = 0x3FFE8000, len = 0x14000
   iram1_0_seg :                         org = 0x40100000, len = 0x8000
-  irom0_0_seg :                         org = 0x40201010, len = 0xE0000
+  irom0_0_seg :                         org = 0x40240000, len = 0xBE000 
 }
 
 PHDRS
@@ -16,7 +16,6 @@ PHDRS
   iram1_0_phdr PT_LOAD;
   irom0_0_phdr PT_LOAD;
 }
-
 
 /*  Default entry point:  */
 ENTRY(call_user_start)
@@ -149,7 +148,6 @@ SECTIONS
 /*    _stack_sentry = ALIGN(0x8); */
   } >dram0_0_seg :dram0_0_bss_phdr
 /* __stack = 0x3ffc8000; */
-
   .irom0.text : ALIGN(4)
   {
     _irom0_text_start = ABSOLUTE(.);
@@ -159,6 +157,7 @@ SECTIONS
     *libpp.a:(.literal .text .literal.* .text.*)
     _irom0_text_end = ABSOLUTE(.);
   } >irom0_0_seg :irom0_0_phdr
+
 
   .text : ALIGN(4)
   {

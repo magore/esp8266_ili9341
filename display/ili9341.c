@@ -289,7 +289,7 @@ uint32_t tft_readRegister(uint8_t command, uint8_t parameter)
     hspi_TxRx(tmp,4);
 	result = tmp[1];
 
-#ifdef ILI9341_DEBUG
+#if ILI9341_DEBUG & 1
 ets_uart_printf("command:%02x, data: %02x,%02x,%02x,%02x\r\n", 
 	0xff & command, 
 	0xff & tmp[0],
