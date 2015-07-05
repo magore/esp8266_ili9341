@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['addfontname',['AddFontName',['../bdffontutil_8h.html#a6293de28b724a18693465ec67868d958',1,'bdffontutil.h']]],
-  ['adjustfonttable',['AdjustFontTable',['../bdffontutil_8h.html#a1b1c337030d89f81b06857192e4e0179',1,'bdffontutil.h']]],
-  ['angle_5fquad',['angle_quad',['../cordic_8h.html#a132f4d86aeaa02138e534f93cbf69757',1,'cordic.h']]],
-  ['atod',['atod',['../printf_8h.html#a13b9612a73585aa9ad589c62c612d4be',1,'printf.h']]],
-  ['aton',['aton',['../printf_8h.html#afe95f6232c51473a9845e4431c821296',1,'printf.h']]]
+  ['_5f_5freal_5f_5fxtos_5fset_5fexception_5fhandler',['__real__xtos_set_exception_handler',['../cal__dex_8c.html#a35c6b20120a115839944c07cf7089ee1',1,'cal_dex.c']]],
+  ['_5f_5fwrap_5f_5fxtos_5fset_5fexception_5fhandler',['__wrap__xtos_set_exception_handler',['../cal__dex_8c.html#a26d67b0638e4ea778c53b436403194dd',1,'cal_dex.c']]]
 ];

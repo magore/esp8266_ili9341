@@ -1,12 +1,19 @@
 var searchData=
 [
-  ['scale_5fpoint',['scale_point',['../cordic_8h.html#ae708dfda7767e28c3faeedf2c46deafd',1,'cordic.h']]],
+  ['s',['S',['../user__main_8c.html#aa6a210803a601a3b71e9d6d66f1f387d',1,'user_main.c']]],
+  ['sar',['sar',['../structex__regs.html#a8fd11e49ee65ba875a04ab28789cf702',1,'ex_regs']]],
+  ['scale_5fpoint',['scale_point',['../cordic_8c.html#ae708dfda7767e28c3faeedf2c46deafd',1,'scale_point(point *P, double scale):&#160;cordic.c'],['../cordic_8h.html#ae708dfda7767e28c3faeedf2c46deafd',1,'scale_point(point *P, double scale):&#160;cordic.c']]],
+  ['seconds',['seconds',['../user__main_8c.html#ab2f04dacd2b2ea549a32bfa90f50b12c',1,'user_main.c']]],
+  ['seconds_5ftask',['seconds_task',['../user__main_8c.html#a907377595f82c75994091e62eb47d87c',1,'user_main.c']]],
+  ['send_2ec',['send.c',['../send_8c.html',1,'']]],
+  ['send_5fmessage',['send_message',['../send_8c.html#a9a62fadd2a5476668fdec898c42d4922',1,'send.c']]],
+  ['sendmsgtousertask',['sendMsgToUserTask',['../user__main_8c.html#a1c325cd5f5c4958a2217e947f8ca59ea',1,'user_main.c']]],
   ['setup_5fnetworking',['setup_networking',['../network_8h.html#a1c83f7d4417b533a9a0cb9e34b5d57dd',1,'network.h']]],
-  ['shift_5fpoint',['shift_point',['../cordic_8h.html#a11f885e103030cb15b2f3477e21b780f',1,'cordic.h']]],
+  ['shift_5fpoint',['shift_point',['../cordic_8c.html#a11f885e103030cb15b2f3477e21b780f',1,'shift_point(point *P, point *shift):&#160;cordic.c'],['../cordic_8h.html#a11f885e103030cb15b2f3477e21b780f',1,'shift_point(point *P, point *shift):&#160;cordic.c']]],
   ['sign',['SIGN',['../util_8h.html#a8c5ff70b6b28cd0157c50a22406f92c4',1,'util.h']]],
   ['size',['size',['../structqueue__t.html#a83a13b888f9d4ef127d706559818b779',1,'queue_t']]],
   ['skip',['skip',['../struct__fontc.html#a44c94e91afa006cb2ffe55a99b3e2d3c',1,'_fontc']]],
-  ['skip_5fspaces',['skip_spaces',['../bdffontutil_8h.html#a77f36d5136e3d749221b33e3f23c0258',1,'bdffontutil.h']]],
+  ['skip_5fspaces',['skip_spaces',['../bdffontutil_8c.html#a77f36d5136e3d749221b33e3f23c0258',1,'skip_spaces(char *str):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a77f36d5136e3d749221b33e3f23c0258',1,'skip_spaces(char *str):&#160;bdffontutil.c']]],
   ['slant',['SLANT',['../struct__fontinfo.html#aff56d18df3b46ec10896d15ad3a2e164',1,'_fontinfo']]],
   ['snprintf',['snprintf',['../user__config_8h.html#a357a42eb6494ea592e9c3f96c55cebe2',1,'user_config.h']]],
   ['spacing',['SPACING',['../struct__fontinfo.html#a0e6fafc8f03c70ce9c506d7a506fbba4',1,'_fontinfo']]],
@@ -222,8 +229,10 @@ var searchData=
   ['spi_5fwp_5freg',['SPI_WP_REG',['../spi__register_8h.html#ae2e9196913362490499bc8d642fd4da1',1,'spi_register.h']]],
   ['spi_5fwr_5fbit_5foder',['SPI_WR_BIT_ODER',['../spi__register_8h.html#a19343b71bdb98235bbed13206fcec2b6',1,'spi_register.h']]],
   ['spi_5fwr_5fbyte_5forder',['SPI_WR_BYTE_ORDER',['../spi__register_8h.html#a2b6e3e187afb9d15a3b2805593e93a0a',1,'spi_register.h']]],
-  ['stralloc',['stralloc',['../bdffontutil_8h.html#a8a9b8fa6a56f0303cd8c23fdf290f401',1,'bdffontutil.h']]],
+  ['stackok',['stackok',['../cal__dex_8c.html#a51bf09cac6f861c3a27c59190c3c6cc5',1,'cal_dex.c']]],
+  ['stralloc',['stralloc',['../bdffontutil_8c.html#a8a9b8fa6a56f0303cd8c23fdf290f401',1,'stralloc(char *str):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a8a9b8fa6a56f0303cd8c23fdf290f401',1,'stralloc(char *str):&#160;bdffontutil.c']]],
   ['struct_5fname',['STRUCT_NAME',['../struct__fontinfo.html#a861ecb4b5f190ccd1e71b38270240f86',1,'_fontinfo']]],
   ['structname',['structname',['../struct__bdffile.html#a54e6c69f33cc656848ad924faba85b53',1,'_bdffile']]],
-  ['swap',['SWAP',['../util_8h.html#aac9153aee4bdb92701df902e06a74eb3',1,'util.h']]]
+  ['swap',['SWAP',['../util_8h.html#aac9153aee4bdb92701df902e06a74eb3',1,'util.h']]],
+  ['system_5fget_5fsdk_5fversion',['system_get_sdk_version',['../cal__dex_8c.html#a8e6d28af54455355a04c34d287d5ef2f',1,'cal_dex.c']]]
 ];

@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['malloc',['malloc',['../util_8h.html#a7ac38fce3243a7dcf448301ee9ffd392',1,'util.h']]],
-  ['match_5ftoken',['match_token',['../bdffontutil_8h.html#aa8451fa4387dfafd4583f6548533d37b',1,'bdffontutil.h']]],
-  ['my_5freceive',['my_receive',['../network_8h.html#af65ec795e7e4486dd8bb58d757fb6067',1,'network.h']]]
+  ['line_5fwrap',['line_wrap',['../bdffontutil_8c.html#a466ba4f5e35f1e5ff2791ae4d68d2c7b',1,'line_wrap(char *str, int max):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a466ba4f5e35f1e5ff2791ae4d68d2c7b',1,'line_wrap(char *str, int max):&#160;bdffontutil.c']]]
 ];

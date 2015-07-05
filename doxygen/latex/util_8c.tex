@@ -1,5 +1,5 @@
-\hypertarget{util_8c}{\section{display/util.c File Reference}
-\label{util_8c}\index{display/util.\-c@{display/util.\-c}}
+\hypertarget{util_8c}{\section{utils/util.c File Reference}
+\label{util_8c}\index{utils/util.\-c@{utils/util.\-c}}
 }
 
 
@@ -15,7 +15,7 @@ Flash read and bit utilities.
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} \hyperlink{util_8c_ab8c84964764e9aab19ccece1938260f2}{read\-\_\-flash8} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$p)
+\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} \hyperlink{util_8c_a8820bdd8a76740aaafe0506ff6040002}{read\-\_\-flash8} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$p)
 \item 
 void \hyperlink{util_8c_a9a70a218c9d4bae2e51bda4d7219712f}{cpy\-\_\-flash} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$src, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$dest, int size)
 \begin{DoxyCompactList}\small\item\em Copy data from Flash to Ram Uses flash\-\_\-read8() to avoid alighnment problems. \end{DoxyCompactList}\item 
@@ -30,7 +30,15 @@ uint64\-\_\-t \hyperlink{util_8c_ab1d6ea8dfe88a05a02869a3dd8cd7deb}{read\-\_\-fl
 int \hyperlink{util_8c_a96d99653ceafa913b2f1331ef7219be8}{bittestv} (unsigned char $\ast$ptr, int off)
 \begin{DoxyCompactList}\small\item\em Test bit in byte array. \end{DoxyCompactList}\item 
 int \hyperlink{util_8c_aa5ed287545d9d0d4361d2bd1c6ecc69d}{bittestxy} (unsigned char $\ast$ptr, int x, int y, int w, int h)
-\begin{DoxyCompactList}\small\item\em Test bit in w $\ast$ h size bit array usng x and y offsets. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Test bit in w $\ast$ h size bit array usng x and y offsets. \end{DoxyCompactList}\item 
+I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R void \hyperlink{util_8c_a873f88ccf09a88cddd83a27e3594138b}{reset} (void)
+\begin{DoxyCompactList}\small\item\em reset system \end{DoxyCompactList}\item 
+void \hyperlink{util_8c_a9f850d0608418aea291e4c0fdab93826}{free} (void $\ast$p)
+\begin{DoxyCompactList}\small\item\em Free buffer P\-O\-S\-I\-X function We only call os\-\_\-free() is pointer is not null. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{util_8c_a62b7798461bd461da64c5f9d35feddf7}{calloc} (size\-\_\-t nmemb, size\-\_\-t size)
+\begin{DoxyCompactList}\small\item\em calloc buffer P\-O\-S\-I\-X function \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{util_8c_a7ac38fce3243a7dcf448301ee9ffd392}{malloc} (size\-\_\-t size)
+\begin{DoxyCompactList}\small\item\em malloc buffer P\-O\-S\-I\-X function \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -135,6 +143,36 @@ Test bit in w $\ast$ h size bit array usng x and y offsets.
 
 Definition at line 160 of file util.\-c.
 
+\hypertarget{util_8c_a62b7798461bd461da64c5f9d35feddf7}{\index{util.\-c@{util.\-c}!calloc@{calloc}}
+\index{calloc@{calloc}!util.c@{util.\-c}}
+\subsubsection[{calloc}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ calloc (
+\begin{DoxyParamCaption}
+\item[{size\-\_\-t}]{nmemb, }
+\item[{size\-\_\-t}]{size}
+\end{DoxyParamCaption}
+)}}\label{util_8c_a62b7798461bd461da64c5f9d35feddf7}
+
+
+calloc buffer P\-O\-S\-I\-X function 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em nmemb} & number of elements \\
+\hline
+\mbox{\tt in}  & {\em size} & size of elements \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void $\ast$ buffer 
+\end{DoxyReturn}
+
+
+Definition at line 199 of file util.\-c.
+
+
+
+Referenced by db\-\_\-calloc(), escape(), and queue\-\_\-new().
+
 \hypertarget{util_8c_a9a70a218c9d4bae2e51bda4d7219712f}{\index{util.\-c@{util.\-c}!cpy\-\_\-flash@{cpy\-\_\-flash}}
 \index{cpy\-\_\-flash@{cpy\-\_\-flash}!util.c@{util.\-c}}
 \subsubsection[{cpy\-\_\-flash}]{\setlength{\rightskip}{0pt plus 5cm}void cpy\-\_\-flash (
@@ -167,6 +205,60 @@ Definition at line 83 of file util.\-c.
 
 
 Referenced by font\-\_\-attr(), read\-\_\-flash16(), read\-\_\-flash32(), read\-\_\-flash64(), read\-\_\-flash\-\_\-ptr(), and wire\-\_\-draw().
+
+\hypertarget{util_8c_a9f850d0608418aea291e4c0fdab93826}{\index{util.\-c@{util.\-c}!free@{free}}
+\index{free@{free}!util.c@{util.\-c}}
+\subsubsection[{free}]{\setlength{\rightskip}{0pt plus 5cm}void free (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{util_8c_a9f850d0608418aea291e4c0fdab93826}
+
+
+Free buffer P\-O\-S\-I\-X function We only call os\-\_\-free() is pointer is not null. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$p} & buffer to free \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 188 of file util.\-c.
+
+
+
+Referenced by db\-\_\-free(), queue\-\_\-del(), queue\-\_\-new(), queue\-\_\-push\-\_\-buffer(), rx\-\_\-fifo\-\_\-free(), and tx\-\_\-fifo\-\_\-free().
+
+\hypertarget{util_8c_a7ac38fce3243a7dcf448301ee9ffd392}{\index{util.\-c@{util.\-c}!malloc@{malloc}}
+\index{malloc@{malloc}!util.c@{util.\-c}}
+\subsubsection[{malloc}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ malloc (
+\begin{DoxyParamCaption}
+\item[{size\-\_\-t}]{size}
+\end{DoxyParamCaption}
+)}}\label{util_8c_a7ac38fce3243a7dcf448301ee9ffd392}
+
+
+malloc buffer P\-O\-S\-I\-X function 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em size} & size of buffer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void $\ast$ buffer 
+\end{DoxyReturn}
+
+
+Definition at line 209 of file util.\-c.
+
+
+
+Referenced by bridge\-\_\-task\-\_\-init().
 
 \hypertarget{util_8c_a092855859eb7ea714f2ab3eee711ddc4}{\index{util.\-c@{util.\-c}!read\-\_\-flash16@{read\-\_\-flash16}}
 \index{read\-\_\-flash16@{read\-\_\-flash16}!util.c@{util.\-c}}
@@ -237,13 +329,13 @@ uint64\-\_\-t
 
 Definition at line 121 of file util.\-c.
 
-\hypertarget{util_8c_ab8c84964764e9aab19ccece1938260f2}{\index{util.\-c@{util.\-c}!read\-\_\-flash8@{read\-\_\-flash8}}
+\hypertarget{util_8c_a8820bdd8a76740aaafe0506ff6040002}{\index{util.\-c@{util.\-c}!read\-\_\-flash8@{read\-\_\-flash8}}
 \index{read\-\_\-flash8@{read\-\_\-flash8}!util.c@{util.\-c}}
-\subsubsection[{read\-\_\-flash8}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} {\bf uint8\-\_\-t} read\-\_\-flash8 (
+\subsubsection[{read\-\_\-flash8}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint8\-\_\-t} read\-\_\-flash8 (
 \begin{DoxyParamCaption}
 \item[{{\bf uint8\-\_\-t} $\ast$}]{p}
 \end{DoxyParamCaption}
-)}}\label{util_8c_ab8c84964764e9aab19ccece1938260f2}
+)}}\label{util_8c_a8820bdd8a76740aaafe0506ff6040002}
 
 
 Definition at line 40 of file util.\-c.
@@ -274,6 +366,28 @@ uint32\-\_\-t
 
 
 Definition at line 133 of file util.\-c.
+
+\hypertarget{util_8c_a873f88ccf09a88cddd83a27e3594138b}{\index{util.\-c@{util.\-c}!reset@{reset}}
+\index{reset@{reset}!util.c@{util.\-c}}
+\subsubsection[{reset}]{\setlength{\rightskip}{0pt plus 5cm}I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R void reset (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{util_8c_a873f88ccf09a88cddd83a27e3594138b}
+
+
+reset system 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 178 of file util.\-c.
+
+
+
+Referenced by bridge\-\_\-task\-\_\-init().
 
 
 

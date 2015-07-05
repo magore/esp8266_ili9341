@@ -1,9 +1,9 @@
-\hypertarget{hspi_8c}{\section{driver/hspi.c File Reference}
-\label{hspi_8c}\index{driver/hspi.\-c@{driver/hspi.\-c}}
+\hypertarget{hspi_8c}{\section{utils/hspi.c File Reference}
+\label{hspi_8c}\index{utils/hspi.\-c@{utils/hspi.\-c}}
 }
 
 
-H\-S\-P\-I driver for E\-S\-P8255 Based on work from Sem 2015.  
+H\-S\-P\-I driver for E\-S\-P8255 Based on initial work from Sem 2015 -\/ mostly rewrittem Added code to handle proper aligned reads and writes.  
 
 
 {\ttfamily \#include $<$user\-\_\-config.\-h$>$}\\*
@@ -49,14 +49,14 @@ static \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} \hype
 
 
 \subsection{Detailed Description}
-H\-S\-P\-I driver for E\-S\-P8255 Based on work from Sem 2015. \begin{DoxyParagraph}{Copyright \copyright{} 2015 Sem}
+H\-S\-P\-I driver for E\-S\-P8255 Based on initial work from Sem 2015 -\/ mostly rewrittem Added code to handle proper aligned reads and writes. \begin{DoxyParagraph}{Copyright \copyright{} 2015 Sem}
 
 \end{DoxyParagraph}
 \begin{DoxyParagraph}{Copyright \copyright{} 2015 Mike Gore, G\-P\-L License}
 
 \end{DoxyParagraph}
 \begin{DoxyParagraph}{You are free to use this code under the terms of G\-P\-L}
-please retain a copy of this notice in any code you use it in.
+Please retain a copy of this notice in any code you use it in.
 \end{DoxyParagraph}
 This is free software\-: you can redistribute it and/or modify it under the terms of the G\-N\-U General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
@@ -74,7 +74,7 @@ Definition in file \hyperlink{hspi_8c_source}{hspi.\-c}.
 \subsubsection[{H\-S\-P\-I\-\_\-\-P\-R\-E\-S\-C\-A\-L\-E\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define H\-S\-P\-I\-\_\-\-P\-R\-E\-S\-C\-A\-L\-E\-R~16}}\label{hspi_8c_ac0b594f74d77f8ac1ee56fd39fcfecdc}
 
 
-Definition at line 31 of file hspi.\-c.
+Definition at line 30 of file hspi.\-c.
 
 
 
@@ -100,7 +100,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 77 of file hspi.\-c.
+Definition at line 76 of file hspi.\-c.
 
 
 
@@ -122,7 +122,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 45 of file hspi.\-c.
+Definition at line 44 of file hspi.\-c.
 
 
 
@@ -152,7 +152,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 194 of file hspi.\-c.
+Definition at line 193 of file hspi.\-c.
 
 
 
@@ -179,7 +179,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 113 of file hspi.\-c.
+Definition at line 112 of file hspi.\-c.
 
 
 
@@ -201,7 +201,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 124 of file hspi.\-c.
+Definition at line 123 of file hspi.\-c.
 
 
 
@@ -231,7 +231,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 257 of file hspi.\-c.
+Definition at line 256 of file hspi.\-c.
 
 
 
@@ -258,7 +258,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 278 of file hspi.\-c.
+Definition at line 276 of file hspi.\-c.
 
 
 
@@ -280,7 +280,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 304 of file hspi.\-c.
+Definition at line 302 of file hspi.\-c.
 
 
 
@@ -299,7 +299,7 @@ H\-S\-P\-I stream init We use the fifo -\/ or a buffer to queue spi writes The o
 
 
 
-Definition at line 293 of file hspi.\-c.
+Definition at line 291 of file hspi.\-c.
 
 
 
@@ -329,7 +329,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 239 of file hspi.\-c.
+Definition at line 238 of file hspi.\-c.
 
 
 
@@ -351,7 +351,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 135 of file hspi.\-c.
+Definition at line 134 of file hspi.\-c.
 
 
 
@@ -381,7 +381,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 148 of file hspi.\-c.
+Definition at line 147 of file hspi.\-c.
 
 
 
@@ -395,7 +395,7 @@ Referenced by hspi\-\_\-\-Tx(), hspi\-\_\-\-T\-X\-\_\-stream\-\_\-flush(), and h
 \subsubsection[{\-\_\-f\-\_\-tx\-\_\-buf}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint8\-\_\-t} \-\_\-f\-\_\-tx\-\_\-buf\mbox{[}{\bf H\-S\-P\-I\-\_\-\-F\-I\-F\-O\-\_\-\-S\-I\-Z\-E}+2\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}}\label{hspi_8c_a462e6c70498a0e04a7e0b5ac8397feff}
 
 
-Definition at line 35 of file hspi.\-c.
+Definition at line 34 of file hspi.\-c.
 
 
 
@@ -406,7 +406,7 @@ Referenced by hspi\-\_\-\-T\-X\-\_\-stream\-\_\-byte(), and hspi\-\_\-\-T\-X\-\_
 \subsubsection[{\-\_\-f\-\_\-tx\-\_\-ind}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint16\-\_\-t} \-\_\-f\-\_\-tx\-\_\-ind = 0\hspace{0.3cm}{\ttfamily [static]}}}\label{hspi_8c_a9df4d317da7fd120a1281cfca6a572f6}
 
 
-Definition at line 34 of file hspi.\-c.
+Definition at line 33 of file hspi.\-c.
 
 
 

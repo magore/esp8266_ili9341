@@ -14,18 +14,18 @@ enum \{ \hyperlink{bridge_8h_adf764cbdea00d65edcd07bb9953ad2b7a1704a1ab5240edf7f
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-static I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R void \hyperlink{bridge_8h_a51f0a2a4b9021881c02d8ef82ff9ae8d}{tcp\-\_\-accept} (struct espconn $\ast$esp\-\_\-config, esp\-\_\-tcp $\ast$esp\-\_\-tcp\-\_\-config, uint16\-\_\-t port, void($\ast$connect\-\_\-callback)(struct espconn $\ast$))
+static I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R void \hyperlink{bridge_8h_a51f0a2a4b9021881c02d8ef82ff9ae8d}{tcp\-\_\-accept} (struct espconn $\ast$esp\-\_\-config, esp\-\_\-tcp $\ast$esp\-\_\-tcp\-\_\-config, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\-\_\-t} port, void($\ast$connect\-\_\-callback)(struct espconn $\ast$))
 \item 
 static I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R void \hyperlink{bridge_8h_a9479d1a576b84bc3e8438f9446dda1a6}{tcp\-\_\-data\-\_\-sent\-\_\-callback} (void $\ast$arg)
 \item 
-static I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R void \hyperlink{bridge_8h_a619c74cf1ce880ac9e37bebdd33fc1ab}{tcp\-\_\-data\-\_\-receive\-\_\-callback} (void $\ast$arg, char $\ast$data, uint16\-\_\-t length)
+static I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R void \hyperlink{bridge_8h_a619c74cf1ce880ac9e37bebdd33fc1ab}{tcp\-\_\-data\-\_\-receive\-\_\-callback} (void $\ast$arg, char $\ast$data, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\-\_\-t} length)
 \item 
 static I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R void \hyperlink{bridge_8h_a40b8ea487cbc82321048ce6fa67271c0}{tcp\-\_\-data\-\_\-disconnect\-\_\-callback} (void $\ast$arg)
 \item 
 static I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R void \hyperlink{bridge_8h_a90c84952368e3f93c28af840f9e5fc69}{tcp\-\_\-data\-\_\-connect\-\_\-callback} (struct espconn $\ast$new\-\_\-connection)
 \item 
 I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R \hyperlink{bridge_8h_acc614f131d017f7d630eb9e1b0cb8c25}{bridge\-\_\-task\-\_\-init} (int port)
-\item 
+\begin{DoxyCompactList}\small\item\em Serial Bridge task initialize. \end{DoxyCompactList}\item 
 static I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R void \hyperlink{bridge_8h_a97584e49ad206983bf3e1602da072b48}{bridge\-\_\-task} (os\-\_\-event\-\_\-t $\ast$events)
 \end{DoxyCompactItemize}
 \subsection*{Variables}
@@ -34,7 +34,7 @@ static I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R void \hyperlink{b
 \hyperlink{structqueue__t}{queue\-\_\-t} $\ast$ \hyperlink{bridge_8h_a1b67aab34790ec2d9256a1b50eecadb6}{uart\-\_\-send\-\_\-queue}
 \begin{DoxyCompactList}\small\item\em uart send and receive queue, \end{DoxyCompactList}\item 
 \hyperlink{structqueue__t}{queue\-\_\-t} $\ast$ \hyperlink{bridge_8h_ab25ba18581f43bfb622b9265183a501c}{uart\-\_\-receive\-\_\-queue}
-\item 
+\begin{DoxyCompactList}\small\item\em uart receive queue \end{DoxyCompactList}\item 
 os\-\_\-event\-\_\-t \hyperlink{bridge_8h_ad261f9ed25a58b55949fac376fd1e0af}{bridge\-\_\-task\-\_\-queue} \mbox{[}\hyperlink{bridge_8h_adf764cbdea00d65edcd07bb9953ad2b7a552c882e309f228ce140280b133abdf2}{bridge\-\_\-task\-\_\-queue\-\_\-length}\mbox{]}
 \begin{DoxyCompactList}\small\item\em E\-S\-P8266 O\-S task queue. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -77,13 +77,30 @@ Definition at line 31 of file bridge.\-h.
 \item[{int}]{port}
 \end{DoxyParamCaption}
 )}}\label{bridge_8h_acc614f131d017f7d630eb9e1b0cb8c25}
+
+
+Serial Bridge task initialize. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em port} & network port \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 159 of file bridge.\-c.
+
+
+
+Referenced by user\-\_\-init().
+
 \hypertarget{bridge_8h_a51f0a2a4b9021881c02d8ef82ff9ae8d}{\index{bridge.\-h@{bridge.\-h}!tcp\-\_\-accept@{tcp\-\_\-accept}}
 \index{tcp\-\_\-accept@{tcp\-\_\-accept}!bridge.h@{bridge.\-h}}
 \subsubsection[{tcp\-\_\-accept}]{\setlength{\rightskip}{0pt plus 5cm}static I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R void tcp\-\_\-accept (
 \begin{DoxyParamCaption}
 \item[{struct espconn $\ast$}]{esp\-\_\-config, }
 \item[{esp\-\_\-tcp $\ast$}]{esp\-\_\-tcp\-\_\-config, }
-\item[{uint16\-\_\-t}]{port, }
+\item[{{\bf uint16\-\_\-t}}]{port, }
 \item[{void($\ast$)(struct espconn $\ast$)}]{connect\-\_\-callback}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [static]}}}\label{bridge_8h_a51f0a2a4b9021881c02d8ef82ff9ae8d}
@@ -107,7 +124,7 @@ Definition at line 31 of file bridge.\-h.
 \begin{DoxyParamCaption}
 \item[{void $\ast$}]{arg, }
 \item[{char $\ast$}]{data, }
-\item[{uint16\-\_\-t}]{length}
+\item[{{\bf uint16\-\_\-t}}]{length}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [static]}}}\label{bridge_8h_a619c74cf1ce880ac9e37bebdd33fc1ab}
 \hypertarget{bridge_8h_a9479d1a576b84bc3e8438f9446dda1a6}{\index{bridge.\-h@{bridge.\-h}!tcp\-\_\-data\-\_\-sent\-\_\-callback@{tcp\-\_\-data\-\_\-sent\-\_\-callback}}
@@ -127,9 +144,28 @@ Definition at line 31 of file bridge.\-h.
 
 E\-S\-P8266 O\-S task queue. 
 
+
+
+Definition at line 30 of file bridge.\-c.
+
+
+
+Referenced by bridge\-\_\-task\-\_\-init().
+
 \hypertarget{bridge_8h_ab25ba18581f43bfb622b9265183a501c}{\index{bridge.\-h@{bridge.\-h}!uart\-\_\-receive\-\_\-queue@{uart\-\_\-receive\-\_\-queue}}
 \index{uart\-\_\-receive\-\_\-queue@{uart\-\_\-receive\-\_\-queue}!bridge.h@{bridge.\-h}}
 \subsubsection[{uart\-\_\-receive\-\_\-queue}]{\setlength{\rightskip}{0pt plus 5cm}{\bf queue\-\_\-t}$\ast$ uart\-\_\-receive\-\_\-queue}}\label{bridge_8h_ab25ba18581f43bfb622b9265183a501c}
+
+
+uart receive queue 
+
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{queue_8c}{queue.\-c} 
+\end{DoxySeeAlso}
+
+
+Definition at line 37 of file bridge.\-c.
+
 \hypertarget{bridge_8h_a1b67aab34790ec2d9256a1b50eecadb6}{\index{bridge.\-h@{bridge.\-h}!uart\-\_\-send\-\_\-queue@{uart\-\_\-send\-\_\-queue}}
 \index{uart\-\_\-send\-\_\-queue@{uart\-\_\-send\-\_\-queue}!bridge.h@{bridge.\-h}}
 \subsubsection[{uart\-\_\-send\-\_\-queue}]{\setlength{\rightskip}{0pt plus 5cm}{\bf queue\-\_\-t}$\ast$ uart\-\_\-send\-\_\-queue}}\label{bridge_8h_a1b67aab34790ec2d9256a1b50eecadb6}
@@ -138,5 +174,14 @@ E\-S\-P8266 O\-S task queue.
 uart send and receive queue, 
 
 \begin{DoxySeeAlso}{See Also}
-queue.\-c 
+\hyperlink{queue_8c}{queue.\-c}
 \end{DoxySeeAlso}
+uart send and receive queue,
+
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{queue_8c}{queue.\-c} 
+\end{DoxySeeAlso}
+
+
+Definition at line 34 of file bridge.\-c.
+

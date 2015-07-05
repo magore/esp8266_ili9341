@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['y',['Y',['../struct__fontspecs.html#a9771541eab33755d22c804f3bedf8682',1,'_fontspecs::Y()'],['../struct__font.html#a3c9fee9cfcc713b1aac812c14dd9a36a',1,'_font::Y()'],['../structpoint.html#a613f8f0d7352731638b0094e1b958b87',1,'point::y()'],['../struct__fontc.html#aebbde0dc41068722ee1a69f4a56478a4',1,'_fontc::y()'],['../structwindow.html#a95c7023fc42e79ab42c291b90a490776',1,'window::y()'],['../structwire__p.html#a32b151309922af59db0cafea09e77b67',1,'wire_p::y()']]],
-  ['yoff',['yoff',['../structwindow.html#a95c482caa25e4a283d962643d410bc29',1,'window']]]
+  ['v',['V',['../user__main_8c.html#a521e17d9ccfd7b07bf3a1f6fa1a15e0c',1,'user_main.c']]],
+  ['v_5fatan',['v_atan',['../cordic2c_8c.html#a87f33f8b076298d511ca73b9e458a3ac',1,'cordic2c.c']]],
+  ['v_5fatangrad',['v_atangrad',['../cordic2c__inc_8h.html#abfedbfddd3d22467322bc0ad058d2500',1,'cordic2c_inc.h']]],
+  ['voltage',['voltage',['../user__main_8c.html#ad3c64efcaba662da1a2f4393d00584e9',1,'user_main.c']]]
 ];
