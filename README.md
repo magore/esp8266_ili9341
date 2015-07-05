@@ -10,7 +10,7 @@
  * See [COPYRIGHT.md](COPYRIGHT.md) for a full copyright notice for the project
 
 @par Description
- * ESP8266 ILI9341 display demo with multiple window support and simple networking
+ * ESP8266 ILI9341 with multiple window support and networking demo
     * The specific display is an TM022HDH26 display I got from ebay.
  * I wrote the following support functions from scratch
  * Font compiler and display code
@@ -18,7 +18,10 @@
   * Wire frame viewer and C generator for Earth coastline data
   * Small Print with full floating point support along with ftoa/atof and integer conversions
   * BDF fonts and a BDF font to C conversion code and optimized display code
-  * Network server client example
+  * Network server client example for display updates
+  * Uart network server client for serial uart to network bridge.
+  * Generic queue handling code
+  * Uart driver.
   * ILI9341 display driver with multiple custom sized window support 
   * readPixel() and custom sized window scrolling 
      * Not limited by ILI9341 hardware scroll restrictions.
@@ -69,6 +72,13 @@ ___
   * docs 
     * ili9431 and esp8266 related documents
 
+  * bridge
+    * bridge.c
+    * bridge.h
+      * Serial bridge code - send and receive serial data via network
+      * Opens a port on port 23 so you can use telnet to test
+        * Note: at the moment no telnet command processing is done.
+      
   * cordic
     * cordic.c        
       * My 3D transformation functions based on CORDIC and gradians/100
@@ -99,18 +109,10 @@ ___
         * multiple window support 
         * readPixel() works on most all 4 wire displays now
         * scrolling window support
-    * util.c
-    * util.h
-      * Flash reading and bittest functions for system requiring specific alignment and access size of flash memory.
-      
 
-  * driver 
+  * driver - third party code
     * cal_dex.c       
       * Debug exception support by cal (20150421, cal)
-    * hspi.c              
-    * hspi.h              
-      * My rewritten HPSI code that avoids unaligned read and writes
-      * Origonal Code from CHERTS and Sem
     * ili9341_adafruit.c  
     * ili9341_adafruit.h
       * Adafruit display - just those functions that I have not rewritten
@@ -165,7 +167,7 @@ ___
      * misc esp8266 include files
 
    * network
-     * Simple network server - displays message from send.c
+     * Simple network server - displays message sent by send.c 
       * network.c
 
    * printf  
@@ -177,6 +179,25 @@ ___
         * printf.c       
         * printf.h       
           * My printf code
+
+  * utils
+    * hspi.c              
+    * hspi.h              
+      * My rewritten HPSI code that avoids unaligned read and writes
+      * Origonal Code from CHERTS and Sem
+    * queue.c
+    * queue.h
+      * Generic ring buffer support code
+    * uart.c
+    * uart.h
+    * uart_register.h
+      * Interrup driven receive and transmit code
+    * util.c
+    * util.h
+      * Flash read
+      * Bittest functions 
+       * For system requiring specific memory alignment access methods
+      * POSIX malloc,calloc and free wrappers
 
    * send.c
      * Send message to network server 

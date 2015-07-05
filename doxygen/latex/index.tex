@@ -19,7 +19,7 @@
 \begin{DoxyParagraph}{Description}
 
 \begin{DoxyItemize}
-\item E\-S\-P8266 I\-L\-I9341 display demo with multiple window support and simple networking
+\item E\-S\-P8266 I\-L\-I9341 with multiple window support and networking demo
 \begin{DoxyItemize}
 \item The specific display is an T\-M022\-H\-D\-H26 display I got from ebay.
 \end{DoxyItemize}
@@ -30,7 +30,10 @@
 \item Wire frame viewer and C generator for Earth coastline data
 \item Small Print with full floating point support along with ftoa/atof and integer conversions
 \item B\-D\-F fonts and a B\-D\-F font to C conversion code and optimized display code
-\item Network server client example
+\item Network server client example for display updates
+\item Uart network server client for serial uart to network bridge.
+\item Generic queue handling code
+\item Uart driver.
 \item I\-L\-I9341 display driver with multiple custom sized window support
 \item read\-Pixel() and custom sized window scrolling
 \begin{DoxyItemize}
@@ -119,6 +122,18 @@
 \begin{DoxyItemize}
 \item ili9431 and esp8266 related documents
 \end{DoxyItemize}
+\item bridge
+\begin{DoxyItemize}
+\item bridge.\-c
+\item bridge.\-h
+\begin{DoxyItemize}
+\item Serial bridge code -\/ send and receive serial data via network
+\item Opens a port on port 23 so you can use telnet to test
+\begin{DoxyItemize}
+\item Note\-: at the moment no telnet command processing is done.
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
 \item cordic
 \begin{DoxyItemize}
 \item \hyperlink{cordic_8c}{cordic.\-c}
@@ -171,23 +186,12 @@
 \item scrolling window support
 \end{DoxyItemize}
 \end{DoxyItemize}
-\item util.\-c
-\item util.\-h
-\begin{DoxyItemize}
-\item Flash reading and bittest functions for system requiring specific alignment and access size of flash memory.
 \end{DoxyItemize}
-\end{DoxyItemize}
-\item driver
+\item driver -\/ third party code
 \begin{DoxyItemize}
 \item \hyperlink{cal__dex_8c}{cal\-\_\-dex.\-c}
 \begin{DoxyItemize}
 \item Debug exception support by cal (20150421, cal)
-\end{DoxyItemize}
-\item hspi.\-c
-\item hspi.\-h
-\begin{DoxyItemize}
-\item My rewritten H\-P\-S\-I code that avoids unaligned read and writes
-\item Origonal Code from C\-H\-E\-R\-T\-S and Sem
 \end{DoxyItemize}
 \item \hyperlink{ili9341__adafruit_8c}{ili9341\-\_\-adafruit.\-c}
 \item \hyperlink{ili9341__adafruit_8h}{ili9341\-\_\-adafruit.\-h}
@@ -289,7 +293,7 @@
 \end{DoxyItemize}
 \item network
 \begin{DoxyItemize}
-\item Simple network server -\/ displays message from \hyperlink{send_8c}{send.\-c}
+\item Simple network server -\/ displays message sent by \hyperlink{send_8c}{send.\-c}
 \begin{DoxyItemize}
 \item network.\-c
 \end{DoxyItemize}
@@ -313,14 +317,46 @@
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
-\item \hyperlink{send_8c}{send.\-c}
+\end{DoxyItemize}
+
+utils
+\begin{DoxyItemize}
+\item hspi.\-c
+\item hspi.\-h
+\begin{DoxyItemize}
+\item My rewritten H\-P\-S\-I code that avoids unaligned read and writes
+\item Origonal Code from C\-H\-E\-R\-T\-S and Sem
+\end{DoxyItemize}
+\item queue.\-c
+\item queue.\-h
+\begin{DoxyItemize}
+\item Generic ring buffer support code
+\end{DoxyItemize}
+\item uart.\-c
+\item uart.\-h
+\item \hyperlink{uart__register_8h}{uart\-\_\-register.\-h}
+\begin{DoxyItemize}
+\item Interrup driven receive and transmit code
+\end{DoxyItemize}
+\item util.\-c
+\item util.\-h
+\begin{DoxyItemize}
+\item Flash read
+\item Bittest functions
+\begin{DoxyItemize}
+\item For system requiring specific memory alignment access methods
+\end{DoxyItemize}
+\item P\-O\-S\-I\-X malloc,calloc and free wrappers
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\hyperlink{send_8c}{send.\-c}
 \begin{DoxyItemize}
 \item Send message to network server
 \item Example\-: ./send -\/i 192.\-168.\-200.\-116 -\/m ''
 \begin{DoxyItemize}
 \item These escape characters are processed on the display\-: \par
 , , 
-\end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
 

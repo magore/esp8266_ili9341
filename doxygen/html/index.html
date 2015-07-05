@@ -94,7 +94,7 @@ README</h1>
 </ul>
 </dd></dl>
 <dl class="section user"><dt>Description</dt><dd><ul>
-<li>ESP8266 ILI9341 display demo with multiple window support and simple networking<ul>
+<li>ESP8266 ILI9341 with multiple window support and networking demo<ul>
 <li>The specific display is an TM022HDH26 display I got from ebay.</li>
 </ul>
 </li>
@@ -104,7 +104,10 @@ README</h1>
 <li>Wire frame viewer and C generator for Earth coastline data</li>
 <li>Small Print with full floating point support along with ftoa/atof and integer conversions</li>
 <li>BDF fonts and a BDF font to C conversion code and optimized display code</li>
-<li>Network server client example</li>
+<li>Network server client example for display updates</li>
+<li>Uart network server client for serial uart to network bridge.</li>
+<li>Generic queue handling code</li>
+<li>Uart driver.</li>
 <li>ILI9341 display driver with multiple custom sized window support</li>
 <li>readPixel() and custom sized window scrolling<ul>
 <li>Not limited by ILI9341 hardware scroll restrictions.</li>
@@ -184,6 +187,18 @@ README</h1>
 <li>ili9431 and esp8266 related documents</li>
 </ul>
 </li>
+<li>bridge<ul>
+<li>bridge.c</li>
+<li>bridge.h<ul>
+<li>Serial bridge code - send and receive serial data via network</li>
+<li>Opens a port on port 23 so you can use telnet to test<ul>
+<li>Note: at the moment no telnet command processing is done.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 <li>cordic<ul>
 <li><a class="el" href="cordic_8c.html" title="Cordic Routines Handle angle outside of the first quadrant Added standalone test to verify CORDIC aga...">cordic.c</a><ul>
 <li>My 3D transformation functions based on CORDIC and gradians/100</li>
@@ -235,22 +250,11 @@ README</h1>
 </li>
 </ul>
 </li>
-<li>util.c</li>
-<li>util.h<ul>
-<li>Flash reading and bittest functions for system requiring specific alignment and access size of flash memory.</li>
 </ul>
 </li>
-</ul>
-</li>
-<li>driver<ul>
+<li>driver - third party code<ul>
 <li><a class="el" href="cal__dex_8c.html">cal_dex.c</a><ul>
 <li>Debug exception support by cal (20150421, cal)</li>
-</ul>
-</li>
-<li>hspi.c</li>
-<li>hspi.h<ul>
-<li>My rewritten HPSI code that avoids unaligned read and writes</li>
-<li>Origonal Code from CHERTS and Sem</li>
 </ul>
 </li>
 <li><a class="el" href="ili9341__adafruit_8c.html">ili9341_adafruit.c</a></li>
@@ -352,7 +356,7 @@ README</h1>
 </ul>
 </li>
 <li>network<ul>
-<li>Simple network server - displays message from <a class="el" href="send_8c.html">send.c</a><ul>
+<li>Simple network server - displays message sent by <a class="el" href="send_8c.html">send.c</a><ul>
 <li>network.c</li>
 </ul>
 </li>
@@ -377,13 +381,43 @@ README</h1>
 </li>
 </ul>
 </li>
-<li><a class="el" href="send_8c.html">send.c</a><ul>
+</ul>
+<p>utils</p>
+<ul>
+<li>hspi.c</li>
+<li>hspi.h<ul>
+<li>My rewritten HPSI code that avoids unaligned read and writes</li>
+<li>Origonal Code from CHERTS and Sem</li>
+</ul>
+</li>
+<li>queue.c</li>
+<li>queue.h<ul>
+<li>Generic ring buffer support code</li>
+</ul>
+</li>
+<li>uart.c</li>
+<li>uart.h</li>
+<li><a class="el" href="uart__register_8h.html">uart_register.h</a><ul>
+<li>Interrup driven receive and transmit code</li>
+</ul>
+</li>
+<li>util.c</li>
+<li>util.h<ul>
+<li>Flash read</li>
+<li>Bittest functions<ul>
+<li>For system requiring specific memory alignment access methods</li>
+</ul>
+</li>
+<li>POSIX malloc,calloc and free wrappers</li>
+</ul>
+</li>
+</ul>
+<p><a class="el" href="send_8c.html">send.c</a></p>
+<ul>
 <li>Send message to network server</li>
 <li>Example: ./send -i 192.168.200.116 -m ''<ul>
 <li>These escape characters are processed on the display: <br/>
 , , </li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -410,7 +444,7 @@ README</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 5 2015 17:07:33 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 5 2015 17:21:41 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
