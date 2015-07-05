@@ -17,7 +17,6 @@ var searchData=
   ['master',['master',['../user__main_8c.html#a3c3825d702360b467501feca5bd25dab',1,'user_main.c']]],
   ['match',['MATCH',['../bdffontutil_8h.html#a4d192fe48cb19d0ef5a88c52ed23cf4c',1,'bdffontutil.h']]],
   ['match_5ftoken',['match_token',['../bdffontutil_8c.html#aa8451fa4387dfafd4583f6548533d37b',1,'match_token(char *str, char *pat):&#160;bdffontutil.c'],['../bdffontutil_8h.html#aa8451fa4387dfafd4583f6548533d37b',1,'match_token(char *str, char *pat):&#160;bdffontutil.c']]],
-  ['max',['MAX',['../util_8h.html#aacc3ee1a7f283f8ef65cea31f4436a95',1,'util.h']]],
   ['max_5ftft_5fx',['MAX_TFT_X',['../ili9341__adafruit_8h.html#ada20cd70880da7c400c4bc0bce18568f',1,'ili9341_adafruit.h']]],
   ['max_5ftft_5fy',['MAX_TFT_Y',['../ili9341__adafruit_8h.html#af33f42d2e97ceb3d86b1f5ea80acb0ef',1,'ili9341_adafruit.h']]],
   ['maxfonts',['MAXFONTS',['../display_2font_8h.html#ac108d78d76235e3c7cada0c2e56b7e2d',1,'MAXFONTS():&#160;font.h'],['../fonts_2font_8h.html#ac108d78d76235e3c7cada0c2e56b7e2d',1,'MAXFONTS():&#160;font.h']]],

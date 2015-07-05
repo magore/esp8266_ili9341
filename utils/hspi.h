@@ -34,5 +34,4 @@ void hspi_Tx ( uint8_t *data , uint16_t bytes );
 void hspi_TX_stream_byte ( uint8_t data );
 MEMSPACE void hspi_TX_stream_init ( void );
 void hspi_TX_stream_flush ( void );
-
 #endif                                            /* INCLUDE_HSPI_H_ */

@@ -26,10 +26,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef _NETWORK_H_
 #define _NETWORK_H_
 
-/* network.c */
-void poll_network_message ( window *win );
+#include <ip_addr.h>
+#include <c_types.h>
+#include <espconn.h>
+
+/* network/network.c */
+MEMSPACE void poll_network_message ( window *win );
 MEMSPACE void my_receive ( void *arg , char *pdata , unsigned short len );
 MEMSPACE void wifi_event_cb ( System_Event_t *event_p );
-MEMSPACE void setup_networking ( void );
+MEMSPACE void setup_networking ( int port );
 
 #endif

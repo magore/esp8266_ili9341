@@ -10,6 +10,5 @@ var searchData=
   ['cordic_5fdeg',['cordic_deg',['../cordic_8c.html#a5d8ba4ae520a41add87512173a9289ef',1,'cordic_deg(double deg, double *s, double *c):&#160;cordic.c'],['../cordic_8h.html#a5d8ba4ae520a41add87512173a9289ef',1,'cordic_deg(double deg, double *s, double *c):&#160;cordic.c']]],
   ['cordic_5fquad',['cordic_quad',['../cordic_8c.html#ab9bc8a20d99938e647047015d62f6f86',1,'cordic_quad(double angle, double *s, double *c):&#160;cordic.c'],['../cordic_8h.html#ab9bc8a20d99938e647047015d62f6f86',1,'cordic_quad(double angle, double *s, double *c):&#160;cordic.c']]],
   ['cordic_5frad',['cordic_rad',['../cordic_8c.html#ab5dff4f6a6c29502d824cc7574c13f1c',1,'cordic_rad(double rad, double *s, double *c):&#160;cordic.c'],['../cordic_8h.html#ab5dff4f6a6c29502d824cc7574c13f1c',1,'cordic_rad(double rad, double *s, double *c):&#160;cordic.c']]],
-  ['cordit1',['cordit1',['../cordic2c_8c.html#aa47551f0ba056c573807f6dfa1b09d2d',1,'cordic2c.c']]],
-  ['cpy_5fflash',['cpy_flash',['../util_8c.html#a9a70a218c9d4bae2e51bda4d7219712f',1,'cpy_flash(uint8_t *src, uint8_t *dest, int size):&#160;util.c'],['../util_8h.html#a9a70a218c9d4bae2e51bda4d7219712f',1,'cpy_flash(uint8_t *src, uint8_t *dest, int size):&#160;util.c']]]
+  ['cordit1',['cordit1',['../cordic2c_8c.html#aa47551f0ba056c573807f6dfa1b09d2d',1,'cordic2c.c']]]
 ];

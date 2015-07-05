@@ -41,6 +41,9 @@ SOFTCS =
 # Display Debug messages via serial
 ILI9341_DEBUG = 0 
 
+# TELNET serial bridge
+TELNET_SERIAL = 1
+
 # HSPI Prescaler
 # A value of 1 works with all except tft_readId() tft_readRegister
 HSPI_PRESCALER = 2
@@ -79,7 +82,7 @@ ADDRESS=0x40000
 
 # Default SPI speed
 # SPI_SPEED = 20MHz, 26.7MHz, 40MHz, 80MHz
-SPI_SPEED?=40
+SPI_SPEED?=80
 # SPI_MODE: QIO, QOUT, DIO, DOUT
 SPI_MODE?=QIO
 # FLASH SIZE 4096K
@@ -213,12 +216,20 @@ endif
 
 # ===============================================================
 # which modules (subdirectories) of the project to include in compiling
-MODULES	= driver user printf cordic display
+MODULES	= driver user utils printf cordic display 
 
 # Project Include Directories
 EXTRA_INCDIR    = user include $(SDK_BASE)/../include 
 
 # ===============================================================
+
+CFLAGS += -DDEBUG_PRINTF=ets_uart_printf
+CFLAGS += -DMAX_USER_RECEIVE_CB=4
+
+ifdef TELNET_SERIAL
+	CFLAGS += -DTELNET_SERIAL
+	MODULES	+= bridge
+endif
 
 ifdef HSPI_PRESCALER
 	CFLAGS += -DHSPI_PRESCALER=$(HSPI_PRESCALER)

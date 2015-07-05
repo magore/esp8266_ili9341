@@ -19,7 +19,7 @@ struct \hyperlink{structex__regs}{ex\-\_\-regs}
 \item 
 \#define \hyperlink{cal__dex_8c_a189cc9d30a050d345a214a64a3077e1c}{c\-\_\-puts}(a)~\hyperlink{cal__dex_8c_a930bc9f35121018da9e27272aab1f255}{cal\-\_\-tprintf}(a)
 \item 
-\#define \hyperlink{cal__dex_8c_a930bc9f35121018da9e27272aab1f255}{cal\-\_\-tprintf}~\hyperlink{user__main_8c_af84e3ac8b5878bd0ad9e185f3d27073c}{ets\-\_\-uart\-\_\-printf}
+\#define \hyperlink{cal__dex_8c_a930bc9f35121018da9e27272aab1f255}{cal\-\_\-tprintf}~\hyperlink{user__main_8c_a0263868d7b1c4cdb166a1e793b7a7313}{D\-E\-B\-U\-G\-\_\-\-P\-R\-I\-N\-T\-F}
 \item 
 \#define \hyperlink{cal__dex_8c_aaf0952059602752258dccaa015d7b54a}{N\-U\-M}~8
 \end{DoxyCompactItemize}
@@ -31,8 +31,6 @@ void $\ast$ \hyperlink{cal__dex_8c_a35c6b20120a115839944c07cf7089ee1}{\-\_\-\-\_
 char $\ast$ \hyperlink{cal__dex_8c_a8e6d28af54455355a04c34d287d5ef2f}{system\-\_\-get\-\_\-sdk\-\_\-version} ()
 \item 
 static void \hyperlink{cal__dex_8c_aaa92f95616461785d7b1a7d7591ccaa1}{cal\-\_\-dex\-\_\-handler} (int exccause, \hyperlink{structex__regs}{ex\-\_\-regs} regs)
-\item 
-void \hyperlink{cal__dex_8c_ad1d295b450767463df56e622d0989157}{ets\-\_\-printf} (char $\ast$fmt,...)
 \item 
 void \hyperlink{cal__dex_8c_a13b7de6e7c126209e587ac1cd5ccb4fc}{ets\-\_\-uart\-\_\-printf} (char $\ast$fmt,...)
 \item 
@@ -115,10 +113,10 @@ Referenced by cal\-\_\-dex\-\_\-dump().
 
 \hypertarget{cal__dex_8c_a930bc9f35121018da9e27272aab1f255}{\index{cal\-\_\-dex.\-c@{cal\-\_\-dex.\-c}!cal\-\_\-tprintf@{cal\-\_\-tprintf}}
 \index{cal\-\_\-tprintf@{cal\-\_\-tprintf}!cal_dex.c@{cal\-\_\-dex.\-c}}
-\subsubsection[{cal\-\_\-tprintf}]{\setlength{\rightskip}{0pt plus 5cm}\#define cal\-\_\-tprintf~{\bf ets\-\_\-uart\-\_\-printf}}}\label{cal__dex_8c_a930bc9f35121018da9e27272aab1f255}
+\subsubsection[{cal\-\_\-tprintf}]{\setlength{\rightskip}{0pt plus 5cm}\#define cal\-\_\-tprintf~{\bf D\-E\-B\-U\-G\-\_\-\-P\-R\-I\-N\-T\-F}}}\label{cal__dex_8c_a930bc9f35121018da9e27272aab1f255}
 
 
-Definition at line 64 of file cal\-\_\-dex.\-c.
+Definition at line 63 of file cal\-\_\-dex.\-c.
 
 
 
@@ -144,7 +142,7 @@ Referenced by cal\-\_\-dex\-\_\-dump(), main(), and user\-\_\-init().
 \subsubsection[{N\-U\-M}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\-U\-M~8}}\label{cal__dex_8c_aaf0952059602752258dccaa015d7b54a}
 
 
-Definition at line 123 of file cal\-\_\-dex.\-c.
+Definition at line 122 of file cal\-\_\-dex.\-c.
 
 
 
@@ -184,7 +182,7 @@ This intercepts calls to \-\_\-xtos\-\_\-set\-\_\-exception\-\_\-handler which i
 
 Calls to exception handler are intercepted by cal\-\_\-dex\-\_\-handler before delegating to original handler. 
 
-Definition at line 360 of file cal\-\_\-dex.\-c.
+Definition at line 359 of file cal\-\_\-dex.\-c.
 
 \hypertarget{cal__dex_8c_a02ae9a70fb903af445b161a5f475ae21}{\index{cal\-\_\-dex.\-c@{cal\-\_\-dex.\-c}!cal\-\_\-dex\-\_\-dump@{cal\-\_\-dex\-\_\-dump}}
 \index{cal\-\_\-dex\-\_\-dump@{cal\-\_\-dex\-\_\-dump}!cal_dex.c@{cal\-\_\-dex.\-c}}
@@ -195,7 +193,7 @@ Definition at line 360 of file cal\-\_\-dex.\-c.
 )}}\label{cal__dex_8c_a02ae9a70fb903af445b161a5f475ae21}
 
 
-Definition at line 218 of file cal\-\_\-dex.\-c.
+Definition at line 217 of file cal\-\_\-dex.\-c.
 
 
 
@@ -211,7 +209,7 @@ Referenced by cal\-\_\-dex\-\_\-handler().
 )}}\label{cal__dex_8c_a62e59349b0d7b06518b2257c04bbfc1e}
 
 
-Definition at line 127 of file cal\-\_\-dex.\-c.
+Definition at line 126 of file cal\-\_\-dex.\-c.
 
 
 
@@ -226,7 +224,7 @@ Referenced by cal\-\_\-dex\-\_\-dump\-\_\-stack().
 )}}\label{cal__dex_8c_a0e0d5f7ed6c4b3cca2869392a41627e8}
 
 
-Definition at line 163 of file cal\-\_\-dex.\-c.
+Definition at line 162 of file cal\-\_\-dex.\-c.
 
 
 
@@ -242,23 +240,11 @@ Referenced by cal\-\_\-dex\-\_\-dump().
 )\hspace{0.3cm}{\ttfamily [static]}}}\label{cal__dex_8c_aaa92f95616461785d7b1a7d7591ccaa1}
 
 
-Definition at line 330 of file cal\-\_\-dex.\-c.
+Definition at line 329 of file cal\-\_\-dex.\-c.
 
 
 
 Referenced by \-\_\-\-\_\-wrap\-\_\-\-\_\-xtos\-\_\-set\-\_\-exception\-\_\-handler(), and cal\-\_\-dex\-\_\-dump().
-
-\hypertarget{cal__dex_8c_ad1d295b450767463df56e622d0989157}{\index{cal\-\_\-dex.\-c@{cal\-\_\-dex.\-c}!ets\-\_\-printf@{ets\-\_\-printf}}
-\index{ets\-\_\-printf@{ets\-\_\-printf}!cal_dex.c@{cal\-\_\-dex.\-c}}
-\subsubsection[{ets\-\_\-printf}]{\setlength{\rightskip}{0pt plus 5cm}void ets\-\_\-printf (
-\begin{DoxyParamCaption}
-\item[{char $\ast$}]{fmt, }
-\item[{}]{...}
-\end{DoxyParamCaption}
-)}}\label{cal__dex_8c_ad1d295b450767463df56e622d0989157}
-
-
-Referenced by cal\-\_\-dex\-\_\-dump\-\_\-hex().
 
 \hypertarget{cal__dex_8c_a13b7de6e7c126209e587ac1cd5ccb4fc}{\index{cal\-\_\-dex.\-c@{cal\-\_\-dex.\-c}!ets\-\_\-uart\-\_\-printf@{ets\-\_\-uart\-\_\-printf}}
 \index{ets\-\_\-uart\-\_\-printf@{ets\-\_\-uart\-\_\-printf}!cal_dex.c@{cal\-\_\-dex.\-c}}
@@ -270,7 +256,7 @@ Referenced by cal\-\_\-dex\-\_\-dump\-\_\-hex().
 )}}\label{cal__dex_8c_a13b7de6e7c126209e587ac1cd5ccb4fc}
 
 
-Referenced by font\-\_\-attr(), and tft\-\_\-read\-Register().
+Referenced by tft\-\_\-read\-Register().
 
 \hypertarget{cal__dex_8c_acf957f6fef532e6ea549b42081a2592a}{\index{cal\-\_\-dex.\-c@{cal\-\_\-dex.\-c}!get\-\_\-depc@{get\-\_\-depc}}
 \index{get\-\_\-depc@{get\-\_\-depc}!cal_dex.c@{cal\-\_\-dex.\-c}}
@@ -281,7 +267,7 @@ Referenced by font\-\_\-attr(), and tft\-\_\-read\-Register().
 )\hspace{0.3cm}{\ttfamily [static]}}}\label{cal__dex_8c_acf957f6fef532e6ea549b42081a2592a}
 
 
-Definition at line 206 of file cal\-\_\-dex.\-c.
+Definition at line 205 of file cal\-\_\-dex.\-c.
 
 
 
@@ -296,7 +282,7 @@ Referenced by cal\-\_\-dex\-\_\-dump().
 )\hspace{0.3cm}{\ttfamily [static]}}}\label{cal__dex_8c_ac71f7a3cad2b1fea5cf85a828e29e644}
 
 
-Definition at line 195 of file cal\-\_\-dex.\-c.
+Definition at line 194 of file cal\-\_\-dex.\-c.
 
 
 
@@ -311,7 +297,7 @@ Referenced by cal\-\_\-dex\-\_\-dump().
 )}}\label{cal__dex_8c_a51bf09cac6f861c3a27c59190c3c6cc5}
 
 
-Definition at line 155 of file cal\-\_\-dex.\-c.
+Definition at line 154 of file cal\-\_\-dex.\-c.
 
 
 

@@ -14,18 +14,18 @@
  @see https://github.com/CHERTS/esp8266-devkit/tree/master/Espressif/examples/esp8266_ili9341
 
 
-This is free software: you can redistribute it and/or modify it under the
-terms of the GNU General Public License as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.
-
-This software is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  This is free software: you can redistribute it and/or modify it under the
+  terms of the GNU General Public License as published by the Free Software
+  Foundation, either version 3 of the License, or (at your option)
+  any later version.
+  
+  This software is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include <user_config.h>
@@ -246,10 +246,13 @@ void tft_writeColor16Repeat(uint16 color, uint32_t count)
 
 //We are sending words
 
+	
     while(count--)
     {
         hspi_TX_stream_byte(color >> 8);
         hspi_TX_stream_byte(color & 0xff);
+		if((count & 0x3ff) == 0)
+			ets_wdt_disable();
     }
     hspi_TX_stream_flush();
 
@@ -416,6 +419,7 @@ void tft_fillWin(window *win, uint16_t color)
 void tft_fillRectWH(window *win, int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color)
 {
     uint32_t repeat;
+	uint16_t count;
 
 	repeat = tft_rel_window(win, x,y,w,h);
     if(repeat)
@@ -512,15 +516,24 @@ void tft_writeRect(window *win, int16_t x, int16_t y, int16_t w, int16_t h, uint
 		pixel = *color++;
 		hspi_TX_stream_byte(pixel >> 8);
 		hspi_TX_stream_byte(pixel & 0xff);
+		if((pixels & 0x3ff) == 0)
+			ets_wdt_disable();
 	}
     hspi_TX_stream_flush();
 #else
+	pixels = 0;
     for (yy=0; yy < h; ++yy)
     {
         for (xx=0;xx < w; ++xx)
         {
             tft_drawPixel(win, x+xx,y+yy,*ptr++);
         }
+		pixels += w;
+		if(pixels >= 0x3ff)
+		{
+			pixels = 0;
+			ets_wdt_disable();
+		}
     }
 #endif
 }
@@ -546,6 +559,7 @@ void tft_writeRect(window *win, int16_t x, int16_t y, int16_t w, int16_t h, uint
 void tft_readRect(window *win, int16_t x, int16_t y, int16_t w, int16_t h, uint16_t *color)
 {
 	uint32_t pixels;
+	int count;
 	int rem;
 	uint8_t cmd;
 	uint8_t *ptr;
@@ -560,6 +574,7 @@ void tft_readRect(window *win, int16_t x, int16_t y, int16_t w, int16_t h, uint1
 
 	cmd = 0x2e;	// Memory Read
 
+	count = 0;
 	while(pixels)
 	{
 		data[0] = cmd;
@@ -569,6 +584,12 @@ void tft_readRect(window *win, int16_t x, int16_t y, int16_t w, int16_t h, uint1
 		else
 			rem = pixels;
 		pixels -= rem;
+		count += rem;
+		if(count >= 0x3ff)
+		{
+			ets_wdt_disable();
+			count = 0;
+		}
 
 		// Send/Receive
 		hspi_waitReady();
@@ -610,7 +631,6 @@ void tft_Vscroll(window *win, int dir)
 	{
 		tft_readRect(win, 0, i+dir, win->w, 1, (uint16_t *) buff);
 		tft_writeRect(win, 0, i, win->w, 1, (uint16_t *)buff);
-		ets_wdt_disable();
 
 	}
 	tft_fillRectWH(win, 0, win->h-1-dir, win->w, dir, win->bg);

@@ -63,7 +63,7 @@ var searchData=
   ['tft_5fget_5ffont_5fheight',['tft_get_font_height',['../ili9341_8c.html#a616f9992d5ed309e96288a7e08b87bf3',1,'tft_get_font_height(window *win):&#160;ili9341.c'],['../ili9341_8h.html#ab0d22e813f54889da3d09a88452022a0',1,'tft_get_font_height(window *win):&#160;ili9341.c']]],
   ['tft_5fh',['TFT_H',['../ili9341_8h.html#a27547bc8807c95c9e8e541e8cc92fece',1,'ili9341.h']]],
   ['tft_5fid',['tft_ID',['../ili9341_8c.html#afd0704ffdcfd5d17f5437814c2860130',1,'ili9341.c']]],
-  ['tft_5finit',['tft_init',['../ili9341_8c.html#a14e5cdfbb744c04570df508551f77add',1,'tft_init(void):&#160;ili9341.c'],['../ili9341_8h.html#a14e5cdfbb744c04570df508551f77add',1,'tft_init(void):&#160;ili9341.c'],['../ili9341__adafruit_8h.html#a47812ee8398e07058b8e7fdc5fbb887d',1,'TFT_INIT():&#160;ili9341_adafruit.h']]],
+  ['tft_5finit',['TFT_INIT',['../ili9341__adafruit_8h.html#a47812ee8398e07058b8e7fdc5fbb887d',1,'TFT_INIT():&#160;ili9341_adafruit.h'],['../ili9341_8c.html#a14e5cdfbb744c04570df508551f77add',1,'tft_init(void):&#160;ili9341.c'],['../ili9341_8h.html#a14e5cdfbb744c04570df508551f77add',1,'tft_init(void):&#160;ili9341.c']]],
   ['tft_5finvertdisplay',['tft_invertDisplay',['../ili9341_8c.html#ac276806b0f70c3a69aaefa4a7937643b',1,'tft_invertDisplay(int flag):&#160;ili9341.c'],['../ili9341_8h.html#ac276806b0f70c3a69aaefa4a7937643b',1,'tft_invertDisplay(int flag):&#160;ili9341.c']]],
   ['tft_5fprintf',['tft_printf',['../pr_8c.html#ad6d6dda4facdc045d477c0cc9403e0c1',1,'tft_printf(window *win, const char *fmt,...):&#160;pr.c'],['../pr_8h.html#a45a23ad0cd35d17f2dc6c16e1a4c39df',1,'tft_printf(int size, const char *fmt,...):&#160;pr.h']]],
   ['tft_5fputch',['tft_putch',['../ili9341_8c.html#afaf6907405d24bf529df5590f450d3cd',1,'tft_putch(window *win, int c):&#160;ili9341.c'],['../ili9341_8h.html#af577ed6737059ccbe04d4e2cd476a0e1',1,'tft_putch(window *win, int c):&#160;ili9341.c']]],
@@ -89,11 +89,5 @@ var searchData=
   ['tft_5fyoff',['TFT_YOFF',['../ili9341_8h.html#a9e86747a04cc5cca5f61042d742b7e40',1,'ili9341.h']]],
   ['tftwin',['tftwin',['../ili9341_8c.html#a460d9cc0fd386002d9485f2a0ed585d8',1,'ili9341.c']]],
   ['timer1sec',['timer1sec',['../user__main_8c.html#a7ec6e61fd93a873528abd7fa4ec962d2',1,'user_main.c']]],
-  ['triglvl',['TrigLvl',['../structRcvMsgBuff.html#a142735d44b7fefc09c930d58b5e70d4d',1,'RcvMsgBuff']]],
-  ['trim_5ftail',['trim_tail',['../bdffontutil_8c.html#a4ad12cb70b50ebf45467f22d22707acc',1,'trim_tail(char *str):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a4ad12cb70b50ebf45467f22d22707acc',1,'trim_tail(char *str):&#160;bdffontutil.c']]],
-  ['trx_5fbuff',['trx_buff',['../structUartDevice.html#ab83762d1f1257fbbc3ba728520fa0231',1,'UartDevice']]],
-  ['trxbuffsize',['TrxBuffSize',['../structTrxMsgBuff.html#aee542f95d3ce814656ea3bdc22460c59',1,'TrxMsgBuff']]],
-  ['trxmsgbuff',['TrxMsgBuff',['../structTrxMsgBuff.html',1,'']]],
-  ['two_5fstop_5fbit',['TWO_STOP_BIT',['../uart_8h.html#a0ecb1f01cc124cfef8bb7dbfe6c9c1d5a856ac138e04e98917b2ba9d6ac6bcd34',1,'uart.h']]],
-  ['tx_5fbuff_5fsize',['TX_BUFF_SIZE',['../uart_8h.html#afa25b3e17e1a96229f5aaf7115211c4c',1,'uart.h']]]
+  ['trim_5ftail',['trim_tail',['../bdffontutil_8c.html#a4ad12cb70b50ebf45467f22d22707acc',1,'trim_tail(char *str):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a4ad12cb70b50ebf45467f22d22707acc',1,'trim_tail(char *str):&#160;bdffontutil.c']]]
 ];

@@ -51,9 +51,8 @@ void tft_configRegister(void)
 {
     uint8_t data[15] = {0};
 
-	
 // // POWER_ON_SEQ_CONTROL
-    data[0] = 0x39; 
+    data[0] = 0x39;
     data[1] = 0x2C;
     data[2] = 0x00;
     data[3] = 0x34;
@@ -84,25 +83,24 @@ void tft_configRegister(void)
     tft_Cmd_Data_TX(0xF7, data, 1);
 
     data[0] = 0x23;                               //VRH[5:0]
-    tft_Cmd_Data_TX(0xC0, data, 1);              //Power control
+    tft_Cmd_Data_TX(0xC0, data, 1);               //Power control
 
     data[0] = 0x10;                               //SAP[2:0];BT[3:0]
-    tft_Cmd_Data_TX(0xC1, data, 1);              //Power control
+    tft_Cmd_Data_TX(0xC1, data, 1);               //Power control
 
     data[0] = 0x3e;                               //Contrast
     data[1] = 0x28;
-    tft_Cmd_Data_TX(0xC5, data, 2);              //VCM control
+    tft_Cmd_Data_TX(0xC5, data, 2);               //VCM control
 
     data[0] = 0x86;                               //--
-    tft_Cmd_Data_TX(0xC7, data, 1);              //VCM control2
+    tft_Cmd_Data_TX(0xC7, data, 1);               //VCM control2
 
 // MG was 0x40
     data[0] = 0x48;                               // column address order
-    tft_Cmd_Data_TX(0x36, data, 1);              // Memory Access Control
+    tft_Cmd_Data_TX(0x36, data, 1);               // Memory Access Control
 
     data[0] = 0x55;
     tft_Cmd_Data_TX(0x3A, data, 1);
-
 
     data[0] = 0x00;
     data[1] = 0x18;
@@ -111,13 +109,13 @@ void tft_configRegister(void)
     data[0] = 0x08;
     data[1] = 0x82;
     data[2] = 0x27;
-    tft_Cmd_Data_TX(0xB6, data, 3);              // Display Function Control
+    tft_Cmd_Data_TX(0xB6, data, 3);               // Display Function Control
 
     data[0] = 0x00;
-    tft_Cmd_Data_TX(0xF2, data, 1);              // 3Gamma Function Disable
+    tft_Cmd_Data_TX(0xF2, data, 1);               // 3Gamma Function Disable
 
     data[0] = 0x01;
-    tft_Cmd_Data_TX(0x26, data, 1);              //Gamma curve selected
+    tft_Cmd_Data_TX(0x26, data, 1);               //Gamma curve selected
 
     data[0] = 0x0F;
     data[1] = 0x31;
@@ -134,7 +132,7 @@ void tft_configRegister(void)
     data[12] = 0x0E;
     data[13] = 0x09;
     data[14] = 0x00;
-    tft_Cmd_Data_TX(0xE0, data, 15);             //Set Gamma
+    tft_Cmd_Data_TX(0xE0, data, 15);              //Set Gamma
 
     data[0] = 0x00;
     data[1] = 0x0E;
@@ -151,14 +149,14 @@ void tft_configRegister(void)
     data[12] = 0x31;
     data[13] = 0x36;
     data[14] = 0x0F;
-    tft_Cmd_Data_TX(0xE1, data, 15);             //Set Gamma
+    tft_Cmd_Data_TX(0xE1, data, 15);              //Set Gamma
 
-    tft_Cmd_Data_TX(0x11, 0, 0);                 //Exit Sleep
-	// MG was 120000
+    tft_Cmd_Data_TX(0x11, 0, 0);                  //Exit Sleep
+// MG was 120000
     os_delay_us(150000);
 
-    tft_Cmd_Data_TX(0x29, 0, 0);                 //Display on
-	// MG added
+    tft_Cmd_Data_TX(0x29, 0, 0);                  //Display on
+// MG added
     os_delay_us(150000);
     tft_Cmd_Data_TX(0x2c, 0, 0);
 }
@@ -179,7 +177,7 @@ MEMSPACE
 void tft_drawBitmap(window *win, int16_t x, int16_t y,
 const uint16_t *bitmap, int16_t w, int16_t h)
 {
-	tft_writeRect(win, x, y, w, h, (uint16_t *)bitmap);
+    tft_writeRect(win, x, y, w, h, (uint16_t *)bitmap);
 }
 
 
@@ -283,6 +281,7 @@ int16_t r, uint8_t cornername, uint16_t color)
     }
 }
 
+
 /// @brief  Fill circle helper
 /// @param[in] *win: window structure
 /// @param[in] x0: X offset
@@ -294,36 +293,42 @@ int16_t r, uint8_t cornername, uint16_t color)
 /// @return  void
 MEMSPACE
 void tft_fillCircleHelper(window *win, int16_t x0, int16_t y0, int16_t r,
-    uint8_t cornername, int16_t delta, uint16_t color) {
+uint8_t cornername, int16_t delta, uint16_t color)
+{
 
-  int16_t f     = 1 - r;
-  int16_t ddF_x = 1;
-  int16_t ddF_y = -2 * r;
-  int16_t x     = 0;
-  int16_t y     = r;
+    int16_t f     = 1 - r;
+    int16_t ddF_x = 1;
+    int16_t ddF_y = -2 * r;
+    int16_t x     = 0;
+    int16_t y     = r;
 
-  while (x<y) {
-    if (f >= 0) {
-      y--;
-      ddF_y += 2;
-      f     += ddF_y;
-    }
-    x++;
-    ddF_x += 2;
-    f     += ddF_x;
+    while (x<y)
+    {
+        if (f >= 0)
+        {
+            y--;
+            ddF_y += 2;
+            f     += ddF_y;
+        }
+        x++;
+        ddF_x += 2;
+        f     += ddF_x;
 
-    if (cornername & 0x1) {
-      tft_drawFastVLine(win,x0+x, y0-y, 2*y+1+delta, color);
-      tft_drawFastVLine(win,x0+y, y0-x, 2*x+1+delta, color);
+        if (cornername & 0x1)
+        {
+            tft_drawFastVLine(win,x0+x, y0-y, 2*y+1+delta, color);
+            tft_drawFastVLine(win,x0+y, y0-x, 2*x+1+delta, color);
+        }
+        if (cornername & 0x2)
+        {
+            tft_drawFastVLine(win,x0-x, y0-y, 2*y+1+delta, color);
+            tft_drawFastVLine(win,x0-y, y0-x, 2*x+1+delta, color);
+        }
     }
-    if (cornername & 0x2) {
-      tft_drawFastVLine(win,x0-x, y0-y, 2*y+1+delta, color);
-      tft_drawFastVLine(win,x0-y, y0-x, 2*x+1+delta, color);
-    }
-  }
 }
 
-/// @brief  Fill circle 
+
+/// @brief  Fill circle
 /// @param[in] *win: window structure
 /// @param[in] x0: X offset
 /// @param[in] y0: Y offset
@@ -365,7 +370,7 @@ uint16_t color)
 /// @param[in] y: Y offset
 /// @param[in] w: Width
 /// @param[in] h: Height
-/// @param[in] r: Radius 
+/// @param[in] r: Radius
 /// @param[in] color: Color
 /// @return  void
 MEMSPACE
@@ -373,10 +378,14 @@ void tft_drawRoundRect(window *win, int16_t x, int16_t y, int16_t w,
 int16_t h, int16_t r, uint16_t color)
 {
 // smarter version
-    tft_drawFastHLine(win,x+r  , y    , w-2*r, color);// Top
-    tft_drawFastHLine(win,x+r  , y+h-1, w-2*r, color);// Bottom
-    tft_drawFastVLine(win,x    , y+r  , h-2*r, color);// Left
-    tft_drawFastVLine(win,x+w-1, y+r  , h-2*r, color);// Right
+                                                  // Top
+    tft_drawFastHLine(win,x+r  , y    , w-2*r, color);
+                                                  // Bottom
+    tft_drawFastHLine(win,x+r  , y+h-1, w-2*r, color);
+                                                  // Left
+    tft_drawFastVLine(win,x    , y+r  , h-2*r, color);
+                                                  // Right
+    tft_drawFastVLine(win,x+w-1, y+r  , h-2*r, color);
 // draw four corners
     tft_drawCircleHelper(win,x+r    , y+r    , r, 1, color);
     tft_drawCircleHelper(win,x+w-r-1, y+r    , r, 2, color);
@@ -391,7 +400,7 @@ int16_t h, int16_t r, uint16_t color)
 /// @param[in] y: Y offset
 /// @param[in] w: Width
 /// @param[in] h: Height
-/// @param[in] r: Radius 
+/// @param[in] r: Radius
 /// @param[in] color: Color
 /// @return  void
 MEMSPACE
@@ -405,7 +414,6 @@ int16_t h, int16_t r, uint16_t color)
     tft_fillCircleHelper(win,x+w-r-1, y+r, r, 1, h-2*r-1, color);
     tft_fillCircleHelper(win,x+r    , y+r, r, 2, h-2*r-1, color);
 }
-
 
 
 /// @brief Draw a triangle

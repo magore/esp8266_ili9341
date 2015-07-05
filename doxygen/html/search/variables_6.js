@@ -13,7 +13,6 @@ var searchData=
   ['fixed_5fmedium_5fr_5fx7_5fy13_5fbitmap',['Fixed_Medium_R_X7_Y13_bitmap',['../display_2fonts_8h.html#a347299d507f70541e4b326013e1a5fde',1,'Fixed_Medium_R_X7_Y13_bitmap():&#160;fonts.h'],['../fonts_2fonts_8h.html#abc61add54a38eda9d189e2be99c92020',1,'Fixed_Medium_R_X7_Y13_bitmap():&#160;fonts.h']]],
   ['fixed_5fmedium_5fr_5fx7_5fy13_5fspecs',['Fixed_Medium_R_X7_Y13_specs',['../display_2fonts_8h.html#a2f808fe9ecb75da1eeb64186953c8618',1,'Fixed_Medium_R_X7_Y13_specs():&#160;fonts.h'],['../fonts_2fonts_8h.html#a9cab258b77ed54c60ac5bf01b5a04a61',1,'Fixed_Medium_R_X7_Y13_specs():&#160;fonts.h']]],
   ['flags',['flags',['../struct__fontc.html#aa74d9a5513b529b5e444f283afea40ef',1,'_fontc::flags()'],['../structwindow.html#ad58fae853f87093ef4f0139df0a3f33d',1,'window::flags()']]],
-  ['flow_5fctrl',['flow_ctrl',['../structUartDevice.html#a7d7e4e0d15a906b2f3c6d4d2febc45a2',1,'UartDevice']]],
   ['fnames',['fnames',['../bdffontutil_8c.html#ae75c11efb4dd449e4fcf9f1f78e9414c',1,'fnames():&#160;bdffontutil.c'],['../bdffontutil_8h.html#ae75c11efb4dd449e4fcf9f1f78e9414c',1,'fnames():&#160;bdffontutil.c']]],
   ['font',['font',['../structwindow.html#acee24e56db43557a46cbb5ca3fe35021',1,'window::font()'],['../bdffontutil_8h.html#a6d9c6f27190f0f04abf55678fe81080d',1,'font():&#160;bdffontutil.h']]],
   ['font_5fname',['FONT_NAME',['../struct__fontinfo.html#a6c0f76f2668446a1c37ecab8d4e286a5',1,'_fontinfo']]]

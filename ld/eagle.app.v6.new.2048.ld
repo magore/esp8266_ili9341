@@ -148,16 +148,17 @@ SECTIONS
 /*    _stack_sentry = ALIGN(0x8); */
   } >dram0_0_seg :dram0_0_bss_phdr
 /* __stack = 0x3ffc8000; */
-  .irom0.text : ALIGN(4)
+
+.irom0.text : ALIGN(4)
   {
     _irom0_text_start = ABSOLUTE(.);
     *(.irom0.literal .irom.literal .irom.text.literal .irom0.text .irom.text)
+/* you can relocate libraries from ram cache by including them here */
 /* gcc hal phy pp net80211 lwip wpa main m */
 /* Mike Gore */
     *libpp.a:(.literal .text .literal.* .text.*)
     _irom0_text_end = ABSOLUTE(.);
   } >irom0_0_seg :irom0_0_phdr
-
 
   .text : ALIGN(4)
   {

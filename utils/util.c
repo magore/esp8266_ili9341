@@ -173,25 +173,41 @@ int bittestxy(unsigned char *ptr, int x, int y, int w, int h)
     return(bittestv(ptr, off));
 }
 
-#ifdef TEST_FLASH
-ICACHE_RODATA_ATTR uint8_t xxx[] = { 1,2,3,4,5,6,7,8 };
-/// @brief Test flash read code
-/// @param[in] *win: window structure
+/// @brief reset system
 /// @return  void
-MEMSPACE 
-void test_flashio(window *win)
+ICACHE_FLASH_ATTR void reset(void)
 {
-	uint16_t xpros,ypos;
-	tft_set_font(win,1);
-	//tft_printf(win, "%x,%x", xxxp[0],xxxp[1]);
-	xpos = win->x;
-	ypos = win->y;
-	for(i=0;i<8;++i)
-	{
-		tft_setpos(win, i*16,ypos);
-		tft_printf(win, "%02x", read_flash8((uint32_t) &xxx+i));
-	}
-	tft_printf(win, "\n");
-	tft_printf(win, "%08x, %08x", read_flash32((uint8_t *)&xxx), read_flash16((uint8_t *)&xxx));
+    system_restart();
 }
-#endif
+
+/// @brief Free buffer
+/// POSIX function
+/// We only call os_free() is pointer is not null
+/// @param[in] *p: buffer to free
+/// @return  void 
+void free(void *p)
+{
+    if(p)
+        os_free((int) p);
+}
+
+/// @brief calloc buffer
+/// POSIX function
+/// @param[in] nmemb: number of elements
+/// @param[in] size:  size of elements
+/// @return  void * buffer
+void *calloc(size_t nmemb, size_t size)
+{
+    void *p = (void *)os_zalloc( (nmemb * size) );
+    return(p);
+}
+
+/// @brief malloc buffer
+/// POSIX function
+/// @param[in] size:  size of buffer
+/// @return  void * buffer
+void *malloc(size_t size)
+{
+    void *p = (void *) os_malloc( size );
+    return(p);
+}

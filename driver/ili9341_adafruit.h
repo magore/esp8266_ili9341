@@ -38,7 +38,6 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.
 */
 
-
 #ifndef _ILI9341_ADAFRUIT_H_
 #define _ILI9341_ADAFRUIT_H_
 
@@ -83,8 +82,6 @@ typedef union
 #define TFT_RST_ACTIVE    GPIO_OUTPUT_SET(4, 0)
 #define TFT_RST_DEACTIVE  GPIO_OUTPUT_SET(4, 1)
 #define TFT_RST_INIT     PIN_FUNC_SELECT(PERIPHS_IO_MUX_GPIO4_U, FUNC_GPIO4); TFT_RST_DEACTIVE
-
-
 
 #define MIN_TFT_Y               0
 #define MAX_TFT_Y               319
@@ -193,6 +190,4 @@ MEMSPACE void tft_drawRoundRect ( window *win , int16_t x , int16_t y , int16_t 
 MEMSPACE void tft_fillRoundRect ( window *win , int16_t x , int16_t y , int16_t w , int16_t h , int16_t r , uint16_t color );
 MEMSPACE void tft_drawTriangle ( window *win , int16_t x0 , int16_t y0 , int16_t x1 , int16_t y1 , int16_t x2 , int16_t y2 , uint16_t color );
 MEMSPACE void tft_fillTriangle ( window *win , int16_t x0 , int16_t y0 , int16_t x1 , int16_t y1 , int16_t x2 , int16_t y2 , uint16_t color );
-
-
-#endif // _ILI9341_ADAFRUIT_H_
+#endif                                            // _ILI9341_ADAFRUIT_H_

@@ -152,9 +152,9 @@ int main(int argc,char *argv[])
 		}
 	}
 		
-	if(!strlen(ip))
+	if(!strlen(ip) || !strlen(message))
 	{
-		fprintf(stderr,"IP ADdress missing\n");
+		fprintf(stderr,"usage: -i ip_address -m \"message\" [ -p port ]\n ");
 		exit(1);
 	}
 	if(!strlen(message))

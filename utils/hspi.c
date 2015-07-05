@@ -2,37 +2,36 @@
  @file hspi.c
 
  @brief HSPI driver for ESP8255
- Based on work from Sem 2015
+ Based on initial work from Sem 2015 - mostly rewrittem
+ Added code to handle proper aligned reads and writes
  @par Copyright &copy; 2015 Sem
  @par Copyright &copy; 2015 Mike Gore, GPL License
  @par You are free to use this code under the terms of GPL
-   please retain a copy of this notice in any code you use it in.
+  Please retain a copy of this notice in any code you use it in.
 
-
-This is free software: you can redistribute it and/or modify it under the
-terms of the GNU General Public License as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.
-
-This software is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  This is free software: you can redistribute it and/or modify it under the
+  terms of the GNU General Public License as published by the Free Software
+  Foundation, either version 3 of the License, or (at your option)
+  any later version.
+  
+  This software is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-
 
 #include <user_config.h>
 
 // @brief HSPI Prescale value - You should set this in your Makefile
 #ifndef HSPI_PRESCALER
-	#define HSPI_PRESCALER 16
+#define HSPI_PRESCALER 16
 #endif
 
-static uint16_t _f_tx_ind = 0;                       // fifo buffer index
-static uint8_t _f_tx_buf[HSPI_FIFO_SIZE+2];          // fifo buffer, same as HSPI FIFO
+static uint16_t _f_tx_ind = 0;                    // fifo buffer index
+static uint8_t _f_tx_buf[HSPI_FIFO_SIZE+2];       // fifo buffer, same as HSPI FIFO
 
 /// @brief HSPI Initiaization - with automatic chip sellect
 /// Pins:
@@ -53,7 +52,7 @@ void hspi_init(uint16_t prescale)
 
 #ifdef SOFTCS
     PIN_FUNC_SELECT(PERIPHS_IO_MUX_MTDO_U, FUNC_GPIO15);
-    GPIO_OUTPUT_SET(15, 1);
+    GPIO_OUTPUT_SET(GPIO_ID_PIN(15),1);
 #else
     PIN_FUNC_SELECT(PERIPHS_IO_MUX_MTDO_U, 2);    // CS         GPIO15
 #endif
@@ -124,7 +123,7 @@ void hspi_setBits(uint16_t bytes)
 void hspi_startSend(void)
 {
 #ifndef SOFTCS
-    GPIO_OUTPUT_SET(15, 0);
+    GPIO_OUTPUT_SET(GPIO_ID_PIN(15), 0);
 #endif
     SET_PERI_REG_MASK(SPI_FLASH_CMD(HSPI), SPI_FLASH_USR);
 }
@@ -136,7 +135,7 @@ void hspi_waitReady(void)
 {
     while (READ_PERI_REG(SPI_FLASH_CMD(HSPI)) & SPI_FLASH_USR) {};
 #ifdef SOFTCS
-    GPIO_OUTPUT_SET(15, 1);
+    GPIO_OUTPUT_SET(GPIO_ID_PIN(15), 1);
 #endif
 }
 
@@ -265,7 +264,6 @@ void hspi_Tx(uint8_t *data, uint16_t bytes)
 }
 
 
-
 /// =================================================================
 /// @brief
 /// SPI buffered write functions
@@ -297,7 +295,7 @@ void hspi_TX_stream_init(void)
 }
 
 
-/// @brief HSPI stream flush 
+/// @brief HSPI stream flush
 /// We use the fifo - or a buffer to queue spi writes
 /// The overhead of N writes done at once is less N writes done one at a time
 /// @return  void

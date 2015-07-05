@@ -16,8 +16,5 @@ var searchData=
   ['tft',['tft',['../ili9341_8c.html#aa55d6901951c7fe057e8d32477b5e122',1,'ili9341.c']]],
   ['tft_5fid',['tft_ID',['../ili9341_8c.html#afd0704ffdcfd5d17f5437814c2860130',1,'ili9341.c']]],
   ['tftwin',['tftwin',['../ili9341_8c.html#a460d9cc0fd386002d9485f2a0ed585d8',1,'ili9341.c']]],
-  ['timer1sec',['timer1sec',['../user__main_8c.html#a7ec6e61fd93a873528abd7fa4ec962d2',1,'user_main.c']]],
-  ['triglvl',['TrigLvl',['../structRcvMsgBuff.html#a142735d44b7fefc09c930d58b5e70d4d',1,'RcvMsgBuff']]],
-  ['trx_5fbuff',['trx_buff',['../structUartDevice.html#ab83762d1f1257fbbc3ba728520fa0231',1,'UartDevice']]],
-  ['trxbuffsize',['TrxBuffSize',['../structTrxMsgBuff.html#aee542f95d3ce814656ea3bdc22460c59',1,'TrxMsgBuff']]]
+  ['timer1sec',['timer1sec',['../user__main_8c.html#a7ec6e61fd93a873528abd7fa4ec962d2',1,'user_main.c']]]
 ];

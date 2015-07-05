@@ -24,7 +24,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 
-
 #include "user_config.h"
 
 
@@ -57,7 +56,7 @@ window *wintest = &_wintest;
 window _wintestdemo;
 window *wintestdemo = &_wintestdemo;
 
-extern int ets_uart_printf(const char *fmt, ...);
+extern int DEBUG_PRINTF(const char *fmt, ...);
 void ets_timer_disarm(ETSTimer *ptimer);
 void ets_timer_setfn(ETSTimer *ptimer, ETSTimerFunc *pfunction, void *parg);
 
@@ -143,9 +142,7 @@ LOCAL void seconds_task( void * arg)
 MEMSPACE 
 LOCAL void init_done_cb( void)
 {
-    os_timer_disarm(&timer1sec);
-    os_timer_setfn(&timer1sec, ( os_timer_func_t *) seconds_task , NULL );
-    os_timer_arm(&timer1sec, 1000 , 1);
+	DEBUG_PRINTF("System init done \r\n");
 }
 
 /**
@@ -301,7 +298,7 @@ LOCAL void user_task(void)
 		adc_sum = 0;
 	}
 
-	// ets_uart_printf("Degree: %d \r\n",(int)degree);
+	// DEBUG_PRINTF("Degree: %d \r\n",(int)degree);
 	// cube redraw count
 	count += 1;
 	tft_set_font(winstats,0);
@@ -330,12 +327,37 @@ void read_tests(window *win)
 	for(x=0;x<16;++x)
 	{
 		//color = tft_readPixel(win,x,y);
-		// ets_uart_printf("x:%d,y:%d,c:%04x\n", x,y,color);
-		ets_uart_printf("x:%d,y:%d,c:%04x\n", x,y,buffer[x]);
+		// DEBUG_PRINTF("x:%d,y:%d,c:%04x\n", x,y,color);
+		DEBUG_PRINTF("x:%d,y:%d,c:%04x\n", x,y,buffer[x]);
 	}
-	 ets_uart_printf("\n");
+	 DEBUG_PRINTF("\n");
 }
 #endif
+
+
+#ifdef TEST_FLASH
+ICACHE_RODATA_ATTR uint8_t xxx[] = { 1,2,3,4,5,6,7,8 };
+/// @brief Test flash read code
+/// @param[in] *win: window structure
+/// @return  void
+MEMSPACE
+void test_flashio(window *win)
+{
+    uint16_t xpros,ypos;
+    tft_set_font(win,1);
+    //tft_printf(win, "%x,%x", xxxp[0],xxxp[1]);
+    xpos = win->x;
+    ypos = win->y;
+    for(i=0;i<8;++i)
+    {
+        tft_setpos(win, i*16,ypos);
+        tft_printf(win, "%02x", read_flash8((uint32_t) &xxx+i));
+    }
+    tft_printf(win, "\n");
+    tft_printf(win, "%08x, %08x", read_flash32((uint8_t *)&xxx), read_flash16((uint8_t *)&xxx));
+}
+#endif
+
 
 /**
  @brief Initialize user task
@@ -358,8 +380,8 @@ void user_init(void)
 
 	// Configure the UART
 	uart_init(BIT_RATE_115200,BIT_RATE_115200);
-	ets_uart_printf("\r\nSystem init...\r\n");
-	ets_uart_printf("\r\nDisplay Init\r\n");
+	DEBUG_PRINTF("\r\nSystem init...\r\n");
+	DEBUG_PRINTF("\r\nDisplay Init\r\n");
 
 // CPU
 // 160MHZ
@@ -387,7 +409,7 @@ void user_init(void)
 	tft_printf(winstats, "\n");
 	tft_setTextColor(winstats, ILI9341_WHITE,0);
 #if ILI9341_DEBUG & 1
-	ets_uart_printf("\r\nDisplay ID=%08lx\r\n",ID);
+	DEBUG_PRINTF("\r\nDisplay ID=%08lx\r\n",ID);
 #endif
 	tft_font_fixed(winstats);
 
@@ -464,7 +486,7 @@ void user_init(void)
 	//time2 = system_get_time();
 #endif
 
-	ets_uart_printf("\r\nDisplay Init Done\r\n");
+	DEBUG_PRINTF("\r\nDisplay Init Done\r\n");
 
 	ets_wdt_disable();
 
@@ -476,21 +498,31 @@ void user_init(void)
 	// Setup the user task
 	system_os_task(UserTask, UserTaskPrio, UserTaskQueue, UserTaskQueueLen);
 
+#ifdef TELNET_SERIAL
+	bridge_task_init(23);
+#endif
+
+#ifdef NETWORK_TEST
+	setup_networking(TCP_PORT);
+#endif
+
+    seconds = 0;
+    os_timer_disarm(&timer1sec);
+    os_timer_setfn(&timer1sec, ( os_timer_func_t *) seconds_task , NULL );
+    os_timer_arm(&timer1sec, 1000 , 1);
+
 #if 0
-	// Task init
+	// Misc Task init - testing only
 	system_os_task(HighTask, HighTaskPrio, HighTaskQueue, HighTaskQueueLen);
 	system_os_task(NormalTask, NormalTaskPrio, NormalTaskQueue, NormalTaskQueueLen);
 	system_os_task(IdleTask, IdleTaskPrio, IdleTaskQueue, IdleTaskQueueLen);
 	system_os_post(IdleTaskPrio, 0, 0);
 #endif
 
-    seconds = 0;
+    DEBUG_PRINTF("Heap Size(%d) bytes\n" , system_get_free_heap_size());
+
+	// disable os_printf
+	// system_set_os_print(0);
+
     system_init_done_cb(init_done_cb);
-
-#ifdef NETWORK_TEST
-	setup_networking();
-#endif
-
-    ets_uart_printf("Heap Size(%d) bytes\n" , system_get_free_heap_size());
-	ets_uart_printf("System init done \r\n");
 }
