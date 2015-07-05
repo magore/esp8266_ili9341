@@ -1,5 +1,5 @@
-\hypertarget{util_8h}{\section{display/util.h File Reference}
-\label{util_8h}\index{display/util.\-h@{display/util.\-h}}
+\hypertarget{util_8h}{\section{utils/util.h File Reference}
+\label{util_8h}\index{utils/util.\-h@{utils/util.\-h}}
 }
 
 
@@ -16,28 +16,34 @@ Flash read and bit utilities.
 \#define \hyperlink{util_8h_a8c5ff70b6b28cd0157c50a22406f92c4}{S\-I\-G\-N}(x)~(((x) == 0) ? 0 \-: ((x) $>$ 0) ? 1 \-: -\/1)
 \item 
 \#define \hyperlink{util_8h_aacc3ee1a7f283f8ef65cea31f4436a95}{M\-A\-X}(x, y)~(((x) $>$ (y)) ? x \-: y)
-\item 
-\#define \hyperlink{util_8h_a16354a19da36d5370eb20304b4facb33}{C\-O\-N\-S\-T\-R\-A\-I\-N}(a, min, max)~(a $<$ min ? min \-: a $>$ max ? max \-: a)
 \end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} \hyperlink{util_8h_a8820bdd8a76740aaafe0506ff6040002}{read\-\_\-flash8} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$p)
+uint8\-\_\-t \hyperlink{util_8h_a8820bdd8a76740aaafe0506ff6040002}{read\-\_\-flash8} (uint8\-\_\-t $\ast$p)
 \item 
-void \hyperlink{util_8h_a9a70a218c9d4bae2e51bda4d7219712f}{cpy\-\_\-flash} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$src, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$dest, int size)
-\begin{DoxyCompactList}\small\item\em Copy data from Flash to Ram Uses flash\-\_\-read8() to avoid alighnment problems. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\-\_\-t} \hyperlink{util_8h_aa02f41026857009aece2ea05c869a3ee}{read\-\_\-flash16} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$p)
-\begin{DoxyCompactList}\small\item\em 16 bits reads from Flash memory space Uses \hyperlink{util_8c_a9a70a218c9d4bae2e51bda4d7219712f}{cpy\-\_\-flash()} to avoid alighnment problems \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\-\_\-t} \hyperlink{util_8h_a437fc38f7186dd651040289c4f508cd7}{read\-\_\-flash32} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$p)
-\begin{DoxyCompactList}\small\item\em 32 bits reads from Flash memory space Uses \hyperlink{util_8c_a9a70a218c9d4bae2e51bda4d7219712f}{cpy\-\_\-flash()} to avoid alighnment problems \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} uint64\-\_\-t \hyperlink{util_8h_aef07341eb44ad415e572eaf8111bcb54}{read\-\_\-flash64} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$p)
-\begin{DoxyCompactList}\small\item\em 64 bits reads from Flash memory space Uses \hyperlink{util_8c_a9a70a218c9d4bae2e51bda4d7219712f}{cpy\-\_\-flash()} to avoid alighnment problems \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\-\_\-t} \hyperlink{util_8h_a23d6b446341207915269ee5690b3aedb}{read\-\_\-flash\-\_\-ptr} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$p)
-\begin{DoxyCompactList}\small\item\em Pointer read from Flash memory space Uses \hyperlink{util_8c_a9a70a218c9d4bae2e51bda4d7219712f}{cpy\-\_\-flash()} to avoid alighnment problems. \end{DoxyCompactList}\item 
+void \hyperlink{util_8h_a9a70a218c9d4bae2e51bda4d7219712f}{cpy\-\_\-flash} (uint8\-\_\-t $\ast$src, uint8\-\_\-t $\ast$dest, int size)
+\item 
+uint16\-\_\-t \hyperlink{util_8h_a092855859eb7ea714f2ab3eee711ddc4}{read\-\_\-flash16} (uint8\-\_\-t $\ast$p)
+\item 
+uint32\-\_\-t \hyperlink{util_8h_ac0366232efac94fc6f8da6a20d9bdaf9}{read\-\_\-flash32} (uint8\-\_\-t $\ast$p)
+\item 
+uint64\-\_\-t \hyperlink{util_8h_ab1d6ea8dfe88a05a02869a3dd8cd7deb}{read\-\_\-flash64} (uint8\-\_\-t $\ast$p)
+\item 
+uint32\-\_\-t \hyperlink{util_8h_ab39a1de20d7b9b1da1fb85100c0cbb10}{read\-\_\-flash\-\_\-ptr} (uint8\-\_\-t $\ast$p)
+\item 
 int \hyperlink{util_8h_a96d99653ceafa913b2f1331ef7219be8}{bittestv} (unsigned char $\ast$ptr, int off)
-\begin{DoxyCompactList}\small\item\em Test bit in byte array. \end{DoxyCompactList}\item 
+\item 
 int \hyperlink{util_8h_aa5ed287545d9d0d4361d2bd1c6ecc69d}{bittestxy} (unsigned char $\ast$ptr, int x, int y, int w, int h)
-\begin{DoxyCompactList}\small\item\em Test bit in w $\ast$ h size bit array usng x and y offsets. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\item 
+I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R void \hyperlink{util_8h_a873f88ccf09a88cddd83a27e3594138b}{reset} (void)
+\item 
+void \hyperlink{util_8h_a9f850d0608418aea291e4c0fdab93826}{free} (void $\ast$p)
+\item 
+void $\ast$ \hyperlink{util_8h_a62b7798461bd461da64c5f9d35feddf7}{calloc} (size\-\_\-t nmemb, size\-\_\-t size)
+\item 
+void $\ast$ \hyperlink{util_8h_a7ac38fce3243a7dcf448301ee9ffd392}{malloc} (size\-\_\-t size)
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -45,7 +51,7 @@ Flash read and bit utilities. \begin{DoxyParagraph}{Copyright \copyright{} 2015 
 
 \end{DoxyParagraph}
 \begin{DoxyParagraph}{You are free to use this code under the terms of G\-P\-L}
-please retain a copy of this notice in any code you use it in.
+Please retain a copy of this notice in any code you use it in.
 \end{DoxyParagraph}
 This is free software\-: you can redistribute it and/or modify it under the terms of the G\-N\-U General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
@@ -67,20 +73,7 @@ Definition in file \hyperlink{util_8h_source}{util.\-h}.
 )~((x)$<$0 ? -\/(x) \-: (x))}}\label{util_8h_a996f7be338ccb40d1a2a5abc1ad61759}
 
 
-Definition at line 28 of file util.\-h.
-
-\hypertarget{util_8h_a16354a19da36d5370eb20304b4facb33}{\index{util.\-h@{util.\-h}!C\-O\-N\-S\-T\-R\-A\-I\-N@{C\-O\-N\-S\-T\-R\-A\-I\-N}}
-\index{C\-O\-N\-S\-T\-R\-A\-I\-N@{C\-O\-N\-S\-T\-R\-A\-I\-N}!util.h@{util.\-h}}
-\subsubsection[{C\-O\-N\-S\-T\-R\-A\-I\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-O\-N\-S\-T\-R\-A\-I\-N(
-\begin{DoxyParamCaption}
-\item[{}]{a, }
-\item[{}]{min, }
-\item[{}]{max}
-\end{DoxyParamCaption}
-)~(a $<$ min ? min \-: a $>$ max ? max \-: a)}}\label{util_8h_a16354a19da36d5370eb20304b4facb33}
-
-
-Definition at line 31 of file util.\-h.
+Definition at line 29 of file util.\-h.
 
 \hypertarget{util_8h_aacc3ee1a7f283f8ef65cea31f4436a95}{\index{util.\-h@{util.\-h}!M\-A\-X@{M\-A\-X}}
 \index{M\-A\-X@{M\-A\-X}!util.h@{util.\-h}}
@@ -92,7 +85,7 @@ Definition at line 31 of file util.\-h.
 )~(((x) $>$ (y)) ? x \-: y)}}\label{util_8h_aacc3ee1a7f283f8ef65cea31f4436a95}
 
 
-Definition at line 30 of file util.\-h.
+Definition at line 31 of file util.\-h.
 
 \hypertarget{util_8h_a8c5ff70b6b28cd0157c50a22406f92c4}{\index{util.\-h@{util.\-h}!S\-I\-G\-N@{S\-I\-G\-N}}
 \index{S\-I\-G\-N@{S\-I\-G\-N}!util.h@{util.\-h}}
@@ -103,7 +96,7 @@ Definition at line 30 of file util.\-h.
 )~(((x) == 0) ? 0 \-: ((x) $>$ 0) ? 1 \-: -\/1)}}\label{util_8h_a8c5ff70b6b28cd0157c50a22406f92c4}
 
 
-Definition at line 29 of file util.\-h.
+Definition at line 30 of file util.\-h.
 
 \hypertarget{util_8h_aac9153aee4bdb92701df902e06a74eb3}{\index{util.\-h@{util.\-h}!S\-W\-A\-P@{S\-W\-A\-P}}
 \index{S\-W\-A\-P@{S\-W\-A\-P}!util.h@{util.\-h}}
@@ -115,11 +108,7 @@ Definition at line 29 of file util.\-h.
 )~do \{ a $^\wedge$= b; b $^\wedge$= a; a $^\wedge$= b; \} while(0)}}\label{util_8h_aac9153aee4bdb92701df902e06a74eb3}
 
 
-Definition at line 27 of file util.\-h.
-
-
-
-Referenced by tft\-\_\-fill\-Rect\-X\-Y(), and tft\-\_\-fill\-Triangle().
+Definition at line 28 of file util.\-h.
 
 
 
@@ -132,28 +121,6 @@ Referenced by tft\-\_\-fill\-Rect\-X\-Y(), and tft\-\_\-fill\-Triangle().
 \item[{int}]{off}
 \end{DoxyParamCaption}
 )}}\label{util_8h_a96d99653ceafa913b2f1331ef7219be8}
-
-
-Test bit in byte array. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em $\ast$ptr} & byte array \\
-\hline
-\mbox{\tt in}  & {\em off} & bit offset to test \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-1 if bit is set, 0 if not 
-\end{DoxyReturn}
-
-
-Definition at line 145 of file util.\-c.
-
-
-
-Referenced by bittestxy(), and tft\-\_\-bit\-\_\-blit().
-
 \hypertarget{util_8h_aa5ed287545d9d0d4361d2bd1c6ecc69d}{\index{util.\-h@{util.\-h}!bittestxy@{bittestxy}}
 \index{bittestxy@{bittestxy}!util.h@{util.\-h}}
 \subsubsection[{bittestxy}]{\setlength{\rightskip}{0pt plus 5cm}int bittestxy (
@@ -165,185 +132,76 @@ Referenced by bittestxy(), and tft\-\_\-bit\-\_\-blit().
 \item[{int}]{h}
 \end{DoxyParamCaption}
 )}}\label{util_8h_aa5ed287545d9d0d4361d2bd1c6ecc69d}
-
-
-Test bit in w $\ast$ h size bit array usng x and y offsets. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em $\ast$ptr} & byte array \\
-\hline
-\mbox{\tt in}  & {\em x} & bit x offset \\
-\hline
-\mbox{\tt in}  & {\em y} & bit y offset \\
-\hline
-\mbox{\tt in}  & {\em w} & bit array wide \\
-\hline
-\mbox{\tt in}  & {\em h} & bit array high \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-1 if bit is set, 0 if not
-\end{DoxyReturn}
-Test bit in w $\ast$ h size bit array usng x and y offsets.
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em $\ast$ptr} & byte array \\
-\hline
-\mbox{\tt in}  & {\em x} & bit x offset \\
-\hline
-\mbox{\tt in}  & {\em y} & bit y offset \\
-\hline
-\mbox{\tt in}  & {\em w} & the width of bit array \\
-\hline
-\mbox{\tt in}  & {\em h} & the height of bit array \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-1 if bit is set, 0 if not 
-\end{DoxyReturn}
-
-
-Definition at line 160 of file util.\-c.
-
+\hypertarget{util_8h_a62b7798461bd461da64c5f9d35feddf7}{\index{util.\-h@{util.\-h}!calloc@{calloc}}
+\index{calloc@{calloc}!util.h@{util.\-h}}
+\subsubsection[{calloc}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ calloc (
+\begin{DoxyParamCaption}
+\item[{size\-\_\-t}]{nmemb, }
+\item[{size\-\_\-t}]{size}
+\end{DoxyParamCaption}
+)}}\label{util_8h_a62b7798461bd461da64c5f9d35feddf7}
 \hypertarget{util_8h_a9a70a218c9d4bae2e51bda4d7219712f}{\index{util.\-h@{util.\-h}!cpy\-\_\-flash@{cpy\-\_\-flash}}
 \index{cpy\-\_\-flash@{cpy\-\_\-flash}!util.h@{util.\-h}}
 \subsubsection[{cpy\-\_\-flash}]{\setlength{\rightskip}{0pt plus 5cm}void cpy\-\_\-flash (
 \begin{DoxyParamCaption}
-\item[{{\bf uint8\-\_\-t} $\ast$}]{src, }
-\item[{{\bf uint8\-\_\-t} $\ast$}]{dest, }
+\item[{uint8\-\_\-t $\ast$}]{src, }
+\item[{uint8\-\_\-t $\ast$}]{dest, }
 \item[{int}]{size}
 \end{DoxyParamCaption}
 )}}\label{util_8h_a9a70a218c9d4bae2e51bda4d7219712f}
-
-
-Copy data from Flash to Ram Uses flash\-\_\-read8() to avoid alighnment problems. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em $\ast$src} & address to read from \\
-\hline
-\mbox{\tt out}  & {\em $\ast$dest} & address to write to \\
-\hline
-\mbox{\tt in}  & {\em size} & number of bytes to copy \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-void 
-\end{DoxyReturn}
-
-
-Definition at line 83 of file util.\-c.
-
-
-
-Referenced by font\-\_\-attr(), read\-\_\-flash16(), read\-\_\-flash32(), read\-\_\-flash64(), read\-\_\-flash\-\_\-ptr(), and wire\-\_\-draw().
-
-\hypertarget{util_8h_aa02f41026857009aece2ea05c869a3ee}{\index{util.\-h@{util.\-h}!read\-\_\-flash16@{read\-\_\-flash16}}
+\hypertarget{util_8h_a9f850d0608418aea291e4c0fdab93826}{\index{util.\-h@{util.\-h}!free@{free}}
+\index{free@{free}!util.h@{util.\-h}}
+\subsubsection[{free}]{\setlength{\rightskip}{0pt plus 5cm}void free (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{util_8h_a9f850d0608418aea291e4c0fdab93826}
+\hypertarget{util_8h_a7ac38fce3243a7dcf448301ee9ffd392}{\index{util.\-h@{util.\-h}!malloc@{malloc}}
+\index{malloc@{malloc}!util.h@{util.\-h}}
+\subsubsection[{malloc}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ malloc (
+\begin{DoxyParamCaption}
+\item[{size\-\_\-t}]{size}
+\end{DoxyParamCaption}
+)}}\label{util_8h_a7ac38fce3243a7dcf448301ee9ffd392}
+\hypertarget{util_8h_a092855859eb7ea714f2ab3eee711ddc4}{\index{util.\-h@{util.\-h}!read\-\_\-flash16@{read\-\_\-flash16}}
 \index{read\-\_\-flash16@{read\-\_\-flash16}!util.h@{util.\-h}}
-\subsubsection[{read\-\_\-flash16}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} {\bf uint16\-\_\-t} read\-\_\-flash16 (
+\subsubsection[{read\-\_\-flash16}]{\setlength{\rightskip}{0pt plus 5cm}uint16\-\_\-t read\-\_\-flash16 (
 \begin{DoxyParamCaption}
-\item[{{\bf uint8\-\_\-t} $\ast$}]{p}
+\item[{uint8\-\_\-t $\ast$}]{p}
 \end{DoxyParamCaption}
-)}}\label{util_8h_aa02f41026857009aece2ea05c869a3ee}
-
-
-16 bits reads from Flash memory space Uses \hyperlink{util_8c_a9a70a218c9d4bae2e51bda4d7219712f}{cpy\-\_\-flash()} to avoid alighnment problems 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em $\ast$p} & address to read \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-uint16\-\_\-t 
-\end{DoxyReturn}
-
-
-Definition at line 97 of file util.\-c.
-
-\hypertarget{util_8h_a437fc38f7186dd651040289c4f508cd7}{\index{util.\-h@{util.\-h}!read\-\_\-flash32@{read\-\_\-flash32}}
+)}}\label{util_8h_a092855859eb7ea714f2ab3eee711ddc4}
+\hypertarget{util_8h_ac0366232efac94fc6f8da6a20d9bdaf9}{\index{util.\-h@{util.\-h}!read\-\_\-flash32@{read\-\_\-flash32}}
 \index{read\-\_\-flash32@{read\-\_\-flash32}!util.h@{util.\-h}}
-\subsubsection[{read\-\_\-flash32}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} {\bf uint32\-\_\-t} read\-\_\-flash32 (
+\subsubsection[{read\-\_\-flash32}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t read\-\_\-flash32 (
 \begin{DoxyParamCaption}
-\item[{{\bf uint8\-\_\-t} $\ast$}]{p}
+\item[{uint8\-\_\-t $\ast$}]{p}
 \end{DoxyParamCaption}
-)}}\label{util_8h_a437fc38f7186dd651040289c4f508cd7}
-
-
-32 bits reads from Flash memory space Uses \hyperlink{util_8c_a9a70a218c9d4bae2e51bda4d7219712f}{cpy\-\_\-flash()} to avoid alighnment problems 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em $\ast$p} & address to read \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-uint32\-\_\-t 
-\end{DoxyReturn}
-
-
-Definition at line 109 of file util.\-c.
-
-\hypertarget{util_8h_aef07341eb44ad415e572eaf8111bcb54}{\index{util.\-h@{util.\-h}!read\-\_\-flash64@{read\-\_\-flash64}}
+)}}\label{util_8h_ac0366232efac94fc6f8da6a20d9bdaf9}
+\hypertarget{util_8h_ab1d6ea8dfe88a05a02869a3dd8cd7deb}{\index{util.\-h@{util.\-h}!read\-\_\-flash64@{read\-\_\-flash64}}
 \index{read\-\_\-flash64@{read\-\_\-flash64}!util.h@{util.\-h}}
-\subsubsection[{read\-\_\-flash64}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} uint64\-\_\-t read\-\_\-flash64 (
+\subsubsection[{read\-\_\-flash64}]{\setlength{\rightskip}{0pt plus 5cm}uint64\-\_\-t read\-\_\-flash64 (
 \begin{DoxyParamCaption}
-\item[{{\bf uint8\-\_\-t} $\ast$}]{p}
+\item[{uint8\-\_\-t $\ast$}]{p}
 \end{DoxyParamCaption}
-)}}\label{util_8h_aef07341eb44ad415e572eaf8111bcb54}
-
-
-64 bits reads from Flash memory space Uses \hyperlink{util_8c_a9a70a218c9d4bae2e51bda4d7219712f}{cpy\-\_\-flash()} to avoid alighnment problems 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em $\ast$p} & address to read \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-uint64\-\_\-t 
-\end{DoxyReturn}
-
-
-Definition at line 121 of file util.\-c.
-
+)}}\label{util_8h_ab1d6ea8dfe88a05a02869a3dd8cd7deb}
 \hypertarget{util_8h_a8820bdd8a76740aaafe0506ff6040002}{\index{util.\-h@{util.\-h}!read\-\_\-flash8@{read\-\_\-flash8}}
 \index{read\-\_\-flash8@{read\-\_\-flash8}!util.h@{util.\-h}}
-\subsubsection[{read\-\_\-flash8}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint8\-\_\-t} read\-\_\-flash8 (
+\subsubsection[{read\-\_\-flash8}]{\setlength{\rightskip}{0pt plus 5cm}uint8\-\_\-t read\-\_\-flash8 (
 \begin{DoxyParamCaption}
-\item[{{\bf uint8\-\_\-t} $\ast$}]{p}
+\item[{uint8\-\_\-t $\ast$}]{p}
 \end{DoxyParamCaption}
 )}}\label{util_8h_a8820bdd8a76740aaafe0506ff6040002}
-
-
-Definition at line 40 of file util.\-c.
-
-
-
-Referenced by bittestv(), and cpy\-\_\-flash().
-
-\hypertarget{util_8h_a23d6b446341207915269ee5690b3aedb}{\index{util.\-h@{util.\-h}!read\-\_\-flash\-\_\-ptr@{read\-\_\-flash\-\_\-ptr}}
+\hypertarget{util_8h_ab39a1de20d7b9b1da1fb85100c0cbb10}{\index{util.\-h@{util.\-h}!read\-\_\-flash\-\_\-ptr@{read\-\_\-flash\-\_\-ptr}}
 \index{read\-\_\-flash\-\_\-ptr@{read\-\_\-flash\-\_\-ptr}!util.h@{util.\-h}}
-\subsubsection[{read\-\_\-flash\-\_\-ptr}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} {\bf uint32\-\_\-t} read\-\_\-flash\-\_\-ptr (
+\subsubsection[{read\-\_\-flash\-\_\-ptr}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t read\-\_\-flash\-\_\-ptr (
 \begin{DoxyParamCaption}
-\item[{{\bf uint8\-\_\-t} $\ast$}]{p}
+\item[{uint8\-\_\-t $\ast$}]{p}
 \end{DoxyParamCaption}
-)}}\label{util_8h_a23d6b446341207915269ee5690b3aedb}
-
-
-Pointer read from Flash memory space Uses \hyperlink{util_8c_a9a70a218c9d4bae2e51bda4d7219712f}{cpy\-\_\-flash()} to avoid alighnment problems. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em $\ast$p} & address to read \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-uint32\-\_\-t 
-\end{DoxyReturn}
-
-
-Definition at line 133 of file util.\-c.
-
+)}}\label{util_8h_ab39a1de20d7b9b1da1fb85100c0cbb10}
+\hypertarget{util_8h_a873f88ccf09a88cddd83a27e3594138b}{\index{util.\-h@{util.\-h}!reset@{reset}}
+\index{reset@{reset}!util.h@{util.\-h}}
+\subsubsection[{reset}]{\setlength{\rightskip}{0pt plus 5cm}I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R void reset (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{util_8h_a873f88ccf09a88cddd83a27e3594138b}

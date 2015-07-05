@@ -1,19 +1,5 @@
 var searchData=
 [
-  ['family_5fname',['FAMILY_NAME',['../struct__fontinfo.html#a4af43750caadb3ae9d7375f0afdcd171',1,'_fontinfo']]],
-  ['fg',['fg',['../structwindow.html#ac8739cdb3c50efcc1deaa5ab955a5e62',1,'window']]],
-  ['file_5fname',['FILE_NAME',['../struct__fontinfo.html#a86ca02a864b7dccb21004f51bea22ed3',1,'_fontinfo']]],
-  ['filename',['filename',['../struct__bdffile.html#a040674bb1df0a8d4b1bedeae616e9b65',1,'_bdffile']]],
-  ['first',['First',['../struct__font.html#a73decb2a2c2880dc782cd9cda5561876',1,'_font']]],
-  ['fixed',['Fixed',['../struct__font.html#a76218c6b35acb78926429f247cbaa687',1,'_font']]],
-  ['fixed_5fbold_5fr_5fx7_5fy13',['Fixed_Bold_R_X7_Y13',['../display_2fonts_8h.html#a498e25519ef14e2d34feab888a0da994',1,'Fixed_Bold_R_X7_Y13():&#160;fonts.h'],['../fonts_2fonts_8h.html#a498e25519ef14e2d34feab888a0da994',1,'Fixed_Bold_R_X7_Y13():&#160;fonts.h']]],
-  ['fixed_5fbold_5fr_5fx7_5fy13_5fbitmap',['Fixed_Bold_R_X7_Y13_bitmap',['../display_2fonts_8h.html#a0f5d34143d32454ac07fdecb8ec6c594',1,'Fixed_Bold_R_X7_Y13_bitmap():&#160;fonts.h'],['../fonts_2fonts_8h.html#a5c3932ab26ecd778f73bc5033eb5fc07',1,'Fixed_Bold_R_X7_Y13_bitmap():&#160;fonts.h']]],
-  ['fixed_5fbold_5fr_5fx7_5fy13_5fspecs',['Fixed_Bold_R_X7_Y13_specs',['../display_2fonts_8h.html#ad9d59f658d64f4bfcb44566c22ed8df9',1,'Fixed_Bold_R_X7_Y13_specs():&#160;fonts.h'],['../fonts_2fonts_8h.html#afdc52358d8e023266d727872622868d4',1,'Fixed_Bold_R_X7_Y13_specs():&#160;fonts.h']]],
-  ['fixed_5fmedium_5fr_5fx7_5fy13',['Fixed_Medium_R_X7_Y13',['../display_2fonts_8h.html#a681998d8e88e6c7ae494ef920b80f094',1,'Fixed_Medium_R_X7_Y13():&#160;fonts.h'],['../fonts_2fonts_8h.html#a681998d8e88e6c7ae494ef920b80f094',1,'Fixed_Medium_R_X7_Y13():&#160;fonts.h']]],
-  ['fixed_5fmedium_5fr_5fx7_5fy13_5fbitmap',['Fixed_Medium_R_X7_Y13_bitmap',['../display_2fonts_8h.html#a347299d507f70541e4b326013e1a5fde',1,'Fixed_Medium_R_X7_Y13_bitmap():&#160;fonts.h'],['../fonts_2fonts_8h.html#abc61add54a38eda9d189e2be99c92020',1,'Fixed_Medium_R_X7_Y13_bitmap():&#160;fonts.h']]],
-  ['fixed_5fmedium_5fr_5fx7_5fy13_5fspecs',['Fixed_Medium_R_X7_Y13_specs',['../display_2fonts_8h.html#a2f808fe9ecb75da1eeb64186953c8618',1,'Fixed_Medium_R_X7_Y13_specs():&#160;fonts.h'],['../fonts_2fonts_8h.html#a9cab258b77ed54c60ac5bf01b5a04a61',1,'Fixed_Medium_R_X7_Y13_specs():&#160;fonts.h']]],
-  ['flags',['flags',['../struct__fontc.html#aa74d9a5513b529b5e444f283afea40ef',1,'_fontc::flags()'],['../structwindow.html#ad58fae853f87093ef4f0139df0a3f33d',1,'window::flags()']]],
-  ['fnames',['fnames',['../bdffontutil_8c.html#ae75c11efb4dd449e4fcf9f1f78e9414c',1,'fnames():&#160;bdffontutil.c'],['../bdffontutil_8h.html#ae75c11efb4dd449e4fcf9f1f78e9414c',1,'fnames():&#160;bdffontutil.c']]],
-  ['font',['font',['../structwindow.html#acee24e56db43557a46cbb5ca3fe35021',1,'window::font()'],['../bdffontutil_8h.html#a6d9c6f27190f0f04abf55678fe81080d',1,'font():&#160;bdffontutil.h']]],
-  ['font_5fname',['FONT_NAME',['../struct__fontinfo.html#a6c0f76f2668446a1c37ecab8d4e286a5',1,'_fontinfo']]]
+  ['gap',['gap',['../struct__font.html#af4d840b8e62f6a0548cef0a5474416f4',1,'_font']]],
+  ['glyphs',['Glyphs',['../struct__font.html#a1e89c06fc11a730eb602522dc8953491',1,'_font']]]
 ];

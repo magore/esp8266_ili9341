@@ -84,9 +84,10 @@ int escape(char *message, int size)
 	return(strlen(message));
 }
 
-void send_message(char *message, char *ip, int port)
+void send_message(char *message, char *ip, int port, int echoback)
 {
     int sockfd, portno, n;
+	char buffer[4096];
 
     struct sockaddr_in dest_addr;
     struct hostent *server;
@@ -124,6 +125,20 @@ void send_message(char *message, char *ip, int port)
 		exit(1);
 	}
 
+	
+	// reads characters coming back from the connection - debugging
+    // interrup to exit
+    // this code blocks waiting for input
+	if(echoback)
+	{
+		do
+		{
+			n = read(sockfd,buffer,sizeof(buffer)-1);
+			write(1, buffer, n);
+		}
+		while(n);
+	}
+
 	close(sockfd);
 }
 
@@ -131,6 +146,7 @@ void send_message(char *message, char *ip, int port)
 int main(int argc,char *argv[])
 {
 	int i,ret;
+	int echoback = 0;
 	struct net *p;
 	char message[8192];
 	char ip[INET_ADDRSTRLEN];
@@ -150,6 +166,9 @@ int main(int argc,char *argv[])
 		if(strcmp(argv[i],"-p") == 0) {
        		sscanf(argv[++i], "%d", &port_no);
 		}
+		if(strcmp(argv[i],"-e") == 0) {
+       		echoback = 1;
+		}
 	}
 		
 	if(!strlen(ip) || !strlen(message))
@@ -165,6 +184,6 @@ int main(int argc,char *argv[])
 	escape(message, sizeof(message)-1);
 	printf("ip:%s, port:%d, message:\n%s\n",ip,port_no,message);
 	fflush(stdout);
-	send_message(message, ip, port_no);
+	send_message(message, ip, port_no, echoback);
 	return(0);
 }

@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['idletaskqueue',['IdleTaskQueue',['../user__main_8c.html#a497172baf21b16f0de764c2368988cba',1,'user_main.c']]],
-  ['index',['index',['../struct__fontc.html#a7cc0370744ff7ea964054d36917c9a2f',1,'_fontc']]],
-  ['info',['info',['../struct__font.html#abf134e8a44e707d3b4e83ab76c952ed9',1,'_font']]],
-  ['ip_5fxpos',['ip_xpos',['../user__main_8c.html#a36dcaa24f334c780fbcc57e21395da3c',1,'user_main.c']]],
-  ['ip_5fypos',['ip_ypos',['../user__main_8c.html#a6fa71c7132fade09e9a721b07fb7c9e5',1,'user_main.c']]]
+  ['offset',['Offset',['../struct__fontspecs.html#ad4ef5755b58ecd3bbc9894cee258091e',1,'_fontspecs']]],
+  ['out',['out',['../structqueue__t.html#a8f6e1c623d2ceed398a71a0aab93b0fa',1,'queue_t']]]
 ];

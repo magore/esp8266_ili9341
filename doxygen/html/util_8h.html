@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts: display/util.h File Reference</title>
+<title>ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts: utils/util.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -39,7 +39,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -71,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -82,7 +81,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_e4fd3481c5e8112931e161ebbc5af0ff.html">display</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_cbdb8362360e11eafe2fa3bc74cf0ffd.html">utils</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -109,39 +108,38 @@ Macros</h2></td></tr>
 <tr class="separator:a8c5ff70b6b28cd0157c50a22406f92c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aacc3ee1a7f283f8ef65cea31f4436a95"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#aacc3ee1a7f283f8ef65cea31f4436a95">MAX</a>(x, y)&#160;&#160;&#160;(((x) &gt; (y)) ? x : y)</td></tr>
 <tr class="separator:aacc3ee1a7f283f8ef65cea31f4436a95"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a16354a19da36d5370eb20304b4facb33"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a16354a19da36d5370eb20304b4facb33">CONSTRAIN</a>(a, min, max)&#160;&#160;&#160;(a &lt; min ? min : a &gt; max ? max : a)</td></tr>
-<tr class="separator:a16354a19da36d5370eb20304b4facb33"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a8820bdd8a76740aaafe0506ff6040002"><td class="memItemLeft" align="right" valign="top"><a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a8820bdd8a76740aaafe0506ff6040002">read_flash8</a> (<a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> *p)</td></tr>
+<tr class="memitem:a8820bdd8a76740aaafe0506ff6040002"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a8820bdd8a76740aaafe0506ff6040002">read_flash8</a> (uint8_t *p)</td></tr>
 <tr class="separator:a8820bdd8a76740aaafe0506ff6040002"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9a70a218c9d4bae2e51bda4d7219712f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a9a70a218c9d4bae2e51bda4d7219712f">cpy_flash</a> (<a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> *src, <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> *dest, int size)</td></tr>
-<tr class="memdesc:a9a70a218c9d4bae2e51bda4d7219712f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy data from Flash to Ram Uses flash_read8() to avoid alighnment problems.  <a href="#a9a70a218c9d4bae2e51bda4d7219712f">More...</a><br/></td></tr>
+<tr class="memitem:a9a70a218c9d4bae2e51bda4d7219712f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a9a70a218c9d4bae2e51bda4d7219712f">cpy_flash</a> (uint8_t *src, uint8_t *dest, int size)</td></tr>
 <tr class="separator:a9a70a218c9d4bae2e51bda4d7219712f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa02f41026857009aece2ea05c869a3ee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#aa02f41026857009aece2ea05c869a3ee">read_flash16</a> (<a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> *p)</td></tr>
-<tr class="memdesc:aa02f41026857009aece2ea05c869a3ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">16 bits reads from Flash memory space Uses <a class="el" href="util_8c.html#a9a70a218c9d4bae2e51bda4d7219712f" title="Copy data from Flash to Ram Uses flash_read8() to avoid alighnment problems. ">cpy_flash()</a> to avoid alighnment problems  <a href="#aa02f41026857009aece2ea05c869a3ee">More...</a><br/></td></tr>
-<tr class="separator:aa02f41026857009aece2ea05c869a3ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a437fc38f7186dd651040289c4f508cd7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="send_8c.html#a435d1572bf3f880d55459d9805097f62">uint32_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a437fc38f7186dd651040289c4f508cd7">read_flash32</a> (<a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> *p)</td></tr>
-<tr class="memdesc:a437fc38f7186dd651040289c4f508cd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">32 bits reads from Flash memory space Uses <a class="el" href="util_8c.html#a9a70a218c9d4bae2e51bda4d7219712f" title="Copy data from Flash to Ram Uses flash_read8() to avoid alighnment problems. ">cpy_flash()</a> to avoid alighnment problems  <a href="#a437fc38f7186dd651040289c4f508cd7">More...</a><br/></td></tr>
-<tr class="separator:a437fc38f7186dd651040289c4f508cd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef07341eb44ad415e572eaf8111bcb54"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#aef07341eb44ad415e572eaf8111bcb54">read_flash64</a> (<a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> *p)</td></tr>
-<tr class="memdesc:aef07341eb44ad415e572eaf8111bcb54"><td class="mdescLeft">&#160;</td><td class="mdescRight">64 bits reads from Flash memory space Uses <a class="el" href="util_8c.html#a9a70a218c9d4bae2e51bda4d7219712f" title="Copy data from Flash to Ram Uses flash_read8() to avoid alighnment problems. ">cpy_flash()</a> to avoid alighnment problems  <a href="#aef07341eb44ad415e572eaf8111bcb54">More...</a><br/></td></tr>
-<tr class="separator:aef07341eb44ad415e572eaf8111bcb54"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a23d6b446341207915269ee5690b3aedb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="send_8c.html#a435d1572bf3f880d55459d9805097f62">uint32_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a23d6b446341207915269ee5690b3aedb">read_flash_ptr</a> (<a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> *p)</td></tr>
-<tr class="memdesc:a23d6b446341207915269ee5690b3aedb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer read from Flash memory space Uses <a class="el" href="util_8c.html#a9a70a218c9d4bae2e51bda4d7219712f" title="Copy data from Flash to Ram Uses flash_read8() to avoid alighnment problems. ">cpy_flash()</a> to avoid alighnment problems.  <a href="#a23d6b446341207915269ee5690b3aedb">More...</a><br/></td></tr>
-<tr class="separator:a23d6b446341207915269ee5690b3aedb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a092855859eb7ea714f2ab3eee711ddc4"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a092855859eb7ea714f2ab3eee711ddc4">read_flash16</a> (uint8_t *p)</td></tr>
+<tr class="separator:a092855859eb7ea714f2ab3eee711ddc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0366232efac94fc6f8da6a20d9bdaf9"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#ac0366232efac94fc6f8da6a20d9bdaf9">read_flash32</a> (uint8_t *p)</td></tr>
+<tr class="separator:ac0366232efac94fc6f8da6a20d9bdaf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1d6ea8dfe88a05a02869a3dd8cd7deb"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#ab1d6ea8dfe88a05a02869a3dd8cd7deb">read_flash64</a> (uint8_t *p)</td></tr>
+<tr class="separator:ab1d6ea8dfe88a05a02869a3dd8cd7deb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab39a1de20d7b9b1da1fb85100c0cbb10"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#ab39a1de20d7b9b1da1fb85100c0cbb10">read_flash_ptr</a> (uint8_t *p)</td></tr>
+<tr class="separator:ab39a1de20d7b9b1da1fb85100c0cbb10"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a96d99653ceafa913b2f1331ef7219be8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a96d99653ceafa913b2f1331ef7219be8">bittestv</a> (unsigned char *ptr, int off)</td></tr>
-<tr class="memdesc:a96d99653ceafa913b2f1331ef7219be8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test bit in byte array.  <a href="#a96d99653ceafa913b2f1331ef7219be8">More...</a><br/></td></tr>
 <tr class="separator:a96d99653ceafa913b2f1331ef7219be8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa5ed287545d9d0d4361d2bd1c6ecc69d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#aa5ed287545d9d0d4361d2bd1c6ecc69d">bittestxy</a> (unsigned char *ptr, int x, int y, int w, int h)</td></tr>
-<tr class="memdesc:aa5ed287545d9d0d4361d2bd1c6ecc69d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test bit in w * h size bit array usng x and y offsets.  <a href="#aa5ed287545d9d0d4361d2bd1c6ecc69d">More...</a><br/></td></tr>
 <tr class="separator:aa5ed287545d9d0d4361d2bd1c6ecc69d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a873f88ccf09a88cddd83a27e3594138b"><td class="memItemLeft" align="right" valign="top">ICACHE_FLASH_ATTR void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a873f88ccf09a88cddd83a27e3594138b">reset</a> (void)</td></tr>
+<tr class="separator:a873f88ccf09a88cddd83a27e3594138b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f850d0608418aea291e4c0fdab93826"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a9f850d0608418aea291e4c0fdab93826">free</a> (void *p)</td></tr>
+<tr class="separator:a9f850d0608418aea291e4c0fdab93826"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62b7798461bd461da64c5f9d35feddf7"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a62b7798461bd461da64c5f9d35feddf7">calloc</a> (size_t nmemb, size_t size)</td></tr>
+<tr class="separator:a62b7798461bd461da64c5f9d35feddf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ac38fce3243a7dcf448301ee9ffd392"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a7ac38fce3243a7dcf448301ee9ffd392">malloc</a> (size_t size)</td></tr>
+<tr class="separator:a7ac38fce3243a7dcf448301ee9ffd392"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Flash read and bit utilities. </p>
 <dl class="section user"><dt>Copyright &copy; 2015 Mike Gore, GPL License</dt><dd></dd></dl>
-<dl class="section user"><dt>You are free to use this code under the terms of GPL</dt><dd>please retain a copy of this notice in any code you use it in.</dd></dl>
+<dl class="section user"><dt>You are free to use this code under the terms of GPL</dt><dd>Please retain a copy of this notice in any code you use it in.</dd></dl>
 <p>This is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</p>
 <p>This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</p>
 <p>You should have received a copy of the GNU General Public License along with this program. If not, see <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>. </p>
@@ -162,41 +160,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="util_8h_source.html#l00028">28</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a16354a19da36d5370eb20304b4facb33"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define CONSTRAIN</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">a, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">min, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">max&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td>&#160;&#160;&#160;(a &lt; min ? min : a &gt; max ? max : a)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="util_8h_source.html#l00031">31</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p>Definition at line <a class="el" href="util_8h_source.html#l00029">29</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -224,7 +188,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="util_8h_source.html#l00030">30</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p>Definition at line <a class="el" href="util_8h_source.html#l00031">31</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -242,7 +206,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="util_8h_source.html#l00029">29</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p>Definition at line <a class="el" href="util_8h_source.html#l00030">30</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -270,9 +234,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="util_8h_source.html#l00027">27</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
-
-<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00438">tft_fillRectXY()</a>, and <a class="el" href="ili9341__adafruit_8c_source.html#l00443">tft_fillTriangle()</a>.</p>
+<p>Definition at line <a class="el" href="util_8h_source.html#l00028">28</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -300,20 +262,6 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Test bit in byte array. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">*ptr</td><td>byte array </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">off</td><td>bit offset to test </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>1 if bit is set, 0 if not </dd></dl>
-
-<p>Definition at line <a class="el" href="util_8c_source.html#l00145">145</a> of file <a class="el" href="util_8c_source.html">util.c</a>.</p>
-
-<p>Referenced by <a class="el" href="util_8c_source.html#l00160">bittestxy()</a>, and <a class="el" href="ili9341_8c_source.html#l00336">tft_bit_blit()</a>.</p>
 
 </div>
 </div>
@@ -359,32 +307,31 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Test bit in w * h size bit array usng x and y offsets. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">*ptr</td><td>byte array </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>bit x offset </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">y</td><td>bit y offset </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">w</td><td>bit array wide </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">h</td><td>bit array high </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>1 if bit is set, 0 if not</dd></dl>
-<p>Test bit in w * h size bit array usng x and y offsets.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">*ptr</td><td>byte array </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>bit x offset </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">y</td><td>bit y offset </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">w</td><td>the width of bit array </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">h</td><td>the height of bit array </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>1 if bit is set, 0 if not </dd></dl>
-
-<p>Definition at line <a class="el" href="util_8c_source.html#l00160">160</a> of file <a class="el" href="util_8c_source.html">util.c</a>.</p>
+</div>
+</div>
+<a class="anchor" id="a62b7798461bd461da64c5f9d35feddf7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* calloc </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>nmemb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -395,13 +342,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void cpy_flash </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> *&#160;</td>
+          <td class="paramtype">uint8_t *&#160;</td>
           <td class="paramname"><em>src</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> *&#160;</td>
+          <td class="paramtype">uint8_t *&#160;</td>
           <td class="paramname"><em>dest</em>, </td>
         </tr>
         <tr>
@@ -418,101 +365,85 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Copy data from Flash to Ram Uses flash_read8() to avoid alighnment problems. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">*src</td><td>address to read from </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">*dest</td><td>address to write to </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>number of bytes to copy </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
-
-<p>Definition at line <a class="el" href="util_8c_source.html#l00083">83</a> of file <a class="el" href="util_8c_source.html">util.c</a>.</p>
-
-<p>Referenced by <a class="el" href="font_8c_source.html#l00052">font_attr()</a>, <a class="el" href="util_8c_source.html#l00097">read_flash16()</a>, <a class="el" href="util_8c_source.html#l00109">read_flash32()</a>, <a class="el" href="util_8c_source.html#l00121">read_flash64()</a>, <a class="el" href="util_8c_source.html#l00133">read_flash_ptr()</a>, and <a class="el" href="wire_8c_source.html#l00051">wire_draw()</a>.</p>
-
 </div>
 </div>
-<a class="anchor" id="aa02f41026857009aece2ea05c869a3ee"></a>
+<a class="anchor" id="a9f850d0608418aea291e4c0fdab93826"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> read_flash16 </td>
+          <td class="memname">void free </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> *&#160;</td>
+          <td class="paramtype">void *&#160;</td>
           <td class="paramname"><em>p</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>16 bits reads from Flash memory space Uses <a class="el" href="util_8c.html#a9a70a218c9d4bae2e51bda4d7219712f" title="Copy data from Flash to Ram Uses flash_read8() to avoid alighnment problems. ">cpy_flash()</a> to avoid alighnment problems </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">*p</td><td>address to read </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>uint16_t </dd></dl>
-
-<p>Definition at line <a class="el" href="util_8c_source.html#l00097">97</a> of file <a class="el" href="util_8c_source.html">util.c</a>.</p>
-
 </div>
 </div>
-<a class="anchor" id="a437fc38f7186dd651040289c4f508cd7"></a>
+<a class="anchor" id="a7ac38fce3243a7dcf448301ee9ffd392"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="send_8c.html#a435d1572bf3f880d55459d9805097f62">uint32_t</a> read_flash32 </td>
+          <td class="memname">void* malloc </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> *&#160;</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>size</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a092855859eb7ea714f2ab3eee711ddc4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t read_flash16 </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t *&#160;</td>
           <td class="paramname"><em>p</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>32 bits reads from Flash memory space Uses <a class="el" href="util_8c.html#a9a70a218c9d4bae2e51bda4d7219712f" title="Copy data from Flash to Ram Uses flash_read8() to avoid alighnment problems. ">cpy_flash()</a> to avoid alighnment problems </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">*p</td><td>address to read </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>uint32_t </dd></dl>
-
-<p>Definition at line <a class="el" href="util_8c_source.html#l00109">109</a> of file <a class="el" href="util_8c_source.html">util.c</a>.</p>
-
 </div>
 </div>
-<a class="anchor" id="aef07341eb44ad415e572eaf8111bcb54"></a>
+<a class="anchor" id="ac0366232efac94fc6f8da6a20d9bdaf9"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> uint64_t read_flash64 </td>
+          <td class="memname">uint32_t read_flash32 </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> *&#160;</td>
+          <td class="paramtype">uint8_t *&#160;</td>
           <td class="paramname"><em>p</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>64 bits reads from Flash memory space Uses <a class="el" href="util_8c.html#a9a70a218c9d4bae2e51bda4d7219712f" title="Copy data from Flash to Ram Uses flash_read8() to avoid alighnment problems. ">cpy_flash()</a> to avoid alighnment problems </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">*p</td><td>address to read </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>uint64_t </dd></dl>
-
-<p>Definition at line <a class="el" href="util_8c_source.html#l00121">121</a> of file <a class="el" href="util_8c_source.html">util.c</a>.</p>
+</div>
+</div>
+<a class="anchor" id="ab1d6ea8dfe88a05a02869a3dd8cd7deb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t read_flash64 </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>p</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -521,52 +452,53 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> read_flash8 </td>
+          <td class="memname">uint8_t read_flash8 </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> *&#160;</td>
+          <td class="paramtype">uint8_t *&#160;</td>
           <td class="paramname"><em>p</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="util_8c_source.html#l00040">40</a> of file <a class="el" href="util_8c_source.html">util.c</a>.</p>
-
-<p>Referenced by <a class="el" href="util_8c_source.html#l00145">bittestv()</a>, and <a class="el" href="util_8c_source.html#l00083">cpy_flash()</a>.</p>
-
 </div>
 </div>
-<a class="anchor" id="a23d6b446341207915269ee5690b3aedb"></a>
+<a class="anchor" id="ab39a1de20d7b9b1da1fb85100c0cbb10"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="send_8c.html#a435d1572bf3f880d55459d9805097f62">uint32_t</a> read_flash_ptr </td>
+          <td class="memname">uint32_t read_flash_ptr </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> *&#160;</td>
+          <td class="paramtype">uint8_t *&#160;</td>
           <td class="paramname"><em>p</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Pointer read from Flash memory space Uses <a class="el" href="util_8c.html#a9a70a218c9d4bae2e51bda4d7219712f" title="Copy data from Flash to Ram Uses flash_read8() to avoid alighnment problems. ">cpy_flash()</a> to avoid alighnment problems. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">*p</td><td>address to read </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>uint32_t </dd></dl>
-
-<p>Definition at line <a class="el" href="util_8c_source.html#l00133">133</a> of file <a class="el" href="util_8c_source.html">util.c</a>.</p>
+</div>
+</div>
+<a class="anchor" id="a873f88ccf09a88cddd83a27e3594138b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ICACHE_FLASH_ATTR void reset </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jun 28 2015 17:31:31 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 5 2015 18:10:08 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

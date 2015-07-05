@@ -1,7 +1,28 @@
 var searchData=
 [
-  ['x',['x',['../structpoint.html#a9c6b34deaf4900ad4193c17935fd384a',1,'point::x()'],['../structwire__p.html#a7a555c323bd3699ff2db08a3b3e791ed',1,'wire_p::x()'],['../struct__fontc.html#ad15d00ed46ebe52a085cf05b5ca5da90',1,'_fontc::x()'],['../structwindow.html#a879b99940dfc34772f0257f54c67b817',1,'window::x()'],['../struct__fontspecs.html#a7273a891c79308389718266cb0b66f56',1,'_fontspecs::X()'],['../struct__font.html#a64a08fdbdaa19418a9b7a34a2db33150',1,'_font::X()'],['../cordic_8c.html#a46b4b48ef8c0c01099eb3bcdde8aa8db',1,'X():&#160;cordic.c'],['../cordic2c_8c.html#a46b4b48ef8c0c01099eb3bcdde8aa8db',1,'X():&#160;cordic2c.c']]],
-  ['xoff',['xoff',['../structwindow.html#a12d0408f393bc8d23cc3f1ce46c39879',1,'window']]],
-  ['xpos',['xpos',['../user__main_8c.html#a63c29917affdd3f9245e88324643e961',1,'user_main.c']]],
-  ['xx1',['xx1',['../structex__regs.html#a12379b0b3152b878eebc8f18a6efeaf0',1,'ex_regs']]]
+  ['w',['w',['../struct__fontc.html#a9c2af0354d2b2009e7b6684e25fd479b',1,'_fontc::w()'],['../structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae',1,'window::w()']]],
+  ['weight_5fname',['WEIGHT_NAME',['../struct__fontinfo.html#a2f528cb5c1bceb6afd91ad138472d071',1,'_fontinfo']]],
+  ['width',['Width',['../struct__fontspecs.html#a8404888a24a2b065d91c4424e1907439',1,'_fontspecs::Width()'],['../struct__font.html#ae3d3b48670f1bf4bf6dbf42794f81b31',1,'_font::Width()'],['../struct__fontc.html#ae3c802e1c35ae9a4e37c8eb2e9644325',1,'_fontc::Width()']]],
+  ['wifi_5fevent_5fcb',['wifi_event_cb',['../network_8h.html#a33001f6e7c0326d6a8f20acbc62a1b3a',1,'network.h']]],
+  ['window',['window',['../structwindow.html',1,'']]],
+  ['wire_2eh',['wire.h',['../wire_8h.html',1,'']]],
+  ['wire2fp',['wire2fp',['../wire_8h.html#a86a09b73c1cd047d1ef464da418bf414',1,'wire.h']]],
+  ['wire_5f2fp',['WIRE_2FP',['../wire__types_8h.html#aac0d606ebb0121e068fddb41f0a8a9f5',1,'wire_types.h']]],
+  ['wire_5fdraw',['wire_draw',['../wire_8h.html#a6032c357c29e2854243ee86f93fee4e5',1,'wire.h']]],
+  ['wire_5fe',['wire_e',['../structwire__e.html',1,'']]],
+  ['wire_5fend',['WIRE_END',['../wire__types_8h.html#ab77fdc8aba86e1a03e2385821e86ec31',1,'wire_types.h']]],
+  ['wire_5fhalf',['WIRE_HALF',['../wire__types_8h.html#adfa05d6e3bc2de299352807bbe52cf79',1,'wire_types.h']]],
+  ['wire_5fone',['WIRE_ONE',['../wire__types_8h.html#a82b0906447b00ab4a0de3e70dea1838f',1,'wire_types.h']]],
+  ['wire_5fp',['wire_p',['../structwire__p.html',1,'']]],
+  ['wire_5fsep',['WIRE_SEP',['../wire__types_8h.html#ae89732b187eff02c0d03083d111d598e',1,'wire_types.h']]],
+  ['wire_5ft',['wire_t',['../wire__types_8h.html#ace84d5e6e326f6a52d978bd9900baee6',1,'wire_types.h']]],
+  ['wire_5ftypes_2eh',['wire_types.h',['../wire__types_8h.html',1,'']]],
+  ['wrap',['WRAP',['../ili9341_8h.html#a43c1de45dbd91827a260224c9c40221b',1,'ili9341.h']]],
+  ['wrap_5fh',['WRAP_H',['../ili9341_8h.html#ab73b6f81ca48b2c6565e527a069914b3',1,'ili9341.h']]],
+  ['wrap_5fv',['WRAP_V',['../ili9341_8h.html#ae48f725a443ce4210c725908799554af',1,'ili9341.h']]],
+  ['writecharacterbits',['WriteCharacterBits',['../bdffontutil_8h.html#a7c2cf276db0c747638909191d76925da',1,'bdffontutil.h']]],
+  ['writefontbits',['WriteFontBits',['../bdffontutil_8h.html#ac01ebab75271c42afb96bb8da7db06c2',1,'bdffontutil.h']]],
+  ['writefontbitspreview',['WriteFontBitsPreview',['../bdffontutil_8h.html#a6e60e1a05fd459f3af8aa691e06950a7',1,'bdffontutil.h']]],
+  ['writefontinfo',['WriteFontInfo',['../bdffontutil_8h.html#a82e40b5e56cab7daedbe210542aa1d99',1,'bdffontutil.h']]],
+  ['writefonttable',['WriteFontTable',['../bdffontutil_8h.html#a6e780815dcb0ad1738a3710d10751824',1,'bdffontutil.h']]]
 ];

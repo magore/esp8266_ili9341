@@ -210,7 +210,7 @@ ___
 
 @par Demo Images
    * Running demo and sending a message to the network window
-   * ./send -i 192.168.200.116 -m 'testing\nTest3\nscrolling\ntext\n1\n2'
+   * "./send -i 192.168.200.116 -m 'testing\nTest3\nscrolling\ntext\n1\n2'"
      * Diagnostics from send
      ip:192.168.200.116, port:31415, message:
      testing

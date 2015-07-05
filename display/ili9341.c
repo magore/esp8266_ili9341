@@ -782,8 +782,8 @@ void tft_window_init(window *win, uint16_t xoff, uint16_t yoff, uint16_t w, uint
 
 /// @brief  Set text forground and background color
 /// @param[in] win*: window structure
-/// @param[in] c: forground color
-/// @param[in] b: background color
+/// @param[in] fg: forground color
+/// @param[in] bg: background color
 /// @return void
 MEMSPACE
 void tft_setTextColor(window *win,uint16_t fg, uint16_t bg)

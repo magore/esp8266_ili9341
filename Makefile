@@ -420,11 +420,12 @@ $(foreach bdir,$(BUILD_DIR),$(eval $(call compile-objects,$(bdir))))
 
 # ===============================================================
 # If makefile changes, update doxygens list
-DOCDIRS = $(MODULES) cube wire earth fonts include cordic/make_cordic earth/make_wireframe 
+DOCDIRS := $(MODULES) cube wire earth fonts include cordic/make_cordic earth/make_wireframe 
 
 # If makefile changes, maybe the list of sources has changed, so update doxygens list
+.PHONY: doxyfile.inc
 doxyfile.inc:
-	echo "INPUT         =  $(SRCDIRS)" > doxyfile.inc
+	echo "INPUT         =  $(DOCDIRS)" > doxyfile.inc
 	echo "FILE_PATTERNS =  *.h *.h" >> doxyfile.inc
 
 .PHONY: doxy

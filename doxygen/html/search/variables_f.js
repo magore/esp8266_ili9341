@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['rad',['rad',['../user__main_8c.html#a6cd0a6a37bb53a8363aadc8640107f8d',1,'user_main.c']]],
-  ['rotation',['rotation',['../structwindow.html#afbd48ebcb41e68d0f458dac593578aa8',1,'window']]]
+  ['v_5fatangrad',['v_atangrad',['../cordic2c__inc_8h.html#abfedbfddd3d22467322bc0ad058d2500',1,'cordic2c_inc.h']]]
 ];

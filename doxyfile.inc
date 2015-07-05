@@ -1,3 +1,2 @@
-INPUT         =  . cordic cordic/make_cordic wire cube display driver earth fonts include printf user
-FILE_PATTERNS =  *.h *.c *md Makefile
-
+INPUT         =  driver user utils printf cordic display  bridge wire wire network cube wire earth fonts include cordic/make_cordic earth/make_wireframe 
+FILE_PATTERNS =  *.h *.h
