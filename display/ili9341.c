@@ -168,9 +168,7 @@ void tft_Cmd(uint8_t cmd)
 // Do not change Command/Data control until SPI bus clear
     hspi_waitReady();
     TFT_COMMAND;
-    TFT_CS_ACTIVE;
     hspi_Tx(&cmd, 1);
-    TFT_CS_DEACTIVE;
 }
 
 
@@ -187,7 +185,6 @@ void tft_Cmd_Data_TX(uint8_t cmd, uint8_t * data, uint8_t bytes)
 
 // Do not change Command/Data control until SPI bus clear
     hspi_waitReady();
-    TFT_CS_ACTIVE;
     TFT_COMMAND;
     hspi_Tx(&cmd, 1);
 
@@ -199,7 +196,6 @@ void tft_Cmd_Data_TX(uint8_t cmd, uint8_t * data, uint8_t bytes)
         TFT_DATA;
         hspi_Tx(data,bytes);
     }
-    TFT_CS_DEACTIVE;
 }
 
 /// @brief  Transmit 8 bit command and send/receive data buffer
@@ -213,7 +209,6 @@ void tft_Cmd_Data_TXRX(uint8_t cmd, uint8_t * data, uint8_t bytes)
 
 // Do not change Command/Data control until SPI bus clear
     hspi_waitReady();
-    TFT_CS_ACTIVE;
     TFT_COMMAND;
     hspi_Tx(&cmd, 1);
 
@@ -226,7 +221,6 @@ void tft_Cmd_Data_TXRX(uint8_t cmd, uint8_t * data, uint8_t bytes)
         hspi_TxRx(data,bytes);
 //hspi_Tx(data, bytes, 1);
     }
-    TFT_CS_DEACTIVE;
 }
 
 
@@ -568,9 +562,8 @@ void tft_readRect(window *win, int16_t x, int16_t y, int16_t w, int16_t h, uint1
 
 	// set window
     pixels = tft_rel_window(win, x,y,w,h);
-    hspi_waitReady();
-    TFT_COMMAND;
-    TFT_CS_ACTIVE;
+//hspi_waitReady();
+//TFT_COMMAND;
 
 	cmd = 0x2e;	// Memory Read
 
@@ -594,7 +587,6 @@ void tft_readRect(window *win, int16_t x, int16_t y, int16_t w, int16_t h, uint1
 		// Send/Receive
 		hspi_waitReady();
 		TFT_COMMAND;
-		TFT_CS_ACTIVE;
 		// Command and 3 byte pixel data
 		hspi_TxRx(data, 2+rem*3);
 
@@ -609,7 +601,6 @@ void tft_readRect(window *win, int16_t x, int16_t y, int16_t w, int16_t h, uint1
 		}
 		cmd = 0x2e;	// Memory Read Continue
 		cmd = 0x3e;
-		TFT_CS_DEACTIVE;
 	}
 }
 
@@ -655,9 +646,7 @@ uint16_t tft_readPixel(window *win, int16_t x, int16_t y)
     data[1]; // send dummy NOP
     hspi_waitReady();
     TFT_COMMAND;
-    TFT_CS_ACTIVE;
     hspi_TxRx(data, 5);
-    TFT_CS_DEACTIVE;
     color = tft_RGBto565(data[2],data[3],data[4]);
     return(color);
 }

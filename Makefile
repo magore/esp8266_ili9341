@@ -35,11 +35,11 @@ BAUD=256000
 # Project Defines
 
 
-# SOFTCS not yet working
-# SPI chip select in software ?
-SOFTCS = 
+# TFT_USE_CS - software CS for SPI interface
+TFT_USE_CS = 1
+
 # Display Debug messages via serial
-ILI9341_DEBUG = 0 
+ILI9341_DEBUG = 1 
 
 # TELNET serial bridge
 TELNET_SERIAL = 1
@@ -246,8 +246,8 @@ ifdef ILI9341_DEBUG
 	CFLAGS  += -DILI9341_DEBUG=$(ILI9341_DEBUG)
 endif
 
-ifdef SOFTCS
-	CFLAGS  += -DSOFTCS
+ifdef TFT_USE_CS
+	CFLAGS  += -DTFT_USE_CS
 endif
 
 CFLAGS  += -DMIKE_PRINTF

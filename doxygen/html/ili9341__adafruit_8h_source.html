@@ -120,18 +120,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">// ==========================================================</span></div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">// We use automatic CS mode configured with hspi</span></div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor">#ifdef TFT_USE_CS</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define TFT_CS_ACTIVE   GPIO_OUTPUT_SET(4, 0)</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define TFT_CS_DEACTIVE GPIO_OUTPUT_SET(4, 1)</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define TFT_CS_INIT     PIN_FUNC_SELECT(PERIPHS_IO_MUX_GPIO4_U, FUNC_GPIO4); TFT_CS_DEACTIVE</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define TFT_CS_ACTIVE   GPIO_OUTPUT_SET(15, 0)</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define TFT_CS_DEACTIVE GPIO_OUTPUT_SET(15, 1)</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define TFT_CS_INIT     PIN_FUNC_SELECT(PERIPHS_IO_MUX_MTDO_U, FUNC_GPIO15); TFT_CS_DEACTIVE</span></div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#else</span></div>
 <div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="ili9341__adafruit_8h.html#a027b1db2dce12a1a2e3cabce76a29d64">   74</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define TFT_CS_ACTIVE</span></div>
 <div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="ili9341__adafruit_8h.html#a54b9c800f5fe84fe4967a2f53c6fd577">   75</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define TFT_CS_DEACTIVE</span></div>
 <div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="ili9341__adafruit_8h.html#a9f802b7a538ae2dfa1480d98c4dcd8e2">   76</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define TFT_CS_INIT</span></div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="ili9341__adafruit_8h.html#a6f4107e5a75e752c31df21aa1fedc09c">   79</a></span>&#160;<span class="preprocessor">#define TFT_DATA     GPIO_OUTPUT_SET(2, 1)</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="ili9341__adafruit_8h.html#a5d907e919a478ce1710418ea2c7a3565">   80</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define TFT_COMMAND  GPIO_OUTPUT_SET(2, 0)</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="ili9341__adafruit_8h.html#a47812ee8398e07058b8e7fdc5fbb887d">   81</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define TFT_INIT     PIN_FUNC_SELECT(PERIPHS_IO_MUX_GPIO2_U, FUNC_GPIO2); TFT_DATA</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="ili9341__adafruit_8h.html#a6f4107e5a75e752c31df21aa1fedc09c">   79</a></span>&#160;<span class="preprocessor">#define TFT_DATA        GPIO_OUTPUT_SET(2, 1)</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="ili9341__adafruit_8h.html#a5d907e919a478ce1710418ea2c7a3565">   80</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define TFT_COMMAND     GPIO_OUTPUT_SET(2, 0)</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="ili9341__adafruit_8h.html#a47812ee8398e07058b8e7fdc5fbb887d">   81</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define TFT_INIT        PIN_FUNC_SELECT(PERIPHS_IO_MUX_GPIO2_U, FUNC_GPIO2); TFT_DATA</span></div>
 <div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="ili9341__adafruit_8h.html#ac6ec92dc5d86fc3febd00f889911718f">   82</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define TFT_RST_ACTIVE    GPIO_OUTPUT_SET(4, 0)</span></div>
 <div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="ili9341__adafruit_8h.html#a56374956f4abcec35dfd77815f40e9a7">   83</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define TFT_RST_DEACTIVE  GPIO_OUTPUT_SET(4, 1)</span></div>
 <div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="ili9341__adafruit_8h.html#aae4a7b00813f668130b1f55928760da3">   84</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define TFT_RST_INIT     PIN_FUNC_SELECT(PERIPHS_IO_MUX_GPIO4_U, FUNC_GPIO4); TFT_RST_DEACTIVE</span></div>
@@ -268,7 +268,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 5 2015 18:15:40 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jul 7 2015 20:24:33 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
