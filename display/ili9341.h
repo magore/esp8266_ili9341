@@ -47,6 +47,28 @@ typedef struct
 	uint8_t tabstop;
 } window;
 
+
+
+// ==========================================================
+// We use automatic CS mode configured with hspi
+#ifdef TFT_CS_ENABLE
+	#define TFT_CS_INIT     PIN_FUNC_SELECT(PERIPHS_IO_MUX_MTDO_U, 3); TFT_CS_DEACTIVE
+	#define TFT_CS_ACTIVE   GPIO_OUTPUT_SET(15, 0)
+	#define TFT_CS_DEACTIVE GPIO_OUTPUT_SET(15, 1)
+#else
+	#define TFT_CS_INIT    
+	#define TFT_CS_ACTIVE   
+	#define TFT_CS_DEACTIVE 
+#endif
+
+#define TFT_INIT        PIN_FUNC_SELECT(PERIPHS_IO_MUX_GPIO2_U, FUNC_GPIO2); TFT_DATA
+#define TFT_DATA        GPIO_OUTPUT_SET(2, 1)
+#define TFT_COMMAND     GPIO_OUTPUT_SET(2, 0)
+
+#define TFT_RST_INIT     PIN_FUNC_SELECT(PERIPHS_IO_MUX_GPIO4_U, FUNC_GPIO4); TFT_RST_DEACTIVE
+#define TFT_RST_ACTIVE    GPIO_OUTPUT_SET(4, 0)
+#define TFT_RST_DEACTIVE  GPIO_OUTPUT_SET(4, 1)
+
 #define TFT_W (MAX_TFT_X-MIN_TFT_X+1)
 #define TFT_H (MAX_TFT_Y-MIN_TFT_Y+1)
 #define TFT_XOFF (MIN_TFT_X)

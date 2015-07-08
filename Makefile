@@ -35,11 +35,13 @@ BAUD=256000
 # Project Defines
 
 
-# TFT_USE_CS - software CS for SPI interface
-TFT_USE_CS = 1
-
 # Display Debug messages via serial
 ILI9341_DEBUG = 1 
+
+# SOFT CS for TFT 
+TFT_CS_ENABLE = 1
+# HARD CS for TFT 
+#TFT_CS_ENABLE = 
 
 # TELNET serial bridge
 TELNET_SERIAL = 1
@@ -226,6 +228,10 @@ EXTRA_INCDIR    = user include $(SDK_BASE)/../include
 CFLAGS += -DDEBUG_PRINTF=ets_uart_printf
 CFLAGS += -DMAX_USER_RECEIVE_CB=4
 
+ifdef TFT_CS_ENABLE
+	CFLAGS += -DTFT_CS_ENABLE
+endif
+
 ifdef TELNET_SERIAL
 	CFLAGS += -DTELNET_SERIAL
 	MODULES	+= bridge
@@ -244,10 +250,6 @@ endif
 
 ifdef ILI9341_DEBUG
 	CFLAGS  += -DILI9341_DEBUG=$(ILI9341_DEBUG)
-endif
-
-ifdef TFT_USE_CS
-	CFLAGS  += -DTFT_USE_CS
 endif
 
 CFLAGS  += -DMIKE_PRINTF

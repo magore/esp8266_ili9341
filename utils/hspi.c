@@ -50,17 +50,12 @@ void hspi_init(uint16_t prescale)
     PIN_FUNC_SELECT(PERIPHS_IO_MUX_MTCK_U, 2);    // HSPID MOSI GPIO13
     PIN_FUNC_SELECT(PERIPHS_IO_MUX_MTMS_U, 2);    // CLK        GPIO14
 
-#ifndef SD_USE_CS
-    PIN_FUNC_SELECT(PERIPHS_IO_MUX_MTDO_U, 2);    // CS         GPIO15
-#else
-    SD_CS_INIT;
+	// HARDWARE SPI CS
+#ifndef TFT_CS_ENABLE
+    PIN_FUNC_SELECT(PERIPHS_IO_MUX_MTDO_U, 2); // CS AUTOMATIC GPIO15
 #endif
 
-#ifndef TFT_USE_CS
-    PIN_FUNC_SELECT(PERIPHS_IO_MUX_MTDO_U, 2);    // CS         GPIO15
-#else
     TFT_CS_INIT;
-#endif
 
 // SPI clock = CPU clock / 10 / 4
 // time length HIGHT level = (CPU clock / 10 / 2) ^ -1,
@@ -127,7 +122,7 @@ void hspi_setBits(uint16_t bytes)
 /// @return  void
 void hspi_startSend(void)
 {
-#ifdef TFT_USE_CS
+#ifdef TFT_CS_ACTIVE
     TFT_CS_ACTIVE;
 #endif
     SET_PERI_REG_MASK(SPI_FLASH_CMD(HSPI), SPI_FLASH_USR);
@@ -139,7 +134,7 @@ void hspi_startSend(void)
 void hspi_waitReady(void)
 {
     while (READ_PERI_REG(SPI_FLASH_CMD(HSPI)) & SPI_FLASH_USR) {};
-#ifdef TFT_USE_CS
+#ifdef TFT_CS_DEACTIVE
     TFT_CS_DEACTIVE;
 #endif
 }
