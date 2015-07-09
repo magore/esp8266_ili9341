@@ -30,41 +30,50 @@
 #define HSPI_PRESCALER 16
 #endif
 
-static uint16_t _f_tx_ind = 0;                    // fifo buffer index
-static uint8_t _f_tx_buf[HSPI_FIFO_SIZE+2];       // fifo buffer, same as HSPI FIFO
-
-/// @brief HSPI Initiaization - with automatic chip sellect
+/// @brief HSPI Initiaization - with automatic chip select
 /// Pins:
 /// 	MISO GPIO12
 /// 	MOSI GPIO13
 /// 	CLK GPIO14
-/// 	CS GPIO15
+/// 	CS GPIO15 - optional
 /// 	DC GPIO2
+/// @param[in] prescale: prescale from CPU clock 0 .. 0x1fff
+/// @param[in] hwcs: enable GPIO15 hardware chip select 
 /// @return  void
-void hspi_init(uint16_t prescale)
+void hspi_init(uint16_t prescale, int hwcs)
 {
 
-    WRITE_PERI_REG(PERIPHS_IO_MUX, 0x105);        //clear bit9
 
     PIN_FUNC_SELECT(PERIPHS_IO_MUX_MTDI_U, 2);    // HSPIQ MISO GPIO12
     PIN_FUNC_SELECT(PERIPHS_IO_MUX_MTCK_U, 2);    // HSPID MOSI GPIO13
     PIN_FUNC_SELECT(PERIPHS_IO_MUX_MTMS_U, 2);    // CLK        GPIO14
 
 	// HARDWARE SPI CS
-#ifndef TFT_CS_ENABLE
-    PIN_FUNC_SELECT(PERIPHS_IO_MUX_MTDO_U, 2); // CS AUTOMATIC GPIO15
-#endif
+	if(hwcs)
+		PIN_FUNC_SELECT(PERIPHS_IO_MUX_MTDO_U, 2); // CS AUTOMATIC ONLY ON GPIO15
 
-    TFT_CS_INIT;
-
-// SPI clock = CPU clock / 10 / 4
-// time length HIGHT level = (CPU clock / 10 / 2) ^ -1,
-// time length LOW level = (CPU clock / 10 / 2) ^ -1
-    WRITE_PERI_REG(SPI_FLASH_CLOCK(HSPI),
+	if(prescale == 0)
+	{
+		WRITE_PERI_REG(PERIPHS_IO_MUX, 0x305); //set bit9
+		WRITE_PERI_REG(SPI_FLASH_CLOCK(HSPI), SPI_CLK_EQU_SYSCLK);
+	}
+	else
+	{
+		// prescale >= 1
+		WRITE_PERI_REG(PERIPHS_IO_MUX, 0x105);        //clear bit9
+		WRITE_PERI_REG(SPI_FLASH_CLOCK(HSPI),
         (((prescale - 1) & SPI_CLKDIV_PRE) << SPI_CLKDIV_PRE_S) |
         ((1 & SPI_CLKCNT_N) << SPI_CLKCNT_N_S) |
         ((0 & SPI_CLKCNT_H) << SPI_CLKCNT_H_S) |
         ((1 & SPI_CLKCNT_L) << SPI_CLKCNT_L_S));
+/*
+		WRITE_PERI_REG(SPI_FLASH_CLOCK(HSPI),
+        (((prescale - 1) & SPI_CLKDIV_PRE) << SPI_CLKDIV_PRE_S) |
+        ((1 & SPI_CLKCNT_N) << SPI_CLKCNT_N_S) |
+        ((0 & SPI_CLKCNT_H) << SPI_CLKCNT_H_S) |
+        ((1 & SPI_CLKCNT_L) << SPI_CLKCNT_L_S));
+*/
+	}
 
     WRITE_PERI_REG(SPI_FLASH_CTRL1(HSPI), 0);
 }
@@ -73,7 +82,7 @@ void hspi_init(uint16_t prescale)
 /// @brief HSPI Configuration for tranasmit and receive
 /// @param[in] configState: CONFIG_FOR_RX_TX or CONFIG_FOR_RX
 /// @return  void
-void hspi_config(int configState)
+static void hspi_config(int configState)
 {
     uint32_t valueOfRegisters = 0;
 
@@ -109,7 +118,7 @@ void hspi_config(int configState)
 // Only called from hspi_writeFIFO or hspi_readFIFO
 // So bounds testing has already been done
 /// @return  void
-void hspi_setBits(uint16_t bytes)
+static void hspi_setBits(uint16_t bytes)
 {
     uint16_t bits = (bytes << 3) - 1;
     WRITE_PERI_REG(SPI_FLASH_USER1(HSPI),
@@ -120,11 +129,8 @@ void hspi_setBits(uint16_t bytes)
 
 /// @brief HSPI Start Send
 /// @return  void
-void hspi_startSend(void)
+static void hspi_startSend(void)
 {
-#ifdef TFT_CS_ACTIVE
-    TFT_CS_ACTIVE;
-#endif
     SET_PERI_REG_MASK(SPI_FLASH_CMD(HSPI), SPI_FLASH_USR);
 }
 
@@ -134,9 +140,6 @@ void hspi_startSend(void)
 void hspi_waitReady(void)
 {
     while (READ_PERI_REG(SPI_FLASH_CMD(HSPI)) & SPI_FLASH_USR) {};
-#ifdef TFT_CS_DEACTIVE
-    TFT_CS_DEACTIVE;
-#endif
 }
 
 
@@ -144,7 +147,7 @@ void hspi_waitReady(void)
 /// @param[in] write_data: write buffer
 /// @param[in] bytes: bytes to write
 /// @return  void
-void hspi_writeFIFO(uint8_t *write_data, uint16_t bytes)
+static void hspi_writeFIFO(uint8_t *write_data, int bytes)
 {
     uint8_t word_ind = 0;
 
@@ -190,7 +193,7 @@ void hspi_writeFIFO(uint8_t *write_data, uint16_t bytes)
 /// @param[in] read_data: read buffer
 /// @param[in] bytes: bytes to write
 /// @return  void
-void hspi_readFIFO(uint8_t *read_data, uint16_t bytes)
+static void hspi_readFIFO(uint8_t *read_data, int bytes)
 {
 
     uint8_t word_ind = 0;
@@ -230,84 +233,92 @@ void hspi_readFIFO(uint8_t *read_data, uint16_t bytes)
 }
 
 
-/// @brief Used only for small (less then HSPI_FIFO_SIZE) write / read
-/// Write and Read uses same buffer and same byte count
-/// @param[in,out] data: buffer
-/// @param[in] bytes: bytes to write and or read
-/// @return  void
-void hspi_TxRx(uint8_t *data, uint16_t bytes)
-{
-    if(bytes > HSPI_FIFO_SIZE)
-        return;                                   // Error
-    hspi_config(CONFIG_FOR_RX_TX);
-    hspi_writeFIFO(data, bytes);
-    hspi_startSend();
-    hspi_waitReady();
-// read result
-    hspi_readFIFO(data, bytes);
-}
-
-
-/// @brief Used only for small (less then HSPI_FIFO_SIZE) write
-/// Used for small (less then HSPI_FIFO_SIZE) packet send only
-/// @param[in] data: buffer
-/// @param[in] bytes: bytes to write
-/// @return  void
-void hspi_Tx(uint8_t *data, uint16_t bytes)
-{
-    if(bytes > HSPI_FIFO_SIZE)
-        return;                                   // Error
-    hspi_config(CONFIG_FOR_TX);                   // Does hspi_waitReady(); first
-    hspi_writeFIFO(data, bytes);
-    hspi_startSend();
-    hspi_waitReady();
-}
 
 
 /// =================================================================
 /// @brief
 /// SPI buffered write functions
 
-/// @brief HSPI stream byte to buffer
-/// We use the fifo - or a buffer to queue spi writes
-/// The overhead of N writes done at once is less N writes done one at a time
-/// @param[in] data: byte to add to buffer
+/// @brief HSPI write using FIFO
+/// @param[in] *data: transmit buffer
+/// @param[in] count: number of bytes to write
 /// @return  void
-void hspi_TX_stream_byte(uint8_t data)
+void hspi_TX(uint8_t *data, int count)
 {
-// Queue sent data
-    _f_tx_buf[_f_tx_ind] = data;
-// Send a full FIFO block - or - remaining data
-    if(++_f_tx_ind >= HSPI_FIFO_SIZE)
-    {
-        hspi_TX_stream_flush();
-    }
-}
+	int bytes;
 
+	while(count > 0)
+	{
+		// we will never have zero - we already checked
+		bytes = count;
+		if(bytes > HSPI_FIFO_SIZE)
+			bytes = HSPI_FIFO_SIZE;
 
-/// @brief HSPI stream init
-/// We use the fifo - or a buffer to queue spi writes
-/// The overhead of N writes done at once is less N writes done one at a time
-void hspi_TX_stream_init(void)
-{
-    _f_tx_ind = 0;
-    hspi_waitReady();
-}
-
-
-/// @brief HSPI stream flush
-/// We use the fifo - or a buffer to queue spi writes
-/// The overhead of N writes done at once is less N writes done one at a time
-/// @return  void
-void hspi_TX_stream_flush( void )
-{
-// Send a full FIFO block - or - remaining data
-    if(_f_tx_ind )
-    {
-        hspi_config(CONFIG_FOR_TX);               // Does hspi_waitReady(); first
-        hspi_writeFIFO(_f_tx_buf, _f_tx_ind);
+        hspi_config(CONFIG_FOR_TX);   // Does hspi_waitReady(); first
+		// clear buffer first
+        hspi_writeFIFO(data, bytes);
         hspi_startSend();
-        _f_tx_ind = 0;
-    }
-    hspi_waitReady();
+		hspi_waitReady();
+
+		data += bytes;
+		count -= bytes;
+	}
 }
+
+/// @brief HSPI write and read using FIFO
+/// @param[in] *data: transmit / receive buffer
+/// @param[in] count: number of bytes to write / read
+/// @return  void
+
+void hspi_TXRX(uint8_t *data, int count)
+{
+	int bytes;
+
+	while(count > 0)
+	{
+		// we will never have zero - we already checked
+		bytes = count;
+		if(bytes > HSPI_FIFO_SIZE)
+			bytes = HSPI_FIFO_SIZE;
+
+        hspi_config(CONFIG_FOR_RX_TX);   // Does hspi_waitReady(); first
+        hspi_writeFIFO(data, bytes);
+        hspi_startSend();
+		hspi_waitReady();
+		hspi_readFIFO(data, bytes);
+
+		data += bytes;
+		count -= bytes;
+	}
+}
+
+/// @brief HSPI read using FIFO
+/// @param[in] *data: receive buffer
+/// @param[in] count: number of bytes to read
+/// @return  void
+void hspi_RX(uint8_t *data, int count)
+{
+	int bytes;
+
+	while(count > 0)
+	{
+		// we will never have zero - we already checked
+		bytes = count;
+		if(bytes > HSPI_FIFO_SIZE)
+			bytes = HSPI_FIFO_SIZE;
+
+		// discard TX data
+        hspi_config(CONFIG_FOR_RX_TX);   
+		// Writes are ignored, so we set data to 0xff
+        memset(data, 0xff, bytes);
+        hspi_writeFIFO(data, bytes);
+        hspi_startSend();
+		hspi_waitReady();
+		// read result
+		hspi_readFIFO(data, bytes);
+
+		data += bytes;
+		count -= bytes;
+	}
+}
+

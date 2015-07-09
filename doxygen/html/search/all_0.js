@@ -9,8 +9,6 @@ var searchData=
   ['_5fdata',['_data',['../util_8c.html#a45c84a718a302530a9e80cce14821e33',1,'util.c']]],
   ['_5fdata_5fend',['_data_end',['../cal__dex_8c.html#a631d10379fb6298dec3a091dff85fbfe',1,'cal_dex.c']]],
   ['_5fdata_5fstart',['_data_start',['../cal__dex_8c.html#a52ac470a9c391e36c01d0f292c65cf19',1,'cal_dex.c']]],
-  ['_5ff_5ftx_5fbuf',['_f_tx_buf',['../hspi_8c.html#a462e6c70498a0e04a7e0b5ac8397feff',1,'hspi.c']]],
-  ['_5ff_5ftx_5find',['_f_tx_ind',['../hspi_8c.html#a9df4d317da7fd120a1281cfca6a572f6',1,'hspi.c']]],
   ['_5ffont',['_font',['../struct__font.html',1,'']]],
   ['_5ffontc',['_fontc',['../struct__fontc.html',1,'']]],
   ['_5ffontinfo',['_fontinfo',['../struct__fontinfo.html',1,'']]],

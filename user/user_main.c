@@ -389,7 +389,8 @@ void user_init(void)
 // 80MHZ
 //   REG_CLR_BIT(0x3ff00014, BIT(0));
 
-	hspi_init(1);
+	// hspi_init(1,0);
+
 	// Initialize TFT
 	master = tft_init();
 	ID = tft_ID;

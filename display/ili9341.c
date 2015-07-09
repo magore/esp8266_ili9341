@@ -35,6 +35,111 @@ window tftwin;
 window *tft = &tftwin;
 uint16_t tft_ID;
 
+/// =============================================================
+/// SPI 
+
+/// @brief  Obtain SPI bus for TFT display, assert chip select
+/// return: void
+void tft_spi_init(uint16_t prescale)
+{
+    hspi_waitReady();
+	hspi_init(prescale, 0);
+}
+
+/// @brief  Obtain SPI bus for TFT display, assert chip select
+/// return: void
+void tft_spi_begin()
+{
+    hspi_waitReady();
+    TFT_CS_ACTIVE;
+}
+
+/// @brief  Release SPI bus from TFT display, deassert chip select
+/// return: void
+void tft_spi_end()
+{
+    hspi_waitReady();
+    TFT_CS_DEACTIVE;
+}
+
+/// @brief  Transmit 8 bit data array
+/// @param[in] *data: data buffer to send 
+/// @param[in] bytes: data buffer size
+/// return: void 
+void tft_spi_TX(uint8_t *data, int bytes, uint8_t command)
+{
+	hspi_waitReady();
+	if(command)
+		TFT_COMMAND;
+	else
+		TFT_DATA;
+	hspi_TX(data,bytes);
+}
+
+/// @brief  Transmit and read 8 bit data array 
+/// @param[in] *data: data buffer to send 
+/// @param[in] bytes: data buffer size
+/// return: void 
+void tft_spi_TXRX(uint8_t * data, int bytes, uint8_t command)
+{
+	hspi_waitReady();
+	if(command)
+		TFT_COMMAND;
+	else
+		TFT_DATA;
+	hspi_TXRX(data,bytes);
+}
+
+
+/// @brief  read 8 bit data array 
+/// @param[in] *data: data buffer to send 
+/// @param[in] bytes: data buffer size
+/// return: void 
+void tft_spi_RX(uint8_t *data, int bytes, uint8_t command)
+{
+	hspi_waitReady();
+	if(command)
+		TFT_COMMAND;
+	else
+		TFT_DATA;
+	hspi_RX(data,bytes);
+}
+
+/// @brief  Transmit 8 bit command 
+/// @param[in] cmd: display command
+/// return: void status is in data array - bytes in size
+void tft_Cmd(uint8_t cmd)
+{
+	hspi_waitReady();
+	TFT_COMMAND;
+    hspi_TX(&cmd, 1);
+}
+
+/// @brief  Transmit 8 bit command and send/receive data buffer
+/// @param[in] cmd: display command
+/// @param[in] *data: data buffer to send after command
+/// @param[in] bytes: data buffer size
+/// return: void status is in data array - bytes in size
+void tft_Cmd_Data_TX(uint8_t cmd, uint8_t * data, int bytes)
+{
+// Do not change Command/Data control until SPI bus clear
+	tft_spi_begin();
+
+    tft_Cmd(cmd);
+
+// Read result
+    if (bytes > 0)
+    {
+		tft_spi_TX(data,bytes,0);
+    }
+
+	tft_spi_end();
+}
+
+/// =============================================================
+/// =============================================================
+/// =============================================================
+/// =============================================================
 /// @brief Initialize TFT
 /// @return diplay ID 9341
 MEMSPACE
@@ -46,8 +151,8 @@ window *tft_init(void)
     TFT_RST_INIT;
     TFT_RST_ACTIVE;
 
-	// start with slow SPI
-	hspi_init(2);
+	// start with slow SPI, no hardware CS
+	tft_spi_init(2);
 
     os_delay_us(10000);
     TFT_RST_DEACTIVE;
@@ -60,8 +165,7 @@ window *tft_init(void)
     tft_ID = tft_readId();
 
 	// fast SPI
-	hspi_init(1);
-
+	tft_spi_init(1);
 
 	/* Setup the master window */
     tft_window_init(tft, TFT_XOFF, TFT_YOFF, TFT_W, TFT_H);
@@ -81,14 +185,14 @@ window *tft_init(void)
 /// @param[in] w: Width
 /// @param[in] h: Height
 /// @return  w * h after clipping
-uint32_t tft_abs_window(int16_t x, int16_t y, int16_t w, int16_t h)
+int32_t tft_abs_window(int16_t x, int16_t y, int16_t w, int16_t h)
 {
     uint8_t tmp[4];
 
 	uint16_t xl,yl;
 
 	int16_t ww,hh;
-	uint32_t bytes;
+	int32_t bytes;
 
 	// Check for basic out of bounds conditions
 
@@ -134,12 +238,15 @@ uint32_t tft_abs_window(int16_t x, int16_t y, int16_t w, int16_t h)
     tmp[1] = x & 0xff;
     tmp[2] = xl >> 8;
     tmp[3] = xl & 0xff;
-    tft_Cmd_Data_TXRX(0x2A, tmp, 4);
+	
+    tft_Cmd_Data_TX(0x2A, tmp, 4);
+
     tmp[0] = y >> 8;
     tmp[1] = y & 0xff;
     tmp[2] = yl >> 8;
     tmp[3] = yl & 0xff;
-    tft_Cmd_Data_TXRX(0x2B, tmp, 4);
+
+    tft_Cmd_Data_TX(0x2B, tmp, 4);
 
 	bytes = w;
 	bytes *= h;
@@ -153,104 +260,18 @@ uint32_t tft_abs_window(int16_t x, int16_t y, int16_t w, int16_t h)
 /// @param[in] w: Width
 /// @param[in] h: Height
 /// @return  bytes w * h after clipping, 0 on error
-uint32_t tft_rel_window(window *win, int16_t x, int16_t y, int16_t w, int16_t h)
+int32_t tft_rel_window(window *win, int16_t x, int16_t y, int16_t w, int16_t h)
 {
 	return( tft_abs_window(x+win->xoff, y+win->yoff, w,h) );
 }
 
-///  ====================================
+///  ======================================================================
+/// SPI
 
-/// @brief  Transmit 8 bit display command
-/// @param[in] cmd: command code
-/// return: void
-void tft_Cmd(uint8_t cmd)
-{
-// Do not change Command/Data control until SPI bus clear
-    hspi_waitReady();
-    TFT_COMMAND;
-    hspi_Tx(&cmd, 1);
-}
+
 
 
 /// ====================================
-
-/// @brief  Transmit 8 bit command and related data buffer
-/// @param[in] cmd: display command
-/// @param[in] *data: data buffer to send after command
-/// @param[in] bytes: data buffer size
-/// return: void status is in data array - bytes in size
-void tft_Cmd_Data_TX(uint8_t cmd, uint8_t * data, uint8_t bytes)
-{
-// FIXME can we insert the command into data buffer and do both at once ?
-
-// Do not change Command/Data control until SPI bus clear
-    hspi_waitReady();
-    TFT_COMMAND;
-    hspi_Tx(&cmd, 1);
-
-// Read result
-    if (bytes > 0)
-    {
-// Do not change Command/Data control until SPI bus clear
-        hspi_waitReady();
-        TFT_DATA;
-        hspi_Tx(data,bytes);
-    }
-}
-
-/// @brief  Transmit 8 bit command and send/receive data buffer
-/// @param[in] cmd: display command
-/// @param[in] *data: data buffer to send after command
-/// @param[in] bytes: data buffer size
-/// return: void status is in data array - bytes in size
-void tft_Cmd_Data_TXRX(uint8_t cmd, uint8_t * data, uint8_t bytes)
-{
-// FIXME can we insert the command into data buffer and do both at once ?
-
-// Do not change Command/Data control until SPI bus clear
-    hspi_waitReady();
-    TFT_COMMAND;
-    hspi_Tx(&cmd, 1);
-
-// Read result
-    if (bytes > 0)
-    {
-// Do not change Command/Data control until SPI bus clear
-        hspi_waitReady();
-        TFT_DATA;
-        hspi_TxRx(data,bytes);
-//hspi_Tx(data, bytes, 1);
-    }
-}
-
-
-/// @brief  Buffered color fill
-/// Optimized for 16bit MSB/LSB SPI bus tramission
-/// ILI9341 defaults to MSB/LSB color data so we reverse it
-/// @param[in] color: 16 bit color
-/// @param[in] count: repeat count
-/// @return void
-void tft_writeColor16Repeat(uint16 color, uint32_t count)
-{
-    if (!count)
-        return;
-
-    hspi_TX_stream_init();
-    TFT_DATA;
-
-//We are sending words
-
-	
-    while(count--)
-    {
-        hspi_TX_stream_byte(color >> 8);
-        hspi_TX_stream_byte(color & 0xff);
-		if((count & 0x3ff) == 0)
-			ets_wdt_disable();
-    }
-    hspi_TX_stream_flush();
-
-}
 
 /// @brief  Read parameters on SPI bus ILI9341 displays when EXTC is not asserted
 /// However; This undocumented command overrides the restriction for reading command parameters.
@@ -268,22 +289,31 @@ uint32_t tft_readRegister(uint8_t command, uint8_t parameter)
     uint32_t result;
 	uint8_t tmp[4];
 
+
+	tft_spi_begin();
+
 	// We do not know what the 0x10 offset implies - but it is required.
 	// ILI9341 parameter
+    tft_Cmd(0xd9);
+
+	// DATA
 	tmp[0] = 0x10 + parameter;
 	tmp[1] = 0;
 	tmp[2] = 0;
 	tmp[3] = 0;
 	// Undocumented 0xd9 command
-    tft_Cmd_Data_TXRX(0xd9,tmp,4);
-    hspi_waitReady();
-    TFT_COMMAND;
+    tft_spi_TX(tmp,4,0);
+
 	// The real ILI9341 Command whose parameters we want to read
+	// COMMAND
 	tmp[0] = command;	
 	tmp[1] = 0;
 	tmp[2] = 0;
 	tmp[3] = 0;
-    hspi_TxRx(tmp,4);
+    tft_spi_TXRX(tmp,4,1);
+
+	tft_spi_end();
+
 	result = tmp[1];
 
 #if ILI9341_DEBUG & 1
@@ -306,6 +336,7 @@ MEMSPACE
 uint32_t tft_readId(void)
 {
     uint32_t_bytes id;
+
 
     id.all = 0;
 	/// Paramter 0 is unused
@@ -334,9 +365,12 @@ void tft_bit_blit(window *win, uint8_t *ptr, int x, int y, int w, int h)
 {
 
     uint16_t color;
-    int off;
     int xx,yy;
-	uint32_t pixels;
+    int32_t off;
+	int32_t pixels;
+	int wdcount;
+	int ind;
+	uint8_t buf[2*64];
 
     if(!w || !h)
         return;
@@ -347,15 +381,18 @@ void tft_bit_blit(window *win, uint8_t *ptr, int x, int y, int w, int h)
 // TODO CLIP window 
 // Note: Clipping modifies offsets which in turn modifies blit array offsets
 // We could use tft_drawPixel, and it clips - but that is slow
-// We use hspi_TX_stream to make it FAST
 
     pixels = tft_rel_window(win, x, y, w, h);
+
+	
+	tft_spi_begin();
+
     tft_Cmd(0x2c);
 
-    hspi_TX_stream_init();
-    TFT_DATA;
-
     off = 0;
+	ind = 0;
+	wdcount = 0;
+
     for (yy=0; yy < h; ++yy)
     {
         for (xx=0;xx < w; ++xx)
@@ -364,12 +401,30 @@ void tft_bit_blit(window *win, uint8_t *ptr, int x, int y, int w, int h)
                 color = win->fg;
             else
                 color = win->bg;
-            hspi_TX_stream_byte(color >> 8);
-            hspi_TX_stream_byte(color & 0xff);
+
+			buf[ind++] = color >> 8;
+			buf[ind++] = color & 0xff;
+
+			if(ind >= sizeof(buf))
+			{
+				tft_spi_TX(buf,ind,0);
+				ind = 0;
+			}
         }
+		wdcount += xx;
+		if(wdcount > 0x3ff)
+		{
+			ets_wdt_disable();
+			wdcount = 0;
+		}
         off += w;
     }
-    hspi_TX_stream_flush();
+	if(ind)
+	{
+		tft_spi_TX(buf,ind,0);
+	}
+
+	tft_spi_end();
 #else
     off = 0;
     for (yy=0; yy < h; ++yy)
@@ -386,6 +441,8 @@ void tft_bit_blit(window *win, uint8_t *ptr, int x, int y, int w, int h)
 #endif
 }
 
+// =============================================================
+// =============================================================
 
 
 
@@ -412,16 +469,52 @@ void tft_fillWin(window *win, uint16_t color)
 /// @return void
 void tft_fillRectWH(window *win, int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color)
 {
-    uint32_t repeat;
-	uint16_t count;
+    int32_t pixels;
+    int32_t colors;
+	int wdcount;
+    int ind;
+    uint8_t buf[2*64];
 
-	repeat = tft_rel_window(win, x,y,w,h);
-    if(repeat)
+	pixels = tft_rel_window(win, x,y,w,h);
+
+	wdcount = 0;
+
+    if(pixels > 0)
     {
+		tft_spi_begin();
+
         tft_Cmd(0x2c);
-// Send one *colors value a total of count times.
-        tft_writeColor16Repeat(color, repeat);
-    }
+
+		ind = 0;
+		//We are sending words
+		while(pixels > 0)
+		{
+			colors = pixels;
+			if(colors > sizeof(buf)/2)
+				colors = sizeof(buf)/2;
+
+			pixels -= colors;
+			wdcount += colors;
+
+			if(!ind)
+			{
+				while(ind < sizeof(buf) && ind < colors*2)
+				{
+					buf[ind++] = color >> 8;
+					buf[ind++] = color & 0xff;
+				}
+			}
+			tft_spi_TX(buf,colors*2,0);
+			if(wdcount > 0x3ff)
+			{
+				wdcount = 0;
+				ets_wdt_disable();
+			}
+		}
+
+		tft_spi_end();
+    } // if(pixels > 0)
+
 }
 
 /// @brief  Fill rectangle with color
@@ -471,9 +564,10 @@ void tft_drawPixel(window *win, int16_t x, int16_t y, int16_t color)
         return;
 
     tft_rel_window(win, x,y,1,1);
+
     data[0] = color >>8;
     data[1] = color;
-    tft_Cmd_Data_TXRX(0x2c, data, 2);
+    tft_Cmd_Data_TX(0x2c, data, 2);
 
 }
 
@@ -489,43 +583,66 @@ void tft_drawPixel(window *win, int16_t x, int16_t y, int16_t color)
 void tft_writeRect(window *win, int16_t x, int16_t y, int16_t w, int16_t h, uint16_t *color)
 {
 
-	uint32_t pixels;
+	int32_t pixels;
 	uint16 pixel;
+	int wdcount;
     int xx,yy;
+	int ind;
+	uint8_t buf[2*64];
 
     if(!w || !h)
         return;
 
 // TODO CLIP window - depends on blit array offset also
 // We could use tft_drawPixel, and it clips - but that is slow
-// We use hspi_TX_stream to make it FAST
 
 #if 1
     pixels = tft_rel_window(win, x, y, w, h);
+
+	tft_spi_begin();
+
     tft_Cmd(0x2c);
-    hspi_TX_stream_init();
-    TFT_DATA;
-	while(pixels--)
+
+	ind = 0;
+	wdcount = 0;
+
+	while(pixels-- > 0)
 	{
 		pixel = *color++;
-		hspi_TX_stream_byte(pixel >> 8);
-		hspi_TX_stream_byte(pixel & 0xff);
-		if((pixels & 0x3ff) == 0)
-			ets_wdt_disable();
+		buf[ind++]=pixel >> 8;
+		buf[ind++]=pixel & 0xff;
+		if(ind >= sizeof(buf))
+		{
+			tft_spi_TX(buf,ind,0);
+			wdcount += ind;
+			ind = 0;
+			if(wdcount > 0x3ff)
+			{
+				wdcount = 0;
+				ets_wdt_disable();
+			}
+		}
 	}
-    hspi_TX_stream_flush();
+
+	if(ind)
+	{
+		tft_spi_TX(buf,ind,0);
+	}
+
+	tft_spi_end();
+
 #else
-	pixels = 0;
+	wdcount = 0;
     for (yy=0; yy < h; ++yy)
     {
         for (xx=0;xx < w; ++xx)
         {
             tft_drawPixel(win, x+xx,y+yy,*ptr++);
         }
-		pixels += w;
-		if(pixels >= 0x3ff)
+		wdcount += w;
+		if(wdcount >= 0x3ff)
 		{
-			pixels = 0;
+			wdcount = 0;
 			ets_wdt_disable();
 		}
     }
@@ -552,55 +669,59 @@ void tft_writeRect(window *win, int16_t x, int16_t y, int16_t w, int16_t h, uint
 
 void tft_readRect(window *win, int16_t x, int16_t y, int16_t w, int16_t h, uint16_t *color)
 {
-	uint32_t pixels;
-	int count;
+	int32_t pixels;
+	int wdcount;
 	int rem;
 	uint8_t cmd;
 	uint8_t *ptr;
 	// Command and Pixel buffer
-	uint8_t data[2+HSPI_PIX*3];
+	uint8_t data[64*3];
 
 	// set window
     pixels = tft_rel_window(win, x,y,w,h);
-//hspi_waitReady();
-//TFT_COMMAND;
 
 	cmd = 0x2e;	// Memory Read
 
-	count = 0;
-	while(pixels)
+
+	wdcount = 0;
+	while(pixels > 0)
 	{
-		data[0] = cmd;
-		data[1]; // send dummy NOP
-		if(pixels > HSPI_PIX)
-			rem = HSPI_PIX;
+		tft_spi_begin();
+
+		tft_Cmd(cmd);
+		tft_Cmd(0);	// NOP
+
+		if(pixels > sizeof(data)/3)
+			rem = sizeof(data)/3;
 		else
 			rem = pixels;
+
 		pixels -= rem;
-		count += rem;
-		if(count >= 0x3ff)
-		{
-			ets_wdt_disable();
-			count = 0;
-		}
+
+		wdcount += rem;
 
 		// Send/Receive
-		hspi_waitReady();
-		TFT_COMMAND;
-		// Command and 3 byte pixel data
-		hspi_TxRx(data, 2+rem*3);
+		// Read 3 byte pixel data
+		tft_spi_RX(data, rem*3,1);
 
-		ptr = data + 2;
-		// reconvert data into 2 byte pixel array
+		tft_spi_end();
+
+		// Now reconvert 3 byte color data into 2 byte color data
+		ptr = data;
 		while(rem--)
 		{
 			// reuse the color buffer
-			// overwrite the 3 byte pixle and command with 2 byte pixle only data
+			// overwrite the 3 byte/pixel with 2 byte/pixle only data
 			*color++ = tft_RGBto565(ptr[0],ptr[1],ptr[2]);
 			ptr += 3;
 		}
-		cmd = 0x2e;	// Memory Read Continue
-		cmd = 0x3e;
+		cmd = 0x3e; // Memory Read Continue
+
+		if(wdcount >= 0x3ff)
+		{
+			ets_wdt_disable();
+			wdcount = 0;
+		}
 	}
 }
 
@@ -630,8 +751,8 @@ void tft_Vscroll(window *win, int dir)
 
 /// @brief Read one pixel and return color in 1bit 565 RGB format
 /// We clip the window to the current view
-/// Note: Read Memory must be don in a continious write/read operation
-/// If we try to use one hspi_TxRx followed by another it will always fail
+/// Note: Read Memory must be done in a continious write/read operation
+/// Chip select can not be deactivated for the transaction
 /// @param[in] win*: window structure
 /// @param[in] x: X Start
 /// @param[in] y: Y Start
@@ -641,12 +762,17 @@ uint16_t tft_readPixel(window *win, int16_t x, int16_t y)
     uint8_t data[5];
     uint16_t color;
 	// set window
+
     tft_rel_window(win, x,y,1,1);
-    data[0] = 0x2e;
-    data[1]; // send dummy NOP
-    hspi_waitReady();
-    TFT_COMMAND;
-    hspi_TxRx(data, 5);
+
+	tft_spi_begin();
+	
+    tft_Cmd(0x2e);
+    tft_Cmd(0);		// NOP
+    tft_spi_TXRX(data, 5, 0);
+
+	tft_spi_end();
+
     color = tft_RGBto565(data[2],data[3],data[4]);
     return(color);
 }
@@ -696,24 +822,13 @@ void tft_setRotation(uint8_t m)
             tft->yoff = 	TFT_XOFF;
             break;
     }
-    tft_Cmd_Data_TXRX(ILI9341_MADCTL, &data, 1);
+
+    tft_Cmd_Data_TX(ILI9341_MADCTL, &data, 1);
 }
 
 /// ====================================
 /// @brief Color conversions
 /// ====================================
-
-#if 0
-/// @brief  Pass 8-bit (each) R,G,B, get back 16-bit packed color
-/// ILI9341 defaults to MSB/LSB data so we have to reverse it
-/// @param[in] r: red data
-/// @param[in] b: blue data
-/// @param[in] g: green data
-uint16_t tft_RGBto565(uint8_t r, uint8_t g, uint8_t b)
-{
-    return ((r & 0xf8) << 8) | ((g & 0xfc) << 3) | ((b & 0xf8) >>3);
-}
-#endif
 
 /// @brief  Convert 16bit colr into 8-bit (each) R,G,B
 /// ILI9341 defaults to MSB/LSB data so we have to reverse it
@@ -736,7 +851,10 @@ MEMSPACE
 void tft_invertDisplay(int flag)
 {
     uint8_t cmd = flag ? ILI9341_INVON : ILI9341_INVOFF;
+
+	tft_spi_begin();
     tft_Cmd(cmd);
+	tft_spi_end();
 }
 
 

@@ -6,8 +6,6 @@ var searchData=
   ['_5fdata',['_data',['../util_8c.html#a45c84a718a302530a9e80cce14821e33',1,'util.c']]],
   ['_5fdata_5fend',['_data_end',['../cal__dex_8c.html#a631d10379fb6298dec3a091dff85fbfe',1,'cal_dex.c']]],
   ['_5fdata_5fstart',['_data_start',['../cal__dex_8c.html#a52ac470a9c391e36c01d0f292c65cf19',1,'cal_dex.c']]],
-  ['_5ff_5ftx_5fbuf',['_f_tx_buf',['../hspi_8c.html#a462e6c70498a0e04a7e0b5ac8397feff',1,'hspi.c']]],
-  ['_5ff_5ftx_5find',['_f_tx_ind',['../hspi_8c.html#a9df4d317da7fd120a1281cfca6a572f6',1,'hspi.c']]],
   ['_5frodata_5fend',['_rodata_end',['../cal__dex_8c.html#a9088afdf082e7273471de67d7a306299',1,'cal_dex.c']]],
   ['_5frodata_5fstart',['_rodata_start',['../cal__dex_8c.html#a9b0d08ce55c1dd45663ece989b591af3',1,'cal_dex.c']]],
   ['_5ftext_5fend',['_text_end',['../cal__dex_8c.html#af0ad9d4bf681198482b41f2cc86f0f8b',1,'cal_dex.c']]],
