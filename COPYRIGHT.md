@@ -18,16 +18,12 @@
 
  You should have received a copy of the GNU General Public License
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-
 ___
  @par Tool chain - used by this project - pfalcon/esp-open-sdk 
- @see  https://github.com/pfalcon/esp-open-sdk
-
+ @see https://github.com/pfalcon/esp-open-sdk
 ___
  @par Alternate tool chain - CHERTS esp8266-devkit - great set of examples!
  @see https://github.com/CHERTS/esp8266-devkit/tree/master/Espressif/examples/esp8266_ili9341
-
 ___
  @par Optimized Line drawing function and Makefile from CHERTS
  @see https://github.com/CHERTS/esp8266-devkit/tree/master/Espressif/examples/esp8266_ili9341
@@ -37,14 +33,16 @@ ___
   All rights reserved.
  @see  https://github.com/adafruit/Adafruit-GFX-Library
 ___
+ @par FatFS code
+ @par FatFs Copyright (c) 2013 ChaN
+ @see  http://elm-chan.org/fsw/ff/00index_e.html
+___
  @par UCS X11 fixed fonts by Markus Kuhn, etc
  @see http://www.cl.cam.ac.uk/~mgk25/ucs-fonts.html
  * Unicode versions of the X11 "misc-fixed-*" fonts
-
 ___
  @par Rockbox font collections
  @see http://www.rockbox.org
- 
 ___
  @par BDF Specification by Adobe
  @see https://partners.adobe.com/public/developer/en/font/5005.BDF_Spec.pdf

@@ -13,28 +13,28 @@
  * ESP8266 ILI9341 with multiple window support and networking demo
     * The specific display is an TM022HDH26 display I got from ebay.
  * I wrote the following support functions from scratch
- * Font compiler and display code
-  * CORDIC C table generator and 3D transformation code support functions
-  * Wire frame viewer and C generator for Earth coastline data
-  * Small Print with full floating point support along with ftoa/atof and integer conversions
-  * BDF fonts and a BDF font to C conversion code and optimized display code
-  * Network server client example for display updates
-  * Uart network server client for serial uart to network bridge.
-  * Generic queue handling code
-  * Uart driver.
-  * ILI9341 display driver with multiple custom sized window support 
-  * readPixel() and custom sized window scrolling 
-     * Not limited by ILI9341 hardware scroll restrictions.
+   * Font compiler and display code
+   * ILI9341 display driver with multiple custom sized window support 
+    * (I rewrote most of Adafruit code ili9341 graphics library)
+    * readPixel() and custom sized window scrolling 
+    * Not limited by ILI9341 hardware scroll restrictions.
+   * CORDIC C table generator and 3D transformation code support functions
+   * Wire frame viewer and C generator for Earth coastline data
+     * I created two wireframe demos 
+       * Cube wireframe dataset
+       * Earth coastline dataset - wireframe view still needs hidden line removal option
+   * Small Print with full floating point support along with ftoa/atof and integer conversions
+   * BDF fonts and a BDF font to C conversion code and optimized display code
+   * Network server client example for display updates
+   * Uart network server client for serial uart to network bridge.
+   * Generic queue handling code
+   * Uart driver.
+   * POSIX wrappers for FatFS support by ChaN
+   * POSIX time functions and RTC set with NTP
+   * timers used by rtc and time functions
+   * HSPI code that can handle multiple chip select and clock frequencies
+ * Includes FatFS SD card support by ChaN
    
- * Updated:
-  * I rewrote most of Adafruit code ili9341 graphics library
-  * HSPI code now correctly handles memory size and alignment 
-
- * I created a wireframe viewed and two wireframe demos 
-  * Cube wireframe dataset
-  * Earth coastline dataset - wireframe view still needs hidden line removal option
- 
-___
 
 @par Credits
   * Built using ESP Open SDK - or esp8266-devkit by CHERTS
@@ -49,6 +49,8 @@ ___
     @see http://www.cl.cam.ac.uk/~mgk25/ucs-fonts.html
     @see http://en.wikipedia.org/wiki/Glyph_Bitmap_Distribution_Format
     @see https://partners.adobe.com/public/developer/en/font/5005.BDF_Spec.pdf
+  * FatFS:
+    @see http://elm-chan.org/fsw/ff/00index_e.html
 ___
 
 @par Directories
@@ -135,6 +137,29 @@ ___
            * world_50m.txt
              * Coastline data at various resolutions
 
+   * fatfs
+     * SD CARD support with FatFS and POSIX wrappers modified to use hardware abstraction
+     * Files originally from FatFs (C)ChaN, 2013
+       * disk.c
+       * disk.h
+       * diskio.h
+       * ff.c
+       * ffconf.h
+       * ff.h
+       * integer.h
+       * mmc.c
+       * mmc.h
+       * option
+       * syscall.c
+       * unicode.c
+     * My interface and POSIX wrappers
+       * fatfs_utils.c
+       * fatfs_utils.h
+       * mmc_hal.c
+       * mmc_hal.h
+       * posix.c
+       * posix.h
+
    * fonts 
      * BDF Font conversion code
        * bdffont2c.c  
@@ -165,6 +190,15 @@ ___
 
    * include 
      * misc esp8266 include files
+
+   * lib
+     * time, rtc and timer functions
+      * time.h
+      * time.c - POSIX time functions
+      * timer.h
+      * timer.c - simple timers (only intended for quick functions)
+      * timer_hal.h
+      * timer_hal.c - timer hardware abstraction layer
 
    * network
      * Simple network server - displays message sent by send.c 

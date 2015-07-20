@@ -24,38 +24,37 @@
 \item The specific display is an T\-M022\-H\-D\-H26 display I got from ebay.
 \end{DoxyItemize}
 \item I wrote the following support functions from scratch
-\item Font compiler and display code
 \begin{DoxyItemize}
+\item Font compiler and display code
+\item I\-L\-I9341 display driver with multiple custom sized window support
+\begin{DoxyItemize}
+\item (I rewrote most of Adafruit code ili9341 graphics library)
+\item read\-Pixel() and custom sized window scrolling
+\item Not limited by I\-L\-I9341 hardware scroll restrictions.
+\end{DoxyItemize}
 \item C\-O\-R\-D\-I\-C C table generator and 3\-D transformation code support functions
 \item Wire frame viewer and C generator for Earth coastline data
+\begin{DoxyItemize}
+\item I created two wireframe demos
+\begin{DoxyItemize}
+\item Cube wireframe dataset
+\item Earth coastline dataset -\/ wireframe view still needs hidden line removal option
+\end{DoxyItemize}
+\end{DoxyItemize}
 \item Small Print with full floating point support along with ftoa/atof and integer conversions
 \item B\-D\-F fonts and a B\-D\-F font to C conversion code and optimized display code
 \item Network server client example for display updates
 \item Uart network server client for serial uart to network bridge.
 \item Generic queue handling code
 \item Uart driver.
-\item I\-L\-I9341 display driver with multiple custom sized window support
-\item read\-Pixel() and custom sized window scrolling
-\begin{DoxyItemize}
-\item Not limited by I\-L\-I9341 hardware scroll restrictions.
+\item P\-O\-S\-I\-X wrappers for Fat\-F\-S support by Cha\-N
+\item P\-O\-S\-I\-X time functions and R\-T\-C set with N\-T\-P
+\item timers used by rtc and time functions
+\item H\-S\-P\-I code that can handle multiple chip select and clock frequencies
 \end{DoxyItemize}
-\end{DoxyItemize}
-\item Updated\-:
-\begin{DoxyItemize}
-\item I rewrote most of Adafruit code ili9341 graphics library
-\item H\-S\-P\-I code now correctly handles memory size and alignment
-\end{DoxyItemize}
-\item I created a wireframe viewed and two wireframe demos
-\begin{DoxyItemize}
-\item Cube wireframe dataset
-\item Earth coastline dataset -\/ wireframe view still needs hidden line removal option
-\end{DoxyItemize}
+\item Includes Fat\-F\-S S\-D card support by Cha\-N
 \end{DoxyItemize}
 \end{DoxyParagraph}
-
-
-
-
 \begin{DoxyParagraph}{Credits}
 
 \begin{DoxyItemize}
@@ -86,7 +85,12 @@
 
 \href{http://en.wikipedia.org/wiki/Glyph_Bitmap_Distribution_Format}{\tt http\-://en.\-wikipedia.\-org/wiki/\-Glyph\-\_\-\-Bitmap\-\_\-\-Distribution\-\_\-\-Format} 
 
-\href{https://partners.adobe.com/public/developer/en/font/5005.BDF_Spec.pdf}{\tt https\-://partners.\-adobe.\-com/public/developer/en/font/5005.\-B\-D\-F\-\_\-\-Spec.\-pdf} 
+\href{https://partners.adobe.com/public/developer/en/font/5005.BDF_Spec.pdf}{\tt https\-://partners.\-adobe.\-com/public/developer/en/font/5005.\-B\-D\-F\-\_\-\-Spec.\-pdf}
+\begin{DoxyItemize}
+\item Fat\-F\-S\-: 
+\end{DoxyItemize}
+
+\href{http://elm-chan.org/fsw/ff/00index_e.html}{\tt http\-://elm-\/chan.\-org/fsw/ff/00index\-\_\-e.\-html} 
 
 
 \end{DoxySeeAlso}
@@ -236,6 +240,34 @@
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
+\item fatfs
+\begin{DoxyItemize}
+\item S\-D C\-A\-R\-D support with Fat\-F\-S and P\-O\-S\-I\-X wrappers modified to use hardware abstraction
+\item Files originally from Fat\-Fs (C)Cha\-N, 2013
+\begin{DoxyItemize}
+\item \hyperlink{disk_8c}{disk.\-c}
+\item \hyperlink{disk_8h}{disk.\-h}
+\item \hyperlink{diskio_8h}{diskio.\-h}
+\item \hyperlink{ff_8c}{ff.\-c}
+\item \hyperlink{ffconf_8h}{ffconf.\-h}
+\item \hyperlink{ff_8h}{ff.\-h}
+\item \hyperlink{integer_8h}{integer.\-h}
+\item \hyperlink{mmc_8c}{mmc.\-c}
+\item \hyperlink{mmc_8h}{mmc.\-h}
+\item option
+\item \hyperlink{syscall_8c}{syscall.\-c}
+\item \hyperlink{unicode_8c}{unicode.\-c}
+\end{DoxyItemize}
+\item My interface and P\-O\-S\-I\-X wrappers
+\begin{DoxyItemize}
+\item \hyperlink{fatfs__utils_8c}{fatfs\-\_\-utils.\-c}
+\item \hyperlink{fatfs__utils_8h}{fatfs\-\_\-utils.\-h}
+\item \hyperlink{mmc__hal_8c}{mmc\-\_\-hal.\-c}
+\item \hyperlink{mmc__hal_8h}{mmc\-\_\-hal.\-h}
+\item \hyperlink{posix_8c}{posix.\-c}
+\item \hyperlink{posix_8h}{posix.\-h}
+\end{DoxyItemize}
+\end{DoxyItemize}
 \item fonts
 \begin{DoxyItemize}
 \item B\-D\-F Font conversion code
@@ -290,6 +322,18 @@
 \item include
 \begin{DoxyItemize}
 \item misc esp8266 include files
+\end{DoxyItemize}
+\item lib
+\begin{DoxyItemize}
+\item time, rtc and timer functions
+\begin{DoxyItemize}
+\item \hyperlink{time_8h}{time.\-h}
+\item \hyperlink{time_8c}{time.\-c} -\/ P\-O\-S\-I\-X time functions
+\item \hyperlink{timer_8h}{timer.\-h}
+\item \hyperlink{timer_8c}{timer.\-c} -\/ simple timers (only intended for quick functions)
+\item \hyperlink{timer__hal_8h}{timer\-\_\-hal.\-h}
+\item \hyperlink{timer__hal_8c}{timer\-\_\-hal.\-c} -\/ timer hardware abstraction layer
+\end{DoxyItemize}
 \end{DoxyItemize}
 \item network
 \begin{DoxyItemize}

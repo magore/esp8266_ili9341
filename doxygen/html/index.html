@@ -98,36 +98,38 @@ README</h1>
 <li>The specific display is an TM022HDH26 display I got from ebay.</li>
 </ul>
 </li>
-<li>I wrote the following support functions from scratch</li>
-<li>Font compiler and display code<ul>
+<li>I wrote the following support functions from scratch<ul>
+<li>Font compiler and display code</li>
+<li>ILI9341 display driver with multiple custom sized window support<ul>
+<li>(I rewrote most of Adafruit code ili9341 graphics library)</li>
+<li>readPixel() and custom sized window scrolling</li>
+<li>Not limited by ILI9341 hardware scroll restrictions.</li>
+</ul>
+</li>
 <li>CORDIC C table generator and 3D transformation code support functions</li>
-<li>Wire frame viewer and C generator for Earth coastline data</li>
+<li>Wire frame viewer and C generator for Earth coastline data<ul>
+<li>I created two wireframe demos<ul>
+<li>Cube wireframe dataset</li>
+<li>Earth coastline dataset - wireframe view still needs hidden line removal option</li>
+</ul>
+</li>
+</ul>
+</li>
 <li>Small Print with full floating point support along with ftoa/atof and integer conversions</li>
 <li>BDF fonts and a BDF font to C conversion code and optimized display code</li>
 <li>Network server client example for display updates</li>
 <li>Uart network server client for serial uart to network bridge.</li>
 <li>Generic queue handling code</li>
 <li>Uart driver.</li>
-<li>ILI9341 display driver with multiple custom sized window support</li>
-<li>readPixel() and custom sized window scrolling<ul>
-<li>Not limited by ILI9341 hardware scroll restrictions.</li>
+<li>POSIX wrappers for FatFS support by ChaN</li>
+<li>POSIX time functions and RTC set with NTP</li>
+<li>timers used by rtc and time functions</li>
+<li>HSPI code that can handle multiple chip select and clock frequencies</li>
 </ul>
 </li>
-</ul>
-</li>
-<li>Updated:<ul>
-<li>I rewrote most of Adafruit code ili9341 graphics library</li>
-<li>HSPI code now correctly handles memory size and alignment</li>
-</ul>
-</li>
-<li>I created a wireframe viewed and two wireframe demos<ul>
-<li>Cube wireframe dataset</li>
-<li>Earth coastline dataset - wireframe view still needs hidden line removal option</li>
-</ul>
-</li>
+<li>Includes FatFS SD card support by ChaN</li>
 </ul>
 </dd></dl>
-<hr/>
 <dl class="section user"><dt>Credits</dt><dd><ul>
 <li>Built using ESP Open SDK - or esp8266-devkit by CHERTS </li>
 </ul>
@@ -155,7 +157,12 @@ README</h1>
 <dd>
 <a href="http://en.wikipedia.org/wiki/Glyph_Bitmap_Distribution_Format">http://en.wikipedia.org/wiki/Glyph_Bitmap_Distribution_Format</a> </dd>
 <dd>
-<a href="https://partners.adobe.com/public/developer/en/font/5005.BDF_Spec.pdf">https://partners.adobe.com/public/developer/en/font/5005.BDF_Spec.pdf</a> <hr/>
+<a href="https://partners.adobe.com/public/developer/en/font/5005.BDF_Spec.pdf">https://partners.adobe.com/public/developer/en/font/5005.BDF_Spec.pdf</a><ul>
+<li>FatFS: </li>
+</ul>
+</dd>
+<dd>
+<a href="http://elm-chan.org/fsw/ff/00index_e.html">http://elm-chan.org/fsw/ff/00index_e.html</a> <hr/>
 </dd></dl>
 <dl class="section user"><dt>Directories</dt><dd><ul>
 <li>.<ul>
@@ -300,6 +307,34 @@ README</h1>
 </li>
 </ul>
 </li>
+<li>fatfs<ul>
+<li>SD CARD support with FatFS and POSIX wrappers modified to use hardware abstraction</li>
+<li>Files originally from FatFs (C)ChaN, 2013<ul>
+<li><a class="el" href="disk_8c.html" title="Allocate, Free and display FILINFO structurs, getfattime(), display error messages. ">disk.c</a></li>
+<li><a class="el" href="disk_8h.html" title="Allocate, Free and display FILINFO structurs, getfattime(), display error messages. ">disk.h</a></li>
+<li><a class="el" href="diskio_8h.html" title="FafFs disk interface modlue include file (C) ChaN, 2013. ">diskio.h</a></li>
+<li><a class="el" href="ff_8c.html" title="FatFS file system module include file R0.10b (C) ChaN, 2014. ">ff.c</a></li>
+<li><a class="el" href="ffconf_8h.html" title="FatFS file system module configuration file R0.10b (C) ChaN, 2014. ">ffconf.h</a></li>
+<li><a class="el" href="ff_8h.html" title="FatFS file system module include file R0.10b (C) ChaN, 2014. ">ff.h</a></li>
+<li><a class="el" href="integer_8h.html" title="Integer type definitions for FatFs project module (C) ChaN, 2013. ">integer.h</a></li>
+<li><a class="el" href="mmc_8c.html" title="MMC upper level interface to FatFS. ">mmc.c</a></li>
+<li><a class="el" href="mmc_8h.html">mmc.h</a></li>
+<li>option</li>
+<li><a class="el" href="syscall_8c.html">syscall.c</a></li>
+<li><a class="el" href="unicode_8c.html">unicode.c</a></li>
+</ul>
+</li>
+<li>My interface and POSIX wrappers<ul>
+<li><a class="el" href="fatfs__utils_8c.html" title="fatfs test utilities with user interface ">fatfs_utils.c</a></li>
+<li><a class="el" href="fatfs__utils_8h.html" title="fatfs test utilities with user interface ">fatfs_utils.h</a></li>
+<li><a class="el" href="mmc__hal_8c.html">mmc_hal.c</a></li>
+<li><a class="el" href="mmc__hal_8h.html" title="MMC Hardware Layer for FatFs. ">mmc_hal.h</a></li>
+<li><a class="el" href="posix_8c.html" title="PRovides hardware abstraction layer to MMC.C. ">posix.c</a></li>
+<li><a class="el" href="posix_8h.html" title="POSIX wrapper for FatFS. ">posix.h</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li>fonts<ul>
 <li>BDF Font conversion code<ul>
 <li><a class="el" href="bdffont2c_8c.html" title="BDF to C code converter Copyright © 2015 Mike Gore. ">bdffont2c.c</a><ul>
@@ -353,6 +388,18 @@ README</h1>
 </li>
 <li>include<ul>
 <li>misc esp8266 include files</li>
+</ul>
+</li>
+<li>lib<ul>
+<li>time, rtc and timer functions<ul>
+<li><a class="el" href="time_8h.html" title="Common Linux/POSIX time functions. ">time.h</a></li>
+<li><a class="el" href="time_8c.html" title="Common Linux/POSIX time functions. ">time.c</a> - POSIX time functions</li>
+<li><a class="el" href="timer_8h.html" title="timer functions ">timer.h</a></li>
+<li><a class="el" href="timer_8c.html" title="timer functions ">timer.c</a> - simple timers (only intended for quick functions)</li>
+<li><a class="el" href="timer__hal_8h.html" title="timer hardware abstartion layer functions ">timer_hal.h</a></li>
+<li><a class="el" href="timer__hal_8c.html" title="timer hardware abstartion layer functions ">timer_hal.c</a> - timer hardware abstraction layer</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>network<ul>
@@ -444,7 +491,7 @@ README</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 19 2015 20:49:08 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 19 2015 21:11:16 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
