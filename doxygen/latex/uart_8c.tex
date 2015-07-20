@@ -6,12 +6,7 @@
 Uart driver for E\-S\-P8266.  
 
 
-{\ttfamily \#include \char`\"{}ets\-\_\-sys.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}osapi.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}uart.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}uart\-\_\-register.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}mem.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}os\-\_\-type.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}user\-\_\-config.\-h\char`\"{}}\\*
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -27,52 +22,69 @@ void \hyperlink{uart_8c_a69f8feef88b9921367f37e8db445eeaf}{tx\-\_\-fifo\-\_\-flu
 \begin{DoxyCompactList}\small\item\em Flush transmit fifo for a uart. \end{DoxyCompactList}\item 
 void \hyperlink{uart_8c_a6b9147fc5ffaf0a602cc60a8addb8a38}{rx\-\_\-fifo\-\_\-flush} (int uart\-\_\-no)
 \begin{DoxyCompactList}\small\item\em Flush receive fifo for a uart. \end{DoxyCompactList}\item 
-I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R int \hyperlink{uart_8c_a6761468e5e160ada4cc1812f3d828c3e}{tx\-\_\-fifo\-\_\-used} (int uart\-\_\-no)
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{uart_8c_a6f8397ebf08ae984ed48144d0287a048}{tx\-\_\-fifo\-\_\-used} (int uart\-\_\-no)
 \begin{DoxyCompactList}\small\item\em Get the number of bytes used in transmit fifo. \end{DoxyCompactList}\item 
-I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R int \hyperlink{uart_8c_adb027a9de79ce5fcfb3e5b944221159c}{tx\-\_\-fifo\-\_\-free} (int uart\-\_\-no)
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{uart_8c_a3c0f172370540e0d1840c415c2c7b661}{tx\-\_\-fifo\-\_\-free} (int uart\-\_\-no)
 \begin{DoxyCompactList}\small\item\em Get the number of bytes free in transmit fifo. \end{DoxyCompactList}\item 
-I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R int \hyperlink{uart_8c_a9e43189a4098d02ddc7069f727fe0b6e}{tx\-\_\-fifo\-\_\-empty} (int uart\-\_\-no)
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{uart_8c_a50e81b3a1433d1947bdff1b9bdf425d3}{tx\-\_\-fifo\-\_\-empty} (int uart\-\_\-no)
 \begin{DoxyCompactList}\small\item\em Test if the transmit fifo is empty. \end{DoxyCompactList}\item 
-I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R int \hyperlink{uart_8c_a281bc3c996dd0fd5c3f08da55bedbe27}{rx\-\_\-fifo\-\_\-used} (int uart\-\_\-no)
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{uart_8c_a09c378ce1610cb5e63469a4ee6813de2}{rx\-\_\-fifo\-\_\-used} (int uart\-\_\-no)
 \begin{DoxyCompactList}\small\item\em Get the number of bytes used in receive fifo. \end{DoxyCompactList}\item 
-I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R int \hyperlink{uart_8c_ae4b43d84c14e9a86476c015359549e20}{rx\-\_\-fifo\-\_\-free} (int uart\-\_\-no)
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{uart_8c_aa59d5d55b7cd6551d97ef6af22949c82}{rx\-\_\-fifo\-\_\-free} (int uart\-\_\-no)
 \begin{DoxyCompactList}\small\item\em Get the number of bytes free in receive fifo. \end{DoxyCompactList}\item 
-I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R int \hyperlink{uart_8c_ac2e177e717aae4de72f2bb1fdb6826b1}{rx\-\_\-fifo\-\_\-empty} (int uart\-\_\-no)
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{uart_8c_a3ffd1f20ba2ca3ef0894473091b25012}{rx\-\_\-fifo\-\_\-empty} (int uart\-\_\-no)
 \begin{DoxyCompactList}\small\item\em Test if the receive fifo is empty. \end{DoxyCompactList}\item 
-I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} \hyperlink{uart_8c_a23bdd2e9b8ab8a4eda1d7b478e045eee}{tx\-\_\-fifo\-\_\-putc} (int uart\-\_\-no, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} c)
-\begin{DoxyCompactList}\small\item\em Add a byte to the trasmit fifo We assume that \hyperlink{uart_8c_adb027a9de79ce5fcfb3e5b944221159c}{tx\-\_\-fifo\-\_\-free()} was called! \end{DoxyCompactList}\item 
-I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} \hyperlink{uart_8c_a257c0e165980098c8714d69eaf8f75a5}{rx\-\_\-fifo\-\_\-getc} (int uart\-\_\-no)
-\begin{DoxyCompactList}\small\item\em Remove a byte from the receive fifo We assume that \hyperlink{uart_8c_a281bc3c996dd0fd5c3f08da55bedbe27}{rx\-\_\-fifo\-\_\-used()} was called! \end{DoxyCompactList}\item 
-I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R int \hyperlink{uart_8c_ac719715c19d55bb7cdba5cbc85a2805d}{tx\-\_\-fifo\-\_\-write} (int uart\-\_\-no, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$buf, int size)
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} \hyperlink{uart_8c_a768fe76dc08754a1812bc4e5e2f1b0e0}{tx\-\_\-fifo\-\_\-putc} (int uart\-\_\-no, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} c)
+\begin{DoxyCompactList}\small\item\em Add a byte to the trasmit fifo We assume that \hyperlink{uart_8c_a3c0f172370540e0d1840c415c2c7b661}{tx\-\_\-fifo\-\_\-free()} was called! \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} \hyperlink{uart_8c_a82ec27afa5b913b022cc57c1bd5d5528}{rx\-\_\-fifo\-\_\-getc} (int uart\-\_\-no)
+\begin{DoxyCompactList}\small\item\em Remove a byte from the receive fifo We assume that \hyperlink{uart_8c_a09c378ce1610cb5e63469a4ee6813de2}{rx\-\_\-fifo\-\_\-used()} was called! \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{uart_8c_a6658637d750ec2e2366ac3881dbd9f6e}{tx\-\_\-fifo\-\_\-write} (int uart\-\_\-no, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$buf, int size)
 \begin{DoxyCompactList}\small\item\em Write a data buffer to the transmit fifo Note\-: This function does not wait/block util there is enough free space to meet the request. So you must check that the return value matches the size. \end{DoxyCompactList}\item 
-I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R int \hyperlink{uart_8c_af0b296a8c71d2c06c229342a906201e0}{rx\-\_\-fifo\-\_\-read} (int uart\-\_\-no, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$buf, int size)
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{uart_8c_a5ee039ccb34468de12203a7027fee1ce}{rx\-\_\-fifo\-\_\-read} (int uart\-\_\-no, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$buf, int size)
 \begin{DoxyCompactList}\small\item\em Read a data buffer from the receive fifo Note\-: This function does not wait/block util there is enough free space to meet the request. So you must check that the return value matches the size. \end{DoxyCompactList}\item 
-L\-O\-C\-A\-L I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R void \hyperlink{uart_8c_a48b3793724004cfcdfdd2e2ad69cfa07}{uart\-\_\-putb} (uint8 uart\-\_\-no, uint8 data)
+L\-O\-C\-A\-L \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{uart_8c_a3d19962bf637dbfa1fbd66020570f64f}{uart\-\_\-putb} (uint8 uart\-\_\-no, uint8 data)
 \begin{DoxyCompactList}\small\item\em Blocking I/\-O functions. \end{DoxyCompactList}\item 
-L\-O\-C\-A\-L I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} \hyperlink{uart_8c_a46eeee9883d1494fe44bf55fd5508bc5}{uart\-\_\-getb} (int uart\-\_\-no)
+L\-O\-C\-A\-L \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} \hyperlink{uart_8c_a2d03af0672e67715b10ea90aca69743d}{uart\-\_\-getb} (int uart\-\_\-no)
 \begin{DoxyCompactList}\small\item\em Read a byte from a uart Note\-: This function waits/blocks util the read can happen. \end{DoxyCompactList}\item 
-I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R void \hyperlink{uart_8c_a7022706232b5c20a126ce7f719496f49}{uart\-\_\-putc} (uint8 uart\-\_\-no, char c)
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{uart_8c_a4edbb01728f45e11ed6717416bbb9309}{uart\-\_\-putc} (uint8 uart\-\_\-no, char c)
 \begin{DoxyCompactList}\small\item\em Write a byte from a uart with N\-L to C\-R/\-N\-L conversion Note\-: This function waits/blocks util the write can happen. \end{DoxyCompactList}\item 
-I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} \hyperlink{uart_8c_a2b78e553fb7c85fc8f67ab095aee6904}{uart\-\_\-getc} (int uart\-\_\-no)
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} \hyperlink{uart_8c_a64dbce670a0ba6a547378d2305d03dfa}{uart\-\_\-getc} (int uart\-\_\-no)
 \begin{DoxyCompactList}\small\item\em Read a byte from a uart with N\-L to C\-R/\-N\-L conversion Note\-: This function waits/blocks util the read can happen. \end{DoxyCompactList}\item 
-I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R void \hyperlink{uart_8c_a9d0039c2b51e8187acfa97c6cfe1a8e3}{uart0\-\_\-putc} (uint8 c)
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{uart_8c_a38d539495f2c5329441ccedc26081afa}{uart0\-\_\-putc} (uint8 c)
 \begin{DoxyCompactList}\small\item\em Write a byte to uart0 with N\-L to C\-R/\-N\-L conversion Note\-: This function waits/blocks util the write can happen. \end{DoxyCompactList}\item 
-I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} \hyperlink{uart_8c_a08d5d946ab42a42b1bb8f9b9453d5900}{uart0\-\_\-getc} ()
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} \hyperlink{uart_8c_a49dc3c01092320490b61e1f480b76b9b}{uart0\-\_\-getc} ()
 \begin{DoxyCompactList}\small\item\em Read a byte from uart0 with N\-L to C\-R/\-N\-L conversion Note\-: This function waits/blocks util the read can happen. \end{DoxyCompactList}\item 
-I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R void \hyperlink{uart_8c_a5b6fca6f048f53f570fe459ac9a3e12a}{uart1\-\_\-putc} (uint8 c)
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{uart_8c_a5e535e1ea0c08984d0de21b4d2cb4cec}{uart1\-\_\-putc} (uint8 c)
 \begin{DoxyCompactList}\small\item\em Write a byte to uart1 with N\-L to C\-R/\-N\-L conversion Note\-: This function waits/blocks util the write can happen. \end{DoxyCompactList}\item 
-I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} \hyperlink{uart_8c_a38c4c0e60868ea9f657d6719ab8f5c30}{uart1\-\_\-getc} ()
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} \hyperlink{uart_8c_abedb89603c5e67609094af8047f22bd3}{uart1\-\_\-getc} ()
 \begin{DoxyCompactList}\small\item\em Read a byte from uart1 with N\-L to C\-R/\-N\-L conversion Note\-: This function waits/blocks util the read can happen. \end{DoxyCompactList}\item 
 void \hyperlink{uart_8c_aa018dc93fd77400560f0ab7e8d78f59a}{uart\-\_\-callback} (void $\ast$p)
 \begin{DoxyCompactList}\small\item\em Uart interrupt callback function Process all receive and transmit events here. \end{DoxyCompactList}\item 
-I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R void \hyperlink{uart_8c_ad3fa6c77cde907b77f2a2b53c65de791}{uart\-\_\-config} (uint8 uart\-\_\-no, \hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\-\_\-t} baud, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} data\-\_\-bits, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} stop\-\_\-bits, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} parity)
+void \hyperlink{uart_8c_ace748ed36c0f9b9c90310db65b3afeab}{uart0\-\_\-gets\-\_\-add} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} data)
+\begin{DoxyCompactList}\small\item\em transfer data into the uart0\-\_\-gets\-\_\-receive\-\_\-queue Provide line buffering for \hyperlink{uart_8c_a9d100391356ca809d7cd75e23633f213}{uart0\-\_\-gets()} \mbox{[}in\mbox{]} data\-: character to add to queue \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{uart_8c_a1b9078ded4ced8bfa5d73c2a77e90028}{uart0\-\_\-gets\-\_\-init} (int size)
+\begin{DoxyCompactList}\small\item\em allocate and initialize uart0\-\_\-gets data structures Provide line buffering for \hyperlink{uart_8c_a9d100391356ca809d7cd75e23633f213}{uart0\-\_\-gets()} \mbox{[}in\mbox{]} size\-: size of line buffer \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{uart_8c_a9d100391356ca809d7cd75e23633f213}{uart0\-\_\-gets} (char $\ast$buf, int max)
+\begin{DoxyCompactList}\small\item\em uart0\-\_\-gets non-\/blocking line buffered gets \mbox{[}in\mbox{]} buf\-: user buffer to fill \mbox{[}in\mbox{]} max\-: miximum size of buf \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{uart_8c_afde4532b11b79411c904be3b2672c5e8}{uart\-\_\-config} (uint8 uart\-\_\-no, \hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\-\_\-t} baud, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} data\-\_\-bits, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} stop\-\_\-bits, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} parity)
 \begin{DoxyCompactList}\small\item\em Uart configuration, baud rate, data and stop bits, parity. \end{DoxyCompactList}\item 
-I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R void \hyperlink{uart_8c_a7dd63feb254687cfd8dcb99320d1093f}{uart\-\_\-init} (\hyperlink{uart_8h_a9aa1e56362027f49bfbe4378b8c889a4}{Uart\-Baud\-Rate} uart0\-\_\-br, \hyperlink{uart_8h_a9aa1e56362027f49bfbe4378b8c889a4}{Uart\-Baud\-Rate} uart1\-\_\-br)
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{uart_8c_a5afb95571d79d939651ef59768fde839}{uart\-\_\-init} (\hyperlink{uart_8h_a9aa1e56362027f49bfbe4378b8c889a4}{Uart\-Baud\-Rate} uart0\-\_\-br, \hyperlink{uart_8h_a9aa1e56362027f49bfbe4378b8c889a4}{Uart\-Baud\-Rate} uart1\-\_\-br)
 \begin{DoxyCompactList}\small\item\em initialize uart0 and uart1 Defaults\-: 8 = data bits, 1 = stop bits, no parity \end{DoxyCompactList}\item 
-I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R void \hyperlink{uart_8c_afab391aef9a1293efb604af9af878012}{uart\-\_\-reattach} ()
-\begin{DoxyCompactList}\small\item\em Reinitialize uart0 and uart1 calls \hyperlink{uart_8c_a7dd63feb254687cfd8dcb99320d1093f}{uart\-\_\-init()} \end{DoxyCompactList}\item 
-I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R void \hyperlink{uart_8c_a308b9b9451e59e8484212b645ef6960d}{U\-A\-R\-T\-\_\-\-Set\-Print\-Port} (uint8 uart\-\_\-no)
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{uart_8c_ae2429f7cf15a9fba99f1c3d1d6499299}{uart\-\_\-reattach} ()
+\begin{DoxyCompactList}\small\item\em Reinitialize uart0 and uart1 calls \hyperlink{uart_8c_a5afb95571d79d939651ef59768fde839}{uart\-\_\-init()} \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{uart_8c_a83db8ea8db21280f74e2546414fc80f7}{U\-A\-R\-T\-\_\-\-Set\-Print\-Port} (uint8 uart\-\_\-no)
 \begin{DoxyCompactList}\small\item\em Install debug uart. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structqueue__t}{queue\-\_\-t} $\ast$ \hyperlink{uart_8c_ac28d82246860e7a128ed62a1dc1e2a39}{uart0\-\_\-gets\-\_\-receive\-\_\-queue}
+\begin{DoxyCompactList}\small\item\em uart0 receive queue \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{uart_8c_aef6c476aba65fb52789103fa95114183}{uart0\-\_\-gets\-\_\-line}
+\begin{DoxyCompactList}\small\item\em uart0 gets line bufer \end{DoxyCompactList}\item 
+\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} \hyperlink{uart_8c_a2fa51e30aedbdd8519c18b2053ff6fe5}{uart0\-\_\-gets\-\_\-ready} = 0
+\begin{DoxyCompactList}\small\item\em uart0 gets line buffer ready flag \end{DoxyCompactList}\item 
+int \hyperlink{uart_8c_a6275e22255f6dac92b97bdcc4101fe08}{uart0\-\_\-gets\-\_\-size} = 0
+\begin{DoxyCompactList}\small\item\em uar0 gets line buffer size \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -110,13 +122,13 @@ Definition in file \hyperlink{uart_8c_source}{uart.\-c}.
 
 
 \subsection{Function Documentation}
-\hypertarget{uart_8c_ac2e177e717aae4de72f2bb1fdb6826b1}{\index{uart.\-c@{uart.\-c}!rx\-\_\-fifo\-\_\-empty@{rx\-\_\-fifo\-\_\-empty}}
+\hypertarget{uart_8c_a3ffd1f20ba2ca3ef0894473091b25012}{\index{uart.\-c@{uart.\-c}!rx\-\_\-fifo\-\_\-empty@{rx\-\_\-fifo\-\_\-empty}}
 \index{rx\-\_\-fifo\-\_\-empty@{rx\-\_\-fifo\-\_\-empty}!uart.c@{uart.\-c}}
-\subsubsection[{rx\-\_\-fifo\-\_\-empty}]{\setlength{\rightskip}{0pt plus 5cm}I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R int rx\-\_\-fifo\-\_\-empty (
+\subsubsection[{rx\-\_\-fifo\-\_\-empty}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int rx\-\_\-fifo\-\_\-empty (
 \begin{DoxyParamCaption}
 \item[{int}]{uart\-\_\-no}
 \end{DoxyParamCaption}
-)}}\label{uart_8c_ac2e177e717aae4de72f2bb1fdb6826b1}
+)}}\label{uart_8c_a3ffd1f20ba2ca3ef0894473091b25012}
 
 
 Test if the receive fifo is empty. 
@@ -131,7 +143,7 @@ Test if the receive fifo is empty.
 \end{DoxyReturn}
 
 
-Definition at line 175 of file uart.\-c.
+Definition at line 182 of file uart.\-c.
 
 
 
@@ -158,19 +170,19 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 98 of file uart.\-c.
+Definition at line 105 of file uart.\-c.
 
 
 
 Referenced by uart\-\_\-config().
 
-\hypertarget{uart_8c_ae4b43d84c14e9a86476c015359549e20}{\index{uart.\-c@{uart.\-c}!rx\-\_\-fifo\-\_\-free@{rx\-\_\-fifo\-\_\-free}}
+\hypertarget{uart_8c_aa59d5d55b7cd6551d97ef6af22949c82}{\index{uart.\-c@{uart.\-c}!rx\-\_\-fifo\-\_\-free@{rx\-\_\-fifo\-\_\-free}}
 \index{rx\-\_\-fifo\-\_\-free@{rx\-\_\-fifo\-\_\-free}!uart.c@{uart.\-c}}
-\subsubsection[{rx\-\_\-fifo\-\_\-free}]{\setlength{\rightskip}{0pt plus 5cm}I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R int rx\-\_\-fifo\-\_\-free (
+\subsubsection[{rx\-\_\-fifo\-\_\-free}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int rx\-\_\-fifo\-\_\-free (
 \begin{DoxyParamCaption}
 \item[{int}]{uart\-\_\-no}
 \end{DoxyParamCaption}
-)}}\label{uart_8c_ae4b43d84c14e9a86476c015359549e20}
+)}}\label{uart_8c_aa59d5d55b7cd6551d97ef6af22949c82}
 
 
 Get the number of bytes free in receive fifo. 
@@ -185,18 +197,18 @@ bytes free
 \end{DoxyReturn}
 
 
-Definition at line 161 of file uart.\-c.
+Definition at line 168 of file uart.\-c.
 
-\hypertarget{uart_8c_a257c0e165980098c8714d69eaf8f75a5}{\index{uart.\-c@{uart.\-c}!rx\-\_\-fifo\-\_\-getc@{rx\-\_\-fifo\-\_\-getc}}
+\hypertarget{uart_8c_a82ec27afa5b913b022cc57c1bd5d5528}{\index{uart.\-c@{uart.\-c}!rx\-\_\-fifo\-\_\-getc@{rx\-\_\-fifo\-\_\-getc}}
 \index{rx\-\_\-fifo\-\_\-getc@{rx\-\_\-fifo\-\_\-getc}!uart.c@{uart.\-c}}
-\subsubsection[{rx\-\_\-fifo\-\_\-getc}]{\setlength{\rightskip}{0pt plus 5cm}I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R {\bf uint8\-\_\-t} rx\-\_\-fifo\-\_\-getc (
+\subsubsection[{rx\-\_\-fifo\-\_\-getc}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} {\bf uint8\-\_\-t} rx\-\_\-fifo\-\_\-getc (
 \begin{DoxyParamCaption}
 \item[{int}]{uart\-\_\-no}
 \end{DoxyParamCaption}
-)}}\label{uart_8c_a257c0e165980098c8714d69eaf8f75a5}
+)}}\label{uart_8c_a82ec27afa5b913b022cc57c1bd5d5528}
 
 
-Remove a byte from the receive fifo We assume that \hyperlink{uart_8c_a281bc3c996dd0fd5c3f08da55bedbe27}{rx\-\_\-fifo\-\_\-used()} was called! 
+Remove a byte from the receive fifo We assume that \hyperlink{uart_8c_a09c378ce1610cb5e63469a4ee6813de2}{rx\-\_\-fifo\-\_\-used()} was called! 
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -208,21 +220,21 @@ c, (or 0 if fill user error)
 \end{DoxyReturn}
 
 
-Definition at line 208 of file uart.\-c.
+Definition at line 215 of file uart.\-c.
 
 
 
 Referenced by uart\-\_\-getb().
 
-\hypertarget{uart_8c_af0b296a8c71d2c06c229342a906201e0}{\index{uart.\-c@{uart.\-c}!rx\-\_\-fifo\-\_\-read@{rx\-\_\-fifo\-\_\-read}}
+\hypertarget{uart_8c_a5ee039ccb34468de12203a7027fee1ce}{\index{uart.\-c@{uart.\-c}!rx\-\_\-fifo\-\_\-read@{rx\-\_\-fifo\-\_\-read}}
 \index{rx\-\_\-fifo\-\_\-read@{rx\-\_\-fifo\-\_\-read}!uart.c@{uart.\-c}}
-\subsubsection[{rx\-\_\-fifo\-\_\-read}]{\setlength{\rightskip}{0pt plus 5cm}I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R int rx\-\_\-fifo\-\_\-read (
+\subsubsection[{rx\-\_\-fifo\-\_\-read}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int rx\-\_\-fifo\-\_\-read (
 \begin{DoxyParamCaption}
 \item[{int}]{uart\-\_\-no, }
 \item[{{\bf uint8\-\_\-t} $\ast$}]{buf, }
 \item[{int}]{size}
 \end{DoxyParamCaption}
-)}}\label{uart_8c_af0b296a8c71d2c06c229342a906201e0}
+)}}\label{uart_8c_a5ee039ccb34468de12203a7027fee1ce}
 
 
 Read a data buffer from the receive fifo Note\-: This function does not wait/block util there is enough free space to meet the request. So you must check that the return value matches the size. 
@@ -241,15 +253,15 @@ number of bytes actually read from the fifo -\/ may not be size!
 \end{DoxyReturn}
 
 
-Definition at line 260 of file uart.\-c.
+Definition at line 273 of file uart.\-c.
 
-\hypertarget{uart_8c_a281bc3c996dd0fd5c3f08da55bedbe27}{\index{uart.\-c@{uart.\-c}!rx\-\_\-fifo\-\_\-used@{rx\-\_\-fifo\-\_\-used}}
+\hypertarget{uart_8c_a09c378ce1610cb5e63469a4ee6813de2}{\index{uart.\-c@{uart.\-c}!rx\-\_\-fifo\-\_\-used@{rx\-\_\-fifo\-\_\-used}}
 \index{rx\-\_\-fifo\-\_\-used@{rx\-\_\-fifo\-\_\-used}!uart.c@{uart.\-c}}
-\subsubsection[{rx\-\_\-fifo\-\_\-used}]{\setlength{\rightskip}{0pt plus 5cm}I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R int rx\-\_\-fifo\-\_\-used (
+\subsubsection[{rx\-\_\-fifo\-\_\-used}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int rx\-\_\-fifo\-\_\-used (
 \begin{DoxyParamCaption}
 \item[{int}]{uart\-\_\-no}
 \end{DoxyParamCaption}
-)}}\label{uart_8c_a281bc3c996dd0fd5c3f08da55bedbe27}
+)}}\label{uart_8c_a09c378ce1610cb5e63469a4ee6813de2}
 
 
 Get the number of bytes used in receive fifo. 
@@ -264,19 +276,19 @@ bytes in use
 \end{DoxyReturn}
 
 
-Definition at line 148 of file uart.\-c.
+Definition at line 155 of file uart.\-c.
 
 
 
 Referenced by rx\-\_\-fifo\-\_\-getc(), rx\-\_\-fifo\-\_\-read(), and uart\-\_\-callback().
 
-\hypertarget{uart_8c_a9e43189a4098d02ddc7069f727fe0b6e}{\index{uart.\-c@{uart.\-c}!tx\-\_\-fifo\-\_\-empty@{tx\-\_\-fifo\-\_\-empty}}
+\hypertarget{uart_8c_a50e81b3a1433d1947bdff1b9bdf425d3}{\index{uart.\-c@{uart.\-c}!tx\-\_\-fifo\-\_\-empty@{tx\-\_\-fifo\-\_\-empty}}
 \index{tx\-\_\-fifo\-\_\-empty@{tx\-\_\-fifo\-\_\-empty}!uart.c@{uart.\-c}}
-\subsubsection[{tx\-\_\-fifo\-\_\-empty}]{\setlength{\rightskip}{0pt plus 5cm}I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R int tx\-\_\-fifo\-\_\-empty (
+\subsubsection[{tx\-\_\-fifo\-\_\-empty}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int tx\-\_\-fifo\-\_\-empty (
 \begin{DoxyParamCaption}
 \item[{int}]{uart\-\_\-no}
 \end{DoxyParamCaption}
-)}}\label{uart_8c_a9e43189a4098d02ddc7069f727fe0b6e}
+)}}\label{uart_8c_a50e81b3a1433d1947bdff1b9bdf425d3}
 
 
 Test if the transmit fifo is empty. 
@@ -291,7 +303,7 @@ Test if the transmit fifo is empty.
 \end{DoxyReturn}
 
 
-Definition at line 136 of file uart.\-c.
+Definition at line 143 of file uart.\-c.
 
 
 
@@ -318,19 +330,19 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 87 of file uart.\-c.
+Definition at line 94 of file uart.\-c.
 
 
 
 Referenced by uart\-\_\-config().
 
-\hypertarget{uart_8c_adb027a9de79ce5fcfb3e5b944221159c}{\index{uart.\-c@{uart.\-c}!tx\-\_\-fifo\-\_\-free@{tx\-\_\-fifo\-\_\-free}}
+\hypertarget{uart_8c_a3c0f172370540e0d1840c415c2c7b661}{\index{uart.\-c@{uart.\-c}!tx\-\_\-fifo\-\_\-free@{tx\-\_\-fifo\-\_\-free}}
 \index{tx\-\_\-fifo\-\_\-free@{tx\-\_\-fifo\-\_\-free}!uart.c@{uart.\-c}}
-\subsubsection[{tx\-\_\-fifo\-\_\-free}]{\setlength{\rightskip}{0pt plus 5cm}I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R int tx\-\_\-fifo\-\_\-free (
+\subsubsection[{tx\-\_\-fifo\-\_\-free}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int tx\-\_\-fifo\-\_\-free (
 \begin{DoxyParamCaption}
 \item[{int}]{uart\-\_\-no}
 \end{DoxyParamCaption}
-)}}\label{uart_8c_adb027a9de79ce5fcfb3e5b944221159c}
+)}}\label{uart_8c_a3c0f172370540e0d1840c415c2c7b661}
 
 
 Get the number of bytes free in transmit fifo. 
@@ -345,23 +357,23 @@ bytes free
 \end{DoxyReturn}
 
 
-Definition at line 123 of file uart.\-c.
+Definition at line 130 of file uart.\-c.
 
 
 
 Referenced by tx\-\_\-fifo\-\_\-putc(), tx\-\_\-fifo\-\_\-write(), uart\-\_\-callback(), and uart\-\_\-putb().
 
-\hypertarget{uart_8c_a23bdd2e9b8ab8a4eda1d7b478e045eee}{\index{uart.\-c@{uart.\-c}!tx\-\_\-fifo\-\_\-putc@{tx\-\_\-fifo\-\_\-putc}}
+\hypertarget{uart_8c_a768fe76dc08754a1812bc4e5e2f1b0e0}{\index{uart.\-c@{uart.\-c}!tx\-\_\-fifo\-\_\-putc@{tx\-\_\-fifo\-\_\-putc}}
 \index{tx\-\_\-fifo\-\_\-putc@{tx\-\_\-fifo\-\_\-putc}!uart.c@{uart.\-c}}
-\subsubsection[{tx\-\_\-fifo\-\_\-putc}]{\setlength{\rightskip}{0pt plus 5cm}I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R {\bf uint8\-\_\-t} tx\-\_\-fifo\-\_\-putc (
+\subsubsection[{tx\-\_\-fifo\-\_\-putc}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} {\bf uint8\-\_\-t} tx\-\_\-fifo\-\_\-putc (
 \begin{DoxyParamCaption}
 \item[{int}]{uart\-\_\-no, }
 \item[{{\bf uint8\-\_\-t}}]{c}
 \end{DoxyParamCaption}
-)}}\label{uart_8c_a23bdd2e9b8ab8a4eda1d7b478e045eee}
+)}}\label{uart_8c_a768fe76dc08754a1812bc4e5e2f1b0e0}
 
 
-Add a byte to the trasmit fifo We assume that \hyperlink{uart_8c_adb027a9de79ce5fcfb3e5b944221159c}{tx\-\_\-fifo\-\_\-free()} was called! 
+Add a byte to the trasmit fifo We assume that \hyperlink{uart_8c_a3c0f172370540e0d1840c415c2c7b661}{tx\-\_\-fifo\-\_\-free()} was called! 
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -375,19 +387,19 @@ c, (or 0 if full user error)
 \end{DoxyReturn}
 
 
-Definition at line 192 of file uart.\-c.
+Definition at line 199 of file uart.\-c.
 
 
 
 Referenced by uart\-\_\-putb().
 
-\hypertarget{uart_8c_a6761468e5e160ada4cc1812f3d828c3e}{\index{uart.\-c@{uart.\-c}!tx\-\_\-fifo\-\_\-used@{tx\-\_\-fifo\-\_\-used}}
+\hypertarget{uart_8c_a6f8397ebf08ae984ed48144d0287a048}{\index{uart.\-c@{uart.\-c}!tx\-\_\-fifo\-\_\-used@{tx\-\_\-fifo\-\_\-used}}
 \index{tx\-\_\-fifo\-\_\-used@{tx\-\_\-fifo\-\_\-used}!uart.c@{uart.\-c}}
-\subsubsection[{tx\-\_\-fifo\-\_\-used}]{\setlength{\rightskip}{0pt plus 5cm}I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R int tx\-\_\-fifo\-\_\-used (
+\subsubsection[{tx\-\_\-fifo\-\_\-used}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int tx\-\_\-fifo\-\_\-used (
 \begin{DoxyParamCaption}
 \item[{int}]{uart\-\_\-no}
 \end{DoxyParamCaption}
-)}}\label{uart_8c_a6761468e5e160ada4cc1812f3d828c3e}
+)}}\label{uart_8c_a6f8397ebf08ae984ed48144d0287a048}
 
 
 Get the number of bytes used in transmit fifo. 
@@ -402,17 +414,17 @@ bytes in use
 \end{DoxyReturn}
 
 
-Definition at line 111 of file uart.\-c.
+Definition at line 118 of file uart.\-c.
 
-\hypertarget{uart_8c_ac719715c19d55bb7cdba5cbc85a2805d}{\index{uart.\-c@{uart.\-c}!tx\-\_\-fifo\-\_\-write@{tx\-\_\-fifo\-\_\-write}}
+\hypertarget{uart_8c_a6658637d750ec2e2366ac3881dbd9f6e}{\index{uart.\-c@{uart.\-c}!tx\-\_\-fifo\-\_\-write@{tx\-\_\-fifo\-\_\-write}}
 \index{tx\-\_\-fifo\-\_\-write@{tx\-\_\-fifo\-\_\-write}!uart.c@{uart.\-c}}
-\subsubsection[{tx\-\_\-fifo\-\_\-write}]{\setlength{\rightskip}{0pt plus 5cm}I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R int tx\-\_\-fifo\-\_\-write (
+\subsubsection[{tx\-\_\-fifo\-\_\-write}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int tx\-\_\-fifo\-\_\-write (
 \begin{DoxyParamCaption}
 \item[{int}]{uart\-\_\-no, }
 \item[{{\bf uint8\-\_\-t} $\ast$}]{buf, }
 \item[{int}]{size}
 \end{DoxyParamCaption}
-)}}\label{uart_8c_ac719715c19d55bb7cdba5cbc85a2805d}
+)}}\label{uart_8c_a6658637d750ec2e2366ac3881dbd9f6e}
 
 
 Write a data buffer to the transmit fifo Note\-: This function does not wait/block util there is enough free space to meet the request. So you must check that the return value matches the size. 
@@ -427,19 +439,19 @@ Write a data buffer to the transmit fifo Note\-: This function does not wait/blo
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-number of bytes actually added to the fifo -\/ may not be size! 
+number of bytes sent 
 \end{DoxyReturn}
 
 
-Definition at line 231 of file uart.\-c.
+Definition at line 238 of file uart.\-c.
 
-\hypertarget{uart_8c_a08d5d946ab42a42b1bb8f9b9453d5900}{\index{uart.\-c@{uart.\-c}!uart0\-\_\-getc@{uart0\-\_\-getc}}
+\hypertarget{uart_8c_a49dc3c01092320490b61e1f480b76b9b}{\index{uart.\-c@{uart.\-c}!uart0\-\_\-getc@{uart0\-\_\-getc}}
 \index{uart0\-\_\-getc@{uart0\-\_\-getc}!uart.c@{uart.\-c}}
-\subsubsection[{uart0\-\_\-getc}]{\setlength{\rightskip}{0pt plus 5cm}I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R {\bf uint8\-\_\-t} uart0\-\_\-getc (
+\subsubsection[{uart0\-\_\-getc}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} {\bf uint8\-\_\-t} uart0\-\_\-getc (
 \begin{DoxyParamCaption}
 \item[{void}]{}
 \end{DoxyParamCaption}
-)}}\label{uart_8c_a08d5d946ab42a42b1bb8f9b9453d5900}
+)}}\label{uart_8c_a49dc3c01092320490b61e1f480b76b9b}
 
 
 Read a byte from uart0 with N\-L to C\-R/\-N\-L conversion Note\-: This function waits/blocks util the read can happen. 
@@ -449,15 +461,86 @@ byte read
 \end{DoxyReturn}
 
 
-Definition at line 365 of file uart.\-c.
+Definition at line 383 of file uart.\-c.
 
-\hypertarget{uart_8c_a9d0039c2b51e8187acfa97c6cfe1a8e3}{\index{uart.\-c@{uart.\-c}!uart0\-\_\-putc@{uart0\-\_\-putc}}
+
+
+Referenced by uart\-\_\-init().
+
+\hypertarget{uart_8c_a9d100391356ca809d7cd75e23633f213}{\index{uart.\-c@{uart.\-c}!uart0\-\_\-gets@{uart0\-\_\-gets}}
+\index{uart0\-\_\-gets@{uart0\-\_\-gets}!uart.c@{uart.\-c}}
+\subsubsection[{uart0\-\_\-gets}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int uart0\-\_\-gets (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{buf, }
+\item[{int}]{max}
+\end{DoxyParamCaption}
+)}}\label{uart_8c_a9d100391356ca809d7cd75e23633f213}
+
+
+uart0\-\_\-gets non-\/blocking line buffered gets \mbox{[}in\mbox{]} buf\-: user buffer to fill \mbox{[}in\mbox{]} max\-: miximum size of buf 
+
+\begin{DoxyReturn}{Returns}
+0, or number of characters in line 
+\end{DoxyReturn}
+
+
+Definition at line 547 of file uart.\-c.
+
+
+
+Referenced by user\-\_\-task().
+
+\hypertarget{uart_8c_ace748ed36c0f9b9c90310db65b3afeab}{\index{uart.\-c@{uart.\-c}!uart0\-\_\-gets\-\_\-add@{uart0\-\_\-gets\-\_\-add}}
+\index{uart0\-\_\-gets\-\_\-add@{uart0\-\_\-gets\-\_\-add}!uart.c@{uart.\-c}}
+\subsubsection[{uart0\-\_\-gets\-\_\-add}]{\setlength{\rightskip}{0pt plus 5cm}void uart0\-\_\-gets\-\_\-add (
+\begin{DoxyParamCaption}
+\item[{{\bf uint8\-\_\-t}}]{data}
+\end{DoxyParamCaption}
+)}}\label{uart_8c_ace748ed36c0f9b9c90310db65b3afeab}
+
+
+transfer data into the uart0\-\_\-gets\-\_\-receive\-\_\-queue Provide line buffering for \hyperlink{uart_8c_a9d100391356ca809d7cd75e23633f213}{uart0\-\_\-gets()} \mbox{[}in\mbox{]} data\-: character to add to queue 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 491 of file uart.\-c.
+
+
+
+Referenced by uart\-\_\-callback().
+
+\hypertarget{uart_8c_a1b9078ded4ced8bfa5d73c2a77e90028}{\index{uart.\-c@{uart.\-c}!uart0\-\_\-gets\-\_\-init@{uart0\-\_\-gets\-\_\-init}}
+\index{uart0\-\_\-gets\-\_\-init@{uart0\-\_\-gets\-\_\-init}!uart.c@{uart.\-c}}
+\subsubsection[{uart0\-\_\-gets\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void uart0\-\_\-gets\-\_\-init (
+\begin{DoxyParamCaption}
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}}\label{uart_8c_a1b9078ded4ced8bfa5d73c2a77e90028}
+
+
+allocate and initialize uart0\-\_\-gets data structures Provide line buffering for \hyperlink{uart_8c_a9d100391356ca809d7cd75e23633f213}{uart0\-\_\-gets()} \mbox{[}in\mbox{]} size\-: size of line buffer 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 527 of file uart.\-c.
+
+
+
+Referenced by uart\-\_\-init().
+
+\hypertarget{uart_8c_a38d539495f2c5329441ccedc26081afa}{\index{uart.\-c@{uart.\-c}!uart0\-\_\-putc@{uart0\-\_\-putc}}
 \index{uart0\-\_\-putc@{uart0\-\_\-putc}!uart.c@{uart.\-c}}
-\subsubsection[{uart0\-\_\-putc}]{\setlength{\rightskip}{0pt plus 5cm}I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R void uart0\-\_\-putc (
+\subsubsection[{uart0\-\_\-putc}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void uart0\-\_\-putc (
 \begin{DoxyParamCaption}
 \item[{uint8}]{c}
 \end{DoxyParamCaption}
-)}}\label{uart_8c_a9d0039c2b51e8187acfa97c6cfe1a8e3}
+)}}\label{uart_8c_a38d539495f2c5329441ccedc26081afa}
 
 
 Write a byte to uart0 with N\-L to C\-R/\-N\-L conversion Note\-: This function waits/blocks util the write can happen. 
@@ -472,19 +555,19 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 354 of file uart.\-c.
+Definition at line 372 of file uart.\-c.
 
 
 
 Referenced by tcp\-\_\-data\-\_\-receive\-\_\-callback(), uart\-\_\-init(), and U\-A\-R\-T\-\_\-\-Set\-Print\-Port().
 
-\hypertarget{uart_8c_a38c4c0e60868ea9f657d6719ab8f5c30}{\index{uart.\-c@{uart.\-c}!uart1\-\_\-getc@{uart1\-\_\-getc}}
+\hypertarget{uart_8c_abedb89603c5e67609094af8047f22bd3}{\index{uart.\-c@{uart.\-c}!uart1\-\_\-getc@{uart1\-\_\-getc}}
 \index{uart1\-\_\-getc@{uart1\-\_\-getc}!uart.c@{uart.\-c}}
-\subsubsection[{uart1\-\_\-getc}]{\setlength{\rightskip}{0pt plus 5cm}I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R {\bf uint8\-\_\-t} uart1\-\_\-getc (
+\subsubsection[{uart1\-\_\-getc}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} {\bf uint8\-\_\-t} uart1\-\_\-getc (
 \begin{DoxyParamCaption}
 \item[{void}]{}
 \end{DoxyParamCaption}
-)}}\label{uart_8c_a38c4c0e60868ea9f657d6719ab8f5c30}
+)}}\label{uart_8c_abedb89603c5e67609094af8047f22bd3}
 
 
 Read a byte from uart1 with N\-L to C\-R/\-N\-L conversion Note\-: This function waits/blocks util the read can happen. 
@@ -494,15 +577,15 @@ byte read
 \end{DoxyReturn}
 
 
-Definition at line 389 of file uart.\-c.
+Definition at line 407 of file uart.\-c.
 
-\hypertarget{uart_8c_a5b6fca6f048f53f570fe459ac9a3e12a}{\index{uart.\-c@{uart.\-c}!uart1\-\_\-putc@{uart1\-\_\-putc}}
+\hypertarget{uart_8c_a5e535e1ea0c08984d0de21b4d2cb4cec}{\index{uart.\-c@{uart.\-c}!uart1\-\_\-putc@{uart1\-\_\-putc}}
 \index{uart1\-\_\-putc@{uart1\-\_\-putc}!uart.c@{uart.\-c}}
-\subsubsection[{uart1\-\_\-putc}]{\setlength{\rightskip}{0pt plus 5cm}I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R void uart1\-\_\-putc (
+\subsubsection[{uart1\-\_\-putc}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void uart1\-\_\-putc (
 \begin{DoxyParamCaption}
 \item[{uint8}]{c}
 \end{DoxyParamCaption}
-)}}\label{uart_8c_a5b6fca6f048f53f570fe459ac9a3e12a}
+)}}\label{uart_8c_a5e535e1ea0c08984d0de21b4d2cb4cec}
 
 
 Write a byte to uart1 with N\-L to C\-R/\-N\-L conversion Note\-: This function waits/blocks util the write can happen. 
@@ -517,7 +600,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 378 of file uart.\-c.
+Definition at line 396 of file uart.\-c.
 
 
 
@@ -544,15 +627,15 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 402 of file uart.\-c.
+Definition at line 420 of file uart.\-c.
 
 
 
 Referenced by uart\-\_\-init().
 
-\hypertarget{uart_8c_ad3fa6c77cde907b77f2a2b53c65de791}{\index{uart.\-c@{uart.\-c}!uart\-\_\-config@{uart\-\_\-config}}
+\hypertarget{uart_8c_afde4532b11b79411c904be3b2672c5e8}{\index{uart.\-c@{uart.\-c}!uart\-\_\-config@{uart\-\_\-config}}
 \index{uart\-\_\-config@{uart\-\_\-config}!uart.c@{uart.\-c}}
-\subsubsection[{uart\-\_\-config}]{\setlength{\rightskip}{0pt plus 5cm}I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R void uart\-\_\-config (
+\subsubsection[{uart\-\_\-config}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void uart\-\_\-config (
 \begin{DoxyParamCaption}
 \item[{uint8}]{uart\-\_\-no, }
 \item[{{\bf uint32\-\_\-t}}]{baud, }
@@ -560,7 +643,7 @@ Referenced by uart\-\_\-init().
 \item[{{\bf uint8\-\_\-t}}]{stop\-\_\-bits, }
 \item[{{\bf uint8\-\_\-t}}]{parity}
 \end{DoxyParamCaption}
-)}}\label{uart_8c_ad3fa6c77cde907b77f2a2b53c65de791}
+)}}\label{uart_8c_afde4532b11b79411c904be3b2672c5e8}
 
 
 Uart configuration, baud rate, data and stop bits, parity. 
@@ -583,19 +666,19 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 474 of file uart.\-c.
+Definition at line 586 of file uart.\-c.
 
 
 
 Referenced by uart\-\_\-init().
 
-\hypertarget{uart_8c_a46eeee9883d1494fe44bf55fd5508bc5}{\index{uart.\-c@{uart.\-c}!uart\-\_\-getb@{uart\-\_\-getb}}
+\hypertarget{uart_8c_a2d03af0672e67715b10ea90aca69743d}{\index{uart.\-c@{uart.\-c}!uart\-\_\-getb@{uart\-\_\-getb}}
 \index{uart\-\_\-getb@{uart\-\_\-getb}!uart.c@{uart.\-c}}
-\subsubsection[{uart\-\_\-getb}]{\setlength{\rightskip}{0pt plus 5cm}L\-O\-C\-A\-L I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R {\bf uint8\-\_\-t} uart\-\_\-getb (
+\subsubsection[{uart\-\_\-getb}]{\setlength{\rightskip}{0pt plus 5cm}L\-O\-C\-A\-L {\bf M\-E\-M\-S\-P\-A\-C\-E} {\bf uint8\-\_\-t} uart\-\_\-getb (
 \begin{DoxyParamCaption}
 \item[{int}]{uart\-\_\-no}
 \end{DoxyParamCaption}
-)}}\label{uart_8c_a46eeee9883d1494fe44bf55fd5508bc5}
+)}}\label{uart_8c_a2d03af0672e67715b10ea90aca69743d}
 
 
 Read a byte from a uart Note\-: This function waits/blocks util the read can happen. 
@@ -610,19 +693,19 @@ byte read
 \end{DoxyReturn}
 
 
-Definition at line 301 of file uart.\-c.
+Definition at line 319 of file uart.\-c.
 
 
 
 Referenced by uart\-\_\-getc().
 
-\hypertarget{uart_8c_a2b78e553fb7c85fc8f67ab095aee6904}{\index{uart.\-c@{uart.\-c}!uart\-\_\-getc@{uart\-\_\-getc}}
+\hypertarget{uart_8c_a64dbce670a0ba6a547378d2305d03dfa}{\index{uart.\-c@{uart.\-c}!uart\-\_\-getc@{uart\-\_\-getc}}
 \index{uart\-\_\-getc@{uart\-\_\-getc}!uart.c@{uart.\-c}}
-\subsubsection[{uart\-\_\-getc}]{\setlength{\rightskip}{0pt plus 5cm}I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R {\bf uint8\-\_\-t} uart\-\_\-getc (
+\subsubsection[{uart\-\_\-getc}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} {\bf uint8\-\_\-t} uart\-\_\-getc (
 \begin{DoxyParamCaption}
 \item[{int}]{uart\-\_\-no}
 \end{DoxyParamCaption}
-)}}\label{uart_8c_a2b78e553fb7c85fc8f67ab095aee6904}
+)}}\label{uart_8c_a64dbce670a0ba6a547378d2305d03dfa}
 
 
 Read a byte from a uart with N\-L to C\-R/\-N\-L conversion Note\-: This function waits/blocks util the read can happen. 
@@ -637,20 +720,20 @@ byte read
 \end{DoxyReturn}
 
 
-Definition at line 334 of file uart.\-c.
+Definition at line 352 of file uart.\-c.
 
 
 
 Referenced by uart0\-\_\-getc(), and uart1\-\_\-getc().
 
-\hypertarget{uart_8c_a7dd63feb254687cfd8dcb99320d1093f}{\index{uart.\-c@{uart.\-c}!uart\-\_\-init@{uart\-\_\-init}}
+\hypertarget{uart_8c_a5afb95571d79d939651ef59768fde839}{\index{uart.\-c@{uart.\-c}!uart\-\_\-init@{uart\-\_\-init}}
 \index{uart\-\_\-init@{uart\-\_\-init}!uart.c@{uart.\-c}}
-\subsubsection[{uart\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R void uart\-\_\-init (
+\subsubsection[{uart\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void uart\-\_\-init (
 \begin{DoxyParamCaption}
 \item[{{\bf Uart\-Baud\-Rate}}]{uart0\-\_\-br, }
 \item[{{\bf Uart\-Baud\-Rate}}]{uart1\-\_\-br}
 \end{DoxyParamCaption}
-)}}\label{uart_8c_a7dd63feb254687cfd8dcb99320d1093f}
+)}}\label{uart_8c_a5afb95571d79d939651ef59768fde839}
 
 
 initialize uart0 and uart1 Defaults\-: 8 = data bits, 1 = stop bits, no parity 
@@ -669,20 +752,20 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 533 of file uart.\-c.
+Definition at line 645 of file uart.\-c.
 
 
 
 Referenced by uart\-\_\-reattach(), and user\-\_\-init().
 
-\hypertarget{uart_8c_a48b3793724004cfcdfdd2e2ad69cfa07}{\index{uart.\-c@{uart.\-c}!uart\-\_\-putb@{uart\-\_\-putb}}
+\hypertarget{uart_8c_a3d19962bf637dbfa1fbd66020570f64f}{\index{uart.\-c@{uart.\-c}!uart\-\_\-putb@{uart\-\_\-putb}}
 \index{uart\-\_\-putb@{uart\-\_\-putb}!uart.c@{uart.\-c}}
-\subsubsection[{uart\-\_\-putb}]{\setlength{\rightskip}{0pt plus 5cm}L\-O\-C\-A\-L I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R void uart\-\_\-putb (
+\subsubsection[{uart\-\_\-putb}]{\setlength{\rightskip}{0pt plus 5cm}L\-O\-C\-A\-L {\bf M\-E\-M\-S\-P\-A\-C\-E} void uart\-\_\-putb (
 \begin{DoxyParamCaption}
 \item[{uint8}]{uart\-\_\-no, }
 \item[{uint8}]{data}
 \end{DoxyParamCaption}
-)}}\label{uart_8c_a48b3793724004cfcdfdd2e2ad69cfa07}
+)}}\label{uart_8c_a3d19962bf637dbfa1fbd66020570f64f}
 
 
 Blocking I/\-O functions. 
@@ -699,20 +782,20 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 287 of file uart.\-c.
+Definition at line 305 of file uart.\-c.
 
 
 
 Referenced by uart\-\_\-putc().
 
-\hypertarget{uart_8c_a7022706232b5c20a126ce7f719496f49}{\index{uart.\-c@{uart.\-c}!uart\-\_\-putc@{uart\-\_\-putc}}
+\hypertarget{uart_8c_a4edbb01728f45e11ed6717416bbb9309}{\index{uart.\-c@{uart.\-c}!uart\-\_\-putc@{uart\-\_\-putc}}
 \index{uart\-\_\-putc@{uart\-\_\-putc}!uart.c@{uart.\-c}}
-\subsubsection[{uart\-\_\-putc}]{\setlength{\rightskip}{0pt plus 5cm}I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R void uart\-\_\-putc (
+\subsubsection[{uart\-\_\-putc}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void uart\-\_\-putc (
 \begin{DoxyParamCaption}
 \item[{uint8}]{uart\-\_\-no, }
 \item[{char}]{c}
 \end{DoxyParamCaption}
-)}}\label{uart_8c_a7022706232b5c20a126ce7f719496f49}
+)}}\label{uart_8c_a4edbb01728f45e11ed6717416bbb9309}
 
 
 Write a byte from a uart with N\-L to C\-R/\-N\-L conversion Note\-: This function waits/blocks util the write can happen. 
@@ -727,29 +810,29 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 318 of file uart.\-c.
+Definition at line 336 of file uart.\-c.
 
 
 
-Referenced by uart0\-\_\-putc(), and uart1\-\_\-putc().
+Referenced by uart0\-\_\-printf(), uart0\-\_\-putc(), and uart1\-\_\-putc().
 
-\hypertarget{uart_8c_afab391aef9a1293efb604af9af878012}{\index{uart.\-c@{uart.\-c}!uart\-\_\-reattach@{uart\-\_\-reattach}}
+\hypertarget{uart_8c_ae2429f7cf15a9fba99f1c3d1d6499299}{\index{uart.\-c@{uart.\-c}!uart\-\_\-reattach@{uart\-\_\-reattach}}
 \index{uart\-\_\-reattach@{uart\-\_\-reattach}!uart.c@{uart.\-c}}
-\subsubsection[{uart\-\_\-reattach}]{\setlength{\rightskip}{0pt plus 5cm}I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R void uart\-\_\-reattach (
+\subsubsection[{uart\-\_\-reattach}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void uart\-\_\-reattach (
 \begin{DoxyParamCaption}
 \item[{void}]{}
 \end{DoxyParamCaption}
-)}}\label{uart_8c_afab391aef9a1293efb604af9af878012}
+)}}\label{uart_8c_ae2429f7cf15a9fba99f1c3d1d6499299}
 
 
-Reinitialize uart0 and uart1 calls \hyperlink{uart_8c_a7dd63feb254687cfd8dcb99320d1093f}{uart\-\_\-init()} 
+Reinitialize uart0 and uart1 calls \hyperlink{uart_8c_a5afb95571d79d939651ef59768fde839}{uart\-\_\-init()} 
 
 \begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
 
 
-Definition at line 552 of file uart.\-c.
+Definition at line 670 of file uart.\-c.
 
 \hypertarget{uart_8c_a4c32ce5693fc8c1a40244b5cc82e796e}{\index{uart.\-c@{uart.\-c}!uart\-\_\-rx\-\_\-disable@{uart\-\_\-rx\-\_\-disable}}
 \index{uart\-\_\-rx\-\_\-disable@{uart\-\_\-rx\-\_\-disable}!uart.c@{uart.\-c}}
@@ -772,7 +855,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 55 of file uart.\-c.
+Definition at line 62 of file uart.\-c.
 
 \hypertarget{uart_8c_ae08356fea716912edfef1013171b24ba}{\index{uart.\-c@{uart.\-c}!uart\-\_\-rx\-\_\-enable@{uart\-\_\-rx\-\_\-enable}}
 \index{uart\-\_\-rx\-\_\-enable@{uart\-\_\-rx\-\_\-enable}!uart.c@{uart.\-c}}
@@ -795,15 +878,15 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 45 of file uart.\-c.
+Definition at line 52 of file uart.\-c.
 
-\hypertarget{uart_8c_a308b9b9451e59e8484212b645ef6960d}{\index{uart.\-c@{uart.\-c}!U\-A\-R\-T\-\_\-\-Set\-Print\-Port@{U\-A\-R\-T\-\_\-\-Set\-Print\-Port}}
+\hypertarget{uart_8c_a83db8ea8db21280f74e2546414fc80f7}{\index{uart.\-c@{uart.\-c}!U\-A\-R\-T\-\_\-\-Set\-Print\-Port@{U\-A\-R\-T\-\_\-\-Set\-Print\-Port}}
 \index{U\-A\-R\-T\-\_\-\-Set\-Print\-Port@{U\-A\-R\-T\-\_\-\-Set\-Print\-Port}!uart.c@{uart.\-c}}
-\subsubsection[{U\-A\-R\-T\-\_\-\-Set\-Print\-Port}]{\setlength{\rightskip}{0pt plus 5cm}I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R void U\-A\-R\-T\-\_\-\-Set\-Print\-Port (
+\subsubsection[{U\-A\-R\-T\-\_\-\-Set\-Print\-Port}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void U\-A\-R\-T\-\_\-\-Set\-Print\-Port (
 \begin{DoxyParamCaption}
 \item[{uint8}]{uart\-\_\-no}
 \end{DoxyParamCaption}
-)}}\label{uart_8c_a308b9b9451e59e8484212b645ef6960d}
+)}}\label{uart_8c_a83db8ea8db21280f74e2546414fc80f7}
 
 
 Install debug uart. 
@@ -813,7 +896,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 565 of file uart.\-c.
+Definition at line 683 of file uart.\-c.
 
 \hypertarget{uart_8c_a87198ab19fb4f97a978baf08b478d150}{\index{uart.\-c@{uart.\-c}!uart\-\_\-tx\-\_\-disable@{uart\-\_\-tx\-\_\-disable}}
 \index{uart\-\_\-tx\-\_\-disable@{uart\-\_\-tx\-\_\-disable}!uart.c@{uart.\-c}}
@@ -836,7 +919,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 75 of file uart.\-c.
+Definition at line 82 of file uart.\-c.
 
 
 
@@ -863,9 +946,68 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 65 of file uart.\-c.
+Definition at line 72 of file uart.\-c.
 
 
 
 Referenced by tcp\-\_\-data\-\_\-receive\-\_\-callback(), and uart\-\_\-callback().
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{uart_8c_aef6c476aba65fb52789103fa95114183}{\index{uart.\-c@{uart.\-c}!uart0\-\_\-gets\-\_\-line@{uart0\-\_\-gets\-\_\-line}}
+\index{uart0\-\_\-gets\-\_\-line@{uart0\-\_\-gets\-\_\-line}!uart.c@{uart.\-c}}
+\subsubsection[{uart0\-\_\-gets\-\_\-line}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ uart0\-\_\-gets\-\_\-line}}\label{uart_8c_aef6c476aba65fb52789103fa95114183}
+
+
+uart0 gets line bufer 
+
+
+
+Definition at line 37 of file uart.\-c.
+
+
+
+Referenced by uart0\-\_\-gets(), uart0\-\_\-gets\-\_\-add(), and uart0\-\_\-gets\-\_\-init().
+
+\hypertarget{uart_8c_a2fa51e30aedbdd8519c18b2053ff6fe5}{\index{uart.\-c@{uart.\-c}!uart0\-\_\-gets\-\_\-ready@{uart0\-\_\-gets\-\_\-ready}}
+\index{uart0\-\_\-gets\-\_\-ready@{uart0\-\_\-gets\-\_\-ready}!uart.c@{uart.\-c}}
+\subsubsection[{uart0\-\_\-gets\-\_\-ready}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint8\-\_\-t} uart0\-\_\-gets\-\_\-ready = 0}}\label{uart_8c_a2fa51e30aedbdd8519c18b2053ff6fe5}
+
+
+uart0 gets line buffer ready flag 
+
+
+
+Definition at line 39 of file uart.\-c.
+
+
+
+Referenced by uart0\-\_\-gets(), uart0\-\_\-gets\-\_\-add(), and uart0\-\_\-gets\-\_\-init().
+
+\hypertarget{uart_8c_ac28d82246860e7a128ed62a1dc1e2a39}{\index{uart.\-c@{uart.\-c}!uart0\-\_\-gets\-\_\-receive\-\_\-queue@{uart0\-\_\-gets\-\_\-receive\-\_\-queue}}
+\index{uart0\-\_\-gets\-\_\-receive\-\_\-queue@{uart0\-\_\-gets\-\_\-receive\-\_\-queue}!uart.c@{uart.\-c}}
+\subsubsection[{uart0\-\_\-gets\-\_\-receive\-\_\-queue}]{\setlength{\rightskip}{0pt plus 5cm}{\bf queue\-\_\-t}$\ast$ uart0\-\_\-gets\-\_\-receive\-\_\-queue}}\label{uart_8c_ac28d82246860e7a128ed62a1dc1e2a39}
+
+
+uart0 receive queue 
+
+
+
+Definition at line 35 of file uart.\-c.
+
+\hypertarget{uart_8c_a6275e22255f6dac92b97bdcc4101fe08}{\index{uart.\-c@{uart.\-c}!uart0\-\_\-gets\-\_\-size@{uart0\-\_\-gets\-\_\-size}}
+\index{uart0\-\_\-gets\-\_\-size@{uart0\-\_\-gets\-\_\-size}!uart.c@{uart.\-c}}
+\subsubsection[{uart0\-\_\-gets\-\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}int uart0\-\_\-gets\-\_\-size = 0}}\label{uart_8c_a6275e22255f6dac92b97bdcc4101fe08}
+
+
+uar0 gets line buffer size 
+
+
+
+Definition at line 41 of file uart.\-c.
+
+
+
+Referenced by uart0\-\_\-gets(), uart0\-\_\-gets\-\_\-add(), and uart0\-\_\-gets\-\_\-init().
 

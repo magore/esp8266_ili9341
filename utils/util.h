@@ -30,6 +30,7 @@
 #define SIGN(x) (((x) == 0) ? 0 : ((x) > 0) ? 1 : -1)
 #define MAX(x,y) (((x) > (y)) ? x : y)
 
+
 /* util.c */
 uint8_t read_flash8 ( uint8_t *p );
 uint8_t read_flash8 ( uint8_t *p );
@@ -40,9 +41,19 @@ uint64_t read_flash64 ( uint8_t *p );
 uint32_t read_flash_ptr ( uint8_t *p );
 int bittestv ( unsigned char *ptr , int off );
 int bittestxy ( unsigned char *ptr , int x , int y , int w , int h );
-ICACHE_FLASH_ATTR void reset ( void );
-void free ( void *p );
-void *calloc ( size_t nmemb , size_t size );
-void *malloc ( size_t size );
+MEMSPACE void reset ( void );
+MEMSPACE void wdt_reset ( void );
+MEMSPACE void free ( void *p );
+MEMSPACE void *calloc ( size_t nmemb , size_t size );
+MEMSPACE void *malloc ( size_t size );
+MEMSPACE char *skipspaces ( char *ptr );
+MEMSPACE char *nextspace ( char *ptr );
+MEMSPACE char *skipchars ( char *str , char *pat );
+MEMSPACE void trim_tail ( char *str );
+MEMSPACE char *strnalloc ( char *str , int len );
+MEMSPACE char *stralloc ( char *str );
+MEMSPACE char *get_token ( char *str , char *token , int max );
+MEMSPACE int token ( char *str , char *pat );
+MEMSPACE uint8_t hexd ( char c );
 
 #endif

@@ -38,11 +38,6 @@ BAUD=256000
 # Display Debug messages via serial
 ILI9341_DEBUG = 1 
 
-# SOFT CS for TFT 
-TFT_CS_ENABLE = 1
-# HARD CS for TFT 
-#TFT_CS_ENABLE = 
-
 # TELNET serial bridge
 TELNET_SERIAL = 1
 
@@ -104,8 +99,29 @@ SDK_LIBDIR	= lib
 SDK_LDDIR	= ld
 SDK_INCDIR	= include include/json
 
-# libraries used in this project, mainly provided by the SDK
-LIBS		= cirom gcc hal phy pp net80211 ssc ssl lwip wpa main m
+# v 1.1.2
+#LIBS		= gcc hal phy pp net80211 ssc ssl lwip wpa main m
+
+# 1.2.0 library list
+# libjson.a
+# libphy.a
+# libnet80211.a
+# libat.a
+# libpp.a
+# libmain.a
+# liblwip_536.a
+# libwps.a
+# liblwip.a
+# libwpa.a
+# libpwm.a
+# libupgrade.a
+# libssl.a
+# libcrypto.a
+# libsmartconfig.a
+# libespnow.a
+
+# 1.2
+LIBS		= gcc hal phy pp net80211 ssl lwip wpa main m
 
 # ===============================================================
 # compiler flags using during compilation of source files
@@ -113,7 +129,7 @@ CFLAGS	= -Os \
 	-g \
 	-O2 \
 	-Wpointer-arith \
-	-Wundef -Werror \
+	-Wundef \
 	-Wl,-EL \
     -fno-inline-functions \
 	-nostdlib \
@@ -122,7 +138,8 @@ CFLAGS	= -Os \
 	-D__ets__ \
 	-DICACHE_FLASH \
 	-ffunction-sections \
-    -fdata-sections
+    -fdata-sections \
+	# -Werror \
 
 # linker flags used to generate the main object file
 LDFLAGS	= -nostdlib \
@@ -218,19 +235,15 @@ endif
 
 # ===============================================================
 # which modules (subdirectories) of the project to include in compiling
-MODULES	= driver user utils printf cordic display 
+MODULES	= driver user utils printf cordic display lib fatfs
 
 # Project Include Directories
-EXTRA_INCDIR    = user include $(SDK_BASE)/../include 
+EXTRA_INCDIR    = user include $(SDK_BASE)/include 
 
 # ===============================================================
 
-CFLAGS += -DDEBUG_PRINTF=ets_uart_printf
+CFLAGS += -DDEBUG_PRINTF=uart0_printf
 CFLAGS += -DMAX_USER_RECEIVE_CB=4
-
-ifdef TFT_CS_ENABLE
-	CFLAGS += -DTFT_CS_ENABLE
-endif
 
 ifdef TELNET_SERIAL
 	CFLAGS += -DTELNET_SERIAL
@@ -273,7 +286,8 @@ endif
 
 # linker script used for the above linkier step
 #FLASH_ADDRESS
-#FIXME computer this
+#FIXME which script to use
+# We modified the original esp-open-sdk/sdk/ld/eagle.app.v6.new.2048.ld
 LD_SCRIPT	= eagle.app.v6.new.2048.ld
 LD_SCRIPT	:= $(addprefix -T$(PROJECT_DIR)/ld/,$(LD_SCRIPT))
 
@@ -325,7 +339,7 @@ $(TARGET_OUT): $(APP_AR)
 	$(Q) $(OBJDUMP) -h -j .data -j .rodata -j .bss -j .text -j .irom0.text $@
 	$(vecho) "------------------------------------------------------------------------------"
 	$(vecho) "Section info:"
-	$(Q) memanalyzer.exe $(OBJDUMP) $@
+	-$(Q) memanalyzer.exe $(OBJDUMP) $@
 	$(vecho) "------------------------------------------------------------------------------"
 	$(vecho) "Run objcopy, please wait..."
 	$(Q) $(OBJCOPY) --only-section .text -O binary $@ eagle.app.v6.text.bin

@@ -2,8 +2,8 @@
  @file hspi.c
 
  @brief HSPI driver for ESP8255
- Based on initial work from Sem 2015 - mostly rewrittem
- Added code to handle proper aligned reads and writes
+ Based on initial work from Sem 2015 - rewrittem
+ Added code to handle proper aligned reads and writes and buffering
  @par Copyright &copy; 2015 Sem
  @par Copyright &copy; 2015 Mike Gore, GPL License
  @par You are free to use this code under the terms of GPL
@@ -30,6 +30,39 @@
 #define HSPI_PRESCALER 16
 #endif
 
+
+/// @brief hspi CS cached value
+uint8_t _cs_pin = 0xff;
+/// @brief HSPI CS enable function
+/// @param[in] cs: GPIO CS pin
+void hspi_cs_enable(uint8_t cs)
+{
+	if(_cs_pin != 0xff)
+	{
+		// This implies a bug!
+		DEBUG_PRINTF("CS en was:%d\n", 0xff & _cs_pin);
+	}
+	GPIO_OUTPUT_SET(cs, 0);
+	_cs_pin = cs;
+}
+
+/// @brief HSPI CS disable function
+/// @param[in] cs: GPIO CS pin
+void hspi_cs_disable(uint8_t cs)
+{
+	if(_cs_pin != cs && _cs_pin != 0xff )
+	{
+		// This implies a bug!
+		DEBUG_PRINTF("CS dis was:%d\n", 0xff & _cs_pin);
+	}
+	GPIO_OUTPUT_SET(cs, 1);
+	_cs_pin = 0xff;
+}
+
+
+
+/// @brief hspi clock cached value
+uint16_t hspi_clock = -1;
 /// @brief HSPI Initiaization - with automatic chip select
 /// Pins:
 /// 	MISO GPIO12
@@ -42,8 +75,12 @@
 /// @return  void
 void hspi_init(uint16_t prescale, int hwcs)
 {
+	// We only make changes if the speed changes
+	if(prescale == hspi_clock)
+		return;
 
-
+	hspi_clock = prescale;
+	
     PIN_FUNC_SELECT(PERIPHS_IO_MUX_MTDI_U, 2);    // HSPIQ MISO GPIO12
     PIN_FUNC_SELECT(PERIPHS_IO_MUX_MTCK_U, 2);    // HSPID MOSI GPIO13
     PIN_FUNC_SELECT(PERIPHS_IO_MUX_MTMS_U, 2);    // CLK        GPIO14
@@ -77,7 +114,6 @@ void hspi_init(uint16_t prescale, int hwcs)
 
     WRITE_PERI_REG(SPI_FLASH_CTRL1(HSPI), 0);
 }
-
 
 /// @brief HSPI Configuration for tranasmit and receive
 /// @param[in] configState: CONFIG_FOR_RX_TX or CONFIG_FOR_RX

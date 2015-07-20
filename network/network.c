@@ -40,15 +40,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 uint8_t network_msg[256];
-uint8_t ip_msg[20];
+uint8_t ip_msg[64];
 static struct espconn *TCP_Server;
+
+int network_init = 0;
 
 #ifndef TCP_PORT
 //#define TCP_PORT 31416
 #error Please define TCP_PORT
 #endif
 
-#define SERVER_TIMEOUT 5
+#define SERVER_TIMEOUT 1
 #define MAX_CONNS 5
 
 static struct station_config StationConfig;
@@ -79,6 +81,7 @@ void poll_network_message(window *win)
 	}
 }
 
+
 /**
  @brief Network receive task 
  @param[in] *arg: network callback arg
@@ -94,6 +97,7 @@ void my_receive(void *arg, char *pdata, unsigned short len)
 		os_memcpy(network_msg,pdata,len);
 		network_msg[len] = 0;
 		received = len;
+		espconn_delete(TCP_Server);
 	}
 }
 
@@ -114,6 +118,7 @@ void wifi_event_cb( System_Event_t *event_p)
             DEBUG_PRINTF( "Connect to [%s] ssid, channel[%d] \n " ,
                     event_p->event_info.connected.ssid ,
                     event_p->event_info.connected.channel);
+			t_snprintf(ip_msg, sizeof(ip_msg), "Connected");
             break;
         case EVENT_STAMODE_DISCONNECTED :
             DEBUG_PRINTF( "Disconnect from ssid:[%s], Reason:%02x\n " ,
@@ -121,11 +126,13 @@ void wifi_event_cb( System_Event_t *event_p)
                     event_p->event_info.disconnected.reason);
 // Reconnect ???
 // wifi_station_connect();
+			t_snprintf(ip_msg, sizeof(ip_msg), "Disconnected");
             break;
         case EVENT_STAMODE_AUTHMODE_CHANGE :
             DEBUG_PRINTF( "New AuthMode: %02x -> %02x\n " ,
                     event_p->event_info.auth_change.old_mode ,
                     event_p->event_info.auth_change.new_mode);
+			t_snprintf(ip_msg, sizeof(ip_msg), "STA Auth change");
             break;
         case EVENT_STAMODE_GOT_IP :
             DEBUG_PRINTF("IP:[" IPSTR "], Mask:[" IPSTR "], GW:[" IPSTR "]\n",
@@ -138,16 +145,20 @@ void wifi_event_cb( System_Event_t *event_p)
 			t_snprintf(ip_msg, sizeof(ip_msg), "IP:" IPSTR , 
 					IP2STR( & event_p->event_info.got_ip.ip));
 
+			network_init = 1;
+
             break;
         case EVENT_SOFTAPMODE_STACONNECTED :
             DEBUG_PRINTF( "STACONNECTED MAC:[" MACSTR "], AID:%02x\n " ,
                     MAC2STR( event_p->event_info.sta_connected.mac) ,
                     event_p->event_info. sta_connected.aid);
+			t_snprintf(ip_msg, sizeof(ip_msg), "STA Connected");
             break;
         case EVENT_SOFTAPMODE_STADISCONNECTED :
             DEBUG_PRINTF( "STADISCONNECTED MAC:[%s], AID:%02x\n " ,
                     MAC2STR( event_p->event_info.sta_connected.mac) ,
                     event_p->event_info. sta_connected.aid);
+			t_snprintf(ip_msg, sizeof(ip_msg), "STA Disconnected");
             break;
         }
 }

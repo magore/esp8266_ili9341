@@ -89,6 +89,8 @@ void \hyperlink{ili9341_8c_a7cef55bef133e9918955b4d2a53cf230}{tft\-\_\-draw\-Lin
 \begin{DoxyCompactList}\small\item\em Draw line From my blit test code testit.\-c 1984 -\/ 1985 Mike Gore. \end{DoxyCompactList}\item 
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{ili9341_8c_a9e2f1c5c213183804492d12ab89a1b43}{tft\-\_\-cleareol} (\hyperlink{structwindow}{window} $\ast$win)
 \begin{DoxyCompactList}\small\item\em \subsection*{Character and String functions }\end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{ili9341_8c_ab2312256c9579261cfa1ed62c4e82410}{tft\-\_\-clearline} (\hyperlink{structwindow}{window} $\ast$win)
+\begin{DoxyCompactList}\small\item\em Clear display text line. \end{DoxyCompactList}\item 
 void \hyperlink{ili9341_8c_afaf6907405d24bf529df5590f450d3cd}{tft\-\_\-putch} (\hyperlink{structwindow}{window} $\ast$win, int c)
 \begin{DoxyCompactList}\small\item\em put character in current winoow \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
@@ -99,6 +101,8 @@ void \hyperlink{ili9341_8c_afaf6907405d24bf529df5590f450d3cd}{tft\-\_\-putch} (\
 \hyperlink{structwindow}{window} $\ast$ \hyperlink{ili9341_8c_aa55d6901951c7fe057e8d32477b5e122}{tft} = \&\hyperlink{ili9341_8c_a460d9cc0fd386002d9485f2a0ed585d8}{tftwin}
 \item 
 \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\-\_\-t} \hyperlink{ili9341_8c_afd0704ffdcfd5d17f5437814c2860130}{tft\-\_\-\-I\-D}
+\item 
+\hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\-\_\-t} \hyperlink{ili9341_8c_a617c5b04fa66ee51cb311e55e312ad1b}{tft\-\_\-clock} = -\/1
 \end{DoxyCompactItemize}
 
 
@@ -156,7 +160,7 @@ Read Rectangle and return 16bit color array in 565 R\-G\-B format We clip the wi
 \end{DoxyParams}
 
 
-Definition at line 668 of file ili9341.\-c.
+Definition at line 673 of file ili9341.\-c.
 
 \hypertarget{ili9341_8c_a3bc3999315888a41dcf1417cdae450e3}{\index{ili9341.\-c@{ili9341.\-c}!U\-S\-E\-\_\-\-O\-P\-T\-I\-M\-I\-Z\-A\-T\-I\-O\-N\-\_\-\-D\-R\-A\-W\-L\-I\-N\-E@{U\-S\-E\-\_\-\-O\-P\-T\-I\-M\-I\-Z\-A\-T\-I\-O\-N\-\_\-\-D\-R\-A\-W\-L\-I\-N\-E}}
 \index{U\-S\-E\-\_\-\-O\-P\-T\-I\-M\-I\-Z\-A\-T\-I\-O\-N\-\_\-\-D\-R\-A\-W\-L\-I\-N\-E@{U\-S\-E\-\_\-\-O\-P\-T\-I\-M\-I\-Z\-A\-T\-I\-O\-N\-\_\-\-D\-R\-A\-W\-L\-I\-N\-E}!ili9341.c@{ili9341.\-c}}
@@ -191,7 +195,7 @@ Definition at line 668 of file ili9341.\-c.
 \end{DoxyParams}
 
 
-Definition at line 839 of file ili9341.\-c.
+Definition at line 843 of file ili9341.\-c.
 
 \hypertarget{ili9341_8c_a4ca5a5d44db7c5e71a387be3b47ff802}{\index{ili9341.\-c@{ili9341.\-c}!tft\-\_\-abs\-\_\-window@{tft\-\_\-abs\-\_\-window}}
 \index{tft\-\_\-abs\-\_\-window@{tft\-\_\-abs\-\_\-window}!ili9341.c@{ili9341.\-c}}
@@ -223,7 +227,7 @@ w $\ast$ h after clipping
 \end{DoxyReturn}
 
 
-Definition at line 188 of file ili9341.\-c.
+Definition at line 195 of file ili9341.\-c.
 
 
 
@@ -265,7 +269,7 @@ void T\-O\-D\-O C\-L\-I\-P window -\/ depends on blit array
 \end{DoxyReturn}
 
 
-Definition at line 364 of file ili9341.\-c.
+Definition at line 369 of file ili9341.\-c.
 
 
 
@@ -284,16 +288,36 @@ Referenced by tft\-\_\-draw\-Char().
 
 ====================================Clear display to end of line 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em win$\ast$} & window structure return\-: void \\
+\mbox{\tt in}  & {\em win$\ast$} & window structure return\-: void, win-\/$>$x = win-\/$>$w \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 1099 of file ili9341.\-c.
+Definition at line 1103 of file ili9341.\-c.
 
 
 
 Referenced by tft\-\_\-putch().
+
+\hypertarget{ili9341_8c_ab2312256c9579261cfa1ed62c4e82410}{\index{ili9341.\-c@{ili9341.\-c}!tft\-\_\-clearline@{tft\-\_\-clearline}}
+\index{tft\-\_\-clearline@{tft\-\_\-clearline}!ili9341.c@{ili9341.\-c}}
+\subsubsection[{tft\-\_\-clearline}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void tft\-\_\-clearline (
+\begin{DoxyParamCaption}
+\item[{{\bf window} $\ast$}]{win}
+\end{DoxyParamCaption}
+)}}\label{ili9341_8c_ab2312256c9579261cfa1ed62c4e82410}
+
+
+Clear display text line. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em win$\ast$} & window structure return\-: void, win-\/$>$x = 0 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1122 of file ili9341.\-c.
 
 \hypertarget{ili9341_8c_a944393583142b4a19593eec1a743b90e}{\index{ili9341.\-c@{ili9341.\-c}!tft\-\_\-\-Cmd@{tft\-\_\-\-Cmd}}
 \index{tft\-\_\-\-Cmd@{tft\-\_\-\-Cmd}!ili9341.c@{ili9341.\-c}}
@@ -313,7 +337,7 @@ Transmit 8 bit command.
 \end{DoxyParams}
 
 
-Definition at line 111 of file ili9341.\-c.
+Definition at line 117 of file ili9341.\-c.
 
 
 
@@ -343,7 +367,7 @@ Transmit 8 bit command and send/receive data buffer.
 \end{DoxyParams}
 
 
-Definition at line 123 of file ili9341.\-c.
+Definition at line 129 of file ili9341.\-c.
 
 
 
@@ -382,7 +406,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 981 of file ili9341.\-c.
+Definition at line 985 of file ili9341.\-c.
 
 
 
@@ -421,7 +445,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 967 of file ili9341.\-c.
+Definition at line 971 of file ili9341.\-c.
 
 
 
@@ -481,7 +505,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1040 of file ili9341.\-c.
+Definition at line 1044 of file ili9341.\-c.
 
 
 
@@ -517,7 +541,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 555 of file ili9341.\-c.
+Definition at line 560 of file ili9341.\-c.
 
 
 
@@ -559,11 +583,11 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 470 of file ili9341.\-c.
+Definition at line 475 of file ili9341.\-c.
 
 
 
-Referenced by tft\-\_\-cleareol(), tft\-\_\-draw\-Char(), tft\-\_\-draw\-Fast\-H\-Line(), tft\-\_\-draw\-Fast\-V\-Line(), tft\-\_\-fill\-Rect\-X\-Y(), tft\-\_\-fill\-Round\-Rect(), tft\-\_\-fill\-Win(), tft\-\_\-putch(), and tft\-\_\-\-Vscroll().
+Referenced by tft\-\_\-cleareol(), tft\-\_\-clearline(), tft\-\_\-draw\-Char(), tft\-\_\-draw\-Fast\-H\-Line(), tft\-\_\-draw\-Fast\-V\-Line(), tft\-\_\-fill\-Rect\-X\-Y(), tft\-\_\-fill\-Round\-Rect(), tft\-\_\-fill\-Win(), tft\-\_\-putch(), and tft\-\_\-\-Vscroll().
 
 \hypertarget{ili9341_8c_a49f75769b08991ac4a56bfb2f4e1fa05}{\index{ili9341.\-c@{ili9341.\-c}!tft\-\_\-fill\-Rect\-X\-Y@{tft\-\_\-fill\-Rect\-X\-Y}}
 \index{tft\-\_\-fill\-Rect\-X\-Y@{tft\-\_\-fill\-Rect\-X\-Y}!ili9341.c@{ili9341.\-c}}
@@ -601,7 +625,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 529 of file ili9341.\-c.
+Definition at line 534 of file ili9341.\-c.
 
 \hypertarget{ili9341_8c_a90dda5b7ba495fcca6ab4e5259f6c6fe}{\index{ili9341.\-c@{ili9341.\-c}!tft\-\_\-fill\-Win@{tft\-\_\-fill\-Win}}
 \index{tft\-\_\-fill\-Win@{tft\-\_\-fill\-Win}!ili9341.c@{ili9341.\-c}}
@@ -624,7 +648,7 @@ Definition at line 529 of file ili9341.\-c.
 \end{DoxyParams}
 
 
-Definition at line 456 of file ili9341.\-c.
+Definition at line 461 of file ili9341.\-c.
 
 
 
@@ -644,7 +668,7 @@ Only works if font is proportional type
 \end{DoxyParams}
 
 
-Definition at line 944 of file ili9341.\-c.
+Definition at line 948 of file ili9341.\-c.
 
 
 
@@ -668,7 +692,7 @@ Set current font type to variable.
 \end{DoxyParams}
 
 
-Definition at line 954 of file ili9341.\-c.
+Definition at line 958 of file ili9341.\-c.
 
 
 
@@ -692,7 +716,7 @@ Get font height.
 \end{DoxyParams}
 
 
-Definition at line 929 of file ili9341.\-c.
+Definition at line 933 of file ili9341.\-c.
 
 \hypertarget{ili9341_8c_a14e5cdfbb744c04570df508551f77add}{\index{ili9341.\-c@{ili9341.\-c}!tft\-\_\-init@{tft\-\_\-init}}
 \index{tft\-\_\-init@{tft\-\_\-init}!ili9341.c@{ili9341.\-c}}
@@ -714,7 +738,7 @@ diplay I\-D 9341
 \end{DoxyReturn}
 
 
-Definition at line 146 of file ili9341.\-c.
+Definition at line 152 of file ili9341.\-c.
 
 
 
@@ -741,7 +765,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 851 of file ili9341.\-c.
+Definition at line 855 of file ili9341.\-c.
 
 \hypertarget{ili9341_8c_afaf6907405d24bf529df5590f450d3cd}{\index{ili9341.\-c@{ili9341.\-c}!tft\-\_\-putch@{tft\-\_\-putch}}
 \index{tft\-\_\-putch@{tft\-\_\-putch}!ili9341.c@{ili9341.\-c}}
@@ -764,7 +788,7 @@ put character in current winoow
 \end{DoxyParams}
 
 
-Definition at line 1118 of file ili9341.\-c.
+Definition at line 1143 of file ili9341.\-c.
 
 
 
@@ -786,7 +810,7 @@ Read I\-L\-I9341 device I\-D should be 9341 This does not work for really high S
 \end{DoxyReturn}
 Paramter 0 is unused See Read I\-D4 Command ( 0xd3 ) for a description of the parameters 
 
-Definition at line 336 of file ili9341.\-c.
+Definition at line 341 of file ili9341.\-c.
 
 
 
@@ -819,7 +843,7 @@ color in 565 format
 \end{DoxyReturn}
 
 
-Definition at line 760 of file ili9341.\-c.
+Definition at line 764 of file ili9341.\-c.
 
 \hypertarget{ili9341_8c_a08bf5b6422229993b5d68e48c7b39619}{\index{ili9341.\-c@{ili9341.\-c}!tft\-\_\-read\-Rect@{tft\-\_\-read\-Rect}}
 \index{tft\-\_\-read\-Rect@{tft\-\_\-read\-Rect}!ili9341.c@{ili9341.\-c}}
@@ -835,7 +859,7 @@ Definition at line 760 of file ili9341.\-c.
 )}}\label{ili9341_8c_a08bf5b6422229993b5d68e48c7b39619}
 
 
-Definition at line 670 of file ili9341.\-c.
+Definition at line 675 of file ili9341.\-c.
 
 
 
@@ -868,7 +892,7 @@ Referenced by tft\-\_\-\-Vscroll().
 
 \end{DoxyItemize}
 
-Definition at line 287 of file ili9341.\-c.
+Definition at line 294 of file ili9341.\-c.
 
 
 
@@ -907,7 +931,7 @@ bytes w $\ast$ h after clipping, 0 on error
 \end{DoxyReturn}
 
 
-Definition at line 263 of file ili9341.\-c.
+Definition at line 270 of file ili9341.\-c.
 
 
 
@@ -934,7 +958,7 @@ Set current font size (per current rotation)
 \end{DoxyParams}
 
 
-Definition at line 921 of file ili9341.\-c.
+Definition at line 925 of file ili9341.\-c.
 
 
 
@@ -964,7 +988,7 @@ Set current window offset (per current rotation)
 \end{DoxyParams}
 
 
-Definition at line 909 of file ili9341.\-c.
+Definition at line 913 of file ili9341.\-c.
 
 
 
@@ -989,7 +1013,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 788 of file ili9341.\-c.
+Definition at line 792 of file ili9341.\-c.
 
 
 
@@ -1022,7 +1046,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 896 of file ili9341.\-c.
+Definition at line 900 of file ili9341.\-c.
 
 
 
@@ -1041,7 +1065,7 @@ Obtain S\-P\-I bus for T\-F\-T display, assert chip select return\-: void.
 
 
 
-Definition at line 51 of file ili9341.\-c.
+Definition at line 54 of file ili9341.\-c.
 
 
 
@@ -1060,11 +1084,11 @@ Release S\-P\-I bus from T\-F\-T display, deassert chip select return\-: void.
 
 
 
-Definition at line 59 of file ili9341.\-c.
+Definition at line 64 of file ili9341.\-c.
 
 
 
-Referenced by tft\-\_\-bit\-\_\-blit(), tft\-\_\-\-Cmd\-\_\-\-Data\-\_\-\-T\-X(), tft\-\_\-fill\-Rect\-W\-H(), tft\-\_\-invert\-Display(), tft\-\_\-read\-Pixel(), tft\-\_\-read\-Rect(), tft\-\_\-read\-Register(), and tft\-\_\-write\-Rect().
+Referenced by tft\-\_\-bit\-\_\-blit(), tft\-\_\-\-Cmd\-\_\-\-Data\-\_\-\-T\-X(), tft\-\_\-fill\-Rect\-W\-H(), tft\-\_\-invert\-Display(), tft\-\_\-read\-Pixel(), tft\-\_\-read\-Rect(), tft\-\_\-read\-Register(), tft\-\_\-spi\-\_\-init(), and tft\-\_\-write\-Rect().
 
 \hypertarget{ili9341_8c_a6384a05f7010d4ecb9e1d9166c2a5a56}{\index{ili9341.\-c@{ili9341.\-c}!tft\-\_\-spi\-\_\-init@{tft\-\_\-spi\-\_\-init}}
 \index{tft\-\_\-spi\-\_\-init@{tft\-\_\-spi\-\_\-init}!ili9341.c@{ili9341.\-c}}
@@ -1079,7 +1103,7 @@ Obtain S\-P\-I bus for T\-F\-T display, assert chip select return\-: void.
 
 ============================================================= S\-P\-I 
 
-Definition at line 43 of file ili9341.\-c.
+Definition at line 45 of file ili9341.\-c.
 
 
 
@@ -1107,7 +1131,7 @@ read 8 bit data array
 \end{DoxyParams}
 
 
-Definition at line 98 of file ili9341.\-c.
+Definition at line 104 of file ili9341.\-c.
 
 
 
@@ -1135,7 +1159,7 @@ Transmit 8 bit data array.
 \end{DoxyParams}
 
 
-Definition at line 69 of file ili9341.\-c.
+Definition at line 75 of file ili9341.\-c.
 
 
 
@@ -1163,7 +1187,7 @@ Transmit and read 8 bit data array.
 \end{DoxyParams}
 
 
-Definition at line 83 of file ili9341.\-c.
+Definition at line 89 of file ili9341.\-c.
 
 
 
@@ -1190,7 +1214,7 @@ Scroll window up by dir lines.
 \end{DoxyParams}
 
 
-Definition at line 733 of file ili9341.\-c.
+Definition at line 737 of file ili9341.\-c.
 
 
 
@@ -1229,7 +1253,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 871 of file ili9341.\-c.
+Definition at line 875 of file ili9341.\-c.
 
 
 
@@ -1271,7 +1295,7 @@ void T\-O\-D\-O C\-L\-I\-P window -\/ depends on blit array also
 \end{DoxyReturn}
 
 
-Definition at line 583 of file ili9341.\-c.
+Definition at line 588 of file ili9341.\-c.
 
 
 
@@ -1286,6 +1310,17 @@ Referenced by tft\-\_\-draw\-Bitmap(), and tft\-\_\-\-Vscroll().
 
 
 Definition at line 35 of file ili9341.\-c.
+
+\hypertarget{ili9341_8c_a617c5b04fa66ee51cb311e55e312ad1b}{\index{ili9341.\-c@{ili9341.\-c}!tft\-\_\-clock@{tft\-\_\-clock}}
+\index{tft\-\_\-clock@{tft\-\_\-clock}!ili9341.c@{ili9341.\-c}}
+\subsubsection[{tft\-\_\-clock}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint16\-\_\-t} tft\-\_\-clock = -\/1}}\label{ili9341_8c_a617c5b04fa66ee51cb311e55e312ad1b}
+
+
+Definition at line 38 of file ili9341.\-c.
+
+
+
+Referenced by tft\-\_\-spi\-\_\-begin(), and tft\-\_\-spi\-\_\-init().
 
 \hypertarget{ili9341_8c_afd0704ffdcfd5d17f5437814c2860130}{\index{ili9341.\-c@{ili9341.\-c}!tft\-\_\-\-I\-D@{tft\-\_\-\-I\-D}}
 \index{tft\-\_\-\-I\-D@{tft\-\_\-\-I\-D}!ili9341.c@{ili9341.\-c}}

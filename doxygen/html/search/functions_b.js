@@ -1,7 +1,9 @@
 var searchData=
 [
-  ['main',['main',['../send_8c.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main(int argc, char *argv[]):&#160;send.c'],['../earth2wireframe_8c.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main(int argc, char *argv[]):&#160;earth2wireframe.c'],['../bdffont2c_8c.html#af3ed9c200de85b53c94cd18764b246a2',1,'main(int argc, char *const argv[]):&#160;bdffont2c.c'],['../bdfview_8c.html#ae0665038b72011f5c680c660fcb59459',1,'main(int argc, char *argv[]):&#160;bdfview.c'],['../cordic2c_8c.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main(int argc, char *argv[]):&#160;cordic2c.c']]],
-  ['malloc',['malloc',['../util_8c.html#a7ac38fce3243a7dcf448301ee9ffd392',1,'malloc(size_t size):&#160;util.c'],['../util_8h.html#a7ac38fce3243a7dcf448301ee9ffd392',1,'malloc(size_t size):&#160;util.c']]],
-  ['match_5ftoken',['match_token',['../bdffontutil_8c.html#aa8451fa4387dfafd4583f6548533d37b',1,'match_token(char *str, char *pat):&#160;bdffontutil.c'],['../bdffontutil_8h.html#aa8451fa4387dfafd4583f6548533d37b',1,'match_token(char *str, char *pat):&#160;bdffontutil.c']]],
-  ['my_5freceive',['my_receive',['../network_8h.html#af65ec795e7e4486dd8bb58d757fb6067',1,'network.h']]]
+  ['ld_5fclust',['ld_clust',['../ff_8c.html#a84c9014cddbbfa6f1ade308bbc4a9a00',1,'ff.c']]],
+  ['leap_5fdays_5fsince_5f1900',['Leap_Days_Since_1900',['../time_8c.html#ae735aeba371be4c38d738538bcbd8ff1',1,'time.c']]],
+  ['line_5fwrap',['line_wrap',['../bdffontutil_8c.html#a466ba4f5e35f1e5ff2791ae4d68d2c7b',1,'line_wrap(char *str, int max):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a466ba4f5e35f1e5ff2791ae4d68d2c7b',1,'line_wrap(char *str, int max):&#160;bdffontutil.c']]],
+  ['localtime',['localtime',['../time_8c.html#a08eb1818fa59b3e6e1f1470ca0888572',1,'localtime(time_t *tp):&#160;time.c'],['../time_8h.html#a08eb1818fa59b3e6e1f1470ca0888572',1,'localtime(time_t *tp):&#160;time.c']]],
+  ['localtime_5fr',['localtime_r',['../time_8c.html#af05576742e2f8ad3924c02a6af70a86d',1,'localtime_r(time_t *t, tm_t *result):&#160;time.c'],['../time_8h.html#af05576742e2f8ad3924c02a6af70a86d',1,'localtime_r(time_t *t, tm_t *result):&#160;time.c']]],
+  ['lseek',['lseek',['../posix_8c.html#ae4ea1b12797e3ba021a1af3cb4ba17bd',1,'lseek(int fileno, size_t position, int whence):&#160;posix.c'],['../posix_8h.html#ae4ea1b12797e3ba021a1af3cb4ba17bd',1,'lseek(int fileno, size_t position, int whence):&#160;posix.c']]]
 ];

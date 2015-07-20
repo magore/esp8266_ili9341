@@ -43,7 +43,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	#include "printf.h"
 #endif
 
-#include <string.h>
+//#include <string.h>
 #include <stdarg.h>
 #include <math.h>
 
@@ -992,8 +992,6 @@ t_snprintf(char* buffer, int buffer_len, const char *fmt, ...)
 
 	return ret;
 }
-
-
 
 #ifdef TEST
 /// @brief printf function

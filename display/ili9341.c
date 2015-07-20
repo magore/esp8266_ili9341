@@ -35,6 +35,8 @@ window tftwin;
 window *tft = &tftwin;
 uint16_t tft_ID;
 
+uint16_t tft_clock = -1;
+
 /// =============================================================
 /// SPI 
 
@@ -42,8 +44,9 @@ uint16_t tft_ID;
 /// return: void
 void tft_spi_init(uint16_t prescale)
 {
-    hspi_waitReady();
-	hspi_init(prescale, 0);
+	// start with slow SPI, no hardware CS
+    tft_spi_end();
+	hspi_init( (tft_clock = prescale) , 0);
 }
 
 /// @brief  Obtain SPI bus for TFT display, assert chip select
@@ -51,7 +54,9 @@ void tft_spi_init(uint16_t prescale)
 void tft_spi_begin()
 {
     hspi_waitReady();
-    TFT_CS_ACTIVE;
+	hspi_init(tft_clock, 0);
+	hspi_cs_enable(TFT_CS_PIN);
+    //TFT_CS_ACTIVE;
 }
 
 /// @brief  Release SPI bus from TFT display, deassert chip select
@@ -59,7 +64,8 @@ void tft_spi_begin()
 void tft_spi_end()
 {
     hspi_waitReady();
-    TFT_CS_DEACTIVE;
+	hspi_cs_disable(TFT_CS_PIN);
+    //TFT_CS_DEACTIVE;
 }
 
 /// @brief  Transmit 8 bit data array
@@ -145,15 +151,16 @@ void tft_Cmd_Data_TX(uint8_t cmd, uint8_t * data, int bytes)
 MEMSPACE
 window *tft_init(void)
 {
+    TFT_RST_INIT;	// RESET PIN
+    TFT_INIT;		// DATA/COMMAND
+    TFT_CS_INIT;	// CHIP SELLECT
+	hspi_cs_disable(TFT_CS_PIN);
+	// TFT_CS_DISABLE;
 
-    TFT_CS_INIT;
-    TFT_INIT;
-    TFT_RST_INIT;
-    TFT_RST_ACTIVE;
-
-	// start with slow SPI, no hardware CS
+	// start with slow slok so tft_readId works
+	// only function that fails at less then 1
 	tft_spi_init(2);
-
+    TFT_RST_ACTIVE;	
     os_delay_us(10000);
     TFT_RST_DEACTIVE;
     os_delay_us(1000);
@@ -288,8 +295,6 @@ uint32_t tft_readRegister(uint8_t command, uint8_t parameter)
 {
     uint32_t result;
 	uint8_t tmp[4];
-
-
 	tft_spi_begin();
 
 	// We do not know what the 0x10 offset implies - but it is required.
@@ -725,7 +730,6 @@ void tft_readRect(window *win, int16_t x, int16_t y, int16_t w, int16_t h, uint1
 	}
 }
 
-
 /// @brief Scroll window up by dir lines
 /// @param[in] win*: window structure
 /// @param[in] dir: direction and count
@@ -1094,7 +1098,7 @@ void tft_drawLine(window *win, int16_t x0, int16_t y0, int16_t x1, int16_t y1, u
 
 /// @brief  Clear display to end of line
 /// @param[in] win*: window structure
-/// return: void
+/// return: void, win->x = win->w
 MEMSPACE
 void tft_cleareol(window *win)
 {
@@ -1110,6 +1114,27 @@ void tft_cleareol(window *win)
 	}
 	win->x = win->w;	// one past end
 }
+
+/// @brief  Clear display text line 
+/// @param[in] win*: window structure
+/// return: void, win->x = 0
+MEMSPACE
+void tft_clearline(window *win)
+{
+	int ret, rem;
+    _fontc f;
+	ret = font_attr(win,' ', &f);
+	if(ret < 0)
+		return;
+	rem = (win->w - 1 - win->x);
+	if(rem > 0)
+	{
+		tft_fillRectWH(win, 0, win->y, rem, f.Height, win->bg);
+	}
+	win->x = 0;
+}
+
+
 
 /// @brief  put character in current winoow
 /// @param[in] win*: window structure
@@ -1150,6 +1175,7 @@ void tft_putch(window *win, int c)
 	// Control characters
 	if(c == '\n')
 	{
+		tft_cleareol(win);
 		win->x = 0;
 		win->y += f.Height;
 	}

@@ -87,7 +87,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">uart.c File Reference</div>  </div>
 </div><!--header-->
@@ -95,12 +96,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>Uart driver for ESP8266.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;ets_sys.h&quot;</code><br/>
-<code>#include &quot;osapi.h&quot;</code><br/>
-<code>#include &quot;<a class="el" href="uart_8h_source.html">uart.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="utils_2uart__register_8h_source.html">uart_register.h</a>&quot;</code><br/>
-<code>#include &quot;mem.h&quot;</code><br/>
-<code>#include &quot;os_type.h&quot;</code><br/>
+<div class="textblock"><code>#include &quot;<a class="el" href="user__config_8h_source.html">user_config.h</a>&quot;</code><br/>
 </div>
 <p><a href="uart_8c_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -124,75 +120,99 @@ Functions</h2></td></tr>
 <tr class="memitem:a6b9147fc5ffaf0a602cc60a8addb8a38"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a6b9147fc5ffaf0a602cc60a8addb8a38">rx_fifo_flush</a> (int uart_no)</td></tr>
 <tr class="memdesc:a6b9147fc5ffaf0a602cc60a8addb8a38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flush receive fifo for a uart.  <a href="#a6b9147fc5ffaf0a602cc60a8addb8a38">More...</a><br/></td></tr>
 <tr class="separator:a6b9147fc5ffaf0a602cc60a8addb8a38"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6761468e5e160ada4cc1812f3d828c3e"><td class="memItemLeft" align="right" valign="top">ICACHE_FLASH_ATTR int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a6761468e5e160ada4cc1812f3d828c3e">tx_fifo_used</a> (int uart_no)</td></tr>
-<tr class="memdesc:a6761468e5e160ada4cc1812f3d828c3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of bytes used in transmit fifo.  <a href="#a6761468e5e160ada4cc1812f3d828c3e">More...</a><br/></td></tr>
-<tr class="separator:a6761468e5e160ada4cc1812f3d828c3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb027a9de79ce5fcfb3e5b944221159c"><td class="memItemLeft" align="right" valign="top">ICACHE_FLASH_ATTR int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#adb027a9de79ce5fcfb3e5b944221159c">tx_fifo_free</a> (int uart_no)</td></tr>
-<tr class="memdesc:adb027a9de79ce5fcfb3e5b944221159c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of bytes free in transmit fifo.  <a href="#adb027a9de79ce5fcfb3e5b944221159c">More...</a><br/></td></tr>
-<tr class="separator:adb027a9de79ce5fcfb3e5b944221159c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e43189a4098d02ddc7069f727fe0b6e"><td class="memItemLeft" align="right" valign="top">ICACHE_FLASH_ATTR int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a9e43189a4098d02ddc7069f727fe0b6e">tx_fifo_empty</a> (int uart_no)</td></tr>
-<tr class="memdesc:a9e43189a4098d02ddc7069f727fe0b6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test if the transmit fifo is empty.  <a href="#a9e43189a4098d02ddc7069f727fe0b6e">More...</a><br/></td></tr>
-<tr class="separator:a9e43189a4098d02ddc7069f727fe0b6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a281bc3c996dd0fd5c3f08da55bedbe27"><td class="memItemLeft" align="right" valign="top">ICACHE_FLASH_ATTR int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a281bc3c996dd0fd5c3f08da55bedbe27">rx_fifo_used</a> (int uart_no)</td></tr>
-<tr class="memdesc:a281bc3c996dd0fd5c3f08da55bedbe27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of bytes used in receive fifo.  <a href="#a281bc3c996dd0fd5c3f08da55bedbe27">More...</a><br/></td></tr>
-<tr class="separator:a281bc3c996dd0fd5c3f08da55bedbe27"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae4b43d84c14e9a86476c015359549e20"><td class="memItemLeft" align="right" valign="top">ICACHE_FLASH_ATTR int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#ae4b43d84c14e9a86476c015359549e20">rx_fifo_free</a> (int uart_no)</td></tr>
-<tr class="memdesc:ae4b43d84c14e9a86476c015359549e20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of bytes free in receive fifo.  <a href="#ae4b43d84c14e9a86476c015359549e20">More...</a><br/></td></tr>
-<tr class="separator:ae4b43d84c14e9a86476c015359549e20"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac2e177e717aae4de72f2bb1fdb6826b1"><td class="memItemLeft" align="right" valign="top">ICACHE_FLASH_ATTR int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#ac2e177e717aae4de72f2bb1fdb6826b1">rx_fifo_empty</a> (int uart_no)</td></tr>
-<tr class="memdesc:ac2e177e717aae4de72f2bb1fdb6826b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test if the receive fifo is empty.  <a href="#ac2e177e717aae4de72f2bb1fdb6826b1">More...</a><br/></td></tr>
-<tr class="separator:ac2e177e717aae4de72f2bb1fdb6826b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a23bdd2e9b8ab8a4eda1d7b478e045eee"><td class="memItemLeft" align="right" valign="top">ICACHE_FLASH_ATTR <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a23bdd2e9b8ab8a4eda1d7b478e045eee">tx_fifo_putc</a> (int uart_no, <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> c)</td></tr>
-<tr class="memdesc:a23bdd2e9b8ab8a4eda1d7b478e045eee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a byte to the trasmit fifo We assume that <a class="el" href="uart_8c.html#adb027a9de79ce5fcfb3e5b944221159c" title="Get the number of bytes free in transmit fifo. ">tx_fifo_free()</a> was called!  <a href="#a23bdd2e9b8ab8a4eda1d7b478e045eee">More...</a><br/></td></tr>
-<tr class="separator:a23bdd2e9b8ab8a4eda1d7b478e045eee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a257c0e165980098c8714d69eaf8f75a5"><td class="memItemLeft" align="right" valign="top">ICACHE_FLASH_ATTR <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a257c0e165980098c8714d69eaf8f75a5">rx_fifo_getc</a> (int uart_no)</td></tr>
-<tr class="memdesc:a257c0e165980098c8714d69eaf8f75a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove a byte from the receive fifo We assume that <a class="el" href="uart_8c.html#a281bc3c996dd0fd5c3f08da55bedbe27" title="Get the number of bytes used in receive fifo. ">rx_fifo_used()</a> was called!  <a href="#a257c0e165980098c8714d69eaf8f75a5">More...</a><br/></td></tr>
-<tr class="separator:a257c0e165980098c8714d69eaf8f75a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac719715c19d55bb7cdba5cbc85a2805d"><td class="memItemLeft" align="right" valign="top">ICACHE_FLASH_ATTR int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#ac719715c19d55bb7cdba5cbc85a2805d">tx_fifo_write</a> (int uart_no, <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> *buf, int size)</td></tr>
-<tr class="memdesc:ac719715c19d55bb7cdba5cbc85a2805d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a data buffer to the transmit fifo Note: This function does not wait/block util there is enough free space to meet the request. So you must check that the return value matches the size.  <a href="#ac719715c19d55bb7cdba5cbc85a2805d">More...</a><br/></td></tr>
-<tr class="separator:ac719715c19d55bb7cdba5cbc85a2805d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af0b296a8c71d2c06c229342a906201e0"><td class="memItemLeft" align="right" valign="top">ICACHE_FLASH_ATTR int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#af0b296a8c71d2c06c229342a906201e0">rx_fifo_read</a> (int uart_no, <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> *buf, int size)</td></tr>
-<tr class="memdesc:af0b296a8c71d2c06c229342a906201e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a data buffer from the receive fifo Note: This function does not wait/block util there is enough free space to meet the request. So you must check that the return value matches the size.  <a href="#af0b296a8c71d2c06c229342a906201e0">More...</a><br/></td></tr>
-<tr class="separator:af0b296a8c71d2c06c229342a906201e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a48b3793724004cfcdfdd2e2ad69cfa07"><td class="memItemLeft" align="right" valign="top">LOCAL ICACHE_FLASH_ATTR void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a48b3793724004cfcdfdd2e2ad69cfa07">uart_putb</a> (uint8 uart_no, uint8 data)</td></tr>
-<tr class="memdesc:a48b3793724004cfcdfdd2e2ad69cfa07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Blocking I/O functions.  <a href="#a48b3793724004cfcdfdd2e2ad69cfa07">More...</a><br/></td></tr>
-<tr class="separator:a48b3793724004cfcdfdd2e2ad69cfa07"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a46eeee9883d1494fe44bf55fd5508bc5"><td class="memItemLeft" align="right" valign="top">LOCAL ICACHE_FLASH_ATTR <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a46eeee9883d1494fe44bf55fd5508bc5">uart_getb</a> (int uart_no)</td></tr>
-<tr class="memdesc:a46eeee9883d1494fe44bf55fd5508bc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a byte from a uart Note: This function waits/blocks util the read can happen.  <a href="#a46eeee9883d1494fe44bf55fd5508bc5">More...</a><br/></td></tr>
-<tr class="separator:a46eeee9883d1494fe44bf55fd5508bc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7022706232b5c20a126ce7f719496f49"><td class="memItemLeft" align="right" valign="top">ICACHE_FLASH_ATTR void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a7022706232b5c20a126ce7f719496f49">uart_putc</a> (uint8 uart_no, char c)</td></tr>
-<tr class="memdesc:a7022706232b5c20a126ce7f719496f49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a byte from a uart with NL to CR/NL conversion Note: This function waits/blocks util the write can happen.  <a href="#a7022706232b5c20a126ce7f719496f49">More...</a><br/></td></tr>
-<tr class="separator:a7022706232b5c20a126ce7f719496f49"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2b78e553fb7c85fc8f67ab095aee6904"><td class="memItemLeft" align="right" valign="top">ICACHE_FLASH_ATTR <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a2b78e553fb7c85fc8f67ab095aee6904">uart_getc</a> (int uart_no)</td></tr>
-<tr class="memdesc:a2b78e553fb7c85fc8f67ab095aee6904"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a byte from a uart with NL to CR/NL conversion Note: This function waits/blocks util the read can happen.  <a href="#a2b78e553fb7c85fc8f67ab095aee6904">More...</a><br/></td></tr>
-<tr class="separator:a2b78e553fb7c85fc8f67ab095aee6904"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d0039c2b51e8187acfa97c6cfe1a8e3"><td class="memItemLeft" align="right" valign="top">ICACHE_FLASH_ATTR void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a9d0039c2b51e8187acfa97c6cfe1a8e3">uart0_putc</a> (uint8 c)</td></tr>
-<tr class="memdesc:a9d0039c2b51e8187acfa97c6cfe1a8e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a byte to uart0 with NL to CR/NL conversion Note: This function waits/blocks util the write can happen.  <a href="#a9d0039c2b51e8187acfa97c6cfe1a8e3">More...</a><br/></td></tr>
-<tr class="separator:a9d0039c2b51e8187acfa97c6cfe1a8e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a08d5d946ab42a42b1bb8f9b9453d5900"><td class="memItemLeft" align="right" valign="top">ICACHE_FLASH_ATTR <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a08d5d946ab42a42b1bb8f9b9453d5900">uart0_getc</a> ()</td></tr>
-<tr class="memdesc:a08d5d946ab42a42b1bb8f9b9453d5900"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a byte from uart0 with NL to CR/NL conversion Note: This function waits/blocks util the read can happen.  <a href="#a08d5d946ab42a42b1bb8f9b9453d5900">More...</a><br/></td></tr>
-<tr class="separator:a08d5d946ab42a42b1bb8f9b9453d5900"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5b6fca6f048f53f570fe459ac9a3e12a"><td class="memItemLeft" align="right" valign="top">ICACHE_FLASH_ATTR void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a5b6fca6f048f53f570fe459ac9a3e12a">uart1_putc</a> (uint8 c)</td></tr>
-<tr class="memdesc:a5b6fca6f048f53f570fe459ac9a3e12a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a byte to uart1 with NL to CR/NL conversion Note: This function waits/blocks util the write can happen.  <a href="#a5b6fca6f048f53f570fe459ac9a3e12a">More...</a><br/></td></tr>
-<tr class="separator:a5b6fca6f048f53f570fe459ac9a3e12a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a38c4c0e60868ea9f657d6719ab8f5c30"><td class="memItemLeft" align="right" valign="top">ICACHE_FLASH_ATTR <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a38c4c0e60868ea9f657d6719ab8f5c30">uart1_getc</a> ()</td></tr>
-<tr class="memdesc:a38c4c0e60868ea9f657d6719ab8f5c30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a byte from uart1 with NL to CR/NL conversion Note: This function waits/blocks util the read can happen.  <a href="#a38c4c0e60868ea9f657d6719ab8f5c30">More...</a><br/></td></tr>
-<tr class="separator:a38c4c0e60868ea9f657d6719ab8f5c30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f8397ebf08ae984ed48144d0287a048"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a6f8397ebf08ae984ed48144d0287a048">tx_fifo_used</a> (int uart_no)</td></tr>
+<tr class="memdesc:a6f8397ebf08ae984ed48144d0287a048"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of bytes used in transmit fifo.  <a href="#a6f8397ebf08ae984ed48144d0287a048">More...</a><br/></td></tr>
+<tr class="separator:a6f8397ebf08ae984ed48144d0287a048"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c0f172370540e0d1840c415c2c7b661"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a3c0f172370540e0d1840c415c2c7b661">tx_fifo_free</a> (int uart_no)</td></tr>
+<tr class="memdesc:a3c0f172370540e0d1840c415c2c7b661"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of bytes free in transmit fifo.  <a href="#a3c0f172370540e0d1840c415c2c7b661">More...</a><br/></td></tr>
+<tr class="separator:a3c0f172370540e0d1840c415c2c7b661"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50e81b3a1433d1947bdff1b9bdf425d3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a50e81b3a1433d1947bdff1b9bdf425d3">tx_fifo_empty</a> (int uart_no)</td></tr>
+<tr class="memdesc:a50e81b3a1433d1947bdff1b9bdf425d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test if the transmit fifo is empty.  <a href="#a50e81b3a1433d1947bdff1b9bdf425d3">More...</a><br/></td></tr>
+<tr class="separator:a50e81b3a1433d1947bdff1b9bdf425d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09c378ce1610cb5e63469a4ee6813de2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a09c378ce1610cb5e63469a4ee6813de2">rx_fifo_used</a> (int uart_no)</td></tr>
+<tr class="memdesc:a09c378ce1610cb5e63469a4ee6813de2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of bytes used in receive fifo.  <a href="#a09c378ce1610cb5e63469a4ee6813de2">More...</a><br/></td></tr>
+<tr class="separator:a09c378ce1610cb5e63469a4ee6813de2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa59d5d55b7cd6551d97ef6af22949c82"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#aa59d5d55b7cd6551d97ef6af22949c82">rx_fifo_free</a> (int uart_no)</td></tr>
+<tr class="memdesc:aa59d5d55b7cd6551d97ef6af22949c82"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of bytes free in receive fifo.  <a href="#aa59d5d55b7cd6551d97ef6af22949c82">More...</a><br/></td></tr>
+<tr class="separator:aa59d5d55b7cd6551d97ef6af22949c82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ffd1f20ba2ca3ef0894473091b25012"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a3ffd1f20ba2ca3ef0894473091b25012">rx_fifo_empty</a> (int uart_no)</td></tr>
+<tr class="memdesc:a3ffd1f20ba2ca3ef0894473091b25012"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test if the receive fifo is empty.  <a href="#a3ffd1f20ba2ca3ef0894473091b25012">More...</a><br/></td></tr>
+<tr class="separator:a3ffd1f20ba2ca3ef0894473091b25012"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a768fe76dc08754a1812bc4e5e2f1b0e0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a768fe76dc08754a1812bc4e5e2f1b0e0">tx_fifo_putc</a> (int uart_no, <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> c)</td></tr>
+<tr class="memdesc:a768fe76dc08754a1812bc4e5e2f1b0e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a byte to the trasmit fifo We assume that <a class="el" href="uart_8c.html#a3c0f172370540e0d1840c415c2c7b661" title="Get the number of bytes free in transmit fifo. ">tx_fifo_free()</a> was called!  <a href="#a768fe76dc08754a1812bc4e5e2f1b0e0">More...</a><br/></td></tr>
+<tr class="separator:a768fe76dc08754a1812bc4e5e2f1b0e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82ec27afa5b913b022cc57c1bd5d5528"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a82ec27afa5b913b022cc57c1bd5d5528">rx_fifo_getc</a> (int uart_no)</td></tr>
+<tr class="memdesc:a82ec27afa5b913b022cc57c1bd5d5528"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove a byte from the receive fifo We assume that <a class="el" href="uart_8c.html#a09c378ce1610cb5e63469a4ee6813de2" title="Get the number of bytes used in receive fifo. ">rx_fifo_used()</a> was called!  <a href="#a82ec27afa5b913b022cc57c1bd5d5528">More...</a><br/></td></tr>
+<tr class="separator:a82ec27afa5b913b022cc57c1bd5d5528"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6658637d750ec2e2366ac3881dbd9f6e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a6658637d750ec2e2366ac3881dbd9f6e">tx_fifo_write</a> (int uart_no, <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> *buf, int size)</td></tr>
+<tr class="memdesc:a6658637d750ec2e2366ac3881dbd9f6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a data buffer to the transmit fifo Note: This function does not wait/block util there is enough free space to meet the request. So you must check that the return value matches the size.  <a href="#a6658637d750ec2e2366ac3881dbd9f6e">More...</a><br/></td></tr>
+<tr class="separator:a6658637d750ec2e2366ac3881dbd9f6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ee039ccb34468de12203a7027fee1ce"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a5ee039ccb34468de12203a7027fee1ce">rx_fifo_read</a> (int uart_no, <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> *buf, int size)</td></tr>
+<tr class="memdesc:a5ee039ccb34468de12203a7027fee1ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a data buffer from the receive fifo Note: This function does not wait/block util there is enough free space to meet the request. So you must check that the return value matches the size.  <a href="#a5ee039ccb34468de12203a7027fee1ce">More...</a><br/></td></tr>
+<tr class="separator:a5ee039ccb34468de12203a7027fee1ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d19962bf637dbfa1fbd66020570f64f"><td class="memItemLeft" align="right" valign="top">LOCAL <a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a3d19962bf637dbfa1fbd66020570f64f">uart_putb</a> (uint8 uart_no, uint8 data)</td></tr>
+<tr class="memdesc:a3d19962bf637dbfa1fbd66020570f64f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Blocking I/O functions.  <a href="#a3d19962bf637dbfa1fbd66020570f64f">More...</a><br/></td></tr>
+<tr class="separator:a3d19962bf637dbfa1fbd66020570f64f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d03af0672e67715b10ea90aca69743d"><td class="memItemLeft" align="right" valign="top">LOCAL <a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a2d03af0672e67715b10ea90aca69743d">uart_getb</a> (int uart_no)</td></tr>
+<tr class="memdesc:a2d03af0672e67715b10ea90aca69743d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a byte from a uart Note: This function waits/blocks util the read can happen.  <a href="#a2d03af0672e67715b10ea90aca69743d">More...</a><br/></td></tr>
+<tr class="separator:a2d03af0672e67715b10ea90aca69743d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4edbb01728f45e11ed6717416bbb9309"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a4edbb01728f45e11ed6717416bbb9309">uart_putc</a> (uint8 uart_no, char c)</td></tr>
+<tr class="memdesc:a4edbb01728f45e11ed6717416bbb9309"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a byte from a uart with NL to CR/NL conversion Note: This function waits/blocks util the write can happen.  <a href="#a4edbb01728f45e11ed6717416bbb9309">More...</a><br/></td></tr>
+<tr class="separator:a4edbb01728f45e11ed6717416bbb9309"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64dbce670a0ba6a547378d2305d03dfa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a64dbce670a0ba6a547378d2305d03dfa">uart_getc</a> (int uart_no)</td></tr>
+<tr class="memdesc:a64dbce670a0ba6a547378d2305d03dfa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a byte from a uart with NL to CR/NL conversion Note: This function waits/blocks util the read can happen.  <a href="#a64dbce670a0ba6a547378d2305d03dfa">More...</a><br/></td></tr>
+<tr class="separator:a64dbce670a0ba6a547378d2305d03dfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38d539495f2c5329441ccedc26081afa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a38d539495f2c5329441ccedc26081afa">uart0_putc</a> (uint8 c)</td></tr>
+<tr class="memdesc:a38d539495f2c5329441ccedc26081afa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a byte to uart0 with NL to CR/NL conversion Note: This function waits/blocks util the write can happen.  <a href="#a38d539495f2c5329441ccedc26081afa">More...</a><br/></td></tr>
+<tr class="separator:a38d539495f2c5329441ccedc26081afa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49dc3c01092320490b61e1f480b76b9b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a49dc3c01092320490b61e1f480b76b9b">uart0_getc</a> ()</td></tr>
+<tr class="memdesc:a49dc3c01092320490b61e1f480b76b9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a byte from uart0 with NL to CR/NL conversion Note: This function waits/blocks util the read can happen.  <a href="#a49dc3c01092320490b61e1f480b76b9b">More...</a><br/></td></tr>
+<tr class="separator:a49dc3c01092320490b61e1f480b76b9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e535e1ea0c08984d0de21b4d2cb4cec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a5e535e1ea0c08984d0de21b4d2cb4cec">uart1_putc</a> (uint8 c)</td></tr>
+<tr class="memdesc:a5e535e1ea0c08984d0de21b4d2cb4cec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a byte to uart1 with NL to CR/NL conversion Note: This function waits/blocks util the write can happen.  <a href="#a5e535e1ea0c08984d0de21b4d2cb4cec">More...</a><br/></td></tr>
+<tr class="separator:a5e535e1ea0c08984d0de21b4d2cb4cec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abedb89603c5e67609094af8047f22bd3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#abedb89603c5e67609094af8047f22bd3">uart1_getc</a> ()</td></tr>
+<tr class="memdesc:abedb89603c5e67609094af8047f22bd3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a byte from uart1 with NL to CR/NL conversion Note: This function waits/blocks util the read can happen.  <a href="#abedb89603c5e67609094af8047f22bd3">More...</a><br/></td></tr>
+<tr class="separator:abedb89603c5e67609094af8047f22bd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa018dc93fd77400560f0ab7e8d78f59a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#aa018dc93fd77400560f0ab7e8d78f59a">uart_callback</a> (void *p)</td></tr>
 <tr class="memdesc:aa018dc93fd77400560f0ab7e8d78f59a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uart interrupt callback function Process all receive and transmit events here.  <a href="#aa018dc93fd77400560f0ab7e8d78f59a">More...</a><br/></td></tr>
 <tr class="separator:aa018dc93fd77400560f0ab7e8d78f59a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad3fa6c77cde907b77f2a2b53c65de791"><td class="memItemLeft" align="right" valign="top">ICACHE_FLASH_ATTR void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#ad3fa6c77cde907b77f2a2b53c65de791">uart_config</a> (uint8 uart_no, <a class="el" href="send_8c.html#a435d1572bf3f880d55459d9805097f62">uint32_t</a> baud, <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> data_bits, <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> stop_bits, <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> parity)</td></tr>
-<tr class="memdesc:ad3fa6c77cde907b77f2a2b53c65de791"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uart configuration, baud rate, data and stop bits, parity.  <a href="#ad3fa6c77cde907b77f2a2b53c65de791">More...</a><br/></td></tr>
-<tr class="separator:ad3fa6c77cde907b77f2a2b53c65de791"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7dd63feb254687cfd8dcb99320d1093f"><td class="memItemLeft" align="right" valign="top">ICACHE_FLASH_ATTR void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a7dd63feb254687cfd8dcb99320d1093f">uart_init</a> (<a class="el" href="uart_8h.html#a9aa1e56362027f49bfbe4378b8c889a4">UartBaudRate</a> uart0_br, <a class="el" href="uart_8h.html#a9aa1e56362027f49bfbe4378b8c889a4">UartBaudRate</a> uart1_br)</td></tr>
-<tr class="memdesc:a7dd63feb254687cfd8dcb99320d1093f"><td class="mdescLeft">&#160;</td><td class="mdescRight">initialize uart0 and uart1 Defaults: 8 = data bits, 1 = stop bits, no parity  <a href="#a7dd63feb254687cfd8dcb99320d1093f">More...</a><br/></td></tr>
-<tr class="separator:a7dd63feb254687cfd8dcb99320d1093f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afab391aef9a1293efb604af9af878012"><td class="memItemLeft" align="right" valign="top">ICACHE_FLASH_ATTR void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#afab391aef9a1293efb604af9af878012">uart_reattach</a> ()</td></tr>
-<tr class="memdesc:afab391aef9a1293efb604af9af878012"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reinitialize uart0 and uart1 calls <a class="el" href="uart_8c.html#a7dd63feb254687cfd8dcb99320d1093f" title="initialize uart0 and uart1 Defaults: 8 = data bits, 1 = stop bits, no parity ">uart_init()</a>  <a href="#afab391aef9a1293efb604af9af878012">More...</a><br/></td></tr>
-<tr class="separator:afab391aef9a1293efb604af9af878012"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a308b9b9451e59e8484212b645ef6960d"><td class="memItemLeft" align="right" valign="top">ICACHE_FLASH_ATTR void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a308b9b9451e59e8484212b645ef6960d">UART_SetPrintPort</a> (uint8 uart_no)</td></tr>
-<tr class="memdesc:a308b9b9451e59e8484212b645ef6960d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Install debug uart.  <a href="#a308b9b9451e59e8484212b645ef6960d">More...</a><br/></td></tr>
-<tr class="separator:a308b9b9451e59e8484212b645ef6960d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace748ed36c0f9b9c90310db65b3afeab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#ace748ed36c0f9b9c90310db65b3afeab">uart0_gets_add</a> (<a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> data)</td></tr>
+<tr class="memdesc:ace748ed36c0f9b9c90310db65b3afeab"><td class="mdescLeft">&#160;</td><td class="mdescRight">transfer data into the uart0_gets_receive_queue Provide line buffering for <a class="el" href="uart_8c.html#a9d100391356ca809d7cd75e23633f213" title="uart0_gets non-blocking line buffered gets [in] buf: user buffer to fill [in] max: miximum size of bu...">uart0_gets()</a> [in] data: character to add to queue  <a href="#ace748ed36c0f9b9c90310db65b3afeab">More...</a><br/></td></tr>
+<tr class="separator:ace748ed36c0f9b9c90310db65b3afeab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b9078ded4ced8bfa5d73c2a77e90028"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a1b9078ded4ced8bfa5d73c2a77e90028">uart0_gets_init</a> (int size)</td></tr>
+<tr class="memdesc:a1b9078ded4ced8bfa5d73c2a77e90028"><td class="mdescLeft">&#160;</td><td class="mdescRight">allocate and initialize uart0_gets data structures Provide line buffering for <a class="el" href="uart_8c.html#a9d100391356ca809d7cd75e23633f213" title="uart0_gets non-blocking line buffered gets [in] buf: user buffer to fill [in] max: miximum size of bu...">uart0_gets()</a> [in] size: size of line buffer  <a href="#a1b9078ded4ced8bfa5d73c2a77e90028">More...</a><br/></td></tr>
+<tr class="separator:a1b9078ded4ced8bfa5d73c2a77e90028"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d100391356ca809d7cd75e23633f213"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a9d100391356ca809d7cd75e23633f213">uart0_gets</a> (char *buf, int max)</td></tr>
+<tr class="memdesc:a9d100391356ca809d7cd75e23633f213"><td class="mdescLeft">&#160;</td><td class="mdescRight">uart0_gets non-blocking line buffered gets [in] buf: user buffer to fill [in] max: miximum size of buf  <a href="#a9d100391356ca809d7cd75e23633f213">More...</a><br/></td></tr>
+<tr class="separator:a9d100391356ca809d7cd75e23633f213"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afde4532b11b79411c904be3b2672c5e8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#afde4532b11b79411c904be3b2672c5e8">uart_config</a> (uint8 uart_no, <a class="el" href="send_8c.html#a435d1572bf3f880d55459d9805097f62">uint32_t</a> baud, <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> data_bits, <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> stop_bits, <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> parity)</td></tr>
+<tr class="memdesc:afde4532b11b79411c904be3b2672c5e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uart configuration, baud rate, data and stop bits, parity.  <a href="#afde4532b11b79411c904be3b2672c5e8">More...</a><br/></td></tr>
+<tr class="separator:afde4532b11b79411c904be3b2672c5e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5afb95571d79d939651ef59768fde839"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a5afb95571d79d939651ef59768fde839">uart_init</a> (<a class="el" href="uart_8h.html#a9aa1e56362027f49bfbe4378b8c889a4">UartBaudRate</a> uart0_br, <a class="el" href="uart_8h.html#a9aa1e56362027f49bfbe4378b8c889a4">UartBaudRate</a> uart1_br)</td></tr>
+<tr class="memdesc:a5afb95571d79d939651ef59768fde839"><td class="mdescLeft">&#160;</td><td class="mdescRight">initialize uart0 and uart1 Defaults: 8 = data bits, 1 = stop bits, no parity  <a href="#a5afb95571d79d939651ef59768fde839">More...</a><br/></td></tr>
+<tr class="separator:a5afb95571d79d939651ef59768fde839"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2429f7cf15a9fba99f1c3d1d6499299"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#ae2429f7cf15a9fba99f1c3d1d6499299">uart_reattach</a> ()</td></tr>
+<tr class="memdesc:ae2429f7cf15a9fba99f1c3d1d6499299"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reinitialize uart0 and uart1 calls <a class="el" href="uart_8c.html#a5afb95571d79d939651ef59768fde839" title="initialize uart0 and uart1 Defaults: 8 = data bits, 1 = stop bits, no parity ">uart_init()</a>  <a href="#ae2429f7cf15a9fba99f1c3d1d6499299">More...</a><br/></td></tr>
+<tr class="separator:ae2429f7cf15a9fba99f1c3d1d6499299"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83db8ea8db21280f74e2546414fc80f7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a83db8ea8db21280f74e2546414fc80f7">UART_SetPrintPort</a> (uint8 uart_no)</td></tr>
+<tr class="memdesc:a83db8ea8db21280f74e2546414fc80f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Install debug uart.  <a href="#a83db8ea8db21280f74e2546414fc80f7">More...</a><br/></td></tr>
+<tr class="separator:a83db8ea8db21280f74e2546414fc80f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:ac28d82246860e7a128ed62a1dc1e2a39"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structqueue__t.html">queue_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#ac28d82246860e7a128ed62a1dc1e2a39">uart0_gets_receive_queue</a></td></tr>
+<tr class="memdesc:ac28d82246860e7a128ed62a1dc1e2a39"><td class="mdescLeft">&#160;</td><td class="mdescRight">uart0 receive queue  <a href="#ac28d82246860e7a128ed62a1dc1e2a39">More...</a><br/></td></tr>
+<tr class="separator:ac28d82246860e7a128ed62a1dc1e2a39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef6c476aba65fb52789103fa95114183"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#aef6c476aba65fb52789103fa95114183">uart0_gets_line</a></td></tr>
+<tr class="memdesc:aef6c476aba65fb52789103fa95114183"><td class="mdescLeft">&#160;</td><td class="mdescRight">uart0 gets line bufer  <a href="#aef6c476aba65fb52789103fa95114183">More...</a><br/></td></tr>
+<tr class="separator:aef6c476aba65fb52789103fa95114183"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2fa51e30aedbdd8519c18b2053ff6fe5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a2fa51e30aedbdd8519c18b2053ff6fe5">uart0_gets_ready</a> = 0</td></tr>
+<tr class="memdesc:a2fa51e30aedbdd8519c18b2053ff6fe5"><td class="mdescLeft">&#160;</td><td class="mdescRight">uart0 gets line buffer ready flag  <a href="#a2fa51e30aedbdd8519c18b2053ff6fe5">More...</a><br/></td></tr>
+<tr class="separator:a2fa51e30aedbdd8519c18b2053ff6fe5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6275e22255f6dac92b97bdcc4101fe08"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a6275e22255f6dac92b97bdcc4101fe08">uart0_gets_size</a> = 0</td></tr>
+<tr class="memdesc:a6275e22255f6dac92b97bdcc4101fe08"><td class="mdescLeft">&#160;</td><td class="mdescRight">uar0 gets line buffer size  <a href="#a6275e22255f6dac92b97bdcc4101fe08">More...</a><br/></td></tr>
+<tr class="separator:a6275e22255f6dac92b97bdcc4101fe08"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Uart driver for ESP8266. </p>
@@ -211,12 +231,12 @@ Functions</h2></td></tr>
 
 <p>Definition in file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="ac2e177e717aae4de72f2bb1fdb6826b1"></a>
+<a class="anchor" id="a3ffd1f20ba2ca3ef0894473091b25012"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">ICACHE_FLASH_ATTR int rx_fifo_empty </td>
+          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int rx_fifo_empty </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>uart_no</em></td><td>)</td>
@@ -234,9 +254,9 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 if empty, 0 otherwise </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00175">175</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00182">182</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
-<p>Referenced by <a class="el" href="uart_8c_source.html#l00301">uart_getb()</a>.</p>
+<p>Referenced by <a class="el" href="uart_8c_source.html#l00319">uart_getb()</a>.</p>
 
 </div>
 </div>
@@ -263,18 +283,18 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00098">98</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00105">105</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
-<p>Referenced by <a class="el" href="uart_8c_source.html#l00474">uart_config()</a>.</p>
+<p>Referenced by <a class="el" href="uart_8c_source.html#l00586">uart_config()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ae4b43d84c14e9a86476c015359549e20"></a>
+<a class="anchor" id="aa59d5d55b7cd6551d97ef6af22949c82"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">ICACHE_FLASH_ATTR int rx_fifo_free </td>
+          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int rx_fifo_free </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>uart_no</em></td><td>)</td>
@@ -292,16 +312,16 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>bytes free </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00161">161</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00168">168</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a257c0e165980098c8714d69eaf8f75a5"></a>
+<a class="anchor" id="a82ec27afa5b913b022cc57c1bd5d5528"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">ICACHE_FLASH_ATTR <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> rx_fifo_getc </td>
+          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> rx_fifo_getc </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>uart_no</em></td><td>)</td>
@@ -310,7 +330,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Remove a byte from the receive fifo We assume that <a class="el" href="uart_8c.html#a281bc3c996dd0fd5c3f08da55bedbe27" title="Get the number of bytes used in receive fifo. ">rx_fifo_used()</a> was called! </p>
+<p>Remove a byte from the receive fifo We assume that <a class="el" href="uart_8c.html#a09c378ce1610cb5e63469a4ee6813de2" title="Get the number of bytes used in receive fifo. ">rx_fifo_used()</a> was called! </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">uart_no</td><td>uart number </td></tr>
@@ -319,18 +339,18 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>c, (or 0 if fill user error) </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00208">208</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00215">215</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
-<p>Referenced by <a class="el" href="uart_8c_source.html#l00301">uart_getb()</a>.</p>
+<p>Referenced by <a class="el" href="uart_8c_source.html#l00319">uart_getb()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="af0b296a8c71d2c06c229342a906201e0"></a>
+<a class="anchor" id="a5ee039ccb34468de12203a7027fee1ce"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">ICACHE_FLASH_ATTR int rx_fifo_read </td>
+          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int rx_fifo_read </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>uart_no</em>, </td>
@@ -366,16 +386,16 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>number of bytes actually read from the fifo - may not be size! </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00260">260</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00273">273</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a281bc3c996dd0fd5c3f08da55bedbe27"></a>
+<a class="anchor" id="a09c378ce1610cb5e63469a4ee6813de2"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">ICACHE_FLASH_ATTR int rx_fifo_used </td>
+          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int rx_fifo_used </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>uart_no</em></td><td>)</td>
@@ -393,18 +413,18 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>bytes in use </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00148">148</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00155">155</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
-<p>Referenced by <a class="el" href="uart_8c_source.html#l00208">rx_fifo_getc()</a>, <a class="el" href="uart_8c_source.html#l00260">rx_fifo_read()</a>, and <a class="el" href="uart_8c_source.html#l00402">uart_callback()</a>.</p>
+<p>Referenced by <a class="el" href="uart_8c_source.html#l00215">rx_fifo_getc()</a>, <a class="el" href="uart_8c_source.html#l00273">rx_fifo_read()</a>, and <a class="el" href="uart_8c_source.html#l00420">uart_callback()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a9e43189a4098d02ddc7069f727fe0b6e"></a>
+<a class="anchor" id="a50e81b3a1433d1947bdff1b9bdf425d3"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">ICACHE_FLASH_ATTR int tx_fifo_empty </td>
+          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int tx_fifo_empty </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>uart_no</em></td><td>)</td>
@@ -422,9 +442,9 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 if empty, 0 otherwise </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00136">136</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00143">143</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
-<p>Referenced by <a class="el" href="bridge_8c_source.html#l00092">tcp_data_receive_callback()</a>, and <a class="el" href="uart_8c_source.html#l00402">uart_callback()</a>.</p>
+<p>Referenced by <a class="el" href="bridge_8c_source.html#l00092">tcp_data_receive_callback()</a>, and <a class="el" href="uart_8c_source.html#l00420">uart_callback()</a>.</p>
 
 </div>
 </div>
@@ -451,18 +471,18 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00087">87</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00094">94</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
-<p>Referenced by <a class="el" href="uart_8c_source.html#l00474">uart_config()</a>.</p>
+<p>Referenced by <a class="el" href="uart_8c_source.html#l00586">uart_config()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="adb027a9de79ce5fcfb3e5b944221159c"></a>
+<a class="anchor" id="a3c0f172370540e0d1840c415c2c7b661"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">ICACHE_FLASH_ATTR int tx_fifo_free </td>
+          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int tx_fifo_free </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>uart_no</em></td><td>)</td>
@@ -480,18 +500,18 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>bytes free </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00123">123</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00130">130</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
-<p>Referenced by <a class="el" href="uart_8c_source.html#l00192">tx_fifo_putc()</a>, <a class="el" href="uart_8c_source.html#l00231">tx_fifo_write()</a>, <a class="el" href="uart_8c_source.html#l00402">uart_callback()</a>, and <a class="el" href="uart_8c_source.html#l00287">uart_putb()</a>.</p>
+<p>Referenced by <a class="el" href="uart_8c_source.html#l00199">tx_fifo_putc()</a>, <a class="el" href="uart_8c_source.html#l00238">tx_fifo_write()</a>, <a class="el" href="uart_8c_source.html#l00420">uart_callback()</a>, and <a class="el" href="uart_8c_source.html#l00305">uart_putb()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a23bdd2e9b8ab8a4eda1d7b478e045eee"></a>
+<a class="anchor" id="a768fe76dc08754a1812bc4e5e2f1b0e0"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">ICACHE_FLASH_ATTR <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> tx_fifo_putc </td>
+          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> tx_fifo_putc </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>uart_no</em>, </td>
@@ -510,7 +530,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Add a byte to the trasmit fifo We assume that <a class="el" href="uart_8c.html#adb027a9de79ce5fcfb3e5b944221159c" title="Get the number of bytes free in transmit fifo. ">tx_fifo_free()</a> was called! </p>
+<p>Add a byte to the trasmit fifo We assume that <a class="el" href="uart_8c.html#a3c0f172370540e0d1840c415c2c7b661" title="Get the number of bytes free in transmit fifo. ">tx_fifo_free()</a> was called! </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">uart_no</td><td>uart number </td></tr>
@@ -520,18 +540,18 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>c, (or 0 if full user error) </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00192">192</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00199">199</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
-<p>Referenced by <a class="el" href="uart_8c_source.html#l00287">uart_putb()</a>.</p>
+<p>Referenced by <a class="el" href="uart_8c_source.html#l00305">uart_putb()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a6761468e5e160ada4cc1812f3d828c3e"></a>
+<a class="anchor" id="a6f8397ebf08ae984ed48144d0287a048"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">ICACHE_FLASH_ATTR int tx_fifo_used </td>
+          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int tx_fifo_used </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>uart_no</em></td><td>)</td>
@@ -549,16 +569,16 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>bytes in use </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00111">111</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00118">118</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ac719715c19d55bb7cdba5cbc85a2805d"></a>
+<a class="anchor" id="a6658637d750ec2e2366ac3881dbd9f6e"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">ICACHE_FLASH_ATTR int tx_fifo_write </td>
+          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int tx_fifo_write </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>uart_no</em>, </td>
@@ -592,18 +612,18 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>number of bytes actually added to the fifo - may not be size! </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>number of bytes sent </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00231">231</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00238">238</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a08d5d946ab42a42b1bb8f9b9453d5900"></a>
+<a class="anchor" id="a49dc3c01092320490b61e1f480b76b9b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">ICACHE_FLASH_ATTR <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> uart0_getc </td>
+          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> uart0_getc </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -615,16 +635,97 @@ Functions</h2></td></tr>
 <p>Read a byte from uart0 with NL to CR/NL conversion Note: This function waits/blocks util the read can happen. </p>
 <dl class="section return"><dt>Returns</dt><dd>byte read </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00365">365</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00383">383</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+
+<p>Referenced by <a class="el" href="uart_8c_source.html#l00645">uart_init()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a9d0039c2b51e8187acfa97c6cfe1a8e3"></a>
+<a class="anchor" id="a9d100391356ca809d7cd75e23633f213"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">ICACHE_FLASH_ATTR void uart0_putc </td>
+          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int uart0_gets </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>buf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>max</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>uart0_gets non-blocking line buffered gets [in] buf: user buffer to fill [in] max: miximum size of buf </p>
+<dl class="section return"><dt>Returns</dt><dd>0, or number of characters in line </dd></dl>
+
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00547">547</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+
+<p>Referenced by <a class="el" href="user__main_8c_source.html#l00258">user_task()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ace748ed36c0f9b9c90310db65b3afeab"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void uart0_gets_add </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a>&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>transfer data into the uart0_gets_receive_queue Provide line buffering for <a class="el" href="uart_8c.html#a9d100391356ca809d7cd75e23633f213" title="uart0_gets non-blocking line buffered gets [in] buf: user buffer to fill [in] max: miximum size of bu...">uart0_gets()</a> [in] data: character to add to queue </p>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00491">491</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+
+<p>Referenced by <a class="el" href="uart_8c_source.html#l00420">uart_callback()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1b9078ded4ced8bfa5d73c2a77e90028"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void uart0_gets_init </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>allocate and initialize uart0_gets data structures Provide line buffering for <a class="el" href="uart_8c.html#a9d100391356ca809d7cd75e23633f213" title="uart0_gets non-blocking line buffered gets [in] buf: user buffer to fill [in] max: miximum size of bu...">uart0_gets()</a> [in] size: size of line buffer </p>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00527">527</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+
+<p>Referenced by <a class="el" href="uart_8c_source.html#l00645">uart_init()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a38d539495f2c5329441ccedc26081afa"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void uart0_putc </td>
           <td>(</td>
           <td class="paramtype">uint8&#160;</td>
           <td class="paramname"><em>c</em></td><td>)</td>
@@ -642,18 +743,18 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00354">354</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00372">372</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
-<p>Referenced by <a class="el" href="bridge_8c_source.html#l00092">tcp_data_receive_callback()</a>, <a class="el" href="uart_8c_source.html#l00533">uart_init()</a>, and <a class="el" href="uart_8c_source.html#l00565">UART_SetPrintPort()</a>.</p>
+<p>Referenced by <a class="el" href="bridge_8c_source.html#l00092">tcp_data_receive_callback()</a>, <a class="el" href="uart_8c_source.html#l00645">uart_init()</a>, and <a class="el" href="uart_8c_source.html#l00683">UART_SetPrintPort()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a38c4c0e60868ea9f657d6719ab8f5c30"></a>
+<a class="anchor" id="abedb89603c5e67609094af8047f22bd3"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">ICACHE_FLASH_ATTR <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> uart1_getc </td>
+          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> uart1_getc </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -665,16 +766,16 @@ Functions</h2></td></tr>
 <p>Read a byte from uart1 with NL to CR/NL conversion Note: This function waits/blocks util the read can happen. </p>
 <dl class="section return"><dt>Returns</dt><dd>byte read </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00389">389</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00407">407</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a5b6fca6f048f53f570fe459ac9a3e12a"></a>
+<a class="anchor" id="a5e535e1ea0c08984d0de21b4d2cb4cec"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">ICACHE_FLASH_ATTR void uart1_putc </td>
+          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void uart1_putc </td>
           <td>(</td>
           <td class="paramtype">uint8&#160;</td>
           <td class="paramname"><em>c</em></td><td>)</td>
@@ -692,9 +793,9 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00378">378</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00396">396</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
-<p>Referenced by <a class="el" href="uart_8c_source.html#l00565">UART_SetPrintPort()</a>.</p>
+<p>Referenced by <a class="el" href="uart_8c_source.html#l00683">UART_SetPrintPort()</a>.</p>
 
 </div>
 </div>
@@ -721,18 +822,18 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00402">402</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00420">420</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
-<p>Referenced by <a class="el" href="uart_8c_source.html#l00533">uart_init()</a>.</p>
+<p>Referenced by <a class="el" href="uart_8c_source.html#l00645">uart_init()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ad3fa6c77cde907b77f2a2b53c65de791"></a>
+<a class="anchor" id="afde4532b11b79411c904be3b2672c5e8"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">ICACHE_FLASH_ATTR void uart_config </td>
+          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void uart_config </td>
           <td>(</td>
           <td class="paramtype">uint8&#160;</td>
           <td class="paramname"><em>uart_no</em>, </td>
@@ -782,18 +883,18 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00474">474</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00586">586</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
-<p>Referenced by <a class="el" href="uart_8c_source.html#l00533">uart_init()</a>.</p>
+<p>Referenced by <a class="el" href="uart_8c_source.html#l00645">uart_init()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a46eeee9883d1494fe44bf55fd5508bc5"></a>
+<a class="anchor" id="a2d03af0672e67715b10ea90aca69743d"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">LOCAL ICACHE_FLASH_ATTR <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> uart_getb </td>
+          <td class="memname">LOCAL <a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> uart_getb </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>uart_no</em></td><td>)</td>
@@ -811,18 +912,18 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>byte read </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00301">301</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00319">319</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
-<p>Referenced by <a class="el" href="uart_8c_source.html#l00334">uart_getc()</a>.</p>
+<p>Referenced by <a class="el" href="uart_8c_source.html#l00352">uart_getc()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a2b78e553fb7c85fc8f67ab095aee6904"></a>
+<a class="anchor" id="a64dbce670a0ba6a547378d2305d03dfa"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">ICACHE_FLASH_ATTR <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> uart_getc </td>
+          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> uart_getc </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>uart_no</em></td><td>)</td>
@@ -840,18 +941,18 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>byte read </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00334">334</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00352">352</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
-<p>Referenced by <a class="el" href="uart_8c_source.html#l00365">uart0_getc()</a>, and <a class="el" href="uart_8c_source.html#l00389">uart1_getc()</a>.</p>
+<p>Referenced by <a class="el" href="uart_8c_source.html#l00383">uart0_getc()</a>, and <a class="el" href="uart_8c_source.html#l00407">uart1_getc()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a7dd63feb254687cfd8dcb99320d1093f"></a>
+<a class="anchor" id="a5afb95571d79d939651ef59768fde839"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">ICACHE_FLASH_ATTR void uart_init </td>
+          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void uart_init </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="uart_8h.html#a9aa1e56362027f49bfbe4378b8c889a4">UartBaudRate</a>&#160;</td>
           <td class="paramname"><em>uart0_br</em>, </td>
@@ -881,18 +982,18 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00533">533</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00645">645</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
-<p>Referenced by <a class="el" href="uart_8c_source.html#l00552">uart_reattach()</a>, and <a class="el" href="user__main_8c_source.html#l00367">user_init()</a>.</p>
+<p>Referenced by <a class="el" href="uart_8c_source.html#l00670">uart_reattach()</a>, and <a class="el" href="user__main_8c_source.html#l00430">user_init()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a48b3793724004cfcdfdd2e2ad69cfa07"></a>
+<a class="anchor" id="a3d19962bf637dbfa1fbd66020570f64f"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">LOCAL ICACHE_FLASH_ATTR void uart_putb </td>
+          <td class="memname">LOCAL <a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void uart_putb </td>
           <td>(</td>
           <td class="paramtype">uint8&#160;</td>
           <td class="paramname"><em>uart_no</em>, </td>
@@ -922,18 +1023,18 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00287">287</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00305">305</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
-<p>Referenced by <a class="el" href="uart_8c_source.html#l00318">uart_putc()</a>.</p>
+<p>Referenced by <a class="el" href="uart_8c_source.html#l00336">uart_putc()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a7022706232b5c20a126ce7f719496f49"></a>
+<a class="anchor" id="a4edbb01728f45e11ed6717416bbb9309"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">ICACHE_FLASH_ATTR void uart_putc </td>
+          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void uart_putc </td>
           <td>(</td>
           <td class="paramtype">uint8&#160;</td>
           <td class="paramname"><em>uart_no</em>, </td>
@@ -961,18 +1062,18 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00318">318</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00336">336</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
-<p>Referenced by <a class="el" href="uart_8c_source.html#l00354">uart0_putc()</a>, and <a class="el" href="uart_8c_source.html#l00378">uart1_putc()</a>.</p>
+<p>Referenced by <a class="el" href="debug_8c_source.html#l00032">uart0_printf()</a>, <a class="el" href="uart_8c_source.html#l00372">uart0_putc()</a>, and <a class="el" href="uart_8c_source.html#l00396">uart1_putc()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="afab391aef9a1293efb604af9af878012"></a>
+<a class="anchor" id="ae2429f7cf15a9fba99f1c3d1d6499299"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">ICACHE_FLASH_ATTR void uart_reattach </td>
+          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void uart_reattach </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -981,10 +1082,10 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Reinitialize uart0 and uart1 calls <a class="el" href="uart_8c.html#a7dd63feb254687cfd8dcb99320d1093f" title="initialize uart0 and uart1 Defaults: 8 = data bits, 1 = stop bits, no parity ">uart_init()</a> </p>
+<p>Reinitialize uart0 and uart1 calls <a class="el" href="uart_8c.html#a5afb95571d79d939651ef59768fde839" title="initialize uart0 and uart1 Defaults: 8 = data bits, 1 = stop bits, no parity ">uart_init()</a> </p>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00552">552</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00670">670</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
 </div>
 </div>
@@ -1011,7 +1112,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00055">55</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00062">62</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
 </div>
 </div>
@@ -1038,16 +1139,16 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00045">45</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00052">52</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a308b9b9451e59e8484212b645ef6960d"></a>
+<a class="anchor" id="a83db8ea8db21280f74e2546414fc80f7"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">ICACHE_FLASH_ATTR void UART_SetPrintPort </td>
+          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void UART_SetPrintPort </td>
           <td>(</td>
           <td class="paramtype">uint8&#160;</td>
           <td class="paramname"><em>uart_no</em></td><td>)</td>
@@ -1059,7 +1160,7 @@ Functions</h2></td></tr>
 <p>Install debug uart. </p>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00565">565</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00683">683</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
 </div>
 </div>
@@ -1086,9 +1187,9 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00075">75</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00082">82</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
-<p>Referenced by <a class="el" href="bridge_8c_source.html#l00092">tcp_data_receive_callback()</a>, and <a class="el" href="uart_8c_source.html#l00402">uart_callback()</a>.</p>
+<p>Referenced by <a class="el" href="bridge_8c_source.html#l00092">tcp_data_receive_callback()</a>, and <a class="el" href="uart_8c_source.html#l00420">uart_callback()</a>.</p>
 
 </div>
 </div>
@@ -1115,16 +1216,87 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00065">65</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00072">72</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
-<p>Referenced by <a class="el" href="bridge_8c_source.html#l00092">tcp_data_receive_callback()</a>, and <a class="el" href="uart_8c_source.html#l00402">uart_callback()</a>.</p>
+<p>Referenced by <a class="el" href="bridge_8c_source.html#l00092">tcp_data_receive_callback()</a>, and <a class="el" href="uart_8c_source.html#l00420">uart_callback()</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a class="anchor" id="aef6c476aba65fb52789103fa95114183"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* uart0_gets_line</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>uart0 gets line bufer </p>
+
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00037">37</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+
+<p>Referenced by <a class="el" href="uart_8c_source.html#l00547">uart0_gets()</a>, <a class="el" href="uart_8c_source.html#l00491">uart0_gets_add()</a>, and <a class="el" href="uart_8c_source.html#l00527">uart0_gets_init()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2fa51e30aedbdd8519c18b2053ff6fe5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> uart0_gets_ready = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>uart0 gets line buffer ready flag </p>
+
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00039">39</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+
+<p>Referenced by <a class="el" href="uart_8c_source.html#l00547">uart0_gets()</a>, <a class="el" href="uart_8c_source.html#l00491">uart0_gets_add()</a>, and <a class="el" href="uart_8c_source.html#l00527">uart0_gets_init()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac28d82246860e7a128ed62a1dc1e2a39"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structqueue__t.html">queue_t</a>* uart0_gets_receive_queue</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>uart0 receive queue </p>
+
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00035">35</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6275e22255f6dac92b97bdcc4101fe08"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int uart0_gets_size = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>uar0 gets line buffer size </p>
+
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00041">41</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+
+<p>Referenced by <a class="el" href="uart_8c_source.html#l00547">uart0_gets()</a>, <a class="el" href="uart_8c_source.html#l00491">uart0_gets_add()</a>, and <a class="el" href="uart_8c_source.html#l00527">uart0_gets_init()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jul 9 2015 19:07:48 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 19 2015 20:49:07 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

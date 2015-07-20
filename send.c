@@ -93,7 +93,10 @@ void send_message(char *message, char *ip, int port, int echoback)
     struct hostent *server;
 
     portno = port;
-    sockfd = socket(AF_INET, SOCK_STREAM, 0);
+	// IF UDP use: AF_INET, SOCK_DGRAM, IPPROTO_UDP
+
+	// TCP socket
+    sockfd = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
     if (sockfd < 0) 
 	{
         perror("ERROR opening socket");
@@ -124,7 +127,6 @@ void send_message(char *message, char *ip, int port, int echoback)
         perror("ERROR writing to socket");
 		exit(1);
 	}
-
 	
 	// reads characters coming back from the connection - debugging
     // interrup to exit

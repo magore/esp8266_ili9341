@@ -7,6 +7,7 @@ Flash read and bit utilities.
 
 
 {\ttfamily \#include $<$user\-\_\-config.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}util.\-h\char`\"{}}\\*
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
@@ -31,14 +32,34 @@ int \hyperlink{util_8c_a96d99653ceafa913b2f1331ef7219be8}{bittestv} (unsigned ch
 \begin{DoxyCompactList}\small\item\em Test bit in byte array. \end{DoxyCompactList}\item 
 int \hyperlink{util_8c_aa5ed287545d9d0d4361d2bd1c6ecc69d}{bittestxy} (unsigned char $\ast$ptr, int x, int y, int w, int h)
 \begin{DoxyCompactList}\small\item\em Test bit in w $\ast$ h size bit array usng x and y offsets. \end{DoxyCompactList}\item 
-I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R void \hyperlink{util_8c_a873f88ccf09a88cddd83a27e3594138b}{reset} (void)
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{util_8c_a3d3120b9c1d6fa02648d6e317f0f6e44}{reset} (void)
 \begin{DoxyCompactList}\small\item\em reset system \end{DoxyCompactList}\item 
-void \hyperlink{util_8c_a9f850d0608418aea291e4c0fdab93826}{free} (void $\ast$p)
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{util_8c_a9b9f170e9a01e51b57656fcda1f183df}{wdt\-\_\-reset} (void)
+\begin{DoxyCompactList}\small\item\em reset watchdog \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{util_8c_a0f8c52d1c359b700088f8417b48e467b}{free} (void $\ast$p)
 \begin{DoxyCompactList}\small\item\em Free buffer P\-O\-S\-I\-X function We only call os\-\_\-free() is pointer is not null. \end{DoxyCompactList}\item 
-void $\ast$ \hyperlink{util_8c_a62b7798461bd461da64c5f9d35feddf7}{calloc} (size\-\_\-t nmemb, size\-\_\-t size)
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void $\ast$ \hyperlink{util_8c_ae148919146e88c7c40c7e2f781649b31}{calloc} (size\-\_\-t nmemb, size\-\_\-t size)
 \begin{DoxyCompactList}\small\item\em calloc buffer P\-O\-S\-I\-X function \end{DoxyCompactList}\item 
-void $\ast$ \hyperlink{util_8c_a7ac38fce3243a7dcf448301ee9ffd392}{malloc} (size\-\_\-t size)
-\begin{DoxyCompactList}\small\item\em malloc buffer P\-O\-S\-I\-X function \end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void $\ast$ \hyperlink{util_8c_a22b308551dea873face80619301d5618}{malloc} (size\-\_\-t size)
+\begin{DoxyCompactList}\small\item\em malloc buffer P\-O\-S\-I\-X function \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{util_8c_a8cebaf955a9e3b5f1f2af105641dad40}{skipspaces} (char $\ast$ptr)
+\begin{DoxyCompactList}\small\item\em Skip white space in a string -\/ tabs and spaces. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{util_8c_a205ab859e76086c5239a49effa3281dd}{nextspace} (char $\ast$ptr)
+\begin{DoxyCompactList}\small\item\em Skip to first white space in a string -\/ tabs and spaces. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{util_8c_aae86b90fc6ccc0c432de5c492cdcbaba}{skipchars} (char $\ast$str, char $\ast$pat)
+\begin{DoxyCompactList}\small\item\em Skip characters defined in user string. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{util_8c_a2d7ec9dae4f58c027edbc22118714ba6}{trim\-\_\-tail} (char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Trim White space and control characters from end of string. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{util_8c_a11f9265694fbed4de67d91c6959a0d18}{strnalloc} (char $\ast$str, int len)
+\begin{DoxyCompactList}\small\item\em Allocate space for string with maximum size. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{util_8c_a354472f280e9fe08820d6f32e0feddae}{stralloc} (char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Allocate space for string. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{util_8c_a9387f7db4933b1bafd14bddad8e8c9c8}{get\-\_\-token} (char $\ast$str, char $\ast$\hyperlink{util_8h_ae9142769a957bcb8c0fad1934576f576}{token}, int max)
+\begin{DoxyCompactList}\small\item\em return next token \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{util_8c_ae9142769a957bcb8c0fad1934576f576}{token} (char $\ast$str, char $\ast$pat)
+\begin{DoxyCompactList}\small\item\em Search for token in a string matching user pattern. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} \hyperlink{util_8c_a8ebead37e3b32237367ee7951e4bf7b9}{hexd} (char c)
+\begin{DoxyCompactList}\small\item\em Convert Character into H\-E\-X digit. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -73,7 +94,7 @@ Definition in file \hyperlink{util_8c_source}{util.\-c}.
 \subsubsection[{U\-S\-E\-\_\-\-C\-A\-C\-H\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define U\-S\-E\-\_\-\-C\-A\-C\-H\-E}}\label{util_8c_a2565afea33c9e3255c67f748f425543a}
 
 
-Definition at line 27 of file util.\-c.
+Definition at line 28 of file util.\-c.
 
 
 
@@ -102,7 +123,7 @@ Test bit in byte array.
 \end{DoxyReturn}
 
 
-Definition at line 145 of file util.\-c.
+Definition at line 146 of file util.\-c.
 
 
 
@@ -141,16 +162,16 @@ Test bit in w $\ast$ h size bit array usng x and y offsets.
 \end{DoxyReturn}
 
 
-Definition at line 160 of file util.\-c.
+Definition at line 161 of file util.\-c.
 
-\hypertarget{util_8c_a62b7798461bd461da64c5f9d35feddf7}{\index{util.\-c@{util.\-c}!calloc@{calloc}}
+\hypertarget{util_8c_ae148919146e88c7c40c7e2f781649b31}{\index{util.\-c@{util.\-c}!calloc@{calloc}}
 \index{calloc@{calloc}!util.c@{util.\-c}}
-\subsubsection[{calloc}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ calloc (
+\subsubsection[{calloc}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void$\ast$ calloc (
 \begin{DoxyParamCaption}
 \item[{size\-\_\-t}]{nmemb, }
 \item[{size\-\_\-t}]{size}
 \end{DoxyParamCaption}
-)}}\label{util_8c_a62b7798461bd461da64c5f9d35feddf7}
+)}}\label{util_8c_ae148919146e88c7c40c7e2f781649b31}
 
 
 calloc buffer P\-O\-S\-I\-X function 
@@ -167,11 +188,11 @@ void $\ast$ buffer
 \end{DoxyReturn}
 
 
-Definition at line 199 of file util.\-c.
+Definition at line 213 of file util.\-c.
 
 
 
-Referenced by db\-\_\-calloc(), escape(), and queue\-\_\-new().
+Referenced by db\-\_\-calloc(), escape(), fatfs\-\_\-alloc\-\_\-finfo(), fatfs\-\_\-cat(), fatfs\-\_\-copy(), fdevopen(), new\-\_\-file\-\_\-descriptor(), queue\-\_\-new(), stralloc(), strnalloc(), and uart0\-\_\-gets\-\_\-init().
 
 \hypertarget{util_8c_a9a70a218c9d4bae2e51bda4d7219712f}{\index{util.\-c@{util.\-c}!cpy\-\_\-flash@{cpy\-\_\-flash}}
 \index{cpy\-\_\-flash@{cpy\-\_\-flash}!util.c@{util.\-c}}
@@ -200,19 +221,19 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 83 of file util.\-c.
+Definition at line 84 of file util.\-c.
 
 
 
 Referenced by font\-\_\-attr(), read\-\_\-flash16(), read\-\_\-flash32(), read\-\_\-flash64(), read\-\_\-flash\-\_\-ptr(), and wire\-\_\-draw().
 
-\hypertarget{util_8c_a9f850d0608418aea291e4c0fdab93826}{\index{util.\-c@{util.\-c}!free@{free}}
+\hypertarget{util_8c_a0f8c52d1c359b700088f8417b48e467b}{\index{util.\-c@{util.\-c}!free@{free}}
 \index{free@{free}!util.c@{util.\-c}}
-\subsubsection[{free}]{\setlength{\rightskip}{0pt plus 5cm}void free (
+\subsubsection[{free}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void free (
 \begin{DoxyParamCaption}
 \item[{void $\ast$}]{p}
 \end{DoxyParamCaption}
-)}}\label{util_8c_a9f850d0608418aea291e4c0fdab93826}
+)}}\label{util_8c_a0f8c52d1c359b700088f8417b48e467b}
 
 
 Free buffer P\-O\-S\-I\-X function We only call os\-\_\-free() is pointer is not null. 
@@ -227,19 +248,81 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 188 of file util.\-c.
+Definition at line 201 of file util.\-c.
 
 
 
-Referenced by db\-\_\-free(), queue\-\_\-del(), queue\-\_\-new(), queue\-\_\-push\-\_\-buffer(), rx\-\_\-fifo\-\_\-free(), and tx\-\_\-fifo\-\_\-free().
+Referenced by db\-\_\-free(), fatfs\-\_\-alloc\-\_\-finfo(), fatfs\-\_\-cat(), fatfs\-\_\-copy(), fatfs\-\_\-free\-\_\-filinfo(), ff\-\_\-memfree(), free\-\_\-file\-\_\-descriptor(), new\-\_\-file\-\_\-descriptor(), queue\-\_\-del(), queue\-\_\-new(), queue\-\_\-push\-\_\-buffer(), rx\-\_\-fifo\-\_\-free(), and tx\-\_\-fifo\-\_\-free().
 
-\hypertarget{util_8c_a7ac38fce3243a7dcf448301ee9ffd392}{\index{util.\-c@{util.\-c}!malloc@{malloc}}
+\hypertarget{util_8c_a9387f7db4933b1bafd14bddad8e8c9c8}{\index{util.\-c@{util.\-c}!get\-\_\-token@{get\-\_\-token}}
+\index{get\-\_\-token@{get\-\_\-token}!util.c@{util.\-c}}
+\subsubsection[{get\-\_\-token}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} char$\ast$ get\-\_\-token (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str, }
+\item[{char $\ast$}]{token, }
+\item[{int}]{max}
+\end{DoxyParamCaption}
+)}}\label{util_8c_a9387f7db4933b1bafd14bddad8e8c9c8}
+
+
+return next token 
+
+
+\begin{DoxyItemize}
+\item Skips all non printable A\-S\-C\-I\-I characters before token
+\item Token returns only printable A\-S\-C\-I\-I
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & string to search. \\
+\hline
+\mbox{\tt out}  & {\em token} & token to return \\
+\hline
+\mbox{\tt in}  & {\em max} & maximum token size\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer past token on success . 
+
+N\-U\-L\-L if no token found 
+\end{DoxyReturn}
+
+
+Definition at line 380 of file util.\-c.
+
+\hypertarget{util_8c_a8ebead37e3b32237367ee7951e4bf7b9}{\index{util.\-c@{util.\-c}!hexd@{hexd}}
+\index{hexd@{hexd}!util.c@{util.\-c}}
+\subsubsection[{hexd}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} {\bf uint8\-\_\-t} hexd (
+\begin{DoxyParamCaption}
+\item[{char}]{c}
+\end{DoxyParamCaption}
+)}}\label{util_8c_a8ebead37e3b32237367ee7951e4bf7b9}
+
+
+Convert Character into H\-E\-X digit. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & character.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+H\-E\-X digit \mbox{[}0..F\mbox{]} on success. 
+
+0xff on fail. 
+\end{DoxyReturn}
+
+
+Definition at line 459 of file util.\-c.
+
+\hypertarget{util_8c_a22b308551dea873face80619301d5618}{\index{util.\-c@{util.\-c}!malloc@{malloc}}
 \index{malloc@{malloc}!util.c@{util.\-c}}
-\subsubsection[{malloc}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ malloc (
+\subsubsection[{malloc}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void$\ast$ malloc (
 \begin{DoxyParamCaption}
 \item[{size\-\_\-t}]{size}
 \end{DoxyParamCaption}
-)}}\label{util_8c_a7ac38fce3243a7dcf448301ee9ffd392}
+)}}\label{util_8c_a22b308551dea873face80619301d5618}
 
 
 malloc buffer P\-O\-S\-I\-X function 
@@ -254,11 +337,38 @@ void $\ast$ buffer
 \end{DoxyReturn}
 
 
-Definition at line 209 of file util.\-c.
+Definition at line 224 of file util.\-c.
 
 
 
-Referenced by bridge\-\_\-task\-\_\-init().
+Referenced by bridge\-\_\-task\-\_\-init(), and ff\-\_\-memalloc().
+
+\hypertarget{util_8c_a205ab859e76086c5239a49effa3281dd}{\index{util.\-c@{util.\-c}!nextspace@{nextspace}}
+\index{nextspace@{nextspace}!util.c@{util.\-c}}
+\subsubsection[{nextspace}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} char$\ast$ nextspace (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{ptr}
+\end{DoxyParamCaption}
+)}}\label{util_8c_a205ab859e76086c5239a49effa3281dd}
+
+
+Skip to first white space in a string -\/ tabs and spaces. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em ptr} & input string\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to first white space character 
+\end{DoxyReturn}
+
+
+Definition at line 254 of file util.\-c.
+
+
+
+Referenced by fatfs\-\_\-tests().
 
 \hypertarget{util_8c_a092855859eb7ea714f2ab3eee711ddc4}{\index{util.\-c@{util.\-c}!read\-\_\-flash16@{read\-\_\-flash16}}
 \index{read\-\_\-flash16@{read\-\_\-flash16}!util.c@{util.\-c}}
@@ -281,7 +391,7 @@ uint16\-\_\-t
 \end{DoxyReturn}
 
 
-Definition at line 97 of file util.\-c.
+Definition at line 98 of file util.\-c.
 
 \hypertarget{util_8c_ac0366232efac94fc6f8da6a20d9bdaf9}{\index{util.\-c@{util.\-c}!read\-\_\-flash32@{read\-\_\-flash32}}
 \index{read\-\_\-flash32@{read\-\_\-flash32}!util.c@{util.\-c}}
@@ -304,7 +414,7 @@ uint32\-\_\-t
 \end{DoxyReturn}
 
 
-Definition at line 109 of file util.\-c.
+Definition at line 110 of file util.\-c.
 
 \hypertarget{util_8c_ab1d6ea8dfe88a05a02869a3dd8cd7deb}{\index{util.\-c@{util.\-c}!read\-\_\-flash64@{read\-\_\-flash64}}
 \index{read\-\_\-flash64@{read\-\_\-flash64}!util.c@{util.\-c}}
@@ -327,7 +437,7 @@ uint64\-\_\-t
 \end{DoxyReturn}
 
 
-Definition at line 121 of file util.\-c.
+Definition at line 122 of file util.\-c.
 
 \hypertarget{util_8c_a8820bdd8a76740aaafe0506ff6040002}{\index{util.\-c@{util.\-c}!read\-\_\-flash8@{read\-\_\-flash8}}
 \index{read\-\_\-flash8@{read\-\_\-flash8}!util.c@{util.\-c}}
@@ -338,7 +448,7 @@ Definition at line 121 of file util.\-c.
 )}}\label{util_8c_a8820bdd8a76740aaafe0506ff6040002}
 
 
-Definition at line 40 of file util.\-c.
+Definition at line 41 of file util.\-c.
 
 
 
@@ -365,15 +475,15 @@ uint32\-\_\-t
 \end{DoxyReturn}
 
 
-Definition at line 133 of file util.\-c.
+Definition at line 134 of file util.\-c.
 
-\hypertarget{util_8c_a873f88ccf09a88cddd83a27e3594138b}{\index{util.\-c@{util.\-c}!reset@{reset}}
+\hypertarget{util_8c_a3d3120b9c1d6fa02648d6e317f0f6e44}{\index{util.\-c@{util.\-c}!reset@{reset}}
 \index{reset@{reset}!util.c@{util.\-c}}
-\subsubsection[{reset}]{\setlength{\rightskip}{0pt plus 5cm}I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R void reset (
+\subsubsection[{reset}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void reset (
 \begin{DoxyParamCaption}
 \item[{void}]{}
 \end{DoxyParamCaption}
-)}}\label{util_8c_a873f88ccf09a88cddd83a27e3594138b}
+)}}\label{util_8c_a3d3120b9c1d6fa02648d6e317f0f6e44}
 
 
 reset system 
@@ -383,11 +493,214 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 178 of file util.\-c.
+Definition at line 180 of file util.\-c.
 
 
 
-Referenced by bridge\-\_\-task\-\_\-init().
+Referenced by bridge\-\_\-task\-\_\-init(), and uart0\-\_\-gets\-\_\-init().
+
+\hypertarget{util_8c_aae86b90fc6ccc0c432de5c492cdcbaba}{\index{util.\-c@{util.\-c}!skipchars@{skipchars}}
+\index{skipchars@{skipchars}!util.c@{util.\-c}}
+\subsubsection[{skipchars}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} char$\ast$ skipchars (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str, }
+\item[{char $\ast$}]{pat}
+\end{DoxyParamCaption}
+)}}\label{util_8c_aae86b90fc6ccc0c432de5c492cdcbaba}
+
+
+Skip characters defined in user string. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & string \\
+\hline
+\mbox{\tt in}  & {\em pat} & pattern string\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to string after skipped characters. 
+\end{DoxyReturn}
+
+
+Definition at line 276 of file util.\-c.
+
+\hypertarget{util_8c_a8cebaf955a9e3b5f1f2af105641dad40}{\index{util.\-c@{util.\-c}!skipspaces@{skipspaces}}
+\index{skipspaces@{skipspaces}!util.c@{util.\-c}}
+\subsubsection[{skipspaces}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} char$\ast$ skipspaces (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{ptr}
+\end{DoxyParamCaption}
+)}}\label{util_8c_a8cebaf955a9e3b5f1f2af105641dad40}
+
+
+Skip white space in a string -\/ tabs and spaces. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em ptr} & input string\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to first non white space character 
+\end{DoxyReturn}
+
+
+Definition at line 237 of file util.\-c.
+
+
+
+Referenced by fatfs\-\_\-tests(), and get\-\_\-token().
+
+\hypertarget{util_8c_a354472f280e9fe08820d6f32e0feddae}{\index{util.\-c@{util.\-c}!stralloc@{stralloc}}
+\index{stralloc@{stralloc}!util.c@{util.\-c}}
+\subsubsection[{stralloc}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} char$\ast$ stralloc (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str}
+\end{DoxyParamCaption}
+)}}\label{util_8c_a354472f280e9fe08820d6f32e0feddae}
+
+
+Allocate space for string. 
+
+
+\begin{DoxyItemize}
+\item Copies tring into allocated space.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & user string.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to alocated string. 
+
+N\-U\-L\-L on out of memory. 
+\end{DoxyReturn}
+
+
+Definition at line 353 of file util.\-c.
+
+
+
+Referenced by main().
+
+\hypertarget{util_8c_a11f9265694fbed4de67d91c6959a0d18}{\index{util.\-c@{util.\-c}!strnalloc@{strnalloc}}
+\index{strnalloc@{strnalloc}!util.c@{util.\-c}}
+\subsubsection[{strnalloc}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} char$\ast$ strnalloc (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str, }
+\item[{int}]{len}
+\end{DoxyParamCaption}
+)}}\label{util_8c_a11f9265694fbed4de67d91c6959a0d18}
+
+
+Allocate space for string with maximum size. 
+
+
+\begin{DoxyItemize}
+\item Copies tring into allocated space limited to maximum size.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & user string. \\
+\hline
+\mbox{\tt in}  & {\em len} & maximum string length.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to alocated string. 
+\end{DoxyReturn}
+
+
+Definition at line 329 of file util.\-c.
+
+\hypertarget{util_8c_ae9142769a957bcb8c0fad1934576f576}{\index{util.\-c@{util.\-c}!token@{token}}
+\index{token@{token}!util.c@{util.\-c}}
+\subsubsection[{token}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int token (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str, }
+\item[{char $\ast$}]{pat}
+\end{DoxyParamCaption}
+)}}\label{util_8c_ae9142769a957bcb8c0fad1934576f576}
+
+
+Search for token in a string matching user pattern. 
+
+
+\begin{DoxyItemize}
+\item Skips all non printable A\-S\-C\-I\-I characters before trying match.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & string to search. \\
+\hline
+\mbox{\tt in}  & {\em pat} & pattern to search for.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string lenth on match. 
+
+0 on no match. 
+\end{DoxyReturn}
+
+
+Definition at line 424 of file util.\-c.
+
+
+
+Referenced by fatfs\-\_\-tests(), rcvr\-\_\-datablock(), and Read\-Bdf().
+
+\hypertarget{util_8c_a2d7ec9dae4f58c027edbc22118714ba6}{\index{util.\-c@{util.\-c}!trim\-\_\-tail@{trim\-\_\-tail}}
+\index{trim\-\_\-tail@{trim\-\_\-tail}!util.c@{util.\-c}}
+\subsubsection[{trim\-\_\-tail}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void trim\-\_\-tail (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str}
+\end{DoxyParamCaption}
+)}}\label{util_8c_a2d7ec9dae4f58c027edbc22118714ba6}
+
+
+Trim White space and control characters from end of string. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & string\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+Overwrites White space and control characters with E\-O\-S. 
+\end{DoxyWarning}
+
+
+Definition at line 306 of file util.\-c.
+
+\hypertarget{util_8c_a9b9f170e9a01e51b57656fcda1f183df}{\index{util.\-c@{util.\-c}!wdt\-\_\-reset@{wdt\-\_\-reset}}
+\index{wdt\-\_\-reset@{wdt\-\_\-reset}!util.c@{util.\-c}}
+\subsubsection[{wdt\-\_\-reset}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void wdt\-\_\-reset (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{util_8c_a9b9f170e9a01e51b57656fcda1f183df}
+
+
+reset watchdog 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 189 of file util.\-c.
+
+
+
+Referenced by f\-\_\-getfree(), f\-\_\-mkfs(), fatfs\-\_\-scan\-\_\-files(), mmc\-\_\-disk\-\_\-read(), mmc\-\_\-disk\-\_\-write(), mmc\-\_\-power\-\_\-on(), mmc\-\_\-test\-\_\-timeout(), rcvr\-\_\-datablock(), send\-\_\-cmd(), user\-\_\-init(), wire\-\_\-draw(), and xmit\-\_\-datablock().
 
 
 
@@ -409,7 +722,7 @@ uint8\-\_\-t
 \end{DoxyReturn}
 
 
-Definition at line 37 of file util.\-c.
+Definition at line 38 of file util.\-c.
 
 
 
@@ -420,7 +733,7 @@ Referenced by read\-\_\-flash8().
 \subsubsection[{\-\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint32\-\_\-t} \-\_\-data}}\label{util_8c_a45c84a718a302530a9e80cce14821e33}
 
 
-Definition at line 38 of file util.\-c.
+Definition at line 39 of file util.\-c.
 
 
 
@@ -431,7 +744,7 @@ Referenced by read\-\_\-flash8().
 \subsubsection[{p8}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint8\-\_\-t}$\ast$ p8 = ({\bf uint8\-\_\-t} $\ast$) \&{\bf \-\_\-data}}}\label{util_8c_a479af12cf028298aa88cc283f4390e9e}
 
 
-Definition at line 39 of file util.\-c.
+Definition at line 40 of file util.\-c.
 
 
 

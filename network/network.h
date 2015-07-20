@@ -30,8 +30,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <c_types.h>
 #include <espconn.h>
 
-/* network/network.c */
+extern int network_init;
+
+/* network.c */
 MEMSPACE void poll_network_message ( window *win );
+void ntp_setup ( void );
 MEMSPACE void my_receive ( void *arg , char *pdata , unsigned short len );
 MEMSPACE void wifi_event_cb ( System_Event_t *event_p );
 MEMSPACE void setup_networking ( int port );

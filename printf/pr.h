@@ -37,9 +37,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	typedef unsigned int uint32_t;
 	typedef int int32_t;
 #else
-	#include <ets_sys.h>
-	#include <os_type.h>
-	#include <osapi.h>
 	#include "user_config.h"
 	#include "printf.h"
 #endif

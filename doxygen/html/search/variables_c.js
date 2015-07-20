@@ -1,6 +1,10 @@
 var searchData=
 [
-  ['offset',['Offset',['../struct__fontspecs.html#ad4ef5755b58ecd3bbc9894cee258091e',1,'_fontspecs']]],
-  ['orighandler',['orighandler',['../cal__dex_8c.html#a2c7db7064dd6e7dc2e87f2cef90989ed',1,'cal_dex.c']]],
-  ['out',['out',['../structqueue__t.html#a8f6e1c623d2ceed398a71a0aab93b0fa',1,'queue_t']]]
+  ['n_5ffatent',['n_fatent',['../structFATFS.html#a8da50eeba6469bc20d60ca0cf9a1307c',1,'FATFS']]],
+  ['n_5ffats',['n_fats',['../structFATFS.html#a56716c7e7ac10cf46e73ffb2a2e9b545',1,'FATFS']]],
+  ['n_5frootdir',['n_rootdir',['../structFATFS.html#a189a00aa038044ffad0fc7f7dcf2aae1',1,'FATFS']]],
+  ['nchr',['nchr',['../structputbuff.html#a125366bfe48077e6f562f95e30b4604a',1,'putbuff']]],
+  ['network_5finit',['network_init',['../network_8h.html#a216a891e9fdcc4083d4fb922eacb63f0',1,'network.h']]],
+  ['normaltaskqueue',['NormalTaskQueue',['../user__main_8c.html#abb72a19bfadab64df56d11000f9ef0fc',1,'user_main.c']]],
+  ['ntp_5finit',['ntp_init',['../user__main_8c.html#ae406634b9e0b25eda1da44f1d4ec26c0',1,'user_main.c']]]
 ];

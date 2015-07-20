@@ -37,9 +37,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	typedef unsigned int uint32_t;
 	typedef int int32_t;
 #else
-	#include <ets_sys.h>
-	#include <os_type.h>
-	#include <osapi.h>
 	#include "user_config.h"
 #endif
 /* printf.c */
@@ -57,6 +54,8 @@ MEMSPACE static int etoa ( double x , char *str , int prec , int sign );
 MEMSPACE MEMSPACE int t_vsnprintf ( char *buffer , int len , const char *fmt , va_list va );
 MEMSPACE int t_snprintf ( char *buffer , int buffer_len , const char *fmt , ...);
 MEMSPACE int t_printf ( const char *fmt , ...);
+
+
 void tests ( void );
 
 #endif

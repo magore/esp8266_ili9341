@@ -23,6 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 #include <user_config.h>
+#include "util.h"
 
 #define USE_CACHE
 // Cached flash read on 32bit boundry
@@ -175,16 +176,28 @@ int bittestxy(unsigned char *ptr, int x, int y, int w, int h)
 
 /// @brief reset system
 /// @return  void
-ICACHE_FLASH_ATTR void reset(void)
+MEMSPACE 
+void reset(void)
 {
     system_restart();
 }
+
+
+/// @brief reset watchdog
+/// @return  void
+MEMSPACE 
+void wdt_reset( void )
+{
+  WRITE_PERI_REG(0x60000914, 0x73);
+}
+
 
 /// @brief Free buffer
 /// POSIX function
 /// We only call os_free() is pointer is not null
 /// @param[in] *p: buffer to free
 /// @return  void 
+MEMSPACE 
 void free(void *p)
 {
     if(p)
@@ -196,6 +209,7 @@ void free(void *p)
 /// @param[in] nmemb: number of elements
 /// @param[in] size:  size of elements
 /// @return  void * buffer
+MEMSPACE 
 void *calloc(size_t nmemb, size_t size)
 {
     void *p = (void *)os_zalloc( (nmemb * size) );
@@ -206,8 +220,249 @@ void *calloc(size_t nmemb, size_t size)
 /// POSIX function
 /// @param[in] size:  size of buffer
 /// @return  void * buffer
+MEMSPACE 
 void *malloc(size_t size)
 {
     void *p = (void *) os_malloc( size );
     return(p);
+}
+
+
+///@brief Skip white space in a string - tabs and spaces.
+///
+///@param[in] ptr: input string
+///
+///@return pointer to first non white space character 
+MEMSPACE 
+char *skipspaces(char *ptr)
+{
+    if(!ptr)
+        return(ptr);
+
+    while(*ptr == ' ' || *ptr == '\t')
+        ++ptr;
+    return(ptr);
+}
+
+///@brief Skip to first white space in a string - tabs and spaces.
+///
+///@param[in] ptr: input string
+///
+///@return pointer to first white space character 
+
+MEMSPACE 
+char *nextspace(char *ptr)
+{
+    if(!ptr)
+        return(ptr);
+
+    while(*ptr)
+    {
+        if(*ptr == ' ' || *ptr == '\t')
+            break;
+        ++ptr;
+    }
+    return(ptr);
+}
+
+///@brief Skip characters defined in user string.
+///
+///@param[in] str: string
+///@param[in] pat: pattern string
+///
+///@return pointer to string after skipped characters.
+
+MEMSPACE 
+char *skipchars(char *str, char *pat)
+{
+    char *base;
+    if(!str)
+        return(str);
+
+    while(*str)
+    {
+        base = pat;
+        while(*base)
+        {
+            if(*base == *str)
+                break;
+            ++base;
+        }
+        if(*base != *str)
+            return(str);
+        ++str;
+    }
+    return(str);
+}
+
+
+///@brief Trim White space and control characters from end of string.
+///
+///@param[in] str: string
+///
+///@return void
+///@warning Overwrites White space and control characters with EOS.
+MEMSPACE 
+void trim_tail(char *str)
+{
+    int len = strlen(str);
+    while(len--)
+    {
+        if(str[len] > ' ')
+            break;
+        str[len] = 0;
+    }
+}
+
+
+
+///@brief Allocate space for string with maximum size.
+///
+/// - Copies tring into allocated space limited to maximum size.
+///
+///@param[in] str: user string.
+///@param[in] len: maximum string length.
+///
+///@return pointer to alocated string.
+
+MEMSPACE 
+char *strnalloc(char *str, int len)
+{
+    char *ptr;
+
+    if(!str)
+        return(NULL);
+    ptr = calloc(len+1,1);
+    if(!ptr)
+        return(ptr);
+    strncpy(ptr,str,len);
+    return(ptr);
+
+}
+
+
+///@brief Allocate space for string.
+///
+/// - Copies tring into allocated space.
+///
+///@param[in] str: user string.
+///
+///@return pointer to alocated string.
+///@return NULL on out of memory.
+MEMSPACE 
+char *stralloc(char *str)
+{
+    char *ptr;
+    int len;
+
+    if(!str)
+        return(str);;
+    len  = strlen(str);
+    ptr = calloc(len+1,1);
+    if(!ptr)
+        return(ptr);
+    strcpy(ptr,str);
+    return(ptr);
+}
+
+///@brief return next token
+///
+/// - Skips all non printable ASCII characters before token
+/// - Token returns only printable ASCII
+///
+///@param[in] str: string to search.
+///@param[out] token: token to return
+///@param[in] max: maximum token size
+///
+///@return pointer past token on success .
+///@return NULL if no token found
+MEMSPACE 
+char *get_token(char *str, char *token, int max)
+{
+    int len;
+    char *save;
+
+    *token = 0;
+
+    // NULL ?
+    if(!str)
+        return(NULL);
+
+    str = skipspaces(str);
+    save = str;
+
+    // Find size of token
+    len = 0;
+    while(*str > ' ' && *str <= 0x7e && len < max)
+    {
+        // clip token to max length
+        if(len < max)
+        {
+            *token++ = *str++;
+            ++len;
+        }
+    }
+    *token = 0;
+    // str points past the token
+    if(!len)
+        return(NULL);
+    return(str);
+}
+
+
+///@brief Search for token in a string matching user pattern.
+///
+/// - Skips all non printable ASCII characters before trying match.
+///
+///@param[in] str: string to search.
+///@param[in] pat: pattern to search for.
+///
+///@return string lenth on match.
+///@return 0 on no match.
+
+MEMSPACE 
+int token(char *str, char *pat)
+{
+    int patlen;
+    int len;
+    char *ptr;
+
+    len = 0;
+    ptr = str;
+    while(*ptr > ' ' && *ptr <= 0x7e )
+    {
+        ++len;
+        ++ptr;
+    }
+
+    if(!len)
+        return(0);
+
+    patlen = strlen(pat);
+
+    if(len != patlen)
+        return(0);
+
+    if(strncmp(str,pat,patlen) == 0)
+        return(len);
+    return(0);
+}
+
+
+///@brief Convert Character into HEX digit.
+///
+/// @param[in] c: character.
+///
+/// @return HEX digit [0..F] on success.
+/// @return 0xff on fail.
+MEMSPACE 
+uint8_t hexd( char c )
+{
+    if( c >= '0' && c <= '9' )
+        return(c - '0');
+    if( c >= 'a' && c <= 'f')
+        return(c - 'a' + 10);
+    if( c >= 'A' && c <= 'F')
+        return(c - 'A' + 10);
+    return(0xff);                                 // error
 }

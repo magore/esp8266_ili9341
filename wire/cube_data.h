@@ -31,7 +31,7 @@
 #endif
 
 /// @brief CUBE data +/- 0.5 is a cube with sides of 1.0 
-//ICACHE_FLASH_ATTR
+//MEMSPACE
 MEMSPACE_RO
 wire_p cube_points[] = {
 /* TOP FACE */

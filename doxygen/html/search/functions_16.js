@@ -1,0 +1,14 @@
+var searchData=
+[
+  ['wait_5fready',['wait_ready',['../mmc_8c.html#ab7771efbbd1a015b449d838d7f09959a',1,'mmc.c']]],
+  ['wdt_5freset',['wdt_reset',['../util_8c.html#a9b9f170e9a01e51b57656fcda1f183df',1,'wdt_reset(void):&#160;util.c'],['../util_8h.html#a9b9f170e9a01e51b57656fcda1f183df',1,'wdt_reset(void):&#160;util.c']]],
+  ['wifi_5fevent_5fcb',['wifi_event_cb',['../network_8h.html#a33001f6e7c0326d6a8f20acbc62a1b3a',1,'network.h']]],
+  ['wire2fp',['wire2fp',['../wire_8c.html#a86a09b73c1cd047d1ef464da418bf414',1,'wire2fp(wire_p *in, point *out):&#160;wire.c'],['../wire_8h.html#a86a09b73c1cd047d1ef464da418bf414',1,'wire2fp(wire_p *in, point *out):&#160;wire.c']]],
+  ['wire_5fdraw',['wire_draw',['../wire_8c.html#a6032c357c29e2854243ee86f93fee4e5',1,'wire_draw(window *win, const wire_p *wire, const wire_e *edge, point *view, int x, int y, double scale, uint16_t color):&#160;wire.c'],['../wire_8h.html#a6032c357c29e2854243ee86f93fee4e5',1,'wire_draw(window *win, const wire_p *wire, const wire_e *edge, point *view, int x, int y, double scale, uint16_t color):&#160;wire.c']]],
+  ['write',['write',['../posix_8c.html#a084f20f7da1712774f669395a8e39289',1,'write(int fd, const void *buf, size_t count):&#160;posix.c'],['../posix_8h.html#a084f20f7da1712774f669395a8e39289',1,'write(int fd, const void *buf, size_t count):&#160;posix.c']]],
+  ['writecharacterbits',['WriteCharacterBits',['../bdffontutil_8c.html#a7c2cf276db0c747638909191d76925da',1,'WriteCharacterBits(FILE *out, _font *font, int num):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a7c2cf276db0c747638909191d76925da',1,'WriteCharacterBits(FILE *out, _font *font, int num):&#160;bdffontutil.c']]],
+  ['writefontbits',['WriteFontBits',['../bdffontutil_8c.html#ac01ebab75271c42afb96bb8da7db06c2',1,'WriteFontBits(FILE *out, _font *font):&#160;bdffontutil.c'],['../bdffontutil_8h.html#ac01ebab75271c42afb96bb8da7db06c2',1,'WriteFontBits(FILE *out, _font *font):&#160;bdffontutil.c']]],
+  ['writefontbitspreview',['WriteFontBitsPreview',['../bdffontutil_8c.html#a6e60e1a05fd459f3af8aa691e06950a7',1,'WriteFontBitsPreview(FILE *out, _font *font, int preview):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a6e60e1a05fd459f3af8aa691e06950a7',1,'WriteFontBitsPreview(FILE *out, _font *font, int preview):&#160;bdffontutil.c']]],
+  ['writefontinfo',['WriteFontInfo',['../bdffontutil_8c.html#a82e40b5e56cab7daedbe210542aa1d99',1,'WriteFontInfo(FILE *out, _font *font):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a82e40b5e56cab7daedbe210542aa1d99',1,'WriteFontInfo(FILE *out, _font *font):&#160;bdffontutil.c']]],
+  ['writefonttable',['WriteFontTable',['../bdffontutil_8c.html#a6e780815dcb0ad1738a3710d10751824',1,'WriteFontTable(FILE *out, _font *font):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a6e780815dcb0ad1738a3710d10751824',1,'WriteFontTable(FILE *out, _font *font):&#160;bdffontutil.c']]]
+];

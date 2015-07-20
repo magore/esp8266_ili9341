@@ -23,8 +23,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 
-
-
 #ifndef __USER_CONFIG_H__
 #define __USER_CONFIG_H__
 
@@ -32,55 +30,79 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#define MEMSPACE_RO ICACHE_RODATA_ATTR
 #define MEMSPACE_RO static const
 
+#define _GNU_SOURCE
+
 #include <ets_sys.h>
 #include <osapi.h>
 #include <os_type.h>
 #include <c_types.h>
+
+// low level memory and flash reading code
+#include "util.h"
+
 #include <ip_addr.h>
 #include <espconn.h>
 #include <gpio.h>
 #include <user_interface.h>
 #include <mem.h>
-#include <newlib.h>
 
 #include <uart_register.h>
 
-#include "util.h"
+// Simple queue reoutines
 #include "queue.h"
 
-//#include "uart_register.h"
+// Hardware UART
 #include "uart.h"
 
+// Hardware SPI
 #include "hspi.h"
 
+// TIME and TIMER FUNCTION
+#include "timer_hal.h"
+#include "timer.h"
+#include "time.h"
+
+// FATFS
+#include "integer.h"
+#include "ffconf.h"
+#include "ff.h"
+#include "diskio.h"
+#include "disk.h"
+#include "mmc_hal.h"
+
+// FATFS POSIX WRAPPER
+#include "posix.h"
+// FATFS user tests and user interface
+#include "fatfs_utils.h"
+
+// TFT DISPLAY
+#define MEMSPACE_FONT MEMSPACE
 #include "font.h"
 #include "ili9341_adafruit.h"
 #include "ili9341.h"
 
+// CORDIC math functions
 #include "cordic2c_inc.h"
 #include "cordic.h"
 
+// Wireframe viewer functions
 #include "wire_types.h"
 #include "wire.h"
 
-#include <ip_addr.h>
-#include <c_types.h>
-#include <espconn.h>
 
+// Network client that displays messages on the TFT
 #ifdef NETWORK_TEST
 #include "network.h"
 #endif
 
+// Serial to/from telnet network task
 #ifdef TELNET_SERIAL
 #include "bridge.h"
 #endif
 
-int snprintf(char *, size_t, const char *, ...);
+#include "scanf.h"
+#include "printf.h"
+#include "debug.h"
 
-#ifdef MIKE_PRINTF
-	#include "printf.h"
-#endif
-
-#define MEMSPACE_FONT ICACHE_FLASH_ATTR
 
 #endif

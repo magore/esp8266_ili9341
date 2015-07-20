@@ -22,18 +22,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 
-#include "ets_sys.h"
-#include "osapi.h"
-#include "uart.h"
-#include "osapi.h"
-#include "uart_register.h"
-#include "mem.h"
-#include "os_type.h"
+#include "user_config.h"
 
 #ifdef UART_TASK
 	extern queue_t *uart_send_queue;
 	extern queue_t *uart_receive_queue;
 #endif
+
+
+// =================================================================
+/// @brief uart0 receive queue
+queue_t *uart0_gets_receive_queue;
+/// @brief uart0 gets line bufer
+char *uart0_gets_line;
+/// @brief uart0 gets line buffer ready flag
+uint8_t uart0_gets_ready = 0;
+/// @brief uar0 gets line buffer size
+int uart0_gets_size = 0;
+
+//
 
 // =================================================================
 
@@ -107,7 +114,7 @@ void rx_fifo_flush(int uart_no)
  @param[in] uart_no: uart number
  @return bytes in use
 */
-ICACHE_FLASH_ATTR
+MEMSPACE
 int tx_fifo_used(int uart_no)
 {
 	int used = (READ_PERI_REG(UART_STATUS(uart_no))>>UART_TXFIFO_CNT_S)&UART_TXFIFO_CNT;
@@ -119,7 +126,7 @@ int tx_fifo_used(int uart_no)
  @param[in] uart_no: uart number
  @return bytes free
 */
-ICACHE_FLASH_ATTR
+MEMSPACE
 int tx_fifo_free(int uart_no)
 {
 	int used = (READ_PERI_REG(UART_STATUS(uart_no))>>UART_TXFIFO_CNT_S)&UART_TXFIFO_CNT;
@@ -132,7 +139,7 @@ int tx_fifo_free(int uart_no)
  @param[in] uart_no: uart number
  @return 1 if empty, 0 otherwise
 */
-ICACHE_FLASH_ATTR
+MEMSPACE
 int tx_fifo_empty(int uart_no)
 {
 	int used = (READ_PERI_REG(UART_STATUS(uart_no))>>UART_TXFIFO_CNT_S)&UART_TXFIFO_CNT;
@@ -144,7 +151,7 @@ int tx_fifo_empty(int uart_no)
  @param[in] uart_no: uart number
  @return bytes in use
 */
-ICACHE_FLASH_ATTR
+MEMSPACE
 int rx_fifo_used(int uart_no)
 {
 	// number of characters in fifo
@@ -157,7 +164,7 @@ int rx_fifo_used(int uart_no)
  @param[in] uart_no: uart number
  @return bytes free
 */
-ICACHE_FLASH_ATTR
+MEMSPACE
 int rx_fifo_free(int uart_no)
 {
 	// number of characters in fifo
@@ -171,7 +178,7 @@ int rx_fifo_free(int uart_no)
  @param[in] uart_no: uart number
  @return 1 if empty, 0 otherwise
 */
-ICACHE_FLASH_ATTR
+MEMSPACE
 int  rx_fifo_empty(int uart_no)
 {
 	// number of characters in fifo
@@ -188,7 +195,7 @@ int  rx_fifo_empty(int uart_no)
  @param[in] c: byte to add
  @return c, (or 0 if full user error)
 */
-ICACHE_FLASH_ATTR
+MEMSPACE
 uint8_t tx_fifo_putc(int uart_no, uint8_t c)
 {
 	int  count = tx_fifo_free(uart_no);
@@ -204,7 +211,7 @@ uint8_t tx_fifo_putc(int uart_no, uint8_t c)
  @param[in] uart_no: uart number
  @return c, (or 0 if fill user error)
 */
-ICACHE_FLASH_ATTR
+MEMSPACE
 uint8_t rx_fifo_getc(int uart_no)
 {
 	uint8_t c;
@@ -224,22 +231,28 @@ uint8_t rx_fifo_getc(int uart_no)
 	@param[in] uart_no: uart number
 	@param[in] *src: input buffer
 	@param[in] size: size of input buffer
-	@return number of bytes actually added to the fifo - may not be size!
+	@return number of bytes sent
 */
 
-ICACHE_FLASH_ATTR
+MEMSPACE
 int tx_fifo_write(int uart_no, uint8_t *buf, int size)
 {
 	uint8_t tmp;
 	int  count = tx_fifo_free(uart_no);
 	int  sent = 0;
-	if(size > count)
-		size = count;
-	while(size--)
-    {
-		tmp = *buf++;
-		WRITE_PERI_REG(UART_FIFO(uart_no) , tmp);
-		++sent;
+	while(size)
+	{
+		count = tx_fifo_free(uart_no);
+		if(count > size)
+			count = size;
+		while(count)
+		{
+			tmp = *buf++;
+			WRITE_PERI_REG(UART_FIFO(uart_no) , tmp);
+			++sent;
+			--size;
+			--count;
+		}
 	}
 	// FIXME
 	SET_PERI_REG_MASK(UART_INT_ENA(UART0), UART_TXFIFO_EMPTY_INT_ENA);
@@ -256,21 +269,26 @@ int tx_fifo_write(int uart_no, uint8_t *buf, int size)
 	@param[in] size: size of output buffer
 	@return number of bytes actually read from the fifo - may not be size!
 */
-ICACHE_FLASH_ATTR
+MEMSPACE
 int rx_fifo_read(int uart_no, uint8_t *buf, int size)
 {
-	int  count = rx_fifo_used(uart_no);
-	int  read = 0;
 	uint8_t tmp;
-	if(size > count)
-		size = count;
-	while(size--)
-    {
-		tmp = READ_PERI_REG(UART_FIFO(UART0)) & 0xFF;
-		*buf++ = tmp;
-		++read;
+	int  count;
+	int  read = 0;
+	while(size)
+	{
+		count = rx_fifo_used(uart_no);
+		if(count > size)
+			count = size;
+		while(count)
+		{
+			tmp = READ_PERI_REG(UART_FIFO(UART0)) & 0xFF;
+			*buf++ = tmp;
+			++read;
+			--size;
+			--count;
+		}
 	}
-
 	return(read);
 }
 
@@ -283,7 +301,7 @@ int rx_fifo_read(int uart_no, uint8_t *buf, int size)
 	@param[in] data: byte to write
 	@return void
 */
-LOCAL ICACHE_FLASH_ATTR
+LOCAL MEMSPACE
 void uart_putb(uint8 uart_no, uint8 data)
 {
 	while( !tx_fifo_free(uart_no) )
@@ -297,7 +315,7 @@ void uart_putb(uint8 uart_no, uint8 data)
 	@param[in] uart_no: uart number
 	@return byte read
 */
-LOCAL ICACHE_FLASH_ATTR
+LOCAL MEMSPACE
 uint8_t uart_getb(int uart_no)
 {
 	uint8_t c;
@@ -314,7 +332,7 @@ uint8_t uart_getb(int uart_no)
 	@param[in] uart_no: uart number
 	@return void
 */
-ICACHE_FLASH_ATTR
+MEMSPACE
 void uart_putc(uint8 uart_no, char c)
 {
     if (c == '\n')
@@ -330,7 +348,7 @@ void uart_putc(uint8 uart_no, char c)
 	@param[in] uart_no: uart number
 	@return byte read
 */
-ICACHE_FLASH_ATTR
+MEMSPACE
 uint8_t uart_getc(int uart_no)
 {
 	uint8_t c;
@@ -350,7 +368,7 @@ uint8_t uart_getc(int uart_no)
 	@param[in] c: byte to write
 	@return void
 */
-ICACHE_FLASH_ATTR
+MEMSPACE
 void uart0_putc(uint8 c)
 {
 	uart_putc(0,c);
@@ -361,7 +379,7 @@ void uart0_putc(uint8 c)
 	Note: This function waits/blocks util the read can happen
 	@return byte read
 */
-ICACHE_FLASH_ATTR
+MEMSPACE
 uint8_t uart0_getc()
 {
 	return( uart_getc(0) );
@@ -374,7 +392,7 @@ uint8_t uart0_getc()
 	@param[in] c: byte to write
 	@return void
 */
-ICACHE_FLASH_ATTR
+MEMSPACE
 void uart1_putc(uint8 c)
 {
 	uart_putc(1,c);
@@ -385,7 +403,7 @@ void uart1_putc(uint8 c)
 	Note: This function waits/blocks util the read can happen
 	@return byte read
 */
-ICACHE_FLASH_ATTR
+MEMSPACE
 uint8_t uart1_getc()
 {
 	return( uart_getc(1) );
@@ -401,8 +419,11 @@ uint8_t uart1_getc()
 */
 void uart_callback(void *p)
 {
-	char data;
+	uint8_t data;
+	uint8_t val;
+	
 	int size;
+	int ind;
 
 	ETS_UART_INTR_DISABLE();
 
@@ -422,6 +443,8 @@ void uart_callback(void *p)
  			if(queue_space(uart_receive_queue) )
 				queue_pushc(uart_receive_queue, data);
 #endif
+// non blocking line buffered queue for gets
+			uart0_gets_add(data);
 		}
 #ifdef TELNET_SERIAL
 		system_os_post(bridge_task_id, 0, 0);
@@ -457,6 +480,95 @@ void uart_callback(void *p)
 	ETS_UART_INTR_ENABLE();
 }
 
+// =================================================================
+
+/**
+  @brief transfer data into the uart0_gets_receive_queue
+  Provide line buffering for uart0_gets()
+  @parmam[in] data: character to add to queue
+  @return void
+*/
+void uart0_gets_add(uint8_t data)
+{
+	int ind;
+	if(!uart0_gets_size || !uart0_gets_receive_queue || !uart0_gets_line)
+		return;
+
+	// note: we buffer only the most receint line received
+	if(data == '\r')
+	{
+		// transfer current queue to uart0_gets_line buffer
+		ind = 0;
+		while(!queue_empty(uart0_gets_receive_queue) && ind < uart0_gets_size)
+		{
+			uart0_gets_line[ind++]  = queue_popc(uart0_gets_receive_queue);
+		}
+		uart0_gets_line[ind++]  = 0;
+		uart0_gets_ready = 1;
+	}
+	else
+	{
+		// filter input data
+		if(data == '\t' || (data >= ' ' && data <= 0x7e))
+		{
+			if(queue_space(uart0_gets_receive_queue) )
+				queue_pushc(uart0_gets_receive_queue, data);
+		}
+	}
+}
+
+/**
+  @brief allocate and initialize uart0_gets data structures
+  Provide line buffering for uart0_gets()
+  @parmam[in] size: size of line buffer
+  @return void
+*/
+MEMSPACE
+void uart0_gets_init(int size)
+{
+	uart0_gets_size = 0;
+	uart0_gets_ready = 0;
+	// non blocking line buffered queue for gets
+    if(!(uart0_gets_receive_queue = queue_new(size)))
+        reset();
+    if(!(uart0_gets_line = calloc(size+1,1)))
+        reset();
+	uart0_gets_line[0] = 0;
+	uart0_gets_size = size;
+}
+
+/**
+  @brief uart0_gets non-blocking line buffered gets 
+  @parmam[in] buf: user buffer to fill
+  @parmam[in] max: miximum size of buf
+  @return 0, or number of characters in line
+*/
+MEMSPACE
+int uart0_gets(char *buf, int max)
+{
+	int ind;
+	int data;
+	*buf = 0;
+
+	if(!uart0_gets_size || !uart0_gets_receive_queue || !uart0_gets_line )
+		return(0);
+
+	if(uart0_gets_ready)
+	{
+		ind = 0;
+		while(max--)
+		{
+			data = uart0_gets_line[ind++];
+			*buf++ = data;
+			if(!data)
+				break;
+		}
+		uart0_gets_ready = 0;
+		return(ind);
+	}
+	return 0;
+}
+
 
 // ======================================================================
 
@@ -470,7 +582,7 @@ void uart_callback(void *p)
     @param[in] parity: parity, NO_PARITY,ODD_PARITY,EVEN_PARITY
 	@return void
 */
-ICACHE_FLASH_ATTR
+MEMSPACE
 void uart_config(uint8 uart_no, uint32_t baud, uint8_t data_bits, uint8_t stop_bits, uint8_t parity)
 {
     if (uart_no == UART0)
@@ -529,7 +641,7 @@ void uart_config(uint8 uart_no, uint32_t baud, uint8_t data_bits, uint8_t stop_b
     @param[in] baud: baud rate for uart 1
 	@return void
 */
-ICACHE_FLASH_ATTR
+MEMSPACE
 void uart_init(UartBaudRate uart0_br, UartBaudRate uart1_br)
 {
     ETS_UART_INTR_DISABLE();
@@ -537,6 +649,12 @@ void uart_init(UartBaudRate uart0_br, UartBaudRate uart1_br)
 
     uart_config(UART0, uart0_br, 8, 1, NO_PARITY);
     uart_config(UART1, uart1_br, 8, 1, NO_PARITY);
+
+	uart0_gets_init(256);
+
+#ifdef POSIX
+	fdevopen((void *)uart0_putc, (void *)uart0_getc);
+#endif
 
 	// Install the debug port callback on uart 0
     os_install_putc1((void *)uart0_putc);   //print output at UART0
@@ -548,7 +666,7 @@ void uart_init(UartBaudRate uart0_br, UartBaudRate uart1_br)
 	calls uart_init()
 	@return void
 */
-ICACHE_FLASH_ATTR
+MEMSPACE
 void uart_reattach()
 {
     uart_init(BIT_RATE_115200, BIT_RATE_115200);
@@ -561,7 +679,7 @@ void uart_reattach()
 	@brief Install debug uart 
 	@return void
 */
-ICACHE_FLASH_ATTR
+MEMSPACE
 void UART_SetPrintPort(uint8 uart_no)
 {
     if(uart_no==1)

@@ -52,7 +52,7 @@ static struct espconn *esp_data_tcp_connection;
   @param[in] connect_callback: connection callback function pointer
   @return void
 */
-ICACHE_FLASH_ATTR
+MEMSPACE
 static void tcp_accept(struct espconn *esp_config, esp_tcp *esp_tcp_config,
 		uint16_t port, void (*connect_callback)(struct espconn *))
 {
@@ -73,7 +73,7 @@ static void tcp_accept(struct espconn *esp_config, esp_tcp *esp_tcp_config,
   @param[in] *arg: unused
   @return void
 */
-ICACHE_FLASH_ATTR
+MEMSPACE
 static void tcp_data_sent_callback(void *arg)
 {
     tcp_data_send_buffer_busy = 0;
@@ -88,7 +88,7 @@ static void tcp_data_sent_callback(void *arg)
   @param[in] length: Length of data received
   @return void
 */
-ICACHE_FLASH_ATTR
+MEMSPACE
 static void tcp_data_receive_callback(void *arg, char *data, uint16_t length)
 {
 	uint16_t current;
@@ -118,7 +118,7 @@ static void tcp_data_receive_callback(void *arg, char *data, uint16_t length)
   @param[in] *arg: unused
   @return void
 */
-ICACHE_FLASH_ATTR
+MEMSPACE
 static void tcp_data_disconnect_callback(void *arg)
 {
 	// FIXME - make sure uart task notices this
@@ -130,7 +130,7 @@ static void tcp_data_disconnect_callback(void *arg)
   @param[in] *new_connection:
   @return void
 */
-ICACHE_FLASH_ATTR
+MEMSPACE
 static void tcp_data_connect_callback(struct espconn *new_connection)
 {
 	if(esp_data_tcp_connection)
@@ -155,7 +155,7 @@ static void tcp_data_connect_callback(struct espconn *new_connection)
   @brief Serial Bridge task initialize
   @param[in] port: network port
 */
-ICACHE_FLASH_ATTR
+MEMSPACE
 bridge_task_init(int port)
 {
 	static struct espconn esp_data_config;
@@ -187,7 +187,7 @@ bridge_task_init(int port)
   @param[in] *events: event signal message strurture  - not used
   @return void
 */
-ICACHE_FLASH_ATTR
+MEMSPACE
 static void bridge_task(os_event_t *events)
 {
 	uint16_t tcp_data_send_buffer_length;
@@ -212,4 +212,3 @@ static void bridge_task(os_event_t *events)
 		}
 	}
 }
-

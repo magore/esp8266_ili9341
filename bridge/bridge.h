@@ -43,12 +43,12 @@ extern queue_t *uart_receive_queue;
 extern os_event_t bridge_task_queue[bridge_task_queue_length];
 
 /* bridge.c */
-ICACHE_FLASH_ATTR static void tcp_accept ( struct espconn *esp_config , esp_tcp *esp_tcp_config , uint16_t port , void (*connect_callback )(struct espconn *));
-ICACHE_FLASH_ATTR static void tcp_data_sent_callback ( void *arg );
-ICACHE_FLASH_ATTR static void tcp_data_receive_callback ( void *arg , char *data , uint16_t length );
-ICACHE_FLASH_ATTR static void tcp_data_disconnect_callback ( void *arg );
-ICACHE_FLASH_ATTR static void tcp_data_connect_callback ( struct espconn *new_connection );
-ICACHE_FLASH_ATTR bridge_task_init ( int port );
-ICACHE_FLASH_ATTR static void bridge_task ( os_event_t *events );
+MEMSPACE static void tcp_accept ( struct espconn *esp_config , esp_tcp *esp_tcp_config , uint16_t port , void (*connect_callback )(struct espconn *));
+MEMSPACE static void tcp_data_sent_callback ( void *arg );
+MEMSPACE static void tcp_data_receive_callback ( void *arg , char *data , uint16_t length );
+MEMSPACE static void tcp_data_disconnect_callback ( void *arg );
+MEMSPACE static void tcp_data_connect_callback ( struct espconn *new_connection );
+MEMSPACE bridge_task_init ( int port );
+MEMSPACE static void bridge_task ( os_event_t *events );
 
 #endif

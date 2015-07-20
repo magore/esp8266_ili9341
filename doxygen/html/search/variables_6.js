@@ -1,6 +1,10 @@
 var searchData=
 [
   ['family_5fname',['FAMILY_NAME',['../struct__fontinfo.html#a4af43750caadb3ae9d7375f0afdcd171',1,'_fontinfo']]],
+  ['fatbase',['fatbase',['../structFATFS.html#a848fba02c4aabe02ef2984e578f33d64',1,'FATFS']]],
+  ['fatfs',['Fatfs',['../disk_8c.html#aae427cc909a4b5993032934d85fd8c31',1,'Fatfs():&#160;disk.c'],['../disk_8h.html#aae427cc909a4b5993032934d85fd8c31',1,'Fatfs():&#160;disk.c'],['../ff_8c.html#a3d7aad0939745576943767bf6c410eaf',1,'FatFs():&#160;ff.c']]],
+  ['fattrib',['fattrib',['../structFILINFO.html#a838d542585831b085537b363f18205c0',1,'FILINFO']]],
+  ['fdate',['fdate',['../structFILINFO.html#a7c01c48a15b1b49da459924437b0bd52',1,'FILINFO']]],
   ['fg',['fg',['../structwindow.html#ac8739cdb3c50efcc1deaa5ab955a5e62',1,'window']]],
   ['file_5fname',['FILE_NAME',['../struct__fontinfo.html#a86ca02a864b7dccb21004f51bea22ed3',1,'_fontinfo']]],
   ['filename',['filename',['../struct__bdffile.html#a040674bb1df0a8d4b1bedeae616e9b65',1,'_bdffile']]],
@@ -12,8 +16,21 @@ var searchData=
   ['fixed_5fmedium_5fr_5fx7_5fy13',['Fixed_Medium_R_X7_Y13',['../display_2fonts_8h.html#a681998d8e88e6c7ae494ef920b80f094',1,'Fixed_Medium_R_X7_Y13():&#160;fonts.h'],['../fonts_2fonts_8h.html#a681998d8e88e6c7ae494ef920b80f094',1,'Fixed_Medium_R_X7_Y13():&#160;fonts.h']]],
   ['fixed_5fmedium_5fr_5fx7_5fy13_5fbitmap',['Fixed_Medium_R_X7_Y13_bitmap',['../display_2fonts_8h.html#a347299d507f70541e4b326013e1a5fde',1,'Fixed_Medium_R_X7_Y13_bitmap():&#160;fonts.h'],['../fonts_2fonts_8h.html#abc61add54a38eda9d189e2be99c92020',1,'Fixed_Medium_R_X7_Y13_bitmap():&#160;fonts.h']]],
   ['fixed_5fmedium_5fr_5fx7_5fy13_5fspecs',['Fixed_Medium_R_X7_Y13_specs',['../display_2fonts_8h.html#a2f808fe9ecb75da1eeb64186953c8618',1,'Fixed_Medium_R_X7_Y13_specs():&#160;fonts.h'],['../fonts_2fonts_8h.html#a9cab258b77ed54c60ac5bf01b5a04a61',1,'Fixed_Medium_R_X7_Y13_specs():&#160;fonts.h']]],
-  ['flags',['flags',['../struct__fontc.html#aa74d9a5513b529b5e444f283afea40ef',1,'_fontc::flags()'],['../structwindow.html#ad58fae853f87093ef4f0139df0a3f33d',1,'window::flags()']]],
+  ['flag',['flag',['../structFIL.html#ac409508881f5a16f2998ae675072b376',1,'FIL']]],
+  ['flags',['flags',['../struct__fontc.html#aa74d9a5513b529b5e444f283afea40ef',1,'_fontc::flags()'],['../structwindow.html#ad58fae853f87093ef4f0139df0a3f33d',1,'window::flags()'],['../struct____file.html#a8d11df8679502efee09740f97d7c277b',1,'__file::flags()']]],
+  ['fn',['fn',['../structDIR.html#a32da2f31d6c3b6c42eef981cb0cfd2ee',1,'DIR']]],
+  ['fname',['fname',['../structFILINFO.html#abd852510f2f79b4ec773156d8942dc7c',1,'FILINFO']]],
   ['fnames',['fnames',['../bdffontutil_8c.html#ae75c11efb4dd449e4fcf9f1f78e9414c',1,'fnames():&#160;bdffontutil.c'],['../bdffontutil_8h.html#ae75c11efb4dd449e4fcf9f1f78e9414c',1,'fnames():&#160;bdffontutil.c']]],
   ['font',['font',['../structwindow.html#acee24e56db43557a46cbb5ca3fe35021',1,'window::font()'],['../bdffontutil_8h.html#a6d9c6f27190f0f04abf55678fe81080d',1,'font():&#160;bdffontutil.h']]],
-  ['font_5fname',['FONT_NAME',['../struct__fontinfo.html#a6c0f76f2668446a1c37ecab8d4e286a5',1,'_fontinfo']]]
+  ['font_5fname',['FONT_NAME',['../struct__fontinfo.html#a6c0f76f2668446a1c37ecab8d4e286a5',1,'_fontinfo']]],
+  ['fp',['fp',['../structputbuff.html#a5c7baa85e569be17f4888f5d92f4453c',1,'putbuff']]],
+  ['fptr',['fptr',['../structFIL.html#a75d29cf9257c827d117887b9f924c4a9',1,'FIL']]],
+  ['free_5fclust',['free_clust',['../structFATFS.html#a5fb49e6ac511bd97eaffdd636d0e4165',1,'FATFS']]],
+  ['fs',['fs',['../structFIL.html#a42376a6797a06228911c8b836c1e9030',1,'FIL::fs()'],['../structDIR.html#a312eaa66cb703fb2993ea98173dc0c9a',1,'DIR::fs()']]],
+  ['fs_5ftype',['fs_type',['../structFATFS.html#add27d97babe807b573eac98a71dc4ae5',1,'FATFS']]],
+  ['fsi_5fflag',['fsi_flag',['../structFATFS.html#a84e9cdc5a6a8e33ea7ec192058abf161',1,'FATFS']]],
+  ['fsid',['Fsid',['../ff_8c.html#a0b3f41d8c416222e9b1c16e36d66e18b',1,'ff.c']]],
+  ['fsize',['fsize',['../structFATFS.html#a53e9560659f14e66f306c2c444198bf3',1,'FATFS::fsize()'],['../structFIL.html#aa00790d40d7b0081c345fd4f76e22b70',1,'FIL::fsize()'],['../structFILINFO.html#aee7441af7dc0c443d1e1e6011cc7dcac',1,'FILINFO::fsize()']]],
+  ['ft',['ft',['../fatfs__utils_8c.html#a150e687e50144668be0e9a560aef0b1e',1,'fatfs_utils.c']]],
+  ['ftime',['ftime',['../structFILINFO.html#ae0f751b79621bf7b29669f177bbe6b9a',1,'FILINFO']]]
 ];

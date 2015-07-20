@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['font_2ec',['font.c',['../font_8c.html',1,'']]],
-  ['font_2eh',['font.h',['../display_2font_8h.html',1,'']]],
-  ['font_2eh',['font.h',['../fonts_2font_8h.html',1,'']]],
-  ['fonts_2eh',['fonts.h',['../display_2fonts_8h.html',1,'']]],
-  ['fonts_2eh',['fonts.h',['../fonts_2fonts_8h.html',1,'']]]
+  ['earth2wireframe_2ec',['earth2wireframe.c',['../earth2wireframe_8c.html',1,'']]],
+  ['earth_5fdata_2eh',['earth_data.h',['../earth__data_8h.html',1,'']]]
 ];

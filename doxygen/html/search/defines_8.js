@@ -1,6 +1,9 @@
 var searchData=
 [
-  ['normaltaskprio',['NormalTaskPrio',['../user__main_8c.html#ad4b201d4a81874b691535905a1087fe0',1,'user_main.c']]],
-  ['normaltaskqueuelen',['NormalTaskQueueLen',['../user__main_8c.html#a1c07392725f8ce9719872dd267291407',1,'user_main.c']]],
-  ['num',['NUM',['../cal__dex_8c.html#aaf0952059602752258dccaa015d7b54a',1,'cal_dex.c']]]
+  ['hightaskprio',['HighTaskPrio',['../user__main_8c.html#af976ca45c03d9124fb316a5c46f860f3',1,'user_main.c']]],
+  ['hightaskqueuelen',['HighTaskQueueLen',['../user__main_8c.html#a756fbf8ddcd39c8c1aa8481b6eab32ff',1,'user_main.c']]],
+  ['hspi',['HSPI',['../hspi_8h.html#a22bd615ece7185b5f635eae8facd0994',1,'hspi.h']]],
+  ['hspi_5ffifo_5fsize',['HSPI_FIFO_SIZE',['../hspi_8h.html#a1eaecab4a7e4f328f38ce57d4d3012d1',1,'hspi.h']]],
+  ['hspi_5fpix',['HSPI_PIX',['../ili9341_8c.html#a4ae7ac40c6ea3d1e5a457adf60a6bf5b',1,'ili9341.c']]],
+  ['hspi_5fprescaler',['HSPI_PRESCALER',['../hspi_8c.html#ac0b594f74d77f8ac1ee56fd39fcfecdc',1,'hspi.c']]]
 ];

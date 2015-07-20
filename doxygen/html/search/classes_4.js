@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['uint32_5ft_5fbytes',['uint32_t_bytes',['../unionuint32__t__bytes.html',1,'']]]
+  ['point',['point',['../structpoint.html',1,'']]],
+  ['putbuff',['putbuff',['../structputbuff.html',1,'']]]
 ];

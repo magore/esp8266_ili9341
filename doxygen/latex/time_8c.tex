@@ -1,0 +1,998 @@
+\hypertarget{time_8c}{\section{lib/time.c File Reference}
+\label{time_8c}\index{lib/time.\-c@{lib/time.\-c}}
+}
+
+
+Common Linux/\-P\-O\-S\-I\-X time functions.  
+
+
+{\ttfamily \#include $<$user\-\_\-config.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}timer\-\_\-hal.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}time.\-h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{time_8c_ac7a571349cf5217b6261a01bf85a79ab}{tm\-\_\-wday\-\_\-to\-\_\-ascii} (int i)
+\begin{DoxyCompactList}\small\item\em Get string Short name of day from day number. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{time_8c_a0dd83b6492eb8473cb55bb45d8fc6c0c}{tm\-\_\-mon\-\_\-to\-\_\-ascii} (int i)
+\begin{DoxyCompactList}\small\item\em Get string Short name of Month from month number. \end{DoxyCompactList}\item 
+static \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{time_8c_a7a6b834817c8071e5e31d3693102a2b0}{I\-S\-\_\-\-Leap} (int year)
+\begin{DoxyCompactList}\small\item\em Check if a year is a leap year. \end{DoxyCompactList}\item 
+static \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{time_8c_ae735aeba371be4c38d738538bcbd8ff1}{Leap\-\_\-\-Days\-\_\-\-Since\-\_\-1900} (int year)
+\begin{DoxyCompactList}\small\item\em Number of leap days since 1900 to the B\-E\-G\-I\-N\-N\-I\-N\-G of the year. \end{DoxyCompactList}\item 
+static \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{time_8c_ad4f4473fe0527085b45e8c354faeee7b}{Days\-\_\-\-Per\-\_\-\-Year} (int year)
+\begin{DoxyCompactList}\small\item\em Find number of days in a given year. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{time_8c_a1651e0bb0303eddb19e193c3d4f00e8e}{time\-\_\-to\-\_\-tm} (\hyperlink{time_8h_a3346b04b0420b32ccf6b706551b70762}{time\-\_\-t} epoch, \hyperlink{earth2wireframe_8c_a32f2e37ee053cf2ce8ca28d1f74630e5}{int32\-\_\-t} offset, \hyperlink{time_8h_a2fea857c30e2c901566fcf45fac68ac5}{tm\-\_\-t} $\ast$t)
+\begin{DoxyCompactList}\small\item\em Converts epoch ( seconds from 1 Jan E\-P\-O\-C\-H\-\_\-\-Y\-E\-A\-R U\-T\-C), offset seconds, to U\-N\-I\-X tm $\ast$t. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{time_8h_a3346b04b0420b32ccf6b706551b70762}{time\-\_\-t} \hyperlink{time_8c_a8386ff819a39512ea00cfc78ce5a27d5}{timegm} (\hyperlink{time_8h_a2fea857c30e2c901566fcf45fac68ac5}{tm\-\_\-t} $\ast$t)
+\begin{DoxyCompactList}\small\item\em Convert tm\-\_\-t structure as G\-M\-T time into seconds since 1900. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{time_8c_a7ffc52def0c7fbf70c50248e3f7d6a8a}{asctime\-\_\-r} (\hyperlink{time_8h_a2fea857c30e2c901566fcf45fac68ac5}{tm\-\_\-t} $\ast$t, char $\ast$buf)
+\begin{DoxyCompactList}\small\item\em Convert tm\-\_\-t $\ast$t structure into P\-O\-S\-I\-X \hyperlink{time_8c_a95735d85f13249a5b329308d27d1f3ee}{asctime()} A\-S\-C\-I\-I string $\ast$buf. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{time_8c_a95735d85f13249a5b329308d27d1f3ee}{asctime} (\hyperlink{time_8h_a2fea857c30e2c901566fcf45fac68ac5}{tm\-\_\-t} $\ast$t)
+\begin{DoxyCompactList}\small\item\em Convert tm\-\_\-t $\ast$t structure into P\-O\-S\-I\-X \hyperlink{time_8c_a95735d85f13249a5b329308d27d1f3ee}{asctime()} A\-S\-C\-I\-I string. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{time_8c_a1aab5ff5bdcacaf02c16153291db0ea3}{ctime\-\_\-r} (\hyperlink{time_8h_a3346b04b0420b32ccf6b706551b70762}{time\-\_\-t} $\ast$t, char $\ast$buf)
+\begin{DoxyCompactList}\small\item\em Convert local time\-\_\-t $\ast$t epoch time into P\-O\-S\-I\-X \hyperlink{time_8c_a95735d85f13249a5b329308d27d1f3ee}{asctime()} A\-S\-C\-I\-I string $\ast$buf. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{time_8c_a77d6bba12950028852621634ffaf4835}{ctime} (\hyperlink{time_8h_a3346b04b0420b32ccf6b706551b70762}{time\-\_\-t} $\ast$tp)
+\begin{DoxyCompactList}\small\item\em Convert local time\-\_\-t $\ast$t epoch time into P\-O\-S\-I\-X \hyperlink{time_8c_a95735d85f13249a5b329308d27d1f3ee}{asctime()} string \-\_\-\-\_\-ctime\-\_\-buf\mbox{[}\mbox{]}. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{time_8c_acf34275ac6fb2f724205873402dc9f70}{ctime\-\_\-gm} (\hyperlink{time_8h_a3346b04b0420b32ccf6b706551b70762}{time\-\_\-t} $\ast$tp)
+\begin{DoxyCompactList}\small\item\em G\-M\-T version of P\-O\-S\-I\-X \hyperlink{time_8c_a77d6bba12950028852621634ffaf4835}{ctime()}. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{time_8h_a2fea857c30e2c901566fcf45fac68ac5}{tm\-\_\-t} $\ast$ \hyperlink{time_8c_a546aeae1b99d8ab1e2d26a0a2ebd9d31}{gmtime\-\_\-r} (\hyperlink{time_8h_a3346b04b0420b32ccf6b706551b70762}{time\-\_\-t} $\ast$tp, \hyperlink{time_8h_a2fea857c30e2c901566fcf45fac68ac5}{tm\-\_\-t} $\ast$result)
+\begin{DoxyCompactList}\small\item\em Convert epoch G\-M\-T time\-\_\-t $\ast$tp into P\-O\-S\-I\-X tm\-\_\-t $\ast$result. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{time_8h_a2fea857c30e2c901566fcf45fac68ac5}{tm\-\_\-t} $\ast$ \hyperlink{time_8c_a10fe08d03c4c3da23d1e1c059f4cf3a5}{gmtime} (\hyperlink{time_8h_a3346b04b0420b32ccf6b706551b70762}{time\-\_\-t} $\ast$tp)
+\begin{DoxyCompactList}\small\item\em Convert epoch G\-M\-T time\-\_\-t $\ast$tp into P\-O\-S\-I\-X static tm\-\_\-t $\ast$t. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{time_8h_a2fea857c30e2c901566fcf45fac68ac5}{tm\-\_\-t} $\ast$ \hyperlink{time_8c_af05576742e2f8ad3924c02a6af70a86d}{localtime\-\_\-r} (\hyperlink{time_8h_a3346b04b0420b32ccf6b706551b70762}{time\-\_\-t} $\ast$t, \hyperlink{time_8h_a2fea857c30e2c901566fcf45fac68ac5}{tm\-\_\-t} $\ast$result)
+\begin{DoxyCompactList}\small\item\em Convert P\-O\-S\-I\-X epoch time\-\_\-t $\ast$tp into P\-O\-S\-I\-X tm\-\_\-t $\ast$result. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{time_8h_a2fea857c30e2c901566fcf45fac68ac5}{tm\-\_\-t} $\ast$ \hyperlink{time_8c_a08eb1818fa59b3e6e1f1470ca0888572}{localtime} (\hyperlink{time_8h_a3346b04b0420b32ccf6b706551b70762}{time\-\_\-t} $\ast$tp)
+\begin{DoxyCompactList}\small\item\em Convert P\-O\-S\-I\-X epoch time\-\_\-t $\ast$tp into P\-O\-S\-I\-X tm\-\_\-t $\ast$result. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{time_8h_a3346b04b0420b32ccf6b706551b70762}{time\-\_\-t} \hyperlink{time_8c_aeafbe7f942ef85f85edbbe31e439372b}{mktime} (\hyperlink{time_8h_a2fea857c30e2c901566fcf45fac68ac5}{tm\-\_\-t} $\ast$t)
+\begin{DoxyCompactList}\small\item\em Convert P\-O\-S\-I\-X tm\-\_\-t $\ast$t struct into P\-O\-S\-I\-X epoch time in seconds with U\-T\-C offset adjustment. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{time_8c_ac363b4a4a45a4431d3c3b56886f1bef1}{gettimezone} (\hyperlink{time_8h_a63629b2492d6773f4d4948d6e60022a8}{tz\-\_\-t} $\ast$tz)
+\begin{DoxyCompactList}\small\item\em Get current timezone in struct timezone $\ast$tz -\/ P\-O\-S\-I\-X function. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{time_8c_aba9a1e17f18817099c795d0559d747a8}{settimezone} (\hyperlink{time_8h_a63629b2492d6773f4d4948d6e60022a8}{tz\-\_\-t} $\ast$tz)
+\begin{DoxyCompactList}\small\item\em Set current timezone with struct timezone $\ast$tz -\/ P\-O\-S\-I\-X function. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{time_8c_a96a115b6a8104959a7340938f150a350}{gettimeofday} (\hyperlink{time_8h_a23f99094ae0798225e20ad40e48658bb}{tv\-\_\-t} $\ast$tv, \hyperlink{time_8h_a63629b2492d6773f4d4948d6e60022a8}{tz\-\_\-t} $\ast$tz)
+\begin{DoxyCompactList}\small\item\em Get current time struct timeval $\ast$tv and struct timezone $\ast$tz -\/ P\-O\-S\-I\-X function. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{time_8h_a3346b04b0420b32ccf6b706551b70762}{time\-\_\-t} \hyperlink{time_8c_a32b1cbd925752f0cd61d202bbe204a69}{time} (\hyperlink{time_8h_a3346b04b0420b32ccf6b706551b70762}{time\-\_\-t} $\ast$t)
+\begin{DoxyCompactList}\small\item\em Return second from epoch -\/ P\-O\-S\-I\-X function. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{time_8c_aeb8aa93cda8bc413e67e8633793edf7e}{settimeofday} (\hyperlink{time_8h_a23f99094ae0798225e20ad40e48658bb}{tv\-\_\-t} $\ast$tv, \hyperlink{time_8h_a63629b2492d6773f4d4948d6e60022a8}{tz\-\_\-t} $\ast$tz)
+\begin{DoxyCompactList}\small\item\em Set current time struct timeval $\ast$tv and struct timezone $\ast$tz -\/ P\-O\-S\-I\-X function. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{time_8c_a054fae207409ed1e0be1c30edaab9a7b}{clock\-\_\-set} (\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\-\_\-t} seconds, \hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\-\_\-t} us)
+\begin{DoxyCompactList}\small\item\em Set system clock with seconds and microseconds. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{time_8c_af39c674506657f4a32793388117be705}{setdate\-\_\-r} (char $\ast$buf)
+\begin{DoxyCompactList}\small\item\em Set date and time from string in this format \char`\"{}\-Y\-Y\-Y\-Y M\-M D\-D H\-H\-:\-M\-M\-:\-S\-S\char`\"{}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+volatile \hyperlink{time_8h_a062a82a85c72b4a3020130efc37a00cf}{ts\-\_\-t} \hyperlink{time_8c_a335451dd774ecb4b696d501b4c1b6f30}{\-\_\-\-\_\-clock}
+\begin{DoxyCompactList}\small\item\em System Clock Time. \end{DoxyCompactList}\item 
+\hyperlink{time_8h_a63629b2492d6773f4d4948d6e60022a8}{tz\-\_\-t} \hyperlink{time_8c_a9ac29ed71adf6807175d24ab1fa622a7}{\-\_\-\-\_\-tzone}
+\begin{DoxyCompactList}\small\item\em System Time Zone. \end{DoxyCompactList}\item 
+static const \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\-\_\-t} \hyperlink{time_8c_acab85c85e1497507b279edab985ac1e5}{\-\_\-\-\_\-days\-\_\-sum} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em accumulated days to the start of a month in a year. \end{DoxyCompactList}\item 
+static const \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\-\_\-t} \hyperlink{time_8c_a51f8059d5a58b35f401245c1f2cabc2d}{\-\_\-\-\_\-days} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em days in each month. \end{DoxyCompactList}\item 
+const char $\ast$ \hyperlink{time_8c_a6403bf32bcba7c1ca0fe395d8b30e542}{\-\_\-\-\_\-\-W\-Day} \mbox{[}$\,$\mbox{]} = \{ \char`\"{}Sun\char`\"{},\char`\"{}Mon\char`\"{},\char`\"{}Tue\char`\"{},\char`\"{}Wed\char`\"{},\char`\"{}Thu\char`\"{},\char`\"{}Fri\char`\"{},\char`\"{}Sat\char`\"{},\char`\"{}B\-A\-D\char`\"{}\}
+\begin{DoxyCompactList}\small\item\em Short Name of each Day in a week. \end{DoxyCompactList}\item 
+const char $\ast$ \hyperlink{time_8c_a1059a668b2b28621f4bce70f603555fa}{\-\_\-\-\_\-\-Month} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Short Name or each Month in a year. \end{DoxyCompactList}\item 
+static char \hyperlink{time_8c_ae838cadfe9ddcf7c031a644cc153fe1e}{\-\_\-\-\_\-ctime\-\_\-buf} \mbox{[}32\mbox{]}
+\begin{DoxyCompactList}\small\item\em String storage for \hyperlink{time_8c_a95735d85f13249a5b329308d27d1f3ee}{asctime()}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Common Linux/\-P\-O\-S\-I\-X time functions. \begin{DoxyParagraph}{Copyright \copyright{} 2015 Mike Gore, G\-P\-L License}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{You are free to use this code under the terms of G\-P\-L}
+please retain a copy of this notice in any code you use it in.
+\end{DoxyParagraph}
+This is free software\-: you can redistribute it and/or modify it under the terms of the G\-N\-U General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This software is distributed in the hope that it will be useful, but W\-I\-T\-H\-O\-U\-T A\-N\-Y W\-A\-R\-R\-A\-N\-T\-Y; without even the implied warranty of M\-E\-R\-C\-H\-A\-N\-T\-A\-B\-I\-L\-I\-T\-Y or F\-I\-T\-N\-E\-S\-S F\-O\-R A P\-A\-R\-T\-I\-C\-U\-L\-A\-R P\-U\-R\-P\-O\-S\-E. See the G\-N\-U General Public License for more details.
+
+You should have received a copy of the G\-N\-U General Public License along with this program. If not, see \href{http://www.gnu.org/licenses/}{\tt http\-://www.\-gnu.\-org/licenses/}. 
+
+Definition in file \hyperlink{time_8c_source}{time.\-c}.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{time_8c_a95735d85f13249a5b329308d27d1f3ee}{\index{time.\-c@{time.\-c}!asctime@{asctime}}
+\index{asctime@{asctime}!time.c@{time.\-c}}
+\subsubsection[{asctime}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} char$\ast$ asctime (
+\begin{DoxyParamCaption}
+\item[{{\bf tm\-\_\-t} $\ast$}]{t}
+\end{DoxyParamCaption}
+)}}\label{time_8c_a95735d85f13249a5b329308d27d1f3ee}
+
+
+Convert tm\-\_\-t $\ast$t structure into P\-O\-S\-I\-X \hyperlink{time_8c_a95735d85f13249a5b329308d27d1f3ee}{asctime()} A\-S\-C\-I\-I string. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em t} & struct tm $\ast$ time input.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\-\_\-\-\_\-ctime\-\_\-buf\mbox{[}\mbox{]} string pointer in P\-O\-S\-I\-X \hyperlink{time_8c_a95735d85f13249a5b329308d27d1f3ee}{asctime()} format.
+\begin{DoxyItemize}
+\item Example output\-: \char`\"{}\-Thu Dec  8 21\-:45\-:05 E\-S\-T 2011\char`\"{}. 
+\end{DoxyItemize}
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+result is overwritten on each call. 
+\end{DoxyWarning}
+
+
+Definition at line 378 of file time.\-c.
+
+
+
+Referenced by get\-\_\-date().
+
+\hypertarget{time_8c_a7ffc52def0c7fbf70c50248e3f7d6a8a}{\index{time.\-c@{time.\-c}!asctime\-\_\-r@{asctime\-\_\-r}}
+\index{asctime\-\_\-r@{asctime\-\_\-r}!time.c@{time.\-c}}
+\subsubsection[{asctime\-\_\-r}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} char$\ast$ asctime\-\_\-r (
+\begin{DoxyParamCaption}
+\item[{{\bf tm\-\_\-t} $\ast$}]{t, }
+\item[{char $\ast$}]{buf}
+\end{DoxyParamCaption}
+)}}\label{time_8c_a7ffc52def0c7fbf70c50248e3f7d6a8a}
+
+
+Convert tm\-\_\-t $\ast$t structure into P\-O\-S\-I\-X \hyperlink{time_8c_a95735d85f13249a5b329308d27d1f3ee}{asctime()} A\-S\-C\-I\-I string $\ast$buf. 
+
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000001}{Todo}]implement strftime() and strptime() \end{DoxyRefDesc}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em t} & tm\-\_\-t structure pointer. \\
+\hline
+\mbox{\tt out}  & {\em buf} & user buffer for P\-O\-S\-I\-X \hyperlink{time_8c_a95735d85f13249a5b329308d27d1f3ee}{asctime()} string result.
+\begin{DoxyItemize}
+\item Example output\-: \char`\"{}\-Thu Dec  8 21\-:45\-:05 E\-S\-T 2011\char`\"{}.
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+buf string pointer. 
+\end{DoxyReturn}
+
+
+Definition at line 352 of file time.\-c.
+
+
+
+Referenced by asctime(), ctime(), ctime\-\_\-gm(), and ctime\-\_\-r().
+
+\hypertarget{time_8c_a054fae207409ed1e0be1c30edaab9a7b}{\index{time.\-c@{time.\-c}!clock\-\_\-set@{clock\-\_\-set}}
+\index{clock\-\_\-set@{clock\-\_\-set}!time.c@{time.\-c}}
+\subsubsection[{clock\-\_\-set}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void clock\-\_\-set (
+\begin{DoxyParamCaption}
+\item[{{\bf uint32\-\_\-t}}]{seconds, }
+\item[{{\bf uint32\-\_\-t}}]{us}
+\end{DoxyParamCaption}
+)}}\label{time_8c_a054fae207409ed1e0be1c30edaab9a7b}
+
+
+Set system clock with seconds and microseconds. 
+
+
+\begin{DoxyItemize}
+\item Note\-: Alternate clock functions. \begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{timer__hal_8c_a4ebca9883466f2cc6fea0547e0e64e79}{clock\-\_\-settime()}. 
+\end{DoxySeeAlso}
+
+\end{DoxyItemize}
+
+Definition at line 615 of file time.\-c.
+
+\hypertarget{time_8c_a77d6bba12950028852621634ffaf4835}{\index{time.\-c@{time.\-c}!ctime@{ctime}}
+\index{ctime@{ctime}!time.c@{time.\-c}}
+\subsubsection[{ctime}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} char$\ast$ ctime (
+\begin{DoxyParamCaption}
+\item[{{\bf time\-\_\-t} $\ast$}]{tp}
+\end{DoxyParamCaption}
+)}}\label{time_8c_a77d6bba12950028852621634ffaf4835}
+
+
+Convert local time\-\_\-t $\ast$t epoch time into P\-O\-S\-I\-X \hyperlink{time_8c_a95735d85f13249a5b329308d27d1f3ee}{asctime()} string \-\_\-\-\_\-ctime\-\_\-buf\mbox{[}\mbox{]}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em tp} & time\-\_\-t $\ast$ time input.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\-\_\-\-\_\-ctime\-\_\-buf\mbox{[}\mbox{]}.
+\begin{DoxyItemize}
+\item Example\-: \char`\"{}\-Thu Dec  8 21\-:45\-:05 E\-S\-T 2011\char`\"{}. 
+\end{DoxyItemize}
+\end{DoxyReturn}
+
+
+Definition at line 405 of file time.\-c.
+
+
+
+Referenced by ntp\-\_\-setup(), and user\-\_\-task().
+
+\hypertarget{time_8c_acf34275ac6fb2f724205873402dc9f70}{\index{time.\-c@{time.\-c}!ctime\-\_\-gm@{ctime\-\_\-gm}}
+\index{ctime\-\_\-gm@{ctime\-\_\-gm}!time.c@{time.\-c}}
+\subsubsection[{ctime\-\_\-gm}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} char$\ast$ ctime\-\_\-gm (
+\begin{DoxyParamCaption}
+\item[{{\bf time\-\_\-t} $\ast$}]{tp}
+\end{DoxyParamCaption}
+)}}\label{time_8c_acf34275ac6fb2f724205873402dc9f70}
+
+
+G\-M\-T version of P\-O\-S\-I\-X \hyperlink{time_8c_a77d6bba12950028852621634ffaf4835}{ctime()}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em tp} & time\-\_\-t $\ast$ time input.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\-\_\-\-\_\-ctime\-\_\-buf\mbox{[}\mbox{]}.
+\begin{DoxyItemize}
+\item Example\-: \char`\"{}\-Thu Dec  8 21\-:45\-:05 E\-S\-T 2011\char`\"{}. 
+\end{DoxyItemize}
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{time_8c_a77d6bba12950028852621634ffaf4835}{ctime()} 
+\end{DoxySeeAlso}
+\begin{DoxyWarning}{Warning}
+result is overwritten on each call. 
+\end{DoxyWarning}
+
+
+Definition at line 420 of file time.\-c.
+
+
+
+Referenced by mctime().
+
+\hypertarget{time_8c_a1aab5ff5bdcacaf02c16153291db0ea3}{\index{time.\-c@{time.\-c}!ctime\-\_\-r@{ctime\-\_\-r}}
+\index{ctime\-\_\-r@{ctime\-\_\-r}!time.c@{time.\-c}}
+\subsubsection[{ctime\-\_\-r}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} char$\ast$ ctime\-\_\-r (
+\begin{DoxyParamCaption}
+\item[{{\bf time\-\_\-t} $\ast$}]{t, }
+\item[{char $\ast$}]{buf}
+\end{DoxyParamCaption}
+)}}\label{time_8c_a1aab5ff5bdcacaf02c16153291db0ea3}
+
+
+Convert local time\-\_\-t $\ast$t epoch time into P\-O\-S\-I\-X \hyperlink{time_8c_a95735d85f13249a5b329308d27d1f3ee}{asctime()} A\-S\-C\-I\-I string $\ast$buf. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em t} & time\-\_\-t $\ast$ time input. \\
+\hline
+\mbox{\tt out}  & {\em buf} & string output.
+\begin{DoxyItemize}
+\item Example output\-: \char`\"{}\-Thu Dec  8 21\-:45\-:05 E\-S\-T 2011\char`\"{}
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+buf string pointer. 
+\end{DoxyReturn}
+
+
+Definition at line 392 of file time.\-c.
+
+\hypertarget{time_8c_ad4f4473fe0527085b45e8c354faeee7b}{\index{time.\-c@{time.\-c}!Days\-\_\-\-Per\-\_\-\-Year@{Days\-\_\-\-Per\-\_\-\-Year}}
+\index{Days\-\_\-\-Per\-\_\-\-Year@{Days\-\_\-\-Per\-\_\-\-Year}!time.c@{time.\-c}}
+\subsubsection[{Days\-\_\-\-Per\-\_\-\-Year}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf M\-E\-M\-S\-P\-A\-C\-E} int Days\-\_\-\-Per\-\_\-\-Year (
+\begin{DoxyParamCaption}
+\item[{int}]{year}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{time_8c_ad4f4473fe0527085b45e8c354faeee7b}
+
+
+Find number of days in a given year. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em year} & valid over 1900..2199.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Warning}
+No limit checking
+\end{DoxyWarning}
+\begin{DoxyReturn}{Returns}
+days in a given year.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{time_8c_a1651e0bb0303eddb19e193c3d4f00e8e}{time\-\_\-to\-\_\-tm()} 
+
+\hyperlink{time_8c_acf34275ac6fb2f724205873402dc9f70}{ctime\-\_\-gm()} 
+
+\hyperlink{time_8c_a546aeae1b99d8ab1e2d26a0a2ebd9d31}{gmtime\-\_\-r()} 
+
+\hyperlink{time_8c_af05576742e2f8ad3924c02a6af70a86d}{localtime\-\_\-r()} 
+\end{DoxySeeAlso}
+
+
+Definition at line 182 of file time.\-c.
+
+
+
+Referenced by time\-\_\-to\-\_\-tm().
+
+\hypertarget{time_8c_a96a115b6a8104959a7340938f150a350}{\index{time.\-c@{time.\-c}!gettimeofday@{gettimeofday}}
+\index{gettimeofday@{gettimeofday}!time.c@{time.\-c}}
+\subsubsection[{gettimeofday}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int gettimeofday (
+\begin{DoxyParamCaption}
+\item[{{\bf tv\-\_\-t} $\ast$}]{tv, }
+\item[{{\bf tz\-\_\-t} $\ast$}]{tz}
+\end{DoxyParamCaption}
+)}}\label{time_8c_a96a115b6a8104959a7340938f150a350}
+
+
+Get current time struct timeval $\ast$tv and struct timezone $\ast$tz -\/ P\-O\-S\-I\-X function. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em tv} & time. \\
+\hline
+\mbox{\tt in}  & {\em tz} & timezone.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 
+\end{DoxyReturn}
+
+
+Definition at line 555 of file time.\-c.
+
+\hypertarget{time_8c_ac363b4a4a45a4431d3c3b56886f1bef1}{\index{time.\-c@{time.\-c}!gettimezone@{gettimezone}}
+\index{gettimezone@{gettimezone}!time.c@{time.\-c}}
+\subsubsection[{gettimezone}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int gettimezone (
+\begin{DoxyParamCaption}
+\item[{{\bf tz\-\_\-t} $\ast$}]{tz}
+\end{DoxyParamCaption}
+)}}\label{time_8c_ac363b4a4a45a4431d3c3b56886f1bef1}
+
+
+Get current timezone in struct timezone $\ast$tz -\/ P\-O\-S\-I\-X function. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em tz} & timezone result.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 
+\end{DoxyReturn}
+
+
+Definition at line 526 of file time.\-c.
+
+
+
+Referenced by gettimeofday(), localtime\-\_\-r(), and mktime().
+
+\hypertarget{time_8c_a10fe08d03c4c3da23d1e1c059f4cf3a5}{\index{time.\-c@{time.\-c}!gmtime@{gmtime}}
+\index{gmtime@{gmtime}!time.c@{time.\-c}}
+\subsubsection[{gmtime}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} {\bf tm\-\_\-t}$\ast$ gmtime (
+\begin{DoxyParamCaption}
+\item[{{\bf time\-\_\-t} $\ast$}]{tp}
+\end{DoxyParamCaption}
+)}}\label{time_8c_a10fe08d03c4c3da23d1e1c059f4cf3a5}
+
+
+Convert epoch G\-M\-T time\-\_\-t $\ast$tp into P\-O\-S\-I\-X static tm\-\_\-t $\ast$t. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em tp} & time\-\_\-t $\ast$ time input.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+tm\-\_\-t t. 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+result is overwritten on each call. 
+\end{DoxyWarning}
+
+
+Definition at line 452 of file time.\-c.
+
+\hypertarget{time_8c_a546aeae1b99d8ab1e2d26a0a2ebd9d31}{\index{time.\-c@{time.\-c}!gmtime\-\_\-r@{gmtime\-\_\-r}}
+\index{gmtime\-\_\-r@{gmtime\-\_\-r}!time.c@{time.\-c}}
+\subsubsection[{gmtime\-\_\-r}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} {\bf tm\-\_\-t}$\ast$ gmtime\-\_\-r (
+\begin{DoxyParamCaption}
+\item[{{\bf time\-\_\-t} $\ast$}]{tp, }
+\item[{{\bf tm\-\_\-t} $\ast$}]{result}
+\end{DoxyParamCaption}
+)}}\label{time_8c_a546aeae1b99d8ab1e2d26a0a2ebd9d31}
+
+
+Convert epoch G\-M\-T time\-\_\-t $\ast$tp into P\-O\-S\-I\-X tm\-\_\-t $\ast$result. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em tp} & time\-\_\-t $\ast$ time input. \\
+\hline
+\mbox{\tt out}  & {\em result} & tm\-\_\-t $\ast$result.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+tm\-\_\-t $\ast$result. 
+\end{DoxyReturn}
+
+
+Definition at line 436 of file time.\-c.
+
+
+
+Referenced by gmtime().
+
+\hypertarget{time_8c_a7a6b834817c8071e5e31d3693102a2b0}{\index{time.\-c@{time.\-c}!I\-S\-\_\-\-Leap@{I\-S\-\_\-\-Leap}}
+\index{I\-S\-\_\-\-Leap@{I\-S\-\_\-\-Leap}!time.c@{time.\-c}}
+\subsubsection[{I\-S\-\_\-\-Leap}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf M\-E\-M\-S\-P\-A\-C\-E} int I\-S\-\_\-\-Leap (
+\begin{DoxyParamCaption}
+\item[{int}]{year}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{time_8c_a7a6b834817c8071e5e31d3693102a2b0}
+
+
+Check if a year is a leap year. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em year} & valid over 1900..2199.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Warning}
+\-: No limit checking.
+\end{DoxyWarning}
+\begin{DoxyReturn}{Returns}
+1 (leap year), 0 (not a leap year( 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{time_8c_a1651e0bb0303eddb19e193c3d4f00e8e}{time\-\_\-to\-\_\-tm()} 
+
+\hyperlink{time_8c_acf34275ac6fb2f724205873402dc9f70}{ctime\-\_\-gm()} 
+
+\hyperlink{time_8c_a546aeae1b99d8ab1e2d26a0a2ebd9d31}{gmtime\-\_\-r()} 
+
+\hyperlink{time_8c_af05576742e2f8ad3924c02a6af70a86d}{localtime\-\_\-r()} 
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+return 
+\end{DoxyReturn}
+
+
+Definition at line 123 of file time.\-c.
+
+
+
+Referenced by Days\-\_\-\-Per\-\_\-\-Year(), time\-\_\-to\-\_\-tm(), and timegm().
+
+\hypertarget{time_8c_ae735aeba371be4c38d738538bcbd8ff1}{\index{time.\-c@{time.\-c}!Leap\-\_\-\-Days\-\_\-\-Since\-\_\-1900@{Leap\-\_\-\-Days\-\_\-\-Since\-\_\-1900}}
+\index{Leap\-\_\-\-Days\-\_\-\-Since\-\_\-1900@{Leap\-\_\-\-Days\-\_\-\-Since\-\_\-1900}!time.c@{time.\-c}}
+\subsubsection[{Leap\-\_\-\-Days\-\_\-\-Since\-\_\-1900}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf M\-E\-M\-S\-P\-A\-C\-E} int Leap\-\_\-\-Days\-\_\-\-Since\-\_\-1900 (
+\begin{DoxyParamCaption}
+\item[{int}]{year}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{time_8c_ae735aeba371be4c38d738538bcbd8ff1}
+
+
+Number of leap days since 1900 to the B\-E\-G\-I\-N\-N\-I\-N\-G of the year. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em year} & valid over 1900..2199.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Warning}
+No limit checking
+\end{DoxyWarning}
+\begin{DoxyReturn}{Returns}
+days.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{time_8c_a1651e0bb0303eddb19e193c3d4f00e8e}{time\-\_\-to\-\_\-tm()} 
+
+\hyperlink{time_8c_acf34275ac6fb2f724205873402dc9f70}{ctime\-\_\-gm()} 
+
+\hyperlink{time_8c_a546aeae1b99d8ab1e2d26a0a2ebd9d31}{gmtime\-\_\-r()} 
+
+\hyperlink{time_8c_af05576742e2f8ad3924c02a6af70a86d}{localtime\-\_\-r()} 
+\end{DoxySeeAlso}
+
+
+Definition at line 150 of file time.\-c.
+
+
+
+Referenced by timegm().
+
+\hypertarget{time_8c_a08eb1818fa59b3e6e1f1470ca0888572}{\index{time.\-c@{time.\-c}!localtime@{localtime}}
+\index{localtime@{localtime}!time.c@{time.\-c}}
+\subsubsection[{localtime}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} {\bf tm\-\_\-t}$\ast$ localtime (
+\begin{DoxyParamCaption}
+\item[{{\bf time\-\_\-t} $\ast$}]{tp}
+\end{DoxyParamCaption}
+)}}\label{time_8c_a08eb1818fa59b3e6e1f1470ca0888572}
+
+
+Convert P\-O\-S\-I\-X epoch time\-\_\-t $\ast$tp into P\-O\-S\-I\-X tm\-\_\-t $\ast$result. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em tp} & time\-\_\-t $\ast$ epoch time input.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+struct tm result. 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+result is overwritten on each call. 
+\end{DoxyWarning}
+
+
+Definition at line 489 of file time.\-c.
+
+
+
+Referenced by ctime(), ctime\-\_\-r(), get\-\_\-date(), and get\-\_\-fattime().
+
+\hypertarget{time_8c_af05576742e2f8ad3924c02a6af70a86d}{\index{time.\-c@{time.\-c}!localtime\-\_\-r@{localtime\-\_\-r}}
+\index{localtime\-\_\-r@{localtime\-\_\-r}!time.c@{time.\-c}}
+\subsubsection[{localtime\-\_\-r}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} {\bf tm\-\_\-t}$\ast$ localtime\-\_\-r (
+\begin{DoxyParamCaption}
+\item[{{\bf time\-\_\-t} $\ast$}]{t, }
+\item[{{\bf tm\-\_\-t} $\ast$}]{result}
+\end{DoxyParamCaption}
+)}}\label{time_8c_af05576742e2f8ad3924c02a6af70a86d}
+
+
+Convert P\-O\-S\-I\-X epoch time\-\_\-t $\ast$tp into P\-O\-S\-I\-X tm\-\_\-t $\ast$result. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em t} & time\-\_\-t $\ast$ epoch time input. \\
+\hline
+\mbox{\tt out}  & {\em result} & tm\-\_\-t $\ast$result.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+result. 
+\end{DoxyReturn}
+
+
+Definition at line 467 of file time.\-c.
+
+
+
+Referenced by localtime().
+
+\hypertarget{time_8c_aeafbe7f942ef85f85edbbe31e439372b}{\index{time.\-c@{time.\-c}!mktime@{mktime}}
+\index{mktime@{mktime}!time.c@{time.\-c}}
+\subsubsection[{mktime}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} {\bf time\-\_\-t} mktime (
+\begin{DoxyParamCaption}
+\item[{{\bf tm\-\_\-t} $\ast$}]{t}
+\end{DoxyParamCaption}
+)}}\label{time_8c_aeafbe7f942ef85f85edbbe31e439372b}
+
+
+Convert P\-O\-S\-I\-X tm\-\_\-t $\ast$t struct into P\-O\-S\-I\-X epoch time in seconds with U\-T\-C offset adjustment. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em t} & time\-\_\-t $\ast$ epoch time input. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 502 of file time.\-c.
+
+\hypertarget{time_8c_af39c674506657f4a32793388117be705}{\index{time.\-c@{time.\-c}!setdate\-\_\-r@{setdate\-\_\-r}}
+\index{setdate\-\_\-r@{setdate\-\_\-r}!time.c@{time.\-c}}
+\subsubsection[{setdate\-\_\-r}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int setdate\-\_\-r (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{buf}
+\end{DoxyParamCaption}
+)}}\label{time_8c_af39c674506657f4a32793388117be705}
+
+
+Set date and time from string in this format \char`\"{}\-Y\-Y\-Y\-Y M\-M D\-D H\-H\-:\-M\-M\-:\-S\-S\char`\"{}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em buf} & Date string in this format \char`\"{}\-Y\-Y\-Y\-Y M\-M D\-D H\-H\-:\-M\-M\-:\-S\-S\char`\"{}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success. 
+
+(-\/1) on error. 
+\end{DoxyReturn}
+
+
+Definition at line 654 of file time.\-c.
+
+\hypertarget{time_8c_aeb8aa93cda8bc413e67e8633793edf7e}{\index{time.\-c@{time.\-c}!settimeofday@{settimeofday}}
+\index{settimeofday@{settimeofday}!time.c@{time.\-c}}
+\subsubsection[{settimeofday}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int settimeofday (
+\begin{DoxyParamCaption}
+\item[{{\bf tv\-\_\-t} $\ast$}]{tv, }
+\item[{{\bf tz\-\_\-t} $\ast$}]{tz}
+\end{DoxyParamCaption}
+)}}\label{time_8c_aeb8aa93cda8bc413e67e8633793edf7e}
+
+
+Set current time struct timeval $\ast$tv and struct timezone $\ast$tz -\/ P\-O\-S\-I\-X function. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em tv} & time. \\
+\hline
+\mbox{\tt in}  & {\em tz} & timezone.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 
+\end{DoxyReturn}
+
+
+Definition at line 594 of file time.\-c.
+
+
+
+Referenced by ntp\-\_\-setup().
+
+\hypertarget{time_8c_aba9a1e17f18817099c795d0559d747a8}{\index{time.\-c@{time.\-c}!settimezone@{settimezone}}
+\index{settimezone@{settimezone}!time.c@{time.\-c}}
+\subsubsection[{settimezone}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int settimezone (
+\begin{DoxyParamCaption}
+\item[{{\bf tz\-\_\-t} $\ast$}]{tz}
+\end{DoxyParamCaption}
+)}}\label{time_8c_aba9a1e17f18817099c795d0559d747a8}
+
+
+Set current timezone with struct timezone $\ast$tz -\/ P\-O\-S\-I\-X function. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em tz} & timezone result.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0. 
+\end{DoxyReturn}
+
+
+Definition at line 540 of file time.\-c.
+
+
+
+Referenced by settimeofday().
+
+\hypertarget{time_8c_a32b1cbd925752f0cd61d202bbe204a69}{\index{time.\-c@{time.\-c}!time@{time}}
+\index{time@{time}!time.c@{time.\-c}}
+\subsubsection[{time}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} {\bf time\-\_\-t} time (
+\begin{DoxyParamCaption}
+\item[{{\bf time\-\_\-t} $\ast$}]{t}
+\end{DoxyParamCaption}
+)}}\label{time_8c_a32b1cbd925752f0cd61d202bbe204a69}
+
+
+Return second from epoch -\/ P\-O\-S\-I\-X function. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em t} & pointer to store time in.
+\begin{DoxyItemize}
+\item Notes\-: If t is non-\/\-N\-U\-L\-L, store the return value there also. 
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+time\-\_\-t seconds from epoch. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{timer__hal_8c_aa6e5b6a9c1fb8bc6e2093fca40600bf5}{clock\-\_\-gettime()}. 
+\end{DoxySeeAlso}
+
+
+Definition at line 577 of file time.\-c.
+
+
+
+Referenced by get\-\_\-date(), get\-\_\-fattime(), user\-\_\-init(), and user\-\_\-task().
+
+\hypertarget{time_8c_a1651e0bb0303eddb19e193c3d4f00e8e}{\index{time.\-c@{time.\-c}!time\-\_\-to\-\_\-tm@{time\-\_\-to\-\_\-tm}}
+\index{time\-\_\-to\-\_\-tm@{time\-\_\-to\-\_\-tm}!time.c@{time.\-c}}
+\subsubsection[{time\-\_\-to\-\_\-tm}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int time\-\_\-to\-\_\-tm (
+\begin{DoxyParamCaption}
+\item[{{\bf time\-\_\-t}}]{epoch, }
+\item[{{\bf int32\-\_\-t}}]{offset, }
+\item[{{\bf tm\-\_\-t} $\ast$}]{t}
+\end{DoxyParamCaption}
+)}}\label{time_8c_a1651e0bb0303eddb19e193c3d4f00e8e}
+
+
+Converts epoch ( seconds from 1 Jan E\-P\-O\-C\-H\-\_\-\-Y\-E\-A\-R U\-T\-C), offset seconds, to U\-N\-I\-X tm $\ast$t. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em epoch} & Seconds elapsed since January 1, E\-P\-O\-C\-H\-\_\-\-Y\-E\-A\-R.
+\begin{DoxyItemize}
+\item unsigned long, range limited to\-: 0 .. 0x\-F\-F\-F\-D5\-D00$>$
+\item The range 0x\-F\-F\-F\-E\-A\-E80 .. 0x\-F\-F\-F\-F\-F\-F\-F\-F is reserverd for Dec 31, 1969.
+\item The range 0x\-F\-F\-F\-D5\-D00 .. 0x\-F\-F\-F\-E\-A\-E7\-F is reserverd of offset overflow. 
+\end{DoxyItemize}\\
+\hline
+\mbox{\tt in}  & {\em offset} & Offset in seconds to localtime.
+\begin{DoxyItemize}
+\item long int, range limited to +/-\/ 86400.
+\item (Number of seconds that we add to U\-T\-C to get local time). 
+\end{DoxyItemize}\\
+\hline
+\mbox{\tt out}  & {\em t} & Unix tm struct pointer output. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0\-: $\ast$t has result. 
+
+-\/1\-: error.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{time_8c_acf34275ac6fb2f724205873402dc9f70}{ctime\-\_\-gm()} 
+
+\hyperlink{time_8c_a546aeae1b99d8ab1e2d26a0a2ebd9d31}{gmtime\-\_\-r()} 
+
+\hyperlink{time_8c_af05576742e2f8ad3924c02a6af70a86d}{localtime\-\_\-r()} 
+\end{DoxySeeAlso}
+
+
+Definition at line 206 of file time.\-c.
+
+
+
+Referenced by ctime\-\_\-gm(), gmtime\-\_\-r(), and localtime\-\_\-r().
+
+\hypertarget{time_8c_a8386ff819a39512ea00cfc78ce5a27d5}{\index{time.\-c@{time.\-c}!timegm@{timegm}}
+\index{timegm@{timegm}!time.c@{time.\-c}}
+\subsubsection[{timegm}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} {\bf time\-\_\-t} timegm (
+\begin{DoxyParamCaption}
+\item[{{\bf tm\-\_\-t} $\ast$}]{t}
+\end{DoxyParamCaption}
+)}}\label{time_8c_a8386ff819a39512ea00cfc78ce5a27d5}
+
+
+Convert tm\-\_\-t structure as G\-M\-T time into seconds since 1900. 
+
+
+\begin{DoxyItemize}
+\item Standards\-: G\-N\-U and B\-S\-D.
+\item Limits\-: year(1900..2199).
+\item Assume\-: epoch size is uint32\-\_\-t time\-\_\-t;
+\end{DoxyItemize}
+
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{time_8c_aeafbe7f942ef85f85edbbe31e439372b}{mktime()} \hyperlink{posix_8h_a1c3d85ae80df5590fa314acffd8bf840}{P\-O\-S\-I\-X} function. 
+
+\hyperlink{time_8c_a8386ff819a39512ea00cfc78ce5a27d5}{timegm()} \hyperlink{posix_8h_a1c3d85ae80df5590fa314acffd8bf840}{P\-O\-S\-I\-X} function. 
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+Seconds since E\-P\-O\-C\-H\-\_\-\-Y\-E\-A\-R Jan 1st. 
+
+-\/1 on error. 
+\end{DoxyReturn}
+Note\-: To simplify we caculate Leap Day contributions in stages 
+
+Definition at line 289 of file time.\-c.
+
+
+
+Referenced by fat\-\_\-time\-\_\-to\-\_\-unix(), mktime(), and setdate\-\_\-r().
+
+\hypertarget{time_8c_a0dd83b6492eb8473cb55bb45d8fc6c0c}{\index{time.\-c@{time.\-c}!tm\-\_\-mon\-\_\-to\-\_\-ascii@{tm\-\_\-mon\-\_\-to\-\_\-ascii}}
+\index{tm\-\_\-mon\-\_\-to\-\_\-ascii@{tm\-\_\-mon\-\_\-to\-\_\-ascii}!time.c@{time.\-c}}
+\subsubsection[{tm\-\_\-mon\-\_\-to\-\_\-ascii}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} char$\ast$ tm\-\_\-mon\-\_\-to\-\_\-ascii (
+\begin{DoxyParamCaption}
+\item[{int}]{i}
+\end{DoxyParamCaption}
+)}}\label{time_8c_a0dd83b6492eb8473cb55bb45d8fc6c0c}
+
+
+Get string Short name of Month from month number. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em i} & Month 0 .. 11 to string.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string pointer to month. 
+
+\char`\"{}\-B\-A\-D\char`\"{} on error. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{time_8c_a7ffc52def0c7fbf70c50248e3f7d6a8a}{asctime\-\_\-r()} 
+\end{DoxySeeAlso}
+
+
+Definition at line 102 of file time.\-c.
+
+\hypertarget{time_8c_ac7a571349cf5217b6261a01bf85a79ab}{\index{time.\-c@{time.\-c}!tm\-\_\-wday\-\_\-to\-\_\-ascii@{tm\-\_\-wday\-\_\-to\-\_\-ascii}}
+\index{tm\-\_\-wday\-\_\-to\-\_\-ascii@{tm\-\_\-wday\-\_\-to\-\_\-ascii}!time.c@{time.\-c}}
+\subsubsection[{tm\-\_\-wday\-\_\-to\-\_\-ascii}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} char$\ast$ tm\-\_\-wday\-\_\-to\-\_\-ascii (
+\begin{DoxyParamCaption}
+\item[{int}]{i}
+\end{DoxyParamCaption}
+)}}\label{time_8c_ac7a571349cf5217b6261a01bf85a79ab}
+
+
+Get string Short name of day from day number. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em i} & Day 0 .. 6.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string pointer to day. 
+
+\char`\"{}\-B\-A\-D\char`\"{} on error. 
+\end{DoxyReturn}
+
+
+Definition at line 75 of file time.\-c.
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{time_8c_a335451dd774ecb4b696d501b4c1b6f30}{\index{time.\-c@{time.\-c}!\-\_\-\-\_\-clock@{\-\_\-\-\_\-clock}}
+\index{\-\_\-\-\_\-clock@{\-\_\-\-\_\-clock}!time.c@{time.\-c}}
+\subsubsection[{\-\_\-\-\_\-clock}]{\setlength{\rightskip}{0pt plus 5cm}volatile {\bf ts\-\_\-t} \-\_\-\-\_\-clock}}\label{time_8c_a335451dd774ecb4b696d501b4c1b6f30}
+
+
+System Clock Time. 
+
+
+
+Definition at line 31 of file timer\-\_\-hal.\-c.
+
+\hypertarget{time_8c_ae838cadfe9ddcf7c031a644cc153fe1e}{\index{time.\-c@{time.\-c}!\-\_\-\-\_\-ctime\-\_\-buf@{\-\_\-\-\_\-ctime\-\_\-buf}}
+\index{\-\_\-\-\_\-ctime\-\_\-buf@{\-\_\-\-\_\-ctime\-\_\-buf}!time.c@{time.\-c}}
+\subsubsection[{\-\_\-\-\_\-ctime\-\_\-buf}]{\setlength{\rightskip}{0pt plus 5cm}char \-\_\-\-\_\-ctime\-\_\-buf\mbox{[}32\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}}\label{time_8c_ae838cadfe9ddcf7c031a644cc153fe1e}
+
+
+String storage for \hyperlink{time_8c_a95735d85f13249a5b329308d27d1f3ee}{asctime()}. 
+
+
+
+Definition at line 368 of file time.\-c.
+
+
+
+Referenced by asctime(), ctime(), and ctime\-\_\-gm().
+
+\hypertarget{time_8c_a51f8059d5a58b35f401245c1f2cabc2d}{\index{time.\-c@{time.\-c}!\-\_\-\-\_\-days@{\-\_\-\-\_\-days}}
+\index{\-\_\-\-\_\-days@{\-\_\-\-\_\-days}!time.c@{time.\-c}}
+\subsubsection[{\-\_\-\-\_\-days}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf uint16\-\_\-t} \-\_\-\-\_\-days\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}}\label{time_8c_a51f8059d5a58b35f401245c1f2cabc2d}
+{\bfseries Initial value\-:}
+\begin{DoxyCode}
+=
+\{
+    31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
+\}
+\end{DoxyCode}
+
+
+days in each month. 
+
+
+\begin{DoxyItemize}
+\item without leap days.
+\item Index\-: Month 00 .. 11. \begin{DoxySeeAlso}{See Also}
+\hyperlink{time_8c_a8386ff819a39512ea00cfc78ce5a27d5}{timegm()}. 
+\end{DoxySeeAlso}
+
+\end{DoxyItemize}
+
+Definition at line 56 of file time.\-c.
+
+
+
+Referenced by time\-\_\-to\-\_\-tm().
+
+\hypertarget{time_8c_acab85c85e1497507b279edab985ac1e5}{\index{time.\-c@{time.\-c}!\-\_\-\-\_\-days\-\_\-sum@{\-\_\-\-\_\-days\-\_\-sum}}
+\index{\-\_\-\-\_\-days\-\_\-sum@{\-\_\-\-\_\-days\-\_\-sum}!time.c@{time.\-c}}
+\subsubsection[{\-\_\-\-\_\-days\-\_\-sum}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf uint16\-\_\-t} \-\_\-\-\_\-days\-\_\-sum\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}}\label{time_8c_acab85c85e1497507b279edab985ac1e5}
+{\bfseries Initial value\-:}
+\begin{DoxyCode}
+=
+\{
+    0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334, 365
+\}
+\end{DoxyCode}
+
+
+accumulated days to the start of a month in a year. 
+
+
+\begin{DoxyItemize}
+\item without Leap days.
+\item Index\-: Month 00 .. 11 (12 is a year). \begin{DoxySeeAlso}{See Also}
+\hyperlink{time_8c_a8386ff819a39512ea00cfc78ce5a27d5}{timegm()}. 
+\end{DoxySeeAlso}
+
+\end{DoxyItemize}
+
+Definition at line 47 of file time.\-c.
+
+
+
+Referenced by timegm().
+
+\hypertarget{time_8c_a1059a668b2b28621f4bce70f603555fa}{\index{time.\-c@{time.\-c}!\-\_\-\-\_\-\-Month@{\-\_\-\-\_\-\-Month}}
+\index{\-\_\-\-\_\-\-Month@{\-\_\-\-\_\-\-Month}!time.c@{time.\-c}}
+\subsubsection[{\-\_\-\-\_\-\-Month}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ \-\_\-\-\_\-\-Month\mbox{[}$\,$\mbox{]}}}\label{time_8c_a1059a668b2b28621f4bce70f603555fa}
+{\bfseries Initial value\-:}
+\begin{DoxyCode}
+= 
+\{ 
+    \textcolor{stringliteral}{"Jan"},\textcolor{stringliteral}{"Feb"},\textcolor{stringliteral}{"Mar"},\textcolor{stringliteral}{"Apr"},\textcolor{stringliteral}{"May"},\textcolor{stringliteral}{"Jun"},\textcolor{stringliteral}{"Jul"}, 
+        \textcolor{stringliteral}{"Aug"},\textcolor{stringliteral}{"Sep"},\textcolor{stringliteral}{"Oct"},\textcolor{stringliteral}{"Nov"},\textcolor{stringliteral}{"Dec"},\textcolor{stringliteral}{"BAD"}
+\}
+\end{DoxyCode}
+
+
+Short Name or each Month in a year. 
+
+
+\begin{DoxyItemize}
+\item Month 0 .. 11 to string. 
+\end{DoxyItemize}
+
+Definition at line 88 of file time.\-c.
+
+
+
+Referenced by asctime\-\_\-r(), and tm\-\_\-mon\-\_\-to\-\_\-ascii().
+
+\hypertarget{time_8c_a9ac29ed71adf6807175d24ab1fa622a7}{\index{time.\-c@{time.\-c}!\-\_\-\-\_\-tzone@{\-\_\-\-\_\-tzone}}
+\index{\-\_\-\-\_\-tzone@{\-\_\-\-\_\-tzone}!time.c@{time.\-c}}
+\subsubsection[{\-\_\-\-\_\-tzone}]{\setlength{\rightskip}{0pt plus 5cm}{\bf tz\-\_\-t} \-\_\-\-\_\-tzone}}\label{time_8c_a9ac29ed71adf6807175d24ab1fa622a7}
+
+
+System Time Zone. 
+
+
+
+Definition at line 39 of file time.\-c.
+
+\hypertarget{time_8c_a6403bf32bcba7c1ca0fe395d8b30e542}{\index{time.\-c@{time.\-c}!\-\_\-\-\_\-\-W\-Day@{\-\_\-\-\_\-\-W\-Day}}
+\index{\-\_\-\-\_\-\-W\-Day@{\-\_\-\-\_\-\-W\-Day}!time.c@{time.\-c}}
+\subsubsection[{\-\_\-\-\_\-\-W\-Day}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ \-\_\-\-\_\-\-W\-Day\mbox{[}$\,$\mbox{]} = \{ \char`\"{}Sun\char`\"{},\char`\"{}Mon\char`\"{},\char`\"{}Tue\char`\"{},\char`\"{}Wed\char`\"{},\char`\"{}Thu\char`\"{},\char`\"{}Fri\char`\"{},\char`\"{}Sat\char`\"{},\char`\"{}B\-A\-D\char`\"{}\}}}\label{time_8c_a6403bf32bcba7c1ca0fe395d8b30e542}
+
+
+Short Name of each Day in a week. 
+
+
+\begin{DoxyItemize}
+\item Day 0 .. 6 to string.
+\end{DoxyItemize}
+
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{time_8c_a7ffc52def0c7fbf70c50248e3f7d6a8a}{asctime\-\_\-r()} 
+\end{DoxySeeAlso}
+
+
+Definition at line 66 of file time.\-c.
+
+
+
+Referenced by asctime\-\_\-r(), and tm\-\_\-wday\-\_\-to\-\_\-ascii().
+

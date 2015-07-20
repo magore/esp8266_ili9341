@@ -48,26 +48,27 @@ typedef struct
 } window;
 
 
-
 // ==========================================================
 // We use automatic CS mode configured with hspi
-#ifdef TFT_CS_ENABLE
-	#define TFT_CS_INIT     PIN_FUNC_SELECT(PERIPHS_IO_MUX_MTDO_U, 3); TFT_CS_DEACTIVE
-	#define TFT_CS_ACTIVE   GPIO_OUTPUT_SET(15, 0)
-	#define TFT_CS_DEACTIVE GPIO_OUTPUT_SET(15, 1)
-#else
-	#define TFT_CS_INIT    
-	#define TFT_CS_ACTIVE   
-	#define TFT_CS_DEACTIVE 
-#endif
+#define TFT_CS_PIN		15
+// Note: PERIPHS_IO_MUX_MTDO_U, is tied to GPIO 15 alternate function
+#define TFT_CS_INIT     PIN_FUNC_SELECT(PERIPHS_IO_MUX_MTDO_U, 3); TFT_CS_DEACTIVE
+#define TFT_CS_ACTIVE   GPIO_OUTPUT_SET(15, 0)
+#define TFT_CS_DEACTIVE GPIO_OUTPUT_SET(15, 1)
 
 #define TFT_INIT        PIN_FUNC_SELECT(PERIPHS_IO_MUX_GPIO2_U, FUNC_GPIO2); TFT_DATA
 #define TFT_DATA        GPIO_OUTPUT_SET(2, 1)
 #define TFT_COMMAND     GPIO_OUTPUT_SET(2, 0)
 
-#define TFT_RST_INIT     PIN_FUNC_SELECT(PERIPHS_IO_MUX_GPIO4_U, FUNC_GPIO4); TFT_RST_DEACTIVE
-#define TFT_RST_ACTIVE    GPIO_OUTPUT_SET(4, 0)
-#define TFT_RST_DEACTIVE  GPIO_OUTPUT_SET(4, 1)
+#if 0
+	#define TFT_RST_INIT     PIN_FUNC_SELECT(PERIPHS_IO_MUX_GPIO4_U, FUNC_GPIO4); TFT_RST_DEACTIVE
+	#define TFT_RST_ACTIVE    GPIO_OUTPUT_SET(4, 0)
+	#define TFT_RST_DEACTIVE  GPIO_OUTPUT_SET(4, 1)
+#else
+	#define TFT_RST_INIT     
+	#define TFT_RST_ACTIVE
+	#define TFT_RST_DEACTIVE
+#endif
 
 #define TFT_W (MAX_TFT_X-MIN_TFT_X+1)
 #define TFT_H (MAX_TFT_Y-MIN_TFT_Y+1)
@@ -93,7 +94,7 @@ typedef struct
 int font_attr ( window *win , int c , _fontc *f );
 void tft_drawChar ( window *win , uint8_t c );
 
-/* display/ili9341.c */
+/* ili9341.c */
 void tft_spi_init ( uint16_t prescale );
 void tft_spi_begin ( void );
 void tft_spi_end ( void );
@@ -131,6 +132,7 @@ void tft_drawFastHLine ( window *win , int16_t x , int16_t y , int16_t w , uint1
 void tft_drawLine ( window *win , int16_t x0 , int16_t y0 , int16_t x1 , int16_t y1 , uint16_t color );
 void tft_drawLine ( window *win , int16_t x0 , int16_t y0 , int16_t x1 , int16_t y1 , uint16_t color );
 MEMSPACE void tft_cleareol ( window *win );
+MEMSPACE void tft_clearline ( window *win );
 void tft_putch ( window *win , int c );
 
 

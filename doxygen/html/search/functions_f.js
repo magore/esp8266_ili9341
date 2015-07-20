@@ -1,18 +1,12 @@
 var searchData=
 [
-  ['read_5fflash16',['read_flash16',['../util_8c.html#a092855859eb7ea714f2ab3eee711ddc4',1,'read_flash16(uint8_t *p):&#160;util.c'],['../util_8h.html#a092855859eb7ea714f2ab3eee711ddc4',1,'read_flash16(uint8_t *p):&#160;util.c']]],
-  ['read_5fflash32',['read_flash32',['../util_8c.html#ac0366232efac94fc6f8da6a20d9bdaf9',1,'read_flash32(uint8_t *p):&#160;util.c'],['../util_8h.html#ac0366232efac94fc6f8da6a20d9bdaf9',1,'read_flash32(uint8_t *p):&#160;util.c']]],
-  ['read_5fflash64',['read_flash64',['../util_8c.html#ab1d6ea8dfe88a05a02869a3dd8cd7deb',1,'read_flash64(uint8_t *p):&#160;util.c'],['../util_8h.html#ab1d6ea8dfe88a05a02869a3dd8cd7deb',1,'read_flash64(uint8_t *p):&#160;util.c']]],
-  ['read_5fflash8',['read_flash8',['../util_8c.html#a8820bdd8a76740aaafe0506ff6040002',1,'read_flash8(uint8_t *p):&#160;util.c'],['../util_8h.html#a8820bdd8a76740aaafe0506ff6040002',1,'read_flash8(uint8_t *p):&#160;util.c']]],
-  ['read_5fflash_5fptr',['read_flash_ptr',['../util_8c.html#ab39a1de20d7b9b1da1fb85100c0cbb10',1,'read_flash_ptr(uint8_t *p):&#160;util.c'],['../util_8h.html#ab39a1de20d7b9b1da1fb85100c0cbb10',1,'read_flash_ptr(uint8_t *p):&#160;util.c']]],
-  ['readbdf',['ReadBdf',['../bdffontutil_8c.html#a49c59fe21a56b90ad6f8bcc5549e3dce',1,'ReadBdf(char *name, _font *font, int lower, int upper):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a49c59fe21a56b90ad6f8bcc5549e3dce',1,'ReadBdf(char *name, _font *font, int lower, int upper):&#160;bdffontutil.c']]],
-  ['remove_5fquotes',['remove_quotes',['../bdffontutil_8c.html#a907e53e4a090147ec953b18f0e1b7915',1,'remove_quotes(char *str):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a907e53e4a090147ec953b18f0e1b7915',1,'remove_quotes(char *str):&#160;bdffontutil.c']]],
-  ['reset',['reset',['../util_8c.html#a873f88ccf09a88cddd83a27e3594138b',1,'reset(void):&#160;util.c'],['../util_8h.html#a873f88ccf09a88cddd83a27e3594138b',1,'reset(void):&#160;util.c']]],
-  ['rotate',['rotate',['../cordic_8c.html#a11674104e89537aef6922d07f34e62ae',1,'rotate(point *P, point *V):&#160;cordic.c'],['../cordic_8h.html#a11674104e89537aef6922d07f34e62ae',1,'rotate(point *P, point *V):&#160;cordic.c']]],
-  ['rx_5ffifo_5fempty',['rx_fifo_empty',['../uart_8c.html#ac2e177e717aae4de72f2bb1fdb6826b1',1,'rx_fifo_empty(int uart_no):&#160;uart.c'],['../uart_8h.html#ac2e177e717aae4de72f2bb1fdb6826b1',1,'rx_fifo_empty(int uart_no):&#160;uart.c']]],
-  ['rx_5ffifo_5fflush',['rx_fifo_flush',['../uart_8c.html#a6b9147fc5ffaf0a602cc60a8addb8a38',1,'rx_fifo_flush(int uart_no):&#160;uart.c'],['../uart_8h.html#a6b9147fc5ffaf0a602cc60a8addb8a38',1,'rx_fifo_flush(int uart_no):&#160;uart.c']]],
-  ['rx_5ffifo_5ffree',['rx_fifo_free',['../uart_8c.html#ae4b43d84c14e9a86476c015359549e20',1,'rx_fifo_free(int uart_no):&#160;uart.c'],['../uart_8h.html#ae4b43d84c14e9a86476c015359549e20',1,'rx_fifo_free(int uart_no):&#160;uart.c']]],
-  ['rx_5ffifo_5fgetc',['rx_fifo_getc',['../uart_8c.html#a257c0e165980098c8714d69eaf8f75a5',1,'rx_fifo_getc(int uart_no):&#160;uart.c'],['../uart_8h.html#a257c0e165980098c8714d69eaf8f75a5',1,'rx_fifo_getc(int uart_no):&#160;uart.c']]],
-  ['rx_5ffifo_5fread',['rx_fifo_read',['../uart_8c.html#af0b296a8c71d2c06c229342a906201e0',1,'rx_fifo_read(int uart_no, uint8_t *buf, int size):&#160;uart.c'],['../uart_8h.html#af0b296a8c71d2c06c229342a906201e0',1,'rx_fifo_read(int uart_no, uint8_t *buf, int size):&#160;uart.c']]],
-  ['rx_5ffifo_5fused',['rx_fifo_used',['../uart_8c.html#a281bc3c996dd0fd5c3f08da55bedbe27',1,'rx_fifo_used(int uart_no):&#160;uart.c'],['../uart_8h.html#a281bc3c996dd0fd5c3f08da55bedbe27',1,'rx_fifo_used(int uart_no):&#160;uart.c']]]
+  ['perror',['perror',['../posix_8c.html#a4ce26afbb10890d31c53a8ff76d992e3',1,'perror(const char *s):&#160;posix.c'],['../posix_8h.html#a4ce26afbb10890d31c53a8ff76d992e3',1,'perror(const char *s):&#160;posix.c']]],
+  ['perspectiveprojection',['PerspectiveProjection',['../cordic_8c.html#a793b036235e0fdd6e799866fcb14e7e4',1,'PerspectiveProjection(point *P, double scale, int x, int y):&#160;cordic.c'],['../cordic_8h.html#a793b036235e0fdd6e799866fcb14e7e4',1,'PerspectiveProjection(point *P, double scale, int x, int y):&#160;cordic.c']]],
+  ['pick_5flfn',['pick_lfn',['../ff_8c.html#a675b0b45a44cb21f0c6aafa6faa7defe',1,'ff.c']]],
+  ['poll_5fnetwork_5fmessage',['poll_network_message',['../network_8h.html#a666e24dd2e3ea9aa24fdd5fc0089aa13',1,'network.h']]],
+  ['posix_5ffopen_5fmodes_5fto_5fopen',['posix_fopen_modes_to_open',['../posix_8c.html#a607feb06d296e0ff60d5a19538bd17fc',1,'posix_fopen_modes_to_open(const char *mode):&#160;posix.c'],['../posix_8h.html#a607feb06d296e0ff60d5a19538bd17fc',1,'posix_fopen_modes_to_open(const char *mode):&#160;posix.c']]],
+  ['printxyz',['PrintXYZ',['../cordic2c_8c.html#afc93093d0da5da783668ca27f859a2a7',1,'cordic2c.c']]],
+  ['put_5ffat',['put_fat',['../ff_8c.html#af1a7ce170641b4b549bf05dca95a6706',1,'ff.c']]],
+  ['put_5frc',['put_rc',['../disk_8c.html#ab3509aecf1844c84f1797e5b567d531c',1,'put_rc(int rc):&#160;disk.c'],['../disk_8h.html#ab3509aecf1844c84f1797e5b567d531c',1,'put_rc(int rc):&#160;disk.c']]],
+  ['putc_5fbfd',['putc_bfd',['../ff_8c.html#ad8151a454444395529a19280ddfadde8',1,'ff.c']]]
 ];

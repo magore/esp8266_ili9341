@@ -30,7 +30,7 @@
 #include <user_config.h>
 
 /// @brief save fonts in flash
-#define MEMSPACE_FONT ICACHE_FLASH_ATTR
+#define MEMSPACE_FONT MEMSPACE
 
 /// @brief Include the Generated Font table
 /// The generated tables always include Font specifications:

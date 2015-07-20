@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['line_5fwrap',['line_wrap',['../bdffontutil_8c.html#a466ba4f5e35f1e5ff2791ae4d68d2c7b',1,'line_wrap(char *str, int max):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a466ba4f5e35f1e5ff2791ae4d68d2c7b',1,'line_wrap(char *str, int max):&#160;bdffontutil.c']]]
+  ['kill_5ftimers',['kill_timers',['../timer_8c.html#a2206c72c7ec8fe780a37275f1e1fdd3f',1,'kill_timers(int timer):&#160;timer.c'],['../timer_8h.html#a5d052b86e24a8eb25ce2267307a028a7',1,'kill_timers(int timer):&#160;timer.c']]]
 ];

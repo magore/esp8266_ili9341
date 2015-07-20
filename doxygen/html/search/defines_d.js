@@ -1,11 +1,15 @@
 var searchData=
 [
-  ['wire_5f2fp',['WIRE_2FP',['../wire__types_8h.html#aac0d606ebb0121e068fddb41f0a8a9f5',1,'wire_types.h']]],
-  ['wire_5fend',['WIRE_END',['../wire__types_8h.html#ab77fdc8aba86e1a03e2385821e86ec31',1,'wire_types.h']]],
-  ['wire_5fhalf',['WIRE_HALF',['../wire__types_8h.html#adfa05d6e3bc2de299352807bbe52cf79',1,'wire_types.h']]],
-  ['wire_5fone',['WIRE_ONE',['../wire__types_8h.html#a82b0906447b00ab4a0de3e70dea1838f',1,'wire_types.h']]],
-  ['wire_5fsep',['WIRE_SEP',['../wire__types_8h.html#ae89732b187eff02c0d03083d111d598e',1,'wire_types.h']]],
-  ['wrap',['WRAP',['../ili9341_8h.html#a43c1de45dbd91827a260224c9c40221b',1,'ili9341.h']]],
-  ['wrap_5fh',['WRAP_H',['../ili9341_8h.html#ab73b6f81ca48b2c6565e527a069914b3',1,'ili9341.h']]],
-  ['wrap_5fv',['WRAP_V',['../ili9341_8h.html#ae48f725a443ce4210c725908799554af',1,'ili9341.h']]]
+  ['o_5faccmode',['O_ACCMODE',['../posix_8h.html#a4dc4d45e07d2abc899bcaf04b2846a87',1,'posix.h']]],
+  ['o_5fappend',['O_APPEND',['../posix_8h.html#ae036f789407d21f07b211552d67b3214',1,'posix.h']]],
+  ['o_5fbinary',['O_BINARY',['../posix_8h.html#a36fa9b2e726512bc17a7a6d3e39002be',1,'posix.h']]],
+  ['o_5fcreat',['O_CREAT',['../posix_8h.html#a1cf6b1de1fffedaa1d26b189e9a8d2cc',1,'posix.h']]],
+  ['o_5fexcl',['O_EXCL',['../posix_8h.html#a9f5acfe79fafe14b6694447bd0e9f10b',1,'posix.h']]],
+  ['o_5fnoctty',['O_NOCTTY',['../posix_8h.html#a2e375ab32c7ef4581b026be28e4cc116',1,'posix.h']]],
+  ['o_5fnonblock',['O_NONBLOCK',['../posix_8h.html#a39d33ce33804efd4d52606d59071c6d8',1,'posix.h']]],
+  ['o_5frdonly',['O_RDONLY',['../posix_8h.html#a7a68c9ffaac7dbcd652225dd7c06a54b',1,'posix.h']]],
+  ['o_5frdwr',['O_RDWR',['../posix_8h.html#abb0586253488ee61072b73557eeb873b',1,'posix.h']]],
+  ['o_5ftext',['O_TEXT',['../posix_8h.html#a9abb6d01b83e0bc5a6e2adeceb7dffd7',1,'posix.h']]],
+  ['o_5ftrunc',['O_TRUNC',['../posix_8h.html#ad1d67e453fb3031f40f8cd3403773813',1,'posix.h']]],
+  ['o_5fwronly',['O_WRONLY',['../posix_8h.html#a11b644a8526139c4cc1850dac1271ced',1,'posix.h']]]
 ];

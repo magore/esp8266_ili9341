@@ -10,17 +10,27 @@ Master include file for project Includes all project includes and defines here.
 {\ttfamily \#include $<$osapi.\-h$>$}\\*
 {\ttfamily \#include $<$os\-\_\-type.\-h$>$}\\*
 {\ttfamily \#include $<$c\-\_\-types.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}util.\-h\char`\"{}}\\*
 {\ttfamily \#include $<$ip\-\_\-addr.\-h$>$}\\*
 {\ttfamily \#include $<$espconn.\-h$>$}\\*
 {\ttfamily \#include $<$gpio.\-h$>$}\\*
 {\ttfamily \#include $<$user\-\_\-interface.\-h$>$}\\*
 {\ttfamily \#include $<$mem.\-h$>$}\\*
-{\ttfamily \#include $<$newlib.\-h$>$}\\*
 {\ttfamily \#include $<$uart\-\_\-register.\-h$>$}\\*
-{\ttfamily \#include \char`\"{}util.\-h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}queue.\-h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}uart.\-h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}hspi.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}timer\-\_\-hal.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}timer.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}time.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}integer.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}ffconf.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}ff.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}diskio.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}disk.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}mmc\-\_\-hal.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}posix.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}fatfs\-\_\-utils.\-h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}font.\-h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}ili9341\-\_\-adafruit.\-h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}ili9341.\-h\char`\"{}}\\*
@@ -28,6 +38,9 @@ Master include file for project Includes all project includes and defines here.
 {\ttfamily \#include \char`\"{}cordic.\-h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}wire\-\_\-types.\-h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}wire.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}scanf.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}printf.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}debug.\-h\char`\"{}}\\*
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
@@ -35,12 +48,9 @@ Master include file for project Includes all project includes and defines here.
 \item 
 \#define \hyperlink{user__config_8h_a9946b5a72f8c16945877e78578df6a7f}{M\-E\-M\-S\-P\-A\-C\-E\-\_\-\-R\-O}~static const
 \item 
-\#define \hyperlink{user__config_8h_a52d60ae7ccb513718808b5cdbb26ffa3}{M\-E\-M\-S\-P\-A\-C\-E\-\_\-\-F\-O\-N\-T}~I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R
-\end{DoxyCompactItemize}
-\subsection*{Functions}
-\begin{DoxyCompactItemize}
+\#define \hyperlink{user__config_8h_a369266c24eacffb87046522897a570d5}{\-\_\-\-G\-N\-U\-\_\-\-S\-O\-U\-R\-C\-E}
 \item 
-int \hyperlink{user__config_8h_a357a42eb6494ea592e9c3f96c55cebe2}{snprintf} (char $\ast$, size\-\_\-t, const char $\ast$,...)
+\#define \hyperlink{user__config_8h_a52d60ae7ccb513718808b5cdbb26ffa3}{M\-E\-M\-S\-P\-A\-C\-E\-\_\-\-F\-O\-N\-T}~\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E}
 \end{DoxyCompactItemize}
 
 
@@ -62,41 +72,31 @@ Definition in file \hyperlink{user__config_8h_source}{user\-\_\-config.\-h}.
 
 
 \subsection{Macro Definition Documentation}
+\hypertarget{user__config_8h_a369266c24eacffb87046522897a570d5}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!\-\_\-\-G\-N\-U\-\_\-\-S\-O\-U\-R\-C\-E@{\-\_\-\-G\-N\-U\-\_\-\-S\-O\-U\-R\-C\-E}}
+\index{\-\_\-\-G\-N\-U\-\_\-\-S\-O\-U\-R\-C\-E@{\-\_\-\-G\-N\-U\-\_\-\-S\-O\-U\-R\-C\-E}!user_config.h@{user\-\_\-config.\-h}}
+\subsubsection[{\-\_\-\-G\-N\-U\-\_\-\-S\-O\-U\-R\-C\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define \-\_\-\-G\-N\-U\-\_\-\-S\-O\-U\-R\-C\-E}}\label{user__config_8h_a369266c24eacffb87046522897a570d5}
+
+
+Definition at line 33 of file user\-\_\-config.\-h.
+
 \hypertarget{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!M\-E\-M\-S\-P\-A\-C\-E@{M\-E\-M\-S\-P\-A\-C\-E}}
 \index{M\-E\-M\-S\-P\-A\-C\-E@{M\-E\-M\-S\-P\-A\-C\-E}!user_config.h@{user\-\_\-config.\-h}}
 \subsubsection[{M\-E\-M\-S\-P\-A\-C\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\-E\-M\-S\-P\-A\-C\-E~I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R}}\label{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}
 
 
-Definition at line 31 of file user\-\_\-config.\-h.
+Definition at line 29 of file user\-\_\-config.\-h.
 
 \hypertarget{user__config_8h_a52d60ae7ccb513718808b5cdbb26ffa3}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!M\-E\-M\-S\-P\-A\-C\-E\-\_\-\-F\-O\-N\-T@{M\-E\-M\-S\-P\-A\-C\-E\-\_\-\-F\-O\-N\-T}}
 \index{M\-E\-M\-S\-P\-A\-C\-E\-\_\-\-F\-O\-N\-T@{M\-E\-M\-S\-P\-A\-C\-E\-\_\-\-F\-O\-N\-T}!user_config.h@{user\-\_\-config.\-h}}
-\subsubsection[{M\-E\-M\-S\-P\-A\-C\-E\-\_\-\-F\-O\-N\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\-E\-M\-S\-P\-A\-C\-E\-\_\-\-F\-O\-N\-T~I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R}}\label{user__config_8h_a52d60ae7ccb513718808b5cdbb26ffa3}
+\subsubsection[{M\-E\-M\-S\-P\-A\-C\-E\-\_\-\-F\-O\-N\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\-E\-M\-S\-P\-A\-C\-E\-\_\-\-F\-O\-N\-T~{\bf M\-E\-M\-S\-P\-A\-C\-E}}}\label{user__config_8h_a52d60ae7ccb513718808b5cdbb26ffa3}
 
 
-Definition at line 84 of file user\-\_\-config.\-h.
+Definition at line 79 of file user\-\_\-config.\-h.
 
 \hypertarget{user__config_8h_a9946b5a72f8c16945877e78578df6a7f}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!M\-E\-M\-S\-P\-A\-C\-E\-\_\-\-R\-O@{M\-E\-M\-S\-P\-A\-C\-E\-\_\-\-R\-O}}
 \index{M\-E\-M\-S\-P\-A\-C\-E\-\_\-\-R\-O@{M\-E\-M\-S\-P\-A\-C\-E\-\_\-\-R\-O}!user_config.h@{user\-\_\-config.\-h}}
 \subsubsection[{M\-E\-M\-S\-P\-A\-C\-E\-\_\-\-R\-O}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\-E\-M\-S\-P\-A\-C\-E\-\_\-\-R\-O~static const}}\label{user__config_8h_a9946b5a72f8c16945877e78578df6a7f}
 
 
-Definition at line 33 of file user\-\_\-config.\-h.
-
-
-
-\subsection{Function Documentation}
-\hypertarget{user__config_8h_a357a42eb6494ea592e9c3f96c55cebe2}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!snprintf@{snprintf}}
-\index{snprintf@{snprintf}!user_config.h@{user\-\_\-config.\-h}}
-\subsubsection[{snprintf}]{\setlength{\rightskip}{0pt plus 5cm}int snprintf (
-\begin{DoxyParamCaption}
-\item[{char $\ast$}]{, }
-\item[{size\-\_\-t}]{, }
-\item[{const char $\ast$}]{, }
-\item[{}]{...}
-\end{DoxyParamCaption}
-)}}\label{user__config_8h_a357a42eb6494ea592e9c3f96c55cebe2}
-
-
-Referenced by Add\-Font\-Name().
+Definition at line 31 of file user\-\_\-config.\-h.
 

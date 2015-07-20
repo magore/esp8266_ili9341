@@ -33,7 +33,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef _FONT_H_
 #define _FONT_H_
 
-#include "stdint.h"
+//#include "stdint.h"
 
 #define MAXFONTS 256                              /* Maximum number of fonts to convert at one time */
 #define MAXGLYPHS 256                             /* Max Glyphs Per Font */

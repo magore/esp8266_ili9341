@@ -97,7 +97,7 @@ void wire_draw(window *win, const wire_p *wire, const wire_e *edge, point *view,
 			tft_drawLine(win, x0, y0, x1, y1, color);
 //DEBUG_PRINTF("i:%d (x:%d,y:%d),(x1:%d,y1:%d),color:%04x\n", i,(int)x0, (int)y0, (int)x1, (int)y1, (int)color);
 
-			ets_wdt_disable();
+			wdt_reset();
 		}
 		return;
 	}
@@ -149,7 +149,7 @@ void wire_draw(window *win, const wire_p *wire, const wire_e *edge, point *view,
 		x0 = x1;
 		y0 = y1;
 
-		ets_wdt_disable();
+		wdt_reset();
 	}
 //DEBUG_PRINTF("i:%d,done\n",(int) i);
 }
