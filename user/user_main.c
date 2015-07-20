@@ -372,8 +372,14 @@ LOCAL void user_task(void)
 // Buffered get line uses interrupts and queues
 	if(uart0_gets(buffer,255))
 	{
-		DEBUG_PRINTF("line:%s\n",buffer);
-		fatfs_tests(buffer);
+		DEBUG_PRINTF("Command:%s\n",buffer);
+		if(!fatfs_tests(buffer))
+		{
+			if(!user_tests(buffer))
+			{
+				DEBUG_PRINTF("unknow command: %s\n", buffer);
+			}
+		}
 	}
 }
 
@@ -420,6 +426,58 @@ void test_flashio(window *win)
 }
 #endif
 
+
+void user_help()
+{
+	DEBUG_PRINTF("help\n"
+	"setdate YYYY MM DD HH:MM:SS\n"
+	"time\n"
+	);
+	fatfs_help();
+}
+
+/// @brief help functions test parser
+///
+/// - Keywords and arguments are matched against test functions
+/// If ther are matched the function along with its argements are called.
+
+/// @param[in] str: User supplied command line 
+/// 
+/// @return 1 The ruturn code indicates a command matched.
+/// @return 0 if no rules matched
+MEMSPACE
+int user_tests(char *str)
+{
+
+    int res;
+    int len;
+    char *ptr;
+    long p1, p2;
+	time_t t;
+
+    ptr = skipspaces(str);
+
+    if ((len = token(ptr,"help")) )
+    {
+        ptr += len;
+        user_help();
+        return(1);
+    }
+    if ((len = token(ptr,"setdate")) )
+    {
+        ptr += len;
+		ptr = skipspaces(str);
+        setdate_r(ptr);
+        return(1);
+    }
+    if ((len = token(ptr,"time")) )
+    {
+		t = time(0);	
+		DEBUG_PRINTF("TIME:%s\n", ctime(&t));
+        return(1);
+	}
+	return(0);
+}
 
 
 /**

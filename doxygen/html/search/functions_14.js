@@ -23,7 +23,9 @@ var searchData=
   ['uart_5ftx_5fenable',['uart_tx_enable',['../uart_8c.html#a9fee6d0362cbec0ae882acb55d3a825f',1,'uart_tx_enable(uint8_t uart_no):&#160;uart.c'],['../uart_8h.html#a9fee6d0362cbec0ae882acb55d3a825f',1,'uart_tx_enable(uint8_t uart_no):&#160;uart.c']]],
   ['unlink',['unlink',['../posix_8c.html#aa964d662c19b2021d9cfd0c71bc686bd',1,'unlink(const char *pathname):&#160;posix.c'],['../posix_8h.html#aa964d662c19b2021d9cfd0c71bc686bd',1,'unlink(const char *pathname):&#160;posix.c']]],
   ['usage',['usage',['../bdffont2c_8c.html#aa4817482b1728bf62acf8030cab9842c',1,'bdffont2c.c']]],
+  ['user_5fhelp',['user_help',['../user__main_8c.html#acf488387a6eadb21c378fffd6f4aae63',1,'user_main.c']]],
   ['user_5finit',['user_init',['../user__main_8c.html#aaabd07afe4d50c1a7f16f18995fc6b18',1,'user_main.c']]],
   ['user_5ftask',['user_task',['../user__main_8c.html#aae1f6c69437b33a122512f4a5934af2b',1,'user_main.c']]],
+  ['user_5ftests',['user_tests',['../user__main_8c.html#a1a52190bd844126271cd2caa94782ee5',1,'user_main.c']]],
   ['usertask',['UserTask',['../user__main_8c.html#a1a6298ceb314c1707e92070ad4a9416d',1,'user_main.c']]]
 ];

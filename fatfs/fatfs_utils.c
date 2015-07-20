@@ -76,19 +76,22 @@ void fatfs_help( void )
     DEBUG_PRINTF("debug N\n"
         "mmc_init\n"
         "mmc_test\n"
-        "ls dir\n"
-        "create file str\n"
+        "attrib p1 p2\n"
         "cat file\n"
+        "cd path\n"
+        "copy file1 file2\n"
+        "create file str\n"
+        "ls dir\n"
+        "mmc_init\n"
+ 		"mmc_test\n"
+        "mkdir str\n"
+        "mkfs\n"
+        "pwd\n"
         "status str\n"
         "stat str\n"
         "rm str\n"
-        "mkdir str\n"
         "rmdir str\n"
-        "attrib p1 p2\n"
-        "copy file1 file2\n"
         "rename file1 file2\n"
-        "cd path\n"
-        "pwd\n"
         "fatfs_help\n");
 }
 
@@ -581,7 +584,7 @@ int fatfs_tests(char *str)
         fatfs_pwd();
         return(1);
     }
-    else if ( (len = token(ptr,"help")) )
+    else if ( (len = token(ptr,"fatfs_help")) )
     {
         fatfs_help();
         return(1);
