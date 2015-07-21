@@ -101,9 +101,10 @@ void tft_spi_end ( void );
 void tft_spi_TX ( uint8_t *data , int bytes , uint8_t command );
 void tft_spi_TXRX ( uint8_t *data , int bytes , uint8_t command );
 void tft_spi_RX ( uint8_t *data , int bytes , uint8_t command );
-void tft_Cmd ( uint8_t cmd );
-void tft_Cmd_Data_TX ( uint8_t cmd , uint8_t *data , int bytes );
 MEMSPACE window *tft_init ( void );
+void tft_Cmd ( uint8_t cmd );
+uint8_t tft_Data ( uint8_t data );
+void tft_Cmd_Data_TX ( uint8_t cmd , uint8_t *data , int bytes );
 int32_t tft_abs_window ( int16_t x , int16_t y , int16_t w , int16_t h );
 int32_t tft_rel_window ( window *win , int16_t x , int16_t y , int16_t w , int16_t h );
 MEMSPACE uint32_t tft_readRegister ( uint8_t command , uint8_t parameter );
@@ -134,6 +135,5 @@ void tft_drawLine ( window *win , int16_t x0 , int16_t y0 , int16_t x1 , int16_t
 MEMSPACE void tft_cleareol ( window *win );
 MEMSPACE void tft_clearline ( window *win );
 void tft_putch ( window *win , int c );
-
 
 #endif // _ILI9341_SUP_H_

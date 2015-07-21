@@ -35,10 +35,16 @@ window tftwin;
 window *tft = &tftwin;
 uint16_t tft_ID;
 
-uint16_t tft_clock = -1;
 
 /// =============================================================
-/// SPI 
+/// =============================================================
+/// =============================================================
+/// =============================================================
+/// Start SPI Hardware Abstraction Layer
+/// Keep all hardware dependent SPI code in this section
+
+/// @brief cahce of SPI clock devisor
+uint16_t tft_clock = -1;
 
 /// @brief  Obtain SPI bus for TFT display, assert chip select
 /// return: void
@@ -111,41 +117,6 @@ void tft_spi_RX(uint8_t *data, int bytes, uint8_t command)
 	hspi_RX(data,bytes);
 }
 
-/// @brief  Transmit 8 bit command 
-/// @param[in] cmd: display command
-/// return: void status is in data array - bytes in size
-void tft_Cmd(uint8_t cmd)
-{
-	hspi_waitReady();
-	TFT_COMMAND;
-    hspi_TX(&cmd, 1);
-}
-
-/// @brief  Transmit 8 bit command and send/receive data buffer
-/// @param[in] cmd: display command
-/// @param[in] *data: data buffer to send after command
-/// @param[in] bytes: data buffer size
-/// return: void status is in data array - bytes in size
-void tft_Cmd_Data_TX(uint8_t cmd, uint8_t * data, int bytes)
-{
-// Do not change Command/Data control until SPI bus clear
-	tft_spi_begin();
-
-    tft_Cmd(cmd);
-
-// Read result
-    if (bytes > 0)
-    {
-		tft_spi_TX(data,bytes,0);
-    }
-
-	tft_spi_end();
-}
-
-/// =============================================================
-/// =============================================================
-/// =============================================================
-/// =============================================================
 /// @brief Initialize TFT
 /// @return diplay ID 9341
 MEMSPACE
@@ -181,6 +152,52 @@ window *tft_init(void)
 
     return (tft);
 }
+
+/// End of SPI HAL interface
+/// =============================================================
+/// =============================================================
+/// =============================================================
+/// =============================================================
+
+/// @brief  Transmit 8 bit command 
+/// @param[in] cmd: display command
+/// return: void status is in data array - bytes in size
+void tft_Cmd(uint8_t cmd)
+{
+	tft_spi_TX(&cmd, 1, 1);
+}
+
+/// @brief  Transmit 8 bit data amd read 8bit data
+/// @param[in] cmd: display command
+/// return: read result
+uint8_t tft_Data(uint8_t data)
+{
+	tft_spi_TXRX(&data, 1, 0);
+	return(data);
+}
+
+/// @brief  Transmit 8 bit command and optionally send data buffer
+/// @param[in] cmd: display command
+/// @param[in] *data: data buffer to send after command
+/// @param[in] bytes: data buffer size
+/// return: void status is in data array - bytes in size
+void tft_Cmd_Data_TX(uint8_t cmd, uint8_t * data, int bytes)
+{
+// Do not change Command/Data control until SPI bus clear
+	tft_spi_begin();
+
+    tft_Cmd(cmd);
+
+// Read result
+    if (bytes > 0)
+    {
+		tft_spi_TX(data,bytes,0);
+    }
+
+	tft_spi_end();
+}
+
+/// =============================================================
 
 /// ====================================
 /// @brief window limits
@@ -280,13 +297,16 @@ int32_t tft_rel_window(window *win, int16_t x, int16_t y, int16_t w, int16_t h)
 
 /// ====================================
 
-/// @brief  Read parameters on SPI bus ILI9341 displays when EXTC is not asserted
-/// However; This undocumented command overrides the restriction for reading command parameters.
+/// @brief  Read parameters on SPI bus ILI9341 displays 
+/// For those displays that do not have the EXTC pin asserted.
+/// This undocumented command overrides the restriction for reading 
+/// command parameters.
+/// Notes:
 /// SPI configurations
 /// See M:[0-3] control bits in ILI9341 documenation
-///      - refer to interface I and II
-///      modes. Most ILI9341 displays are using interface I
-///      rather the interface II mode.
+///      - Refer to interface I and II modes. 
+///        Most ILI9341 displays are using interface I,
+///        (Rather the interface II mode)
 /// @param[in] command: command whose parameters we want to read 
 /// @param[in] parameter: parameter number
 /// @return 16bit value
@@ -294,40 +314,31 @@ MEMSPACE
 uint32_t tft_readRegister(uint8_t command, uint8_t parameter)
 {
     uint32_t result;
-	uint8_t tmp[4];
+
 	tft_spi_begin();
 
-	// We do not know what the 0x10 offset implies - but it is required.
-	// ILI9341 parameter
+	// Send Undocumented ILI9341 0xd9 as COMMAND
     tft_Cmd(0xd9);
 
-	// DATA
-	tmp[0] = 0x10 + parameter;
-	tmp[1] = 0;
-	tmp[2] = 0;
-	tmp[3] = 0;
-	// Undocumented 0xd9 command
-    tft_spi_TX(tmp,4,0);
+	// We do not know what the 0x10 offset implies, undocumented, but is required.
+	// Send ILI9341 parameter as DATA
+	tft_Data(0x10 + parameter);
 
 	// The real ILI9341 Command whose parameters we want to read
-	// COMMAND
-	tmp[0] = command;	
-	tmp[1] = 0;
-	tmp[2] = 0;
-	tmp[3] = 0;
-    tft_spi_TXRX(tmp,4,1);
+	// Send ILI9341 command as COMMAND
+	tft_Cmd(command);
+
+	// Read Result
+	result=tft_Data(0);
 
 	tft_spi_end();
 
-	result = tmp[1];
 
 #if ILI9341_DEBUG & 1
-ets_uart_printf("command:%02x, data: %02x,%02x,%02x,%02x\r\n", 
+ets_uart_printf("cmd:%02x, par:%02x, read: %02x\n",
 	0xff & command, 
-	0xff & tmp[0],
-	0xff & tmp[1],
-	0xff & tmp[2],
-	0xff & tmp[3]);
+	0xff & parameter, 
+	0xff & result);
 #endif
 
     return (result);
