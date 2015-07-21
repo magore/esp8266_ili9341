@@ -128,8 +128,10 @@ window *tft_init(void)
 	hspi_cs_disable(TFT_CS_PIN);
 	// TFT_CS_DISABLE;
 
-	// start with slow slok so tft_readId works
-	// only function that fails at less then 1
+	// Start with slow clock so tft_readId works
+	// This is the only function that fails at less then 1.
+	// tft_readId is the ONLY SPI bus command that needs this.
+	// Nomal reads work fine.
 	tft_spi_init(2);
     TFT_RST_ACTIVE;	
     os_delay_us(10000);
@@ -347,7 +349,9 @@ ets_uart_printf("cmd:%02x, par:%02x, read: %02x\n",
 
 /// @brief  Read ILI9341 device ID should be 9341
 /// This does not work for really high SPI clock speeds
-/// @return 32bit value
+/// Make sure that when called the clock speed in reduced.
+/// @see tft_init
+/// @return 32bit value with DIPLAY ID
 MEMSPACE
 uint32_t tft_readId(void)
 {
