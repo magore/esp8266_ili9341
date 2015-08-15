@@ -546,11 +546,13 @@ void setup(void)
 
     DEBUG_PRINTF("Heap Size(%d) bytes\n" , system_get_free_heap_size());
 
+	system_set_os_print(0);
 
 }
 
 
 // ===========================================================
+// We are using the Arduino Yield code for our main task now
 #ifndef YIELD_TASK
 
 /* user/user_main.c */

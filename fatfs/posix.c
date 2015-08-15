@@ -658,7 +658,6 @@ static int  fatfs_getc(FILE *stream)
     if(stream == NULL)
     {
         errno = EBADF;                            // Bad File Number
-		perror("fatfs_getc");
         return(EOF);
     }
 
@@ -666,7 +665,6 @@ static int  fatfs_getc(FILE *stream)
     if(fh == NULL)
     {
         errno = EBADF;                            // Bad File Number
-        perror("fatfs_getc");
         return(EOF);
     }
 
@@ -675,9 +673,6 @@ static int  fatfs_getc(FILE *stream)
     {
         errno = fatfs_to_errno(res);
         stream->flags |= __SEOF;
-// FIXME DEBUG
-put_rc(res);
-perror("fgetc\n");
         return(EOF);
     }
     return(c & 0xff);
@@ -706,7 +701,6 @@ int fatfs_putc(char c, FILE *stream)
     if(stream == NULL)
     {
         errno = EBADF;                            // Bad File Number
-        perror("fatfs_putc");
         return(EOF);
     }
 
@@ -714,7 +708,6 @@ int fatfs_putc(char c, FILE *stream)
     if(fh == NULL)
     {
         errno = EBADF;                            // Bad File Number
-        perror("fatfs_putc");
         return(EOF);
     }
 
@@ -723,7 +716,6 @@ int fatfs_putc(char c, FILE *stream)
     {
         errno = fatfs_to_errno(res);
         stream->flags |= __SEOF;
-        perror("fatfs_putc");
         return(EOF);
     }
     return(c);
@@ -799,7 +791,6 @@ fputc(int c, FILE *stream)
     if(stream == NULL)
     {
         errno = EBADF;                            // Bad File Number
-        perror("fputc");
         return(EOF);
     }
 
@@ -856,7 +847,7 @@ int open(const char *pathname, int flags)
 
     errno = 0;
 
-// FIXME DEBUG
+// FIXME Assumes that mmc_init was already called
 #if 0
 // Checks Disk status
     res = mmc_init(0);
@@ -1109,10 +1100,10 @@ ssize_t write(int fd, const void *buf, size_t count)
 
     errno = 0;
 #if 0
+	// FIXME TTY write
 	// TODO check for fd out of bounds fileno_to_fatfs does this
 	if(__iob[fd] == stdin || __iob[fd] == stderr)
 	{
-	// FIXME TTY write
 	}
 #endif
 
@@ -1184,10 +1175,10 @@ ssize_t read(int fd, const void *buf, size_t count)
 
     errno = 0;
 #if 0
+	// FIXME TTY read
 	// TODO check for fd out of bounds fileno_to_fatfs does this
 	if(__iob[fd] == stdin)
 	{
-	// FIXME TTY read
 	}
 #endif
 
@@ -1203,9 +1194,6 @@ ssize_t read(int fd, const void *buf, size_t count)
     if(res != RES_OK)
     {
         errno = fatfs_to_errno(res);
-// FIXME DEBUG
-put_rc(res);
-perror("read\n");
         return(-1);
     }
     return ((ssize_t) size);
@@ -1597,8 +1585,6 @@ int stat(char *name, struct stat *buf)
     res = f_stat(name, info);
     if(res != RES_OK)
     {
-// FIXME DEBUG
-put_rc(res);
         errno = fatfs_to_errno(res);
         return(-1);
     }

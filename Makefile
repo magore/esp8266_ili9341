@@ -96,6 +96,12 @@ WIRECUBE = 1
 SCANF = 1
 
 WEBSERVER = 1
+# 0 no WEB debugging
+# 1 error only
+# 2 connection information
+# 4 HTML processing
+# 8 characters from socket I/O
+WEB_DEBUG = 1
 
 
 # Yield function support thanks to Arduino Project 
@@ -237,7 +243,7 @@ ifdef SWAP45
 endif
 
 ifdef WEBSERVER
-	CFLAGS += -DWEBSERVER
+	CFLAGS += -DWEBSERVER -DWEB_DEBUG=$(WEB_DEBUG)
 	MODULES	+= web
 endif
 

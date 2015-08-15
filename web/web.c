@@ -22,13 +22,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 
-
 ///@brief MAXIMUM number of connections
 #define MAX_CONNECTIONS 5
-#include <user_config.h>
 
-///@brief socket buffers for this connection
-rwbuf_t *web_connections[MAX_CONNECTIONS];
+#include <user_config.h>
 
 
 // References: http://www.w3.org/Protocols/rfc2616/rfc2616.html
@@ -42,6 +39,9 @@ rwbuf_t *web_connections[MAX_CONNECTIONS];
 
 #include "web.h"
 
+
+///@brief socket buffers for this connection
+rwbuf_t *web_connections[MAX_CONNECTIONS];
 
 // =======================================================
 // http://www.w3.org/Protocols/rfc2616/rfc2616-sec4.html#sec4.4
@@ -492,7 +492,7 @@ int write_byte(rwbuf_t *p, int c)
 		}
 		// flag that send socket is busy with the last send request
 		p->send = p->wind;
-#if WEB_DEBUG & 4
+#if WEB_DEBUG & 8
 		for(i=0;i<p->wind;++i)
 			putchar(p->wbuf[i]);
 #endif
@@ -519,14 +519,14 @@ void write_flush(rwbuf_t *p)
 	while(p->send)
 	{
 // FIXME DEBUG
-#if WEB_DEBUG & 3
+#if WEB_DEBUG & 4
 		DEBUG_PRINTF("waiting for send\n");
 #endif
 		optimistic_yield(1000);
 	}
  	if(p->wind)
 	{
-#if WEB_DEBUG & 4
+#if WEB_DEBUG & 8
 // FIXME DEBUG
 		for(i=0;i<p->wind;++i)
 			putchar(p->wbuf[i]);
@@ -546,7 +546,7 @@ void write_flush(rwbuf_t *p)
 	while(p->send)
 	{
 // FIXME DEBUG
-#if WEB_DEBUG  & 3
+#if WEB_DEBUG  & 4
 		DEBUG_PRINTF("\n write_flush: waiting for send\n");
 #endif
 		optimistic_yield(1000);
@@ -864,10 +864,17 @@ hinfo_t *init_hinfo(hinfo_t *hi)
 MEMSPACE
 int match_headers(char *str, char **p)
 {
-	int i,ind;
+	int len, i,ind;
 	char *ptr;
 
 	if(!str)
+		return(-1);
+	
+	str = skipspaces(str);
+	trim_tail(str);
+
+	len = strlen(str);
+	if(!len)
 		return(-1);
 	
 	for(i=0;msg_headers[i].type != -1; ++i) {
@@ -986,13 +993,13 @@ char *next_arg(hinfo_t *hi)
 	if(!len)			// End of list
 		return(hi->arg_ptr = NULL);
 
-#if WEB_DEBUG & 3
+#if WEB_DEBUG & 4
 	DEBUG_PRINTF("next_arg:%s=",ptr);
 #endif
 	ptr += len+1;		// skip past name
 
 	len = strlen(ptr);
-#if WEB_DEBUG & 3
+#if WEB_DEBUG & 4
 	DEBUG_PRINTF("%s\n",ptr);
 #endif
 	ptr += len+1;		// skip past value
@@ -1056,7 +1063,7 @@ char *http_value(hinfo_t *hi, char *str)
 	while( (name = arg_name(hi)) ) {
 		if(strcasecmp(name,str) == 0) {
 			value = arg_value(hi);
-#if WEB_DEBUG & 3
+#if WEB_DEBUG & 4
 		DEBUG_PRINTF("http_value:%s=%s\n",str,value);
 #endif
 			return(value);
@@ -1169,11 +1176,11 @@ int read_html_token(FILE *fi, char *str, int len)
 	*str++ = 0;		// always reminate with EOS
 	if(c == '$') {	// terminating '$'
 		// We replace text if a token matches
-#if WEB_DEBUG & 3
+#if WEB_DEBUG & 4
 		DEBUG_PRINTF("in: %s\n",base);
 #endif
 		rewrite_html_token(base, len);	
-#if WEB_DEBUG & 3
+#if WEB_DEBUG & 4
 		DEBUG_PRINTF("out:%s\n",base);
 #endif
 	}
@@ -1267,7 +1274,7 @@ int parse_http_request(rwbuf_t *p, hinfo_t *hi)
 	int haveargs = 0;
 	mem_t memp;
 
-#if WEB_DEBUG & 3
+#if WEB_DEBUG & 4
 	DEBUG_PRINTF("\nparse_http_request\n");
 #endif
 	if(!p || !p->rbuf || !p->received)
@@ -1287,7 +1294,7 @@ int parse_http_request(rwbuf_t *p, hinfo_t *hi)
 		if(header == -1 && !(ptr = is_header(save)) )
 				break;
 
-#if WEB_DEBUG & 3
+#if WEB_DEBUG & 4
 		DEBUG_PRINTF("header(%d): %s\n",header,ptr);
 #endif
 
@@ -1302,7 +1309,7 @@ int parse_http_request(rwbuf_t *p, hinfo_t *hi)
 			ptr = nextbreak(ptr);
 			c = *ptr;
 			*ptr++ = 0;	// Filename EOS
-#if WEB_DEBUG & 3
+#if WEB_DEBUG & 4
 			DEBUG_PRINTF("filename: [%s]\n",hi->filename);
 #endif
 
@@ -1362,7 +1369,7 @@ int parse_http_request(rwbuf_t *p, hinfo_t *hi)
 		}
 	}
 
-#if WEB_DEBUG & 3
+#if WEB_DEBUG & 4
 	if( hi->type != -1) 
 		DEBUG_PRINTF("type: %s\n",msg_headers[hi->type].pattern);
 	DEBUG_PRINTF("Filename: %s\n",hi->filename);
@@ -1489,6 +1496,7 @@ static void web_data_sent_callback(void *arg)
 	esp_schedule();
 }
 
+// FIXME we still have issues with deleting connection
 /**
   @brief Network disconnect callback function
   @param[in] *arg: connection pointer
@@ -1497,28 +1505,32 @@ MEMSPACE
 static void web_data_disconnect_callback(void *arg)
 {
 	espconn_t *conn = (espconn_t *) arg;
-    int index = -1;
-	int i;
+    rwbuf_t *p;
+    int i, index;
 
-	rwbuf_t *p;
+	if(!conn)
+		return;
 
+// Delete ALL active connections
+	index = -1;
 	for(i=0;i<MAX_CONNECTIONS;++i)
-	{
-		p = web_connections[i];
-		if(p && conn == p->conn)
-		{
+    {
+        if( (p = web_connections[i]) )
+        {
+            if(!p->conn)
+                continue;
+            if(p->conn == conn)
+			{
 #if WEB_DEBUG & 2
 			DEBUG_PRINTF("web_data_disconnect_callback: disconnect %p\n", p->conn);
 #endif
-			delete_connection( ( index = i) );
-		}
-	}
-	if(index == -1)
-	{
-#if WEB_DEBUG & 1
-		DEBUG_PRINTF("web_data_disconnect_callback: mismatch conn=%p\n",conn);
+				delete_connection((index = i));
+			}
+        }
+    }
+#if WEB_DEBUG & 2
+	DEBUG_PRINTF("web_data_disconnect_callback: disconnect mismatch %p\n", conn);
 #endif
-	}
 	esp_schedule();
 }
 
@@ -1686,9 +1698,6 @@ static void process_requests(rwbuf_t *p)
 			// tokens are of the form $variable$
 			// if one matches we substitute it
 			// otherwize we simply display the mismatched text
-//putchar(c);
-//write_byte(c);
-//continue;
 #if 0
 			if(c == '$' ) {
 				// read buffer
@@ -1702,7 +1711,6 @@ static void process_requests(rwbuf_t *p)
 			++len;
 			write_byte(p,c & 0xff);
 		}
-		perror("\nclose");	
 	}
 	else {	// NON CGI read and echo
 
@@ -1714,7 +1722,6 @@ static void process_requests(rwbuf_t *p)
 				break;
 			write_len(p, cgibuf, len);
 		}
-		perror("\nClose =====\n");	
 	}
 	fclose(fi);
 	write_flush(p);
