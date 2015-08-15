@@ -11,5 +11,6 @@ var searchData=
   ['o_5frdwr',['O_RDWR',['../posix_8h.html#abb0586253488ee61072b73557eeb873b',1,'posix.h']]],
   ['o_5ftext',['O_TEXT',['../posix_8h.html#a9abb6d01b83e0bc5a6e2adeceb7dffd7',1,'posix.h']]],
   ['o_5ftrunc',['O_TRUNC',['../posix_8h.html#ad1d67e453fb3031f40f8cd3403773813',1,'posix.h']]],
-  ['o_5fwronly',['O_WRONLY',['../posix_8h.html#a11b644a8526139c4cc1850dac1271ced',1,'posix.h']]]
+  ['o_5fwronly',['O_WRONLY',['../posix_8h.html#a11b644a8526139c4cc1850dac1271ced',1,'posix.h']]],
+  ['optimistic_5fyield_5ftime_5fus',['OPTIMISTIC_YIELD_TIME_US',['../user__task_8c.html#a3be2bcf04639d2940e4d48afcde62119',1,'user_task.c']]]
 ];

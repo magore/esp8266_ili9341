@@ -8,39 +8,42 @@ Small printf, and verious conversion code with floating point support.
 
 {\ttfamily \#include $<$stdarg.\-h$>$}\\*
 {\ttfamily \#include \char`\"{}user\-\_\-config.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}sup.\-h\char`\"{}}\\*
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct__printf__t}{\-\_\-printf\-\_\-t}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{struct__printf__t}{\-\_\-printf\-\_\-t} \hyperlink{printf_8h_a1efdee46bf8e5af45e76e461e8db9c09}{printf\-\_\-t}
+\end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-static \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{printf_8h_ae131047c08521391a582275a9a878d68}{t\-\_\-reverse} (char $\ast$str)
-\item 
-static \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{printf_8h_a0b6870299f323e233bdf5ac95393a233}{t\-\_\-strupper} (char $\ast$str)
-\item 
-static \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{printf_8h_a13b9612a73585aa9ad589c62c612d4be}{atod} (int c, int radix)
-\item 
-static \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} long \hyperlink{printf_8h_afe95f6232c51473a9845e4431c821296}{aton} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$str, int base)
-\item 
-static \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{printf_8h_add95d746844a6fdac7f08d2d04d84555}{t\-\_\-itoa} (long num, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$str, int max, int prec, int sign)
-\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} static \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{printf_8h_ae87fd8bdff13756967a67c4de2b5f2a2}{t\-\_\-ntoa} (unsigned long num, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$str, int max, int radix, int prec)
-\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{printf_8h_a2f4b30f6ffa8d7b04ede343a1bfdcbf5}{t\-\_\-itoa} (long num, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$str, int max, int prec, int sign)
+\begin{DoxyCompactList}\small\item\em Convert number to A\-S\-C\-I\-I returns size of string after conversion Note\-: It is allowed to have more digits converted then prec defines Like itoa but can support leading '+/-\// ' or unsigned and zero padding. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{printf_8h_a39d7df31096f07eba5176fad5a2337f4}{t\-\_\-ntoa} (unsigned long num, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$str, int max, int radix, int prec)
+\begin{DoxyCompactList}\small\item\em Convert number to A\-S\-C\-I\-I Like itoa but can support leading '+/-\// ' or unsigned and zero padding Note\-: It is allowed to have more digits converted then prec defines. \end{DoxyCompactList}\item 
 static \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} double \hyperlink{printf_8h_ae517abe6b3eca804cfda72648f15be21}{t\-\_\-iexp} (double num, int exp)
 \item 
 static \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} double \hyperlink{printf_8h_af738e7ee5c3c5f91edf0f5baa51bb151}{t\-\_\-scale10} (double num, int $\ast$exp)
 \item 
-static \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} double \hyperlink{printf_8h_af17f8ee3c7ce9cf18325b9192fe7b0c3}{t\-\_\-atof} (char $\ast$str)
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{printf_8h_a93b64183a7db6800f8d49160351dbe3a}{t\-\_\-ftoa} (double val, char $\ast$str, int intprec, int prec, int sign)
+\begin{DoxyCompactList}\small\item\em float to A\-S\-C\-I\-I \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{printf_8h_a81b5dc7281a404cfc4c8ee6e3da4d8da}{t\-\_\-etoa} (double x, char $\ast$str, int prec, int sign)
+\begin{DoxyCompactList}\small\item\em float to A\-S\-C\-I\-I \end{DoxyCompactList}\item 
+static \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{printf_8h_aa864d1706b7e941e7f29264cc197cbe1}{\-\_\-puts\-\_\-pad} (\hyperlink{printf_8h_a1efdee46bf8e5af45e76e461e8db9c09}{printf\-\_\-t} $\ast$fn, char $\ast$s, int width, int \hyperlink{user__main_8c_aa011065eee776eb1bda73597b5d9d5d7}{count}, int left)
 \item 
-static \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{printf_8h_a1d1cab8ef0a0104ee1408f519136abfd}{ftoa} (double val, char $\ast$str, int intprec, int prec, int sign)
-\item 
-static \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{printf_8h_aacfee6f671f24ae2eae55410d0ce496e}{etoa} (double x, char $\ast$str, int prec, int sign)
-\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{printf_8h_ab55d08e532e051525bf0d72a409abdb8}{t\-\_\-vsnprintf} (char $\ast$buffer, int len, const char $\ast$fmt, va\-\_\-list va)
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{printf_8h_ae8e3ea7acfe1bf7a917405584b720bb9}{\-\_\-printf\-\_\-fn} (\hyperlink{printf_8h_a1efdee46bf8e5af45e76e461e8db9c09}{printf\-\_\-t} $\ast$fn, const char $\ast$fmt, va\-\_\-list va)
 \begin{DoxyCompactList}\small\item\em vsnprintf function \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{printf_8h_ad863444d111854e49920657a453c31b8}{t\-\_\-snprintf} (char $\ast$buffer, int buffer\-\_\-len, const char $\ast$fmt,...)
-\begin{DoxyCompactList}\small\item\em snprintf function \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{printf_8h_a5d533c899ff324da775129c7590fb417}{t\-\_\-printf} (const char $\ast$fmt,...)
+static void \hyperlink{printf_8h_add7e5ce45ad6a867a5b2bcf22cdc8589}{\-\_\-putc\-\_\-buffer} (struct \hyperlink{struct__printf__t}{\-\_\-printf\-\_\-t} $\ast$p, char ch)
 \item 
-void \hyperlink{printf_8h_afc4946c8d5d05c9832e14c6f601f5074}{tests} (void)
-\end{DoxyCompactItemize}
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{printf_8h_a7a6349b4ca3388a0cb82fc3d1d85a6b5}{vsnprintf} (char $\ast$str, size\-\_\-t size, const char $\ast$format, va\-\_\-list va)
+\begin{DoxyCompactList}\small\item\em vsnprintf function \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{printf_8h_a278630a290b34d009b2e3ad7bf1fc996}{snprintf} (char $\ast$str, size\-\_\-t size, const char $\ast$format,...)
+\begin{DoxyCompactList}\small\item\em snprintf function \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -60,114 +63,75 @@ Definition in file \hyperlink{printf_8h_source}{printf.\-h}.
 
 
 
+\subsection{Typedef Documentation}
+\hypertarget{printf_8h_a1efdee46bf8e5af45e76e461e8db9c09}{\index{printf.\-h@{printf.\-h}!printf\-\_\-t@{printf\-\_\-t}}
+\index{printf\-\_\-t@{printf\-\_\-t}!printf.h@{printf.\-h}}
+\subsubsection[{printf\-\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \-\_\-printf\-\_\-t}  {\bf printf\-\_\-t}}}\label{printf_8h_a1efdee46bf8e5af45e76e461e8db9c09}
+
+
 \subsection{Function Documentation}
-\hypertarget{printf_8h_a13b9612a73585aa9ad589c62c612d4be}{\index{printf.\-h@{printf.\-h}!atod@{atod}}
-\index{atod@{atod}!printf.h@{printf.\-h}}
-\subsubsection[{atod}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf M\-E\-M\-S\-P\-A\-C\-E} int atod (
+\hypertarget{printf_8h_ae8e3ea7acfe1bf7a917405584b720bb9}{\index{printf.\-h@{printf.\-h}!\-\_\-printf\-\_\-fn@{\-\_\-printf\-\_\-fn}}
+\index{\-\_\-printf\-\_\-fn@{\-\_\-printf\-\_\-fn}!printf.h@{printf.\-h}}
+\subsubsection[{\-\_\-printf\-\_\-fn}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void \-\_\-printf\-\_\-fn (
 \begin{DoxyParamCaption}
-\item[{int}]{c, }
-\item[{int}]{radix}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{printf_8h_a13b9612a73585aa9ad589c62c612d4be}
-\hypertarget{printf_8h_afe95f6232c51473a9845e4431c821296}{\index{printf.\-h@{printf.\-h}!aton@{aton}}
-\index{aton@{aton}!printf.h@{printf.\-h}}
-\subsubsection[{aton}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf M\-E\-M\-S\-P\-A\-C\-E} long aton (
-\begin{DoxyParamCaption}
-\item[{{\bf uint8\-\_\-t} $\ast$}]{str, }
-\item[{int}]{base}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{printf_8h_afe95f6232c51473a9845e4431c821296}
-\hypertarget{printf_8h_aacfee6f671f24ae2eae55410d0ce496e}{\index{printf.\-h@{printf.\-h}!etoa@{etoa}}
-\index{etoa@{etoa}!printf.h@{printf.\-h}}
-\subsubsection[{etoa}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf M\-E\-M\-S\-P\-A\-C\-E} int etoa (
-\begin{DoxyParamCaption}
-\item[{double}]{x, }
-\item[{char $\ast$}]{str, }
-\item[{int}]{prec, }
-\item[{int}]{sign}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{printf_8h_aacfee6f671f24ae2eae55410d0ce496e}
-\hypertarget{printf_8h_a1d1cab8ef0a0104ee1408f519136abfd}{\index{printf.\-h@{printf.\-h}!ftoa@{ftoa}}
-\index{ftoa@{ftoa}!printf.h@{printf.\-h}}
-\subsubsection[{ftoa}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf M\-E\-M\-S\-P\-A\-C\-E} int ftoa (
-\begin{DoxyParamCaption}
-\item[{double}]{val, }
-\item[{char $\ast$}]{str, }
-\item[{int}]{intprec, }
-\item[{int}]{prec, }
-\item[{int}]{sign}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{printf_8h_a1d1cab8ef0a0104ee1408f519136abfd}
-\hypertarget{printf_8h_af17f8ee3c7ce9cf18325b9192fe7b0c3}{\index{printf.\-h@{printf.\-h}!t\-\_\-atof@{t\-\_\-atof}}
-\index{t\-\_\-atof@{t\-\_\-atof}!printf.h@{printf.\-h}}
-\subsubsection[{t\-\_\-atof}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf M\-E\-M\-S\-P\-A\-C\-E} double t\-\_\-atof (
-\begin{DoxyParamCaption}
-\item[{char $\ast$}]{str}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{printf_8h_af17f8ee3c7ce9cf18325b9192fe7b0c3}
-\hypertarget{printf_8h_ae517abe6b3eca804cfda72648f15be21}{\index{printf.\-h@{printf.\-h}!t\-\_\-iexp@{t\-\_\-iexp}}
-\index{t\-\_\-iexp@{t\-\_\-iexp}!printf.h@{printf.\-h}}
-\subsubsection[{t\-\_\-iexp}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf M\-E\-M\-S\-P\-A\-C\-E} double t\-\_\-iexp (
-\begin{DoxyParamCaption}
-\item[{double}]{num, }
-\item[{int}]{exp}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{printf_8h_ae517abe6b3eca804cfda72648f15be21}
-\hypertarget{printf_8h_add95d746844a6fdac7f08d2d04d84555}{\index{printf.\-h@{printf.\-h}!t\-\_\-itoa@{t\-\_\-itoa}}
-\index{t\-\_\-itoa@{t\-\_\-itoa}!printf.h@{printf.\-h}}
-\subsubsection[{t\-\_\-itoa}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf M\-E\-M\-S\-P\-A\-C\-E} int t\-\_\-itoa (
-\begin{DoxyParamCaption}
-\item[{long}]{num, }
-\item[{{\bf uint8\-\_\-t} $\ast$}]{str, }
-\item[{int}]{max, }
-\item[{int}]{prec, }
-\item[{int}]{sign}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{printf_8h_add95d746844a6fdac7f08d2d04d84555}
-\hypertarget{printf_8h_ae87fd8bdff13756967a67c4de2b5f2a2}{\index{printf.\-h@{printf.\-h}!t\-\_\-ntoa@{t\-\_\-ntoa}}
-\index{t\-\_\-ntoa@{t\-\_\-ntoa}!printf.h@{printf.\-h}}
-\subsubsection[{t\-\_\-ntoa}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} static {\bf M\-E\-M\-S\-P\-A\-C\-E} int t\-\_\-ntoa (
-\begin{DoxyParamCaption}
-\item[{unsigned long}]{num, }
-\item[{{\bf uint8\-\_\-t} $\ast$}]{str, }
-\item[{int}]{max, }
-\item[{int}]{radix, }
-\item[{int}]{prec}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{printf_8h_ae87fd8bdff13756967a67c4de2b5f2a2}
-\hypertarget{printf_8h_a5d533c899ff324da775129c7590fb417}{\index{printf.\-h@{printf.\-h}!t\-\_\-printf@{t\-\_\-printf}}
-\index{t\-\_\-printf@{t\-\_\-printf}!printf.h@{printf.\-h}}
-\subsubsection[{t\-\_\-printf}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int t\-\_\-printf (
-\begin{DoxyParamCaption}
+\item[{{\bf printf\-\_\-t} $\ast$}]{fn, }
 \item[{const char $\ast$}]{fmt, }
+\item[{va\-\_\-list}]{va}
+\end{DoxyParamCaption}
+)}}\label{printf_8h_ae8e3ea7acfe1bf7a917405584b720bb9}
+
+
+vsnprintf function 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em fn} & output character function pointer \\
+\hline
+\mbox{\tt in}  & {\em fmt} & printf forat string \\
+\hline
+\mbox{\tt in}  & {\em va} & va\-\_\-list arguments \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+size of string 
+\end{DoxyReturn}
+
+
+Definition at line 536 of file printf.\-c.
+
+
+
+Referenced by tft\-\_\-printf(), uart0\-\_\-printf(), vsnprintf(), and vsock\-\_\-printf().
+
+\hypertarget{printf_8h_add7e5ce45ad6a867a5b2bcf22cdc8589}{\index{printf.\-h@{printf.\-h}!\-\_\-putc\-\_\-buffer@{\-\_\-putc\-\_\-buffer}}
+\index{\-\_\-putc\-\_\-buffer@{\-\_\-putc\-\_\-buffer}!printf.h@{printf.\-h}}
+\subsubsection[{\-\_\-putc\-\_\-buffer}]{\setlength{\rightskip}{0pt plus 5cm}static void \-\_\-putc\-\_\-buffer (
+\begin{DoxyParamCaption}
+\item[{struct {\bf \-\_\-printf\-\_\-t} $\ast$}]{p, }
+\item[{char}]{ch}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{printf_8h_add7e5ce45ad6a867a5b2bcf22cdc8589}
+\hypertarget{printf_8h_aa864d1706b7e941e7f29264cc197cbe1}{\index{printf.\-h@{printf.\-h}!\-\_\-puts\-\_\-pad@{\-\_\-puts\-\_\-pad}}
+\index{\-\_\-puts\-\_\-pad@{\-\_\-puts\-\_\-pad}!printf.h@{printf.\-h}}
+\subsubsection[{\-\_\-puts\-\_\-pad}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf M\-E\-M\-S\-P\-A\-C\-E} void \-\_\-puts\-\_\-pad (
+\begin{DoxyParamCaption}
+\item[{{\bf printf\-\_\-t} $\ast$}]{fn, }
+\item[{char $\ast$}]{s, }
+\item[{int}]{width, }
+\item[{int}]{count, }
+\item[{int}]{left}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{printf_8h_aa864d1706b7e941e7f29264cc197cbe1}
+\hypertarget{printf_8h_a278630a290b34d009b2e3ad7bf1fc996}{\index{printf.\-h@{printf.\-h}!snprintf@{snprintf}}
+\index{snprintf@{snprintf}!printf.h@{printf.\-h}}
+\subsubsection[{snprintf}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int snprintf (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str, }
+\item[{size\-\_\-t}]{size, }
+\item[{const char $\ast$}]{format, }
 \item[{}]{...}
 \end{DoxyParamCaption}
-)}}\label{printf_8h_a5d533c899ff324da775129c7590fb417}
-\hypertarget{printf_8h_ae131047c08521391a582275a9a878d68}{\index{printf.\-h@{printf.\-h}!t\-\_\-reverse@{t\-\_\-reverse}}
-\index{t\-\_\-reverse@{t\-\_\-reverse}!printf.h@{printf.\-h}}
-\subsubsection[{t\-\_\-reverse}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf M\-E\-M\-S\-P\-A\-C\-E} void t\-\_\-reverse (
-\begin{DoxyParamCaption}
-\item[{char $\ast$}]{str}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{printf_8h_ae131047c08521391a582275a9a878d68}
-\hypertarget{printf_8h_af738e7ee5c3c5f91edf0f5baa51bb151}{\index{printf.\-h@{printf.\-h}!t\-\_\-scale10@{t\-\_\-scale10}}
-\index{t\-\_\-scale10@{t\-\_\-scale10}!printf.h@{printf.\-h}}
-\subsubsection[{t\-\_\-scale10}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf M\-E\-M\-S\-P\-A\-C\-E} double t\-\_\-scale10 (
-\begin{DoxyParamCaption}
-\item[{double}]{num, }
-\item[{int $\ast$}]{exp}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{printf_8h_af738e7ee5c3c5f91edf0f5baa51bb151}
-\hypertarget{printf_8h_ad863444d111854e49920657a453c31b8}{\index{printf.\-h@{printf.\-h}!t\-\_\-snprintf@{t\-\_\-snprintf}}
-\index{t\-\_\-snprintf@{t\-\_\-snprintf}!printf.h@{printf.\-h}}
-\subsubsection[{t\-\_\-snprintf}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int t\-\_\-snprintf (
-\begin{DoxyParamCaption}
-\item[{char $\ast$}]{buffer, }
-\item[{int}]{buffer\-\_\-len, }
-\item[{const char $\ast$}]{fmt, }
-\item[{}]{...}
-\end{DoxyParamCaption}
-)}}\label{printf_8h_ad863444d111854e49920657a453c31b8}
+)}}\label{printf_8h_a278630a290b34d009b2e3ad7bf1fc996}
 
 
 snprintf function 
@@ -176,11 +140,11 @@ snprintf function
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\tt out}  & {\em buffer} & string buffer for result \\
 \hline
-\mbox{\tt in}  & {\em buffer\-\_\-len} & maximum length of converted string \\
+\mbox{\tt in}  & {\em len} & maximum length of converted string \\
 \hline
 \mbox{\tt in}  & {\em fmt} & printf forat string \\
 \hline
-\mbox{\tt in}  & {\em ...} & vararg list or arguments \\
+\mbox{\tt in}  & {\em ...} & list of arguments \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -188,29 +152,191 @@ string size
 \end{DoxyReturn}
 
 
-Definition at line 985 of file printf.\-c.
+Definition at line 846 of file printf.\-c.
 
 
 
-Referenced by asctime\-\_\-r(), and ts\-\_\-to\-\_\-str().
+Referenced by Add\-Font\-Name(), asctime\-\_\-r(), html\-\_\-msg(), rewrite\-\_\-html\-\_\-token(), ts\-\_\-to\-\_\-str(), u5toa(), and wifi\-\_\-event\-\_\-cb().
 
-\hypertarget{printf_8h_a0b6870299f323e233bdf5ac95393a233}{\index{printf.\-h@{printf.\-h}!t\-\_\-strupper@{t\-\_\-strupper}}
-\index{t\-\_\-strupper@{t\-\_\-strupper}!printf.h@{printf.\-h}}
-\subsubsection[{t\-\_\-strupper}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf M\-E\-M\-S\-P\-A\-C\-E} void t\-\_\-strupper (
+\hypertarget{printf_8h_a81b5dc7281a404cfc4c8ee6e3da4d8da}{\index{printf.\-h@{printf.\-h}!t\-\_\-etoa@{t\-\_\-etoa}}
+\index{t\-\_\-etoa@{t\-\_\-etoa}!printf.h@{printf.\-h}}
+\subsubsection[{t\-\_\-etoa}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int t\-\_\-etoa (
 \begin{DoxyParamCaption}
-\item[{char $\ast$}]{str}
+\item[{double}]{x, }
+\item[{char $\ast$}]{str, }
+\item[{int}]{prec, }
+\item[{int}]{sign}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{printf_8h_a0b6870299f323e233bdf5ac95393a233}
-\hypertarget{printf_8h_ab55d08e532e051525bf0d72a409abdb8}{\index{printf.\-h@{printf.\-h}!t\-\_\-vsnprintf@{t\-\_\-vsnprintf}}
-\index{t\-\_\-vsnprintf@{t\-\_\-vsnprintf}!printf.h@{printf.\-h}}
-\subsubsection[{t\-\_\-vsnprintf}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} {\bf M\-E\-M\-S\-P\-A\-C\-E} int t\-\_\-vsnprintf (
+)}}\label{printf_8h_a81b5dc7281a404cfc4c8ee6e3da4d8da}
+
+
+float to A\-S\-C\-I\-I 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em x} & value \\
+\hline
+\mbox{\tt in}  & {\em str} & converted string \\
+\hline
+\mbox{\tt in}  & {\em prec} & digits after decimal place \\
+\hline
+\mbox{\tt in}  & {\em sign} & sign \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+size of string 
+\end{DoxyReturn}
+
+
+Definition at line 382 of file printf.\-c.
+
+
+
+Referenced by \-\_\-printf\-\_\-fn().
+
+\hypertarget{printf_8h_a93b64183a7db6800f8d49160351dbe3a}{\index{printf.\-h@{printf.\-h}!t\-\_\-ftoa@{t\-\_\-ftoa}}
+\index{t\-\_\-ftoa@{t\-\_\-ftoa}!printf.h@{printf.\-h}}
+\subsubsection[{t\-\_\-ftoa}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int t\-\_\-ftoa (
 \begin{DoxyParamCaption}
-\item[{char $\ast$}]{buffer, }
-\item[{int}]{len, }
-\item[{const char $\ast$}]{fmt, }
+\item[{double}]{val, }
+\item[{char $\ast$}]{str, }
+\item[{int}]{intprec, }
+\item[{int}]{prec, }
+\item[{int}]{sign}
+\end{DoxyParamCaption}
+)}}\label{printf_8h_a93b64183a7db6800f8d49160351dbe3a}
+
+
+float to A\-S\-C\-I\-I 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em val} & value \\
+\hline
+\mbox{\tt in}  & {\em str} & converted string \\
+\hline
+\mbox{\tt in}  & {\em intprec} & integer precision \\
+\hline
+\mbox{\tt in}  & {\em prec} & precision \\
+\hline
+\mbox{\tt in}  & {\em sign} & sign \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+size of string 
+\end{DoxyReturn}
+
+
+Definition at line 276 of file printf.\-c.
+
+
+
+Referenced by \-\_\-printf\-\_\-fn().
+
+\hypertarget{printf_8h_ae517abe6b3eca804cfda72648f15be21}{\index{printf.\-h@{printf.\-h}!t\-\_\-iexp@{t\-\_\-iexp}}
+\index{t\-\_\-iexp@{t\-\_\-iexp}!printf.h@{printf.\-h}}
+\subsubsection[{t\-\_\-iexp}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf M\-E\-M\-S\-P\-A\-C\-E} double t\-\_\-iexp (
+\begin{DoxyParamCaption}
+\item[{double}]{num, }
+\item[{int}]{exp}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{printf_8h_ae517abe6b3eca804cfda72648f15be21}
+\hypertarget{printf_8h_a2f4b30f6ffa8d7b04ede343a1bfdcbf5}{\index{printf.\-h@{printf.\-h}!t\-\_\-itoa@{t\-\_\-itoa}}
+\index{t\-\_\-itoa@{t\-\_\-itoa}!printf.h@{printf.\-h}}
+\subsubsection[{t\-\_\-itoa}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int t\-\_\-itoa (
+\begin{DoxyParamCaption}
+\item[{long}]{num, }
+\item[{{\bf uint8\-\_\-t} $\ast$}]{str, }
+\item[{int}]{max, }
+\item[{int}]{prec, }
+\item[{int}]{sign}
+\end{DoxyParamCaption}
+)}}\label{printf_8h_a2f4b30f6ffa8d7b04ede343a1bfdcbf5}
+
+
+Convert number to A\-S\-C\-I\-I returns size of string after conversion Note\-: It is allowed to have more digits converted then prec defines Like itoa but can support leading '+/-\// ' or unsigned and zero padding. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em num} & number \\
+\hline
+\mbox{\tt out}  & {\em $\ast$str} & string \\
+\hline
+\mbox{\tt in}  & {\em max} & maximum length or string \\
+\hline
+\mbox{\tt in}  & {\em prec} & minumum number of digits, 0 padded if needed (can be zero) \\
+\hline
+\mbox{\tt in}  & {\em sign} & 2\-: -\/ or +, 1\-: -\/, 0\-: unsigned N\-O\-T counted as part of prec length (just like printf) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+long value 
+\end{DoxyReturn}
+
+
+Definition at line 61 of file printf.\-c.
+
+
+
+Referenced by \-\_\-printf\-\_\-fn(), and t\-\_\-ftoa().
+
+\hypertarget{printf_8h_a39d7df31096f07eba5176fad5a2337f4}{\index{printf.\-h@{printf.\-h}!t\-\_\-ntoa@{t\-\_\-ntoa}}
+\index{t\-\_\-ntoa@{t\-\_\-ntoa}!printf.h@{printf.\-h}}
+\subsubsection[{t\-\_\-ntoa}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int t\-\_\-ntoa (
+\begin{DoxyParamCaption}
+\item[{unsigned long}]{num, }
+\item[{{\bf uint8\-\_\-t} $\ast$}]{str, }
+\item[{int}]{max, }
+\item[{int}]{radix, }
+\item[{int}]{prec}
+\end{DoxyParamCaption}
+)}}\label{printf_8h_a39d7df31096f07eba5176fad5a2337f4}
+
+
+Convert number to A\-S\-C\-I\-I Like itoa but can support leading '+/-\// ' or unsigned and zero padding Note\-: It is allowed to have more digits converted then prec defines. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em num} & number \\
+\hline
+\mbox{\tt out}  & {\em $\ast$str} & string \\
+\hline
+\mbox{\tt in}  & {\em max} & maximum length or string \\
+\hline
+\mbox{\tt in}  & {\em radix} & Radix may only be 2,8,16 \\
+\hline
+\mbox{\tt in}  & {\em prec} & minumum number of digits, zero padded if needed N\-O\-T counted as part of prec length (just like printf) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns size of string 
+\end{DoxyReturn}
+
+
+Definition at line 138 of file printf.\-c.
+
+
+
+Referenced by \-\_\-printf\-\_\-fn().
+
+\hypertarget{printf_8h_af738e7ee5c3c5f91edf0f5baa51bb151}{\index{printf.\-h@{printf.\-h}!t\-\_\-scale10@{t\-\_\-scale10}}
+\index{t\-\_\-scale10@{t\-\_\-scale10}!printf.h@{printf.\-h}}
+\subsubsection[{t\-\_\-scale10}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf M\-E\-M\-S\-P\-A\-C\-E} double t\-\_\-scale10 (
+\begin{DoxyParamCaption}
+\item[{double}]{num, }
+\item[{int $\ast$}]{exp}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{printf_8h_af738e7ee5c3c5f91edf0f5baa51bb151}
+\hypertarget{printf_8h_a7a6349b4ca3388a0cb82fc3d1d85a6b5}{\index{printf.\-h@{printf.\-h}!vsnprintf@{vsnprintf}}
+\index{vsnprintf@{vsnprintf}!printf.h@{printf.\-h}}
+\subsubsection[{vsnprintf}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int vsnprintf (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str, }
+\item[{size\-\_\-t}]{size, }
+\item[{const char $\ast$}]{format, }
 \item[{va\-\_\-list}]{va}
 \end{DoxyParamCaption}
-)}}\label{printf_8h_ab55d08e532e051525bf0d72a409abdb8}
+)}}\label{printf_8h_a7a6349b4ca3388a0cb82fc3d1d85a6b5}
 
 
 vsnprintf function 
@@ -223,24 +349,17 @@ vsnprintf function
 \hline
 \mbox{\tt in}  & {\em fmt} & printf forat string \\
 \hline
-\mbox{\tt in}  & {\em va} & va\-\_\-list arguments \\
+\mbox{\tt in}  & {\em va} & va\-\_\-list list of arguments \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-size of string 
+string size 
 \end{DoxyReturn}
 
 
-Definition at line 650 of file printf.\-c.
+Definition at line 818 of file printf.\-c.
 
 
 
-Referenced by t\-\_\-snprintf(), tft\-\_\-printf(), and uart0\-\_\-printf().
+Referenced by html\-\_\-msg(), and snprintf().
 
-\hypertarget{printf_8h_afc4946c8d5d05c9832e14c6f601f5074}{\index{printf.\-h@{printf.\-h}!tests@{tests}}
-\index{tests@{tests}!printf.h@{printf.\-h}}
-\subsubsection[{tests}]{\setlength{\rightskip}{0pt plus 5cm}void tests (
-\begin{DoxyParamCaption}
-\item[{void}]{}
-\end{DoxyParamCaption}
-)}}\label{printf_8h_afc4946c8d5d05c9832e14c6f601f5074}

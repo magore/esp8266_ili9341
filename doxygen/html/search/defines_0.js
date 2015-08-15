@@ -37,6 +37,7 @@ var searchData=
   ['_5fsync_5ft',['_SYNC_t',['../ffconf_8h.html#a9a3f0670343e51652dd12b18fa90a9eb',1,'ffconf.h']]],
   ['_5ft',['_T',['../ff_8h.html#ae936e4c15227768f7da4e0951def89c8',1,'ff.h']]],
   ['_5ftext',['_TEXT',['../ff_8h.html#a3232964568d17bb4a1af30f9db826ce2',1,'ff.h']]],
+  ['_5ftft_5fprintf_5fh',['_TFT_PRINTF_H',['../tft__printf_8h.html#a4a813536fc66580588777d68e847bf5d',1,'tft_printf.h']]],
   ['_5fuse_5ferase',['_USE_ERASE',['../ffconf_8h.html#a0e697dc4206d98eac355ae878dcc286e',1,'ffconf.h']]],
   ['_5fuse_5ffastseek',['_USE_FASTSEEK',['../ffconf_8h.html#a85f4bdb33729ebdaaf9edeec948ac0e7',1,'ffconf.h']]],
   ['_5fuse_5fforward',['_USE_FORWARD',['../ffconf_8h.html#ae49b948c9a92ff7082b88bd36f63d988',1,'ffconf.h']]],

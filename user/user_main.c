@@ -55,19 +55,10 @@ window *wintest = &_wintest;
 window _wintestdemo;
 window *wintestdemo = &_wintestdemo;
 
-extern int DEBUG_PRINTF(const char *fmt, ...);
+//extern int DEBUG_PRINTF(const char *fmt, ...);
 void ets_timer_disarm(ETSTimer *ptimer);
 void ets_timer_setfn(ETSTimer *ptimer, ETSTimerFunc *pfunction, void *parg);
 
-/* user/user_main.c */
-MEMSPACE LOCAL void init_done_cb ( void );
-MEMSPACE LOCAL void HighTask ( os_event_t *events );
-MEMSPACE LOCAL void NormalTask ( os_event_t *events );
-MEMSPACE LOCAL void IdleTask ( os_event_t *events );
-MEMSPACE LOCAL void UserTask ( os_event_t *events );
-MEMSPACE LOCAL void sendMsgToUserTask ( void *arg );
-LOCAL void user_task ( void );
-MEMSPACE void user_init ( void );
 
 
 // Display offset
@@ -92,28 +83,6 @@ LOCAL point S;
 LOCAL uint32_t adc_sum = 0;
 LOCAL int adc_count = 0;
 double voltage = 0;
-
-// Delay timer in milliseconds
-#define USER_TASK_DELAY_TIMER     	30
-#define RUN_TASK 			0
-#define UserTaskPrio        USER_TASK_PRIO_0
-#define UserTaskQueueLen  	4
-
-#define HighTaskPrio        USER_TASK_PRIO_MAX
-#define HighTaskQueueLen    1
-
-#define NormalTaskPrio		USER_TASK_PRIO_2
-#define NormalTaskQueueLen	8
-
-#define IdleTaskPrio        USER_TASK_PRIO_0
-#define IdleTaskQueueLen    1
-
-LOCAL os_timer_t UserTimerHandler;
-
-os_event_t	  UserTaskQueue[UserTaskQueueLen];
-os_event_t    HighTaskQueue[HighTaskQueueLen];
-os_event_t    NormalTaskQueue[NormalTaskQueueLen];
-os_event_t    IdleTaskQueue[IdleTaskQueueLen];
 
 int ntp_init = 0;
 void ntp_setup(void)
@@ -169,84 +138,7 @@ void ntp_setup(void)
     }
 }
  
-/**
- @brief Callback for system_init_done_cb()
-  Sends message to run task
- @return void
-*/
-MEMSPACE 
-LOCAL void init_done_cb( void)
-{
-	DEBUG_PRINTF("System init done \r\n");
-}
-
-/**
- @brief High Priority Task Queue
- @param[in] events: event structure
- @return void
-*/
-MEMSPACE 
-LOCAL void HighTask(os_event_t *events)
-{
-}
-
-/**
- @brief Normal Priority Task Queue
- @param[in] events: event structure
- @return void
-*/
-MEMSPACE 
-LOCAL void NormalTask(os_event_t *events)
-{
-}
-
-/**
- @brief Idle Priority Task Queue
- @param[in] events: event structure
- @return void
-*/
-MEMSPACE 
-LOCAL void IdleTask(os_event_t *events)
-{
-//Add task to add IdleTask back to the queue
-	system_os_post(IdleTaskPrio, 0, 0);
-}
-
-
-
-/**
- @brief User Message handler task
-  Runs corrected cube demo from Sem
-  Optionally wireframe Earth viewer
- @param[in] events: event structure
- @return void
-*/
-MEMSPACE 
-LOCAL void UserTask(os_event_t *events)
-{
-	switch(events->sig)
-	{
-		case RUN_TASK: 	
-			user_task(); 
-			break;
-		default: 
-			break;
-	}
-}
-
-
-
-/**
- @brief Message passing function
-  Sends message to run task
- @return void
-*/
-MEMSPACE 
-LOCAL void sendMsgToUserTask(void *arg)
-{
-	system_os_post(USER_TASK_PRIO_0, RUN_TASK, 'a');
-}
-
+// segnal strength update interval
 int signal_loop = 0;
 
 /**
@@ -255,7 +147,7 @@ int signal_loop = 0;
   Optionally wireframe Earh viewer
  @return void
 */
-LOCAL void user_task(void)
+void loop(void)
 {
 	uint32_t time1,time2;
 	uint8_t red, blue,green;
@@ -263,10 +155,7 @@ LOCAL void user_task(void)
 	uint16 system_adc_read(void);
 	extern uint8_t ip_msg[];
 	time_t sec;
-	char buffer[256];
-
-
-	
+	char buffer[260];
 
 #ifdef WIRECUBE
 	V.x = degree;
@@ -275,7 +164,6 @@ LOCAL void user_task(void)
 // Cube points were defined with sides of 1.0 
 // We want a scale of +/- w/2
 	wire_draw(windemo, cube_points, cube_edges, &V, windemo->w/2, windemo->h/2, dscale, 0);
-	//wire_draw(windemo, cube_points, cube_edges, &V, windemo->w/2, windemo->h/2, dscale, 0);
 #endif
 
 #ifdef CIRCLE
@@ -345,7 +233,7 @@ LOCAL void user_task(void)
 	tft_set_font(winstats,0);
 	tft_setpos(winstats,ip_xpos,ip_ypos);
 	tft_printf(winstats,"%-26s\n", ip_msg);
-	if(!signal_loop--)
+	if(signal_loop-- <= 0)
 	{
 		signal_loop = 100;
 		tft_printf(winstats,"CH:%02d, DB:-%02d\n", 
@@ -357,8 +245,6 @@ LOCAL void user_task(void)
 	tft_printf(winstats,"Heap: %d\n", system_get_free_heap_size());
 	tft_printf(winstats,"Iter:% 9ld, %+7.2f\n", count, degree);
 	
-	// NTP state machine
-	ntp_setup();
 
 	// get current time
 	time(&sec);
@@ -366,19 +252,29 @@ LOCAL void user_task(void)
 	tft_printf(winstats,"Volt:%2.2f\n%s\n", (float)voltage, ctime(&sec));
 	
 #ifdef NETWORK_TEST
-	poll_network_message(wintest);
+	servertest_message(wintest);
 #endif
 
+	// NTP state machine
+	ntp_setup();
 // Buffered get line uses interrupts and queues
 	if(uart0_gets(buffer,255))
 	{
+		int flag = 0;
 		DEBUG_PRINTF("Command:%s\n",buffer);
-		if(!fatfs_tests(buffer))
+		if(!flag && user_tests(buffer))
 		{
-			if(!user_tests(buffer))
-			{
-				DEBUG_PRINTF("unknow command: %s\n", buffer);
-			}
+			flag = 1;
+		}
+#ifdef FATFS_TEST
+		if(!flag && fatfs_tests(buffer))
+		{
+			flag = 1;
+		}
+#endif
+		if(!flag)
+		{
+			DEBUG_PRINTF("unknow command: %s\n", buffer);
 		}
 	}
 }
@@ -412,7 +308,7 @@ MEMSPACE
 void test_flashio(window *win)
 {
     uint16_t xpros,ypos;
-    tft_set_font(win,1);
+    tft_set_font(win,0);
     //tft_printf(win, "%x,%x", xxxp[0],xxxp[1]);
     xpos = win->x;
     ypos = win->y;
@@ -433,7 +329,9 @@ void user_help()
 	"setdate YYYY MM DD HH:MM:SS\n"
 	"time\n"
 	);
+#ifdef FATFS_TEST
 	fatfs_help();
+#endif
 }
 
 /// @brief help functions test parser
@@ -480,15 +378,15 @@ int user_tests(char *str)
 }
 
 
+
 /**
  @brief main() Initialize user task
  @return void
 */
 MEMSPACE 
-void user_init(void)
+void setup(void)
 {
 	int i;
-	os_event_t *handlerQueue;
     char time[20];
 	int ret;
 	uint16_t *ptr;
@@ -496,6 +394,13 @@ void user_init(void)
 	uint32_t ID;
 	extern uint16_t tft_ID;
 	double ang;
+	extern web_init();
+
+// CPU
+// 160MHZ
+   REG_SET_BIT(0x3ff00014, BIT(0));
+// 80MHZ
+//   REG_CLR_BIT(0x3ff00014, BIT(0));
 
 	os_delay_us(200000L);	// Power Up dalay - lets power supplies and devices settle
 
@@ -511,17 +416,13 @@ void user_init(void)
 	DEBUG_PRINTF("Timers init...\n");
 	init_timers();
 
+#ifdef FATFS_TEST
 	DEBUG_PRINTF("SD Card init...\n");
 	mmc_init(1);
-
-// CPU
-// 160MHZ
-//  REG_SET_BIT(0x3ff00014, BIT(0));
-// 80MHZ
-//   REG_CLR_BIT(0x3ff00014, BIT(0));
-
+#endif
 
 	DEBUG_PRINTF("Display Init\n");
+
 	// Initialize TFT
 	master = tft_init();
 	ID = tft_ID;
@@ -532,7 +433,7 @@ void user_init(void)
 	tft_window_init(winstats,0,0, master->w * 7 / 10, master->h/2);
 
 	tft_setpos(winstats, 0,0);
-	tft_set_font(winstats,5);
+	tft_set_font(winstats,2);
 	tft_font_var(winstats);
 	tft_setTextColor(winstats, ILI9341_RED,0);
 	tft_printf(winstats, "DISP ID: %04lx\n", ID);
@@ -566,7 +467,7 @@ void user_init(void)
 	tft_window_init(wintest,0,master->h/2, master->w/2, master->h/2);
 	tft_setTextColor(wintest, ILI9341_WHITE,ILI9341_NAVY);
     tft_fillWin(wintest, wintest->bg);
-	tft_set_font(wintest,3);
+	tft_set_font(wintest,1);
 	//tft_font_var(wintest);
 
 	// write some text
@@ -577,7 +478,7 @@ void user_init(void)
 	tft_window_init(wintestdemo,master->w/2,master->h/2,master->w/2, master->h/2);
 	tft_setTextColor(wintestdemo, ILI9341_WHITE,0);
     tft_fillWin(wintestdemo, wintestdemo->bg);
-	tft_set_font(wintestdemo,3);
+	tft_set_font(wintestdemo,1);
 	tft_font_var(wintestdemo);
 
 #if ILI9341_DEBUG & 1
@@ -623,23 +524,161 @@ void user_init(void)
 
 	wdt_reset();
 
-	DEBUG_PRINTF("User Task\n");
-	// Set up a timer to send the message to User Task
-	os_timer_disarm(&UserTimerHandler);
-	os_timer_setfn(&UserTimerHandler,(os_timer_func_t *)sendMsgToUserTask,(void *)0);
-	os_timer_arm(&UserTimerHandler, USER_TASK_DELAY_TIMER, 1);
-	// Setup the user task
-	system_os_task(UserTask, UserTaskPrio, UserTaskQueue, UserTaskQueueLen);
+	DEBUG_PRINTF("Setup Tasks\n");
+
 
 #ifdef TELNET_SERIAL
 	DEBUG_PRINTF("Setup Network Serial Bridge\n");
 	bridge_task_init(23);
 #endif
 
+	setup_networking();
+
 #ifdef NETWORK_TEST
 	DEBUG_PRINTF("Setup Network TFT DIsplay Client\n");
-	setup_networking(TCP_PORT);
+	servertest_setup(TCP_PORT);
 #endif
+
+#ifdef WEBSERVER
+	DEBUG_PRINTF("Setup Network WEB SERVER\n");
+	web_init(80);
+#endif
+
+    DEBUG_PRINTF("Heap Size(%d) bytes\n" , system_get_free_heap_size());
+
+
+}
+
+
+// ===========================================================
+#ifndef YIELD_TASK
+
+/* user/user_main.c */
+MEMSPACE LOCAL void init_done_cb ( void );
+MEMSPACE LOCAL void HighTask ( os_event_t *events );
+MEMSPACE LOCAL void NormalTask ( os_event_t *events );
+MEMSPACE LOCAL void IdleTask ( os_event_t *events );
+MEMSPACE LOCAL void UserTask ( os_event_t *events );
+MEMSPACE LOCAL void sendMsgToUserTask ( void *arg );
+LOCAL void loop( void );
+MEMSPACE void user_init ( void );
+
+#define HighTaskPrio        USER_TASK_PRIO_MAX
+#define HighTaskQueueLen    1
+
+#define NormalTaskPrio		USER_TASK_PRIO_2
+#define NormalTaskQueueLen	8
+
+#define IdleTaskPrio        USER_TASK_PRIO_0
+#define IdleTaskQueueLen    1
+
+LOCAL os_timer_t UserTimerHandler;
+
+os_event_t	  UserTaskQueue[UserTaskQueueLen];
+os_event_t    HighTaskQueue[HighTaskQueueLen];
+os_event_t    NormalTaskQueue[NormalTaskQueueLen];
+os_event_t    IdleTaskQueue[IdleTaskQueueLen];
+
+/**
+ @brief High Priority Task Queue
+ @param[in] events: event structure
+ @return void
+*/
+MEMSPACE 
+LOCAL void HighTask(os_event_t *events)
+{
+}
+
+/**
+ @brief Normal Priority Task Queue
+ @param[in] events: event structure
+ @return void
+*/
+MEMSPACE 
+LOCAL void NormalTask(os_event_t *events)
+{
+}
+
+/**
+ @brief Idle Priority Task Queue
+ @param[in] events: event structure
+ @return void
+*/
+MEMSPACE 
+LOCAL void IdleTask(os_event_t *events)
+{
+//Add task to add IdleTask back to the queue
+	system_os_post(IdleTaskPrio, 0, 0);
+}
+
+
+// ===========================================================
+
+// ===========================================================
+// Delay timer in milliseconds
+#define USER_TASK_DELAY_TIMER     	30
+#define RUN_TASK 			0
+#define UserTaskPrio        USER_TASK_PRIO_0
+#define UserTaskQueueLen  	4
+
+
+/**
+ @brief Callback for system_init_done_cb()
+  Sends message to run task
+ @return void
+*/
+MEMSPACE 
+LOCAL void init_done_cb( void)
+{
+	DEBUG_PRINTF("System init done \r\n");
+	// disable os_printf at this time
+	system_set_os_print(0);
+}
+
+
+/**
+ @brief User Message handler task
+  Runs corrected cube demo from Sem
+  Optionally wireframe Earth viewer
+ @param[in] events: event structure
+ @return void
+*/
+MEMSPACE 
+LOCAL void UserTask(os_event_t *events)
+{
+	switch(events->sig)
+	{
+		case RUN_TASK: 	
+			loop(); 
+			break;
+		default: 
+			break;
+	}
+}
+
+/**
+ @brief Message passing function
+  Sends message to run task
+ @return void
+*/
+MEMSPACE 
+LOCAL void sendMsgToUserTask(void *arg)
+{
+	system_os_post(USER_TASK_PRIO_0, RUN_TASK, 'a');
+}
+
+
+void user_init(void)
+{
+
+	setup();
+
+	// Set up a timer to send the message to User Task
+	os_timer_disarm(&UserTimerHandler);
+	os_timer_setfn(&UserTimerHandler,(os_timer_func_t *)sendMsgToUserTask,(void *)0);
+	os_timer_arm(&UserTimerHandler, USER_TASK_DELAY_TIMER, 1);
+	// Setup the user task
+	system_os_task(UserTask, UserTaskPrio, UserTaskQueue, UserTaskQueueLen);
 
 #if 0
 	// Misc Task init - testing only
@@ -648,11 +687,9 @@ void user_init(void)
 	system_os_task(IdleTask, IdleTaskPrio, IdleTaskQueue, IdleTaskQueueLen);
 	system_os_post(IdleTaskPrio, 0, 0);
 #endif
-	DEBUG_PRINTF("Done Setup\n");
-    DEBUG_PRINTF("Heap Size(%d) bytes\n" , system_get_free_heap_size());
+	DEBUG_PRINTF("User Init Done!\n");
 
-	// disable os_printf at this time
-	system_set_os_print(0);
 
     system_init_done_cb(init_done_cb);
 }
+#endif

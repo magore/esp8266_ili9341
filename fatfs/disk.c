@@ -383,7 +383,8 @@ void fatfs_filinfo_list(FILINFO *info)
         info->fsize, &(info->fname[0]));
 
 #if _USE_LFN
-    DEBUG_PRINTF("  %s", info->lfname);
+	if(info->lfname)
+		DEBUG_PRINTF("  %s", info->lfname);
 #endif
 
     DEBUG_PRINTF("\n");

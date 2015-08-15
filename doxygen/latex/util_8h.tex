@@ -16,6 +16,10 @@ Flash read and bit utilities.
 \#define \hyperlink{util_8h_a8c5ff70b6b28cd0157c50a22406f92c4}{S\-I\-G\-N}(x)~(((x) == 0) ? 0 \-: ((x) $>$ 0) ? 1 \-: -\/1)
 \item 
 \#define \hyperlink{util_8h_aacc3ee1a7f283f8ef65cea31f4436a95}{M\-A\-X}(x, y)~(((x) $>$ (y)) ? x \-: y)
+\item 
+\#define \hyperlink{util_8h_a1a9b6f40de4cd7ffb57dd5abf8ec1f03}{S\-P\-A\-C\-E\-S}~\char`\"{} \textbackslash{}t\textbackslash{}r\char`\"{}
+\item 
+\#define \hyperlink{util_8h_a333f3ba393ec4f2077573d48bf133c7b}{S\-P\-A\-C\-E\-S\-N\-L}~\char`\"{} \textbackslash{}t\textbackslash{}n\textbackslash{}r\char`\"{}
 \end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
@@ -63,7 +67,33 @@ int \hyperlink{util_8h_aa5ed287545d9d0d4361d2bd1c6ecc69d}{bittestxy} (unsigned c
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{util_8h_ae9142769a957bcb8c0fad1934576f576}{token} (char $\ast$str, char $\ast$pat)
 \begin{DoxyCompactList}\small\item\em Search for token in a string matching user pattern. \end{DoxyCompactList}\item 
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} \hyperlink{util_8h_a8ebead37e3b32237367ee7951e4bf7b9}{hexd} (char c)
-\begin{DoxyCompactList}\small\item\em Convert Character into H\-E\-X digit. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Convert Character into H\-E\-X digit. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{util_8h_a0a3c929ebadee8388452f8c3809fe744}{isupper} (int c)
+\begin{DoxyCompactList}\small\item\em Is a character upper case. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{util_8h_a7f14a6a87f41f7ec8872676739c9ec0e}{islower} (int c)
+\begin{DoxyCompactList}\small\item\em Is a character lower case. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{util_8h_a9c58294d3c75c5b4e02e2a023171e2e5}{tolower} (int c)
+\begin{DoxyCompactList}\small\item\em Convert character to lower case, only if it is upper case. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{util_8h_a7ca70348e7e0ed7f44b6e580fb548bce}{toupper} (int c)
+\begin{DoxyCompactList}\small\item\em Convert character to upper case, only if it is lower case. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} size\-\_\-t \hyperlink{util_8h_ae1523394a394cbb226b2f7287e3e3741}{strlen} (const char $\ast$str)
+\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{util_8h_afe1fe8029f752b2943bcfaec34e0d418}{strcmp} (const char $\ast$str, const char $\ast$pat)
+\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{util_8h_a5d8aef92a0c6db9d00e9efdb56e6d5ad}{strncmp} (const char $\ast$str, const char $\ast$pat, size\-\_\-t len)
+\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{util_8h_abb79dc4b1a234ec7d781fd4b8e91b9b5}{strcasecmp} (const char $\ast$str, const char $\ast$pat)
+\begin{DoxyCompactList}\small\item\em Compare two strings without case. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{util_8h_a814a8d3d0f0ebaa44c61f172fa41d821}{strncasecmp} (const char $\ast$str, const char $\ast$pat, size\-\_\-t len)
+\begin{DoxyCompactList}\small\item\em Compare two strings without case maximum len bytes in size. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{util_8h_a9fb9c5c9b25cdf504152f7610f0d118c}{M\-A\-T\-C\-H} (char $\ast$str, char $\ast$pat)
+\begin{DoxyCompactList}\small\item\em Compare two strings. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{util_8h_a158b18efacfbaf45bf46e03f355cf101}{M\-A\-T\-C\-H\-I} (char $\ast$str, char $\ast$pat)
+\begin{DoxyCompactList}\small\item\em Compare two strings without case. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{util_8h_ac85ba7d5161939102f1daf99dcae85f0}{M\-A\-T\-C\-H\-\_\-\-L\-E\-N} (char $\ast$str, char $\ast$pat)
+\begin{DoxyCompactList}\small\item\em Compare two strings limted to length of pattern. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{util_8h_ab012fa46a47fa2430d6ebd25ed38c59e}{M\-A\-T\-C\-H\-I\-\_\-\-L\-E\-N} (char $\ast$str, char $\ast$pat)
+\begin{DoxyCompactList}\small\item\em Compare two strings without case limted to length of pattern. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -121,6 +151,20 @@ Definition at line 30 of file util.\-h.
 
 
 Referenced by t\-\_\-sscanf().
+
+\hypertarget{util_8h_a1a9b6f40de4cd7ffb57dd5abf8ec1f03}{\index{util.\-h@{util.\-h}!S\-P\-A\-C\-E\-S@{S\-P\-A\-C\-E\-S}}
+\index{S\-P\-A\-C\-E\-S@{S\-P\-A\-C\-E\-S}!util.h@{util.\-h}}
+\subsubsection[{S\-P\-A\-C\-E\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-P\-A\-C\-E\-S~\char`\"{} \textbackslash{}t\textbackslash{}r\char`\"{}}}\label{util_8h_a1a9b6f40de4cd7ffb57dd5abf8ec1f03}
+
+
+Definition at line 33 of file util.\-h.
+
+\hypertarget{util_8h_a333f3ba393ec4f2077573d48bf133c7b}{\index{util.\-h@{util.\-h}!S\-P\-A\-C\-E\-S\-N\-L@{S\-P\-A\-C\-E\-S\-N\-L}}
+\index{S\-P\-A\-C\-E\-S\-N\-L@{S\-P\-A\-C\-E\-S\-N\-L}!util.h@{util.\-h}}
+\subsubsection[{S\-P\-A\-C\-E\-S\-N\-L}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-P\-A\-C\-E\-S\-N\-L~\char`\"{} \textbackslash{}t\textbackslash{}n\textbackslash{}r\char`\"{}}}\label{util_8h_a333f3ba393ec4f2077573d48bf133c7b}
+
+
+Definition at line 34 of file util.\-h.
 
 \hypertarget{util_8h_aac9153aee4bdb92701df902e06a74eb3}{\index{util.\-h@{util.\-h}!S\-W\-A\-P@{S\-W\-A\-P}}
 \index{S\-W\-A\-P@{S\-W\-A\-P}!util.h@{util.\-h}}
@@ -252,7 +296,7 @@ Definition at line 213 of file util.\-c.
 
 
 
-Referenced by db\-\_\-calloc(), escape(), fatfs\-\_\-alloc\-\_\-finfo(), fatfs\-\_\-cat(), fatfs\-\_\-copy(), fdevopen(), new\-\_\-file\-\_\-descriptor(), queue\-\_\-new(), stralloc(), strnalloc(), and uart0\-\_\-gets\-\_\-init().
+Referenced by db\-\_\-calloc(), escape(), fatfs\-\_\-alloc\-\_\-finfo(), fatfs\-\_\-cat(), fatfs\-\_\-copy(), fdevopen(), html\-\_\-msg(), main(), new\-\_\-file\-\_\-descriptor(), queue\-\_\-new(), rwbuf\-\_\-create(), stralloc(), strnalloc(), and uart0\-\_\-gets\-\_\-init().
 
 \hypertarget{util_8h_a9a70a218c9d4bae2e51bda4d7219712f}{\index{util.\-h@{util.\-h}!cpy\-\_\-flash@{cpy\-\_\-flash}}
 \index{cpy\-\_\-flash@{cpy\-\_\-flash}!util.h@{util.\-h}}
@@ -312,7 +356,7 @@ Definition at line 201 of file util.\-c.
 
 
 
-Referenced by db\-\_\-free(), fatfs\-\_\-alloc\-\_\-finfo(), fatfs\-\_\-cat(), fatfs\-\_\-copy(), fatfs\-\_\-free\-\_\-filinfo(), ff\-\_\-memfree(), free\-\_\-file\-\_\-descriptor(), new\-\_\-file\-\_\-descriptor(), queue\-\_\-del(), queue\-\_\-new(), queue\-\_\-push\-\_\-buffer(), rx\-\_\-fifo\-\_\-free(), and tx\-\_\-fifo\-\_\-free().
+Referenced by db\-\_\-free(), fatfs\-\_\-alloc\-\_\-finfo(), fatfs\-\_\-cat(), fatfs\-\_\-copy(), fatfs\-\_\-free\-\_\-filinfo(), ff\-\_\-memfree(), free\-\_\-file\-\_\-descriptor(), html\-\_\-msg(), main(), new\-\_\-file\-\_\-descriptor(), queue\-\_\-del(), queue\-\_\-new(), queue\-\_\-push\-\_\-buffer(), rwbuf\-\_\-delete(), rx\-\_\-fifo\-\_\-free(), and tx\-\_\-fifo\-\_\-free().
 
 \hypertarget{util_8h_a9387f7db4933b1bafd14bddad8e8c9c8}{\index{util.\-h@{util.\-h}!get\-\_\-token@{get\-\_\-token}}
 \index{get\-\_\-token@{get\-\_\-token}!util.h@{util.\-h}}
@@ -390,6 +434,64 @@ H\-E\-X digit \mbox{[}0..F\mbox{]} on success.
 
 Definition at line 459 of file util.\-c.
 
+
+
+Referenced by process\-\_\-args().
+
+\hypertarget{util_8h_a7f14a6a87f41f7ec8872676739c9ec0e}{\index{util.\-h@{util.\-h}!islower@{islower}}
+\index{islower@{islower}!util.h@{util.\-h}}
+\subsubsection[{islower}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int islower (
+\begin{DoxyParamCaption}
+\item[{int}]{c}
+\end{DoxyParamCaption}
+)}}\label{util_8h_a7f14a6a87f41f7ec8872676739c9ec0e}
+
+
+Is a character lower case. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & character.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 of lower case, else 0 
+\end{DoxyReturn}
+
+
+Definition at line 488 of file util.\-c.
+
+
+
+Referenced by toupper().
+
+\hypertarget{util_8h_a0a3c929ebadee8388452f8c3809fe744}{\index{util.\-h@{util.\-h}!isupper@{isupper}}
+\index{isupper@{isupper}!util.h@{util.\-h}}
+\subsubsection[{isupper}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int isupper (
+\begin{DoxyParamCaption}
+\item[{int}]{c}
+\end{DoxyParamCaption}
+)}}\label{util_8h_a0a3c929ebadee8388452f8c3809fe744}
+
+
+Is a character upper case. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & character.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 of upper case, else 0 
+\end{DoxyReturn}
+
+
+Definition at line 476 of file util.\-c.
+
+
+
+Referenced by tolower().
+
 \hypertarget{util_8h_a22b308551dea873face80619301d5618}{\index{util.\-h@{util.\-h}!malloc@{malloc}}
 \index{malloc@{malloc}!util.h@{util.\-h}}
 \subsubsection[{malloc}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void$\ast$ malloc (
@@ -415,7 +517,133 @@ Definition at line 224 of file util.\-c.
 
 
 
-Referenced by bridge\-\_\-task\-\_\-init(), and ff\-\_\-memalloc().
+Referenced by ff\-\_\-memalloc().
+
+\hypertarget{util_8h_a9fb9c5c9b25cdf504152f7610f0d118c}{\index{util.\-h@{util.\-h}!M\-A\-T\-C\-H@{M\-A\-T\-C\-H}}
+\index{M\-A\-T\-C\-H@{M\-A\-T\-C\-H}!util.h@{util.\-h}}
+\subsubsection[{M\-A\-T\-C\-H}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int M\-A\-T\-C\-H (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str, }
+\item[{char $\ast$}]{pat}
+\end{DoxyParamCaption}
+)}}\label{util_8h_a9fb9c5c9b25cdf504152f7610f0d118c}
+
+
+Compare two strings. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & string to match. \\
+\hline
+\mbox{\tt in}  & {\em pat} & pattern to compare.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string lenth on match. 
+
+0 on no match. 
+\end{DoxyReturn}
+
+
+Definition at line 627 of file util.\-c.
+
+\hypertarget{util_8h_ac85ba7d5161939102f1daf99dcae85f0}{\index{util.\-h@{util.\-h}!M\-A\-T\-C\-H\-\_\-\-L\-E\-N@{M\-A\-T\-C\-H\-\_\-\-L\-E\-N}}
+\index{M\-A\-T\-C\-H\-\_\-\-L\-E\-N@{M\-A\-T\-C\-H\-\_\-\-L\-E\-N}!util.h@{util.\-h}}
+\subsubsection[{M\-A\-T\-C\-H\-\_\-\-L\-E\-N}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int M\-A\-T\-C\-H\-\_\-\-L\-E\-N (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str, }
+\item[{char $\ast$}]{pat}
+\end{DoxyParamCaption}
+)}}\label{util_8h_ac85ba7d5161939102f1daf99dcae85f0}
+
+
+Compare two strings limted to length of pattern. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & string to match. \\
+\hline
+\mbox{\tt in}  & {\em pat} & pattern to compare.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string lenth on match. 
+
+0 on no match. 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+Matches sub strings so be caeful. 
+\end{DoxyWarning}
+
+
+Definition at line 663 of file util.\-c.
+
+
+
+Referenced by rewrite\-\_\-html\-\_\-token().
+
+\hypertarget{util_8h_a158b18efacfbaf45bf46e03f355cf101}{\index{util.\-h@{util.\-h}!M\-A\-T\-C\-H\-I@{M\-A\-T\-C\-H\-I}}
+\index{M\-A\-T\-C\-H\-I@{M\-A\-T\-C\-H\-I}!util.h@{util.\-h}}
+\subsubsection[{M\-A\-T\-C\-H\-I}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int M\-A\-T\-C\-H\-I (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str, }
+\item[{char $\ast$}]{pat}
+\end{DoxyParamCaption}
+)}}\label{util_8h_a158b18efacfbaf45bf46e03f355cf101}
+
+
+Compare two strings without case. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & string to match. \\
+\hline
+\mbox{\tt in}  & {\em pat} & pattern to compare.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string lenth on match. 
+
+0 on no match. 
+\end{DoxyReturn}
+
+
+Definition at line 645 of file util.\-c.
+
+\hypertarget{util_8h_ab012fa46a47fa2430d6ebd25ed38c59e}{\index{util.\-h@{util.\-h}!M\-A\-T\-C\-H\-I\-\_\-\-L\-E\-N@{M\-A\-T\-C\-H\-I\-\_\-\-L\-E\-N}}
+\index{M\-A\-T\-C\-H\-I\-\_\-\-L\-E\-N@{M\-A\-T\-C\-H\-I\-\_\-\-L\-E\-N}!util.h@{util.\-h}}
+\subsubsection[{M\-A\-T\-C\-H\-I\-\_\-\-L\-E\-N}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int M\-A\-T\-C\-H\-I\-\_\-\-L\-E\-N (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str, }
+\item[{char $\ast$}]{pat}
+\end{DoxyParamCaption}
+)}}\label{util_8h_ab012fa46a47fa2430d6ebd25ed38c59e}
+
+
+Compare two strings without case limted to length of pattern. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & string to match. \\
+\hline
+\mbox{\tt in}  & {\em pat} & pattern to compare.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string lenth on match. 
+
+0 on no match. 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+Matches sub strings so be caeful. 
+\end{DoxyWarning}
+
+
+Definition at line 689 of file util.\-c.
+
+
+
+Referenced by match\-\_\-headers().
 
 \hypertarget{util_8h_a205ab859e76086c5239a49effa3281dd}{\index{util.\-h@{util.\-h}!nextspace@{nextspace}}
 \index{nextspace@{nextspace}!util.h@{util.\-h}}
@@ -442,7 +670,7 @@ Definition at line 254 of file util.\-c.
 
 
 
-Referenced by fatfs\-\_\-tests().
+Referenced by fatfs\-\_\-tests(), and parse\-\_\-http\-\_\-request().
 
 \hypertarget{util_8h_a092855859eb7ea714f2ab3eee711ddc4}{\index{util.\-h@{util.\-h}!read\-\_\-flash16@{read\-\_\-flash16}}
 \index{read\-\_\-flash16@{read\-\_\-flash16}!util.h@{util.\-h}}
@@ -571,7 +799,7 @@ Definition at line 180 of file util.\-c.
 
 
 
-Referenced by bridge\-\_\-task\-\_\-init(), and uart0\-\_\-gets\-\_\-init().
+Referenced by uart0\-\_\-gets\-\_\-init().
 
 \hypertarget{util_8h_aae86b90fc6ccc0c432de5c492cdcbaba}{\index{util.\-h@{util.\-h}!skipchars@{skipchars}}
 \index{skipchars@{skipchars}!util.h@{util.\-h}}
@@ -624,7 +852,7 @@ Definition at line 237 of file util.\-c.
 
 
 
-Referenced by fatfs\-\_\-tests(), get\-\_\-token(), and user\-\_\-tests().
+Referenced by fatfs\-\_\-tests(), get\-\_\-token(), match\-\_\-headers(), parse\-\_\-http\-\_\-request(), process\-\_\-args(), and user\-\_\-tests().
 
 \hypertarget{util_8h_a354472f280e9fe08820d6f32e0feddae}{\index{util.\-h@{util.\-h}!stralloc@{stralloc}}
 \index{stralloc@{stralloc}!util.h@{util.\-h}}
@@ -666,6 +894,59 @@ Allocate space for string.
 
 Definition at line 353 of file util.\-c.
 
+\hypertarget{util_8h_abb79dc4b1a234ec7d781fd4b8e91b9b5}{\index{util.\-h@{util.\-h}!strcasecmp@{strcasecmp}}
+\index{strcasecmp@{strcasecmp}!util.h@{util.\-h}}
+\subsubsection[{strcasecmp}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int strcasecmp (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{str, }
+\item[{const char $\ast$}]{pat}
+\end{DoxyParamCaption}
+)}}\label{util_8h_abb79dc4b1a234ec7d781fd4b8e91b9b5}
+
+
+Compare two strings without case. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & string to match. \\
+\hline
+\mbox{\tt in}  & {\em pat} & pattern to compare.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on match, $<$ 0 implies str sorts before pat, $>$ 0 implies str sorts after pat 
+\end{DoxyReturn}
+
+
+Definition at line 584 of file util.\-c.
+
+
+
+Referenced by file\-\_\-type(), http\-\_\-value(), and M\-A\-T\-C\-H\-I().
+
+\hypertarget{util_8h_afe1fe8029f752b2943bcfaec34e0d418}{\index{util.\-h@{util.\-h}!strcmp@{strcmp}}
+\index{strcmp@{strcmp}!util.h@{util.\-h}}
+\subsubsection[{strcmp}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int strcmp (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{str, }
+\item[{const char $\ast$}]{pat}
+\end{DoxyParamCaption}
+)}}\label{util_8h_afe1fe8029f752b2943bcfaec34e0d418}
+
+
+Referenced by Find\-Font\-Name(), main(), M\-A\-T\-C\-H(), and process\-\_\-requests().
+
+\hypertarget{util_8h_ae1523394a394cbb226b2f7287e3e3741}{\index{util.\-h@{util.\-h}!strlen@{strlen}}
+\index{strlen@{strlen}!util.h@{util.\-h}}
+\subsubsection[{strlen}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} size\-\_\-t strlen (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{str}
+\end{DoxyParamCaption}
+)}}\label{util_8h_ae1523394a394cbb226b2f7287e3e3741}
+
+
+Referenced by \-\_\-printf\-\_\-fn(), arg\-\_\-name(), arg\-\_\-value(), escape(), fatfs\-\_\-create(), fatfs\-\_\-scan\-\_\-files(), get\-\_\-date(), html\-\_\-msg(), main(), M\-A\-T\-C\-H(), M\-A\-T\-C\-H\-\_\-\-L\-E\-N(), match\-\_\-token(), M\-A\-T\-C\-H\-I(), M\-A\-T\-C\-H\-I\-\_\-\-L\-E\-N(), mctime(), next\-\_\-arg(), parse\-\_\-http\-\_\-request(), read\-\_\-html\-\_\-token(), Read\-Bdf(), reverse(), rewrite\-\_\-html\-\_\-token(), send\-\_\-message(), stralloc(), t\-\_\-ftoa(), t\-\_\-itoa(), t\-\_\-ntoa(), token(), trim\-\_\-tail(), and vsnprintf().
+
 \hypertarget{util_8h_a11f9265694fbed4de67d91c6959a0d18}{\index{util.\-h@{util.\-h}!strnalloc@{strnalloc}}
 \index{strnalloc@{strnalloc}!util.h@{util.\-h}}
 \subsubsection[{strnalloc}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} char$\ast$ strnalloc (
@@ -696,6 +977,52 @@ pointer to alocated string.
 
 
 Definition at line 329 of file util.\-c.
+
+\hypertarget{util_8h_a814a8d3d0f0ebaa44c61f172fa41d821}{\index{util.\-h@{util.\-h}!strncasecmp@{strncasecmp}}
+\index{strncasecmp@{strncasecmp}!util.h@{util.\-h}}
+\subsubsection[{strncasecmp}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int strncasecmp (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{str, }
+\item[{const char $\ast$}]{pat, }
+\item[{size\-\_\-t}]{len}
+\end{DoxyParamCaption}
+)}}\label{util_8h_a814a8d3d0f0ebaa44c61f172fa41d821}
+
+
+Compare two strings without case maximum len bytes in size. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & string to match. \\
+\hline
+\mbox{\tt in}  & {\em pat} & pattern to compare. \\
+\hline
+\mbox{\tt in}  & {\em len} & maximum string length for compare \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on match, $<$ 0 implies str sorts before pat, $>$ 0 implies str sorts after pat 
+\end{DoxyReturn}
+
+
+Definition at line 605 of file util.\-c.
+
+
+
+Referenced by M\-A\-T\-C\-H\-I\-\_\-\-L\-E\-N().
+
+\hypertarget{util_8h_a5d8aef92a0c6db9d00e9efdb56e6d5ad}{\index{util.\-h@{util.\-h}!strncmp@{strncmp}}
+\index{strncmp@{strncmp}!util.h@{util.\-h}}
+\subsubsection[{strncmp}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int strncmp (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{str, }
+\item[{const char $\ast$}]{pat, }
+\item[{size\-\_\-t}]{len}
+\end{DoxyParamCaption}
+)}}\label{util_8h_a5d8aef92a0c6db9d00e9efdb56e6d5ad}
+
+
+Referenced by M\-A\-T\-C\-H\-\_\-\-L\-E\-N(), match\-\_\-token(), and token().
 
 \hypertarget{util_8h_ae9142769a957bcb8c0fad1934576f576}{\index{util.\-h@{util.\-h}!token@{token}}
 \index{token@{token}!util.h@{util.\-h}}
@@ -733,6 +1060,56 @@ Definition at line 424 of file util.\-c.
 
 
 Referenced by fatfs\-\_\-tests(), rcvr\-\_\-datablock(), Read\-Bdf(), and user\-\_\-tests().
+
+\hypertarget{util_8h_a9c58294d3c75c5b4e02e2a023171e2e5}{\index{util.\-h@{util.\-h}!tolower@{tolower}}
+\index{tolower@{tolower}!util.h@{util.\-h}}
+\subsubsection[{tolower}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int tolower (
+\begin{DoxyParamCaption}
+\item[{int}]{c}
+\end{DoxyParamCaption}
+)}}\label{util_8h_a9c58294d3c75c5b4e02e2a023171e2e5}
+
+
+Convert character to lower case, only if it is upper case. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & character.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+character or lowercase value or character 
+\end{DoxyReturn}
+
+
+Definition at line 501 of file util.\-c.
+
+\hypertarget{util_8h_a7ca70348e7e0ed7f44b6e580fb548bce}{\index{util.\-h@{util.\-h}!toupper@{toupper}}
+\index{toupper@{toupper}!util.h@{util.\-h}}
+\subsubsection[{toupper}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int toupper (
+\begin{DoxyParamCaption}
+\item[{int}]{c}
+\end{DoxyParamCaption}
+)}}\label{util_8h_a7ca70348e7e0ed7f44b6e580fb548bce}
+
+
+Convert character to upper case, only if it is lower case. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & character.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+character or upper case value or character 
+\end{DoxyReturn}
+
+
+Definition at line 513 of file util.\-c.
+
+
+
+Referenced by Read\-Bdf(), strcasecmp(), and strncasecmp().
 
 \hypertarget{util_8h_a2d7ec9dae4f58c027edbc22118714ba6}{\index{util.\-h@{util.\-h}!trim\-\_\-tail@{trim\-\_\-tail}}
 \index{trim\-\_\-tail@{trim\-\_\-tail}!util.h@{util.\-h}}
@@ -790,5 +1167,5 @@ Definition at line 189 of file util.\-c.
 
 
 
-Referenced by f\-\_\-getfree(), f\-\_\-mkfs(), fatfs\-\_\-scan\-\_\-files(), mmc\-\_\-disk\-\_\-read(), mmc\-\_\-disk\-\_\-write(), mmc\-\_\-power\-\_\-on(), mmc\-\_\-test\-\_\-timeout(), rcvr\-\_\-datablock(), send\-\_\-cmd(), user\-\_\-init(), wire\-\_\-draw(), and xmit\-\_\-datablock().
+Referenced by f\-\_\-getfree(), f\-\_\-mkfs(), fatfs\-\_\-scan\-\_\-files(), mmc\-\_\-power\-\_\-on(), setup(), and wire\-\_\-draw().
 

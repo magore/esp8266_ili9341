@@ -1,7 +1,7 @@
 /**
- @file pr.c
+ @file tft_printf.h
 
- @brief Small printf user function
+ @brief printf wrapper for ili9341 drivers
 
  @par Copyright &copy; 2015 Mike Gore, GPL License
  @par You are free to use this code under the terms of GPL
@@ -23,34 +23,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 
-
-
+#ifndef _TFT_PRINTF_H_
+#define _TFT_PRINTF_H
 #include "user_config.h"
+#include <stdarg.h>
 #include "printf.h"
 
-/// @brief tft_printf function
-/// @param[in] *win: Window Structure
-/// @param[in] fmt: printf forat string
-/// @param[in] ...: vararg list or arguments
-/// @return size of string
-MEMSPACE
-int tft_printf(window *win, const char *fmt, ... )
-{
-	_fontc f;
-	int ret;
-	char *s;
-    char buff[512];
+/* pr.c */
+MEMSPACE int tft_printf ( int size , const char *fmt , ...);
 
-    va_list va;
-    va_start(va, fmt);
-    ret = t_vsnprintf(buff, 510, fmt, va);
-    va_end(va);
-
-	s = buff;
-	while(*s)
-	{
-		tft_putch(win, *s++);
-	}
-}
-
-
+#endif

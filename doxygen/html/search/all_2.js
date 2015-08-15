@@ -54,13 +54,6 @@ var searchData=
   ['bpb_5fsecpertrk',['BPB_SecPerTrk',['../ff_8c.html#ac71bb771432ea532bc47713a028ebd76',1,'ff.c']]],
   ['bpb_5ftotsec16',['BPB_TotSec16',['../ff_8c.html#a4eb540eecde0f2df26fa8c7969341d68',1,'ff.c']]],
   ['bpb_5ftotsec32',['BPB_TotSec32',['../ff_8c.html#a7723a9f0da553e8879d60909d85ccb7b',1,'ff.c']]],
-  ['bridge_2ec',['bridge.c',['../bridge_8c.html',1,'']]],
-  ['bridge_2eh',['bridge.h',['../bridge_8h.html',1,'']]],
-  ['bridge_5ftask',['bridge_task',['../bridge_8c.html#a554a5af189eb93a94b8c2a641f5d62e5',1,'bridge_task(os_event_t *events):&#160;bridge.c'],['../bridge_8h.html#a554a5af189eb93a94b8c2a641f5d62e5',1,'bridge_task(os_event_t *events):&#160;bridge.h']]],
-  ['bridge_5ftask_5fid',['bridge_task_id',['../bridge_8h.html#adf764cbdea00d65edcd07bb9953ad2b7a1704a1ab5240edf7f5177ef1b90bf403',1,'bridge.h']]],
-  ['bridge_5ftask_5finit',['bridge_task_init',['../bridge_8c.html#a3540133200b04f99ab971684b280d8b9',1,'bridge_task_init(int port):&#160;bridge.c'],['../bridge_8h.html#a3540133200b04f99ab971684b280d8b9',1,'bridge_task_init(int port):&#160;bridge.c']]],
-  ['bridge_5ftask_5fqueue',['bridge_task_queue',['../bridge_8c.html#ad261f9ed25a58b55949fac376fd1e0af',1,'bridge_task_queue():&#160;bridge.c'],['../bridge_8h.html#ad261f9ed25a58b55949fac376fd1e0af',1,'bridge_task_queue():&#160;bridge.c']]],
-  ['bridge_5ftask_5fqueue_5flength',['bridge_task_queue_length',['../bridge_8h.html#adf764cbdea00d65edcd07bb9953ad2b7a552c882e309f228ce140280b133abdf2',1,'bridge.h']]],
   ['bs_5f55aa',['BS_55AA',['../ff_8c.html#a74b810b3f3583c1eb54bd4305c0f261a',1,'ff.c']]],
   ['bs_5fbootsig',['BS_BootSig',['../ff_8c.html#a85a92e790602efef4da3a2f141611ce8',1,'ff.c']]],
   ['bs_5fbootsig32',['BS_BootSig32',['../ff_8c.html#a59c4b2f802ab4bc9319e5bd840e615b8',1,'ff.c']]],
@@ -76,8 +69,10 @@ var searchData=
   ['bs_5fvollab32',['BS_VolLab32',['../ff_8c.html#a8241a49bce313184a58617ba1ad9e84c',1,'ff.c']]],
   ['bsetv',['bsetv',['../bdffontutil_8c.html#acaa9ad09e11f90b8cf7a9e37963e4690',1,'bsetv(unsigned char *ptr, int addr):&#160;bdffontutil.c'],['../bdffontutil_8h.html#acaa9ad09e11f90b8cf7a9e37963e4690',1,'bsetv(unsigned char *ptr, int addr):&#160;bdffontutil.c']]],
   ['btestv',['btestv',['../bdffontutil_8c.html#aa30626c7589748b8cea5fee93e17c4cf',1,'btestv(unsigned char *ptr, int addr):&#160;bdffontutil.c'],['../bdffontutil_8h.html#aa30626c7589748b8cea5fee93e17c4cf',1,'btestv(unsigned char *ptr, int addr):&#160;bdffontutil.c']]],
-  ['buf',['buf',['../structqueue__t.html#aaee81421d150a17123a2b858d5b1685d',1,'queue_t::buf()'],['../structputbuff.html#ae623199e5d2851f95050670170f20329',1,'putbuff::buf()'],['../structFIL.html#a7a95fb86588663e48309b5cded7e207b',1,'FIL::buf()'],['../struct____file.html#a3e5a85ae919a90efbb7cb44ccb54fe46',1,'__file::buf()']]],
-  ['buffer_5fsize',['BUFFER_SIZE',['../bridge_8h.html#adf764cbdea00d65edcd07bb9953ad2b7a1a63387ea87dae07937bf38548748733',1,'bridge.h']]],
+  ['buf',['buf',['../structqueue__t.html#aaee81421d150a17123a2b858d5b1685d',1,'queue_t::buf()'],['../structputbuff.html#ae623199e5d2851f95050670170f20329',1,'putbuff::buf()'],['../structFIL.html#a7a95fb86588663e48309b5cded7e207b',1,'FIL::buf()'],['../struct____file.html#a3e5a85ae919a90efbb7cb44ccb54fe46',1,'__file::buf()'],['../structwbuf__t.html#a47331b135529434d81ab0afd37eedefc',1,'wbuf_t::buf()']]],
+  ['buffer',['buffer',['../struct__printf__t.html#ad35884151d0be6667caafad8caacc76f',1,'_printf_t']]],
+  ['buffer_5fsize',['BUFFER_SIZE',['../web_8c.html#a6b20d41d6252e9871430c242cb1a56e7',1,'web.c']]],
+  ['buffsize',['buffsize',['../structwbuf__t.html#ad0589fcdc66cc162d2327faf60a59fe6',1,'wbuf_t']]],
   ['byte',['BYTE',['../integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58',1,'integer.h']]],
-  ['bytes',['bytes',['../unionuint32__t__bytes.html#a50aeebe398ee3b740421f1cc8d8583b8',1,'uint32_t_bytes::bytes()'],['../structqueue__t.html#a58398d4ee60bc90ffba2bc3488fe185b',1,'queue_t::bytes()'],['../struct__font.html#a13b0b0e4e91f4d663ba4c3c11bfbda8a',1,'_font::Bytes()']]]
+  ['bytes',['Bytes',['../struct__font.html#a13b0b0e4e91f4d663ba4c3c11bfbda8a',1,'_font::Bytes()'],['../structqueue__t.html#a58398d4ee60bc90ffba2bc3488fe185b',1,'queue_t::bytes()'],['../unionuint32__t__bytes.html#a50aeebe398ee3b740421f1cc8d8583b8',1,'uint32_t_bytes::bytes()']]]
 ];

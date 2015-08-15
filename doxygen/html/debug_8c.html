@@ -99,12 +99,63 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a3b8293e3d2342c61cf6f1a40509dfd41"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8c.html#a3b8293e3d2342c61cf6f1a40509dfd41">uart0_printf</a> (const char *fmt,...)</td></tr>
-<tr class="memdesc:a3b8293e3d2342c61cf6f1a40509dfd41"><td class="mdescLeft">&#160;</td><td class="mdescRight">debug_printf function  <a href="#a3b8293e3d2342c61cf6f1a40509dfd41">More...</a><br/></td></tr>
-<tr class="separator:a3b8293e3d2342c61cf6f1a40509dfd41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f0e0c76de59f37f7fd820521a21defb"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8c.html#a9f0e0c76de59f37f7fd820521a21defb">_uart0_fn</a> (struct <a class="el" href="struct__printf__t.html">_printf_t</a> *p, char ch)</td></tr>
+<tr class="memdesc:a9f0e0c76de59f37f7fd820521a21defb"><td class="mdescLeft">&#160;</td><td class="mdescRight">_uart0_fn low level function that writes a character with uart0har()  <a href="#a9f0e0c76de59f37f7fd820521a21defb">More...</a><br/></td></tr>
+<tr class="separator:a9f0e0c76de59f37f7fd820521a21defb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4ff4ed4ffc744d909dee04c5787376b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8c.html#ab4ff4ed4ffc744d909dee04c5787376b">uart0_printf</a> (const char *format,...)</td></tr>
+<tr class="memdesc:ab4ff4ed4ffc744d909dee04c5787376b"><td class="mdescLeft">&#160;</td><td class="mdescRight">printf function  <a href="#ab4ff4ed4ffc744d909dee04c5787376b">More...</a><br/></td></tr>
+<tr class="separator:ab4ff4ed4ffc744d909dee04c5787376b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a3b8293e3d2342c61cf6f1a40509dfd41"></a>
+<a class="anchor" id="a9f0e0c76de59f37f7fd820521a21defb"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void _uart0_fn </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="struct__printf__t.html">_printf_t</a> *&#160;</td>
+          <td class="paramname"><em>p</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>ch</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>_uart0_fn low level function that writes a character with uart0har() </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">*p</td><td>structure with pointers to track number of bytes written </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ch</td><td>character to write </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
+<p>Definition at line <a class="el" href="debug_8c_source.html#l00031">31</a> of file <a class="el" href="debug_8c_source.html">debug.c</a>.</p>
+
+<p>Referenced by <a class="el" href="debug_8c_source.html#l00042">uart0_printf()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab4ff4ed4ffc744d909dee04c5787376b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -112,7 +163,7 @@ Functions</h2></td></tr>
           <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int uart0_printf </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>fmt</em>, </td>
+          <td class="paramname"><em>format</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -128,24 +179,24 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>debug_printf function </p>
+<p>printf function </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">fmt</td><td>printf forat string </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">...</td><td>vararg list or arguments </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">va_list</td><td>list of arguments </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>size of string </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>size of printed string </dd></dl>
 
-<p>Definition at line <a class="el" href="debug_8c_source.html#l00032">32</a> of file <a class="el" href="debug_8c_source.html">debug.c</a>.</p>
+<p>Definition at line <a class="el" href="debug_8c_source.html#l00042">42</a> of file <a class="el" href="debug_8c_source.html">debug.c</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jul 20 2015 22:49:41 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Aug 14 2015 22:37:21 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

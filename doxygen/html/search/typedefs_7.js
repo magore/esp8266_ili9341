@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['mode_5ft',['mode_t',['../posix_8h.html#af8f4385bb42836d1e3ad4fea9d71d1b9',1,'posix.h']]]
+  ['long',['LONG',['../integer_8h.html#a2a3e0cda5f1249bef6db47c5eb8e3813',1,'integer.h']]]
 ];

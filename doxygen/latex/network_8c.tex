@@ -6,6 +6,31 @@
 Network test client This code receives a message and displays iit.  
 
 
+{\ttfamily \#include \char`\"{}user\-\_\-config.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}network.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}../../ssid.\-h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{network_8c_a33001f6e7c0326d6a8f20acbc62a1b3a}{wifi\-\_\-event\-\_\-cb} (System\-\_\-\-Event\-\_\-t $\ast$event\-\_\-p)
+\begin{DoxyCompactList}\small\item\em W\-I\-F\-I Event Callback. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{network_8c_ad9b36f95313ac904d2d3ace6f844201b}{setup\-\_\-networking} ()
+\begin{DoxyCompactList}\small\item\em Code fragments if(!wifi\-\_\-station\-\_\-dhcpc\-\_\-stop()) D\-E\-B\-U\-G\-\_\-\-P\-R\-I\-N\-T\-F( \char`\"{}\-E\-R\-R\-O\-R wifi\-\_\-station\-\_\-dhcpc\-\_\-stop() \textbackslash{}n \char`\"{});. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{network_8c_a216a891e9fdcc4083d4fb922eacb63f0}{network\-\_\-init} = 0
+\item 
+\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} \hyperlink{network_8c_ab09a3ef6a7cb9dabda17af1c09d36cc2}{ip\-\_\-msg} \mbox{[}64\mbox{]}
+\item 
+static struct station\-\_\-config \hyperlink{network_8c_a63cab1cdb68d6495494e1967e0f909cf}{Station\-Config}
+\item 
+static struct ip\-\_\-info \hyperlink{network_8c_a1202cd63c360958e6272f9a20fa90f8b}{info}
+\item 
+static \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} \hyperlink{network_8c_ad6ffa7743848d35021d59a06df02d7cb}{macaddr} \mbox{[}6\mbox{]}
+\item 
+static \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} \hyperlink{network_8c_ac7c4860b47674f6bb351f6875e50533f}{received} = 0
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -22,4 +47,125 @@ This software is distributed in the hope that it will be useful, but W\-I\-T\-H\
 You should have received a copy of the G\-N\-U General Public License along with this program. If not, see \href{http://www.gnu.org/licenses/}{\tt http\-://www.\-gnu.\-org/licenses/}. 
 
 Definition in file \hyperlink{network_8c_source}{network.\-c}.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{network_8c_ad9b36f95313ac904d2d3ace6f844201b}{\index{network.\-c@{network.\-c}!setup\-\_\-networking@{setup\-\_\-networking}}
+\index{setup\-\_\-networking@{setup\-\_\-networking}!network.c@{network.\-c}}
+\subsubsection[{setup\-\_\-networking}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void setup\-\_\-networking (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{network_8c_ad9b36f95313ac904d2d3ace6f844201b}
+
+
+Code fragments if(!wifi\-\_\-station\-\_\-dhcpc\-\_\-stop()) D\-E\-B\-U\-G\-\_\-\-P\-R\-I\-N\-T\-F( \char`\"{}\-E\-R\-R\-O\-R wifi\-\_\-station\-\_\-dhcpc\-\_\-stop() \textbackslash{}n \char`\"{});. 
+
+if(!wifi\-\_\-set\-\_\-ip\-\_\-info( S\-T\-A\-T\-I\-O\-N\-\_\-\-I\-F , \&info)) D\-E\-B\-U\-G\-\_\-\-P\-R\-I\-N\-T\-F( \char`\"{}\-E\-R\-R\-O\-R wifi\-\_\-set\-\_\-ip\-\_\-info()\textbackslash{}n\char`\"{});
+
+if(!wifi\-\_\-station\-\_\-connect()) D\-E\-B\-U\-G\-\_\-\-P\-R\-I\-N\-T\-F( \char`\"{}\-E\-R\-R\-O\-R wifi\-\_\-station\-\_\-connect()\textbackslash{}n\char`\"{});
+
+if(!wifi\-\_\-station\-\_\-set\-\_\-auto\-\_\-connect( T\-R\-U\-E) ) D\-E\-B\-U\-G\-\_\-\-P\-R\-I\-N\-T\-F(\char`\"{}\-E\-R\-R\-O\-R wifi\-\_\-station\-\_\-set\-\_\-auto\-\_\-connect(1)\textbackslash{}n\char`\"{}); I\-P4\-\_\-\-A\-D\-D\-R( \& info.\-ip , 192 , 168 , 200 , 123); I\-P4\-\_\-\-A\-D\-D\-R( \& info.\-netmask , 255 , 255 , 255 , 0); I\-P4\-\_\-\-A\-D\-D\-R( \& info.\-gw, 192 , 168 , 200 , 1); if(!wifi\-\_\-set\-\_\-ip\-\_\-info( S\-T\-A\-T\-I\-O\-N\-\_\-\-I\-F , \&info) ) D\-E\-B\-U\-G\-\_\-\-P\-R\-I\-N\-T\-F( \char`\"{}\-E\-R\-R\-O\-R wifi\-\_\-set\-\_\-ip\-\_\-info() \textbackslash{}n \char`\"{}); if(!wifi\-\_\-station\-\_\-set\-\_\-auto\-\_\-connect( T\-R\-U\-E) ) D\-E\-B\-U\-G\-\_\-\-P\-R\-I\-N\-T\-F( \char`\"{}\-E\-R\-R\-O\-R wifi\-\_\-station\-\_\-set\-\_\-auto\-\_\-connect(1) \textbackslash{}n \char`\"{}); Setup Wifi Network Credits\-: ideas borrowed from David Ogilvy(\-Metal\-Phreak) \begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 141 of file network.\-c.
+
+
+
+Referenced by setup().
+
+\hypertarget{network_8c_a33001f6e7c0326d6a8f20acbc62a1b3a}{\index{network.\-c@{network.\-c}!wifi\-\_\-event\-\_\-cb@{wifi\-\_\-event\-\_\-cb}}
+\index{wifi\-\_\-event\-\_\-cb@{wifi\-\_\-event\-\_\-cb}!network.c@{network.\-c}}
+\subsubsection[{wifi\-\_\-event\-\_\-cb}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void wifi\-\_\-event\-\_\-cb (
+\begin{DoxyParamCaption}
+\item[{System\-\_\-\-Event\-\_\-t $\ast$}]{event\-\_\-p}
+\end{DoxyParamCaption}
+)}}\label{network_8c_a33001f6e7c0326d6a8f20acbc62a1b3a}
+
+
+W\-I\-F\-I Event Callback. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$event\-\_\-p} & Wifi event structure This callback status code borrowed from David Ogilvy(\-Metal\-Phreak) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 58 of file network.\-c.
+
+
+
+Referenced by setup\-\_\-networking().
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{network_8c_a1202cd63c360958e6272f9a20fa90f8b}{\index{network.\-c@{network.\-c}!info@{info}}
+\index{info@{info}!network.c@{network.\-c}}
+\subsubsection[{info}]{\setlength{\rightskip}{0pt plus 5cm}struct ip\-\_\-info info\hspace{0.3cm}{\ttfamily [static]}}}\label{network_8c_a1202cd63c360958e6272f9a20fa90f8b}
+
+
+Definition at line 46 of file network.\-c.
+
+
+
+Referenced by fatfs\-\_\-stat(), Free\-Font(), Init\-Fonts(), setup\-\_\-networking(), and stat().
+
+\hypertarget{network_8c_ab09a3ef6a7cb9dabda17af1c09d36cc2}{\index{network.\-c@{network.\-c}!ip\-\_\-msg@{ip\-\_\-msg}}
+\index{ip\-\_\-msg@{ip\-\_\-msg}!network.c@{network.\-c}}
+\subsubsection[{ip\-\_\-msg}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint8\-\_\-t} ip\-\_\-msg\mbox{[}64\mbox{]}}}\label{network_8c_ab09a3ef6a7cb9dabda17af1c09d36cc2}
+
+
+Definition at line 43 of file network.\-c.
+
+
+
+Referenced by loop(), setup\-\_\-networking(), and wifi\-\_\-event\-\_\-cb().
+
+\hypertarget{network_8c_ad6ffa7743848d35021d59a06df02d7cb}{\index{network.\-c@{network.\-c}!macaddr@{macaddr}}
+\index{macaddr@{macaddr}!network.c@{network.\-c}}
+\subsubsection[{macaddr}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint8\-\_\-t} macaddr\mbox{[}6\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}}\label{network_8c_ad6ffa7743848d35021d59a06df02d7cb}
+
+
+Definition at line 47 of file network.\-c.
+
+
+
+Referenced by setup\-\_\-networking().
+
+\hypertarget{network_8c_a216a891e9fdcc4083d4fb922eacb63f0}{\index{network.\-c@{network.\-c}!network\-\_\-init@{network\-\_\-init}}
+\index{network\-\_\-init@{network\-\_\-init}!network.c@{network.\-c}}
+\subsubsection[{network\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}int network\-\_\-init = 0}}\label{network_8c_a216a891e9fdcc4083d4fb922eacb63f0}
+
+
+Definition at line 42 of file network.\-c.
+
+
+
+Referenced by ntp\-\_\-setup(), and wifi\-\_\-event\-\_\-cb().
+
+\hypertarget{network_8c_ac7c4860b47674f6bb351f6875e50533f}{\index{network.\-c@{network.\-c}!received@{received}}
+\index{received@{received}!network.c@{network.\-c}}
+\subsubsection[{received}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint8\-\_\-t} received = 0\hspace{0.3cm}{\ttfamily [static]}}}\label{network_8c_ac7c4860b47674f6bb351f6875e50533f}
+
+
+Definition at line 48 of file network.\-c.
+
+\hypertarget{network_8c_a63cab1cdb68d6495494e1967e0f909cf}{\index{network.\-c@{network.\-c}!Station\-Config@{Station\-Config}}
+\index{Station\-Config@{Station\-Config}!network.c@{network.\-c}}
+\subsubsection[{Station\-Config}]{\setlength{\rightskip}{0pt plus 5cm}struct station\-\_\-config Station\-Config\hspace{0.3cm}{\ttfamily [static]}}}\label{network_8c_a63cab1cdb68d6495494e1967e0f909cf}
+
+
+Definition at line 45 of file network.\-c.
+
+
+
+Referenced by setup\-\_\-networking().
 

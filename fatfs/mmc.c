@@ -102,6 +102,7 @@ void mmc_deselect (void)
 {
     mmc_cs_disable();
     mmc_spi_TX(0xFF);   /*< Dummy clock (force DO hi-z for multiple slave SPI) */
+    mmc_spi_TX(0xFF);   /*< Dummy clock (force DO hi-z for multiple slave SPI) */
 }
 
 
@@ -138,7 +139,7 @@ UINT btr        /*< Byte count (must be multiple of 4) */
 {
     BYTE token;
 
-    mmc_set_ms_timeout(200);
+    mmc_set_ms_timeout(400);
     do                                            /* Wait for data packet in timeout of 200ms */
     {
         token = mmc_spi_TXRX(0xFF);
@@ -148,8 +149,6 @@ UINT btr        /*< Byte count (must be multiple of 4) */
     mmc_spi_RX_buffer(buff, btr); /* Receive the data block into buffer */
     mmc_spi_TX(0xFF);                           /* Discard CRC */
     mmc_spi_TX(0xFF);
-
-wdt_reset();
 
     return 1;                                     /* Return with success */
 }
@@ -177,7 +176,6 @@ BYTE token        /*< Data/Stop token */
 
         mmc_spi_TX(0xFF);                       /* CRC (Dummy) */
         mmc_spi_TX(0xFF);
-wdt_reset();
         resp = mmc_spi_TXRX(0xFF);                /* Reveive data response */
         if ((resp & 0x1F) != 0x05)                /* If not accepted, return with error */
             return 0;
@@ -232,7 +230,6 @@ DWORD arg     /*< Argument */
     do
 	{
 		res = mmc_spi_TXRX(0xFF);
-wdt_reset();
 	}
     while ((res & 0x80) && --n);
 
@@ -273,7 +270,8 @@ BYTE pdrv   /*< Physical drive nmuber (0) */
             {
 /* Wait for leaving idle state (ACMD41 with HCS bit) */
                 while (!mmc_test_timeout() && send_cmd(ACMD41, 1UL << 30))
-                    ;
+				{
+				}
 /* Check CCS bit in the OCR */
                 if (!mmc_test_timeout() && send_cmd(CMD58, 0) == 0)
                 {
@@ -364,9 +362,9 @@ AD_SINGLE_BLOCK */
     {
         do
         {
-            if (!rcvr_datablock(buff, 512)) break;
+            if (!rcvr_datablock(buff, 512)) 
+				break;
             buff += 512;
-wdt_reset();
         } while (--count);
         if (cmd == CMD18) send_cmd(CMD12, 0);     /* STOP_TRANSMISSION */
     }
@@ -412,7 +410,6 @@ UINT count                                        /* Sector count (1..128) */
             {
                 if (!xmit_datablock(buff, 0xFC)) break;
                 buff += 512;
-wdt_reset();
             } while (--count);
             if (!xmit_datablock(0, 0xFD))         /* STOP_TRAN token */
                 count = 1;

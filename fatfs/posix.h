@@ -3,35 +3,38 @@
 
  @brief POSIX wrapper for FatFS
    - Provides many of the common Posix/linux functions 
-     - fdevopen 
-     - isatty 
-     - perror 
-     - strerror 
-     - fgetc 
-     - fputc 
-     - open 
-     - fopen 
-     - close 
-     - syncfs 
-     - sync 
-     - fclose 
-     - write 
-     - fwrite 
-     - read 
-     - fread 
-     - lseek 
-     - fseek 
-     - ftell 
-     - rewind 
-     - fgetpos 
-     - unlink 
-     - rmdir 
-     - ftruncate 
-     - truncate 
-     - fstat 
-     - stat 
-     - rename 
-
+     - close
+     - clrerror 
+     - fclose
+     - fdevopen
+     - feof
+     - ferror
+     - fgetc
+     - fgetpos
+     - fileno
+     - fopen
+     - fputc
+     - fread
+     - fseek
+     - fstat
+     - ftell
+     - ftruncate
+     - fwrite
+     - isatty
+     - lseek
+     - open
+     - perror
+     - read
+     - rename
+     - rewind
+     - rmdir
+     - stat
+     - strerror
+     - sync
+     - syncfs
+     - truncate
+     - unlink
+     - write
  @par Copyright &copy; 2015 Mike Gore, GPL License
  @par You are free to use this code under the terms of GPL
    please retain a copy of this notice in any code you use it in.
@@ -134,9 +137,6 @@ extern int errno;
 #define _FDEV_SETUP_READ  __SRD /**< fdev_setup_stream() with read intent */
 #define _FDEV_SETUP_WRITE __SWR /**< fdev_setup_stream() with write intent */
 #define _FDEV_SETUP_RW    (__SRD|__SWR) /**< fdev_setup_stream() with read/write intent */
-
-///@brief fileno()
-#define fileno(a) stream_to_fileno(a)
 
 ///@brief compare two strings, 1 = match, 0 mismatch.
 #define modecmp(str, pat) (strcmp(str, pat) == 0 ? 1: 0)
@@ -252,6 +252,7 @@ typedef uint32_t off_t;     /*< off_t for this architecture */
 typedef uint32_t blkcnt_t;  /*< blkcnt_t for this architecture */
 typedef uint32_t blksize_t; /*< blksize_t for this architecture */
 typedef uint32_t time_t;    /*< time_t for this architecture */
+typedef int32_t  ssize_t;	/*< ssize_t for this architecture */
 
 ///@brief POSIX stat structure
 ///@see stat()
@@ -277,20 +278,26 @@ struct stat
 ///@see stat()
 #define lstat stat
 
+// ============================================================================
 /* posix.c */
 MEMSPACE FILE *fileno_to_stream ( int fileno );
-MEMSPACE int stream_to_fileno ( FILE *stream );
+MEMSPACE int fileno ( FILE *stream );
 MEMSPACE FIL *fileno_to_fatfs ( int fileno );
 MEMSPACE int fatfs_to_fileno ( FIL *fh );
+MEMSPACE int feof ( FILE *stream );
+MEMSPACE int ferror ( FILE *stream );
+MEMSPACE void clrerror ( FILE *stream );
 MEMSPACE int new_file_descriptor ( void );
 MEMSPACE FILE *fdevopen ( int (*put )(char ,FILE *), int (*get )(FILE *));
 MEMSPACE int free_file_descriptor ( int fileno );
 MEMSPACE int isatty ( int fileno );
 MEMSPACE void perror ( const char *s );
 MEMSPACE char *strerror ( int errnum );
-//MEMSPACE char *strerror_r ( int errnum , char *buf , size_t buflen );
+MEMSPACE char *strerror_r ( int errnum , char *buf , size_t buflen );
 MEMSPACE int fatfs_to_errno ( FRESULT Result );
 MEMSPACE int posix_fopen_modes_to_open ( const char *mode );
+MEMSPACE static int fatfs_getc ( FILE *stream );
+MEMSPACE static int fatfs_putc ( char c , FILE *stream );
 MEMSPACE int fgetc ( FILE *stream );
 MEMSPACE int fputc ( int c , FILE *stream );
 MEMSPACE int open ( const char *pathname , int flags );
@@ -299,13 +306,13 @@ MEMSPACE int close ( int fileno );
 MEMSPACE int syncfs ( int fd );
 MEMSPACE void sync ( void );
 MEMSPACE int fclose ( FILE *stream );
-MEMSPACE size_t write ( int fd , const void *buf , size_t count );
+MEMSPACE ssize_t write ( int fd , const void *buf , size_t count );
 MEMSPACE size_t fwrite ( const void *ptr , size_t size , size_t nmemb , FILE *stream );
-MEMSPACE size_t read ( int fd , const void *buf , size_t count );
+MEMSPACE ssize_t read ( int fd , const void *buf , size_t count );
 MEMSPACE size_t fread ( void *ptr , size_t size , size_t nmemb , FILE *stream );
 MEMSPACE size_t lseek ( int fileno , size_t position , int whence );
 MEMSPACE int fseek ( FILE *stream , long offset , int whence );
-MEMSPACE size_t ftell ( FILE *stream );
+MEMSPACE long ftell ( FILE *stream );
 MEMSPACE void rewind ( FILE *stream );
 MEMSPACE int fgetpos ( FILE *stream , size_t *pos );
 MEMSPACE int fsetpos ( FILE *stream , size_t *pos );
@@ -324,4 +331,5 @@ MEMSPACE char *basename ( char *str );
 MEMSPACE char *baseext ( char *str );
 
 
+// ============================================================================
 #endif                                            //_POSIX_H_

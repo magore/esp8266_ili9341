@@ -137,7 +137,6 @@ void mmc_set_ms_timeout(uint16_t ms)
 ///@return 0 timeout
 int  mmc_test_timeout()
 {
-wdt_reset();
 
 	if( Stat & STA_NODISK )
 		return(1);
@@ -148,6 +147,8 @@ wdt_reset();
 		Stat |= (STA_NODISK | STA_NOINIT);
 		return(1);
 	}
+// FIXME DEBUG
+	optimistic_yield(1000);
 	return(0);
 }
 
@@ -254,11 +255,11 @@ void mmc_spi_init()
 MEMSPACE
 void mmc_slow()
 {
-	// FIXME need to computer that actual devisor with more thought
-	hspi_waitReady();
 	// This is actually just over 300K
     _mmc_clock = 80000000UL/500000UL;
 	hspi_init(_mmc_clock,0);
+    (void)mmc_spi_TX(0xff);
+	hspi_waitReady();
 }
 
 
@@ -269,10 +270,12 @@ void mmc_slow()
 MEMSPACE
 void mmc_fast()
 {
-	// 2.5M
-	hspi_waitReady();
+	// 2M
     _mmc_clock= 80000000UL/2500000UL;
 	hspi_init(_mmc_clock,0);
+
+    (void)mmc_spi_TX(0xff);
+	hspi_waitReady();
 }
 
 
@@ -286,11 +289,12 @@ void mmc_power_on()
 	int i;
 	// SD CS should be off
 	mmc_slow();
-    (void)mmc_spi_TX(0xff);
 	for(i=0;i<20;++i)
 	{
 		os_delay_us(1000);
-wdt_reset();
+// FIXME DEBUG
+		optimistic_yield(1000);
+		wdt_reset();
 	}
 }
 
@@ -303,6 +307,9 @@ wdt_reset();
 MEMSPACE
 void mmc_power_off()
 {
+	hspi_waitReady();
+    (void)mmc_spi_TX(0xff);
+	hspi_waitReady();
 }
 
 

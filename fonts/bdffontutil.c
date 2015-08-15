@@ -41,6 +41,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <string.h>
 #include <limits.h>
 #include <errno.h>
+#include <stdint.h>
 
 #include "font.h"
 #include "bdffontutil.h"

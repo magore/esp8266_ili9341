@@ -23,8 +23,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 
-
-
 #include <user_config.h>
 //#include <stdlib.h>
 //#include <string.h>
@@ -351,7 +349,7 @@ time_t timegm( tm_t *t )
 MEMSPACE
 char *asctime_r(tm_t *t, char *buf)
 {
-    t_snprintf(buf,32,"%s %s %2d %02d:%02d:%02d %4d",
+    snprintf(buf,32,"%s %s %2d %02d:%02d:%02d %4d",
         __WDay[t->tm_wday],
         __Month[t->tm_mon],
         t->tm_mday,
@@ -660,6 +658,27 @@ int setdate_r (char *buf)
     tm.tm_year=tm.tm_mon=tm.tm_mday=tm.tm_hour=tm.tm_min=tm.tm_sec=0;
 
 
+	while(*buf && *buf < '0' && *buf > '9')
+		++buf;
+	tm.tm_year = strtol(buf,&buf,10);
+	while(*buf && *buf < '0' && *buf > '9')
+		++buf;
+	tm.tm_mon = strtol(buf,&buf,10);
+	while(*buf && *buf < '0' && *buf > '9')
+		++buf;
+	tm.tm_mday = strtol(buf,&buf,10);
+	while(*buf && *buf < '0' && *buf > '9')
+		++buf;
+	tm.tm_hour = strtol(buf,&buf,10);
+	while(*buf && *buf < '0' && *buf > '9')
+		++buf;
+	tm.tm_min = strtol(buf,&buf,10);
+	while(*buf && *buf < '0' && *buf > '9')
+		++buf;
+	tm.tm_sec = strtol(buf,&buf,10);
+	while(*buf && *buf < '0' && *buf > '9')
+		++buf;
+#if 0	
     t_sscanf(buf,"%d %d %d %d:%d:%d",
         &tm.tm_year,
         &tm.tm_mon,
@@ -667,6 +686,7 @@ int setdate_r (char *buf)
         &tm.tm_hour,
         &tm.tm_min,
         &tm.tm_sec);
+#endif
 
 #if 0
     DEBUG_PRINTF("%4d %2d %2d %02d:%02d:%02d\n",

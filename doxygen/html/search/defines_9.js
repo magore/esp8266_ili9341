@@ -65,6 +65,7 @@ var searchData=
   ['ili9341_5fwhite',['ILI9341_WHITE',['../ili9341__adafruit_8h.html#a604507ef031b95291b2d177088fe03e4',1,'ili9341_adafruit.h']]],
   ['ili9341_5fyellow',['ILI9341_YELLOW',['../ili9341__adafruit_8h.html#a0313d113622009bfd9b6011fc9bffcc9',1,'ili9341_adafruit.h']]],
   ['init_5fbuf',['INIT_BUF',['../ff_8c.html#a966fe5792671b39db1ccf655a8c1af8d',1,'ff.c']]],
+  ['io_5fmax',['IO_MAX',['../web_8h.html#a51a214aeaf13aa7f3eac284e5a4fc93e',1,'web.h']]],
   ['isdbcs1',['IsDBCS1',['../ff_8c.html#a58d63a832a117f179e41c7373d013dd6',1,'ff.c']]],
   ['isdbcs2',['IsDBCS2',['../ff_8c.html#a66a3fa880af6078ef181656c1d7d8ef1',1,'ff.c']]],
   ['isdigit',['IsDigit',['../ff_8c.html#a65dee564f69f2ec27f25b67a348018b9',1,'ff.c']]],

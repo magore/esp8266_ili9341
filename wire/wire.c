@@ -78,6 +78,7 @@ void wire_draw(window *win, const wire_p *wire, const wire_e *edge, point *view,
 			wire2fp(&W, &P);
 			// CORDIC Rotate
 			rotate(&P,view);
+
 			// CORDIC Perspective Projection Offset and Scale
 			PerspectiveProjection(&P, scale, x,y);
 			x0 = P.x;
@@ -88,6 +89,7 @@ void wire_draw(window *win, const wire_p *wire, const wire_e *edge, point *view,
 			wire2fp(&W, &P);
 			// CORDIC Rotate
 			rotate(&P,view);
+
 			// CORDIC Perspective Projection Offset and Scale
 			PerspectiveProjection(&P, scale, x,y);
 			x1 = P.x;
@@ -124,6 +126,13 @@ void wire_draw(window *win, const wire_p *wire, const wire_e *edge, point *view,
 
 		// CORDIC Rotate
 		rotate(&P,view);
+
+		// FIXME - Add hidden line removal
+		// Observation: for a sphere we can cut a plain parallel to the view plain
+		// intersecting the objects center at 0,0,0 point. 
+		// We then skip points below this plain (ie. away from the viewer).
+		// if(P.z > 0.0) ...
+		// 	continue;
 
 		// CORDIC Perspective Projection Offset and Scale
 		PerspectiveProjection(&P, scale, x,y);

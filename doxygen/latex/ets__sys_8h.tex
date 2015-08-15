@@ -1,0 +1,844 @@
+\hypertarget{ets__sys_8h}{\section{yield/ets\-\_\-sys.h File Reference}
+\label{ets__sys_8h}\index{yield/ets\-\_\-sys.\-h@{yield/ets\-\_\-sys.\-h}}
+}
+{\ttfamily \#include \char`\"{}c\-\_\-types.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}eagle\-\_\-soc.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}stdarg.\-h\char`\"{}}\\*
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structETSEventTag}{E\-T\-S\-Event\-Tag}
+\item 
+struct \hyperlink{struct__ETSTIMER__}{\-\_\-\-E\-T\-S\-T\-I\-M\-E\-R\-\_\-}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{ets__sys_8h_a0ebd2e7682d9b3d3a481db4f655b8f99}{E\-T\-S\-\_\-\-S\-L\-C\-\_\-\-I\-N\-U\-M}~1
+\item 
+\#define \hyperlink{ets__sys_8h_af23f1ea4b5db3611dcb6d44db77095e6}{E\-T\-S\-\_\-\-S\-P\-I\-\_\-\-I\-N\-U\-M}~2
+\item 
+\#define \hyperlink{ets__sys_8h_a0b84b7fb8ed01740d1df3816d6d7807e}{E\-T\-S\-\_\-\-G\-P\-I\-O\-\_\-\-I\-N\-U\-M}~4
+\item 
+\#define \hyperlink{ets__sys_8h_acb6dd94848925060dc450785c7783734}{E\-T\-S\-\_\-\-U\-A\-R\-T\-\_\-\-I\-N\-U\-M}~5
+\item 
+\#define \hyperlink{ets__sys_8h_a774d674c8201b2707afbdc639d945c76}{E\-T\-S\-\_\-\-U\-A\-R\-T1\-\_\-\-I\-N\-U\-M}~5
+\item 
+\#define \hyperlink{ets__sys_8h_aaaaa3168732b8980ca63ae4cee51fe43}{E\-T\-S\-\_\-\-C\-C\-O\-M\-P\-A\-R\-E0\-\_\-\-I\-N\-U\-M}~6
+\item 
+\#define \hyperlink{ets__sys_8h_a2b076948f8bb522ce7e33bfc38e2b702}{E\-T\-S\-\_\-\-S\-O\-F\-T\-\_\-\-I\-N\-U\-M}~7
+\item 
+\#define \hyperlink{ets__sys_8h_afd2348d3a8457cdf7a53bb8ebcd4bb02}{E\-T\-S\-\_\-\-W\-D\-T\-\_\-\-I\-N\-U\-M}~8
+\item 
+\#define \hyperlink{ets__sys_8h_ae6c614dcf22877c7395b8840c03eec06}{E\-T\-S\-\_\-\-F\-R\-C\-\_\-\-T\-I\-M\-E\-R1\-\_\-\-I\-N\-U\-M}~9  /$\ast$ use edge$\ast$/
+\item 
+\#define \hyperlink{ets__sys_8h_a34df42e44d5d8c38f76b430907836201}{E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-L\-O\-C\-K}()~\hyperlink{ets__sys_8h_a3e8a8c3f7f4dd4962304f93cd16d5a27}{ets\-\_\-intr\-\_\-lock}()
+\item 
+\#define \hyperlink{ets__sys_8h_a7a450cc35405a1fd8418467f6916e95f}{E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-U\-N\-L\-O\-C\-K}()~\hyperlink{ets__sys_8h_a7d33b6634d73d809c7505aeff7048ca5}{ets\-\_\-intr\-\_\-unlock}()
+\item 
+\#define \hyperlink{ets__sys_8h_ae28dbb5877358e87bfb900d231ba4ec0}{E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E}(inum)~\hyperlink{ets__sys_8h_a69dd465a4db7a320b31ceabe4bfcfb89}{ets\-\_\-isr\-\_\-unmask}((1$<$$<$inum))
+\item 
+\#define \hyperlink{ets__sys_8h_aa4c357aefadea3024b1051be4df9e81a}{E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E}(inum)~\hyperlink{ets__sys_8h_ab6f29a0a7c387b2108d205691b596cce}{ets\-\_\-isr\-\_\-mask}((1$<$$<$inum))
+\item 
+\#define \hyperlink{ets__sys_8h_aa3766156237870606c4a911d32018871}{E\-T\-S\-\_\-\-C\-C\-O\-M\-P\-A\-R\-E0\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H}(func, arg)~\hyperlink{ets__sys_8h_a03f317fac15ba038c9f4f0f19927adae}{ets\-\_\-isr\-\_\-attach}(\hyperlink{ets__sys_8h_aaaaa3168732b8980ca63ae4cee51fe43}{E\-T\-S\-\_\-\-C\-C\-O\-M\-P\-A\-R\-E0\-\_\-\-I\-N\-U\-M}, (\hyperlink{ets__sys_8h_a243522a6d8672a6d7bb31e33820937d5}{int\-\_\-handler\-\_\-t})(func), (void $\ast$)(arg))
+\item 
+\#define \hyperlink{ets__sys_8h_a0190d88a8564f142203cb39f4dfa9167}{E\-T\-S\-\_\-\-C\-C\-O\-M\-P\-A\-R\-E0\-\_\-\-E\-N\-A\-B\-L\-E}()~\hyperlink{ets__sys_8h_ae28dbb5877358e87bfb900d231ba4ec0}{E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E}(\hyperlink{ets__sys_8h_aaaaa3168732b8980ca63ae4cee51fe43}{E\-T\-S\-\_\-\-C\-C\-O\-M\-P\-A\-R\-E0\-\_\-\-I\-N\-U\-M})
+\item 
+\#define \hyperlink{ets__sys_8h_a133114987e5e928f459ac928e9c0e11f}{E\-T\-S\-\_\-\-C\-C\-O\-M\-P\-A\-R\-E0\-\_\-\-D\-I\-S\-A\-B\-L\-E}()~\hyperlink{ets__sys_8h_aa4c357aefadea3024b1051be4df9e81a}{E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E}(\hyperlink{ets__sys_8h_aaaaa3168732b8980ca63ae4cee51fe43}{E\-T\-S\-\_\-\-C\-C\-O\-M\-P\-A\-R\-E0\-\_\-\-I\-N\-U\-M})
+\item 
+\#define \hyperlink{ets__sys_8h_a7f3eb0bdf2d531afd9453e2a65ee9c30}{E\-T\-S\-\_\-\-F\-R\-C\-\_\-\-T\-I\-M\-E\-R1\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H}(func, arg)~\hyperlink{ets__sys_8h_a03f317fac15ba038c9f4f0f19927adae}{ets\-\_\-isr\-\_\-attach}(\hyperlink{ets__sys_8h_ae6c614dcf22877c7395b8840c03eec06}{E\-T\-S\-\_\-\-F\-R\-C\-\_\-\-T\-I\-M\-E\-R1\-\_\-\-I\-N\-U\-M}, (\hyperlink{ets__sys_8h_a243522a6d8672a6d7bb31e33820937d5}{int\-\_\-handler\-\_\-t})(func), (void $\ast$)(arg))
+\item 
+\#define \hyperlink{ets__sys_8h_ad9d9a34fcaa9014b9ccb67b377340c37}{E\-T\-S\-\_\-\-F\-R\-C\-\_\-\-T\-I\-M\-E\-R1\-\_\-\-N\-M\-I\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H}(func)~Nmi\-Tim\-Set\-Func(func)
+\item 
+\#define \hyperlink{ets__sys_8h_a3b7131effc447b874d53608df1093c9d}{E\-T\-S\-\_\-\-G\-P\-I\-O\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H}(func, arg)~\hyperlink{ets__sys_8h_a03f317fac15ba038c9f4f0f19927adae}{ets\-\_\-isr\-\_\-attach}(\hyperlink{ets__sys_8h_a0b84b7fb8ed01740d1df3816d6d7807e}{E\-T\-S\-\_\-\-G\-P\-I\-O\-\_\-\-I\-N\-U\-M}, (\hyperlink{ets__sys_8h_a243522a6d8672a6d7bb31e33820937d5}{int\-\_\-handler\-\_\-t})(func), (void $\ast$)(arg))
+\item 
+\#define \hyperlink{ets__sys_8h_aa8e36bac2666a375c6ce428a88625b4a}{E\-T\-S\-\_\-\-G\-P\-I\-O\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E}()~\hyperlink{ets__sys_8h_ae28dbb5877358e87bfb900d231ba4ec0}{E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E}(\hyperlink{ets__sys_8h_a0b84b7fb8ed01740d1df3816d6d7807e}{E\-T\-S\-\_\-\-G\-P\-I\-O\-\_\-\-I\-N\-U\-M})
+\item 
+\#define \hyperlink{ets__sys_8h_a62691fdcf18b2e5e6cc41b1417a49973}{E\-T\-S\-\_\-\-G\-P\-I\-O\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E}()~\hyperlink{ets__sys_8h_aa4c357aefadea3024b1051be4df9e81a}{E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E}(\hyperlink{ets__sys_8h_a0b84b7fb8ed01740d1df3816d6d7807e}{E\-T\-S\-\_\-\-G\-P\-I\-O\-\_\-\-I\-N\-U\-M})
+\item 
+\#define \hyperlink{ets__sys_8h_ae05cdf8bb2481e44ebf01440070f0c38}{E\-T\-S\-\_\-\-U\-A\-R\-T\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H}(func, arg)~\hyperlink{ets__sys_8h_a03f317fac15ba038c9f4f0f19927adae}{ets\-\_\-isr\-\_\-attach}(\hyperlink{ets__sys_8h_acb6dd94848925060dc450785c7783734}{E\-T\-S\-\_\-\-U\-A\-R\-T\-\_\-\-I\-N\-U\-M}, (\hyperlink{ets__sys_8h_a243522a6d8672a6d7bb31e33820937d5}{int\-\_\-handler\-\_\-t})(func), (void $\ast$)(arg))
+\item 
+\#define \hyperlink{ets__sys_8h_adcb1c98e19fde806010cbbc84880407a}{E\-T\-S\-\_\-\-U\-A\-R\-T\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E}()~\hyperlink{ets__sys_8h_ae28dbb5877358e87bfb900d231ba4ec0}{E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E}(\hyperlink{ets__sys_8h_acb6dd94848925060dc450785c7783734}{E\-T\-S\-\_\-\-U\-A\-R\-T\-\_\-\-I\-N\-U\-M})
+\item 
+\#define \hyperlink{ets__sys_8h_ae80b2e325a24f9a4003261c152657eca}{E\-T\-S\-\_\-\-U\-A\-R\-T\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E}()~\hyperlink{ets__sys_8h_aa4c357aefadea3024b1051be4df9e81a}{E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E}(\hyperlink{ets__sys_8h_acb6dd94848925060dc450785c7783734}{E\-T\-S\-\_\-\-U\-A\-R\-T\-\_\-\-I\-N\-U\-M})
+\item 
+\#define \hyperlink{ets__sys_8h_a9660e32507afcd3e1717bb45aa8b2a23}{E\-T\-S\-\_\-\-F\-R\-C1\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E}()~\hyperlink{ets__sys_8h_ae28dbb5877358e87bfb900d231ba4ec0}{E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E}(\hyperlink{ets__sys_8h_ae6c614dcf22877c7395b8840c03eec06}{E\-T\-S\-\_\-\-F\-R\-C\-\_\-\-T\-I\-M\-E\-R1\-\_\-\-I\-N\-U\-M})
+\item 
+\#define \hyperlink{ets__sys_8h_a91c9700f8a00b22d6989a0d3663083dc}{E\-T\-S\-\_\-\-F\-R\-C1\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E}()~\hyperlink{ets__sys_8h_aa4c357aefadea3024b1051be4df9e81a}{E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E}(\hyperlink{ets__sys_8h_ae6c614dcf22877c7395b8840c03eec06}{E\-T\-S\-\_\-\-F\-R\-C\-\_\-\-T\-I\-M\-E\-R1\-\_\-\-I\-N\-U\-M})
+\item 
+\#define \hyperlink{ets__sys_8h_aef9df60b42c85b9690dd82ec71051582}{E\-T\-S\-\_\-\-S\-P\-I\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H}(func, arg)~\hyperlink{ets__sys_8h_a03f317fac15ba038c9f4f0f19927adae}{ets\-\_\-isr\-\_\-attach}(\hyperlink{ets__sys_8h_af23f1ea4b5db3611dcb6d44db77095e6}{E\-T\-S\-\_\-\-S\-P\-I\-\_\-\-I\-N\-U\-M}, (\hyperlink{ets__sys_8h_a243522a6d8672a6d7bb31e33820937d5}{int\-\_\-handler\-\_\-t})(func), (void $\ast$)(arg))
+\item 
+\#define \hyperlink{ets__sys_8h_afb90a187a245417698672dc7cc1a9128}{E\-T\-S\-\_\-\-S\-P\-I\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E}()~\hyperlink{ets__sys_8h_ae28dbb5877358e87bfb900d231ba4ec0}{E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E}(\hyperlink{ets__sys_8h_af23f1ea4b5db3611dcb6d44db77095e6}{E\-T\-S\-\_\-\-S\-P\-I\-\_\-\-I\-N\-U\-M})
+\item 
+\#define \hyperlink{ets__sys_8h_ae4d3c0a049dfc7d75486935da78b4b73}{E\-T\-S\-\_\-\-S\-P\-I\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E}()~\hyperlink{ets__sys_8h_aa4c357aefadea3024b1051be4df9e81a}{E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E}(\hyperlink{ets__sys_8h_af23f1ea4b5db3611dcb6d44db77095e6}{E\-T\-S\-\_\-\-S\-P\-I\-\_\-\-I\-N\-U\-M})
+\item 
+\#define \hyperlink{ets__sys_8h_ad8cae381e429b58ff41c4e64aa7c9fd2}{E\-T\-S\-\_\-\-S\-L\-C\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H}(func, arg)~\hyperlink{ets__sys_8h_a03f317fac15ba038c9f4f0f19927adae}{ets\-\_\-isr\-\_\-attach}(\hyperlink{ets__sys_8h_a0ebd2e7682d9b3d3a481db4f655b8f99}{E\-T\-S\-\_\-\-S\-L\-C\-\_\-\-I\-N\-U\-M}, (\hyperlink{ets__sys_8h_a243522a6d8672a6d7bb31e33820937d5}{int\-\_\-handler\-\_\-t})(func), (void $\ast$)(arg))
+\item 
+\#define \hyperlink{ets__sys_8h_a4ecb090095cd709120bf89f023ca9e97}{E\-T\-S\-\_\-\-S\-L\-C\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E}()~\hyperlink{ets__sys_8h_ae28dbb5877358e87bfb900d231ba4ec0}{E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E}(\hyperlink{ets__sys_8h_a0ebd2e7682d9b3d3a481db4f655b8f99}{E\-T\-S\-\_\-\-S\-L\-C\-\_\-\-I\-N\-U\-M})
+\item 
+\#define \hyperlink{ets__sys_8h_a809b8034cc849af4a9f38e0004bc64c7}{E\-T\-S\-\_\-\-S\-L\-C\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E}()~\hyperlink{ets__sys_8h_aa4c357aefadea3024b1051be4df9e81a}{E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E}(\hyperlink{ets__sys_8h_a0ebd2e7682d9b3d3a481db4f655b8f99}{E\-T\-S\-\_\-\-S\-L\-C\-\_\-\-I\-N\-U\-M})
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\-\_\-t} \hyperlink{ets__sys_8h_a5ca6a2be825d5fb421c6e97e8d65d5ca}{E\-T\-S\-Signal}
+\item 
+typedef \hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\-\_\-t} \hyperlink{ets__sys_8h_af69975ab315b652862825f9929e436c0}{E\-T\-S\-Param}
+\item 
+typedef struct \hyperlink{structETSEventTag}{E\-T\-S\-Event\-Tag} \hyperlink{ets__sys_8h_a88e26cd777a971dd390bfbc2565241bc}{E\-T\-S\-Event}
+\item 
+typedef void($\ast$ \hyperlink{ets__sys_8h_ab29ee9d470b42a2c9a8273bc5047255a}{E\-T\-S\-Task} )(\hyperlink{ets__sys_8h_a88e26cd777a971dd390bfbc2565241bc}{E\-T\-S\-Event} $\ast$e)
+\item 
+typedef \hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\-\_\-t} \hyperlink{ets__sys_8h_a85c8bbaf040864c7e182a24a10ef3ac4}{E\-T\-S\-Handle}
+\item 
+typedef void \hyperlink{ets__sys_8h_a9b98fc011315c1e79ebaf55e92265afa}{E\-T\-S\-Timer\-Func} (void $\ast$timer\-\_\-arg)
+\item 
+typedef struct \hyperlink{struct__ETSTIMER__}{\-\_\-\-E\-T\-S\-T\-I\-M\-E\-R\-\_\-} \hyperlink{ets__sys_8h_ab895f72aa58b986445e6661c4eacaa86}{E\-T\-S\-Timer}
+\item 
+typedef void($\ast$ \hyperlink{ets__sys_8h_a243522a6d8672a6d7bb31e33820937d5}{int\-\_\-handler\-\_\-t} )(void $\ast$)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{ets__sys_8h_a85d041e5bb0b1725560814da8be3a1b7}{E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-W\-I\-T\-H\-I\-N\-I\-S\-R} ()
+\item 
+\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\-\_\-t} \hyperlink{ets__sys_8h_a34d88118c468e28a7e0fba4109f17f30}{E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E\-D} (void)
+\item 
+\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\-\_\-t} \hyperlink{ets__sys_8h_ad8c2d3e0969b06408d2929643bffbd5a}{E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-P\-E\-N\-D\-I\-N\-G} (void)
+\item 
+void $\ast$ \hyperlink{ets__sys_8h_a185abb084d1878cf3ac02f3d00368d38}{pv\-Port\-Malloc} (size\-\_\-t x\-Wanted\-Size) \hyperlink{user__task_8c_ade20ba3eb51f42d2b2deb917303c9a5e}{\-\_\-\-\_\-attribute\-\_\-\-\_\-}((\hyperlink{util_8h_a22b308551dea873face80619301d5618}{malloc}
+\item 
+void \hyperlink{ets__sys_8h_aad111197de7c9bbb7510b2c423c6a692}{alloc\-\_\-size} (1)))
+\item 
+void $\ast$ \hyperlink{ets__sys_8h_ae20f9e55286e819a6fecbcc29523c0b1}{pv\-Port\-Realloc} (void $\ast$ptr, size\-\_\-t x\-Wanted\-Size) \hyperlink{user__task_8c_ade20ba3eb51f42d2b2deb917303c9a5e}{\-\_\-\-\_\-attribute\-\_\-\-\_\-}((\hyperlink{ets__sys_8h_aad111197de7c9bbb7510b2c423c6a692}{alloc\-\_\-size}(2)))
+\item 
+void \hyperlink{ets__sys_8h_a15d182a947b2036039d082e94fac3ee5}{pv\-Port\-Free} (void $\ast$ptr)
+\item 
+void $\ast$ \hyperlink{ets__sys_8h_aa38c1748631ab27a90f57ada106c2a7b}{v\-Port\-Malloc} (size\-\_\-t x\-Wanted\-Size) \hyperlink{user__task_8c_ade20ba3eb51f42d2b2deb917303c9a5e}{\-\_\-\-\_\-attribute\-\_\-\-\_\-}((\hyperlink{util_8h_a22b308551dea873face80619301d5618}{malloc}
+\item 
+void \hyperlink{ets__sys_8h_a06dc17b0cda286f66321589aac6d7e7c}{v\-Port\-Free} (void $\ast$ptr)
+\item 
+void $\ast$ \hyperlink{ets__sys_8h_a58fb77c4b7bc3115a55fb121a010b64a}{ets\-\_\-memcpy} (void $\ast$dest, const void $\ast$src, size\-\_\-t n)
+\item 
+void $\ast$ \hyperlink{ets__sys_8h_a4951710a16fb4bbd7b0069c42d0cf85a}{ets\-\_\-memset} (void $\ast$s, int c, size\-\_\-t n)
+\item 
+void \hyperlink{ets__sys_8h_a7899c08bfbf0a915a6074838de42d370}{ets\-\_\-timer\-\_\-arm\-\_\-new} (\hyperlink{ets__sys_8h_ab895f72aa58b986445e6661c4eacaa86}{E\-T\-S\-Timer} $\ast$a, int b, int c, int is\-Mstimer)
+\item 
+void \hyperlink{ets__sys_8h_a08403268d382fe7bfb6d6fc392cf8cac}{ets\-\_\-timer\-\_\-setfn} (\hyperlink{ets__sys_8h_ab895f72aa58b986445e6661c4eacaa86}{E\-T\-S\-Timer} $\ast$t, \hyperlink{ets__sys_8h_a9b98fc011315c1e79ebaf55e92265afa}{E\-T\-S\-Timer\-Func} $\ast$fn, void $\ast$parg)
+\item 
+void \hyperlink{ets__sys_8h_ae32b36727fc3094e2550baaa6fbd662a}{ets\-\_\-timer\-\_\-disarm} (\hyperlink{ets__sys_8h_ab895f72aa58b986445e6661c4eacaa86}{E\-T\-S\-Timer} $\ast$a)
+\item 
+int \hyperlink{ets__sys_8h_ad228deceea1bac4d9f171f647c265059}{atoi} (const char $\ast$nptr)
+\item 
+int \hyperlink{ets__sys_8h_a8b5ec9acfc497b92152d07ba76e8ad08}{ets\-\_\-strncmp} (const char $\ast$s1, const char $\ast$s2, int len)
+\item 
+int \hyperlink{ets__sys_8h_a50940862d213f35cb676dccfe3e0235f}{ets\-\_\-strcmp} (const char $\ast$s1, const char $\ast$s2)
+\item 
+int \hyperlink{ets__sys_8h_a2cf0a260e4f17f6fceeb8c3be01f6fd8}{ets\-\_\-strlen} (const char $\ast$s)
+\item 
+char $\ast$ \hyperlink{ets__sys_8h_a69fb6a7112e45f0aefbbb1881f51c9eb}{ets\-\_\-strcpy} (char $\ast$dest, const char $\ast$src)
+\item 
+char $\ast$ \hyperlink{ets__sys_8h_a39ebc9f42fbcb39ab9773d1e59934592}{ets\-\_\-strncpy} (char $\ast$dest, const char $\ast$src, size\-\_\-t n)
+\item 
+char $\ast$ \hyperlink{ets__sys_8h_ad0467fffa4c41822d5716b5070bc72cb}{ets\-\_\-strstr} (const char $\ast$haystack, const char $\ast$needle)
+\item 
+int \hyperlink{ets__sys_8h_a5acd9fa5cd9584fe89f89a65573f5f27}{ets\-\_\-sprintf} (char $\ast$str, const char $\ast$format,...) \hyperlink{user__task_8c_ade20ba3eb51f42d2b2deb917303c9a5e}{\-\_\-\-\_\-attribute\-\_\-\-\_\-}((format(printf
+\item 
+int int \hyperlink{ets__sys_8h_ae27fa0bb797a88d1e66abff3654dc228}{os\-\_\-snprintf} (char $\ast$str, size\-\_\-t size, const char $\ast$format,...) \hyperlink{user__task_8c_ade20ba3eb51f42d2b2deb917303c9a5e}{\-\_\-\-\_\-attribute\-\_\-\-\_\-}((format(printf
+\item 
+int int int \hyperlink{ets__sys_8h_a99325d7832f5b017539b55bb37cd9c56}{ets\-\_\-printf} (const char $\ast$format,...) \hyperlink{user__task_8c_ade20ba3eb51f42d2b2deb917303c9a5e}{\-\_\-\-\_\-attribute\-\_\-\-\_\-}((format(printf
+\item 
+int int int void \hyperlink{ets__sys_8h_a1c2ba31e1f4ca0ace63adc4cb0ce31de}{ets\-\_\-install\-\_\-putc1} (void $\ast$routine)
+\item 
+void \hyperlink{ets__sys_8h_af3321c1706bd68a533e73690e8d5c5e6}{uart\-\_\-div\-\_\-modify} (int no, int freq)
+\item 
+void \hyperlink{ets__sys_8h_ab6f29a0a7c387b2108d205691b596cce}{ets\-\_\-isr\-\_\-mask} (int intr)
+\item 
+void \hyperlink{ets__sys_8h_a69dd465a4db7a320b31ceabe4bfcfb89}{ets\-\_\-isr\-\_\-unmask} (int intr)
+\item 
+void \hyperlink{ets__sys_8h_a03f317fac15ba038c9f4f0f19927adae}{ets\-\_\-isr\-\_\-attach} (int intr, \hyperlink{ets__sys_8h_a243522a6d8672a6d7bb31e33820937d5}{int\-\_\-handler\-\_\-t} handler, void $\ast$arg)
+\item 
+void \hyperlink{ets__sys_8h_a3e8a8c3f7f4dd4962304f93cd16d5a27}{ets\-\_\-intr\-\_\-lock} ()
+\item 
+void \hyperlink{ets__sys_8h_a7d33b6634d73d809c7505aeff7048ca5}{ets\-\_\-intr\-\_\-unlock} ()
+\item 
+int \hyperlink{ets__sys_8h_a9b391ddf89d3e76da23e90acbda518d4}{ets\-\_\-vsnprintf} (char $\ast$s, size\-\_\-t n, const char $\ast$format, va\-\_\-list arg) \hyperlink{user__task_8c_ade20ba3eb51f42d2b2deb917303c9a5e}{\-\_\-\-\_\-attribute\-\_\-\-\_\-}((format(printf
+\item 
+int int \hyperlink{ets__sys_8h_adc2f5bdec43573f11176fc8e82a892f6}{ets\-\_\-vprintf} (const char $\ast$format, va\-\_\-list arg) \hyperlink{user__task_8c_ade20ba3eb51f42d2b2deb917303c9a5e}{\-\_\-\-\_\-attribute\-\_\-\-\_\-}((format(printf
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{ets__sys_8h_a133114987e5e928f459ac928e9c0e11f}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!E\-T\-S\-\_\-\-C\-C\-O\-M\-P\-A\-R\-E0\-\_\-\-D\-I\-S\-A\-B\-L\-E@{E\-T\-S\-\_\-\-C\-C\-O\-M\-P\-A\-R\-E0\-\_\-\-D\-I\-S\-A\-B\-L\-E}}
+\index{E\-T\-S\-\_\-\-C\-C\-O\-M\-P\-A\-R\-E0\-\_\-\-D\-I\-S\-A\-B\-L\-E@{E\-T\-S\-\_\-\-C\-C\-O\-M\-P\-A\-R\-E0\-\_\-\-D\-I\-S\-A\-B\-L\-E}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{E\-T\-S\-\_\-\-C\-C\-O\-M\-P\-A\-R\-E0\-\_\-\-D\-I\-S\-A\-B\-L\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-T\-S\-\_\-\-C\-C\-O\-M\-P\-A\-R\-E0\-\_\-\-D\-I\-S\-A\-B\-L\-E(
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)~{\bf E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E}({\bf E\-T\-S\-\_\-\-C\-C\-O\-M\-P\-A\-R\-E0\-\_\-\-I\-N\-U\-M})}}\label{ets__sys_8h_a133114987e5e928f459ac928e9c0e11f}
+
+
+Definition at line 93 of file ets\-\_\-sys.\-h.
+
+\hypertarget{ets__sys_8h_a0190d88a8564f142203cb39f4dfa9167}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!E\-T\-S\-\_\-\-C\-C\-O\-M\-P\-A\-R\-E0\-\_\-\-E\-N\-A\-B\-L\-E@{E\-T\-S\-\_\-\-C\-C\-O\-M\-P\-A\-R\-E0\-\_\-\-E\-N\-A\-B\-L\-E}}
+\index{E\-T\-S\-\_\-\-C\-C\-O\-M\-P\-A\-R\-E0\-\_\-\-E\-N\-A\-B\-L\-E@{E\-T\-S\-\_\-\-C\-C\-O\-M\-P\-A\-R\-E0\-\_\-\-E\-N\-A\-B\-L\-E}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{E\-T\-S\-\_\-\-C\-C\-O\-M\-P\-A\-R\-E0\-\_\-\-E\-N\-A\-B\-L\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-T\-S\-\_\-\-C\-C\-O\-M\-P\-A\-R\-E0\-\_\-\-E\-N\-A\-B\-L\-E(
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)~{\bf E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E}({\bf E\-T\-S\-\_\-\-C\-C\-O\-M\-P\-A\-R\-E0\-\_\-\-I\-N\-U\-M})}}\label{ets__sys_8h_a0190d88a8564f142203cb39f4dfa9167}
+
+
+Definition at line 90 of file ets\-\_\-sys.\-h.
+
+\hypertarget{ets__sys_8h_aa3766156237870606c4a911d32018871}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!E\-T\-S\-\_\-\-C\-C\-O\-M\-P\-A\-R\-E0\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H@{E\-T\-S\-\_\-\-C\-C\-O\-M\-P\-A\-R\-E0\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H}}
+\index{E\-T\-S\-\_\-\-C\-C\-O\-M\-P\-A\-R\-E0\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H@{E\-T\-S\-\_\-\-C\-C\-O\-M\-P\-A\-R\-E0\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{E\-T\-S\-\_\-\-C\-C\-O\-M\-P\-A\-R\-E0\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-T\-S\-\_\-\-C\-C\-O\-M\-P\-A\-R\-E0\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H(
+\begin{DoxyParamCaption}
+\item[{}]{func, }
+\item[{}]{arg}
+\end{DoxyParamCaption}
+)~{\bf ets\-\_\-isr\-\_\-attach}({\bf E\-T\-S\-\_\-\-C\-C\-O\-M\-P\-A\-R\-E0\-\_\-\-I\-N\-U\-M}, ({\bf int\-\_\-handler\-\_\-t})(func), (void $\ast$)(arg))}}\label{ets__sys_8h_aa3766156237870606c4a911d32018871}
+
+
+Definition at line 87 of file ets\-\_\-sys.\-h.
+
+\hypertarget{ets__sys_8h_aaaaa3168732b8980ca63ae4cee51fe43}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!E\-T\-S\-\_\-\-C\-C\-O\-M\-P\-A\-R\-E0\-\_\-\-I\-N\-U\-M@{E\-T\-S\-\_\-\-C\-C\-O\-M\-P\-A\-R\-E0\-\_\-\-I\-N\-U\-M}}
+\index{E\-T\-S\-\_\-\-C\-C\-O\-M\-P\-A\-R\-E0\-\_\-\-I\-N\-U\-M@{E\-T\-S\-\_\-\-C\-C\-O\-M\-P\-A\-R\-E0\-\_\-\-I\-N\-U\-M}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{E\-T\-S\-\_\-\-C\-C\-O\-M\-P\-A\-R\-E0\-\_\-\-I\-N\-U\-M}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-T\-S\-\_\-\-C\-C\-O\-M\-P\-A\-R\-E0\-\_\-\-I\-N\-U\-M~6}}\label{ets__sys_8h_aaaaa3168732b8980ca63ae4cee51fe43}
+
+
+Definition at line 48 of file ets\-\_\-sys.\-h.
+
+\hypertarget{ets__sys_8h_a91c9700f8a00b22d6989a0d3663083dc}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!E\-T\-S\-\_\-\-F\-R\-C1\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E@{E\-T\-S\-\_\-\-F\-R\-C1\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E}}
+\index{E\-T\-S\-\_\-\-F\-R\-C1\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E@{E\-T\-S\-\_\-\-F\-R\-C1\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{E\-T\-S\-\_\-\-F\-R\-C1\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-T\-S\-\_\-\-F\-R\-C1\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E(
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)~{\bf E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E}({\bf E\-T\-S\-\_\-\-F\-R\-C\-\_\-\-T\-I\-M\-E\-R1\-\_\-\-I\-N\-U\-M})}}\label{ets__sys_8h_a91c9700f8a00b22d6989a0d3663083dc}
+
+
+Definition at line 125 of file ets\-\_\-sys.\-h.
+
+\hypertarget{ets__sys_8h_a9660e32507afcd3e1717bb45aa8b2a23}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!E\-T\-S\-\_\-\-F\-R\-C1\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E@{E\-T\-S\-\_\-\-F\-R\-C1\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E}}
+\index{E\-T\-S\-\_\-\-F\-R\-C1\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E@{E\-T\-S\-\_\-\-F\-R\-C1\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{E\-T\-S\-\_\-\-F\-R\-C1\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-T\-S\-\_\-\-F\-R\-C1\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E(
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)~{\bf E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E}({\bf E\-T\-S\-\_\-\-F\-R\-C\-\_\-\-T\-I\-M\-E\-R1\-\_\-\-I\-N\-U\-M})}}\label{ets__sys_8h_a9660e32507afcd3e1717bb45aa8b2a23}
+
+
+Definition at line 122 of file ets\-\_\-sys.\-h.
+
+\hypertarget{ets__sys_8h_a7f3eb0bdf2d531afd9453e2a65ee9c30}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!E\-T\-S\-\_\-\-F\-R\-C\-\_\-\-T\-I\-M\-E\-R1\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H@{E\-T\-S\-\_\-\-F\-R\-C\-\_\-\-T\-I\-M\-E\-R1\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H}}
+\index{E\-T\-S\-\_\-\-F\-R\-C\-\_\-\-T\-I\-M\-E\-R1\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H@{E\-T\-S\-\_\-\-F\-R\-C\-\_\-\-T\-I\-M\-E\-R1\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{E\-T\-S\-\_\-\-F\-R\-C\-\_\-\-T\-I\-M\-E\-R1\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-T\-S\-\_\-\-F\-R\-C\-\_\-\-T\-I\-M\-E\-R1\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H(
+\begin{DoxyParamCaption}
+\item[{}]{func, }
+\item[{}]{arg}
+\end{DoxyParamCaption}
+)~{\bf ets\-\_\-isr\-\_\-attach}({\bf E\-T\-S\-\_\-\-F\-R\-C\-\_\-\-T\-I\-M\-E\-R1\-\_\-\-I\-N\-U\-M}, ({\bf int\-\_\-handler\-\_\-t})(func), (void $\ast$)(arg))}}\label{ets__sys_8h_a7f3eb0bdf2d531afd9453e2a65ee9c30}
+
+
+Definition at line 97 of file ets\-\_\-sys.\-h.
+
+\hypertarget{ets__sys_8h_ae6c614dcf22877c7395b8840c03eec06}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!E\-T\-S\-\_\-\-F\-R\-C\-\_\-\-T\-I\-M\-E\-R1\-\_\-\-I\-N\-U\-M@{E\-T\-S\-\_\-\-F\-R\-C\-\_\-\-T\-I\-M\-E\-R1\-\_\-\-I\-N\-U\-M}}
+\index{E\-T\-S\-\_\-\-F\-R\-C\-\_\-\-T\-I\-M\-E\-R1\-\_\-\-I\-N\-U\-M@{E\-T\-S\-\_\-\-F\-R\-C\-\_\-\-T\-I\-M\-E\-R1\-\_\-\-I\-N\-U\-M}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{E\-T\-S\-\_\-\-F\-R\-C\-\_\-\-T\-I\-M\-E\-R1\-\_\-\-I\-N\-U\-M}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-T\-S\-\_\-\-F\-R\-C\-\_\-\-T\-I\-M\-E\-R1\-\_\-\-I\-N\-U\-M~9  /$\ast$ use edge$\ast$/}}\label{ets__sys_8h_ae6c614dcf22877c7395b8840c03eec06}
+
+
+Definition at line 51 of file ets\-\_\-sys.\-h.
+
+\hypertarget{ets__sys_8h_ad9d9a34fcaa9014b9ccb67b377340c37}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!E\-T\-S\-\_\-\-F\-R\-C\-\_\-\-T\-I\-M\-E\-R1\-\_\-\-N\-M\-I\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H@{E\-T\-S\-\_\-\-F\-R\-C\-\_\-\-T\-I\-M\-E\-R1\-\_\-\-N\-M\-I\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H}}
+\index{E\-T\-S\-\_\-\-F\-R\-C\-\_\-\-T\-I\-M\-E\-R1\-\_\-\-N\-M\-I\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H@{E\-T\-S\-\_\-\-F\-R\-C\-\_\-\-T\-I\-M\-E\-R1\-\_\-\-N\-M\-I\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{E\-T\-S\-\_\-\-F\-R\-C\-\_\-\-T\-I\-M\-E\-R1\-\_\-\-N\-M\-I\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-T\-S\-\_\-\-F\-R\-C\-\_\-\-T\-I\-M\-E\-R1\-\_\-\-N\-M\-I\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H(
+\begin{DoxyParamCaption}
+\item[{}]{func}
+\end{DoxyParamCaption}
+)~Nmi\-Tim\-Set\-Func(func)}}\label{ets__sys_8h_ad9d9a34fcaa9014b9ccb67b377340c37}
+
+
+Definition at line 100 of file ets\-\_\-sys.\-h.
+
+\hypertarget{ets__sys_8h_a3b7131effc447b874d53608df1093c9d}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!E\-T\-S\-\_\-\-G\-P\-I\-O\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H@{E\-T\-S\-\_\-\-G\-P\-I\-O\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H}}
+\index{E\-T\-S\-\_\-\-G\-P\-I\-O\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H@{E\-T\-S\-\_\-\-G\-P\-I\-O\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{E\-T\-S\-\_\-\-G\-P\-I\-O\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-T\-S\-\_\-\-G\-P\-I\-O\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H(
+\begin{DoxyParamCaption}
+\item[{}]{func, }
+\item[{}]{arg}
+\end{DoxyParamCaption}
+)~{\bf ets\-\_\-isr\-\_\-attach}({\bf E\-T\-S\-\_\-\-G\-P\-I\-O\-\_\-\-I\-N\-U\-M}, ({\bf int\-\_\-handler\-\_\-t})(func), (void $\ast$)(arg))}}\label{ets__sys_8h_a3b7131effc447b874d53608df1093c9d}
+
+
+Definition at line 103 of file ets\-\_\-sys.\-h.
+
+\hypertarget{ets__sys_8h_a62691fdcf18b2e5e6cc41b1417a49973}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!E\-T\-S\-\_\-\-G\-P\-I\-O\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E@{E\-T\-S\-\_\-\-G\-P\-I\-O\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E}}
+\index{E\-T\-S\-\_\-\-G\-P\-I\-O\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E@{E\-T\-S\-\_\-\-G\-P\-I\-O\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{E\-T\-S\-\_\-\-G\-P\-I\-O\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-T\-S\-\_\-\-G\-P\-I\-O\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E(
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)~{\bf E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E}({\bf E\-T\-S\-\_\-\-G\-P\-I\-O\-\_\-\-I\-N\-U\-M})}}\label{ets__sys_8h_a62691fdcf18b2e5e6cc41b1417a49973}
+
+
+Definition at line 109 of file ets\-\_\-sys.\-h.
+
+\hypertarget{ets__sys_8h_aa8e36bac2666a375c6ce428a88625b4a}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!E\-T\-S\-\_\-\-G\-P\-I\-O\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E@{E\-T\-S\-\_\-\-G\-P\-I\-O\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E}}
+\index{E\-T\-S\-\_\-\-G\-P\-I\-O\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E@{E\-T\-S\-\_\-\-G\-P\-I\-O\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{E\-T\-S\-\_\-\-G\-P\-I\-O\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-T\-S\-\_\-\-G\-P\-I\-O\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E(
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)~{\bf E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E}({\bf E\-T\-S\-\_\-\-G\-P\-I\-O\-\_\-\-I\-N\-U\-M})}}\label{ets__sys_8h_aa8e36bac2666a375c6ce428a88625b4a}
+
+
+Definition at line 106 of file ets\-\_\-sys.\-h.
+
+\hypertarget{ets__sys_8h_a0b84b7fb8ed01740d1df3816d6d7807e}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!E\-T\-S\-\_\-\-G\-P\-I\-O\-\_\-\-I\-N\-U\-M@{E\-T\-S\-\_\-\-G\-P\-I\-O\-\_\-\-I\-N\-U\-M}}
+\index{E\-T\-S\-\_\-\-G\-P\-I\-O\-\_\-\-I\-N\-U\-M@{E\-T\-S\-\_\-\-G\-P\-I\-O\-\_\-\-I\-N\-U\-M}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{E\-T\-S\-\_\-\-G\-P\-I\-O\-\_\-\-I\-N\-U\-M}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-T\-S\-\_\-\-G\-P\-I\-O\-\_\-\-I\-N\-U\-M~4}}\label{ets__sys_8h_a0b84b7fb8ed01740d1df3816d6d7807e}
+
+
+Definition at line 45 of file ets\-\_\-sys.\-h.
+
+\hypertarget{ets__sys_8h_aa4c357aefadea3024b1051be4df9e81a}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E@{E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E}}
+\index{E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E@{E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E(
+\begin{DoxyParamCaption}
+\item[{}]{inum}
+\end{DoxyParamCaption}
+)~{\bf ets\-\_\-isr\-\_\-mask}((1$<$$<$inum))}}\label{ets__sys_8h_aa4c357aefadea3024b1051be4df9e81a}
+
+
+Definition at line 62 of file ets\-\_\-sys.\-h.
+
+\hypertarget{ets__sys_8h_ae28dbb5877358e87bfb900d231ba4ec0}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E@{E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E}}
+\index{E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E@{E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E(
+\begin{DoxyParamCaption}
+\item[{}]{inum}
+\end{DoxyParamCaption}
+)~{\bf ets\-\_\-isr\-\_\-unmask}((1$<$$<$inum))}}\label{ets__sys_8h_ae28dbb5877358e87bfb900d231ba4ec0}
+
+
+Definition at line 59 of file ets\-\_\-sys.\-h.
+
+\hypertarget{ets__sys_8h_a34df42e44d5d8c38f76b430907836201}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-L\-O\-C\-K@{E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-L\-O\-C\-K}}
+\index{E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-L\-O\-C\-K@{E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-L\-O\-C\-K}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-L\-O\-C\-K}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-L\-O\-C\-K(
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)~{\bf ets\-\_\-intr\-\_\-lock}()}}\label{ets__sys_8h_a34df42e44d5d8c38f76b430907836201}
+
+
+Definition at line 53 of file ets\-\_\-sys.\-h.
+
+\hypertarget{ets__sys_8h_a7a450cc35405a1fd8418467f6916e95f}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-U\-N\-L\-O\-C\-K@{E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-U\-N\-L\-O\-C\-K}}
+\index{E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-U\-N\-L\-O\-C\-K@{E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-U\-N\-L\-O\-C\-K}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-U\-N\-L\-O\-C\-K}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-U\-N\-L\-O\-C\-K(
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)~{\bf ets\-\_\-intr\-\_\-unlock}()}}\label{ets__sys_8h_a7a450cc35405a1fd8418467f6916e95f}
+
+
+Definition at line 56 of file ets\-\_\-sys.\-h.
+
+\hypertarget{ets__sys_8h_ad8cae381e429b58ff41c4e64aa7c9fd2}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!E\-T\-S\-\_\-\-S\-L\-C\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H@{E\-T\-S\-\_\-\-S\-L\-C\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H}}
+\index{E\-T\-S\-\_\-\-S\-L\-C\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H@{E\-T\-S\-\_\-\-S\-L\-C\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{E\-T\-S\-\_\-\-S\-L\-C\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-T\-S\-\_\-\-S\-L\-C\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H(
+\begin{DoxyParamCaption}
+\item[{}]{func, }
+\item[{}]{arg}
+\end{DoxyParamCaption}
+)~{\bf ets\-\_\-isr\-\_\-attach}({\bf E\-T\-S\-\_\-\-S\-L\-C\-\_\-\-I\-N\-U\-M}, ({\bf int\-\_\-handler\-\_\-t})(func), (void $\ast$)(arg))}}\label{ets__sys_8h_ad8cae381e429b58ff41c4e64aa7c9fd2}
+
+
+Definition at line 139 of file ets\-\_\-sys.\-h.
+
+\hypertarget{ets__sys_8h_a809b8034cc849af4a9f38e0004bc64c7}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!E\-T\-S\-\_\-\-S\-L\-C\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E@{E\-T\-S\-\_\-\-S\-L\-C\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E}}
+\index{E\-T\-S\-\_\-\-S\-L\-C\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E@{E\-T\-S\-\_\-\-S\-L\-C\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{E\-T\-S\-\_\-\-S\-L\-C\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-T\-S\-\_\-\-S\-L\-C\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E(
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)~{\bf E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E}({\bf E\-T\-S\-\_\-\-S\-L\-C\-\_\-\-I\-N\-U\-M})}}\label{ets__sys_8h_a809b8034cc849af4a9f38e0004bc64c7}
+
+
+Definition at line 145 of file ets\-\_\-sys.\-h.
+
+\hypertarget{ets__sys_8h_a4ecb090095cd709120bf89f023ca9e97}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!E\-T\-S\-\_\-\-S\-L\-C\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E@{E\-T\-S\-\_\-\-S\-L\-C\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E}}
+\index{E\-T\-S\-\_\-\-S\-L\-C\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E@{E\-T\-S\-\_\-\-S\-L\-C\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{E\-T\-S\-\_\-\-S\-L\-C\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-T\-S\-\_\-\-S\-L\-C\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E(
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)~{\bf E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E}({\bf E\-T\-S\-\_\-\-S\-L\-C\-\_\-\-I\-N\-U\-M})}}\label{ets__sys_8h_a4ecb090095cd709120bf89f023ca9e97}
+
+
+Definition at line 142 of file ets\-\_\-sys.\-h.
+
+\hypertarget{ets__sys_8h_a0ebd2e7682d9b3d3a481db4f655b8f99}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!E\-T\-S\-\_\-\-S\-L\-C\-\_\-\-I\-N\-U\-M@{E\-T\-S\-\_\-\-S\-L\-C\-\_\-\-I\-N\-U\-M}}
+\index{E\-T\-S\-\_\-\-S\-L\-C\-\_\-\-I\-N\-U\-M@{E\-T\-S\-\_\-\-S\-L\-C\-\_\-\-I\-N\-U\-M}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{E\-T\-S\-\_\-\-S\-L\-C\-\_\-\-I\-N\-U\-M}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-T\-S\-\_\-\-S\-L\-C\-\_\-\-I\-N\-U\-M~1}}\label{ets__sys_8h_a0ebd2e7682d9b3d3a481db4f655b8f99}
+
+
+Definition at line 43 of file ets\-\_\-sys.\-h.
+
+\hypertarget{ets__sys_8h_a2b076948f8bb522ce7e33bfc38e2b702}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!E\-T\-S\-\_\-\-S\-O\-F\-T\-\_\-\-I\-N\-U\-M@{E\-T\-S\-\_\-\-S\-O\-F\-T\-\_\-\-I\-N\-U\-M}}
+\index{E\-T\-S\-\_\-\-S\-O\-F\-T\-\_\-\-I\-N\-U\-M@{E\-T\-S\-\_\-\-S\-O\-F\-T\-\_\-\-I\-N\-U\-M}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{E\-T\-S\-\_\-\-S\-O\-F\-T\-\_\-\-I\-N\-U\-M}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-T\-S\-\_\-\-S\-O\-F\-T\-\_\-\-I\-N\-U\-M~7}}\label{ets__sys_8h_a2b076948f8bb522ce7e33bfc38e2b702}
+
+
+Definition at line 49 of file ets\-\_\-sys.\-h.
+
+\hypertarget{ets__sys_8h_aef9df60b42c85b9690dd82ec71051582}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!E\-T\-S\-\_\-\-S\-P\-I\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H@{E\-T\-S\-\_\-\-S\-P\-I\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H}}
+\index{E\-T\-S\-\_\-\-S\-P\-I\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H@{E\-T\-S\-\_\-\-S\-P\-I\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{E\-T\-S\-\_\-\-S\-P\-I\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-T\-S\-\_\-\-S\-P\-I\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H(
+\begin{DoxyParamCaption}
+\item[{}]{func, }
+\item[{}]{arg}
+\end{DoxyParamCaption}
+)~{\bf ets\-\_\-isr\-\_\-attach}({\bf E\-T\-S\-\_\-\-S\-P\-I\-\_\-\-I\-N\-U\-M}, ({\bf int\-\_\-handler\-\_\-t})(func), (void $\ast$)(arg))}}\label{ets__sys_8h_aef9df60b42c85b9690dd82ec71051582}
+
+
+Definition at line 129 of file ets\-\_\-sys.\-h.
+
+\hypertarget{ets__sys_8h_ae4d3c0a049dfc7d75486935da78b4b73}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!E\-T\-S\-\_\-\-S\-P\-I\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E@{E\-T\-S\-\_\-\-S\-P\-I\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E}}
+\index{E\-T\-S\-\_\-\-S\-P\-I\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E@{E\-T\-S\-\_\-\-S\-P\-I\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{E\-T\-S\-\_\-\-S\-P\-I\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-T\-S\-\_\-\-S\-P\-I\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E(
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)~{\bf E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E}({\bf E\-T\-S\-\_\-\-S\-P\-I\-\_\-\-I\-N\-U\-M})}}\label{ets__sys_8h_ae4d3c0a049dfc7d75486935da78b4b73}
+
+
+Definition at line 135 of file ets\-\_\-sys.\-h.
+
+\hypertarget{ets__sys_8h_afb90a187a245417698672dc7cc1a9128}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!E\-T\-S\-\_\-\-S\-P\-I\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E@{E\-T\-S\-\_\-\-S\-P\-I\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E}}
+\index{E\-T\-S\-\_\-\-S\-P\-I\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E@{E\-T\-S\-\_\-\-S\-P\-I\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{E\-T\-S\-\_\-\-S\-P\-I\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-T\-S\-\_\-\-S\-P\-I\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E(
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)~{\bf E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E}({\bf E\-T\-S\-\_\-\-S\-P\-I\-\_\-\-I\-N\-U\-M})}}\label{ets__sys_8h_afb90a187a245417698672dc7cc1a9128}
+
+
+Definition at line 132 of file ets\-\_\-sys.\-h.
+
+\hypertarget{ets__sys_8h_af23f1ea4b5db3611dcb6d44db77095e6}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!E\-T\-S\-\_\-\-S\-P\-I\-\_\-\-I\-N\-U\-M@{E\-T\-S\-\_\-\-S\-P\-I\-\_\-\-I\-N\-U\-M}}
+\index{E\-T\-S\-\_\-\-S\-P\-I\-\_\-\-I\-N\-U\-M@{E\-T\-S\-\_\-\-S\-P\-I\-\_\-\-I\-N\-U\-M}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{E\-T\-S\-\_\-\-S\-P\-I\-\_\-\-I\-N\-U\-M}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-T\-S\-\_\-\-S\-P\-I\-\_\-\-I\-N\-U\-M~2}}\label{ets__sys_8h_af23f1ea4b5db3611dcb6d44db77095e6}
+
+
+Definition at line 44 of file ets\-\_\-sys.\-h.
+
+\hypertarget{ets__sys_8h_a774d674c8201b2707afbdc639d945c76}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!E\-T\-S\-\_\-\-U\-A\-R\-T1\-\_\-\-I\-N\-U\-M@{E\-T\-S\-\_\-\-U\-A\-R\-T1\-\_\-\-I\-N\-U\-M}}
+\index{E\-T\-S\-\_\-\-U\-A\-R\-T1\-\_\-\-I\-N\-U\-M@{E\-T\-S\-\_\-\-U\-A\-R\-T1\-\_\-\-I\-N\-U\-M}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{E\-T\-S\-\_\-\-U\-A\-R\-T1\-\_\-\-I\-N\-U\-M}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-T\-S\-\_\-\-U\-A\-R\-T1\-\_\-\-I\-N\-U\-M~5}}\label{ets__sys_8h_a774d674c8201b2707afbdc639d945c76}
+
+
+Definition at line 47 of file ets\-\_\-sys.\-h.
+
+\hypertarget{ets__sys_8h_ae05cdf8bb2481e44ebf01440070f0c38}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!E\-T\-S\-\_\-\-U\-A\-R\-T\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H@{E\-T\-S\-\_\-\-U\-A\-R\-T\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H}}
+\index{E\-T\-S\-\_\-\-U\-A\-R\-T\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H@{E\-T\-S\-\_\-\-U\-A\-R\-T\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{E\-T\-S\-\_\-\-U\-A\-R\-T\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-T\-S\-\_\-\-U\-A\-R\-T\-\_\-\-I\-N\-T\-R\-\_\-\-A\-T\-T\-A\-C\-H(
+\begin{DoxyParamCaption}
+\item[{}]{func, }
+\item[{}]{arg}
+\end{DoxyParamCaption}
+)~{\bf ets\-\_\-isr\-\_\-attach}({\bf E\-T\-S\-\_\-\-U\-A\-R\-T\-\_\-\-I\-N\-U\-M}, ({\bf int\-\_\-handler\-\_\-t})(func), (void $\ast$)(arg))}}\label{ets__sys_8h_ae05cdf8bb2481e44ebf01440070f0c38}
+
+
+Definition at line 113 of file ets\-\_\-sys.\-h.
+
+
+
+Referenced by uart\-\_\-init().
+
+\hypertarget{ets__sys_8h_ae80b2e325a24f9a4003261c152657eca}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!E\-T\-S\-\_\-\-U\-A\-R\-T\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E@{E\-T\-S\-\_\-\-U\-A\-R\-T\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E}}
+\index{E\-T\-S\-\_\-\-U\-A\-R\-T\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E@{E\-T\-S\-\_\-\-U\-A\-R\-T\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{E\-T\-S\-\_\-\-U\-A\-R\-T\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-T\-S\-\_\-\-U\-A\-R\-T\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E(
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)~{\bf E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-D\-I\-S\-A\-B\-L\-E}({\bf E\-T\-S\-\_\-\-U\-A\-R\-T\-\_\-\-I\-N\-U\-M})}}\label{ets__sys_8h_ae80b2e325a24f9a4003261c152657eca}
+
+
+Definition at line 119 of file ets\-\_\-sys.\-h.
+
+
+
+Referenced by uart\-\_\-callback(), and uart\-\_\-init().
+
+\hypertarget{ets__sys_8h_adcb1c98e19fde806010cbbc84880407a}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!E\-T\-S\-\_\-\-U\-A\-R\-T\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E@{E\-T\-S\-\_\-\-U\-A\-R\-T\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E}}
+\index{E\-T\-S\-\_\-\-U\-A\-R\-T\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E@{E\-T\-S\-\_\-\-U\-A\-R\-T\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{E\-T\-S\-\_\-\-U\-A\-R\-T\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-T\-S\-\_\-\-U\-A\-R\-T\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E(
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)~{\bf E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E}({\bf E\-T\-S\-\_\-\-U\-A\-R\-T\-\_\-\-I\-N\-U\-M})}}\label{ets__sys_8h_adcb1c98e19fde806010cbbc84880407a}
+
+
+Definition at line 116 of file ets\-\_\-sys.\-h.
+
+
+
+Referenced by uart\-\_\-callback(), and uart\-\_\-init().
+
+\hypertarget{ets__sys_8h_acb6dd94848925060dc450785c7783734}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!E\-T\-S\-\_\-\-U\-A\-R\-T\-\_\-\-I\-N\-U\-M@{E\-T\-S\-\_\-\-U\-A\-R\-T\-\_\-\-I\-N\-U\-M}}
+\index{E\-T\-S\-\_\-\-U\-A\-R\-T\-\_\-\-I\-N\-U\-M@{E\-T\-S\-\_\-\-U\-A\-R\-T\-\_\-\-I\-N\-U\-M}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{E\-T\-S\-\_\-\-U\-A\-R\-T\-\_\-\-I\-N\-U\-M}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-T\-S\-\_\-\-U\-A\-R\-T\-\_\-\-I\-N\-U\-M~5}}\label{ets__sys_8h_acb6dd94848925060dc450785c7783734}
+
+
+Definition at line 46 of file ets\-\_\-sys.\-h.
+
+\hypertarget{ets__sys_8h_afd2348d3a8457cdf7a53bb8ebcd4bb02}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!E\-T\-S\-\_\-\-W\-D\-T\-\_\-\-I\-N\-U\-M@{E\-T\-S\-\_\-\-W\-D\-T\-\_\-\-I\-N\-U\-M}}
+\index{E\-T\-S\-\_\-\-W\-D\-T\-\_\-\-I\-N\-U\-M@{E\-T\-S\-\_\-\-W\-D\-T\-\_\-\-I\-N\-U\-M}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{E\-T\-S\-\_\-\-W\-D\-T\-\_\-\-I\-N\-U\-M}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-T\-S\-\_\-\-W\-D\-T\-\_\-\-I\-N\-U\-M~8}}\label{ets__sys_8h_afd2348d3a8457cdf7a53bb8ebcd4bb02}
+
+
+Definition at line 50 of file ets\-\_\-sys.\-h.
+
+
+
+\subsection{Typedef Documentation}
+\hypertarget{ets__sys_8h_a88e26cd777a971dd390bfbc2565241bc}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!E\-T\-S\-Event@{E\-T\-S\-Event}}
+\index{E\-T\-S\-Event@{E\-T\-S\-Event}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{E\-T\-S\-Event}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf E\-T\-S\-Event\-Tag} {\bf E\-T\-S\-Event}}}\label{ets__sys_8h_a88e26cd777a971dd390bfbc2565241bc}
+
+
+Definition at line 18 of file ets\-\_\-sys.\-h.
+
+\hypertarget{ets__sys_8h_a85c8bbaf040864c7e182a24a10ef3ac4}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!E\-T\-S\-Handle@{E\-T\-S\-Handle}}
+\index{E\-T\-S\-Handle@{E\-T\-S\-Handle}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{E\-T\-S\-Handle}]{\setlength{\rightskip}{0pt plus 5cm}typedef {\bf uint32\-\_\-t} {\bf E\-T\-S\-Handle}}}\label{ets__sys_8h_a85c8bbaf040864c7e182a24a10ef3ac4}
+
+
+Definition at line 28 of file ets\-\_\-sys.\-h.
+
+\hypertarget{ets__sys_8h_af69975ab315b652862825f9929e436c0}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!E\-T\-S\-Param@{E\-T\-S\-Param}}
+\index{E\-T\-S\-Param@{E\-T\-S\-Param}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{E\-T\-S\-Param}]{\setlength{\rightskip}{0pt plus 5cm}typedef {\bf uint32\-\_\-t} {\bf E\-T\-S\-Param}}}\label{ets__sys_8h_af69975ab315b652862825f9929e436c0}
+
+
+Definition at line 16 of file ets\-\_\-sys.\-h.
+
+\hypertarget{ets__sys_8h_a5ca6a2be825d5fb421c6e97e8d65d5ca}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!E\-T\-S\-Signal@{E\-T\-S\-Signal}}
+\index{E\-T\-S\-Signal@{E\-T\-S\-Signal}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{E\-T\-S\-Signal}]{\setlength{\rightskip}{0pt plus 5cm}typedef {\bf uint32\-\_\-t} {\bf E\-T\-S\-Signal}}}\label{ets__sys_8h_a5ca6a2be825d5fb421c6e97e8d65d5ca}
+
+
+Definition at line 15 of file ets\-\_\-sys.\-h.
+
+\hypertarget{ets__sys_8h_ab29ee9d470b42a2c9a8273bc5047255a}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!E\-T\-S\-Task@{E\-T\-S\-Task}}
+\index{E\-T\-S\-Task@{E\-T\-S\-Task}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{E\-T\-S\-Task}]{\setlength{\rightskip}{0pt plus 5cm}typedef void($\ast$ E\-T\-S\-Task)({\bf E\-T\-S\-Event} $\ast$e)}}\label{ets__sys_8h_ab29ee9d470b42a2c9a8273bc5047255a}
+
+
+Definition at line 25 of file ets\-\_\-sys.\-h.
+
+\hypertarget{ets__sys_8h_ab895f72aa58b986445e6661c4eacaa86}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!E\-T\-S\-Timer@{E\-T\-S\-Timer}}
+\index{E\-T\-S\-Timer@{E\-T\-S\-Timer}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{E\-T\-S\-Timer}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \-\_\-\-E\-T\-S\-T\-I\-M\-E\-R\-\_\-}  {\bf E\-T\-S\-Timer}}}\label{ets__sys_8h_ab895f72aa58b986445e6661c4eacaa86}
+\hypertarget{ets__sys_8h_a9b98fc011315c1e79ebaf55e92265afa}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!E\-T\-S\-Timer\-Func@{E\-T\-S\-Timer\-Func}}
+\index{E\-T\-S\-Timer\-Func@{E\-T\-S\-Timer\-Func}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{E\-T\-S\-Timer\-Func}]{\setlength{\rightskip}{0pt plus 5cm}typedef void E\-T\-S\-Timer\-Func(void $\ast$timer\-\_\-arg)}}\label{ets__sys_8h_a9b98fc011315c1e79ebaf55e92265afa}
+
+
+Definition at line 29 of file ets\-\_\-sys.\-h.
+
+\hypertarget{ets__sys_8h_a243522a6d8672a6d7bb31e33820937d5}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!int\-\_\-handler\-\_\-t@{int\-\_\-handler\-\_\-t}}
+\index{int\-\_\-handler\-\_\-t@{int\-\_\-handler\-\_\-t}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{int\-\_\-handler\-\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}typedef void($\ast$ int\-\_\-handler\-\_\-t)(void $\ast$)}}\label{ets__sys_8h_a243522a6d8672a6d7bb31e33820937d5}
+
+
+Definition at line 41 of file ets\-\_\-sys.\-h.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{ets__sys_8h_aad111197de7c9bbb7510b2c423c6a692}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!alloc\-\_\-size@{alloc\-\_\-size}}
+\index{alloc\-\_\-size@{alloc\-\_\-size}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{alloc\-\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}void alloc\-\_\-size (
+\begin{DoxyParamCaption}
+\item[{1}]{}
+\end{DoxyParamCaption}
+)}}\label{ets__sys_8h_aad111197de7c9bbb7510b2c423c6a692}
+\hypertarget{ets__sys_8h_ad228deceea1bac4d9f171f647c265059}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!atoi@{atoi}}
+\index{atoi@{atoi}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{atoi}]{\setlength{\rightskip}{0pt plus 5cm}int atoi (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{nptr}
+\end{DoxyParamCaption}
+)}}\label{ets__sys_8h_ad228deceea1bac4d9f171f647c265059}
+\hypertarget{ets__sys_8h_a1c2ba31e1f4ca0ace63adc4cb0ce31de}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!ets\-\_\-install\-\_\-putc1@{ets\-\_\-install\-\_\-putc1}}
+\index{ets\-\_\-install\-\_\-putc1@{ets\-\_\-install\-\_\-putc1}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{ets\-\_\-install\-\_\-putc1}]{\setlength{\rightskip}{0pt plus 5cm}int int int void ets\-\_\-install\-\_\-putc1 (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{routine}
+\end{DoxyParamCaption}
+)}}\label{ets__sys_8h_a1c2ba31e1f4ca0ace63adc4cb0ce31de}
+\hypertarget{ets__sys_8h_a34d88118c468e28a7e0fba4109f17f30}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E\-D@{E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E\-D}}
+\index{E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E\-D@{E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E\-D}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E\-D}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint32\-\_\-t} E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-E\-N\-A\-B\-L\-E\-D (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{ets__sys_8h_a34d88118c468e28a7e0fba4109f17f30}
+
+
+Definition at line 73 of file ets\-\_\-sys.\-h.
+
+\hypertarget{ets__sys_8h_a3e8a8c3f7f4dd4962304f93cd16d5a27}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!ets\-\_\-intr\-\_\-lock@{ets\-\_\-intr\-\_\-lock}}
+\index{ets\-\_\-intr\-\_\-lock@{ets\-\_\-intr\-\_\-lock}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{ets\-\_\-intr\-\_\-lock}]{\setlength{\rightskip}{0pt plus 5cm}void ets\-\_\-intr\-\_\-lock (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{ets__sys_8h_a3e8a8c3f7f4dd4962304f93cd16d5a27}
+\hypertarget{ets__sys_8h_ad8c2d3e0969b06408d2929643bffbd5a}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-P\-E\-N\-D\-I\-N\-G@{E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-P\-E\-N\-D\-I\-N\-G}}
+\index{E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-P\-E\-N\-D\-I\-N\-G@{E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-P\-E\-N\-D\-I\-N\-G}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-P\-E\-N\-D\-I\-N\-G}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint32\-\_\-t} E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-P\-E\-N\-D\-I\-N\-G (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{ets__sys_8h_ad8c2d3e0969b06408d2929643bffbd5a}
+
+
+Definition at line 80 of file ets\-\_\-sys.\-h.
+
+\hypertarget{ets__sys_8h_a7d33b6634d73d809c7505aeff7048ca5}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!ets\-\_\-intr\-\_\-unlock@{ets\-\_\-intr\-\_\-unlock}}
+\index{ets\-\_\-intr\-\_\-unlock@{ets\-\_\-intr\-\_\-unlock}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{ets\-\_\-intr\-\_\-unlock}]{\setlength{\rightskip}{0pt plus 5cm}void ets\-\_\-intr\-\_\-unlock (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{ets__sys_8h_a7d33b6634d73d809c7505aeff7048ca5}
+\hypertarget{ets__sys_8h_a85d041e5bb0b1725560814da8be3a1b7}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-W\-I\-T\-H\-I\-N\-I\-S\-R@{E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-W\-I\-T\-H\-I\-N\-I\-S\-R}}
+\index{E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-W\-I\-T\-H\-I\-N\-I\-S\-R@{E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-W\-I\-T\-H\-I\-N\-I\-S\-R}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-W\-I\-T\-H\-I\-N\-I\-S\-R}]{\setlength{\rightskip}{0pt plus 5cm}bool E\-T\-S\-\_\-\-I\-N\-T\-R\-\_\-\-W\-I\-T\-H\-I\-N\-I\-S\-R (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{ets__sys_8h_a85d041e5bb0b1725560814da8be3a1b7}
+
+
+Definition at line 65 of file ets\-\_\-sys.\-h.
+
+
+
+Referenced by cont\-\_\-can\-\_\-yield().
+
+\hypertarget{ets__sys_8h_a03f317fac15ba038c9f4f0f19927adae}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!ets\-\_\-isr\-\_\-attach@{ets\-\_\-isr\-\_\-attach}}
+\index{ets\-\_\-isr\-\_\-attach@{ets\-\_\-isr\-\_\-attach}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{ets\-\_\-isr\-\_\-attach}]{\setlength{\rightskip}{0pt plus 5cm}void ets\-\_\-isr\-\_\-attach (
+\begin{DoxyParamCaption}
+\item[{int}]{intr, }
+\item[{{\bf int\-\_\-handler\-\_\-t}}]{handler, }
+\item[{void $\ast$}]{arg}
+\end{DoxyParamCaption}
+)}}\label{ets__sys_8h_a03f317fac15ba038c9f4f0f19927adae}
+\hypertarget{ets__sys_8h_ab6f29a0a7c387b2108d205691b596cce}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!ets\-\_\-isr\-\_\-mask@{ets\-\_\-isr\-\_\-mask}}
+\index{ets\-\_\-isr\-\_\-mask@{ets\-\_\-isr\-\_\-mask}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{ets\-\_\-isr\-\_\-mask}]{\setlength{\rightskip}{0pt plus 5cm}void ets\-\_\-isr\-\_\-mask (
+\begin{DoxyParamCaption}
+\item[{int}]{intr}
+\end{DoxyParamCaption}
+)}}\label{ets__sys_8h_ab6f29a0a7c387b2108d205691b596cce}
+\hypertarget{ets__sys_8h_a69dd465a4db7a320b31ceabe4bfcfb89}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!ets\-\_\-isr\-\_\-unmask@{ets\-\_\-isr\-\_\-unmask}}
+\index{ets\-\_\-isr\-\_\-unmask@{ets\-\_\-isr\-\_\-unmask}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{ets\-\_\-isr\-\_\-unmask}]{\setlength{\rightskip}{0pt plus 5cm}void ets\-\_\-isr\-\_\-unmask (
+\begin{DoxyParamCaption}
+\item[{int}]{intr}
+\end{DoxyParamCaption}
+)}}\label{ets__sys_8h_a69dd465a4db7a320b31ceabe4bfcfb89}
+\hypertarget{ets__sys_8h_a58fb77c4b7bc3115a55fb121a010b64a}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!ets\-\_\-memcpy@{ets\-\_\-memcpy}}
+\index{ets\-\_\-memcpy@{ets\-\_\-memcpy}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{ets\-\_\-memcpy}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ ets\-\_\-memcpy (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{dest, }
+\item[{const void $\ast$}]{src, }
+\item[{size\-\_\-t}]{n}
+\end{DoxyParamCaption}
+)}}\label{ets__sys_8h_a58fb77c4b7bc3115a55fb121a010b64a}
+\hypertarget{ets__sys_8h_a4951710a16fb4bbd7b0069c42d0cf85a}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!ets\-\_\-memset@{ets\-\_\-memset}}
+\index{ets\-\_\-memset@{ets\-\_\-memset}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{ets\-\_\-memset}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ ets\-\_\-memset (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{s, }
+\item[{int}]{c, }
+\item[{size\-\_\-t}]{n}
+\end{DoxyParamCaption}
+)}}\label{ets__sys_8h_a4951710a16fb4bbd7b0069c42d0cf85a}
+\hypertarget{ets__sys_8h_a99325d7832f5b017539b55bb37cd9c56}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!ets\-\_\-printf@{ets\-\_\-printf}}
+\index{ets\-\_\-printf@{ets\-\_\-printf}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{ets\-\_\-printf}]{\setlength{\rightskip}{0pt plus 5cm}int int int ets\-\_\-printf (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{format, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)}}\label{ets__sys_8h_a99325d7832f5b017539b55bb37cd9c56}
+\hypertarget{ets__sys_8h_a5acd9fa5cd9584fe89f89a65573f5f27}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!ets\-\_\-sprintf@{ets\-\_\-sprintf}}
+\index{ets\-\_\-sprintf@{ets\-\_\-sprintf}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{ets\-\_\-sprintf}]{\setlength{\rightskip}{0pt plus 5cm}int ets\-\_\-sprintf (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str, }
+\item[{const char $\ast$}]{format, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)}}\label{ets__sys_8h_a5acd9fa5cd9584fe89f89a65573f5f27}
+\hypertarget{ets__sys_8h_a50940862d213f35cb676dccfe3e0235f}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!ets\-\_\-strcmp@{ets\-\_\-strcmp}}
+\index{ets\-\_\-strcmp@{ets\-\_\-strcmp}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{ets\-\_\-strcmp}]{\setlength{\rightskip}{0pt plus 5cm}int ets\-\_\-strcmp (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{s1, }
+\item[{const char $\ast$}]{s2}
+\end{DoxyParamCaption}
+)}}\label{ets__sys_8h_a50940862d213f35cb676dccfe3e0235f}
+\hypertarget{ets__sys_8h_a69fb6a7112e45f0aefbbb1881f51c9eb}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!ets\-\_\-strcpy@{ets\-\_\-strcpy}}
+\index{ets\-\_\-strcpy@{ets\-\_\-strcpy}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{ets\-\_\-strcpy}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ ets\-\_\-strcpy (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{dest, }
+\item[{const char $\ast$}]{src}
+\end{DoxyParamCaption}
+)}}\label{ets__sys_8h_a69fb6a7112e45f0aefbbb1881f51c9eb}
+\hypertarget{ets__sys_8h_a2cf0a260e4f17f6fceeb8c3be01f6fd8}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!ets\-\_\-strlen@{ets\-\_\-strlen}}
+\index{ets\-\_\-strlen@{ets\-\_\-strlen}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{ets\-\_\-strlen}]{\setlength{\rightskip}{0pt plus 5cm}int ets\-\_\-strlen (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{s}
+\end{DoxyParamCaption}
+)}}\label{ets__sys_8h_a2cf0a260e4f17f6fceeb8c3be01f6fd8}
+\hypertarget{ets__sys_8h_a8b5ec9acfc497b92152d07ba76e8ad08}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!ets\-\_\-strncmp@{ets\-\_\-strncmp}}
+\index{ets\-\_\-strncmp@{ets\-\_\-strncmp}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{ets\-\_\-strncmp}]{\setlength{\rightskip}{0pt plus 5cm}int ets\-\_\-strncmp (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{s1, }
+\item[{const char $\ast$}]{s2, }
+\item[{int}]{len}
+\end{DoxyParamCaption}
+)}}\label{ets__sys_8h_a8b5ec9acfc497b92152d07ba76e8ad08}
+\hypertarget{ets__sys_8h_a39ebc9f42fbcb39ab9773d1e59934592}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!ets\-\_\-strncpy@{ets\-\_\-strncpy}}
+\index{ets\-\_\-strncpy@{ets\-\_\-strncpy}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{ets\-\_\-strncpy}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ ets\-\_\-strncpy (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{dest, }
+\item[{const char $\ast$}]{src, }
+\item[{size\-\_\-t}]{n}
+\end{DoxyParamCaption}
+)}}\label{ets__sys_8h_a39ebc9f42fbcb39ab9773d1e59934592}
+\hypertarget{ets__sys_8h_ad0467fffa4c41822d5716b5070bc72cb}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!ets\-\_\-strstr@{ets\-\_\-strstr}}
+\index{ets\-\_\-strstr@{ets\-\_\-strstr}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{ets\-\_\-strstr}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ ets\-\_\-strstr (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{haystack, }
+\item[{const char $\ast$}]{needle}
+\end{DoxyParamCaption}
+)}}\label{ets__sys_8h_ad0467fffa4c41822d5716b5070bc72cb}
+\hypertarget{ets__sys_8h_a7899c08bfbf0a915a6074838de42d370}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!ets\-\_\-timer\-\_\-arm\-\_\-new@{ets\-\_\-timer\-\_\-arm\-\_\-new}}
+\index{ets\-\_\-timer\-\_\-arm\-\_\-new@{ets\-\_\-timer\-\_\-arm\-\_\-new}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{ets\-\_\-timer\-\_\-arm\-\_\-new}]{\setlength{\rightskip}{0pt plus 5cm}void ets\-\_\-timer\-\_\-arm\-\_\-new (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-T\-S\-Timer} $\ast$}]{a, }
+\item[{int}]{b, }
+\item[{int}]{c, }
+\item[{int}]{is\-Mstimer}
+\end{DoxyParamCaption}
+)}}\label{ets__sys_8h_a7899c08bfbf0a915a6074838de42d370}
+\hypertarget{ets__sys_8h_ae32b36727fc3094e2550baaa6fbd662a}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!ets\-\_\-timer\-\_\-disarm@{ets\-\_\-timer\-\_\-disarm}}
+\index{ets\-\_\-timer\-\_\-disarm@{ets\-\_\-timer\-\_\-disarm}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{ets\-\_\-timer\-\_\-disarm}]{\setlength{\rightskip}{0pt plus 5cm}void ets\-\_\-timer\-\_\-disarm (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-T\-S\-Timer} $\ast$}]{a}
+\end{DoxyParamCaption}
+)}}\label{ets__sys_8h_ae32b36727fc3094e2550baaa6fbd662a}
+\hypertarget{ets__sys_8h_a08403268d382fe7bfb6d6fc392cf8cac}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!ets\-\_\-timer\-\_\-setfn@{ets\-\_\-timer\-\_\-setfn}}
+\index{ets\-\_\-timer\-\_\-setfn@{ets\-\_\-timer\-\_\-setfn}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{ets\-\_\-timer\-\_\-setfn}]{\setlength{\rightskip}{0pt plus 5cm}void ets\-\_\-timer\-\_\-setfn (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-T\-S\-Timer} $\ast$}]{t, }
+\item[{{\bf E\-T\-S\-Timer\-Func} $\ast$}]{fn, }
+\item[{void $\ast$}]{parg}
+\end{DoxyParamCaption}
+)}}\label{ets__sys_8h_a08403268d382fe7bfb6d6fc392cf8cac}
+\hypertarget{ets__sys_8h_adc2f5bdec43573f11176fc8e82a892f6}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!ets\-\_\-vprintf@{ets\-\_\-vprintf}}
+\index{ets\-\_\-vprintf@{ets\-\_\-vprintf}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{ets\-\_\-vprintf}]{\setlength{\rightskip}{0pt plus 5cm}int int ets\-\_\-vprintf (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{format, }
+\item[{va\-\_\-list}]{arg}
+\end{DoxyParamCaption}
+)}}\label{ets__sys_8h_adc2f5bdec43573f11176fc8e82a892f6}
+\hypertarget{ets__sys_8h_a9b391ddf89d3e76da23e90acbda518d4}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!ets\-\_\-vsnprintf@{ets\-\_\-vsnprintf}}
+\index{ets\-\_\-vsnprintf@{ets\-\_\-vsnprintf}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{ets\-\_\-vsnprintf}]{\setlength{\rightskip}{0pt plus 5cm}int ets\-\_\-vsnprintf (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{s, }
+\item[{size\-\_\-t}]{n, }
+\item[{const char $\ast$}]{format, }
+\item[{va\-\_\-list}]{arg}
+\end{DoxyParamCaption}
+)}}\label{ets__sys_8h_a9b391ddf89d3e76da23e90acbda518d4}
+\hypertarget{ets__sys_8h_ae27fa0bb797a88d1e66abff3654dc228}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!os\-\_\-snprintf@{os\-\_\-snprintf}}
+\index{os\-\_\-snprintf@{os\-\_\-snprintf}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{os\-\_\-snprintf}]{\setlength{\rightskip}{0pt plus 5cm}int int os\-\_\-snprintf (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str, }
+\item[{size\-\_\-t}]{size, }
+\item[{const char $\ast$}]{format, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)}}\label{ets__sys_8h_ae27fa0bb797a88d1e66abff3654dc228}
+\hypertarget{ets__sys_8h_a15d182a947b2036039d082e94fac3ee5}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!pv\-Port\-Free@{pv\-Port\-Free}}
+\index{pv\-Port\-Free@{pv\-Port\-Free}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{pv\-Port\-Free}]{\setlength{\rightskip}{0pt plus 5cm}void pv\-Port\-Free (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{ptr}
+\end{DoxyParamCaption}
+)}}\label{ets__sys_8h_a15d182a947b2036039d082e94fac3ee5}
+\hypertarget{ets__sys_8h_a185abb084d1878cf3ac02f3d00368d38}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!pv\-Port\-Malloc@{pv\-Port\-Malloc}}
+\index{pv\-Port\-Malloc@{pv\-Port\-Malloc}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{pv\-Port\-Malloc}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ pv\-Port\-Malloc (
+\begin{DoxyParamCaption}
+\item[{size\-\_\-t}]{x\-Wanted\-Size}
+\end{DoxyParamCaption}
+)}}\label{ets__sys_8h_a185abb084d1878cf3ac02f3d00368d38}
+\hypertarget{ets__sys_8h_ae20f9e55286e819a6fecbcc29523c0b1}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!pv\-Port\-Realloc@{pv\-Port\-Realloc}}
+\index{pv\-Port\-Realloc@{pv\-Port\-Realloc}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{pv\-Port\-Realloc}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ pv\-Port\-Realloc (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{ptr, }
+\item[{size\-\_\-t}]{x\-Wanted\-Size}
+\end{DoxyParamCaption}
+)}}\label{ets__sys_8h_ae20f9e55286e819a6fecbcc29523c0b1}
+\hypertarget{ets__sys_8h_af3321c1706bd68a533e73690e8d5c5e6}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!uart\-\_\-div\-\_\-modify@{uart\-\_\-div\-\_\-modify}}
+\index{uart\-\_\-div\-\_\-modify@{uart\-\_\-div\-\_\-modify}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{uart\-\_\-div\-\_\-modify}]{\setlength{\rightskip}{0pt plus 5cm}void uart\-\_\-div\-\_\-modify (
+\begin{DoxyParamCaption}
+\item[{int}]{no, }
+\item[{int}]{freq}
+\end{DoxyParamCaption}
+)}}\label{ets__sys_8h_af3321c1706bd68a533e73690e8d5c5e6}
+
+
+Referenced by uart\-\_\-config(), and user\-\_\-init().
+
+\hypertarget{ets__sys_8h_a06dc17b0cda286f66321589aac6d7e7c}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!v\-Port\-Free@{v\-Port\-Free}}
+\index{v\-Port\-Free@{v\-Port\-Free}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{v\-Port\-Free}]{\setlength{\rightskip}{0pt plus 5cm}void v\-Port\-Free (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{ptr}
+\end{DoxyParamCaption}
+)}}\label{ets__sys_8h_a06dc17b0cda286f66321589aac6d7e7c}
+\hypertarget{ets__sys_8h_aa38c1748631ab27a90f57ada106c2a7b}{\index{ets\-\_\-sys.\-h@{ets\-\_\-sys.\-h}!v\-Port\-Malloc@{v\-Port\-Malloc}}
+\index{v\-Port\-Malloc@{v\-Port\-Malloc}!ets_sys.h@{ets\-\_\-sys.\-h}}
+\subsubsection[{v\-Port\-Malloc}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ v\-Port\-Malloc (
+\begin{DoxyParamCaption}
+\item[{size\-\_\-t}]{x\-Wanted\-Size}
+\end{DoxyParamCaption}
+)}}\label{ets__sys_8h_aa38c1748631ab27a90f57ada106c2a7b}

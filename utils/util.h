@@ -30,8 +30,10 @@
 #define SIGN(x) (((x) == 0) ? 0 : ((x) > 0) ? 1 : -1)
 #define MAX(x,y) (((x) > (y)) ? x : y)
 
+#define SPACES " \t\r"
+#define SPACESNL " \t\n\r"
 
-/* util.c */
+/* utils/util.c */
 uint8_t read_flash8 ( uint8_t *p );
 uint8_t read_flash8 ( uint8_t *p );
 void cpy_flash ( uint8_t *src , uint8_t *dest , int size );
@@ -55,5 +57,17 @@ MEMSPACE char *stralloc ( char *str );
 MEMSPACE char *get_token ( char *str , char *token , int max );
 MEMSPACE int token ( char *str , char *pat );
 MEMSPACE uint8_t hexd ( char c );
-
+MEMSPACE int isupper ( int c );
+MEMSPACE int islower ( int c );
+MEMSPACE int tolower ( int c );
+MEMSPACE int toupper ( int c );
+MEMSPACE size_t strlen ( const char *str );
+MEMSPACE int strcmp ( const char *str , const char *pat );
+MEMSPACE int strncmp ( const char *str , const char *pat , size_t len );
+MEMSPACE int strcasecmp ( const char *str , const char *pat );
+MEMSPACE int strncasecmp ( const char *str , const char *pat , size_t len );
+MEMSPACE int MATCH ( char *str , char *pat );
+MEMSPACE int MATCHI ( char *str , char *pat );
+MEMSPACE int MATCH_LEN ( char *str , char *pat );
+MEMSPACE int MATCHI_LEN ( char *str , char *pat );
 #endif

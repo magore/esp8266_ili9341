@@ -44,6 +44,8 @@ void \hyperlink{hspi_8c_a0603c3e5a8c6c29e5deb5609b28e86bc}{hspi\-\_\-\-R\-X} (\h
 \item 
 \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} \hyperlink{hspi_8c_a1d1ec6333b265b4dd659ee605a2421de}{\-\_\-cs\-\_\-pin} = 0xff
 \begin{DoxyCompactList}\small\item\em hspi C\-S cached value \end{DoxyCompactList}\item 
+static \hyperlink{hspi_8c_a9d8a27ff6d91c4aa89e8719b960d7404}{\-\_\-hspi\-\_\-init\-\_\-done} = 0
+\item 
 \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\-\_\-t} \hyperlink{hspi_8c_a23bff420a87154074498603d36fe36d7}{hspi\-\_\-clock} = -\/1
 \begin{DoxyCompactList}\small\item\em hspi clock cached value \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -100,7 +102,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 121 of file hspi.\-c.
+Definition at line 134 of file hspi.\-c.
 
 
 
@@ -124,7 +126,7 @@ H\-S\-P\-I C\-S disable function.
 \end{DoxyParams}
 
 
-Definition at line 51 of file hspi.\-c.
+Definition at line 52 of file hspi.\-c.
 
 
 
@@ -178,11 +180,11 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 76 of file hspi.\-c.
+Definition at line 79 of file hspi.\-c.
 
 
 
-Referenced by mmc\-\_\-cs\-\_\-enable(), mmc\-\_\-fast(), mmc\-\_\-slow(), tft\-\_\-spi\-\_\-begin(), tft\-\_\-spi\-\_\-init(), and user\-\_\-init().
+Referenced by mmc\-\_\-cs\-\_\-enable(), mmc\-\_\-fast(), mmc\-\_\-slow(), setup(), tft\-\_\-spi\-\_\-begin(), and tft\-\_\-spi\-\_\-init().
 
 \hypertarget{hspi_8c_a50884c24ab0b495b0c0112547ecde051}{\index{hspi.\-c@{hspi.\-c}!hspi\-\_\-read\-F\-I\-F\-O@{hspi\-\_\-read\-F\-I\-F\-O}}
 \index{hspi\-\_\-read\-F\-I\-F\-O@{hspi\-\_\-read\-F\-I\-F\-O}!hspi.c@{hspi.\-c}}
@@ -208,7 +210,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 232 of file hspi.\-c.
+Definition at line 245 of file hspi.\-c.
 
 
 
@@ -238,7 +240,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 335 of file hspi.\-c.
+Definition at line 348 of file hspi.\-c.
 
 
 
@@ -265,7 +267,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 157 of file hspi.\-c.
+Definition at line 170 of file hspi.\-c.
 
 
 
@@ -287,7 +289,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 168 of file hspi.\-c.
+Definition at line 181 of file hspi.\-c.
 
 
 
@@ -317,7 +319,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 282 of file hspi.\-c.
+Definition at line 295 of file hspi.\-c.
 
 
 
@@ -347,7 +349,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 309 of file hspi.\-c.
+Definition at line 322 of file hspi.\-c.
 
 
 
@@ -369,11 +371,11 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 176 of file hspi.\-c.
+Definition at line 189 of file hspi.\-c.
 
 
 
-Referenced by hspi\-\_\-config(), hspi\-\_\-\-R\-X(), hspi\-\_\-\-T\-X(), hspi\-\_\-\-T\-X\-R\-X(), mmc\-\_\-fast(), mmc\-\_\-slow(), tft\-\_\-spi\-\_\-begin(), tft\-\_\-spi\-\_\-end(), tft\-\_\-spi\-\_\-\-R\-X(), tft\-\_\-spi\-\_\-\-T\-X(), and tft\-\_\-spi\-\_\-\-T\-X\-R\-X().
+Referenced by esp\-\_\-yield(), hspi\-\_\-config(), hspi\-\_\-cs\-\_\-disable(), hspi\-\_\-cs\-\_\-enable(), hspi\-\_\-init(), hspi\-\_\-\-R\-X(), hspi\-\_\-\-T\-X(), hspi\-\_\-\-T\-X\-R\-X(), loop\-\_\-wrapper(), mmc\-\_\-fast(), mmc\-\_\-power\-\_\-off(), mmc\-\_\-slow(), tft\-\_\-spi\-\_\-begin(), tft\-\_\-spi\-\_\-end(), tft\-\_\-spi\-\_\-\-R\-X(), tft\-\_\-spi\-\_\-\-T\-X(), and tft\-\_\-spi\-\_\-\-T\-X\-R\-X().
 
 \hypertarget{hspi_8c_afc6137e3acc101f92a9502ad207f0b4d}{\index{hspi.\-c@{hspi.\-c}!hspi\-\_\-write\-F\-I\-F\-O@{hspi\-\_\-write\-F\-I\-F\-O}}
 \index{hspi\-\_\-write\-F\-I\-F\-O@{hspi\-\_\-write\-F\-I\-F\-O}!hspi.c@{hspi.\-c}}
@@ -399,7 +401,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 186 of file hspi.\-c.
+Definition at line 199 of file hspi.\-c.
 
 
 
@@ -423,6 +425,17 @@ Definition at line 35 of file hspi.\-c.
 
 Referenced by hspi\-\_\-cs\-\_\-disable(), and hspi\-\_\-cs\-\_\-enable().
 
+\hypertarget{hspi_8c_a9d8a27ff6d91c4aa89e8719b960d7404}{\index{hspi.\-c@{hspi.\-c}!\-\_\-hspi\-\_\-init\-\_\-done@{\-\_\-hspi\-\_\-init\-\_\-done}}
+\index{\-\_\-hspi\-\_\-init\-\_\-done@{\-\_\-hspi\-\_\-init\-\_\-done}!hspi.c@{hspi.\-c}}
+\subsubsection[{\-\_\-hspi\-\_\-init\-\_\-done}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-hspi\-\_\-init\-\_\-done = 0\hspace{0.3cm}{\ttfamily [static]}}}\label{hspi_8c_a9d8a27ff6d91c4aa89e8719b960d7404}
+
+
+Definition at line 65 of file hspi.\-c.
+
+
+
+Referenced by hspi\-\_\-init().
+
 \hypertarget{hspi_8c_a23bff420a87154074498603d36fe36d7}{\index{hspi.\-c@{hspi.\-c}!hspi\-\_\-clock@{hspi\-\_\-clock}}
 \index{hspi\-\_\-clock@{hspi\-\_\-clock}!hspi.c@{hspi.\-c}}
 \subsubsection[{hspi\-\_\-clock}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint16\-\_\-t} hspi\-\_\-clock = -\/1}}\label{hspi_8c_a23bff420a87154074498603d36fe36d7}
@@ -432,7 +445,7 @@ hspi clock cached value
 
 
 
-Definition at line 65 of file hspi.\-c.
+Definition at line 68 of file hspi.\-c.
 
 
 

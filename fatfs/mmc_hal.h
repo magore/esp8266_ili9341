@@ -15,10 +15,17 @@
 
 #include "user_config.h"
 
+#ifndef SWAP45
 #define SD_CS_PIN		5
+#define SD_CS_ACTIVE   GPIO_OUTPUT_SET(4, 0)
+#define SD_CS_DEACTIVE GPIO_OUTPUT_SET(4, 1)
+#define SD_CS_INIT     PIN_FUNC_SELECT(PERIPHS_IO_MUX_GPIO4_U, FUNC_GPIO4); SD_CS_DEACTIVE
+#else
+#define SD_CS_PIN		4
 #define SD_CS_ACTIVE   GPIO_OUTPUT_SET(5, 0)
 #define SD_CS_DEACTIVE GPIO_OUTPUT_SET(5, 1)
-#define SD_CS_INIT     PIN_FUNC_SELECT(PERIPHS_IO_MUX_GPIO5_U, 0); SD_CS_DEACTIVE
+#define SD_CS_INIT     PIN_FUNC_SELECT(PERIPHS_IO_MUX_GPIO5_U, FUNC_GPIO5); SD_CS_DEACTIVE
+#endif
 
 #define mmc_disk_initialize disk_initialize	/*< disk_initialize() */
 #define mmc_disk_status disk_status			/*< disk_status() */

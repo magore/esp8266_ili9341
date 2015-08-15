@@ -102,291 +102,293 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#include &lt;sys/types.h&gt;</span></div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#include &lt;sys/stat.h&gt;</span></div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#include &lt;unistd.h&gt;</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="fonts_2font_8h.html">font.h</a>&quot;</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="bdffontutil_8h.html">bdffontutil.h</a>&quot;</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="bdffont2c_8c.html#aa4817482b1728bf62acf8030cab9842c">   56</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="bdffont2c_8c.html#aa4817482b1728bf62acf8030cab9842c">usage</a>(<span class="keywordtype">char</span> *prog)</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;{</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    printf(<span class="stringliteral">&quot;%s: [-o font_output_file ] [ -l lower_bound ] [ -u upper_bound ] [ -preview ] [ -Preview ] bdf files...\n&quot;</span>,</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        prog);</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    printf(<span class="stringliteral">&quot; -o: output file containg C STructures of converted font data\n&quot;</span>);</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    printf(<span class="stringliteral">&quot; -u: limit Glyph processing above limit\n&quot;</span>);    </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    printf(<span class="stringliteral">&quot; -l: limit Glyph processing below limit\n&quot;</span>);    </div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    printf(<span class="stringliteral">&quot; -p 1 Preview font bitmap data - only parts with 1 bits set\n&quot;</span>);    </div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    printf(<span class="stringliteral">&quot; -p 2 Preview Full font bitmap data - everything inside font bounding box\n&quot;</span>);  </div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    printf(<span class="stringliteral">&quot; -p 3 Preview Proportional font bitmap data and fixed - everything inside font bounding box\n&quot;</span>);    </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    printf(<span class="stringliteral">&quot; -f convert any font to fixed size bitmap - everything inside font bounding box\n&quot;</span>);</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    printf(<span class="stringliteral">&quot; -s Compact font to smallest bounding box\n&quot;</span>);</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    printf(<span class="stringliteral">&quot;    Notes: modifies or creates font specs\n&quot;</span>);</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    printf(<span class="stringliteral">&quot; bdf files...: One of more BDF format font files\n&quot;</span>);</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;}</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
-<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="bdffont2c_8c.html#af3ed9c200de85b53c94cd18764b246a2">   90</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="bdffont2c_8c.html#af3ed9c200de85b53c94cd18764b246a2">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *<span class="keyword">const</span> argv[])</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;{</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordtype">int</span> i;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keyword">struct </span><a class="code" href="structstat.html">stat</a> buf;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <a class="code" href="struct__font.html">_font</a> fx;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordtype">char</span> *name, *cfonts, *ptr;;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="comment">// Dump font ascii preview</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keywordtype">int</span> font_preview = 0;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordtype">int</span> font_adjust_full = 0;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keywordtype">int</span> font_adjust_small = 0;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="comment">// Glyph code of first font to process - we ignore fonts less then this</span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keywordtype">int</span> lower_bound = 32;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="comment">// Glyph code of last font to process - we ignore fonts greater then this </span></div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keywordtype">int</span> upper_bound = 127;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="comment">// We always emit fonts specs and info parts</span></div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="comment">// These flags just determin if we emit them in the converted font file</span></div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keywordtype">int</span> fontinfo_f = 0;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="keywordtype">int</span> fontspecs_f = 0;</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keywordtype">char</span> str[<a class="code" href="bdffontutil_8h.html#a3e937c42922f7601edb17b747602c471">MAXLINE</a>];</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="keywordtype">int</span> bdfind = 0;</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="keywordtype">int</span> find = 0;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <a class="code" href="struct____file.html">FILE</a> *FI;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <a class="code" href="struct____file.html">FILE</a> *FO = NULL;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    cfonts = NULL;</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <span class="keywordflow">for</span>(i=1;i&lt;argc;++i)</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    {</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        ptr = argv[i];</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        <span class="keywordflow">if</span>(*ptr == <span class="charliteral">&#39;-&#39;</span>)</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        {</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;            ptr++;</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;            <span class="keywordflow">if</span>(*ptr == <span class="charliteral">&#39;o&#39;</span>)</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;            {</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                ++ptr;</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;                <span class="keywordflow">if</span>(*ptr)</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;                {</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;                    cfonts = ptr;</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;                }</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;                <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;                {</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;                    cfonts = argv[++i];</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;                }</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;                <span class="keywordflow">continue</span>;</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;            }</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;            <span class="keywordflow">if</span>(*ptr == <span class="charliteral">&#39;l&#39;</span>)</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;            {</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;                ++ptr;</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;                <span class="keywordflow">if</span>(*ptr)</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;                {</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;                    lower_bound = atoi(ptr);</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;                }</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;                <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;                {</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;                    lower_bound = atoi(argv[++i]);</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;                }</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;                <span class="keywordflow">continue</span>;</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;            }</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;            <span class="keywordflow">if</span>(*ptr == <span class="charliteral">&#39;u&#39;</span>)</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;            {</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;                ++ptr;</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;                <span class="keywordflow">if</span>(*ptr)</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;                {</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;                    upper_bound = atoi(ptr);</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;                }</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;                <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;                {</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;                    upper_bound = atoi(argv[++i]);</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;                }</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;                <span class="keywordflow">continue</span>;</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;            }</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;            <span class="keywordflow">if</span>(*ptr == <span class="charliteral">&#39;p&#39;</span>)</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;            {</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;                ++ptr;</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;                <span class="keywordflow">if</span>(*ptr)</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;                {</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;                    font_preview = atoi(ptr);</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;                }</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;                <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;                {</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;                    font_preview = atoi(argv[++i]);</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;                }</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;                <span class="keywordflow">continue</span>;</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;            }</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;            <span class="keywordflow">if</span>(*ptr == <span class="charliteral">&#39;f&#39;</span>)</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;            {</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;                ++ptr;</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;                font_adjust_full = 1;</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;                <span class="keywordflow">continue</span>;</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;            }</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;            <span class="keywordflow">if</span>(*ptr == <span class="charliteral">&#39;s&#39;</span>)</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;            {</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;                ++ptr;</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;                font_adjust_small = 1;</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;                <span class="keywordflow">continue</span>;</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;            }</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;        }</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        {</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;            <span class="keywordflow">if</span>(find &lt; <a class="code" href="display_2font_8h.html#ac108d78d76235e3c7cada0c2e56b7e2d">MAXFONTS</a>)</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;            {</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;                <span class="keywordflow">if</span>(<a class="code" href="posix_8c.html#abef70bf7a4af8a1f4998db0035c51781">stat</a>(argv[i], (<span class="keyword">struct</span> <a class="code" href="structstat.html">stat</a> *) &amp;buf) != 0)</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;                {</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;                    fprintf(<a class="code" href="posix_8h.html#a5ce35bd5ba5021fd3b2e951e8f497656">stderr</a>,<span class="stringliteral">&quot;File:[%s] missing, skipping\n&quot;</span>, argv[i]);</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;                    <span class="keywordflow">continue</span>;</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;                }</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;                <a class="code" href="bdffontutil_8c.html#ae75c11efb4dd449e4fcf9f1f78e9414c">fnames</a>[find++] = <a class="code" href="util_8c.html#a354472f280e9fe08820d6f32e0feddae">stralloc</a>(argv[i]);</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;            }</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;        }</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    }</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    <span class="keywordflow">if</span>(font_adjust_full &amp;&amp; font_adjust_small)</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    {</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;        fprintf(<a class="code" href="posix_8h.html#a5ce35bd5ba5021fd3b2e951e8f497656">stderr</a>,<span class="stringliteral">&quot;Can not have -f and -s set at the same time\n&quot;</span>);    </div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;        exit(1);</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    }</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    <span class="keywordflow">if</span>(!find)</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;    {</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;        <a class="code" href="bdffont2c_8c.html#aa4817482b1728bf62acf8030cab9842c">usage</a>(<a class="code" href="posix_8c.html#a4d3dfaf2f5a63e2e4eaa128477a9b5e7">basename</a>(argv[0]));</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;        fprintf(<a class="code" href="posix_8h.html#a5ce35bd5ba5021fd3b2e951e8f497656">stderr</a>,<span class="stringliteral">&quot;No font files specified\n&quot;</span>);</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;        exit(1);</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;    }</div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    <span class="keywordflow">if</span>(cfonts == NULL)</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    {</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;        FO = <a class="code" href="posix_8h.html#a0c0ef221f95f64e8632451312fd18cc8">stdout</a>;</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;        cfonts = <span class="stringliteral">&quot;stdout&quot;</span>;</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    }</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    {</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;        <span class="keywordflow">if</span>(<a class="code" href="posix_8c.html#abef70bf7a4af8a1f4998db0035c51781">stat</a>(cfonts, (<span class="keyword">struct</span> <a class="code" href="structstat.html">stat</a> *) &amp;buf) == 0)</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;        {</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;            fprintf(<a class="code" href="posix_8h.html#a5ce35bd5ba5021fd3b2e951e8f497656">stderr</a>,<span class="stringliteral">&quot;Font file: %s - exists - not overwritting\n&quot;</span>, cfonts);</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;            exit(1);</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;        }</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;        FO = <a class="code" href="posix_8c.html#a8e661c338f41695d1a1e70aed6255e2d">fopen</a>(cfonts,<span class="stringliteral">&quot;w&quot;</span>);</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;        <span class="keywordflow">if</span>(!FO)</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;        {</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;            fprintf(<a class="code" href="posix_8h.html#a5ce35bd5ba5021fd3b2e951e8f497656">stderr</a>,<span class="stringliteral">&quot;Can&#39;t open: %s\n&quot;</span>, cfonts);</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;            exit(1);</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;        }</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;    }</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;    </div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    bdfind = 0;</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    <span class="keywordflow">for</span>(i=0;i&lt;find;++i)</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    {</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;        <span class="keywordtype">int</span> ret;</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;        name = <a class="code" href="bdffontutil_8c.html#ae75c11efb4dd449e4fcf9f1f78e9414c">fnames</a>[i];</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;        <span class="keywordflow">if</span>(!<a class="code" href="bdffontutil_8c.html#a49c59fe21a56b90ad6f8bcc5549e3dce">ReadBdf</a>(name, &amp;fx, lower_bound, upper_bound))</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;        {</div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;            <a class="code" href="bdffontutil_8c.html#a4afb5289fcab36022951a5d16ea7932f">FreeFont</a>(&amp;fx);</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;            fprintf(<a class="code" href="posix_8h.html#a5ce35bd5ba5021fd3b2e951e8f497656">stderr</a>,<span class="stringliteral">&quot;Can&#39;t open:[%s]\n&quot;</span>, name);</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;            <span class="keywordflow">continue</span>;</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;        }</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;        ret = <a class="code" href="bdffontutil_8c.html#aa01d93b9cf1d60cc4ce0adb717384f96">FindFontName</a>(fx.info-&gt;STRUCT_NAME);</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;        <span class="keywordflow">if</span>(ret != -1)</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;        {</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;            fprintf(<a class="code" href="posix_8h.html#a5ce35bd5ba5021fd3b2e951e8f497656">stderr</a>,<span class="stringliteral">&quot;Duplicate font:[%s] in file:[%s], skipping\n&quot;</span>, fx.info-&gt;STRUCT_NAME, name);</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;            fprintf(<a class="code" href="posix_8h.html#a5ce35bd5ba5021fd3b2e951e8f497656">stderr</a>,<span class="stringliteral">&quot;Exists in font:[%s] in file:[%s]\n\n&quot;</span>, </div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;                <a class="code" href="bdffontutil_8c.html#a8d8135c72831c5d6ca04479c82351b62">BDFnames</a>[ret].structname,</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;                <a class="code" href="bdffontutil_8c.html#a8d8135c72831c5d6ca04479c82351b62">BDFnames</a>[ret].filename</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;            );</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;            <a class="code" href="bdffontutil_8c.html#a4afb5289fcab36022951a5d16ea7932f">FreeFont</a>(&amp;fx);</div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;            <span class="keywordflow">continue</span>;</div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;        }</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;    </div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;        <span class="keywordflow">if</span>(font_adjust_full)</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;        {</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;            <span class="comment">//fprintf(stderr,&quot;Bytes:%d\n&quot;, fx.Bytes);</span></div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;            <a class="code" href="bdffontutil_8c.html#ac2e86eac4bb6e173fbbfae929302e851">FontAdjustFull</a>(&amp;fx);</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;            fontspecs_f = 0;</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;            <span class="comment">//fprintf(stderr,&quot;New Bytes:%d\n&quot;, fx.Bytes);</span></div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;        }</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;        <span class="keywordflow">if</span>(font_adjust_small)</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;        {</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;            <span class="comment">//fprintf(stderr,&quot;Bytes:%d\n&quot;, fx.Bytes);</span></div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;            <a class="code" href="bdffontutil_8c.html#ac8e10a9220f9a51589124690c47d099b">FontAdjustSmall</a>(&amp;fx);</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;            fontspecs_f = 1;</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;            <span class="comment">//fprintf(stderr,&quot;New Bytes:%d\n&quot;, fx.Bytes);</span></div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;        }</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;        <a class="code" href="bdffontutil_8c.html#a8d8135c72831c5d6ca04479c82351b62">BDFnames</a>[bdfind].<a class="code" href="struct__bdffile.html#a040674bb1df0a8d4b1bedeae616e9b65">filename</a> = name;</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;        <a class="code" href="bdffontutil_8c.html#a8d8135c72831c5d6ca04479c82351b62">BDFnames</a>[bdfind].<a class="code" href="struct__bdffile.html#a54e6c69f33cc656848ad924faba85b53">structname</a> = <a class="code" href="util_8c.html#a354472f280e9fe08820d6f32e0feddae">stralloc</a>(fx.info-&gt;STRUCT_NAME);</div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;        <a class="code" href="bdffontutil_8c.html#a5452adc13af52bed8d199861362037e0">ComputeGapSize</a>(&amp;fx);</div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;        </div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;        <a class="code" href="bdffontutil_8c.html#a3f0f4f7839e40a64f7cfd43752d8a602">FontHeaderInfo</a>(FO, &amp;fx, argv[0], cfonts);</div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;</div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;        <span class="keywordflow">if</span>(fontinfo_f = 0)</div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;        {</div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;            fprintf(FO,<span class="stringliteral">&quot;#ifndef FONTINFO\n&quot;</span>);</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;            fprintf(FO,<span class="stringliteral">&quot;   #define FONTINFO\n&quot;</span>);</div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;            fprintf(FO,<span class="stringliteral">&quot;#endif\n&quot;</span>);</div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;        }</div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;        <span class="keywordflow">if</span>(fontspecs_f)</div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;        {</div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;            fprintf(FO,<span class="stringliteral">&quot;#ifndef FONTSPECS\n&quot;</span>);</div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;            fprintf(FO,<span class="stringliteral">&quot;   #define FONTSPECS\n&quot;</span>);</div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;            fprintf(FO,<span class="stringliteral">&quot;#endif\n&quot;</span>);</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;        }</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;</div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;        <a class="code" href="bdffontutil_8c.html#a9461259743229256336c4260de7e0e0e">Convert_Font2c</a>(FO, &amp;fx);</div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;        <a class="code" href="bdffontutil_8c.html#a6e60e1a05fd459f3af8aa691e06950a7">WriteFontBitsPreview</a> ( FO, &amp;fx, font_preview);</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;        <a class="code" href="bdffontutil_8c.html#a4afb5289fcab36022951a5d16ea7932f">FreeFont</a>(&amp;fx);</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;        ++bdfind;</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;    }</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;    fprintf(FO, <span class="stringliteral">&quot;\n\n\n&quot;</span>);</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;    fprintf(FO, <span class="stringliteral">&quot;/* All cfonts */\n&quot;</span>);</div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;    fprintf(FO, <span class="stringliteral">&quot;_font *allfonts[%d] = {\n&quot;</span>, bdfind+1);</div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;    <span class="keywordflow">for</span>(i=0;i&lt;bdfind;++i)</div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;    {</div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;        fprintf(FO, <span class="stringliteral">&quot;\t&amp;%s,\n&quot;</span>, <a class="code" href="bdffontutil_8c.html#a8d8135c72831c5d6ca04479c82351b62">BDFnames</a>[i].structname);</div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;    }</div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;    fprintf(FO, <span class="stringliteral">&quot;\tNULL\n&quot;</span>);</div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;    fprintf(FO, <span class="stringliteral">&quot;};\n&quot;</span>);</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;    <span class="keywordflow">if</span>(FO != <a class="code" href="posix_8h.html#a0c0ef221f95f64e8632451312fd18cc8">stdout</a>)</div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;        <a class="code" href="posix_8c.html#ad6fd240fec1d65213f34b6e6465a8033">fclose</a>(FO);</div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;    <span class="keywordflow">return</span>(0);</div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;}</div>
-<div class="ttc" id="bdffontutil_8c_html_a49c59fe21a56b90ad6f8bcc5549e3dce"><div class="ttname"><a href="bdffontutil_8c.html#a49c59fe21a56b90ad6f8bcc5549e3dce">ReadBdf</a></div><div class="ttdeci">int ReadBdf(char *name, _font *font, int lower, int upper)</div><div class="ttdoc">Read BDF file Read BDF file format. </div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8c_source.html#l00788">bdffontutil.c:788</a></div></div>
-<div class="ttc" id="bdffontutil_8c_html_ae75c11efb4dd449e4fcf9f1f78e9414c"><div class="ttname"><a href="bdffontutil_8c.html#ae75c11efb4dd449e4fcf9f1f78e9414c">fnames</a></div><div class="ttdeci">char * fnames[MAXFONTS]</div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8c_source.html#l00051">bdffontutil.c:51</a></div></div>
-<div class="ttc" id="bdffontutil_8c_html_a4afb5289fcab36022951a5d16ea7932f"><div class="ttname"><a href="bdffontutil_8c.html#a4afb5289fcab36022951a5d16ea7932f">FreeFont</a></div><div class="ttdeci">void FreeFont(_font *font)</div><div class="ttdoc">Free font data. </div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8c_source.html#l00552">bdffontutil.c:552</a></div></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="fonts_2font_8h.html">font.h</a>&quot;</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="bdffontutil_8h.html">bdffontutil.h</a>&quot;</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="bdffont2c_8c.html#aa4817482b1728bf62acf8030cab9842c">   57</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="bdffont2c_8c.html#aa4817482b1728bf62acf8030cab9842c">usage</a>(<span class="keywordtype">char</span> *prog)</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;{</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    printf(<span class="stringliteral">&quot;%s: [-o font_output_file ] [ -l lower_bound ] [ -u upper_bound ] [ -preview ] [ -Preview ] bdf files...\n&quot;</span>,</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        prog);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    printf(<span class="stringliteral">&quot; -o: output file containg C STructures of converted font data\n&quot;</span>);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    printf(<span class="stringliteral">&quot; -u: limit Glyph processing above limit\n&quot;</span>);    </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    printf(<span class="stringliteral">&quot; -l: limit Glyph processing below limit\n&quot;</span>);    </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    printf(<span class="stringliteral">&quot; -p 1 Preview font bitmap data - only parts with 1 bits set\n&quot;</span>);    </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    printf(<span class="stringliteral">&quot; -p 2 Preview Full font bitmap data - everything inside font bounding box\n&quot;</span>);  </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    printf(<span class="stringliteral">&quot; -p 3 Preview Proportional font bitmap data and fixed - everything inside font bounding box\n&quot;</span>);    </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    printf(<span class="stringliteral">&quot; -f convert any font to fixed size bitmap - everything inside font bounding box\n&quot;</span>);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    printf(<span class="stringliteral">&quot; -s Compact font to smallest bounding box\n&quot;</span>);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    printf(<span class="stringliteral">&quot;    Notes: modifies or creates font specs\n&quot;</span>);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    printf(<span class="stringliteral">&quot; bdf files...: One of more BDF format font files\n&quot;</span>);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;}</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
+<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="bdffont2c_8c.html#af3ed9c200de85b53c94cd18764b246a2">   91</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="bdffont2c_8c.html#af3ed9c200de85b53c94cd18764b246a2">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *<span class="keyword">const</span> argv[])</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;{</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keywordtype">int</span> i;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keyword">struct </span><a class="code" href="structstat.html">stat</a> buf;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <a class="code" href="struct__font.html">_font</a> fx;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keywordtype">char</span> *name, *cfonts, *ptr;;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="comment">// Dump font ascii preview</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordtype">int</span> font_preview = 0;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keywordtype">int</span> font_adjust_full = 0;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keywordtype">int</span> font_adjust_small = 0;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="comment">// Glyph code of first font to process - we ignore fonts less then this</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="keywordtype">int</span> lower_bound = 32;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="comment">// Glyph code of last font to process - we ignore fonts greater then this </span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keywordtype">int</span> upper_bound = 127;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="comment">// We always emit fonts specs and info parts</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="comment">// These flags just determin if we emit them in the converted font file</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="keywordtype">int</span> fontinfo_f = 0;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keywordtype">int</span> fontspecs_f = 0;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keywordtype">char</span> str[<a class="code" href="bdffontutil_8h.html#a3e937c42922f7601edb17b747602c471">MAXLINE</a>];</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="keywordtype">int</span> bdfind = 0;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="keywordtype">int</span> find = 0;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <a class="code" href="struct____file.html">FILE</a> *FI;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <a class="code" href="struct____file.html">FILE</a> *FO = NULL;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    cfonts = NULL;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keywordflow">for</span>(i=1;i&lt;argc;++i)</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    {</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        ptr = argv[i];</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        <span class="keywordflow">if</span>(*ptr == <span class="charliteral">&#39;-&#39;</span>)</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        {</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;            ptr++;</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;            <span class="keywordflow">if</span>(*ptr == <span class="charliteral">&#39;o&#39;</span>)</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;            {</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;                ++ptr;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;                <span class="keywordflow">if</span>(*ptr)</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;                {</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;                    cfonts = ptr;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;                }</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;                <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;                {</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;                    cfonts = argv[++i];</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;                }</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;                <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;            }</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;            <span class="keywordflow">if</span>(*ptr == <span class="charliteral">&#39;l&#39;</span>)</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;            {</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;                ++ptr;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;                <span class="keywordflow">if</span>(*ptr)</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;                {</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;                    lower_bound = <a class="code" href="sup_8c.html#a90a4ca3a536a676e78b12c671b66111d">atoi</a>(ptr);</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;                }</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;                <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;                {</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;                    lower_bound = <a class="code" href="sup_8c.html#a90a4ca3a536a676e78b12c671b66111d">atoi</a>(argv[++i]);</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;                }</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;                <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;            }</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;            <span class="keywordflow">if</span>(*ptr == <span class="charliteral">&#39;u&#39;</span>)</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;            {</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;                ++ptr;</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;                <span class="keywordflow">if</span>(*ptr)</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;                {</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;                    upper_bound = <a class="code" href="sup_8c.html#a90a4ca3a536a676e78b12c671b66111d">atoi</a>(ptr);</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;                }</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;                <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;                {</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;                    upper_bound = <a class="code" href="sup_8c.html#a90a4ca3a536a676e78b12c671b66111d">atoi</a>(argv[++i]);</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;                }</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;                <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;            }</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;            <span class="keywordflow">if</span>(*ptr == <span class="charliteral">&#39;p&#39;</span>)</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;            {</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;                ++ptr;</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;                <span class="keywordflow">if</span>(*ptr)</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;                {</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;                    font_preview = <a class="code" href="sup_8c.html#a90a4ca3a536a676e78b12c671b66111d">atoi</a>(ptr);</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;                }</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;                <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;                {</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;                    font_preview = <a class="code" href="sup_8c.html#a90a4ca3a536a676e78b12c671b66111d">atoi</a>(argv[++i]);</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;                }</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;                <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;            }</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;            <span class="keywordflow">if</span>(*ptr == <span class="charliteral">&#39;f&#39;</span>)</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;            {</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;                ++ptr;</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;                font_adjust_full = 1;</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;                <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;            }</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;            <span class="keywordflow">if</span>(*ptr == <span class="charliteral">&#39;s&#39;</span>)</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;            {</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;                ++ptr;</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;                font_adjust_small = 1;</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;                <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;            }</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;        }</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;        {</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;            <span class="keywordflow">if</span>(find &lt; <a class="code" href="display_2font_8h.html#ac108d78d76235e3c7cada0c2e56b7e2d">MAXFONTS</a>)</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;            {</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;                <span class="keywordflow">if</span>(<a class="code" href="posix_8c.html#abef70bf7a4af8a1f4998db0035c51781">stat</a>(argv[i], (<span class="keyword">struct</span> <a class="code" href="structstat.html">stat</a> *) &amp;buf) != 0)</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;                {</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;                    fprintf(<a class="code" href="posix_8h.html#a5ce35bd5ba5021fd3b2e951e8f497656">stderr</a>,<span class="stringliteral">&quot;File:[%s] missing, skipping\n&quot;</span>, argv[i]);</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;                    <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;                }</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;                <a class="code" href="bdffontutil_8c.html#ae75c11efb4dd449e4fcf9f1f78e9414c">fnames</a>[find++] = <a class="code" href="util_8c.html#a354472f280e9fe08820d6f32e0feddae">stralloc</a>(argv[i]);</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;            }</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;        }</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    }</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    <span class="keywordflow">if</span>(font_adjust_full &amp;&amp; font_adjust_small)</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    {</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;        fprintf(<a class="code" href="posix_8h.html#a5ce35bd5ba5021fd3b2e951e8f497656">stderr</a>,<span class="stringliteral">&quot;Can not have -f and -s set at the same time\n&quot;</span>);    </div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;        exit(1);</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    }</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;    <span class="keywordflow">if</span>(!find)</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    {</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;        <a class="code" href="bdffont2c_8c.html#aa4817482b1728bf62acf8030cab9842c">usage</a>(<a class="code" href="posix_8c.html#a4d3dfaf2f5a63e2e4eaa128477a9b5e7">basename</a>(argv[0]));</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;        fprintf(<a class="code" href="posix_8h.html#a5ce35bd5ba5021fd3b2e951e8f497656">stderr</a>,<span class="stringliteral">&quot;No font files specified\n&quot;</span>);</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;        exit(1);</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;    }</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    <span class="keywordflow">if</span>(cfonts == NULL)</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    {</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;        FO = <a class="code" href="posix_8h.html#a0c0ef221f95f64e8632451312fd18cc8">stdout</a>;</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;        cfonts = <span class="stringliteral">&quot;stdout&quot;</span>;</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    }</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;    {</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;        <span class="keywordflow">if</span>(<a class="code" href="posix_8c.html#abef70bf7a4af8a1f4998db0035c51781">stat</a>(cfonts, (<span class="keyword">struct</span> <a class="code" href="structstat.html">stat</a> *) &amp;buf) == 0)</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;        {</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;            fprintf(<a class="code" href="posix_8h.html#a5ce35bd5ba5021fd3b2e951e8f497656">stderr</a>,<span class="stringliteral">&quot;Font file: %s - exists - not overwritting\n&quot;</span>, cfonts);</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;            exit(1);</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;        }</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;        FO = <a class="code" href="posix_8c.html#a8e661c338f41695d1a1e70aed6255e2d">fopen</a>(cfonts,<span class="stringliteral">&quot;w&quot;</span>);</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;        <span class="keywordflow">if</span>(!FO)</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;        {</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;            fprintf(<a class="code" href="posix_8h.html#a5ce35bd5ba5021fd3b2e951e8f497656">stderr</a>,<span class="stringliteral">&quot;Can&#39;t open: %s\n&quot;</span>, cfonts);</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;            exit(1);</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;        }</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    }</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    </div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    bdfind = 0;</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    <span class="keywordflow">for</span>(i=0;i&lt;find;++i)</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    {</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;        <span class="keywordtype">int</span> ret;</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;        name = <a class="code" href="bdffontutil_8c.html#ae75c11efb4dd449e4fcf9f1f78e9414c">fnames</a>[i];</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;        <span class="keywordflow">if</span>(!<a class="code" href="bdffontutil_8c.html#a49c59fe21a56b90ad6f8bcc5549e3dce">ReadBdf</a>(name, &amp;fx, lower_bound, upper_bound))</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;        {</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;            <a class="code" href="bdffontutil_8c.html#a4afb5289fcab36022951a5d16ea7932f">FreeFont</a>(&amp;fx);</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;            fprintf(<a class="code" href="posix_8h.html#a5ce35bd5ba5021fd3b2e951e8f497656">stderr</a>,<span class="stringliteral">&quot;Can&#39;t open:[%s]\n&quot;</span>, name);</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;            <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;        }</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;        ret = <a class="code" href="bdffontutil_8c.html#aa01d93b9cf1d60cc4ce0adb717384f96">FindFontName</a>(fx.info-&gt;STRUCT_NAME);</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;        <span class="keywordflow">if</span>(ret != -1)</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;        {</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;            fprintf(<a class="code" href="posix_8h.html#a5ce35bd5ba5021fd3b2e951e8f497656">stderr</a>,<span class="stringliteral">&quot;Duplicate font:[%s] in file:[%s], skipping\n&quot;</span>, fx.info-&gt;STRUCT_NAME, name);</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;            fprintf(<a class="code" href="posix_8h.html#a5ce35bd5ba5021fd3b2e951e8f497656">stderr</a>,<span class="stringliteral">&quot;Exists in font:[%s] in file:[%s]\n\n&quot;</span>, </div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;                <a class="code" href="bdffontutil_8c.html#a8d8135c72831c5d6ca04479c82351b62">BDFnames</a>[ret].structname,</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;                <a class="code" href="bdffontutil_8c.html#a8d8135c72831c5d6ca04479c82351b62">BDFnames</a>[ret].filename</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;            );</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;            <a class="code" href="bdffontutil_8c.html#a4afb5289fcab36022951a5d16ea7932f">FreeFont</a>(&amp;fx);</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;            <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;        }</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    </div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;        <span class="keywordflow">if</span>(font_adjust_full)</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;        {</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;            <span class="comment">//fprintf(stderr,&quot;Bytes:%d\n&quot;, fx.Bytes);</span></div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;            <a class="code" href="bdffontutil_8c.html#ac2e86eac4bb6e173fbbfae929302e851">FontAdjustFull</a>(&amp;fx);</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;            fontspecs_f = 0;</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;            <span class="comment">//fprintf(stderr,&quot;New Bytes:%d\n&quot;, fx.Bytes);</span></div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;        }</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;        <span class="keywordflow">if</span>(font_adjust_small)</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;        {</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;            <span class="comment">//fprintf(stderr,&quot;Bytes:%d\n&quot;, fx.Bytes);</span></div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;            <a class="code" href="bdffontutil_8c.html#ac8e10a9220f9a51589124690c47d099b">FontAdjustSmall</a>(&amp;fx);</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;            fontspecs_f = 1;</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;            <span class="comment">//fprintf(stderr,&quot;New Bytes:%d\n&quot;, fx.Bytes);</span></div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;        }</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;        <a class="code" href="bdffontutil_8c.html#a8d8135c72831c5d6ca04479c82351b62">BDFnames</a>[bdfind].<a class="code" href="struct__bdffile.html#a040674bb1df0a8d4b1bedeae616e9b65">filename</a> = name;</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;        <a class="code" href="bdffontutil_8c.html#a8d8135c72831c5d6ca04479c82351b62">BDFnames</a>[bdfind].<a class="code" href="struct__bdffile.html#a54e6c69f33cc656848ad924faba85b53">structname</a> = <a class="code" href="util_8c.html#a354472f280e9fe08820d6f32e0feddae">stralloc</a>(fx.info-&gt;STRUCT_NAME);</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;        <a class="code" href="bdffontutil_8c.html#a5452adc13af52bed8d199861362037e0">ComputeGapSize</a>(&amp;fx);</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;        </div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;        <a class="code" href="bdffontutil_8c.html#a3f0f4f7839e40a64f7cfd43752d8a602">FontHeaderInfo</a>(FO, &amp;fx, argv[0], cfonts);</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;        <span class="keywordflow">if</span>(fontinfo_f = 0)</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;        {</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;            fprintf(FO,<span class="stringliteral">&quot;#ifndef FONTINFO\n&quot;</span>);</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;            fprintf(FO,<span class="stringliteral">&quot;   #define FONTINFO\n&quot;</span>);</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;            fprintf(FO,<span class="stringliteral">&quot;#endif\n&quot;</span>);</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;        }</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;        <span class="keywordflow">if</span>(fontspecs_f)</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;        {</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;            fprintf(FO,<span class="stringliteral">&quot;#ifndef FONTSPECS\n&quot;</span>);</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;            fprintf(FO,<span class="stringliteral">&quot;   #define FONTSPECS\n&quot;</span>);</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;            fprintf(FO,<span class="stringliteral">&quot;#endif\n&quot;</span>);</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;        }</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;        <a class="code" href="bdffontutil_8c.html#a9461259743229256336c4260de7e0e0e">Convert_Font2c</a>(FO, &amp;fx);</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;        <a class="code" href="bdffontutil_8c.html#a6e60e1a05fd459f3af8aa691e06950a7">WriteFontBitsPreview</a> ( FO, &amp;fx, font_preview);</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;        <a class="code" href="bdffontutil_8c.html#a4afb5289fcab36022951a5d16ea7932f">FreeFont</a>(&amp;fx);</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;        ++bdfind;</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;    }</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;    fprintf(FO, <span class="stringliteral">&quot;\n\n\n&quot;</span>);</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;    fprintf(FO, <span class="stringliteral">&quot;/* All cfonts */\n&quot;</span>);</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;    fprintf(FO, <span class="stringliteral">&quot;_font *allfonts[%d] = {\n&quot;</span>, bdfind+1);</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;    <span class="keywordflow">for</span>(i=0;i&lt;bdfind;++i)</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;    {</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;        fprintf(FO, <span class="stringliteral">&quot;\t&amp;%s,\n&quot;</span>, <a class="code" href="bdffontutil_8c.html#a8d8135c72831c5d6ca04479c82351b62">BDFnames</a>[i].structname);</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;    }</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;    fprintf(FO, <span class="stringliteral">&quot;\tNULL\n&quot;</span>);</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;    fprintf(FO, <span class="stringliteral">&quot;};\n&quot;</span>);</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;    <span class="keywordflow">if</span>(FO != <a class="code" href="posix_8h.html#a0c0ef221f95f64e8632451312fd18cc8">stdout</a>)</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;        <a class="code" href="posix_8c.html#ad6fd240fec1d65213f34b6e6465a8033">fclose</a>(FO);</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;    <span class="keywordflow">return</span>(0);</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;}</div>
+<div class="ttc" id="bdffontutil_8c_html_a49c59fe21a56b90ad6f8bcc5549e3dce"><div class="ttname"><a href="bdffontutil_8c.html#a49c59fe21a56b90ad6f8bcc5549e3dce">ReadBdf</a></div><div class="ttdeci">int ReadBdf(char *name, _font *font, int lower, int upper)</div><div class="ttdoc">Read BDF file Read BDF file format. </div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8c_source.html#l00789">bdffontutil.c:789</a></div></div>
+<div class="ttc" id="bdffontutil_8c_html_ae75c11efb4dd449e4fcf9f1f78e9414c"><div class="ttname"><a href="bdffontutil_8c.html#ae75c11efb4dd449e4fcf9f1f78e9414c">fnames</a></div><div class="ttdeci">char * fnames[MAXFONTS]</div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8c_source.html#l00052">bdffontutil.c:52</a></div></div>
+<div class="ttc" id="bdffontutil_8c_html_a4afb5289fcab36022951a5d16ea7932f"><div class="ttname"><a href="bdffontutil_8c.html#a4afb5289fcab36022951a5d16ea7932f">FreeFont</a></div><div class="ttdeci">void FreeFont(_font *font)</div><div class="ttdoc">Free font data. </div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8c_source.html#l00553">bdffontutil.c:553</a></div></div>
 <div class="ttc" id="bdffontutil_8h_html"><div class="ttname"><a href="bdffontutil_8h.html">bdffontutil.h</a></div><div class="ttdoc">par BDF font utils for BDF to C code converter Displays fonts generated by bdffont2c BDF to C code co...</div></div>
 <div class="ttc" id="util_8c_html_a354472f280e9fe08820d6f32e0feddae"><div class="ttname"><a href="util_8c.html#a354472f280e9fe08820d6f32e0feddae">stralloc</a></div><div class="ttdeci">MEMSPACE char * stralloc(char *str)</div><div class="ttdoc">Allocate space for string. </div><div class="ttdef"><b>Definition:</b> <a href="util_8c_source.html#l00353">util.c:353</a></div></div>
-<div class="ttc" id="posix_8c_html_a8e661c338f41695d1a1e70aed6255e2d"><div class="ttname"><a href="posix_8c.html#a8e661c338f41695d1a1e70aed6255e2d">fopen</a></div><div class="ttdeci">MEMSPACE FILE * fopen(const char *path, const char *mode)</div><div class="ttdoc">POSIX Open a file with path name and ascii file mode string. </div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l00910">posix.c:910</a></div></div>
-<div class="ttc" id="bdffontutil_8c_html_a3f0f4f7839e40a64f7cfd43752d8a602"><div class="ttname"><a href="bdffontutil_8c.html#a3f0f4f7839e40a64f7cfd43752d8a602">FontHeaderInfo</a></div><div class="ttdeci">void FontHeaderInfo(FILE *out, _font *font, char *prog, char *target)</div><div class="ttdoc">Write Font Header Information Copyright, font family, etc. </div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8c_source.html#l00321">bdffontutil.c:321</a></div></div>
+<div class="ttc" id="posix_8c_html_a8e661c338f41695d1a1e70aed6255e2d"><div class="ttname"><a href="posix_8c.html#a8e661c338f41695d1a1e70aed6255e2d">fopen</a></div><div class="ttdeci">MEMSPACE FILE * fopen(const char *path, const char *mode)</div><div class="ttdoc">POSIX Open a file with path name and ascii file mode string. </div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l00957">posix.c:957</a></div></div>
+<div class="ttc" id="bdffontutil_8c_html_a3f0f4f7839e40a64f7cfd43752d8a602"><div class="ttname"><a href="bdffontutil_8c.html#a3f0f4f7839e40a64f7cfd43752d8a602">FontHeaderInfo</a></div><div class="ttdeci">void FontHeaderInfo(FILE *out, _font *font, char *prog, char *target)</div><div class="ttdoc">Write Font Header Information Copyright, font family, etc. </div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8c_source.html#l00322">bdffontutil.c:322</a></div></div>
 <div class="ttc" id="bdffontutil_8h_html_a3e937c42922f7601edb17b747602c471"><div class="ttname"><a href="bdffontutil_8h.html#a3e937c42922f7601edb17b747602c471">MAXLINE</a></div><div class="ttdeci">#define MAXLINE</div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8h_source.html#l00040">bdffontutil.h:40</a></div></div>
-<div class="ttc" id="struct____file_html"><div class="ttname"><a href="struct____file.html">__file</a></div><div class="ttdef"><b>Definition:</b> <a href="posix_8h_source.html#l00068">posix.h:68</a></div></div>
+<div class="ttc" id="struct____file_html"><div class="ttname"><a href="struct____file.html">__file</a></div><div class="ttdef"><b>Definition:</b> <a href="posix_8h_source.html#l00071">posix.h:71</a></div></div>
 <div class="ttc" id="fonts_2font_8h_html"><div class="ttname"><a href="fonts_2font_8h.html">font.h</a></div></div>
-<div class="ttc" id="bdffontutil_8c_html_a6e60e1a05fd459f3af8aa691e06950a7"><div class="ttname"><a href="bdffontutil_8c.html#a6e60e1a05fd459f3af8aa691e06950a7">WriteFontBitsPreview</a></div><div class="ttdeci">void WriteFontBitsPreview(FILE *out, _font *font, int preview)</div><div class="ttdoc">Write all Font characters in a font as ASCII character comments. </div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8c_source.html#l02023">bdffontutil.c:2023</a></div></div>
-<div class="ttc" id="bdffontutil_8c_html_aa01d93b9cf1d60cc4ce0adb717384f96"><div class="ttname"><a href="bdffontutil_8c.html#aa01d93b9cf1d60cc4ce0adb717384f96">FindFontName</a></div><div class="ttdeci">int FindFontName(char *str)</div><div class="ttdoc">Search for a font name. </div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8c_source.html#l00609">bdffontutil.c:609</a></div></div>
-<div class="ttc" id="bdffont2c_8c_html_af3ed9c200de85b53c94cd18764b246a2"><div class="ttname"><a href="bdffont2c_8c.html#af3ed9c200de85b53c94cd18764b246a2">main</a></div><div class="ttdeci">int main(int argc, char *const argv[])</div><div class="ttdoc">convert BDF fonts to C structures </div><div class="ttdef"><b>Definition:</b> <a href="bdffont2c_8c_source.html#l00090">bdffont2c.c:90</a></div></div>
-<div class="ttc" id="bdffontutil_8c_html_a5452adc13af52bed8d199861362037e0"><div class="ttname"><a href="bdffontutil_8c.html#a5452adc13af52bed8d199861362037e0">ComputeGapSize</a></div><div class="ttdeci">void ComputeGapSize(_font *font)</div><div class="ttdoc">Find gap size for proportional font (gap between characters) Searching for the smallest width feature...</div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8c_source.html#l01521">bdffontutil.c:1521</a></div></div>
-<div class="ttc" id="posix_8c_html_ad6fd240fec1d65213f34b6e6465a8033"><div class="ttname"><a href="posix_8c.html#ad6fd240fec1d65213f34b6e6465a8033">fclose</a></div><div class="ttdeci">MEMSPACE int fclose(FILE *stream)</div><div class="ttdoc">POSIX close a file stream. </div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l01033">posix.c:1033</a></div></div>
-<div class="ttc" id="structstat_html"><div class="ttname"><a href="structstat.html">stat</a></div><div class="ttdoc">POSIX stat structure. </div><div class="ttdef"><b>Definition:</b> <a href="posix_8h_source.html#l00259">posix.h:259</a></div></div>
-<div class="ttc" id="posix_8h_html_a0c0ef221f95f64e8632451312fd18cc8"><div class="ttname"><a href="posix_8h.html#a0c0ef221f95f64e8632451312fd18cc8">stdout</a></div><div class="ttdeci">#define stdout</div><div class="ttdef"><b>Definition:</b> <a href="posix_8h_source.html#l00099">posix.h:99</a></div></div>
-<div class="ttc" id="bdffontutil_8c_html_ac8e10a9220f9a51589124690c47d099b"><div class="ttname"><a href="bdffontutil_8c.html#ac8e10a9220f9a51589124690c47d099b">FontAdjustSmall</a></div><div class="ttdeci">void FontAdjustSmall(_font *font)</div><div class="ttdoc">Ajust font to use smallest font bounding box for each font Can be used to converting large fixed font...</div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8c_source.html#l01322">bdffontutil.c:1322</a></div></div>
+<div class="ttc" id="bdffontutil_8c_html_a6e60e1a05fd459f3af8aa691e06950a7"><div class="ttname"><a href="bdffontutil_8c.html#a6e60e1a05fd459f3af8aa691e06950a7">WriteFontBitsPreview</a></div><div class="ttdeci">void WriteFontBitsPreview(FILE *out, _font *font, int preview)</div><div class="ttdoc">Write all Font characters in a font as ASCII character comments. </div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8c_source.html#l02024">bdffontutil.c:2024</a></div></div>
+<div class="ttc" id="bdffontutil_8c_html_aa01d93b9cf1d60cc4ce0adb717384f96"><div class="ttname"><a href="bdffontutil_8c.html#aa01d93b9cf1d60cc4ce0adb717384f96">FindFontName</a></div><div class="ttdeci">int FindFontName(char *str)</div><div class="ttdoc">Search for a font name. </div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8c_source.html#l00610">bdffontutil.c:610</a></div></div>
+<div class="ttc" id="bdffont2c_8c_html_af3ed9c200de85b53c94cd18764b246a2"><div class="ttname"><a href="bdffont2c_8c.html#af3ed9c200de85b53c94cd18764b246a2">main</a></div><div class="ttdeci">int main(int argc, char *const argv[])</div><div class="ttdoc">convert BDF fonts to C structures </div><div class="ttdef"><b>Definition:</b> <a href="bdffont2c_8c_source.html#l00091">bdffont2c.c:91</a></div></div>
+<div class="ttc" id="bdffontutil_8c_html_a5452adc13af52bed8d199861362037e0"><div class="ttname"><a href="bdffontutil_8c.html#a5452adc13af52bed8d199861362037e0">ComputeGapSize</a></div><div class="ttdeci">void ComputeGapSize(_font *font)</div><div class="ttdoc">Find gap size for proportional font (gap between characters) Searching for the smallest width feature...</div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8c_source.html#l01522">bdffontutil.c:1522</a></div></div>
+<div class="ttc" id="posix_8c_html_ad6fd240fec1d65213f34b6e6465a8033"><div class="ttname"><a href="posix_8c.html#ad6fd240fec1d65213f34b6e6465a8033">fclose</a></div><div class="ttdeci">MEMSPACE int fclose(FILE *stream)</div><div class="ttdoc">POSIX close a file stream. </div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l01083">posix.c:1083</a></div></div>
+<div class="ttc" id="structstat_html"><div class="ttname"><a href="structstat.html">stat</a></div><div class="ttdoc">POSIX stat structure. </div><div class="ttdef"><b>Definition:</b> <a href="posix_8h_source.html#l00260">posix.h:260</a></div></div>
+<div class="ttc" id="posix_8h_html_a0c0ef221f95f64e8632451312fd18cc8"><div class="ttname"><a href="posix_8h.html#a0c0ef221f95f64e8632451312fd18cc8">stdout</a></div><div class="ttdeci">#define stdout</div><div class="ttdef"><b>Definition:</b> <a href="posix_8h_source.html#l00102">posix.h:102</a></div></div>
+<div class="ttc" id="bdffontutil_8c_html_ac8e10a9220f9a51589124690c47d099b"><div class="ttname"><a href="bdffontutil_8c.html#ac8e10a9220f9a51589124690c47d099b">FontAdjustSmall</a></div><div class="ttdeci">void FontAdjustSmall(_font *font)</div><div class="ttdoc">Ajust font to use smallest font bounding box for each font Can be used to converting large fixed font...</div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8c_source.html#l01323">bdffontutil.c:1323</a></div></div>
 <div class="ttc" id="display_2font_8h_html_ac108d78d76235e3c7cada0c2e56b7e2d"><div class="ttname"><a href="display_2font_8h.html#ac108d78d76235e3c7cada0c2e56b7e2d">MAXFONTS</a></div><div class="ttdeci">#define MAXFONTS</div><div class="ttdef"><b>Definition:</b> <a href="display_2font_8h_source.html#l00038">font.h:38</a></div></div>
-<div class="ttc" id="posix_8h_html_a5ce35bd5ba5021fd3b2e951e8f497656"><div class="ttname"><a href="posix_8h.html#a5ce35bd5ba5021fd3b2e951e8f497656">stderr</a></div><div class="ttdeci">#define stderr</div><div class="ttdef"><b>Definition:</b> <a href="posix_8h_source.html#l00100">posix.h:100</a></div></div>
-<div class="ttc" id="posix_8c_html_a4d3dfaf2f5a63e2e4eaa128477a9b5e7"><div class="ttname"><a href="posix_8c.html#a4d3dfaf2f5a63e2e4eaa128477a9b5e7">basename</a></div><div class="ttdeci">MEMSPACE char * basename(char *str)</div><div class="ttdoc">POSIX Basename of filename. </div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l01664">posix.c:1664</a></div></div>
-<div class="ttc" id="bdffont2c_8c_html_aa4817482b1728bf62acf8030cab9842c"><div class="ttname"><a href="bdffont2c_8c.html#aa4817482b1728bf62acf8030cab9842c">usage</a></div><div class="ttdeci">void usage(char *prog)</div><div class="ttdoc">Display Usage. </div><div class="ttdef"><b>Definition:</b> <a href="bdffont2c_8c_source.html#l00056">bdffont2c.c:56</a></div></div>
-<div class="ttc" id="bdffontutil_8c_html_a9461259743229256336c4260de7e0e0e"><div class="ttname"><a href="bdffontutil_8c.html#a9461259743229256336c4260de7e0e0e">Convert_Font2c</a></div><div class="ttdeci">void Convert_Font2c(FILE *out, _font *font)</div><div class="ttdoc">Convert font to C structure Writes header information, font specification, font bitmap. </div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8c_source.html#l00363">bdffontutil.c:363</a></div></div>
-<div class="ttc" id="posix_8c_html_abef70bf7a4af8a1f4998db0035c51781"><div class="ttname"><a href="posix_8c.html#abef70bf7a4af8a1f4998db0035c51781">stat</a></div><div class="ttdeci">MEMSPACE int stat(char *name, struct stat *buf)</div><div class="ttdoc">POSIX stat - get file status of named file. </div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l01493">posix.c:1493</a></div></div>
-<div class="ttc" id="bdffontutil_8c_html_a8d8135c72831c5d6ca04479c82351b62"><div class="ttname"><a href="bdffontutil_8c.html#a8d8135c72831c5d6ca04479c82351b62">BDFnames</a></div><div class="ttdeci">_bdffile BDFnames[MAXFONTS]</div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8c_source.html#l00049">bdffontutil.c:49</a></div></div>
+<div class="ttc" id="posix_8h_html_a5ce35bd5ba5021fd3b2e951e8f497656"><div class="ttname"><a href="posix_8h.html#a5ce35bd5ba5021fd3b2e951e8f497656">stderr</a></div><div class="ttdeci">#define stderr</div><div class="ttdef"><b>Definition:</b> <a href="posix_8h_source.html#l00103">posix.h:103</a></div></div>
+<div class="ttc" id="posix_8c_html_a4d3dfaf2f5a63e2e4eaa128477a9b5e7"><div class="ttname"><a href="posix_8c.html#a4d3dfaf2f5a63e2e4eaa128477a9b5e7">basename</a></div><div class="ttdeci">MEMSPACE char * basename(char *str)</div><div class="ttdoc">POSIX Basename of filename. </div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l01756">posix.c:1756</a></div></div>
+<div class="ttc" id="bdffont2c_8c_html_aa4817482b1728bf62acf8030cab9842c"><div class="ttname"><a href="bdffont2c_8c.html#aa4817482b1728bf62acf8030cab9842c">usage</a></div><div class="ttdeci">void usage(char *prog)</div><div class="ttdoc">Display Usage. </div><div class="ttdef"><b>Definition:</b> <a href="bdffont2c_8c_source.html#l00057">bdffont2c.c:57</a></div></div>
+<div class="ttc" id="bdffontutil_8c_html_a9461259743229256336c4260de7e0e0e"><div class="ttname"><a href="bdffontutil_8c.html#a9461259743229256336c4260de7e0e0e">Convert_Font2c</a></div><div class="ttdeci">void Convert_Font2c(FILE *out, _font *font)</div><div class="ttdoc">Convert font to C structure Writes header information, font specification, font bitmap. </div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8c_source.html#l00364">bdffontutil.c:364</a></div></div>
+<div class="ttc" id="posix_8c_html_abef70bf7a4af8a1f4998db0035c51781"><div class="ttname"><a href="posix_8c.html#abef70bf7a4af8a1f4998db0035c51781">stat</a></div><div class="ttdeci">MEMSPACE int stat(char *name, struct stat *buf)</div><div class="ttdoc">POSIX stat - get file status of named file. </div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l01583">posix.c:1583</a></div></div>
+<div class="ttc" id="bdffontutil_8c_html_a8d8135c72831c5d6ca04479c82351b62"><div class="ttname"><a href="bdffontutil_8c.html#a8d8135c72831c5d6ca04479c82351b62">BDFnames</a></div><div class="ttdeci">_bdffile BDFnames[MAXFONTS]</div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8c_source.html#l00050">bdffontutil.c:50</a></div></div>
 <div class="ttc" id="struct__bdffile_html_a040674bb1df0a8d4b1bedeae616e9b65"><div class="ttname"><a href="struct__bdffile.html#a040674bb1df0a8d4b1bedeae616e9b65">_bdffile::filename</a></div><div class="ttdeci">char * filename</div><div class="ttdef"><b>Definition:</b> <a href="display_2font_8h_source.html#l00045">font.h:45</a></div></div>
-<div class="ttc" id="bdffontutil_8c_html_ac2e86eac4bb6e173fbbfae929302e851"><div class="ttname"><a href="bdffontutil_8c.html#ac2e86eac4bb6e173fbbfae929302e851">FontAdjustFull</a></div><div class="ttdeci">void FontAdjustFull(_font *font)</div><div class="ttdoc">Adjust font to full size with no offset. </div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8c_source.html#l01238">bdffontutil.c:1238</a></div></div>
+<div class="ttc" id="bdffontutil_8c_html_ac2e86eac4bb6e173fbbfae929302e851"><div class="ttname"><a href="bdffontutil_8c.html#ac2e86eac4bb6e173fbbfae929302e851">FontAdjustFull</a></div><div class="ttdeci">void FontAdjustFull(_font *font)</div><div class="ttdoc">Adjust font to full size with no offset. </div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8c_source.html#l01239">bdffontutil.c:1239</a></div></div>
+<div class="ttc" id="sup_8c_html_a90a4ca3a536a676e78b12c671b66111d"><div class="ttname"><a href="sup_8c.html#a90a4ca3a536a676e78b12c671b66111d">atoi</a></div><div class="ttdeci">MEMSPACE long atoi(uint8_t *str)</div><div class="ttdoc">Convert ASCII string to number in base 10. </div><div class="ttdef"><b>Definition:</b> <a href="sup_8c_source.html#l00160">sup.c:160</a></div></div>
 <div class="ttc" id="struct__font_html"><div class="ttname"><a href="struct__font.html">_font</a></div><div class="ttdef"><b>Definition:</b> <a href="display_2font_8h_source.html#l00070">font.h:70</a></div></div>
 <div class="ttc" id="struct__bdffile_html_a54e6c69f33cc656848ad924faba85b53"><div class="ttname"><a href="struct__bdffile.html#a54e6c69f33cc656848ad924faba85b53">_bdffile::structname</a></div><div class="ttdeci">char * structname</div><div class="ttdef"><b>Definition:</b> <a href="display_2font_8h_source.html#l00046">font.h:46</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jul 20 2015 22:49:40 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Aug 14 2015 22:37:20 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

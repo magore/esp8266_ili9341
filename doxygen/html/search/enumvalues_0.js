@@ -15,8 +15,5 @@ var searchData=
   ['bit_5frate_5f600',['BIT_RATE_600',['../uart_8h.html#a9aa1e56362027f49bfbe4378b8c889a4a2d5bdd7cd2bcabad3139fe238b507c1d',1,'uart.h']]],
   ['bit_5frate_5f74880',['BIT_RATE_74880',['../uart_8h.html#a9aa1e56362027f49bfbe4378b8c889a4a84302b884c6664030c39fdfaa04280a9',1,'uart.h']]],
   ['bit_5frate_5f921600',['BIT_RATE_921600',['../uart_8h.html#a9aa1e56362027f49bfbe4378b8c889a4a62b31a000b09ec4376fa85a2c52f5436',1,'uart.h']]],
-  ['bit_5frate_5f9600',['BIT_RATE_9600',['../uart_8h.html#a9aa1e56362027f49bfbe4378b8c889a4a229729a4b6a9fd03652d40bbc8de4077',1,'uart.h']]],
-  ['bridge_5ftask_5fid',['bridge_task_id',['../bridge_8h.html#adf764cbdea00d65edcd07bb9953ad2b7a1704a1ab5240edf7f5177ef1b90bf403',1,'bridge.h']]],
-  ['bridge_5ftask_5fqueue_5flength',['bridge_task_queue_length',['../bridge_8h.html#adf764cbdea00d65edcd07bb9953ad2b7a552c882e309f228ce140280b133abdf2',1,'bridge.h']]],
-  ['buffer_5fsize',['BUFFER_SIZE',['../bridge_8h.html#adf764cbdea00d65edcd07bb9953ad2b7a1a63387ea87dae07937bf38548748733',1,'bridge.h']]]
+  ['bit_5frate_5f9600',['BIT_RATE_9600',['../uart_8h.html#a9aa1e56362027f49bfbe4378b8c889a4a229729a4b6a9fd03652d40bbc8de4077',1,'uart.h']]]
 ];

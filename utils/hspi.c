@@ -37,6 +37,7 @@ uint8_t _cs_pin = 0xff;
 /// @param[in] cs: GPIO CS pin
 void hspi_cs_enable(uint8_t cs)
 {
+    hspi_waitReady();
 	if(_cs_pin != 0xff)
 	{
 		// This implies a bug!
@@ -50,6 +51,7 @@ void hspi_cs_enable(uint8_t cs)
 /// @param[in] cs: GPIO CS pin
 void hspi_cs_disable(uint8_t cs)
 {
+    hspi_waitReady();
 	if(_cs_pin != cs && _cs_pin != 0xff )
 	{
 		// This implies a bug!
@@ -60,6 +62,7 @@ void hspi_cs_disable(uint8_t cs)
 }
 
 
+static _hspi_init_done = 0;
 
 /// @brief hspi clock cached value
 uint16_t hspi_clock = -1;
@@ -75,11 +78,19 @@ uint16_t hspi_clock = -1;
 /// @return  void
 void hspi_init(uint16_t prescale, int hwcs)
 {
-	// We only make changes if the speed changes
+
+// FIXME DEBUG 
+#if 1
+	// We only make changes if the speed actually changes
 	if(prescale == hspi_clock)
 		return;
+#endif
 
-	hspi_clock = prescale;
+	// If we have been called make sure all spi transactions have finished before 
+	// we change anything
+
+    if(_hspi_init_done)
+		hspi_waitReady();
 	
     PIN_FUNC_SELECT(PERIPHS_IO_MUX_MTDI_U, 2);    // HSPIQ MISO GPIO12
     PIN_FUNC_SELECT(PERIPHS_IO_MUX_MTCK_U, 2);    // HSPID MOSI GPIO13
@@ -113,6 +124,8 @@ void hspi_init(uint16_t prescale, int hwcs)
 	}
 
     WRITE_PERI_REG(SPI_FLASH_CTRL1(HSPI), 0);
+	hspi_clock = prescale;
+	_hspi_init_done = 1;
 }
 
 /// @brief HSPI Configuration for tranasmit and receive

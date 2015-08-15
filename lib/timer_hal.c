@@ -33,6 +33,9 @@ volatile ts_t __clock;
 /// @brief  System Time Zone
 tz_t __tzone;
 
+static timers_enabled = 0;
+static timers_configured = 0;
+
 /// @brief  array or user timers
 TIMERS timer_irq[MAX_TIMER_CNT];
 
@@ -55,7 +58,30 @@ void clock_clear()
     __tzone.tz_dsttime = 0;
 }
 
-
+/// @brief  Disable all timer tasks
+///
+/// @return  void
+MEMSPACE
+void disable_timers()
+{
+	if(timers_configured && timers_enabled)
+	{
+		os_timer_disarm(&task_1ms);
+		timers_enabled = 0;
+	}
+}
+/// @brief  Enable timer tasks
+///
+/// @return  void
+MEMSPACE
+void enable_timers()
+{
+	if(timers_configured && !timers_enabled)
+	{
+		os_timer_arm(&task_1ms, 2, 1);
+		timers_enabled = 1;
+	}
+}
 /// @brief  Execute all user timers at SYSTEM_HZ rate.
 ///
 /// @return  void
@@ -65,7 +91,7 @@ void execute_timers(void *arg)
 
     for(i=0; i < MAX_TIMER_CNT; i++)
     {
-        if(timer_irq[i].timer && timer_irq[i].user_timer_handler)
+        if(timer_irq[i].timer && timer_irq[i].user_timer_handler != NULL)
             (*timer_irq[i].user_timer_handler)();
     }
 }
@@ -108,19 +134,32 @@ LOCAL void clock_task(void)
 MEMSPACE
 void init_timers()
 {
-    os_timer_disarm(&task_1ms);
+	DEBUG_PRINTF("Timers init called\n");
+
+	if(!timers_configured)
+	{
+		os_timer_disarm(&task_1ms);
+		os_timer_setfn(&task_1ms, ( os_timer_func_t *) execute_timers, NULL );
+		timers_configured = 1;
+		timers_enabled = 0;
+		DEBUG_PRINTF("Timers configured\n");
+	}
 
     delete_all_timers();
 
 ///  See time.c
     clock_init();
 
+	DEBUG_PRINTF("Clock Init\n");
+
 ///  See time.c
     if(set_timers(clock_task,1) == -1)
         DEBUG_PRINTF("Clock task init failed\n");
+	DEBUG_PRINTF("Clock Installed\n");
 
-    os_timer_setfn(&task_1ms, ( os_timer_func_t *) execute_timers, NULL );
-    os_timer_arm(&task_1ms, 2, 1);
+	enable_timers();
+
+	DEBUG_PRINTF("Timers enabled\n");
 }
 
 

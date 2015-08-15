@@ -18,6 +18,8 @@ var searchData=
   ['_5fdata',['_data',['../util_8c.html#a45c84a718a302530a9e80cce14821e33',1,'util.c']]],
   ['_5fdata_5fend',['_data_end',['../cal__dex_8c.html#a631d10379fb6298dec3a091dff85fbfe',1,'cal_dex.c']]],
   ['_5fdata_5fstart',['_data_start',['../cal__dex_8c.html#a52ac470a9c391e36c01d0f292c65cf19',1,'cal_dex.c']]],
+  ['_5fhspi_5finit_5fdone',['_hspi_init_done',['../hspi_8c.html#a9d8a27ff6d91c4aa89e8719b960d7404',1,'hspi.c']]],
+  ['_5fled',['_led',['../web_8c.html#a9caaaad7e2fdc8c9f2e927980c57d639',1,'web.c']]],
   ['_5fmmc_5fclock',['_mmc_clock',['../mmc__hal_8c.html#a4f15b856383d60a1adbf9be2fdbaa721',1,'mmc_hal.c']]],
   ['_5fmmc_5fspi_5finit_5fflag',['_mmc_spi_init_flag',['../mmc__hal_8c.html#a5cacb918bc8a99b692f534f662a44eb1',1,'mmc_hal.c']]],
   ['_5fmmc_5ftimeout',['_mmc_timeout',['../mmc__hal_8c.html#abf71973875545f3b42702ac99d5d87ef',1,'mmc_hal.c']]],

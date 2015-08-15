@@ -23,140 +23,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 
-// Stand alone test
-//#define TEST
-
 // Float support
 #define FLOAT
 
-#ifdef TEST
+// Used for compiling a stand alone test
+#ifdef PRINTF_TEST
 	#define MEMSPACE /* */
 	#include <stdio.h>
 	#include <stdlib.h>
+	#include <string.h>
 	typedef unsigned char uint8_t;
 	typedef signed char int8_t;
 	typedef unsigned short uint16_t;
 	typedef unsigned int uint32_t;
 	typedef int int32_t;
 #else
-	#include <user_config.h>
-	#include "printf.h"
+	#include "user_config.h"
 #endif
 
-//#include <string.h>
 #include <stdarg.h>
 #include <math.h>
-
-
-/// @brief String Length
-/// @param[in] str: string 
-/// @return string length
-MEMSPACE 
-static int t_strlen(char *str)
-{
-	int len=0;
-	// String length
-	while(*str++)
-		++len;
-	return(len);
-}
-
-/// @brief Reverse a string
-///  Example: abcdef -> fedcba
-/// @param[in] str: string 
-/// @return string length
-MEMSPACE 
-static void t_reverse(char *str)
-{
-        uint8_t temp;
-        int i;
-		int len = t_strlen(str);
-        // Reverse
-        // We only exchange up to half way
-        for (i = 0; i < (len >> 1); i++)
-        {
-                temp = str[len - i - 1];
-                str[len - i - 1] = str[i];
-                str[i] = temp;
-        }
-}
-
-/// @brief Upercase a string
-/// @param[in] str: string 
-/// @return void
-MEMSPACE 
-static void t_strupper(char *str)
-{
-
-	while(*str)
-	{
-		if(*str >= 'a' && *str <= 'z')
-			*str -= 0x20;
-		++str;
-	}
-}
-
-
-
-
-/// @brief Convert ASCII character to radix based digit , or -1
-/// @param[in] c: character
-/// @param[in] radix: radix
-/// @return radix based digit , or -1
-MEMSPACE 
-static int atod(int c,int radix)
-{
-        int ret = -1;
-        if(c >= '0' && c <= '9')
-                ret = c - '0';
-        else if(c >= 'A' && c <= 'F')
-                ret = c - 'A' + 10;
-        else if(c >= 'a' && c <= 'f')
-                ret = c - 'a' + 10;
-		else return (-1);
-        return((ret >= radix) ? -1 : ret);
-}
-
-/// @brief Convert ASCII string to number
-/// @param[in] str: string
-/// @param[in] base: radix
-/// @return long value
-MEMSPACE 
-static long aton(uint8_t *str,int base)
-{
-	unsigned long num;
-	int sign;
-	int d;
-
-	while(*str == ' ' || *str == '\t')
-		++str;
-	sign = 0;
-	if(*str == '-' ) 
-	{
-		sign = 1;
-		++str;
-	} 
-	else if(*str == '+' )
-		{
-			++str;
-		}
-	num = 0;
-
-	while(*str)
-	{
-		d = atod(*str,base);
-		if(d < 0)
-			break;
-		num = num*base;
-		num += d;
-		++str;
-	}
-
-	if(sign)
-		return(-num);
-	else
-		return(num);
-}
+#include "printf.h"
 
 
 /// @brief Convert number to ASCII
@@ -171,7 +58,7 @@ static long aton(uint8_t *str,int base)
 ///            NOT counted as part of prec length (just like printf)
 /// @return long value
 MEMSPACE 
-static int t_itoa(long num, uint8_t *str, int max, int prec, int sign)
+int t_itoa(long num, uint8_t *str, int max, int prec, int sign)
 {
 		int digit,sign_ch;
 		int ind;
@@ -231,7 +118,7 @@ static int t_itoa(long num, uint8_t *str, int max, int prec, int sign)
 		}
 		*str = 0;
 
-        t_reverse(save);
+        reverse(save);
 		ind = strlen(save);
 		return(ind);
 }
@@ -248,7 +135,7 @@ static int t_itoa(long num, uint8_t *str, int max, int prec, int sign)
 /// @return returns size of string
 
 MEMSPACE 
-static int t_ntoa(unsigned long num, uint8_t *str, int max, int radix, int prec)
+int t_ntoa(unsigned long num, uint8_t *str, int max, int radix, int prec)
 {
 		uint8_t mask,shift,digit;
 		int ind;
@@ -297,7 +184,7 @@ static int t_ntoa(unsigned long num, uint8_t *str, int max, int radix, int prec)
         }
 
 		*str = 0;
-        t_reverse(save);
+        reverse(save);
 		return(strlen(save));
 }
 
@@ -377,67 +264,8 @@ static double t_scale10(double num, int *exp)
 }
 #endif
 
-/// @brief atof ASCII to float
-/// @param[in] str: string
-/// @return number
 #ifdef FLOAT
-MEMSPACE 
-static double t_atof(str)
-char *str;
-{
-	double num;
-	double frac;
-
-	int i,j,power,sign;
-
-	while(*str == ' ' || *str == '\t' || *str == '\n')
-		++str;
-	sign = (*str == '-') ? -1 : 1;
-	if(sign == -1 || *str == '+') 
-		str++;
-	num=0.0; 
-	while(isdigit(*str)) 
-	{
-		num = num * 10.0 + *str - '0';
-		str++;
-	}
-	if(*str == '.') 
-	{
-		++str;
-		1.0; 
-		while(isdigit(*str)) 
-		{
-			num = num * 10.0 + *str - '0';
-			frac *= 10.0;
-			str++;
-		}
-		num /= frac;
-	}
-	num *= sign;
-	if(*str == 'E' || *str == 'e') 
-	{
-		str++;
-		sign = (*str == '-') ? -1 : 1;
-		if(sign == -1 || *str == '+') 
-			str++;
-		power=0;
-		while(isdigit(*str)) 
-		{
-			power = power * 10 + *str - '0';
-			str++;
-		}
-		if(num == 0.0)
-			return(num);
-		if(sign<0)
-			power = -power;
-		return(num * t_iexp(10.0, power));
-	}
-	return(num);
-}
-#endif
-
-#ifdef FLOAT
-/// @brief ftoa float to ASCII 
+/// @brief float to ASCII 
 /// @param[in] val: value
 /// @param[in] str: converted string
 /// @param[in] intprec: integer precision
@@ -445,7 +273,7 @@ char *str;
 /// @param[in] sign: sign
 /// @return size of string
 MEMSPACE 
-static int ftoa(double val, char *str, int intprec, int prec, int sign)
+int t_ftoa(double val, char *str, int intprec, int prec, int sign)
 {
 	char *save = str;
 	double intpart, fraction, round, scale;
@@ -540,18 +368,18 @@ static int ftoa(double val, char *str, int intprec, int prec, int sign)
 #endif
 
 	*str = 0;
-	return(t_strlen(save));
+	return(strlen(save));
 }
 
 
-/// @brief etoa float to ASCII 
+/// @brief float to ASCII 
 /// @param[in] x: value
 /// @param[in] str: converted string
 /// @param[in] prec: digits after decimal place
 /// @param[in] sign: sign
 /// @return size of string
 MEMSPACE 
-static int etoa(double x,char *str, int prec, int sign)
+int t_etoa(double x,char *str, int prec, int sign)
 {
     double scale;   	/* scale factor */
     int i,          /* counter */
@@ -640,109 +468,87 @@ static int etoa(double x,char *str, int prec, int sign)
               
 #endif
 
+
+
+// ====================================================================
+// _puts_pad
+//   Put string count bytes long, padded up to width, left or right aligned
+// Padding is always done with spaces
+//
+// count number of characters to copy from buff
+// width number of characters to pad up to - if needed
+// left string is left aligned
+//_puts(buff, width, count, left);
+MEMSPACE
+static void _puts_pad(printf_t *fn, char *s, int width, int count, int left)
+{
+	int size = 0;
+	int pad = 0;
+
+	// note - if width > count we pad
+	//        if width <= count we do not pad
+	if(width > count)
+	{
+		pad = width - count;
+	}
+
+//printf("_puts_pad:(%s) width:%d, count:%d, left:%d, pad:%d, len:%d\n", s, width, count, left, pad, len);
+
+	// left padding ?
+	if(!left)
+	{
+//printf("_puts_pad:pad:%d\n", pad);
+		while(pad--)
+		{
+			fn->put(fn,' ');
+			++size;
+		}
+	}
+//printf("_puts_pad:count:%d\n", count);
+
+	// string
+	while(*s && count--)
+	{
+		fn->put(fn,*s);
+		++s;
+		++size;
+	}
+	// right padding
+	if(left)
+	{
+//printf("_puts_pad:pad:%d\n", pad);
+
+		while(pad--) 
+		{
+			fn->put(fn,' ');
+			++size;
+		}
+	}
+//printf("_puts_pad:size:%d\n", size);
+}	// _puts_pad()
+
 /// @brief vsnprintf function
-/// @param[out] buffer: string buffer for result
-/// @param[in] len: maximum length of converted string
+/// @param[out] fn: output character function pointer 
 /// @param[in] fmt: printf forat string
 /// @param[in] va: va_list arguments
 /// @return size of string
 MEMSPACE 
-int t_vsnprintf(char *buffer, int len, const char *fmt, va_list va)
+void _printf_fn(printf_t *fn, const char *fmt, va_list va)
 {
 	char ch;
     int prec, width, intprec, sign, left, fill;
 	int precf, widthf;
 	int count;
-    int size;
     int spec;
+	int size;
 	long num;
 	double dnum;
 	char *ptr;
-	char *save= buffer;
 	char *fmtptr;
 
-	*buffer = 0;
-	
 	// buff has to be at least as big at the largest converted number
 	// in this case base 2 long long with sign and end of string
 	char buff[sizeof( long long int) * 8 + 2];
-
-	// ====================================================================
-	int _putc(char ch)
-	{
-		if (!len )
-		{
-			*buffer=0;
-			return 0;
-		}
-		if(ch)
-		{
-			--len;
-			*buffer++ = ch;
-		}
-		*buffer=0;
-		return(1);
-	}	// _putc()
-	// ====================================================================
-
-	// ====================================================================
-	// _puts 
-	//   Put string count bytes long, padded up to width, left or right aligned
-	// Padding is always done with spaces
-	//
-	// count number of characters to copy from buff
-	// width number of characters to pad up to - if needed
-	// left string is left aligned
-	//_puts(buff, width, count, left);
-	void _puts(char *s, int width, int count, int left)
-	{
-		int size = 0;
-		int pad = 0;
-
-		// note - if width > count we pad
-		//        if width <= count we do not pad
-		if(width > count)
-		{
-			pad = width - count;
-		}
-
-//printf("_puts:(%s) width:%d, count:%d, left:%d, pad:%d, len:%d\n", s, width, count, left, pad, len);
-
-		// left padding ?
-		if(!left)
-		{
-//printf("_puts:pad:%d\n", pad);
-			while(pad--)
-			{
-				_putc(' ');
-				++size;
-			}
-		}
-//printf("_puts:count:%d\n", count);
-
-		// string
-		while(*s && count--)
-		{
-			_putc(*s);
-			++s;
-			++size;
-		}
-		// right padding
-		if(left)
-		{
-//printf("_puts:pad:%d\n", pad);
-
-			while(pad--) 
-			{
-				_putc(' ');
-				++size;
-			}
-		}
-//printf("_puts:size:%d\n", size);
-		_putc(0);
-
-	}	// _puts()
-	// ====================================================================
 
 
     while(*fmt) 
@@ -750,7 +556,7 @@ int t_vsnprintf(char *buffer, int len, const char *fmt, va_list va)
 		// emit up to %
         if(*fmt != '%') 
 		{
-            _putc(*fmt++);
+            fn->put(fn,*fmt++);
 			continue;
         }
 
@@ -839,6 +645,7 @@ int t_vsnprintf(char *buffer, int len, const char *fmt, va_list va)
 					sign = 0;
 			case 'D':
 			case 'd':
+			case 'p':
 				if(width && !prec)
 				{
 					if(fill == '0')
@@ -899,19 +706,19 @@ int t_vsnprintf(char *buffer, int len, const char *fmt, va_list va)
 		{
 #ifdef FLOAT
 		case 'f':
-			count = ftoa(dnum, buff, intprec, prec, sign);
-			_puts(buff, width, count, left);
+			count = t_ftoa(dnum, buff, intprec, prec, sign);
+			_puts_pad(fn,buff, width, count, left);
 			break;
 		case 'e':
-			count = etoa(dnum, buff, prec, sign);
-			_puts(buff, width, count, left);
+			count = t_etoa(dnum, buff, prec, sign);
+			_puts_pad(fn,buff, width, count, left);
 			break;
 #endif
 //int t_itoa(unsigned long num, uint8_t *str, int prec, int sign)
 		case 'u':
 		case 'U':
 			count = t_itoa(num, buff, sizeof(buff), prec, 0);
-			_puts(buff, width, count, left);
+			_puts_pad(fn,buff, width, count, left);
 			break;
 //int t_itoa(unsigned long num, uint8_t *str, int prec, int sign)
 		case 'd':
@@ -919,25 +726,28 @@ int t_vsnprintf(char *buffer, int len, const char *fmt, va_list va)
 //printf("<%ld, width:%d, prec:%d, sizeof(buff):%d, left:%d>\n", num, width, prec, (int)sizeof(buff), left);
 			count = t_itoa(num, buff, sizeof(buff), prec, sign);
 //printf("[%s, width:%d, count:%d, left:%d]\n", buff, width, count, left);
-			_puts(buff, width, count, left);
+			_puts_pad(fn,buff, width, count, left);
 			break;
 //int t_t_ntoa(unsigned long num, uint8_t *str, int radix, int pad)
 		case 'o':
 		case 'O':
 			count = t_ntoa(num, buff, sizeof(buff), 8, prec);
-			_puts(buff, width, count, left);
+			_puts_pad(fn,buff, width, count, left);
 			break;
 		case 'x':
 		case 'X':
+		// pointers
+		case 'p':
+		case 'P':
 			count = t_ntoa(num, buff, sizeof(buff), 16, prec);
-			if(spec == 'X')
-				t_strupper(buff);
-			_puts(buff, width, count, left);
+			if(spec == 'X' || spec == 'P')
+				strupper(buff);
+			_puts_pad(fn,buff, width, count, left);
 			break;
 		case 'b':
 		case 'B':
 			count = t_ntoa(num, buff, sizeof(buff), 2, prec);
-			_puts(buff, width, count, left);
+			_puts_pad(fn,buff, width, count, left);
 			break;
 		case 's':
 			if(spec == 's')
@@ -953,442 +763,95 @@ int t_vsnprintf(char *buffer, int len, const char *fmt, va_list va)
 				tmp[1] = 0;
 				ptr = tmp;
 			}
-			count = t_strlen(ptr);
+			count = strlen(ptr);
 			if(prec)
 				count = prec;
 			if(count > width && width != 0)
 				count = width;
 //printf("width:%d,count:%d,left:%d\n", width, count, left);
-			_puts(ptr, width, count, left);
+			_puts_pad(fn,ptr, width, count, left);
 			break;
 		default:
 			while(fmtptr <= fmt && *fmtptr)
-				_putc(*fmtptr++);
+				fn->put(fn, *fmtptr++);
 			break;
 		}
 //printf("fmt:(%s)\n", fmt);
     }
 //printf("fmt exit:(%s)\n", fmt);
-    size = t_strlen(save);
-//printf("buffer:(%s), size:%d\n", save, size);
-    return( size );
 
+}
+
+
+// ====================================================================
+
+/// @brief _putc_buffer_fn low level function writes a character to a buffer
+/// @param[in] *p: structure with pointers and buffer to be written to
+/// @param[in] ch: character to place in buffer
+/// @return void
+static void _putc_buffer_fn(struct _printf_t *p, char ch)
+{
+	char *str;
+	if (p->len )
+	{
+		if(ch)
+		{
+			p->len--;
+			p->size++;
+			str = (char *) p->buffer;
+			*str++ = ch;
+			p->buffer = (void *) str;
+		}
+	}
+	*((char *)p->buffer) = 0;
+}   
+
+
+
+/// @brief vsnprintf function
+/// @param[out] buffer: string buffer for result
+/// @param[in] len: maximum length of converted string
+/// @param[in] fmt: printf forat string
+/// @param[in] va: va_list list of arguments
+/// @return string size
+MEMSPACE 
+int vsnprintf(char* str, size_t size, const char *format, va_list va)
+{
+
+    int len;
+    char *save = str;
+    printf_t fn;
+
+    *str = 0;
+
+    fn.put = _putc_buffer_fn;
+    fn.len = size;
+    fn.size = 0;
+    fn.buffer = (void *) str;
+
+    _printf_fn(&fn, format, va);
+
+    // FIXME check size should == fn.size on exit
+    len = strlen(save);
+    return( len );
 }
 
 /// @brief snprintf function
 /// @param[out] buffer: string buffer for result
-/// @param[in] buffer_len: maximum length of converted string
+/// @param[in] len: maximum length of converted string
 /// @param[in] fmt: printf forat string
-/// @param[in] ...: vararg list or arguments
+/// @param[in] ...: list of arguments
 /// @return string size
-MEMSPACE int
-t_snprintf(char* buffer, int buffer_len, const char *fmt, ...)
+MEMSPACE 
+int snprintf(char* str, size_t size, const char *format, ...)
 {
-	int ret;
-	va_list va;
-	va_start(va, fmt);
-	ret = t_vsnprintf(buffer, buffer_len, fmt, va);
-	va_end(va);
+    int len;
+    va_list va;
 
-	return ret;
+    va_start(va, format);
+    len= vsnprintf(str, size, format, va);
+    va_end(va);
+
+    return len;
 }
 
-#ifdef TEST
-/// @brief printf function
-/// @param[in] fmt: printf forat string
-/// @param[in] va_list: vararg list or arguments
-/// @return size of printed string 
-MEMSPACE int
-t_printf(const char *fmt, ...)
-{
-	int ret;
-
-	char buff[512];
-
-	va_list va;
-	va_start(va, fmt);
-	ret = t_vsnprintf(buff, 510, fmt, va);
-	va_end(va);
-
-	printf("%s",buff);
-
-	return ret;
-}
-
-/// @brief printf tests
-/// Compare printf results from gcc printf and this printf
-/// @return void
-void tests()
-{
-puts("[%c]\\n, 'a'");
- t_printf("    [%c]\n", 'a');
-   printf("    [%c]\n", 'a');
-puts("\n");
-
-puts("[%-20.2s]\\n, abc");
- t_printf("    [%-20.2s]\n", "abc");
-   printf("    [%-20.2s]\n", "abc");
-puts("\n");
-
-puts("[%10.5s]\\n, abcdefg");
- t_printf("    [%10.5s]\n", "abcdefg");
-   printf("    [%10.5s]\n", "abcdefg");
-puts("\n");
-
-puts("[%-+15.4e]\\n, 314.159265358979");
- t_printf("    [%-+15.4e]\n", 314.159265358979);
-   printf("    [%-+15.4e]\n", 314.159265358979);
-puts("\n");
-
-puts("[%20.5e]\\n, 314.159265358979");
- t_printf("    [%20.5e]\n", 314.159265358979);
-   printf("    [%20.5e]\n", 314.159265358979);
-puts("\n");
-
-puts("[%08.0f], 1.0");
- t_printf("    [%08.0f]\n", 1.0);
-   printf("    [%08.0f]\n", 1.0);
-puts("\n");
-
-puts("[%08.4f], 0.0");
- t_printf("    [%08.4f]\n", 0.0);
-   printf("    [%08.4f]\n", 0.0);
-puts("\n");
-
-puts("[%f], 0.0");
- t_printf("    [%f]\n", 0.0);
-   printf("    [%f]\n", 0.0);
-puts("\n");
-
-puts("[%8.2f], 0.0");
- t_printf("    [%8.2f]\n", 0.0);
-   printf("    [%8.2f]\n", 0.0);
-puts("\n");
-
-puts("[%08.4f], 12.89");
- t_printf("    [%08.4f]\n", 12.89);
-   printf("    [%08.4f]\n", 12.89);
-puts("\n");
-
-puts("[%.2f], 1234567.89");
- t_printf("    [%.2f]\n", 1234567.89);
-   printf("    [%.2f]\n", 1234567.89);
-puts("\n");
-
-puts("[%10.5f]\\n, 314.159265358979");
- t_printf("    [%10.5f]\n", 314.159265358979);
-   printf("    [%10.5f]\n", 314.159265358979);
-puts("\n");
-
-puts("[%10.5f]\\n, 123456789012345678901234567890.159265358979");
- t_printf("    [%10.5f]\n", 123456789012345678901234567890.159265358979);
-   printf("    [%10.5f]\n", 123456789012345678901234567890.159265358979);
-puts("\n");
-
-
-puts("[%+014.8f]\\n, 3.14159265358979");
- t_printf("    [%+014.8f]\n", 3.14159265358979);
-   printf("    [%+014.8f]\n", 3.14159265358979);
-puts("\n");
-
-puts("[%14.8f]\\n, 3.141");
- t_printf("    [%14.8f]\n", 3.141);
-   printf("    [%14.8f]\n", 3.141);
-puts("\n");
-
-puts("[%-+15d]\\n, 1234");
- t_printf("    [%-+15d]\n", 1234);
-   printf("    [%-+15d]\n", 1234);
-puts("\n");
-
-puts("[%+15.8d]\\n, 1234");
- t_printf("    [%+15.8d]\n", 1234);
-   printf("    [%+15.8d]\n", 1234);
-puts("\n");
-
-puts("[% -15.8d]\\n, 1234");
- t_printf("    [% -15.8d]\n", 1234);
-   printf("    [% -15.8d]\n", 1234);
-puts("\n");
-
-puts("[%-+15.8d]\\n, 1234");
- t_printf("    [%-+15.8d]\n", 1234);
-   printf("    [%-+15.8d]\n", 1234);
-puts("\n");
-
-puts("[%.3d]\\n, 12345");
- t_printf("    [%.3d]\n", 12345);
-   printf("    [%.3d]\n", 12345);
-puts("\n");
-
-puts("[% 15.8d]\\n, 1234");
- t_printf("    [% 15.8d]\n", 1234);
-   printf("    [% 15.8d]\n", 1234);
-puts("\n");
-
-puts("[%+015d]\\n, 1234567890");
- t_printf("    [%+015d]\n", 1234567890);
-   printf("    [%+015d]\n", 1234567890);
-puts("\n");
-
-puts("[%+020d]\\n, 1234567890");
- t_printf("    [%+020d]\n", 1234567890);
-   printf("    [%+020d]\n", 1234567890);
-puts("\n");
-
-puts("[%020d]\\n, 1234567890");
- t_printf("    [%020d]\n", 1234567890);
-   printf("    [%020d]\n", 1234567890);
-puts("\n");
-
-puts("[% -20d]\\n, 1234567890");
- t_printf("    [% -20d]\n", 1234567890);
-   printf("    [% -20d]\n", 1234567890);
-puts("\n");
-
-puts("[%- 20d]\\n, 1234567890");
- t_printf("    [%- 20d]\n", 1234567890);
-   printf("    [%- 20d]\n", 1234567890);
-puts("\n");
-
-puts("[%-+20d]\\n, 1234567890");
- t_printf("    [%-+20d]\n", 1234567890);
-   printf("    [%-+20d]\n", 1234567890);
-puts("\n");
-
-puts("[%-20d]\\n, 1234567890");
- t_printf("    [%-20d]\n", 1234567890);
-   printf("    [%-20d]\n", 1234567890);
-puts("\n");
-
-puts("[%+-20d]\\n, 1234567890");
- t_printf("    [%+-20d]\n", 1234567890);
-   printf("    [%+-20d]\n", 1234567890);
-puts("\n");
-
-puts("[%+20d]\\n, 1234567890");
- t_printf("    [%+20d]\n", 1234567890);
-   printf("    [%+20d]\n", 1234567890);
-puts("\n");
-
-puts("[%20d]\\n, 1234567890");
- t_printf("    [%20d]\n", 1234567890);
-   printf("    [%20d]\n", 1234567890);
-puts("\n");
-
-puts("[%-20.5d]\\n, 123");
- t_printf("    [%- 20.5d]\n", 123);
-   printf("    [%- 20.5d]\n", 123);
-puts("\n");
-
-puts("[%- 10.5d]\\n, 123");
- t_printf("    [%- 10.5d]\n", 123);
-   printf("    [%- 10.5d]\n", 123);
-puts("\n");
-
-puts("[%10.5d]\\n, 123");
- t_printf("    [% 10.5d]\n", 123);
-   printf("    [% 10.5d]\n", 123);
-puts("\n");
-
-puts("[% - .5d]\\n, 123");
- t_printf("    [% -.5d]\n", 123);
-   printf("    [% -.5d]\n", 123);
-puts("\n");
-
-puts("[% -5d]\\n, 123");
- t_printf("    [% -5d]\n", 123);
-   printf("    [% -5d]\n", 123);
-puts("\n");
-
-puts("[%+-6d]\\n, 123");
- t_printf("    [%+06d]\n", 123);
-   printf("    [%+06d]\n", 123);
-puts("\n");
-
-}
-
-/// @brief main printf test programe
-/// Run a number of conversion tests
-/// @return 0
-#define MAXSTR 256
-int main(int argc, char *argv[])
-{
-
-	uint8_t str[MAXSTR+1];
-	long num, num2, mask;
-	int i;
-	mask = 1;
-	num = 0;
-
-
-	tests();
-
-	printf("1's\n");
-	num = ~num;
-	for(i=0;i<64;++i)
-	{
-		num &= ~mask;
-		mask <<= 1;
-
-		t_printf("[%+020ld]\n", num);
-		printf("[%+020ld]\n", num);
-		sprintf(str,"%+020ld", num);
-
-		num2 = aton(str,10);
-		if(num2 != num)
-			printf("**:%ld\n",num2);
-
-		t_ntoa(num, str, sizeof(str), 16, 16);
-		printf("[%s]\n",str);
-		t_ntoa(num, str, sizeof(str), 8, 22);
-		printf("[%s]\n",str);
-		t_ntoa(num, str, sizeof(str), 2, 64);
-		printf("[%s]\n",str);
-
-		printf("\n");
-		
-	}
-	printf("=================================\n");
-	printf("1's\n");
-	num = 0;
-	mask = 1;
-	for(i=0;i<64;++i)
-	{
-		num |= mask;
-		mask <<= 1;
-		t_printf("[%+020ld]\n", num);
-		printf("[%+020ld]\n", num);
-
-		sprintf(str,"%+020ld", num);
-		num2 = aton(str,10);
-		if(num2 != num)
-			printf("***:%ld\n",num2);
-
-		t_ntoa(num, str, sizeof(str), 16, 16);
-		printf("[%s]\n",str);
-		t_ntoa(num, str, sizeof(str), 8, 22);
-		printf("[%s]\n",str);
-		t_ntoa(num, str, sizeof(str), 2, 64);
-		printf("[%s]\n",str);
-
-		printf("\n");
-	}
-
-	printf("=================================\n");
-	printf("9's\n");
-	num = 9;
-	for(i=0;i<32;++i)
-	{
-		t_printf("[%+020ld]\n", num);
-		printf("[%+020ld]\n", num);
-
-		sprintf(str,"%+020ld", num);
-		num2 = aton(str,10);
-		if(num2 != num)
-			printf("***:%ld\n",num2);
-
-		t_ntoa(num, str, sizeof(str), 16, 16);
-		printf("[%s]\n",str);
-		t_ntoa(num, str, sizeof(str), 8, 22);
-		printf("[%s]\n",str);
-		t_ntoa(num, str, sizeof(str), 2, 64);
-		printf("[%s]\n",str);
-
-		printf("\n");
-
-		if(num &  (1L << ((sizeof(num)*8)-1)))
-			break;
-		num *= 10;
-		num += 9;
-		
-	}
-	printf("\n");
-	printf("=================================\n");
-
-
-	printf("-1\n");
-	num = -1;
-	t_printf("[%+020ld]\n", num);
-	printf("[%+020ld]\n", num);
-	sprintf(str,"%+020ld", num);
-
-	num2 = aton(str,10);
-	if(num2 != num)
-		printf("***:%ld\n",num2);
-
-	t_ntoa(num, str, sizeof(str), 16, 0);
-	printf("[%s]\n",str);
-	t_ntoa(num, str, sizeof(str), 8, 0);
-	printf("[%s]\n",str);
-	t_ntoa(num, str, sizeof(str), 2, 0);
-	printf("[%s]\n",str);
-
-	printf("\n");
-	printf("=================================\n");
-
-	printf("1 << 63\n");
-	num = 1UL;
-	num <<= 63;
-
-	t_printf("[%020lu]\n", num);
-	printf("[%020lu]\n", num);
-	sprintf(str,"%+020ld", num);
-
-	num2 = aton(str,10);
-	if(num2 != num)
-		printf("***:%ld\n",num2);
-
-	t_ntoa(num, str, sizeof(str), 16, 0);
-	printf("[%s]\n",str);
-	t_ntoa(num, str, sizeof(str), 8, 0);
-	printf("[%s]\n",str);
-	t_ntoa(num, str, sizeof(str), 2, 0);
-	printf("[%s]\n",str);
-
-	printf("\n");
-	printf("=================================\n");
-
-	printf("0\n");
-	num = 0;
-	t_printf("[%+020ld]\n", num);
-	printf("[%+020ld]\n", num);
-	sprintf(str,"%+020ld", num);
-
-	num2 = aton(str,10);
-	if(num2 != num)
-		printf("***:%ld\n",num2);
-
-	t_ntoa(num, str, sizeof(str), 16, 0);
-	printf("[%s]\n",str);
-	t_ntoa(num, str, sizeof(str), 8, 0);
-	printf("[%s]\n",str);
-	t_ntoa(num, str, sizeof(str), 2, 0);
-	printf("[%s]\n",str);
-
-	printf("\n");
-	printf("=================================\n");
-
-	printf("0\n");
-	num = 0;
-	t_printf("[%+ld]\n", num);
-	printf("[%+ld]\n", num);
-	sprintf(str,"%+020ld", num);
-
-	num2 = aton(str,10);
-	if(num2 != num)
-		printf("***:%ld\n",num2);
-
-	t_ntoa(num, str, sizeof(str), 16, 0);
-	printf("[%s]\n",str);
-	t_ntoa(num, str, sizeof(str), 8, 0);
-	printf("[%s]\n",str);
-	t_ntoa(num, str, sizeof(str), 2, 0);
-	printf("[%s]\n",str);
-
-	printf("\n");
-	printf("=================================\n");
-
-	return(0);
-}
-#endif	

@@ -27,15 +27,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define __USER_CONFIG_H__
 
 #define MEMSPACE ICACHE_FLASH_ATTR
-//#define MEMSPACE_RO ICACHE_RODATA_ATTR
-#define MEMSPACE_RO static const
+#define MEMSPACE_RO ICACHE_RODATA_ATTR
+//#define MEMSPACE_RO static const
 
 #define _GNU_SOURCE
 
-#include <ets_sys.h>
+#include <stdarg.h>
 #include <osapi.h>
 #include <os_type.h>
 #include <c_types.h>
+
+#include <ets_sys.h>
 
 // low level memory and flash reading code
 #include "util.h"
@@ -45,6 +47,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gpio.h>
 #include <user_interface.h>
 #include <mem.h>
+
 
 #include <uart_register.h>
 
@@ -57,11 +60,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Hardware SPI
 #include "hspi.h"
 
+#ifdef YIELD_TASK
+#include "cont.h"
+#include "user_task.h"
+#endif
+
 // TIME and TIMER FUNCTION
 #include "timer_hal.h"
 #include "timer.h"
 #include "time.h"
 
+#ifdef FATFS_TEST
 // FATFS
 #include "integer.h"
 #include "ffconf.h"
@@ -74,6 +83,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "posix.h"
 // FATFS user tests and user interface
 #include "fatfs_utils.h"
+#endif
 
 // TFT DISPLAY
 #define MEMSPACE_FONT MEMSPACE
@@ -90,9 +100,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "wire.h"
 
 
+#include "network.h"
+
 // Network client that displays messages on the TFT
 #ifdef NETWORK_TEST
-#include "network.h"
+#include "server.h"
 #endif
 
 // Serial to/from telnet network task
@@ -100,7 +112,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "bridge.h"
 #endif
 
-#include "scanf.h"
+#ifdef SCANF
+	#include "scanf.h"
+#endif
+
 #include "printf.h"
 #include "debug.h"
 

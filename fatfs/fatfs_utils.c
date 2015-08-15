@@ -396,11 +396,20 @@ void fatfs_rmdir(char *name)
 MEMSPACE
 void fatfs_stat(char *name)
 {
-    FILINFO info;
+    FILINFO *info = fatfs_alloc_finfo( 0 );
+;
+	int res;
 
     DEBUG_PRINTF("stat [%s]\n", name);
-    f_stat(name, &info);
-    fatfs_filinfo_list(&info);
+    res = f_stat(name, info);
+	if(res == FR_OK)
+	{
+		fatfs_filinfo_list(info);
+	}
+	else
+	{
+		put_rc(res);
+	}
 }
 
 /// @brief  Change directory.

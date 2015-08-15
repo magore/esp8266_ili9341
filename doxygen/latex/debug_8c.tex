@@ -6,34 +6,66 @@
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{debug_8c_a3b8293e3d2342c61cf6f1a40509dfd41}{uart0\-\_\-printf} (const char $\ast$fmt,...)
-\begin{DoxyCompactList}\small\item\em debug\-\_\-printf function \end{DoxyCompactList}\end{DoxyCompactItemize}
+static void \hyperlink{debug_8c_a9f0e0c76de59f37f7fd820521a21defb}{\-\_\-uart0\-\_\-fn} (struct \hyperlink{struct__printf__t}{\-\_\-printf\-\_\-t} $\ast$p, char ch)
+\begin{DoxyCompactList}\small\item\em \-\_\-uart0\-\_\-fn low level function that writes a character with uart0har() \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{debug_8c_ab4ff4ed4ffc744d909dee04c5787376b}{uart0\-\_\-printf} (const char $\ast$format,...)
+\begin{DoxyCompactList}\small\item\em printf function \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Function Documentation}
-\hypertarget{debug_8c_a3b8293e3d2342c61cf6f1a40509dfd41}{\index{debug.\-c@{debug.\-c}!uart0\-\_\-printf@{uart0\-\_\-printf}}
+\hypertarget{debug_8c_a9f0e0c76de59f37f7fd820521a21defb}{\index{debug.\-c@{debug.\-c}!\-\_\-uart0\-\_\-fn@{\-\_\-uart0\-\_\-fn}}
+\index{\-\_\-uart0\-\_\-fn@{\-\_\-uart0\-\_\-fn}!debug.c@{debug.\-c}}
+\subsubsection[{\-\_\-uart0\-\_\-fn}]{\setlength{\rightskip}{0pt plus 5cm}static void \-\_\-uart0\-\_\-fn (
+\begin{DoxyParamCaption}
+\item[{struct {\bf \-\_\-printf\-\_\-t} $\ast$}]{p, }
+\item[{char}]{ch}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{debug_8c_a9f0e0c76de59f37f7fd820521a21defb}
+
+
+\-\_\-uart0\-\_\-fn low level function that writes a character with uart0har() 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$p} & structure with pointers to track number of bytes written \\
+\hline
+\mbox{\tt in}  & {\em ch} & character to write \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 31 of file debug.\-c.
+
+
+
+Referenced by uart0\-\_\-printf().
+
+\hypertarget{debug_8c_ab4ff4ed4ffc744d909dee04c5787376b}{\index{debug.\-c@{debug.\-c}!uart0\-\_\-printf@{uart0\-\_\-printf}}
 \index{uart0\-\_\-printf@{uart0\-\_\-printf}!debug.c@{debug.\-c}}
 \subsubsection[{uart0\-\_\-printf}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int uart0\-\_\-printf (
 \begin{DoxyParamCaption}
-\item[{const char $\ast$}]{fmt, }
+\item[{const char $\ast$}]{format, }
 \item[{}]{...}
 \end{DoxyParamCaption}
-)}}\label{debug_8c_a3b8293e3d2342c61cf6f1a40509dfd41}
+)}}\label{debug_8c_ab4ff4ed4ffc744d909dee04c5787376b}
 
 
-debug\-\_\-printf function 
+printf function 
 
 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\tt in}  & {\em fmt} & printf forat string \\
 \hline
-\mbox{\tt in}  & {\em ...} & vararg list or arguments \\
+\mbox{\tt in}  & {\em va\-\_\-list} & list of arguments \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-size of string 
+size of printed string 
 \end{DoxyReturn}
 
 
-Definition at line 32 of file debug.\-c.
+Definition at line 42 of file debug.\-c.
 

@@ -21,13 +21,11 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
-
 #ifndef _PRINTF_H_
 #define _PRINTF_H_
 #include <stdarg.h>
 
-#ifdef PRINTF_TEST
+#if defined(PRINTF_TEST)
 	#define MEMSPACE /* */
 	#include <stdio.h>
 	#include <stdlib.h>
@@ -39,24 +37,32 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #else
 	#include "user_config.h"
 #endif
+
+#include "sup.h"
+// ====================================================================
+
+typedef struct _printf_t
+{
+    void (*put)(struct _printf_t *, char);
+    void *buffer;
+    int len;
+	int size;
+} printf_t;
+
+// ====================================================================
+
 /* printf.c */
-MEMSPACE static void t_reverse ( char *str );
-MEMSPACE static void t_strupper ( char *str );
-MEMSPACE static int atod ( int c , int radix );
-MEMSPACE static long aton ( uint8_t *str , int base );
-MEMSPACE static int t_itoa ( long num , uint8_t *str , int max , int prec , int sign );
-MEMSPACE MEMSPACE static int t_ntoa ( unsigned long num , uint8_t *str , int max , int radix , int prec );
+MEMSPACE int t_itoa ( long num , uint8_t *str , int max , int prec , int sign );
+MEMSPACE int t_ntoa ( unsigned long num , uint8_t *str , int max , int radix , int prec );
 MEMSPACE static double t_iexp ( double num , int exp );
 MEMSPACE static double t_scale10 ( double num , int *exp );
-MEMSPACE static double t_atof ( char *str );
-MEMSPACE static int ftoa ( double val , char *str , int intprec , int prec , int sign );
-MEMSPACE static int etoa ( double x , char *str , int prec , int sign );
-MEMSPACE MEMSPACE int t_vsnprintf ( char *buffer , int len , const char *fmt , va_list va );
-MEMSPACE int t_snprintf ( char *buffer , int buffer_len , const char *fmt , ...);
-MEMSPACE int t_printf ( const char *fmt , ...);
-
-
-void tests ( void );
+MEMSPACE int t_ftoa ( double val , char *str , int intprec , int prec , int sign );
+MEMSPACE int t_etoa ( double x , char *str , int prec , int sign );
+MEMSPACE static void _puts_pad ( printf_t *fn , char *s , int width , int count , int left );
+MEMSPACE void _printf_fn ( printf_t *fn , const char *fmt , va_list va );
+static void _putc_buffer ( struct _printf_t *p , char ch );
+MEMSPACE int vsnprintf ( char *str , size_t size , const char *format , va_list va );
+MEMSPACE int snprintf ( char *str , size_t size , const char *format , ...);
 
 #endif
 

@@ -82,7 +82,7 @@ int set_timers(void (*handler)(void), int timer)
 /// @return timer on success.
 /// @return -1 on error.
 MEMSPACE
-int kill_timers( int timer )
+int kill_timer( int timer )
 {
     int ret = -1;
     if(timer >= 0 && timer <= MAX_TIMER_CNT)
@@ -126,7 +126,6 @@ void subtract_timespec(ts_t *a, ts_t *b)
         a->tv_nsec += 1000000000L;
         a->tv_sec --;
     }
-
     a->tv_sec = a->tv_sec - b->tv_sec;
 }
 
@@ -141,7 +140,7 @@ static char _ts_to_str[32];
 MEMSPACE
 char * ts_to_str(ts_t *val)
 {
-    t_snprintf(_ts_to_str,31,"%ld.%09ld", val->tv_sec, val->tv_nsec);
+    snprintf(_ts_to_str,31,"%ld.%09ld", val->tv_sec, val->tv_nsec);
     return( _ts_to_str );
 }
 

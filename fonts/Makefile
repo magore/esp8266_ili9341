@@ -15,6 +15,9 @@ FONTS_P = fonts/P/12-Adobe-Helvetica.bdf \
 	fonts/P/35-Adobe-Helvetica.bdf \
 	fonts/P/35-Adobe-Helvetica-Bold.bdf
 
+FONTS_B = fixed/7x13B.bdf \
+	fonts/C/24-Terminus-Bold.bdf \
+	fonts/C/32-Terminus-Bold.bdf 
     
 all:	bdffont2c bigS copyfonts cleanfont
 
@@ -56,9 +59,9 @@ bigP:	cleanfont bdffont2c
 	./bdfview -n 5 -p 3 -t 
 
 bigS:	cleanfont bdffont2c 
-	./bdffont2c -s -p 2 -l 32 -u 127 -o fonts.h $(FONTS_C)
+	./bdffont2c -s -p 2 -l 32 -u 127 -o fonts.h $(FONTS_B)
 	$(CC) $(CFLAGS) -g -o bdfview bdfview.c bdffontutil.o
-	./bdfview -n 5 -p 3 -t 
+	./bdfview -n 2 -p 3 -t 
 
 testP:    cleanfont bdffont2c 
 	./bdffont2c -o fonts.h -l 32 -u 127 fonts/P/10-Adobe*.bdf 

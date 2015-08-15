@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['point',['point',['../structpoint.html',1,'']]],
-  ['putbuff',['putbuff',['../structputbuff.html',1,'']]]
+  ['fatfs',['FATFS',['../structFATFS.html',1,'']]],
+  ['fil',['FIL',['../structFIL.html',1,'']]],
+  ['filinfo',['FILINFO',['../structFILINFO.html',1,'']]]
 ];

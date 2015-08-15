@@ -57,15 +57,15 @@ typedef struct
 ///@brief CLock task in Microseconds defined as System Task.
 #define CLOCK_TIC_US SYSTEM_TASK_TIC_US
 
+/* lib/timer.c */
+MEMSPACE int set_timers ( void (*handler )(void ), int timer );
+MEMSPACE int kill_timer ( int timer );
+MEMSPACE void delete_all_timers ( void );
+MEMSPACE void subtract_timespec ( ts_t *a , ts_t *b );
+MEMSPACE char *ts_to_str ( ts_t *val );
+MEMSPACE void display_ts ( ts_t *val );
+MEMSPACE void clock_elapsed_begin ( void );
+MEMSPACE void clock_elapsed_end ( char *msg );
 
-/* timer.c */
-int set_timers ( void (*handler )(void ), int timer );
-int kill_timers ( int timer );
-void delete_all_timers ( void );
-void subtract_timespec ( ts_t *a , ts_t *b );
-char *ts_to_str ( ts_t *val );
-void display_ts ( ts_t *val );
-void clock_elapsed_begin ( void );
-void clock_elapsed_end ( char *msg );
 
 #endif                                            // _TIMER_H_

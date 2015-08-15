@@ -32,15 +32,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /// @brief  array or user timers
 extern TIMERS timer_irq[];
 
-#include <user_config.h>
-/* timer_hal.c */
+/* lib/timer_hal.c */
 MEMSPACE void clock_clear ( void );
-void execute_timers ( void *arg);
+MEMSPACE void disable_timers ( void );
+MEMSPACE void enable_timers ( void );
+void execute_timers ( void *arg );
 MEMSPACE void clock_init ( void );
 LOCAL void clock_task ( void );
-void init_timers ( void );
-int clock_getres ( clockid_t clk_id , struct timespec *res );
-int clock_gettime ( clockid_t clk_id , struct timespec *ts );
-int clock_settime ( clockid_t clk_id , const struct timespec *ts );
+MEMSPACE void init_timers ( void );
+MEMSPACE int clock_getres ( clockid_t clk_id , struct timespec *res );
+MEMSPACE int clock_gettime ( clockid_t clk_id , struct timespec *ts );
+MEMSPACE int clock_settime ( clockid_t clk_id , const struct timespec *ts );
+
+
 
 #endif                                            // _TIMER_HAL_H_

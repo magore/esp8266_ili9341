@@ -14,9 +14,9 @@ void \hyperlink{network_8h_a9aaa25ef08319cd23e2cdee0b6405de5}{ntp\-\_\-setup} (v
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{network_8h_af65ec795e7e4486dd8bb58d757fb6067}{my\-\_\-receive} (void $\ast$arg, char $\ast$pdata, unsigned short len)
 \item 
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{network_8h_a33001f6e7c0326d6a8f20acbc62a1b3a}{wifi\-\_\-event\-\_\-cb} (System\-\_\-\-Event\-\_\-t $\ast$event\-\_\-p)
-\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{network_8h_a1c83f7d4417b533a9a0cb9e34b5d57dd}{setup\-\_\-networking} (int port)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em W\-I\-F\-I Event Callback. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{network_8h_a863429734cede00a72890923a53dad24}{setup\-\_\-networking} (void)
+\begin{DoxyCompactList}\small\item\em Code fragments if(!wifi\-\_\-station\-\_\-dhcpc\-\_\-stop()) D\-E\-B\-U\-G\-\_\-\-P\-R\-I\-N\-T\-F( \char`\"{}\-E\-R\-R\-O\-R wifi\-\_\-station\-\_\-dhcpc\-\_\-stop() \textbackslash{}n \char`\"{});. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -43,11 +43,11 @@ int \hyperlink{network_8h_a216a891e9fdcc4083d4fb922eacb63f0}{network\-\_\-init}
 )}}\label{network_8h_a9aaa25ef08319cd23e2cdee0b6405de5}
 
 
-Definition at line 119 of file user\-\_\-main.\-c.
+Definition at line 88 of file user\-\_\-main.\-c.
 
 
 
-Referenced by user\-\_\-task().
+Referenced by loop().
 
 \hypertarget{network_8h_a666e24dd2e3ea9aa24fdd5fc0089aa13}{\index{network.\-h@{network.\-h}!poll\-\_\-network\-\_\-message@{poll\-\_\-network\-\_\-message}}
 \index{poll\-\_\-network\-\_\-message@{poll\-\_\-network\-\_\-message}!network.h@{network.\-h}}
@@ -56,20 +56,31 @@ Referenced by user\-\_\-task().
 \item[{{\bf window} $\ast$}]{win}
 \end{DoxyParamCaption}
 )}}\label{network_8h_a666e24dd2e3ea9aa24fdd5fc0089aa13}
-
-
-Referenced by user\-\_\-task().
-
-\hypertarget{network_8h_a1c83f7d4417b533a9a0cb9e34b5d57dd}{\index{network.\-h@{network.\-h}!setup\-\_\-networking@{setup\-\_\-networking}}
+\hypertarget{network_8h_a863429734cede00a72890923a53dad24}{\index{network.\-h@{network.\-h}!setup\-\_\-networking@{setup\-\_\-networking}}
 \index{setup\-\_\-networking@{setup\-\_\-networking}!network.h@{network.\-h}}
 \subsubsection[{setup\-\_\-networking}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void setup\-\_\-networking (
 \begin{DoxyParamCaption}
-\item[{int}]{port}
+\item[{void}]{}
 \end{DoxyParamCaption}
-)}}\label{network_8h_a1c83f7d4417b533a9a0cb9e34b5d57dd}
+)}}\label{network_8h_a863429734cede00a72890923a53dad24}
 
 
-Referenced by user\-\_\-init().
+Code fragments if(!wifi\-\_\-station\-\_\-dhcpc\-\_\-stop()) D\-E\-B\-U\-G\-\_\-\-P\-R\-I\-N\-T\-F( \char`\"{}\-E\-R\-R\-O\-R wifi\-\_\-station\-\_\-dhcpc\-\_\-stop() \textbackslash{}n \char`\"{});. 
+
+if(!wifi\-\_\-set\-\_\-ip\-\_\-info( S\-T\-A\-T\-I\-O\-N\-\_\-\-I\-F , \&info)) D\-E\-B\-U\-G\-\_\-\-P\-R\-I\-N\-T\-F( \char`\"{}\-E\-R\-R\-O\-R wifi\-\_\-set\-\_\-ip\-\_\-info()\textbackslash{}n\char`\"{});
+
+if(!wifi\-\_\-station\-\_\-connect()) D\-E\-B\-U\-G\-\_\-\-P\-R\-I\-N\-T\-F( \char`\"{}\-E\-R\-R\-O\-R wifi\-\_\-station\-\_\-connect()\textbackslash{}n\char`\"{});
+
+if(!wifi\-\_\-station\-\_\-set\-\_\-auto\-\_\-connect( T\-R\-U\-E) ) D\-E\-B\-U\-G\-\_\-\-P\-R\-I\-N\-T\-F(\char`\"{}\-E\-R\-R\-O\-R wifi\-\_\-station\-\_\-set\-\_\-auto\-\_\-connect(1)\textbackslash{}n\char`\"{}); I\-P4\-\_\-\-A\-D\-D\-R( \& info.\-ip , 192 , 168 , 200 , 123); I\-P4\-\_\-\-A\-D\-D\-R( \& info.\-netmask , 255 , 255 , 255 , 0); I\-P4\-\_\-\-A\-D\-D\-R( \& info.\-gw, 192 , 168 , 200 , 1); if(!wifi\-\_\-set\-\_\-ip\-\_\-info( S\-T\-A\-T\-I\-O\-N\-\_\-\-I\-F , \&info) ) D\-E\-B\-U\-G\-\_\-\-P\-R\-I\-N\-T\-F( \char`\"{}\-E\-R\-R\-O\-R wifi\-\_\-set\-\_\-ip\-\_\-info() \textbackslash{}n \char`\"{}); if(!wifi\-\_\-station\-\_\-set\-\_\-auto\-\_\-connect( T\-R\-U\-E) ) D\-E\-B\-U\-G\-\_\-\-P\-R\-I\-N\-T\-F( \char`\"{}\-E\-R\-R\-O\-R wifi\-\_\-station\-\_\-set\-\_\-auto\-\_\-connect(1) \textbackslash{}n \char`\"{}); Setup Wifi Network Credits\-: ideas borrowed from David Ogilvy(\-Metal\-Phreak) \begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 141 of file network.\-c.
+
+
+
+Referenced by setup().
 
 \hypertarget{network_8h_a33001f6e7c0326d6a8f20acbc62a1b3a}{\index{network.\-h@{network.\-h}!wifi\-\_\-event\-\_\-cb@{wifi\-\_\-event\-\_\-cb}}
 \index{wifi\-\_\-event\-\_\-cb@{wifi\-\_\-event\-\_\-cb}!network.h@{network.\-h}}
@@ -80,11 +91,35 @@ Referenced by user\-\_\-init().
 )}}\label{network_8h_a33001f6e7c0326d6a8f20acbc62a1b3a}
 
 
+W\-I\-F\-I Event Callback. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$event\-\_\-p} & Wifi event structure This callback status code borrowed from David Ogilvy(\-Metal\-Phreak) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 58 of file network.\-c.
+
+
+
+Referenced by setup\-\_\-networking().
+
+
+
 \subsection{Variable Documentation}
 \hypertarget{network_8h_a216a891e9fdcc4083d4fb922eacb63f0}{\index{network.\-h@{network.\-h}!network\-\_\-init@{network\-\_\-init}}
 \index{network\-\_\-init@{network\-\_\-init}!network.h@{network.\-h}}
 \subsubsection[{network\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}int network\-\_\-init}}\label{network_8h_a216a891e9fdcc4083d4fb922eacb63f0}
 
 
-Referenced by ntp\-\_\-setup().
+Definition at line 42 of file network.\-c.
+
+
+
+Referenced by ntp\-\_\-setup(), and wifi\-\_\-event\-\_\-cb().
 

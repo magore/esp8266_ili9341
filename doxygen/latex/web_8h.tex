@@ -1,0 +1,1450 @@
+\hypertarget{web_8h}{\section{web/web.h File Reference}
+\label{web_8h}\index{web/web.\-h@{web/web.\-h}}
+}
+
+
+Small web server for esp8266.  
+
+
+{\ttfamily \#include $<$user\-\_\-config.\-h$>$}\\*
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structhinfo__t}{hinfo\-\_\-t}
+\item 
+struct \hyperlink{structmem__t}{mem\-\_\-t}
+\item 
+struct \hyperlink{structwbuf__t}{wbuf\-\_\-t}
+\item 
+struct \hyperlink{structheader__t}{header\-\_\-t}
+\item 
+struct \hyperlink{structmime__t}{mime\-\_\-t}
+\item 
+struct \hyperlink{structrwbuf__t}{rwbuf\-\_\-t}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{web_8h_a053b7859476cc9867ec62c49e68d3fa1}{M\-A\-X\-\_\-\-C\-O\-N\-N\-E\-C\-T\-I\-O\-N\-S}~1
+\item 
+\#define \hyperlink{web_8h_a51a214aeaf13aa7f3eac284e5a4fc93e}{I\-O\-\_\-\-M\-A\-X}~512
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct espconn \hyperlink{web_8h_a6dae30cd245bde804cf3e2c09e39a4b6}{espconn\-\_\-t}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \\*
+\hyperlink{web_8h_adf764cbdea00d65edcd07bb9953ad2b7a6b4dfa1db88da421c74c30dc94c3ce53}{T\-O\-K\-E\-N\-\_\-\-G\-E\-T}, 
+\hyperlink{web_8h_adf764cbdea00d65edcd07bb9953ad2b7a2a1292bc924f34d6d69a7b71501ae73f}{T\-O\-K\-E\-N\-\_\-\-P\-U\-T}, 
+\hyperlink{web_8h_adf764cbdea00d65edcd07bb9953ad2b7a4cb258960bebf97073876d09836f1618}{T\-O\-K\-E\-N\-\_\-\-P\-O\-S\-T}, 
+\hyperlink{web_8h_adf764cbdea00d65edcd07bb9953ad2b7a7a543c7cf1ac077230c499a41c3a8a94}{T\-O\-K\-E\-N\-\_\-\-H\-E\-A\-D}, 
+\\*
+\hyperlink{web_8h_adf764cbdea00d65edcd07bb9953ad2b7a04d43499e4bc7c9f971f7a660d098ff1}{T\-O\-K\-E\-N\-\_\-\-H\-O\-S\-T}, 
+\hyperlink{web_8h_adf764cbdea00d65edcd07bb9953ad2b7a4e115a8a34594af0f253e8472cffe673}{T\-O\-K\-E\-N\-\_\-\-U\-S\-E\-R\-\_\-\-A\-G\-E\-N\-T}, 
+\hyperlink{web_8h_adf764cbdea00d65edcd07bb9953ad2b7a37110324f9064d3a7e41029d572141d0}{T\-O\-K\-E\-N\-\_\-\-D\-N\-T}, 
+\hyperlink{web_8h_adf764cbdea00d65edcd07bb9953ad2b7af8b41aa43b046daa7c0ada29d27b7cdb}{T\-O\-K\-E\-N\-\_\-\-A\-C\-C\-E\-P\-T}, 
+\\*
+\hyperlink{web_8h_adf764cbdea00d65edcd07bb9953ad2b7a3fdcc37f74cb2179b65913891e1f02d8}{T\-O\-K\-E\-N\-\_\-\-A\-C\-C\-E\-P\-T\-\_\-\-L\-A\-N\-G\-U\-A\-G\-E}, 
+\hyperlink{web_8h_adf764cbdea00d65edcd07bb9953ad2b7add40d0810a662bffc6a5d437e2a86c10}{T\-O\-K\-E\-N\-\_\-\-A\-C\-C\-E\-P\-T\-\_\-\-E\-N\-C\-O\-D\-I\-N\-G}, 
+\hyperlink{web_8h_adf764cbdea00d65edcd07bb9953ad2b7ad862c732a351f70da32231c9f4298d05}{T\-O\-K\-E\-N\-\_\-\-C\-O\-N\-N\-E\-C\-T\-I\-O\-N}, 
+\hyperlink{web_8h_adf764cbdea00d65edcd07bb9953ad2b7ab9bf3f747c7169a74f228b4f173c2bf4}{T\-O\-K\-E\-N\-\_\-\-R\-E\-F\-E\-R\-E\-R}, 
+\\*
+\hyperlink{web_8h_adf764cbdea00d65edcd07bb9953ad2b7a727fe5423c611ba2fac22b301c60e962}{T\-O\-K\-E\-N\-\_\-\-C\-O\-N\-T\-E\-N\-T\-\_\-\-L\-E\-N\-G\-T\-H}, 
+\hyperlink{web_8h_adf764cbdea00d65edcd07bb9953ad2b7ad871a413f306c0544fd283658f046805}{T\-O\-K\-E\-N\-\_\-\-C\-O\-N\-T\-E\-N\-T\-\_\-\-T\-Y\-P\-E}, 
+\hyperlink{web_8h_adf764cbdea00d65edcd07bb9953ad2b7a991253922f53b4456f895f846e82b946}{T\-O\-K\-E\-N\-\_\-\-C\-A\-C\-H\-E\-\_\-\-C\-O\-N\-T\-R\-O\-L}
+ \}
+\item 
+enum \{ \\*
+\hyperlink{web_8h_a99fb83031ce9923c84392b4e92f956b5a7e4a42e3b6dd63708c64cf3db6f69566}{S\-T\-A\-T\-U\-S\-\_\-\-O\-K} =200, 
+\hyperlink{web_8h_a99fb83031ce9923c84392b4e92f956b5a75c8bace79d5c58050c2d93fd9de3c00}{S\-T\-A\-T\-U\-S\-\_\-\-C\-R\-E\-A\-T\-E\-D} =201, 
+\hyperlink{web_8h_a99fb83031ce9923c84392b4e92f956b5a544ef68512445722eea8ab61cde6c830}{S\-T\-A\-T\-U\-S\-\_\-\-A\-C\-C\-E\-P\-T\-E\-D} =202, 
+\hyperlink{web_8h_a99fb83031ce9923c84392b4e92f956b5a71bad6dd3a7a5c8299f3e3c80b45dc14}{S\-T\-A\-T\-U\-S\-\_\-\-N\-O\-\_\-\-C\-O\-N\-T\-E\-N\-T} =204, 
+\\*
+\hyperlink{web_8h_a99fb83031ce9923c84392b4e92f956b5a663e14e47f325e0a39cd97b9a3ea6fb9}{S\-T\-A\-T\-U\-S\-\_\-\-M\-V\-\_\-\-P\-E\-R\-M} =301, 
+\hyperlink{web_8h_a99fb83031ce9923c84392b4e92f956b5ad39f6bf4951a299bdb3ce9b8d26e253d}{S\-T\-A\-T\-U\-S\-\_\-\-M\-V\-\_\-\-T\-E\-M\-P} =302, 
+\hyperlink{web_8h_a99fb83031ce9923c84392b4e92f956b5a241c5e2099d4e3033fb286faab004c5c}{S\-T\-A\-T\-U\-S\-\_\-\-N\-O\-T\-\_\-\-M\-O\-D\-I\-F} =304, 
+\hyperlink{web_8h_a99fb83031ce9923c84392b4e92f956b5a1879c295e29e4b52c2012c014cdc7f7a}{S\-T\-A\-T\-U\-S\-\_\-\-B\-A\-D\-\_\-\-R\-E\-Q} =400, 
+\\*
+\hyperlink{web_8h_a99fb83031ce9923c84392b4e92f956b5ab798bc2adfffcedc038bc7147872dedc}{S\-T\-A\-T\-U\-S\-\_\-\-U\-N\-A\-U\-T\-H} =401, 
+\hyperlink{web_8h_a99fb83031ce9923c84392b4e92f956b5af1a1b171197b10ee86c06ae98edbaf5e}{S\-T\-A\-T\-U\-S\-\_\-\-F\-O\-R\-B\-I\-D\-D\-E\-N} =403, 
+\hyperlink{web_8h_a99fb83031ce9923c84392b4e92f956b5a5beadd7da049edbb6bbe9a9d50973ac8}{S\-T\-A\-T\-U\-S\-\_\-\-N\-O\-T\-\_\-\-F\-O\-U\-N\-D} =404, 
+\hyperlink{web_8h_a99fb83031ce9923c84392b4e92f956b5aa4895f748a5cf4fbfc084fcc98bba90e}{S\-T\-A\-T\-U\-S\-\_\-\-I\-N\-T\-\_\-\-S\-E\-R\-R} =500, 
+\\*
+\hyperlink{web_8h_a99fb83031ce9923c84392b4e92f956b5a70758246ac128854293bb3c9071a6b56}{S\-T\-A\-T\-U\-S\-\_\-\-N\-O\-T\-\_\-\-I\-M\-P\-L} =501, 
+\hyperlink{web_8h_a99fb83031ce9923c84392b4e92f956b5a11d58f99340eb2b9510382096f7019c5}{S\-T\-A\-T\-U\-S\-\_\-\-B\-A\-D\-\_\-\-G\-A\-T\-E\-W\-A\-Y} =502, 
+\hyperlink{web_8h_a99fb83031ce9923c84392b4e92f956b5a5426ee498d80d1ca30f1b81f86c39c31}{S\-T\-A\-T\-U\-S\-\_\-\-S\-E\-R\-V\-\_\-\-U\-N\-A\-V\-A\-I\-L} =503
+ \}
+\item 
+enum \{ \\*
+\hyperlink{web_8h_abc6126af1d45847bc59afa0aa3216b04a90b1e6aa374cea27cc6fb55c5feba5c6}{P\-T\-Y\-P\-E\-\_\-\-T\-E\-X\-T}, 
+\hyperlink{web_8h_abc6126af1d45847bc59afa0aa3216b04a4bd960e514f0585643742b8bd4b77f3b}{P\-T\-Y\-P\-E\-\_\-\-H\-T\-M\-L}, 
+\hyperlink{web_8h_abc6126af1d45847bc59afa0aa3216b04a30057776e71c48725f93b464b45c9a21}{P\-T\-Y\-P\-E\-\_\-\-P\-D\-F}, 
+\hyperlink{web_8h_abc6126af1d45847bc59afa0aa3216b04a319eff9f0f2a8e6f74c5a319fc1cb4e4}{P\-T\-Y\-P\-E\-\_\-\-C\-S\-S}, 
+\\*
+\hyperlink{web_8h_abc6126af1d45847bc59afa0aa3216b04a96590ec99e2f5ce52c16218c19441c77}{P\-T\-Y\-P\-E\-\_\-\-C\-G\-I}, 
+\hyperlink{web_8h_abc6126af1d45847bc59afa0aa3216b04a68ab53191252e14d5f4b4025b956cadf}{P\-T\-Y\-P\-E\-\_\-\-J\-S}, 
+\hyperlink{web_8h_abc6126af1d45847bc59afa0aa3216b04ae0868088fd938478331ae365e481a2d3}{P\-T\-Y\-P\-E\-\_\-\-X\-M\-L}, 
+\hyperlink{web_8h_abc6126af1d45847bc59afa0aa3216b04acbda84af249fa4ef414b6b5c32eec998}{P\-T\-Y\-P\-E\-\_\-\-I\-C\-O}, 
+\\*
+\hyperlink{web_8h_abc6126af1d45847bc59afa0aa3216b04a30f126f9623d527070097095a12e69d6}{P\-T\-Y\-P\-E\-\_\-\-G\-I\-F}, 
+\hyperlink{web_8h_abc6126af1d45847bc59afa0aa3216b04aabae39c4d39e7574d9e0459d6ada9675}{P\-T\-Y\-P\-E\-\_\-\-J\-P\-E\-G}, 
+\hyperlink{web_8h_abc6126af1d45847bc59afa0aa3216b04ae45f3c9fce9b5c96bf27fb291662b0cb}{P\-T\-Y\-P\-E\-\_\-\-M\-P\-E\-G}, 
+\hyperlink{web_8h_abc6126af1d45847bc59afa0aa3216b04afb13489a2aca6e1485d8f1b36aab9bd5}{P\-T\-Y\-P\-E\-\_\-\-F\-L\-A\-S\-H}, 
+\\*
+\hyperlink{web_8h_abc6126af1d45847bc59afa0aa3216b04a8a75b468753c30e47935e8db26c91680}{P\-T\-Y\-P\-E\-\_\-\-E\-R\-R}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{web_8h_aaaac061db0c7646d5b6c8bdfe3089ae7}{led\-\_\-on} (int led)
+\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{web_8h_aec67a5a0b10a3ad2bbfe81de832ef239}{led\-\_\-off} (int led)
+\begin{DoxyCompactList}\small\item\em Turn off virtual L\-E\-D. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{web_8h_ac827567ee25b284c2992fed88249ab96}{rwbuf\-\_\-rinit} (\hyperlink{structrwbuf__t}{rwbuf\-\_\-t} $\ast$p)
+\begin{DoxyCompactList}\small\item\em Initialize socket read status and read index. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{web_8h_a6a137266340baece84e055b2d49cd0c2}{rwbuf\-\_\-winit} (\hyperlink{structrwbuf__t}{rwbuf\-\_\-t} $\ast$p)
+\begin{DoxyCompactList}\small\item\em Initialize socket send status and write index. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{web_8h_af089b318dcc1ebbec17ae7392a19e457}{rwbuf\-\_\-delete} (\hyperlink{structrwbuf__t}{rwbuf\-\_\-t} $\ast$p)
+\begin{DoxyCompactList}\small\item\em Delete socket read/write buffers. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{structrwbuf__t}{rwbuf\-\_\-t} $\ast$ \hyperlink{web_8h_a0768c5077e8cfa177735808798193071}{rwbuf\-\_\-create} (void)
+\begin{DoxyCompactList}\small\item\em Create socket read/write buffer for a connection. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{structrwbuf__t}{rwbuf\-\_\-t} $\ast$ \hyperlink{web_8h_aef2853a921eb49702f064eaa925b16e1}{create\-\_\-connection} (\hyperlink{web_8h_a6dae30cd245bde804cf3e2c09e39a4b6}{espconn\-\_\-t} $\ast$conn)
+\begin{DoxyCompactList}\small\item\em Allocate a read/write socet buffers and add it to the working pool. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{structrwbuf__t}{rwbuf\-\_\-t} $\ast$ \hyperlink{web_8h_a5dc2b8e8828cbda1ccb42ec02201d4ea}{find\-\_\-connection} (\hyperlink{web_8h_a6dae30cd245bde804cf3e2c09e39a4b6}{espconn\-\_\-t} $\ast$conn, int $\ast$index)
+\begin{DoxyCompactList}\small\item\em Find a read/write socket buffer for an espconn connection. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{web_8h_a0282f6d1728de192041e0e52157a8cee}{delete\-\_\-connection} (int index)
+\begin{DoxyCompactList}\small\item\em Delete a \hyperlink{structrwbuf__t}{rwbuf\-\_\-t} entry using its index. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{web_8h_a50c911d56af7c50bc045cffb983d76f0}{write\-\_\-byte} (\hyperlink{structrwbuf__t}{rwbuf\-\_\-t} $\ast$p, int c)
+\begin{DoxyCompactList}\small\item\em Write a byte (buffered) using the \hyperlink{structrwbuf__t}{rwbuf\-\_\-t} socket buffers for this connection If the buffers are full the socket is written using espconn\-\_\-sent. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{web_8h_ab224823f1d3f5c81a78949da4345ed87}{write\-\_\-flush} (\hyperlink{structrwbuf__t}{rwbuf\-\_\-t} $\ast$p)
+\begin{DoxyCompactList}\small\item\em Flush the the socket write buffers for this connection If the buffers have any data in them it is written using espconn\-\_\-sent. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{web_8h_a751d54408d691ebc079108ffc42ee436}{write\-\_\-len} (\hyperlink{structrwbuf__t}{rwbuf\-\_\-t} $\ast$p, char $\ast$str, int len)
+\begin{DoxyCompactList}\small\item\em Write data using buffered write\-\_\-byte function. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{web_8h_a2a5efc80e175181baf607f7f9a1358e5}{write\-\_\-str} (\hyperlink{structrwbuf__t}{rwbuf\-\_\-t} $\ast$p, char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Write string using buffered write\-\_\-byte function. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{web_8h_a9e45d63686b6fcb210f9fcb594fbb0e2}{write\-\_\-len\-\_\-flush} (\hyperlink{structrwbuf__t}{rwbuf\-\_\-t} $\ast$p, char $\ast$buff, int len)
+\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{web_8h_a912affa80386fb06e19c3ce5342701f5}{vsock\-\_\-printf} (\hyperlink{structrwbuf__t}{rwbuf\-\_\-t} $\ast$p, const char $\ast$fmt, va\-\_\-list va)
+\begin{DoxyCompactList}\small\item\em vsock\-\_\-printf function \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{web_8h_a38a7c7d1f5222edff77e9a7a20195696}{sock\-\_\-printf} (\hyperlink{structrwbuf__t}{rwbuf\-\_\-t} $\ast$p, const char $\ast$fmt,...)
+\begin{DoxyCompactList}\small\item\em sock\-\_\-printf function \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{web_8h_a5cb82637d6d97812355aaa7a7fb4ccbe}{html\-\_\-msg} (\hyperlink{structrwbuf__t}{rwbuf\-\_\-t} $\ast$p, int status, char type, char $\ast$fmt,...)
+\begin{DoxyCompactList}\small\item\em Send an H\-T\-M\-L status message to socket. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{web_8h_a2ea8a8e37ac5c7099311e4d9cdb77efb}{meminit} (\hyperlink{structmem__t}{mem\-\_\-t} $\ast$p, char $\ast$ptr, int size)
+\begin{DoxyCompactList}\small\item\em in memory memory gets function \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{web_8h_ad834fe4d9506060f80d873fb20c186d5}{memgets} (\hyperlink{structmem__t}{mem\-\_\-t} $\ast$p)
+\begin{DoxyCompactList}\small\item\em Memory gets function We A\-S\-S\-U\-M\-E we can replace any \par
+ with a \textbackslash{}0. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{web_8h_ae16ca93f35df1d6e5040aa464fec44ab}{mime\-\_\-type} (int type)
+\begin{DoxyCompactList}\small\item\em return strung pointer for mime type index \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{web_8h_aec5e03bbb08e40de50b3da6413e26931}{file\-\_\-type} (char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Determin mimetype using file name extension. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{web_8h_aeebdbab253618d52a35054978fe4bb0e}{html\-\_\-status} (int status)
+\begin{DoxyCompactList}\small\item\em Convert html status into string using http\-\_\-status table. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{structhinfo__t}{hinfo\-\_\-t} $\ast$ \hyperlink{web_8h_a49bcf14a77e1c466786d1b06a570dd5c}{init\-\_\-hinfo} (\hyperlink{structhinfo__t}{hinfo\-\_\-t} $\ast$hi)
+\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{web_8h_a93274f0048175d7ed429598e951a2c77}{match\-\_\-headers} (char $\ast$str, char $\ast$$\ast$p)
+\begin{DoxyCompactList}\small\item\em Match G\-E\-T/\-P\-O\-S\-T message headers. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{web_8h_a6f0b838bc63d86703c26bd813fc1ff13}{process\-\_\-args} (\hyperlink{structhinfo__t}{hinfo\-\_\-t} $\ast$hi)
+\begin{DoxyCompactList}\small\item\em Process G\-E\-T of P\-O\-S\-T arguments and initialize the \hyperlink{structhinfo__t}{hinfo\-\_\-t} header structure Must be pointing at the argument list either from G\-E\-T arguments -\/ or P\-O\-S\-T content text Convert name=value pairs into null terminated strings Assumes we can replace characters with E\-O\-S in ram. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{web_8h_afb148431af519ffd7c3191ed3edd4d50}{first\-\_\-arg} (\hyperlink{structhinfo__t}{hinfo\-\_\-t} $\ast$hi)
+\begin{DoxyCompactList}\small\item\em Find first P\-O\-S\-T/\-G\-E\-T argument. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{web_8h_ac2b1c83b2901da05a13fbc48e9c9f030}{next\-\_\-arg} (\hyperlink{structhinfo__t}{hinfo\-\_\-t} $\ast$hi)
+\begin{DoxyCompactList}\small\item\em Find nest P\-O\-S\-T/\-G\-E\-T argument. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{web_8h_a35cc0d5292df6d1df5cf3ea63e44d0b7}{arg\-\_\-name} (\hyperlink{structhinfo__t}{hinfo\-\_\-t} $\ast$hi)
+\begin{DoxyCompactList}\small\item\em Return the argument name for current argument. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{web_8h_a12e823b35aaf4392e282d39057f45eb8}{arg\-\_\-value} (\hyperlink{structhinfo__t}{hinfo\-\_\-t} $\ast$hi)
+\begin{DoxyCompactList}\small\item\em Return the argument value for current argument. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{web_8h_a142e7c44af77016bb329676f4466da7e}{http\-\_\-value} (\hyperlink{structhinfo__t}{hinfo\-\_\-t} $\ast$hi, char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Lookup and argument name and return its value. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{web_8h_abb4c6c620914979542688785b8091163}{is\-\_\-header} (char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Does the string look like a header token with a '\-:' ? \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{web_8h_a1723d513f866e03e8195adf0139b1603}{nextbreak} (char $\ast$ptr)
+\begin{DoxyCompactList}\small\item\em Find next space or ? character. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{web_8h_a099953c3f11ff53e89c99b0be5212b70}{u5toa} (char $\ast$ptr, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\-\_\-t} num)
+\begin{DoxyCompactList}\small\item\em Print a decimal number into a string without an E\-O\-S. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{web_8h_a3d3a54409c979b7c730f63e578ba3ff1}{is\-\_\-token} (int c)
+\begin{DoxyCompactList}\small\item\em test character for C\-G\-I token A C\-G\-I token is a string like this\-: \$\mbox{[}a-\/z\-A-\/\-Z0-\/9\-\_\--\/\mbox{]}+\$ \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{web_8h_ab4e3934605be0b5770ff87a32c405d53}{read\-\_\-html\-\_\-token} (\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\-I\-L\-E} $\ast$fi, char $\ast$str, int len)
+\begin{DoxyCompactList}\small\item\em test character for C\-G\-I token A C\-G\-I token is a string like this\-: \$\mbox{[}a-\/z\-A-\/\-Z0-\/9\-\_\--\/\mbox{]}+\$ \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{web_8h_a360633f469f7dc121c7542cfe25f11c0}{rewrite\-\_\-html\-\_\-token} (char $\ast$src, int len)
+\begin{DoxyCompactList}\small\item\em Replace C\-G\-I token with C\-G\-I result A C\-G\-I token is a string like this\-: \$\mbox{[}a-\/z\-A-\/\-Z0-\/9\-\_\--\/\mbox{]}+\$. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{web_8h_acfdd7b32cc9e6b5214ddbf8120a9ed7b}{html\-\_\-head} (\hyperlink{structrwbuf__t}{rwbuf\-\_\-t} $\ast$p, int status, char type, int len)
+\begin{DoxyCompactList}\small\item\em Write H\-T\-T\-P Contenet-\/\-Type/\-Content-\/\-Length header. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{web_8h_a574da7d2e02f16c3ff0727061b90c46c}{parse\-\_\-http\-\_\-request} (\hyperlink{structrwbuf__t}{rwbuf\-\_\-t} $\ast$p, \hyperlink{structhinfo__t}{hinfo\-\_\-t} $\ast$hi)
+\begin{DoxyCompactList}\small\item\em Get arguments for a G\-E\-T or P\-O\-S\-T request. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{web_8h_a8914bb442212946291b6afbf4f3e728e}{web\-\_\-task} (void)
+\begin{DoxyCompactList}\small\item\em Process A\-L\-L incoming H\-T\-T\-P requests. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{web_8h_a0981a27ccb83326c4e96a0859f6511b5}{web\-\_\-init\-\_\-connections} (void)
+\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{web_8h_aa7a1c2f567713688983ddecf9fa0d8d6}{web\-\_\-init} (int port)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Small web server for esp8266. \begin{DoxyParagraph}{Copyright \copyright{} 2015 Mike Gore, G\-P\-L License}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{You are free to use this code under the terms of G\-P\-L}
+please retain a copy of this notice in any code you use it in.
+\end{DoxyParagraph}
+This is free software\-: you can redistribute it and/or modify it under the terms of the G\-N\-U General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This software is distributed in the hope that it will be useful, but W\-I\-T\-H\-O\-U\-T A\-N\-Y W\-A\-R\-R\-A\-N\-T\-Y; without even the implied warranty of M\-E\-R\-C\-H\-A\-N\-T\-A\-B\-I\-L\-I\-T\-Y or F\-I\-T\-N\-E\-S\-S F\-O\-R A P\-A\-R\-T\-I\-C\-U\-L\-A\-R P\-U\-R\-P\-O\-S\-E. See the G\-N\-U General Public License for more details.
+
+You should have received a copy of the G\-N\-U General Public License along with this program. If not, see \href{http://www.gnu.org/licenses/}{\tt http\-://www.\-gnu.\-org/licenses/}. 
+
+Definition in file \hyperlink{web_8h_source}{web.\-h}.
+
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{web_8h_a51a214aeaf13aa7f3eac284e5a4fc93e}{\index{web.\-h@{web.\-h}!I\-O\-\_\-\-M\-A\-X@{I\-O\-\_\-\-M\-A\-X}}
+\index{I\-O\-\_\-\-M\-A\-X@{I\-O\-\_\-\-M\-A\-X}!web.h@{web.\-h}}
+\subsubsection[{I\-O\-\_\-\-M\-A\-X}]{\setlength{\rightskip}{0pt plus 5cm}\#define I\-O\-\_\-\-M\-A\-X~512}}\label{web_8h_a51a214aeaf13aa7f3eac284e5a4fc93e}
+
+
+Definition at line 66 of file web.\-h.
+
+\hypertarget{web_8h_a053b7859476cc9867ec62c49e68d3fa1}{\index{web.\-h@{web.\-h}!M\-A\-X\-\_\-\-C\-O\-N\-N\-E\-C\-T\-I\-O\-N\-S@{M\-A\-X\-\_\-\-C\-O\-N\-N\-E\-C\-T\-I\-O\-N\-S}}
+\index{M\-A\-X\-\_\-\-C\-O\-N\-N\-E\-C\-T\-I\-O\-N\-S@{M\-A\-X\-\_\-\-C\-O\-N\-N\-E\-C\-T\-I\-O\-N\-S}!web.h@{web.\-h}}
+\subsubsection[{M\-A\-X\-\_\-\-C\-O\-N\-N\-E\-C\-T\-I\-O\-N\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\-A\-X\-\_\-\-C\-O\-N\-N\-E\-C\-T\-I\-O\-N\-S~1}}\label{web_8h_a053b7859476cc9867ec62c49e68d3fa1}
+
+
+Definition at line 33 of file web.\-h.
+
+
+
+\subsection{Typedef Documentation}
+\hypertarget{web_8h_a6dae30cd245bde804cf3e2c09e39a4b6}{\index{web.\-h@{web.\-h}!espconn\-\_\-t@{espconn\-\_\-t}}
+\index{espconn\-\_\-t@{espconn\-\_\-t}!web.h@{web.\-h}}
+\subsubsection[{espconn\-\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct espconn {\bf espconn\-\_\-t}}}\label{web_8h_a6dae30cd245bde804cf3e2c09e39a4b6}
+
+
+Definition at line 29 of file web.\-h.
+
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{web_8h_adf764cbdea00d65edcd07bb9953ad2b7}{\subsubsection[{anonymous enum}]{\setlength{\rightskip}{0pt plus 5cm}anonymous enum}}\label{web_8h_adf764cbdea00d65edcd07bb9953ad2b7}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{T\-O\-K\-E\-N\-\_\-\-G\-E\-T@{T\-O\-K\-E\-N\-\_\-\-G\-E\-T}!web.\-h@{web.\-h}}\index{web.\-h@{web.\-h}!T\-O\-K\-E\-N\-\_\-\-G\-E\-T@{T\-O\-K\-E\-N\-\_\-\-G\-E\-T}}\item[{\em 
+\hypertarget{web_8h_adf764cbdea00d65edcd07bb9953ad2b7a6b4dfa1db88da421c74c30dc94c3ce53}{T\-O\-K\-E\-N\-\_\-\-G\-E\-T}\label{web_8h_adf764cbdea00d65edcd07bb9953ad2b7a6b4dfa1db88da421c74c30dc94c3ce53}
+}]\index{T\-O\-K\-E\-N\-\_\-\-P\-U\-T@{T\-O\-K\-E\-N\-\_\-\-P\-U\-T}!web.\-h@{web.\-h}}\index{web.\-h@{web.\-h}!T\-O\-K\-E\-N\-\_\-\-P\-U\-T@{T\-O\-K\-E\-N\-\_\-\-P\-U\-T}}\item[{\em 
+\hypertarget{web_8h_adf764cbdea00d65edcd07bb9953ad2b7a2a1292bc924f34d6d69a7b71501ae73f}{T\-O\-K\-E\-N\-\_\-\-P\-U\-T}\label{web_8h_adf764cbdea00d65edcd07bb9953ad2b7a2a1292bc924f34d6d69a7b71501ae73f}
+}]\index{T\-O\-K\-E\-N\-\_\-\-P\-O\-S\-T@{T\-O\-K\-E\-N\-\_\-\-P\-O\-S\-T}!web.\-h@{web.\-h}}\index{web.\-h@{web.\-h}!T\-O\-K\-E\-N\-\_\-\-P\-O\-S\-T@{T\-O\-K\-E\-N\-\_\-\-P\-O\-S\-T}}\item[{\em 
+\hypertarget{web_8h_adf764cbdea00d65edcd07bb9953ad2b7a4cb258960bebf97073876d09836f1618}{T\-O\-K\-E\-N\-\_\-\-P\-O\-S\-T}\label{web_8h_adf764cbdea00d65edcd07bb9953ad2b7a4cb258960bebf97073876d09836f1618}
+}]\index{T\-O\-K\-E\-N\-\_\-\-H\-E\-A\-D@{T\-O\-K\-E\-N\-\_\-\-H\-E\-A\-D}!web.\-h@{web.\-h}}\index{web.\-h@{web.\-h}!T\-O\-K\-E\-N\-\_\-\-H\-E\-A\-D@{T\-O\-K\-E\-N\-\_\-\-H\-E\-A\-D}}\item[{\em 
+\hypertarget{web_8h_adf764cbdea00d65edcd07bb9953ad2b7a7a543c7cf1ac077230c499a41c3a8a94}{T\-O\-K\-E\-N\-\_\-\-H\-E\-A\-D}\label{web_8h_adf764cbdea00d65edcd07bb9953ad2b7a7a543c7cf1ac077230c499a41c3a8a94}
+}]\index{T\-O\-K\-E\-N\-\_\-\-H\-O\-S\-T@{T\-O\-K\-E\-N\-\_\-\-H\-O\-S\-T}!web.\-h@{web.\-h}}\index{web.\-h@{web.\-h}!T\-O\-K\-E\-N\-\_\-\-H\-O\-S\-T@{T\-O\-K\-E\-N\-\_\-\-H\-O\-S\-T}}\item[{\em 
+\hypertarget{web_8h_adf764cbdea00d65edcd07bb9953ad2b7a04d43499e4bc7c9f971f7a660d098ff1}{T\-O\-K\-E\-N\-\_\-\-H\-O\-S\-T}\label{web_8h_adf764cbdea00d65edcd07bb9953ad2b7a04d43499e4bc7c9f971f7a660d098ff1}
+}]\index{T\-O\-K\-E\-N\-\_\-\-U\-S\-E\-R\-\_\-\-A\-G\-E\-N\-T@{T\-O\-K\-E\-N\-\_\-\-U\-S\-E\-R\-\_\-\-A\-G\-E\-N\-T}!web.\-h@{web.\-h}}\index{web.\-h@{web.\-h}!T\-O\-K\-E\-N\-\_\-\-U\-S\-E\-R\-\_\-\-A\-G\-E\-N\-T@{T\-O\-K\-E\-N\-\_\-\-U\-S\-E\-R\-\_\-\-A\-G\-E\-N\-T}}\item[{\em 
+\hypertarget{web_8h_adf764cbdea00d65edcd07bb9953ad2b7a4e115a8a34594af0f253e8472cffe673}{T\-O\-K\-E\-N\-\_\-\-U\-S\-E\-R\-\_\-\-A\-G\-E\-N\-T}\label{web_8h_adf764cbdea00d65edcd07bb9953ad2b7a4e115a8a34594af0f253e8472cffe673}
+}]\index{T\-O\-K\-E\-N\-\_\-\-D\-N\-T@{T\-O\-K\-E\-N\-\_\-\-D\-N\-T}!web.\-h@{web.\-h}}\index{web.\-h@{web.\-h}!T\-O\-K\-E\-N\-\_\-\-D\-N\-T@{T\-O\-K\-E\-N\-\_\-\-D\-N\-T}}\item[{\em 
+\hypertarget{web_8h_adf764cbdea00d65edcd07bb9953ad2b7a37110324f9064d3a7e41029d572141d0}{T\-O\-K\-E\-N\-\_\-\-D\-N\-T}\label{web_8h_adf764cbdea00d65edcd07bb9953ad2b7a37110324f9064d3a7e41029d572141d0}
+}]\index{T\-O\-K\-E\-N\-\_\-\-A\-C\-C\-E\-P\-T@{T\-O\-K\-E\-N\-\_\-\-A\-C\-C\-E\-P\-T}!web.\-h@{web.\-h}}\index{web.\-h@{web.\-h}!T\-O\-K\-E\-N\-\_\-\-A\-C\-C\-E\-P\-T@{T\-O\-K\-E\-N\-\_\-\-A\-C\-C\-E\-P\-T}}\item[{\em 
+\hypertarget{web_8h_adf764cbdea00d65edcd07bb9953ad2b7af8b41aa43b046daa7c0ada29d27b7cdb}{T\-O\-K\-E\-N\-\_\-\-A\-C\-C\-E\-P\-T}\label{web_8h_adf764cbdea00d65edcd07bb9953ad2b7af8b41aa43b046daa7c0ada29d27b7cdb}
+}]\index{T\-O\-K\-E\-N\-\_\-\-A\-C\-C\-E\-P\-T\-\_\-\-L\-A\-N\-G\-U\-A\-G\-E@{T\-O\-K\-E\-N\-\_\-\-A\-C\-C\-E\-P\-T\-\_\-\-L\-A\-N\-G\-U\-A\-G\-E}!web.\-h@{web.\-h}}\index{web.\-h@{web.\-h}!T\-O\-K\-E\-N\-\_\-\-A\-C\-C\-E\-P\-T\-\_\-\-L\-A\-N\-G\-U\-A\-G\-E@{T\-O\-K\-E\-N\-\_\-\-A\-C\-C\-E\-P\-T\-\_\-\-L\-A\-N\-G\-U\-A\-G\-E}}\item[{\em 
+\hypertarget{web_8h_adf764cbdea00d65edcd07bb9953ad2b7a3fdcc37f74cb2179b65913891e1f02d8}{T\-O\-K\-E\-N\-\_\-\-A\-C\-C\-E\-P\-T\-\_\-\-L\-A\-N\-G\-U\-A\-G\-E}\label{web_8h_adf764cbdea00d65edcd07bb9953ad2b7a3fdcc37f74cb2179b65913891e1f02d8}
+}]\index{T\-O\-K\-E\-N\-\_\-\-A\-C\-C\-E\-P\-T\-\_\-\-E\-N\-C\-O\-D\-I\-N\-G@{T\-O\-K\-E\-N\-\_\-\-A\-C\-C\-E\-P\-T\-\_\-\-E\-N\-C\-O\-D\-I\-N\-G}!web.\-h@{web.\-h}}\index{web.\-h@{web.\-h}!T\-O\-K\-E\-N\-\_\-\-A\-C\-C\-E\-P\-T\-\_\-\-E\-N\-C\-O\-D\-I\-N\-G@{T\-O\-K\-E\-N\-\_\-\-A\-C\-C\-E\-P\-T\-\_\-\-E\-N\-C\-O\-D\-I\-N\-G}}\item[{\em 
+\hypertarget{web_8h_adf764cbdea00d65edcd07bb9953ad2b7add40d0810a662bffc6a5d437e2a86c10}{T\-O\-K\-E\-N\-\_\-\-A\-C\-C\-E\-P\-T\-\_\-\-E\-N\-C\-O\-D\-I\-N\-G}\label{web_8h_adf764cbdea00d65edcd07bb9953ad2b7add40d0810a662bffc6a5d437e2a86c10}
+}]\index{T\-O\-K\-E\-N\-\_\-\-C\-O\-N\-N\-E\-C\-T\-I\-O\-N@{T\-O\-K\-E\-N\-\_\-\-C\-O\-N\-N\-E\-C\-T\-I\-O\-N}!web.\-h@{web.\-h}}\index{web.\-h@{web.\-h}!T\-O\-K\-E\-N\-\_\-\-C\-O\-N\-N\-E\-C\-T\-I\-O\-N@{T\-O\-K\-E\-N\-\_\-\-C\-O\-N\-N\-E\-C\-T\-I\-O\-N}}\item[{\em 
+\hypertarget{web_8h_adf764cbdea00d65edcd07bb9953ad2b7ad862c732a351f70da32231c9f4298d05}{T\-O\-K\-E\-N\-\_\-\-C\-O\-N\-N\-E\-C\-T\-I\-O\-N}\label{web_8h_adf764cbdea00d65edcd07bb9953ad2b7ad862c732a351f70da32231c9f4298d05}
+}]\index{T\-O\-K\-E\-N\-\_\-\-R\-E\-F\-E\-R\-E\-R@{T\-O\-K\-E\-N\-\_\-\-R\-E\-F\-E\-R\-E\-R}!web.\-h@{web.\-h}}\index{web.\-h@{web.\-h}!T\-O\-K\-E\-N\-\_\-\-R\-E\-F\-E\-R\-E\-R@{T\-O\-K\-E\-N\-\_\-\-R\-E\-F\-E\-R\-E\-R}}\item[{\em 
+\hypertarget{web_8h_adf764cbdea00d65edcd07bb9953ad2b7ab9bf3f747c7169a74f228b4f173c2bf4}{T\-O\-K\-E\-N\-\_\-\-R\-E\-F\-E\-R\-E\-R}\label{web_8h_adf764cbdea00d65edcd07bb9953ad2b7ab9bf3f747c7169a74f228b4f173c2bf4}
+}]\index{T\-O\-K\-E\-N\-\_\-\-C\-O\-N\-T\-E\-N\-T\-\_\-\-L\-E\-N\-G\-T\-H@{T\-O\-K\-E\-N\-\_\-\-C\-O\-N\-T\-E\-N\-T\-\_\-\-L\-E\-N\-G\-T\-H}!web.\-h@{web.\-h}}\index{web.\-h@{web.\-h}!T\-O\-K\-E\-N\-\_\-\-C\-O\-N\-T\-E\-N\-T\-\_\-\-L\-E\-N\-G\-T\-H@{T\-O\-K\-E\-N\-\_\-\-C\-O\-N\-T\-E\-N\-T\-\_\-\-L\-E\-N\-G\-T\-H}}\item[{\em 
+\hypertarget{web_8h_adf764cbdea00d65edcd07bb9953ad2b7a727fe5423c611ba2fac22b301c60e962}{T\-O\-K\-E\-N\-\_\-\-C\-O\-N\-T\-E\-N\-T\-\_\-\-L\-E\-N\-G\-T\-H}\label{web_8h_adf764cbdea00d65edcd07bb9953ad2b7a727fe5423c611ba2fac22b301c60e962}
+}]\index{T\-O\-K\-E\-N\-\_\-\-C\-O\-N\-T\-E\-N\-T\-\_\-\-T\-Y\-P\-E@{T\-O\-K\-E\-N\-\_\-\-C\-O\-N\-T\-E\-N\-T\-\_\-\-T\-Y\-P\-E}!web.\-h@{web.\-h}}\index{web.\-h@{web.\-h}!T\-O\-K\-E\-N\-\_\-\-C\-O\-N\-T\-E\-N\-T\-\_\-\-T\-Y\-P\-E@{T\-O\-K\-E\-N\-\_\-\-C\-O\-N\-T\-E\-N\-T\-\_\-\-T\-Y\-P\-E}}\item[{\em 
+\hypertarget{web_8h_adf764cbdea00d65edcd07bb9953ad2b7ad871a413f306c0544fd283658f046805}{T\-O\-K\-E\-N\-\_\-\-C\-O\-N\-T\-E\-N\-T\-\_\-\-T\-Y\-P\-E}\label{web_8h_adf764cbdea00d65edcd07bb9953ad2b7ad871a413f306c0544fd283658f046805}
+}]\index{T\-O\-K\-E\-N\-\_\-\-C\-A\-C\-H\-E\-\_\-\-C\-O\-N\-T\-R\-O\-L@{T\-O\-K\-E\-N\-\_\-\-C\-A\-C\-H\-E\-\_\-\-C\-O\-N\-T\-R\-O\-L}!web.\-h@{web.\-h}}\index{web.\-h@{web.\-h}!T\-O\-K\-E\-N\-\_\-\-C\-A\-C\-H\-E\-\_\-\-C\-O\-N\-T\-R\-O\-L@{T\-O\-K\-E\-N\-\_\-\-C\-A\-C\-H\-E\-\_\-\-C\-O\-N\-T\-R\-O\-L}}\item[{\em 
+\hypertarget{web_8h_adf764cbdea00d65edcd07bb9953ad2b7a991253922f53b4456f895f846e82b946}{T\-O\-K\-E\-N\-\_\-\-C\-A\-C\-H\-E\-\_\-\-C\-O\-N\-T\-R\-O\-L}\label{web_8h_adf764cbdea00d65edcd07bb9953ad2b7a991253922f53b4456f895f846e82b946}
+}]\end{description}
+\end{Desc}
+
+
+Definition at line 75 of file web.\-h.
+
+\hypertarget{web_8h_a99fb83031ce9923c84392b4e92f956b5}{\subsubsection[{anonymous enum}]{\setlength{\rightskip}{0pt plus 5cm}anonymous enum}}\label{web_8h_a99fb83031ce9923c84392b4e92f956b5}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{S\-T\-A\-T\-U\-S\-\_\-\-O\-K@{S\-T\-A\-T\-U\-S\-\_\-\-O\-K}!web.\-h@{web.\-h}}\index{web.\-h@{web.\-h}!S\-T\-A\-T\-U\-S\-\_\-\-O\-K@{S\-T\-A\-T\-U\-S\-\_\-\-O\-K}}\item[{\em 
+\hypertarget{web_8h_a99fb83031ce9923c84392b4e92f956b5a7e4a42e3b6dd63708c64cf3db6f69566}{S\-T\-A\-T\-U\-S\-\_\-\-O\-K}\label{web_8h_a99fb83031ce9923c84392b4e92f956b5a7e4a42e3b6dd63708c64cf3db6f69566}
+}]\index{S\-T\-A\-T\-U\-S\-\_\-\-C\-R\-E\-A\-T\-E\-D@{S\-T\-A\-T\-U\-S\-\_\-\-C\-R\-E\-A\-T\-E\-D}!web.\-h@{web.\-h}}\index{web.\-h@{web.\-h}!S\-T\-A\-T\-U\-S\-\_\-\-C\-R\-E\-A\-T\-E\-D@{S\-T\-A\-T\-U\-S\-\_\-\-C\-R\-E\-A\-T\-E\-D}}\item[{\em 
+\hypertarget{web_8h_a99fb83031ce9923c84392b4e92f956b5a75c8bace79d5c58050c2d93fd9de3c00}{S\-T\-A\-T\-U\-S\-\_\-\-C\-R\-E\-A\-T\-E\-D}\label{web_8h_a99fb83031ce9923c84392b4e92f956b5a75c8bace79d5c58050c2d93fd9de3c00}
+}]\index{S\-T\-A\-T\-U\-S\-\_\-\-A\-C\-C\-E\-P\-T\-E\-D@{S\-T\-A\-T\-U\-S\-\_\-\-A\-C\-C\-E\-P\-T\-E\-D}!web.\-h@{web.\-h}}\index{web.\-h@{web.\-h}!S\-T\-A\-T\-U\-S\-\_\-\-A\-C\-C\-E\-P\-T\-E\-D@{S\-T\-A\-T\-U\-S\-\_\-\-A\-C\-C\-E\-P\-T\-E\-D}}\item[{\em 
+\hypertarget{web_8h_a99fb83031ce9923c84392b4e92f956b5a544ef68512445722eea8ab61cde6c830}{S\-T\-A\-T\-U\-S\-\_\-\-A\-C\-C\-E\-P\-T\-E\-D}\label{web_8h_a99fb83031ce9923c84392b4e92f956b5a544ef68512445722eea8ab61cde6c830}
+}]\index{S\-T\-A\-T\-U\-S\-\_\-\-N\-O\-\_\-\-C\-O\-N\-T\-E\-N\-T@{S\-T\-A\-T\-U\-S\-\_\-\-N\-O\-\_\-\-C\-O\-N\-T\-E\-N\-T}!web.\-h@{web.\-h}}\index{web.\-h@{web.\-h}!S\-T\-A\-T\-U\-S\-\_\-\-N\-O\-\_\-\-C\-O\-N\-T\-E\-N\-T@{S\-T\-A\-T\-U\-S\-\_\-\-N\-O\-\_\-\-C\-O\-N\-T\-E\-N\-T}}\item[{\em 
+\hypertarget{web_8h_a99fb83031ce9923c84392b4e92f956b5a71bad6dd3a7a5c8299f3e3c80b45dc14}{S\-T\-A\-T\-U\-S\-\_\-\-N\-O\-\_\-\-C\-O\-N\-T\-E\-N\-T}\label{web_8h_a99fb83031ce9923c84392b4e92f956b5a71bad6dd3a7a5c8299f3e3c80b45dc14}
+}]\index{S\-T\-A\-T\-U\-S\-\_\-\-M\-V\-\_\-\-P\-E\-R\-M@{S\-T\-A\-T\-U\-S\-\_\-\-M\-V\-\_\-\-P\-E\-R\-M}!web.\-h@{web.\-h}}\index{web.\-h@{web.\-h}!S\-T\-A\-T\-U\-S\-\_\-\-M\-V\-\_\-\-P\-E\-R\-M@{S\-T\-A\-T\-U\-S\-\_\-\-M\-V\-\_\-\-P\-E\-R\-M}}\item[{\em 
+\hypertarget{web_8h_a99fb83031ce9923c84392b4e92f956b5a663e14e47f325e0a39cd97b9a3ea6fb9}{S\-T\-A\-T\-U\-S\-\_\-\-M\-V\-\_\-\-P\-E\-R\-M}\label{web_8h_a99fb83031ce9923c84392b4e92f956b5a663e14e47f325e0a39cd97b9a3ea6fb9}
+}]\index{S\-T\-A\-T\-U\-S\-\_\-\-M\-V\-\_\-\-T\-E\-M\-P@{S\-T\-A\-T\-U\-S\-\_\-\-M\-V\-\_\-\-T\-E\-M\-P}!web.\-h@{web.\-h}}\index{web.\-h@{web.\-h}!S\-T\-A\-T\-U\-S\-\_\-\-M\-V\-\_\-\-T\-E\-M\-P@{S\-T\-A\-T\-U\-S\-\_\-\-M\-V\-\_\-\-T\-E\-M\-P}}\item[{\em 
+\hypertarget{web_8h_a99fb83031ce9923c84392b4e92f956b5ad39f6bf4951a299bdb3ce9b8d26e253d}{S\-T\-A\-T\-U\-S\-\_\-\-M\-V\-\_\-\-T\-E\-M\-P}\label{web_8h_a99fb83031ce9923c84392b4e92f956b5ad39f6bf4951a299bdb3ce9b8d26e253d}
+}]\index{S\-T\-A\-T\-U\-S\-\_\-\-N\-O\-T\-\_\-\-M\-O\-D\-I\-F@{S\-T\-A\-T\-U\-S\-\_\-\-N\-O\-T\-\_\-\-M\-O\-D\-I\-F}!web.\-h@{web.\-h}}\index{web.\-h@{web.\-h}!S\-T\-A\-T\-U\-S\-\_\-\-N\-O\-T\-\_\-\-M\-O\-D\-I\-F@{S\-T\-A\-T\-U\-S\-\_\-\-N\-O\-T\-\_\-\-M\-O\-D\-I\-F}}\item[{\em 
+\hypertarget{web_8h_a99fb83031ce9923c84392b4e92f956b5a241c5e2099d4e3033fb286faab004c5c}{S\-T\-A\-T\-U\-S\-\_\-\-N\-O\-T\-\_\-\-M\-O\-D\-I\-F}\label{web_8h_a99fb83031ce9923c84392b4e92f956b5a241c5e2099d4e3033fb286faab004c5c}
+}]\index{S\-T\-A\-T\-U\-S\-\_\-\-B\-A\-D\-\_\-\-R\-E\-Q@{S\-T\-A\-T\-U\-S\-\_\-\-B\-A\-D\-\_\-\-R\-E\-Q}!web.\-h@{web.\-h}}\index{web.\-h@{web.\-h}!S\-T\-A\-T\-U\-S\-\_\-\-B\-A\-D\-\_\-\-R\-E\-Q@{S\-T\-A\-T\-U\-S\-\_\-\-B\-A\-D\-\_\-\-R\-E\-Q}}\item[{\em 
+\hypertarget{web_8h_a99fb83031ce9923c84392b4e92f956b5a1879c295e29e4b52c2012c014cdc7f7a}{S\-T\-A\-T\-U\-S\-\_\-\-B\-A\-D\-\_\-\-R\-E\-Q}\label{web_8h_a99fb83031ce9923c84392b4e92f956b5a1879c295e29e4b52c2012c014cdc7f7a}
+}]\index{S\-T\-A\-T\-U\-S\-\_\-\-U\-N\-A\-U\-T\-H@{S\-T\-A\-T\-U\-S\-\_\-\-U\-N\-A\-U\-T\-H}!web.\-h@{web.\-h}}\index{web.\-h@{web.\-h}!S\-T\-A\-T\-U\-S\-\_\-\-U\-N\-A\-U\-T\-H@{S\-T\-A\-T\-U\-S\-\_\-\-U\-N\-A\-U\-T\-H}}\item[{\em 
+\hypertarget{web_8h_a99fb83031ce9923c84392b4e92f956b5ab798bc2adfffcedc038bc7147872dedc}{S\-T\-A\-T\-U\-S\-\_\-\-U\-N\-A\-U\-T\-H}\label{web_8h_a99fb83031ce9923c84392b4e92f956b5ab798bc2adfffcedc038bc7147872dedc}
+}]\index{S\-T\-A\-T\-U\-S\-\_\-\-F\-O\-R\-B\-I\-D\-D\-E\-N@{S\-T\-A\-T\-U\-S\-\_\-\-F\-O\-R\-B\-I\-D\-D\-E\-N}!web.\-h@{web.\-h}}\index{web.\-h@{web.\-h}!S\-T\-A\-T\-U\-S\-\_\-\-F\-O\-R\-B\-I\-D\-D\-E\-N@{S\-T\-A\-T\-U\-S\-\_\-\-F\-O\-R\-B\-I\-D\-D\-E\-N}}\item[{\em 
+\hypertarget{web_8h_a99fb83031ce9923c84392b4e92f956b5af1a1b171197b10ee86c06ae98edbaf5e}{S\-T\-A\-T\-U\-S\-\_\-\-F\-O\-R\-B\-I\-D\-D\-E\-N}\label{web_8h_a99fb83031ce9923c84392b4e92f956b5af1a1b171197b10ee86c06ae98edbaf5e}
+}]\index{S\-T\-A\-T\-U\-S\-\_\-\-N\-O\-T\-\_\-\-F\-O\-U\-N\-D@{S\-T\-A\-T\-U\-S\-\_\-\-N\-O\-T\-\_\-\-F\-O\-U\-N\-D}!web.\-h@{web.\-h}}\index{web.\-h@{web.\-h}!S\-T\-A\-T\-U\-S\-\_\-\-N\-O\-T\-\_\-\-F\-O\-U\-N\-D@{S\-T\-A\-T\-U\-S\-\_\-\-N\-O\-T\-\_\-\-F\-O\-U\-N\-D}}\item[{\em 
+\hypertarget{web_8h_a99fb83031ce9923c84392b4e92f956b5a5beadd7da049edbb6bbe9a9d50973ac8}{S\-T\-A\-T\-U\-S\-\_\-\-N\-O\-T\-\_\-\-F\-O\-U\-N\-D}\label{web_8h_a99fb83031ce9923c84392b4e92f956b5a5beadd7da049edbb6bbe9a9d50973ac8}
+}]\index{S\-T\-A\-T\-U\-S\-\_\-\-I\-N\-T\-\_\-\-S\-E\-R\-R@{S\-T\-A\-T\-U\-S\-\_\-\-I\-N\-T\-\_\-\-S\-E\-R\-R}!web.\-h@{web.\-h}}\index{web.\-h@{web.\-h}!S\-T\-A\-T\-U\-S\-\_\-\-I\-N\-T\-\_\-\-S\-E\-R\-R@{S\-T\-A\-T\-U\-S\-\_\-\-I\-N\-T\-\_\-\-S\-E\-R\-R}}\item[{\em 
+\hypertarget{web_8h_a99fb83031ce9923c84392b4e92f956b5aa4895f748a5cf4fbfc084fcc98bba90e}{S\-T\-A\-T\-U\-S\-\_\-\-I\-N\-T\-\_\-\-S\-E\-R\-R}\label{web_8h_a99fb83031ce9923c84392b4e92f956b5aa4895f748a5cf4fbfc084fcc98bba90e}
+}]\index{S\-T\-A\-T\-U\-S\-\_\-\-N\-O\-T\-\_\-\-I\-M\-P\-L@{S\-T\-A\-T\-U\-S\-\_\-\-N\-O\-T\-\_\-\-I\-M\-P\-L}!web.\-h@{web.\-h}}\index{web.\-h@{web.\-h}!S\-T\-A\-T\-U\-S\-\_\-\-N\-O\-T\-\_\-\-I\-M\-P\-L@{S\-T\-A\-T\-U\-S\-\_\-\-N\-O\-T\-\_\-\-I\-M\-P\-L}}\item[{\em 
+\hypertarget{web_8h_a99fb83031ce9923c84392b4e92f956b5a70758246ac128854293bb3c9071a6b56}{S\-T\-A\-T\-U\-S\-\_\-\-N\-O\-T\-\_\-\-I\-M\-P\-L}\label{web_8h_a99fb83031ce9923c84392b4e92f956b5a70758246ac128854293bb3c9071a6b56}
+}]\index{S\-T\-A\-T\-U\-S\-\_\-\-B\-A\-D\-\_\-\-G\-A\-T\-E\-W\-A\-Y@{S\-T\-A\-T\-U\-S\-\_\-\-B\-A\-D\-\_\-\-G\-A\-T\-E\-W\-A\-Y}!web.\-h@{web.\-h}}\index{web.\-h@{web.\-h}!S\-T\-A\-T\-U\-S\-\_\-\-B\-A\-D\-\_\-\-G\-A\-T\-E\-W\-A\-Y@{S\-T\-A\-T\-U\-S\-\_\-\-B\-A\-D\-\_\-\-G\-A\-T\-E\-W\-A\-Y}}\item[{\em 
+\hypertarget{web_8h_a99fb83031ce9923c84392b4e92f956b5a11d58f99340eb2b9510382096f7019c5}{S\-T\-A\-T\-U\-S\-\_\-\-B\-A\-D\-\_\-\-G\-A\-T\-E\-W\-A\-Y}\label{web_8h_a99fb83031ce9923c84392b4e92f956b5a11d58f99340eb2b9510382096f7019c5}
+}]\index{S\-T\-A\-T\-U\-S\-\_\-\-S\-E\-R\-V\-\_\-\-U\-N\-A\-V\-A\-I\-L@{S\-T\-A\-T\-U\-S\-\_\-\-S\-E\-R\-V\-\_\-\-U\-N\-A\-V\-A\-I\-L}!web.\-h@{web.\-h}}\index{web.\-h@{web.\-h}!S\-T\-A\-T\-U\-S\-\_\-\-S\-E\-R\-V\-\_\-\-U\-N\-A\-V\-A\-I\-L@{S\-T\-A\-T\-U\-S\-\_\-\-S\-E\-R\-V\-\_\-\-U\-N\-A\-V\-A\-I\-L}}\item[{\em 
+\hypertarget{web_8h_a99fb83031ce9923c84392b4e92f956b5a5426ee498d80d1ca30f1b81f86c39c31}{S\-T\-A\-T\-U\-S\-\_\-\-S\-E\-R\-V\-\_\-\-U\-N\-A\-V\-A\-I\-L}\label{web_8h_a99fb83031ce9923c84392b4e92f956b5a5426ee498d80d1ca30f1b81f86c39c31}
+}]\end{description}
+\end{Desc}
+
+
+Definition at line 105 of file web.\-h.
+
+\hypertarget{web_8h_abc6126af1d45847bc59afa0aa3216b04}{\subsubsection[{anonymous enum}]{\setlength{\rightskip}{0pt plus 5cm}anonymous enum}}\label{web_8h_abc6126af1d45847bc59afa0aa3216b04}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{P\-T\-Y\-P\-E\-\_\-\-T\-E\-X\-T@{P\-T\-Y\-P\-E\-\_\-\-T\-E\-X\-T}!web.\-h@{web.\-h}}\index{web.\-h@{web.\-h}!P\-T\-Y\-P\-E\-\_\-\-T\-E\-X\-T@{P\-T\-Y\-P\-E\-\_\-\-T\-E\-X\-T}}\item[{\em 
+\hypertarget{web_8h_abc6126af1d45847bc59afa0aa3216b04a90b1e6aa374cea27cc6fb55c5feba5c6}{P\-T\-Y\-P\-E\-\_\-\-T\-E\-X\-T}\label{web_8h_abc6126af1d45847bc59afa0aa3216b04a90b1e6aa374cea27cc6fb55c5feba5c6}
+}]\index{P\-T\-Y\-P\-E\-\_\-\-H\-T\-M\-L@{P\-T\-Y\-P\-E\-\_\-\-H\-T\-M\-L}!web.\-h@{web.\-h}}\index{web.\-h@{web.\-h}!P\-T\-Y\-P\-E\-\_\-\-H\-T\-M\-L@{P\-T\-Y\-P\-E\-\_\-\-H\-T\-M\-L}}\item[{\em 
+\hypertarget{web_8h_abc6126af1d45847bc59afa0aa3216b04a4bd960e514f0585643742b8bd4b77f3b}{P\-T\-Y\-P\-E\-\_\-\-H\-T\-M\-L}\label{web_8h_abc6126af1d45847bc59afa0aa3216b04a4bd960e514f0585643742b8bd4b77f3b}
+}]\index{P\-T\-Y\-P\-E\-\_\-\-P\-D\-F@{P\-T\-Y\-P\-E\-\_\-\-P\-D\-F}!web.\-h@{web.\-h}}\index{web.\-h@{web.\-h}!P\-T\-Y\-P\-E\-\_\-\-P\-D\-F@{P\-T\-Y\-P\-E\-\_\-\-P\-D\-F}}\item[{\em 
+\hypertarget{web_8h_abc6126af1d45847bc59afa0aa3216b04a30057776e71c48725f93b464b45c9a21}{P\-T\-Y\-P\-E\-\_\-\-P\-D\-F}\label{web_8h_abc6126af1d45847bc59afa0aa3216b04a30057776e71c48725f93b464b45c9a21}
+}]\index{P\-T\-Y\-P\-E\-\_\-\-C\-S\-S@{P\-T\-Y\-P\-E\-\_\-\-C\-S\-S}!web.\-h@{web.\-h}}\index{web.\-h@{web.\-h}!P\-T\-Y\-P\-E\-\_\-\-C\-S\-S@{P\-T\-Y\-P\-E\-\_\-\-C\-S\-S}}\item[{\em 
+\hypertarget{web_8h_abc6126af1d45847bc59afa0aa3216b04a319eff9f0f2a8e6f74c5a319fc1cb4e4}{P\-T\-Y\-P\-E\-\_\-\-C\-S\-S}\label{web_8h_abc6126af1d45847bc59afa0aa3216b04a319eff9f0f2a8e6f74c5a319fc1cb4e4}
+}]\index{P\-T\-Y\-P\-E\-\_\-\-C\-G\-I@{P\-T\-Y\-P\-E\-\_\-\-C\-G\-I}!web.\-h@{web.\-h}}\index{web.\-h@{web.\-h}!P\-T\-Y\-P\-E\-\_\-\-C\-G\-I@{P\-T\-Y\-P\-E\-\_\-\-C\-G\-I}}\item[{\em 
+\hypertarget{web_8h_abc6126af1d45847bc59afa0aa3216b04a96590ec99e2f5ce52c16218c19441c77}{P\-T\-Y\-P\-E\-\_\-\-C\-G\-I}\label{web_8h_abc6126af1d45847bc59afa0aa3216b04a96590ec99e2f5ce52c16218c19441c77}
+}]\index{P\-T\-Y\-P\-E\-\_\-\-J\-S@{P\-T\-Y\-P\-E\-\_\-\-J\-S}!web.\-h@{web.\-h}}\index{web.\-h@{web.\-h}!P\-T\-Y\-P\-E\-\_\-\-J\-S@{P\-T\-Y\-P\-E\-\_\-\-J\-S}}\item[{\em 
+\hypertarget{web_8h_abc6126af1d45847bc59afa0aa3216b04a68ab53191252e14d5f4b4025b956cadf}{P\-T\-Y\-P\-E\-\_\-\-J\-S}\label{web_8h_abc6126af1d45847bc59afa0aa3216b04a68ab53191252e14d5f4b4025b956cadf}
+}]\index{P\-T\-Y\-P\-E\-\_\-\-X\-M\-L@{P\-T\-Y\-P\-E\-\_\-\-X\-M\-L}!web.\-h@{web.\-h}}\index{web.\-h@{web.\-h}!P\-T\-Y\-P\-E\-\_\-\-X\-M\-L@{P\-T\-Y\-P\-E\-\_\-\-X\-M\-L}}\item[{\em 
+\hypertarget{web_8h_abc6126af1d45847bc59afa0aa3216b04ae0868088fd938478331ae365e481a2d3}{P\-T\-Y\-P\-E\-\_\-\-X\-M\-L}\label{web_8h_abc6126af1d45847bc59afa0aa3216b04ae0868088fd938478331ae365e481a2d3}
+}]\index{P\-T\-Y\-P\-E\-\_\-\-I\-C\-O@{P\-T\-Y\-P\-E\-\_\-\-I\-C\-O}!web.\-h@{web.\-h}}\index{web.\-h@{web.\-h}!P\-T\-Y\-P\-E\-\_\-\-I\-C\-O@{P\-T\-Y\-P\-E\-\_\-\-I\-C\-O}}\item[{\em 
+\hypertarget{web_8h_abc6126af1d45847bc59afa0aa3216b04acbda84af249fa4ef414b6b5c32eec998}{P\-T\-Y\-P\-E\-\_\-\-I\-C\-O}\label{web_8h_abc6126af1d45847bc59afa0aa3216b04acbda84af249fa4ef414b6b5c32eec998}
+}]\index{P\-T\-Y\-P\-E\-\_\-\-G\-I\-F@{P\-T\-Y\-P\-E\-\_\-\-G\-I\-F}!web.\-h@{web.\-h}}\index{web.\-h@{web.\-h}!P\-T\-Y\-P\-E\-\_\-\-G\-I\-F@{P\-T\-Y\-P\-E\-\_\-\-G\-I\-F}}\item[{\em 
+\hypertarget{web_8h_abc6126af1d45847bc59afa0aa3216b04a30f126f9623d527070097095a12e69d6}{P\-T\-Y\-P\-E\-\_\-\-G\-I\-F}\label{web_8h_abc6126af1d45847bc59afa0aa3216b04a30f126f9623d527070097095a12e69d6}
+}]\index{P\-T\-Y\-P\-E\-\_\-\-J\-P\-E\-G@{P\-T\-Y\-P\-E\-\_\-\-J\-P\-E\-G}!web.\-h@{web.\-h}}\index{web.\-h@{web.\-h}!P\-T\-Y\-P\-E\-\_\-\-J\-P\-E\-G@{P\-T\-Y\-P\-E\-\_\-\-J\-P\-E\-G}}\item[{\em 
+\hypertarget{web_8h_abc6126af1d45847bc59afa0aa3216b04aabae39c4d39e7574d9e0459d6ada9675}{P\-T\-Y\-P\-E\-\_\-\-J\-P\-E\-G}\label{web_8h_abc6126af1d45847bc59afa0aa3216b04aabae39c4d39e7574d9e0459d6ada9675}
+}]\index{P\-T\-Y\-P\-E\-\_\-\-M\-P\-E\-G@{P\-T\-Y\-P\-E\-\_\-\-M\-P\-E\-G}!web.\-h@{web.\-h}}\index{web.\-h@{web.\-h}!P\-T\-Y\-P\-E\-\_\-\-M\-P\-E\-G@{P\-T\-Y\-P\-E\-\_\-\-M\-P\-E\-G}}\item[{\em 
+\hypertarget{web_8h_abc6126af1d45847bc59afa0aa3216b04ae45f3c9fce9b5c96bf27fb291662b0cb}{P\-T\-Y\-P\-E\-\_\-\-M\-P\-E\-G}\label{web_8h_abc6126af1d45847bc59afa0aa3216b04ae45f3c9fce9b5c96bf27fb291662b0cb}
+}]\index{P\-T\-Y\-P\-E\-\_\-\-F\-L\-A\-S\-H@{P\-T\-Y\-P\-E\-\_\-\-F\-L\-A\-S\-H}!web.\-h@{web.\-h}}\index{web.\-h@{web.\-h}!P\-T\-Y\-P\-E\-\_\-\-F\-L\-A\-S\-H@{P\-T\-Y\-P\-E\-\_\-\-F\-L\-A\-S\-H}}\item[{\em 
+\hypertarget{web_8h_abc6126af1d45847bc59afa0aa3216b04afb13489a2aca6e1485d8f1b36aab9bd5}{P\-T\-Y\-P\-E\-\_\-\-F\-L\-A\-S\-H}\label{web_8h_abc6126af1d45847bc59afa0aa3216b04afb13489a2aca6e1485d8f1b36aab9bd5}
+}]\index{P\-T\-Y\-P\-E\-\_\-\-E\-R\-R@{P\-T\-Y\-P\-E\-\_\-\-E\-R\-R}!web.\-h@{web.\-h}}\index{web.\-h@{web.\-h}!P\-T\-Y\-P\-E\-\_\-\-E\-R\-R@{P\-T\-Y\-P\-E\-\_\-\-E\-R\-R}}\item[{\em 
+\hypertarget{web_8h_abc6126af1d45847bc59afa0aa3216b04a8a75b468753c30e47935e8db26c91680}{P\-T\-Y\-P\-E\-\_\-\-E\-R\-R}\label{web_8h_abc6126af1d45847bc59afa0aa3216b04a8a75b468753c30e47935e8db26c91680}
+}]\end{description}
+\end{Desc}
+
+
+Definition at line 123 of file web.\-h.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{web_8h_a35cc0d5292df6d1df5cf3ea63e44d0b7}{\index{web.\-h@{web.\-h}!arg\-\_\-name@{arg\-\_\-name}}
+\index{arg\-\_\-name@{arg\-\_\-name}!web.h@{web.\-h}}
+\subsubsection[{arg\-\_\-name}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} char$\ast$ arg\-\_\-name (
+\begin{DoxyParamCaption}
+\item[{{\bf hinfo\-\_\-t} $\ast$}]{hi}
+\end{DoxyParamCaption}
+)}}\label{web_8h_a35cc0d5292df6d1df5cf3ea63e44d0b7}
+
+
+Return the argument name for current argument. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$hi} & \hyperlink{structhinfo__t}{hinfo\-\_\-t} structure with arguments \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+argument name 
+\end{DoxyReturn}
+
+
+Definition at line 1009 of file web.\-c.
+
+
+
+Referenced by http\-\_\-value(), and parse\-\_\-http\-\_\-request().
+
+\hypertarget{web_8h_a12e823b35aaf4392e282d39057f45eb8}{\index{web.\-h@{web.\-h}!arg\-\_\-value@{arg\-\_\-value}}
+\index{arg\-\_\-value@{arg\-\_\-value}!web.h@{web.\-h}}
+\subsubsection[{arg\-\_\-value}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} char$\ast$ arg\-\_\-value (
+\begin{DoxyParamCaption}
+\item[{{\bf hinfo\-\_\-t} $\ast$}]{hi}
+\end{DoxyParamCaption}
+)}}\label{web_8h_a12e823b35aaf4392e282d39057f45eb8}
+
+
+Return the argument value for current argument. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$hi} & \hyperlink{structhinfo__t}{hinfo\-\_\-t} structure with arguments \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+argument value 
+\end{DoxyReturn}
+
+
+Definition at line 1029 of file web.\-c.
+
+
+
+Referenced by http\-\_\-value(), and parse\-\_\-http\-\_\-request().
+
+\hypertarget{web_8h_aef2853a921eb49702f064eaa925b16e1}{\index{web.\-h@{web.\-h}!create\-\_\-connection@{create\-\_\-connection}}
+\index{create\-\_\-connection@{create\-\_\-connection}!web.h@{web.\-h}}
+\subsubsection[{create\-\_\-connection}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} {\bf rwbuf\-\_\-t}$\ast$ create\-\_\-connection (
+\begin{DoxyParamCaption}
+\item[{{\bf espconn\-\_\-t} $\ast$}]{conn}
+\end{DoxyParamCaption}
+)}}\label{web_8h_aef2853a921eb49702f064eaa925b16e1}
+
+
+Allocate a read/write socet buffers and add it to the working pool. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em conn} & espconn pointer for this connection \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{structrwbuf__t}{rwbuf\-\_\-t} pointer to created structure 
+\end{DoxyReturn}
+
+
+Definition at line 341 of file web.\-c.
+
+
+
+Referenced by web\-\_\-data\-\_\-connect\-\_\-callback().
+
+\hypertarget{web_8h_a0282f6d1728de192041e0e52157a8cee}{\index{web.\-h@{web.\-h}!delete\-\_\-connection@{delete\-\_\-connection}}
+\index{delete\-\_\-connection@{delete\-\_\-connection}!web.h@{web.\-h}}
+\subsubsection[{delete\-\_\-connection}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void delete\-\_\-connection (
+\begin{DoxyParamCaption}
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)}}\label{web_8h_a0282f6d1728de192041e0e52157a8cee}
+
+
+Delete a \hyperlink{structrwbuf__t}{rwbuf\-\_\-t} entry using its index. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em index} & index into pool of \hyperlink{structrwbuf__t}{rwbuf\-\_\-t} connections \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 435 of file web.\-c.
+
+
+
+Referenced by process\-\_\-requests(), and web\-\_\-data\-\_\-disconnect\-\_\-callback().
+
+\hypertarget{web_8h_aec5e03bbb08e40de50b3da6413e26931}{\index{web.\-h@{web.\-h}!file\-\_\-type@{file\-\_\-type}}
+\index{file\-\_\-type@{file\-\_\-type}!web.h@{web.\-h}}
+\subsubsection[{file\-\_\-type}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int file\-\_\-type (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{name}
+\end{DoxyParamCaption}
+)}}\label{web_8h_aec5e03bbb08e40de50b3da6413e26931}
+
+
+Determin mimetype using file name extension. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$name} & name to test \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+index into mimetype table 
+\end{DoxyReturn}
+
+
+Definition at line 791 of file web.\-c.
+
+
+
+Referenced by process\-\_\-requests().
+
+\hypertarget{web_8h_a5dc2b8e8828cbda1ccb42ec02201d4ea}{\index{web.\-h@{web.\-h}!find\-\_\-connection@{find\-\_\-connection}}
+\index{find\-\_\-connection@{find\-\_\-connection}!web.h@{web.\-h}}
+\subsubsection[{find\-\_\-connection}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} {\bf rwbuf\-\_\-t}$\ast$ find\-\_\-connection (
+\begin{DoxyParamCaption}
+\item[{{\bf espconn\-\_\-t} $\ast$}]{conn, }
+\item[{int $\ast$}]{index}
+\end{DoxyParamCaption}
+)}}\label{web_8h_a5dc2b8e8828cbda1ccb42ec02201d4ea}
+
+
+Find a read/write socket buffer for an espconn connection. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em conn} & espconn pointer for this connection \\
+\hline
+\mbox{\tt in}  & {\em $\ast$index} & return index into pool of \hyperlink{structrwbuf__t}{rwbuf\-\_\-t} connections \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{structrwbuf__t}{rwbuf\-\_\-t} pointer to found connection with $\ast$index set, or N\-U\-L\-L with $\ast$index == -\/1 on failure 
+\end{DoxyReturn}
+
+
+Definition at line 381 of file web.\-c.
+
+
+
+Referenced by process\-\_\-requests(), web\-\_\-data\-\_\-receive\-\_\-callback(), and web\-\_\-data\-\_\-sent\-\_\-callback().
+
+\hypertarget{web_8h_afb148431af519ffd7c3191ed3edd4d50}{\index{web.\-h@{web.\-h}!first\-\_\-arg@{first\-\_\-arg}}
+\index{first\-\_\-arg@{first\-\_\-arg}!web.h@{web.\-h}}
+\subsubsection[{first\-\_\-arg}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} char$\ast$ first\-\_\-arg (
+\begin{DoxyParamCaption}
+\item[{{\bf hinfo\-\_\-t} $\ast$}]{hi}
+\end{DoxyParamCaption}
+)}}\label{web_8h_afb148431af519ffd7c3191ed3edd4d50}
+
+
+Find first P\-O\-S\-T/\-G\-E\-T argument. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$hi} & \hyperlink{structhinfo__t}{hinfo\-\_\-t} structure with arguments \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+argument value pair 
+\end{DoxyReturn}
+
+
+Definition at line 966 of file web.\-c.
+
+
+
+Referenced by http\-\_\-value(), and parse\-\_\-http\-\_\-request().
+
+\hypertarget{web_8h_acfdd7b32cc9e6b5214ddbf8120a9ed7b}{\index{web.\-h@{web.\-h}!html\-\_\-head@{html\-\_\-head}}
+\index{html\-\_\-head@{html\-\_\-head}!web.h@{web.\-h}}
+\subsubsection[{html\-\_\-head}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void html\-\_\-head (
+\begin{DoxyParamCaption}
+\item[{{\bf rwbuf\-\_\-t} $\ast$}]{p, }
+\item[{int}]{status, }
+\item[{char}]{type, }
+\item[{int}]{len}
+\end{DoxyParamCaption}
+)}}\label{web_8h_acfdd7b32cc9e6b5214ddbf8120a9ed7b}
+
+
+Write H\-T\-T\-P Contenet-\/\-Type/\-Content-\/\-Length header. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$p} & \hyperlink{structrwbuf__t}{rwbuf\-\_\-t} pointer to socket buffer \\
+\hline
+\mbox{\tt in}  & {\em status} & html status message index \\
+\hline
+\mbox{\tt in}  & {\em type} & mimetype index \\
+\hline
+\mbox{\tt in}  & {\em len} & length of message \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 1241 of file web.\-c.
+
+\hypertarget{web_8h_a5cb82637d6d97812355aaa7a7fb4ccbe}{\index{web.\-h@{web.\-h}!html\-\_\-msg@{html\-\_\-msg}}
+\index{html\-\_\-msg@{html\-\_\-msg}!web.h@{web.\-h}}
+\subsubsection[{html\-\_\-msg}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int html\-\_\-msg (
+\begin{DoxyParamCaption}
+\item[{{\bf rwbuf\-\_\-t} $\ast$}]{p, }
+\item[{int}]{status, }
+\item[{char}]{type, }
+\item[{char $\ast$}]{fmt, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)}}\label{web_8h_a5cb82637d6d97812355aaa7a7fb4ccbe}
+
+
+Send an H\-T\-M\-L status message to socket. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em p} & socket buffer structure \\
+\hline
+\mbox{\tt in}  & {\em status} & index into http\-\_\-status table \\
+\hline
+\mbox{\tt in}  & {\em type} & mime type index \\
+\hline
+\mbox{\tt in}  & {\em fmt} & printf format string \\
+\hline
+\mbox{\tt in}  & {\em ...} & list of arguments \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bytes written, 0 on wrror 
+\end{DoxyReturn}
+
+
+Definition at line 652 of file web.\-c.
+
+
+
+Referenced by process\-\_\-requests().
+
+\hypertarget{web_8h_aeebdbab253618d52a35054978fe4bb0e}{\index{web.\-h@{web.\-h}!html\-\_\-status@{html\-\_\-status}}
+\index{html\-\_\-status@{html\-\_\-status}!web.h@{web.\-h}}
+\subsubsection[{html\-\_\-status}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} char$\ast$ html\-\_\-status (
+\begin{DoxyParamCaption}
+\item[{int}]{status}
+\end{DoxyParamCaption}
+)}}\label{web_8h_aeebdbab253618d52a35054978fe4bb0e}
+
+
+Convert html status into string using http\-\_\-status table. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em index} & index to find \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+http\-\_\-status entry mathing status, or 500 Internal Server Error 
+\end{DoxyReturn}
+
+
+Definition at line 818 of file web.\-c.
+
+
+
+Referenced by html\-\_\-head(), and html\-\_\-msg().
+
+\hypertarget{web_8h_a142e7c44af77016bb329676f4466da7e}{\index{web.\-h@{web.\-h}!http\-\_\-value@{http\-\_\-value}}
+\index{http\-\_\-value@{http\-\_\-value}!web.h@{web.\-h}}
+\subsubsection[{http\-\_\-value}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} char$\ast$ http\-\_\-value (
+\begin{DoxyParamCaption}
+\item[{{\bf hinfo\-\_\-t} $\ast$}]{hi, }
+\item[{char $\ast$}]{str}
+\end{DoxyParamCaption}
+)}}\label{web_8h_a142e7c44af77016bb329676f4466da7e}
+
+
+Lookup and argument name and return its value. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$hi} & \hyperlink{structhinfo__t}{hinfo\-\_\-t} structure with arguments \\
+\hline
+\mbox{\tt in}  & {\em $\ast$str} & string to lookup \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+argument value 
+\end{DoxyReturn}
+
+
+Definition at line 1051 of file web.\-c.
+
+
+
+Referenced by process\-\_\-requests().
+
+\hypertarget{web_8h_a49bcf14a77e1c466786d1b06a570dd5c}{\index{web.\-h@{web.\-h}!init\-\_\-hinfo@{init\-\_\-hinfo}}
+\index{init\-\_\-hinfo@{init\-\_\-hinfo}!web.h@{web.\-h}}
+\subsubsection[{init\-\_\-hinfo}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} {\bf hinfo\-\_\-t}$\ast$ init\-\_\-hinfo (
+\begin{DoxyParamCaption}
+\item[{{\bf hinfo\-\_\-t} $\ast$}]{hi}
+\end{DoxyParamCaption}
+)}}\label{web_8h_a49bcf14a77e1c466786d1b06a570dd5c}
+Initilize \hyperlink{structhinfo__t}{hinfo\-\_\-t} structure 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$hi} & \hyperlink{structhinfo__t}{hinfo\-\_\-t} structure pointer to initialize \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{structhinfo__t}{hinfo\-\_\-t} structure pointer to initialize 
+\end{DoxyReturn}
+
+
+Definition at line 843 of file web.\-c.
+
+
+
+Referenced by process\-\_\-requests().
+
+\hypertarget{web_8h_abb4c6c620914979542688785b8091163}{\index{web.\-h@{web.\-h}!is\-\_\-header@{is\-\_\-header}}
+\index{is\-\_\-header@{is\-\_\-header}!web.h@{web.\-h}}
+\subsubsection[{is\-\_\-header}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} char$\ast$ is\-\_\-header (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str}
+\end{DoxyParamCaption}
+)}}\label{web_8h_abb4c6c620914979542688785b8091163}
+
+
+Does the string look like a header token with a '\-:' ? 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$str} & string to test \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+just past the '\-:' or N\-U\-L\-L 
+\end{DoxyReturn}
+
+
+Definition at line 1076 of file web.\-c.
+
+
+
+Referenced by parse\-\_\-http\-\_\-request().
+
+\hypertarget{web_8h_a3d3a54409c979b7c730f63e578ba3ff1}{\index{web.\-h@{web.\-h}!is\-\_\-token@{is\-\_\-token}}
+\index{is\-\_\-token@{is\-\_\-token}!web.h@{web.\-h}}
+\subsubsection[{is\-\_\-token}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int is\-\_\-token (
+\begin{DoxyParamCaption}
+\item[{int}]{c}
+\end{DoxyParamCaption}
+)}}\label{web_8h_a3d3a54409c979b7c730f63e578ba3ff1}
+
+
+test character for C\-G\-I token A C\-G\-I token is a string like this\-: \$\mbox{[}a-\/z\-A-\/\-Z0-\/9\-\_\--\/\mbox{]}+\$ 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & character to test \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the character is a C\-G\-I token or 0 if not 
+\end{DoxyReturn}
+
+
+Definition at line 1131 of file web.\-c.
+
+
+
+Referenced by read\-\_\-html\-\_\-token().
+
+\hypertarget{web_8h_aec67a5a0b10a3ad2bbfe81de832ef239}{\index{web.\-h@{web.\-h}!led\-\_\-off@{led\-\_\-off}}
+\index{led\-\_\-off@{led\-\_\-off}!web.h@{web.\-h}}
+\subsubsection[{led\-\_\-off}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void led\-\_\-off (
+\begin{DoxyParamCaption}
+\item[{int}]{led}
+\end{DoxyParamCaption}
+)}}\label{web_8h_aec67a5a0b10a3ad2bbfe81de832ef239}
+
+
+Turn off virtual L\-E\-D. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em led} & led to turn off \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 183 of file web.\-c.
+
+
+
+Referenced by process\-\_\-requests().
+
+\hypertarget{web_8h_aaaac061db0c7646d5b6c8bdfe3089ae7}{\index{web.\-h@{web.\-h}!led\-\_\-on@{led\-\_\-on}}
+\index{led\-\_\-on@{led\-\_\-on}!web.h@{web.\-h}}
+\subsubsection[{led\-\_\-on}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void led\-\_\-on (
+\begin{DoxyParamCaption}
+\item[{int}]{led}
+\end{DoxyParamCaption}
+)}}\label{web_8h_aaaac061db0c7646d5b6c8bdfe3089ae7}
+
+
+Definition at line 173 of file web.\-c.
+
+
+
+Referenced by process\-\_\-requests().
+
+\hypertarget{web_8h_a93274f0048175d7ed429598e951a2c77}{\index{web.\-h@{web.\-h}!match\-\_\-headers@{match\-\_\-headers}}
+\index{match\-\_\-headers@{match\-\_\-headers}!web.h@{web.\-h}}
+\subsubsection[{match\-\_\-headers}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int match\-\_\-headers (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str, }
+\item[{char $\ast$$\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{web_8h_a93274f0048175d7ed429598e951a2c77}
+
+
+Match G\-E\-T/\-P\-O\-S\-T message headers. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$str} & string to patch \\
+\hline
+\mbox{\tt in}  & {\em $\ast$$\ast$p} & points past matched string on sucess \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+header index or -\/1 on no match 
+\end{DoxyReturn}
+
+
+Definition at line 865 of file web.\-c.
+
+
+
+Referenced by parse\-\_\-http\-\_\-request().
+
+\hypertarget{web_8h_ad834fe4d9506060f80d873fb20c186d5}{\index{web.\-h@{web.\-h}!memgets@{memgets}}
+\index{memgets@{memgets}!web.h@{web.\-h}}
+\subsubsection[{memgets}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} char$\ast$ memgets (
+\begin{DoxyParamCaption}
+\item[{{\bf mem\-\_\-t} $\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{web_8h_ad834fe4d9506060f80d873fb20c186d5}
+
+
+Memory gets function We A\-S\-S\-U\-M\-E we can replace any \par
+ with a \textbackslash{}0. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em p} & structure with size and offset used by mem\-\_\-gets() \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to string 
+\end{DoxyReturn}
+
+
+Definition at line 748 of file web.\-c.
+
+
+
+Referenced by parse\-\_\-http\-\_\-request().
+
+\hypertarget{web_8h_a2ea8a8e37ac5c7099311e4d9cdb77efb}{\index{web.\-h@{web.\-h}!meminit@{meminit}}
+\index{meminit@{meminit}!web.h@{web.\-h}}
+\subsubsection[{meminit}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} char$\ast$ meminit (
+\begin{DoxyParamCaption}
+\item[{{\bf mem\-\_\-t} $\ast$}]{p, }
+\item[{char $\ast$}]{ptr, }
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}}\label{web_8h_a2ea8a8e37ac5c7099311e4d9cdb77efb}
+
+
+in memory memory gets function 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em p} & structure with size and offset used by mem\-\_\-gets() \\
+\hline
+\mbox{\tt in}  & {\em ptr} & start of memory area \\
+\hline
+\mbox{\tt in}  & {\em size} & size of memory area \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to start of memory area (ptr) 
+\end{DoxyReturn}
+
+
+Definition at line 730 of file web.\-c.
+
+
+
+Referenced by parse\-\_\-http\-\_\-request().
+
+\hypertarget{web_8h_ae16ca93f35df1d6e5040aa464fec44ab}{\index{web.\-h@{web.\-h}!mime\-\_\-type@{mime\-\_\-type}}
+\index{mime\-\_\-type@{mime\-\_\-type}!web.h@{web.\-h}}
+\subsubsection[{mime\-\_\-type}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} char$\ast$ mime\-\_\-type (
+\begin{DoxyParamCaption}
+\item[{int}]{type}
+\end{DoxyParamCaption}
+)}}\label{web_8h_ae16ca93f35df1d6e5040aa464fec44ab}
+
+
+return strung pointer for mime type index 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em type} & index into mim\-\_\-type table \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to string, if out of range uses index P\-T\-Y\-P\-E\-\_\-\-E\-R\-R 
+\end{DoxyReturn}
+
+
+Definition at line 778 of file web.\-c.
+
+
+
+Referenced by html\-\_\-head(), and html\-\_\-msg().
+
+\hypertarget{web_8h_ac2b1c83b2901da05a13fbc48e9c9f030}{\index{web.\-h@{web.\-h}!next\-\_\-arg@{next\-\_\-arg}}
+\index{next\-\_\-arg@{next\-\_\-arg}!web.h@{web.\-h}}
+\subsubsection[{next\-\_\-arg}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} char$\ast$ next\-\_\-arg (
+\begin{DoxyParamCaption}
+\item[{{\bf hinfo\-\_\-t} $\ast$}]{hi}
+\end{DoxyParamCaption}
+)}}\label{web_8h_ac2b1c83b2901da05a13fbc48e9c9f030}
+
+
+Find nest P\-O\-S\-T/\-G\-E\-T argument. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$hi} & \hyperlink{structhinfo__t}{hinfo\-\_\-t} structure with arguments \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+argument value pair 
+\end{DoxyReturn}
+
+
+Definition at line 977 of file web.\-c.
+
+
+
+Referenced by http\-\_\-value(), and parse\-\_\-http\-\_\-request().
+
+\hypertarget{web_8h_a1723d513f866e03e8195adf0139b1603}{\index{web.\-h@{web.\-h}!nextbreak@{nextbreak}}
+\index{nextbreak@{nextbreak}!web.h@{web.\-h}}
+\subsubsection[{nextbreak}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} char$\ast$ nextbreak (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{ptr}
+\end{DoxyParamCaption}
+)}}\label{web_8h_a1723d513f866e03e8195adf0139b1603}
+
+
+Find next space or ? character. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$ptr} & string to search \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+first space or ? character 
+\end{DoxyReturn}
+
+
+Definition at line 1097 of file web.\-c.
+
+
+
+Referenced by parse\-\_\-http\-\_\-request().
+
+\hypertarget{web_8h_a574da7d2e02f16c3ff0727061b90c46c}{\index{web.\-h@{web.\-h}!parse\-\_\-http\-\_\-request@{parse\-\_\-http\-\_\-request}}
+\index{parse\-\_\-http\-\_\-request@{parse\-\_\-http\-\_\-request}!web.h@{web.\-h}}
+\subsubsection[{parse\-\_\-http\-\_\-request}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int parse\-\_\-http\-\_\-request (
+\begin{DoxyParamCaption}
+\item[{{\bf rwbuf\-\_\-t} $\ast$}]{p, }
+\item[{{\bf hinfo\-\_\-t} $\ast$}]{hi}
+\end{DoxyParamCaption}
+)}}\label{web_8h_a574da7d2e02f16c3ff0727061b90c46c}
+
+
+Get arguments for a G\-E\-T or P\-O\-S\-T request. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$p} & \hyperlink{structrwbuf__t}{rwbuf\-\_\-t} pointer to socket buffer \\
+\hline
+\mbox{\tt in}  & {\em $\ast$hi} & header structure of parsed result \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on error, 1 on success 
+\end{DoxyReturn}
+
+
+Definition at line 1258 of file web.\-c.
+
+
+
+Referenced by process\-\_\-requests().
+
+\hypertarget{web_8h_a6f0b838bc63d86703c26bd813fc1ff13}{\index{web.\-h@{web.\-h}!process\-\_\-args@{process\-\_\-args}}
+\index{process\-\_\-args@{process\-\_\-args}!web.h@{web.\-h}}
+\subsubsection[{process\-\_\-args}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} char$\ast$ process\-\_\-args (
+\begin{DoxyParamCaption}
+\item[{{\bf hinfo\-\_\-t} $\ast$}]{hi}
+\end{DoxyParamCaption}
+)}}\label{web_8h_a6f0b838bc63d86703c26bd813fc1ff13}
+
+
+Process G\-E\-T of P\-O\-S\-T arguments and initialize the \hyperlink{structhinfo__t}{hinfo\-\_\-t} header structure Must be pointing at the argument list either from G\-E\-T arguments -\/ or P\-O\-S\-T content text Convert name=value pairs into null terminated strings Assumes we can replace characters with E\-O\-S in ram. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$hi} & \hyperlink{structhinfo__t}{hinfo\-\_\-t} structure to fill \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer that points to just past the header area 
+\end{DoxyReturn}
+
+
+Definition at line 899 of file web.\-c.
+
+
+
+Referenced by parse\-\_\-http\-\_\-request().
+
+\hypertarget{web_8h_ab4e3934605be0b5770ff87a32c405d53}{\index{web.\-h@{web.\-h}!read\-\_\-html\-\_\-token@{read\-\_\-html\-\_\-token}}
+\index{read\-\_\-html\-\_\-token@{read\-\_\-html\-\_\-token}!web.h@{web.\-h}}
+\subsubsection[{read\-\_\-html\-\_\-token}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int read\-\_\-html\-\_\-token (
+\begin{DoxyParamCaption}
+\item[{{\bf F\-I\-L\-E} $\ast$}]{fi, }
+\item[{char $\ast$}]{str, }
+\item[{int}]{len}
+\end{DoxyParamCaption}
+)}}\label{web_8h_ab4e3934605be0b5770ff87a32c405d53}
+
+
+test character for C\-G\-I token A C\-G\-I token is a string like this\-: \$\mbox{[}a-\/z\-A-\/\-Z0-\/9\-\_\--\/\mbox{]}+\$ 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & character to test \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the character is a C\-G\-I token or 0 if not 
+\end{DoxyReturn}
+
+
+Definition at line 1155 of file web.\-c.
+
+
+
+Referenced by process\-\_\-requests().
+
+\hypertarget{web_8h_a360633f469f7dc121c7542cfe25f11c0}{\index{web.\-h@{web.\-h}!rewrite\-\_\-html\-\_\-token@{rewrite\-\_\-html\-\_\-token}}
+\index{rewrite\-\_\-html\-\_\-token@{rewrite\-\_\-html\-\_\-token}!web.h@{web.\-h}}
+\subsubsection[{rewrite\-\_\-html\-\_\-token}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int rewrite\-\_\-html\-\_\-token (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{src, }
+\item[{int}]{len}
+\end{DoxyParamCaption}
+)}}\label{web_8h_a360633f469f7dc121c7542cfe25f11c0}
+
+
+Replace C\-G\-I token with C\-G\-I result A C\-G\-I token is a string like this\-: \$\mbox{[}a-\/z\-A-\/\-Z0-\/9\-\_\--\/\mbox{]}+\$. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$str} & string with token \\
+\hline
+\mbox{\tt in}  & {\em len} & leangth of token -\/ not used yet F\-I\-X\-M\-E \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+length of replaced text 
+\end{DoxyReturn}
+
+
+Definition at line 1193 of file web.\-c.
+
+
+
+Referenced by read\-\_\-html\-\_\-token().
+
+\hypertarget{web_8h_a0768c5077e8cfa177735808798193071}{\index{web.\-h@{web.\-h}!rwbuf\-\_\-create@{rwbuf\-\_\-create}}
+\index{rwbuf\-\_\-create@{rwbuf\-\_\-create}!web.h@{web.\-h}}
+\subsubsection[{rwbuf\-\_\-create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} {\bf rwbuf\-\_\-t}$\ast$ rwbuf\-\_\-create (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{web_8h_a0768c5077e8cfa177735808798193071}
+
+
+Create socket read/write buffer for a connection. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 286 of file web.\-c.
+
+
+
+Referenced by create\-\_\-connection().
+
+\hypertarget{web_8h_af089b318dcc1ebbec17ae7392a19e457}{\index{web.\-h@{web.\-h}!rwbuf\-\_\-delete@{rwbuf\-\_\-delete}}
+\index{rwbuf\-\_\-delete@{rwbuf\-\_\-delete}!web.h@{web.\-h}}
+\subsubsection[{rwbuf\-\_\-delete}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void rwbuf\-\_\-delete (
+\begin{DoxyParamCaption}
+\item[{{\bf rwbuf\-\_\-t} $\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{web_8h_af089b318dcc1ebbec17ae7392a19e457}
+
+
+Delete socket read/write buffers. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em p} & \hyperlink{structrwbuf__t}{rwbuf\-\_\-t} pointer to buffer to delete \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 256 of file web.\-c.
+
+
+
+Referenced by delete\-\_\-connection(), and rwbuf\-\_\-create().
+
+\hypertarget{web_8h_ac827567ee25b284c2992fed88249ab96}{\index{web.\-h@{web.\-h}!rwbuf\-\_\-rinit@{rwbuf\-\_\-rinit}}
+\index{rwbuf\-\_\-rinit@{rwbuf\-\_\-rinit}!web.h@{web.\-h}}
+\subsubsection[{rwbuf\-\_\-rinit}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void rwbuf\-\_\-rinit (
+\begin{DoxyParamCaption}
+\item[{{\bf rwbuf\-\_\-t} $\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{web_8h_ac827567ee25b284c2992fed88249ab96}
+
+
+Initialize socket read status and read index. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em p} & \hyperlink{structrwbuf__t}{rwbuf\-\_\-t} pointer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 227 of file web.\-c.
+
+
+
+Referenced by rwbuf\-\_\-create(), rwbuf\-\_\-delete(), and web\-\_\-data\-\_\-receive\-\_\-callback().
+
+\hypertarget{web_8h_a6a137266340baece84e055b2d49cd0c2}{\index{web.\-h@{web.\-h}!rwbuf\-\_\-winit@{rwbuf\-\_\-winit}}
+\index{rwbuf\-\_\-winit@{rwbuf\-\_\-winit}!web.h@{web.\-h}}
+\subsubsection[{rwbuf\-\_\-winit}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void rwbuf\-\_\-winit (
+\begin{DoxyParamCaption}
+\item[{{\bf rwbuf\-\_\-t} $\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{web_8h_a6a137266340baece84e055b2d49cd0c2}
+
+
+Initialize socket send status and write index. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em p} & \hyperlink{structrwbuf__t}{rwbuf\-\_\-t} pointer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 241 of file web.\-c.
+
+
+
+Referenced by rwbuf\-\_\-create(), rwbuf\-\_\-delete(), and web\-\_\-data\-\_\-sent\-\_\-callback().
+
+\hypertarget{web_8h_a38a7c7d1f5222edff77e9a7a20195696}{\index{web.\-h@{web.\-h}!sock\-\_\-printf@{sock\-\_\-printf}}
+\index{sock\-\_\-printf@{sock\-\_\-printf}!web.h@{web.\-h}}
+\subsubsection[{sock\-\_\-printf}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int sock\-\_\-printf (
+\begin{DoxyParamCaption}
+\item[{{\bf rwbuf\-\_\-t} $\ast$}]{p, }
+\item[{const char $\ast$}]{fmt, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)}}\label{web_8h_a38a7c7d1f5222edff77e9a7a20195696}
+
+
+sock\-\_\-printf function 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em p} & socket buffer structure \\
+\hline
+\mbox{\tt in}  & {\em fmt} & printf format string \\
+\hline
+\mbox{\tt in}  & {\em ...} & list of arguments \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bytes written 
+\end{DoxyReturn}
+
+
+Definition at line 629 of file web.\-c.
+
+
+
+Referenced by html\-\_\-head().
+
+\hypertarget{web_8h_a099953c3f11ff53e89c99b0be5212b70}{\index{web.\-h@{web.\-h}!u5toa@{u5toa}}
+\index{u5toa@{u5toa}!web.h@{web.\-h}}
+\subsubsection[{u5toa}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void u5toa (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{ptr, }
+\item[{{\bf uint16\-\_\-t}}]{num}
+\end{DoxyParamCaption}
+)}}\label{web_8h_a099953c3f11ff53e89c99b0be5212b70}
+
+
+Print a decimal number into a string without an E\-O\-S. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$ptr} & buffer to write number to \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 1117 of file web.\-c.
+
+
+
+Referenced by html\-\_\-msg().
+
+\hypertarget{web_8h_a912affa80386fb06e19c3ce5342701f5}{\index{web.\-h@{web.\-h}!vsock\-\_\-printf@{vsock\-\_\-printf}}
+\index{vsock\-\_\-printf@{vsock\-\_\-printf}!web.h@{web.\-h}}
+\subsubsection[{vsock\-\_\-printf}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int vsock\-\_\-printf (
+\begin{DoxyParamCaption}
+\item[{{\bf rwbuf\-\_\-t} $\ast$}]{p, }
+\item[{const char $\ast$}]{fmt, }
+\item[{va\-\_\-list}]{va}
+\end{DoxyParamCaption}
+)}}\label{web_8h_a912affa80386fb06e19c3ce5342701f5}
+
+
+vsock\-\_\-printf function 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em p} & socket buffer structure \\
+\hline
+\mbox{\tt in}  & {\em fmt} & printf format string \\
+\hline
+\mbox{\tt in}  & {\em va\-\_\-list} & va\-\_\-list of arguments \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bytes written 
+\end{DoxyReturn}
+
+
+Definition at line 607 of file web.\-c.
+
+
+
+Referenced by sock\-\_\-printf().
+
+\hypertarget{web_8h_aa7a1c2f567713688983ddecf9fa0d8d6}{\index{web.\-h@{web.\-h}!web\-\_\-init@{web\-\_\-init}}
+\index{web\-\_\-init@{web\-\_\-init}!web.h@{web.\-h}}
+\subsubsection[{web\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void web\-\_\-init (
+\begin{DoxyParamCaption}
+\item[{int}]{port}
+\end{DoxyParamCaption}
+)}}\label{web_8h_aa7a1c2f567713688983ddecf9fa0d8d6}
+
+
+Definition at line 1787 of file web.\-c.
+
+
+
+Referenced by setup().
+
+\hypertarget{web_8h_a0981a27ccb83326c4e96a0859f6511b5}{\index{web.\-h@{web.\-h}!web\-\_\-init\-\_\-connections@{web\-\_\-init\-\_\-connections}}
+\index{web\-\_\-init\-\_\-connections@{web\-\_\-init\-\_\-connections}!web.h@{web.\-h}}
+\subsubsection[{web\-\_\-init\-\_\-connections}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void web\-\_\-init\-\_\-connections (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{web_8h_a0981a27ccb83326c4e96a0859f6511b5}
+
+
+Definition at line 1768 of file web.\-c.
+
+
+
+Referenced by web\-\_\-init().
+
+\hypertarget{web_8h_a8914bb442212946291b6afbf4f3e728e}{\index{web.\-h@{web.\-h}!web\-\_\-task@{web\-\_\-task}}
+\index{web\-\_\-task@{web\-\_\-task}!web.h@{web.\-h}}
+\subsubsection[{web\-\_\-task}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void web\-\_\-task (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{web_8h_a8914bb442212946291b6afbf4f3e728e}
+
+
+Process A\-L\-L incoming H\-T\-T\-P requests. 
+
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{web_8c_a83e96b326e5d0ef41c95a83d510705dc}{process\-\_\-requests()} 
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 1744 of file web.\-c.
+
+
+
+Referenced by loop\-\_\-wrapper().
+
+\hypertarget{web_8h_a50c911d56af7c50bc045cffb983d76f0}{\index{web.\-h@{web.\-h}!write\-\_\-byte@{write\-\_\-byte}}
+\index{write\-\_\-byte@{write\-\_\-byte}!web.h@{web.\-h}}
+\subsubsection[{write\-\_\-byte}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int write\-\_\-byte (
+\begin{DoxyParamCaption}
+\item[{{\bf rwbuf\-\_\-t} $\ast$}]{p, }
+\item[{int}]{c}
+\end{DoxyParamCaption}
+)}}\label{web_8h_a50c911d56af7c50bc045cffb983d76f0}
+
+
+Write a byte (buffered) using the \hyperlink{structrwbuf__t}{rwbuf\-\_\-t} socket buffers for this connection If the buffers are full the socket is written using espconn\-\_\-sent. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$p} & \hyperlink{structrwbuf__t}{rwbuf\-\_\-t} pointer for this socket buffer \\
+\hline
+\mbox{\tt in}  & {\em c} & character to write \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 456 of file web.\-c.
+
+
+
+Referenced by \-\_\-write\-\_\-byte\-\_\-fn(), process\-\_\-requests(), write\-\_\-len(), and write\-\_\-str().
+
+\hypertarget{web_8h_ab224823f1d3f5c81a78949da4345ed87}{\index{web.\-h@{web.\-h}!write\-\_\-flush@{write\-\_\-flush}}
+\index{write\-\_\-flush@{write\-\_\-flush}!web.h@{web.\-h}}
+\subsubsection[{write\-\_\-flush}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void write\-\_\-flush (
+\begin{DoxyParamCaption}
+\item[{{\bf rwbuf\-\_\-t} $\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{web_8h_ab224823f1d3f5c81a78949da4345ed87}
+
+
+Flush the the socket write buffers for this connection If the buffers have any data in them it is written using espconn\-\_\-sent. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$p} & \hyperlink{structrwbuf__t}{rwbuf\-\_\-t} pointer for this socket buffer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 510 of file web.\-c.
+
+
+
+Referenced by process\-\_\-requests(), and write\-\_\-byte().
+
+\hypertarget{web_8h_a751d54408d691ebc079108ffc42ee436}{\index{web.\-h@{web.\-h}!write\-\_\-len@{write\-\_\-len}}
+\index{write\-\_\-len@{write\-\_\-len}!web.h@{web.\-h}}
+\subsubsection[{write\-\_\-len}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void write\-\_\-len (
+\begin{DoxyParamCaption}
+\item[{{\bf rwbuf\-\_\-t} $\ast$}]{p, }
+\item[{char $\ast$}]{str, }
+\item[{int}]{len}
+\end{DoxyParamCaption}
+)}}\label{web_8h_a751d54408d691ebc079108ffc42ee436}
+
+
+Write data using buffered write\-\_\-byte function. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$p} & \hyperlink{structrwbuf__t}{rwbuf\-\_\-t} pointer for this socket buffer \\
+\hline
+\mbox{\tt in}  & {\em $\ast$str} & data buffer to write \\
+\hline
+\mbox{\tt in}  & {\em len} & number of bytes to write \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 564 of file web.\-c.
+
+
+
+Referenced by html\-\_\-msg(), and process\-\_\-requests().
+
+\hypertarget{web_8h_a9e45d63686b6fcb210f9fcb594fbb0e2}{\index{web.\-h@{web.\-h}!write\-\_\-len\-\_\-flush@{write\-\_\-len\-\_\-flush}}
+\index{write\-\_\-len\-\_\-flush@{write\-\_\-len\-\_\-flush}!web.h@{web.\-h}}
+\subsubsection[{write\-\_\-len\-\_\-flush}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void write\-\_\-len\-\_\-flush (
+\begin{DoxyParamCaption}
+\item[{{\bf rwbuf\-\_\-t} $\ast$}]{p, }
+\item[{char $\ast$}]{buff, }
+\item[{int}]{len}
+\end{DoxyParamCaption}
+)}}\label{web_8h_a9e45d63686b6fcb210f9fcb594fbb0e2}
+\hypertarget{web_8h_a2a5efc80e175181baf607f7f9a1358e5}{\index{web.\-h@{web.\-h}!write\-\_\-str@{write\-\_\-str}}
+\index{write\-\_\-str@{write\-\_\-str}!web.h@{web.\-h}}
+\subsubsection[{write\-\_\-str}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void write\-\_\-str (
+\begin{DoxyParamCaption}
+\item[{{\bf rwbuf\-\_\-t} $\ast$}]{p, }
+\item[{char $\ast$}]{str}
+\end{DoxyParamCaption}
+)}}\label{web_8h_a2a5efc80e175181baf607f7f9a1358e5}
+
+
+Write string using buffered write\-\_\-byte function. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$p} & \hyperlink{structrwbuf__t}{rwbuf\-\_\-t} pointer for this socket buffer \\
+\hline
+\mbox{\tt in}  & {\em $\ast$str} & 0 terminated string to write \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 577 of file web.\-c.
+

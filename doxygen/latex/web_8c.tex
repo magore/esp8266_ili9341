@@ -1,0 +1,1651 @@
+\hypertarget{web_8c}{\section{web/web.c File Reference}
+\label{web_8c}\index{web/web.\-c@{web/web.\-c}}
+}
+
+
+Small web server for esp8266.  
+
+
+{\ttfamily \#include $<$user\-\_\-config.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}web.\-h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{web_8c_a053b7859476cc9867ec62c49e68d3fa1}{M\-A\-X\-\_\-\-C\-O\-N\-N\-E\-C\-T\-I\-O\-N\-S}~5
+\begin{DoxyCompactList}\small\item\em M\-A\-X\-I\-M\-U\-M number of connections. \end{DoxyCompactList}\item 
+\#define \hyperlink{web_8c_aa24597a54a085c6c2c33b64138f09eff}{M\-A\-X\-\_\-\-M\-S\-G}~1024
+\begin{DoxyCompactList}\small\item\em max size of E\-R\-R\-O\-R/\-R\-E\-D\-I\-R\-E\-C\-T/\-S\-T\-A\-T\-U\-S Message buffer \end{DoxyCompactList}\item 
+\#define \hyperlink{web_8c_a94854d8a062d4159f7610f11f0f7baf1}{C\-G\-I\-\_\-\-T\-O\-K\-E\-N\-\_\-\-S\-I\-Z\-E}~128
+\begin{DoxyCompactList}\small\item\em max size of C\-G\-I token \end{DoxyCompactList}\item 
+\#define \hyperlink{web_8c_a6b20d41d6252e9871430c242cb1a56e7}{B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}~1024
+\begin{DoxyCompactList}\small\item\em max size of read/write socket buffers \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{web_8c_a6a4bc26a21ab305b8080a6d37726955f}{led\-\_\-on} (int led)
+\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{web_8c_aec67a5a0b10a3ad2bbfe81de832ef239}{led\-\_\-off} (int led)
+\begin{DoxyCompactList}\small\item\em Turn off virtual L\-E\-D. \end{DoxyCompactList}\item 
+static \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{web_8c_a6415f4715cb5cd52ecca2dce79906bcd}{tcp\-\_\-accept} (\hyperlink{web_8h_a6dae30cd245bde804cf3e2c09e39a4b6}{espconn\-\_\-t} $\ast$esp\-\_\-config, esp\-\_\-tcp $\ast$esp\-\_\-tcp\-\_\-config, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\-\_\-t} port, void($\ast$connect\-\_\-callback)(struct espconn $\ast$))
+\begin{DoxyCompactList}\small\item\em Accept an incomming connection, setup connect\-\_\-callback. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{web_8c_ac827567ee25b284c2992fed88249ab96}{rwbuf\-\_\-rinit} (\hyperlink{structrwbuf__t}{rwbuf\-\_\-t} $\ast$p)
+\begin{DoxyCompactList}\small\item\em Initialize socket read status and read index. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{web_8c_a6a137266340baece84e055b2d49cd0c2}{rwbuf\-\_\-winit} (\hyperlink{structrwbuf__t}{rwbuf\-\_\-t} $\ast$p)
+\begin{DoxyCompactList}\small\item\em Initialize socket send status and write index. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{web_8c_af089b318dcc1ebbec17ae7392a19e457}{rwbuf\-\_\-delete} (\hyperlink{structrwbuf__t}{rwbuf\-\_\-t} $\ast$p)
+\begin{DoxyCompactList}\small\item\em Delete socket read/write buffers. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{structrwbuf__t}{rwbuf\-\_\-t} $\ast$ \hyperlink{web_8c_a333e54d833af007aa20f3ae18e260c38}{rwbuf\-\_\-create} ()
+\begin{DoxyCompactList}\small\item\em Create socket read/write buffer for a connection. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{structrwbuf__t}{rwbuf\-\_\-t} $\ast$ \hyperlink{web_8c_a30020a8b50c6274fdf3c074a75304671}{create\-\_\-connection} (\hyperlink{web_8h_a6dae30cd245bde804cf3e2c09e39a4b6}{espconn\-\_\-t} $\ast$conn)
+\begin{DoxyCompactList}\small\item\em Allocate a read/write socet buffers and add it to the working pool. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{structrwbuf__t}{rwbuf\-\_\-t} $\ast$ \hyperlink{web_8c_a5dc2b8e8828cbda1ccb42ec02201d4ea}{find\-\_\-connection} (\hyperlink{web_8h_a6dae30cd245bde804cf3e2c09e39a4b6}{espconn\-\_\-t} $\ast$conn, int $\ast$index)
+\begin{DoxyCompactList}\small\item\em Find a read/write socket buffer for an espconn connection. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{web_8c_a7df7704ad891a746d798860e622469d1}{delete\-\_\-connection} (int index)
+\begin{DoxyCompactList}\small\item\em Delete a \hyperlink{structrwbuf__t}{rwbuf\-\_\-t} entry using its index. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{web_8c_abd703ce6226c13df800f38c7bc4c3807}{write\-\_\-byte} (\hyperlink{structrwbuf__t}{rwbuf\-\_\-t} $\ast$p, int c)
+\begin{DoxyCompactList}\small\item\em Write a byte (buffered) using the \hyperlink{structrwbuf__t}{rwbuf\-\_\-t} socket buffers for this connection If the buffers are full the socket is written using espconn\-\_\-sent. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{web_8c_ab224823f1d3f5c81a78949da4345ed87}{write\-\_\-flush} (\hyperlink{structrwbuf__t}{rwbuf\-\_\-t} $\ast$p)
+\begin{DoxyCompactList}\small\item\em Flush the the socket write buffers for this connection If the buffers have any data in them it is written using espconn\-\_\-sent. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{web_8c_a751d54408d691ebc079108ffc42ee436}{write\-\_\-len} (\hyperlink{structrwbuf__t}{rwbuf\-\_\-t} $\ast$p, char $\ast$str, int len)
+\begin{DoxyCompactList}\small\item\em Write data using buffered write\-\_\-byte function. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{web_8c_a2a5efc80e175181baf607f7f9a1358e5}{write\-\_\-str} (\hyperlink{structrwbuf__t}{rwbuf\-\_\-t} $\ast$p, char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Write string using buffered write\-\_\-byte function. \end{DoxyCompactList}\item 
+static \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{web_8c_a620628fcf72ac4e4d0228ff38d31bbd1}{\-\_\-write\-\_\-byte\-\_\-fn} (struct \hyperlink{struct__printf__t}{\-\_\-printf\-\_\-t} $\ast$pr, char c)
+\begin{DoxyCompactList}\small\item\em low level vsock\-\_\-printf function that calls socket write\-\_\-byte \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{web_8c_a912affa80386fb06e19c3ce5342701f5}{vsock\-\_\-printf} (\hyperlink{structrwbuf__t}{rwbuf\-\_\-t} $\ast$p, const char $\ast$fmt, va\-\_\-list va)
+\begin{DoxyCompactList}\small\item\em vsock\-\_\-printf function \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{web_8c_a38a7c7d1f5222edff77e9a7a20195696}{sock\-\_\-printf} (\hyperlink{structrwbuf__t}{rwbuf\-\_\-t} $\ast$p, const char $\ast$fmt,...)
+\begin{DoxyCompactList}\small\item\em sock\-\_\-printf function \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{web_8c_a5cb82637d6d97812355aaa7a7fb4ccbe}{html\-\_\-msg} (\hyperlink{structrwbuf__t}{rwbuf\-\_\-t} $\ast$p, int status, char type, char $\ast$fmt,...)
+\begin{DoxyCompactList}\small\item\em Send an H\-T\-M\-L status message to socket. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{web_8c_a2ea8a8e37ac5c7099311e4d9cdb77efb}{meminit} (\hyperlink{structmem__t}{mem\-\_\-t} $\ast$p, char $\ast$ptr, int size)
+\begin{DoxyCompactList}\small\item\em in memory memory gets function \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{web_8c_ad834fe4d9506060f80d873fb20c186d5}{memgets} (\hyperlink{structmem__t}{mem\-\_\-t} $\ast$p)
+\begin{DoxyCompactList}\small\item\em Memory gets function We A\-S\-S\-U\-M\-E we can replace any \par
+ with a \textbackslash{}0. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{web_8c_ae16ca93f35df1d6e5040aa464fec44ab}{mime\-\_\-type} (int type)
+\begin{DoxyCompactList}\small\item\em return strung pointer for mime type index \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{web_8c_aec5e03bbb08e40de50b3da6413e26931}{file\-\_\-type} (char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Determin mimetype using file name extension. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{web_8c_aeebdbab253618d52a35054978fe4bb0e}{html\-\_\-status} (int status)
+\begin{DoxyCompactList}\small\item\em Convert html status into string using http\-\_\-status table. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{structhinfo__t}{hinfo\-\_\-t} $\ast$ \hyperlink{web_8c_a49bcf14a77e1c466786d1b06a570dd5c}{init\-\_\-hinfo} (\hyperlink{structhinfo__t}{hinfo\-\_\-t} $\ast$hi)
+\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{web_8c_a93274f0048175d7ed429598e951a2c77}{match\-\_\-headers} (char $\ast$str, char $\ast$$\ast$p)
+\begin{DoxyCompactList}\small\item\em Match G\-E\-T/\-P\-O\-S\-T message headers. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{web_8c_a6f0b838bc63d86703c26bd813fc1ff13}{process\-\_\-args} (\hyperlink{structhinfo__t}{hinfo\-\_\-t} $\ast$hi)
+\begin{DoxyCompactList}\small\item\em Process G\-E\-T of P\-O\-S\-T arguments and initialize the \hyperlink{structhinfo__t}{hinfo\-\_\-t} header structure Must be pointing at the argument list either from G\-E\-T arguments -\/ or P\-O\-S\-T content text Convert name=value pairs into null terminated strings Assumes we can replace characters with E\-O\-S in ram. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{web_8c_afb148431af519ffd7c3191ed3edd4d50}{first\-\_\-arg} (\hyperlink{structhinfo__t}{hinfo\-\_\-t} $\ast$hi)
+\begin{DoxyCompactList}\small\item\em Find first P\-O\-S\-T/\-G\-E\-T argument. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{web_8c_ac2b1c83b2901da05a13fbc48e9c9f030}{next\-\_\-arg} (\hyperlink{structhinfo__t}{hinfo\-\_\-t} $\ast$hi)
+\begin{DoxyCompactList}\small\item\em Find nest P\-O\-S\-T/\-G\-E\-T argument. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{web_8c_a35cc0d5292df6d1df5cf3ea63e44d0b7}{arg\-\_\-name} (\hyperlink{structhinfo__t}{hinfo\-\_\-t} $\ast$hi)
+\begin{DoxyCompactList}\small\item\em Return the argument name for current argument. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{web_8c_a12e823b35aaf4392e282d39057f45eb8}{arg\-\_\-value} (\hyperlink{structhinfo__t}{hinfo\-\_\-t} $\ast$hi)
+\begin{DoxyCompactList}\small\item\em Return the argument value for current argument. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{web_8c_a142e7c44af77016bb329676f4466da7e}{http\-\_\-value} (\hyperlink{structhinfo__t}{hinfo\-\_\-t} $\ast$hi, char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Lookup and argument name and return its value. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{web_8c_abb4c6c620914979542688785b8091163}{is\-\_\-header} (char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Does the string look like a header token with a '\-:' ? \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{web_8c_a1723d513f866e03e8195adf0139b1603}{nextbreak} (char $\ast$ptr)
+\begin{DoxyCompactList}\small\item\em Find next space or ? character. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{web_8c_a099953c3f11ff53e89c99b0be5212b70}{u5toa} (char $\ast$ptr, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\-\_\-t} num)
+\begin{DoxyCompactList}\small\item\em Print a decimal number into a string without an E\-O\-S. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{web_8c_a3d3a54409c979b7c730f63e578ba3ff1}{is\-\_\-token} (int c)
+\begin{DoxyCompactList}\small\item\em test character for C\-G\-I token A C\-G\-I token is a string like this\-: \$\mbox{[}a-\/z\-A-\/\-Z0-\/9\-\_\--\/\mbox{]}+\$ \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{web_8c_ab4e3934605be0b5770ff87a32c405d53}{read\-\_\-html\-\_\-token} (\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\-I\-L\-E} $\ast$fi, char $\ast$str, int len)
+\begin{DoxyCompactList}\small\item\em test character for C\-G\-I token A C\-G\-I token is a string like this\-: \$\mbox{[}a-\/z\-A-\/\-Z0-\/9\-\_\--\/\mbox{]}+\$ \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{web_8c_a360633f469f7dc121c7542cfe25f11c0}{rewrite\-\_\-html\-\_\-token} (char $\ast$src, int len)
+\begin{DoxyCompactList}\small\item\em Replace C\-G\-I token with C\-G\-I result A C\-G\-I token is a string like this\-: \$\mbox{[}a-\/z\-A-\/\-Z0-\/9\-\_\--\/\mbox{]}+\$. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{web_8c_acfdd7b32cc9e6b5214ddbf8120a9ed7b}{html\-\_\-head} (\hyperlink{structrwbuf__t}{rwbuf\-\_\-t} $\ast$p, int status, char type, int len)
+\begin{DoxyCompactList}\small\item\em Write H\-T\-T\-P Contenet-\/\-Type/\-Content-\/\-Length header. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{web_8c_a574da7d2e02f16c3ff0727061b90c46c}{parse\-\_\-http\-\_\-request} (\hyperlink{structrwbuf__t}{rwbuf\-\_\-t} $\ast$p, \hyperlink{structhinfo__t}{hinfo\-\_\-t} $\ast$hi)
+\begin{DoxyCompactList}\small\item\em Get arguments for a G\-E\-T or P\-O\-S\-T request. \end{DoxyCompactList}\item 
+static \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{web_8c_a874f47f0da9642a0afb800adaac00c7f}{web\-\_\-data\-\_\-receive\-\_\-callback} (void $\ast$arg, char $\ast$data, unsigned short length)
+\begin{DoxyCompactList}\small\item\em Network receive callback function. \end{DoxyCompactList}\item 
+static \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{web_8c_a4bbedae551d7c3d1f09488e75a86ccdf}{web\-\_\-data\-\_\-sent\-\_\-callback} (void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Network sent callback function. \end{DoxyCompactList}\item 
+static \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{web_8c_af1da928cd361e8d3135aa1ce10da1773}{web\-\_\-data\-\_\-disconnect\-\_\-callback} (void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Network disconnect callback function. \end{DoxyCompactList}\item 
+static \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{web_8c_a7548202d4a868f3c988014ffb969dee5}{web\-\_\-data\-\_\-connect\-\_\-callback} (\hyperlink{web_8h_a6dae30cd245bde804cf3e2c09e39a4b6}{espconn\-\_\-t} $\ast$conn)
+\begin{DoxyCompactList}\small\item\em incomming connection setup callbacks \end{DoxyCompactList}\item 
+static \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{web_8c_a83e96b326e5d0ef41c95a83d510705dc}{process\-\_\-requests} (\hyperlink{structrwbuf__t}{rwbuf\-\_\-t} $\ast$p)
+\begin{DoxyCompactList}\small\item\em Process an incoming H\-T\-T\-P request. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{web_8c_ab058978d28bd1522323798b56d903176}{web\-\_\-task} ()
+\begin{DoxyCompactList}\small\item\em Process A\-L\-L incoming H\-T\-T\-P requests. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{web_8c_aced225563307f62a9832c387fd78a0f8}{web\-\_\-init\-\_\-connections} ()
+\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{web_8c_aa7a1c2f567713688983ddecf9fa0d8d6}{web\-\_\-init} (int port)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structrwbuf__t}{rwbuf\-\_\-t} $\ast$ \hyperlink{web_8c_a18c3cff4e8a9ff56871f13dfb3cd48ad}{web\-\_\-connections} \mbox{[}\hyperlink{web_8h_a053b7859476cc9867ec62c49e68d3fa1}{M\-A\-X\-\_\-\-C\-O\-N\-N\-E\-C\-T\-I\-O\-N\-S}\mbox{]}
+\begin{DoxyCompactList}\small\item\em socket buffers for this connection \end{DoxyCompactList}\item 
+\hyperlink{structheader__t}{header\-\_\-t} \hyperlink{web_8c_a272852abae296b3cd79f00810f4d2915}{msg\-\_\-headers} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em H\-T\-T\-P headers we understand. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{web_8c_a81bbe3cdfc6aad2405aaa9432ae49b92}{http\-\_\-status} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em H\-T\-T\-P status code messages. \end{DoxyCompactList}\item 
+\hyperlink{structmime__t}{mime\-\_\-t} \hyperlink{web_8c_a8239fd1b0c1007f135d8d95e8183981b}{mimes} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em M\-I\-M\-E types. \end{DoxyCompactList}\item 
+static \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{web_8c_a9caaaad7e2fdc8c9f2e927980c57d639}{\-\_\-led} = 0
+\begin{DoxyCompactList}\small\item\em Turn on virtual L\-E\-D. \end{DoxyCompactList}\item 
+\hyperlink{web_8h_a6dae30cd245bde804cf3e2c09e39a4b6}{espconn\-\_\-t} \hyperlink{web_8c_a96c7e595cf56145fc95dc2c66ac3930f}{Web\-Conn}
+\begin{DoxyCompactList}\small\item\em Setup W\-E\-B server and accept connections. \end{DoxyCompactList}\item 
+static esp\-\_\-tcp \hyperlink{web_8c_a82e626c8ae638c2d59ae0590e5eab381}{Web\-Tcp}
+\begin{DoxyCompactList}\small\item\em Master network configuration for the web server. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Small web server for esp8266. \begin{DoxyParagraph}{Copyright \copyright{} 2015 Mike Gore, G\-P\-L License}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{You are free to use this code under the terms of G\-P\-L}
+please retain a copy of this notice in any code you use it in.
+\end{DoxyParagraph}
+This is free software\-: you can redistribute it and/or modify it under the terms of the G\-N\-U General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This software is distributed in the hope that it will be useful, but W\-I\-T\-H\-O\-U\-T A\-N\-Y W\-A\-R\-R\-A\-N\-T\-Y; without even the implied warranty of M\-E\-R\-C\-H\-A\-N\-T\-A\-B\-I\-L\-I\-T\-Y or F\-I\-T\-N\-E\-S\-S F\-O\-R A P\-A\-R\-T\-I\-C\-U\-L\-A\-R P\-U\-R\-P\-O\-S\-E. See the G\-N\-U General Public License for more details.
+
+You should have received a copy of the G\-N\-U General Public License along with this program. If not, see \href{http://www.gnu.org/licenses/}{\tt http\-://www.\-gnu.\-org/licenses/}. 
+
+Definition in file \hyperlink{web_8c_source}{web.\-c}.
+
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{web_8c_a6b20d41d6252e9871430c242cb1a56e7}{\index{web.\-c@{web.\-c}!B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E@{B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}}
+\index{B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E@{B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}!web.c@{web.\-c}}
+\subsubsection[{B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E~1024}}\label{web_8c_a6b20d41d6252e9871430c242cb1a56e7}
+
+
+max size of read/write socket buffers 
+
+
+
+Definition at line 41 of file web.\-c.
+
+
+
+Referenced by rwbuf\-\_\-create().
+
+\hypertarget{web_8c_a94854d8a062d4159f7610f11f0f7baf1}{\index{web.\-c@{web.\-c}!C\-G\-I\-\_\-\-T\-O\-K\-E\-N\-\_\-\-S\-I\-Z\-E@{C\-G\-I\-\_\-\-T\-O\-K\-E\-N\-\_\-\-S\-I\-Z\-E}}
+\index{C\-G\-I\-\_\-\-T\-O\-K\-E\-N\-\_\-\-S\-I\-Z\-E@{C\-G\-I\-\_\-\-T\-O\-K\-E\-N\-\_\-\-S\-I\-Z\-E}!web.c@{web.\-c}}
+\subsubsection[{C\-G\-I\-\_\-\-T\-O\-K\-E\-N\-\_\-\-S\-I\-Z\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-G\-I\-\_\-\-T\-O\-K\-E\-N\-\_\-\-S\-I\-Z\-E~128}}\label{web_8c_a94854d8a062d4159f7610f11f0f7baf1}
+
+
+max size of C\-G\-I token 
+
+
+
+Definition at line 39 of file web.\-c.
+
+
+
+Referenced by process\-\_\-requests().
+
+\hypertarget{web_8c_a053b7859476cc9867ec62c49e68d3fa1}{\index{web.\-c@{web.\-c}!M\-A\-X\-\_\-\-C\-O\-N\-N\-E\-C\-T\-I\-O\-N\-S@{M\-A\-X\-\_\-\-C\-O\-N\-N\-E\-C\-T\-I\-O\-N\-S}}
+\index{M\-A\-X\-\_\-\-C\-O\-N\-N\-E\-C\-T\-I\-O\-N\-S@{M\-A\-X\-\_\-\-C\-O\-N\-N\-E\-C\-T\-I\-O\-N\-S}!web.c@{web.\-c}}
+\subsubsection[{M\-A\-X\-\_\-\-C\-O\-N\-N\-E\-C\-T\-I\-O\-N\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\-A\-X\-\_\-\-C\-O\-N\-N\-E\-C\-T\-I\-O\-N\-S~5}}\label{web_8c_a053b7859476cc9867ec62c49e68d3fa1}
+
+
+M\-A\-X\-I\-M\-U\-M number of connections. 
+
+
+
+Definition at line 27 of file web.\-c.
+
+
+
+Referenced by create\-\_\-connection(), find\-\_\-connection(), tcp\-\_\-accept(), web\-\_\-data\-\_\-disconnect\-\_\-callback(), web\-\_\-init\-\_\-connections(), and web\-\_\-task().
+
+\hypertarget{web_8c_aa24597a54a085c6c2c33b64138f09eff}{\index{web.\-c@{web.\-c}!M\-A\-X\-\_\-\-M\-S\-G@{M\-A\-X\-\_\-\-M\-S\-G}}
+\index{M\-A\-X\-\_\-\-M\-S\-G@{M\-A\-X\-\_\-\-M\-S\-G}!web.c@{web.\-c}}
+\subsubsection[{M\-A\-X\-\_\-\-M\-S\-G}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\-A\-X\-\_\-\-M\-S\-G~1024}}\label{web_8c_aa24597a54a085c6c2c33b64138f09eff}
+
+
+max size of E\-R\-R\-O\-R/\-R\-E\-D\-I\-R\-E\-C\-T/\-S\-T\-A\-T\-U\-S Message buffer 
+
+
+
+Definition at line 37 of file web.\-c.
+
+
+
+Referenced by html\-\_\-msg().
+
+
+
+\subsection{Function Documentation}
+\hypertarget{web_8c_a620628fcf72ac4e4d0228ff38d31bbd1}{\index{web.\-c@{web.\-c}!\-\_\-write\-\_\-byte\-\_\-fn@{\-\_\-write\-\_\-byte\-\_\-fn}}
+\index{\-\_\-write\-\_\-byte\-\_\-fn@{\-\_\-write\-\_\-byte\-\_\-fn}!web.c@{web.\-c}}
+\subsubsection[{\-\_\-write\-\_\-byte\-\_\-fn}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf M\-E\-M\-S\-P\-A\-C\-E} void \-\_\-write\-\_\-byte\-\_\-fn (
+\begin{DoxyParamCaption}
+\item[{struct {\bf \-\_\-printf\-\_\-t} $\ast$}]{pr, }
+\item[{char}]{c}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{web_8c_a620628fcf72ac4e4d0228ff38d31bbd1}
+
+
+low level vsock\-\_\-printf function that calls socket write\-\_\-byte 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$pr} & printf structure and user buffer for this socket \\
+\hline
+\mbox{\tt in}  & {\em c} & character to write \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 590 of file web.\-c.
+
+
+
+Referenced by vsock\-\_\-printf().
+
+\hypertarget{web_8c_a35cc0d5292df6d1df5cf3ea63e44d0b7}{\index{web.\-c@{web.\-c}!arg\-\_\-name@{arg\-\_\-name}}
+\index{arg\-\_\-name@{arg\-\_\-name}!web.c@{web.\-c}}
+\subsubsection[{arg\-\_\-name}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} char$\ast$ arg\-\_\-name (
+\begin{DoxyParamCaption}
+\item[{{\bf hinfo\-\_\-t} $\ast$}]{hi}
+\end{DoxyParamCaption}
+)}}\label{web_8c_a35cc0d5292df6d1df5cf3ea63e44d0b7}
+
+
+Return the argument name for current argument. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$hi} & \hyperlink{structhinfo__t}{hinfo\-\_\-t} structure with arguments \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+argument name 
+\end{DoxyReturn}
+
+
+Definition at line 1009 of file web.\-c.
+
+
+
+Referenced by http\-\_\-value(), and parse\-\_\-http\-\_\-request().
+
+\hypertarget{web_8c_a12e823b35aaf4392e282d39057f45eb8}{\index{web.\-c@{web.\-c}!arg\-\_\-value@{arg\-\_\-value}}
+\index{arg\-\_\-value@{arg\-\_\-value}!web.c@{web.\-c}}
+\subsubsection[{arg\-\_\-value}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} char$\ast$ arg\-\_\-value (
+\begin{DoxyParamCaption}
+\item[{{\bf hinfo\-\_\-t} $\ast$}]{hi}
+\end{DoxyParamCaption}
+)}}\label{web_8c_a12e823b35aaf4392e282d39057f45eb8}
+
+
+Return the argument value for current argument. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$hi} & \hyperlink{structhinfo__t}{hinfo\-\_\-t} structure with arguments \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+argument value 
+\end{DoxyReturn}
+
+
+Definition at line 1029 of file web.\-c.
+
+
+
+Referenced by http\-\_\-value(), and parse\-\_\-http\-\_\-request().
+
+\hypertarget{web_8c_a30020a8b50c6274fdf3c074a75304671}{\index{web.\-c@{web.\-c}!create\-\_\-connection@{create\-\_\-connection}}
+\index{create\-\_\-connection@{create\-\_\-connection}!web.c@{web.\-c}}
+\subsubsection[{create\-\_\-connection}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} {\bf M\-E\-M\-S\-P\-A\-C\-E} {\bf rwbuf\-\_\-t}$\ast$ create\-\_\-connection (
+\begin{DoxyParamCaption}
+\item[{{\bf espconn\-\_\-t} $\ast$}]{conn}
+\end{DoxyParamCaption}
+)}}\label{web_8c_a30020a8b50c6274fdf3c074a75304671}
+
+
+Allocate a read/write socet buffers and add it to the working pool. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em conn} & espconn pointer for this connection \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{structrwbuf__t}{rwbuf\-\_\-t} pointer to created structure 
+\end{DoxyReturn}
+
+
+Definition at line 341 of file web.\-c.
+
+
+
+Referenced by web\-\_\-data\-\_\-connect\-\_\-callback().
+
+\hypertarget{web_8c_a7df7704ad891a746d798860e622469d1}{\index{web.\-c@{web.\-c}!delete\-\_\-connection@{delete\-\_\-connection}}
+\index{delete\-\_\-connection@{delete\-\_\-connection}!web.c@{web.\-c}}
+\subsubsection[{delete\-\_\-connection}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} {\bf M\-E\-M\-S\-P\-A\-C\-E} void delete\-\_\-connection (
+\begin{DoxyParamCaption}
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)}}\label{web_8c_a7df7704ad891a746d798860e622469d1}
+
+
+Delete a \hyperlink{structrwbuf__t}{rwbuf\-\_\-t} entry using its index. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em index} & index into pool of \hyperlink{structrwbuf__t}{rwbuf\-\_\-t} connections \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 435 of file web.\-c.
+
+
+
+Referenced by process\-\_\-requests(), and web\-\_\-data\-\_\-disconnect\-\_\-callback().
+
+\hypertarget{web_8c_aec5e03bbb08e40de50b3da6413e26931}{\index{web.\-c@{web.\-c}!file\-\_\-type@{file\-\_\-type}}
+\index{file\-\_\-type@{file\-\_\-type}!web.c@{web.\-c}}
+\subsubsection[{file\-\_\-type}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int file\-\_\-type (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{name}
+\end{DoxyParamCaption}
+)}}\label{web_8c_aec5e03bbb08e40de50b3da6413e26931}
+
+
+Determin mimetype using file name extension. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$name} & name to test \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+index into mimetype table 
+\end{DoxyReturn}
+
+
+Definition at line 791 of file web.\-c.
+
+
+
+Referenced by process\-\_\-requests().
+
+\hypertarget{web_8c_a5dc2b8e8828cbda1ccb42ec02201d4ea}{\index{web.\-c@{web.\-c}!find\-\_\-connection@{find\-\_\-connection}}
+\index{find\-\_\-connection@{find\-\_\-connection}!web.c@{web.\-c}}
+\subsubsection[{find\-\_\-connection}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} {\bf rwbuf\-\_\-t}$\ast$ find\-\_\-connection (
+\begin{DoxyParamCaption}
+\item[{{\bf espconn\-\_\-t} $\ast$}]{conn, }
+\item[{int $\ast$}]{index}
+\end{DoxyParamCaption}
+)}}\label{web_8c_a5dc2b8e8828cbda1ccb42ec02201d4ea}
+
+
+Find a read/write socket buffer for an espconn connection. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em conn} & espconn pointer for this connection \\
+\hline
+\mbox{\tt in}  & {\em $\ast$index} & return index into pool of \hyperlink{structrwbuf__t}{rwbuf\-\_\-t} connections \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{structrwbuf__t}{rwbuf\-\_\-t} pointer to found connection with $\ast$index set, or N\-U\-L\-L with $\ast$index == -\/1 on failure 
+\end{DoxyReturn}
+
+
+Definition at line 381 of file web.\-c.
+
+
+
+Referenced by process\-\_\-requests(), web\-\_\-data\-\_\-receive\-\_\-callback(), and web\-\_\-data\-\_\-sent\-\_\-callback().
+
+\hypertarget{web_8c_afb148431af519ffd7c3191ed3edd4d50}{\index{web.\-c@{web.\-c}!first\-\_\-arg@{first\-\_\-arg}}
+\index{first\-\_\-arg@{first\-\_\-arg}!web.c@{web.\-c}}
+\subsubsection[{first\-\_\-arg}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} char$\ast$ first\-\_\-arg (
+\begin{DoxyParamCaption}
+\item[{{\bf hinfo\-\_\-t} $\ast$}]{hi}
+\end{DoxyParamCaption}
+)}}\label{web_8c_afb148431af519ffd7c3191ed3edd4d50}
+
+
+Find first P\-O\-S\-T/\-G\-E\-T argument. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$hi} & \hyperlink{structhinfo__t}{hinfo\-\_\-t} structure with arguments \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+argument value pair 
+\end{DoxyReturn}
+
+
+Definition at line 966 of file web.\-c.
+
+
+
+Referenced by http\-\_\-value(), and parse\-\_\-http\-\_\-request().
+
+\hypertarget{web_8c_acfdd7b32cc9e6b5214ddbf8120a9ed7b}{\index{web.\-c@{web.\-c}!html\-\_\-head@{html\-\_\-head}}
+\index{html\-\_\-head@{html\-\_\-head}!web.c@{web.\-c}}
+\subsubsection[{html\-\_\-head}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void html\-\_\-head (
+\begin{DoxyParamCaption}
+\item[{{\bf rwbuf\-\_\-t} $\ast$}]{p, }
+\item[{int}]{status, }
+\item[{char}]{type, }
+\item[{int}]{len}
+\end{DoxyParamCaption}
+)}}\label{web_8c_acfdd7b32cc9e6b5214ddbf8120a9ed7b}
+
+
+Write H\-T\-T\-P Contenet-\/\-Type/\-Content-\/\-Length header. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$p} & \hyperlink{structrwbuf__t}{rwbuf\-\_\-t} pointer to socket buffer \\
+\hline
+\mbox{\tt in}  & {\em status} & html status message index \\
+\hline
+\mbox{\tt in}  & {\em type} & mimetype index \\
+\hline
+\mbox{\tt in}  & {\em len} & length of message \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 1241 of file web.\-c.
+
+\hypertarget{web_8c_a5cb82637d6d97812355aaa7a7fb4ccbe}{\index{web.\-c@{web.\-c}!html\-\_\-msg@{html\-\_\-msg}}
+\index{html\-\_\-msg@{html\-\_\-msg}!web.c@{web.\-c}}
+\subsubsection[{html\-\_\-msg}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int html\-\_\-msg (
+\begin{DoxyParamCaption}
+\item[{{\bf rwbuf\-\_\-t} $\ast$}]{p, }
+\item[{int}]{status, }
+\item[{char}]{type, }
+\item[{char $\ast$}]{fmt, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)}}\label{web_8c_a5cb82637d6d97812355aaa7a7fb4ccbe}
+
+
+Send an H\-T\-M\-L status message to socket. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em p} & socket buffer structure \\
+\hline
+\mbox{\tt in}  & {\em status} & index into http\-\_\-status table \\
+\hline
+\mbox{\tt in}  & {\em type} & mime type index \\
+\hline
+\mbox{\tt in}  & {\em fmt} & printf format string \\
+\hline
+\mbox{\tt in}  & {\em ...} & list of arguments \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bytes written, 0 on wrror 
+\end{DoxyReturn}
+
+
+Definition at line 652 of file web.\-c.
+
+
+
+Referenced by process\-\_\-requests().
+
+\hypertarget{web_8c_aeebdbab253618d52a35054978fe4bb0e}{\index{web.\-c@{web.\-c}!html\-\_\-status@{html\-\_\-status}}
+\index{html\-\_\-status@{html\-\_\-status}!web.c@{web.\-c}}
+\subsubsection[{html\-\_\-status}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} char$\ast$ html\-\_\-status (
+\begin{DoxyParamCaption}
+\item[{int}]{status}
+\end{DoxyParamCaption}
+)}}\label{web_8c_aeebdbab253618d52a35054978fe4bb0e}
+
+
+Convert html status into string using http\-\_\-status table. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em index} & index to find \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+http\-\_\-status entry mathing status, or 500 Internal Server Error 
+\end{DoxyReturn}
+
+
+Definition at line 818 of file web.\-c.
+
+
+
+Referenced by html\-\_\-head(), and html\-\_\-msg().
+
+\hypertarget{web_8c_a142e7c44af77016bb329676f4466da7e}{\index{web.\-c@{web.\-c}!http\-\_\-value@{http\-\_\-value}}
+\index{http\-\_\-value@{http\-\_\-value}!web.c@{web.\-c}}
+\subsubsection[{http\-\_\-value}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} char$\ast$ http\-\_\-value (
+\begin{DoxyParamCaption}
+\item[{{\bf hinfo\-\_\-t} $\ast$}]{hi, }
+\item[{char $\ast$}]{str}
+\end{DoxyParamCaption}
+)}}\label{web_8c_a142e7c44af77016bb329676f4466da7e}
+
+
+Lookup and argument name and return its value. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$hi} & \hyperlink{structhinfo__t}{hinfo\-\_\-t} structure with arguments \\
+\hline
+\mbox{\tt in}  & {\em $\ast$str} & string to lookup \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+argument value 
+\end{DoxyReturn}
+
+
+Definition at line 1051 of file web.\-c.
+
+
+
+Referenced by process\-\_\-requests().
+
+\hypertarget{web_8c_a49bcf14a77e1c466786d1b06a570dd5c}{\index{web.\-c@{web.\-c}!init\-\_\-hinfo@{init\-\_\-hinfo}}
+\index{init\-\_\-hinfo@{init\-\_\-hinfo}!web.c@{web.\-c}}
+\subsubsection[{init\-\_\-hinfo}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} {\bf hinfo\-\_\-t}$\ast$ init\-\_\-hinfo (
+\begin{DoxyParamCaption}
+\item[{{\bf hinfo\-\_\-t} $\ast$}]{hi}
+\end{DoxyParamCaption}
+)}}\label{web_8c_a49bcf14a77e1c466786d1b06a570dd5c}
+Initilize \hyperlink{structhinfo__t}{hinfo\-\_\-t} structure 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$hi} & \hyperlink{structhinfo__t}{hinfo\-\_\-t} structure pointer to initialize \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{structhinfo__t}{hinfo\-\_\-t} structure pointer to initialize 
+\end{DoxyReturn}
+
+
+Definition at line 843 of file web.\-c.
+
+
+
+Referenced by process\-\_\-requests().
+
+\hypertarget{web_8c_abb4c6c620914979542688785b8091163}{\index{web.\-c@{web.\-c}!is\-\_\-header@{is\-\_\-header}}
+\index{is\-\_\-header@{is\-\_\-header}!web.c@{web.\-c}}
+\subsubsection[{is\-\_\-header}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} char$\ast$ is\-\_\-header (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str}
+\end{DoxyParamCaption}
+)}}\label{web_8c_abb4c6c620914979542688785b8091163}
+
+
+Does the string look like a header token with a '\-:' ? 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$str} & string to test \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+just past the '\-:' or N\-U\-L\-L 
+\end{DoxyReturn}
+
+
+Definition at line 1076 of file web.\-c.
+
+
+
+Referenced by parse\-\_\-http\-\_\-request().
+
+\hypertarget{web_8c_a3d3a54409c979b7c730f63e578ba3ff1}{\index{web.\-c@{web.\-c}!is\-\_\-token@{is\-\_\-token}}
+\index{is\-\_\-token@{is\-\_\-token}!web.c@{web.\-c}}
+\subsubsection[{is\-\_\-token}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int is\-\_\-token (
+\begin{DoxyParamCaption}
+\item[{int}]{c}
+\end{DoxyParamCaption}
+)}}\label{web_8c_a3d3a54409c979b7c730f63e578ba3ff1}
+
+
+test character for C\-G\-I token A C\-G\-I token is a string like this\-: \$\mbox{[}a-\/z\-A-\/\-Z0-\/9\-\_\--\/\mbox{]}+\$ 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & character to test \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the character is a C\-G\-I token or 0 if not 
+\end{DoxyReturn}
+
+
+Definition at line 1131 of file web.\-c.
+
+
+
+Referenced by read\-\_\-html\-\_\-token().
+
+\hypertarget{web_8c_aec67a5a0b10a3ad2bbfe81de832ef239}{\index{web.\-c@{web.\-c}!led\-\_\-off@{led\-\_\-off}}
+\index{led\-\_\-off@{led\-\_\-off}!web.c@{web.\-c}}
+\subsubsection[{led\-\_\-off}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void led\-\_\-off (
+\begin{DoxyParamCaption}
+\item[{int}]{led}
+\end{DoxyParamCaption}
+)}}\label{web_8c_aec67a5a0b10a3ad2bbfe81de832ef239}
+
+
+Turn off virtual L\-E\-D. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em led} & led to turn off \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 183 of file web.\-c.
+
+
+
+Referenced by process\-\_\-requests().
+
+\hypertarget{web_8c_a6a4bc26a21ab305b8080a6d37726955f}{\index{web.\-c@{web.\-c}!led\-\_\-on@{led\-\_\-on}}
+\index{led\-\_\-on@{led\-\_\-on}!web.c@{web.\-c}}
+\subsubsection[{led\-\_\-on}]{\setlength{\rightskip}{0pt plus 5cm}void led\-\_\-on (
+\begin{DoxyParamCaption}
+\item[{int}]{led}
+\end{DoxyParamCaption}
+)}}\label{web_8c_a6a4bc26a21ab305b8080a6d37726955f}
+
+
+Definition at line 173 of file web.\-c.
+
+
+
+Referenced by process\-\_\-requests().
+
+\hypertarget{web_8c_a93274f0048175d7ed429598e951a2c77}{\index{web.\-c@{web.\-c}!match\-\_\-headers@{match\-\_\-headers}}
+\index{match\-\_\-headers@{match\-\_\-headers}!web.c@{web.\-c}}
+\subsubsection[{match\-\_\-headers}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int match\-\_\-headers (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str, }
+\item[{char $\ast$$\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{web_8c_a93274f0048175d7ed429598e951a2c77}
+
+
+Match G\-E\-T/\-P\-O\-S\-T message headers. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$str} & string to patch \\
+\hline
+\mbox{\tt in}  & {\em $\ast$$\ast$p} & points past matched string on sucess \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+header index or -\/1 on no match 
+\end{DoxyReturn}
+
+
+Definition at line 865 of file web.\-c.
+
+
+
+Referenced by parse\-\_\-http\-\_\-request().
+
+\hypertarget{web_8c_ad834fe4d9506060f80d873fb20c186d5}{\index{web.\-c@{web.\-c}!memgets@{memgets}}
+\index{memgets@{memgets}!web.c@{web.\-c}}
+\subsubsection[{memgets}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} char$\ast$ memgets (
+\begin{DoxyParamCaption}
+\item[{{\bf mem\-\_\-t} $\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{web_8c_ad834fe4d9506060f80d873fb20c186d5}
+
+
+Memory gets function We A\-S\-S\-U\-M\-E we can replace any \par
+ with a \textbackslash{}0. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em p} & structure with size and offset used by mem\-\_\-gets() \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to string 
+\end{DoxyReturn}
+
+
+Definition at line 748 of file web.\-c.
+
+
+
+Referenced by parse\-\_\-http\-\_\-request().
+
+\hypertarget{web_8c_a2ea8a8e37ac5c7099311e4d9cdb77efb}{\index{web.\-c@{web.\-c}!meminit@{meminit}}
+\index{meminit@{meminit}!web.c@{web.\-c}}
+\subsubsection[{meminit}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} char$\ast$ meminit (
+\begin{DoxyParamCaption}
+\item[{{\bf mem\-\_\-t} $\ast$}]{p, }
+\item[{char $\ast$}]{ptr, }
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}}\label{web_8c_a2ea8a8e37ac5c7099311e4d9cdb77efb}
+
+
+in memory memory gets function 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em p} & structure with size and offset used by mem\-\_\-gets() \\
+\hline
+\mbox{\tt in}  & {\em ptr} & start of memory area \\
+\hline
+\mbox{\tt in}  & {\em size} & size of memory area \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to start of memory area (ptr) 
+\end{DoxyReturn}
+
+
+Definition at line 730 of file web.\-c.
+
+
+
+Referenced by parse\-\_\-http\-\_\-request().
+
+\hypertarget{web_8c_ae16ca93f35df1d6e5040aa464fec44ab}{\index{web.\-c@{web.\-c}!mime\-\_\-type@{mime\-\_\-type}}
+\index{mime\-\_\-type@{mime\-\_\-type}!web.c@{web.\-c}}
+\subsubsection[{mime\-\_\-type}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} char$\ast$ mime\-\_\-type (
+\begin{DoxyParamCaption}
+\item[{int}]{type}
+\end{DoxyParamCaption}
+)}}\label{web_8c_ae16ca93f35df1d6e5040aa464fec44ab}
+
+
+return strung pointer for mime type index 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em type} & index into mim\-\_\-type table \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to string, if out of range uses index P\-T\-Y\-P\-E\-\_\-\-E\-R\-R 
+\end{DoxyReturn}
+
+
+Definition at line 778 of file web.\-c.
+
+
+
+Referenced by html\-\_\-head(), and html\-\_\-msg().
+
+\hypertarget{web_8c_ac2b1c83b2901da05a13fbc48e9c9f030}{\index{web.\-c@{web.\-c}!next\-\_\-arg@{next\-\_\-arg}}
+\index{next\-\_\-arg@{next\-\_\-arg}!web.c@{web.\-c}}
+\subsubsection[{next\-\_\-arg}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} char$\ast$ next\-\_\-arg (
+\begin{DoxyParamCaption}
+\item[{{\bf hinfo\-\_\-t} $\ast$}]{hi}
+\end{DoxyParamCaption}
+)}}\label{web_8c_ac2b1c83b2901da05a13fbc48e9c9f030}
+
+
+Find nest P\-O\-S\-T/\-G\-E\-T argument. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$hi} & \hyperlink{structhinfo__t}{hinfo\-\_\-t} structure with arguments \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+argument value pair 
+\end{DoxyReturn}
+
+
+Definition at line 977 of file web.\-c.
+
+
+
+Referenced by http\-\_\-value(), and parse\-\_\-http\-\_\-request().
+
+\hypertarget{web_8c_a1723d513f866e03e8195adf0139b1603}{\index{web.\-c@{web.\-c}!nextbreak@{nextbreak}}
+\index{nextbreak@{nextbreak}!web.c@{web.\-c}}
+\subsubsection[{nextbreak}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} char$\ast$ nextbreak (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{ptr}
+\end{DoxyParamCaption}
+)}}\label{web_8c_a1723d513f866e03e8195adf0139b1603}
+
+
+Find next space or ? character. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$ptr} & string to search \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+first space or ? character 
+\end{DoxyReturn}
+
+
+Definition at line 1097 of file web.\-c.
+
+
+
+Referenced by parse\-\_\-http\-\_\-request().
+
+\hypertarget{web_8c_a574da7d2e02f16c3ff0727061b90c46c}{\index{web.\-c@{web.\-c}!parse\-\_\-http\-\_\-request@{parse\-\_\-http\-\_\-request}}
+\index{parse\-\_\-http\-\_\-request@{parse\-\_\-http\-\_\-request}!web.c@{web.\-c}}
+\subsubsection[{parse\-\_\-http\-\_\-request}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int parse\-\_\-http\-\_\-request (
+\begin{DoxyParamCaption}
+\item[{{\bf rwbuf\-\_\-t} $\ast$}]{p, }
+\item[{{\bf hinfo\-\_\-t} $\ast$}]{hi}
+\end{DoxyParamCaption}
+)}}\label{web_8c_a574da7d2e02f16c3ff0727061b90c46c}
+
+
+Get arguments for a G\-E\-T or P\-O\-S\-T request. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$p} & \hyperlink{structrwbuf__t}{rwbuf\-\_\-t} pointer to socket buffer \\
+\hline
+\mbox{\tt in}  & {\em $\ast$hi} & header structure of parsed result \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on error, 1 on success 
+\end{DoxyReturn}
+
+
+Definition at line 1258 of file web.\-c.
+
+
+
+Referenced by process\-\_\-requests().
+
+\hypertarget{web_8c_a6f0b838bc63d86703c26bd813fc1ff13}{\index{web.\-c@{web.\-c}!process\-\_\-args@{process\-\_\-args}}
+\index{process\-\_\-args@{process\-\_\-args}!web.c@{web.\-c}}
+\subsubsection[{process\-\_\-args}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} char$\ast$ process\-\_\-args (
+\begin{DoxyParamCaption}
+\item[{{\bf hinfo\-\_\-t} $\ast$}]{hi}
+\end{DoxyParamCaption}
+)}}\label{web_8c_a6f0b838bc63d86703c26bd813fc1ff13}
+
+
+Process G\-E\-T of P\-O\-S\-T arguments and initialize the \hyperlink{structhinfo__t}{hinfo\-\_\-t} header structure Must be pointing at the argument list either from G\-E\-T arguments -\/ or P\-O\-S\-T content text Convert name=value pairs into null terminated strings Assumes we can replace characters with E\-O\-S in ram. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$hi} & \hyperlink{structhinfo__t}{hinfo\-\_\-t} structure to fill \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer that points to just past the header area 
+\end{DoxyReturn}
+
+
+Definition at line 899 of file web.\-c.
+
+
+
+Referenced by parse\-\_\-http\-\_\-request().
+
+\hypertarget{web_8c_a83e96b326e5d0ef41c95a83d510705dc}{\index{web.\-c@{web.\-c}!process\-\_\-requests@{process\-\_\-requests}}
+\index{process\-\_\-requests@{process\-\_\-requests}!web.c@{web.\-c}}
+\subsubsection[{process\-\_\-requests}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf M\-E\-M\-S\-P\-A\-C\-E} void process\-\_\-requests (
+\begin{DoxyParamCaption}
+\item[{{\bf rwbuf\-\_\-t} $\ast$}]{p}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{web_8c_a83e96b326e5d0ef41c95a83d510705dc}
+
+
+Process an incoming H\-T\-T\-P request. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$p} & \hyperlink{structrwbuf__t}{rwbuf\-\_\-t} pointer to socket buffer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 1565 of file web.\-c.
+
+
+
+Referenced by web\-\_\-task().
+
+\hypertarget{web_8c_ab4e3934605be0b5770ff87a32c405d53}{\index{web.\-c@{web.\-c}!read\-\_\-html\-\_\-token@{read\-\_\-html\-\_\-token}}
+\index{read\-\_\-html\-\_\-token@{read\-\_\-html\-\_\-token}!web.c@{web.\-c}}
+\subsubsection[{read\-\_\-html\-\_\-token}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int read\-\_\-html\-\_\-token (
+\begin{DoxyParamCaption}
+\item[{{\bf F\-I\-L\-E} $\ast$}]{fi, }
+\item[{char $\ast$}]{str, }
+\item[{int}]{len}
+\end{DoxyParamCaption}
+)}}\label{web_8c_ab4e3934605be0b5770ff87a32c405d53}
+
+
+test character for C\-G\-I token A C\-G\-I token is a string like this\-: \$\mbox{[}a-\/z\-A-\/\-Z0-\/9\-\_\--\/\mbox{]}+\$ 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & character to test \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the character is a C\-G\-I token or 0 if not 
+\end{DoxyReturn}
+
+
+Definition at line 1155 of file web.\-c.
+
+
+
+Referenced by process\-\_\-requests().
+
+\hypertarget{web_8c_a360633f469f7dc121c7542cfe25f11c0}{\index{web.\-c@{web.\-c}!rewrite\-\_\-html\-\_\-token@{rewrite\-\_\-html\-\_\-token}}
+\index{rewrite\-\_\-html\-\_\-token@{rewrite\-\_\-html\-\_\-token}!web.c@{web.\-c}}
+\subsubsection[{rewrite\-\_\-html\-\_\-token}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int rewrite\-\_\-html\-\_\-token (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{src, }
+\item[{int}]{len}
+\end{DoxyParamCaption}
+)}}\label{web_8c_a360633f469f7dc121c7542cfe25f11c0}
+
+
+Replace C\-G\-I token with C\-G\-I result A C\-G\-I token is a string like this\-: \$\mbox{[}a-\/z\-A-\/\-Z0-\/9\-\_\--\/\mbox{]}+\$. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$str} & string with token \\
+\hline
+\mbox{\tt in}  & {\em len} & leangth of token -\/ not used yet F\-I\-X\-M\-E \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+length of replaced text 
+\end{DoxyReturn}
+
+
+Definition at line 1193 of file web.\-c.
+
+
+
+Referenced by read\-\_\-html\-\_\-token().
+
+\hypertarget{web_8c_a333e54d833af007aa20f3ae18e260c38}{\index{web.\-c@{web.\-c}!rwbuf\-\_\-create@{rwbuf\-\_\-create}}
+\index{rwbuf\-\_\-create@{rwbuf\-\_\-create}!web.c@{web.\-c}}
+\subsubsection[{rwbuf\-\_\-create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} {\bf rwbuf\-\_\-t}$\ast$ rwbuf\-\_\-create (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{web_8c_a333e54d833af007aa20f3ae18e260c38}
+
+
+Create socket read/write buffer for a connection. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 286 of file web.\-c.
+
+
+
+Referenced by create\-\_\-connection().
+
+\hypertarget{web_8c_af089b318dcc1ebbec17ae7392a19e457}{\index{web.\-c@{web.\-c}!rwbuf\-\_\-delete@{rwbuf\-\_\-delete}}
+\index{rwbuf\-\_\-delete@{rwbuf\-\_\-delete}!web.c@{web.\-c}}
+\subsubsection[{rwbuf\-\_\-delete}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void rwbuf\-\_\-delete (
+\begin{DoxyParamCaption}
+\item[{{\bf rwbuf\-\_\-t} $\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{web_8c_af089b318dcc1ebbec17ae7392a19e457}
+
+
+Delete socket read/write buffers. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em p} & \hyperlink{structrwbuf__t}{rwbuf\-\_\-t} pointer to buffer to delete \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 256 of file web.\-c.
+
+
+
+Referenced by delete\-\_\-connection(), and rwbuf\-\_\-create().
+
+\hypertarget{web_8c_ac827567ee25b284c2992fed88249ab96}{\index{web.\-c@{web.\-c}!rwbuf\-\_\-rinit@{rwbuf\-\_\-rinit}}
+\index{rwbuf\-\_\-rinit@{rwbuf\-\_\-rinit}!web.c@{web.\-c}}
+\subsubsection[{rwbuf\-\_\-rinit}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void rwbuf\-\_\-rinit (
+\begin{DoxyParamCaption}
+\item[{{\bf rwbuf\-\_\-t} $\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{web_8c_ac827567ee25b284c2992fed88249ab96}
+
+
+Initialize socket read status and read index. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em p} & \hyperlink{structrwbuf__t}{rwbuf\-\_\-t} pointer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 227 of file web.\-c.
+
+
+
+Referenced by rwbuf\-\_\-create(), rwbuf\-\_\-delete(), and web\-\_\-data\-\_\-receive\-\_\-callback().
+
+\hypertarget{web_8c_a6a137266340baece84e055b2d49cd0c2}{\index{web.\-c@{web.\-c}!rwbuf\-\_\-winit@{rwbuf\-\_\-winit}}
+\index{rwbuf\-\_\-winit@{rwbuf\-\_\-winit}!web.c@{web.\-c}}
+\subsubsection[{rwbuf\-\_\-winit}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void rwbuf\-\_\-winit (
+\begin{DoxyParamCaption}
+\item[{{\bf rwbuf\-\_\-t} $\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{web_8c_a6a137266340baece84e055b2d49cd0c2}
+
+
+Initialize socket send status and write index. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em p} & \hyperlink{structrwbuf__t}{rwbuf\-\_\-t} pointer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 241 of file web.\-c.
+
+
+
+Referenced by rwbuf\-\_\-create(), rwbuf\-\_\-delete(), and web\-\_\-data\-\_\-sent\-\_\-callback().
+
+\hypertarget{web_8c_a38a7c7d1f5222edff77e9a7a20195696}{\index{web.\-c@{web.\-c}!sock\-\_\-printf@{sock\-\_\-printf}}
+\index{sock\-\_\-printf@{sock\-\_\-printf}!web.c@{web.\-c}}
+\subsubsection[{sock\-\_\-printf}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int sock\-\_\-printf (
+\begin{DoxyParamCaption}
+\item[{{\bf rwbuf\-\_\-t} $\ast$}]{p, }
+\item[{const char $\ast$}]{fmt, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)}}\label{web_8c_a38a7c7d1f5222edff77e9a7a20195696}
+
+
+sock\-\_\-printf function 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em p} & socket buffer structure \\
+\hline
+\mbox{\tt in}  & {\em fmt} & printf format string \\
+\hline
+\mbox{\tt in}  & {\em ...} & list of arguments \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bytes written 
+\end{DoxyReturn}
+
+
+Definition at line 629 of file web.\-c.
+
+
+
+Referenced by html\-\_\-head().
+
+\hypertarget{web_8c_a6415f4715cb5cd52ecca2dce79906bcd}{\index{web.\-c@{web.\-c}!tcp\-\_\-accept@{tcp\-\_\-accept}}
+\index{tcp\-\_\-accept@{tcp\-\_\-accept}!web.c@{web.\-c}}
+\subsubsection[{tcp\-\_\-accept}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf M\-E\-M\-S\-P\-A\-C\-E} void tcp\-\_\-accept (
+\begin{DoxyParamCaption}
+\item[{{\bf espconn\-\_\-t} $\ast$}]{esp\-\_\-config, }
+\item[{esp\-\_\-tcp $\ast$}]{esp\-\_\-tcp\-\_\-config, }
+\item[{{\bf uint16\-\_\-t}}]{port, }
+\item[{void($\ast$)(struct espconn $\ast$)}]{connect\-\_\-callback}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{web_8c_a6415f4715cb5cd52ecca2dce79906bcd}
+
+
+Accept an incomming connection, setup connect\-\_\-callback. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$esp\-\_\-config,E\-S\-P8266} & network type an mode configuration structure \\
+\hline
+\mbox{\tt in}  & {\em $\ast$esp\-\_\-tcp\-\_\-config,network} & protocol structure \\
+\hline
+\mbox{\tt in}  & {\em port,network} & port to listen on \\
+\hline
+\mbox{\tt in}  & {\em connect\-\_\-callback} & connection callback function pointer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 199 of file web.\-c.
+
+
+
+Referenced by web\-\_\-init().
+
+\hypertarget{web_8c_a099953c3f11ff53e89c99b0be5212b70}{\index{web.\-c@{web.\-c}!u5toa@{u5toa}}
+\index{u5toa@{u5toa}!web.c@{web.\-c}}
+\subsubsection[{u5toa}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void u5toa (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{ptr, }
+\item[{{\bf uint16\-\_\-t}}]{num}
+\end{DoxyParamCaption}
+)}}\label{web_8c_a099953c3f11ff53e89c99b0be5212b70}
+
+
+Print a decimal number into a string without an E\-O\-S. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$ptr} & buffer to write number to \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 1117 of file web.\-c.
+
+
+
+Referenced by html\-\_\-msg().
+
+\hypertarget{web_8c_a912affa80386fb06e19c3ce5342701f5}{\index{web.\-c@{web.\-c}!vsock\-\_\-printf@{vsock\-\_\-printf}}
+\index{vsock\-\_\-printf@{vsock\-\_\-printf}!web.c@{web.\-c}}
+\subsubsection[{vsock\-\_\-printf}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int vsock\-\_\-printf (
+\begin{DoxyParamCaption}
+\item[{{\bf rwbuf\-\_\-t} $\ast$}]{p, }
+\item[{const char $\ast$}]{fmt, }
+\item[{va\-\_\-list}]{va}
+\end{DoxyParamCaption}
+)}}\label{web_8c_a912affa80386fb06e19c3ce5342701f5}
+
+
+vsock\-\_\-printf function 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em p} & socket buffer structure \\
+\hline
+\mbox{\tt in}  & {\em fmt} & printf format string \\
+\hline
+\mbox{\tt in}  & {\em va\-\_\-list} & va\-\_\-list of arguments \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bytes written 
+\end{DoxyReturn}
+
+
+Definition at line 607 of file web.\-c.
+
+
+
+Referenced by sock\-\_\-printf().
+
+\hypertarget{web_8c_a7548202d4a868f3c988014ffb969dee5}{\index{web.\-c@{web.\-c}!web\-\_\-data\-\_\-connect\-\_\-callback@{web\-\_\-data\-\_\-connect\-\_\-callback}}
+\index{web\-\_\-data\-\_\-connect\-\_\-callback@{web\-\_\-data\-\_\-connect\-\_\-callback}!web.c@{web.\-c}}
+\subsubsection[{web\-\_\-data\-\_\-connect\-\_\-callback}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf M\-E\-M\-S\-P\-A\-C\-E} void web\-\_\-data\-\_\-connect\-\_\-callback (
+\begin{DoxyParamCaption}
+\item[{{\bf espconn\-\_\-t} $\ast$}]{conn}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{web_8c_a7548202d4a868f3c988014ffb969dee5}
+
+
+incomming connection setup callbacks 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$conn} & espconn structure pointer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 1532 of file web.\-c.
+
+
+
+Referenced by web\-\_\-init().
+
+\hypertarget{web_8c_af1da928cd361e8d3135aa1ce10da1773}{\index{web.\-c@{web.\-c}!web\-\_\-data\-\_\-disconnect\-\_\-callback@{web\-\_\-data\-\_\-disconnect\-\_\-callback}}
+\index{web\-\_\-data\-\_\-disconnect\-\_\-callback@{web\-\_\-data\-\_\-disconnect\-\_\-callback}!web.c@{web.\-c}}
+\subsubsection[{web\-\_\-data\-\_\-disconnect\-\_\-callback}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf M\-E\-M\-S\-P\-A\-C\-E} void web\-\_\-data\-\_\-disconnect\-\_\-callback (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{arg}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{web_8c_af1da928cd361e8d3135aa1ce10da1773}
+
+
+Network disconnect callback function. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$arg} & connection pointer \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1497 of file web.\-c.
+
+
+
+Referenced by web\-\_\-data\-\_\-connect\-\_\-callback().
+
+\hypertarget{web_8c_a874f47f0da9642a0afb800adaac00c7f}{\index{web.\-c@{web.\-c}!web\-\_\-data\-\_\-receive\-\_\-callback@{web\-\_\-data\-\_\-receive\-\_\-callback}}
+\index{web\-\_\-data\-\_\-receive\-\_\-callback@{web\-\_\-data\-\_\-receive\-\_\-callback}!web.c@{web.\-c}}
+\subsubsection[{web\-\_\-data\-\_\-receive\-\_\-callback}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf M\-E\-M\-S\-P\-A\-C\-E} void web\-\_\-data\-\_\-receive\-\_\-callback (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{arg, }
+\item[{char $\ast$}]{data, }
+\item[{unsigned short}]{length}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{web_8c_a874f47f0da9642a0afb800adaac00c7f}
+
+
+Network receive callback function. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$arg} & connection pointer \\
+\hline
+\mbox{\tt in}  & {\em $\ast$data} & Data received \\
+\hline
+\mbox{\tt in}  & {\em length} & Length of data received \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 1397 of file web.\-c.
+
+
+
+Referenced by web\-\_\-data\-\_\-connect\-\_\-callback().
+
+\hypertarget{web_8c_a4bbedae551d7c3d1f09488e75a86ccdf}{\index{web.\-c@{web.\-c}!web\-\_\-data\-\_\-sent\-\_\-callback@{web\-\_\-data\-\_\-sent\-\_\-callback}}
+\index{web\-\_\-data\-\_\-sent\-\_\-callback@{web\-\_\-data\-\_\-sent\-\_\-callback}!web.c@{web.\-c}}
+\subsubsection[{web\-\_\-data\-\_\-sent\-\_\-callback}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf M\-E\-M\-S\-P\-A\-C\-E} void web\-\_\-data\-\_\-sent\-\_\-callback (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{arg}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{web_8c_a4bbedae551d7c3d1f09488e75a86ccdf}
+
+
+Network sent callback function. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$arg} & connection pointer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 1461 of file web.\-c.
+
+
+
+Referenced by web\-\_\-data\-\_\-connect\-\_\-callback().
+
+\hypertarget{web_8c_aa7a1c2f567713688983ddecf9fa0d8d6}{\index{web.\-c@{web.\-c}!web\-\_\-init@{web\-\_\-init}}
+\index{web\-\_\-init@{web\-\_\-init}!web.c@{web.\-c}}
+\subsubsection[{web\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void web\-\_\-init (
+\begin{DoxyParamCaption}
+\item[{int}]{port}
+\end{DoxyParamCaption}
+)}}\label{web_8c_aa7a1c2f567713688983ddecf9fa0d8d6}
+
+
+Definition at line 1787 of file web.\-c.
+
+
+
+Referenced by setup().
+
+\hypertarget{web_8c_aced225563307f62a9832c387fd78a0f8}{\index{web.\-c@{web.\-c}!web\-\_\-init\-\_\-connections@{web\-\_\-init\-\_\-connections}}
+\index{web\-\_\-init\-\_\-connections@{web\-\_\-init\-\_\-connections}!web.c@{web.\-c}}
+\subsubsection[{web\-\_\-init\-\_\-connections}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void web\-\_\-init\-\_\-connections (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{web_8c_aced225563307f62a9832c387fd78a0f8}
+
+
+Definition at line 1768 of file web.\-c.
+
+
+
+Referenced by web\-\_\-init().
+
+\hypertarget{web_8c_ab058978d28bd1522323798b56d903176}{\index{web.\-c@{web.\-c}!web\-\_\-task@{web\-\_\-task}}
+\index{web\-\_\-task@{web\-\_\-task}!web.c@{web.\-c}}
+\subsubsection[{web\-\_\-task}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void web\-\_\-task (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{web_8c_ab058978d28bd1522323798b56d903176}
+
+
+Process A\-L\-L incoming H\-T\-T\-P requests. 
+
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{web_8c_a83e96b326e5d0ef41c95a83d510705dc}{process\-\_\-requests()} 
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 1744 of file web.\-c.
+
+
+
+Referenced by loop\-\_\-wrapper().
+
+\hypertarget{web_8c_abd703ce6226c13df800f38c7bc4c3807}{\index{web.\-c@{web.\-c}!write\-\_\-byte@{write\-\_\-byte}}
+\index{write\-\_\-byte@{write\-\_\-byte}!web.c@{web.\-c}}
+\subsubsection[{write\-\_\-byte}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} {\bf M\-E\-M\-S\-P\-A\-C\-E} int write\-\_\-byte (
+\begin{DoxyParamCaption}
+\item[{{\bf rwbuf\-\_\-t} $\ast$}]{p, }
+\item[{int}]{c}
+\end{DoxyParamCaption}
+)}}\label{web_8c_abd703ce6226c13df800f38c7bc4c3807}
+
+
+Write a byte (buffered) using the \hyperlink{structrwbuf__t}{rwbuf\-\_\-t} socket buffers for this connection If the buffers are full the socket is written using espconn\-\_\-sent. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$p} & \hyperlink{structrwbuf__t}{rwbuf\-\_\-t} pointer for this socket buffer \\
+\hline
+\mbox{\tt in}  & {\em c} & character to write \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 456 of file web.\-c.
+
+
+
+Referenced by \-\_\-write\-\_\-byte\-\_\-fn(), process\-\_\-requests(), write\-\_\-len(), and write\-\_\-str().
+
+\hypertarget{web_8c_ab224823f1d3f5c81a78949da4345ed87}{\index{web.\-c@{web.\-c}!write\-\_\-flush@{write\-\_\-flush}}
+\index{write\-\_\-flush@{write\-\_\-flush}!web.c@{web.\-c}}
+\subsubsection[{write\-\_\-flush}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void write\-\_\-flush (
+\begin{DoxyParamCaption}
+\item[{{\bf rwbuf\-\_\-t} $\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{web_8c_ab224823f1d3f5c81a78949da4345ed87}
+
+
+Flush the the socket write buffers for this connection If the buffers have any data in them it is written using espconn\-\_\-sent. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$p} & \hyperlink{structrwbuf__t}{rwbuf\-\_\-t} pointer for this socket buffer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 510 of file web.\-c.
+
+
+
+Referenced by process\-\_\-requests(), and write\-\_\-byte().
+
+\hypertarget{web_8c_a751d54408d691ebc079108ffc42ee436}{\index{web.\-c@{web.\-c}!write\-\_\-len@{write\-\_\-len}}
+\index{write\-\_\-len@{write\-\_\-len}!web.c@{web.\-c}}
+\subsubsection[{write\-\_\-len}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void write\-\_\-len (
+\begin{DoxyParamCaption}
+\item[{{\bf rwbuf\-\_\-t} $\ast$}]{p, }
+\item[{char $\ast$}]{str, }
+\item[{int}]{len}
+\end{DoxyParamCaption}
+)}}\label{web_8c_a751d54408d691ebc079108ffc42ee436}
+
+
+Write data using buffered write\-\_\-byte function. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$p} & \hyperlink{structrwbuf__t}{rwbuf\-\_\-t} pointer for this socket buffer \\
+\hline
+\mbox{\tt in}  & {\em $\ast$str} & data buffer to write \\
+\hline
+\mbox{\tt in}  & {\em len} & number of bytes to write \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 564 of file web.\-c.
+
+
+
+Referenced by html\-\_\-msg(), and process\-\_\-requests().
+
+\hypertarget{web_8c_a2a5efc80e175181baf607f7f9a1358e5}{\index{web.\-c@{web.\-c}!write\-\_\-str@{write\-\_\-str}}
+\index{write\-\_\-str@{write\-\_\-str}!web.c@{web.\-c}}
+\subsubsection[{write\-\_\-str}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void write\-\_\-str (
+\begin{DoxyParamCaption}
+\item[{{\bf rwbuf\-\_\-t} $\ast$}]{p, }
+\item[{char $\ast$}]{str}
+\end{DoxyParamCaption}
+)}}\label{web_8c_a2a5efc80e175181baf607f7f9a1358e5}
+
+
+Write string using buffered write\-\_\-byte function. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$p} & \hyperlink{structrwbuf__t}{rwbuf\-\_\-t} pointer for this socket buffer \\
+\hline
+\mbox{\tt in}  & {\em $\ast$str} & 0 terminated string to write \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 577 of file web.\-c.
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{web_8c_a9caaaad7e2fdc8c9f2e927980c57d639}{\index{web.\-c@{web.\-c}!\-\_\-led@{\-\_\-led}}
+\index{\-\_\-led@{\-\_\-led}!web.c@{web.\-c}}
+\subsubsection[{\-\_\-led}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} \-\_\-led = 0\hspace{0.3cm}{\ttfamily [static]}}}\label{web_8c_a9caaaad7e2fdc8c9f2e927980c57d639}
+
+
+Turn on virtual L\-E\-D. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em led} & led to turn on \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 172 of file web.\-c.
+
+\hypertarget{web_8c_a81bbe3cdfc6aad2405aaa9432ae49b92}{\index{web.\-c@{web.\-c}!http\-\_\-status@{http\-\_\-status}}
+\index{http\-\_\-status@{http\-\_\-status}!web.c@{web.\-c}}
+\subsubsection[{http\-\_\-status}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ http\-\_\-status\mbox{[}$\,$\mbox{]}}}\label{web_8c_a81bbe3cdfc6aad2405aaa9432ae49b92}
+
+
+H\-T\-T\-P status code messages. 
+
+
+
+Definition at line 74 of file web.\-c.
+
+
+
+Referenced by html\-\_\-status().
+
+\hypertarget{web_8c_a8239fd1b0c1007f135d8d95e8183981b}{\index{web.\-c@{web.\-c}!mimes@{mimes}}
+\index{mimes@{mimes}!web.c@{web.\-c}}
+\subsubsection[{mimes}]{\setlength{\rightskip}{0pt plus 5cm}{\bf mime\-\_\-t} mimes\mbox{[}$\,$\mbox{]}}}\label{web_8c_a8239fd1b0c1007f135d8d95e8183981b}
+{\bfseries Initial value\-:}
+\begin{DoxyCode}
+= \{
+    \{ \hyperlink{web_8h_abc6126af1d45847bc59afa0aa3216b04a90b1e6aa374cea27cc6fb55c5feba5c6}{PTYPE\_TEXT}, \textcolor{stringliteral}{"text/plain"}, \textcolor{stringliteral}{".text"}, \textcolor{stringliteral}{".txt"} \},
+    \{ \hyperlink{web_8h_abc6126af1d45847bc59afa0aa3216b04a4bd960e514f0585643742b8bd4b77f3b}{PTYPE\_HTML}, \textcolor{stringliteral}{"text/html"}, \textcolor{stringliteral}{".htm"}, \textcolor{stringliteral}{".html"} \},
+    \{ \hyperlink{web_8h_abc6126af1d45847bc59afa0aa3216b04a30057776e71c48725f93b464b45c9a21}{PTYPE\_PDF},   \textcolor{stringliteral}{"application/pdf"}, \textcolor{stringliteral}{".pdf"},NULL\},
+    \{ \hyperlink{web_8h_abc6126af1d45847bc59afa0aa3216b04a319eff9f0f2a8e6f74c5a319fc1cb4e4}{PTYPE\_CSS},   \textcolor{stringliteral}{"text/css"}, \textcolor{stringliteral}{".css"}, NULL \},
+    \{ \hyperlink{web_8h_abc6126af1d45847bc59afa0aa3216b04a96590ec99e2f5ce52c16218c19441c77}{PTYPE\_CGI},   \textcolor{stringliteral}{"text/html"}, \textcolor{stringliteral}{".cgi"}, NULL \},
+    \{ \hyperlink{web_8h_abc6126af1d45847bc59afa0aa3216b04a68ab53191252e14d5f4b4025b956cadf}{PTYPE\_JS},     \textcolor{stringliteral}{"text/plain"}, \textcolor{stringliteral}{".js"}, NULL \},
+    \{ \hyperlink{web_8h_abc6126af1d45847bc59afa0aa3216b04ae0868088fd938478331ae365e481a2d3}{PTYPE\_XML},   \textcolor{stringliteral}{"text/plain"}, \textcolor{stringliteral}{".xml"}, NULL \},
+    \{ \hyperlink{web_8h_abc6126af1d45847bc59afa0aa3216b04acbda84af249fa4ef414b6b5c32eec998}{PTYPE\_ICO},   \textcolor{stringliteral}{"mage/vnd.microsoft.icon"}, \textcolor{stringliteral}{".ico"}, NULL \},
+    \{ \hyperlink{web_8h_abc6126af1d45847bc59afa0aa3216b04a30f126f9623d527070097095a12e69d6}{PTYPE\_GIF},   \textcolor{stringliteral}{"image/gif"}, \textcolor{stringliteral}{".gif"}, NULL \},
+    \{ \hyperlink{web_8h_abc6126af1d45847bc59afa0aa3216b04aabae39c4d39e7574d9e0459d6ada9675}{PTYPE\_JPEG},     \textcolor{stringliteral}{"image/jpeg"}, \textcolor{stringliteral}{".jpg"}, \textcolor{stringliteral}{".jpeg"} \},
+    \{ \hyperlink{web_8h_abc6126af1d45847bc59afa0aa3216b04ae45f3c9fce9b5c96bf27fb291662b0cb}{PTYPE\_MPEG},     \textcolor{stringliteral}{"video/mpeg"}, \textcolor{stringliteral}{".mpg"}, \textcolor{stringliteral}{".mpeg"} \},
+    \{ \hyperlink{web_8h_abc6126af1d45847bc59afa0aa3216b04afb13489a2aca6e1485d8f1b36aab9bd5}{PTYPE\_FLASH},   \textcolor{stringliteral}{"application/x-shockwave-flash"}, \textcolor{stringliteral}{".swf"}, NULL \},
+    \{ \hyperlink{web_8h_abc6126af1d45847bc59afa0aa3216b04a8a75b468753c30e47935e8db26c91680}{PTYPE\_ERR},   \textcolor{stringliteral}{"text/html"}, NULL , NULL \}
+\}
+\end{DoxyCode}
+
+
+M\-I\-M\-E types. 
+
+
+
+Definition at line 148 of file web.\-c.
+
+\hypertarget{web_8c_a272852abae296b3cd79f00810f4d2915}{\index{web.\-c@{web.\-c}!msg\-\_\-headers@{msg\-\_\-headers}}
+\index{msg\-\_\-headers@{msg\-\_\-headers}!web.c@{web.\-c}}
+\subsubsection[{msg\-\_\-headers}]{\setlength{\rightskip}{0pt plus 5cm}{\bf header\-\_\-t} msg\-\_\-headers\mbox{[}$\,$\mbox{]}}}\label{web_8c_a272852abae296b3cd79f00810f4d2915}
+{\bfseries Initial value\-:}
+\begin{DoxyCode}
+= \{
+    \{ \textcolor{stringliteral}{"GET"},                \hyperlink{web_8h_adf764cbdea00d65edcd07bb9953ad2b7a6b4dfa1db88da421c74c30dc94c3ce53}{TOKEN\_GET} \},
+    \{ \textcolor{stringliteral}{"PUT"},                \hyperlink{web_8h_adf764cbdea00d65edcd07bb9953ad2b7a2a1292bc924f34d6d69a7b71501ae73f}{TOKEN\_PUT} \},
+    \{ \textcolor{stringliteral}{"POST"},               \hyperlink{web_8h_adf764cbdea00d65edcd07bb9953ad2b7a4cb258960bebf97073876d09836f1618}{TOKEN\_POST} \},
+    \{ \textcolor{stringliteral}{"HEAD"},               \hyperlink{web_8h_adf764cbdea00d65edcd07bb9953ad2b7a7a543c7cf1ac077230c499a41c3a8a94}{TOKEN\_HEAD} \},
+    \{ \textcolor{stringliteral}{"Host:"},              \hyperlink{web_8h_adf764cbdea00d65edcd07bb9953ad2b7a04d43499e4bc7c9f971f7a660d098ff1}{TOKEN\_HOST} \},
+    \{ \textcolor{stringliteral}{"User-Agent"},         \hyperlink{web_8h_adf764cbdea00d65edcd07bb9953ad2b7a4e115a8a34594af0f253e8472cffe673}{TOKEN\_USER\_AGENT} \},
+    \{ \textcolor{stringliteral}{"DNT:"},               \hyperlink{web_8h_adf764cbdea00d65edcd07bb9953ad2b7a37110324f9064d3a7e41029d572141d0}{TOKEN\_DNT}\},
+    \{ \textcolor{stringliteral}{"Accept:"},            \hyperlink{web_8h_adf764cbdea00d65edcd07bb9953ad2b7af8b41aa43b046daa7c0ada29d27b7cdb}{TOKEN\_ACCEPT} \},
+    \{ \textcolor{stringliteral}{"Accept-Language:"},   \hyperlink{web_8h_adf764cbdea00d65edcd07bb9953ad2b7a3fdcc37f74cb2179b65913891e1f02d8}{TOKEN\_ACCEPT\_LANGUAGE} \},
+    \{ \textcolor{stringliteral}{"Accept-Encoding:"},   \hyperlink{web_8h_adf764cbdea00d65edcd07bb9953ad2b7add40d0810a662bffc6a5d437e2a86c10}{TOKEN\_ACCEPT\_ENCODING} \},
+    \{ \textcolor{stringliteral}{"Connection:"},        \hyperlink{web_8h_adf764cbdea00d65edcd07bb9953ad2b7ad862c732a351f70da32231c9f4298d05}{TOKEN\_CONNECTION} \},
+    \{ \textcolor{stringliteral}{"Referer:"},           \hyperlink{web_8h_adf764cbdea00d65edcd07bb9953ad2b7ab9bf3f747c7169a74f228b4f173c2bf4}{TOKEN\_REFERER} \},
+    \{ \textcolor{stringliteral}{"Content-Length:"},    \hyperlink{web_8h_adf764cbdea00d65edcd07bb9953ad2b7a727fe5423c611ba2fac22b301c60e962}{TOKEN\_CONTENT\_LENGTH} \},
+    \{ \textcolor{stringliteral}{"Content-Type:"},      \hyperlink{web_8h_adf764cbdea00d65edcd07bb9953ad2b7ad871a413f306c0544fd283658f046805}{TOKEN\_CONTENT\_TYPE} \},
+    \{ \textcolor{stringliteral}{"Cache-Control:"},     \hyperlink{web_8h_adf764cbdea00d65edcd07bb9953ad2b7a991253922f53b4456f895f846e82b946}{TOKEN\_CACHE\_CONTROL} \},
+    \{ NULL,                 -1\}
+\}
+\end{DoxyCode}
+
+
+H\-T\-T\-P headers we understand. 
+
+
+
+Definition at line 50 of file web.\-c.
+
+\hypertarget{web_8c_a18c3cff4e8a9ff56871f13dfb3cd48ad}{\index{web.\-c@{web.\-c}!web\-\_\-connections@{web\-\_\-connections}}
+\index{web\-\_\-connections@{web\-\_\-connections}!web.c@{web.\-c}}
+\subsubsection[{web\-\_\-connections}]{\setlength{\rightskip}{0pt plus 5cm}{\bf rwbuf\-\_\-t}$\ast$ web\-\_\-connections\mbox{[}{\bf M\-A\-X\-\_\-\-C\-O\-N\-N\-E\-C\-T\-I\-O\-N\-S}\mbox{]}}}\label{web_8c_a18c3cff4e8a9ff56871f13dfb3cd48ad}
+
+
+socket buffers for this connection 
+
+
+
+Definition at line 31 of file web.\-c.
+
+\hypertarget{web_8c_a96c7e595cf56145fc95dc2c66ac3930f}{\index{web.\-c@{web.\-c}!Web\-Conn@{Web\-Conn}}
+\index{Web\-Conn@{Web\-Conn}!web.c@{web.\-c}}
+\subsubsection[{Web\-Conn}]{\setlength{\rightskip}{0pt plus 5cm}{\bf espconn\-\_\-t} Web\-Conn}}\label{web_8c_a96c7e595cf56145fc95dc2c66ac3930f}
+
+
+Setup W\-E\-B server and accept connections. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em port} & port number to run web server on \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void\-Master espconn structure of the web server 
+\end{DoxyReturn}
+
+
+Definition at line 1783 of file web.\-c.
+
+\hypertarget{web_8c_a82e626c8ae638c2d59ae0590e5eab381}{\index{web.\-c@{web.\-c}!Web\-Tcp@{Web\-Tcp}}
+\index{Web\-Tcp@{Web\-Tcp}!web.c@{web.\-c}}
+\subsubsection[{Web\-Tcp}]{\setlength{\rightskip}{0pt plus 5cm}esp\-\_\-tcp Web\-Tcp\hspace{0.3cm}{\ttfamily [static]}}}\label{web_8c_a82e626c8ae638c2d59ae0590e5eab381}
+
+
+Master network configuration for the web server. 
+
+
+
+Definition at line 1785 of file web.\-c.
+

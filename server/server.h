@@ -1,7 +1,8 @@
 /**
- @file pr.h
+ @file server.c
 
- @brief Small printf user function
+ @brief Network test client
+  This code receives a message and displays iit.
 
  @par Copyright &copy; 2015 Mike Gore, GPL License
  @par You are free to use this code under the terms of GPL
@@ -22,27 +23,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 
+#ifndef _SERVER_H_
+#define _SERVER_H_
 
-#ifndef _PR_H_
-#define _PR_H_
-#include <stdarg.h>
+#include <c_types.h>
+#include <espconn.h>
 
-#ifdef PRINTF_TEST
-	#define MEMSPACE /* */
-	#include <stdio.h>
-	#include <stdlib.h>
-	typedef unsigned char uint8_t;
-	typedef signed char int8_t;
-	typedef unsigned short uint16_t;
-	typedef unsigned int uint32_t;
-	typedef int int32_t;
-#else
-	#include "user_config.h"
-	#include "printf.h"
-#endif
-
-
-/* pr.c */
-MEMSPACE int tft_printf ( int size , const char *fmt , ...);
+MEMSPACE void servertest_message ( window *win );
+MEMSPACE void servertest_receive ( void *arg , char *pdata , unsigned short len );
+MEMSPACE void servertest_setup ( int port );
 
 #endif

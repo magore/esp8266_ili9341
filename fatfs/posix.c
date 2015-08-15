@@ -133,12 +133,12 @@ const char *sys_errlist[] =
 ///
 /// @see fileno()
 /// @return FILE * on success
-/// @return NULL on error with errno set
+/// @return NULL on error with errno set,  NULL if fileno out of bounds
 MEMSPACE
 FILE *fileno_to_stream(int fileno)
 {
     FILE *stream;
-    if(fileno >= MAX_FILES)
+    if(fileno < 0 || fileno >= MAX_FILES)
     {
         errno = EBADF;
         return(NULL);
@@ -162,7 +162,7 @@ FILE *fileno_to_stream(int fileno)
 /// @return  int fileno on success
 /// @return -1 with errno = EBAFD if stream is NULL or not found
 MEMSPACE
-int stream_to_fileno(FILE *stream)
+int fileno(FILE *stream)
 {
     int fileno;
 
@@ -195,12 +195,13 @@ FIL *fileno_to_fatfs(int fileno)
     FILE *stream;
     FIL *fh;
 
-    if(isatty( fileno ) )
+    if(isatty( fileno ))
     {
         errno = EBADF;
         return(NULL);
     }
 
+	// checks if fileno out of bounds
     stream = fileno_to_stream(fileno);
     if( stream == NULL )
         return(NULL);
@@ -245,6 +246,45 @@ int fatfs_to_fileno(FIL *fh)
     }
     errno = EBADF;
     return(-1);
+}
+
+
+/// @brief feof reports if the stream is at EOF 
+/// - man page feof (3).
+///
+/// @param[in] stream: POSIX stream pointer.
+/// @return 1 if EOF set, 0 otherwise.
+MEMSPACE
+int feof(FILE *stream)
+{
+	if(stream->flags & __SEOF)
+		return(1);
+	return(0);
+}
+
+/// @brief ferror reports if the stream has an error flag set
+/// - man page ferror (3).
+///
+/// @param[in] stream: POSIX stream pointer.
+/// @return 1 if EOF set, 0 otherwise.
+MEMSPACE
+int ferror(FILE *stream)
+{
+	if(stream->flags & __SERR)
+		return(1);
+	return(0);
+}
+
+/// @brief clrerror resets stream EOF and error flags
+/// - man page clrerror(3).
+///
+/// @param[in] stream: POSIX stream pointer.
+/// @return EOF on error with errno set.
+MEMSPACE
+void clrerror(FILE *stream)
+{
+	stream->flags &= ~__SEOF;
+	stream->flags &= ~__SERR;
 }
 
 
@@ -344,12 +384,13 @@ int free_file_descriptor(int fileno)
     FILE *stream;
     FIL *fh;
 
-    if(isatty( fileno ) || fileno >= MAX_FILES)
+    if(isatty( fileno ))
     {
         errno = EBADF;
         return(-1);
     }
 
+	// checks if fileno out of bounds
     stream = fileno_to_stream(fileno);
     if(stream == NULL)
     {
@@ -592,6 +633,8 @@ int posix_fopen_modes_to_open(const char *mode)
 
 /// ==================================================================
 
+
+
 /// @brief Private FatFs function called by fgetc() to get a byte from file stream
 /// open() assigns stream->get = fatfs_getc() 
 ///
@@ -603,8 +646,7 @@ int posix_fopen_modes_to_open(const char *mode)
 /// @return character.
 /// @return EOF on error with errno set.
 MEMSPACE
-static 
-int  fatfs_getc(FILE *stream)
+static int  fatfs_getc(FILE *stream)
 {
     FIL *fh;
     UINT size;
@@ -633,6 +675,9 @@ int  fatfs_getc(FILE *stream)
     {
         errno = fatfs_to_errno(res);
         stream->flags |= __SEOF;
+// FIXME DEBUG
+put_rc(res);
+perror("fgetc\n");
         return(EOF);
     }
     return(c & 0xff);
@@ -674,7 +719,7 @@ int fatfs_putc(char c, FILE *stream)
     }
 
     res = f_write(fh, &c, 1, (UINT *)  &size);
-    if( res != RES_OK)
+    if( res != RES_OK || size != 1)
     {
         errno = fatfs_to_errno(res);
         stream->flags |= __SEOF;
@@ -811,7 +856,9 @@ int open(const char *pathname, int flags)
 
     errno = 0;
 
-// Checks DIsk status
+// FIXME DEBUG
+#if 0
+// Checks Disk status
     res = mmc_init(0);
 
     if(res != RES_OK)
@@ -819,6 +866,7 @@ int open(const char *pathname, int flags)
         errno = fatfs_to_errno(res);
         return(-1);
     }
+#endif
 
     if((flags & O_ACCMODE) == O_RDWR)
         fatfs_modes = FA_READ | FA_WRITE;
@@ -836,11 +884,8 @@ int open(const char *pathname, int flags)
     }
 
     fileno = new_file_descriptor();
-    if(fileno < 0)
-    {
-        return(-1);
-    }
 
+	// checks if fileno out of bounds
     stream = fileno_to_stream(fileno);
     if(stream == NULL)
     {
@@ -848,9 +893,11 @@ int open(const char *pathname, int flags)
         return(-1);
     }
 
+	// fileno_to_fatfs checks for fileno out of bounds
     fh = fileno_to_fatfs(fileno);
     if(fh == NULL)
     {
+        free_file_descriptor(fileno);
         errno = EBADF;
         return(-1);
     }
@@ -912,9 +959,7 @@ FILE *fopen(const char *path, const char *mode)
     int flags = posix_fopen_modes_to_open(mode);
     int fileno = open(path, flags);
 
-    if(fileno < 0)
-        return(NULL);
-
+	// checks if fileno out of bounds
     return( fileno_to_stream(fileno) );
 }
 
@@ -935,12 +980,15 @@ int close(int fileno)
     int res;
 
     errno = 0;
+
+	// checks if fileno out of bounds
     stream = fileno_to_stream(fileno);
     if(stream == NULL)
     {
         return(-1);
     }
 
+	// fileno_to_fatfs checks for fileno out of bounds
     fh = fileno_to_fatfs(fileno);
     if(fh == NULL)
     {
@@ -978,6 +1026,7 @@ int syncfs(int fd)
         return(-1);
     }
 
+	// fileno_to_fatfs checks for fd out of bounds
     fh = fileno_to_fatfs(fd);
     if(fh == NULL)
     {
@@ -1012,6 +1061,7 @@ void sync(void)
         if(isatty(i))
             continue;
 
+		// fileno_to_fatfs checks for i out of bounds
         fh = fileno_to_fatfs(i);
         if(fh == NULL)
             continue;
@@ -1032,8 +1082,11 @@ void sync(void)
 MEMSPACE
 int fclose(FILE *stream)
 {
-    int fileno = stream_to_fileno(stream);
-    return( close(fileno) );
+    int fn = fileno(stream);
+	if(fn < 0)
+		return(EOF);
+
+    return( close(fn) );
 }
 
 
@@ -1047,18 +1100,23 @@ int fclose(FILE *stream)
 /// @return count on sucess.
 /// @return -1 on error with errno set.
 MEMSPACE
-size_t write(int fd, const void *buf, size_t count)
+ssize_t write(int fd, const void *buf, size_t count)
 {
     UINT size;
-    int res;
+	UINT bytes = count;
+    FRESULT res;
     FIL *fh;
 
     errno = 0;
+#if 0
+	// TODO check for fd out of bounds fileno_to_fatfs does this
 	if(__iob[fd] == stdin || __iob[fd] == stderr)
 	{
 	// FIXME TTY write
 	}
+#endif
 
+	// fileno_to_fatfs checks for fd out of bounds
     fh = fileno_to_fatfs(fd);
     if ( fh == NULL )
     {
@@ -1066,13 +1124,13 @@ size_t write(int fd, const void *buf, size_t count)
         return(-1);
     }
 
-    res = f_write(fh, buf, count, &size);
+    res = f_write(fh, buf, bytes, &size);
     if(res != RES_OK)
     {
         errno = fatfs_to_errno(res);
         return(-1);
     }
-    return (size);
+    return ((ssize_t) size);
 }
 
 
@@ -1086,13 +1144,21 @@ size_t write(int fd, const void *buf, size_t count)
 /// @param[in] stream: POSIX file stream.
 ///
 /// @return count written on sucess.
-/// @return -1 on error with errno set.
+/// @return 0 or < size on error with errno set.
 MEMSPACE
 size_t fwrite(const void *ptr, size_t size, size_t nmemb, FILE *stream)
 {
     size_t count = size * nmemb;
-    int fileno = stream_to_fileno(stream);
-    return( write(fileno, ptr, count));
+    int fn = fileno(stream);
+	ssize_t ret;
+	
+	// write () checks for fn out of bounds
+	ret =  write(fn, ptr, count);
+
+	if(ret < 0)
+		return(0);
+
+	return((size_t) ret);
 }
 
 
@@ -1107,18 +1173,25 @@ size_t fwrite(const void *ptr, size_t size, size_t nmemb, FILE *stream)
 /// @return count on sucess.
 /// @return -1 on error with errno set.
 MEMSPACE
-size_t read(int fd, const void *buf, size_t count)
+ssize_t read(int fd, const void *buf, size_t count)
 {
     UINT size;
+	UINT bytes = count;
     int res;
     FIL *fh;
 
+	*(char *) buf = 0;
+
     errno = 0;
+#if 0
+	// TODO check for fd out of bounds fileno_to_fatfs does this
 	if(__iob[fd] == stdin)
 	{
 	// FIXME TTY read
 	}
+#endif
 
+	// fileno_to_fatfs checks for fd out of bounds
     fh = fileno_to_fatfs(fd);
     if ( fh == NULL )
     {
@@ -1126,13 +1199,16 @@ size_t read(int fd, const void *buf, size_t count)
         return(-1);
     }
 
-    res = f_read(fh, (void *) buf, count, &size);
+    res = f_read(fh, (void *) buf, bytes, &size);
     if(res != RES_OK)
     {
         errno = fatfs_to_errno(res);
+// FIXME DEBUG
+put_rc(res);
+perror("read\n");
         return(-1);
     }
-    return (size);
+    return ((ssize_t) size);
 }
 
 
@@ -1146,13 +1222,20 @@ size_t read(int fd, const void *buf, size_t count)
 /// @param[in] stream: POSIX file stream.
 ///
 /// @return count on sucess.
-/// @return -1 on error with errno set.
+/// @return 0 or < size on error with errno set.
 MEMSPACE
 size_t fread(void *ptr, size_t size, size_t nmemb, FILE *stream)
 {
     size_t count = size * nmemb;
-    int fileno = stream_to_fileno(stream);
-    return(read(fileno, ptr, count));
+    int fn = fileno(stream);
+	ssize_t ret;
+
+	// read() checks for fn out of bounds
+	ret = read(fn, ptr, count);
+	if(ret < 0)
+		return(0);
+
+	return((size_t) ret);
 }
 
 
@@ -1176,6 +1259,7 @@ size_t lseek(int fileno, size_t position, int whence)
     FIL *fh;
     errno = 0;
 
+	// fileno_to_fatfs checks for fd out of bounds
     fh = fileno_to_fatfs(fileno);
     if(fh == NULL)
     {
@@ -1214,11 +1298,13 @@ size_t lseek(int fileno, size_t position, int whence)
 MEMSPACE
 int fseek(FILE *stream, long offset, int whence)
 {
-    int fileno;
     long ret;
 
-    fileno = stream_to_fileno(stream);
-    ret  = lseek(fileno, offset, whence);
+    int fn = fileno(stream);
+	if(fn < 0)
+		return(-1);
+
+    ret  = lseek(fn, offset, whence);
 
     if(ret == -1)
         return(-1);
@@ -1236,12 +1322,13 @@ int fseek(FILE *stream, long offset, int whence)
 /// @return file position on sucess.
 /// @return -1 on error with errno set.
 MEMSPACE
-size_t ftell(FILE *stream)
+long ftell(FILE *stream)
 {
     errno = 0;
 
-    int fileno = stream_to_fileno(stream);
-    FIL *fh = fileno_to_fatfs(fileno);
+    int fn = fileno(stream);
+	// fileno_to_fatfs checks for fd out of bounds
+    FIL *fh = fileno_to_fatfs(fn);
     if ( fh == NULL )
     {
         errno = EBADF;
@@ -1391,6 +1478,8 @@ int ftruncate(int fd, off_t length)
     errno = 0;
     FIL *fh;
     FRESULT rc;
+
+	// fileno_to_fatfs checks for fd out of bounds
     fh = fileno_to_fatfs(fd);
     if(fh == NULL)
     {
@@ -1469,6 +1558,7 @@ int fstat(int fd, struct stat *buf)
     FIL *fh;
     FRESULT rc;
 
+	// fileno_to_fatfs checks for fd out of bounds
     fh = fileno_to_fatfs(fileno);
     if(fh == NULL)
     {
@@ -1507,6 +1597,8 @@ int stat(char *name, struct stat *buf)
     res = f_stat(name, info);
     if(res != RES_OK)
     {
+// FIXME DEBUG
+put_rc(res);
         errno = fatfs_to_errno(res);
         return(-1);
     }

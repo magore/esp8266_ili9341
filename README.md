@@ -23,8 +23,9 @@
      * I created two wireframe demos 
        * Cube wireframe dataset
        * Earth coastline dataset - wireframe view still needs hidden line removal option
-   * Small Print with full floating point support along with ftoa/atof and integer conversions
+   * Small Printf with full floating point support along with ftoa/atof and integer conversions
    * BDF fonts and a BDF font to C conversion code and optimized display code
+   * WEB server using SD CARD
    * Network server client example for display updates
    * Uart network server client for serial uart to network bridge.
    * Generic queue handling code
@@ -51,6 +52,8 @@
     @see https://partners.adobe.com/public/developer/en/font/5005.BDF_Spec.pdf
   * FatFS:
     @see http://elm-chan.org/fsw/ff/00index_e.html
+  * Yield Code extracted from from ESP8266 Arduino Project
+	@see https://github.com/esp8266/Arduino
 ___
 
 @par Directories
@@ -214,7 +217,7 @@ ___
         * printf.h       
           * My printf code
 
-  * utils
+   * utils
     * hspi.c              
     * hspi.h              
       * My rewritten HPSI code that avoids unaligned read and writes
@@ -233,11 +236,27 @@ ___
        * For system requiring specific memory alignment access methods
       * POSIX malloc,calloc and free wrappers
 
+   * web
+     * web.c
+     * web.h
+        * Small Web server with FAT filesystem SD CARD support 
+
+   * yield
+     * README.txt     
+     * cont.S         
+     * cont.h         
+     * cont_util.c    
+       * Context switch code
+     * ets_sys.h
+     * user_task.c    
+     * user_task.h
+        * Main user_init and task replacement with yield support
+
    * send.c
      * Send message to network server 
      * Example: ./send -i 192.168.200.116 -m '\fscrolling\ntext\n1\n2\n3\n4'
         * These escape characters are processed on the display: \n, \t, \f
-  * user    
+   * user    
      * Main user demo task
      * user_main.c
         * Intializes ESP8266 and sets up demo with 4 active windows with independent attributes

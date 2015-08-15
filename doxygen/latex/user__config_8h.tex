@@ -6,10 +6,11 @@
 Master include file for project Includes all project includes and defines here.  
 
 
-{\ttfamily \#include $<$ets\-\_\-sys.\-h$>$}\\*
+{\ttfamily \#include $<$stdarg.\-h$>$}\\*
 {\ttfamily \#include $<$osapi.\-h$>$}\\*
 {\ttfamily \#include $<$os\-\_\-type.\-h$>$}\\*
 {\ttfamily \#include $<$c\-\_\-types.\-h$>$}\\*
+{\ttfamily \#include $<$ets\-\_\-sys.\-h$>$}\\*
 {\ttfamily \#include \char`\"{}util.\-h\char`\"{}}\\*
 {\ttfamily \#include $<$ip\-\_\-addr.\-h$>$}\\*
 {\ttfamily \#include $<$espconn.\-h$>$}\\*
@@ -23,14 +24,6 @@ Master include file for project Includes all project includes and defines here.
 {\ttfamily \#include \char`\"{}timer\-\_\-hal.\-h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}timer.\-h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}time.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}integer.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}ffconf.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}ff.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}diskio.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}disk.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}mmc\-\_\-hal.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}posix.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}fatfs\-\_\-utils.\-h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}font.\-h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}ili9341\-\_\-adafruit.\-h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}ili9341.\-h\char`\"{}}\\*
@@ -38,7 +31,7 @@ Master include file for project Includes all project includes and defines here.
 {\ttfamily \#include \char`\"{}cordic.\-h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}wire\-\_\-types.\-h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}wire.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}scanf.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}network.\-h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}printf.\-h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}debug.\-h\char`\"{}}\\*
 \subsection*{Macros}
@@ -46,7 +39,7 @@ Master include file for project Includes all project includes and defines here.
 \item 
 \#define \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E}~I\-C\-A\-C\-H\-E\-\_\-\-F\-L\-A\-S\-H\-\_\-\-A\-T\-T\-R
 \item 
-\#define \hyperlink{user__config_8h_a9946b5a72f8c16945877e78578df6a7f}{M\-E\-M\-S\-P\-A\-C\-E\-\_\-\-R\-O}~static const
+\#define \hyperlink{user__config_8h_a9946b5a72f8c16945877e78578df6a7f}{M\-E\-M\-S\-P\-A\-C\-E\-\_\-\-R\-O}~I\-C\-A\-C\-H\-E\-\_\-\-R\-O\-D\-A\-T\-A\-\_\-\-A\-T\-T\-R
 \item 
 \#define \hyperlink{user__config_8h_a369266c24eacffb87046522897a570d5}{\-\_\-\-G\-N\-U\-\_\-\-S\-O\-U\-R\-C\-E}
 \item 
@@ -91,12 +84,12 @@ Definition at line 29 of file user\-\_\-config.\-h.
 \subsubsection[{M\-E\-M\-S\-P\-A\-C\-E\-\_\-\-F\-O\-N\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\-E\-M\-S\-P\-A\-C\-E\-\_\-\-F\-O\-N\-T~{\bf M\-E\-M\-S\-P\-A\-C\-E}}}\label{user__config_8h_a52d60ae7ccb513718808b5cdbb26ffa3}
 
 
-Definition at line 79 of file user\-\_\-config.\-h.
+Definition at line 89 of file user\-\_\-config.\-h.
 
 \hypertarget{user__config_8h_a9946b5a72f8c16945877e78578df6a7f}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!M\-E\-M\-S\-P\-A\-C\-E\-\_\-\-R\-O@{M\-E\-M\-S\-P\-A\-C\-E\-\_\-\-R\-O}}
 \index{M\-E\-M\-S\-P\-A\-C\-E\-\_\-\-R\-O@{M\-E\-M\-S\-P\-A\-C\-E\-\_\-\-R\-O}!user_config.h@{user\-\_\-config.\-h}}
-\subsubsection[{M\-E\-M\-S\-P\-A\-C\-E\-\_\-\-R\-O}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\-E\-M\-S\-P\-A\-C\-E\-\_\-\-R\-O~static const}}\label{user__config_8h_a9946b5a72f8c16945877e78578df6a7f}
+\subsubsection[{M\-E\-M\-S\-P\-A\-C\-E\-\_\-\-R\-O}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\-E\-M\-S\-P\-A\-C\-E\-\_\-\-R\-O~I\-C\-A\-C\-H\-E\-\_\-\-R\-O\-D\-A\-T\-A\-\_\-\-A\-T\-T\-R}}\label{user__config_8h_a9946b5a72f8c16945877e78578df6a7f}
 
 
-Definition at line 31 of file user\-\_\-config.\-h.
+Definition at line 30 of file user\-\_\-config.\-h.
 

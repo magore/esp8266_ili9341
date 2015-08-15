@@ -94,36 +94,48 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="user__config_8h.html">user_config.h</a>&quot;</span></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="printf_8h.html">printf.h</a>&quot;</span></div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<a class="code" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
-<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="debug_8h.html#ade3e7ae993ed25e4cd1d64035c6bdbd8">   32</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="debug_8c.html#a3b8293e3d2342c61cf6f1a40509dfd41">uart0_printf</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *fmt, ... )</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;{</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="struct__fontc.html">_fontc</a> f;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordtype">int</span> ret;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordtype">char</span> *s;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordtype">char</span> buff[512];</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    va_list va;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    va_start(va, fmt);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    ret = <a class="code" href="printf_8c.html#ad275358e53d24ad413ea8269aec1122d">t_vsnprintf</a>(buff, 510, fmt, va);</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    va_end(va);</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    s = buff;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordflow">while</span>(*s)</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    {</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <a class="code" href="uart_8c.html#a4edbb01728f45e11ed6717416bbb9309">uart_putc</a>(0, *s++);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    }</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;}</div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="debug_8c.html#a9f0e0c76de59f37f7fd820521a21defb">   31</a></span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="debug_8c.html#a9f0e0c76de59f37f7fd820521a21defb">_uart0_fn</a>(<span class="keyword">struct</span> <a class="code" href="struct__printf__t.html">_printf_t</a> *p, <span class="keywordtype">char</span> ch)</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;{</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        p-&gt;<a class="code" href="struct__printf__t.html#a38c7a430cec9b063bf6df7a100d3abaa">size</a>++;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <a class="code" href="uart_8c.html#a4edbb01728f45e11ed6717416bbb9309">uart_putc</a>(0, ch);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;}</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;   </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<a class="code" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="debug_8h.html#ade3e7ae993ed25e4cd1d64035c6bdbd8">   42</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="debug_8c.html#ab4ff4ed4ffc744d909dee04c5787376b">uart0_printf</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *format, ...)</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;{</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">int</span> len;   </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">int</span> i;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="struct__printf__t.html">printf_t</a> fn;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    va_list va;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    fn.<a class="code" href="struct__printf__t.html#a3302c3396c6ff238e760c625ab51725b">put</a> = <a class="code" href="debug_8c.html#a9f0e0c76de59f37f7fd820521a21defb">_uart0_fn</a>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    fn.<a class="code" href="struct__printf__t.html#a38c7a430cec9b063bf6df7a100d3abaa">size</a> = 0;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;   </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    va_start(va, format);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <a class="code" href="printf_8c.html#ae8e3ea7acfe1bf7a917405584b720bb9">_printf_fn</a>(&amp;fn, format, va);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    va_end(va);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    len = fn.<a class="code" href="struct__printf__t.html#a38c7a430cec9b063bf6df7a100d3abaa">size</a>;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="comment">//uart_tx_flush(0);</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordflow">return</span> len;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;}</div>
 <div class="ttc" id="printf_8h_html"><div class="ttname"><a href="printf_8h.html">printf.h</a></div><div class="ttdoc">Small printf, and verious conversion code with floating point support. </div></div>
 <div class="ttc" id="user__config_8h_html"><div class="ttname"><a href="user__config_8h.html">user_config.h</a></div><div class="ttdoc">Master include file for project Includes all project includes and defines here. </div></div>
 <div class="ttc" id="earth2wireframe_8c_html_ad0fe97585b8891f5e4f2b9a6426330a4"><div class="ttname"><a href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div><div class="ttdeci">#define MEMSPACE</div><div class="ttdef"><b>Definition:</b> <a href="earth2wireframe_8c_source.html#l00045">earth2wireframe.c:45</a></div></div>
-<div class="ttc" id="debug_8c_html_a3b8293e3d2342c61cf6f1a40509dfd41"><div class="ttname"><a href="debug_8c.html#a3b8293e3d2342c61cf6f1a40509dfd41">uart0_printf</a></div><div class="ttdeci">MEMSPACE int uart0_printf(const char *fmt,...)</div><div class="ttdoc">debug_printf function </div><div class="ttdef"><b>Definition:</b> <a href="debug_8c_source.html#l00032">debug.c:32</a></div></div>
-<div class="ttc" id="printf_8c_html_ad275358e53d24ad413ea8269aec1122d"><div class="ttname"><a href="printf_8c.html#ad275358e53d24ad413ea8269aec1122d">t_vsnprintf</a></div><div class="ttdeci">MEMSPACE int t_vsnprintf(char *buffer, int len, const char *fmt, va_list va)</div><div class="ttdoc">vsnprintf function </div><div class="ttdef"><b>Definition:</b> <a href="printf_8c_source.html#l00650">printf.c:650</a></div></div>
+<div class="ttc" id="struct__printf__t_html_a3302c3396c6ff238e760c625ab51725b"><div class="ttname"><a href="struct__printf__t.html#a3302c3396c6ff238e760c625ab51725b">_printf_t::put</a></div><div class="ttdeci">void(* put)(struct _printf_t *, char)</div><div class="ttdef"><b>Definition:</b> <a href="printf_8h_source.html#l00046">printf.h:46</a></div></div>
+<div class="ttc" id="debug_8c_html_a9f0e0c76de59f37f7fd820521a21defb"><div class="ttname"><a href="debug_8c.html#a9f0e0c76de59f37f7fd820521a21defb">_uart0_fn</a></div><div class="ttdeci">static void _uart0_fn(struct _printf_t *p, char ch)</div><div class="ttdoc">_uart0_fn low level function that writes a character with uart0har() </div><div class="ttdef"><b>Definition:</b> <a href="debug_8c_source.html#l00031">debug.c:31</a></div></div>
+<div class="ttc" id="debug_8c_html_ab4ff4ed4ffc744d909dee04c5787376b"><div class="ttname"><a href="debug_8c.html#ab4ff4ed4ffc744d909dee04c5787376b">uart0_printf</a></div><div class="ttdeci">MEMSPACE int uart0_printf(const char *format,...)</div><div class="ttdoc">printf function </div><div class="ttdef"><b>Definition:</b> <a href="debug_8c_source.html#l00042">debug.c:42</a></div></div>
+<div class="ttc" id="struct__printf__t_html_a38c7a430cec9b063bf6df7a100d3abaa"><div class="ttname"><a href="struct__printf__t.html#a38c7a430cec9b063bf6df7a100d3abaa">_printf_t::size</a></div><div class="ttdeci">int size</div><div class="ttdef"><b>Definition:</b> <a href="printf_8h_source.html#l00049">printf.h:49</a></div></div>
+<div class="ttc" id="printf_8c_html_ae8e3ea7acfe1bf7a917405584b720bb9"><div class="ttname"><a href="printf_8c.html#ae8e3ea7acfe1bf7a917405584b720bb9">_printf_fn</a></div><div class="ttdeci">MEMSPACE void _printf_fn(printf_t *fn, const char *fmt, va_list va)</div><div class="ttdoc">vsnprintf function </div><div class="ttdef"><b>Definition:</b> <a href="printf_8c_source.html#l00536">printf.c:536</a></div></div>
 <div class="ttc" id="uart_8c_html_a4edbb01728f45e11ed6717416bbb9309"><div class="ttname"><a href="uart_8c.html#a4edbb01728f45e11ed6717416bbb9309">uart_putc</a></div><div class="ttdeci">MEMSPACE void uart_putc(uint8 uart_no, char c)</div><div class="ttdoc">Write a byte from a uart with NL to CR/NL conversion Note: This function waits/blocks util the write ...</div><div class="ttdef"><b>Definition:</b> <a href="uart_8c_source.html#l00336">uart.c:336</a></div></div>
-<div class="ttc" id="struct__fontc_html"><div class="ttname"><a href="struct__fontc.html">_fontc</a></div><div class="ttdef"><b>Definition:</b> <a href="display_2font_8h_source.html#l00089">font.h:89</a></div></div>
+<div class="ttc" id="struct__printf__t_html"><div class="ttname"><a href="struct__printf__t.html">_printf_t</a></div><div class="ttdef"><b>Definition:</b> <a href="printf_8h_source.html#l00044">printf.h:44</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jul 20 2015 22:49:40 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Aug 14 2015 22:37:20 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

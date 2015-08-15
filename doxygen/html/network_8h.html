@@ -108,9 +108,11 @@ Functions</h2></td></tr>
 <tr class="memitem:af65ec795e7e4486dd8bb58d757fb6067"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="network_8h.html#af65ec795e7e4486dd8bb58d757fb6067">my_receive</a> (void *arg, char *pdata, unsigned short len)</td></tr>
 <tr class="separator:af65ec795e7e4486dd8bb58d757fb6067"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a33001f6e7c0326d6a8f20acbc62a1b3a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="network_8h.html#a33001f6e7c0326d6a8f20acbc62a1b3a">wifi_event_cb</a> (System_Event_t *event_p)</td></tr>
+<tr class="memdesc:a33001f6e7c0326d6a8f20acbc62a1b3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">WIFI Event Callback.  <a href="#a33001f6e7c0326d6a8f20acbc62a1b3a">More...</a><br/></td></tr>
 <tr class="separator:a33001f6e7c0326d6a8f20acbc62a1b3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c83f7d4417b533a9a0cb9e34b5d57dd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="network_8h.html#a1c83f7d4417b533a9a0cb9e34b5d57dd">setup_networking</a> (int port)</td></tr>
-<tr class="separator:a1c83f7d4417b533a9a0cb9e34b5d57dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a863429734cede00a72890923a53dad24"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="network_8h.html#a863429734cede00a72890923a53dad24">setup_networking</a> (void)</td></tr>
+<tr class="memdesc:a863429734cede00a72890923a53dad24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Code fragments if(!wifi_station_dhcpc_stop()) DEBUG_PRINTF( "ERROR wifi_station_dhcpc_stop() \n ");.  <a href="#a863429734cede00a72890923a53dad24">More...</a><br/></td></tr>
+<tr class="separator:a863429734cede00a72890923a53dad24"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -164,9 +166,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="user__main_8c_source.html#l00119">119</a> of file <a class="el" href="user__main_8c_source.html">user_main.c</a>.</p>
+<p>Definition at line <a class="el" href="user__main_8c_source.html#l00088">88</a> of file <a class="el" href="user__main_8c_source.html">user_main.c</a>.</p>
 
-<p>Referenced by <a class="el" href="user__main_8c_source.html#l00258">user_task()</a>.</p>
+<p>Referenced by <a class="el" href="user__main_8c_source.html#l00150">loop()</a>.</p>
 
 </div>
 </div>
@@ -184,25 +186,31 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Referenced by <a class="el" href="user__main_8c_source.html#l00258">user_task()</a>.</p>
-
 </div>
 </div>
-<a class="anchor" id="a1c83f7d4417b533a9a0cb9e34b5d57dd"></a>
+<a class="anchor" id="a863429734cede00a72890923a53dad24"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void setup_networking </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>port</em></td><td>)</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Referenced by <a class="el" href="user__main_8c_source.html#l00488">user_init()</a>.</p>
+<p>Code fragments if(!wifi_station_dhcpc_stop()) DEBUG_PRINTF( "ERROR wifi_station_dhcpc_stop() \n ");. </p>
+<p>if(!wifi_set_ip_info( STATION_IF , &amp;info)) DEBUG_PRINTF( "ERROR wifi_set_ip_info()\n");</p>
+<p>if(!wifi_station_connect()) DEBUG_PRINTF( "ERROR wifi_station_connect()\n");</p>
+<p>if(!wifi_station_set_auto_connect( TRUE) ) DEBUG_PRINTF("ERROR wifi_station_set_auto_connect(1)\n"); IP4_ADDR( &amp; info.ip , 192 , 168 , 200 , 123); IP4_ADDR( &amp; info.netmask , 255 , 255 , 255 , 0); IP4_ADDR( &amp; info.gw, 192 , 168 , 200 , 1); if(!wifi_set_ip_info( STATION_IF , &amp;info) ) DEBUG_PRINTF( "ERROR wifi_set_ip_info() \n "); if(!wifi_station_set_auto_connect( TRUE) ) DEBUG_PRINTF( "ERROR wifi_station_set_auto_connect(1) \n "); Setup Wifi Network Credits: ideas borrowed from David Ogilvy(MetalPhreak) </p>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
+<p>Definition at line <a class="el" href="network_8c_source.html#l00141">141</a> of file <a class="el" href="network_8c_source.html">network.c</a>.</p>
+
+<p>Referenced by <a class="el" href="user__main_8c_source.html#l00387">setup()</a>.</p>
 
 </div>
 </div>
@@ -220,6 +228,19 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>WIFI Event Callback. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">*event_p</td><td>Wifi event structure This callback status code borrowed from David Ogilvy(MetalPhreak) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
+<p>Definition at line <a class="el" href="network_8c_source.html#l00058">58</a> of file <a class="el" href="network_8c_source.html">network.c</a>.</p>
+
+<p>Referenced by <a class="el" href="network_8c_source.html#l00141">setup_networking()</a>.</p>
+
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
@@ -233,14 +254,16 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Referenced by <a class="el" href="user__main_8c_source.html#l00119">ntp_setup()</a>.</p>
+<p>Definition at line <a class="el" href="network_8c_source.html#l00042">42</a> of file <a class="el" href="network_8c_source.html">network.c</a>.</p>
+
+<p>Referenced by <a class="el" href="user__main_8c_source.html#l00088">ntp_setup()</a>, and <a class="el" href="network_8c_source.html#l00058">wifi_event_cb()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jul 20 2015 22:49:41 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Aug 14 2015 22:37:21 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
