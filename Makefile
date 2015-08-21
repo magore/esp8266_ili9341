@@ -102,7 +102,7 @@ WEBSERVER = 1
 # 4 send/yield task information
 # 8 HTML processing
 # 16 characters from socket I/O
-WEB_DEBUG = 3
+WEB_DEBUG = 1
 # Maximum number of connections
 MAX_CONNECTIONS = 5
 

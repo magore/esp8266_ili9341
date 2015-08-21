@@ -391,7 +391,7 @@ rwbuf_t *find_connection(espconn_t *conn, int *index, char *msg)
 
 	if(conn == &WebConn)
 	{
-#if WEB_DEBUG & 1
+#if WEB_DEBUG & 2
 	DEBUG_PRINTF("%s: find_connection: conn == &WebConn\n",msg);
 #endif
 	}
