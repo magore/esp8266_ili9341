@@ -4,6 +4,7 @@ var searchData=
   ['decent',['Decent',['../struct__font.html#a7f3567884a6aa454b7414b10dba35755',1,'_font']]],
   ['deg_5finc',['deg_inc',['../user__main_8c.html#abb90bdd83d3932e812704cf121b69f2f',1,'user_main.c']]],
   ['degree',['degree',['../user__main_8c.html#a46f4d8ebe46ec267dc7478f530e0ac07',1,'user_main.c']]],
+  ['delete',['delete',['../structrwbuf__t.html#a54e278f96a331cf0a61d22094c4b9f87',1,'rwbuf_t']]],
   ['dir',['dir',['../structDIR.html#a6c2a8c0cf2d55ae99775e93a16593449',1,'DIR']]],
   ['dir_5fptr',['dir_ptr',['../structFIL.html#a5af9e9fb312b629220eaf684dd28c4a9',1,'FIL']]],
   ['dir_5fsect',['dir_sect',['../structFIL.html#ab203794f939ad4480e81dfa488770783',1,'FIL']]],

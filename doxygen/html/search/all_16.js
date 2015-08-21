@@ -2,8 +2,8 @@ var searchData=
 [
   ['w',['w',['../struct__fontc.html#a9c2af0354d2b2009e7b6684e25fd479b',1,'_fontc::w()'],['../structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae',1,'window::w()']]],
   ['wait_5fready',['wait_ready',['../mmc_8c.html#ab7771efbbd1a015b449d838d7f09959a',1,'mmc.c']]],
+  ['wait_5fsend',['wait_send',['../web_8c.html#a6b59ca0b6eea0b246eb56ae2b37ee2d8',1,'web.c']]],
   ['wbuf',['wbuf',['../structrwbuf__t.html#a68386231f3d907ec4508c090925782a2',1,'rwbuf_t']]],
-  ['wbuf_5ft',['wbuf_t',['../structwbuf__t.html',1,'']]],
   ['wchar',['WCHAR',['../integer_8h.html#a570001c92f314285ad3e7139d8c58cf7',1,'integer.h']]],
   ['wdt_5freset',['wdt_reset',['../util_8c.html#a9b9f170e9a01e51b57656fcda1f183df',1,'wdt_reset(void):&#160;util.c'],['../util_8h.html#a9b9f170e9a01e51b57656fcda1f183df',1,'wdt_reset(void):&#160;util.c']]],
   ['web_2ec',['web.c',['../web_8c.html',1,'']]],
@@ -12,6 +12,7 @@ var searchData=
   ['web_5fdata_5fconnect_5fcallback',['web_data_connect_callback',['../web_8c.html#a7548202d4a868f3c988014ffb969dee5',1,'web.c']]],
   ['web_5fdata_5fdisconnect_5fcallback',['web_data_disconnect_callback',['../web_8c.html#af1da928cd361e8d3135aa1ce10da1773',1,'web.c']]],
   ['web_5fdata_5freceive_5fcallback',['web_data_receive_callback',['../web_8c.html#a874f47f0da9642a0afb800adaac00c7f',1,'web.c']]],
+  ['web_5fdata_5freconnect_5fcallback',['web_data_reconnect_callback',['../web_8c.html#a7d15ce2e1a490be8780d1da3932f9dd5',1,'web.c']]],
   ['web_5fdata_5fsent_5fcallback',['web_data_sent_callback',['../web_8c.html#a4bbedae551d7c3d1f09488e75a86ccdf',1,'web.c']]],
   ['web_5finit',['web_init',['../web_8c.html#aa7a1c2f567713688983ddecf9fa0d8d6',1,'web_init(int port):&#160;web.c'],['../web_8h.html#aa7a1c2f567713688983ddecf9fa0d8d6',1,'web_init(int port):&#160;web.c']]],
   ['web_5finit_5fconnections',['web_init_connections',['../web_8c.html#aced225563307f62a9832c387fd78a0f8',1,'web_init_connections():&#160;web.c'],['../web_8h.html#a0981a27ccb83326c4e96a0859f6511b5',1,'web_init_connections(void):&#160;web.c']]],

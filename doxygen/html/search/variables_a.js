@@ -6,5 +6,7 @@ var searchData=
   ['lfn_5fidx',['lfn_idx',['../structDIR.html#acad41b18758c9278c14d47076e8149fc',1,'DIR']]],
   ['lfname',['lfname',['../structFILINFO.html#ac4506c29e0219130dff46b01a1b5c023',1,'FILINFO']]],
   ['lfnofs',['LfnOfs',['../ff_8c.html#a3b4d3baf920ca4a0ac8731e7b3e680c4',1,'ff.c']]],
-  ['lfsize',['lfsize',['../structFILINFO.html#a2527c511ff4d12d285dbf3c4b3c9fb7b',1,'FILINFO']]]
+  ['lfsize',['lfsize',['../structFILINFO.html#a2527c511ff4d12d285dbf3c4b3c9fb7b',1,'FILINFO']]],
+  ['local_5fip',['local_ip',['../structrwbuf__t.html#aa26b4813db79aeaa293bb1eadfde0b54',1,'rwbuf_t']]],
+  ['local_5fport',['local_port',['../structrwbuf__t.html#aac758cef289d022f4eb81d4c4fac7f04',1,'rwbuf_t']]]
 ];

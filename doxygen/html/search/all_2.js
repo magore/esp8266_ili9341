@@ -69,10 +69,9 @@ var searchData=
   ['bs_5fvollab32',['BS_VolLab32',['../ff_8c.html#a8241a49bce313184a58617ba1ad9e84c',1,'ff.c']]],
   ['bsetv',['bsetv',['../bdffontutil_8c.html#acaa9ad09e11f90b8cf7a9e37963e4690',1,'bsetv(unsigned char *ptr, int addr):&#160;bdffontutil.c'],['../bdffontutil_8h.html#acaa9ad09e11f90b8cf7a9e37963e4690',1,'bsetv(unsigned char *ptr, int addr):&#160;bdffontutil.c']]],
   ['btestv',['btestv',['../bdffontutil_8c.html#aa30626c7589748b8cea5fee93e17c4cf',1,'btestv(unsigned char *ptr, int addr):&#160;bdffontutil.c'],['../bdffontutil_8h.html#aa30626c7589748b8cea5fee93e17c4cf',1,'btestv(unsigned char *ptr, int addr):&#160;bdffontutil.c']]],
-  ['buf',['buf',['../structqueue__t.html#aaee81421d150a17123a2b858d5b1685d',1,'queue_t::buf()'],['../structputbuff.html#ae623199e5d2851f95050670170f20329',1,'putbuff::buf()'],['../structFIL.html#a7a95fb86588663e48309b5cded7e207b',1,'FIL::buf()'],['../struct____file.html#a3e5a85ae919a90efbb7cb44ccb54fe46',1,'__file::buf()'],['../structwbuf__t.html#a47331b135529434d81ab0afd37eedefc',1,'wbuf_t::buf()']]],
+  ['buf',['buf',['../structqueue__t.html#aaee81421d150a17123a2b858d5b1685d',1,'queue_t::buf()'],['../structputbuff.html#ae623199e5d2851f95050670170f20329',1,'putbuff::buf()'],['../structFIL.html#a7a95fb86588663e48309b5cded7e207b',1,'FIL::buf()'],['../struct____file.html#a3e5a85ae919a90efbb7cb44ccb54fe46',1,'__file::buf()']]],
   ['buffer',['buffer',['../struct__printf__t.html#ad35884151d0be6667caafad8caacc76f',1,'_printf_t']]],
   ['buffer_5fsize',['BUFFER_SIZE',['../web_8c.html#a6b20d41d6252e9871430c242cb1a56e7',1,'web.c']]],
-  ['buffsize',['buffsize',['../structwbuf__t.html#ad0589fcdc66cc162d2327faf60a59fe6',1,'wbuf_t']]],
   ['byte',['BYTE',['../integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58',1,'integer.h']]],
   ['bytes',['Bytes',['../struct__font.html#a13b0b0e4e91f4d663ba4c3c11bfbda8a',1,'_font::Bytes()'],['../structqueue__t.html#a58398d4ee60bc90ffba2bc3488fe185b',1,'queue_t::bytes()'],['../unionuint32__t__bytes.html#a50aeebe398ee3b740421f1cc8d8583b8',1,'uint32_t_bytes::bytes()']]]
 ];

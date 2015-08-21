@@ -24,6 +24,8 @@ var searchData=
   ['lfsize',['lfsize',['../structFILINFO.html#a2527c511ff4d12d285dbf3c4b3c9fb7b',1,'FILINFO']]],
   ['line_5fwrap',['line_wrap',['../bdffontutil_8c.html#a466ba4f5e35f1e5ff2791ae4d68d2c7b',1,'line_wrap(char *str, int max):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a466ba4f5e35f1e5ff2791ae4d68d2c7b',1,'line_wrap(char *str, int max):&#160;bdffontutil.c']]],
   ['lle',['LLE',['../ff_8c.html#aff828b43518c49e1d637a822879b135d',1,'ff.c']]],
+  ['local_5fip',['local_ip',['../structrwbuf__t.html#aa26b4813db79aeaa293bb1eadfde0b54',1,'rwbuf_t']]],
+  ['local_5fport',['local_port',['../structrwbuf__t.html#aac758cef289d022f4eb81d4c4fac7f04',1,'rwbuf_t']]],
   ['localtime',['localtime',['../time_8c.html#a08eb1818fa59b3e6e1f1470ca0888572',1,'localtime(time_t *tp):&#160;time.c'],['../time_8h.html#a08eb1818fa59b3e6e1f1470ca0888572',1,'localtime(time_t *tp):&#160;time.c']]],
   ['localtime_5fr',['localtime_r',['../time_8c.html#af05576742e2f8ad3924c02a6af70a86d',1,'localtime_r(time_t *t, tm_t *result):&#160;time.c'],['../time_8h.html#af05576742e2f8ad3924c02a6af70a86d',1,'localtime_r(time_t *t, tm_t *result):&#160;time.c']]],
   ['long',['LONG',['../integer_8h.html#a2a3e0cda5f1249bef6db47c5eb8e3813',1,'integer.h']]],

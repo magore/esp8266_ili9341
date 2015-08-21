@@ -73,7 +73,6 @@ var searchData=
   ['ili9341_5fwhite',['ILI9341_WHITE',['../ili9341__adafruit_8h.html#a604507ef031b95291b2d177088fe03e4',1,'ili9341_adafruit.h']]],
   ['ili9341_5fyellow',['ILI9341_YELLOW',['../ili9341__adafruit_8h.html#a0313d113622009bfd9b6011fc9bffcc9',1,'ili9341_adafruit.h']]],
   ['in',['in',['../structqueue__t.html#a7a6832e36c70a1db7fddc93fb6be9d63',1,'queue_t']]],
-  ['ind',['ind',['../structwbuf__t.html#aff9954e8b14b93e6898294df9046b70b',1,'wbuf_t']]],
   ['index',['index',['../struct__fontc.html#a7cc0370744ff7ea964054d36917c9a2f',1,'_fontc::index()'],['../structDIR.html#ab95119fbacbe45e3e9ee0f962b844092',1,'DIR::index()'],['../index.html',1,'(Global Namespace)']]],
   ['info',['info',['../struct__font.html#abf134e8a44e707d3b4e83ab76c952ed9',1,'_font::info()'],['../network_8c.html#a1202cd63c360958e6272f9a20fa90f8b',1,'info():&#160;network.c']]],
   ['init_5fbuf',['INIT_BUF',['../ff_8c.html#a966fe5792671b39db1ccf655a8c1af8d',1,'ff.c']]],

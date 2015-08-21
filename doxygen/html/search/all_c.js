@@ -18,7 +18,7 @@ var searchData=
   ['matchi',['MATCHI',['../util_8c.html#a158b18efacfbaf45bf46e03f355cf101',1,'MATCHI(char *str, char *pat):&#160;util.c'],['../util_8h.html#a158b18efacfbaf45bf46e03f355cf101',1,'MATCHI(char *str, char *pat):&#160;util.c']]],
   ['matchi_5flen',['MATCHI_LEN',['../util_8c.html#ab012fa46a47fa2430d6ebd25ed38c59e',1,'MATCHI_LEN(char *str, char *pat):&#160;util.c'],['../util_8h.html#ab012fa46a47fa2430d6ebd25ed38c59e',1,'MATCHI_LEN(char *str, char *pat):&#160;util.c']]],
   ['max',['MAX',['../util_8h.html#aacc3ee1a7f283f8ef65cea31f4436a95',1,'util.h']]],
-  ['max_5fconnections',['MAX_CONNECTIONS',['../web_8c.html#a053b7859476cc9867ec62c49e68d3fa1',1,'MAX_CONNECTIONS():&#160;web.c'],['../web_8h.html#a053b7859476cc9867ec62c49e68d3fa1',1,'MAX_CONNECTIONS():&#160;web.h']]],
+  ['max_5fconnections',['MAX_CONNECTIONS',['../web_8h.html#a053b7859476cc9867ec62c49e68d3fa1',1,'web.h']]],
   ['max_5fconns',['MAX_CONNS',['../server_8c.html#ad74125223df99954750abebacd84a138',1,'server.c']]],
   ['max_5ffiles',['MAX_FILES',['../posix_8c.html#a2c5eecb22513a88c24ae5831a3265e54',1,'MAX_FILES():&#160;posix.c'],['../posix_8h.html#a2c5eecb22513a88c24ae5831a3265e54',1,'MAX_FILES():&#160;posix.h']]],
   ['max_5fmsg',['MAX_MSG',['../web_8c.html#aa24597a54a085c6c2c33b64138f09eff',1,'web.c']]],

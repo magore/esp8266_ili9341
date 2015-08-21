@@ -5,7 +5,7 @@ var searchData=
   ['db_5ffree',['db_free',['../bdffontutil_8c.html#a6042d0098b72b215bcef2d21e803e51d',1,'db_free(void *p):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a6042d0098b72b215bcef2d21e803e51d',1,'db_free(void *p):&#160;bdffontutil.c']]],
   ['deg2rad',['deg2rad',['../cordic_8c.html#a0de74b8b36857d95aadfc48438b64259',1,'deg2rad(double deg):&#160;cordic.c'],['../cordic_8h.html#a0de74b8b36857d95aadfc48438b64259',1,'deg2rad(double deg):&#160;cordic.c'],['../earth2wireframe_8c.html#a8012f8bd66798ffbdd27462c9f593a54',1,'deg2rad(double deg):&#160;earth2wireframe.c']]],
   ['delete_5fall_5ftimers',['delete_all_timers',['../timer_8c.html#a62b37d3b3acfee789af6a9dbd47f7267',1,'delete_all_timers():&#160;timer.c'],['../timer_8h.html#a4b27b84577f0a45741aa4b1de370df66',1,'delete_all_timers(void):&#160;timer.c']]],
-  ['delete_5fconnection',['delete_connection',['../web_8c.html#a7df7704ad891a746d798860e622469d1',1,'delete_connection(int index):&#160;web.c'],['../web_8h.html#a0282f6d1728de192041e0e52157a8cee',1,'delete_connection(int index):&#160;web.c']]],
+  ['delete_5fconnection',['delete_connection',['../web_8c.html#ae8b95c674148542469e51d10c4cbaf0a',1,'delete_connection(rwbuf_t *p):&#160;web.c'],['../web_8h.html#ae8b95c674148542469e51d10c4cbaf0a',1,'delete_connection(rwbuf_t *p):&#160;web.c']]],
   ['dir_5falloc',['dir_alloc',['../ff_8c.html#a4d56c285f91e80d8b00c9e1af0ce6989',1,'ff.c']]],
   ['dir_5ffind',['dir_find',['../ff_8c.html#aedd36565b13cee164754d8a7ecfc13c5',1,'ff.c']]],
   ['dir_5fnext',['dir_next',['../ff_8c.html#a09e57d7b469320805a32eaac5afe5c9b',1,'ff.c']]],
@@ -21,6 +21,7 @@ var searchData=
   ['disk_5fstatus',['disk_status',['../diskio_8h.html#a8348ac5ee6d709420c02e45c111f4793',1,'diskio.h']]],
   ['disk_5ftimerproc',['disk_timerproc',['../diskio_8h.html#a045f8898a243c16aca4e64e069c49c03',1,'diskio.h']]],
   ['disk_5fwrite',['disk_write',['../diskio_8h.html#a0fe56ee4831a44b09cfd96856e069634',1,'diskio.h']]],
+  ['display_5fipv4',['display_ipv4',['../web_8c.html#ac7de83b625a20615ae43b655483c9f6b',1,'web.c']]],
   ['display_5fts',['display_ts',['../timer_8c.html#a6802af23bc1fe764b975683a0b37fc91',1,'display_ts(ts_t *val):&#160;timer.c'],['../timer_8h.html#a6802af23bc1fe764b975683a0b37fc91',1,'display_ts(ts_t *val):&#160;timer.c']]],
   ['dump_5fstat',['dump_stat',['../posix_8c.html#a111f2e6e6bc9f0a46210a323cab093c7',1,'dump_stat(struct stat *sp):&#160;posix.c'],['../posix_8h.html#a111f2e6e6bc9f0a46210a323cab093c7',1,'dump_stat(struct stat *sp):&#160;posix.c']]],
   ['dump_5ftables',['dump_tables',['../cordic2c_8c.html#a3281e2a9f8144b206e9e782543ed8da6',1,'cordic2c.c']]]

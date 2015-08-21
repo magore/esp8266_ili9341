@@ -64,12 +64,6 @@ typedef struct {
 // =======================================================
 // Memory buffering for socket writes
 #define IO_MAX 512  // buffered IO
-typedef struct {
-    espconn_t *conn;  // current connection
-    uint16_t buffsize;      // buffer size
-    uint16_t ind;           // buffer index
-    char *buf;              // buffer pointer
-} wbuf_t;
 
 // HTTP headers from the client
 enum {
@@ -157,6 +151,13 @@ typedef struct {
     int send;       // bytes to send
     int wind;       // index into wbuf
     int wsize;      // bytes allocated
+
+	uint8_t remote_ip[4];
+	uint8_t local_ip[4];
+	int remote_port;
+	int local_port;
+
+	int delete;		// close connection
 } rwbuf_t;
 
 
@@ -169,8 +170,8 @@ MEMSPACE void rwbuf_winit ( rwbuf_t *p );
 MEMSPACE void rwbuf_delete ( rwbuf_t *p );
 MEMSPACE rwbuf_t *rwbuf_create ( void );
 MEMSPACE rwbuf_t *create_connection ( espconn_t *conn );
-MEMSPACE rwbuf_t *find_connection ( espconn_t *conn , int *index );
-MEMSPACE void delete_connection ( int index );
+MEMSPACE rwbuf_t *find_connection ( espconn_t *conn , int *index, char *msg );
+MEMSPACE void delete_connection ( rwbuf_t *p );
 MEMSPACE int write_byte ( rwbuf_t *p , int c );
 MEMSPACE void write_flush ( rwbuf_t *p );
 MEMSPACE void write_len ( rwbuf_t *p , char *str , int len );

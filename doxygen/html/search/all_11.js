@@ -16,6 +16,8 @@ var searchData=
   ['received',['received',['../structrwbuf__t.html#ac76412a0fbf9dc009ae3f8bb20660883',1,'rwbuf_t::received()'],['../network_8c.html#ac7c4860b47674f6bb351f6875e50533f',1,'received():&#160;network.c'],['../server_8c.html#a082fd9f55493d749cafc1e11ad84a2b6',1,'received():&#160;server.c']]],
   ['reg_5fspi_5fbase',['REG_SPI_BASE',['../spi__register_8h.html#aaf972dc81d21a811a370f55ca66917ea',1,'spi_register.h']]],
   ['reg_5fuart_5fbase',['REG_UART_BASE',['../utils_2uart__register_8h.html#ac5cd689ce3d25457c29ddd7476bc17d7',1,'REG_UART_BASE():&#160;uart_register.h'],['../include_2uart__register_8h.html#ac5cd689ce3d25457c29ddd7476bc17d7',1,'REG_UART_BASE():&#160;uart_register.h']]],
+  ['remote_5fip',['remote_ip',['../structrwbuf__t.html#ad83926198e358ac1a569b0da7749572c',1,'rwbuf_t']]],
+  ['remote_5fport',['remote_port',['../structrwbuf__t.html#aace1e79a985cc8fab4c2093208bf3763',1,'rwbuf_t']]],
   ['remove_5fchain',['remove_chain',['../ff_8c.html#a63c160ea53a9904efce00fe88258c09f',1,'ff.c']]],
   ['remove_5fquotes',['remove_quotes',['../bdffontutil_8c.html#a907e53e4a090147ec953b18f0e1b7915',1,'remove_quotes(char *str):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a907e53e4a090147ec953b18f0e1b7915',1,'remove_quotes(char *str):&#160;bdffontutil.c']]],
   ['rename',['rename',['../posix_8c.html#ada8cc8f9394cf54db8f338838a9fa7ce',1,'rename(const char *oldpath, const char *newpath):&#160;posix.c'],['../posix_8h.html#ada8cc8f9394cf54db8f338838a9fa7ce',1,'rename(const char *oldpath, const char *newpath):&#160;posix.c']]],

@@ -149,6 +149,7 @@ int signal_loop = 0;
 */
 void loop(void)
 {
+	extern int connections;
 	uint32_t time1,time2;
 	uint8_t red, blue,green;
 	long timer = 0;
@@ -242,7 +243,7 @@ void loop(void)
 		signal_loop = 0;
 	}
 	tft_setpos(winstats,xpos,ypos);
-	tft_printf(winstats,"Heap: %d\n", system_get_free_heap_size());
+	tft_printf(winstats,"Heap: %d, Conn:%d\n", system_get_free_heap_size(), connections);
 	tft_printf(winstats,"Iter:% 9ld, %+7.2f\n", count, degree);
 	
 

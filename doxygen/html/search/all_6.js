@@ -103,7 +103,7 @@ var searchData=
   ['fileno_5fto_5ffatfs',['fileno_to_fatfs',['../posix_8c.html#a9b859123258b36eb57f4f71d2606d8a5',1,'fileno_to_fatfs(int fileno):&#160;posix.c'],['../posix_8h.html#a9b859123258b36eb57f4f71d2606d8a5',1,'fileno_to_fatfs(int fileno):&#160;posix.c']]],
   ['fileno_5fto_5fstream',['fileno_to_stream',['../posix_8c.html#a2c01fe0e0aa550b2a8b4dcc326983b57',1,'fileno_to_stream(int fileno):&#160;posix.c'],['../posix_8h.html#a2c01fe0e0aa550b2a8b4dcc326983b57',1,'fileno_to_stream(int fileno):&#160;posix.c']]],
   ['filinfo',['FILINFO',['../structFILINFO.html',1,'']]],
-  ['find_5fconnection',['find_connection',['../web_8c.html#a5dc2b8e8828cbda1ccb42ec02201d4ea',1,'find_connection(espconn_t *conn, int *index):&#160;web.c'],['../web_8h.html#a5dc2b8e8828cbda1ccb42ec02201d4ea',1,'find_connection(espconn_t *conn, int *index):&#160;web.c']]],
+  ['find_5fconnection',['find_connection',['../web_8c.html#a63cfcb009066f483330ec359b8493fbe',1,'find_connection(espconn_t *conn, int *index, char *msg):&#160;web.c'],['../web_8h.html#a63cfcb009066f483330ec359b8493fbe',1,'find_connection(espconn_t *conn, int *index, char *msg):&#160;web.c']]],
   ['find_5fvolume',['find_volume',['../ff_8c.html#a3d62f689b454420e90ba4ad195d98628',1,'ff.c']]],
   ['findfontname',['FindFontName',['../bdffontutil_8c.html#aa01d93b9cf1d60cc4ce0adb717384f96',1,'FindFontName(char *str):&#160;bdffontutil.c'],['../bdffontutil_8h.html#aa01d93b9cf1d60cc4ce0adb717384f96',1,'FindFontName(char *str):&#160;bdffontutil.c']]],
   ['first',['First',['../struct__font.html#a73decb2a2c2880dc782cd9cda5561876',1,'_font']]],

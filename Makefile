@@ -99,9 +99,12 @@ WEBSERVER = 1
 # 0 no WEB debugging
 # 1 error only
 # 2 connection information
-# 4 HTML processing
-# 8 characters from socket I/O
-WEB_DEBUG = 1
+# 4 send/yield task information
+# 8 HTML processing
+# 16 characters from socket I/O
+WEB_DEBUG = 3
+# Maximum number of connections
+MAX_CONNECTIONS = 5
 
 
 # Yield function support thanks to Arduino Project 
@@ -243,7 +246,7 @@ ifdef SWAP45
 endif
 
 ifdef WEBSERVER
-	CFLAGS += -DWEBSERVER -DWEB_DEBUG=$(WEB_DEBUG)
+	CFLAGS += -DWEBSERVER -DWEB_DEBUG=$(WEB_DEBUG) -DMAX_CONNECTIONS=$(MAX_CONNECTIONS)
 	MODULES	+= web
 endif
 
