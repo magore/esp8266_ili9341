@@ -41,8 +41,6 @@
   * Built using ESP Open SDK - or esp8266-devkit by CHERTS
     @see https://github.com/pfalcon/esp-open-sdk
     @see https://github.com/CHERTS/esp8266-devkit
-  * Original demo code from CHERTS and Sem (mostly rewritten by me)
-    @see https://github.com/CHERTS/esp8266-devkit/tree/master/Espressif/examples/esp8266_ili9341
   * Optimized Line drawing function and Makefile from CHERTS 
     @see https://github.com/CHERTS/esp8266-devkit/tree/master/Espressif/examples/esp8266_ili9341
   * Fonts:
@@ -65,17 +63,6 @@ ___
     * get_esp-open-sdk - shell script to download an install ESP OPEN SDK on Ubuntu 14.04LTS
     * term115200 - shell script to launch terminal to 115200 baud
 
-  * wire
-    * wire.c
-    * wire.h
-      * Wireframe viewer code - uses CORDIC
-    * cube_data.h    
-      * Wireframe CUBE data
-    * earth_data.h
-      * Wireframe EARTH data
-
-  * docs 
-    * ili9431 and esp8266 related documents
 
   * bridge
     * bridge.c
@@ -114,6 +101,9 @@ ___
         * multiple window support 
         * readPixel() works on most all 4 wire displays now
         * scrolling window support
+
+  * docs 
+    * ili9431 and esp8266 related documents
 
   * driver - third party code
     * cal_dex.c       
@@ -217,6 +207,16 @@ ___
         * printf.h       
           * My printf code
 
+   * send.c
+     * Send message to network server 
+     * Example: ./send -i 192.168.200.116 -m '\fscrolling\ntext\n1\n2\n3\n4'
+        * These escape characters are processed on the display: \n, \t, \f
+
+   * user    
+     * Main user demo task
+     * user_main.c
+        * Intializes ESP8266 and sets up demo with 4 active windows with independent attributes
+
    * utils
     * hspi.c              
     * hspi.h              
@@ -247,6 +247,15 @@ ___
 		* CGI results can be ANY SIZE
 		* Uses yield function to continue background tasks while serving requests
 
+   * wire
+     * wire.c
+     * wire.h
+       * Wireframe viewer code - uses CORDIC
+     * cube_data.h    
+       * Wireframe CUBE data
+     * earth_data.h
+       * Wireframe EARTH data
+
    * yield
      * README.txt     
      * cont.S         
@@ -258,14 +267,6 @@ ___
      * user_task.h
         * Main user_init and task replacement with yield support
 
-   * send.c
-     * Send message to network server 
-     * Example: ./send -i 192.168.200.116 -m '\fscrolling\ntext\n1\n2\n3\n4'
-        * These escape characters are processed on the display: \n, \t, \f
-   * user    
-     * Main user demo task
-     * user_main.c
-        * Intializes ESP8266 and sets up demo with 4 active windows with independent attributes
 
 @par Demo Images
    * Running demo and sending a message to the network window
