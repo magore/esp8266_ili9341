@@ -242,7 +242,7 @@ ___
         * Web server with FAT filesystem SD CARD support 
 		* Served files can be ANY SIZE!
         * CGI files can have an extension of: html,htm,text,txt,cgi
-		  * Only tokens of the form @_cgitoken_@ are replaced by the rewrite function
+		  * Only tokens of the form "@_cgitoken_@" are replaced by the rewrite function
             * @see rewrite_cgi_token() in web.c
 		* CGI results can be ANY SIZE
 		* Uses yield function to continue background tasks while serving requests
