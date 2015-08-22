@@ -10,7 +10,7 @@
  * See [COPYRIGHT.md](COPYRIGHT.md) for a full copyright notice for the project
 
 @par Description
- * ESP8266 ILI9341 with multiple window support and networking demo
+ * ESP8266 ILI9341 with multiple window support WEB server and other networking demos
     * The specific display is an TM022HDH26 display I got from ebay.
  * I wrote the following support functions from scratch
    * Font compiler and display code
