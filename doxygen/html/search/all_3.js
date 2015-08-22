@@ -57,7 +57,6 @@ var searchData=
   ['config_5ffor_5frx_5ftx',['CONFIG_FOR_RX_TX',['../hspi_8h.html#a0a89ba717c8b84a7c3799d310b54e5c2',1,'hspi.h']]],
   ['config_5ffor_5ftx',['CONFIG_FOR_TX',['../hspi_8h.html#ad9632609fe3a2c77d6bca3d5252980e3',1,'hspi.h']]],
   ['conn',['conn',['../structrwbuf__t.html#a15785240e32c27f7af7c4b0cb1a6e39b',1,'rwbuf_t']]],
-  ['connections',['connections',['../web_8c.html#a0ba17441c382732ee4172abce4f7b31c',1,'web.c']]],
   ['cont_2eh',['cont.h',['../cont_8h.html',1,'']]],
   ['cont_5f',['cont_',['../structcont__.html',1,'']]],
   ['cont_5fcan_5fyield',['cont_can_yield',['../cont_8h.html#a7a8b25ee2153c3033f4590b39197661b',1,'cont_can_yield(cont_t *cont):&#160;cont_util.c'],['../cont__util_8c.html#a7a8b25ee2153c3033f4590b39197661b',1,'cont_can_yield(cont_t *cont):&#160;cont_util.c']]],

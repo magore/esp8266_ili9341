@@ -32,7 +32,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /// @brief max size of  CGI token
 #define CGI_TOKEN_SIZE 128
 /// @brief max size of read/write socket buffers
-#define BUFFER_SIZE 1024
+#define BUFFER_SIZE 1500
 
 #include "web.h"
 
@@ -172,6 +172,7 @@ MEMSPACE
   @return void
 */
 static _led = 0;
+MEMSPACE
 void led_on(int led)
 {
 	DEBUG_PRINTF("LED%d on\n", led);
@@ -260,7 +261,8 @@ void rwbuf_winit(rwbuf_t *p)
   @return void
 */
 
-display_ipv4(char *msg, uint8_t *ip, int port)
+MEMSPACE
+void display_ipv4(char *msg, uint8_t *ip, int port)
 {
 	DEBUG_PRINTF("%s: %d.%d.%d.%d:%d\n",
 		msg, 
@@ -897,17 +899,24 @@ int file_type(char *name)
 	char *ptr;
 	int i;
 
-	for(i=0;i<PTYPE_ERR;++i) {
-		ptr = mimes[i].ext1;
-		if(ptr) {
-			if(strcasecmp(name, ptr))
-				return(i);
-		}
-		ptr = mimes[i].ext2;
-		if(ptr) {
-			if(strcasecmp(name, ptr))
-				return(i);
-		}
+	ptr = name;
+	while(*ptr)
+	{
+		if(*ptr == '.')
+			name = ptr;
+		++ptr;
+	}
+
+	for(i=0;i<PTYPE_ERR;++i) 
+	{
+		if(mimes[i].ext1 == NULL)
+			break;
+		if(mimes[i].ext2 == NULL)
+			break;
+		if(strcasecmp(name, mimes[i].ext1) == 0)
+			return(i);
+		if(strcasecmp(name, mimes[i].ext2) == 0)
+			return(i);
 	}
 	return(i);
 }
@@ -1232,109 +1241,6 @@ void u5toa(char *ptr, uint16_t num)
 	memcpy(ptr,buf,5);
 }
 
-/** 
-	@brief test character for CGI token
-    A CGI token is a string like this: $[a-zA-Z0-9_\-]+$
-	@param[in] c: character to test
-	@return 1 if the character is a CGI token or 0 if not
-*/
-MEMSPACE
-int is_token(int c)
-{
-	if(c >= 'A' && c >= 'Z')
-		return(1);
-	else if(c >= 'a' && c >= 'z')
-		return(1);
-	else if(c >= '0' && c >= '0')
-		return(1);
-	else if(c == '_' || c == '-')
-		return(1);
-	else if(c == '$')
-		return(1);
-	return(0);
-}
-
-
-// ==============================================================
-/** 
-	@brief test character for CGI token
-    A CGI token is a string like this: $[a-zA-Z0-9_\-]+$
-	@param[in] c: character to test
-	@return 1 if the character is a CGI token or 0 if not
-*/
-MEMSPACE
-int read_html_token(FILE *fi, char *str, int len)
-{
-	char *base = str;
-	int c = 0;
-
-	*str++ = '$';
-	while(len--) {
-		c = fgetc(fi);
-		*str++ = c;
-		if(!is_token(c))
-			break;
-		if(c == '$') 
-			break;
-	}
-	*str++ = 0;		// always reminate with EOS
-	if(c == '$') {	// terminating '$'
-		// We replace text if a token matches
-#if WEB_DEBUG & 8
-		DEBUG_PRINTF("in: %s\n",base);
-#endif
-		rewrite_html_token(base, len);	
-#if WEB_DEBUG & 8
-		DEBUG_PRINTF("out:%s\n",base);
-#endif
-	}
-	len = strlen(base);
-	return(len);
-}	
-
-
-/**
-    @brief Replace CGI token with CGI result
-    A CGI token is a string like this: $[a-zA-Z0-9_\-]+$
-    @param[in] *str: string with token
-    @param[in] len: leangth of token - not used yet FIXME
-    @return length of replaced text
-*/
-MEMSPACE
-int rewrite_html_token(char *src, int len)
-{
-	unsigned long temp;
-	unsigned int read_val = 0;
-	int ind;
-
-	// FIXME check len!!!!!!
-
-	// Web page MUST reserve at least enough chars to suport the output
-	// So the $TOD_TIMER$ string must MUST padded in the html
-
-	if((ind = MATCH_LEN(src,"$TOD_TIMER$")))
-	{
-		tz_t tz;
-		tv_t tv;
-		time_t secs;
-		char *utc;
-
-		gettimeofday( &tv, &tz );
-
-		secs = tv.tv_sec;
-
-		utc = ctime(&secs);
-	
-		snprintf((char *) src, len,
-			"%s seconds: %lu.%06lu, minuteswest:%d, dsttime:%d",
-			utc, 
-			(uint32_t) tv.tv_sec,
-			(uint32_t) tv.tv_usec,
-			(int)tz.tz_minuteswest,
-			(int)tz.tz_dsttime);
-	}
-	return ( strlen(src) );
-}
 
 
 // =================================================================
@@ -1721,6 +1627,147 @@ static void web_data_connect_callback(espconn_t *conn)
 }
 
 
+// ==========================================================================
+
+/**
+	@brief test to see if a character is a valid member of the CGI token character set
+	CGI tokens have the following syntax @_example123_@
+	They start with "@_" and end with "_@"
+    "@_" must be first two characters of string
+	May have upper and lower case letters, numbers and '-'
+	@param[in] c: character to test
+	@return 1 if the character is a CGI token or 0 if not
+*/
+MEMSPACE
+int is_cgitoken_char(int c)
+{
+	if(c >= 'A' && c <= 'Z')
+		return(1);
+	else if(c >= 'a' && c <= 'z')
+		return(1);
+	else if(c >= '0' && c <= '9')
+		return(1);
+	else if( c == '-')
+		return(1);
+	else if(c == '@' || c == '_' )
+		return(1);
+	return(0);
+}
+
+/**
+    @brief Find start of CGI token in a string
+	CGI tokens have the following syntax @_example123_@
+	They start with "@_" and end with "_@"
+    "@_" must be first two characters of string
+	May have upper and lower case letters, numbers and '-'
+    @return offset of start of token, or -1 if not found
+*/
+MEMSPACE
+int find_cgitoken_start(char *str)
+{
+	int offset = 0;
+
+    while(*str) {
+		// End of Token
+		if( str[0] == '@' && str[1] == '_')
+		{
+			return(offset);
+		}
+		++str;
+		++offset;
+    }
+	return(-1);
+}
+
+/** 
+
+/**
+    @brief Does the string have a CGI TOKEN at the beginning ?
+	CGI tokens have the following syntax @_example123_@
+	They start with "@_" and end with "_@"
+    "@_" must be first two characters of string
+	May have upper and lower case letters, numbers and '-'
+    @return size of token or -1 on fail
+*/
+MEMSPACE
+int is_cgitoken(char *str)
+{
+	int len = 0;
+
+	if( str[0] == '@' && str[1] == '_' )
+	{
+		// token body is after @_, 2 bytes long
+		len += 2;
+		str += 2;
+
+		while(*str) 
+		{
+			// End of Token
+			if( str[0] == '_' && str[1] == '@')
+			{
+				len += 2;
+#if WEB_DEBUG & 8
+				DEBUG_PRINTF("is_cgi_token:%d\n",len);
+#endif
+				return(len);
+			}
+			if(is_cgitoken_char(0xff & *str) == 0)
+				break;
+			++str;
+			++len;
+		}
+	}
+	return(-1);
+}
+
+
+/**
+    @brief Replace CGI token with CGI result
+	CGI tokens have the following syntax @_example123_@
+	They start with "@_" and end with "_@"
+    "@_" must be first two characters of string
+	May have upper and lower case letters, numbers and '-'
+    @param[in] *p: socket stream
+    @param[in] *str: string with token, example @_A_@
+    @return length of replaced text or 0 if no CGI handler was matched
+*/
+MEMSPACE
+int rewrite_cgi_token(rwbuf_t *p, char *src)
+{
+	int len = 0;
+	int ind;
+
+	if((ind = MATCH_LEN(src,"@_TIMER_@")))
+	{
+		tz_t tz;
+		tv_t tv;
+		time_t secs;
+		char *utc;
+
+		gettimeofday( &tv, &tz );
+
+		secs = tv.tv_sec;
+
+		utc = ctime(&secs);
+	
+		len = sock_printf(p, "Time: %s seconds: %lu.%06lu, minuteswest:%d, dsttime:%d",
+			utc, 
+			(uint32_t) tv.tv_sec,
+			(uint32_t) tv.tv_usec,
+			(int)tz.tz_minuteswest,
+			(int)tz.tz_dsttime);
+	}
+	if((ind = MATCH_LEN(src,"@_DATE_@")))
+	{
+		time_t sec;
+		time(&sec);
+		len = sock_printf(p, "Date: %s", ctime(&sec));
+	}
+
+	return ( len );
+}
+
+
 /**
     @brief Process an incoming HTTP request
     @param[in] *p: rwbuf_t pointer to socket buffer
@@ -1729,21 +1776,18 @@ static void web_data_connect_callback(espconn_t *conn)
 MEMSPACE
 static void process_requests(rwbuf_t *p)
 {
+	int len,ind,size;
+	long pos;
     uint8_t byte;
 	int8_t type;
-	int c;
-	int i;
-	int ret;	
-	int len;
-	int index;
 	char *name;
 	char *param;
-	int read_len;
 	FILE *fi;
 	hinfo_t hibuff;
 	hinfo_t *hi;
 	// a token like; $i_am_a_token_name$, must be less then this in length
-	char cgibuf[CGI_TOKEN_SIZE+4];
+#define READBUFFSIZE 512
+	char buff[READBUFFSIZE+1];
 
 	if(!p->conn )
 	{
@@ -1832,39 +1876,76 @@ static void process_requests(rwbuf_t *p)
 #endif
 	if(type == PTYPE_HTML || type == PTYPE_CGI || type == PTYPE_TEXT)
 	{
-		int len = 0;
 		// socket write buffering
-		while(1) {
-		 	c = fgetc(fi);
-			if(c == EOF)
+		while( 1 )
+		{
+			// keep track of file position
+			pos = ftell(fi);
+			memset(buff,0,READBUFFSIZE);
+			len = fread(buff, 1, READBUFFSIZE,fi);
+			if(len == 0)
 				break;
-			// tokens are of the form $variable$
-			// if one matches we substitute it
-			// otherwize we simply display the mismatched text
-#if 0
-			if(c == '$' ) {
-				// read buffer
-				// a token like; $i_am_a_token_name$, must be less then this in length
-				read_len = read_html_token(fi,cgibuf,CGI_TOKEN_SIZE);
-				write_len(w,cgibuf,read_len);
-				len += read_len;
+
+			optimistic_yield(1000);
+
+			// make sure that string operations stop at end of read data
+			buff[len] = 0;
+
+			// Seach for a CGI token
+
+			ind = find_cgitoken_start(buff);
+
+			if(ind < 0) // NOT FOUND
+			{
+				// Write all data in buffer
+				write_len(p, buff, len);
 				continue;
 			}
+
+			if(ind > 0)	// FOUND a token start header ahead of this position
+			{
+				// Write all data up to token start header
+				write_len(p, buff, ind);
+				// Reposition CGI token to start of buffer and reread
+				fseek(fi, pos + ind, 0L);
+				continue;
+			}
+
+			// FOUND CGI token at this position
+			size = is_cgitoken(buff);
+
+			if(size > 0)
+			{
+				buff[size] = 0;
+#if WEB_DEBUG & 8
+				DEBUG_PRINTF("CGI: ind:%d, len:%d, size:%d [%s]\n", ind, len, size, buff);
 #endif
-			++len;
-			write_byte(p,c & 0xff);
-			//optimistic_yield(1000);
+				// TODO CGI actions go here
+				rewrite_cgi_token(p, buff);	
+				// Skip over token
+				fseek(fi, pos + size, 0L);
+				continue;
+			}
+
+			fseek(fi, pos + len, 0L);
+#if WEB_DEBUG & 8
+			DEBUG_PRINTF("CGI BOGUS: ind:%d, len:%d, size:%d [%s]\n", ind, len, size, buff);
+#endif
+			// Write bogus CGI header and skip over it
+			write_len(p, buff, 2);
 		}
 	}
-	else {	// NON CGI read and echo
+	else 
+	{	// NON CGI read and echo
 
 		while(1)
 		{
 			// FIXME
-			len = fread(cgibuf, 1, CGI_TOKEN_SIZE,fi);
+			len = fread(buff, 1, READBUFFSIZE,fi);
 			if(!len)
 				break;
-			write_len(p, cgibuf, len);
+			optimistic_yield(1000);
+			write_len(p, buff, len);
 		}
 	}
 	fclose(fi);
@@ -1921,7 +2002,7 @@ void web_task()
 			optimistic_yield(1000);
 		}
 	}
-	// esp_schedule();
+	esp_schedule();
 }
 
 // only called at main initialization time

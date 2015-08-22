@@ -113,14 +113,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;       * Earth coastline dataset - wireframe view still needs hidden line removal option</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;   * Small Printf with full floating <a class="code" href="structpoint.html">point</a> support along with ftoa/<a class="code" href="sup_8h.html#aaced0f65b217a06c02d33b690360a4f3">atof</a> and integer conversions</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;   * BDF fonts and a BDF <a class="code" href="bdffontutil_8h.html#a6d9c6f27190f0f04abf55678fe81080d">font</a> to C conversion code and optimized display code</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;   * WEB server using SD CARD</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;   * WEB server using SD CARD with CGI processing - files and CGI results can be ANY SIZE!</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;   * Network server client example for display updates</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;   * Uart network server client for serial uart to network bridge.</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;   * Generic queue handling code</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;   * Uart driver.</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;   * <a class="code" href="posix_8h.html#a1c3d85ae80df5590fa314acffd8bf840">POSIX</a> wrappers for FatFS support by ChaN</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;   * <a class="code" href="posix_8h.html#a1c3d85ae80df5590fa314acffd8bf840">POSIX</a> <a class="code" href="time_8c.html#a32b1cbd925752f0cd61d202bbe204a69">time</a> functions and RTC set with NTP</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;   * timers used by rtc and <a class="code" href="time_8c.html#a32b1cbd925752f0cd61d202bbe204a69">time</a> functions</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;   * Timers used by rtc and <a class="code" href="time_8c.html#a32b1cbd925752f0cd61d202bbe204a69">time</a> functions</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;   * <a class="code" href="hspi_8h.html#a22bd615ece7185b5f635eae8facd0994">HSPI</a> code that can handle multiple chip select and clock frequencies</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; * Includes FatFS SD card support by ChaN</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;   </div>
@@ -327,47 +327,54 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;   * web</div>
 <div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;     * web.c</div>
 <div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;     * web.h</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;        * Small Web server with FAT filesystem SD CARD support </div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;   * <a class="code" href="user__task_8c.html#a58c8b2ad0ea491a6642e5e1cbd358c89">yield</a></div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;     * README.txt     </div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;     * cont.<a class="code" href="user__main_8c.html#aa6a210803a601a3b71e9d6d66f1f387d">S</a>         </div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;     * cont.h         </div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;     * cont_util.c    </div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;       * Context switch code</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;     * ets_sys.h</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;     * user_task.c    </div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;     * user_task.h</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;        * Main <a class="code" href="user__main_8c.html#aa8253cd89ed4b268472ed62f4f2074ae">user_init</a> and task replacement with <a class="code" href="user__task_8c.html#a58c8b2ad0ea491a6642e5e1cbd358c89">yield</a> support</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;   * send.c</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;     * Send message to network server </div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;     * Example: ./send -i 192.168.200.116 -m &#39;\fscrolling\ntext\n1\n2\n3\n4&#39;</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;        * These <a class="code" href="send_8c.html#ad694096646db9ef480b7bd9e5afe6ab8">escape</a> characters are processed on the display: \n, \t, \f</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;   * user    </div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;     * Main user demo task</div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;     * user_main.c</div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;        * Intializes ESP8266 and sets up demo with 4 active windows with independent attributes</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;@par Demo Images</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;   * Running demo and sending a message to the network <a class="code" href="structwindow.html">window</a></div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;   * &quot;./send -i 192.168.200.116 -m &#39;testing\nTest3\nscrolling\ntext\n1\n2&#39;&quot;</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;     * Diagnostics from send</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;     ip:192.168.200.116, port:31415, message:</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;     testing</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;     Test3</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;     scrolling</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;     text</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;     1</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;     2</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;     Host name: 192.168.200.116</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;     * Result: ![](https:<span class="comment">//github.com/magore/esp8266_ili9341/blob/master/display.jpg)</span></div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;        * Web server with FAT filesystem SD CARD support </div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;        * Served files can be ANY SIZE!</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;        * CGI files can have an extension of: html,htm,text,txt,cgi</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;          * Only tokens of the form @_cgitoken_@ are replaced by the rewrite function</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;            * @see <a class="code" href="web_8h.html#abfb5be0ab21dfe56bc934a8965154384">rewrite_cgi_token</a>() in web.c</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;        * CGI results can be ANY SIZE</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;        * Uses <a class="code" href="user__task_8c.html#a58c8b2ad0ea491a6642e5e1cbd358c89">yield</a> function to continue background tasks while serving requests</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;   * <a class="code" href="user__task_8c.html#a58c8b2ad0ea491a6642e5e1cbd358c89">yield</a></div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;     * README.txt     </div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;     * cont.<a class="code" href="user__main_8c.html#aa6a210803a601a3b71e9d6d66f1f387d">S</a>         </div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;     * cont.h         </div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;     * cont_util.c    </div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;       * Context switch code</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;     * ets_sys.h</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;     * user_task.c    </div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;     * user_task.h</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;        * Main <a class="code" href="user__main_8c.html#aa8253cd89ed4b268472ed62f4f2074ae">user_init</a> and task replacement with <a class="code" href="user__task_8c.html#a58c8b2ad0ea491a6642e5e1cbd358c89">yield</a> support</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;   * send.c</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;     * Send message to network server </div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;     * Example: ./send -i 192.168.200.116 -m &#39;\fscrolling\ntext\n1\n2\n3\n4&#39;</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;        * These <a class="code" href="send_8c.html#ad694096646db9ef480b7bd9e5afe6ab8">escape</a> characters are processed on the display: \n, \t, \f</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;   * user    </div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;     * Main user demo task</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;     * user_main.c</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;        * Intializes ESP8266 and sets up demo with 4 active windows with independent attributes</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;@par Demo Images</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;   * Running demo and sending a message to the network <a class="code" href="structwindow.html">window</a></div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;   * &quot;./send -i 192.168.200.116 -m &#39;testing\nTest3\nscrolling\ntext\n1\n2&#39;&quot;</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;     * Diagnostics from send</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;     ip:192.168.200.116, port:31415, message:</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;     testing</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;     Test3</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;     scrolling</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;     text</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;     1</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;     2</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;     Host name: 192.168.200.116</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;     * Result: ![](https:<span class="comment">//github.com/magore/esp8266_ili9341/blob/master/display.jpg)</span></div>
 <div class="ttc" id="earth__data_8h_html_afd20dbd7595a2c5971d5661cc598a113"><div class="ttname"><a href="earth__data_8h.html#afd20dbd7595a2c5971d5661cc598a113">earth_data</a></div><div class="ttdeci">MEMSPACE_RO wire_p earth_data[]</div><div class="ttdef"><b>Definition:</b> <a href="earth__data_8h_source.html#l00011">earth_data.h:11</a></div></div>
 <div class="ttc" id="sup_8h_html_aaced0f65b217a06c02d33b690360a4f3"><div class="ttname"><a href="sup_8h.html#aaced0f65b217a06c02d33b690360a4f3">atof</a></div><div class="ttdeci">MEMSPACE double atof(char *str)</div></div>
 <div class="ttc" id="posix_8c_html_a3e5e6f96d36b5cdacfaf6b3976cd5af2"><div class="ttname"><a href="posix_8c.html#a3e5e6f96d36b5cdacfaf6b3976cd5af2">open</a></div><div class="ttdeci">MEMSPACE int open(const char *pathname, int flags)</div><div class="ttdoc">================================================================== </div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l00840">posix.c:840</a></div></div>
 <div class="ttc" id="ff_8c_html_a3d7aad0939745576943767bf6c410eaf"><div class="ttname"><a href="ff_8c.html#a3d7aad0939745576943767bf6c410eaf">FatFs</a></div><div class="ttdeci">static FATFS * FatFs[_VOLUMES]</div><div class="ttdef"><b>Definition:</b> <a href="ff_8c_source.html#l00506">ff.c:506</a></div></div>
 <div class="ttc" id="integer_8h_html_a2a3e0cda5f1249bef6db47c5eb8e3813"><div class="ttname"><a href="integer_8h.html#a2a3e0cda5f1249bef6db47c5eb8e3813">LONG</a></div><div class="ttdeci">long LONG</div><div class="ttdef"><b>Definition:</b> <a href="integer_8h_source.html#l00038">integer.h:38</a></div></div>
 <div class="ttc" id="time_8c_html_a32b1cbd925752f0cd61d202bbe204a69"><div class="ttname"><a href="time_8c.html#a32b1cbd925752f0cd61d202bbe204a69">time</a></div><div class="ttdeci">MEMSPACE time_t time(time_t *t)</div><div class="ttdoc">Return second from epoch - POSIX function. </div><div class="ttdef"><b>Definition:</b> <a href="time_8c_source.html#l00575">time.c:575</a></div></div>
+<div class="ttc" id="web_8h_html_abfb5be0ab21dfe56bc934a8965154384"><div class="ttname"><a href="web_8h.html#abfb5be0ab21dfe56bc934a8965154384">rewrite_cgi_token</a></div><div class="ttdeci">MEMSPACE int rewrite_cgi_token(rwbuf_t *p, char *src)</div></div>
 <div class="ttc" id="struct__printf__t_html_a38c7a430cec9b063bf6df7a100d3abaa"><div class="ttname"><a href="struct__printf__t.html#a38c7a430cec9b063bf6df7a100d3abaa">_printf_t::size</a></div><div class="ttdeci">int size</div><div class="ttdef"><b>Definition:</b> <a href="printf_8h_source.html#l00049">printf.h:49</a></div></div>
 <div class="ttc" id="send_8c_html_ad694096646db9ef480b7bd9e5afe6ab8"><div class="ttname"><a href="send_8c.html#ad694096646db9ef480b7bd9e5afe6ab8">escape</a></div><div class="ttdeci">int escape(char *message, int size)</div><div class="ttdef"><b>Definition:</b> <a href="send_8c_source.html#l00026">send.c:26</a></div></div>
 <div class="ttc" id="user__task_8c_html_a58c8b2ad0ea491a6642e5e1cbd358c89"><div class="ttname"><a href="user__task_8c.html#a58c8b2ad0ea491a6642e5e1cbd358c89">yield</a></div><div class="ttdeci">void yield()</div><div class="ttdef"><b>Definition:</b> <a href="user__task_8c_source.html#l00085">user_task.c:85</a></div></div>
@@ -388,7 +395,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Aug 21 2015 18:34:45 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Aug 21 2015 23:00:55 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

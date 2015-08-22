@@ -51,7 +51,7 @@ var searchData=
   ['disk_5ftimerproc',['disk_timerproc',['../diskio_8h.html#a045f8898a243c16aca4e64e069c49c03',1,'diskio.h']]],
   ['disk_5fwrite',['disk_write',['../diskio_8h.html#a0fe56ee4831a44b09cfd96856e069634',1,'diskio.h']]],
   ['diskio_2eh',['diskio.h',['../diskio_8h.html',1,'']]],
-  ['display_5fipv4',['display_ipv4',['../web_8c.html#ac7de83b625a20615ae43b655483c9f6b',1,'web.c']]],
+  ['display_5fipv4',['display_ipv4',['../web_8c.html#a89dceabcd370d352c3efed0e689fd551',1,'display_ipv4(char *msg, uint8_t *ip, int port):&#160;web.c'],['../web_8h.html#a89dceabcd370d352c3efed0e689fd551',1,'display_ipv4(char *msg, uint8_t *ip, int port):&#160;web.c']]],
   ['display_5fts',['display_ts',['../timer_8c.html#a6802af23bc1fe764b975683a0b37fc91',1,'display_ts(ts_t *val):&#160;timer.c'],['../timer_8h.html#a6802af23bc1fe764b975683a0b37fc91',1,'display_ts(ts_t *val):&#160;timer.c']]],
   ['dresult',['DRESULT',['../diskio_8h.html#a54ffb9f13138d2b17dd599ba880696ad',1,'diskio.h']]],
   ['drv',['drv',['../structFATFS.html#a6a791560e2687e8b1569bfce61208d2d',1,'FATFS']]],

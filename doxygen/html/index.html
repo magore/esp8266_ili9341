@@ -117,14 +117,14 @@ README</h1>
 </li>
 <li>Small Printf with full floating point support along with ftoa/atof and integer conversions</li>
 <li>BDF fonts and a BDF font to C conversion code and optimized display code</li>
-<li>WEB server using SD CARD</li>
+<li>WEB server using SD CARD with CGI processing - files and CGI results can be ANY SIZE!</li>
 <li>Network server client example for display updates</li>
 <li>Uart network server client for serial uart to network bridge.</li>
 <li>Generic queue handling code</li>
 <li>Uart driver.</li>
 <li>POSIX wrappers for FatFS support by ChaN</li>
 <li>POSIX time functions and RTC set with NTP</li>
-<li>timers used by rtc and time functions</li>
+<li>Timers used by rtc and time functions</li>
 <li>HSPI code that can handle multiple chip select and clock frequencies</li>
 </ul>
 </li>
@@ -467,7 +467,18 @@ README</h1>
 <li>web<ul>
 <li><a class="el" href="web_8c.html" title="Small web server for esp8266. ">web.c</a></li>
 <li><a class="el" href="web_8h.html" title="Small web server for esp8266. ">web.h</a><ul>
-<li>Small Web server with FAT filesystem SD CARD support</li>
+<li>Web server with FAT filesystem SD CARD support</li>
+<li>Served files can be ANY SIZE!</li>
+<li>CGI files can have an extension of: html,htm,text,txt,cgi<ul>
+<li>Only tokens of the form @ are replaced by the rewrite function<ul>
+<li><dl class="section see"><dt>See Also</dt><dd><a class="el" href="web_8h.html#abfb5be0ab21dfe56bc934a8965154384">rewrite_cgi_token()</a> in <a class="el" href="web_8c.html" title="Small web server for esp8266. ">web.c</a></dd></dl>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>CGI results can be ANY SIZE</li>
+<li>Uses yield function to continue background tasks while serving requests</li>
 </ul>
 </li>
 </ul>
@@ -521,7 +532,7 @@ README</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Aug 21 2015 18:34:46 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Aug 21 2015 23:00:56 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

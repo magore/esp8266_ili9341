@@ -25,14 +25,14 @@
        * Earth coastline dataset - wireframe view still needs hidden line removal option
    * Small Printf with full floating point support along with ftoa/atof and integer conversions
    * BDF fonts and a BDF font to C conversion code and optimized display code
-   * WEB server using SD CARD
+   * WEB server using SD CARD with CGI processing - files and CGI results can be ANY SIZE!
    * Network server client example for display updates
    * Uart network server client for serial uart to network bridge.
    * Generic queue handling code
    * Uart driver.
    * POSIX wrappers for FatFS support by ChaN
    * POSIX time functions and RTC set with NTP
-   * timers used by rtc and time functions
+   * Timers used by rtc and time functions
    * HSPI code that can handle multiple chip select and clock frequencies
  * Includes FatFS SD card support by ChaN
    
@@ -239,7 +239,13 @@ ___
    * web
      * web.c
      * web.h
-        * Small Web server with FAT filesystem SD CARD support 
+        * Web server with FAT filesystem SD CARD support 
+		* Served files can be ANY SIZE!
+        * CGI files can have an extension of: html,htm,text,txt,cgi
+		  * Only tokens of the form @_cgitoken_@ are replaced by the rewrite function
+            * @see rewrite_cgi_token() in web.c
+		* CGI results can be ANY SIZE
+		* Uses yield function to continue background tasks while serving requests
 
    * yield
      * README.txt     

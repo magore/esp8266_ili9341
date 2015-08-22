@@ -23,7 +23,6 @@ var searchData=
   ['printf_5ft',['printf_t',['../printf_8h.html#a1efdee46bf8e5af45e76e461e8db9c09',1,'printf.h']]],
   ['printxyz',['PrintXYZ',['../cordic2c_8c.html#afc93093d0da5da783668ca27f859a2a7',1,'cordic2c.c']]],
   ['process_5fargs',['process_args',['../web_8c.html#a6f0b838bc63d86703c26bd813fc1ff13',1,'process_args(hinfo_t *hi):&#160;web.c'],['../web_8h.html#a6f0b838bc63d86703c26bd813fc1ff13',1,'process_args(hinfo_t *hi):&#160;web.c']]],
-  ['process_5frequests',['process_requests',['../web_8c.html#a83e96b326e5d0ef41c95a83d510705dc',1,'web.c']]],
   ['ps',['ps',['../structex__regs.html#a41791a7ade763f5f965ca2d412914dbb',1,'ex_regs']]],
   ['ptr',['ptr',['../struct__fontc.html#a60a3fef5ccd80dff543aac3f22f74876',1,'_fontc::ptr()'],['../structmem__t.html#af9fd184846ee12236e952731fa592a74',1,'mem_t::ptr()']]],
   ['ptype_5fcgi',['PTYPE_CGI',['../web_8h.html#abc6126af1d45847bc59afa0aa3216b04a96590ec99e2f5ce52c16218c19441c77',1,'web.h']]],

@@ -21,7 +21,7 @@ var searchData=
   ['disk_5fstatus',['disk_status',['../diskio_8h.html#a8348ac5ee6d709420c02e45c111f4793',1,'diskio.h']]],
   ['disk_5ftimerproc',['disk_timerproc',['../diskio_8h.html#a045f8898a243c16aca4e64e069c49c03',1,'diskio.h']]],
   ['disk_5fwrite',['disk_write',['../diskio_8h.html#a0fe56ee4831a44b09cfd96856e069634',1,'diskio.h']]],
-  ['display_5fipv4',['display_ipv4',['../web_8c.html#ac7de83b625a20615ae43b655483c9f6b',1,'web.c']]],
+  ['display_5fipv4',['display_ipv4',['../web_8c.html#a89dceabcd370d352c3efed0e689fd551',1,'display_ipv4(char *msg, uint8_t *ip, int port):&#160;web.c'],['../web_8h.html#a89dceabcd370d352c3efed0e689fd551',1,'display_ipv4(char *msg, uint8_t *ip, int port):&#160;web.c']]],
   ['display_5fts',['display_ts',['../timer_8c.html#a6802af23bc1fe764b975683a0b37fc91',1,'display_ts(ts_t *val):&#160;timer.c'],['../timer_8h.html#a6802af23bc1fe764b975683a0b37fc91',1,'display_ts(ts_t *val):&#160;timer.c']]],
   ['dump_5fstat',['dump_stat',['../posix_8c.html#a111f2e6e6bc9f0a46210a323cab093c7',1,'dump_stat(struct stat *sp):&#160;posix.c'],['../posix_8h.html#a111f2e6e6bc9f0a46210a323cab093c7',1,'dump_stat(struct stat *sp):&#160;posix.c']]],
   ['dump_5ftables',['dump_tables',['../cordic2c_8c.html#a3281e2a9f8144b206e9e782543ed8da6',1,'cordic2c.c']]]

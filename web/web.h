@@ -162,21 +162,22 @@ typedef struct {
 
 
 // ============================================================
-/* web.c */
+/* web/web.c */
 MEMSPACE void led_on ( int led );
 MEMSPACE void led_off ( int led );
 MEMSPACE void rwbuf_rinit ( rwbuf_t *p );
 MEMSPACE void rwbuf_winit ( rwbuf_t *p );
+MEMSPACE void display_ipv4 ( char *msg , uint8_t *ip , int port );
 MEMSPACE void rwbuf_delete ( rwbuf_t *p );
 MEMSPACE rwbuf_t *rwbuf_create ( void );
+MEMSPACE rwbuf_t *find_connection ( espconn_t *conn , int *index , char *msg );
 MEMSPACE rwbuf_t *create_connection ( espconn_t *conn );
-MEMSPACE rwbuf_t *find_connection ( espconn_t *conn , int *index, char *msg );
 MEMSPACE void delete_connection ( rwbuf_t *p );
-MEMSPACE int write_byte ( rwbuf_t *p , int c );
+MEMSPACE MEMSPACE int write_byte ( rwbuf_t *p , int c );
+MEMSPACE int wait_send ( rwbuf_t *p );
 MEMSPACE void write_flush ( rwbuf_t *p );
 MEMSPACE void write_len ( rwbuf_t *p , char *str , int len );
 MEMSPACE void write_str ( rwbuf_t *p , char *str );
-MEMSPACE void write_len_flush ( rwbuf_t *p , char *buff , int len );
 MEMSPACE int vsock_printf ( rwbuf_t *p , const char *fmt , va_list va );
 MEMSPACE int sock_printf ( rwbuf_t *p , const char *fmt , ...);
 MEMSPACE int html_msg ( rwbuf_t *p , int status , char type , char *fmt , ...);
@@ -196,11 +197,11 @@ MEMSPACE char *http_value ( hinfo_t *hi , char *str );
 MEMSPACE char *is_header ( char *str );
 MEMSPACE char *nextbreak ( char *ptr );
 MEMSPACE void u5toa ( char *ptr , uint16_t num );
-MEMSPACE int is_token ( int c );
-MEMSPACE int read_html_token ( FILE *fi , char *str , int len );
-MEMSPACE int rewrite_html_token ( char *src , int len );
 MEMSPACE void html_head ( rwbuf_t *p , int status , char type , int len );
 MEMSPACE int parse_http_request ( rwbuf_t *p , hinfo_t *hi );
+MEMSPACE int find_cgitoken_start ( char *str );
+MEMSPACE int is_cgitoken ( char *str );
+MEMSPACE int rewrite_cgi_token ( rwbuf_t *p , char *src );
 MEMSPACE void web_task ( void );
 MEMSPACE void web_init_connections ( void );
 MEMSPACE void web_init ( int port );
