@@ -60,7 +60,7 @@ ifdef BIG
 else
 	FW_ARGS := -ff 80m -fm qio -fs 4m
 	SIZE := 0x80000
-	IPADDR=192.168.200.5
+	IPADDR=192.168.200.116
 	LD_SCRIPT		= eagle.app.v6.new.512.ld
 endif
 
