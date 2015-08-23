@@ -73,6 +73,7 @@ enum {
     TOKEN_HEAD,
     TOKEN_HOST,
     TOKEN_USER_AGENT,
+    TOKEN_HTTPS,
     TOKEN_DNT,
     TOKEN_ACCEPT,
     TOKEN_ACCEPT_LANGUAGE,
@@ -162,7 +163,7 @@ typedef struct {
 
 
 // ============================================================
-/* web/web.c */
+/* web.c */
 MEMSPACE void led_on ( int led );
 MEMSPACE void led_off ( int led );
 MEMSPACE void rwbuf_rinit ( rwbuf_t *p );
@@ -194,11 +195,12 @@ MEMSPACE char *next_arg ( hinfo_t *hi );
 MEMSPACE char *arg_name ( hinfo_t *hi );
 MEMSPACE char *arg_value ( hinfo_t *hi );
 MEMSPACE char *http_value ( hinfo_t *hi , char *str );
-MEMSPACE char *is_header ( char *str );
+MEMSPACE int is_header ( char *str , char **p );
 MEMSPACE char *nextbreak ( char *ptr );
 MEMSPACE void u5toa ( char *ptr , uint16_t num );
 MEMSPACE void html_head ( rwbuf_t *p , int status , char type , int len );
 MEMSPACE int parse_http_request ( rwbuf_t *p , hinfo_t *hi );
+MEMSPACE int is_cgitoken_char ( int c );
 MEMSPACE int find_cgitoken_start ( char *str );
 MEMSPACE int is_cgitoken ( char *str );
 MEMSPACE int rewrite_cgi_token ( rwbuf_t *p , char *src );

@@ -143,6 +143,7 @@ var searchData=
   ['token_5fget',['TOKEN_GET',['../web_8h.html#adf764cbdea00d65edcd07bb9953ad2b7a6b4dfa1db88da421c74c30dc94c3ce53',1,'web.h']]],
   ['token_5fhead',['TOKEN_HEAD',['../web_8h.html#adf764cbdea00d65edcd07bb9953ad2b7a7a543c7cf1ac077230c499a41c3a8a94',1,'web.h']]],
   ['token_5fhost',['TOKEN_HOST',['../web_8h.html#adf764cbdea00d65edcd07bb9953ad2b7a04d43499e4bc7c9f971f7a660d098ff1',1,'web.h']]],
+  ['token_5fhttps',['TOKEN_HTTPS',['../web_8h.html#adf764cbdea00d65edcd07bb9953ad2b7ae47eb1ae54089e857fd7795282a7ae1d',1,'web.h']]],
   ['token_5fpost',['TOKEN_POST',['../web_8h.html#adf764cbdea00d65edcd07bb9953ad2b7a4cb258960bebf97073876d09836f1618',1,'web.h']]],
   ['token_5fput',['TOKEN_PUT',['../web_8h.html#adf764cbdea00d65edcd07bb9953ad2b7a2a1292bc924f34d6d69a7b71501ae73f',1,'web.h']]],
   ['token_5freferer',['TOKEN_REFERER',['../web_8h.html#adf764cbdea00d65edcd07bb9953ad2b7ab9bf3f747c7169a74f228b4f173c2bf4',1,'web.h']]],

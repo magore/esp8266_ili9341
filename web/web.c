@@ -55,7 +55,8 @@ header_t msg_headers[] = {
 	{ "POST", 				TOKEN_POST },
 	{ "HEAD", 				TOKEN_HEAD },
 	{ "Host:", 				TOKEN_HOST },
-	{ "User-Agent", 		TOKEN_USER_AGENT },
+	{ "User-Agent:", 		TOKEN_USER_AGENT },
+	{ "HTTPS:", 			TOKEN_HTTPS},
 	{ "DNT:", 				TOKEN_DNT},
 	{ "Accept:", 			TOKEN_ACCEPT },
 	{ "Accept-Language:", 	TOKEN_ACCEPT_LANGUAGE },
@@ -1000,9 +1001,6 @@ int match_headers(char *str, char **p)
 			return(i);
 		}
 	}
-#if WEB_DEBUG & 1
-	DEBUG_PRINTF("match_headers unknown:%s\n",str);
-#endif
 	return(-1);
 }
 
@@ -1190,22 +1188,27 @@ char *http_value(hinfo_t *hi, char *str)
 /** 
 	@brief Does the string look like a header token with a ':' ?
 	@param[in] *str: string to test
-	@return just past the ':' or NULL
+	@param[in] **p: string pointer to set on match
+	@return 1 if it looks like a header, otherwise 0
 */
 MEMSPACE
-char *is_header(char *str)
+int is_header(char *str, char **p)
 {
 	if(!str)
-		return NULL;
-
+	{
+		return (0);
+	}
 	while(*str && *str != ':') {
 		if(*str <= ' ' || *str > 'z')
 			break;
 		++str;
 	}
 	if(*str == ':')
-		return(str+1);
-	return(NULL);
+	{
+		*p = str+1;
+		return(1);
+	}
+	return(0);
 }
 
 /** 
@@ -1301,9 +1304,26 @@ int parse_http_request(rwbuf_t *p, hinfo_t *hi)
 	while( (ptr = memgets(&memp)) ) 
 	{
 		save = ptr;
-		header = match_headers(ptr,&ptr);
-		if(header == -1 && !(ptr = is_header(save)) )
+		// check against known headers
+		header = match_headers(save,&ptr);
+		if(header == -1)
+		{
+			// Does it at least look like a header ?
+			if( !is_header(save, &ptr))
+			{
+#if WEB_DEBUG & 8
+		DEBUG_PRINTF("Header break:[%s]\n",save);
+#endif
 				break;
+			}
+
+#if WEB_DEBUG & 8
+		DEBUG_PRINTF("header skip:[%s]\n",save);
+#endif
+			// skip the unknown header
+			continue;
+		}
+		// ptr now points after the ':' in the header
 
 #if WEB_DEBUG & 8
 		DEBUG_PRINTF("header(%d): %s\n",header,ptr);
@@ -1360,6 +1380,9 @@ int parse_http_request(rwbuf_t *p, hinfo_t *hi)
 			hi->html_encoding = ptr;
 		} // POST or HEAD
 		else if( type == -1) {
+#if WEB_DEBUG & 8
+			DEBUG_PRINTF("Unknown type: %d\n", hi->type);
+#endif
 			return(0);
 		}
         	
