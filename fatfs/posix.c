@@ -487,7 +487,8 @@ char *strerror(int errnum)
 MEMSPACE
 char *strerror_r(int errnum, char *buf, size_t buflen)
 {
-		strncpy(buf, sys_errlist[errnum], buflen);
+	strncpy(buf, sys_errlist[errnum], buflen);
+	return(buf);
 }
 
 /// @brief Convert FafFs error result to POSIX errno.
