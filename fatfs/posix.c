@@ -250,7 +250,6 @@ int fatfs_to_fileno(FIL *fh)
     return(-1);
 }
 
-
 #ifdef NO_STDIO
 /// @brief feof reports if the stream is at EOF 
 /// - man page feof (3).
@@ -265,7 +264,6 @@ int feof(FILE *stream)
 	return(0);
 }
 #endif
-
 
 #ifdef NO_STDIO
 /// @brief ferror reports if the stream has an error flag set
@@ -295,7 +293,6 @@ void clrerror(FILE *stream)
 	stream->flags &= ~__SERR;
 }
 #endif
-
 
 
 /// @brief Allocate a POSIX FILE descriptor.
@@ -337,6 +334,7 @@ int new_file_descriptor( void )
     errno = ENFILE;
     return(-1);
 }
+
 
 #ifdef NO_STDIO
 /// @brief  Assign stdin,stdout,stderr
@@ -497,8 +495,8 @@ char *strerror(int errnum)
 MEMSPACE
 char *strerror_r(int errnum, char *buf, size_t buflen)
 {
-	strncpy(buf, sys_errlist[errnum], buflen);
-	return(buf);
+		strncpy(buf, sys_errlist[errnum], buflen);
+		return(buf);
 }
 
 /// @brief Convert FafFs error result to POSIX errno.
@@ -680,7 +678,7 @@ static int  fatfs_getc(FILE *stream)
     }
 
     res = f_read(fh, &c, 1, (UINT *) &size);
-    if( res != RES_OK || size != 1)
+    if( res != FR_OK || size != 1)
     {
         errno = fatfs_to_errno(res);
         stream->flags |= __SEOF;
@@ -723,7 +721,7 @@ int fatfs_putc(char c, FILE *stream)
     }
 
     res = f_write(fh, &c, 1, (UINT *)  &size);
-    if( res != RES_OK || size != 1)
+    if( res != FR_OK || size != 1)
     {
         errno = fatfs_to_errno(res);
         stream->flags |= __SEOF;
@@ -862,7 +860,7 @@ int open(const char *pathname, int flags)
 
     errno = 0;
 
-// FIXME Assume that mmc_init was already called
+// FIXME Assume that mmc_init was already called 
 #if 0
 // Checks Disk status
     res = mmc_init(0);
@@ -908,7 +906,7 @@ int open(const char *pathname, int flags)
         return(-1);
     }
     res = f_open(fh, pathname, (BYTE) (fatfs_modes & 0xff));
-    if(res != RES_OK)
+    if(res != FR_OK)
     {
         errno = fatfs_to_errno(res);
         free_file_descriptor(fileno);
@@ -1022,7 +1020,7 @@ MEMSPACE
 int syncfs(int fd)
 {
     FIL *fh;
-    int res;
+    FRESULT res;
 
     errno = 0;
 
@@ -1059,7 +1057,6 @@ MEMSPACE
 void sync(void)
 {
     FIL *fh;
-    int res;
     int i;
 
     for(i=0;i<MAX_FILES;++i)
@@ -1131,7 +1128,7 @@ ssize_t write(int fd, const void *buf, size_t count)
     }
 
     res = f_write(fh, buf, bytes, &size);
-    if(res != RES_OK)
+    if(res != FR_OK)
     {
         errno = fatfs_to_errno(res);
         return(-1);
@@ -1206,7 +1203,7 @@ ssize_t read(int fd, const void *buf, size_t count)
     }
 
     res = f_read(fh, (void *) buf, bytes, &size);
-    if(res != RES_OK)
+    if(res != FR_OK)
     {
         errno = fatfs_to_errno(res);
         return(-1);
@@ -1405,7 +1402,7 @@ int unlink(const char *pathname)
 {
     errno = 0;
     int res = f_unlink(pathname);
-    if(res != RES_OK)
+    if(res != FR_OK)
     {
         errno = fatfs_to_errno(res);
         return(-1);
@@ -1427,7 +1424,7 @@ int rmdir(const char *pathname)
 {
     errno = 0;
     int res = f_unlink(pathname);
-    if(res != RES_OK)
+    if(res != FR_OK)
     {
         errno = fatfs_to_errno(res);
         return(-1);
@@ -1598,7 +1595,7 @@ int stat(char *name, struct stat *buf)
     }
 
     res = f_stat(name, info);
-    if(res != RES_OK)
+    if(res != FR_OK)
     {
         errno = fatfs_to_errno(res);
         return(-1);

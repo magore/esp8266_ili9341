@@ -176,7 +176,6 @@ MEMSPACE
 char *get_token(char *str, char *token, int max)
 {
     int len;
-    char *save;
 
     *token = 0;
 
@@ -185,7 +184,6 @@ char *get_token(char *str, char *token, int max)
         return(NULL);
 
     str = skipspaces(str);
-    save = str;
 
     // Find size of token
     len = 0;

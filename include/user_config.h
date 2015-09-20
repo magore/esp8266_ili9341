@@ -134,4 +134,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define calloc safecalloc
 #define malloc safemalloc
 
+// sys.c defines alternative safe functions
+#ifndef free
+    #define free(p) safefree(p)
+#endif
+#ifndef calloc
+    #define calloc(n,s) safecalloc(n,s)
+#endif
+#ifndef malloc
+    #define malloc(s) safemalloc(s)
+#endif
+
 #endif
