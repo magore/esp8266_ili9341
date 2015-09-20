@@ -16,7 +16,7 @@ var searchData=
   ['a8',['a8',['../structex__regs.html#a4a700b056da9b3ea0917603b9c4f9b28',1,'ex_regs']]],
   ['a9',['a9',['../structex__regs.html#a513f72e66ad69090bdbb06fb37f177d1',1,'ex_regs']]],
   ['abort',['ABORT',['../ff_8c.html#a41e4c46636679236568cf50b5535847f',1,'ABORT():&#160;ff.c'],['../user__task_8c.html#ac54f53dc342019e8db34f4aa581a5792',1,'abort():&#160;user_task.c'],['../user__task_8h.html#a8dec7c95227ff149687066cf04029191',1,'abort(void):&#160;user_task.c']]],
-  ['abs',['ABS',['../util_8h.html#a996f7be338ccb40d1a2a5abc1ad61759',1,'util.h']]],
+  ['abs',['ABS',['../str_8h.html#a996f7be338ccb40d1a2a5abc1ad61759',1,'str.h']]],
   ['accdirs',['AccDirs',['../disk_8c.html#a4fb5ebb5ee82d1ddf3fdcf88329dd5d3',1,'AccDirs():&#160;disk.c'],['../disk_8h.html#a4fb5ebb5ee82d1ddf3fdcf88329dd5d3',1,'AccDirs():&#160;disk.c']]],
   ['accfiles',['AccFiles',['../disk_8c.html#a8886578bc67fc71837328a1ee237d10c',1,'AccFiles():&#160;disk.c'],['../disk_8h.html#a8886578bc67fc71837328a1ee237d10c',1,'AccFiles():&#160;disk.c']]],
   ['accsize',['AccSize',['../disk_8c.html#a1e9c5ddcfdf89c9a42c96ee1d2196876',1,'AccSize():&#160;disk.c'],['../disk_8h.html#a1e9c5ddcfdf89c9a42c96ee1d2196876',1,'AccSize():&#160;disk.c']]],
@@ -54,6 +54,7 @@ var searchData=
   ['atexit',['atexit',['../user__task_8c.html#a7962f8536e3c743c8380411e184c7e2f',1,'atexit(void(*func)()):&#160;user_task.c'],['../user__task_8h.html#a7962f8536e3c743c8380411e184c7e2f',1,'atexit(void(*func)()):&#160;user_task.c']]],
   ['atodigit',['atodigit',['../sup_8c.html#a8c0b521d598596dde4e31d56f672ad76',1,'atodigit(int c, int radix):&#160;sup.c'],['../sup_8h.html#a8c0b521d598596dde4e31d56f672ad76',1,'atodigit(int c, int radix):&#160;sup.c']]],
   ['atof',['atof',['../sup_8h.html#aaced0f65b217a06c02d33b690360a4f3',1,'sup.h']]],
+  ['atoh',['atoh',['../str_8c.html#a65e529a87a8bcaf0b2cb9b6edc3a8fde',1,'str.c']]],
   ['atoi',['atoi',['../sup_8c.html#a90a4ca3a536a676e78b12c671b66111d',1,'atoi(uint8_t *str):&#160;sup.c'],['../sup_8h.html#a90a4ca3a536a676e78b12c671b66111d',1,'atoi(uint8_t *str):&#160;sup.c'],['../ets__sys_8h.html#ad228deceea1bac4d9f171f647c265059',1,'atoi(const char *nptr):&#160;ets_sys.h']]],
   ['aton',['aton',['../sup_8c.html#a5b0e8d54cc1034cb2c447aa02b9b9520',1,'aton(uint8_t *str, int base):&#160;sup.c'],['../sup_8h.html#a5b0e8d54cc1034cb2c447aa02b9b9520',1,'aton(uint8_t *str, int base):&#160;sup.c']]]
 ];

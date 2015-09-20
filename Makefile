@@ -256,7 +256,7 @@ ifdef YIELD_TASK
 endif
 
 
-CFLAGS += -DDEBUG_PRINTF=$(DEBUG_PRINTF)
+CFLAGS += -Dprintf=$(DEBUG_PRINTF)
 
 # Include font specifications - needed with proportional fonts 
 CFLAGS  += -DFONTSPECS 

@@ -3667,7 +3667,9 @@ FATFS** fatfs                                     /* Pointer to return pointer t
                     if (stat == 0xFFFFFFFF) { res = FR_DISK_ERR; break; }
                     if (stat == 1) { res = FR_INT_ERR; break; }
                     if (stat == 0) n++;
-wdt_reset();
+#ifdef ESP8266
+					wdt_reset();
+#endif
                 } while (++clst < fs->n_fatent);
             }
             else
@@ -3694,7 +3696,9 @@ wdt_reset();
                         if ((LD_DWORD(p) & 0x0FFFFFFF) == 0) n++;
                         p += 4; i -= 4;
                     }
-wdt_reset();
+#ifdef ESP8266
+					wdt_reset();
+#endif
                 } while (--clst);
             }
             fs->free_clust = n;
@@ -4624,7 +4628,9 @@ UINT au                                           /* Allocation unit [bytes] */
     {
         if (disk_write(pdrv, tbl, wsect++, 1))
             return FR_DISK_ERR;
-wdt_reset();
+#ifdef ESP8266
+			wdt_reset();
+#endif
     } while (--i);
 
 #if _USE_ERASE                                /* Erase data area if needed */

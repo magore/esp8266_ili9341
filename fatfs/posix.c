@@ -60,8 +60,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "posix.h"
 
+#ifdef ESP8266
 // FIXME ESP8266 library conflict
 #undef strerror_r
+#endif
 
 ///  Note: fdevopen assigns stdin,stdout,stderr
 
@@ -249,6 +251,7 @@ int fatfs_to_fileno(FIL *fh)
 }
 
 
+#ifdef NO_STDIO
 /// @brief feof reports if the stream is at EOF 
 /// - man page feof (3).
 ///
@@ -261,7 +264,10 @@ int feof(FILE *stream)
 		return(1);
 	return(0);
 }
+#endif
 
+
+#ifdef NO_STDIO
 /// @brief ferror reports if the stream has an error flag set
 /// - man page ferror (3).
 ///
@@ -274,7 +280,9 @@ int ferror(FILE *stream)
 		return(1);
 	return(0);
 }
+#endif
 
+#ifdef NO_STDIO
 /// @brief clrerror resets stream EOF and error flags
 /// - man page clrerror(3).
 ///
@@ -286,6 +294,7 @@ void clrerror(FILE *stream)
 	stream->flags &= ~__SEOF;
 	stream->flags &= ~__SERR;
 }
+#endif
 
 
 
@@ -329,7 +338,7 @@ int new_file_descriptor( void )
     return(-1);
 }
 
-
+#ifdef NO_STDIO
 /// @brief  Assign stdin,stdout,stderr
 ///
 /// @param[in] *put: uart putc function pointer
@@ -370,6 +379,7 @@ fdevopen(int (*put)(char, FILE *), int (*get)(FILE *))
 
     return s;
 }
+#endif
 
 
 /// @brief  Free POSIX fileno FILE descriptor.
@@ -454,9 +464,9 @@ void perror(const char *s)
         ptr = sys_errlist[EBADMSG];
 
     if(s && *s)
-        DEBUG_PRINTF("%s: %s\n", s, ptr);
+        printf("%s: %s\n", s, ptr);
     else
-        DEBUG_PRINTF("%s\n", ptr);
+        printf("%s\n", ptr);
 }
 
 
@@ -487,7 +497,8 @@ char *strerror(int errnum)
 MEMSPACE
 char *strerror_r(int errnum, char *buf, size_t buflen)
 {
-		strncpy(buf, sys_errlist[errnum], buflen);
+	strncpy(buf, sys_errlist[errnum], buflen);
+	return(buf);
 }
 
 /// @brief Convert FafFs error result to POSIX errno.
@@ -722,6 +733,7 @@ int fatfs_putc(char c, FILE *stream)
 }
 
 /// ==================================================================
+#ifdef NO_STDIO
 /// @brief Get byte from a TTY device or FatFs file stream
 /// open() or fopen() sets stream->get = fatfs_getc() for FatFs functions
 /// fdevopen()        sets stream->get for TTY devices
@@ -758,7 +770,7 @@ fgetc(FILE *stream)
     } else {
 		if(!stream->get)
 		{
-			DEBUG_PRINTF("fgetc stream->get NULL\n");
+			printf("fgetc stream->get NULL\n");
 			return(EOF);
 		}
         c = stream->get(stream);
@@ -772,7 +784,9 @@ fgetc(FILE *stream)
     stream->len++;
     return (unsigned char)c;
 }
+#endif
 
+#ifdef NO_STDIO
 /// @brief Put a byte to TTY device or FatFs file stream
 /// open() or fopen() sets stream->put = fatfs_outc() for FatFs functions
 /// fdevopen()        sets stream->put get for TTY devices
@@ -812,7 +826,7 @@ fputc(int c, FILE *stream)
     } else {
 		if(!stream->put)
 		{
-			DEBUG_PRINTF("fputc stream->put NULL\n");
+			printf("fputc stream->put NULL\n");
 			return(EOF);
 		}
         if (stream->put(c, stream) == 0) {
@@ -822,6 +836,7 @@ fputc(int c, FILE *stream)
             return EOF;
     }
 }
+#endif
 
 
 /// ==================================================================
@@ -847,7 +862,7 @@ int open(const char *pathname, int flags)
 
     errno = 0;
 
-// FIXME Assumes that mmc_init was already called
+// FIXME Assume that mmc_init was already called
 #if 0
 // Checks Disk status
     res = mmc_init(0);
@@ -1651,23 +1666,23 @@ void dump_stat(struct stat *sp)
 {
     mode_t mode = sp->st_mode;
 
-    DEBUG_PRINTF("\tSize:  %lu\n", (uint32_t)sp->st_size);
+    printf("\tSize:  %lu\n", (uint32_t)sp->st_size);
 
-    DEBUG_PRINTF("\tType:  ");
+    printf("\tType:  ");
     if(S_ISDIR(mode))
-        DEBUG_PRINTF("DIR\n");
+        printf("DIR\n");
     else if(S_ISREG(mode))
-        DEBUG_PRINTF("File\n");
+        printf("File\n");
     else
-        DEBUG_PRINTF("Unknown\n");
+        printf("Unknown\n");
 
 
-    DEBUG_PRINTF("\tMode:  %lo\n", (uint32_t)sp->st_mode);
-    DEBUG_PRINTF("\tUID:   %lu\n", (uint32_t)sp->st_uid);
-    DEBUG_PRINTF("\tGID:   %lu\n", (uint32_t)sp->st_gid);
-    DEBUG_PRINTF("\tatime: %s\n",mctime((time_t)sp->st_atime));
-    DEBUG_PRINTF("\tmtime: %s\n",mctime((time_t)sp->st_mtime));
-    DEBUG_PRINTF("\tctime: %s\n",mctime((time_t)sp->st_ctime));
+    printf("\tMode:  %lo\n", (uint32_t)sp->st_mode);
+    printf("\tUID:   %lu\n", (uint32_t)sp->st_uid);
+    printf("\tGID:   %lu\n", (uint32_t)sp->st_gid);
+    printf("\tatime: %s\n",mctime((time_t)sp->st_atime));
+    printf("\tmtime: %s\n",mctime((time_t)sp->st_mtime));
+    printf("\tctime: %s\n",mctime((time_t)sp->st_ctime));
 }
 
 

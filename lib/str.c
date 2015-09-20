@@ -1,7 +1,7 @@
 /**
- @file util.c
+ @file str.c
 
- @brief Flash read and bit utilities
+ @brief String matching functions
 
  @par Copyright &copy; 2015 Mike Gore, GPL License
  @par You are free to use this code under the terms of GPL
@@ -21,212 +21,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 #include <user_config.h>
-#include "util.h"
-
-#define USE_CACHE
-// Cached flash read on 32bit boundry
-#ifdef USE_CACHE
-
-/// @brief  Read bit bit value from flash
-/// Supports 8 bits reads from memory spaced that must have 32bit aligned data
-/// Caches the 32bit read
-/// @param[in] *p: address to read
-/// @return  uint8_t
-// Cached address and data
-uint32_t _addr = 0;
-uint32_t _data;
-uint8_t *p8 = (uint8_t *) &_data;
-uint8_t read_flash8(uint8_t *p)
-{
-    uint8_t offset;
-    uint32_t addr = (uint32_t)p;
-
-    offset = 3 & addr;                            // byte offset
-    addr &= ~3;                                   // align 4 byte address
-
-    if(addr != _addr)
-    {
-        _addr = addr;
-        _data = *(uint32_t *) _addr;
-    }
-    return(p8[offset]);
-}
-
-
-#else
-/// @brief  Read bit bit value from flash
-/// Supports 8 bits reads from memory spaced that must have 32bit aligned data
-/// No cached version
-/// @param[in] *p: address to read
-/// @return  uint8_t
-uint8_t read_flash8(uint8_t *p)
-{
-    uint8_t offset;
-    uint32_t data;
-    uint32_t addr = (uint32_t)p;
-    uint8_t *p8 = (uint8_t *) &data;
-
-    offset = 3 & addr;                            // byte offset
-    addr &= ~3;                                   // align 4 byte address
-    data = *(uint32_t *) addr;
-    return(p8[offset]);
-}
-#endif
-
-/// @brief  Copy data from Flash to Ram
-/// Uses flash_read8() to avoid alighnment problems
-/// @param[in] *src: address to read from
-/// @param[out] *dest: address to write to
-/// @param[in] size: number of bytes to copy
-/// @return  void
-void cpy_flash(uint8_t *src, uint8_t *dest, int size)
-{
-    int i;
-    for(i=0;i<size;++i)
-    {
-        dest[i] = read_flash8((uint8_t *)src+i);
-    }
-}
-
-
-/// @brief 16 bits reads from Flash memory space
-/// Uses cpy_flash() to avoid alighnment problems
-/// @param[in] *p: address to read
-/// @return  uint16_t
-uint16_t read_flash16(uint8_t *p)
-{
-    uint16_t tmp;
-    cpy_flash(p,(uint8_t *)&tmp, 2);
-    return(tmp);
-}
-
-
-/// @brief 32 bits reads from Flash memory space
-/// Uses cpy_flash() to avoid alighnment problems
-/// @param[in] *p: address to read
-/// @return  uint32_t
-uint32_t read_flash32(uint8_t *p)
-{
-    uint32_t tmp;
-    cpy_flash(p,(uint8_t *) &tmp, 4);
-    return(tmp);
-}
-
-
-/// @brief 64 bits reads from Flash memory space
-/// Uses cpy_flash() to avoid alighnment problems
-/// @param[in] *p: address to read
-/// @return  uint64_t
-uint64_t read_flash64(uint8_t *p)
-{
-    uint64_t tmp;
-    cpy_flash(p,(uint8_t *) &tmp, 8);
-    return(tmp);
-}
-
-
-/// @brief Pointer read from Flash memory space
-/// Uses cpy_flash() to avoid alighnment problems
-/// @param[in] *p: address to read
-/// @return  uint32_t
-uint32_t read_flash_ptr(uint8_t *p)
-{
-    uint32_t tmp;
-    cpy_flash(p,(uint8_t *) &tmp, 4);
-    return(tmp);
-}
-
-
-/// @brief Test bit in byte array
-/// @param[in] *ptr: byte array
-/// @param[in] off: bit offset to test
-/// @return  1 if bit is set, 0 if not
-int bittestv(unsigned char *ptr, int off)
-{
-    int data;
-    data = read_flash8(ptr + (off>>3));
-    return( (data & (0x80 >> (off&7))) );
-}
-
-
-/// @brief Test bit in w * h size bit array usng x and y offsets
-/// @param[in] *ptr: byte array
-/// @param[in] x: bit x offset
-/// @param[in] y: bit y offset
-/// @param[in] w: bit array wide
-/// @param[in] h: bit array high
-/// @return  1 if bit is set, 0 if not
-int bittestxy(unsigned char *ptr, int x, int y, int w, int h)
-{
-    int off;
-
-    if(y < 0 || y > h)
-    {
-        return 0;
-    }
-    if(x < 0 || x > w)
-    {
-        return 0;
-    }
-    off = y * w + x;
-    return(bittestv(ptr, off));
-}
-
-/// @brief reset system
-/// @return  void
-MEMSPACE 
-void reset(void)
-{
-    system_restart();
-}
-
-
-/// @brief reset watchdog
-/// @return  void
-MEMSPACE 
-void wdt_reset( void )
-{
-  WRITE_PERI_REG(0x60000914, 0x73);
-}
-
-
-/// @brief Free buffer
-/// POSIX function
-/// We only call os_free() is pointer is not null
-/// @param[in] *p: buffer to free
-/// @return  void 
-MEMSPACE 
-void free(void *p)
-{
-    if(p)
-        os_free((int) p);
-}
-
-/// @brief calloc buffer
-/// POSIX function
-/// @param[in] nmemb: number of elements
-/// @param[in] size:  size of elements
-/// @return  void * buffer
-MEMSPACE 
-void *calloc(size_t nmemb, size_t size)
-{
-    void *p = (void *)os_zalloc( (nmemb * size) );
-    return(p);
-}
-
-/// @brief malloc buffer
-/// POSIX function
-/// @param[in] size:  size of buffer
-/// @return  void * buffer
-MEMSPACE 
-void *malloc(size_t size)
-{
-    void *p = (void *) os_malloc( size );
-    return(p);
-}
-
+#include "str.h"
 
 ///@brief Skip white space in a string - tabs and spaces.
 ///
@@ -466,6 +262,20 @@ uint8_t hexd( char c )
         return(c - 'A' + 10);
     return(0xff);                                 // error
 }
+
+///@brief Convert ASCII hex string to long integer.
+///
+///@param[in] p: String to convert.
+///
+///@return long integer result.
+///@see strtol() for return overflow and underflow results.
+MEMSPACE
+long atoh(const char *p)
+{
+    return strtol(p, (char **) NULL, 16);
+}
+
+
 
 ///@brief Is a character upper case
 ///

@@ -117,7 +117,7 @@ var searchData=
   ['uart_5ftxfifo_5fempty_5fthrhd_5fs',['UART_TXFIFO_EMPTY_THRHD_S',['../utils_2uart__register_8h.html#aa87d0a51ad920a11a348156ecb552005',1,'UART_TXFIFO_EMPTY_THRHD_S():&#160;uart_register.h'],['../include_2uart__register_8h.html#aa87d0a51ad920a11a348156ecb552005',1,'UART_TXFIFO_EMPTY_THRHD_S():&#160;uart_register.h']]],
   ['uart_5ftxfifo_5frst',['UART_TXFIFO_RST',['../utils_2uart__register_8h.html#aea9aaa17f3b5847f810191afe34de2db',1,'UART_TXFIFO_RST():&#160;uart_register.h'],['../include_2uart__register_8h.html#aea9aaa17f3b5847f810191afe34de2db',1,'UART_TXFIFO_RST():&#160;uart_register.h']]],
   ['ucordic_5ft_5fstr',['UCordic_T_STR',['../cordic2c_8c.html#a27092bec667d3da85622cfa613527520',1,'cordic2c.c']]],
-  ['use_5fcache',['USE_CACHE',['../util_8c.html#a2565afea33c9e3255c67f748f425543a',1,'util.c']]],
+  ['use_5fcache',['USE_CACHE',['../flash_8c.html#a2565afea33c9e3255c67f748f425543a',1,'flash.c']]],
   ['use_5fets_5fprintf',['USE_ETS_PRINTF',['../cal__dex_8c.html#ace605bda5adf4d197d62796c54bef1b0',1,'cal_dex.c']]],
   ['use_5foptimization_5fdrawline',['USE_OPTIMIZATION_DRAWLINE',['../ili9341_8c.html#a3bc3999315888a41dcf1417cdae450e3',1,'ili9341.c']]],
   ['user_5ftask_5fdelay_5ftimer',['USER_TASK_DELAY_TIMER',['../user__main_8c.html#ae984952b3e9d2d59a89487ec470d1ce0',1,'user_main.c']]],

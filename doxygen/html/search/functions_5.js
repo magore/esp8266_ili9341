@@ -32,5 +32,5 @@ var searchData=
   ['ets_5fuart_5fprintf',['ets_uart_printf',['../cal__dex_8c.html#a13b7de6e7c126209e587ac1cd5ccb4fc',1,'cal_dex.c']]],
   ['ets_5fvprintf',['ets_vprintf',['../ets__sys_8h.html#adc2f5bdec43573f11176fc8e82a892f6',1,'ets_sys.h']]],
   ['ets_5fvsnprintf',['ets_vsnprintf',['../ets__sys_8h.html#a9b391ddf89d3e76da23e90acbda518d4',1,'ets_sys.h']]],
-  ['execute_5ftimers',['execute_timers',['../timer__hal_8c.html#ae051f6d1e8079ffd28a52c845460b70b',1,'execute_timers(void *arg):&#160;timer_hal.c'],['../timer__hal_8h.html#ae051f6d1e8079ffd28a52c845460b70b',1,'execute_timers(void *arg):&#160;timer_hal.c']]]
+  ['execute_5ftimers',['execute_timers',['../timer__hal_8c.html#a67a27354654cf2a2169137adc7274def',1,'execute_timers():&#160;timer_hal.c'],['../timer__hal_8h.html#a7de37276c1b697f865594c7e5f28e961',1,'execute_timers(void):&#160;timer_hal.c']]]
 ];

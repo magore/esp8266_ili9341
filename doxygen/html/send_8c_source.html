@@ -119,15 +119,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="struct__printf__t.html#a5139902cde74159b79e6418a34712bee">len</a>;</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> c;</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    len = <a class="code" href="util_8h.html#ae1523394a394cbb226b2f7287e3e3741">strlen</a>(message);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    len = <a class="code" href="str_8h.html#ae1523394a394cbb226b2f7287e3e3741">strlen</a>(message);</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordflow">if</span>(len &gt; size)</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    {</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        fprintf(<a class="code" href="posix_8h.html#a5ce35bd5ba5021fd3b2e951e8f497656">stderr</a>,<span class="stringliteral">&quot;message too long\n&quot;</span>);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        fprintf(stderr,<span class="stringliteral">&quot;message too long\n&quot;</span>);</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        len = <a class="code" href="struct__printf__t.html#a38c7a430cec9b063bf6df7a100d3abaa">size</a>;</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    }</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    mptr = message;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    buffer = <a class="code" href="util_8c.html#ae148919146e88c7c40c7e2f781649b31">calloc</a>(len+2,1);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    buffer = <a class="code" href="str_8h.html#ae148919146e88c7c40c7e2f781649b31">calloc</a>(len+2,1);</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    bptr = <a class="code" href="struct__printf__t.html#ad35884151d0be6667caafad8caacc76f">buffer</a>;</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordflow">if</span>(!buffer)</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    {</div>
@@ -169,7 +169,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    }</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    *bptr = 0;</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    strcpy(message,buffer);</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordflow">return</span>(<a class="code" href="util_8h.html#ae1523394a394cbb226b2f7287e3e3741">strlen</a>(message));</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordflow">return</span>(<a class="code" href="str_8h.html#ae1523394a394cbb226b2f7287e3e3741">strlen</a>(message));</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;}</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
 <div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="send_8c.html#a9a62fadd2a5476668fdec898c42d4922">   87</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="send_8c.html#a9a62fadd2a5476668fdec898c42d4922">send_message</a>(<span class="keywordtype">char</span> *message, <span class="keywordtype">char</span> *ip, <span class="keywordtype">int</span> port, <span class="keywordtype">int</span> echoback)</div>
@@ -193,7 +193,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    server = gethostbyname(ip);</div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keywordflow">if</span> (server == NULL) {</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        fprintf(<a class="code" href="posix_8h.html#a5ce35bd5ba5021fd3b2e951e8f497656">stderr</a>,<span class="stringliteral">&quot;ERROR, no such host\n&quot;</span>);</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        fprintf(stderr,<span class="stringliteral">&quot;ERROR, no such host\n&quot;</span>);</div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        exit(0);</div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    }</div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    printf(<span class="stringliteral">&quot;Host name: %s\n&quot;</span>, server-&gt;h_name);</div>
@@ -209,7 +209,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        <a class="code" href="posix_8c.html#a4ce26afbb10890d31c53a8ff76d992e3">perror</a>(<span class="stringliteral">&quot;ERROR connecting&quot;</span>);</div>
 <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        exit(1);</div>
 <div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    }</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    n = <a class="code" href="posix_8c.html#a072435300ac99e8d7c3749f45166e797">write</a>(sockfd,message,<a class="code" href="util_8h.html#ae1523394a394cbb226b2f7287e3e3741">strlen</a>(message)+1);</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    n = <a class="code" href="posix_8c.html#a072435300ac99e8d7c3749f45166e797">write</a>(sockfd,message,<a class="code" href="str_8h.html#ae1523394a394cbb226b2f7287e3e3741">strlen</a>(message)+1);</div>
 <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    <span class="keywordflow">if</span> (n &lt; 0) </div>
 <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    {</div>
 <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        <a class="code" href="posix_8c.html#a4ce26afbb10890d31c53a8ff76d992e3">perror</a>(<span class="stringliteral">&quot;ERROR writing to socket&quot;</span>);</div>
@@ -247,58 +247,56 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    memset(ip,0,<span class="keyword">sizeof</span>(ip)-1);</div>
 <div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    memset(message,0,<span class="keyword">sizeof</span>(message)-1);</div>
 <div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    <span class="keywordflow">for</span>(i=1;i&lt;argc;++i) {</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;        <span class="keywordflow">if</span>(<a class="code" href="util_8h.html#afe1fe8029f752b2943bcfaec34e0d418">strcmp</a>(argv[i],<span class="stringliteral">&quot;-i&quot;</span>) == 0) {</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;        <span class="keywordflow">if</span>(<a class="code" href="str_8h.html#afe1fe8029f752b2943bcfaec34e0d418">strcmp</a>(argv[i],<span class="stringliteral">&quot;-i&quot;</span>) == 0) {</div>
 <div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;            strcpy(ip, argv[++i]);</div>
 <div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        }</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        <span class="keywordflow">if</span>(<a class="code" href="util_8h.html#afe1fe8029f752b2943bcfaec34e0d418">strcmp</a>(argv[i],<span class="stringliteral">&quot;-m&quot;</span>) == 0) {</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        <span class="keywordflow">if</span>(<a class="code" href="str_8h.html#afe1fe8029f752b2943bcfaec34e0d418">strcmp</a>(argv[i],<span class="stringliteral">&quot;-m&quot;</span>) == 0) {</div>
 <div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;            strncpy(message,argv[++i], <span class="keyword">sizeof</span>(message)-1);</div>
 <div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        }</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        <span class="keywordflow">if</span>(<a class="code" href="util_8h.html#afe1fe8029f752b2943bcfaec34e0d418">strcmp</a>(argv[i],<span class="stringliteral">&quot;-p&quot;</span>) == 0) {</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        <span class="keywordflow">if</span>(<a class="code" href="str_8h.html#afe1fe8029f752b2943bcfaec34e0d418">strcmp</a>(argv[i],<span class="stringliteral">&quot;-p&quot;</span>) == 0) {</div>
 <div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;            sscanf(argv[++i], <span class="stringliteral">&quot;%d&quot;</span>, &amp;port_no);</div>
 <div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        }</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        <span class="keywordflow">if</span>(<a class="code" href="util_8h.html#afe1fe8029f752b2943bcfaec34e0d418">strcmp</a>(argv[i],<span class="stringliteral">&quot;-e&quot;</span>) == 0) {</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        <span class="keywordflow">if</span>(<a class="code" href="str_8h.html#afe1fe8029f752b2943bcfaec34e0d418">strcmp</a>(argv[i],<span class="stringliteral">&quot;-e&quot;</span>) == 0) {</div>
 <div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;            echoback = 1;</div>
 <div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        }</div>
 <div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    }</div>
 <div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;        </div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    <span class="keywordflow">if</span>(!<a class="code" href="util_8h.html#ae1523394a394cbb226b2f7287e3e3741">strlen</a>(ip) || !<a class="code" href="util_8h.html#ae1523394a394cbb226b2f7287e3e3741">strlen</a>(message))</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    <span class="keywordflow">if</span>(!<a class="code" href="str_8h.html#ae1523394a394cbb226b2f7287e3e3741">strlen</a>(ip) || !<a class="code" href="str_8h.html#ae1523394a394cbb226b2f7287e3e3741">strlen</a>(message))</div>
 <div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    {</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        fprintf(<a class="code" href="posix_8h.html#a5ce35bd5ba5021fd3b2e951e8f497656">stderr</a>,<span class="stringliteral">&quot;usage: -i ip_address -m \&quot;message\&quot; [ -p port ]\n &quot;</span>);</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        fprintf(stderr,<span class="stringliteral">&quot;usage: -i ip_address -m \&quot;message\&quot; [ -p port ]\n &quot;</span>);</div>
 <div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;        exit(1);</div>
 <div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    }</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    <span class="keywordflow">if</span>(!<a class="code" href="util_8h.html#ae1523394a394cbb226b2f7287e3e3741">strlen</a>(message))</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    <span class="keywordflow">if</span>(!<a class="code" href="str_8h.html#ae1523394a394cbb226b2f7287e3e3741">strlen</a>(message))</div>
 <div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    {</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        fprintf(<a class="code" href="posix_8h.html#a5ce35bd5ba5021fd3b2e951e8f497656">stderr</a>,<span class="stringliteral">&quot;Message missing\n&quot;</span>);</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        fprintf(stderr,<span class="stringliteral">&quot;Message missing\n&quot;</span>);</div>
 <div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;        exit(1);</div>
 <div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    }</div>
 <div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    <a class="code" href="send_8c.html#ad694096646db9ef480b7bd9e5afe6ab8">escape</a>(message, <span class="keyword">sizeof</span>(message)-1);</div>
 <div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    printf(<span class="stringliteral">&quot;ip:%s, port:%d, message:\n%s\n&quot;</span>,ip,port_no,message);</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    fflush(<a class="code" href="posix_8h.html#a0c0ef221f95f64e8632451312fd18cc8">stdout</a>);</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    fflush(stdout);</div>
 <div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    <a class="code" href="send_8c.html#a9a62fadd2a5476668fdec898c42d4922">send_message</a>(message, ip, port_no, echoback);</div>
 <div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    <span class="keywordflow">return</span>(0);</div>
 <div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;}</div>
-<div class="ttc" id="util_8h_html_afe1fe8029f752b2943bcfaec34e0d418"><div class="ttname"><a href="util_8h.html#afe1fe8029f752b2943bcfaec34e0d418">strcmp</a></div><div class="ttdeci">MEMSPACE int strcmp(const char *str, const char *pat)</div></div>
 <div class="ttc" id="send_8c_html_a273cf69d639a59973b6019625df33e30"><div class="ttname"><a href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a></div><div class="ttdeci">unsigned short uint16_t</div><div class="ttdef"><b>Definition:</b> <a href="send_8c_source.html#l00018">send.c:18</a></div></div>
-<div class="ttc" id="posix_8c_html_a48dc1df1627501d3faed4bf1f9801759"><div class="ttname"><a href="posix_8c.html#a48dc1df1627501d3faed4bf1f9801759">close</a></div><div class="ttdeci">MEMSPACE int close(int fileno)</div><div class="ttdoc">POSIX Close a file with fileno handel. </div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l00967">posix.c:967</a></div></div>
+<div class="ttc" id="posix_8c_html_a48dc1df1627501d3faed4bf1f9801759"><div class="ttname"><a href="posix_8c.html#a48dc1df1627501d3faed4bf1f9801759">close</a></div><div class="ttdeci">MEMSPACE int close(int fileno)</div><div class="ttdoc">POSIX Close a file with fileno handel. </div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l00982">posix.c:982</a></div></div>
 <div class="ttc" id="send_8c_html_a435d1572bf3f880d55459d9805097f62"><div class="ttname"><a href="send_8c.html#a435d1572bf3f880d55459d9805097f62">uint32_t</a></div><div class="ttdeci">unsigned int uint32_t</div><div class="ttdef"><b>Definition:</b> <a href="send_8c_source.html#l00019">send.c:19</a></div></div>
-<div class="ttc" id="posix_8c_html_a4ce26afbb10890d31c53a8ff76d992e3"><div class="ttname"><a href="posix_8c.html#a4ce26afbb10890d31c53a8ff76d992e3">perror</a></div><div class="ttdeci">MEMSPACE void perror(const char *s)</div><div class="ttdoc">POSIX perror() - convert POSIX errno to text with user message. </div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l00446">posix.c:446</a></div></div>
-<div class="ttc" id="posix_8c_html_a072435300ac99e8d7c3749f45166e797"><div class="ttname"><a href="posix_8c.html#a072435300ac99e8d7c3749f45166e797">write</a></div><div class="ttdeci">MEMSPACE ssize_t write(int fd, const void *buf, size_t count)</div><div class="ttdoc">POSIX Write count bytes from *buf to fileno fd. </div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l01094">posix.c:1094</a></div></div>
+<div class="ttc" id="posix_8c_html_a4ce26afbb10890d31c53a8ff76d992e3"><div class="ttname"><a href="posix_8c.html#a4ce26afbb10890d31c53a8ff76d992e3">perror</a></div><div class="ttdeci">MEMSPACE void perror(const char *s)</div><div class="ttdoc">POSIX perror() - convert POSIX errno to text with user message. </div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l00456">posix.c:456</a></div></div>
+<div class="ttc" id="posix_8c_html_a072435300ac99e8d7c3749f45166e797"><div class="ttname"><a href="posix_8c.html#a072435300ac99e8d7c3749f45166e797">write</a></div><div class="ttdeci">MEMSPACE ssize_t write(int fd, const void *buf, size_t count)</div><div class="ttdoc">POSIX Write count bytes from *buf to fileno fd. </div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l01109">posix.c:1109</a></div></div>
 <div class="ttc" id="struct__printf__t_html_a38c7a430cec9b063bf6df7a100d3abaa"><div class="ttname"><a href="struct__printf__t.html#a38c7a430cec9b063bf6df7a100d3abaa">_printf_t::size</a></div><div class="ttdeci">int size</div><div class="ttdef"><b>Definition:</b> <a href="printf_8h_source.html#l00049">printf.h:49</a></div></div>
 <div class="ttc" id="send_8c_html_ad694096646db9ef480b7bd9e5afe6ab8"><div class="ttname"><a href="send_8c.html#ad694096646db9ef480b7bd9e5afe6ab8">escape</a></div><div class="ttdeci">int escape(char *message, int size)</div><div class="ttdef"><b>Definition:</b> <a href="send_8c_source.html#l00026">send.c:26</a></div></div>
-<div class="ttc" id="posix_8c_html_af104a2c05bef787e54c6925616e867df"><div class="ttname"><a href="posix_8c.html#af104a2c05bef787e54c6925616e867df">read</a></div><div class="ttdeci">MEMSPACE ssize_t read(int fd, const void *buf, size_t count)</div><div class="ttdoc">POSIX read count bytes from *buf to fileno fd. </div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l01167">posix.c:1167</a></div></div>
+<div class="ttc" id="posix_8c_html_af104a2c05bef787e54c6925616e867df"><div class="ttname"><a href="posix_8c.html#af104a2c05bef787e54c6925616e867df">read</a></div><div class="ttdeci">MEMSPACE ssize_t read(int fd, const void *buf, size_t count)</div><div class="ttdoc">POSIX read count bytes from *buf to fileno fd. </div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l01182">posix.c:1182</a></div></div>
 <div class="ttc" id="send_8c_html_a9a62fadd2a5476668fdec898c42d4922"><div class="ttname"><a href="send_8c.html#a9a62fadd2a5476668fdec898c42d4922">send_message</a></div><div class="ttdeci">void send_message(char *message, char *ip, int port, int echoback)</div><div class="ttdef"><b>Definition:</b> <a href="send_8c_source.html#l00087">send.c:87</a></div></div>
 <div class="ttc" id="send_8c_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="send_8c.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdef"><b>Definition:</b> <a href="send_8c_source.html#l00148">send.c:148</a></div></div>
-<div class="ttc" id="util_8c_html_ae148919146e88c7c40c7e2f781649b31"><div class="ttname"><a href="util_8c.html#ae148919146e88c7c40c7e2f781649b31">calloc</a></div><div class="ttdeci">MEMSPACE void * calloc(size_t nmemb, size_t size)</div><div class="ttdoc">calloc buffer POSIX function </div><div class="ttdef"><b>Definition:</b> <a href="util_8c_source.html#l00213">util.c:213</a></div></div>
+<div class="ttc" id="str_8h_html_afe1fe8029f752b2943bcfaec34e0d418"><div class="ttname"><a href="str_8h.html#afe1fe8029f752b2943bcfaec34e0d418">strcmp</a></div><div class="ttdeci">MEMSPACE int strcmp(const char *str, const char *pat)</div></div>
 <div class="ttc" id="struct__printf__t_html_ad35884151d0be6667caafad8caacc76f"><div class="ttname"><a href="struct__printf__t.html#ad35884151d0be6667caafad8caacc76f">_printf_t::buffer</a></div><div class="ttdeci">void * buffer</div><div class="ttdef"><b>Definition:</b> <a href="printf_8h_source.html#l00047">printf.h:47</a></div></div>
 <div class="ttc" id="struct__printf__t_html_a5139902cde74159b79e6418a34712bee"><div class="ttname"><a href="struct__printf__t.html#a5139902cde74159b79e6418a34712bee">_printf_t::len</a></div><div class="ttdeci">int len</div><div class="ttdef"><b>Definition:</b> <a href="printf_8h_source.html#l00048">printf.h:48</a></div></div>
-<div class="ttc" id="posix_8h_html_a0c0ef221f95f64e8632451312fd18cc8"><div class="ttname"><a href="posix_8h.html#a0c0ef221f95f64e8632451312fd18cc8">stdout</a></div><div class="ttdeci">#define stdout</div><div class="ttdef"><b>Definition:</b> <a href="posix_8h_source.html#l00102">posix.h:102</a></div></div>
-<div class="ttc" id="util_8h_html_ae1523394a394cbb226b2f7287e3e3741"><div class="ttname"><a href="util_8h.html#ae1523394a394cbb226b2f7287e3e3741">strlen</a></div><div class="ttdeci">MEMSPACE size_t strlen(const char *str)</div></div>
-<div class="ttc" id="posix_8h_html_a5ce35bd5ba5021fd3b2e951e8f497656"><div class="ttname"><a href="posix_8h.html#a5ce35bd5ba5021fd3b2e951e8f497656">stderr</a></div><div class="ttdeci">#define stderr</div><div class="ttdef"><b>Definition:</b> <a href="posix_8h_source.html#l00103">posix.h:103</a></div></div>
+<div class="ttc" id="str_8h_html_ae1523394a394cbb226b2f7287e3e3741"><div class="ttname"><a href="str_8h.html#ae1523394a394cbb226b2f7287e3e3741">strlen</a></div><div class="ttdeci">MEMSPACE size_t strlen(const char *str)</div></div>
 <div class="ttc" id="send_8c_html_aba7bc1797add20fe3efdf37ced1182c5"><div class="ttname"><a href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a></div><div class="ttdeci">unsigned char uint8_t</div><div class="ttdef"><b>Definition:</b> <a href="send_8c_source.html#l00017">send.c:17</a></div></div>
+<div class="ttc" id="str_8h_html_ae148919146e88c7c40c7e2f781649b31"><div class="ttname"><a href="str_8h.html#ae148919146e88c7c40c7e2f781649b31">calloc</a></div><div class="ttdeci">MEMSPACE void * calloc(size_t nmemb, size_t size)</div><div class="ttdoc">calloc buffer POSIX function </div><div class="ttdef"><b>Definition:</b> <a href="sys_8c_source.html#l00046">sys.c:46</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Aug 23 2015 00:24:19 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Sep 19 2015 20:57:04 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

@@ -8,7 +8,5 @@ var searchData=
   ['user_5fconfig_2eh',['user_config.h',['../user__config_8h.html',1,'']]],
   ['user_5fmain_2ec',['user_main.c',['../user__main_8c.html',1,'']]],
   ['user_5ftask_2ec',['user_task.c',['../user__task_8c.html',1,'']]],
-  ['user_5ftask_2eh',['user_task.h',['../user__task_8h.html',1,'']]],
-  ['util_2ec',['util.c',['../util_8c.html',1,'']]],
-  ['util_2eh',['util.h',['../util_8h.html',1,'']]]
+  ['user_5ftask_2eh',['user_task.h',['../user__task_8h.html',1,'']]]
 ];

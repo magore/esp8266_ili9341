@@ -23,7 +23,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 
-
 #ifndef TIME_H
 #define TIME_H
 
@@ -41,10 +40,10 @@ typedef uint32_t time_t;
 typedef uint16_t clockid_t;
 
 ///@brief POSIX struct tm.
-struct tm
+struct tm 
 {
     int tm_sec;    /*<  Seconds.     [0-60] (1 leap second) */
-    int tm_min;    /*<  Minutes.     [0-59] */
+    int tm_min;    /*<  Minutes.     [0-59] */ 
     int tm_hour;   /*<  Hours.       [0-23] */
     int tm_mday;   /*<  Day.         [1-31] */
     int tm_mon;    /*<  Month.       [0-11] */
@@ -53,10 +52,11 @@ struct tm
     int tm_yday;   /*<  Days in year.[0-365] */
     int tm_isdst;  /*<  DST.         [-1/0/1] */
     int32_t tm_gmtoff; /*<  GMT offset in seconds */
-};
+};  
 
 ///@brief POSIX struct tm typedef.
 typedef struct tm tm_t;
+
 
 ///@brief POSIX timeval.
 struct timeval
@@ -91,7 +91,7 @@ extern volatile ts_t __clock;
 /// @brief  System Time Zone
 extern tz_t __tzone;
 
-/* time.c */
+/* lib/time.c */
 MEMSPACE char *tm_wday_to_ascii ( int i );
 MEMSPACE char *tm_mon_to_ascii ( int i );
 MEMSPACE int time_to_tm ( time_t epoch , int32_t offset , tm_t *t );
@@ -114,4 +114,5 @@ MEMSPACE int settimeofday ( tv_t *tv , tz_t *tz );
 MEMSPACE void clock_set ( uint32_t seconds , uint32_t us );
 MEMSPACE int setdate ( void );
 MEMSPACE int setdate_r ( char *buf );
+
 #endif

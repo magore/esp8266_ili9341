@@ -8,7 +8,7 @@ var searchData=
   ['setup_5fdone',['setup_done',['../user__task_8c.html#ac27ff692005ec468df1da71ae8840396',1,'user_task.c']]],
   ['sig',['sig',['../structETSEventTag.html#ad1d6c1080c28369b619311d17902b744',1,'ETSEventTag']]],
   ['signal_5floop',['signal_loop',['../user__main_8c.html#a4b92bd10367d44d30a6d932d9f13b79b',1,'user_main.c']]],
-  ['size',['size',['../struct__printf__t.html#a38c7a430cec9b063bf6df7a100d3abaa',1,'_printf_t::size()'],['../structqueue__t.html#a83a13b888f9d4ef127d706559818b779',1,'queue_t::size()'],['../struct____file.html#aff4a1ca8b6a12460812928afae81248d',1,'__file::size()'],['../structmem__t.html#ab04d46fb2982c9a26a26244286c1b33b',1,'mem_t::size()']]],
+  ['size',['size',['../struct__printf__t.html#a38c7a430cec9b063bf6df7a100d3abaa',1,'_printf_t::size()'],['../structqueue__t.html#a83a13b888f9d4ef127d706559818b779',1,'queue_t::size()'],['../structmem__t.html#ab04d46fb2982c9a26a26244286c1b33b',1,'mem_t::size()']]],
   ['skip',['skip',['../struct__fontc.html#a44c94e91afa006cb2ffe55a99b3e2d3c',1,'_fontc']]],
   ['slant',['SLANT',['../struct__fontinfo.html#aff56d18df3b46ec10896d15ad3a2e164',1,'_fontinfo']]],
   ['sp_5fret',['sp_ret',['../structcont__.html#a2f886d4182bed43aaf66d3a55a2d23b7',1,'cont_']]],

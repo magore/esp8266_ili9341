@@ -46,7 +46,8 @@ POSSIBILITY OF SUCH DAMAGE.
 #include <os_type.h>
 #include <gpio.h>
 #include <mem.h>
-#include "util.h"
+#include "str.h"
+#include "sys.h"
 #include "hspi.h"
 #include "font.h"
 #include "ili9341.h"

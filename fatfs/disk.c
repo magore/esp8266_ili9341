@@ -139,7 +139,7 @@ void put_rc (int rc)
     else
         ptr = err_msg[(int)rc];
 
-    DEBUG_PRINTF("rc=%u FR_%s\n", rc, ptr);
+    printf("rc=%u FR_%s\n", rc, ptr);
 }
 
 
@@ -288,7 +288,9 @@ char* path                                        /* Pointer to the working buff
                 AccFiles++;
                 AccSize += fno->fsize;
             }
-wdt_reset();
+#ifdef ESP8266
+			wdt_reset();
+#endif
         }
     }
 
@@ -319,14 +321,14 @@ void fatfs_status(char *ptr)
 
     while(*ptr == ' ' || *ptr == '\t')
         ++ptr;
-    DEBUG_PRINTF("fatfs status:%s\n",ptr);
+    printf("fatfs status:%s\n",ptr);
     res = f_getfree(ptr, (DWORD*)&p2, &fs);
     if (res)
     {
         put_rc(res);
         return;
     }
-    DEBUG_PRINTF("FAT type = FAT%u\nBytes/Cluster = %lu\nNumber of FATs = %u\n"
+    printf("FAT type = FAT%u\nBytes/Cluster = %lu\nNumber of FATs = %u\n"
         "Root DIR entries = %u\nSectors/FAT = %lu\nNumber of clusters = %lu\n"
         "FAT start (lba) = %lu\nDIR start (lba,clustor) = %lu\nData start (lba) = %lu\n\n...",
         ft[fs->fs_type & 3], (DWORD)fs->csize * 512, fs->n_fats,
@@ -340,7 +342,7 @@ void fatfs_status(char *ptr)
         put_rc(res);
         return;
     }
-    DEBUG_PRINTF("\r%u files, %lu bytes.\n%u folders.\n"
+    printf("\r%u files, %lu bytes.\n%u folders.\n"
         "%lu KB total disk space.\n%lu KB available.\n",
         AccFiles, AccSize, AccDirs,
         (fs->n_fatent - 2) * (fs->csize / 2), p2 * (fs->csize / 2)
@@ -367,7 +369,7 @@ void fatfs_filinfo_list(FILINFO *info)
 	int i;
     if(info->fname[0] == 0)
     {
-        DEBUG_PRINTF("fatfs_filinfo_list: empty\n");
+        printf("fatfs_filinfo_list: empty\n");
         return;
     }
 	attrs[0] = (info->fattrib & AM_DIR) ? 'D' : '-';
@@ -376,7 +378,7 @@ void fatfs_filinfo_list(FILINFO *info)
 	attrs[3] = (info->fattrib & AM_SYS) ? 'S' : '-';
 	attrs[4] = (info->fattrib & AM_ARC) ? 'A' : '-';
 	attrs[5] = 0;
-	DEBUG_PRINTF("%s %u/%02u/%02u %02u:%02u %9lu %12s",
+	printf("%s %u/%02u/%02u %02u:%02u %9lu %12s",
         attrs,
         (info->fdate >> 9) + 1980, (info->fdate >> 5) & 15, info->fdate & 31,
         (info->ftime >> 11), (info->ftime >> 5) & 63,
@@ -384,8 +386,8 @@ void fatfs_filinfo_list(FILINFO *info)
 
 #if _USE_LFN
 	if(info->lfname)
-		DEBUG_PRINTF("  %s", info->lfname);
+		printf("  %s", info->lfname);
 #endif
 
-    DEBUG_PRINTF("\n");
+    printf("\n");
 }

@@ -59,8 +59,8 @@ static void cal_dex_handler(int exccause, ex_regs regs);
 #if USE_ETS_PRINTF
 #define c_puts(a) cal_tprintf(a)
 extern void ets_uart_printf(char* fmt, ...);
-//#define cal_tprintf DEBUG_PRINTF
-#define cal_tprintf DEBUG_PRINTF
+//#define cal_tprintf printf
+#define cal_tprintf printf
 #else
 static char TINYBUF[120];
 
@@ -131,9 +131,9 @@ void cal_dex_dump_hex(int* p, int cnt)
 #if USE_ETS_PRINTF
         if (i % NUM == 0)
         {
-            DEBUG_PRINTF("%08x ", (int )(p + i));
+            printf("%08x ", (int )(p + i));
         }
-        DEBUG_PRINTF(" %08x", p[i]);
+        printf(" %08x", p[i]);
 #else
         if (i % NUM == 0)
         {

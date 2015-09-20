@@ -1,8 +1,8 @@
 
 /**
- @file util.h
+ @file str.h
 
- @brief Flash read and bit utilities
+ @brief String matching functions
 
  @par Copyright &copy; 2015 Mike Gore, GPL License
  @par You are free to use this code under the terms of GPL
@@ -22,8 +22,11 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef _UTIL_H_
-#define _UTIL_H_
+#ifndef _STR_H_
+#define _STR_H_
+
+#include <user_config.h>
+
 // The odd notation for SWAP is standard way to avoid certian compiler optimizations
 #define SWAP(a, b) do { a ^= b; b ^= a; a ^= b; } while(0)
 #define ABS(x) ((x)<0 ? -(x) : (x))

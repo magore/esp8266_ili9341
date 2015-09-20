@@ -17,8 +17,6 @@ var searchData=
   ['fatfs_5fx',['FATFS_X',['../posix_8h.html#a0a88f1032e29e7cc97a96b40cdc996a5',1,'posix.h']]],
   ['fcordic_5ft_5fbits',['FCordic_T_Bits',['../cordic2c_8c.html#a867ec3a5cd66a315ef2c1ad6b54ee9b2',1,'cordic2c.c']]],
   ['fcordic_5ft_5fstr',['FCordic_T_STR',['../cordic2c_8c.html#a435917aacf957393509563ef16007425',1,'cordic2c.c']]],
-  ['fdev_5fget_5fudata',['fdev_get_udata',['../posix_8h.html#ac04f5faa8e86a4ce4ae084d85386af40',1,'posix.h']]],
-  ['fdev_5fset_5fudata',['fdev_set_udata',['../posix_8h.html#a793fcb8f10b6b8746d4186012929ddf1',1,'posix.h']]],
   ['float',['FLOAT',['../printf_8c.html#ae8690abbffa85934d64d545920e2b108',1,'printf.c']]],
   ['font_5fvar',['FONT_VAR',['../ili9341_8h.html#a29fe4e7cb4d2be27f14f14431856391c',1,'ili9341.h']]],
   ['fontinfo',['FONTINFO',['../bdfview_8c.html#a4f294aef06ff8be7134ba47ecb2b5f5c',1,'bdfview.c']]],

@@ -42,10 +42,10 @@ void mmc_test(void)
 {
     struct stat p;
 
-	DEBUG_PRINTF("==============================\n");
-    DEBUG_PRINTF("START MMC TEST\n");
+	printf("==============================\n");
+    printf("START MMC TEST\n");
 	fatfs_status("/");
-    DEBUG_PRINTF("MMC Directory List\n");
+    printf("MMC Directory List\n");
     fatfs_ls("/");
     fatfs_cd("/");
     fatfs_create("test.txt","this is a test");
@@ -62,8 +62,8 @@ void mmc_test(void)
     stat("test3.txt", &p);                        // POSIX test
     dump_stat(&p);
 
-    DEBUG_PRINTF("END MMC TEST\n");
-	DEBUG_PRINTF("==============================\n");
+    printf("END MMC TEST\n");
+	printf("==============================\n");
 }
 
 
@@ -73,7 +73,7 @@ void mmc_test(void)
 MEMSPACE
 void fatfs_help( void )
 {
-    DEBUG_PRINTF("debug N\n"
+    printf("debug N\n"
         "mmc_init\n"
         "mmc_test\n"
         "attrib p1 p2\n"
@@ -124,7 +124,7 @@ void fatfs_ls(char *ptr)
     while(*ptr == ' ' || *ptr == '\t')
         ++ptr;
 
-    DEBUG_PRINTF("Listing:[%s]\n",ptr);
+    printf("Listing:[%s]\n",ptr);
 
     res = f_opendir(&dirs, ptr);
     if (res) { put_rc(res); return; }
@@ -143,9 +143,9 @@ void fatfs_ls(char *ptr)
         }
         fatfs_filinfo_list(fno);
     }
-    DEBUG_PRINTF("%4u File(s),%10lu bytes total\n%4u Dir(s)", s1, p1, s2);
+    printf("%4u File(s),%10lu bytes total\n%4u Dir(s)", s1, p1, s2);
     if (f_getfree(ptr, (DWORD*)&p1, &fs) == FR_OK)
-        DEBUG_PRINTF(", %10luK bytes free\n", p1 * fs->csize / 2);
+        printf(", %10luK bytes free\n", p1 * fs->csize / 2);
 }
 
 /// @brief Rename a file
@@ -188,20 +188,20 @@ void fatfs_cat(char *name)
 	char *ptr;
 	int ret;
 
-    DEBUG_PRINTF("Reading[%s]\n", name);
+    printf("Reading[%s]\n", name);
     res = f_open(&fp, name, FA_OPEN_EXISTING | FA_READ);
     if (res)
     {
-        DEBUG_PRINTF("cat error\n");
+        printf("cat error\n");
         put_rc(res);
         f_close(&fp);
         return;
     }
 
-	ptr = calloc(514,1);
+	ptr = calloc(512,1);
 	if(!ptr)
 	{
-		DEBUG_PRINTF("Calloc failed!\n");
+		printf("Calloc failed!\n");
 		f_close(&fp);
 		return;
 	}
@@ -211,7 +211,7 @@ void fatfs_cat(char *name)
         res = f_read(&fp, ptr, 512, &s1);
         if(res)
         {
-            DEBUG_PRINTF("cat read error\n");
+            printf("cat read error\n");
             put_rc(res);
             break;
         }
@@ -224,10 +224,10 @@ void fatfs_cat(char *name)
         for(i=0;i<ret;++i)
             putchar(ptr[i]);
     }
-    DEBUG_PRINTF("\n");
+    printf("\n");
     f_close(&fp);
 	free(ptr);
-    DEBUG_PRINTF("%lu bytes\n", size);
+    printf("%lu bytes\n", size);
 }
 
 
@@ -250,14 +250,14 @@ void fatfs_copy(char *from,char *to)
 	char *ptr;
 	
 
-    DEBUG_PRINTF("Opening %s\n", from);
+    printf("Opening %s\n", from);
     res = f_open(&file1, from, FA_OPEN_EXISTING | FA_READ);
     if (res)
     {
         put_rc(res);
         return;
     }
-    DEBUG_PRINTF("Creating %s\n", to);
+    printf("Creating %s\n", to);
     res = f_open(&file2, to, FA_CREATE_ALWAYS | FA_WRITE);
     if (res)
     {
@@ -268,12 +268,12 @@ void fatfs_copy(char *from,char *to)
 	ptr = calloc(512,1);
 	if(!ptr)
 	{
-		DEBUG_PRINTF("Calloc failed!\n");
+		printf("Calloc failed!\n");
         f_close(&file1);
         f_close(&file2);
 		return;
 	}
-    DEBUG_PRINTF("\nCopying...\n");
+    printf("\nCopying...\n");
     p1 = 0;
     for (;;)
     {
@@ -281,12 +281,12 @@ void fatfs_copy(char *from,char *to)
         if (res || s1 == 0) break;                /* error or eof */
         res = f_write(&file2, ptr, s1, &s2);
         p1 += s2;
-        DEBUG_PRINTF("Copied: %08ld\r", p1);
+        printf("Copied: %08ld\r", p1);
         if (res || s2 < s1) break;                /* error or disk full */
     }
     if (res)
         put_rc(res);
-    DEBUG_PRINTF("%lu bytes copied.\n", p1);
+    printf("%lu bytes copied.\n", p1);
 	free(ptr);
     f_close(&file1);
     f_close(&file2);
@@ -310,12 +310,12 @@ void fatfs_create(char *name,char *str)
     int res;
     FIL fp;
     len = strlen(str);
-    DEBUG_PRINTF("Creating [%s]\n", name);
-    DEBUG_PRINTF("Text[%s]\n", str);
+    printf("Creating [%s]\n", name);
+    printf("Text[%s]\n", str);
     res = f_open(&fp, name, FA_CREATE_ALWAYS | FA_WRITE);
     if (res)
     {
-        DEBUG_PRINTF("Create error\n");
+        printf("Create error\n");
         put_rc(res);
         f_close(&fp);
         return;
@@ -323,13 +323,13 @@ void fatfs_create(char *name,char *str)
     res = f_write(&fp, str, (UINT)len, &s1);
     if (res)
     {
-        DEBUG_PRINTF("Write error\n");
+        printf("Write error\n");
         put_rc(res);
         return;
     }
     if (len != s1)
     {
-        DEBUG_PRINTF("Write error - wanted(%d) got(%d)\n",s1,len);
+        printf("Write error - wanted(%d) got(%d)\n",s1,len);
         put_rc(res);
         return;
     }
@@ -348,7 +348,7 @@ void fatfs_create(char *name,char *str)
 MEMSPACE
 void fatfs_rm(char *name)
 {
-    DEBUG_PRINTF("rm [%s]\n", name);
+    printf("rm [%s]\n", name);
     put_rc(f_unlink(name));
 }
 
@@ -364,7 +364,7 @@ void fatfs_rm(char *name)
 MEMSPACE
 void fatfs_mkdir(char *name)
 {
-    DEBUG_PRINTF("mkdir [%s]\n", name);
+    printf("mkdir [%s]\n", name);
     put_rc(f_mkdir(name));
 
 }
@@ -381,7 +381,7 @@ void fatfs_mkdir(char *name)
 MEMSPACE
 void fatfs_rmdir(char *name)
 {
-    DEBUG_PRINTF("rmdir [%s]\n", name);
+    printf("rmdir [%s]\n", name);
     put_rc(f_unlink(name));
 }
 
@@ -400,7 +400,7 @@ void fatfs_stat(char *name)
 ;
 	int res;
 
-    DEBUG_PRINTF("stat [%s]\n", name);
+    printf("stat [%s]\n", name);
     res = f_stat(name, info);
 	if(res == FR_OK)
 	{
@@ -423,7 +423,7 @@ void fatfs_stat(char *name)
 MEMSPACE
 void fatfs_cd(char *name)
 {
-    DEBUG_PRINTF("cd [%s]\n", name);
+    printf("cd [%s]\n", name);
     put_rc(f_chdir(name));
 }
 
@@ -444,7 +444,7 @@ void fatfs_pwd(void)
     if (res)
         put_rc(res);
     else
-        DEBUG_PRINTF("pwd [%s]\n", str);
+        printf("pwd [%s]\n", str);
 #endif
 }
 /// @brief FatFs test parser
@@ -485,11 +485,13 @@ int fatfs_tests(char *str)
     {
         FATFS fs;
         ptr += len;
-        res = f_mount(&fs, "0:", 0);                    /* Register work area to the logical drive 0 */
+		/* Register work area to the logical drive 0 */
+        res = f_mount(&fs, "0:", 0);                    
 		put_rc(res);
 		if (res)
 			return(1);
-        res = f_mkfs("0:", 0, 0);                       /* Create FAT volume on the logical drive 0. 2nd argument is ignored. */
+	   /* Create FAT volume on the logical drive 0. 2nd argument is ignored. */
+        res = f_mkfs("0:", 0, 0);
 		put_rc(res);
         return(1);
     }
@@ -557,7 +559,7 @@ int fatfs_tests(char *str)
     {
         ptr += len;
         ptr=skipspaces(ptr);
-        t_sscanf(ptr,"%lu %lu", &p1,&p2);
+        sscanf(ptr,"%lu %lu", &p1,&p2);
         put_rc(f_chmod(ptr, p1, p2));
         return(1);
     }
@@ -566,7 +568,7 @@ int fatfs_tests(char *str)
         char name1[128],name2[128];
         ptr += len;
         ptr=skipspaces(ptr);
-        t_sscanf(ptr,"%s %s",name1,name2);
+        sscanf(ptr,"%s %s",name1,name2);
         fatfs_copy(name1,name2);
         return(1);
     }
@@ -575,7 +577,7 @@ int fatfs_tests(char *str)
         char name1[128],name2[128];
         ptr += len;
         ptr=skipspaces(ptr);
-        t_sscanf(ptr,"%s %s",name1,name2);
+        sscanf(ptr,"%s %s",name1,name2);
         fatfs_rename(name1,name2);
         return(1);
     }

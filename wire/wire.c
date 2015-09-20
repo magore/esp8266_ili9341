@@ -97,7 +97,7 @@ void wire_draw(window *win, const wire_p *wire, const wire_e *edge, point *view,
 
 			// Draw line
 			tft_drawLine(win, x0, y0, x1, y1, color);
-//DEBUG_PRINTF("i:%d (x:%d,y:%d),(x1:%d,y1:%d),color:%04x\n", i,(int)x0, (int)y0, (int)x1, (int)y1, (int)color);
+//printf("i:%d (x:%d,y:%d),(x1:%d,y1:%d),color:%04x\n", i,(int)x0, (int)y0, (int)x1, (int)y1, (int)color);
 
 			wdt_reset();
 		}
@@ -150,7 +150,7 @@ void wire_draw(window *win, const wire_p *wire, const wire_e *edge, point *view,
 		last = 0;
 
 		// tft_printf(0,300,1,"i:%d", i);
-//DEBUG_PRINTF("i:%d,x:%d,y:%d-x1:%d,y1:%d,color:%04x", i,(int)x0, (int)y0, (int)x1, (int)y1, (int)color);
+//printf("i:%d,x:%d,y:%d-x1:%d,y1:%d,color:%04x", i,(int)x0, (int)y0, (int)x1, (int)y1, (int)color);
 
 		// Draw line
 		tft_drawLine(win, x0, y0, x1, y1, color);
@@ -160,5 +160,5 @@ void wire_draw(window *win, const wire_p *wire, const wire_e *edge, point *view,
 
 		wdt_reset();
 	}
-//DEBUG_PRINTF("i:%d,done\n",(int) i);
+//printf("i:%d,done\n",(int) i);
 }

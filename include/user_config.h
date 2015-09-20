@@ -30,6 +30,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MEMSPACE_RO ICACHE_RODATA_ATTR
 //#define MEMSPACE_RO static const
 
+#define ESP8266 1
+#define NO_STDIO
+
 #define _GNU_SOURCE
 
 #include <stdarg.h>
@@ -40,7 +43,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <ets_sys.h>
 
 // low level memory and flash reading code
-#include "util.h"
+#include "str.h"
+#include "sys.h"
 
 #include <ip_addr.h>
 #include <espconn.h>
@@ -48,6 +52,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <user_interface.h>
 #include <mem.h>
 
+#define MMC_SLOW (80000000UL/500000UL)
+#define MMC_FAST (80000000UL/2500000UL)
+
+
+#define get_line(buf,size) uart0_gets(buf,size)
 
 #include <uart_register.h>
 
@@ -60,9 +69,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Hardware SPI
 #include "hspi.h"
 
+#ifdef SCANF
+	#include "scanf.h"
+	#define sscanf t_sscanf
+#endif
+
+#include "printf.h"
+#include "debug.h"
+
 #ifdef YIELD_TASK
-#include "cont.h"
-#include "user_task.h"
+	#include "cont.h"
+	#include "user_task.h"
 #endif
 
 // TIME and TIMER FUNCTION
@@ -112,12 +129,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "bridge.h"
 #endif
 
-#ifdef SCANF
-	#include "scanf.h"
-#endif
-
-#include "printf.h"
-#include "debug.h"
 
 
 #endif

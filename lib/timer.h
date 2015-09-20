@@ -22,16 +22,11 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
-
 #ifndef __TIMER_H__
 #define __TIMER_H__
 
 #include <user_config.h>
-//#include <stdlib.h>
-//#include <string.h>
-#include "time.h"
-#include "timer_hal.h"
+#include <time.h>
 
 ///@brief Number of user timer tasks
 #define MAX_TIMER_CNT 8
@@ -57,7 +52,7 @@ typedef struct
 ///@brief CLock task in Microseconds defined as System Task.
 #define CLOCK_TIC_US SYSTEM_TASK_TIC_US
 
-/* lib/timer.c */
+/* timer.c */
 MEMSPACE int set_timers ( void (*handler )(void ), int timer );
 MEMSPACE int kill_timer ( int timer );
 MEMSPACE void delete_all_timers ( void );
@@ -66,6 +61,5 @@ MEMSPACE char *ts_to_str ( ts_t *val );
 MEMSPACE void display_ts ( ts_t *val );
 MEMSPACE void clock_elapsed_begin ( void );
 MEMSPACE void clock_elapsed_end ( char *msg );
-
 
 #endif                                            // _TIMER_H_

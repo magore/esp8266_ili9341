@@ -1,0 +1,1164 @@
+\hypertarget{str_8h}{\section{lib/str.h File Reference}
+\label{str_8h}\index{lib/str.\-h@{lib/str.\-h}}
+}
+
+
+String matching functions.  
+
+
+{\ttfamily \#include $<$user\-\_\-config.\-h$>$}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{str_8h_aac9153aee4bdb92701df902e06a74eb3}{S\-W\-A\-P}(a, b)~do \{ a $^\wedge$= b; b $^\wedge$= a; a $^\wedge$= b; \} while(0)
+\item 
+\#define \hyperlink{str_8h_a996f7be338ccb40d1a2a5abc1ad61759}{A\-B\-S}(x)~((x)$<$0 ? -\/(x) \-: (x))
+\item 
+\#define \hyperlink{str_8h_a8c5ff70b6b28cd0157c50a22406f92c4}{S\-I\-G\-N}(x)~(((x) == 0) ? 0 \-: ((x) $>$ 0) ? 1 \-: -\/1)
+\item 
+\#define \hyperlink{str_8h_aacc3ee1a7f283f8ef65cea31f4436a95}{M\-A\-X}(x, y)~(((x) $>$ (y)) ? x \-: y)
+\item 
+\#define \hyperlink{str_8h_a1a9b6f40de4cd7ffb57dd5abf8ec1f03}{S\-P\-A\-C\-E\-S}~\char`\"{} \textbackslash{}t\textbackslash{}r\char`\"{}
+\item 
+\#define \hyperlink{str_8h_a333f3ba393ec4f2077573d48bf133c7b}{S\-P\-A\-C\-E\-S\-N\-L}~\char`\"{} \textbackslash{}t\textbackslash{}n\textbackslash{}r\char`\"{}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} \hyperlink{str_8h_a8820bdd8a76740aaafe0506ff6040002}{read\-\_\-flash8} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$p)
+\item 
+void \hyperlink{str_8h_a9a70a218c9d4bae2e51bda4d7219712f}{cpy\-\_\-flash} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$src, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$dest, int size)
+\begin{DoxyCompactList}\small\item\em Copy data from Flash to Ram Uses flash\-\_\-read8() to avoid alighnment problems. \end{DoxyCompactList}\item 
+\hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\-\_\-t} \hyperlink{str_8h_a092855859eb7ea714f2ab3eee711ddc4}{read\-\_\-flash16} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$p)
+\begin{DoxyCompactList}\small\item\em 16 bits reads from Flash memory space Uses \hyperlink{flash_8c_a9a70a218c9d4bae2e51bda4d7219712f}{cpy\-\_\-flash()} to avoid alighnment problems \end{DoxyCompactList}\item 
+\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\-\_\-t} \hyperlink{str_8h_ac0366232efac94fc6f8da6a20d9bdaf9}{read\-\_\-flash32} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$p)
+\begin{DoxyCompactList}\small\item\em 32 bits reads from Flash memory space Uses \hyperlink{flash_8c_a9a70a218c9d4bae2e51bda4d7219712f}{cpy\-\_\-flash()} to avoid alighnment problems \end{DoxyCompactList}\item 
+uint64\-\_\-t \hyperlink{str_8h_ab1d6ea8dfe88a05a02869a3dd8cd7deb}{read\-\_\-flash64} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$p)
+\begin{DoxyCompactList}\small\item\em 64 bits reads from Flash memory space Uses \hyperlink{flash_8c_a9a70a218c9d4bae2e51bda4d7219712f}{cpy\-\_\-flash()} to avoid alighnment problems \end{DoxyCompactList}\item 
+\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\-\_\-t} \hyperlink{str_8h_ab39a1de20d7b9b1da1fb85100c0cbb10}{read\-\_\-flash\-\_\-ptr} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$p)
+\begin{DoxyCompactList}\small\item\em Pointer read from Flash memory space Uses \hyperlink{flash_8c_a9a70a218c9d4bae2e51bda4d7219712f}{cpy\-\_\-flash()} to avoid alighnment problems. \end{DoxyCompactList}\item 
+int \hyperlink{str_8h_a96d99653ceafa913b2f1331ef7219be8}{bittestv} (unsigned char $\ast$ptr, int off)
+\begin{DoxyCompactList}\small\item\em Test bit in byte array. \end{DoxyCompactList}\item 
+int \hyperlink{str_8h_aa5ed287545d9d0d4361d2bd1c6ecc69d}{bittestxy} (unsigned char $\ast$ptr, int x, int y, int w, int h)
+\begin{DoxyCompactList}\small\item\em Test bit in w $\ast$ h size bit array usng x and y offsets. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{str_8h_a3d3120b9c1d6fa02648d6e317f0f6e44}{reset} (void)
+\begin{DoxyCompactList}\small\item\em reset system \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{str_8h_a9b9f170e9a01e51b57656fcda1f183df}{wdt\-\_\-reset} (void)
+\begin{DoxyCompactList}\small\item\em reset watchdog \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{str_8h_a0f8c52d1c359b700088f8417b48e467b}{free} (void $\ast$p)
+\begin{DoxyCompactList}\small\item\em Free buffer P\-O\-S\-I\-X function We only call os\-\_\-free() is pointer is not null. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void $\ast$ \hyperlink{str_8h_ae148919146e88c7c40c7e2f781649b31}{calloc} (size\-\_\-t nmemb, size\-\_\-t size)
+\begin{DoxyCompactList}\small\item\em calloc buffer P\-O\-S\-I\-X function \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void $\ast$ \hyperlink{str_8h_a22b308551dea873face80619301d5618}{malloc} (size\-\_\-t size)
+\begin{DoxyCompactList}\small\item\em malloc buffer P\-O\-S\-I\-X function \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{str_8h_a8cebaf955a9e3b5f1f2af105641dad40}{skipspaces} (char $\ast$ptr)
+\begin{DoxyCompactList}\small\item\em Skip white space in a string -\/ tabs and spaces. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{str_8h_a205ab859e76086c5239a49effa3281dd}{nextspace} (char $\ast$ptr)
+\begin{DoxyCompactList}\small\item\em Skip to first white space in a string -\/ tabs and spaces. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{str_8h_aae86b90fc6ccc0c432de5c492cdcbaba}{skipchars} (char $\ast$str, char $\ast$pat)
+\begin{DoxyCompactList}\small\item\em Skip characters defined in user string. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{str_8h_a2d7ec9dae4f58c027edbc22118714ba6}{trim\-\_\-tail} (char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Trim White space and control characters from end of string. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{str_8h_a11f9265694fbed4de67d91c6959a0d18}{strnalloc} (char $\ast$str, int len)
+\begin{DoxyCompactList}\small\item\em Allocate space for string with maximum size. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{str_8h_a354472f280e9fe08820d6f32e0feddae}{stralloc} (char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Allocate space for string. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{str_8h_a9387f7db4933b1bafd14bddad8e8c9c8}{get\-\_\-token} (char $\ast$str, char $\ast$\hyperlink{str_8h_ae9142769a957bcb8c0fad1934576f576}{token}, int max)
+\begin{DoxyCompactList}\small\item\em return next token \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{str_8h_ae9142769a957bcb8c0fad1934576f576}{token} (char $\ast$str, char $\ast$pat)
+\begin{DoxyCompactList}\small\item\em Search for token in a string matching user pattern. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} \hyperlink{str_8h_a8ebead37e3b32237367ee7951e4bf7b9}{hexd} (char c)
+\begin{DoxyCompactList}\small\item\em Convert Character into H\-E\-X digit. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{str_8h_a0a3c929ebadee8388452f8c3809fe744}{isupper} (int c)
+\begin{DoxyCompactList}\small\item\em Is a character upper case. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{str_8h_a7f14a6a87f41f7ec8872676739c9ec0e}{islower} (int c)
+\begin{DoxyCompactList}\small\item\em Is a character lower case. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{str_8h_a9c58294d3c75c5b4e02e2a023171e2e5}{tolower} (int c)
+\begin{DoxyCompactList}\small\item\em Convert character to lower case, only if it is upper case. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{str_8h_a7ca70348e7e0ed7f44b6e580fb548bce}{toupper} (int c)
+\begin{DoxyCompactList}\small\item\em Convert character to upper case, only if it is lower case. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} size\-\_\-t \hyperlink{str_8h_ae1523394a394cbb226b2f7287e3e3741}{strlen} (const char $\ast$str)
+\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{str_8h_afe1fe8029f752b2943bcfaec34e0d418}{strcmp} (const char $\ast$str, const char $\ast$pat)
+\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{str_8h_a5d8aef92a0c6db9d00e9efdb56e6d5ad}{strncmp} (const char $\ast$str, const char $\ast$pat, size\-\_\-t len)
+\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{str_8h_abb79dc4b1a234ec7d781fd4b8e91b9b5}{strcasecmp} (const char $\ast$str, const char $\ast$pat)
+\begin{DoxyCompactList}\small\item\em Compare two strings without case. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{str_8h_a814a8d3d0f0ebaa44c61f172fa41d821}{strncasecmp} (const char $\ast$str, const char $\ast$pat, size\-\_\-t len)
+\begin{DoxyCompactList}\small\item\em Compare two strings without case maximum len bytes in size. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{str_8h_a9fb9c5c9b25cdf504152f7610f0d118c}{M\-A\-T\-C\-H} (char $\ast$str, char $\ast$pat)
+\begin{DoxyCompactList}\small\item\em Compare two strings. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{str_8h_a158b18efacfbaf45bf46e03f355cf101}{M\-A\-T\-C\-H\-I} (char $\ast$str, char $\ast$pat)
+\begin{DoxyCompactList}\small\item\em Compare two strings without case. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{str_8h_ac85ba7d5161939102f1daf99dcae85f0}{M\-A\-T\-C\-H\-\_\-\-L\-E\-N} (char $\ast$str, char $\ast$pat)
+\begin{DoxyCompactList}\small\item\em Compare two strings limted to length of pattern. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{str_8h_ab012fa46a47fa2430d6ebd25ed38c59e}{M\-A\-T\-C\-H\-I\-\_\-\-L\-E\-N} (char $\ast$str, char $\ast$pat)
+\begin{DoxyCompactList}\small\item\em Compare two strings without case limted to length of pattern. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+String matching functions. \begin{DoxyParagraph}{Copyright \copyright{} 2015 Mike Gore, G\-P\-L License}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{You are free to use this code under the terms of G\-P\-L}
+Please retain a copy of this notice in any code you use it in.
+\end{DoxyParagraph}
+This is free software\-: you can redistribute it and/or modify it under the terms of the G\-N\-U General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This software is distributed in the hope that it will be useful, but W\-I\-T\-H\-O\-U\-T A\-N\-Y W\-A\-R\-R\-A\-N\-T\-Y; without even the implied warranty of M\-E\-R\-C\-H\-A\-N\-T\-A\-B\-I\-L\-I\-T\-Y or F\-I\-T\-N\-E\-S\-S F\-O\-R A P\-A\-R\-T\-I\-C\-U\-L\-A\-R P\-U\-R\-P\-O\-S\-E. See the G\-N\-U General Public License for more details.
+
+You should have received a copy of the G\-N\-U General Public License along with this program. If not, see \href{http://www.gnu.org/licenses/}{\tt http\-://www.\-gnu.\-org/licenses/}. 
+
+Definition in file \hyperlink{str_8h_source}{str.\-h}.
+
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{str_8h_a996f7be338ccb40d1a2a5abc1ad61759}{\index{str.\-h@{str.\-h}!A\-B\-S@{A\-B\-S}}
+\index{A\-B\-S@{A\-B\-S}!str.h@{str.\-h}}
+\subsubsection[{A\-B\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-B\-S(
+\begin{DoxyParamCaption}
+\item[{}]{x}
+\end{DoxyParamCaption}
+)~((x)$<$0 ? -\/(x) \-: (x))}}\label{str_8h_a996f7be338ccb40d1a2a5abc1ad61759}
+
+
+Definition at line 32 of file str.\-h.
+
+\hypertarget{str_8h_aacc3ee1a7f283f8ef65cea31f4436a95}{\index{str.\-h@{str.\-h}!M\-A\-X@{M\-A\-X}}
+\index{M\-A\-X@{M\-A\-X}!str.h@{str.\-h}}
+\subsubsection[{M\-A\-X}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\-A\-X(
+\begin{DoxyParamCaption}
+\item[{}]{x, }
+\item[{}]{y}
+\end{DoxyParamCaption}
+)~(((x) $>$ (y)) ? x \-: y)}}\label{str_8h_aacc3ee1a7f283f8ef65cea31f4436a95}
+
+
+Definition at line 34 of file str.\-h.
+
+\hypertarget{str_8h_a8c5ff70b6b28cd0157c50a22406f92c4}{\index{str.\-h@{str.\-h}!S\-I\-G\-N@{S\-I\-G\-N}}
+\index{S\-I\-G\-N@{S\-I\-G\-N}!str.h@{str.\-h}}
+\subsubsection[{S\-I\-G\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-I\-G\-N(
+\begin{DoxyParamCaption}
+\item[{}]{x}
+\end{DoxyParamCaption}
+)~(((x) == 0) ? 0 \-: ((x) $>$ 0) ? 1 \-: -\/1)}}\label{str_8h_a8c5ff70b6b28cd0157c50a22406f92c4}
+
+
+Definition at line 33 of file str.\-h.
+
+
+
+Referenced by t\-\_\-sscanf().
+
+\hypertarget{str_8h_a1a9b6f40de4cd7ffb57dd5abf8ec1f03}{\index{str.\-h@{str.\-h}!S\-P\-A\-C\-E\-S@{S\-P\-A\-C\-E\-S}}
+\index{S\-P\-A\-C\-E\-S@{S\-P\-A\-C\-E\-S}!str.h@{str.\-h}}
+\subsubsection[{S\-P\-A\-C\-E\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-P\-A\-C\-E\-S~\char`\"{} \textbackslash{}t\textbackslash{}r\char`\"{}}}\label{str_8h_a1a9b6f40de4cd7ffb57dd5abf8ec1f03}
+
+
+Definition at line 36 of file str.\-h.
+
+\hypertarget{str_8h_a333f3ba393ec4f2077573d48bf133c7b}{\index{str.\-h@{str.\-h}!S\-P\-A\-C\-E\-S\-N\-L@{S\-P\-A\-C\-E\-S\-N\-L}}
+\index{S\-P\-A\-C\-E\-S\-N\-L@{S\-P\-A\-C\-E\-S\-N\-L}!str.h@{str.\-h}}
+\subsubsection[{S\-P\-A\-C\-E\-S\-N\-L}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-P\-A\-C\-E\-S\-N\-L~\char`\"{} \textbackslash{}t\textbackslash{}n\textbackslash{}r\char`\"{}}}\label{str_8h_a333f3ba393ec4f2077573d48bf133c7b}
+
+
+Definition at line 37 of file str.\-h.
+
+\hypertarget{str_8h_aac9153aee4bdb92701df902e06a74eb3}{\index{str.\-h@{str.\-h}!S\-W\-A\-P@{S\-W\-A\-P}}
+\index{S\-W\-A\-P@{S\-W\-A\-P}!str.h@{str.\-h}}
+\subsubsection[{S\-W\-A\-P}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-W\-A\-P(
+\begin{DoxyParamCaption}
+\item[{}]{a, }
+\item[{}]{b}
+\end{DoxyParamCaption}
+)~do \{ a $^\wedge$= b; b $^\wedge$= a; a $^\wedge$= b; \} while(0)}}\label{str_8h_aac9153aee4bdb92701df902e06a74eb3}
+
+
+Definition at line 31 of file str.\-h.
+
+
+
+Referenced by tft\-\_\-fill\-Rect\-X\-Y(), and tft\-\_\-fill\-Triangle().
+
+
+
+\subsection{Function Documentation}
+\hypertarget{str_8h_a96d99653ceafa913b2f1331ef7219be8}{\index{str.\-h@{str.\-h}!bittestv@{bittestv}}
+\index{bittestv@{bittestv}!str.h@{str.\-h}}
+\subsubsection[{bittestv}]{\setlength{\rightskip}{0pt plus 5cm}int bittestv (
+\begin{DoxyParamCaption}
+\item[{unsigned char $\ast$}]{ptr, }
+\item[{int}]{off}
+\end{DoxyParamCaption}
+)}}\label{str_8h_a96d99653ceafa913b2f1331ef7219be8}
+
+
+Test bit in byte array. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$ptr} & byte array \\
+\hline
+\mbox{\tt in}  & {\em off} & bit offset to test \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if bit is set, 0 if not 
+\end{DoxyReturn}
+
+
+Definition at line 146 of file flash.\-c.
+
+
+
+Referenced by tft\-\_\-bit\-\_\-blit().
+
+\hypertarget{str_8h_aa5ed287545d9d0d4361d2bd1c6ecc69d}{\index{str.\-h@{str.\-h}!bittestxy@{bittestxy}}
+\index{bittestxy@{bittestxy}!str.h@{str.\-h}}
+\subsubsection[{bittestxy}]{\setlength{\rightskip}{0pt plus 5cm}int bittestxy (
+\begin{DoxyParamCaption}
+\item[{unsigned char $\ast$}]{ptr, }
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{int}]{w, }
+\item[{int}]{h}
+\end{DoxyParamCaption}
+)}}\label{str_8h_aa5ed287545d9d0d4361d2bd1c6ecc69d}
+
+
+Test bit in w $\ast$ h size bit array usng x and y offsets. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$ptr} & byte array \\
+\hline
+\mbox{\tt in}  & {\em x} & bit x offset \\
+\hline
+\mbox{\tt in}  & {\em y} & bit y offset \\
+\hline
+\mbox{\tt in}  & {\em w} & bit array wide \\
+\hline
+\mbox{\tt in}  & {\em h} & bit array high \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if bit is set, 0 if not
+\end{DoxyReturn}
+Test bit in w $\ast$ h size bit array usng x and y offsets.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$ptr} & byte array \\
+\hline
+\mbox{\tt in}  & {\em x} & bit x offset \\
+\hline
+\mbox{\tt in}  & {\em y} & bit y offset \\
+\hline
+\mbox{\tt in}  & {\em w} & the width of bit array \\
+\hline
+\mbox{\tt in}  & {\em h} & the height of bit array \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if bit is set, 0 if not 
+\end{DoxyReturn}
+
+
+Definition at line 161 of file flash.\-c.
+
+\hypertarget{str_8h_ae148919146e88c7c40c7e2f781649b31}{\index{str.\-h@{str.\-h}!calloc@{calloc}}
+\index{calloc@{calloc}!str.h@{str.\-h}}
+\subsubsection[{calloc}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void$\ast$ calloc (
+\begin{DoxyParamCaption}
+\item[{size\-\_\-t}]{nmemb, }
+\item[{size\-\_\-t}]{size}
+\end{DoxyParamCaption}
+)}}\label{str_8h_ae148919146e88c7c40c7e2f781649b31}
+
+
+calloc buffer P\-O\-S\-I\-X function 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em nmemb} & number of elements \\
+\hline
+\mbox{\tt in}  & {\em size} & size of elements \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void $\ast$ buffer 
+\end{DoxyReturn}
+
+
+Definition at line 46 of file sys.\-c.
+
+
+
+Referenced by db\-\_\-calloc(), escape(), fatfs\-\_\-alloc\-\_\-finfo(), fatfs\-\_\-cat(), fatfs\-\_\-copy(), html\-\_\-msg(), main(), new\-\_\-file\-\_\-descriptor(), queue\-\_\-new(), rwbuf\-\_\-create(), stralloc(), strnalloc(), and uart0\-\_\-gets\-\_\-init().
+
+\hypertarget{str_8h_a9a70a218c9d4bae2e51bda4d7219712f}{\index{str.\-h@{str.\-h}!cpy\-\_\-flash@{cpy\-\_\-flash}}
+\index{cpy\-\_\-flash@{cpy\-\_\-flash}!str.h@{str.\-h}}
+\subsubsection[{cpy\-\_\-flash}]{\setlength{\rightskip}{0pt plus 5cm}void cpy\-\_\-flash (
+\begin{DoxyParamCaption}
+\item[{{\bf uint8\-\_\-t} $\ast$}]{src, }
+\item[{{\bf uint8\-\_\-t} $\ast$}]{dest, }
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}}\label{str_8h_a9a70a218c9d4bae2e51bda4d7219712f}
+
+
+Copy data from Flash to Ram Uses flash\-\_\-read8() to avoid alighnment problems. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$src} & address to read from \\
+\hline
+\mbox{\tt out}  & {\em $\ast$dest} & address to write to \\
+\hline
+\mbox{\tt in}  & {\em size} & number of bytes to copy \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 84 of file flash.\-c.
+
+
+
+Referenced by font\-\_\-attr(), and wire\-\_\-draw().
+
+\hypertarget{str_8h_a0f8c52d1c359b700088f8417b48e467b}{\index{str.\-h@{str.\-h}!free@{free}}
+\index{free@{free}!str.h@{str.\-h}}
+\subsubsection[{free}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void free (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{str_8h_a0f8c52d1c359b700088f8417b48e467b}
+
+
+Free buffer P\-O\-S\-I\-X function We only call os\-\_\-free() is pointer is not null. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$p} & buffer to free \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 34 of file sys.\-c.
+
+
+
+Referenced by db\-\_\-free(), fatfs\-\_\-alloc\-\_\-finfo(), fatfs\-\_\-cat(), fatfs\-\_\-copy(), fatfs\-\_\-free\-\_\-filinfo(), ff\-\_\-memfree(), free\-\_\-file\-\_\-descriptor(), html\-\_\-msg(), main(), new\-\_\-file\-\_\-descriptor(), queue\-\_\-del(), queue\-\_\-new(), queue\-\_\-push\-\_\-buffer(), rwbuf\-\_\-delete(), rx\-\_\-fifo\-\_\-free(), and tx\-\_\-fifo\-\_\-free().
+
+\hypertarget{str_8h_a9387f7db4933b1bafd14bddad8e8c9c8}{\index{str.\-h@{str.\-h}!get\-\_\-token@{get\-\_\-token}}
+\index{get\-\_\-token@{get\-\_\-token}!str.h@{str.\-h}}
+\subsubsection[{get\-\_\-token}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} char$\ast$ get\-\_\-token (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str, }
+\item[{char $\ast$}]{token, }
+\item[{int}]{max}
+\end{DoxyParamCaption}
+)}}\label{str_8h_a9387f7db4933b1bafd14bddad8e8c9c8}
+
+
+return next token 
+
+
+\begin{DoxyItemize}
+\item Skips all non printable A\-S\-C\-I\-I characters before token
+\item Token returns only printable A\-S\-C\-I\-I
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & string to search. \\
+\hline
+\mbox{\tt out}  & {\em token} & token to return \\
+\hline
+\mbox{\tt in}  & {\em max} & maximum token size\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer past token on success . 
+
+N\-U\-L\-L if no token found
+\end{DoxyReturn}
+return next token
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$str} & string \\
+\hline
+\mbox{\tt out}  & {\em $\ast$token} & token characters greter then space less then 0x7f \\
+\hline
+\mbox{\tt in}  & {\em max} & maximum length of token \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\-: string pointer to character after token 
+\end{DoxyReturn}
+
+
+Definition at line 176 of file str.\-c.
+
+\hypertarget{str_8h_a8ebead37e3b32237367ee7951e4bf7b9}{\index{str.\-h@{str.\-h}!hexd@{hexd}}
+\index{hexd@{hexd}!str.h@{str.\-h}}
+\subsubsection[{hexd}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} {\bf uint8\-\_\-t} hexd (
+\begin{DoxyParamCaption}
+\item[{char}]{c}
+\end{DoxyParamCaption}
+)}}\label{str_8h_a8ebead37e3b32237367ee7951e4bf7b9}
+
+
+Convert Character into H\-E\-X digit. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & character.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+H\-E\-X digit \mbox{[}0..F\mbox{]} on success. 
+
+0xff on fail. 
+\end{DoxyReturn}
+
+
+Definition at line 255 of file str.\-c.
+
+
+
+Referenced by process\-\_\-args().
+
+\hypertarget{str_8h_a7f14a6a87f41f7ec8872676739c9ec0e}{\index{str.\-h@{str.\-h}!islower@{islower}}
+\index{islower@{islower}!str.h@{str.\-h}}
+\subsubsection[{islower}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int islower (
+\begin{DoxyParamCaption}
+\item[{int}]{c}
+\end{DoxyParamCaption}
+)}}\label{str_8h_a7f14a6a87f41f7ec8872676739c9ec0e}
+
+
+Is a character lower case. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & character.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 of lower case, else 0 
+\end{DoxyReturn}
+
+
+Definition at line 298 of file str.\-c.
+
+
+
+Referenced by toupper().
+
+\hypertarget{str_8h_a0a3c929ebadee8388452f8c3809fe744}{\index{str.\-h@{str.\-h}!isupper@{isupper}}
+\index{isupper@{isupper}!str.h@{str.\-h}}
+\subsubsection[{isupper}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int isupper (
+\begin{DoxyParamCaption}
+\item[{int}]{c}
+\end{DoxyParamCaption}
+)}}\label{str_8h_a0a3c929ebadee8388452f8c3809fe744}
+
+
+Is a character upper case. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & character.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 of upper case, else 0 
+\end{DoxyReturn}
+
+
+Definition at line 286 of file str.\-c.
+
+
+
+Referenced by tolower().
+
+\hypertarget{str_8h_a22b308551dea873face80619301d5618}{\index{str.\-h@{str.\-h}!malloc@{malloc}}
+\index{malloc@{malloc}!str.h@{str.\-h}}
+\subsubsection[{malloc}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void$\ast$ malloc (
+\begin{DoxyParamCaption}
+\item[{size\-\_\-t}]{size}
+\end{DoxyParamCaption}
+)}}\label{str_8h_a22b308551dea873face80619301d5618}
+
+
+malloc buffer P\-O\-S\-I\-X function 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em size} & size of buffer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void $\ast$ buffer 
+\end{DoxyReturn}
+
+
+Definition at line 57 of file sys.\-c.
+
+
+
+Referenced by ff\-\_\-memalloc().
+
+\hypertarget{str_8h_a9fb9c5c9b25cdf504152f7610f0d118c}{\index{str.\-h@{str.\-h}!M\-A\-T\-C\-H@{M\-A\-T\-C\-H}}
+\index{M\-A\-T\-C\-H@{M\-A\-T\-C\-H}!str.h@{str.\-h}}
+\subsubsection[{M\-A\-T\-C\-H}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int M\-A\-T\-C\-H (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str, }
+\item[{char $\ast$}]{pat}
+\end{DoxyParamCaption}
+)}}\label{str_8h_a9fb9c5c9b25cdf504152f7610f0d118c}
+
+
+Compare two strings. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & string to match. \\
+\hline
+\mbox{\tt in}  & {\em pat} & pattern to compare.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string lenth on match. 
+
+0 on no match. 
+\end{DoxyReturn}
+
+
+Definition at line 437 of file str.\-c.
+
+\hypertarget{str_8h_ac85ba7d5161939102f1daf99dcae85f0}{\index{str.\-h@{str.\-h}!M\-A\-T\-C\-H\-\_\-\-L\-E\-N@{M\-A\-T\-C\-H\-\_\-\-L\-E\-N}}
+\index{M\-A\-T\-C\-H\-\_\-\-L\-E\-N@{M\-A\-T\-C\-H\-\_\-\-L\-E\-N}!str.h@{str.\-h}}
+\subsubsection[{M\-A\-T\-C\-H\-\_\-\-L\-E\-N}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int M\-A\-T\-C\-H\-\_\-\-L\-E\-N (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str, }
+\item[{char $\ast$}]{pat}
+\end{DoxyParamCaption}
+)}}\label{str_8h_ac85ba7d5161939102f1daf99dcae85f0}
+
+
+Compare two strings limted to length of pattern. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & string to match. \\
+\hline
+\mbox{\tt in}  & {\em pat} & pattern to compare.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string lenth on match. 
+
+0 on no match. 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+Matches sub strings so be caeful. 
+\end{DoxyWarning}
+
+
+Definition at line 473 of file str.\-c.
+
+\hypertarget{str_8h_a158b18efacfbaf45bf46e03f355cf101}{\index{str.\-h@{str.\-h}!M\-A\-T\-C\-H\-I@{M\-A\-T\-C\-H\-I}}
+\index{M\-A\-T\-C\-H\-I@{M\-A\-T\-C\-H\-I}!str.h@{str.\-h}}
+\subsubsection[{M\-A\-T\-C\-H\-I}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int M\-A\-T\-C\-H\-I (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str, }
+\item[{char $\ast$}]{pat}
+\end{DoxyParamCaption}
+)}}\label{str_8h_a158b18efacfbaf45bf46e03f355cf101}
+
+
+Compare two strings without case. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & string to match. \\
+\hline
+\mbox{\tt in}  & {\em pat} & pattern to compare.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string lenth on match. 
+
+0 on no match. 
+\end{DoxyReturn}
+
+
+Definition at line 455 of file str.\-c.
+
+\hypertarget{str_8h_ab012fa46a47fa2430d6ebd25ed38c59e}{\index{str.\-h@{str.\-h}!M\-A\-T\-C\-H\-I\-\_\-\-L\-E\-N@{M\-A\-T\-C\-H\-I\-\_\-\-L\-E\-N}}
+\index{M\-A\-T\-C\-H\-I\-\_\-\-L\-E\-N@{M\-A\-T\-C\-H\-I\-\_\-\-L\-E\-N}!str.h@{str.\-h}}
+\subsubsection[{M\-A\-T\-C\-H\-I\-\_\-\-L\-E\-N}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int M\-A\-T\-C\-H\-I\-\_\-\-L\-E\-N (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str, }
+\item[{char $\ast$}]{pat}
+\end{DoxyParamCaption}
+)}}\label{str_8h_ab012fa46a47fa2430d6ebd25ed38c59e}
+
+
+Compare two strings without case limted to length of pattern. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & string to match. \\
+\hline
+\mbox{\tt in}  & {\em pat} & pattern to compare.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string lenth on match. 
+
+0 on no match. 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+Matches sub strings so be caeful. 
+\end{DoxyWarning}
+
+
+Definition at line 499 of file str.\-c.
+
+
+
+Referenced by match\-\_\-headers().
+
+\hypertarget{str_8h_a205ab859e76086c5239a49effa3281dd}{\index{str.\-h@{str.\-h}!nextspace@{nextspace}}
+\index{nextspace@{nextspace}!str.h@{str.\-h}}
+\subsubsection[{nextspace}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} char$\ast$ nextspace (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{ptr}
+\end{DoxyParamCaption}
+)}}\label{str_8h_a205ab859e76086c5239a49effa3281dd}
+
+
+Skip to first white space in a string -\/ tabs and spaces. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em ptr} & input string\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to first white space character 
+\end{DoxyReturn}
+
+
+Definition at line 50 of file str.\-c.
+
+
+
+Referenced by fatfs\-\_\-tests(), and parse\-\_\-http\-\_\-request().
+
+\hypertarget{str_8h_a092855859eb7ea714f2ab3eee711ddc4}{\index{str.\-h@{str.\-h}!read\-\_\-flash16@{read\-\_\-flash16}}
+\index{read\-\_\-flash16@{read\-\_\-flash16}!str.h@{str.\-h}}
+\subsubsection[{read\-\_\-flash16}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint16\-\_\-t} read\-\_\-flash16 (
+\begin{DoxyParamCaption}
+\item[{{\bf uint8\-\_\-t} $\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{str_8h_a092855859eb7ea714f2ab3eee711ddc4}
+
+
+16 bits reads from Flash memory space Uses \hyperlink{flash_8c_a9a70a218c9d4bae2e51bda4d7219712f}{cpy\-\_\-flash()} to avoid alighnment problems 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$p} & address to read \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uint16\-\_\-t 
+\end{DoxyReturn}
+
+
+Definition at line 98 of file flash.\-c.
+
+\hypertarget{str_8h_ac0366232efac94fc6f8da6a20d9bdaf9}{\index{str.\-h@{str.\-h}!read\-\_\-flash32@{read\-\_\-flash32}}
+\index{read\-\_\-flash32@{read\-\_\-flash32}!str.h@{str.\-h}}
+\subsubsection[{read\-\_\-flash32}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint32\-\_\-t} read\-\_\-flash32 (
+\begin{DoxyParamCaption}
+\item[{{\bf uint8\-\_\-t} $\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{str_8h_ac0366232efac94fc6f8da6a20d9bdaf9}
+
+
+32 bits reads from Flash memory space Uses \hyperlink{flash_8c_a9a70a218c9d4bae2e51bda4d7219712f}{cpy\-\_\-flash()} to avoid alighnment problems 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$p} & address to read \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uint32\-\_\-t 
+\end{DoxyReturn}
+
+
+Definition at line 110 of file flash.\-c.
+
+\hypertarget{str_8h_ab1d6ea8dfe88a05a02869a3dd8cd7deb}{\index{str.\-h@{str.\-h}!read\-\_\-flash64@{read\-\_\-flash64}}
+\index{read\-\_\-flash64@{read\-\_\-flash64}!str.h@{str.\-h}}
+\subsubsection[{read\-\_\-flash64}]{\setlength{\rightskip}{0pt plus 5cm}uint64\-\_\-t read\-\_\-flash64 (
+\begin{DoxyParamCaption}
+\item[{{\bf uint8\-\_\-t} $\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{str_8h_ab1d6ea8dfe88a05a02869a3dd8cd7deb}
+
+
+64 bits reads from Flash memory space Uses \hyperlink{flash_8c_a9a70a218c9d4bae2e51bda4d7219712f}{cpy\-\_\-flash()} to avoid alighnment problems 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$p} & address to read \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uint64\-\_\-t 
+\end{DoxyReturn}
+
+
+Definition at line 122 of file flash.\-c.
+
+\hypertarget{str_8h_a8820bdd8a76740aaafe0506ff6040002}{\index{str.\-h@{str.\-h}!read\-\_\-flash8@{read\-\_\-flash8}}
+\index{read\-\_\-flash8@{read\-\_\-flash8}!str.h@{str.\-h}}
+\subsubsection[{read\-\_\-flash8}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint8\-\_\-t} read\-\_\-flash8 (
+\begin{DoxyParamCaption}
+\item[{{\bf uint8\-\_\-t} $\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{str_8h_a8820bdd8a76740aaafe0506ff6040002}
+
+
+Definition at line 41 of file flash.\-c.
+
+\hypertarget{str_8h_ab39a1de20d7b9b1da1fb85100c0cbb10}{\index{str.\-h@{str.\-h}!read\-\_\-flash\-\_\-ptr@{read\-\_\-flash\-\_\-ptr}}
+\index{read\-\_\-flash\-\_\-ptr@{read\-\_\-flash\-\_\-ptr}!str.h@{str.\-h}}
+\subsubsection[{read\-\_\-flash\-\_\-ptr}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint32\-\_\-t} read\-\_\-flash\-\_\-ptr (
+\begin{DoxyParamCaption}
+\item[{{\bf uint8\-\_\-t} $\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{str_8h_ab39a1de20d7b9b1da1fb85100c0cbb10}
+
+
+Pointer read from Flash memory space Uses \hyperlink{flash_8c_a9a70a218c9d4bae2e51bda4d7219712f}{cpy\-\_\-flash()} to avoid alighnment problems. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$p} & address to read \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uint32\-\_\-t 
+\end{DoxyReturn}
+
+
+Definition at line 134 of file flash.\-c.
+
+\hypertarget{str_8h_a3d3120b9c1d6fa02648d6e317f0f6e44}{\index{str.\-h@{str.\-h}!reset@{reset}}
+\index{reset@{reset}!str.h@{str.\-h}}
+\subsubsection[{reset}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void reset (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{str_8h_a3d3120b9c1d6fa02648d6e317f0f6e44}
+
+
+reset system 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 66 of file sys.\-c.
+
+
+
+Referenced by uart0\-\_\-gets\-\_\-init().
+
+\hypertarget{str_8h_aae86b90fc6ccc0c432de5c492cdcbaba}{\index{str.\-h@{str.\-h}!skipchars@{skipchars}}
+\index{skipchars@{skipchars}!str.h@{str.\-h}}
+\subsubsection[{skipchars}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} char$\ast$ skipchars (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str, }
+\item[{char $\ast$}]{pat}
+\end{DoxyParamCaption}
+)}}\label{str_8h_aae86b90fc6ccc0c432de5c492cdcbaba}
+
+
+Skip characters defined in user string. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & string \\
+\hline
+\mbox{\tt in}  & {\em pat} & pattern string\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to string after skipped characters. 
+\end{DoxyReturn}
+
+
+Definition at line 72 of file str.\-c.
+
+\hypertarget{str_8h_a8cebaf955a9e3b5f1f2af105641dad40}{\index{str.\-h@{str.\-h}!skipspaces@{skipspaces}}
+\index{skipspaces@{skipspaces}!str.h@{str.\-h}}
+\subsubsection[{skipspaces}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} char$\ast$ skipspaces (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{ptr}
+\end{DoxyParamCaption}
+)}}\label{str_8h_a8cebaf955a9e3b5f1f2af105641dad40}
+
+
+Skip white space in a string -\/ tabs and spaces. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em ptr} & input string\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to first non white space character 
+\end{DoxyReturn}
+
+
+Definition at line 33 of file str.\-c.
+
+
+
+Referenced by fatfs\-\_\-tests(), get\-\_\-token(), match\-\_\-headers(), parse\-\_\-http\-\_\-request(), process\-\_\-args(), and user\-\_\-tests().
+
+\hypertarget{str_8h_a354472f280e9fe08820d6f32e0feddae}{\index{str.\-h@{str.\-h}!stralloc@{stralloc}}
+\index{stralloc@{stralloc}!str.h@{str.\-h}}
+\subsubsection[{stralloc}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} char$\ast$ stralloc (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str}
+\end{DoxyParamCaption}
+)}}\label{str_8h_a354472f280e9fe08820d6f32e0feddae}
+
+
+Allocate space for string. 
+
+
+\begin{DoxyItemize}
+\item Copies tring into allocated space.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & user string.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to alocated string. 
+
+N\-U\-L\-L on out of memory.
+\end{DoxyReturn}
+Allocate space for string.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$str} & string to allocate and copy memory for \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\-: char $\ast$ pointer to allocated string 
+\end{DoxyReturn}
+
+
+Definition at line 149 of file str.\-c.
+
+\hypertarget{str_8h_abb79dc4b1a234ec7d781fd4b8e91b9b5}{\index{str.\-h@{str.\-h}!strcasecmp@{strcasecmp}}
+\index{strcasecmp@{strcasecmp}!str.h@{str.\-h}}
+\subsubsection[{strcasecmp}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int strcasecmp (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{str, }
+\item[{const char $\ast$}]{pat}
+\end{DoxyParamCaption}
+)}}\label{str_8h_abb79dc4b1a234ec7d781fd4b8e91b9b5}
+
+
+Compare two strings without case. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & string to match. \\
+\hline
+\mbox{\tt in}  & {\em pat} & pattern to compare.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on match, $<$ 0 implies str sorts before pat, $>$ 0 implies str sorts after pat 
+\end{DoxyReturn}
+
+
+Definition at line 394 of file str.\-c.
+
+
+
+Referenced by file\-\_\-type(), http\-\_\-value(), and M\-A\-T\-C\-H\-I().
+
+\hypertarget{str_8h_afe1fe8029f752b2943bcfaec34e0d418}{\index{str.\-h@{str.\-h}!strcmp@{strcmp}}
+\index{strcmp@{strcmp}!str.h@{str.\-h}}
+\subsubsection[{strcmp}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int strcmp (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{str, }
+\item[{const char $\ast$}]{pat}
+\end{DoxyParamCaption}
+)}}\label{str_8h_afe1fe8029f752b2943bcfaec34e0d418}
+
+
+Referenced by Find\-Font\-Name(), main(), and M\-A\-T\-C\-H().
+
+\hypertarget{str_8h_ae1523394a394cbb226b2f7287e3e3741}{\index{str.\-h@{str.\-h}!strlen@{strlen}}
+\index{strlen@{strlen}!str.h@{str.\-h}}
+\subsubsection[{strlen}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} size\-\_\-t strlen (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{str}
+\end{DoxyParamCaption}
+)}}\label{str_8h_ae1523394a394cbb226b2f7287e3e3741}
+
+
+Referenced by \-\_\-printf\-\_\-fn(), arg\-\_\-name(), arg\-\_\-value(), escape(), fatfs\-\_\-create(), fatfs\-\_\-scan\-\_\-files(), get\-\_\-date(), html\-\_\-msg(), main(), M\-A\-T\-C\-H(), match\-\_\-headers(), M\-A\-T\-C\-H\-\_\-\-L\-E\-N(), match\-\_\-token(), M\-A\-T\-C\-H\-I(), M\-A\-T\-C\-H\-I\-\_\-\-L\-E\-N(), mctime(), next\-\_\-arg(), parse\-\_\-http\-\_\-request(), Read\-Bdf(), reverse(), send\-\_\-message(), stralloc(), t\-\_\-ftoa(), t\-\_\-itoa(), t\-\_\-ntoa(), token(), trim\-\_\-tail(), and vsnprintf().
+
+\hypertarget{str_8h_a11f9265694fbed4de67d91c6959a0d18}{\index{str.\-h@{str.\-h}!strnalloc@{strnalloc}}
+\index{strnalloc@{strnalloc}!str.h@{str.\-h}}
+\subsubsection[{strnalloc}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} char$\ast$ strnalloc (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str, }
+\item[{int}]{len}
+\end{DoxyParamCaption}
+)}}\label{str_8h_a11f9265694fbed4de67d91c6959a0d18}
+
+
+Allocate space for string with maximum size. 
+
+
+\begin{DoxyItemize}
+\item Copies tring into allocated space limited to maximum size.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & user string. \\
+\hline
+\mbox{\tt in}  & {\em len} & maximum string length.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to alocated string. 
+\end{DoxyReturn}
+
+
+Definition at line 125 of file str.\-c.
+
+\hypertarget{str_8h_a814a8d3d0f0ebaa44c61f172fa41d821}{\index{str.\-h@{str.\-h}!strncasecmp@{strncasecmp}}
+\index{strncasecmp@{strncasecmp}!str.h@{str.\-h}}
+\subsubsection[{strncasecmp}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int strncasecmp (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{str, }
+\item[{const char $\ast$}]{pat, }
+\item[{size\-\_\-t}]{len}
+\end{DoxyParamCaption}
+)}}\label{str_8h_a814a8d3d0f0ebaa44c61f172fa41d821}
+
+
+Compare two strings without case maximum len bytes in size. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & string to match. \\
+\hline
+\mbox{\tt in}  & {\em pat} & pattern to compare. \\
+\hline
+\mbox{\tt in}  & {\em len} & maximum string length for compare \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on match, $<$ 0 implies str sorts before pat, $>$ 0 implies str sorts after pat 
+\end{DoxyReturn}
+
+
+Definition at line 415 of file str.\-c.
+
+
+
+Referenced by M\-A\-T\-C\-H\-I\-\_\-\-L\-E\-N().
+
+\hypertarget{str_8h_a5d8aef92a0c6db9d00e9efdb56e6d5ad}{\index{str.\-h@{str.\-h}!strncmp@{strncmp}}
+\index{strncmp@{strncmp}!str.h@{str.\-h}}
+\subsubsection[{strncmp}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int strncmp (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{str, }
+\item[{const char $\ast$}]{pat, }
+\item[{size\-\_\-t}]{len}
+\end{DoxyParamCaption}
+)}}\label{str_8h_a5d8aef92a0c6db9d00e9efdb56e6d5ad}
+
+
+Referenced by M\-A\-T\-C\-H\-\_\-\-L\-E\-N(), match\-\_\-token(), and token().
+
+\hypertarget{str_8h_ae9142769a957bcb8c0fad1934576f576}{\index{str.\-h@{str.\-h}!token@{token}}
+\index{token@{token}!str.h@{str.\-h}}
+\subsubsection[{token}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int token (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str, }
+\item[{char $\ast$}]{pat}
+\end{DoxyParamCaption}
+)}}\label{str_8h_ae9142769a957bcb8c0fad1934576f576}
+
+
+Search for token in a string matching user pattern. 
+
+
+\begin{DoxyItemize}
+\item Skips all non printable A\-S\-C\-I\-I characters before trying match.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & string to search. \\
+\hline
+\mbox{\tt in}  & {\em pat} & pattern to search for.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string lenth on match. 
+
+0 on no match. 
+\end{DoxyReturn}
+
+
+Definition at line 220 of file str.\-c.
+
+
+
+Referenced by fatfs\-\_\-tests(), rcvr\-\_\-datablock(), Read\-Bdf(), and user\-\_\-tests().
+
+\hypertarget{str_8h_a9c58294d3c75c5b4e02e2a023171e2e5}{\index{str.\-h@{str.\-h}!tolower@{tolower}}
+\index{tolower@{tolower}!str.h@{str.\-h}}
+\subsubsection[{tolower}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int tolower (
+\begin{DoxyParamCaption}
+\item[{int}]{c}
+\end{DoxyParamCaption}
+)}}\label{str_8h_a9c58294d3c75c5b4e02e2a023171e2e5}
+
+
+Convert character to lower case, only if it is upper case. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & character.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+character or lowercase value or character 
+\end{DoxyReturn}
+
+
+Definition at line 311 of file str.\-c.
+
+\hypertarget{str_8h_a7ca70348e7e0ed7f44b6e580fb548bce}{\index{str.\-h@{str.\-h}!toupper@{toupper}}
+\index{toupper@{toupper}!str.h@{str.\-h}}
+\subsubsection[{toupper}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int toupper (
+\begin{DoxyParamCaption}
+\item[{int}]{c}
+\end{DoxyParamCaption}
+)}}\label{str_8h_a7ca70348e7e0ed7f44b6e580fb548bce}
+
+
+Convert character to upper case, only if it is lower case. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & character.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+character or upper case value or character 
+\end{DoxyReturn}
+
+
+Definition at line 323 of file str.\-c.
+
+
+
+Referenced by Read\-Bdf(), strcasecmp(), and strncasecmp().
+
+\hypertarget{str_8h_a2d7ec9dae4f58c027edbc22118714ba6}{\index{str.\-h@{str.\-h}!trim\-\_\-tail@{trim\-\_\-tail}}
+\index{trim\-\_\-tail@{trim\-\_\-tail}!str.h@{str.\-h}}
+\subsubsection[{trim\-\_\-tail}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void trim\-\_\-tail (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str}
+\end{DoxyParamCaption}
+)}}\label{str_8h_a2d7ec9dae4f58c027edbc22118714ba6}
+
+
+Trim White space and control characters from end of string. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & string\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+Overwrites White space and control characters with E\-O\-S.
+\end{DoxyWarning}
+Trim White space and control characters from end of string.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$str} & string to remove quotes from \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\-: void 
+\end{DoxyReturn}
+
+
+Definition at line 102 of file str.\-c.
+
+\hypertarget{str_8h_a9b9f170e9a01e51b57656fcda1f183df}{\index{str.\-h@{str.\-h}!wdt\-\_\-reset@{wdt\-\_\-reset}}
+\index{wdt\-\_\-reset@{wdt\-\_\-reset}!str.h@{str.\-h}}
+\subsubsection[{wdt\-\_\-reset}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void wdt\-\_\-reset (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{str_8h_a9b9f170e9a01e51b57656fcda1f183df}
+
+
+reset watchdog 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 75 of file sys.\-c.
+
+
+
+Referenced by f\-\_\-getfree(), f\-\_\-mkfs(), fatfs\-\_\-scan\-\_\-files(), mmc\-\_\-power\-\_\-on(), setup(), and wire\-\_\-draw().
+

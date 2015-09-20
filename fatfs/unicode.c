@@ -1,5 +1,5 @@
 /**
- @file fatfs/option/unicode.c
+ @file fatfs/unicode.c
 
  @brief FatFS Unicode include file  R0.10b (C) ChaN, 2014.
  @par Copyright &copy; 2014 ChaN.

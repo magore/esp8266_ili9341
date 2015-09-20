@@ -2,7 +2,7 @@ var searchData=
 [
   ['p1',['p1',['../structwire__e.html#a00cfec6074c9bfb7f674fed20174abad',1,'wire_e']]],
   ['p2',['p2',['../structwire__e.html#a2167b2f5bbd853ae35f7bb53a1a2685d',1,'wire_e']]],
-  ['p8',['p8',['../util_8c.html#a479af12cf028298aa88cc283f4390e9e',1,'util.c']]],
+  ['p8',['p8',['../flash_8c.html#a479af12cf028298aa88cc283f4390e9e',1,'flash.c']]],
   ['par',['par',['../structETSEventTag.html#a6015492ea4e05e188d2a3e293aefeb31',1,'ETSEventTag']]],
   ['parse_5fhttp_5frequest',['parse_http_request',['../web_8c.html#a574da7d2e02f16c3ff0727061b90c46c',1,'parse_http_request(rwbuf_t *p, hinfo_t *hi):&#160;web.c'],['../web_8h.html#a574da7d2e02f16c3ff0727061b90c46c',1,'parse_http_request(rwbuf_t *p, hinfo_t *hi):&#160;web.c']]],
   ['pattern',['pattern',['../structheader__t.html#a389d7564d1b1fd7b7ace82e15525e18c',1,'header_t']]],
@@ -38,13 +38,11 @@ var searchData=
   ['ptype_5fpdf',['PTYPE_PDF',['../web_8h.html#abc6126af1d45847bc59afa0aa3216b04a30057776e71c48725f93b464b45c9a21',1,'web.h']]],
   ['ptype_5ftext',['PTYPE_TEXT',['../web_8h.html#abc6126af1d45847bc59afa0aa3216b04a90b1e6aa374cea27cc6fb55c5feba5c6',1,'web.h']]],
   ['ptype_5fxml',['PTYPE_XML',['../web_8h.html#abc6126af1d45847bc59afa0aa3216b04ae0868088fd938478331ae365e481a2d3',1,'web.h']]],
-  ['put',['put',['../struct__printf__t.html#a3302c3396c6ff238e760c625ab51725b',1,'_printf_t::put()'],['../struct____file.html#ac30baaec720d36ed503f35ae50bcec13',1,'__file::put()']]],
+  ['put',['put',['../struct__printf__t.html#a3302c3396c6ff238e760c625ab51725b',1,'_printf_t']]],
   ['put_5ffat',['put_fat',['../ff_8c.html#af1a7ce170641b4b549bf05dca95a6706',1,'ff.c']]],
   ['put_5frc',['put_rc',['../disk_8c.html#ab3509aecf1844c84f1797e5b567d531c',1,'put_rc(int rc):&#160;disk.c'],['../disk_8h.html#ab3509aecf1844c84f1797e5b567d531c',1,'put_rc(int rc):&#160;disk.c']]],
   ['putbuff',['putbuff',['../structputbuff.html',1,'']]],
-  ['putc',['putc',['../posix_8h.html#a247111653f3e91bf2cb4930d590d8201',1,'posix.h']]],
   ['putc_5fbfd',['putc_bfd',['../ff_8c.html#ad8151a454444395529a19280ddfadde8',1,'ff.c']]],
-  ['putchar',['putchar',['../posix_8h.html#a61e2590ae5f2f2e351365640d2ac755a',1,'posix.h']]],
   ['pvportfree',['pvPortFree',['../ets__sys_8h.html#a15d182a947b2036039d082e94fac3ee5',1,'ets_sys.h']]],
   ['pvportmalloc',['pvPortMalloc',['../ets__sys_8h.html#a185abb084d1878cf3ac02f3d00368d38',1,'ets_sys.h']]],
   ['pvportrealloc',['pvPortRealloc',['../ets__sys_8h.html#ae20f9e55286e819a6fecbcc29523c0b1',1,'ets_sys.h']]]

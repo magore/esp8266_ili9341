@@ -55,7 +55,7 @@ uint32_t g_micros_at_task_start;
 
 void abort()
 {
-	DEBUG_PRINTF("\nABORT!\n");
+	printf("\nABORT!\n");
     do
     {
         *((int*)0) = 0;
@@ -138,7 +138,7 @@ static void loop_task(os_event_t *events)
     cont_run(&g_cont, &loop_wrapper);
     if(cont_check(&g_cont) != 0)
     {
-        DEBUG_PRINTF("\nsketch stack overflow detected\n");
+        printf("\nsketch stack overflow detected\n");
         abort();
     }
 }
@@ -146,8 +146,8 @@ static void loop_task(os_event_t *events)
 
 void init_done()
 {
-DEBUG_PRINTF("\nInit Done with Yield support!\n");
-DEBUG_PRINTF("=============================\n");
+printf("\nInit Done with Yield support!\n");
+printf("=============================\n");
 	// disable os_printf at this time
 	//system_set_os_print(0);
 
@@ -179,7 +179,7 @@ void user_init(void)
     system_os_task(loop_task,
         LOOP_TASK_PRIORITY, g_loop_queue,
         LOOP_QUEUE_SIZE);
-DEBUG_PRINTF("loop_task installed\n");
+printf("loop_task installed\n");
 
     system_init_done_cb(&init_done);
 }

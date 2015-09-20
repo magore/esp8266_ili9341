@@ -14,7 +14,7 @@ var searchData=
   ['fixed_5fbold_5fr_5fx7_5fy13_5fbitmap',['Fixed_Bold_R_X7_Y13_bitmap',['../display_2fonts_8h.html#a0f5d34143d32454ac07fdecb8ec6c594',1,'Fixed_Bold_R_X7_Y13_bitmap():&#160;fonts.h'],['../fonts_2fonts_8h.html#a5c3932ab26ecd778f73bc5033eb5fc07',1,'Fixed_Bold_R_X7_Y13_bitmap():&#160;fonts.h']]],
   ['fixed_5fbold_5fr_5fx7_5fy13_5fspecs',['Fixed_Bold_R_X7_Y13_specs',['../display_2fonts_8h.html#ad9d59f658d64f4bfcb44566c22ed8df9',1,'Fixed_Bold_R_X7_Y13_specs():&#160;fonts.h'],['../fonts_2fonts_8h.html#afdc52358d8e023266d727872622868d4',1,'Fixed_Bold_R_X7_Y13_specs():&#160;fonts.h']]],
   ['flag',['flag',['../structFIL.html#ac409508881f5a16f2998ae675072b376',1,'FIL']]],
-  ['flags',['flags',['../struct__fontc.html#aa74d9a5513b529b5e444f283afea40ef',1,'_fontc::flags()'],['../structwindow.html#ad58fae853f87093ef4f0139df0a3f33d',1,'window::flags()'],['../struct____file.html#a8d11df8679502efee09740f97d7c277b',1,'__file::flags()']]],
+  ['flags',['flags',['../struct__fontc.html#aa74d9a5513b529b5e444f283afea40ef',1,'_fontc::flags()'],['../structwindow.html#ad58fae853f87093ef4f0139df0a3f33d',1,'window::flags()']]],
   ['fn',['fn',['../structDIR.html#a32da2f31d6c3b6c42eef981cb0cfd2ee',1,'DIR']]],
   ['fname',['fname',['../structFILINFO.html#abd852510f2f79b4ec773156d8942dc7c',1,'FILINFO']]],
   ['fnames',['fnames',['../bdffontutil_8c.html#ae75c11efb4dd449e4fcf9f1f78e9414c',1,'fnames():&#160;bdffontutil.c'],['../bdffontutil_8h.html#ae75c11efb4dd449e4fcf9f1f78e9414c',1,'fnames():&#160;bdffontutil.c']]],

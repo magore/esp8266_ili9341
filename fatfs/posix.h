@@ -63,11 +63,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "disk.h"
 #include "fatfs_utils.h"
 
-//#define _GNU_SOURCE
-
+#ifdef ESP8266
 #undef strerror_r
+#endif
 // ====================================================================
 
+#ifdef NO_STDIO
 struct __file {
     char    *buf;       /* buffer pointer */
     unsigned char unget;    /* ungetc() buffer */
@@ -101,20 +102,7 @@ typedef struct __file FILE;
 #define stdin (__iob[0])
 #define stdout (__iob[1])
 #define stderr (__iob[2])
-#define EOF (-1)
 
-// Seek
-#define SEEK_SET 0
-#define SEEK_CUR 1
-#define SEEK_END 2
-
-#undef EDOM
-#undef ERANGE
-
-///@brief Maximum number of POSIX file handles.
-#define MAX_FILES 16
-extern FILE *__iob[MAX_FILES];
-extern int errno;
 
 // Define putc and getc in terms of the posix fgetc() and fputc() interface
 // MAKE SURE that fdevopen() has been called BEFORE any input/output is processed
@@ -129,6 +117,27 @@ extern int errno;
 // Device IO udata
 #define fdev_set_udata(stream, u) do { (stream)->udata = u; } while(0)
 #define fdev_get_udata(stream) ((stream)->udata)
+#endif
+// =============================================================
+
+#ifdef ESP8266
+#undef strerror_r
+#endif
+
+#define EOF (-1)
+
+// Seek
+#define SEEK_SET 0
+#define SEEK_CUR 1
+#define SEEK_END 2
+
+#undef EDOM
+#undef ERANGE
+
+///@brief Maximum number of POSIX file handles.
+#define MAX_FILES 16
+extern FILE *__iob[MAX_FILES];
+extern int errno;
 
 // device status flags
 #define _FDEV_EOF (-1)
@@ -284,11 +293,19 @@ MEMSPACE FILE *fileno_to_stream ( int fileno );
 MEMSPACE int fileno ( FILE *stream );
 MEMSPACE FIL *fileno_to_fatfs ( int fileno );
 MEMSPACE int fatfs_to_fileno ( FIL *fh );
-MEMSPACE int feof ( FILE *stream );
-MEMSPACE int ferror ( FILE *stream );
-MEMSPACE void clrerror ( FILE *stream );
+#ifdef NO_STDIO
+	MEMSPACE int feof ( FILE *stream );
+#endif
+#ifdef NO_STDIO
+	MEMSPACE int ferror ( FILE *stream );
+#endif
+#ifdef NO_STDIO
+	MEMSPACE void clrerror ( FILE *stream );
+#endif
 MEMSPACE int new_file_descriptor ( void );
+#ifdef NO_STDIO
 MEMSPACE FILE *fdevopen ( int (*put )(char ,FILE *), int (*get )(FILE *));
+#endif
 MEMSPACE int free_file_descriptor ( int fileno );
 MEMSPACE int isatty ( int fileno );
 MEMSPACE void perror ( const char *s );
@@ -298,8 +315,12 @@ MEMSPACE int fatfs_to_errno ( FRESULT Result );
 MEMSPACE int posix_fopen_modes_to_open ( const char *mode );
 MEMSPACE static int fatfs_getc ( FILE *stream );
 MEMSPACE static int fatfs_putc ( char c , FILE *stream );
-MEMSPACE int fgetc ( FILE *stream );
-MEMSPACE int fputc ( int c , FILE *stream );
+#ifdef NO_STDIO
+	MEMSPACE int fgetc ( FILE *stream );
+#endif
+#ifdef NO_STDIO
+	MEMSPACE int fputc ( int c , FILE *stream );
+#endif
 MEMSPACE int open ( const char *pathname , int flags );
 MEMSPACE FILE *fopen ( const char *path , const char *mode );
 MEMSPACE int close ( int fileno );

@@ -179,7 +179,7 @@ bridge_task_init(int port)
 	system_os_task(bridge_task, bridge_task_id, bridge_task_queue, bridge_task_queue_length);
 	system_os_post(bridge_task_id, 0, 0);
 
-	DEBUG_PRINTF("\nbridge task init done\n");
+	printf("\nbridge task init done\n");
 }
 
 /**

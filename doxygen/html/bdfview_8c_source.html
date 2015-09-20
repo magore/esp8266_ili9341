@@ -169,25 +169,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    }</div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="keywordflow">if</span>(fontind &gt;= numfonts)</div>
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    {</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        fprintf(<a class="code" href="posix_8h.html#a5ce35bd5ba5021fd3b2e951e8f497656">stderr</a>, <span class="stringliteral">&quot;font index &gt;= %d\n&quot;</span>, numfonts);</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        fprintf(stderr, <span class="stringliteral">&quot;font index &gt;= %d\n&quot;</span>, numfonts);</div>
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        exit(1);</div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
 <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    }</div>
 <div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    p = <a class="code" href="font_8c.html#ad30601ef15ca84a341c6a7a1dc1d61b1">allfonts</a>[fontind];</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <a class="code" href="bdffontutil_8c.html#a3f0f4f7839e40a64f7cfd43752d8a602">FontHeaderInfo</a>( <a class="code" href="posix_8h.html#a0c0ef221f95f64e8632451312fd18cc8">stdout</a>, p, argv[0], NULL);</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <a class="code" href="bdffontutil_8c.html#a3f0f4f7839e40a64f7cfd43752d8a602">FontHeaderInfo</a>( stdout, p, argv[0], NULL);</div>
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <a class="code" href="bdffontutil_8c.html#a82e40b5e56cab7daedbe210542aa1d99">WriteFontInfo</a>( <a class="code" href="posix_8h.html#a0c0ef221f95f64e8632451312fd18cc8">stdout</a>, p);</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <a class="code" href="bdffontutil_8c.html#a82e40b5e56cab7daedbe210542aa1d99">WriteFontInfo</a>( stdout, p);</div>
 <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <a class="code" href="bdffontutil_8c.html#a9461259743229256336c4260de7e0e0e">Convert_Font2c</a>(<a class="code" href="posix_8h.html#a0c0ef221f95f64e8632451312fd18cc8">stdout</a>, p);</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <a class="code" href="bdffontutil_8c.html#a9461259743229256336c4260de7e0e0e">Convert_Font2c</a>(stdout, p);</div>
 <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;</div>
 <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="preprocessor">#ifdef JUNK</span></div>
 <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="preprocessor"></span>    <span class="keywordflow">if</span>(bits)</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        <a class="code" href="bdffontutil_8c.html#ac01ebab75271c42afb96bb8da7db06c2">WriteFontBits</a> ( <a class="code" href="posix_8h.html#a0c0ef221f95f64e8632451312fd18cc8">stdout</a>, p);</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        <a class="code" href="bdffontutil_8c.html#ac01ebab75271c42afb96bb8da7db06c2">WriteFontBits</a> ( stdout, p);</div>
 <div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="keywordflow">if</span>(table)</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        <a class="code" href="bdffontutil_8c.html#a6e780815dcb0ad1738a3710d10751824">WriteFontTable</a> ( <a class="code" href="posix_8h.html#a0c0ef221f95f64e8632451312fd18cc8">stdout</a>, p);</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        <a class="code" href="bdffontutil_8c.html#a6e780815dcb0ad1738a3710d10751824">WriteFontTable</a> ( stdout, p);</div>
 <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <a class="code" href="bdffontutil_8c.html#a6e60e1a05fd459f3af8aa691e06950a7">WriteFontBitsPreview</a>(<a class="code" href="posix_8h.html#a0c0ef221f95f64e8632451312fd18cc8">stdout</a>, p,preview);</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <a class="code" href="bdffontutil_8c.html#a6e60e1a05fd459f3af8aa691e06950a7">WriteFontBitsPreview</a>(stdout, p,preview);</div>
 <div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    <span class="keywordflow">return</span>(0);</div>
 <div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;}</div>
 <div class="ttc" id="bdffontutil_8c_html_a6e780815dcb0ad1738a3710d10751824"><div class="ttname"><a href="bdffontutil_8c.html#a6e780815dcb0ad1738a3710d10751824">WriteFontTable</a></div><div class="ttdeci">void WriteFontTable(FILE *out, _font *font)</div><div class="ttdoc">Write Specification Table. </div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8c_source.html#l00683">bdffontutil.c:683</a></div></div>
@@ -198,8 +198,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="bdffontutil_8c_html_a6e60e1a05fd459f3af8aa691e06950a7"><div class="ttname"><a href="bdffontutil_8c.html#a6e60e1a05fd459f3af8aa691e06950a7">WriteFontBitsPreview</a></div><div class="ttdeci">void WriteFontBitsPreview(FILE *out, _font *font, int preview)</div><div class="ttdoc">Write all Font characters in a font as ASCII character comments. </div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8c_source.html#l02024">bdffontutil.c:2024</a></div></div>
 <div class="ttc" id="fonts_2fonts_8h_html"><div class="ttname"><a href="fonts_2fonts_8h.html">fonts.h</a></div></div>
 <div class="ttc" id="font_8c_html_ad30601ef15ca84a341c6a7a1dc1d61b1"><div class="ttname"><a href="font_8c.html#ad30601ef15ca84a341c6a7a1dc1d61b1">allfonts</a></div><div class="ttdeci">_font * allfonts[]</div><div class="ttdoc">Include the Generated Font table The generated tables always include Font specifications: width...</div><div class="ttdef"><b>Definition:</b> <a href="display_2fonts_8h_source.html#l08567">fonts.h:8567</a></div></div>
-<div class="ttc" id="posix_8h_html_a0c0ef221f95f64e8632451312fd18cc8"><div class="ttname"><a href="posix_8h.html#a0c0ef221f95f64e8632451312fd18cc8">stdout</a></div><div class="ttdeci">#define stdout</div><div class="ttdef"><b>Definition:</b> <a href="posix_8h_source.html#l00102">posix.h:102</a></div></div>
-<div class="ttc" id="posix_8h_html_a5ce35bd5ba5021fd3b2e951e8f497656"><div class="ttname"><a href="posix_8h.html#a5ce35bd5ba5021fd3b2e951e8f497656">stderr</a></div><div class="ttdeci">#define stderr</div><div class="ttdef"><b>Definition:</b> <a href="posix_8h_source.html#l00103">posix.h:103</a></div></div>
 <div class="ttc" id="bdffontutil_8c_html_a9461259743229256336c4260de7e0e0e"><div class="ttname"><a href="bdffontutil_8c.html#a9461259743229256336c4260de7e0e0e">Convert_Font2c</a></div><div class="ttdeci">void Convert_Font2c(FILE *out, _font *font)</div><div class="ttdoc">Convert font to C structure Writes header information, font specification, font bitmap. </div><div class="ttdef"><b>Definition:</b> <a href="bdffontutil_8c_source.html#l00364">bdffontutil.c:364</a></div></div>
 <div class="ttc" id="sup_8c_html_a90a4ca3a536a676e78b12c671b66111d"><div class="ttname"><a href="sup_8c.html#a90a4ca3a536a676e78b12c671b66111d">atoi</a></div><div class="ttdeci">MEMSPACE long atoi(uint8_t *str)</div><div class="ttdoc">Convert ASCII string to number in base 10. </div><div class="ttdef"><b>Definition:</b> <a href="sup_8c_source.html#l00160">sup.c:160</a></div></div>
 <div class="ttc" id="bdfview_8c_html_ae0665038b72011f5c680c660fcb59459"><div class="ttname"><a href="bdfview_8c.html#ae0665038b72011f5c680c660fcb59459">main</a></div><div class="ttdeci">main(int argc, char *argv[])</div><div class="ttdef"><b>Definition:</b> <a href="bdfview_8c_source.html#l00053">bdfview.c:53</a></div></div>
@@ -208,7 +206,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Aug 23 2015 00:24:19 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Sep 19 2015 20:57:04 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

@@ -57,17 +57,17 @@ static uint8_t received = 0;
 MEMSPACE 
 void wifi_event_cb( System_Event_t *event_p)
 {
-    DEBUG_PRINTF("WiFi Event: %02x\n", event_p->event);
+    printf("WiFi Event: %02x\n", event_p->event);
     switch( event_p->event) 
 	{
         case EVENT_STAMODE_CONNECTED :
-            DEBUG_PRINTF( "Connect to [%s] ssid, channel[%d] \n " ,
+            printf( "Connect to [%s] ssid, channel[%d] \n " ,
                     event_p->event_info.connected.ssid ,
                     event_p->event_info.connected.channel);
 			snprintf(ip_msg, sizeof(ip_msg), "Connected");
             break;
         case EVENT_STAMODE_DISCONNECTED :
-            DEBUG_PRINTF( "Disconnect from ssid:[%s], Reason:%02x\n " ,
+            printf( "Disconnect from ssid:[%s], Reason:%02x\n " ,
                     event_p->event_info.disconnected.ssid ,
                     event_p->event_info.disconnected.reason);
 // Reconnect ???
@@ -75,17 +75,17 @@ void wifi_event_cb( System_Event_t *event_p)
 			snprintf(ip_msg, sizeof(ip_msg), "Disconnected");
             break;
         case EVENT_STAMODE_AUTHMODE_CHANGE :
-            DEBUG_PRINTF( "New AuthMode: %02x -> %02x\n " ,
+            printf( "New AuthMode: %02x -> %02x\n " ,
                     event_p->event_info.auth_change.old_mode ,
                     event_p->event_info.auth_change.new_mode);
 			snprintf(ip_msg, sizeof(ip_msg), "STA Auth change");
             break;
         case EVENT_STAMODE_GOT_IP :
-            DEBUG_PRINTF("IP:[" IPSTR "], Mask:[" IPSTR "], GW:[" IPSTR "]\n",
+            printf("IP:[" IPSTR "], Mask:[" IPSTR "], GW:[" IPSTR "]\n",
                     IP2STR( & event_p->event_info.got_ip.ip) ,
                     IP2STR( & event_p->event_info.got_ip.mask) ,
                     IP2STR( & event_p->event_info.got_ip.gw) );
-            DEBUG_PRINTF( "MAC:[" MACSTR "]\n" ,
+            printf( "MAC:[" MACSTR "]\n" ,
                     MAC2STR( event_p->event_info.sta_connected.mac) );
 
 			snprintf(ip_msg, sizeof(ip_msg), "IP:" IPSTR , 
@@ -95,13 +95,13 @@ void wifi_event_cb( System_Event_t *event_p)
 
             break;
         case EVENT_SOFTAPMODE_STACONNECTED :
-            DEBUG_PRINTF( "STACONNECTED MAC:[" MACSTR "], AID:%02x\n " ,
+            printf( "STACONNECTED MAC:[" MACSTR "], AID:%02x\n " ,
                     MAC2STR( event_p->event_info.sta_connected.mac) ,
                     event_p->event_info. sta_connected.aid);
 			snprintf(ip_msg, sizeof(ip_msg), "STA Connected");
             break;
         case EVENT_SOFTAPMODE_STADISCONNECTED :
-            DEBUG_PRINTF( "STADISCONNECTED MAC:[%s], AID:%02x\n " ,
+            printf( "STADISCONNECTED MAC:[%s], AID:%02x\n " ,
                     MAC2STR( event_p->event_info.sta_connected.mac) ,
                     event_p->event_info. sta_connected.aid);
 			snprintf(ip_msg, sizeof(ip_msg), "STA Disconnected");
@@ -113,23 +113,23 @@ void wifi_event_cb( System_Event_t *event_p)
 /**
   @brief Code fragments
     if(!wifi_station_dhcpc_stop()) 
-		DEBUG_PRINTF( "ERROR wifi_station_dhcpc_stop() \n ");
+		printf( "ERROR wifi_station_dhcpc_stop() \n ");
 
     if(!wifi_set_ip_info( STATION_IF , &info)) 
-		DEBUG_PRINTF( "ERROR wifi_set_ip_info()\n");
+		printf( "ERROR wifi_set_ip_info()\n");
 
     if(!wifi_station_connect()) 
-		DEBUG_PRINTF( "ERROR wifi_station_connect()\n");
+		printf( "ERROR wifi_station_connect()\n");
 
     if(!wifi_station_set_auto_connect( TRUE) ) 
-		DEBUG_PRINTF("ERROR wifi_station_set_auto_connect(1)\n");
+		printf("ERROR wifi_station_set_auto_connect(1)\n");
     IP4_ADDR( & info.ip , 192 , 168 , 200 , 123);
     IP4_ADDR( & info.netmask , 255 , 255 , 255 , 0);
     IP4_ADDR( & info.gw, 192 , 168 , 200 , 1);
     if(!wifi_set_ip_info( STATION_IF , &info) ) 
-		DEBUG_PRINTF( "ERROR wifi_set_ip_info() \n ");
+		printf( "ERROR wifi_set_ip_info() \n ");
     if(!wifi_station_set_auto_connect( TRUE) ) 
-		DEBUG_PRINTF( "ERROR wifi_station_set_auto_connect(1) \n ");
+		printf( "ERROR wifi_station_set_auto_connect(1) \n ");
 */
 
 /**
@@ -151,32 +151,32 @@ void setup_networking()
 
     if(wifi_get_opmode() != STATION_MODE)
     {
-        DEBUG_PRINTF("ESP8266 not in STATION mode, restarting in STATION mode...\r\n");
+        printf("ESP8266 not in STATION mode, restarting in STATION mode...\r\n");
 		if(!wifi_station_disconnect()) 
-			DEBUG_PRINTF( "ERROR wifi_station_disconnect()\n");
+			printf( "ERROR wifi_station_disconnect()\n");
 		if(!wifi_set_opmode( STATION_MODE)) 
-			DEBUG_PRINTF( "ERROR wifi_set_opmode(STATION_MODE)\n");
+			printf( "ERROR wifi_set_opmode(STATION_MODE)\n");
 		if(!wifi_station_set_reconnect_policy(FALSE))
-			DEBUG_PRINTF( "ERROR wifi_station_set_reconnect_policy(FALSE)\n");
+			printf( "ERROR wifi_station_set_reconnect_policy(FALSE)\n");
 		if(!wifi_station_set_auto_connect(FALSE) ) 
-			DEBUG_PRINTF( "ERROR wifi_station_set_auto_connect(FALSE)\n");
+			printf( "ERROR wifi_station_set_auto_connect(FALSE)\n");
 		if(wifi_get_phy_mode() != PHY_MODE_11N)
 			wifi_set_phy_mode(PHY_MODE_11N);
     }
 
     if(wifi_get_opmode() == STATION_MODE)
     {
-        DEBUG_PRINTF("ESP8266 in STATION mode...\r\n");
+        printf("ESP8266 in STATION mode...\r\n");
         wifi_station_get_config(&StationConfig);
         os_sprintf(StationConfig.ssid, "%s", ssid);
         os_sprintf(StationConfig.password, "%s", password);
         if(!wifi_station_set_config(&StationConfig))
-			DEBUG_PRINTF( "ERROR wifi_set_config()\n");
+			printf( "ERROR wifi_set_config()\n");
         if(!wifi_station_get_config(&StationConfig))
-			DEBUG_PRINTF( "ERROR wifi_station_get_config()\n");
+			printf( "ERROR wifi_station_get_config()\n");
         if(!wifi_get_macaddr(STATION_IF, macaddr))
-			DEBUG_PRINTF( "ERROR wifi_get_macaddr()\n");
-        DEBUG_PRINTF("wifi_get_opmode: %d, SSID:[%s], PASSWORD:[%s]\n",
+			printf( "ERROR wifi_get_macaddr()\n");
+        printf("wifi_get_opmode: %d, SSID:[%s], PASSWORD:[%s]\n",
             wifi_get_opmode(),
             StationConfig.ssid,
             "**********"
@@ -185,23 +185,23 @@ void setup_networking()
     }
 	else
 	{
-        DEBUG_PRINTF("ESP8266 not in STATION mode\n");
+        printf("ESP8266 not in STATION mode\n");
 	}
 
 	// Wifi Connect
     if(!wifi_station_set_reconnect_policy(TRUE))
-		DEBUG_PRINTF( "ERROR wifi_station_set_reconnect_policy(TRUE)\n");
+		printf( "ERROR wifi_station_set_reconnect_policy(TRUE)\n");
 
 	if(!wifi_station_set_auto_connect(TRUE) ) 
-		DEBUG_PRINTF( "ERROR wifi_station_set_auto_connect(TRUE)\n");
+		printf( "ERROR wifi_station_set_auto_connect(TRUE)\n");
 
 	if(!wifi_station_connect())
-		DEBUG_PRINTF( "ERROR wifi_station_connect()\n");
+		printf( "ERROR wifi_station_connect()\n");
 
     if(!wifi_station_dhcpc_start()) 
-		DEBUG_PRINTF("ERROR wifi_station_dhcpc_start()\n");
+		printf("ERROR wifi_station_dhcpc_start()\n");
 	// Monitor
     wifi_set_event_handler_cb( wifi_event_cb);
 
-	DEBUG_PRINTF( "Networking setup done\n");
+	printf( "Networking setup done\n");
 }

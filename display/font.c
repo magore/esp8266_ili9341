@@ -137,7 +137,7 @@ int font_attr(window *win, int c, _fontc *f)
 // =====================================
 
 #if ILI9341_DEBUG & 2
-    DEBUG_PRINTF("c: %02x font:%d w:%d h:%d x:%d y:%d skip:%d, W:%d, H:%d\r\n",
+    printf("c: %02x font:%d w:%d h:%d x:%d y:%d skip:%d, W:%d, H:%d\r\n",
         0xff & c, 0xff & win->font, f->w, f->h, f->x, f->y, f->skip, f->Width, f->Height);
 #endif
     return(win->font);

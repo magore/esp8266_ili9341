@@ -1,5 +1,5 @@
 /**
- @file fatfs/option/syscall.c
+ @file fatfs/syscall.c
 
  @brief FatFS  OS dependent controls R0.10b (C) ChaN, 2014.
  @par Copyright &copy; 2014 ChaN.

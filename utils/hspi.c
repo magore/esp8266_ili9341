@@ -41,7 +41,7 @@ void hspi_cs_enable(uint8_t cs)
 	if(_cs_pin != 0xff)
 	{
 		// This implies a bug!
-		DEBUG_PRINTF("CS en was:%d\n", 0xff & _cs_pin);
+		printf("CS en was:%d\n", 0xff & _cs_pin);
 	}
 	GPIO_OUTPUT_SET(cs, 0);
 	_cs_pin = cs;
@@ -55,7 +55,7 @@ void hspi_cs_disable(uint8_t cs)
 	if(_cs_pin != cs && _cs_pin != 0xff )
 	{
 		// This implies a bug!
-		DEBUG_PRINTF("CS dis was:%d\n", 0xff & _cs_pin);
+		printf("CS dis was:%d\n", 0xff & _cs_pin);
 	}
 	GPIO_OUTPUT_SET(cs, 1);
 	_cs_pin = 0xff;

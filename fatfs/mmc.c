@@ -119,7 +119,7 @@ int mmc_select (void)
     if (wait_ready(500)) 
 		return 1;          /* OK */
 
-DEBUG_PRINTF("mmc_select failed!\n");
+printf("mmc_select failed!\n");
 
     mmc_deselect();
     return 0;                                     /* Timeout */

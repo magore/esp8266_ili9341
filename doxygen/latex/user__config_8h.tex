@@ -11,7 +11,8 @@ Master include file for project Includes all project includes and defines here.
 {\ttfamily \#include $<$os\-\_\-type.\-h$>$}\\*
 {\ttfamily \#include $<$c\-\_\-types.\-h$>$}\\*
 {\ttfamily \#include $<$ets\-\_\-sys.\-h$>$}\\*
-{\ttfamily \#include \char`\"{}util.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}str.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}sys.\-h\char`\"{}}\\*
 {\ttfamily \#include $<$ip\-\_\-addr.\-h$>$}\\*
 {\ttfamily \#include $<$espconn.\-h$>$}\\*
 {\ttfamily \#include $<$gpio.\-h$>$}\\*
@@ -21,6 +22,8 @@ Master include file for project Includes all project includes and defines here.
 {\ttfamily \#include \char`\"{}queue.\-h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}uart.\-h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}hspi.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}printf.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}debug.\-h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}timer\-\_\-hal.\-h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}timer.\-h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}time.\-h\char`\"{}}\\*
@@ -32,8 +35,6 @@ Master include file for project Includes all project includes and defines here.
 {\ttfamily \#include \char`\"{}wire\-\_\-types.\-h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}wire.\-h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}network.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}printf.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}debug.\-h\char`\"{}}\\*
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
@@ -41,7 +42,17 @@ Master include file for project Includes all project includes and defines here.
 \item 
 \#define \hyperlink{user__config_8h_a9946b5a72f8c16945877e78578df6a7f}{M\-E\-M\-S\-P\-A\-C\-E\-\_\-\-R\-O}~I\-C\-A\-C\-H\-E\-\_\-\-R\-O\-D\-A\-T\-A\-\_\-\-A\-T\-T\-R
 \item 
+\#define \hyperlink{user__config_8h_af917fb5672b9339e228304f59f3b250a}{E\-S\-P8266}~1
+\item 
+\#define \hyperlink{user__config_8h_a3efe3c2f44d74058903aac7898836e7f}{N\-O\-\_\-\-S\-T\-D\-I\-O}
+\item 
 \#define \hyperlink{user__config_8h_a369266c24eacffb87046522897a570d5}{\-\_\-\-G\-N\-U\-\_\-\-S\-O\-U\-R\-C\-E}
+\item 
+\#define \hyperlink{user__config_8h_a0fc3621fbfd7c2ba408bcbd05b27fbf3}{M\-M\-C\-\_\-\-S\-L\-O\-W}~(80000000\-U\-L/500000\-U\-L)
+\item 
+\#define \hyperlink{user__config_8h_a1cf90afdd82046f772117bb46a9849e6}{M\-M\-C\-\_\-\-F\-A\-S\-T}~(80000000\-U\-L/2500000\-U\-L)
+\item 
+\#define \hyperlink{user__config_8h_a117ab65fa0e837daf7c3332fcea3d69a}{get\-\_\-line}(buf, size)~\hyperlink{uart_8h_a9d100391356ca809d7cd75e23633f213}{uart0\-\_\-gets}(buf,size)
 \item 
 \#define \hyperlink{user__config_8h_a52d60ae7ccb513718808b5cdbb26ffa3}{M\-E\-M\-S\-P\-A\-C\-E\-\_\-\-F\-O\-N\-T}~\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E}
 \end{DoxyCompactItemize}
@@ -70,7 +81,30 @@ Definition in file \hyperlink{user__config_8h_source}{user\-\_\-config.\-h}.
 \subsubsection[{\-\_\-\-G\-N\-U\-\_\-\-S\-O\-U\-R\-C\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define \-\_\-\-G\-N\-U\-\_\-\-S\-O\-U\-R\-C\-E}}\label{user__config_8h_a369266c24eacffb87046522897a570d5}
 
 
+Definition at line 36 of file user\-\_\-config.\-h.
+
+\hypertarget{user__config_8h_af917fb5672b9339e228304f59f3b250a}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!E\-S\-P8266@{E\-S\-P8266}}
+\index{E\-S\-P8266@{E\-S\-P8266}!user_config.h@{user\-\_\-config.\-h}}
+\subsubsection[{E\-S\-P8266}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-S\-P8266~1}}\label{user__config_8h_af917fb5672b9339e228304f59f3b250a}
+
+
 Definition at line 33 of file user\-\_\-config.\-h.
+
+\hypertarget{user__config_8h_a117ab65fa0e837daf7c3332fcea3d69a}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!get\-\_\-line@{get\-\_\-line}}
+\index{get\-\_\-line@{get\-\_\-line}!user_config.h@{user\-\_\-config.\-h}}
+\subsubsection[{get\-\_\-line}]{\setlength{\rightskip}{0pt plus 5cm}\#define get\-\_\-line(
+\begin{DoxyParamCaption}
+\item[{}]{buf, }
+\item[{}]{size}
+\end{DoxyParamCaption}
+)~{\bf uart0\-\_\-gets}(buf,size)}}\label{user__config_8h_a117ab65fa0e837daf7c3332fcea3d69a}
+
+
+Definition at line 59 of file user\-\_\-config.\-h.
+
+
+
+Referenced by setdate().
 
 \hypertarget{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!M\-E\-M\-S\-P\-A\-C\-E@{M\-E\-M\-S\-P\-A\-C\-E}}
 \index{M\-E\-M\-S\-P\-A\-C\-E@{M\-E\-M\-S\-P\-A\-C\-E}!user_config.h@{user\-\_\-config.\-h}}
@@ -84,7 +118,7 @@ Definition at line 29 of file user\-\_\-config.\-h.
 \subsubsection[{M\-E\-M\-S\-P\-A\-C\-E\-\_\-\-F\-O\-N\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\-E\-M\-S\-P\-A\-C\-E\-\_\-\-F\-O\-N\-T~{\bf M\-E\-M\-S\-P\-A\-C\-E}}}\label{user__config_8h_a52d60ae7ccb513718808b5cdbb26ffa3}
 
 
-Definition at line 89 of file user\-\_\-config.\-h.
+Definition at line 106 of file user\-\_\-config.\-h.
 
 \hypertarget{user__config_8h_a9946b5a72f8c16945877e78578df6a7f}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!M\-E\-M\-S\-P\-A\-C\-E\-\_\-\-R\-O@{M\-E\-M\-S\-P\-A\-C\-E\-\_\-\-R\-O}}
 \index{M\-E\-M\-S\-P\-A\-C\-E\-\_\-\-R\-O@{M\-E\-M\-S\-P\-A\-C\-E\-\_\-\-R\-O}!user_config.h@{user\-\_\-config.\-h}}
@@ -92,4 +126,33 @@ Definition at line 89 of file user\-\_\-config.\-h.
 
 
 Definition at line 30 of file user\-\_\-config.\-h.
+
+\hypertarget{user__config_8h_a1cf90afdd82046f772117bb46a9849e6}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!M\-M\-C\-\_\-\-F\-A\-S\-T@{M\-M\-C\-\_\-\-F\-A\-S\-T}}
+\index{M\-M\-C\-\_\-\-F\-A\-S\-T@{M\-M\-C\-\_\-\-F\-A\-S\-T}!user_config.h@{user\-\_\-config.\-h}}
+\subsubsection[{M\-M\-C\-\_\-\-F\-A\-S\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\-M\-C\-\_\-\-F\-A\-S\-T~(80000000\-U\-L/2500000\-U\-L)}}\label{user__config_8h_a1cf90afdd82046f772117bb46a9849e6}
+
+
+Definition at line 56 of file user\-\_\-config.\-h.
+
+
+
+Referenced by mmc\-\_\-fast().
+
+\hypertarget{user__config_8h_a0fc3621fbfd7c2ba408bcbd05b27fbf3}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!M\-M\-C\-\_\-\-S\-L\-O\-W@{M\-M\-C\-\_\-\-S\-L\-O\-W}}
+\index{M\-M\-C\-\_\-\-S\-L\-O\-W@{M\-M\-C\-\_\-\-S\-L\-O\-W}!user_config.h@{user\-\_\-config.\-h}}
+\subsubsection[{M\-M\-C\-\_\-\-S\-L\-O\-W}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\-M\-C\-\_\-\-S\-L\-O\-W~(80000000\-U\-L/500000\-U\-L)}}\label{user__config_8h_a0fc3621fbfd7c2ba408bcbd05b27fbf3}
+
+
+Definition at line 55 of file user\-\_\-config.\-h.
+
+
+
+Referenced by mmc\-\_\-slow().
+
+\hypertarget{user__config_8h_a3efe3c2f44d74058903aac7898836e7f}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!N\-O\-\_\-\-S\-T\-D\-I\-O@{N\-O\-\_\-\-S\-T\-D\-I\-O}}
+\index{N\-O\-\_\-\-S\-T\-D\-I\-O@{N\-O\-\_\-\-S\-T\-D\-I\-O}!user_config.h@{user\-\_\-config.\-h}}
+\subsubsection[{N\-O\-\_\-\-S\-T\-D\-I\-O}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\-O\-\_\-\-S\-T\-D\-I\-O}}\label{user__config_8h_a3efe3c2f44d74058903aac7898836e7f}
+
+
+Definition at line 34 of file user\-\_\-config.\-h.
 

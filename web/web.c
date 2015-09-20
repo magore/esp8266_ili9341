@@ -176,7 +176,7 @@ static _led = 0;
 MEMSPACE
 void led_on(int led)
 {
-	DEBUG_PRINTF("LED%d on\n", led);
+	printf("LED%d on\n", led);
 }
 /**
   @brief Turn off virtual LED
@@ -186,7 +186,7 @@ void led_on(int led)
 MEMSPACE
 void led_off(int led)
 {
-	DEBUG_PRINTF("LED%d off\n", led);
+	printf("LED%d off\n", led);
 }
 
 // =======================================================
@@ -206,8 +206,8 @@ static void tcp_accept(espconn_t *esp_config, esp_tcp *esp_tcp_config,
 
 	int ret;
 #if WEB_DEBUG & 2
-	DEBUG_PRINTF("\n=================================\n");
-	DEBUG_PRINTF("tcp_accept: %p\n", esp_config);
+	printf("\n=================================\n");
+	printf("tcp_accept: %p\n", esp_config);
 #endif
 
 	memset(esp_tcp_config, 0, sizeof(esp_tcp));
@@ -220,9 +220,9 @@ static void tcp_accept(espconn_t *esp_config, esp_tcp *esp_tcp_config,
 	espconn_accept(esp_config);
 	ret = espconn_tcp_set_max_con_allow(esp_config, MAX_CONNECTIONS);
 	if(ret)
-		DEBUG_PRINTF("espconn_tcp_set_max_con_allow(%d): failed\n", MAX_CONNECTIONS);
+		printf("espconn_tcp_set_max_con_allow(%d): failed\n", MAX_CONNECTIONS);
 	ret = espconn_tcp_get_max_con_allow(esp_config);
-	DEBUG_PRINTF("espconn_tcp_get_max_con_allow:(%d)\n", ret);
+	printf("espconn_tcp_get_max_con_allow:(%d)\n", ret);
 }
 // =======================================================
 
@@ -265,7 +265,7 @@ void rwbuf_winit(rwbuf_t *p)
 MEMSPACE
 void display_ipv4(char *msg, uint8_t *ip, int port)
 {
-	DEBUG_PRINTF("%s: %d.%d.%d.%d:%d\n",
+	printf("%s: %d.%d.%d.%d:%d\n",
 		msg, 
 		(int)ip[0],
 		(int)ip[1],
@@ -327,7 +327,7 @@ rwbuf_t *rwbuf_create()
 	if(!p) 
 	{
 #if WEB_DEBUG & 1
-		DEBUG_PRINTF("rwbuf_create:calloc failed\n");
+		printf("rwbuf_create:calloc failed\n");
 #endif
 		return(NULL);
 	}
@@ -339,7 +339,7 @@ rwbuf_t *rwbuf_create()
 	if(!buf) 
 	{
 #if WEB_DEBUG & 1
-		DEBUG_PRINTF("rwbuf_create rbuf: calloc failed\n");
+		printf("rwbuf_create rbuf: calloc failed\n");
 #endif
 		rwbuf_delete(p);
 		return(NULL);
@@ -353,7 +353,7 @@ rwbuf_t *rwbuf_create()
 	if(!buf) 
 	{
 #if WEB_DEBUG & 1
-		DEBUG_PRINTF("rwbuf_create wbuf: calloc failed\n");
+		printf("rwbuf_create wbuf: calloc failed\n");
 #endif
 		rwbuf_delete(p);
 		return(NULL);
@@ -387,7 +387,7 @@ rwbuf_t *find_connection(espconn_t *conn, int *index, char *msg)
 	if(!conn)
 	{
 #if WEB_DEBUG & 1
-	DEBUG_PRINTF("%s: find_connection: conn = NULL\n",msg);
+	printf("%s: find_connection: conn = NULL\n",msg);
 #endif
 		return(NULL);
 	}
@@ -395,13 +395,13 @@ rwbuf_t *find_connection(espconn_t *conn, int *index, char *msg)
 	if(conn == &WebConn)
 	{
 #if WEB_DEBUG & 2
-	DEBUG_PRINTF("%s: find_connection: conn == &WebConn\n",msg);
+	printf("%s: find_connection: conn == &WebConn\n",msg);
 #endif
 	}
 	if(!conn->proto.tcp || !conn->proto.tcp->remote_ip || !conn->proto.tcp->remote_port)
 	{
 #if WEB_DEBUG & 1
-	DEBUG_PRINTF("%s: find_connection: conn->proto.tcp NULL\n",msg);
+	printf("%s: find_connection: conn->proto.tcp NULL\n",msg);
 #endif
 		return(NULL);
 	}
@@ -439,7 +439,7 @@ rwbuf_t *find_connection(espconn_t *conn, int *index, char *msg)
 		}
 	}
 #if WEB_DEBUG & 2
-	DEBUG_PRINTF("%s: find_connection: mismatch conn=%p\n", msg, conn );
+	printf("%s: find_connection: mismatch conn=%p\n", msg, conn );
 	display_ipv4("local  ", conn->proto.tcp->local_ip, conn->proto.tcp->local_port);
 	display_ipv4("remote ", conn->proto.tcp->remote_ip, conn->proto.tcp->remote_port);
 #endif
@@ -467,7 +467,7 @@ rwbuf_t *create_connection(espconn_t *conn)
 			if(!p)
 			{
 #if WEB_DEBUG & 1
-				DEBUG_PRINTF("create_connection: NO MEMORY conn=%p\n",conn);
+				printf("create_connection: NO MEMORY conn=%p\n",conn);
 #endif
 				break;
 			}
@@ -480,14 +480,14 @@ rwbuf_t *create_connection(espconn_t *conn)
             p->local_port = conn->proto.tcp->local_port;
 			memcpy(p->local_ip, conn->proto.tcp->local_ip, 4);
 #if WEB_DEBUG & 2
-			DEBUG_PRINTF("create_connection: conn=%p\n",conn);
+			printf("create_connection: conn=%p\n",conn);
 #endif
 			return(p);
 			break;
 		}
 	}
 #if WEB_DEBUG & 1
-	DEBUG_PRINTF("create_connection: NO FREE connections for conn=%p\n",conn);
+	printf("create_connection: NO FREE connections for conn=%p\n",conn);
 #endif
 	return(NULL);
 }
@@ -508,7 +508,7 @@ void delete_connection(rwbuf_t *p)
 		if( (p == web_connections[i]) )
 		{
 #if WEB_DEBUG & 2
-			DEBUG_PRINTF("delete_connection: conn=%p\n",p->conn);
+			printf("delete_connection: conn=%p\n",p->conn);
 			display_ipv4("local  ", p->local_ip, p->local_port);
 			display_ipv4("remote ", p->remote_ip, p->remote_port);
 #endif
@@ -537,7 +537,7 @@ int write_byte(rwbuf_t *p, int c)
  	if(!p || !p->wbuf || !p->conn)
 	{
 #if WEB_DEBUG & 1
-		DEBUG_PRINTF("\nwrite_byte: send Unexpected NULL\n");
+		printf("\nwrite_byte: send Unexpected NULL\n");
 #endif
 		return(0);
 	}
@@ -550,7 +550,7 @@ int write_byte(rwbuf_t *p, int c)
 		if(!p || !p->wbuf || !p->conn)
 		{
 #if WEB_DEBUG & 1
-			DEBUG_PRINTF("\nwrite_byte: send Unexpected NULL after wait\n");
+			printf("\nwrite_byte: send Unexpected NULL after wait\n");
 #endif
 			return(0);
 		}
@@ -564,7 +564,7 @@ int write_byte(rwbuf_t *p, int c)
 		if( ret )
 		{
 #if WEB_DEBUG & 1
-			DEBUG_PRINTF("write_byte: sent error:%d\n", ret);
+			printf("write_byte: sent error:%d\n", ret);
 #endif
 		}
 		// flag that send socket is busy with the last send request
@@ -592,7 +592,7 @@ int wait_send(rwbuf_t *p)
  	if(!p || !p->wbuf)
 	{
 #if WEB_DEBUG & 1
-		DEBUG_PRINTF("wait_buff: no sendbuffer\n");
+		printf("wait_buff: no sendbuffer\n");
 #endif
 		return 0;
 	}
@@ -601,7 +601,7 @@ int wait_send(rwbuf_t *p)
 	if(p && p->send)
 	{
 #if WEB_DEBUG & 4
-		DEBUG_PRINTF("waiting for send\n");
+		printf("waiting for send\n");
 #endif
 		// send socket is busy with the last send request
 		while(p && p->send)
@@ -609,7 +609,7 @@ int wait_send(rwbuf_t *p)
 			optimistic_yield(1000);
 		}
 #if WEB_DEBUG & 4
-		DEBUG_PRINTF("wait_buff: ...sent\n");
+		printf("wait_buff: ...sent\n");
 #endif
 	}
 	return(1);
@@ -647,7 +647,7 @@ void write_flush(rwbuf_t *p)
 		if( ret )
 		{
 #if WEB_DEBUG & 1
-			DEBUG_PRINTF("write_byte: sent error");
+			printf("write_byte: sent error");
 			return;
 #endif
 		}
@@ -772,10 +772,10 @@ int html_msg(rwbuf_t *p, int status, char type, char *fmt, ...)
 	header = calloc(MAX_MSG+4,1);
 	if(!header) {
 #if WEB_DEBUG & 1
-		DEBUG_PRINTF("html_msg: calloc failed\n");
-		DEBUG_PRINTF("\tstatus: %s\n",statp);
-		DEBUG_PRINTF("\tmime: %s\n",mimep);
-		DEBUG_PRINTF(fmt, args);
+		printf("html_msg: calloc failed\n");
+		printf("\tstatus: %s\n",statp);
+		printf("\tmime: %s\n",mimep);
+		printf(fmt, args);
 #endif
 		return(0);
 	}
@@ -942,7 +942,7 @@ char *html_status(int status)
 			return(http_status[i]);
 	}
 #if WEB_DEBUG & 1
-	DEBUG_PRINTF("html_status: %d not found\n",status);
+	printf("html_status: %d not found\n",status);
 #endif
 	return("500 Internal Server Error");
 }
@@ -1105,13 +1105,13 @@ char *next_arg(hinfo_t *hi)
 		return(hi->arg_ptr = NULL);
 
 #if WEB_DEBUG & 8
-	DEBUG_PRINTF("next_arg:%s=",ptr);
+	printf("next_arg:%s=",ptr);
 #endif
 	ptr += len+1;		// skip past name
 
 	len = strlen(ptr);
 #if WEB_DEBUG & 8
-	DEBUG_PRINTF("%s\n",ptr);
+	printf("%s\n",ptr);
 #endif
 	ptr += len+1;		// skip past value
 
@@ -1175,7 +1175,7 @@ char *http_value(hinfo_t *hi, char *str)
 		if(strcasecmp(name,str) == 0) {
 			value = arg_value(hi);
 #if WEB_DEBUG & 8
-		DEBUG_PRINTF("http_value:%s=%s\n",str,value);
+		printf("http_value:%s=%s\n",str,value);
 #endif
 			return(value);
 		}
@@ -1288,12 +1288,12 @@ int parse_http_request(rwbuf_t *p, hinfo_t *hi)
 	mem_t memp;
 
 #if WEB_DEBUG & 8
-	DEBUG_PRINTF("\nparse_http_request\n");
+	printf("\nparse_http_request\n");
 #endif
 	if(!p || !p->rbuf || !p->received)
 	{
 #if WEB_DEBUG & 1
-		DEBUG_PRINTF("EMPTY\n");
+		printf("EMPTY\n");
 #endif
 		return(0);
 	}
@@ -1312,13 +1312,13 @@ int parse_http_request(rwbuf_t *p, hinfo_t *hi)
 			if( !is_header(save, &ptr))
 			{
 #if WEB_DEBUG & 8
-		DEBUG_PRINTF("Header break:[%s]\n",save);
+		printf("Header break:[%s]\n",save);
 #endif
 				break;
 			}
 
 #if WEB_DEBUG & 8
-		DEBUG_PRINTF("header skip:[%s]\n",save);
+		printf("header skip:[%s]\n",save);
 #endif
 			// skip the unknown header
 			continue;
@@ -1326,7 +1326,7 @@ int parse_http_request(rwbuf_t *p, hinfo_t *hi)
 		// ptr now points after the ':' in the header
 
 #if WEB_DEBUG & 8
-		DEBUG_PRINTF("header(%d): %s\n",header,ptr);
+		printf("header(%d): %s\n",header,ptr);
 #endif
 
 		type = msg_headers[header].type;
@@ -1341,7 +1341,7 @@ int parse_http_request(rwbuf_t *p, hinfo_t *hi)
 			c = *ptr;
 			*ptr++ = 0;	// Filename EOS
 #if WEB_DEBUG & 8
-			DEBUG_PRINTF("filename: [%s]\n",hi->filename);
+			printf("filename: [%s]\n",hi->filename);
 #endif
 
 			// ? implies Arguments
@@ -1371,7 +1371,7 @@ int parse_http_request(rwbuf_t *p, hinfo_t *hi)
 			// ? implies Arguments
 			if(c == '?') {	
 #if WEB_DEBUG & 1
-				DEBUG_PRINTF("Warning arguments not expected for %d\n", type);
+				printf("Warning arguments not expected for %d\n", type);
 #endif
 				ptr = nextspace(ptr);
 			}
@@ -1381,7 +1381,7 @@ int parse_http_request(rwbuf_t *p, hinfo_t *hi)
 		} // POST or HEAD
 		else if( type == -1) {
 #if WEB_DEBUG & 8
-			DEBUG_PRINTF("Unknown type: %d\n", hi->type);
+			printf("Unknown type: %d\n", hi->type);
 #endif
 			return(0);
 		}
@@ -1405,21 +1405,21 @@ int parse_http_request(rwbuf_t *p, hinfo_t *hi)
 
 #if WEB_DEBUG & 8
 	if( hi->type != -1) 
-		DEBUG_PRINTF("type: %s\n",msg_headers[hi->type].pattern);
-	DEBUG_PRINTF("Filename: %s\n",hi->filename);
-	DEBUG_PRINTF("Html_encoding: %s\n",hi->html_encoding);
+		printf("type: %s\n",msg_headers[hi->type].pattern);
+	printf("Filename: %s\n",hi->filename);
+	printf("Html_encoding: %s\n",hi->html_encoding);
 	if(hi->type == TOKEN_POST ) {
-		DEBUG_PRINTF("Content-Type: %s\n",hi->content_type);
-		DEBUG_PRINTF("Content-Length: %d\n",hi->content_length);
+		printf("Content-Type: %s\n",hi->content_type);
+		printf("Content-Length: %d\n",hi->content_length);
 	}
-	DEBUG_PRINTF("ARGS\n");
+	printf("ARGS\n");
 	first_arg(hi);
 	while( (name = arg_name(hi)) ) {
 		value = arg_value(hi);
-		DEBUG_PRINTF("\t%s=%s\n",name,value);
+		printf("\t%s=%s\n",name,value);
 		next_arg(hi);
 	}
-	DEBUG_PRINTF("END ARGS\n");
+	printf("END ARGS\n");
 #endif
 	return(1);
 }
@@ -1445,7 +1445,7 @@ static void web_data_receive_callback(void *arg, char *data, unsigned short leng
 	if(!p)
 	{
 #if WEB_DEBUG & 1
-		DEBUG_PRINTF("web_data_receive_callback: mismatch conn=%p\n",conn);
+		printf("web_data_receive_callback: mismatch conn=%p\n",conn);
 #endif
 		// delete the bad connection
 		espconn_disconnect(conn);
@@ -1457,7 +1457,7 @@ static void web_data_receive_callback(void *arg, char *data, unsigned short leng
 	if(p->received)
 	{
 #if WEB_DEBUG & 1
-		DEBUG_PRINTF("web_data_receive_callback: receive buffer busy rejecting:%d\n",length);
+		printf("web_data_receive_callback: receive buffer busy rejecting:%d\n",length);
 #endif
 		// FIXME flag overrun
 		esp_schedule();
@@ -1468,7 +1468,7 @@ static void web_data_receive_callback(void *arg, char *data, unsigned short leng
 	if(length > p->rsize)
 	{
 #if WEB_DEBUG & 1
-		DEBUG_PRINTF("web_data_receive_callback: receive too big:%d, trim to:%d\n",length,p->rsize);
+		printf("web_data_receive_callback: receive too big:%d, trim to:%d\n",length,p->rsize);
 #endif
 		length = p->rsize;
 		// FIXME flag overrun
@@ -1481,17 +1481,17 @@ static void web_data_receive_callback(void *arg, char *data, unsigned short leng
 		memcpy(p->rbuf,data,length);
 		p->received = length;
 #if WEB_DEBUG & 2
-		DEBUG_PRINTF("web_data_receive_callback: received:%d\n",length);
+		printf("web_data_receive_callback: received:%d\n",length);
 #endif
 	}
 	else
 	{
 #if WEB_DEBUG & 1
-		DEBUG_PRINTF("web_data_receive_callback: buffer NULL\n");
+		printf("web_data_receive_callback: buffer NULL\n");
 #endif
 	}
 #if WEB_DEBUG & 2
-    DEBUG_PRINTF("web_data_receive_callback: conn=%p\n", conn);
+    printf("web_data_receive_callback: conn=%p\n", conn);
     display_ipv4("local  ", conn->proto.tcp->local_ip, conn->proto.tcp->local_port);
     display_ipv4("remote ", conn->proto.tcp->remote_ip, conn->proto.tcp->remote_port);
 #endif
@@ -1515,7 +1515,7 @@ static void web_data_sent_callback(void *arg)
 	if(!p)
 	{
 #if WEB_DEBUG & 1
-		DEBUG_PRINTF("web_data_sent_callback: conn mismatch\n");
+		printf("web_data_sent_callback: conn mismatch\n");
 #endif
 		return;
 	}
@@ -1523,7 +1523,7 @@ static void web_data_sent_callback(void *arg)
 	if(!p->send)
 	{
 #if WEB_DEBUG & 1
-		DEBUG_PRINTF("web_data_send_callback: NO send value\n");
+		printf("web_data_send_callback: NO send value\n");
 #endif
 		return;
 	}
@@ -1531,10 +1531,10 @@ static void web_data_sent_callback(void *arg)
 	if(p->delete)
 	{
 #if WEB_DEBUG & 1
-		DEBUG_PRINTF("web_data_send_callback: Delete\n");
+		printf("web_data_send_callback: Delete\n");
 #endif
 #if WEB_DEBUG & 2
-		DEBUG_PRINTF("web_data_sent_callback: delete_connection: conn=%p\n",p->conn);
+		printf("web_data_sent_callback: delete_connection: conn=%p\n",p->conn);
 		display_ipv4("local  ", p->local_ip, p->local_port);
 		display_ipv4("remote ", p->remote_ip, p->remote_port);
 #endif
@@ -1545,7 +1545,7 @@ static void web_data_sent_callback(void *arg)
 	}
 
 #if WEB_DEBUG & 2
-	DEBUG_PRINTF("web_data_send_callback: sent:%d\n",p->send);
+	printf("web_data_send_callback: sent:%d\n",p->send);
     display_ipv4("local  ", conn->proto.tcp->local_ip, conn->proto.tcp->local_port);
     display_ipv4("remote ", conn->proto.tcp->remote_ip, conn->proto.tcp->remote_port);
 
@@ -1579,7 +1579,7 @@ static void web_data_disconnect_callback(void *arg)
 	else
 	{
 #if WEB_DEBUG & 2
-		DEBUG_PRINTF("web_data_disconnect_callback: disconnect mismatch %p\n", conn);
+		printf("web_data_disconnect_callback: disconnect mismatch %p\n", conn);
 		display_ipv4("local  ", conn->proto.tcp->local_ip, conn->proto.tcp->local_port);
 		display_ipv4("remote ", conn->proto.tcp->remote_ip, conn->proto.tcp->remote_port);
 #endif
@@ -1603,7 +1603,7 @@ static void web_data_reconnect_callback(void *arg, int8_t err)
 	rwbuf_t *p = find_connection(conn,&index, "web_data_reconnect_callback");
   // FIXME TODO
 #if WEB_DEBUG & 2
-    DEBUG_PRINTF("web_data_reconnect_callback: conn=%p\n", conn);
+    printf("web_data_reconnect_callback: conn=%p\n", conn);
     display_ipv4("local  ", conn->proto.tcp->local_ip, conn->proto.tcp->local_port);
     display_ipv4("remote ", conn->proto.tcp->remote_ip, conn->proto.tcp->remote_port);
 #endif
@@ -1626,13 +1626,13 @@ static void web_data_connect_callback(espconn_t *conn)
     if(!p)
 	{
 #if WEB_DEBUG & 1
-		DEBUG_PRINTF("Can not create connection\n");
+		printf("Can not create connection\n");
 #endif
 		esp_schedule();
 		return;
 	}
 #if WEB_DEBUG & 2
-    DEBUG_PRINTF("web_data_connect_callback: conn=%p\n", conn);
+    printf("web_data_connect_callback: conn=%p\n", conn);
     display_ipv4("local  ", conn->proto.tcp->local_ip, conn->proto.tcp->local_port);
     display_ipv4("remote ", conn->proto.tcp->remote_ip, conn->proto.tcp->remote_port);
 #endif
@@ -1730,7 +1730,7 @@ int is_cgitoken(char *str)
 			{
 				len += 2;
 #if WEB_DEBUG & 8
-				DEBUG_PRINTF("is_cgi_token:%d\n",len);
+				printf("is_cgi_token:%d\n",len);
 #endif
 				return(len);
 			}
@@ -1815,24 +1815,24 @@ static void process_requests(rwbuf_t *p)
 	if(!p->conn )
 	{
 #if WEB_DEBUG & 1
-		DEBUG_PRINTF("Process Requests: NULL conn\n");
+		printf("Process Requests: NULL conn\n");
 #endif
 		return;
 	}
 	if(!p->received)
 	{
 #if WEB_DEBUG & 1
-		DEBUG_PRINTF("Process Requests: NULL ARG\n");
+		printf("Process Requests: NULL ARG\n");
 #endif
 		return;
 	}
 #if WEB_DEBUG & 2
-	DEBUG_PRINTF("\n==========================================\n");
-	DEBUG_PRINTF("Process Requests\n");
-	DEBUG_PRINTF("%d\n", system_get_free_heap_size());
-	DEBUG_PRINTF("length:%d\n", p->received);
-	DEBUG_PRINTF("[%s]\n", p->rbuf);
-	DEBUG_PRINTF("conn:%p\n", p->conn);
+	printf("\n==========================================\n");
+	printf("Process Requests\n");
+	printf("%d\n", system_get_free_heap_size());
+	printf("length:%d\n", p->received);
+	printf("[%s]\n", p->rbuf);
+	printf("conn:%p\n", p->conn);
 #endif
 
     hi = init_hinfo(&hibuff);        // Init Headers
@@ -1858,7 +1858,7 @@ static void process_requests(rwbuf_t *p)
 	type = file_type(name);
 
 #if WEB_DEBUG & 2
-	DEBUG_PRINTF("Filename: %s, type:%d\n", name,type);
+	printf("Filename: %s, type:%d\n", name,type);
 #endif
 	
 // CGI
@@ -1895,7 +1895,7 @@ static void process_requests(rwbuf_t *p)
 	}
 
 #if WEB_DEBUG & 2
-	DEBUG_PRINTF("Found name: %s, type:%d\n",name,type);
+	printf("Found name: %s, type:%d\n",name,type);
 #endif
 	if(type == PTYPE_HTML || type == PTYPE_CGI || type == PTYPE_TEXT)
 	{
@@ -1941,7 +1941,7 @@ static void process_requests(rwbuf_t *p)
 			{
 				buff[size] = 0;
 #if WEB_DEBUG & 8
-				DEBUG_PRINTF("CGI: ind:%d, len:%d, size:%d [%s]\n", ind, len, size, buff);
+				printf("CGI: ind:%d, len:%d, size:%d [%s]\n", ind, len, size, buff);
 #endif
 				// TODO CGI actions go here
 				rewrite_cgi_token(p, buff);	
@@ -1952,7 +1952,7 @@ static void process_requests(rwbuf_t *p)
 
 			fseek(fi, pos + len, 0L);
 #if WEB_DEBUG & 8
-			DEBUG_PRINTF("CGI BOGUS: ind:%d, len:%d, size:%d [%s]\n", ind, len, size, buff);
+			printf("CGI BOGUS: ind:%d, len:%d, size:%d [%s]\n", ind, len, size, buff);
 #endif
 			// Write bogus CGI header and skip over it
 			write_len(p, buff, 2);
@@ -1978,8 +1978,8 @@ static void process_requests(rwbuf_t *p)
 	espconn_disconnect(p->conn);
 
 #if WEB_DEBUG & 2
-	DEBUG_PRINTF("\nDone: ftell:%ld, len:%ld, feof%d\n",ftell(fi),len,feof(fi));
-	DEBUG_PRINTF("\n==========================================\n");
+	printf("\nDone: ftell:%ld, len:%ld, feof%d\n",ftell(fi),len,feof(fi));
+	printf("\n==========================================\n");
 #endif
 }
 
@@ -2018,7 +2018,7 @@ void web_task()
 		if(p->received)
 		{
 #if WEB_DEBUG & 2
-			DEBUG_PRINTF("web_task: received:%d\n",p->received);
+			printf("web_task: received:%d\n",p->received);
 #endif
 			process_requests(p);
 			p->received = 0;
@@ -2052,7 +2052,7 @@ void web_init(int port)
     tcp_accept(&WebConn, &WebTcp, port, web_data_connect_callback);
     //espconn_regist_time(&WebConn, 0, 0);
 #if WEB_DEBUG & 2
-    DEBUG_PRINTF("\nWeb Server task init done\n");
+    printf("\nWeb Server task init done\n");
 #endif
 }
 

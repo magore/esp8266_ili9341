@@ -1,0 +1,171 @@
+\hypertarget{sys_8c}{\section{utils/sys.c File Reference}
+\label{sys_8c}\index{utils/sys.\-c@{utils/sys.\-c}}
+}
+
+
+Memory and system utilities.  
+
+
+{\ttfamily \#include $<$user\-\_\-config.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}sys.\-h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{sys_8c_a0f8c52d1c359b700088f8417b48e467b}{free} (void $\ast$p)
+\begin{DoxyCompactList}\small\item\em Free buffer P\-O\-S\-I\-X function We only call os\-\_\-free() is pointer is not null. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void $\ast$ \hyperlink{sys_8c_ae148919146e88c7c40c7e2f781649b31}{calloc} (size\-\_\-t nmemb, size\-\_\-t size)
+\begin{DoxyCompactList}\small\item\em calloc buffer P\-O\-S\-I\-X function \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void $\ast$ \hyperlink{sys_8c_a22b308551dea873face80619301d5618}{malloc} (size\-\_\-t size)
+\begin{DoxyCompactList}\small\item\em malloc buffer P\-O\-S\-I\-X function \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{sys_8c_a3d3120b9c1d6fa02648d6e317f0f6e44}{reset} (void)
+\begin{DoxyCompactList}\small\item\em reset system \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{sys_8c_a9b9f170e9a01e51b57656fcda1f183df}{wdt\-\_\-reset} (void)
+\begin{DoxyCompactList}\small\item\em reset watchdog \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Memory and system utilities. \begin{DoxyParagraph}{Copyright \copyright{} 2015 Mike Gore, G\-P\-L License}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{You are free to use this code under the terms of G\-P\-L}
+please retain a copy of this notice in any code you use it in.
+\end{DoxyParagraph}
+This is free software\-: you can redistribute it and/or modify it under the terms of the G\-N\-U General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This software is distributed in the hope that it will be useful, but W\-I\-T\-H\-O\-U\-T A\-N\-Y W\-A\-R\-R\-A\-N\-T\-Y; without even the implied warranty of M\-E\-R\-C\-H\-A\-N\-T\-A\-B\-I\-L\-I\-T\-Y or F\-I\-T\-N\-E\-S\-S F\-O\-R A P\-A\-R\-T\-I\-C\-U\-L\-A\-R P\-U\-R\-P\-O\-S\-E. See the G\-N\-U General Public License for more details.
+
+You should have received a copy of the G\-N\-U General Public License along with this program. If not, see \href{http://www.gnu.org/licenses/}{\tt http\-://www.\-gnu.\-org/licenses/}. 
+
+Definition in file \hyperlink{sys_8c_source}{sys.\-c}.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{sys_8c_ae148919146e88c7c40c7e2f781649b31}{\index{sys.\-c@{sys.\-c}!calloc@{calloc}}
+\index{calloc@{calloc}!sys.c@{sys.\-c}}
+\subsubsection[{calloc}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void$\ast$ calloc (
+\begin{DoxyParamCaption}
+\item[{size\-\_\-t}]{nmemb, }
+\item[{size\-\_\-t}]{size}
+\end{DoxyParamCaption}
+)}}\label{sys_8c_ae148919146e88c7c40c7e2f781649b31}
+
+
+calloc buffer P\-O\-S\-I\-X function 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em nmemb} & number of elements \\
+\hline
+\mbox{\tt in}  & {\em size} & size of elements \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void $\ast$ buffer 
+\end{DoxyReturn}
+
+
+Definition at line 46 of file sys.\-c.
+
+
+
+Referenced by db\-\_\-calloc(), escape(), fatfs\-\_\-alloc\-\_\-finfo(), fatfs\-\_\-cat(), fatfs\-\_\-copy(), html\-\_\-msg(), main(), new\-\_\-file\-\_\-descriptor(), queue\-\_\-new(), rwbuf\-\_\-create(), stralloc(), strnalloc(), and uart0\-\_\-gets\-\_\-init().
+
+\hypertarget{sys_8c_a0f8c52d1c359b700088f8417b48e467b}{\index{sys.\-c@{sys.\-c}!free@{free}}
+\index{free@{free}!sys.c@{sys.\-c}}
+\subsubsection[{free}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void free (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{sys_8c_a0f8c52d1c359b700088f8417b48e467b}
+
+
+Free buffer P\-O\-S\-I\-X function We only call os\-\_\-free() is pointer is not null. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$p} & buffer to free \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 34 of file sys.\-c.
+
+
+
+Referenced by db\-\_\-free(), fatfs\-\_\-alloc\-\_\-finfo(), fatfs\-\_\-cat(), fatfs\-\_\-copy(), fatfs\-\_\-free\-\_\-filinfo(), ff\-\_\-memfree(), free\-\_\-file\-\_\-descriptor(), html\-\_\-msg(), main(), new\-\_\-file\-\_\-descriptor(), queue\-\_\-del(), queue\-\_\-new(), queue\-\_\-push\-\_\-buffer(), rwbuf\-\_\-delete(), rx\-\_\-fifo\-\_\-free(), and tx\-\_\-fifo\-\_\-free().
+
+\hypertarget{sys_8c_a22b308551dea873face80619301d5618}{\index{sys.\-c@{sys.\-c}!malloc@{malloc}}
+\index{malloc@{malloc}!sys.c@{sys.\-c}}
+\subsubsection[{malloc}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void$\ast$ malloc (
+\begin{DoxyParamCaption}
+\item[{size\-\_\-t}]{size}
+\end{DoxyParamCaption}
+)}}\label{sys_8c_a22b308551dea873face80619301d5618}
+
+
+malloc buffer P\-O\-S\-I\-X function 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em size} & size of buffer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void $\ast$ buffer 
+\end{DoxyReturn}
+
+
+Definition at line 57 of file sys.\-c.
+
+
+
+Referenced by ff\-\_\-memalloc().
+
+\hypertarget{sys_8c_a3d3120b9c1d6fa02648d6e317f0f6e44}{\index{sys.\-c@{sys.\-c}!reset@{reset}}
+\index{reset@{reset}!sys.c@{sys.\-c}}
+\subsubsection[{reset}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void reset (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{sys_8c_a3d3120b9c1d6fa02648d6e317f0f6e44}
+
+
+reset system 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 66 of file sys.\-c.
+
+
+
+Referenced by uart0\-\_\-gets\-\_\-init().
+
+\hypertarget{sys_8c_a9b9f170e9a01e51b57656fcda1f183df}{\index{sys.\-c@{sys.\-c}!wdt\-\_\-reset@{wdt\-\_\-reset}}
+\index{wdt\-\_\-reset@{wdt\-\_\-reset}!sys.c@{sys.\-c}}
+\subsubsection[{wdt\-\_\-reset}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void wdt\-\_\-reset (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{sys_8c_a9b9f170e9a01e51b57656fcda1f183df}
+
+
+reset watchdog 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 75 of file sys.\-c.
+
+
+
+Referenced by f\-\_\-getfree(), f\-\_\-mkfs(), fatfs\-\_\-scan\-\_\-files(), mmc\-\_\-power\-\_\-on(), setup(), and wire\-\_\-draw().
+

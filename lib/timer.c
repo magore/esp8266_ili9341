@@ -23,7 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include <user_config.h>
-#include "time.h"
+#include <time.h>
 
 ///@brief system interrupt rate in HZ
 #define SYSTEM_HZ 1000L
@@ -53,7 +53,7 @@ int set_timers(void (*handler)(void), int timer)
     for(i=0;i<MAX_TIMER_CNT;++i)
     {
 
-		// already assigned
+        // already assigned
         if(timer_irq[i].user_timer_handler == handler)
             ret = i;
 
@@ -67,7 +67,7 @@ int set_timers(void (*handler)(void), int timer)
         }
     }
     if(ret == -1)
-        DEBUG_PRINTF("set_timers: No more timers!\n");
+        printf("set_timers: No more timers!\n");
 
     return(ret);
 }
@@ -110,7 +110,6 @@ void delete_all_timers()
 }
 
 
-
 /// @brief  subtract a-= b timespec * structures.
 ///
 /// @param[in] a: timespec struct.
@@ -144,7 +143,6 @@ char * ts_to_str(ts_t *val)
     return( _ts_to_str );
 }
 
-
 /// @brief  timespec structure in seconds.nanoseconds.
 ///
 /// @param[in] val: timespec struct we want to display.
@@ -153,7 +151,7 @@ char * ts_to_str(ts_t *val)
 MEMSPACE
 void display_ts(ts_t *val)
 {
-    DEBUG_PRINTF("[Seconds: %s]\n", ts_to_str(val) );
+    printf("[Seconds: %s]\n", ts_to_str(val) );
 }
 
 
@@ -193,7 +191,7 @@ void clock_elapsed_end(char *msg)
     subtract_timespec((ts_t *) &current, (ts_t *) &__clock_elapsed);
 
     if(msg && *msg)
-        DEBUG_PRINTF("[%s Time:%s]\n", msg, ts_to_str((ts_t *) &current) );
+        printf("[%s Time:%s]\n", msg, ts_to_str((ts_t *) &current) );
     else
-        DEBUG_PRINTF("[Time:%s]\n", ts_to_str((ts_t *) &current) );
+        printf("[Time:%s]\n", ts_to_str((ts_t *) &current) );
 }

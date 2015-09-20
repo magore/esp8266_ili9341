@@ -1,13 +1,5 @@
 var searchData=
 [
-  ['_5f_5fseof',['__SEOF',['../posix_8h.html#a63f42c2888ed9bd0f00ee25002ee3b02',1,'posix.h']]],
-  ['_5f_5fserr',['__SERR',['../posix_8h.html#a37117409538ffeec47002d6580e4b703',1,'posix.h']]],
-  ['_5f_5fsmalloc',['__SMALLOC',['../posix_8h.html#a910f0d9b3aff8a868393ce38fe91cc7d',1,'posix.h']]],
-  ['_5f_5fspgm',['__SPGM',['../posix_8h.html#a4f8a55506b9fec8dff9442bec5a86dee',1,'posix.h']]],
-  ['_5f_5fsrd',['__SRD',['../posix_8h.html#a9a9bfdbe4548d021af62fb947d2b6b82',1,'posix.h']]],
-  ['_5f_5fsstr',['__SSTR',['../posix_8h.html#a7934343459dfe68ced51599a7b9a316f',1,'posix.h']]],
-  ['_5f_5fsunget',['__SUNGET',['../posix_8h.html#ad541703cea6b378290dcf2ea448d2879',1,'posix.h']]],
-  ['_5f_5fswr',['__SWR',['../posix_8h.html#af08f227b04a8833c49ce8b798ca7f403',1,'posix.h']]],
   ['_5fcode_5fpage',['_CODE_PAGE',['../ffconf_8h.html#aaf9b5cee569d93f1ebe43ea70916569f',1,'ffconf.h']]],
   ['_5fdf1s',['_DF1S',['../ff_8c.html#a228bfd2cabe490c8567aaf08b8b2cc14',1,'ff.c']]],
   ['_5fexcvt',['_EXCVT',['../ff_8c.html#a4d9c368236443f6568fd60eebb809d0f',1,'ff.c']]],

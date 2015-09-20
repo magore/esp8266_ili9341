@@ -50,7 +50,7 @@ void servertest_message(window *win)
 {
 	if(received)
 	{
-		//DEBUG_PRINTF("%s\n", network_msg);
+		//printf("%s\n", network_msg);
 		//tft_fillWin(win, win->bg);
 		//tft_setpos(win,0,0);
 		//tft_set_font(win,5);
@@ -105,5 +105,5 @@ void servertest_setup(int port)
 	espconn_regist_recvcb(TCP_Server, servertest_receive);
 	espconn_accept(TCP_Server);
 	espconn_regist_time(TCP_Server, SERVER_TIMEOUT, 0);
-	DEBUG_PRINTF( "Server test setup done, waiting on port:%d\n", TCP_PORT);
+	printf( "Server test setup done, waiting on port:%d\n", TCP_PORT);
 }

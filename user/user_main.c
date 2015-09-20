@@ -55,7 +55,7 @@ window *wintest = &_wintest;
 window _wintestdemo;
 window *wintestdemo = &_wintestdemo;
 
-//extern int DEBUG_PRINTF(const char *fmt, ...);
+//extern int printf(const char *fmt, ...);
 void ets_timer_disarm(ETSTimer *ptimer);
 void ets_timer_setfn(ETSTimer *ptimer, ETSTimerFunc *pfunction, void *parg);
 
@@ -104,7 +104,7 @@ void ntp_setup(void)
         sntp_init();
         os_free(addr);
 		ntp_init = 1;
-        DEBUG_PRINTF("NTP:1\n");
+        printf("NTP:1\n");
     }
 	if(ntp_init == 1)
 	{
@@ -118,7 +118,7 @@ void ntp_setup(void)
     if(ntp_init == 2)
     {
 		sntp_stop();
-		DEBUG_PRINTF("NTP:2\n");
+		printf("NTP:2\n");
 
 		// they return GMT + 8
         sec = sec - (8UL * 3600UL);
@@ -132,8 +132,8 @@ void ntp_setup(void)
 
         settimeofday(&tv, &tz);
 
-        DEBUG_PRINTF("SEC:%ld\n",sec);
-        DEBUG_PRINTF("TIME:%s\n", ctime(&sec));
+        printf("SEC:%ld\n",sec);
+        printf("TIME:%s\n", ctime(&sec));
 		ntp_init = 3;
     }
 }
@@ -228,7 +228,7 @@ void loop(void)
 		adc_sum = 0;
 	}
 
-	// DEBUG_PRINTF("Degree: %d \r\n",(int)degree);
+	// printf("Degree: %d \r\n",(int)degree);
 	// cube redraw count
 	count += 1;
 	tft_set_font(winstats,0);
@@ -262,7 +262,7 @@ void loop(void)
 	if(uart0_gets(buffer,255))
 	{
 		int flag = 0;
-		DEBUG_PRINTF("Command:%s\n",buffer);
+		printf("Command:%s\n",buffer);
 		if(!flag && user_tests(buffer))
 		{
 			flag = 1;
@@ -275,7 +275,7 @@ void loop(void)
 #endif
 		if(!flag)
 		{
-			DEBUG_PRINTF("unknow command: %s\n", buffer);
+			printf("unknow command: %s\n", buffer);
 		}
 	}
 }
@@ -292,10 +292,10 @@ void read_tests(window *win)
 	for(x=0;x<16;++x)
 	{
 		//color = tft_readPixel(win,x,y);
-		// DEBUG_PRINTF("x:%d,y:%d,c:%04x\n", x,y,color);
-		DEBUG_PRINTF("x:%d,y:%d,c:%04x\n", x,y,buffer[x]);
+		// printf("x:%d,y:%d,c:%04x\n", x,y,color);
+		printf("x:%d,y:%d,c:%04x\n", x,y,buffer[x]);
 	}
-	 DEBUG_PRINTF("\n");
+	 printf("\n");
 }
 #endif
 
@@ -326,7 +326,7 @@ void test_flashio(window *win)
 
 void user_help()
 {
-	DEBUG_PRINTF("help\n"
+	printf("help\n"
 	"setdate YYYY MM DD HH:MM:SS\n"
 	"time\n"
 	);
@@ -372,7 +372,7 @@ int user_tests(char *str)
     if ((len = token(ptr,"time")) )
     {
 		t = time(0);	
-		DEBUG_PRINTF("TIME:%s\n", ctime(&t));
+		printf("TIME:%s\n", ctime(&t));
         return(1);
 	}
 	return(0);
@@ -408,21 +408,21 @@ void setup(void)
 	// Configure the UART
 	uart_init(BIT_RATE_115200,BIT_RATE_115200);
 
-	DEBUG_PRINTF("\n");
-	DEBUG_PRINTF("System init...\n");
+	printf("\n");
+	printf("System init...\n");
 
-	DEBUG_PRINTF("HSPI init...\n");
+	printf("HSPI init...\n");
 	hspi_init(1,0);
 
-	DEBUG_PRINTF("Timers init...\n");
+	printf("Timers init...\n");
 	init_timers();
 
 #ifdef FATFS_TEST
-	DEBUG_PRINTF("SD Card init...\n");
+	printf("SD Card init...\n");
 	mmc_init(1);
 #endif
 
-	DEBUG_PRINTF("Display Init\n");
+	printf("Display Init\n");
 
 	// Initialize TFT
 	master = tft_init();
@@ -443,7 +443,7 @@ void setup(void)
 	tft_printf(winstats, "\n");
 	tft_setTextColor(winstats, ILI9341_WHITE,0);
 #if ILI9341_DEBUG & 1
-	DEBUG_PRINTF("\nDisplay ID=%08lx\n",ID);
+	printf("\nDisplay ID=%08lx\n",ID);
 #endif
 	tft_font_fixed(winstats);
 
@@ -483,13 +483,13 @@ void setup(void)
 	tft_font_var(wintestdemo);
 
 #if ILI9341_DEBUG & 1
-	DEBUG_PRINTF("Test Display Read\n");
+	printf("Test Display Read\n");
 	read_tests(wintest);
 #endif
 
 /* Draw cube in the second window as a test */
 #if defined(WIRECUBE) && !defined(EARTH)
-	DEBUG_PRINTF("Draw Cube\n");
+	printf("Draw Cube\n");
 // Cube points were defined with sides of 1.0 
 // We want a scale of +/- w/2
 	double tscale_max;
@@ -505,7 +505,7 @@ void setup(void)
 #endif
 
 #ifdef EARTH
-	DEBUG_PRINTF("Draw Earth\n");
+	printf("Draw Earth\n");
 // Earth points were defined with radius of 0.5, diameter of 1.0
 // We want a scale of +/- w/2
 	double tscale_max;
@@ -525,27 +525,27 @@ void setup(void)
 
 	wdt_reset();
 
-	DEBUG_PRINTF("Setup Tasks\n");
+	printf("Setup Tasks\n");
 
 
 #ifdef TELNET_SERIAL
-	DEBUG_PRINTF("Setup Network Serial Bridge\n");
+	printf("Setup Network Serial Bridge\n");
 	bridge_task_init(23);
 #endif
 
 	setup_networking();
 
 #ifdef NETWORK_TEST
-	DEBUG_PRINTF("Setup Network TFT DIsplay Client\n");
+	printf("Setup Network TFT DIsplay Client\n");
 	servertest_setup(TCP_PORT);
 #endif
 
 #ifdef WEBSERVER
-	DEBUG_PRINTF("Setup Network WEB SERVER\n");
+	printf("Setup Network WEB SERVER\n");
 	web_init(80);
 #endif
 
-    DEBUG_PRINTF("Heap Size(%d) bytes\n" , system_get_free_heap_size());
+    printf("Heap Size(%d) bytes\n" , system_get_free_heap_size());
 
 	system_set_os_print(0);
 
@@ -633,7 +633,7 @@ LOCAL void IdleTask(os_event_t *events)
 MEMSPACE 
 LOCAL void init_done_cb( void)
 {
-	DEBUG_PRINTF("System init done \r\n");
+	printf("System init done \r\n");
 	// disable os_printf at this time
 	system_set_os_print(0);
 }
@@ -690,7 +690,7 @@ void user_init(void)
 	system_os_task(IdleTask, IdleTaskPrio, IdleTaskQueue, IdleTaskQueueLen);
 	system_os_post(IdleTaskPrio, 0, 0);
 #endif
-	DEBUG_PRINTF("User Init Done!\n");
+	printf("User Init Done!\n");
 
 
     system_init_done_cb(init_done_cb);
