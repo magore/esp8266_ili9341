@@ -21,6 +21,7 @@ var searchData=
   ['printf_2ec',['printf.c',['../printf_8c.html',1,'']]],
   ['printf_2eh',['printf.h',['../printf_8h.html',1,'']]],
   ['printf_5ft',['printf_t',['../printf_8h.html#a1efdee46bf8e5af45e76e461e8db9c09',1,'printf.h']]],
+  ['printram',['PrintRam',['../sys_8c.html#afed748d7fa3137898a35714f6bb05e4e',1,'PrintRam():&#160;sys.c'],['../sys_8h.html#a685d93545b12079d00ffc678d3611333',1,'PrintRam(void):&#160;sys.c']]],
   ['printxyz',['PrintXYZ',['../cordic2c_8c.html#afc93093d0da5da783668ca27f859a2a7',1,'cordic2c.c']]],
   ['process_5fargs',['process_args',['../web_8c.html#a6f0b838bc63d86703c26bd813fc1ff13',1,'process_args(hinfo_t *hi):&#160;web.c'],['../web_8h.html#a6f0b838bc63d86703c26bd813fc1ff13',1,'process_args(hinfo_t *hi):&#160;web.c']]],
   ['ps',['ps',['../structex__regs.html#a41791a7ade763f5f965ca2d412914dbb',1,'ex_regs']]],

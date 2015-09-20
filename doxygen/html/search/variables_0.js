@@ -18,6 +18,7 @@ var searchData=
   ['_5fdata',['_data',['../flash_8c.html#a45c84a718a302530a9e80cce14821e33',1,'flash.c']]],
   ['_5fdata_5fend',['_data_end',['../cal__dex_8c.html#a631d10379fb6298dec3a091dff85fbfe',1,'cal_dex.c']]],
   ['_5fdata_5fstart',['_data_start',['../cal__dex_8c.html#a52ac470a9c391e36c01d0f292c65cf19',1,'cal_dex.c']]],
+  ['_5fheap_5fstart',['_heap_start',['../sys_8h.html#ab750b0b8889cb7d718f12d66f01fd954',1,'sys.h']]],
   ['_5fhspi_5finit_5fdone',['_hspi_init_done',['../hspi_8c.html#a9d8a27ff6d91c4aa89e8719b960d7404',1,'hspi.c']]],
   ['_5fled',['_led',['../web_8c.html#a9caaaad7e2fdc8c9f2e927980c57d639',1,'web.c']]],
   ['_5fmmc_5fclock',['_mmc_clock',['../mmc__hal_8c.html#a72ddc159b1a36ffda342f0f2d5c144f4',1,'mmc_hal.c']]],

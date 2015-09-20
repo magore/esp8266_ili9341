@@ -4,6 +4,7 @@ var searchData=
   ['cal_5fdex_5fdump_5fformat',['CAL_DEX_DUMP_FORMAT',['../cal__dex_8c.html#ae93d6b359abf6e2fd18bba79257ba8e2',1,'cal_dex.c']]],
   ['cal_5fdex_5fversion',['CAL_DEX_VERSION',['../cal__dex_8c.html#acc0f78bdc8572f17f1a1eedc0f4fb6f3',1,'cal_dex.c']]],
   ['cal_5ftprintf',['cal_tprintf',['../cal__dex_8c.html#a930bc9f35121018da9e27272aab1f255',1,'cal_dex.c']]],
+  ['calloc',['calloc',['../user__config_8h.html#a84beef8cc122add35118ec7cd35286c4',1,'user_config.h']]],
   ['cgi_5ftoken_5fsize',['CGI_TOKEN_SIZE',['../web_8c.html#a94854d8a062d4159f7610f11f0f7baf1',1,'web.c']]],
   ['clock_5fhz',['CLOCK_HZ',['../timer_8h.html#a4068229bfd30e574c7a9f1a8c6687582',1,'timer.h']]],
   ['clock_5ftic_5fns',['CLOCK_TIC_NS',['../timer_8h.html#a6aacf2441874a27f25ae927bbddf1235',1,'timer.h']]],

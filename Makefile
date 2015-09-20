@@ -118,6 +118,7 @@ TCP_PORT = 31415
 # ===============================================================
 # select which tools to use as compiler, librarian and linker
 CC		:= $(XTENSA_TOOLS_ROOT)/xtensa-lx106-elf-gcc
+NM		:= $(XTENSA_TOOLS_ROOT)/xtensa-lx106-elf-nm
 AR		:= $(XTENSA_TOOLS_ROOT)/xtensa-lx106-elf-ar
 LD		:= $(XTENSA_TOOLS_ROOT)/xtensa-lx106-elf-gcc
 OBJCOPY := $(XTENSA_TOOLS_ROOT)/xtensa-lx106-elf-objcopy
@@ -306,77 +307,6 @@ $1/%.o: %.c
 endef
 
 # ===============================================================
-# Reporting code borrowed from Erik Slagter
-# See: Makefile in project: https://github.com/eriksl/esp8266-universal-io-bridge
-section_free	= $(Q) perl -e '\
-						open($$fd, "xtensa-lx106-elf-size -A $(1) |"); \
-						while(<$$fd>) \
-						{ \
-							chomp; \
-							@_ = split; \
-							if($$_[0] eq "$(3)") \
-							{ \
-								$$total = $(4) * 1024; \
-								$$used = $$_[1]; \
-								$$left = $$total - $$used; \
-								printf("%-8s available: %3u k, used: %3u k, free: %6u\n", "$(2)" . ":", $$total / 1024, $$used / 1024, $$left); \
-							} \
-						} \
-						close($$fd);'
-
-section2_free	= $(Q) perl -e '\
-						open($$fd, "< linkmap"); \
-						while(<$$fd>) \
-						{ \
-							chomp(); \
-							($$end_address) = m/\s+(0x[0-9a-f]+)\s+$(3) = ABSOLUTE \(.\)/; \
-							if(defined($$end_address)) \
-							{ \
-								$$start_address = $(4); \
-								$$end_address = hex($$end_address); \
-								$$used = $$end_address - $$start_address; \
-								$$available = $(5); \
-								$$free = $$available - $$used; \
-								printf("%-8s available: %3u k, used: %3u k, free: %6d\n", "$(1)" . ":", $$available / 1024, $$used / 1024, $$free); \
-							} \
-						} \
-						close($$fd);'
-
-file_free =		$(Q) perl -e '\
-					$$iram = (-s "$(FILE_IRAM_PAD)") / 1024; \
-					$$irom = (-s "$(FILE_IROM)") / 1024; \
-					$$all  = (-s "$(FW)") / 1024; \
-					printf("file size: iram: %u k, irom: %u k, both: %u k, free: %u k\n", $$iram, $$irom, $$all, $(1) - $$all);'
-
-link_debug		= $(Q) perl -e '\
-						open($$fd, "< $(1)"); \
-						$$top = 0; \
-						while(<$$fd>) \
-						{ \
-							chomp; \
-							if(/^\s+\.$(2)/) \
-							{ \
-								@_ = split; \
-								$$top = hex($$_[1]) if(hex($$_[1]) > $$top); \
-								if(hex($$_[2]) > 0) \
-								{ \
-									$$size = sprintf("%06x", hex($$_[2])); \
-									$$file = $$_[3]; \
-									$$file =~ s/.*\///g; \
-									$$size{"$$size-$$file"} = { size => $$size, id => $$file}; \
-								} \
-							} \
-						} \
-						for $$size (sort(keys(%size))) \
-						{ \
-							printf("%4d: %s\n", \
-									hex($$size{$$size}{"size"}), \
-									$$size{$$size}{"id"}); \
-						} \
-						printf("size: %u, free: %u\n", $$top - hex('$(4)'), ($(3) * 1024) - ($$top - hex('$(4)'))); \
-						close($$fd);'
-# ===============================================================
-
 .PHONY: all checkdirs clean
 
 all: checkdirs $(FW) send
@@ -392,14 +322,33 @@ $(ELF):	$(APP_AR)
 	$(vecho) "LD $@"
 	$(Q) $(LD) -L$(SDK_LIBDIR) $(LD_SCRIPT) $(LDFLAGS) -Wl,--start-group $(LIBS) $(APP_AR) -Wl,--end-group -o $@
 
+size:	$(ELF)
+	$(vecho) "Section info:"
+	-$(Q) memanalyzer.exe $(OBJDUMP) $(ELF)
+	-@$(NM) -n -S $(ELF) 2>&1 | grep "_text_start"
+	-@$(NM) -n -S $(ELF) 2>&1 | grep "_text_end"
+	-@$(NM) -n -S $(ELF) 2>&1 | grep "_irom0_text_start"
+	-@$(NM) -n -S $(ELF) 2>&1 | grep "_irom0_text_end"
+	-@$(NM) -n -S $(ELF) 2>&1 | grep "_rodata_start"
+	-@$(NM) -n -S $(ELF) 2>&1 | grep "_rodata_end"
+	-@$(NM) -n -S $(ELF) 2>&1 | grep "_data_start"
+	-@$(NM) -n -S $(ELF) 2>&1 | grep "_data_end"
+	-@$(NM) -n -S $(ELF) 2>&1 | grep "_bss_start"
+	-@$(NM) -n -S $(ELF) 2>&1 | grep "_bss_end"
+	-@$(NM) -n -S $(ELF) 2>&1 | grep "_heap_start"
+	@#-@$(NM) -n -S $(ELF) 2>&1 | grep "_heap_end"
+	-@$(NM) -n -S $(ELF) 2>&1 | grep "_dport0_rodata_start"
+	-@$(NM) -n -S $(ELF) 2>&1 | grep "_dport0_rodata_end"
+	-@$(NM) -n -S $(ELF) 2>&1 | grep "_dport0_literal_start"
+	-@$(NM) -n -S $(ELF) 2>&1 | grep "_dport0_literal_end"
+	-@$(NM) -n -S $(ELF) 2>&1 | grep "_dport0_data_start"
+	-@$(NM) -n -S $(ELF) 2>&1 | grep "_dport0_data_end"
 
-$(FW):	$(ELF)
+$(FW):	$(ELF) size
 	$(vecho) "Firmware $@"
 	esptool.py elf2image $(FW_ARGS) $(ELF) -o $(BUILD_BASE)/region-
 	$(Q) dd if=$(FILE_IRAM) of=$(FILE_IRAM_PAD) ibs=64K conv=sync 2>&1 >/dev/null
 	$(Q) cat $(FILE_IRAM_PAD) $(FILE_IROM) > $(FW)
-	$(vecho) "Section info:"
-	-$(Q) memanalyzer.exe $(OBJDUMP) $(ELF)
 
 
 flash: all
@@ -407,7 +356,8 @@ flash: all
 
 flashzero: checkdirs
 	dd if=/dev/zero of=$(FW_BASE)/zero1.bin bs=1024 count=1024
-	$(ESPTOOL) -p $(ESPPORT) -b $(BAUD) write_flash $(flashimageoptions) \
+	$(ESPTOOL) -p $(ESPPORT) -b $(BAUD) write_flash \
+		$(flashimageoptions) \
 		0x000000 $(FW_BASE)/zero1.bin 
 	# 0x000000 $(FW_BASE)/zero1.bin 0x100000 $(FW_BASE)/zero1.bin
 
@@ -415,7 +365,8 @@ flashtestw:
 	gcc testflash.c -o testflash
 	./testflash -s 0x100000 -w $(FW_BASE)/test1w.bin
 	./testflash -s 0x100000 -w $(FW_BASE)/test2w.bin
-	$(ESPTOOL) -p $(ESPPORT) -b $(BAUD) write_flash $(flashimageoptions) \
+	$(ESPTOOL) -p $(ESPPORT) -b $(BAUD) write_flash \
+		$(flashimageoptions) \
 		0x000000 $(FW_BASE)/test1w.bin 0x100000 $(FW_BASE)/test2w.bin
 
 flashtestr: 

@@ -6,6 +6,7 @@ var searchData=
   ['pick_5flfn',['pick_lfn',['../ff_8c.html#a675b0b45a44cb21f0c6aafa6faa7defe',1,'ff.c']]],
   ['poll_5fnetwork_5fmessage',['poll_network_message',['../network_8h.html#a666e24dd2e3ea9aa24fdd5fc0089aa13',1,'network.h']]],
   ['posix_5ffopen_5fmodes_5fto_5fopen',['posix_fopen_modes_to_open',['../posix_8c.html#a607feb06d296e0ff60d5a19538bd17fc',1,'posix_fopen_modes_to_open(const char *mode):&#160;posix.c'],['../posix_8h.html#a607feb06d296e0ff60d5a19538bd17fc',1,'posix_fopen_modes_to_open(const char *mode):&#160;posix.c']]],
+  ['printram',['PrintRam',['../sys_8c.html#afed748d7fa3137898a35714f6bb05e4e',1,'PrintRam():&#160;sys.c'],['../sys_8h.html#a685d93545b12079d00ffc678d3611333',1,'PrintRam(void):&#160;sys.c']]],
   ['printxyz',['PrintXYZ',['../cordic2c_8c.html#afc93093d0da5da783668ca27f859a2a7',1,'cordic2c.c']]],
   ['process_5fargs',['process_args',['../web_8c.html#a6f0b838bc63d86703c26bd813fc1ff13',1,'process_args(hinfo_t *hi):&#160;web.c'],['../web_8h.html#a6f0b838bc63d86703c26bd813fc1ff13',1,'process_args(hinfo_t *hi):&#160;web.c']]],
   ['put_5ffat',['put_fat',['../ff_8c.html#af1a7ce170641b4b549bf05dca95a6706',1,'ff.c']]],

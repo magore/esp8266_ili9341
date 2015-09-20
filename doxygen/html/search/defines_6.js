@@ -23,6 +23,7 @@ var searchData=
   ['fontspecs',['FONTSPECS',['../bdfview_8c.html#ac069b0f0b942de43fee8642c39450bab',1,'bdfview.c']]],
   ['fp2_5fwire',['FP2_WIRE',['../wire__types_8h.html#a6ab980e5a0d260bf5baacc41f7cabbbd',1,'wire_types.h']]],
   ['fp2cordic',['FP2Cordic',['../cordic2c__inc_8h.html#ad614e1a545ad0fd263ea0afb0456cb7a',1,'FP2Cordic():&#160;cordic2c_inc.h'],['../cordic2c_8c.html#ad614e1a545ad0fd263ea0afb0456cb7a',1,'FP2Cordic():&#160;cordic2c.c']]],
+  ['free',['free',['../user__config_8h.html#a2c6efa7679f8cd9f61af96e105017560',1,'user_config.h']]],
   ['free_5fbuf',['FREE_BUF',['../ff_8c.html#aba6d6942b59f11cf285bdbfb7e38f1fa',1,'ff.c']]],
   ['fs_5ffat12',['FS_FAT12',['../ff_8h.html#aab755aa1b4f81f4aabee4a5d4738cfb0',1,'ff.h']]],
   ['fs_5ffat16',['FS_FAT16',['../ff_8h.html#a7ef90a36d99edfc0138a2155a17a79b9',1,'ff.h']]],

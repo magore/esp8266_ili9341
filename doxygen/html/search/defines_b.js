@@ -7,6 +7,7 @@ var searchData=
   ['madctl_5fmx',['MADCTL_MX',['../ili9341__adafruit_8h.html#a6d18ed48efb3186877a07d0e81155453',1,'ili9341_adafruit.h']]],
   ['madctl_5fmy',['MADCTL_MY',['../ili9341__adafruit_8h.html#ab30e6bd24448245df1d60a3e1c4ddbdf',1,'ili9341_adafruit.h']]],
   ['madctl_5frgb',['MADCTL_RGB',['../ili9341__adafruit_8h.html#acc1e55b52f8a56b7719ab147308a1668',1,'ili9341_adafruit.h']]],
+  ['malloc',['malloc',['../user__config_8h.html#acf143577800376dd931c059ecc61ba06',1,'user_config.h']]],
   ['match',['MATCH',['../bdffontutil_8h.html#a4d192fe48cb19d0ef5a88c52ed23cf4c',1,'bdffontutil.h']]],
   ['max',['MAX',['../str_8h.html#aacc3ee1a7f283f8ef65cea31f4436a95',1,'str.h']]],
   ['max_5fconnections',['MAX_CONNECTIONS',['../web_8h.html#a053b7859476cc9867ec62c49e68d3fa1',1,'web.h']]],

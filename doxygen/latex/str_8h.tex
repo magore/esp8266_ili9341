@@ -50,7 +50,7 @@ int \hyperlink{str_8h_aa5ed287545d9d0d4361d2bd1c6ecc69d}{bittestxy} (unsigned ch
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void $\ast$ \hyperlink{str_8h_ae148919146e88c7c40c7e2f781649b31}{calloc} (size\-\_\-t nmemb, size\-\_\-t size)
 \begin{DoxyCompactList}\small\item\em calloc buffer P\-O\-S\-I\-X function \end{DoxyCompactList}\item 
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void $\ast$ \hyperlink{str_8h_a22b308551dea873face80619301d5618}{malloc} (size\-\_\-t size)
-\begin{DoxyCompactList}\small\item\em malloc buffer P\-O\-S\-I\-X function \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em calloc may be aliased to safecalloc \end{DoxyCompactList}\item 
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{str_8h_a8cebaf955a9e3b5f1f2af105641dad40}{skipspaces} (char $\ast$ptr)
 \begin{DoxyCompactList}\small\item\em Skip white space in a string -\/ tabs and spaces. \end{DoxyCompactList}\item 
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{str_8h_a205ab859e76086c5239a49effa3281dd}{nextspace} (char $\ast$ptr)
@@ -293,11 +293,7 @@ void $\ast$ buffer
 \end{DoxyReturn}
 
 
-Definition at line 46 of file sys.\-c.
-
-
-
-Referenced by db\-\_\-calloc(), escape(), fatfs\-\_\-alloc\-\_\-finfo(), fatfs\-\_\-cat(), fatfs\-\_\-copy(), html\-\_\-msg(), main(), new\-\_\-file\-\_\-descriptor(), queue\-\_\-new(), rwbuf\-\_\-create(), stralloc(), strnalloc(), and uart0\-\_\-gets\-\_\-init().
+Definition at line 52 of file sys.\-c.
 
 \hypertarget{str_8h_a9a70a218c9d4bae2e51bda4d7219712f}{\index{str.\-h@{str.\-h}!cpy\-\_\-flash@{cpy\-\_\-flash}}
 \index{cpy\-\_\-flash@{cpy\-\_\-flash}!str.h@{str.\-h}}
@@ -353,11 +349,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 34 of file sys.\-c.
-
-
-
-Referenced by db\-\_\-free(), fatfs\-\_\-alloc\-\_\-finfo(), fatfs\-\_\-cat(), fatfs\-\_\-copy(), fatfs\-\_\-free\-\_\-filinfo(), ff\-\_\-memfree(), free\-\_\-file\-\_\-descriptor(), html\-\_\-msg(), main(), new\-\_\-file\-\_\-descriptor(), queue\-\_\-del(), queue\-\_\-new(), queue\-\_\-push\-\_\-buffer(), rwbuf\-\_\-delete(), rx\-\_\-fifo\-\_\-free(), and tx\-\_\-fifo\-\_\-free().
+Definition at line 65 of file sys.\-c.
 
 \hypertarget{str_8h_a9387f7db4933b1bafd14bddad8e8c9c8}{\index{str.\-h@{str.\-h}!get\-\_\-token@{get\-\_\-token}}
 \index{get\-\_\-token@{get\-\_\-token}!str.h@{str.\-h}}
@@ -502,9 +494,9 @@ Referenced by tolower().
 )}}\label{str_8h_a22b308551dea873face80619301d5618}
 
 
-malloc buffer P\-O\-S\-I\-X function 
+calloc may be aliased to safecalloc 
 
-
+free may be aliased to safefree malloc may be aliased to safecalloc malloc buffer P\-O\-S\-I\-X function 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\tt in}  & {\em size} & size of buffer \\
 \hline
@@ -514,11 +506,7 @@ void $\ast$ buffer
 \end{DoxyReturn}
 
 
-Definition at line 57 of file sys.\-c.
-
-
-
-Referenced by ff\-\_\-memalloc().
+Definition at line 39 of file sys.\-c.
 
 \hypertarget{str_8h_a9fb9c5c9b25cdf504152f7610f0d118c}{\index{str.\-h@{str.\-h}!M\-A\-T\-C\-H@{M\-A\-T\-C\-H}}
 \index{M\-A\-T\-C\-H@{M\-A\-T\-C\-H}!str.h@{str.\-h}}
@@ -788,7 +776,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 66 of file sys.\-c.
+Definition at line 155 of file sys.\-c.
 
 
 
@@ -1156,7 +1144,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 75 of file sys.\-c.
+Definition at line 164 of file sys.\-c.
 
 
 

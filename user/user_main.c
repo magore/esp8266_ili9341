@@ -411,6 +411,8 @@ void setup(void)
 	printf("\n");
 	printf("System init...\n");
 
+    PrintRam();
+
 	printf("HSPI init...\n");
 	hspi_init(1,0);
 
@@ -545,7 +547,7 @@ void setup(void)
 	web_init(80);
 #endif
 
-    printf("Heap Size(%d) bytes\n" , system_get_free_heap_size());
+    PrintRam();
 
 	system_set_os_print(0);
 

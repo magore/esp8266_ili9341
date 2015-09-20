@@ -11,12 +11,22 @@ Memory and system utilities.
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{sys_8c_a0f8c52d1c359b700088f8417b48e467b}{free} (void $\ast$p)
-\begin{DoxyCompactList}\small\item\em Free buffer P\-O\-S\-I\-X function We only call os\-\_\-free() is pointer is not null. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void $\ast$ \hyperlink{sys_8c_a22b308551dea873face80619301d5618}{malloc} (size\-\_\-t size)
+\begin{DoxyCompactList}\small\item\em calloc may be aliased to safecalloc \end{DoxyCompactList}\item 
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void $\ast$ \hyperlink{sys_8c_ae148919146e88c7c40c7e2f781649b31}{calloc} (size\-\_\-t nmemb, size\-\_\-t size)
 \begin{DoxyCompactList}\small\item\em calloc buffer P\-O\-S\-I\-X function \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void $\ast$ \hyperlink{sys_8c_a22b308551dea873face80619301d5618}{malloc} (size\-\_\-t size)
-\begin{DoxyCompactList}\small\item\em malloc buffer P\-O\-S\-I\-X function \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{sys_8c_a0f8c52d1c359b700088f8417b48e467b}{free} (void $\ast$p)
+\begin{DoxyCompactList}\small\item\em Free buffer P\-O\-S\-I\-X function We only call os\-\_\-free() is pointer is not null. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\-\_\-t} \hyperlink{sys_8c_a40f377f7a205831738b5b9cedef2e0a4}{free\-Ram} ()
+\begin{DoxyCompactList}\small\item\em Return Free memory. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{sys_8c_afed748d7fa3137898a35714f6bb05e4e}{Print\-Ram} ()
+\begin{DoxyCompactList}\small\item\em Display Free memory and regions. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void $\ast$ \hyperlink{sys_8c_a65ca18fba3d6cdb9ce8ca8040a96e0c5}{safecalloc} (size\-\_\-t nmemb, size\-\_\-t size)
+\begin{DoxyCompactList}\small\item\em Safe Calloc -\/ Display Error message if Calloc fails. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void $\ast$ \hyperlink{sys_8c_aca19f0f1e5d805c1e5f61101fa4690f1}{safemalloc} (size\-\_\-t size)
+\begin{DoxyCompactList}\small\item\em Safe Malloc -\/ Display Error message if Malloc fails. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{sys_8c_a61f06ee340417c629633142e0a5db288}{safefree} (void $\ast$p)
+\begin{DoxyCompactList}\small\item\em Safe free -\/ Only free a pointer if it is in malloc memory range. We want to try to catch frees of static or bogus data. \end{DoxyCompactList}\item 
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{sys_8c_a3d3120b9c1d6fa02648d6e317f0f6e44}{reset} (void)
 \begin{DoxyCompactList}\small\item\em reset system \end{DoxyCompactList}\item 
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{sys_8c_a9b9f170e9a01e51b57656fcda1f183df}{wdt\-\_\-reset} (void)
@@ -65,11 +75,11 @@ void $\ast$ buffer
 \end{DoxyReturn}
 
 
-Definition at line 46 of file sys.\-c.
+Definition at line 52 of file sys.\-c.
 
 
 
-Referenced by db\-\_\-calloc(), escape(), fatfs\-\_\-alloc\-\_\-finfo(), fatfs\-\_\-cat(), fatfs\-\_\-copy(), html\-\_\-msg(), main(), new\-\_\-file\-\_\-descriptor(), queue\-\_\-new(), rwbuf\-\_\-create(), stralloc(), strnalloc(), and uart0\-\_\-gets\-\_\-init().
+Referenced by safecalloc(), and safemalloc().
 
 \hypertarget{sys_8c_a0f8c52d1c359b700088f8417b48e467b}{\index{sys.\-c@{sys.\-c}!free@{free}}
 \index{free@{free}!sys.c@{sys.\-c}}
@@ -92,11 +102,32 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 34 of file sys.\-c.
+Definition at line 65 of file sys.\-c.
 
 
 
-Referenced by db\-\_\-free(), fatfs\-\_\-alloc\-\_\-finfo(), fatfs\-\_\-cat(), fatfs\-\_\-copy(), fatfs\-\_\-free\-\_\-filinfo(), ff\-\_\-memfree(), free\-\_\-file\-\_\-descriptor(), html\-\_\-msg(), main(), new\-\_\-file\-\_\-descriptor(), queue\-\_\-del(), queue\-\_\-new(), queue\-\_\-push\-\_\-buffer(), rwbuf\-\_\-delete(), rx\-\_\-fifo\-\_\-free(), and tx\-\_\-fifo\-\_\-free().
+Referenced by safefree().
+
+\hypertarget{sys_8c_a40f377f7a205831738b5b9cedef2e0a4}{\index{sys.\-c@{sys.\-c}!free\-Ram@{free\-Ram}}
+\index{free\-Ram@{free\-Ram}!sys.c@{sys.\-c}}
+\subsubsection[{free\-Ram}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} {\bf uint32\-\_\-t} free\-Ram (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{sys_8c_a40f377f7a205831738b5b9cedef2e0a4}
+
+
+Return Free memory. 
+
+\begin{DoxyReturn}{Returns}
+free memory in bytes. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{sys_8c_a22b308551dea873face80619301d5618}{malloc()}. 
+\end{DoxySeeAlso}
+
+
+Definition at line 76 of file sys.\-c.
 
 \hypertarget{sys_8c_a22b308551dea873face80619301d5618}{\index{sys.\-c@{sys.\-c}!malloc@{malloc}}
 \index{malloc@{malloc}!sys.c@{sys.\-c}}
@@ -107,9 +138,9 @@ Referenced by db\-\_\-free(), fatfs\-\_\-alloc\-\_\-finfo(), fatfs\-\_\-cat(), f
 )}}\label{sys_8c_a22b308551dea873face80619301d5618}
 
 
-malloc buffer P\-O\-S\-I\-X function 
+calloc may be aliased to safecalloc 
 
-
+free may be aliased to safefree malloc may be aliased to safecalloc malloc buffer P\-O\-S\-I\-X function 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\tt in}  & {\em size} & size of buffer \\
 \hline
@@ -119,11 +150,29 @@ void $\ast$ buffer
 \end{DoxyReturn}
 
 
-Definition at line 57 of file sys.\-c.
+Definition at line 39 of file sys.\-c.
+
+\hypertarget{sys_8c_afed748d7fa3137898a35714f6bb05e4e}{\index{sys.\-c@{sys.\-c}!Print\-Ram@{Print\-Ram}}
+\index{Print\-Ram@{Print\-Ram}!sys.c@{sys.\-c}}
+\subsubsection[{Print\-Ram}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void Print\-Ram (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{sys_8c_afed748d7fa3137898a35714f6bb05e4e}
+
+
+Display Free memory and regions. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 85 of file sys.\-c.
 
 
 
-Referenced by ff\-\_\-memalloc().
+Referenced by setup().
 
 \hypertarget{sys_8c_a3d3120b9c1d6fa02648d6e317f0f6e44}{\index{sys.\-c@{sys.\-c}!reset@{reset}}
 \index{reset@{reset}!sys.c@{sys.\-c}}
@@ -141,11 +190,95 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 66 of file sys.\-c.
+Definition at line 155 of file sys.\-c.
 
 
 
 Referenced by uart0\-\_\-gets\-\_\-init().
+
+\hypertarget{sys_8c_a65ca18fba3d6cdb9ce8ca8040a96e0c5}{\index{sys.\-c@{sys.\-c}!safecalloc@{safecalloc}}
+\index{safecalloc@{safecalloc}!sys.c@{sys.\-c}}
+\subsubsection[{safecalloc}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void$\ast$ safecalloc (
+\begin{DoxyParamCaption}
+\item[{size\-\_\-t}]{nmemb, }
+\item[{size\-\_\-t}]{size}
+\end{DoxyParamCaption}
+)}}\label{sys_8c_a65ca18fba3d6cdb9ce8ca8040a96e0c5}
+
+
+Safe Calloc -\/ Display Error message if Calloc fails. 
+
+
+\begin{DoxyItemize}
+\item We check if the pointer was in the heap.
+\item Otherwise it may have been statically defined -\/ display error. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em nmemb} & number of elements \\
+\hline
+\mbox{\tt in}  & {\em size} & size of elements \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+
+Definition at line 100 of file sys.\-c.
+
+\hypertarget{sys_8c_a61f06ee340417c629633142e0a5db288}{\index{sys.\-c@{sys.\-c}!safefree@{safefree}}
+\index{safefree@{safefree}!sys.c@{sys.\-c}}
+\subsubsection[{safefree}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void safefree (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{sys_8c_a61f06ee340417c629633142e0a5db288}
+
+
+Safe free -\/ Only free a pointer if it is in malloc memory range. We want to try to catch frees of static or bogus data. 
+
+F\-I\-X\-M\-E H\-E\-A\-P\-\_\-\-E\-N\-D is not likely exact If it is not exact it is larger or equal so the test is usefull
+\begin{DoxyItemize}
+\item We check if the pointer was in the heap.
+\item Otherwise it may have been statically defined -\/ display error. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em p} & pointer to free. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+
+Definition at line 139 of file sys.\-c.
+
+\hypertarget{sys_8c_aca19f0f1e5d805c1e5f61101fa4690f1}{\index{sys.\-c@{sys.\-c}!safemalloc@{safemalloc}}
+\index{safemalloc@{safemalloc}!sys.c@{sys.\-c}}
+\subsubsection[{safemalloc}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void$\ast$ safemalloc (
+\begin{DoxyParamCaption}
+\item[{size\-\_\-t}]{size}
+\end{DoxyParamCaption}
+)}}\label{sys_8c_aca19f0f1e5d805c1e5f61101fa4690f1}
+
+
+Safe Malloc -\/ Display Error message if Malloc fails. 
+
+
+\begin{DoxyItemize}
+\item We check if the pointer was in the heap.
+\item Otherwise it may have been statically defined -\/ display error. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em size} & size \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+
+Definition at line 117 of file sys.\-c.
 
 \hypertarget{sys_8c_a9b9f170e9a01e51b57656fcda1f183df}{\index{sys.\-c@{sys.\-c}!wdt\-\_\-reset@{wdt\-\_\-reset}}
 \index{wdt\-\_\-reset@{wdt\-\_\-reset}!sys.c@{sys.\-c}}
@@ -163,7 +296,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 75 of file sys.\-c.
+Definition at line 164 of file sys.\-c.
 
 
 

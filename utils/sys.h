@@ -1,7 +1,7 @@
 /**
  @file sys.h
 
- @brief Memory and system utilities
+ @brief System utilities
 
  @par Copyright &copy; 2015 Mike Gore, GPL License
  @par You are free to use this code under the terms of GPL
@@ -25,10 +25,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define _SYS_H_
 
 #include <user_config.h>
-/* system.c */
-MEMSPACE void free ( void *p );
-MEMSPACE void *calloc ( size_t nmemb , size_t size );
+
+extern void * _heap_start;
+#define HEAP_START  ((uint32_t) & (_heap_start))
+#define HEAP_END    ((uint32_t) (0x3FFFC000U - 1U))
+
+/* utils/sys.c */
 MEMSPACE void *malloc ( size_t size );
+MEMSPACE void *calloc ( size_t nmemb , size_t size );
+MEMSPACE void free ( void *p );
+MEMSPACE uint32_t freeRam ( void );
+MEMSPACE void PrintRam ( void );
+MEMSPACE void *safecalloc ( size_t nmemb , size_t size );
+MEMSPACE void *safemalloc ( size_t size );
+MEMSPACE void safefree ( void *p );
 MEMSPACE void reset ( void );
 MEMSPACE void wdt_reset ( void );
 

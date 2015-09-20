@@ -129,6 +129,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "bridge.h"
 #endif
 
-
+// ram.c defines alternative safe functions
+#define free safefree
+#define calloc safecalloc
+#define malloc safemalloc
 
 #endif
