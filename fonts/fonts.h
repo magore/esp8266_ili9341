@@ -1,5 +1,5 @@
 /**
- @file fonts.h
+ @file fonts/fonts.h
   Created using bdffont2c (c) 2015 by Mike Gore
   License GPL3
 

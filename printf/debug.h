@@ -1,5 +1,5 @@
 /**
- @file pr.h
+ @file debug.h
 
  @brief Small printf user function
 

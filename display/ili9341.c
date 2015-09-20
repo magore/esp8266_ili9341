@@ -77,6 +77,7 @@ void tft_spi_end()
 /// @brief  Transmit 8 bit data array
 /// @param[in] *data: data buffer to send 
 /// @param[in] bytes: data buffer size
+/// @param[in] command: 1 = command, 0 = data 
 /// return: void 
 void tft_spi_TX(uint8_t *data, int bytes, uint8_t command)
 {
@@ -91,6 +92,7 @@ void tft_spi_TX(uint8_t *data, int bytes, uint8_t command)
 /// @brief  Transmit and read 8 bit data array 
 /// @param[in] *data: data buffer to send 
 /// @param[in] bytes: data buffer size
+/// @param[in] command: 1 = command, 0 = data 
 /// return: void 
 void tft_spi_TXRX(uint8_t * data, int bytes, uint8_t command)
 {
@@ -106,6 +108,7 @@ void tft_spi_TXRX(uint8_t * data, int bytes, uint8_t command)
 /// @brief  read 8 bit data array 
 /// @param[in] *data: data buffer to send 
 /// @param[in] bytes: data buffer size
+/// @param[in] command: 1 = command, 0 = data 
 /// return: void 
 void tft_spi_RX(uint8_t *data, int bytes, uint8_t command)
 {
@@ -170,7 +173,7 @@ void tft_Cmd(uint8_t cmd)
 }
 
 /// @brief  Transmit 8 bit data amd read 8bit data
-/// @param[in] cmd: display command
+/// @param[in] data: display command
 /// return: read result
 uint8_t tft_Data(uint8_t data)
 {

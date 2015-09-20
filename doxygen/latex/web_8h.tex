@@ -176,7 +176,7 @@ enum \{ \\*
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{web_8h_a4abb48d4494fe24bdb3966a30a380f94}{is\-\_\-cgitoken\-\_\-char} (int c)
 \begin{DoxyCompactList}\small\item\em test to see if a character is a valid member of the C\-G\-I token character set C\-G\-I tokens have the following syntax @ They start with \char`\"{}@\-\_\-\char`\"{} and end with \char`\"{}\-\_\-@\char`\"{} \char`\"{}@\-\_\-\char`\"{} must be first two characters of string May have upper and lower case letters, numbers and '-\/' \end{DoxyCompactList}\item 
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{web_8h_a1923a5ddca00d254e13a605602f68972}{find\-\_\-cgitoken\-\_\-start} (char $\ast$str)
-\begin{DoxyCompactList}\small\item\em Find start of C\-G\-I token in a string C\-G\-I tokens have the following syntax @ They start with \char`\"{}@\-\_\-\char`\"{} and end with \char`\"{}\-\_\-@\char`\"{} \char`\"{}@\-\_\-\char`\"{} must be first two characters of string May have upper and lower case letters, numbers and '-\/'. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Find start of C\-G\-I token in a string C\-G\-I tokens have the following syntax @ They start with \char`\"{}@\-\_\-\char`\"{} and end with \char`\"{}\-\_\-@\char`\"{} \char`\"{}@\-\_\-\char`\"{} must be first two characters of string May have upper and lower case letters, numbers and '-\/' param\mbox{[}in\mbox{]} $\ast$str\-: string to search. \end{DoxyCompactList}\item 
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{web_8h_a048ebac3422330a50ba449d817ff49d8}{is\-\_\-cgitoken} (char $\ast$str)
 \item 
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{web_8h_abfb5be0ab21dfe56bc934a8965154384}{rewrite\-\_\-cgi\-\_\-token} (\hyperlink{structrwbuf__t}{rwbuf\-\_\-t} $\ast$p, char $\ast$src)
@@ -380,7 +380,7 @@ argument name
 \end{DoxyReturn}
 
 
-Definition at line 1127 of file web.\-c.
+Definition at line 1129 of file web.\-c.
 
 
 
@@ -407,7 +407,7 @@ argument value
 \end{DoxyReturn}
 
 
-Definition at line 1147 of file web.\-c.
+Definition at line 1149 of file web.\-c.
 
 
 
@@ -434,7 +434,7 @@ Allocate read/write socket buffers and add it to the working pool.
 \end{DoxyReturn}
 
 
-Definition at line 456 of file web.\-c.
+Definition at line 458 of file web.\-c.
 
 
 
@@ -453,12 +453,12 @@ Delete a \hyperlink{structrwbuf__t}{rwbuf\-\_\-t} entry using its index.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em index} & index into pool of \hyperlink{structrwbuf__t}{rwbuf\-\_\-t} connections \\
+\mbox{\tt in}  & {\em p} & \hyperlink{structrwbuf__t}{rwbuf\-\_\-t} pointer \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 502 of file web.\-c.
+Definition at line 504 of file web.\-c.
 
 
 
@@ -483,13 +483,15 @@ Display I\-P\-V4 address.
 \hline
 \mbox{\tt in}  & {\em ip} & I\-P address as uint8\-\_\-t \mbox{[}4\mbox{]} \\
 \hline
+\mbox{\tt in}  & {\em port} & Port number \\
+\hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
 
 
-Definition at line 266 of file web.\-c.
+Definition at line 267 of file web.\-c.
 
 
 
@@ -516,7 +518,7 @@ index into mimetype table
 \end{DoxyReturn}
 
 
-Definition at line 898 of file web.\-c.
+Definition at line 900 of file web.\-c.
 
 \hypertarget{web_8h_a1923a5ddca00d254e13a605602f68972}{\index{web.\-h@{web.\-h}!find\-\_\-cgitoken\-\_\-start@{find\-\_\-cgitoken\-\_\-start}}
 \index{find\-\_\-cgitoken\-\_\-start@{find\-\_\-cgitoken\-\_\-start}!web.h@{web.\-h}}
@@ -527,14 +529,14 @@ Definition at line 898 of file web.\-c.
 )}}\label{web_8h_a1923a5ddca00d254e13a605602f68972}
 
 
-Find start of C\-G\-I token in a string C\-G\-I tokens have the following syntax @ They start with \char`\"{}@\-\_\-\char`\"{} and end with \char`\"{}\-\_\-@\char`\"{} \char`\"{}@\-\_\-\char`\"{} must be first two characters of string May have upper and lower case letters, numbers and '-\/'. 
+Find start of C\-G\-I token in a string C\-G\-I tokens have the following syntax @ They start with \char`\"{}@\-\_\-\char`\"{} and end with \char`\"{}\-\_\-@\char`\"{} \char`\"{}@\-\_\-\char`\"{} must be first two characters of string May have upper and lower case letters, numbers and '-\/' param\mbox{[}in\mbox{]} $\ast$str\-: string to search. 
 
 \begin{DoxyReturn}{Returns}
 offset of start of token, or -\/1 if not found 
 \end{DoxyReturn}
 
 
-Definition at line 1689 of file web.\-c.
+Definition at line 1693 of file web.\-c.
 
 \hypertarget{web_8h_a63cfcb009066f483330ec359b8493fbe}{\index{web.\-h@{web.\-h}!find\-\_\-connection@{find\-\_\-connection}}
 \index{find\-\_\-connection@{find\-\_\-connection}!web.h@{web.\-h}}
@@ -555,13 +557,15 @@ Find a read/write socket buffer for an espconn connection.
 \hline
 \mbox{\tt in}  & {\em $\ast$index} & return index into pool of \hyperlink{structrwbuf__t}{rwbuf\-\_\-t} connections \\
 \hline
+\mbox{\tt in}  & {\em $\ast$msg} & user debug message \\
+\hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 \hyperlink{structrwbuf__t}{rwbuf\-\_\-t} pointer to found connection with $\ast$index set, or N\-U\-L\-L with $\ast$index == -\/1 on failure 
 \end{DoxyReturn}
 
 
-Definition at line 381 of file web.\-c.
+Definition at line 383 of file web.\-c.
 
 
 
@@ -588,7 +592,7 @@ argument value pair
 \end{DoxyReturn}
 
 
-Definition at line 1084 of file web.\-c.
+Definition at line 1086 of file web.\-c.
 
 
 
@@ -624,7 +628,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1261 of file web.\-c.
+Definition at line 1264 of file web.\-c.
 
 \hypertarget{web_8h_a5cb82637d6d97812355aaa7a7fb4ccbe}{\index{web.\-h@{web.\-h}!html\-\_\-msg@{html\-\_\-msg}}
 \index{html\-\_\-msg@{html\-\_\-msg}!web.h@{web.\-h}}
@@ -659,7 +663,7 @@ bytes written, 0 on wrror
 \end{DoxyReturn}
 
 
-Definition at line 757 of file web.\-c.
+Definition at line 759 of file web.\-c.
 
 \hypertarget{web_8h_aeebdbab253618d52a35054978fe4bb0e}{\index{web.\-h@{web.\-h}!html\-\_\-status@{html\-\_\-status}}
 \index{html\-\_\-status@{html\-\_\-status}!web.h@{web.\-h}}
@@ -674,7 +678,7 @@ Convert html status into string using http\-\_\-status table.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em index} & index to find \\
+\mbox{\tt in}  & {\em status} & html status number \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -682,7 +686,7 @@ http\-\_\-status entry mathing status, or 500 Internal Server Error
 \end{DoxyReturn}
 
 
-Definition at line 932 of file web.\-c.
+Definition at line 934 of file web.\-c.
 
 
 
@@ -712,7 +716,7 @@ argument value
 \end{DoxyReturn}
 
 
-Definition at line 1169 of file web.\-c.
+Definition at line 1171 of file web.\-c.
 
 \hypertarget{web_8h_a49bcf14a77e1c466786d1b06a570dd5c}{\index{web.\-h@{web.\-h}!init\-\_\-hinfo@{init\-\_\-hinfo}}
 \index{init\-\_\-hinfo@{init\-\_\-hinfo}!web.h@{web.\-h}}
@@ -731,7 +735,7 @@ Initilize \hyperlink{structhinfo__t}{hinfo\-\_\-t} structure
 \end{DoxyReturn}
 
 
-Definition at line 957 of file web.\-c.
+Definition at line 959 of file web.\-c.
 
 \hypertarget{web_8h_a048ebac3422330a50ba449d817ff49d8}{\index{web.\-h@{web.\-h}!is\-\_\-cgitoken@{is\-\_\-cgitoken}}
 \index{is\-\_\-cgitoken@{is\-\_\-cgitoken}!web.h@{web.\-h}}
@@ -761,7 +765,7 @@ test to see if a character is a valid member of the C\-G\-I token character set 
 \end{DoxyReturn}
 
 
-Definition at line 1665 of file web.\-c.
+Definition at line 1668 of file web.\-c.
 
 \hypertarget{web_8h_aac0e14d0751e24b7143060600fe7822a}{\index{web.\-h@{web.\-h}!is\-\_\-header@{is\-\_\-header}}
 \index{is\-\_\-header@{is\-\_\-header}!web.h@{web.\-h}}
@@ -787,7 +791,7 @@ Does the string look like a header token with a '\-:' ?
 \end{DoxyReturn}
 
 
-Definition at line 1195 of file web.\-c.
+Definition at line 1197 of file web.\-c.
 
 
 
@@ -851,7 +855,7 @@ header index or -\/1 on no match
 \end{DoxyReturn}
 
 
-Definition at line 979 of file web.\-c.
+Definition at line 981 of file web.\-c.
 
 
 
@@ -879,7 +883,7 @@ pointer to string
 \end{DoxyReturn}
 
 
-Definition at line 853 of file web.\-c.
+Definition at line 855 of file web.\-c.
 
 
 
@@ -912,7 +916,7 @@ pointer to start of memory area (ptr)
 \end{DoxyReturn}
 
 
-Definition at line 835 of file web.\-c.
+Definition at line 837 of file web.\-c.
 
 
 
@@ -939,7 +943,7 @@ pointer to string, if out of range uses index P\-T\-Y\-P\-E\-\_\-\-E\-R\-R
 \end{DoxyReturn}
 
 
-Definition at line 885 of file web.\-c.
+Definition at line 887 of file web.\-c.
 
 
 
@@ -966,7 +970,7 @@ argument value pair
 \end{DoxyReturn}
 
 
-Definition at line 1095 of file web.\-c.
+Definition at line 1097 of file web.\-c.
 
 
 
@@ -993,7 +997,7 @@ first space or ? character
 \end{DoxyReturn}
 
 
-Definition at line 1220 of file web.\-c.
+Definition at line 1222 of file web.\-c.
 
 
 
@@ -1023,7 +1027,7 @@ Get arguments for a G\-E\-T or P\-O\-S\-T request.
 \end{DoxyReturn}
 
 
-Definition at line 1278 of file web.\-c.
+Definition at line 1281 of file web.\-c.
 
 \hypertarget{web_8h_a6f0b838bc63d86703c26bd813fc1ff13}{\index{web.\-h@{web.\-h}!process\-\_\-args@{process\-\_\-args}}
 \index{process\-\_\-args@{process\-\_\-args}!web.h@{web.\-h}}
@@ -1046,7 +1050,7 @@ pointer that points to just past the header area
 \end{DoxyReturn}
 
 
-Definition at line 1017 of file web.\-c.
+Definition at line 1019 of file web.\-c.
 
 
 
@@ -1076,7 +1080,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 321 of file web.\-c.
+Definition at line 322 of file web.\-c.
 
 
 
@@ -1103,7 +1107,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 283 of file web.\-c.
+Definition at line 284 of file web.\-c.
 
 
 
@@ -1190,7 +1194,7 @@ bytes written
 \end{DoxyReturn}
 
 
-Definition at line 734 of file web.\-c.
+Definition at line 736 of file web.\-c.
 
 
 
@@ -1212,13 +1216,15 @@ Print a decimal number into a string without an E\-O\-S.
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\tt in}  & {\em $\ast$ptr} & buffer to write number to \\
 \hline
+\mbox{\tt in}  & {\em num} & number to convet \\
+\hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
 
 
-Definition at line 1240 of file web.\-c.
+Definition at line 1243 of file web.\-c.
 
 
 
@@ -1243,7 +1249,7 @@ vsock\-\_\-printf function
 \hline
 \mbox{\tt in}  & {\em fmt} & printf format string \\
 \hline
-\mbox{\tt in}  & {\em va\-\_\-list} & va\-\_\-list of arguments \\
+\mbox{\tt in}  & {\em va} & va\-\_\-list of arguments \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -1251,7 +1257,7 @@ bytes written
 \end{DoxyReturn}
 
 
-Definition at line 712 of file web.\-c.
+Definition at line 714 of file web.\-c.
 
 
 
@@ -1278,7 +1284,7 @@ Wait for buffer to send for this connection If the buffers have any data in them
 \end{DoxyReturn}
 
 
-Definition at line 587 of file web.\-c.
+Definition at line 589 of file web.\-c.
 
 
 
@@ -1334,7 +1340,7 @@ Write a byte (buffered) using the \hyperlink{structrwbuf__t}{rwbuf\-\_\-t} socke
 \end{DoxyParams}
 
 
-Definition at line 532 of file web.\-c.
+Definition at line 534 of file web.\-c.
 
 
 
@@ -1361,7 +1367,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 625 of file web.\-c.
+Definition at line 627 of file web.\-c.
 
 
 
@@ -1394,7 +1400,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 669 of file web.\-c.
+Definition at line 671 of file web.\-c.
 
 
 
@@ -1424,5 +1430,5 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 682 of file web.\-c.
+Definition at line 684 of file web.\-c.
 

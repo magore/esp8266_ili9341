@@ -1,5 +1,5 @@
 /**
- @file util.c
+ @file flash.c
 
  @brief Flash read and bit test utilities
 

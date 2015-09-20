@@ -126,7 +126,6 @@ void clock_init()
 
 /**
  @brief 1000HZ timer task
- @param[in] *arg: ignored
  @return void
 */
 void clock_task(void)
@@ -239,7 +238,7 @@ ISR(TIMER1_COMPA_vect)
 ///
 /// @param[in] clk_id: Hardware timer index used when there are more then one.
 ///  - Note: We ignore clk_id for now.
-/// @param[in] tp: struct timespec input.
+/// @param[in] ts: struct timespec input.
 ///
 /// @return 0.
 MEMSPACE

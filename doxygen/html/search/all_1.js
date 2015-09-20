@@ -54,7 +54,7 @@ var searchData=
   ['atexit',['atexit',['../user__task_8c.html#a7962f8536e3c743c8380411e184c7e2f',1,'atexit(void(*func)()):&#160;user_task.c'],['../user__task_8h.html#a7962f8536e3c743c8380411e184c7e2f',1,'atexit(void(*func)()):&#160;user_task.c']]],
   ['atodigit',['atodigit',['../sup_8c.html#a8c0b521d598596dde4e31d56f672ad76',1,'atodigit(int c, int radix):&#160;sup.c'],['../sup_8h.html#a8c0b521d598596dde4e31d56f672ad76',1,'atodigit(int c, int radix):&#160;sup.c']]],
   ['atof',['atof',['../sup_8h.html#aaced0f65b217a06c02d33b690360a4f3',1,'sup.h']]],
-  ['atoh',['atoh',['../str_8c.html#a65e529a87a8bcaf0b2cb9b6edc3a8fde',1,'str.c']]],
+  ['atoh',['atoh',['../str_8c.html#a65e529a87a8bcaf0b2cb9b6edc3a8fde',1,'atoh(const char *p):&#160;str.c'],['../str_8h.html#a65e529a87a8bcaf0b2cb9b6edc3a8fde',1,'atoh(const char *p):&#160;str.c']]],
   ['atoi',['atoi',['../sup_8c.html#a90a4ca3a536a676e78b12c671b66111d',1,'atoi(uint8_t *str):&#160;sup.c'],['../sup_8h.html#a90a4ca3a536a676e78b12c671b66111d',1,'atoi(uint8_t *str):&#160;sup.c'],['../ets__sys_8h.html#ad228deceea1bac4d9f171f647c265059',1,'atoi(const char *nptr):&#160;ets_sys.h']]],
   ['aton',['aton',['../sup_8c.html#a5b0e8d54cc1034cb2c447aa02b9b9520',1,'aton(uint8_t *str, int base):&#160;sup.c'],['../sup_8h.html#a5b0e8d54cc1034cb2c447aa02b9b9520',1,'aton(uint8_t *str, int base):&#160;sup.c']]]
 ];

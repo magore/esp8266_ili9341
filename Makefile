@@ -404,7 +404,7 @@ $(foreach bdir,$(BUILD_DIR),$(eval $(call compile-objects,$(bdir))))
 
 # ===============================================================
 # If makefile changes, update doxygens list
-DOCDIRS := . $(MODULES) cube wire earth fonts include cordic/make_cordic earth/make_wireframe 
+DOCDIRS := . $(MODULES) wire earth fonts include cordic/make_cordic
 
 # If makefile changes, maybe the list of sources has changed, so update doxygens list
 .PHONY: doxyfile.inc

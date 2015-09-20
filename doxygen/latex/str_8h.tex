@@ -25,32 +25,6 @@ String matching functions.
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} \hyperlink{str_8h_a8820bdd8a76740aaafe0506ff6040002}{read\-\_\-flash8} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$p)
-\item 
-void \hyperlink{str_8h_a9a70a218c9d4bae2e51bda4d7219712f}{cpy\-\_\-flash} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$src, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$dest, int size)
-\begin{DoxyCompactList}\small\item\em Copy data from Flash to Ram Uses flash\-\_\-read8() to avoid alighnment problems. \end{DoxyCompactList}\item 
-\hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\-\_\-t} \hyperlink{str_8h_a092855859eb7ea714f2ab3eee711ddc4}{read\-\_\-flash16} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$p)
-\begin{DoxyCompactList}\small\item\em 16 bits reads from Flash memory space Uses \hyperlink{flash_8c_a9a70a218c9d4bae2e51bda4d7219712f}{cpy\-\_\-flash()} to avoid alighnment problems \end{DoxyCompactList}\item 
-\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\-\_\-t} \hyperlink{str_8h_ac0366232efac94fc6f8da6a20d9bdaf9}{read\-\_\-flash32} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$p)
-\begin{DoxyCompactList}\small\item\em 32 bits reads from Flash memory space Uses \hyperlink{flash_8c_a9a70a218c9d4bae2e51bda4d7219712f}{cpy\-\_\-flash()} to avoid alighnment problems \end{DoxyCompactList}\item 
-uint64\-\_\-t \hyperlink{str_8h_ab1d6ea8dfe88a05a02869a3dd8cd7deb}{read\-\_\-flash64} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$p)
-\begin{DoxyCompactList}\small\item\em 64 bits reads from Flash memory space Uses \hyperlink{flash_8c_a9a70a218c9d4bae2e51bda4d7219712f}{cpy\-\_\-flash()} to avoid alighnment problems \end{DoxyCompactList}\item 
-\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\-\_\-t} \hyperlink{str_8h_ab39a1de20d7b9b1da1fb85100c0cbb10}{read\-\_\-flash\-\_\-ptr} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$p)
-\begin{DoxyCompactList}\small\item\em Pointer read from Flash memory space Uses \hyperlink{flash_8c_a9a70a218c9d4bae2e51bda4d7219712f}{cpy\-\_\-flash()} to avoid alighnment problems. \end{DoxyCompactList}\item 
-int \hyperlink{str_8h_a96d99653ceafa913b2f1331ef7219be8}{bittestv} (unsigned char $\ast$ptr, int off)
-\begin{DoxyCompactList}\small\item\em Test bit in byte array. \end{DoxyCompactList}\item 
-int \hyperlink{str_8h_aa5ed287545d9d0d4361d2bd1c6ecc69d}{bittestxy} (unsigned char $\ast$ptr, int x, int y, int w, int h)
-\begin{DoxyCompactList}\small\item\em Test bit in w $\ast$ h size bit array usng x and y offsets. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{str_8h_a3d3120b9c1d6fa02648d6e317f0f6e44}{reset} (void)
-\begin{DoxyCompactList}\small\item\em reset system \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{str_8h_a9b9f170e9a01e51b57656fcda1f183df}{wdt\-\_\-reset} (void)
-\begin{DoxyCompactList}\small\item\em reset watchdog \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{str_8h_a0f8c52d1c359b700088f8417b48e467b}{free} (void $\ast$p)
-\begin{DoxyCompactList}\small\item\em Free buffer P\-O\-S\-I\-X function We only call os\-\_\-free() is pointer is not null. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void $\ast$ \hyperlink{str_8h_ae148919146e88c7c40c7e2f781649b31}{calloc} (size\-\_\-t nmemb, size\-\_\-t size)
-\begin{DoxyCompactList}\small\item\em calloc buffer P\-O\-S\-I\-X function \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void $\ast$ \hyperlink{str_8h_a22b308551dea873face80619301d5618}{malloc} (size\-\_\-t size)
-\begin{DoxyCompactList}\small\item\em calloc may be aliased to safecalloc \end{DoxyCompactList}\item 
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{str_8h_a8cebaf955a9e3b5f1f2af105641dad40}{skipspaces} (char $\ast$ptr)
 \begin{DoxyCompactList}\small\item\em Skip white space in a string -\/ tabs and spaces. \end{DoxyCompactList}\item 
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{str_8h_a205ab859e76086c5239a49effa3281dd}{nextspace} (char $\ast$ptr)
@@ -69,6 +43,8 @@ int \hyperlink{str_8h_aa5ed287545d9d0d4361d2bd1c6ecc69d}{bittestxy} (unsigned ch
 \begin{DoxyCompactList}\small\item\em Search for token in a string matching user pattern. \end{DoxyCompactList}\item 
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} \hyperlink{str_8h_a8ebead37e3b32237367ee7951e4bf7b9}{hexd} (char c)
 \begin{DoxyCompactList}\small\item\em Convert Character into H\-E\-X digit. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} long \hyperlink{str_8h_a65e529a87a8bcaf0b2cb9b6edc3a8fde}{atoh} (const char $\ast$p)
+\begin{DoxyCompactList}\small\item\em Convert A\-S\-C\-I\-I hex string to long integer. \end{DoxyCompactList}\item 
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{str_8h_a0a3c929ebadee8388452f8c3809fe744}{isupper} (int c)
 \begin{DoxyCompactList}\small\item\em Is a character upper case. \end{DoxyCompactList}\item 
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{str_8h_a7f14a6a87f41f7ec8872676739c9ec0e}{islower} (int c)
@@ -186,170 +162,31 @@ Referenced by tft\-\_\-fill\-Rect\-X\-Y(), and tft\-\_\-fill\-Triangle().
 
 
 \subsection{Function Documentation}
-\hypertarget{str_8h_a96d99653ceafa913b2f1331ef7219be8}{\index{str.\-h@{str.\-h}!bittestv@{bittestv}}
-\index{bittestv@{bittestv}!str.h@{str.\-h}}
-\subsubsection[{bittestv}]{\setlength{\rightskip}{0pt plus 5cm}int bittestv (
+\hypertarget{str_8h_a65e529a87a8bcaf0b2cb9b6edc3a8fde}{\index{str.\-h@{str.\-h}!atoh@{atoh}}
+\index{atoh@{atoh}!str.h@{str.\-h}}
+\subsubsection[{atoh}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} long atoh (
 \begin{DoxyParamCaption}
-\item[{unsigned char $\ast$}]{ptr, }
-\item[{int}]{off}
+\item[{const char $\ast$}]{p}
 \end{DoxyParamCaption}
-)}}\label{str_8h_a96d99653ceafa913b2f1331ef7219be8}
+)}}\label{str_8h_a65e529a87a8bcaf0b2cb9b6edc3a8fde}
 
 
-Test bit in byte array. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em $\ast$ptr} & byte array \\
-\hline
-\mbox{\tt in}  & {\em off} & bit offset to test \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-1 if bit is set, 0 if not 
-\end{DoxyReturn}
-
-
-Definition at line 146 of file flash.\-c.
-
-
-
-Referenced by tft\-\_\-bit\-\_\-blit().
-
-\hypertarget{str_8h_aa5ed287545d9d0d4361d2bd1c6ecc69d}{\index{str.\-h@{str.\-h}!bittestxy@{bittestxy}}
-\index{bittestxy@{bittestxy}!str.h@{str.\-h}}
-\subsubsection[{bittestxy}]{\setlength{\rightskip}{0pt plus 5cm}int bittestxy (
-\begin{DoxyParamCaption}
-\item[{unsigned char $\ast$}]{ptr, }
-\item[{int}]{x, }
-\item[{int}]{y, }
-\item[{int}]{w, }
-\item[{int}]{h}
-\end{DoxyParamCaption}
-)}}\label{str_8h_aa5ed287545d9d0d4361d2bd1c6ecc69d}
-
-
-Test bit in w $\ast$ h size bit array usng x and y offsets. 
+Convert A\-S\-C\-I\-I hex string to long integer. 
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em $\ast$ptr} & byte array \\
-\hline
-\mbox{\tt in}  & {\em x} & bit x offset \\
-\hline
-\mbox{\tt in}  & {\em y} & bit y offset \\
-\hline
-\mbox{\tt in}  & {\em w} & bit array wide \\
-\hline
-\mbox{\tt in}  & {\em h} & bit array high \\
+\mbox{\tt in}  & {\em p} & String to convert.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-1 if bit is set, 0 if not
+long integer result. 
 \end{DoxyReturn}
-Test bit in w $\ast$ h size bit array usng x and y offsets.
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{sup_8c_ae7a25f0631dd53c026fd8636e8bcb42e}{strtol()} for return overflow and underflow results. 
+\end{DoxySeeAlso}
 
 
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em $\ast$ptr} & byte array \\
-\hline
-\mbox{\tt in}  & {\em x} & bit x offset \\
-\hline
-\mbox{\tt in}  & {\em y} & bit y offset \\
-\hline
-\mbox{\tt in}  & {\em w} & the width of bit array \\
-\hline
-\mbox{\tt in}  & {\em h} & the height of bit array \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-1 if bit is set, 0 if not 
-\end{DoxyReturn}
-
-
-Definition at line 161 of file flash.\-c.
-
-\hypertarget{str_8h_ae148919146e88c7c40c7e2f781649b31}{\index{str.\-h@{str.\-h}!calloc@{calloc}}
-\index{calloc@{calloc}!str.h@{str.\-h}}
-\subsubsection[{calloc}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void$\ast$ calloc (
-\begin{DoxyParamCaption}
-\item[{size\-\_\-t}]{nmemb, }
-\item[{size\-\_\-t}]{size}
-\end{DoxyParamCaption}
-)}}\label{str_8h_ae148919146e88c7c40c7e2f781649b31}
-
-
-calloc buffer P\-O\-S\-I\-X function 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em nmemb} & number of elements \\
-\hline
-\mbox{\tt in}  & {\em size} & size of elements \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-void $\ast$ buffer 
-\end{DoxyReturn}
-
-
-Definition at line 52 of file sys.\-c.
-
-\hypertarget{str_8h_a9a70a218c9d4bae2e51bda4d7219712f}{\index{str.\-h@{str.\-h}!cpy\-\_\-flash@{cpy\-\_\-flash}}
-\index{cpy\-\_\-flash@{cpy\-\_\-flash}!str.h@{str.\-h}}
-\subsubsection[{cpy\-\_\-flash}]{\setlength{\rightskip}{0pt plus 5cm}void cpy\-\_\-flash (
-\begin{DoxyParamCaption}
-\item[{{\bf uint8\-\_\-t} $\ast$}]{src, }
-\item[{{\bf uint8\-\_\-t} $\ast$}]{dest, }
-\item[{int}]{size}
-\end{DoxyParamCaption}
-)}}\label{str_8h_a9a70a218c9d4bae2e51bda4d7219712f}
-
-
-Copy data from Flash to Ram Uses flash\-\_\-read8() to avoid alighnment problems. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em $\ast$src} & address to read from \\
-\hline
-\mbox{\tt out}  & {\em $\ast$dest} & address to write to \\
-\hline
-\mbox{\tt in}  & {\em size} & number of bytes to copy \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-void 
-\end{DoxyReturn}
-
-
-Definition at line 84 of file flash.\-c.
-
-
-
-Referenced by font\-\_\-attr(), and wire\-\_\-draw().
-
-\hypertarget{str_8h_a0f8c52d1c359b700088f8417b48e467b}{\index{str.\-h@{str.\-h}!free@{free}}
-\index{free@{free}!str.h@{str.\-h}}
-\subsubsection[{free}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void free (
-\begin{DoxyParamCaption}
-\item[{void $\ast$}]{p}
-\end{DoxyParamCaption}
-)}}\label{str_8h_a0f8c52d1c359b700088f8417b48e467b}
-
-
-Free buffer P\-O\-S\-I\-X function We only call os\-\_\-free() is pointer is not null. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em $\ast$p} & buffer to free \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-void 
-\end{DoxyReturn}
-
-
-Definition at line 65 of file sys.\-c.
+Definition at line 271 of file str.\-c.
 
 \hypertarget{str_8h_a9387f7db4933b1bafd14bddad8e8c9c8}{\index{str.\-h@{str.\-h}!get\-\_\-token@{get\-\_\-token}}
 \index{get\-\_\-token@{get\-\_\-token}!str.h@{str.\-h}}
@@ -484,29 +321,6 @@ Definition at line 284 of file str.\-c.
 
 
 Referenced by tolower().
-
-\hypertarget{str_8h_a22b308551dea873face80619301d5618}{\index{str.\-h@{str.\-h}!malloc@{malloc}}
-\index{malloc@{malloc}!str.h@{str.\-h}}
-\subsubsection[{malloc}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void$\ast$ malloc (
-\begin{DoxyParamCaption}
-\item[{size\-\_\-t}]{size}
-\end{DoxyParamCaption}
-)}}\label{str_8h_a22b308551dea873face80619301d5618}
-
-
-calloc may be aliased to safecalloc 
-
-free may be aliased to safefree malloc may be aliased to safecalloc malloc buffer P\-O\-S\-I\-X function 
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em size} & size of buffer \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-void $\ast$ buffer 
-\end{DoxyReturn}
-
-
-Definition at line 39 of file sys.\-c.
 
 \hypertarget{str_8h_a9fb9c5c9b25cdf504152f7610f0d118c}{\index{str.\-h@{str.\-h}!M\-A\-T\-C\-H@{M\-A\-T\-C\-H}}
 \index{M\-A\-T\-C\-H@{M\-A\-T\-C\-H}!str.h@{str.\-h}}
@@ -656,131 +470,6 @@ Definition at line 50 of file str.\-c.
 
 
 Referenced by fatfs\-\_\-tests(), and parse\-\_\-http\-\_\-request().
-
-\hypertarget{str_8h_a092855859eb7ea714f2ab3eee711ddc4}{\index{str.\-h@{str.\-h}!read\-\_\-flash16@{read\-\_\-flash16}}
-\index{read\-\_\-flash16@{read\-\_\-flash16}!str.h@{str.\-h}}
-\subsubsection[{read\-\_\-flash16}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint16\-\_\-t} read\-\_\-flash16 (
-\begin{DoxyParamCaption}
-\item[{{\bf uint8\-\_\-t} $\ast$}]{p}
-\end{DoxyParamCaption}
-)}}\label{str_8h_a092855859eb7ea714f2ab3eee711ddc4}
-
-
-16 bits reads from Flash memory space Uses \hyperlink{flash_8c_a9a70a218c9d4bae2e51bda4d7219712f}{cpy\-\_\-flash()} to avoid alighnment problems 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em $\ast$p} & address to read \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-uint16\-\_\-t 
-\end{DoxyReturn}
-
-
-Definition at line 98 of file flash.\-c.
-
-\hypertarget{str_8h_ac0366232efac94fc6f8da6a20d9bdaf9}{\index{str.\-h@{str.\-h}!read\-\_\-flash32@{read\-\_\-flash32}}
-\index{read\-\_\-flash32@{read\-\_\-flash32}!str.h@{str.\-h}}
-\subsubsection[{read\-\_\-flash32}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint32\-\_\-t} read\-\_\-flash32 (
-\begin{DoxyParamCaption}
-\item[{{\bf uint8\-\_\-t} $\ast$}]{p}
-\end{DoxyParamCaption}
-)}}\label{str_8h_ac0366232efac94fc6f8da6a20d9bdaf9}
-
-
-32 bits reads from Flash memory space Uses \hyperlink{flash_8c_a9a70a218c9d4bae2e51bda4d7219712f}{cpy\-\_\-flash()} to avoid alighnment problems 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em $\ast$p} & address to read \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-uint32\-\_\-t 
-\end{DoxyReturn}
-
-
-Definition at line 110 of file flash.\-c.
-
-\hypertarget{str_8h_ab1d6ea8dfe88a05a02869a3dd8cd7deb}{\index{str.\-h@{str.\-h}!read\-\_\-flash64@{read\-\_\-flash64}}
-\index{read\-\_\-flash64@{read\-\_\-flash64}!str.h@{str.\-h}}
-\subsubsection[{read\-\_\-flash64}]{\setlength{\rightskip}{0pt plus 5cm}uint64\-\_\-t read\-\_\-flash64 (
-\begin{DoxyParamCaption}
-\item[{{\bf uint8\-\_\-t} $\ast$}]{p}
-\end{DoxyParamCaption}
-)}}\label{str_8h_ab1d6ea8dfe88a05a02869a3dd8cd7deb}
-
-
-64 bits reads from Flash memory space Uses \hyperlink{flash_8c_a9a70a218c9d4bae2e51bda4d7219712f}{cpy\-\_\-flash()} to avoid alighnment problems 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em $\ast$p} & address to read \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-uint64\-\_\-t 
-\end{DoxyReturn}
-
-
-Definition at line 122 of file flash.\-c.
-
-\hypertarget{str_8h_a8820bdd8a76740aaafe0506ff6040002}{\index{str.\-h@{str.\-h}!read\-\_\-flash8@{read\-\_\-flash8}}
-\index{read\-\_\-flash8@{read\-\_\-flash8}!str.h@{str.\-h}}
-\subsubsection[{read\-\_\-flash8}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint8\-\_\-t} read\-\_\-flash8 (
-\begin{DoxyParamCaption}
-\item[{{\bf uint8\-\_\-t} $\ast$}]{p}
-\end{DoxyParamCaption}
-)}}\label{str_8h_a8820bdd8a76740aaafe0506ff6040002}
-
-
-Definition at line 41 of file flash.\-c.
-
-\hypertarget{str_8h_ab39a1de20d7b9b1da1fb85100c0cbb10}{\index{str.\-h@{str.\-h}!read\-\_\-flash\-\_\-ptr@{read\-\_\-flash\-\_\-ptr}}
-\index{read\-\_\-flash\-\_\-ptr@{read\-\_\-flash\-\_\-ptr}!str.h@{str.\-h}}
-\subsubsection[{read\-\_\-flash\-\_\-ptr}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint32\-\_\-t} read\-\_\-flash\-\_\-ptr (
-\begin{DoxyParamCaption}
-\item[{{\bf uint8\-\_\-t} $\ast$}]{p}
-\end{DoxyParamCaption}
-)}}\label{str_8h_ab39a1de20d7b9b1da1fb85100c0cbb10}
-
-
-Pointer read from Flash memory space Uses \hyperlink{flash_8c_a9a70a218c9d4bae2e51bda4d7219712f}{cpy\-\_\-flash()} to avoid alighnment problems. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em $\ast$p} & address to read \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-uint32\-\_\-t 
-\end{DoxyReturn}
-
-
-Definition at line 134 of file flash.\-c.
-
-\hypertarget{str_8h_a3d3120b9c1d6fa02648d6e317f0f6e44}{\index{str.\-h@{str.\-h}!reset@{reset}}
-\index{reset@{reset}!str.h@{str.\-h}}
-\subsubsection[{reset}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void reset (
-\begin{DoxyParamCaption}
-\item[{void}]{}
-\end{DoxyParamCaption}
-)}}\label{str_8h_a3d3120b9c1d6fa02648d6e317f0f6e44}
-
-
-reset system 
-
-\begin{DoxyReturn}{Returns}
-void 
-\end{DoxyReturn}
-
-
-Definition at line 155 of file sys.\-c.
-
-
-
-Referenced by uart0\-\_\-gets\-\_\-init().
 
 \hypertarget{str_8h_aae86b90fc6ccc0c432de5c492cdcbaba}{\index{str.\-h@{str.\-h}!skipchars@{skipchars}}
 \index{skipchars@{skipchars}!str.h@{str.\-h}}
@@ -1127,26 +816,4 @@ Trim White space and control characters from end of string.
 
 
 Definition at line 102 of file str.\-c.
-
-\hypertarget{str_8h_a9b9f170e9a01e51b57656fcda1f183df}{\index{str.\-h@{str.\-h}!wdt\-\_\-reset@{wdt\-\_\-reset}}
-\index{wdt\-\_\-reset@{wdt\-\_\-reset}!str.h@{str.\-h}}
-\subsubsection[{wdt\-\_\-reset}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void wdt\-\_\-reset (
-\begin{DoxyParamCaption}
-\item[{void}]{}
-\end{DoxyParamCaption}
-)}}\label{str_8h_a9b9f170e9a01e51b57656fcda1f183df}
-
-
-reset watchdog 
-
-\begin{DoxyReturn}{Returns}
-void 
-\end{DoxyReturn}
-
-
-Definition at line 164 of file sys.\-c.
-
-
-
-Referenced by f\-\_\-getfree(), f\-\_\-mkfs(), fatfs\-\_\-scan\-\_\-files(), mmc\-\_\-power\-\_\-on(), setup(), and wire\-\_\-draw().
 

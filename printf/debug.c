@@ -1,5 +1,5 @@
 /**
- @file pr.c
+ @file debug.c
 
  @brief Small printf user function
 
@@ -35,8 +35,8 @@ static void _uart0_fn(struct _printf_t *p, char ch)
 }
    
 /// @brief printf function
-/// @param[in] fmt: printf forat string
-/// @param[in] va_list: list of arguments
+/// @param[in] format: printf forat string
+/// @param[in] ...: list of arguments
 /// @return size of printed string
 MEMSPACE
 int uart0_printf(const char *format, ...)

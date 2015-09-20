@@ -40,7 +40,6 @@ uint16_t _mmc_pre = 0;
 
 /**
  @brief 1000HZ timer task
- @param[in] *arg: ignored
  @return void
 */
 static void mmc_task(void)
@@ -190,7 +189,7 @@ int  mmc_test_timeout()
 static int mmc_init_flag = 0;
 /// @brief Initialize MMC and FatFs interface, display diagnostics.
 ///
-/// @param[in] cold: 1 also initailize MMC timer.
+/// @param[in] verbose: display initialisation messages
 /// @return
 MEMSPACE
 int mmc_init(int verbose)

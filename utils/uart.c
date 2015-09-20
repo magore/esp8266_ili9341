@@ -229,7 +229,7 @@ uint8_t rx_fifo_getc(int uart_no)
 	to meet the request.
 	So you must check that the return value matches the size.
 	@param[in] uart_no: uart number
-	@param[in] *src: input buffer
+	@param[in] *buf: output buffer
 	@param[in] size: size of input buffer
 	@return number of bytes sent
 */
@@ -330,6 +330,7 @@ uint8_t uart_getb(int uart_no)
 	@brief Write a byte from a uart with NL to CR/NL conversion
 	Note: This function waits/blocks util the write can happen
 	@param[in] uart_no: uart number
+	@param[in] c: character
 	@return void
 */
 MEMSPACE
@@ -485,7 +486,7 @@ void uart_callback(void *p)
 /**
   @brief transfer data into the uart0_gets_receive_queue
   Provide line buffering for uart0_gets()
-  @parmam[in] data: character to add to queue
+  @param[in] data: character to add to queue
   @return void
 */
 void uart0_gets_add(uint8_t data)
@@ -520,7 +521,7 @@ void uart0_gets_add(uint8_t data)
 /**
   @brief allocate and initialize uart0_gets data structures
   Provide line buffering for uart0_gets()
-  @parmam[in] size: size of line buffer
+  @param[in] size: size of line buffer
   @return void
 */
 MEMSPACE
@@ -539,8 +540,8 @@ void uart0_gets_init(int size)
 
 /**
   @brief uart0_gets non-blocking line buffered gets 
-  @parmam[in] buf: user buffer to fill
-  @parmam[in] max: miximum size of buf
+  @param[in] buf: user buffer to fill
+  @param[in] max: miximum size of buf
   @return 0, or number of characters in line
 */
 MEMSPACE
@@ -636,9 +637,8 @@ void uart_config(uint8 uart_no, uint32_t baud, uint8_t data_bits, uint8_t stop_b
 /**
 	@brief initialize uart0 and uart1
     Defaults: 8 = data bits, 1 = stop bits, no parity
-    @param[in] uart_no: uart number
-    @param[in] baud: baud rate for uart 0
-    @param[in] baud: baud rate for uart 1
+    @param[in] uart0_br: baud rate for uart 0
+    @param[in] uart1_br: baud rate for uart 1
 	@return void
 */
 MEMSPACE

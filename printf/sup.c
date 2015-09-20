@@ -154,7 +154,6 @@ long strtol(const char *nptr, char **endptr, int base)
 
 /// @brief Convert ASCII string to number in base 10
 /// @param[in] str: string
-/// @param[in] base: radix
 /// @return long value
 MEMSPACE 
 long atoi(uint8_t *str)

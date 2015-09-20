@@ -61,11 +61,11 @@ L\-O\-C\-A\-L \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E
 void \hyperlink{uart_8c_aa018dc93fd77400560f0ab7e8d78f59a}{uart\-\_\-callback} (void $\ast$p)
 \begin{DoxyCompactList}\small\item\em Uart interrupt callback function Process all receive and transmit events here. \end{DoxyCompactList}\item 
 void \hyperlink{uart_8c_ace748ed36c0f9b9c90310db65b3afeab}{uart0\-\_\-gets\-\_\-add} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} data)
-\begin{DoxyCompactList}\small\item\em transfer data into the uart0\-\_\-gets\-\_\-receive\-\_\-queue Provide line buffering for \hyperlink{uart_8c_a9d100391356ca809d7cd75e23633f213}{uart0\-\_\-gets()} \mbox{[}in\mbox{]} data\-: character to add to queue \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em transfer data into the uart0\-\_\-gets\-\_\-receive\-\_\-queue Provide line buffering for \hyperlink{uart_8c_a9d100391356ca809d7cd75e23633f213}{uart0\-\_\-gets()} \end{DoxyCompactList}\item 
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{uart_8c_a1b9078ded4ced8bfa5d73c2a77e90028}{uart0\-\_\-gets\-\_\-init} (int size)
-\begin{DoxyCompactList}\small\item\em allocate and initialize uart0\-\_\-gets data structures Provide line buffering for \hyperlink{uart_8c_a9d100391356ca809d7cd75e23633f213}{uart0\-\_\-gets()} \mbox{[}in\mbox{]} size\-: size of line buffer \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em allocate and initialize uart0\-\_\-gets data structures Provide line buffering for \hyperlink{uart_8c_a9d100391356ca809d7cd75e23633f213}{uart0\-\_\-gets()} \end{DoxyCompactList}\item 
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{uart_8c_a9d100391356ca809d7cd75e23633f213}{uart0\-\_\-gets} (char $\ast$buf, int max)
-\begin{DoxyCompactList}\small\item\em uart0\-\_\-gets non-\/blocking line buffered gets \mbox{[}in\mbox{]} buf\-: user buffer to fill \mbox{[}in\mbox{]} max\-: miximum size of buf \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em uart0\-\_\-gets non-\/blocking line buffered gets \end{DoxyCompactList}\item 
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{uart_8c_afde4532b11b79411c904be3b2672c5e8}{uart\-\_\-config} (uint8 uart\-\_\-no, \hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\-\_\-t} baud, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} data\-\_\-bits, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} stop\-\_\-bits, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} parity)
 \begin{DoxyCompactList}\small\item\em Uart configuration, baud rate, data and stop bits, parity. \end{DoxyCompactList}\item 
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{uart_8c_a5afb95571d79d939651ef59768fde839}{uart\-\_\-init} (\hyperlink{uart_8h_a9aa1e56362027f49bfbe4378b8c889a4}{Uart\-Baud\-Rate} uart0\-\_\-br, \hyperlink{uart_8h_a9aa1e56362027f49bfbe4378b8c889a4}{Uart\-Baud\-Rate} uart1\-\_\-br)
@@ -433,7 +433,7 @@ Write a data buffer to the transmit fifo Note\-: This function does not wait/blo
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\tt in}  & {\em uart\-\_\-no} & uart number \\
 \hline
-\mbox{\tt in}  & {\em $\ast$src} & input buffer \\
+\mbox{\tt in}  & {\em $\ast$buf} & output buffer \\
 \hline
 \mbox{\tt in}  & {\em size} & size of input buffer \\
 \hline
@@ -461,7 +461,7 @@ byte read
 \end{DoxyReturn}
 
 
-Definition at line 383 of file uart.\-c.
+Definition at line 384 of file uart.\-c.
 
 
 
@@ -477,14 +477,21 @@ Referenced by uart\-\_\-init().
 )}}\label{uart_8c_a9d100391356ca809d7cd75e23633f213}
 
 
-uart0\-\_\-gets non-\/blocking line buffered gets \mbox{[}in\mbox{]} buf\-: user buffer to fill \mbox{[}in\mbox{]} max\-: miximum size of buf 
+uart0\-\_\-gets non-\/blocking line buffered gets 
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em buf} & user buffer to fill \\
+\hline
+\mbox{\tt in}  & {\em max} & miximum size of buf \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 0, or number of characters in line 
 \end{DoxyReturn}
 
 
-Definition at line 547 of file uart.\-c.
+Definition at line 548 of file uart.\-c.
 
 
 
@@ -499,14 +506,19 @@ Referenced by loop().
 )}}\label{uart_8c_ace748ed36c0f9b9c90310db65b3afeab}
 
 
-transfer data into the uart0\-\_\-gets\-\_\-receive\-\_\-queue Provide line buffering for \hyperlink{uart_8c_a9d100391356ca809d7cd75e23633f213}{uart0\-\_\-gets()} \mbox{[}in\mbox{]} data\-: character to add to queue 
+transfer data into the uart0\-\_\-gets\-\_\-receive\-\_\-queue Provide line buffering for \hyperlink{uart_8c_a9d100391356ca809d7cd75e23633f213}{uart0\-\_\-gets()} 
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em data} & character to add to queue \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
 
 
-Definition at line 491 of file uart.\-c.
+Definition at line 492 of file uart.\-c.
 
 
 
@@ -521,14 +533,19 @@ Referenced by uart\-\_\-callback().
 )}}\label{uart_8c_a1b9078ded4ced8bfa5d73c2a77e90028}
 
 
-allocate and initialize uart0\-\_\-gets data structures Provide line buffering for \hyperlink{uart_8c_a9d100391356ca809d7cd75e23633f213}{uart0\-\_\-gets()} \mbox{[}in\mbox{]} size\-: size of line buffer 
+allocate and initialize uart0\-\_\-gets data structures Provide line buffering for \hyperlink{uart_8c_a9d100391356ca809d7cd75e23633f213}{uart0\-\_\-gets()} 
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em size} & size of line buffer \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
 
 
-Definition at line 527 of file uart.\-c.
+Definition at line 528 of file uart.\-c.
 
 
 
@@ -555,7 +572,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 372 of file uart.\-c.
+Definition at line 373 of file uart.\-c.
 
 
 
@@ -577,7 +594,7 @@ byte read
 \end{DoxyReturn}
 
 
-Definition at line 407 of file uart.\-c.
+Definition at line 408 of file uart.\-c.
 
 \hypertarget{uart_8c_a5e535e1ea0c08984d0de21b4d2cb4cec}{\index{uart.\-c@{uart.\-c}!uart1\-\_\-putc@{uart1\-\_\-putc}}
 \index{uart1\-\_\-putc@{uart1\-\_\-putc}!uart.c@{uart.\-c}}
@@ -600,7 +617,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 396 of file uart.\-c.
+Definition at line 397 of file uart.\-c.
 
 
 
@@ -627,7 +644,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 420 of file uart.\-c.
+Definition at line 421 of file uart.\-c.
 
 
 
@@ -666,7 +683,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 586 of file uart.\-c.
+Definition at line 587 of file uart.\-c.
 
 
 
@@ -720,7 +737,7 @@ byte read
 \end{DoxyReturn}
 
 
-Definition at line 352 of file uart.\-c.
+Definition at line 353 of file uart.\-c.
 
 
 
@@ -740,11 +757,9 @@ initialize uart0 and uart1 Defaults\-: 8 = data bits, 1 = stop bits, no parity
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em uart\-\_\-no} & uart number \\
+\mbox{\tt in}  & {\em uart0\-\_\-br} & baud rate for uart 0 \\
 \hline
-\mbox{\tt in}  & {\em baud} & baud rate for uart 0 \\
-\hline
-\mbox{\tt in}  & {\em baud} & baud rate for uart 1 \\
+\mbox{\tt in}  & {\em uart1\-\_\-br} & baud rate for uart 1 \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -804,13 +819,15 @@ Write a byte from a uart with N\-L to C\-R/\-N\-L conversion Note\-: This functi
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\tt in}  & {\em uart\-\_\-no} & uart number \\
 \hline
+\mbox{\tt in}  & {\em c} & character \\
+\hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
 
 
-Definition at line 336 of file uart.\-c.
+Definition at line 337 of file uart.\-c.
 
 
 

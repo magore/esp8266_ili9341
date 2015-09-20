@@ -167,7 +167,7 @@ size_t queue_push_buffer(queue_t *q, uint8_t *src, size_t size)
 	 to fill the request.
 	 So you must check that the return value matches the size.
   @param[in] *q: ring buffer pointer
-  @param[in] *src: input buffer
+  @param[in] *dst: outout buffer
   @param[in] size: size of input buffer
   @return number of bytes actually added to the buffer - may not be size!
 */

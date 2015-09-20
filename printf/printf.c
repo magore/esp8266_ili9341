@@ -809,9 +809,9 @@ static void _putc_buffer_fn(struct _printf_t *p, char ch)
 
 
 /// @brief vsnprintf function
-/// @param[out] buffer: string buffer for result
-/// @param[in] len: maximum length of converted string
-/// @param[in] fmt: printf forat string
+/// @param[out] str: string buffer for result
+/// @param[in] size: maximum length of converted string
+/// @param[in] format: printf forat string
 /// @param[in] va: va_list list of arguments
 /// @return string size
 MEMSPACE 
@@ -837,9 +837,9 @@ int vsnprintf(char* str, size_t size, const char *format, va_list va)
 }
 
 /// @brief snprintf function
-/// @param[out] buffer: string buffer for result
-/// @param[in] len: maximum length of converted string
-/// @param[in] fmt: printf forat string
+/// @param[out] str: string buffer for result
+/// @param[in] size: maximum length of converted string
+/// @param[in] format: printf forat string
 /// @param[in] ...: list of arguments
 /// @return string size
 MEMSPACE 

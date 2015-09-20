@@ -36,21 +36,7 @@
 #define SPACES " \t\r"
 #define SPACESNL " \t\n\r"
 
-/* utils/util.c */
-uint8_t read_flash8 ( uint8_t *p );
-uint8_t read_flash8 ( uint8_t *p );
-void cpy_flash ( uint8_t *src , uint8_t *dest , int size );
-uint16_t read_flash16 ( uint8_t *p );
-uint32_t read_flash32 ( uint8_t *p );
-uint64_t read_flash64 ( uint8_t *p );
-uint32_t read_flash_ptr ( uint8_t *p );
-int bittestv ( unsigned char *ptr , int off );
-int bittestxy ( unsigned char *ptr , int x , int y , int w , int h );
-MEMSPACE void reset ( void );
-MEMSPACE void wdt_reset ( void );
-MEMSPACE void free ( void *p );
-MEMSPACE void *calloc ( size_t nmemb , size_t size );
-MEMSPACE void *malloc ( size_t size );
+/* str.c */
 MEMSPACE char *skipspaces ( char *ptr );
 MEMSPACE char *nextspace ( char *ptr );
 MEMSPACE char *skipchars ( char *str , char *pat );
@@ -60,6 +46,7 @@ MEMSPACE char *stralloc ( char *str );
 MEMSPACE char *get_token ( char *str , char *token , int max );
 MEMSPACE int token ( char *str , char *pat );
 MEMSPACE uint8_t hexd ( char c );
+MEMSPACE long atoh ( const char *p );
 MEMSPACE int isupper ( int c );
 MEMSPACE int islower ( int c );
 MEMSPACE int tolower ( int c );
@@ -73,4 +60,5 @@ MEMSPACE int MATCH ( char *str , char *pat );
 MEMSPACE int MATCHI ( char *str , char *pat );
 MEMSPACE int MATCH_LEN ( char *str , char *pat );
 MEMSPACE int MATCHI_LEN ( char *str , char *pat );
+
 #endif

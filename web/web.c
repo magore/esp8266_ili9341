@@ -193,9 +193,9 @@ void led_off(int led)
 
 /**
   @brief Accept an incomming connection, setup connect_callback
-  @param[in] *esp_config, ESP8266 network type an mode configuration structure
-  @param[in] *esp_tcp_config,  network protocol structure
-  @param[in] port,  network port to listen on
+  @param[in] *esp_config: ESP8266 network type an mode configuration structure
+  @param[in] *esp_tcp_config:  network protocol structure
+  @param[in] port:  network port to listen on
   @param[in] connect_callback: connection callback function pointer
   @return void
 */
@@ -259,6 +259,7 @@ void rwbuf_winit(rwbuf_t *p)
   @brief Display IPV4 address
   @param[in] msg: user supplied message
   @param[in] ip: IP address as uint8_t [4]
+  @param[in] port: Port number
   @return void
 */
 
@@ -375,6 +376,7 @@ rwbuf_t *rwbuf_create()
   @brief Find a read/write socket buffer for an espconn connection
   @param[in] conn: espconn pointer for this connection
   @param[in] *index: return index into pool of rwbuf_t connections
+  @param[in] *msg: user debug message
   @return rwbuf_t pointer to found connection with *index set, or NULL with *index == -1 on failure
 */
 MEMSPACE
@@ -496,7 +498,7 @@ rwbuf_t *create_connection(espconn_t *conn)
 
 /**
   @brief Delete a rwbuf_t entry using its index
-  @param[in] index: index into pool of rwbuf_t connections
+  @param[in] p: rwbuf_t pointer
 */
 MEMSPACE
 void delete_connection(rwbuf_t *p)
@@ -705,7 +707,7 @@ static void _write_byte_fn(struct _printf_t *pr, char c)
 	@brief vsock_printf function
 	@param[in] p: socket buffer structure
 	@param[in] fmt: printf format string
-	@param[in] va_list: va_list of arguments
+	@param[in] va: va_list of arguments
 	@return bytes written
 */
 MEMSPACE
@@ -925,7 +927,7 @@ int file_type(char *name)
 
 /** 
 	@brief Convert html status into string using http_status table
-	@param[in] index: index to find
+	@param[in] status: html status number
 	@return http_status entry mathing status, or 500 Internal Server Error
 */
 MEMSPACE
@@ -1234,6 +1236,7 @@ char *nextbreak(char *ptr)
 /** 
 	@brief Print a decimal number into a string without an EOS
 	@param[in] *ptr: buffer to write number to
+	@param[in] num: number to convet
 	@return void
 */
 MEMSPACE
@@ -1683,6 +1686,7 @@ int is_cgitoken_char(int c)
 	They start with "@_" and end with "_@"
     "@_" must be first two characters of string
 	May have upper and lower case letters, numbers and '-'
+	param[in] *str: string to search
     @return offset of start of token, or -1 if not found
 */
 MEMSPACE

@@ -313,8 +313,6 @@ MEMSPACE char *strerror ( int errnum );
 MEMSPACE char *strerror_r ( int errnum , char *buf , size_t buflen );
 MEMSPACE int fatfs_to_errno ( FRESULT Result );
 MEMSPACE int posix_fopen_modes_to_open ( const char *mode );
-MEMSPACE static int fatfs_getc ( FILE *stream );
-MEMSPACE static int fatfs_putc ( char c , FILE *stream );
 #ifdef NO_STDIO
 	MEMSPACE int fgetc ( FILE *stream );
 #endif

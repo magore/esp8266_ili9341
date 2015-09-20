@@ -38,7 +38,6 @@
 /// Font information: name, copyright, style information
 /// Note: FONSPECS and FONTINFO defines controls actual usage.
 /// We can also overide FONTSPECS here or in the Makefile for testing.
-/// #define FONTSPECS
 #include "fonts.h"
 
 // All the fonts - defined in fonts.h
