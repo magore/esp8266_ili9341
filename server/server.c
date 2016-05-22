@@ -55,7 +55,7 @@ void servertest_message(window *win)
 		//tft_setpos(win,0,0);
 		//tft_set_font(win,5);
 		//tft_font_fixed(win);
-		if(win->x > 0)
+		if(win->xpos > 0)
 			tft_printf(win,"\n");
 		tft_printf(win,"%s", network_msg);
 		received = 0;

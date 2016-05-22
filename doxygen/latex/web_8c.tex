@@ -71,16 +71,16 @@ static \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\
 \begin{DoxyCompactList}\small\item\em Determin mimetype using file name extension. \end{DoxyCompactList}\item 
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{web_8c_aeebdbab253618d52a35054978fe4bb0e}{html\-\_\-status} (int status)
 \begin{DoxyCompactList}\small\item\em Convert html status into string using http\-\_\-status table. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{structhinfo__t}{hinfo\-\_\-t} $\ast$ \hyperlink{web_8c_a49bcf14a77e1c466786d1b06a570dd5c}{init\-\_\-hinfo} (\hyperlink{structhinfo__t}{hinfo\-\_\-t} $\ast$hi)
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{web_8c_a9022b922953aabe534b7b68e6f3a90af}{init\-\_\-hinfo} (\hyperlink{structhinfo__t}{hinfo\-\_\-t} $\ast$hi)
 \item 
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{web_8c_a93274f0048175d7ed429598e951a2c77}{match\-\_\-headers} (char $\ast$str, char $\ast$$\ast$p)
 \begin{DoxyCompactList}\small\item\em Match G\-E\-T/\-P\-O\-S\-T message headers. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{web_8c_a6f0b838bc63d86703c26bd813fc1ff13}{process\-\_\-args} (\hyperlink{structhinfo__t}{hinfo\-\_\-t} $\ast$hi)
-\begin{DoxyCompactList}\small\item\em Process G\-E\-T of P\-O\-S\-T arguments and initialize the \hyperlink{structhinfo__t}{hinfo\-\_\-t} header structure Must be pointing at the argument list either from G\-E\-T arguments -\/ or P\-O\-S\-T content text Convert name=value pairs into null terminated strings Assumes we can replace characters with E\-O\-S in ram. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{web_8c_ab29b4d9382acde5a32fa0aad1068c38b}{process\-\_\-args} (\hyperlink{structhinfo__t}{hinfo\-\_\-t} $\ast$hi, char $\ast$ptr)
+\begin{DoxyCompactList}\small\item\em Process G\-E\-T argments or P\-O\-S\-T message name/value data. H\-T\-M\-L encoding is done in place often reducting the size of the result. Convert name=value pairs into null terminated strings. Names and values are each terminated with an E\-O\-S by replaceing '?', '\&', '=' characters seen while scaning. \end{DoxyCompactList}\item 
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{web_8c_afb148431af519ffd7c3191ed3edd4d50}{first\-\_\-arg} (\hyperlink{structhinfo__t}{hinfo\-\_\-t} $\ast$hi)
 \begin{DoxyCompactList}\small\item\em Find first P\-O\-S\-T/\-G\-E\-T argument. \end{DoxyCompactList}\item 
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{web_8c_ac2b1c83b2901da05a13fbc48e9c9f030}{next\-\_\-arg} (\hyperlink{structhinfo__t}{hinfo\-\_\-t} $\ast$hi)
-\begin{DoxyCompactList}\small\item\em Find nest P\-O\-S\-T/\-G\-E\-T argument. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Find next P\-O\-S\-T/\-G\-E\-T argument We have to skip a name and a value. \end{DoxyCompactList}\item 
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{web_8c_a35cc0d5292df6d1df5cf3ea63e44d0b7}{arg\-\_\-name} (\hyperlink{structhinfo__t}{hinfo\-\_\-t} $\ast$hi)
 \begin{DoxyCompactList}\small\item\em Return the argument name for current argument. \end{DoxyCompactList}\item 
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{web_8c_a12e823b35aaf4392e282d39057f45eb8}{arg\-\_\-value} (\hyperlink{structhinfo__t}{hinfo\-\_\-t} $\ast$hi)
@@ -113,6 +113,8 @@ static \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\
 \begin{DoxyCompactList}\small\item\em Find start of C\-G\-I token in a string C\-G\-I tokens have the following syntax @ They start with \char`\"{}@\-\_\-\char`\"{} and end with \char`\"{}\-\_\-@\char`\"{} \char`\"{}@\-\_\-\char`\"{} must be first two characters of string May have upper and lower case letters, numbers and '-\/' param\mbox{[}in\mbox{]} $\ast$str\-: string to search. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
+\item 
+\hyperlink{structwindow}{window} $\ast$ \hyperlink{web_8c_a91a5294702debbeba1acf3cc43784ce9}{winmsg}
 \item 
 \hyperlink{structrwbuf__t}{rwbuf\-\_\-t} $\ast$ \hyperlink{web_8c_a18c3cff4e8a9ff56871f13dfb3cd48ad}{web\-\_\-connections} \mbox{[}\hyperlink{web_8h_a053b7859476cc9867ec62c49e68d3fa1}{M\-A\-X\-\_\-\-C\-O\-N\-N\-E\-C\-T\-I\-O\-N\-S}\mbox{]}
 \begin{DoxyCompactList}\small\item\em socket buffers for this connection \end{DoxyCompactList}\item 
@@ -216,7 +218,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 697 of file web.\-c.
+Definition at line 701 of file web.\-c.
 
 
 
@@ -243,7 +245,7 @@ argument name
 \end{DoxyReturn}
 
 
-Definition at line 1129 of file web.\-c.
+Definition at line 1207 of file web.\-c.
 
 
 
@@ -270,7 +272,7 @@ argument value
 \end{DoxyReturn}
 
 
-Definition at line 1149 of file web.\-c.
+Definition at line 1255 of file web.\-c.
 
 
 
@@ -297,7 +299,7 @@ Allocate read/write socket buffers and add it to the working pool.
 \end{DoxyReturn}
 
 
-Definition at line 458 of file web.\-c.
+Definition at line 462 of file web.\-c.
 
 
 
@@ -321,7 +323,7 @@ Delete a \hyperlink{structrwbuf__t}{rwbuf\-\_\-t} entry using its index.
 \end{DoxyParams}
 
 
-Definition at line 504 of file web.\-c.
+Definition at line 508 of file web.\-c.
 
 
 
@@ -354,7 +356,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 267 of file web.\-c.
+Definition at line 268 of file web.\-c.
 
 
 
@@ -381,7 +383,7 @@ index into mimetype table
 \end{DoxyReturn}
 
 
-Definition at line 900 of file web.\-c.
+Definition at line 906 of file web.\-c.
 
 \hypertarget{web_8c_a1923a5ddca00d254e13a605602f68972}{\index{web.\-c@{web.\-c}!find\-\_\-cgitoken\-\_\-start@{find\-\_\-cgitoken\-\_\-start}}
 \index{find\-\_\-cgitoken\-\_\-start@{find\-\_\-cgitoken\-\_\-start}!web.c@{web.\-c}}
@@ -399,7 +401,7 @@ offset of start of token, or -\/1 if not found
 \end{DoxyReturn}
 
 
-Definition at line 1693 of file web.\-c.
+Definition at line 1885 of file web.\-c.
 
 \hypertarget{web_8c_a63cfcb009066f483330ec359b8493fbe}{\index{web.\-c@{web.\-c}!find\-\_\-connection@{find\-\_\-connection}}
 \index{find\-\_\-connection@{find\-\_\-connection}!web.c@{web.\-c}}
@@ -428,7 +430,7 @@ Find a read/write socket buffer for an espconn connection.
 \end{DoxyReturn}
 
 
-Definition at line 383 of file web.\-c.
+Definition at line 387 of file web.\-c.
 
 
 
@@ -455,7 +457,7 @@ argument value pair
 \end{DoxyReturn}
 
 
-Definition at line 1086 of file web.\-c.
+Definition at line 1144 of file web.\-c.
 
 
 
@@ -491,7 +493,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1264 of file web.\-c.
+Definition at line 1427 of file web.\-c.
 
 \hypertarget{web_8c_a5cb82637d6d97812355aaa7a7fb4ccbe}{\index{web.\-c@{web.\-c}!html\-\_\-msg@{html\-\_\-msg}}
 \index{html\-\_\-msg@{html\-\_\-msg}!web.c@{web.\-c}}
@@ -526,7 +528,7 @@ bytes written, 0 on wrror
 \end{DoxyReturn}
 
 
-Definition at line 759 of file web.\-c.
+Definition at line 763 of file web.\-c.
 
 \hypertarget{web_8c_aeebdbab253618d52a35054978fe4bb0e}{\index{web.\-c@{web.\-c}!html\-\_\-status@{html\-\_\-status}}
 \index{html\-\_\-status@{html\-\_\-status}!web.c@{web.\-c}}
@@ -549,7 +551,7 @@ http\-\_\-status entry mathing status, or 500 Internal Server Error
 \end{DoxyReturn}
 
 
-Definition at line 934 of file web.\-c.
+Definition at line 940 of file web.\-c.
 
 
 
@@ -579,15 +581,15 @@ argument value
 \end{DoxyReturn}
 
 
-Definition at line 1171 of file web.\-c.
+Definition at line 1331 of file web.\-c.
 
-\hypertarget{web_8c_a49bcf14a77e1c466786d1b06a570dd5c}{\index{web.\-c@{web.\-c}!init\-\_\-hinfo@{init\-\_\-hinfo}}
+\hypertarget{web_8c_a9022b922953aabe534b7b68e6f3a90af}{\index{web.\-c@{web.\-c}!init\-\_\-hinfo@{init\-\_\-hinfo}}
 \index{init\-\_\-hinfo@{init\-\_\-hinfo}!web.c@{web.\-c}}
-\subsubsection[{init\-\_\-hinfo}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} {\bf hinfo\-\_\-t}$\ast$ init\-\_\-hinfo (
+\subsubsection[{init\-\_\-hinfo}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void init\-\_\-hinfo (
 \begin{DoxyParamCaption}
 \item[{{\bf hinfo\-\_\-t} $\ast$}]{hi}
 \end{DoxyParamCaption}
-)}}\label{web_8c_a49bcf14a77e1c466786d1b06a570dd5c}
+)}}\label{web_8c_a9022b922953aabe534b7b68e6f3a90af}
 Initilize \hyperlink{structhinfo__t}{hinfo\-\_\-t} structure 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\tt in}  & {\em $\ast$hi} & \hyperlink{structhinfo__t}{hinfo\-\_\-t} structure pointer to initialize \\
@@ -598,7 +600,11 @@ Initilize \hyperlink{structhinfo__t}{hinfo\-\_\-t} structure
 \end{DoxyReturn}
 
 
-Definition at line 959 of file web.\-c.
+Definition at line 965 of file web.\-c.
+
+
+
+Referenced by parse\-\_\-http\-\_\-request().
 
 \hypertarget{web_8c_a4abb48d4494fe24bdb3966a30a380f94}{\index{web.\-c@{web.\-c}!is\-\_\-cgitoken\-\_\-char@{is\-\_\-cgitoken\-\_\-char}}
 \index{is\-\_\-cgitoken\-\_\-char@{is\-\_\-cgitoken\-\_\-char}!web.c@{web.\-c}}
@@ -621,7 +627,7 @@ test to see if a character is a valid member of the C\-G\-I token character set 
 \end{DoxyReturn}
 
 
-Definition at line 1668 of file web.\-c.
+Definition at line 1860 of file web.\-c.
 
 \hypertarget{web_8c_aac0e14d0751e24b7143060600fe7822a}{\index{web.\-c@{web.\-c}!is\-\_\-header@{is\-\_\-header}}
 \index{is\-\_\-header@{is\-\_\-header}!web.c@{web.\-c}}
@@ -647,7 +653,7 @@ Does the string look like a header token with a '\-:' ?
 \end{DoxyReturn}
 
 
-Definition at line 1197 of file web.\-c.
+Definition at line 1360 of file web.\-c.
 
 
 
@@ -674,7 +680,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 187 of file web.\-c.
+Definition at line 188 of file web.\-c.
 
 \hypertarget{web_8c_aaaac061db0c7646d5b6c8bdfe3089ae7}{\index{web.\-c@{web.\-c}!led\-\_\-on@{led\-\_\-on}}
 \index{led\-\_\-on@{led\-\_\-on}!web.c@{web.\-c}}
@@ -685,7 +691,7 @@ Definition at line 187 of file web.\-c.
 )}}\label{web_8c_aaaac061db0c7646d5b6c8bdfe3089ae7}
 
 
-Definition at line 177 of file web.\-c.
+Definition at line 178 of file web.\-c.
 
 \hypertarget{web_8c_a93274f0048175d7ed429598e951a2c77}{\index{web.\-c@{web.\-c}!match\-\_\-headers@{match\-\_\-headers}}
 \index{match\-\_\-headers@{match\-\_\-headers}!web.c@{web.\-c}}
@@ -711,7 +717,7 @@ header index or -\/1 on no match
 \end{DoxyReturn}
 
 
-Definition at line 981 of file web.\-c.
+Definition at line 986 of file web.\-c.
 
 
 
@@ -739,7 +745,7 @@ pointer to string
 \end{DoxyReturn}
 
 
-Definition at line 855 of file web.\-c.
+Definition at line 862 of file web.\-c.
 
 
 
@@ -772,7 +778,7 @@ pointer to start of memory area (ptr)
 \end{DoxyReturn}
 
 
-Definition at line 837 of file web.\-c.
+Definition at line 843 of file web.\-c.
 
 
 
@@ -799,7 +805,7 @@ pointer to string, if out of range uses index P\-T\-Y\-P\-E\-\_\-\-E\-R\-R
 \end{DoxyReturn}
 
 
-Definition at line 887 of file web.\-c.
+Definition at line 893 of file web.\-c.
 
 
 
@@ -814,7 +820,7 @@ Referenced by html\-\_\-head(), and html\-\_\-msg().
 )}}\label{web_8c_ac2b1c83b2901da05a13fbc48e9c9f030}
 
 
-Find nest P\-O\-S\-T/\-G\-E\-T argument. 
+Find next P\-O\-S\-T/\-G\-E\-T argument We have to skip a name and a value. 
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -826,7 +832,7 @@ argument value pair
 \end{DoxyReturn}
 
 
-Definition at line 1097 of file web.\-c.
+Definition at line 1156 of file web.\-c.
 
 
 
@@ -853,7 +859,7 @@ first space or ? character
 \end{DoxyReturn}
 
 
-Definition at line 1222 of file web.\-c.
+Definition at line 1385 of file web.\-c.
 
 
 
@@ -883,30 +889,33 @@ Get arguments for a G\-E\-T or P\-O\-S\-T request.
 \end{DoxyReturn}
 
 
-Definition at line 1281 of file web.\-c.
+Definition at line 1444 of file web.\-c.
 
-\hypertarget{web_8c_a6f0b838bc63d86703c26bd813fc1ff13}{\index{web.\-c@{web.\-c}!process\-\_\-args@{process\-\_\-args}}
+\hypertarget{web_8c_ab29b4d9382acde5a32fa0aad1068c38b}{\index{web.\-c@{web.\-c}!process\-\_\-args@{process\-\_\-args}}
 \index{process\-\_\-args@{process\-\_\-args}!web.c@{web.\-c}}
 \subsubsection[{process\-\_\-args}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} char$\ast$ process\-\_\-args (
 \begin{DoxyParamCaption}
-\item[{{\bf hinfo\-\_\-t} $\ast$}]{hi}
+\item[{{\bf hinfo\-\_\-t} $\ast$}]{hi, }
+\item[{char $\ast$}]{ptr}
 \end{DoxyParamCaption}
-)}}\label{web_8c_a6f0b838bc63d86703c26bd813fc1ff13}
+)}}\label{web_8c_ab29b4d9382acde5a32fa0aad1068c38b}
 
 
-Process G\-E\-T of P\-O\-S\-T arguments and initialize the \hyperlink{structhinfo__t}{hinfo\-\_\-t} header structure Must be pointing at the argument list either from G\-E\-T arguments -\/ or P\-O\-S\-T content text Convert name=value pairs into null terminated strings Assumes we can replace characters with E\-O\-S in ram. 
+Process G\-E\-T argments or P\-O\-S\-T message name/value data. H\-T\-M\-L encoding is done in place often reducting the size of the result. Convert name=value pairs into null terminated strings. Names and values are each terminated with an E\-O\-S by replaceing '?', '\&', '=' characters seen while scaning. 
 
 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\tt in}  & {\em $\ast$hi} & \hyperlink{structhinfo__t}{hinfo\-\_\-t} structure to fill \\
 \hline
+\mbox{\tt in}  & {\em $\ast$ptr} & G\-E\-T arguments or P\-U\-T message body. \\
+\hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-pointer that points to just past the header area 
+$\ast$ptr pointer that points to just past the header area. 
 \end{DoxyReturn}
 
 
-Definition at line 1019 of file web.\-c.
+Definition at line 1025 of file web.\-c.
 
 
 
@@ -928,7 +937,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 322 of file web.\-c.
+Definition at line 323 of file web.\-c.
 
 
 
@@ -955,7 +964,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 284 of file web.\-c.
+Definition at line 285 of file web.\-c.
 
 
 
@@ -982,7 +991,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 236 of file web.\-c.
+Definition at line 237 of file web.\-c.
 
 
 
@@ -1009,7 +1018,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 250 of file web.\-c.
+Definition at line 251 of file web.\-c.
 
 
 
@@ -1042,7 +1051,7 @@ bytes written
 \end{DoxyReturn}
 
 
-Definition at line 736 of file web.\-c.
+Definition at line 740 of file web.\-c.
 
 
 
@@ -1078,7 +1087,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 203 of file web.\-c.
+Definition at line 204 of file web.\-c.
 
 \hypertarget{web_8c_a099953c3f11ff53e89c99b0be5212b70}{\index{web.\-c@{web.\-c}!u5toa@{u5toa}}
 \index{u5toa@{u5toa}!web.c@{web.\-c}}
@@ -1104,7 +1113,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1243 of file web.\-c.
+Definition at line 1406 of file web.\-c.
 
 
 
@@ -1137,7 +1146,7 @@ bytes written
 \end{DoxyReturn}
 
 
-Definition at line 714 of file web.\-c.
+Definition at line 718 of file web.\-c.
 
 
 
@@ -1164,7 +1173,7 @@ Wait for buffer to send for this connection If the buffers have any data in them
 \end{DoxyReturn}
 
 
-Definition at line 589 of file web.\-c.
+Definition at line 593 of file web.\-c.
 
 
 
@@ -1191,7 +1200,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1622 of file web.\-c.
+Definition at line 1814 of file web.\-c.
 
 \hypertarget{web_8c_af1da928cd361e8d3135aa1ce10da1773}{\index{web.\-c@{web.\-c}!web\-\_\-data\-\_\-disconnect\-\_\-callback@{web\-\_\-data\-\_\-disconnect\-\_\-callback}}
 \index{web\-\_\-data\-\_\-disconnect\-\_\-callback@{web\-\_\-data\-\_\-disconnect\-\_\-callback}!web.c@{web.\-c}}
@@ -1211,7 +1220,7 @@ Network disconnect callback function.
 \end{DoxyParams}
 
 
-Definition at line 1566 of file web.\-c.
+Definition at line 1758 of file web.\-c.
 
 
 
@@ -1244,7 +1253,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1441 of file web.\-c.
+Definition at line 1631 of file web.\-c.
 
 
 
@@ -1269,7 +1278,7 @@ Network disconnect callback function.
 \end{DoxyParams}
 
 
-Definition at line 1602 of file web.\-c.
+Definition at line 1794 of file web.\-c.
 
 
 
@@ -1296,7 +1305,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1511 of file web.\-c.
+Definition at line 1703 of file web.\-c.
 
 
 
@@ -1323,7 +1332,7 @@ Write a byte (buffered) using the \hyperlink{structrwbuf__t}{rwbuf\-\_\-t} socke
 \end{DoxyParams}
 
 
-Definition at line 534 of file web.\-c.
+Definition at line 538 of file web.\-c.
 
 
 
@@ -1350,7 +1359,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 627 of file web.\-c.
+Definition at line 631 of file web.\-c.
 
 
 
@@ -1383,7 +1392,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 671 of file web.\-c.
+Definition at line 675 of file web.\-c.
 
 
 
@@ -1413,7 +1422,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 684 of file web.\-c.
+Definition at line 688 of file web.\-c.
 
 
 
@@ -1435,7 +1444,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 175 of file web.\-c.
+Definition at line 176 of file web.\-c.
 
 \hypertarget{web_8c_a81bbe3cdfc6aad2405aaa9432ae49b92}{\index{web.\-c@{web.\-c}!http\-\_\-status@{http\-\_\-status}}
 \index{http\-\_\-status@{http\-\_\-status}!web.c@{web.\-c}}
@@ -1446,7 +1455,7 @@ H\-T\-T\-P status code messages.
 
 
 
-Definition at line 77 of file web.\-c.
+Definition at line 78 of file web.\-c.
 
 
 
@@ -1479,7 +1488,7 @@ M\-I\-M\-E types.
 
 
 
-Definition at line 151 of file web.\-c.
+Definition at line 152 of file web.\-c.
 
 \hypertarget{web_8c_a272852abae296b3cd79f00810f4d2915}{\index{web.\-c@{web.\-c}!msg\-\_\-headers@{msg\-\_\-headers}}
 \index{msg\-\_\-headers@{msg\-\_\-headers}!web.c@{web.\-c}}
@@ -1512,7 +1521,7 @@ H\-T\-T\-P headers we understand.
 
 
 
-Definition at line 52 of file web.\-c.
+Definition at line 53 of file web.\-c.
 
 \hypertarget{web_8c_a18c3cff4e8a9ff56871f13dfb3cd48ad}{\index{web.\-c@{web.\-c}!web\-\_\-connections@{web\-\_\-connections}}
 \index{web\-\_\-connections@{web\-\_\-connections}!web.c@{web.\-c}}
@@ -1523,7 +1532,7 @@ socket buffers for this connection
 
 
 
-Definition at line 41 of file web.\-c.
+Definition at line 42 of file web.\-c.
 
 \hypertarget{web_8c_a96c7e595cf56145fc95dc2c66ac3930f}{\index{web.\-c@{web.\-c}!Web\-Conn@{Web\-Conn}}
 \index{Web\-Conn@{Web\-Conn}!web.c@{web.\-c}}
@@ -1534,7 +1543,7 @@ Master espconn structure of the web server.
 
 
 
-Definition at line 44 of file web.\-c.
+Definition at line 45 of file web.\-c.
 
 
 
@@ -1549,5 +1558,12 @@ Master network configuration for the web server.
 
 
 
-Definition at line 46 of file web.\-c.
+Definition at line 47 of file web.\-c.
+
+\hypertarget{web_8c_a91a5294702debbeba1acf3cc43784ce9}{\index{web.\-c@{web.\-c}!winmsg@{winmsg}}
+\index{winmsg@{winmsg}!web.c@{web.\-c}}
+\subsubsection[{winmsg}]{\setlength{\rightskip}{0pt plus 5cm}{\bf window}$\ast$ winmsg}}\label{web_8c_a91a5294702debbeba1acf3cc43784ce9}
+
+
+Definition at line 52 of file user\-\_\-main.\-c.
 

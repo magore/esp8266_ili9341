@@ -44,16 +44,18 @@ window _winstats;
 window *winstats = &_winstats;
 
 /* Top Right Wireframe window */
-window _windemo;
-window *windemo = &_windemo;
+window _wincube;
+window *wincube = &_wincube;
 
-/* Top Left status window */
-window _wintest;
-window *wintest = &_wintest;
+/* Bottom Left status window */
+window _winmsg;
+window *winmsg = &_winmsg;
 
-/* Top Left status window */
-window _wintestdemo;
-window *wintestdemo = &_wintestdemo;
+#if defined(EARTH)
+/* Bootom Right Wireframe window */
+window _winearth;
+window *winearth = &_winearth;
+#endif
 
 //extern int printf(const char *fmt, ...);
 void ets_timer_disarm(ETSTimer *ptimer);
@@ -141,12 +143,20 @@ void ntp_setup(void)
 // segnal strength update interval
 int signal_loop = 0;
 
+time_t seconds = 0;
+
 /**
  @brief test task
   Runs corrected cube demo from Sem
   Optionally wireframe Earh viewer
  @return void
 */
+
+int ip_msg_state_last = -1;
+extern int ip_msg_state;
+extern uint8_t ip_msg[];
+char ip_msg_save[256];
+
 void loop(void)
 {
 	extern int connections;
@@ -154,9 +164,85 @@ void loop(void)
 	uint8_t red, blue,green;
 	long timer = 0;
 	uint16 system_adc_read(void);
-	extern uint8_t ip_msg[];
 	time_t sec;
+	char *ptr;
 	char buffer[260];
+
+	// get current time
+
+	time(&sec);
+
+	if(sec != seconds)
+	{
+		tft_set_font(winstats,1);
+		tft_font_var(winstats);
+		tft_setpos(winstats, 0,0);
+		ptr = ctime(&sec);
+		//Tue May 17 18:56:01 2016
+		ptr[10] = 0;
+		ptr[19] = 0;
+		tft_printf(winstats,"%s %s\n", ptr, ptr+20);
+		tft_printf(winstats,"%s\n", ptr+11);
+
+	}
+
+	tft_set_font(winstats,0);
+	tft_font_fixed(winstats);
+	tft_setpos(winstats, xpos,ypos);
+
+	count += 1;
+
+#ifdef DEBUG_STATS
+	tft_printf(winstats,"Iter:% 10ld, %+7.2f\n", count, degree);
+#endif
+
+#ifdef VOLTAGE_TEST
+	// FIXME voltage not correct 
+	//       make sure the pin function is assigned
+
+	// Get system voltage 33 = 3.3 volts
+	adc_sum += system_adc_read();
+
+	// FIXME atomic access
+	if(++adc_count == 10)
+	{
+		voltage = ((double) adc_sum / 100.0); 
+		adc_count = 0;
+		adc_sum = 0;
+	}
+#endif
+
+	if(sec != seconds)
+	{
+		seconds=sec;
+	
+#ifdef DEBUG_STATS
+		tft_printf(winstats,"Heap: %d, Conn:%d\n", 
+			system_get_free_heap_size(), connections);
+	
+#ifdef VOLTAGE_TEST
+		tft_printf(winstats,"Volt:%2.2f\n", (float)voltage);
+#endif
+	
+		tft_printf(winstats,"%s\n", ip_msg);
+	
+		tft_printf(winstats,"CH:%02d, DB:-%02d\n", 
+			wifi_get_channel(),
+			wifi_station_get_rssi());
+#else
+		if(ip_msg[0] && strcmp(ip_msg,ip_msg_save) != 0)
+		{
+			strcpy(ip_msg_save,ip_msg);
+			tft_printf(winmsg,"%s\n", ip_msg);
+			printf("ip_msg:[%s]\n", ip_msg);
+		}
+#endif
+
+	}
+	
+#ifdef NETWORK_TEST
+	servertest_message(winmsg);
+#endif
 
 #ifdef WIRECUBE
 	V.x = degree;
@@ -164,12 +250,12 @@ void loop(void)
 	V.z = degree;
 // Cube points were defined with sides of 1.0 
 // We want a scale of +/- w/2
-	wire_draw(windemo, cube_points, cube_edges, &V, windemo->w/2, windemo->h/2, dscale, 0);
+	wire_draw(wincube, cube_points, cube_edges, &V, wincube->w/2, wincube->h/2, dscale, wincube->bg);
 #endif
 
 #ifdef CIRCLE
 	rad = dscale; // +/- 90
-    tft_drawCircle(windemo, windemo->w/2, windemo->h/2, rad ,0);
+    tft_drawCircle(wincube, wincube->w/2, wincube->h/2, rad ,0);
 	Display bounding circle that changes color around the cube
 	if(dscale_inc < 0.0)
 	{
@@ -184,7 +270,7 @@ void loop(void)
 		green = 0;
 	}
 	// RGB - YELLOW
-    tft_drawCircle(windemo, windemo->w/2, windemo->h/2, dscale, tft_color565(red,green,blue));
+    tft_drawCircle(wincube, wincube->w/2, wincube->h/2, dscale, tft_color565(red,green,blue));
 #endif
 
     degree += deg_inc;
@@ -210,51 +296,13 @@ void loop(void)
 	V.y = degree;
 	V.z = degree;
 	//time1 = system_get_time();
-	wire_draw(windemo, cube_points, cube_edges, &V, windemo->w/2, windemo->h/2, dscale, ILI9341_WHITE);
-	//wire_draw(windemo, cube_points, cube_edges, &V, windemo->w/2, windemo->h/2, dscale, ILI9341_WHITE);
+	wire_draw(wincube, cube_points, cube_edges, &V, wincube->w/2, wincube->h/2, dscale, wincube->fg);
+	//wire_draw(wincube, cube_points, cube_edges, &V, wincube->w/2, wincube->h/2, dscale, wincude->fg);
 	//time2 = system_get_time();
 #endif
 
 
-// Get system voltage 33 = 3.3 volts
-	adc_sum += system_adc_read();
-	//adc_sum += system_get_vdd33();
 
-	// FIXME atomic access
-	if(++adc_count == 10)
-	{
-		voltage = ((double) adc_sum / 100.0); 
-		adc_count = 0;
-		adc_sum = 0;
-	}
-
-	// printf("Degree: %d \r\n",(int)degree);
-	// cube redraw count
-	count += 1;
-	tft_set_font(winstats,0);
-	tft_setpos(winstats,ip_xpos,ip_ypos);
-	tft_printf(winstats,"%-26s\n", ip_msg);
-	if(signal_loop-- <= 0)
-	{
-		signal_loop = 100;
-		tft_printf(winstats,"CH:%02d, DB:-%02d\n", 
-			wifi_get_channel(),
-			wifi_station_get_rssi());
-		signal_loop = 0;
-	}
-	tft_setpos(winstats,xpos,ypos);
-	tft_printf(winstats,"Heap: %d, Conn:%d\n", system_get_free_heap_size(), connections);
-	tft_printf(winstats,"Iter:% 9ld, %+7.2f\n", count, degree);
-	
-
-	// get current time
-	time(&sec);
-
-	tft_printf(winstats,"Volt:%2.2f\n%s\n", (float)voltage, ctime(&sec));
-	
-#ifdef NETWORK_TEST
-	servertest_message(wintest);
-#endif
 
 	// NTP state machine
 	ntp_setup();
@@ -311,8 +359,8 @@ void test_flashio(window *win)
     uint16_t xpros,ypos;
     tft_set_font(win,0);
     //tft_printf(win, "%x,%x", xxxp[0],xxxp[1]);
-    xpos = win->x;
-    ypos = win->y;
+    xpos = win->xpos;
+    ypos = win->ypos;
     for(i=0;i<8;++i)
     {
         tft_setpos(win, i*16,ypos);
@@ -397,6 +445,9 @@ void setup(void)
 	double ang;
 	extern web_init();
 
+	ip_msg[0] = 0;
+	ip_msg_save[0] = 0;
+
 // CPU
 // 160MHZ
    REG_SET_BIT(0x3ff00014, BIT(0));
@@ -412,6 +463,11 @@ void setup(void)
 	printf("System init...\n");
 
     PrintRam();
+
+	if ( espconn_tcp_set_max_con(MAX_CONNECTIONS+2) )
+		printf("espconn_tcp_set_max_con(%d) - failed!\n", MAX_CONNECTIONS+2);
+	else
+		printf("espconn_tcp_set_max_con(%d) - success!\n", MAX_CONNECTIONS+2);
 
 	printf("HSPI init...\n");
 	hspi_init(1,0);
@@ -432,103 +488,102 @@ void setup(void)
 	// Set master rotation
 	tft_setRotation(1);
 
-	/* Setup main status window */
-	tft_window_init(winstats,0,0, master->w * 7 / 10, master->h/2);
-
-	tft_setpos(winstats, 0,0);
-	tft_set_font(winstats,2);
-	tft_font_var(winstats);
-	tft_setTextColor(winstats, ILI9341_RED,0);
-	tft_printf(winstats, "DISP ID: %04lx\n", ID);
-	ip_xpos = winstats->x;
-	ip_ypos = winstats->y;
-	tft_printf(winstats, "\n");
-	tft_setTextColor(winstats, ILI9341_WHITE,0);
 #if ILI9341_DEBUG & 1
 	printf("\nDisplay ID=%08lx\n",ID);
 #endif
-	tft_font_fixed(winstats);
 
-	// Save last display offset of the status update line - used in the demo task
-	xpos = winstats->x;
-	ypos = winstats->y;
+	/* Setup main status window */
+#ifdef DEBUG_STATS
+	tft_window_init(winstats,0,0, 
+		master->w * 7 / 10, master->h/2);
+#else
+	tft_window_init(winstats,0,0, 
+		master->w * 7 / 10, master->h/4);
+#endif
+
+	tft_setTextColor(winstats, ILI9341_WHITE,0);
+    tft_fillWin(winstats, winstats->bg);
+
+
+	tft_set_font(winstats,1);
+	tft_font_var(winstats);
+	tft_setpos(winstats, 0,0);
+	// TIME,DATE
+	tft_printf(winstats, "\n\n");
+	// Save last display offset for additiona status messages
+	tft_font_fixed(winstats);
+	xpos = winstats->xpos;
+	ypos = winstats->ypos;
 
 	/* Setup cube/wireframe demo window */
-	tft_window_init(windemo,winstats->w,0, master->w - winstats->w, master->h/2);
+	/* This is to the right of the winstats window and the same height */
+    tft_window_init(wincube,winstats->w,0, 
+		master->w - winstats->w, winstats->h);
+	tft_setTextColor(wincube, ILI9341_WHITE,0);
+    tft_fillWin(wincube, wincube->bg);
 
 // Cube points were defined with sides of 1.0 
 // We want a scale of +/- w/2
-	if(windemo->w < windemo->h) 
-		dscale_max = windemo->w/2;
+	if(wincube->w < wincube->h) 
+		dscale_max = wincube->w/2;
 	else
-		dscale_max = windemo->h/2;
+		dscale_max = wincube->h/2;
 
 	dscale = dscale_max;
 	dscale_inc = dscale_max / 100;
 
-/* Setup second window for window testing*/
-	tft_window_init(wintest,0,master->h/2, master->w/2, master->h/2);
-	tft_setTextColor(wintest, ILI9341_WHITE,ILI9341_NAVY);
-    tft_fillWin(wintest, wintest->bg);
-	tft_set_font(wintest,1);
-	//tft_font_var(wintest);
+#if defined(EARTH)
+	tft_window_init(winmsg,0, winstats->h, 
+		master->w * 7 / 10, master->h-winstats->h-1);
+#else
+	tft_window_init(winmsg,0, winstats->h-1, 
+		master->w-1, master->h-winstats->h-1);
+#endif
 
+	tft_setTextColor(winmsg, ILI9341_WHITE,ILI9341_NAVY);
+    tft_fillWin(winmsg, winmsg->bg);
 	// write some text
-	tft_setpos(wintest, 0,0);
-	tft_printf(wintest, "Test1\nTest2\nTest3");
+	tft_set_font(winmsg,1);
+	tft_font_var(winmsg);
+	tft_setpos(winmsg, 0,0);
 
-	/* Test demo area window */
-	tft_window_init(wintestdemo,master->w/2,master->h/2,master->w/2, master->h/2);
-	tft_setTextColor(wintestdemo, ILI9341_WHITE,0);
-    tft_fillWin(wintestdemo, wintestdemo->bg);
-	tft_set_font(wintestdemo,1);
-	tft_font_var(wintestdemo);
+	tft_setTextColor(winmsg, ILI9341_RED,ILI9341_NAVY);
+	tft_printf(winmsg, "DISP ID: %04lx\n", ID);
+	tft_setTextColor(winmsg, ILI9341_WHITE,ILI9341_NAVY);
 
 #if ILI9341_DEBUG & 1
 	printf("Test Display Read\n");
-	read_tests(wintest);
-#endif
-
-/* Draw cube in the second window as a test */
-#if defined(WIRECUBE) && !defined(EARTH)
-	printf("Draw Cube\n");
-// Cube points were defined with sides of 1.0 
-// We want a scale of +/- w/2
-	double tscale_max;
-	if(wintestdemo->w < wintestdemo->h) 
-		tscale_max = wintestdemo->w/2;
-	else
-		tscale_max = wintestdemo->h/2;
-	ang = 45.0;
-	V.x = ang;
-	V.y = ang;
-	V.z = ang;
-	wire_draw(wintestdemo, cube_points, cube_edges, &V, wintestdemo->w/2, wintestdemo->h/2, tscale_max, ILI9341_RED);
+	read_tests(winmsg);
 #endif
 
 #ifdef EARTH
+	/* Test demo area window */
+	tft_window_init(winearth,winmsg->w,winstats->h, 
+		master->w-winmsg->w,master->h-winstats->h);
+	tft_setTextColor(winearth, ILI9341_WHITE,ILI9341_NAVY);
+    tft_fillWin(winearth, winearth->bg);
+	tft_set_font(winearth,1);
+	tft_font_var(winearth);
 	printf("Draw Earth\n");
+
 // Earth points were defined with radius of 0.5, diameter of 1.0
 // We want a scale of +/- w/2
 	double tscale_max;
-	if(wintestdemo->w < wintestdemo->h) 
-		tscale_max = wintestdemo->w;
+	if(winearth->w < winearth->h) 
+		tscale_max = winearth->w;
 	else
-		tscale_max = wintestdemo->h;
+		tscale_max = winearth->h;
 	V.x = -90;
 	V.y = -90;
 	V.z = -90;
 	// draw earth
-	//time1 = system_get_time();
 // Earth points were defined over with a scale of -0.5/+0.5 scale - so scale must be 1 or less
-	wire_draw(wintestdemo, earth_data, NULL, &V, wintestdemo->w/2, wintestdemo->h/2, tscale_max, wintestdemo->fg);
-	//time2 = system_get_time();
+	wire_draw(winearth, earth_data, NULL, &V, winearth->w/2, winearth->h/2, tscale_max, winearth->fg);
 #endif
 
 	wdt_reset();
 
 	printf("Setup Tasks\n");
-
 
 #ifdef TELNET_SERIAL
 	printf("Setup Network Serial Bridge\n");

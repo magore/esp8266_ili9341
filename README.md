@@ -26,6 +26,7 @@
    * Small Printf with full floating point support along with ftoa/atof and integer conversions
    * BDF fonts and a BDF font to C conversion code and optimized display code
    * WEB server using SD CARD with CGI processing - files and CGI results can be ANY SIZE!
+   * WEB server can update TFT display
    * Network server client example for display updates
    * Uart network server client for serial uart to network bridge.
    * Generic queue handling code
@@ -57,12 +58,14 @@ ___
 @par Directories
   * .
     * Makefile from CHERTS modified for the project
+       * Features controlled by variables in Makefile
+   
     * README.md - Project readme file
     * COPYRIGHT.md - Project Copyright file
     * Doxyfile - Doxygen configuration file
     * get_esp-open-sdk - shell script to download an install ESP OPEN SDK on Ubuntu 14.04LTS
+       * Tested with esp_iot_sdk_v1.5.2 as of 21 Jun 2016
     * term115200 - shell script to launch terminal to 115200 baud
-
 
   * bridge
     * bridge.c
@@ -110,7 +113,7 @@ ___
       * Debug exception support by cal (20150421, cal)
     * ili9341_adafruit.c  
     * ili9341_adafruit.h
-      * Adafruit display - just those functions that I have not rewritten
+      * Adafruit display - just those few functions that I have not rewritten
 
    * earth   
      * Earth coast line data and display code
@@ -131,7 +134,8 @@ ___
              * Coastline data at various resolutions
 
    * fatfs
-     * SD CARD support with FatFS and POSIX wrappers modified to use hardware abstraction
+     * SD CARD support with FatFS and POSIX wrappers 
+        * modified to use hardware abstraction
      * Files originally from FatFs (C)ChaN, 2013
        * disk.c
        * disk.h

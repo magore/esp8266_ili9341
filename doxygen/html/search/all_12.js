@@ -37,6 +37,7 @@ var searchData=
   ['scanf_2ec',['scanf.c',['../scanf_8c.html',1,'']]],
   ['scanf_2eh',['scanf.h',['../scanf_8h.html',1,'']]],
   ['sclust',['sclust',['../structFIL.html#ad308b74c8d6975c6a9c30d90b4124c40',1,'FIL::sclust()'],['../structDIR.html#a9212af5877b94d790dd3bab3aa320994',1,'DIR::sclust()']]],
+  ['seconds',['seconds',['../user__main_8c.html#ae112d79896ed83ac05e155da60e85523',1,'user_main.c']]],
   ['sect',['sect',['../structDIR.html#ad01fcc812ed0dad11a593574336adc9e',1,'DIR']]],
   ['seek_5fcur',['SEEK_CUR',['../posix_8h.html#a4c8d0b76b470ba65a43ca46a88320f39',1,'posix.h']]],
   ['seek_5fend',['SEEK_END',['../posix_8h.html#ad2a2e6c114780c3071efd24f16c7f7d8',1,'posix.h']]],

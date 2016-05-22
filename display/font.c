@@ -83,8 +83,8 @@ int font_attr(window *win, int c, _fontc *f)
 		// Fonts Width,Height,X,Y
         f->w = s.Width;
         f->h = s.Height;
-        f->x = s.X;
-        f->y = s.Y;
+        f->x= s.X;
+        f->y= s.Y;
 
 		// Bitmap offset
         offset = s.Offset;
@@ -165,12 +165,12 @@ void tft_drawChar(window *win, uint8_t c)
         return;
 
 // process wrapping - will the character fit ?
-	if(win->x + f.skip >= win->w)
+	if(win->xpos + f.skip >= win->w)
 	{
 		if(win->flags & WRAP_H)
 		{
-			win->y += f.Height;
-			win->x = 0;
+			win->ypos += f.Height;
+			win->xpos = 0;
 		}
 		else
 		{
@@ -178,14 +178,16 @@ void tft_drawChar(window *win, uint8_t c)
 			return;
 		}
 	}
-	if(win->y >= win->h)
+	// FIXME f.Height >= win->h ??
+	if((win->ypos+f.Height) >= win->h)
 	{
 		if(win->flags & WRAP_V)
 		{
-			win->y = 0;
+			win->ypos = 0;
 		}
 		else
 		{
+			win->ypos -= f.Height;
 			tft_Vscroll(win,f.Height);
 		}
 	}
@@ -201,12 +203,12 @@ void tft_drawChar(window *win, uint8_t c)
 
 // Optionally clear the font area, then the gap
     if(f.h != f.Height ||  f.w != f.skip || f.x != 0 || f.y != 0)
-        tft_fillRectWH(win, win->x, win->y, f.skip, f.Height, win->bg);
+        tft_fillRectWH(win, win->xpos, win->ypos, f.skip, f.Height, win->bg);
 
 // This can happen for characters with no active pixels like the space character.
     if(!f.h || !f.w)
 	{
-		win->x += f.skip;
+		win->xpos += f.skip;
         return;
 	}
 
@@ -214,8 +216,8 @@ void tft_drawChar(window *win, uint8_t c)
     yskip = f.Height - (f.y+f.h);
 
 // Write the font to the screen
-    tft_bit_blit(win, f.ptr, win->x+f.x, win->y+yskip, f.w, f.h);
+    tft_bit_blit(win, f.ptr, win->xpos+f.x, win->ypos+yskip, f.w, f.h);
 
 	// skip is the offset to the next character
-	win->x += f.skip;
+	win->xpos += f.skip;
 }

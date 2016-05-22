@@ -83,36 +83,52 @@ DEBUG_PRINTF=uart0_printf
 # TELNET serial bridge demo
 //TELNET_SERIAL = 1
 
-#FatFS code
+# FatFS code testing
 FATFS_TEST = 1
 
-# Wireframe earth demo
-EARTH = 1
+# Display wireframe earth demo in lower right of display
+# EARTH = 1
+EARTH = 
 
-# Spinning Cube demo
+# Spinning Cube demo in upper right of display
 WIRECUBE = 1
 
 # include simple scanf
 SCANF = 1
 
+# Display additional status:
+# 	interation count for spinning cube
+#   heap and connection count
+#   connection and wifi status
+#   voltage
+# DEBUG_STATS = 1
+DEBUG_STATS = 
+
+# Display voltage - only works if DEBUG_STATS = 1
+VOLTAGE_TEST = 1
+
+# Run a web server
 WEBSERVER = 1
+# Web server Debugging
 # 0 no WEB debugging
 # 1 error only
 # 2 connection information
 # 4 send/yield task information
 # 8 HTML processing
 # 16 characters from socket I/O
-WEB_DEBUG = 1
-# Maximum number of connections
-MAX_CONNECTIONS = 5
+WEB_DEBUG = 1 
 
+# Maximum number of WEB connections
+MAX_CONNECTIONS = 8
 
 # Yield function support thanks to Arduino Project 
+# You should always leave this on
 YIELD_TASK = 1
 
 # NETWORK Client demo
 NETWORK_TEST = 1
 # Network PORT for server and client
+# Displays data on TFT display
 TCP_PORT = 31415
 
 # ===============================================================
@@ -208,6 +224,15 @@ EXTRA_INCDIR    = user include $(SDK_BASE)/include
 ifdef ILI9341_DEBUG
 	CFLAGS  += -DILI9341_DEBUG=$(ILI9341_DEBUG)
 endif
+
+ifdef DEBUG_STATS
+	CFLAGS += -DDEBUG_STATS
+endif
+
+ifdef VOLTAGE_TEST
+	CFLAGS += -DVOLTAGE_TEST
+endif
+
 
 ifdef SCANF
 	MODULES	+= scanf

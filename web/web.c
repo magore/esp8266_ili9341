@@ -36,6 +36,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "web.h"
 
+extern window *winmsg;
 
 ///@brief socket buffers for this connection
 rwbuf_t *web_connections[MAX_CONNECTIONS];
@@ -324,6 +325,7 @@ rwbuf_t *rwbuf_create()
 	char *buf;
 
 	// connect struction for this connection
+	// Always over allocate to allow an extra EOS or TWO
 	rwbuf_t *p = calloc(sizeof(rwbuf_t)+4,1);
 	if(!p) 
 	{
@@ -336,6 +338,7 @@ rwbuf_t *rwbuf_create()
 
 	// read buffer for this connection
 	rwbuf_rinit(p);
+	// Always over allocate to allow an extra EOS or TWO
 	buf = calloc(BUFFER_SIZE+4,1);
 	if(!buf) 
 	{
@@ -350,6 +353,7 @@ rwbuf_t *rwbuf_create()
 
 	// write buffer for this connection
 	rwbuf_winit(p);
+	// Always over allocate to allow an extra EOS or TWO
 	buf = calloc(BUFFER_SIZE+4,1);
 	if(!buf) 
 	{
@@ -771,6 +775,8 @@ int html_msg(rwbuf_t *p, int status, char type, char *fmt, ...)
 
     va_start(args, fmt);
 
+	
+	// Always over allocate to allow an extra EOS or TWO
 	header = calloc(MAX_MSG+4,1);
 	if(!header) {
 #if WEB_DEBUG & 1
@@ -836,11 +842,12 @@ int html_msg(rwbuf_t *p, int status, char type, char *fmt, ...)
 MEMSPACE
 char *meminit(mem_t *p, char *ptr, int size)
 {
+	if(!ptr)
+		return(ptr);
     p->next = ptr;
     p->ptr = ptr;
 	p->size = size;
-	if(!ptr)
-		return(ptr);
+	// We always allocate 4 bytes more then we need
     return(p->next);
 }
 
@@ -861,17 +868,16 @@ char *memgets(mem_t *p)
 		return(NULL);
 
     // Mark end of this string and point to start of next string
-    while(*ptr && p->size) {
-        if(*ptr == '\n') {
-			*ptr++ = 0;
-			p->next = ptr;
-            break;
-        }
+    while(*ptr && *ptr != '\n' && p->size) {
         ++ptr;
 		p->size--;
     }
-	if(!p->size)
-		*ptr = 0;
+	// replace newline with EOS
+	*ptr = 0;
+	// only advance pointer if size > 0
+	if(p->size)
+		++ptr;
+	p->next = ptr;
     return(base);
 }
 
@@ -914,10 +920,10 @@ int file_type(char *name)
 	{
 		if(mimes[i].ext1 == NULL)
 			break;
-		if(mimes[i].ext2 == NULL)
-			break;
 		if(strcasecmp(name, mimes[i].ext1) == 0)
 			return(i);
+		if(mimes[i].ext2 == NULL)
+			continue;
 		if(strcasecmp(name, mimes[i].ext2) == 0)
 			return(i);
 	}
@@ -956,7 +962,7 @@ char *html_status(int status)
 	@return hinfo_t structure pointer to initialize
 */
 MEMSPACE
-hinfo_t *init_hinfo(hinfo_t *hi)
+void init_hinfo(hinfo_t *hi)
 {
 	hi->type = -1;	// GET,PUT,HEADER
 	hi->filename = NULL;
@@ -967,7 +973,6 @@ hinfo_t *init_hinfo(hinfo_t *hi)
 	hi->content_type = NULL;
 	hi->content_length = 0;
 	hi->msg = NULL;
-	return(hi);
 }
 
 
@@ -1007,74 +1012,127 @@ int match_headers(char *str, char **p)
 }
 
 /** 
-	@brief Process GET of POST arguments and initialize the hinfo_t header structure
-	Must be pointing at the argument list either from
-	GET arguments - or POST content text
-	Convert name=value pairs into null terminated strings
-	Assumes we can replace characters with EOS in ram
+	@brief Process GET argments or POST message name/value data.
+	HTML encoding is done in place often reducting the size of the result.
+	Convert name=value pairs into null terminated strings.
+ 	Names and values are each terminated with an EOS by replaceing
+    '?', '&', '=' characters seen while scaning.
 	@param[in] *hi: hinfo_t structure to fill
-	@return pointer that points to just past the header area
+	@param[in] *ptr: GET arguments or PUT message body.
+	@return *ptr pointer that points to just past the header area.
 */
 MEMSPACE
-char *process_args(hinfo_t *hi)
+char *process_args(hinfo_t *hi, char *ptr)
 {
 	char	*out;
 	uint8_t num, h,l;
-	char *ptr = hi->args;
-	int len = hi->args_length;
+	char *end;
+	int len;
+	int size = 0;
 	
+	len = strlen(ptr);
+#if WEB_DEBUG & 8
+	printf("process_args:(%d)[%s]\n",len,ptr);
+#endif
 
-	ptr = skipspaces(ptr);
+	// find next space or EOS - after arguments
+	// HTTP/Versions follows space
+	end = nextspace(ptr);
+	if(*end)
+		*end++ = 0;	// EOS after arguments
 
+	hi->args = ptr;
+	hi->arg_ptr = ptr;
+	hi->args_length = len; // initial undecoded length
+
+#if WEB_DEBUG & 8
+	printf("process_args:[%s]\n",hi->args);
+	printf("process_args_length:[%d]\n",hi->args_length);
+#endif
+
+	if(!hi->args_length)
+	{
+#if WEB_DEBUG & 8
+		// this is not an error - just a notice
+		printf("process_args: zero length\n");
+#endif
+		return(end);
+	}
+	len = hi->args_length;
+
+	// We are overwriting the input buffer
+	// The output will always be <= in size - so this works
 	out = ptr;
 	while(len > 0) {
 		// Name = Value
 		if(*ptr == '=') {	// Name =
 			ptr++;
 			--len;
-			*out++ = 0;		// EOS
+			*out++ = 0;		// EOS break
+			++size;
 			continue;
 		}
 		if( *ptr == '&' ) {	// New Argument
 			ptr++;
 			--len;
-			*out++ = 0;		// EOS
+			*out++ = 0;		// EOS break
+			++size;
 			continue;
 		}
 		if(*ptr == '+') {	// Space
 			ptr++;
 			--len;
 			*out++ = ' ';
+			++size;
 			continue;
 		}
-		if ( *ptr == '%'  && ptr[1] && ptr[2]) {		// ENCODED HEX
+		if ( *ptr == '%') {
+			// skip %
 			++ptr;
 			--len;
-			// If we have invalid HEX data or EOS convert to space
-			h = hexd( *ptr );
-			++ptr;
-			--len;
-			l = hexd( *ptr );
-			++ptr;
-			--len;
-			if(h & 0xf0 || l & 0xf0) {	
-				*out++ = ' ';
-				continue;
+			// Make sure we do not go past the end of the string
+			if(!ptr[0] || !ptr[1])
+			{
+#if WEB_DEBUG & 1+8
+	printf("process_args: HTML %HEX decode short string\n");
+#endif
+				break;
 			}
-			num = (h << 4) | l;
-			if(!num) {				// EOS
-				*out++ = ' ';
-				continue;
+
+			// Is the data HEX ?
+			h = hexd( *ptr++ );
+			l = hexd( *ptr++ );
+			len -=2;
+
+			if(h & 0xf0 || l & 0xf0) 	// The data was not HEX
+			{
+				num = ' ';
+#if WEB_DEBUG & 1+8
+	printf("process_args: HTML %HEX bad value\n");
+#endif
 			}
+			else
+			{	
+				// The data was HEX
+				num = (h << 4) | l;
+			}
+
 			*out++ = num;
+			++size;
 			continue;
-		}
+		} // '%'
+
+		// Default is to copy
 		*out++ = *ptr++;								// Character
+		++size;
 		--len;
 	}
-	while(len > 0) 
-		*out++ = 0;		// EOS
-	return(ptr);
+	// EOS at very end of buffer
+	*out = 0;
+	// Compute new length of arguments string space after decoding
+	hi->args_length = size;
+
+	return(end);
 }
 
 /** 
@@ -1089,7 +1147,8 @@ char *first_arg(hinfo_t *hi)
 }
 
 /** 
-	@brief Find nest POST/GET argument
+	@brief Find next POST/GET argument
+     We have to skip a name and a value
 	@param[in] *hi: hinfo_t structure with arguments
 	@return argument value pair
 */
@@ -1101,21 +1160,40 @@ char *next_arg(hinfo_t *hi)
 
 	if(!ptr)
 		return(NULL);
+
+	// At or past the end of arguments
+	if(ptr >= (hi->args + hi->args_length) )
+		return(hi->arg_ptr = NULL);
 	
+	// Name
 	len = strlen(ptr);
-	if(!len)			// End of list
+	// Empty name will also terminate arguments
+	if(!len)	// Done ??
 		return(hi->arg_ptr = NULL);
 
 #if WEB_DEBUG & 8
 	printf("next_arg:%s=",ptr);
 #endif
+
 	ptr += len+1;		// skip past name
 
-	len = strlen(ptr);
+	// Are we past the argument list ? if so we have an error
+	if(ptr > (hi->args + hi->args_length) )
+		return(hi->arg_ptr = NULL);
+
+	// VALUE
 #if WEB_DEBUG & 8
-	printf("%s\n",ptr);
+	printf("next_arg:%s\n",ptr);
 #endif
-	ptr += len+1;		// skip past value
+
+	// Value can be empty
+	len = strlen(ptr);
+	// point past value
+	ptr += len+1;		// skip past name
+
+	// Are we at the end - or past the argument list ? 
+	if(ptr >= (hi->args + hi->args_length) )
+		return(hi->arg_ptr = NULL);
 
 	return(hi->arg_ptr = ptr);
 }
@@ -1131,11 +1209,39 @@ char *arg_name(hinfo_t *hi)
 	char *ptr = hi->arg_ptr;
 	int len;
 
-	if(!ptr)
-		return(NULL);
+	// NAME 
+	// Are we at the end - or past the argument list ? 
+	if(!ptr || ptr >= (hi->args + hi->args_length) )
+	{
+#if WEB_DEBUG & 8
+	printf("arg_name: END OF ARGS\n");
+#endif
+		return(hi->arg_ptr = NULL);
+	}
+
 	len = strlen(ptr);
+
 	if(!len)			// End of list
-		return(NULL);
+	{
+#if WEB_DEBUG & 8
+	printf("arg_name: END OF ARGS\n");
+#endif
+		return(hi->arg_ptr = NULL);
+	}
+
+#if WEB_DEBUG & 8
+	printf("arg_name: name(%d)=%s\n", len,ptr);
+#endif
+
+	// Does name extend past the list ?
+	if((ptr + len) > (hi->args + hi->args_length) )
+	{
+#if WEB_DEBUG & 1+8
+        printf("arg_name: name(%d) size is > args length by (%d)\n",
+            len, ((ptr + len) - (hi->args + hi->args_length)) );
+#endif
+		return(hi->arg_ptr = NULL);
+	}
 
 	return(ptr);
 }
@@ -1151,13 +1257,67 @@ char *arg_value(hinfo_t *hi)
 	char *ptr = hi->arg_ptr;
 	int len;
 
-	if(!ptr)
-		return(NULL);
-	len = strlen(ptr);
-	if(!len)			// End of list
-		return(NULL);
+	// NAME 
+	// Are we at the end - or past the argument list ? 
+	if(!ptr || ptr >= (hi->args + hi->args_length) )
+	{
+#if WEB_DEBUG & 8
+	printf("arg_value: name END OF ARGS\n");
+#endif
+		return(hi->arg_ptr = NULL);
+	}
 
-	ptr += len+1;
+	len = strlen(ptr);
+
+	if(!len)			// End of list
+	{
+#if WEB_DEBUG & 8
+	printf("arg_value: name END OF ARGS\n");
+#endif
+		return(hi->arg_ptr = NULL);
+	}
+
+#if WEB_DEBUG & 8
+	printf("arg_value: name(%d)=%s\n", len,ptr);
+#endif
+
+	// Does name extend past the list ?
+	if((ptr + len) > (hi->args + hi->args_length) )
+	{
+#if WEB_DEBUG & 1+8
+        printf("arg_value: name(%d) size is > args length by (%d)\n",
+            len, ((ptr + len) - (hi->args + hi->args_length)) );
+#endif
+		return(hi->arg_ptr = NULL);
+	}
+	ptr += len; 
+
+	// VALUE
+	if((ptr + 1) > (hi->args + hi->args_length) )
+	{
+#if WEB_DEBUG & 1+8
+		printf("arg_value: value start is > args length by (%d)\n",
+			((ptr + 1) - (hi->args + hi->args_length)) );
+#endif
+		hi->arg_ptr = NULL;
+		return(ptr);
+	}
+	++ptr;
+
+	// VALUE can be empty but must not be past the argument list
+	len = strlen(ptr);
+
+	// Does value extend past the list ?
+	if((ptr + len) > (hi->args + hi->args_length) )
+	{
+#if WEB_DEBUG & 1+8
+        printf("arg_value: value size is > args length by (%d)\n",
+            ((ptr + len) - (hi->args + hi->args_length)) );
+#endif
+
+		return(hi->arg_ptr = NULL);
+	}
+
 	return(ptr);		// Value
 }
 
@@ -1176,12 +1336,15 @@ char *http_value(hinfo_t *hi, char *str)
 	while( (name = arg_name(hi)) ) {
 		if(strcasecmp(name,str) == 0) {
 			value = arg_value(hi);
+			if(!value)
+				return(NULL);
 #if WEB_DEBUG & 8
 		printf("http_value:%s=%s\n",str,value);
 #endif
 			return(value);
 		}
-		next_arg(hi);
+		if(!next_arg(hi))
+			break;
 	}
 	return(NULL);
 }
@@ -1287,8 +1450,11 @@ int parse_http_request(rwbuf_t *p, hinfo_t *hi)
 	char *value;
 	char *name;
 	char *save;
-	int haveargs = 0;
 	mem_t memp;
+
+    init_hinfo(hi);        // Init Headers
+
+	type = -1;
 
 #if WEB_DEBUG & 8
 	printf("\nparse_http_request\n");
@@ -1309,30 +1475,42 @@ int parse_http_request(rwbuf_t *p, hinfo_t *hi)
 		save = ptr;
 		// check against known headers
 		header = match_headers(save,&ptr);
+
 		if(header == -1)
 		{
 			// Does it at least look like a header ?
 			if( !is_header(save, &ptr))
 			{
 #if WEB_DEBUG & 8
-		printf("Header break:[%s]\n",save);
+		printf("Header break ==== \n");
 #endif
 				break;
 			}
-
 #if WEB_DEBUG & 8
 		printf("header skip:[%s]\n",save);
 #endif
 			// skip the unknown header
 			continue;
 		}
-		// ptr now points after the ':' in the header
 
 #if WEB_DEBUG & 8
-		printf("header(%d): %s\n",header,ptr);
+		printf("header: %s %s\n",msg_headers[header].pattern,ptr);
 #endif
+		// ptr now points just after the matched header  pattern
 
 		type = msg_headers[header].type;
+
+		if(type == TOKEN_CONTENT_LENGTH)
+		{
+			hi->content_length = atoi(ptr);
+			continue;
+		}
+
+		if(type == TOKEN_CONTENT_TYPE )
+		{
+			hi->content_type = ptr;
+			continue;
+		}
 
 		// Process GET,POST or HEAD directive
 		// These methods put EOS characters withing the current string
@@ -1342,41 +1520,38 @@ int parse_http_request(rwbuf_t *p, hinfo_t *hi)
 			hi->filename = ptr;
 			ptr = nextbreak(ptr);
 			c = *ptr;
-			*ptr++ = 0;	// Filename EOS
+			if(*ptr)
+				*ptr++ = 0;	// Filename EOS
 #if WEB_DEBUG & 8
 			printf("filename: [%s]\n",hi->filename);
 #endif
-
 			// ? implies Arguments
-			if(c == '?') {	
-				hi->args = ptr;
-				// find next space - after arguments
-				ptr = nextspace(ptr);
-				*ptr++ = 0;
-				hi->args_length = strlen(hi->args);
-				++haveargs;
-				process_args(hi);
-			}
+			if(c == '?') 
+				ptr = process_args(hi,ptr);
+
 			// HTTP Encoding
 			ptr = skipspaces(ptr);
 			hi->html_encoding = ptr;
-
 		} // GET
 
 		else if(type == TOKEN_POST || type == TOKEN_HEAD )
 		{
 			hi->type = type;
-
 			hi->filename = ptr;
+			// find next space - after arguments
 			ptr = nextbreak(ptr);
 			c = *ptr;
-			*ptr++ = 0;	// Filename EOS
+			if(*ptr)
+				*ptr++ = 0;	// Filename EOS
+#if WEB_DEBUG & 8
+			printf("filename: [%s]\n",hi->filename);
+#endif
 			// ? implies Arguments
 			if(c == '?') {	
-#if WEB_DEBUG & 1
+#if WEB_DEBUG & 8
 				printf("Warning arguments not expected for %d\n", type);
 #endif
-				ptr = nextspace(ptr);
+				ptr = process_args(hi,ptr);
 			}
 			// HTTP Encoding
 			ptr = skipspaces(ptr);
@@ -1388,41 +1563,56 @@ int parse_http_request(rwbuf_t *p, hinfo_t *hi)
 #endif
 			return(0);
 		}
-        	
 	}
 
+	// POST has arguments after all headers
 	if(hi->type == TOKEN_POST ) {
+		// Get first non blank line
 		while( (ptr = memgets(&memp)) ) {
+#if WEB_DEBUG & 8
+		printf("process_args:[%s]\n",ptr);
+#endif
 			if(strlen(ptr) > 1)
 				break;
 		}
-		if(ptr)
+		if(strlen(ptr) != hi->content_length)
 		{
-			ptr = skipspaces(ptr);
-			hi->args = ptr;
-			hi->args_length = strlen(ptr);
-			++haveargs;
-			process_args(hi);
+#if WEB_DEBUG & 8
+		printf("strlen:[%d] != hi->content_length:[%d]\n",
+			strlen(ptr) , hi->content_length);
+#endif
+
 		}
+		if(ptr)
+			ptr = process_args(hi,ptr);
 	}
 
 #if WEB_DEBUG & 8
+	if(hi->type == TOKEN_POST && hi->content_length)
+	{
+		int len;
+		printf("ARGS\n");
+		first_arg(hi);
+		while( (name = arg_name(hi)) ) {
+			len = strlen(name);
+			value = arg_value(hi);
+			printf("\t%s=%s\n",name,value);
+			if(!next_arg(hi))
+				break;;
+		}
+		printf("END ARGS\n");
+	}
+
 	if( hi->type != -1) 
 		printf("type: %s\n",msg_headers[hi->type].pattern);
-	printf("Filename: %s\n",hi->filename);
-	printf("Html_encoding: %s\n",hi->html_encoding);
-	if(hi->type == TOKEN_POST ) {
+	if(hi->filename)
+		printf("Filename: %s\n",hi->filename);
+	if(hi->html_encoding)
+		printf("Html_encoding: %s\n",hi->html_encoding);
+	if(hi->content_type ) 
 		printf("Content-Type: %s\n",hi->content_type);
+	if(hi->content_length) 
 		printf("Content-Length: %d\n",hi->content_length);
-	}
-	printf("ARGS\n");
-	first_arg(hi);
-	while( (name = arg_name(hi)) ) {
-		value = arg_value(hi);
-		printf("\t%s=%s\n",name,value);
-		next_arg(hi);
-	}
-	printf("END ARGS\n");
 #endif
 	return(1);
 }
@@ -1470,17 +1660,19 @@ static void web_data_receive_callback(void *arg, char *data, unsigned short leng
 	// TRIM buffer size if needed
 	if(length > p->rsize)
 	{
+		// FIXME we may want to permit multi packet receive
+		// FIXME flag overrun
 #if WEB_DEBUG & 1
 		printf("web_data_receive_callback: receive too big:%d, trim to:%d\n",length,p->rsize);
 #endif
 		length = p->rsize;
-		// FIXME flag overrun
 	}
 
 	// reset read pointers
 	rwbuf_rinit(p);
 	if(p->rbuf)
 	{
+		memset(p->rbuf,0, p->rsize);
 		memcpy(p->rbuf,data,length);
 		p->received = length;
 #if WEB_DEBUG & 2
@@ -1809,9 +2001,12 @@ static void process_requests(rwbuf_t *p)
 	int8_t type;
 	char *name;
 	char *param;
+	char *value,*ptr;
 	FILE *fi;
 	hinfo_t hibuff;
 	hinfo_t *hi;
+
+	hi = &hibuff;
 	// a token like; $i_am_a_token_name$, must be less then this in length
 #define READBUFFSIZE 512
 	char buff[READBUFFSIZE+1];
@@ -1830,7 +2025,7 @@ static void process_requests(rwbuf_t *p)
 #endif
 		return;
 	}
-#if WEB_DEBUG & 2
+#if WEB_DEBUG & 2+8
 	printf("\n==========================================\n");
 	printf("Process Requests\n");
 	printf("%d\n", system_get_free_heap_size());
@@ -1838,8 +2033,6 @@ static void process_requests(rwbuf_t *p)
 	printf("[%s]\n", p->rbuf);
 	printf("conn:%p\n", p->conn);
 #endif
-
-    hi = init_hinfo(&hibuff);        // Init Headers
 
 	if(!parse_http_request(p,hi))
 	{
@@ -1853,7 +2046,7 @@ static void process_requests(rwbuf_t *p)
 	type = hi->type;
 	name = hi->filename;
 
-	if(!name) 
+	if(!name ) 
 		name = "index.html";
 
 	if (MATCH(name, "/")) 
@@ -1861,26 +2054,47 @@ static void process_requests(rwbuf_t *p)
 
 	type = file_type(name);
 
-#if WEB_DEBUG & 2
+#if WEB_DEBUG & 8
 	printf("Filename: %s, type:%d\n", name,type);
 #endif
-	
+
 // CGI
 	if(type == PTYPE_CGI)
 	{
-		if(strstr(name,"TIMER.CGI")) 
+		if(strstr(name,"timer.cgi")) 
 		{
 			name = hi->filename = "time.htm";
 		}
-		else if(strstr(name,"LEDCTL.CGI"))
+		else if(strstr(name,"led.cgi"))
 		{			
-			if((param = http_value(hi,"led0")))
+			if( (param = http_value(hi,"led0")) )
 			{
 				if(!strcmp(param,"on")) led_on(0);
 				else			led_off(0);
 			}
 			else led_off(0);
 			name = hi->filename = "dout.htm";
+		}
+		else if(strstr(name,"msg.cgi"))
+		{			
+			// send output to display
+#if WEB_DEBUG & 8
+			printf("found msg.cgi\n");
+#endif
+			if( (param = http_value(hi,"message")) )
+			{
+				time_t secs;
+				char *ptr;
+				int len;
+#if WEB_DEBUG & 8
+				printf("msg.cgi: %s\n",param);
+#endif
+				tft_setpos(winmsg, 0,0);
+				tft_set_font(winmsg,2);
+				tft_fillWin(winmsg, winmsg->bg);
+				tft_printf(winmsg, param);
+			}
+			name = hi->filename = "msg.cgi";
 		}
 	}
 	// END OF CGI
@@ -1898,7 +2112,7 @@ static void process_requests(rwbuf_t *p)
 		return;
 	}
 
-#if WEB_DEBUG & 2
+#if WEB_DEBUG & 8
 	printf("Found name: %s, type:%d\n",name,type);
 #endif
 	if(type == PTYPE_HTML || type == PTYPE_CGI || type == PTYPE_TEXT)
@@ -1981,7 +2195,7 @@ static void process_requests(rwbuf_t *p)
 	p->delete = 1;
 	espconn_disconnect(p->conn);
 
-#if WEB_DEBUG & 2
+#if WEB_DEBUG & 2+8
 	printf("\nDone: ftell:%ld, len:%ld, feof%d\n",ftell(fi),len,feof(fi));
 	printf("\n==========================================\n");
 #endif

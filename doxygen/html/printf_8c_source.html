@@ -774,92 +774,94 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00753"></a><span class="lineno">  753</span>&#160;            <span class="keywordflow">if</span>(spec == <span class="charliteral">&#39;s&#39;</span>)</div>
 <div class="line"><a name="l00754"></a><span class="lineno">  754</span>&#160;            {</div>
 <div class="line"><a name="l00755"></a><span class="lineno">  755</span>&#160;                ptr = va_arg(va, <span class="keywordtype">char</span> *);</div>
-<div class="line"><a name="l00756"></a><span class="lineno">  756</span>&#160;            }</div>
-<div class="line"><a name="l00757"></a><span class="lineno">  757</span>&#160;        <span class="keywordflow">case</span> <span class="charliteral">&#39;c&#39;</span>:</div>
-<div class="line"><a name="l00758"></a><span class="lineno">  758</span>&#160;            <span class="comment">// FIXME</span></div>
-<div class="line"><a name="l00759"></a><span class="lineno">  759</span>&#160;            <span class="keywordflow">if</span>(spec == <span class="charliteral">&#39;c&#39;</span>)</div>
-<div class="line"><a name="l00760"></a><span class="lineno">  760</span>&#160;            {</div>
-<div class="line"><a name="l00761"></a><span class="lineno">  761</span>&#160;                <span class="keywordtype">char</span> tmp[2];</div>
-<div class="line"><a name="l00762"></a><span class="lineno">  762</span>&#160;                tmp[0] = (char) va_arg(va, <span class="keywordtype">int</span>);</div>
-<div class="line"><a name="l00763"></a><span class="lineno">  763</span>&#160;                tmp[1] = 0;</div>
-<div class="line"><a name="l00764"></a><span class="lineno">  764</span>&#160;                ptr = tmp;</div>
-<div class="line"><a name="l00765"></a><span class="lineno">  765</span>&#160;            }</div>
-<div class="line"><a name="l00766"></a><span class="lineno">  766</span>&#160;            count = <a class="code" href="str_8h.html#ae1523394a394cbb226b2f7287e3e3741">strlen</a>(ptr);</div>
-<div class="line"><a name="l00767"></a><span class="lineno">  767</span>&#160;            <span class="keywordflow">if</span>(prec)</div>
-<div class="line"><a name="l00768"></a><span class="lineno">  768</span>&#160;                count = prec;</div>
-<div class="line"><a name="l00769"></a><span class="lineno">  769</span>&#160;            <span class="keywordflow">if</span>(count &gt; width &amp;&amp; width != 0)</div>
-<div class="line"><a name="l00770"></a><span class="lineno">  770</span>&#160;                count = width;</div>
-<div class="line"><a name="l00771"></a><span class="lineno">  771</span>&#160;<span class="comment">//printf(&quot;width:%d,count:%d,left:%d\n&quot;, width, count, left);</span></div>
-<div class="line"><a name="l00772"></a><span class="lineno">  772</span>&#160;            <a class="code" href="printf_8c.html#aa864d1706b7e941e7f29264cc197cbe1">_puts_pad</a>(fn,ptr, width, count, left);</div>
-<div class="line"><a name="l00773"></a><span class="lineno">  773</span>&#160;            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00774"></a><span class="lineno">  774</span>&#160;        <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00775"></a><span class="lineno">  775</span>&#160;            <span class="keywordflow">while</span>(fmtptr &lt;= fmt &amp;&amp; *fmtptr)</div>
-<div class="line"><a name="l00776"></a><span class="lineno">  776</span>&#160;                fn-&gt;<a class="code" href="struct__printf__t.html#a3302c3396c6ff238e760c625ab51725b">put</a>(fn, *fmtptr++);</div>
-<div class="line"><a name="l00777"></a><span class="lineno">  777</span>&#160;            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00778"></a><span class="lineno">  778</span>&#160;        }</div>
-<div class="line"><a name="l00779"></a><span class="lineno">  779</span>&#160;<span class="comment">//printf(&quot;fmt:(%s)\n&quot;, fmt);</span></div>
-<div class="line"><a name="l00780"></a><span class="lineno">  780</span>&#160;    }</div>
-<div class="line"><a name="l00781"></a><span class="lineno">  781</span>&#160;<span class="comment">//printf(&quot;fmt exit:(%s)\n&quot;, fmt);</span></div>
-<div class="line"><a name="l00782"></a><span class="lineno">  782</span>&#160;</div>
-<div class="line"><a name="l00783"></a><span class="lineno">  783</span>&#160;}</div>
+<div class="line"><a name="l00756"></a><span class="lineno">  756</span>&#160;                <span class="keywordflow">if</span>(!ptr)</div>
+<div class="line"><a name="l00757"></a><span class="lineno">  757</span>&#160;                    ptr = <span class="stringliteral">&quot;(NULL)&quot;</span>;</div>
+<div class="line"><a name="l00758"></a><span class="lineno">  758</span>&#160;            }</div>
+<div class="line"><a name="l00759"></a><span class="lineno">  759</span>&#160;        <span class="keywordflow">case</span> <span class="charliteral">&#39;c&#39;</span>:</div>
+<div class="line"><a name="l00760"></a><span class="lineno">  760</span>&#160;            <span class="comment">// FIXME</span></div>
+<div class="line"><a name="l00761"></a><span class="lineno">  761</span>&#160;            <span class="keywordflow">if</span>(spec == <span class="charliteral">&#39;c&#39;</span>)</div>
+<div class="line"><a name="l00762"></a><span class="lineno">  762</span>&#160;            {</div>
+<div class="line"><a name="l00763"></a><span class="lineno">  763</span>&#160;                <span class="keywordtype">char</span> tmp[2];</div>
+<div class="line"><a name="l00764"></a><span class="lineno">  764</span>&#160;                tmp[0] = (char) va_arg(va, <span class="keywordtype">int</span>);</div>
+<div class="line"><a name="l00765"></a><span class="lineno">  765</span>&#160;                tmp[1] = 0;</div>
+<div class="line"><a name="l00766"></a><span class="lineno">  766</span>&#160;                ptr = tmp;</div>
+<div class="line"><a name="l00767"></a><span class="lineno">  767</span>&#160;            }</div>
+<div class="line"><a name="l00768"></a><span class="lineno">  768</span>&#160;            count = <a class="code" href="str_8h.html#ae1523394a394cbb226b2f7287e3e3741">strlen</a>(ptr);</div>
+<div class="line"><a name="l00769"></a><span class="lineno">  769</span>&#160;            <span class="keywordflow">if</span>(prec)</div>
+<div class="line"><a name="l00770"></a><span class="lineno">  770</span>&#160;                count = prec;</div>
+<div class="line"><a name="l00771"></a><span class="lineno">  771</span>&#160;            <span class="keywordflow">if</span>(count &gt; width &amp;&amp; width != 0)</div>
+<div class="line"><a name="l00772"></a><span class="lineno">  772</span>&#160;                count = width;</div>
+<div class="line"><a name="l00773"></a><span class="lineno">  773</span>&#160;<span class="comment">//printf(&quot;width:%d,count:%d,left:%d\n&quot;, width, count, left);</span></div>
+<div class="line"><a name="l00774"></a><span class="lineno">  774</span>&#160;            <a class="code" href="printf_8c.html#aa864d1706b7e941e7f29264cc197cbe1">_puts_pad</a>(fn,ptr, width, count, left);</div>
+<div class="line"><a name="l00775"></a><span class="lineno">  775</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00776"></a><span class="lineno">  776</span>&#160;        <span class="keywordflow">default</span>:</div>
+<div class="line"><a name="l00777"></a><span class="lineno">  777</span>&#160;            <span class="keywordflow">while</span>(fmtptr &lt;= fmt &amp;&amp; *fmtptr)</div>
+<div class="line"><a name="l00778"></a><span class="lineno">  778</span>&#160;                fn-&gt;<a class="code" href="struct__printf__t.html#a3302c3396c6ff238e760c625ab51725b">put</a>(fn, *fmtptr++);</div>
+<div class="line"><a name="l00779"></a><span class="lineno">  779</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00780"></a><span class="lineno">  780</span>&#160;        }</div>
+<div class="line"><a name="l00781"></a><span class="lineno">  781</span>&#160;<span class="comment">//printf(&quot;fmt:(%s)\n&quot;, fmt);</span></div>
+<div class="line"><a name="l00782"></a><span class="lineno">  782</span>&#160;    }</div>
+<div class="line"><a name="l00783"></a><span class="lineno">  783</span>&#160;<span class="comment">//printf(&quot;fmt exit:(%s)\n&quot;, fmt);</span></div>
 <div class="line"><a name="l00784"></a><span class="lineno">  784</span>&#160;</div>
-<div class="line"><a name="l00785"></a><span class="lineno">  785</span>&#160;</div>
-<div class="line"><a name="l00786"></a><span class="lineno">  786</span>&#160;<span class="comment">// ====================================================================</span></div>
+<div class="line"><a name="l00785"></a><span class="lineno">  785</span>&#160;}</div>
+<div class="line"><a name="l00786"></a><span class="lineno">  786</span>&#160;</div>
 <div class="line"><a name="l00787"></a><span class="lineno">  787</span>&#160;</div>
-<div class="line"><a name="l00792"></a><span class="lineno"><a class="line" href="printf_8c.html#a5a97e16fdf12d434f0d93807f1a66e04">  792</a></span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="printf_8c.html#a5a97e16fdf12d434f0d93807f1a66e04">_putc_buffer_fn</a>(<span class="keyword">struct</span> <a class="code" href="struct__printf__t.html">_printf_t</a> *p, <span class="keywordtype">char</span> ch)</div>
-<div class="line"><a name="l00793"></a><span class="lineno">  793</span>&#160;{</div>
-<div class="line"><a name="l00794"></a><span class="lineno">  794</span>&#160;    <span class="keywordtype">char</span> *str;</div>
-<div class="line"><a name="l00795"></a><span class="lineno">  795</span>&#160;    <span class="keywordflow">if</span> (p-&gt;<a class="code" href="struct__printf__t.html#a5139902cde74159b79e6418a34712bee">len</a> )</div>
-<div class="line"><a name="l00796"></a><span class="lineno">  796</span>&#160;    {</div>
-<div class="line"><a name="l00797"></a><span class="lineno">  797</span>&#160;        <span class="keywordflow">if</span>(ch)</div>
-<div class="line"><a name="l00798"></a><span class="lineno">  798</span>&#160;        {</div>
-<div class="line"><a name="l00799"></a><span class="lineno">  799</span>&#160;            p-&gt;<a class="code" href="struct__printf__t.html#a5139902cde74159b79e6418a34712bee">len</a>--;</div>
-<div class="line"><a name="l00800"></a><span class="lineno">  800</span>&#160;            p-&gt;<a class="code" href="struct__printf__t.html#a38c7a430cec9b063bf6df7a100d3abaa">size</a>++;</div>
-<div class="line"><a name="l00801"></a><span class="lineno">  801</span>&#160;            str = (<span class="keywordtype">char</span> *) p-&gt;<a class="code" href="struct__printf__t.html#ad35884151d0be6667caafad8caacc76f">buffer</a>;</div>
-<div class="line"><a name="l00802"></a><span class="lineno">  802</span>&#160;            *str++ = ch;</div>
-<div class="line"><a name="l00803"></a><span class="lineno">  803</span>&#160;            p-&gt;<a class="code" href="struct__printf__t.html#ad35884151d0be6667caafad8caacc76f">buffer</a> = (<span class="keywordtype">void</span> *) str;</div>
-<div class="line"><a name="l00804"></a><span class="lineno">  804</span>&#160;        }</div>
-<div class="line"><a name="l00805"></a><span class="lineno">  805</span>&#160;    }</div>
-<div class="line"><a name="l00806"></a><span class="lineno">  806</span>&#160;    *((<span class="keywordtype">char</span> *)p-&gt;<a class="code" href="struct__printf__t.html#ad35884151d0be6667caafad8caacc76f">buffer</a>) = 0;</div>
-<div class="line"><a name="l00807"></a><span class="lineno">  807</span>&#160;}   </div>
-<div class="line"><a name="l00808"></a><span class="lineno">  808</span>&#160;</div>
-<div class="line"><a name="l00809"></a><span class="lineno">  809</span>&#160;</div>
+<div class="line"><a name="l00788"></a><span class="lineno">  788</span>&#160;<span class="comment">// ====================================================================</span></div>
+<div class="line"><a name="l00789"></a><span class="lineno">  789</span>&#160;</div>
+<div class="line"><a name="l00794"></a><span class="lineno"><a class="line" href="printf_8c.html#a5a97e16fdf12d434f0d93807f1a66e04">  794</a></span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="printf_8c.html#a5a97e16fdf12d434f0d93807f1a66e04">_putc_buffer_fn</a>(<span class="keyword">struct</span> <a class="code" href="struct__printf__t.html">_printf_t</a> *p, <span class="keywordtype">char</span> ch)</div>
+<div class="line"><a name="l00795"></a><span class="lineno">  795</span>&#160;{</div>
+<div class="line"><a name="l00796"></a><span class="lineno">  796</span>&#160;    <span class="keywordtype">char</span> *str;</div>
+<div class="line"><a name="l00797"></a><span class="lineno">  797</span>&#160;    <span class="keywordflow">if</span> (p-&gt;<a class="code" href="struct__printf__t.html#a5139902cde74159b79e6418a34712bee">len</a> )</div>
+<div class="line"><a name="l00798"></a><span class="lineno">  798</span>&#160;    {</div>
+<div class="line"><a name="l00799"></a><span class="lineno">  799</span>&#160;        <span class="keywordflow">if</span>(ch)</div>
+<div class="line"><a name="l00800"></a><span class="lineno">  800</span>&#160;        {</div>
+<div class="line"><a name="l00801"></a><span class="lineno">  801</span>&#160;            p-&gt;<a class="code" href="struct__printf__t.html#a5139902cde74159b79e6418a34712bee">len</a>--;</div>
+<div class="line"><a name="l00802"></a><span class="lineno">  802</span>&#160;            p-&gt;<a class="code" href="struct__printf__t.html#a38c7a430cec9b063bf6df7a100d3abaa">size</a>++;</div>
+<div class="line"><a name="l00803"></a><span class="lineno">  803</span>&#160;            str = (<span class="keywordtype">char</span> *) p-&gt;<a class="code" href="struct__printf__t.html#ad35884151d0be6667caafad8caacc76f">buffer</a>;</div>
+<div class="line"><a name="l00804"></a><span class="lineno">  804</span>&#160;            *str++ = ch;</div>
+<div class="line"><a name="l00805"></a><span class="lineno">  805</span>&#160;            p-&gt;<a class="code" href="struct__printf__t.html#ad35884151d0be6667caafad8caacc76f">buffer</a> = (<span class="keywordtype">void</span> *) str;</div>
+<div class="line"><a name="l00806"></a><span class="lineno">  806</span>&#160;        }</div>
+<div class="line"><a name="l00807"></a><span class="lineno">  807</span>&#160;    }</div>
+<div class="line"><a name="l00808"></a><span class="lineno">  808</span>&#160;    *((<span class="keywordtype">char</span> *)p-&gt;<a class="code" href="struct__printf__t.html#ad35884151d0be6667caafad8caacc76f">buffer</a>) = 0;</div>
+<div class="line"><a name="l00809"></a><span class="lineno">  809</span>&#160;}   </div>
 <div class="line"><a name="l00810"></a><span class="lineno">  810</span>&#160;</div>
-<div class="line"><a name="l00817"></a><span class="lineno">  817</span>&#160;<a class="code" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> </div>
-<div class="line"><a name="l00818"></a><span class="lineno"><a class="line" href="printf_8h.html#a7a6349b4ca3388a0cb82fc3d1d85a6b5">  818</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="printf_8c.html#a7a6349b4ca3388a0cb82fc3d1d85a6b5">vsnprintf</a>(<span class="keywordtype">char</span>* str, <span class="keywordtype">size_t</span> size, <span class="keyword">const</span> <span class="keywordtype">char</span> *format, va_list va)</div>
-<div class="line"><a name="l00819"></a><span class="lineno">  819</span>&#160;{</div>
-<div class="line"><a name="l00820"></a><span class="lineno">  820</span>&#160;</div>
-<div class="line"><a name="l00821"></a><span class="lineno">  821</span>&#160;    <span class="keywordtype">int</span> len;</div>
-<div class="line"><a name="l00822"></a><span class="lineno">  822</span>&#160;    <span class="keywordtype">char</span> *save = str;</div>
-<div class="line"><a name="l00823"></a><span class="lineno">  823</span>&#160;    <a class="code" href="struct__printf__t.html">printf_t</a> fn;</div>
-<div class="line"><a name="l00824"></a><span class="lineno">  824</span>&#160;</div>
-<div class="line"><a name="l00825"></a><span class="lineno">  825</span>&#160;    *str = 0;</div>
+<div class="line"><a name="l00811"></a><span class="lineno">  811</span>&#160;</div>
+<div class="line"><a name="l00812"></a><span class="lineno">  812</span>&#160;</div>
+<div class="line"><a name="l00819"></a><span class="lineno">  819</span>&#160;<a class="code" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> </div>
+<div class="line"><a name="l00820"></a><span class="lineno"><a class="line" href="printf_8h.html#a7a6349b4ca3388a0cb82fc3d1d85a6b5">  820</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="printf_8c.html#a7a6349b4ca3388a0cb82fc3d1d85a6b5">vsnprintf</a>(<span class="keywordtype">char</span>* str, <span class="keywordtype">size_t</span> size, <span class="keyword">const</span> <span class="keywordtype">char</span> *format, va_list va)</div>
+<div class="line"><a name="l00821"></a><span class="lineno">  821</span>&#160;{</div>
+<div class="line"><a name="l00822"></a><span class="lineno">  822</span>&#160;</div>
+<div class="line"><a name="l00823"></a><span class="lineno">  823</span>&#160;    <span class="keywordtype">int</span> len;</div>
+<div class="line"><a name="l00824"></a><span class="lineno">  824</span>&#160;    <span class="keywordtype">char</span> *save = str;</div>
+<div class="line"><a name="l00825"></a><span class="lineno">  825</span>&#160;    <a class="code" href="struct__printf__t.html">printf_t</a> fn;</div>
 <div class="line"><a name="l00826"></a><span class="lineno">  826</span>&#160;</div>
-<div class="line"><a name="l00827"></a><span class="lineno">  827</span>&#160;    fn.<a class="code" href="struct__printf__t.html#a3302c3396c6ff238e760c625ab51725b">put</a> = <a class="code" href="printf_8c.html#a5a97e16fdf12d434f0d93807f1a66e04">_putc_buffer_fn</a>;</div>
-<div class="line"><a name="l00828"></a><span class="lineno">  828</span>&#160;    fn.<a class="code" href="struct__printf__t.html#a5139902cde74159b79e6418a34712bee">len</a> = size;</div>
-<div class="line"><a name="l00829"></a><span class="lineno">  829</span>&#160;    fn.<a class="code" href="struct__printf__t.html#a38c7a430cec9b063bf6df7a100d3abaa">size</a> = 0;</div>
-<div class="line"><a name="l00830"></a><span class="lineno">  830</span>&#160;    fn.<a class="code" href="struct__printf__t.html#ad35884151d0be6667caafad8caacc76f">buffer</a> = (<span class="keywordtype">void</span> *) str;</div>
-<div class="line"><a name="l00831"></a><span class="lineno">  831</span>&#160;</div>
-<div class="line"><a name="l00832"></a><span class="lineno">  832</span>&#160;    <a class="code" href="printf_8c.html#ae8e3ea7acfe1bf7a917405584b720bb9">_printf_fn</a>(&amp;fn, format, va);</div>
+<div class="line"><a name="l00827"></a><span class="lineno">  827</span>&#160;    *str = 0;</div>
+<div class="line"><a name="l00828"></a><span class="lineno">  828</span>&#160;</div>
+<div class="line"><a name="l00829"></a><span class="lineno">  829</span>&#160;    fn.<a class="code" href="struct__printf__t.html#a3302c3396c6ff238e760c625ab51725b">put</a> = <a class="code" href="printf_8c.html#a5a97e16fdf12d434f0d93807f1a66e04">_putc_buffer_fn</a>;</div>
+<div class="line"><a name="l00830"></a><span class="lineno">  830</span>&#160;    fn.<a class="code" href="struct__printf__t.html#a5139902cde74159b79e6418a34712bee">len</a> = size;</div>
+<div class="line"><a name="l00831"></a><span class="lineno">  831</span>&#160;    fn.<a class="code" href="struct__printf__t.html#a38c7a430cec9b063bf6df7a100d3abaa">size</a> = 0;</div>
+<div class="line"><a name="l00832"></a><span class="lineno">  832</span>&#160;    fn.<a class="code" href="struct__printf__t.html#ad35884151d0be6667caafad8caacc76f">buffer</a> = (<span class="keywordtype">void</span> *) str;</div>
 <div class="line"><a name="l00833"></a><span class="lineno">  833</span>&#160;</div>
-<div class="line"><a name="l00834"></a><span class="lineno">  834</span>&#160;    <span class="comment">// FIXME check size should == fn.size on exit</span></div>
-<div class="line"><a name="l00835"></a><span class="lineno">  835</span>&#160;    len = <a class="code" href="str_8h.html#ae1523394a394cbb226b2f7287e3e3741">strlen</a>(save);</div>
-<div class="line"><a name="l00836"></a><span class="lineno">  836</span>&#160;    <span class="keywordflow">return</span>( len );</div>
-<div class="line"><a name="l00837"></a><span class="lineno">  837</span>&#160;}</div>
-<div class="line"><a name="l00838"></a><span class="lineno">  838</span>&#160;</div>
-<div class="line"><a name="l00845"></a><span class="lineno">  845</span>&#160;<a class="code" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> </div>
-<div class="line"><a name="l00846"></a><span class="lineno"><a class="line" href="printf_8h.html#a278630a290b34d009b2e3ad7bf1fc996">  846</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="printf_8c.html#a278630a290b34d009b2e3ad7bf1fc996">snprintf</a>(<span class="keywordtype">char</span>* str, <span class="keywordtype">size_t</span> size, <span class="keyword">const</span> <span class="keywordtype">char</span> *format, ...)</div>
-<div class="line"><a name="l00847"></a><span class="lineno">  847</span>&#160;{</div>
-<div class="line"><a name="l00848"></a><span class="lineno">  848</span>&#160;    <span class="keywordtype">int</span> len;</div>
-<div class="line"><a name="l00849"></a><span class="lineno">  849</span>&#160;    va_list va;</div>
-<div class="line"><a name="l00850"></a><span class="lineno">  850</span>&#160;</div>
-<div class="line"><a name="l00851"></a><span class="lineno">  851</span>&#160;    va_start(va, format);</div>
-<div class="line"><a name="l00852"></a><span class="lineno">  852</span>&#160;    len= <a class="code" href="printf_8c.html#a7a6349b4ca3388a0cb82fc3d1d85a6b5">vsnprintf</a>(str, size, format, va);</div>
-<div class="line"><a name="l00853"></a><span class="lineno">  853</span>&#160;    va_end(va);</div>
-<div class="line"><a name="l00854"></a><span class="lineno">  854</span>&#160;</div>
-<div class="line"><a name="l00855"></a><span class="lineno">  855</span>&#160;    <span class="keywordflow">return</span> len;</div>
-<div class="line"><a name="l00856"></a><span class="lineno">  856</span>&#160;}</div>
-<div class="line"><a name="l00857"></a><span class="lineno">  857</span>&#160;</div>
+<div class="line"><a name="l00834"></a><span class="lineno">  834</span>&#160;    <a class="code" href="printf_8c.html#ae8e3ea7acfe1bf7a917405584b720bb9">_printf_fn</a>(&amp;fn, format, va);</div>
+<div class="line"><a name="l00835"></a><span class="lineno">  835</span>&#160;</div>
+<div class="line"><a name="l00836"></a><span class="lineno">  836</span>&#160;    <span class="comment">// FIXME check size should == fn.size on exit</span></div>
+<div class="line"><a name="l00837"></a><span class="lineno">  837</span>&#160;    len = <a class="code" href="str_8h.html#ae1523394a394cbb226b2f7287e3e3741">strlen</a>(save);</div>
+<div class="line"><a name="l00838"></a><span class="lineno">  838</span>&#160;    <span class="keywordflow">return</span>( len );</div>
+<div class="line"><a name="l00839"></a><span class="lineno">  839</span>&#160;}</div>
+<div class="line"><a name="l00840"></a><span class="lineno">  840</span>&#160;</div>
+<div class="line"><a name="l00847"></a><span class="lineno">  847</span>&#160;<a class="code" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> </div>
+<div class="line"><a name="l00848"></a><span class="lineno"><a class="line" href="printf_8h.html#a278630a290b34d009b2e3ad7bf1fc996">  848</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="printf_8c.html#a278630a290b34d009b2e3ad7bf1fc996">snprintf</a>(<span class="keywordtype">char</span>* str, <span class="keywordtype">size_t</span> size, <span class="keyword">const</span> <span class="keywordtype">char</span> *format, ...)</div>
+<div class="line"><a name="l00849"></a><span class="lineno">  849</span>&#160;{</div>
+<div class="line"><a name="l00850"></a><span class="lineno">  850</span>&#160;    <span class="keywordtype">int</span> len;</div>
+<div class="line"><a name="l00851"></a><span class="lineno">  851</span>&#160;    va_list va;</div>
+<div class="line"><a name="l00852"></a><span class="lineno">  852</span>&#160;</div>
+<div class="line"><a name="l00853"></a><span class="lineno">  853</span>&#160;    va_start(va, format);</div>
+<div class="line"><a name="l00854"></a><span class="lineno">  854</span>&#160;    len= <a class="code" href="printf_8c.html#a7a6349b4ca3388a0cb82fc3d1d85a6b5">vsnprintf</a>(str, size, format, va);</div>
+<div class="line"><a name="l00855"></a><span class="lineno">  855</span>&#160;    va_end(va);</div>
+<div class="line"><a name="l00856"></a><span class="lineno">  856</span>&#160;</div>
+<div class="line"><a name="l00857"></a><span class="lineno">  857</span>&#160;    <span class="keywordflow">return</span> len;</div>
+<div class="line"><a name="l00858"></a><span class="lineno">  858</span>&#160;}</div>
+<div class="line"><a name="l00859"></a><span class="lineno">  859</span>&#160;</div>
 <div class="ttc" id="earth2wireframe_8c_html_a32f2e37ee053cf2ce8ca28d1f74630e5"><div class="ttname"><a href="earth2wireframe_8c.html#a32f2e37ee053cf2ce8ca28d1f74630e5">int32_t</a></div><div class="ttdeci">int int32_t</div><div class="ttdef"><b>Definition:</b> <a href="earth2wireframe_8c_source.html#l00043">earth2wireframe.c:43</a></div></div>
 <div class="ttc" id="printf_8c_html_a81b5dc7281a404cfc4c8ee6e3da4d8da"><div class="ttname"><a href="printf_8c.html#a81b5dc7281a404cfc4c8ee6e3da4d8da">t_etoa</a></div><div class="ttdeci">MEMSPACE int t_etoa(double x, char *str, int prec, int sign)</div><div class="ttdoc">float to ASCII </div><div class="ttdef"><b>Definition:</b> <a href="printf_8c_source.html#l00382">printf.c:382</a></div></div>
 <div class="ttc" id="printf_8h_html"><div class="ttname"><a href="printf_8h.html">printf.h</a></div><div class="ttdoc">Small printf, and verious conversion code with floating point support. </div></div>
@@ -867,17 +869,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="printf_8c_html_af738e7ee5c3c5f91edf0f5baa51bb151"><div class="ttname"><a href="printf_8c.html#af738e7ee5c3c5f91edf0f5baa51bb151">t_scale10</a></div><div class="ttdeci">static MEMSPACE double t_scale10(double num, int *exp)</div><div class="ttdoc">Scale a number to 1.0 .. 9.99999... </div><div class="ttdef"><b>Definition:</b> <a href="printf_8c_source.html#l00229">printf.c:229</a></div></div>
 <div class="ttc" id="user__config_8h_html"><div class="ttname"><a href="user__config_8h.html">user_config.h</a></div><div class="ttdoc">Master include file for project Includes all project includes and defines here. </div></div>
 <div class="ttc" id="earth2wireframe_8c_html_ad0fe97585b8891f5e4f2b9a6426330a4"><div class="ttname"><a href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div><div class="ttdeci">#define MEMSPACE</div><div class="ttdef"><b>Definition:</b> <a href="earth2wireframe_8c_source.html#l00045">earth2wireframe.c:45</a></div></div>
-<div class="ttc" id="printf_8c_html_a278630a290b34d009b2e3ad7bf1fc996"><div class="ttname"><a href="printf_8c.html#a278630a290b34d009b2e3ad7bf1fc996">snprintf</a></div><div class="ttdeci">MEMSPACE int snprintf(char *str, size_t size, const char *format,...)</div><div class="ttdoc">snprintf function </div><div class="ttdef"><b>Definition:</b> <a href="printf_8c_source.html#l00846">printf.c:846</a></div></div>
+<div class="ttc" id="printf_8c_html_a278630a290b34d009b2e3ad7bf1fc996"><div class="ttname"><a href="printf_8c.html#a278630a290b34d009b2e3ad7bf1fc996">snprintf</a></div><div class="ttdeci">MEMSPACE int snprintf(char *str, size_t size, const char *format,...)</div><div class="ttdoc">snprintf function </div><div class="ttdef"><b>Definition:</b> <a href="printf_8c_source.html#l00848">printf.c:848</a></div></div>
 <div class="ttc" id="printf_8c_html_aa864d1706b7e941e7f29264cc197cbe1"><div class="ttname"><a href="printf_8c.html#aa864d1706b7e941e7f29264cc197cbe1">_puts_pad</a></div><div class="ttdeci">static MEMSPACE void _puts_pad(printf_t *fn, char *s, int width, int count, int left)</div><div class="ttdef"><b>Definition:</b> <a href="printf_8c_source.html#l00483">printf.c:483</a></div></div>
 <div class="ttc" id="struct__printf__t_html_a3302c3396c6ff238e760c625ab51725b"><div class="ttname"><a href="struct__printf__t.html#a3302c3396c6ff238e760c625ab51725b">_printf_t::put</a></div><div class="ttdeci">void(* put)(struct _printf_t *, char)</div><div class="ttdef"><b>Definition:</b> <a href="printf_8h_source.html#l00046">printf.h:46</a></div></div>
-<div class="ttc" id="user__main_8c_html_aa011065eee776eb1bda73597b5d9d5d7"><div class="ttname"><a href="user__main_8c.html#aa011065eee776eb1bda73597b5d9d5d7">count</a></div><div class="ttdeci">LOCAL long count</div><div class="ttdef"><b>Definition:</b> <a href="user__main_8c_source.html#l00078">user_main.c:78</a></div></div>
+<div class="ttc" id="user__main_8c_html_aa011065eee776eb1bda73597b5d9d5d7"><div class="ttname"><a href="user__main_8c.html#aa011065eee776eb1bda73597b5d9d5d7">count</a></div><div class="ttdeci">LOCAL long count</div><div class="ttdef"><b>Definition:</b> <a href="user__main_8c_source.html#l00080">user_main.c:80</a></div></div>
 <div class="ttc" id="send_8c_html_a435d1572bf3f880d55459d9805097f62"><div class="ttname"><a href="send_8c.html#a435d1572bf3f880d55459d9805097f62">uint32_t</a></div><div class="ttdeci">unsigned int uint32_t</div><div class="ttdef"><b>Definition:</b> <a href="send_8c_source.html#l00019">send.c:19</a></div></div>
 <div class="ttc" id="printf_8c_html_a39d7df31096f07eba5176fad5a2337f4"><div class="ttname"><a href="printf_8c.html#a39d7df31096f07eba5176fad5a2337f4">t_ntoa</a></div><div class="ttdeci">MEMSPACE int t_ntoa(unsigned long num, uint8_t *str, int max, int radix, int prec)</div><div class="ttdoc">Convert number to ASCII Like itoa but can support leading &#39;+/-/ &#39; or unsigned and zero padding Note: ...</div><div class="ttdef"><b>Definition:</b> <a href="printf_8c_source.html#l00138">printf.c:138</a></div></div>
 <div class="ttc" id="printf_8c_html_a93b64183a7db6800f8d49160351dbe3a"><div class="ttname"><a href="printf_8c.html#a93b64183a7db6800f8d49160351dbe3a">t_ftoa</a></div><div class="ttdeci">MEMSPACE int t_ftoa(double val, char *str, int intprec, int prec, int sign)</div><div class="ttdoc">float to ASCII </div><div class="ttdef"><b>Definition:</b> <a href="printf_8c_source.html#l00276">printf.c:276</a></div></div>
-<div class="ttc" id="printf_8c_html_a5a97e16fdf12d434f0d93807f1a66e04"><div class="ttname"><a href="printf_8c.html#a5a97e16fdf12d434f0d93807f1a66e04">_putc_buffer_fn</a></div><div class="ttdeci">static void _putc_buffer_fn(struct _printf_t *p, char ch)</div><div class="ttdoc">_putc_buffer_fn low level function writes a character to a buffer </div><div class="ttdef"><b>Definition:</b> <a href="printf_8c_source.html#l00792">printf.c:792</a></div></div>
+<div class="ttc" id="printf_8c_html_a5a97e16fdf12d434f0d93807f1a66e04"><div class="ttname"><a href="printf_8c.html#a5a97e16fdf12d434f0d93807f1a66e04">_putc_buffer_fn</a></div><div class="ttdeci">static void _putc_buffer_fn(struct _printf_t *p, char ch)</div><div class="ttdoc">_putc_buffer_fn low level function writes a character to a buffer </div><div class="ttdef"><b>Definition:</b> <a href="printf_8c_source.html#l00794">printf.c:794</a></div></div>
 <div class="ttc" id="printf_8c_html_ae517abe6b3eca804cfda72648f15be21"><div class="ttname"><a href="printf_8c.html#ae517abe6b3eca804cfda72648f15be21">t_iexp</a></div><div class="ttdeci">static MEMSPACE double t_iexp(double num, int exp)</div><div class="ttdoc">Raise number to exponent power (exponent is integer) </div><div class="ttdef"><b>Definition:</b> <a href="printf_8c_source.html#l00199">printf.c:199</a></div></div>
 <div class="ttc" id="struct__printf__t_html_a38c7a430cec9b063bf6df7a100d3abaa"><div class="ttname"><a href="struct__printf__t.html#a38c7a430cec9b063bf6df7a100d3abaa">_printf_t::size</a></div><div class="ttdeci">int size</div><div class="ttdef"><b>Definition:</b> <a href="printf_8h_source.html#l00049">printf.h:49</a></div></div>
-<div class="ttc" id="printf_8c_html_a7a6349b4ca3388a0cb82fc3d1d85a6b5"><div class="ttname"><a href="printf_8c.html#a7a6349b4ca3388a0cb82fc3d1d85a6b5">vsnprintf</a></div><div class="ttdeci">MEMSPACE int vsnprintf(char *str, size_t size, const char *format, va_list va)</div><div class="ttdoc">vsnprintf function </div><div class="ttdef"><b>Definition:</b> <a href="printf_8c_source.html#l00818">printf.c:818</a></div></div>
+<div class="ttc" id="printf_8c_html_a7a6349b4ca3388a0cb82fc3d1d85a6b5"><div class="ttname"><a href="printf_8c.html#a7a6349b4ca3388a0cb82fc3d1d85a6b5">vsnprintf</a></div><div class="ttdeci">MEMSPACE int vsnprintf(char *str, size_t size, const char *format, va_list va)</div><div class="ttdoc">vsnprintf function </div><div class="ttdef"><b>Definition:</b> <a href="printf_8c_source.html#l00820">printf.c:820</a></div></div>
 <div class="ttc" id="printf_8c_html_ae8e3ea7acfe1bf7a917405584b720bb9"><div class="ttname"><a href="printf_8c.html#ae8e3ea7acfe1bf7a917405584b720bb9">_printf_fn</a></div><div class="ttdeci">MEMSPACE void _printf_fn(printf_t *fn, const char *fmt, va_list va)</div><div class="ttdoc">vsnprintf function </div><div class="ttdef"><b>Definition:</b> <a href="printf_8c_source.html#l00536">printf.c:536</a></div></div>
 <div class="ttc" id="earth2wireframe_8c_html_aef44329758059c91c76d334e8fc09700"><div class="ttname"><a href="earth2wireframe_8c.html#aef44329758059c91c76d334e8fc09700">int8_t</a></div><div class="ttdeci">signed char int8_t</div><div class="ttdef"><b>Definition:</b> <a href="earth2wireframe_8c_source.html#l00040">earth2wireframe.c:40</a></div></div>
 <div class="ttc" id="struct__printf__t_html_ad35884151d0be6667caafad8caacc76f"><div class="ttname"><a href="struct__printf__t.html#ad35884151d0be6667caafad8caacc76f">_printf_t::buffer</a></div><div class="ttdeci">void * buffer</div><div class="ttdef"><b>Definition:</b> <a href="printf_8h_source.html#l00047">printf.h:47</a></div></div>
@@ -891,7 +893,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 20 2015 02:12:46 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat May 21 2016 20:04:36 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

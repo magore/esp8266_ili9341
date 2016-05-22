@@ -209,54 +209,21 @@ void tft_Cmd_Data_TX(uint8_t cmd, uint8_t * data, int bytes)
 /// ====================================
 
 /// @brief Set the ili9341 working window by absolute position and size
+/// Note: Function clips x,y,w,y
 /// @param[in] x: Starting X offset
 /// @param[in] y: Starting Y offset
 /// @param[in] w: Width
 /// @param[in] h: Height
-/// @return  w * h after clipping
-int32_t tft_abs_window(int16_t x, int16_t y, int16_t w, int16_t h)
+/// @return  (w * h) after clipping
+int32_t tft_abs_window(window *win, int16_t x, int16_t y, int16_t w, int16_t h)
 {
     uint8_t tmp[4];
 
-	uint16_t xl,yl;
-
-	int16_t ww,hh;
+	int16_t xl,yl;
 	int32_t bytes;
 
-	// Check for basic out of bounds conditions
-
-	// Width or Height <= 0 ? Bogus range
-	if(w <= 0 || h <= 0)
-		return(0);
-
-	// X >= Width ??
-	if(x >= tft->w)
-		return(0);
-
-	// Y >= Height ??
-	if(y >= tft->h)
-		return(0);
-
-	// Clipping tests for < 0
-	// X < 0 ? Clip
-	if(x < 0)
-		x = 0;
-	// Y < 0 ? Clip
-	if(y < 0)
-		y = 0;
-
-	// Clip check X + W
-	ww = (x + w) - tft->w;
-	if(ww > 0)
-		w -= ww;
-	if(w <= 0)
-		return(0);
-
-	// Clip check Y + H
-	hh = (y + h) - tft->h;
-	if(hh > 0)
-		h -= hh;
-	if(h <= 0)
+	// FIXME do we want to return or use the constrained values ????
+	if(tft_window_clip_args(win,&x,&y,&w,&h) )
 		return(0);
 
 	// Now We know the result will fit
@@ -283,6 +250,7 @@ int32_t tft_abs_window(int16_t x, int16_t y, int16_t w, int16_t h)
 }
 
 /// @brief Set the ili9341 working window by relative position and size
+/// Note: Function clips x,y,w,y
 /// @param[in] win*: window structure
 /// @param[in] x: Starting X offset
 /// @param[in] y: Starting Y offset
@@ -291,13 +259,12 @@ int32_t tft_abs_window(int16_t x, int16_t y, int16_t w, int16_t h)
 /// @return  bytes w * h after clipping, 0 on error
 int32_t tft_rel_window(window *win, int16_t x, int16_t y, int16_t w, int16_t h)
 {
-	return( tft_abs_window(x+win->xoff, y+win->yoff, w,h) );
+	// function tft_abs_window clips
+	return( tft_abs_window(win,x+win->x, y+win->y, w,h) );
 }
 
 ///  ======================================================================
 /// SPI
-
-
 
 
 /// ====================================
@@ -384,7 +351,7 @@ uint32_t tft_readId(void)
 /// @param[in] h: BLIT Height
 /// @return  void
 /// TODO CLIP window - depends on blit array
-void tft_bit_blit(window *win, uint8_t *ptr, int x, int y, int w, int h)
+void tft_bit_blit(window *win, uint8_t *ptr, int16_t x, int16_t y, int16_t w, int16_t h)
 {
 
     uint16_t color;
@@ -395,17 +362,23 @@ void tft_bit_blit(window *win, uint8_t *ptr, int x, int y, int w, int h)
 	int ind;
 	uint8_t buf[2*64];
 
+	// FIXME - do we just want to constrain the values or ignore the request ???
+	if ( tft_window_clip_args(tft,&x,&y,&w,&h) )
+		return;
+
     if(!w || !h)
         return;
 
 #if 1
 // BIT BLIT
 
-// TODO CLIP window 
-// Note: Clipping modifies offsets which in turn modifies blit array offsets
-// We could use tft_drawPixel, and it clips - but that is slow
-
     pixels = tft_rel_window(win, x, y, w, h);
+	if(pixels == 0)
+		return;
+
+// FIXME now we should consider clipping the pixel array
+// Note: Clipping modifies offsets which in turn modifies blit array offsets
+// We could use tft_drawPixel, and it clips - but that the pixel function is very slow
 
 	
 	tft_spi_begin();
@@ -478,6 +451,7 @@ void tft_bit_blit(window *win, uint8_t *ptr, int x, int y, int w, int h)
 /// @param[in] color: Fill color
 void tft_fillWin(window *win, uint16_t color)
 {
+    // tft_fillRectWH() clips
     tft_fillRectWH(win, 0,0, win->w, win->h, color);
 }
 
@@ -498,7 +472,10 @@ void tft_fillRectWH(window *win, int16_t x, int16_t y, int16_t w, int16_t h, uin
     int ind;
     uint8_t buf[2*64];
 
+	// tft_rel_window clips
 	pixels = tft_rel_window(win, x,y,w,h);
+	if(!pixels)
+		return;
 
 	wdcount = 0;
 
@@ -552,7 +529,7 @@ void tft_fillRectWH(window *win, int16_t x, int16_t y, int16_t w, int16_t h, uin
 void tft_fillRectXY(window *win, int16_t x, int16_t y, int16_t xl, int16_t yl, uint16_t color)
 {
     uint32_t repeat;
-	uint16_t w,h;
+	int16_t w,h;
 
     if(x > xl)
         SWAP(x,xl);
@@ -561,6 +538,7 @@ void tft_fillRectXY(window *win, int16_t x, int16_t y, int16_t xl, int16_t yl, u
 
 	w = xl - x + 1;
 	h = yl - y + 1;
+	// tft_fillRectWH() clips
 	tft_fillRectWH(win, x, y, w, h, color);
 }
 
@@ -578,7 +556,6 @@ void tft_fillRectXY(window *win, int16_t x, int16_t y, int16_t xl, int16_t yl, u
 void tft_drawPixel(window *win, int16_t x, int16_t y, int16_t color)
 {
     uint8_t data[2];
-	uint16_t xx, yy;
 
 // Clip pixel
     if(x < 0 || x >= win->w)
@@ -586,7 +563,9 @@ void tft_drawPixel(window *win, int16_t x, int16_t y, int16_t color)
     if(y < 0 || y >= win->h)
         return;
 
-    tft_rel_window(win, x,y,1,1);
+	// tft_rel_window() clips
+    if(! tft_rel_window(win, x,y,1,1))
+		return;
 
     data[0] = color >>8;
     data[1] = color;
@@ -602,7 +581,6 @@ void tft_drawPixel(window *win, int16_t x, int16_t y, int16_t color)
 /// @param[in] h: Height
 /// @param[in] *color: pixel array in 565 format
 /// @return  void
-/// TODO CLIP window - depends on blit array also
 void tft_writeRect(window *win, int16_t x, int16_t y, int16_t w, int16_t h, uint16_t *color)
 {
 
@@ -616,11 +594,14 @@ void tft_writeRect(window *win, int16_t x, int16_t y, int16_t w, int16_t h, uint
     if(!w || !h)
         return;
 
-// TODO CLIP window - depends on blit array offset also
+// TODO CLIP window data - depends on blit array offset also
 // We could use tft_drawPixel, and it clips - but that is slow
 
 #if 1
+    // tft_rel_window() clips limits
     pixels = tft_rel_window(win, x, y, w, h);
+	if(!pixels)
+		return;
 
 	tft_spi_begin();
 
@@ -700,11 +681,12 @@ void tft_readRect(window *win, int16_t x, int16_t y, int16_t w, int16_t h, uint1
 	// Command and Pixel buffer
 	uint8_t data[64*3];
 
-	// set window
+	// tft_rel_window() clips
     pixels = tft_rel_window(win, x,y,w,h);
+	if(!pixels)
+		return;
 
 	cmd = 0x2e;	// Memory Read
-
 
 	wdcount = 0;
 	while(pixels > 0)
@@ -749,26 +731,49 @@ void tft_readRect(window *win, int16_t x, int16_t y, int16_t w, int16_t h, uint1
 }
 
 /// @brief Scroll window up by dir lines
+/// We start at the top of the window and move down
 /// @param[in] win*: window structure
 /// @param[in] dir: direction and count
 /// TODO +/- scroll direction
 void tft_Vscroll(window *win, int dir)
 {
 	int i;
+	int yfrom,yto;
 	uint8_t buff[TFT_W*3];
-	if(dir >= win->h)
-		dir = win->h-1;
+
+	// FIXME unsupported
+	// + == normal scroll - start at the top move down
+	// 0 == nothing to do
+	// - == reverse scroll - start at the bottom and move up
 	if(dir <= 0)
 		return;
 
-	for(i=0;i<win->h-dir;++i)
+	if(dir >= win->h)
 	{
-		tft_readRect(win, 0, i+dir, win->w, 1, (uint16_t *) buff);
-		tft_writeRect(win, 0, i, win->w, 1, (uint16_t *)buff);
-
+		// clear area that is vacated
+		tft_fillRectWH(win, 0, 0, win->w, win->h, win->bg);
+		return;
 	}
-	tft_fillRectWH(win, 0, win->h-1-dir, win->w, dir, win->bg);
-	win->y -= dir;
+	for(i=0; i < win->h;++i)
+	{
+		// source of scroll
+		yfrom= i+dir;
+		// target of scroll
+		yto = i;
+
+		if(yfrom >= (win->h-1))
+		{
+			// Clear to of window
+			tft_fillRectWH(win, 0, yto, win->w, 1, win->bg);
+		}
+		else
+		{
+			// TOP
+			tft_readRect(win, 0, yfrom, win->w, 1, (uint16_t *) buff);
+			// DOWN
+			tft_writeRect(win, 0, yto, win->w, 1, (uint16_t *)buff);
+		}
+	}
 }
 
 /// @brief Read one pixel and return color in 1bit 565 RGB format
@@ -785,7 +790,9 @@ uint16_t tft_readPixel(window *win, int16_t x, int16_t y)
     uint16_t color;
 	// set window
 
-    tft_rel_window(win, x,y,1,1);
+	// clips
+    if(tft_rel_window(win, x,y,1,1))
+		return(0);
 
 	tft_spi_begin();
 	
@@ -818,30 +825,30 @@ void tft_setRotation(uint8_t m)
         case 0:
             data 		|= 	MADCTL_MX;
             tft->w 	= 	TFT_W;
-            tft->xoff = 	TFT_XOFF;
+            tft->x = 	TFT_XOFF;
             tft->h 	= 	TFT_H;
-            tft->yoff = 	TFT_YOFF;
+            tft->y = 	TFT_YOFF;
             break;
         case 1:
             data 		|= 	MADCTL_MV;
             tft->w 	= 	TFT_H;
-            tft->xoff	= 	TFT_YOFF;
+            tft->x	= 	TFT_YOFF;
             tft->h 	= 	TFT_W;
-            tft->yoff	= 	TFT_XOFF;
+            tft->y	= 	TFT_XOFF;
             break;
         case 2:
             data 		|= 	MADCTL_MY;
             tft->w 	= 	TFT_W;
-            tft->xoff	= 	TFT_XOFF;
+            tft->x	= 	TFT_XOFF;
             tft->h 	= 	TFT_H;
-            tft->yoff = 	TFT_YOFF;
+            tft->y = 	TFT_YOFF;
             break;
         case 3:
             data = MADCTL_MX | MADCTL_MY | MADCTL_MV;
             tft->w 	= 	TFT_H;
-            tft->xoff = 	TFT_YOFF;
+            tft->x = 	TFT_YOFF;
             tft->h 	= 	TFT_W;
-            tft->yoff = 	TFT_XOFF;
+            tft->y = 	TFT_XOFF;
             break;
     }
 
@@ -879,29 +886,136 @@ void tft_invertDisplay(int flag)
 	tft_spi_end();
 }
 
+/// @brief Clip window structure to TFT limits
+/// @param[in] win*: window structure
+/// @return 0 - or - count of clipped values
+/// FIXME check negitive offsets, etc
+MEMSPACE
+int tft_window_clip(window *win)
+{
+	int clipped = 0;
 
+	// Clip X
+	if(win->x < tft->x)
+	{
+		win->x = tft->x;
+		clipped++;
+	}
+	if(win->x > (tft->x + tft->w - 1))
+	{
+		win->x = (tft->x + tft->w - 1);
+		clipped++;
+	}
+
+	// CLIP Y
+	if(win->y < tft->y)
+	{
+		win->y = tft->y;
+		clipped++;
+	}
+	if(win->y > (tft->y + tft->h - 1))
+	{
+		win->y = (tft->y + tft->h - 1);
+		clipped++;
+	}
+
+
+	// CLIP W
+	if( (win->x + win->w - 1 ) > (tft->x + tft->w - 1) )
+	{
+		win->w = (tft->x + tft->w ) - win->x;
+		clipped++;
+	}
+
+	// CLIP H
+	if( (win->y + win->h - 1 ) > (tft->y + tft->h - 1) )
+	{
+		win->h = (tft->y + tft->h ) - win->y;
+		clipped++;
+	}
+	return(clipped);
+}
+
+/// @brief clip arguments to window limits
+/// Arguments position x,y width w and height h to be clipped
+/// @param[in] *win: window structure we will use to clip arguments to.
+/// @param[in] *x: X argument offset
+/// @param[in] *y: Y argument offset
+/// @param[in] *w: W argument width
+/// @param[in] *h: H argument height
+/// @return  void
+/// FIXME check negitive offsets, etc
+MEMSPACE
+int tft_window_clip_args(window *win, int16_t *x, int16_t *y, int16_t *w, int16_t *h)
+{
+	int clipped = 0;
+
+	// Clip X
+	if(*x < win->x)
+	{
+		*x = win->x;
+		clipped++;
+	}
+	if(*x > (win->x + win->w - 1))
+	{
+		*x = (win->x + win->w - 1);
+		clipped++;
+	}
+
+	// CLIP Y
+	if(*y < win->y)
+	{
+		*y = win->y;
+		clipped++;
+	}
+	if(*y > (win->y + win->h - 1))
+	{
+		*y = (win->y + win->h - 1);
+		clipped++;
+	}
+
+	// CLIP W
+	if( (*x + *w - 1 ) > (win->x + win->w - 1) )
+	{
+		*w = (win->x + win->w ) - *x;
+		clipped++;
+	}
+
+	// CLIP H
+	if( (*y + *h - 1 ) > (win->y + win->h - 1) )
+	{
+		*h = (win->y + win->h ) - *y;
+		clipped++;
+	}
+	return(clipped);
+}
 
 /// @brief Initialize window structure we default values
 /// FIXME check x+w, y+h absolute limits against TFT limuts
 /// @param[in] win*: window structure
-/// @param[in] xoff: X offset to window start - absolute
-/// @param[in] yoff: Y offset to window start - absolute
+/// @param[in] x: X offset to window start - absolute
+/// @param[in] y: Y offset to window start - absolute
 /// @param[in] w: Window width
 /// @param[in] h: Window Height
 /// @return  void
 MEMSPACE
-void tft_window_init(window *win, uint16_t xoff, uint16_t yoff, uint16_t w, uint16_t h)
+void tft_window_init(window *win, int16_t x, int16_t y, int16_t w, int16_t h)
 {
-    win->x         = 0;                            // current X
-    win->y         = 0;                            // current Y
-    win->font      = 0;                            // current font size
-    win->flags     = WRAP_H;
-    win->w 		   = w;
-    win->xoff      = xoff;
-    win->h 		   = h;
-    win->yoff      = yoff;
-    win->rotation  = 0;
-    win->tabstop   = w/4;
+	// Do Clipping checks for bogus values
+
+
+	(void) tft_window_clip_args(tft,&x,&y,&w,&h);
+
+    win->xpos		= 0;                            // current X position
+    win->ypos		= 0;                            // current Y position
+    win->font		= 0;                            // current font size
+    win->flags     	= WRAP_H;
+    win->w 		   	= w;
+    win->x		   	= x;
+    win->h 		   	= h;
+    win->y      	= y;
+    win->rotation  	= 0;
+    win->tabstop   	= w/4;
     win->fg = 0xFFFF;
     win->bg = 0;
 }
@@ -921,7 +1035,7 @@ void tft_setTextColor(window *win,uint16_t fg, uint16_t bg)
     win->bg = bg;
 }
 
-/// @brief  Set current window offset
+/// @brief  Set current window text pointer
 /// (per current rotation)
 /// @param[in] win*: window structure
 /// @param[in] x: x offset
@@ -930,8 +1044,8 @@ void tft_setTextColor(window *win,uint16_t fg, uint16_t bg)
 MEMSPACE
 void tft_setpos(window *win, int16_t x, int16_t y)
 {
-    win->x = x;
-    win->y = y;
+    win->xpos = x;
+    win->ypos = y;
 }
 
 /// @brief  Set current font size
@@ -989,6 +1103,7 @@ void tft_font_var(window *win)
 void tft_drawFastVLine(window *win,int16_t x, int16_t y,
 int16_t h, uint16_t color)
 {
+	// function clips
 	tft_fillRectWH(win, x,y ,1, h, color);
 }
 
@@ -1003,6 +1118,7 @@ int16_t h, uint16_t color)
 void tft_drawFastHLine(window *win, int16_t x, int16_t y,
 int16_t w, uint16_t color)
 {
+	// function clips
 	tft_fillRectWH(win, x,y ,w, 1, color);
 }
 
@@ -1082,6 +1198,7 @@ void tft_drawLine(window *win, int16_t x0, int16_t y0, int16_t x1, int16_t y1, u
             // Require correction
             if ((startX != x0) && (startY != y0)) // draw line and not draw point
             {
+
                 tft_fillRectXY(win, startX, startY, x0 - sx, y0 - sy, color);
                 startX = x0;
                 startY = y0;
@@ -1105,6 +1222,7 @@ void tft_drawLine(window *win, int16_t x0, int16_t y0, int16_t x1, int16_t y1, u
         }
     }
 #ifdef USE_OPTIMIZATION_DRAWLINE
+	// function clips
     tft_fillRectXY(win, startX, startY, x0, y0, color);
 #endif
 }
@@ -1125,12 +1243,13 @@ void tft_cleareol(window *win)
 	ret = font_attr(win,' ', &f);
 	if(ret < 0)
 		return;
-	rem = (win->w - 1 - win->x);
+	rem = (win->w - 1 - win->xpos);
 	if(rem > 0)
 	{
-		tft_fillRectWH(win, win->x, win->y, rem, f.Height, win->bg);
+		// function clips
+		tft_fillRectWH(win, win->xpos, win->ypos, rem, f.Height, win->bg);
 	}
-	win->x = win->w;	// one past end
+	win->xpos = win->w;	// one past end
 }
 
 /// @brief  Clear display text line 
@@ -1144,12 +1263,13 @@ void tft_clearline(window *win)
 	ret = font_attr(win,' ', &f);
 	if(ret < 0)
 		return;
-	rem = (win->w - 1 - win->x);
+	rem = (win->w - 1 - win->xpos);
 	if(rem > 0)
 	{
-		tft_fillRectWH(win, 0, win->y, rem, f.Height, win->bg);
+		// function clips
+		tft_fillRectWH(win, 0, win->ypos, rem, f.Height, win->bg);
 	}
-	win->x = 0;
+	win->xpos = 0;
 }
 
 
@@ -1194,34 +1314,34 @@ void tft_putch(window *win, int c)
 	if(c == '\n')
 	{
 		tft_cleareol(win);
-		win->x = 0;
-		win->y += f.Height;
+		win->xpos = 0;
+		win->ypos += f.Height;
 	}
 	if(c == '\f')
 	{
 		tft_fillWin(win,win->bg);
-		win->x = 0;
-		win->y = 0;
+		win->xpos = 0;
+		win->ypos = 0;
 	}
 	if(c == '\t')
 	{
-		count = win->tabstop - (win->x % win->tabstop);// skip size to next tabstop
+		count = win->tabstop - (win->xpos % win->tabstop);// skip size to next tabstop
 		// Will we overflow ?
-		if(win->x + count > win->w)
+		if(win->xpos + count > win->w)
 		{
-			count = (win->x + count) - win->w -1;
+			count = (win->xpos + count) - win->w -1;
 			tft_cleareol(win);
 			if(win->flags & WRAP_H)
 			{
-				tft_fillRectWH(win, 0, win->y, count, f.Height, win->bg);
-				win->x = count;
-				win->y += f.Height;
+				tft_fillRectWH(win, 0, win->ypos, count, f.Height, win->bg);
+				win->xpos = count;
+				win->ypos += f.Height;
 			}
 		}
 		else
 		{
-			tft_fillRectWH(win, win->x, win->y, count, f.Height, win->bg);
-			win->x += count;
+			tft_fillRectWH(win, win->xpos, win->ypos, count, f.Height, win->bg);
+			win->xpos += count;
 		}
 	}
 }

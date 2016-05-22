@@ -41,6 +41,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 int network_init = 0;
 uint8_t ip_msg[64];
+int ip_msg_state;
 
 static struct station_config StationConfig;
 static struct ip_info info;
@@ -58,6 +59,8 @@ MEMSPACE
 void wifi_event_cb( System_Event_t *event_p)
 {
     printf("WiFi Event: %02x\n", event_p->event);
+	ip_msg_state = event_p->event;
+
     switch( event_p->event) 
 	{
         case EVENT_STAMODE_CONNECTED :

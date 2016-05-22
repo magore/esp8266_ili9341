@@ -3,6 +3,7 @@ var searchData=
   ['s',['S',['../user__main_8c.html#aa6a210803a601a3b71e9d6d66f1f387d',1,'user_main.c']]],
   ['sar',['sar',['../structex__regs.html#a8fd11e49ee65ba875a04ab28789cf702',1,'ex_regs']]],
   ['sclust',['sclust',['../structFIL.html#ad308b74c8d6975c6a9c30d90b4124c40',1,'FIL::sclust()'],['../structDIR.html#a9212af5877b94d790dd3bab3aa320994',1,'DIR::sclust()']]],
+  ['seconds',['seconds',['../user__main_8c.html#ae112d79896ed83ac05e155da60e85523',1,'user_main.c']]],
   ['sect',['sect',['../structDIR.html#ad01fcc812ed0dad11a593574336adc9e',1,'DIR']]],
   ['send',['send',['../structrwbuf__t.html#a279490994b6576ad00900254a8c07a89',1,'rwbuf_t']]],
   ['setup_5fdone',['setup_done',['../user__task_8c.html#ac27ff692005ec468df1da71ae8840396',1,'user_task.c']]],

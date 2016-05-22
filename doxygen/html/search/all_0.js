@@ -88,10 +88,9 @@ var searchData=
   ['_5fuse_5fwrite',['_USE_WRITE',['../diskio_8h.html#a1dd0d2b46dce637878416d489d2ddde2',1,'diskio.h']]],
   ['_5fvolume_5fstrs',['_VOLUME_STRS',['../ffconf_8h.html#a75c97afb8b06935364e42e3ec3fdc6c4',1,'ffconf.h']]],
   ['_5fvolumes',['_VOLUMES',['../ffconf_8h.html#a366da9a40c8ceb3103a6b72ca02b9969',1,'ffconf.h']]],
-  ['_5fwindemo',['_windemo',['../user__main_8c.html#a33030ea494702ca7b7cb258c005e722e',1,'user_main.c']]],
+  ['_5fwincube',['_wincube',['../user__main_8c.html#a866c81e27316302aaaedac093dd7d5ed',1,'user_main.c']]],
+  ['_5fwinmsg',['_winmsg',['../user__main_8c.html#a40f0738f31dc022f067c98e9062f016b',1,'user_main.c']]],
   ['_5fwinstats',['_winstats',['../user__main_8c.html#aa4a88b28ea091b169527b17432896747',1,'user_main.c']]],
-  ['_5fwintest',['_wintest',['../user__main_8c.html#a3ba4775a18c03832848b4974b245be44',1,'user_main.c']]],
-  ['_5fwintestdemo',['_wintestdemo',['../user__main_8c.html#a48d7b4a931860c6722c8629213000610',1,'user_main.c']]],
   ['_5fword_5faccess',['_WORD_ACCESS',['../ffconf_8h.html#a943a47fa5ed8073725b45e49e5634dea',1,'ffconf.h']]],
   ['_5fwrite_5fbyte_5ffn',['_write_byte_fn',['../web_8c.html#a620628fcf72ac4e4d0228ff38d31bbd1',1,'web.c']]]
 ];

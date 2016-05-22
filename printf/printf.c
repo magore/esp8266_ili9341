@@ -753,6 +753,8 @@ void _printf_fn(printf_t *fn, const char *fmt, va_list va)
 			if(spec == 's')
 			{
 				ptr = va_arg(va, char *);
+				if(!ptr)
+					ptr = "(NULL)";
 			}
 		case 'c':
 			// FIXME
