@@ -36,7 +36,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "web.h"
 
-extern window *winmsg;
+extern window *winmsg,*wintop;
 
 ///@brief socket buffers for this connection
 rwbuf_t *web_connections[MAX_CONNECTIONS];
@@ -2067,34 +2067,105 @@ static void process_requests(rwbuf_t *p)
 		}
 		else if(strstr(name,"led.cgi"))
 		{			
+			name = hi->filename = "dout.htm";
 			if( (param = http_value(hi,"led0")) )
 			{
 				if(!strcmp(param,"on")) led_on(0);
 				else			led_off(0);
 			}
 			else led_off(0);
-			name = hi->filename = "dout.htm";
 		}
 		else if(strstr(name,"msg.cgi"))
 		{			
+			name = hi->filename = "msg.cgi";
+			int away = 0;
+
 			// send output to display
 #if WEB_DEBUG & 8
 			printf("found msg.cgi\n");
 #endif
-			if( (param = http_value(hi,"message")) )
+
+#ifdef DEBUG_STATS
+			tft_fillWin(winmsg, winmsg->bg);
+			tft_set_textpos(winmsg, 0,0);
+			tft_set_font(winmsg,1);
+#else
+			tft_fillWin(wintop, wintop->bg);
+			tft_set_textpos(wintop, 0,0);
+			tft_set_font(wintop,2);
+
+			tft_fillWin(winmsg, winmsg->bg);
+			tft_set_textpos(winmsg, 0,0);
+			tft_set_font(winmsg,2);
+#endif
+
+#if WEB_DEBUG & 8
+			printf("msg.cgi: winmsg(%d,%d)\n",winmsg->h,winmsg->w);
+#endif
+
+			// TOP
+			if( (param = http_value(hi,"title")) && strlen(param))
 			{
-				time_t secs;
-				char *ptr;
-				int len;
 #if WEB_DEBUG & 8
 				printf("msg.cgi: %s\n",param);
 #endif
-				tft_setpos(winmsg, 0,0);
-				tft_set_font(winmsg,2);
-				tft_fillWin(winmsg, winmsg->bg);
-				tft_printf(winmsg, param);
+#ifdef DEBUG_STATS
+				tft_printf(winmsg, "%s\n", param);
+#else
+				tft_set_textpos(wintop,1,0);
+				tft_printf(wintop, "%s", param);
+#endif
 			}
-			name = hi->filename = "msg.cgi";
+			if( (param = http_value(hi,"contact")) && strlen(param))
+			{
+#if WEB_DEBUG & 8
+				printf("msg.cgi: %s\n",param);
+#endif
+#ifdef DEBUG_STATS
+				tft_printf(winmsg, "%s\n", param);
+#else
+				tft_set_textpos(wintop,1,1);
+				tft_printf(wintop, "%s", param);
+#endif
+			}
+			// MESSAGE
+			if( (param = http_value(hi,"location")) && strlen(param))
+			{
+#if WEB_DEBUG & 8
+				printf("msg.cgi: %s\n",param);
+#endif
+				tft_printf(winmsg, "-> %s\n", param);
+				++away;
+			}
+			else if( (param = http_value(hi,"location_other")) && strlen(param) )
+			{
+#if WEB_DEBUG & 8
+				printf("msg.cgi: %s\n",param);
+#endif
+				tft_printf(winmsg, "-> %s\n", param);
+				++away;
+			}
+
+			if( (param = http_value(hi,"return")) && strlen(param))
+			{
+#if WEB_DEBUG & 8
+				printf("msg.cgi: %s\n",param);
+#endif
+				tft_printf(winmsg, "Return by\n");
+				tft_printf(winmsg, "-> %s", param);
+				++away;
+			}
+			else if( (param = http_value(hi,"return_other")) && strlen(param) )
+			{
+#if WEB_DEBUG & 8
+				printf("msg.cgi: %s\n",param);
+#endif
+				tft_printf(winmsg, "Return by\n");
+				tft_printf(winmsg, "-> %s", param);
+				++away;
+			}
+			if(!away)
+				tft_printf(winmsg, "-> Is Here");
 		}
 	}
 	// END OF CGI

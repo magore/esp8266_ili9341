@@ -27,11 +27,12 @@
    * BDF fonts and a BDF font to C conversion code and optimized display code
    * WEB server using SD CARD with CGI processing - files and CGI results can be ANY SIZE!
    * WEB server can update TFT display
+      * Simple door sign status update using web page - see files/msg.cgi and web/web.c for code
    * Network server client example for display updates
    * Uart network server client for serial uart to network bridge.
    * Generic queue handling code
    * Uart driver.
-   * POSIX wrappers for FatFS support by ChaN
+   * POSIX wrappers for FatFS support by ChaN - provides unix file I/O operations
    * POSIX time functions and RTC set with NTP
    * Timers used by rtc and time functions
    * HSPI code that can handle multiple chip select and clock frequencies
@@ -134,7 +135,7 @@ ___
              * Coastline data at various resolutions
 
    * fatfs
-     * SD CARD support with FatFS and POSIX wrappers 
+     * SD CARD support with FatFS and POSIX wrappers - provides unix file I/O operations
         * modified to use hardware abstraction
      * Files originally from FatFs (C)ChaN, 2013
        * disk.c
@@ -154,7 +155,7 @@ ___
        * fatfs_utils.h
        * mmc_hal.c
        * mmc_hal.h
-       * posix.c
+       * posix.c - provides unix file I/O operation
        * posix.h
 
    * fonts 
@@ -250,7 +251,13 @@ ___
             * @see rewrite_cgi_token() in web.c
 		* CGI results can be ANY SIZE
 		* Uses yield function to continue background tasks while serving requests
-
+      * I created a door sign status display that can be updated via a web page web page running on the esp8266
+        * Copy the file files/msg.cgi to the root folder of a fat32 SD card and modify to suit your needs.
+        * Use: open a web browser to the web server runing on the esp8266
+          * For example: http://192.168.200.116/msg.cgi
+          * You can update status and return time information on the TFT display by entering information on the page.
+        * See the Video
+   
    * wire
      * wire.c
      * wire.h
@@ -271,6 +278,12 @@ ___
      * user_task.h
         * Main user_init and task replacement with yield support
 
+
+@par Demo Video
+   * See web.c for details.
+      * I created a door status display that can be updated via a web page web page 
+      * I did a status update while recording the video
+    * Result: ![](https://github.com/magore/esp8266_ili9341/blob/master/video.jpg)
 
 @par Demo Images
    * Running demo and sending a message to the network window

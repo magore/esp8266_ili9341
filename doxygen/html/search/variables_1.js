@@ -18,8 +18,6 @@ var searchData=
   ['accdirs',['AccDirs',['../disk_8c.html#a4fb5ebb5ee82d1ddf3fdcf88329dd5d3',1,'AccDirs():&#160;disk.c'],['../disk_8h.html#a4fb5ebb5ee82d1ddf3fdcf88329dd5d3',1,'AccDirs():&#160;disk.c']]],
   ['accfiles',['AccFiles',['../disk_8c.html#a8886578bc67fc71837328a1ee237d10c',1,'AccFiles():&#160;disk.c'],['../disk_8h.html#a8886578bc67fc71837328a1ee237d10c',1,'AccFiles():&#160;disk.c']]],
   ['accsize',['AccSize',['../disk_8c.html#a1e9c5ddcfdf89c9a42c96ee1d2196876',1,'AccSize():&#160;disk.c'],['../disk_8h.html#a1e9c5ddcfdf89c9a42c96ee1d2196876',1,'AccSize():&#160;disk.c']]],
-  ['adc_5fcount',['adc_count',['../user__main_8c.html#a0647f376c74acc605b4fbced69aad89a',1,'user_main.c']]],
-  ['adc_5fsum',['adc_sum',['../user__main_8c.html#a6bbb7b7905a729da46ed55c7dc579318',1,'user_main.c']]],
   ['all',['all',['../unionuint32__t__bytes.html#a83b0c87830b60d185365dbadf8efd4a0',1,'uint32_t_bytes']]],
   ['allfonts',['allfonts',['../font_8c.html#ad30601ef15ca84a341c6a7a1dc1d61b1',1,'allfonts():&#160;fonts.h'],['../display_2fonts_8h.html#afcfb882c9b6e07e2b01a9ea0aaae80e4',1,'allfonts():&#160;fonts.h'],['../fonts_2fonts_8h.html#afcfb882c9b6e07e2b01a9ea0aaae80e4',1,'allfonts():&#160;fonts.h']]],
   ['arg_5fptr',['arg_ptr',['../structhinfo__t.html#a0d27c1b7d2730373f93342961b9cb18d',1,'hinfo_t']]],

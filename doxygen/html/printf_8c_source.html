@@ -309,7 +309,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;{</div>
 <div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;    <span class="keywordtype">char</span> *save = str;</div>
 <div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;    <span class="keywordtype">double</span> intpart, fraction, round, scale;</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;    <span class="keywordtype">int</span> digit,digits,exp10,<a class="code" href="user__main_8c.html#aa011065eee776eb1bda73597b5d9d5d7">count</a>;</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;    <span class="keywordtype">int</span> digit,digits,exp10,count;</div>
 <div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;    <span class="keywordtype">long</span> num;</div>
 <div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;</div>
 <div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;<span class="comment">//printf(&quot;val:%f, intprec:%d, prec:%d, sign:%d\n&quot;, val, intprec, prec, sign);</span></div>
@@ -389,14 +389,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;<span class="preprocessor"></span>    fraction = modf(val, &amp;intpart);</div>
 <div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;    num = intpart;</div>
 <div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;    count = <a class="code" href="printf_8c.html#a2f4b30f6ffa8d7b04ede343a1bfdcbf5">t_itoa</a>(num, str, 64, intprec, 0);</div>
-<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;    str += <a class="code" href="user__main_8c.html#aa011065eee776eb1bda73597b5d9d5d7">count</a>;</div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;    str += count;</div>
 <div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;    *str++ = <span class="charliteral">&#39;.&#39;</span>;</div>
 <div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;    fraction *= <a class="code" href="printf_8c.html#ae517abe6b3eca804cfda72648f15be21">t_iexp</a>(10.0, prec);</div>
 <div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;    fraction += .5;</div>
 <div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;    num = fraction;</div>
 <div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;<span class="comment">// FIXME - do not use ITOA</span></div>
 <div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;    count = <a class="code" href="printf_8c.html#a2f4b30f6ffa8d7b04ede343a1bfdcbf5">t_itoa</a>(fraction, str, 64, prec, 0);</div>
-<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;    str += <a class="code" href="user__main_8c.html#aa011065eee776eb1bda73597b5d9d5d7">count</a>;</div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;    str += count;</div>
 <div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;    *str = 0;</div>
@@ -506,7 +506,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160;<span class="comment">// left string is left aligned</span></div>
 <div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160;<span class="comment">//_puts(buff, width, count, left);</span></div>
 <div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;<a class="code" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
-<div class="line"><a name="l00483"></a><span class="lineno"><a class="line" href="printf_8c.html#aa864d1706b7e941e7f29264cc197cbe1">  483</a></span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="printf_8c.html#aa864d1706b7e941e7f29264cc197cbe1">_puts_pad</a>(<a class="code" href="struct__printf__t.html">printf_t</a> *fn, <span class="keywordtype">char</span> *s, <span class="keywordtype">int</span> width, <span class="keywordtype">int</span> <a class="code" href="user__main_8c.html#aa011065eee776eb1bda73597b5d9d5d7">count</a>, <span class="keywordtype">int</span> left)</div>
+<div class="line"><a name="l00483"></a><span class="lineno"><a class="line" href="printf_8c.html#aa864d1706b7e941e7f29264cc197cbe1">  483</a></span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="printf_8c.html#aa864d1706b7e941e7f29264cc197cbe1">_puts_pad</a>(<a class="code" href="struct__printf__t.html">printf_t</a> *fn, <span class="keywordtype">char</span> *s, <span class="keywordtype">int</span> width, <span class="keywordtype">int</span> count, <span class="keywordtype">int</span> left)</div>
 <div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;{</div>
 <div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;    <span class="keywordtype">int</span> size = 0;</div>
 <div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;    <span class="keywordtype">int</span> pad = 0;</div>
@@ -515,7 +515,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;    <span class="comment">//        if width &lt;= count we do not pad</span></div>
 <div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;    <span class="keywordflow">if</span>(width &gt; count)</div>
 <div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160;    {</div>
-<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;        pad = width - <a class="code" href="user__main_8c.html#aa011065eee776eb1bda73597b5d9d5d7">count</a>;</div>
+<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;        pad = width - count;</div>
 <div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;    }</div>
 <div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;</div>
 <div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;<span class="comment">//printf(&quot;_puts_pad:(%s) width:%d, count:%d, left:%d, pad:%d, len:%d\n&quot;, s, width, count, left, pad, len);</span></div>
@@ -559,7 +559,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160;    <span class="keywordtype">char</span> ch;</div>
 <div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;    <span class="keywordtype">int</span> prec, width, intprec, sign, left, fill;</div>
 <div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;    <span class="keywordtype">int</span> precf, widthf;</div>
-<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="user__main_8c.html#aa011065eee776eb1bda73597b5d9d5d7">count</a>;</div>
+<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;    <span class="keywordtype">int</span> count;</div>
 <div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;    <span class="keywordtype">int</span> spec;</div>
 <div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;    <span class="keywordtype">int</span> size;</div>
 <div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;    <span class="keywordtype">long</span> num;</div>
@@ -872,7 +872,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="printf_8c_html_a278630a290b34d009b2e3ad7bf1fc996"><div class="ttname"><a href="printf_8c.html#a278630a290b34d009b2e3ad7bf1fc996">snprintf</a></div><div class="ttdeci">MEMSPACE int snprintf(char *str, size_t size, const char *format,...)</div><div class="ttdoc">snprintf function </div><div class="ttdef"><b>Definition:</b> <a href="printf_8c_source.html#l00848">printf.c:848</a></div></div>
 <div class="ttc" id="printf_8c_html_aa864d1706b7e941e7f29264cc197cbe1"><div class="ttname"><a href="printf_8c.html#aa864d1706b7e941e7f29264cc197cbe1">_puts_pad</a></div><div class="ttdeci">static MEMSPACE void _puts_pad(printf_t *fn, char *s, int width, int count, int left)</div><div class="ttdef"><b>Definition:</b> <a href="printf_8c_source.html#l00483">printf.c:483</a></div></div>
 <div class="ttc" id="struct__printf__t_html_a3302c3396c6ff238e760c625ab51725b"><div class="ttname"><a href="struct__printf__t.html#a3302c3396c6ff238e760c625ab51725b">_printf_t::put</a></div><div class="ttdeci">void(* put)(struct _printf_t *, char)</div><div class="ttdef"><b>Definition:</b> <a href="printf_8h_source.html#l00046">printf.h:46</a></div></div>
-<div class="ttc" id="user__main_8c_html_aa011065eee776eb1bda73597b5d9d5d7"><div class="ttname"><a href="user__main_8c.html#aa011065eee776eb1bda73597b5d9d5d7">count</a></div><div class="ttdeci">LOCAL long count</div><div class="ttdef"><b>Definition:</b> <a href="user__main_8c_source.html#l00080">user_main.c:80</a></div></div>
 <div class="ttc" id="send_8c_html_a435d1572bf3f880d55459d9805097f62"><div class="ttname"><a href="send_8c.html#a435d1572bf3f880d55459d9805097f62">uint32_t</a></div><div class="ttdeci">unsigned int uint32_t</div><div class="ttdef"><b>Definition:</b> <a href="send_8c_source.html#l00019">send.c:19</a></div></div>
 <div class="ttc" id="printf_8c_html_a39d7df31096f07eba5176fad5a2337f4"><div class="ttname"><a href="printf_8c.html#a39d7df31096f07eba5176fad5a2337f4">t_ntoa</a></div><div class="ttdeci">MEMSPACE int t_ntoa(unsigned long num, uint8_t *str, int max, int radix, int prec)</div><div class="ttdoc">Convert number to ASCII Like itoa but can support leading &#39;+/-/ &#39; or unsigned and zero padding Note: ...</div><div class="ttdef"><b>Definition:</b> <a href="printf_8c_source.html#l00138">printf.c:138</a></div></div>
 <div class="ttc" id="printf_8c_html_a93b64183a7db6800f8d49160351dbe3a"><div class="ttname"><a href="printf_8c.html#a93b64183a7db6800f8d49160351dbe3a">t_ftoa</a></div><div class="ttdeci">MEMSPACE int t_ftoa(double val, char *str, int intprec, int prec, int sign)</div><div class="ttdoc">float to ASCII </div><div class="ttdef"><b>Definition:</b> <a href="printf_8c_source.html#l00276">printf.c:276</a></div></div>
@@ -893,7 +892,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat May 21 2016 20:04:36 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jun 20 2016 21:46:14 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

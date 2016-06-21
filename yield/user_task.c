@@ -126,6 +126,7 @@ void loop_wrapper()
 #ifdef WEBSERVER
 	web_task();
 #endif
+
 // USER TASK
     loop();
     esp_schedule();
@@ -164,22 +165,13 @@ void user_init(void)
         setup_done = true;
     }
 
-//struct rst_info *rtc_info_ptr = system_get_rst_info();
-//memcpy((void *) &resetInfo, (void *) rtc_info_ptr, sizeof(resetInfo));
-#if 0
-    uart_div_modify(0, UART_CLK_FREQ / (115200));
-
-    init();
-
-    initVariant();
-#endif
-
     cont_init(&g_cont);
 
     system_os_task(loop_task,
         LOOP_TASK_PRIORITY, g_loop_queue,
         LOOP_QUEUE_SIZE);
-printf("loop_task installed\n");
+
+	printf("loop_task installed\n");
 
     system_init_done_cb(&init_done);
 }

@@ -45,11 +45,14 @@
 \item B\-D\-F fonts and a B\-D\-F font to C conversion code and optimized display code
 \item W\-E\-B server using S\-D C\-A\-R\-D with C\-G\-I processing -\/ files and C\-G\-I results can be A\-N\-Y S\-I\-Z\-E!
 \item W\-E\-B server can update T\-F\-T display
+\begin{DoxyItemize}
+\item Simple door sign status update using web page -\/ see files/msg.\-cgi and \hyperlink{web_8c}{web/web.\-c} for code
+\end{DoxyItemize}
 \item Network server client example for display updates
 \item Uart network server client for serial uart to network bridge.
 \item Generic queue handling code
 \item Uart driver.
-\item P\-O\-S\-I\-X wrappers for Fat\-F\-S support by Cha\-N
+\item P\-O\-S\-I\-X wrappers for Fat\-F\-S support by Cha\-N -\/ provides unix file I/\-O operations
 \item P\-O\-S\-I\-X time functions and R\-T\-C set with N\-T\-P
 \item Timers used by rtc and time functions
 \item H\-S\-P\-I code that can handle multiple chip select and clock frequencies
@@ -234,7 +237,7 @@
 \end{DoxyItemize}
 \item fatfs
 \begin{DoxyItemize}
-\item S\-D C\-A\-R\-D support with Fat\-F\-S and P\-O\-S\-I\-X wrappers
+\item S\-D C\-A\-R\-D support with Fat\-F\-S and P\-O\-S\-I\-X wrappers -\/ provides unix file I/\-O operations
 \begin{DoxyItemize}
 \item modified to use hardware abstraction
 \end{DoxyItemize}
@@ -259,7 +262,7 @@
 \item \hyperlink{fatfs__utils_8h}{fatfs\-\_\-utils.\-h}
 \item \hyperlink{mmc__hal_8c}{mmc\-\_\-hal.\-c}
 \item \hyperlink{mmc__hal_8h}{mmc\-\_\-hal.\-h}
-\item \hyperlink{posix_8c}{posix.\-c}
+\item \hyperlink{posix_8c}{posix.\-c} -\/ provides unix file I/\-O operation
 \item \hyperlink{posix_8h}{posix.\-h}
 \end{DoxyItemize}
 \end{DoxyItemize}
@@ -424,7 +427,20 @@
 \item Uses yield function to continue background tasks while serving requests
 \end{DoxyItemize}
 \end{DoxyItemize}
-\item wire
+\end{DoxyItemize}
+
+I created a door sign status display that can be updated via a web page web page running on the esp8266
+\begin{DoxyItemize}
+\item Copy the file files/msg.\-cgi to the root folder of a fat32 S\-D card and modify to suit your needs.
+\item Use\-: open a web browser to the web server runing on the esp8266
+\begin{DoxyItemize}
+\item For example\-: \href{http://192.168.200.116/msg.cgi}{\tt http\-://192.\-168.\-200.\-116/msg.\-cgi}
+\item You can update status and return time information on the T\-F\-T display by entering information on the page.
+\end{DoxyItemize}
+\item See the Video
+\end{DoxyItemize}
+
+wire
 \begin{DoxyItemize}
 \item \hyperlink{wire_8c}{wire.\-c}
 \item \hyperlink{wire_8h}{wire.\-h}
@@ -440,7 +456,8 @@
 \item Wireframe E\-A\-R\-T\-H data
 \end{DoxyItemize}
 \end{DoxyItemize}
-\item yield
+
+yield
 \begin{DoxyItemize}
 \item R\-E\-A\-D\-M\-E.\-txt
 \item cont.\-S
@@ -456,6 +473,20 @@
 \item Main user\-\_\-init and task replacement with yield support
 \end{DoxyItemize}
 \end{DoxyItemize}
+
+\begin{DoxyParagraph}{Demo Video}
+
+\begin{DoxyItemize}
+\item See \hyperlink{web_8c}{web.\-c} for details.
+\begin{DoxyItemize}
+\item I created a door status display that can be updated via a web page web page
+\item I did a status update while recording the video
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyParagraph}
+
+\begin{DoxyItemize}
+\item Result\-: 
 \end{DoxyItemize}
 
 \begin{DoxyParagraph}{Demo Images}

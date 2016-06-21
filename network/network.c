@@ -48,6 +48,19 @@ static struct ip_info info;
 static uint8_t macaddr[6];
 static uint8_t received = 0;
 
+/**
+  @brief Convert IP address to string
+  @param[in] ip: IPV4 address
+  @return char * pointer to string result
+*/
+static char _ipv4_2str[32];
+MEMSPACE 
+char *ipv4_2str(uint32_t ip)
+{
+	uint8_t *str = (uint8_t *) &ip;
+	snprintf(_ipv4_2str,sizeof(_ipv4_2str)-1,"%d.%d.%d.%d", str[0],str[1],str[2],str[3]);
+	return(_ipv4_2str);
+}
 
 /**
   @brief WIFI Event Callback

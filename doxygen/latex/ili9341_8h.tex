@@ -55,6 +55,12 @@ struct \hyperlink{structwindow}{window}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
+int \hyperlink{ili9341_8h_a809b205bdd1c95f9a10bb429681a8f9e}{font\-\_\-max} ()
+\item 
+int \hyperlink{ili9341_8h_aec37c6383e20a1fef1cd4924060ed693}{font\-\_\-\-H} (int \hyperlink{bdffontutil_8h_a6d9c6f27190f0f04abf55678fe81080d}{font})
+\begin{DoxyCompactList}\small\item\em Get font height used for line to line spacing. \end{DoxyCompactList}\item 
+int \hyperlink{ili9341_8h_a647c0e54986f2520898707b8accd28f3}{font\-\_\-\-W} (int \hyperlink{bdffontutil_8h_a6d9c6f27190f0f04abf55678fe81080d}{font})
+\begin{DoxyCompactList}\small\item\em Get font Width used for character to character spacing. \end{DoxyCompactList}\item 
 int \hyperlink{ili9341_8h_acea4413f1d84d044b7d83a96bb0bcb79}{font\-\_\-attr} (\hyperlink{structwindow}{window} $\ast$win, int c, \hyperlink{struct__fontc}{\-\_\-fontc} $\ast$f)
 \begin{DoxyCompactList}\small\item\em Get font attributes for a font. \end{DoxyCompactList}\item 
 void \hyperlink{ili9341_8h_a87fb749b0b5887e26f76d1292b93b0ed}{tft\-\_\-draw\-Char} (\hyperlink{structwindow}{window} $\ast$win, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} c)
@@ -120,7 +126,7 @@ void \hyperlink{ili9341_8h_aecac98906474a88c3017fc3761328506}{tft\-\_\-565to\-R\
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{ili9341_8h_aeedc758e5bf61e7ffb28d4a85de854e6}{tft\-\_\-set\-Text\-Color} (\hyperlink{structwindow}{window} $\ast$win, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\-\_\-t} fg, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\-\_\-t} bg)
 \begin{DoxyCompactList}\small\item\em ==================================== \end{DoxyCompactList}\item 
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{ili9341_8h_adaf98866e7cbd787fde096143d394699}{tft\-\_\-setpos} (\hyperlink{structwindow}{window} $\ast$win, int16\-\_\-t x, int16\-\_\-t y)
-\begin{DoxyCompactList}\small\item\em Set current window text pointer (per current rotation) \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Set current window text pointer in pixels (per current rotation) \end{DoxyCompactList}\item 
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{ili9341_8h_a439a47a3afc781f1f2dd1fff2efefe42}{tft\-\_\-set\-\_\-font} (\hyperlink{structwindow}{window} $\ast$win, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\-\_\-t} index)
 \begin{DoxyCompactList}\small\item\em Set current font size (per current rotation) \end{DoxyCompactList}\item 
 int \hyperlink{ili9341_8h_a616f9992d5ed309e96288a7e08b87bf3}{tft\-\_\-get\-\_\-font\-\_\-height} (\hyperlink{structwindow}{window} $\ast$win)
@@ -415,15 +421,84 @@ Get font attributes for a font.
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-void 
+font number 
 \end{DoxyReturn}
 
 
-Definition at line 51 of file font.\-c.
+Definition at line 81 of file font.\-c.
 
 
 
 Referenced by tft\-\_\-cleareol(), tft\-\_\-clearline(), tft\-\_\-draw\-Char(), tft\-\_\-get\-\_\-font\-\_\-height(), and tft\-\_\-putch().
+
+\hypertarget{ili9341_8h_aec37c6383e20a1fef1cd4924060ed693}{\index{ili9341.\-h@{ili9341.\-h}!font\-\_\-\-H@{font\-\_\-\-H}}
+\index{font\-\_\-\-H@{font\-\_\-\-H}!ili9341.h@{ili9341.\-h}}
+\subsubsection[{font\-\_\-\-H}]{\setlength{\rightskip}{0pt plus 5cm}int font\-\_\-\-H (
+\begin{DoxyParamCaption}
+\item[{int}]{font}
+\end{DoxyParamCaption}
+)}}\label{ili9341_8h_aec37c6383e20a1fef1cd4924060ed693}
+
+
+Get font height used for line to line spacing. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em font} & font number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Height in pixels 
+\end{DoxyReturn}
+
+
+Definition at line 57 of file font.\-c.
+
+
+
+Referenced by tft\-\_\-set\-\_\-textpos().
+
+\hypertarget{ili9341_8h_a809b205bdd1c95f9a10bb429681a8f9e}{\index{ili9341.\-h@{ili9341.\-h}!font\-\_\-max@{font\-\_\-max}}
+\index{font\-\_\-max@{font\-\_\-max}!ili9341.h@{ili9341.\-h}}
+\subsubsection[{font\-\_\-max}]{\setlength{\rightskip}{0pt plus 5cm}int font\-\_\-max (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{ili9341_8h_a809b205bdd1c95f9a10bb429681a8f9e}
+
+
+Definition at line 46 of file font.\-c.
+
+
+
+Referenced by tft\-\_\-set\-\_\-font().
+
+\hypertarget{ili9341_8h_a647c0e54986f2520898707b8accd28f3}{\index{ili9341.\-h@{ili9341.\-h}!font\-\_\-\-W@{font\-\_\-\-W}}
+\index{font\-\_\-\-W@{font\-\_\-\-W}!ili9341.h@{ili9341.\-h}}
+\subsubsection[{font\-\_\-\-W}]{\setlength{\rightskip}{0pt plus 5cm}int font\-\_\-\-W (
+\begin{DoxyParamCaption}
+\item[{int}]{font}
+\end{DoxyParamCaption}
+)}}\label{ili9341_8h_a647c0e54986f2520898707b8accd28f3}
+
+
+Get font Width used for character to character spacing. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em font} & font number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Width in pixels 
+\end{DoxyReturn}
+
+
+Definition at line 67 of file font.\-c.
+
+
+
+Referenced by tft\-\_\-set\-\_\-textpos().
 
 \hypertarget{ili9341_8h_aecac98906474a88c3017fc3761328506}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-565to\-R\-G\-B@{tft\-\_\-565to\-R\-G\-B}}
 \index{tft\-\_\-565to\-R\-G\-B@{tft\-\_\-565to\-R\-G\-B}!ili9341.h@{ili9341.\-h}}
@@ -553,7 +628,7 @@ Referenced by tft\-\_\-draw\-Char().
 \end{DoxyParams}
 
 
-Definition at line 1239 of file ili9341.\-c.
+Definition at line 1255 of file ili9341.\-c.
 
 
 
@@ -577,7 +652,7 @@ Clear display text line.
 \end{DoxyParams}
 
 
-Definition at line 1259 of file ili9341.\-c.
+Definition at line 1275 of file ili9341.\-c.
 
 \hypertarget{ili9341_8h_a944393583142b4a19593eec1a743b90e}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-\-Cmd@{tft\-\_\-\-Cmd}}
 \index{tft\-\_\-\-Cmd@{tft\-\_\-\-Cmd}!ili9341.h@{ili9341.\-h}}
@@ -688,7 +763,7 @@ void T\-O\-D\-O\-: To make proportional fonts render even better we should reduc
 \end{DoxyReturn}
 
 
-Definition at line 157 of file font.\-c.
+Definition at line 187 of file font.\-c.
 
 
 
@@ -727,7 +802,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1118 of file ili9341.\-c.
+Definition at line 1134 of file ili9341.\-c.
 
 
 
@@ -766,7 +841,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1103 of file ili9341.\-c.
+Definition at line 1119 of file ili9341.\-c.
 
 
 
@@ -826,7 +901,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1178 of file ili9341.\-c.
+Definition at line 1194 of file ili9341.\-c.
 
 
 
@@ -973,7 +1048,7 @@ Definition at line 452 of file ili9341.\-c.
 
 
 
-Referenced by setup(), tft\-\_\-init(), and tft\-\_\-putch().
+Referenced by tft\-\_\-init(), and tft\-\_\-putch().
 
 \hypertarget{ili9341_8h_a16c17b6c49729dabf2eee1d575486e74}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-font\-\_\-fixed@{tft\-\_\-font\-\_\-fixed}}
 \index{tft\-\_\-font\-\_\-fixed@{tft\-\_\-font\-\_\-fixed}!ili9341.h@{ili9341.\-h}}
@@ -989,11 +1064,7 @@ Only works if font is proportional type
 \end{DoxyParams}
 
 
-Definition at line 1080 of file ili9341.\-c.
-
-
-
-Referenced by loop(), and setup().
+Definition at line 1096 of file ili9341.\-c.
 
 \hypertarget{ili9341_8h_a6a3d78858315dd032ed3b31099867584}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-font\-\_\-var@{tft\-\_\-font\-\_\-var}}
 \index{tft\-\_\-font\-\_\-var@{tft\-\_\-font\-\_\-var}!ili9341.h@{ili9341.\-h}}
@@ -1013,11 +1084,7 @@ Set current font type to variable.
 \end{DoxyParams}
 
 
-Definition at line 1090 of file ili9341.\-c.
-
-
-
-Referenced by loop(), and setup().
+Definition at line 1106 of file ili9341.\-c.
 
 \hypertarget{ili9341_8h_a616f9992d5ed309e96288a7e08b87bf3}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-get\-\_\-font\-\_\-height@{tft\-\_\-get\-\_\-font\-\_\-height}}
 \index{tft\-\_\-get\-\_\-font\-\_\-height@{tft\-\_\-get\-\_\-font\-\_\-height}!ili9341.h@{ili9341.\-h}}
@@ -1037,7 +1104,7 @@ Get font height.
 \end{DoxyParams}
 
 
-Definition at line 1065 of file ili9341.\-c.
+Definition at line 1081 of file ili9341.\-c.
 
 \hypertarget{ili9341_8h_a14e5cdfbb744c04570df508551f77add}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-init@{tft\-\_\-init}}
 \index{tft\-\_\-init@{tft\-\_\-init}!ili9341.h@{ili9341.\-h}}
@@ -1056,10 +1123,6 @@ diplay I\-D 9341
 
 
 Definition at line 126 of file ili9341.\-c.
-
-
-
-Referenced by setup().
 
 \hypertarget{ili9341_8h_ac276806b0f70c3a69aaefa4a7937643b}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-invert\-Display@{tft\-\_\-invert\-Display}}
 \index{tft\-\_\-invert\-Display@{tft\-\_\-invert\-Display}!ili9341.h@{ili9341.\-h}}
@@ -1105,7 +1168,7 @@ put character in current winoow
 \end{DoxyParams}
 
 
-Definition at line 1281 of file ili9341.\-c.
+Definition at line 1297 of file ili9341.\-c.
 
 
 
@@ -1278,11 +1341,7 @@ Set current font size (per current rotation)
 \end{DoxyParams}
 
 
-Definition at line 1057 of file ili9341.\-c.
-
-
-
-Referenced by loop(), and setup().
+Definition at line 1071 of file ili9341.\-c.
 
 \hypertarget{ili9341_8h_adaf98866e7cbd787fde096143d394699}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-setpos@{tft\-\_\-setpos}}
 \index{tft\-\_\-setpos@{tft\-\_\-setpos}!ili9341.h@{ili9341.\-h}}
@@ -1295,7 +1354,7 @@ Referenced by loop(), and setup().
 )}}\label{ili9341_8h_adaf98866e7cbd787fde096143d394699}
 
 
-Set current window text pointer (per current rotation) 
+Set current window text pointer in pixels (per current rotation) 
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -1309,10 +1368,6 @@ Set current window text pointer (per current rotation)
 
 
 Definition at line 1045 of file ili9341.\-c.
-
-
-
-Referenced by loop(), and setup().
 
 \hypertarget{ili9341_8h_a4c1271aab64c58f75e6de6471f430bbe}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-set\-Rotation@{tft\-\_\-set\-Rotation}}
 \index{tft\-\_\-set\-Rotation@{tft\-\_\-set\-Rotation}!ili9341.h@{ili9341.\-h}}
@@ -1337,7 +1392,7 @@ Definition at line 817 of file ili9341.\-c.
 
 
 
-Referenced by setup(), and tft\-\_\-init().
+Referenced by tft\-\_\-init().
 
 \hypertarget{ili9341_8h_aeedc758e5bf61e7ffb28d4a85de854e6}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-set\-Text\-Color@{tft\-\_\-set\-Text\-Color}}
 \index{tft\-\_\-set\-Text\-Color@{tft\-\_\-set\-Text\-Color}!ili9341.h@{ili9341.\-h}}
@@ -1367,10 +1422,6 @@ void
 
 
 Definition at line 1032 of file ili9341.\-c.
-
-
-
-Referenced by setup().
 
 \hypertarget{ili9341_8h_ace16843deffffe3332a7e16f14e1c4f7}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-spi\-\_\-begin@{tft\-\_\-spi\-\_\-begin}}
 \index{tft\-\_\-spi\-\_\-begin@{tft\-\_\-spi\-\_\-begin}!ili9341.h@{ili9341.\-h}}
@@ -1645,7 +1696,7 @@ Definition at line 1002 of file ili9341.\-c.
 
 
 
-Referenced by setup(), and tft\-\_\-init().
+Referenced by tft\-\_\-init().
 
 \hypertarget{ili9341_8h_a2e70141c8de6a4199f9fc39d8cfc758c}{\index{ili9341.\-h@{ili9341.\-h}!tft\-\_\-write\-Rect@{tft\-\_\-write\-Rect}}
 \index{tft\-\_\-write\-Rect@{tft\-\_\-write\-Rect}!ili9341.h@{ili9341.\-h}}

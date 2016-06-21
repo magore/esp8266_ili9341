@@ -35,12 +35,12 @@ typedef struct
 {
     int16_t xpos;       // x pos
     int16_t ypos;       // y pos
+    int16_t x;
+    int16_t y;
+    int16_t w;
+    int16_t h;
     uint16_t  font;	// font index
     uint16_t  flags;// font fixed == 1, var == 0
-    int16_t w;
-    int16_t x;
-    int16_t h;
-    int16_t y;
     uint16_t fg;
     uint16_t bg;
     uint8_t rotation;
@@ -97,8 +97,12 @@ typedef struct
 // ============================================================
 
 /* font.c */
+int font_max();
+int font_H(int font);
+int font_W(int font);
 int font_attr ( window *win , int c , _fontc *f );
 void tft_drawChar ( window *win , uint8_t c );
+
 
 /* ili9341.c */
 void tft_spi_init ( uint16_t prescale );

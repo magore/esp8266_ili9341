@@ -1035,7 +1035,7 @@ void tft_setTextColor(window *win,uint16_t fg, uint16_t bg)
     win->bg = bg;
 }
 
-/// @brief  Set current window text pointer
+/// @brief  Set current window text pointer in pixels
 /// (per current rotation)
 /// @param[in] win*: window structure
 /// @param[in] x: x offset
@@ -1048,6 +1048,20 @@ void tft_setpos(window *win, int16_t x, int16_t y)
     win->ypos = y;
 }
 
+/// @brief  Set current window text pointer in characters
+/// (per current rotation) - overall font bounding box
+/// @param[in] win*: window structure
+/// @param[in] x: x offset
+/// @param[in] y: y oofset
+/// return: void
+MEMSPACE
+void tft_set_textpos(window *win, int16_t x, int16_t y)
+{
+    win->xpos = x * font_W(win->font);
+    win->ypos = y * font_H(win->font);
+}
+
+
 /// @brief  Set current font size
 /// (per current rotation)
 /// @param[in] win*: window structure
@@ -1056,6 +1070,8 @@ void tft_setpos(window *win, int16_t x, int16_t y)
 MEMSPACE
 tft_set_font(window *win, uint16_t index)
 {
+	if(win->font > font_max())
+		win->font = font_max();
     win->font = index;
 }
 

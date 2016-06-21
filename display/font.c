@@ -43,11 +43,41 @@
 // All the fonts - defined in fonts.h
 extern _font *allfonts[];
 
+int font_max()
+{
+	int i;
+	for(i=0;allfonts[i];++i)
+		;
+	return(i);
+}
+
+/// @brief  Get font height used for line to line spacing
+/// @param[in] font font number
+/// @return  Height in pixels
+int font_H(int font)
+{
+// check font
+    _font *z = allfonts[font];
+	return(z->Height);
+}
+
+/// @brief  Get font Width used for character to character spacing
+/// @param[in] font font number
+/// @return  Width in pixels
+int font_W(int font)
+{
+// check font
+    _font *z = allfonts[font];
+	return(z->Width);
+}
+
+
+
 /// @brief  Get font attributes for a font
 /// @param[in] *win: Window Structure
 /// @param[in] c: character
 /// @param[in] *f: font structure
-/// @return  void
+/// @return  font number
 int font_attr(window *win, int c, _fontc *f)
 {
     int offset;
@@ -165,7 +195,7 @@ void tft_drawChar(window *win, uint8_t c)
         return;
 
 // process wrapping - will the character fit ?
-	if(win->xpos + f.skip >= win->w)
+	if((win->xpos + f.skip - 1)  >= win->w)
 	{
 		if(win->flags & WRAP_H)
 		{
@@ -178,8 +208,9 @@ void tft_drawChar(window *win, uint8_t c)
 			return;
 		}
 	}
-	// FIXME f.Height >= win->h ??
-	if((win->ypos+f.Height) >= win->h)
+
+	// Will the character fit ?
+	if((win->ypos+f.Height-1) >= win->h)
 	{
 		if(win->flags & WRAP_V)
 		{

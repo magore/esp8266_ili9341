@@ -36,36 +36,45 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	#include "earth_data.h"
 #endif
 
-/* Master Full size Window */
+/* 
+ * Window layouts    optional
+ *
+ *         wintop    winearth
+ *         winmsg    wincube
+ *         winbottom
+ */
+
+
+/* Master Window, Full size of TFT */
 window *master;
 
+/* Bottom status window */
+window _winbottom;
+window *winbottom = &_winbottom;
+
+/* wintop and winearth have the same height
 /* Top Left status window */
-window _winstats;
-window *winstats = &_winstats;
+window _wintop;
+window *wintop = &_wintop;
 
-/* Top Right Wireframe window */
-window _wincube;
-window *wincube = &_wincube;
+/* Earth Top Right status window */
+window _winearth;
+window *winearth = &_winearth;
 
-/* Bottom Left status window */
+/* winmsg and winearth have the same height
+/* Middle Left status window */
 window _winmsg;
 window *winmsg = &_winmsg;
 
-#if defined(EARTH)
-/* Bootom Right Wireframe window */
-window _winearth;
-window *winearth = &_winearth;
-#endif
+/* Right Wireframe window */
+window _wincube;
+window *wincube = &_wincube;
 
 //extern int printf(const char *fmt, ...);
 void ets_timer_disarm(ETSTimer *ptimer);
 void ets_timer_setfn(ETSTimer *ptimer, ETSTimerFunc *pfunction, void *parg);
 
 
-
-// Display offset
-int16_t xpos,ypos;
-int16_t ip_xpos,ip_ypos;
 // Rotation angle
 LOCAL double degree = 0.0;
 // Rotation increment
@@ -86,28 +95,95 @@ LOCAL uint32_t adc_sum = 0;
 LOCAL int adc_count = 0;
 double voltage = 0;
 
+unsigned long ms_time = 0;
+
+/// @brief  Clear 1000HZ timer 
+/// We loop in case the update of ms_time is not "atomic" - done in a single instruction
+/// @return  void.
+MEMSPACE
+void ms_clear()
+{
+	while(ms_time)
+		ms_time = 0;
+}
+
+/// @brief  Read 1000HZ timer 
+/// We loop in case the update of ms_time is not "atomic" - done in a single instruction
+/// @return  time in milliseconds
+MEMSPACE
+unsigned long ms_read()
+{
+	unsigned long ret = 0;
+	while(ret != ms_time)
+		ret = ms_time;
+	return(ret);
+}
+
+/**
+ @brief 1000HZ timer task
+ @return void
+*/
+void ms_task(void)
+{
+    ms_time++;
+}
+
+/// @brief  Initialize 1000HZ timer task
+/// @return  void.
+MEMSPACE
+void ms_init()
+{
+	ms_time = 0;
+    if(set_timers(ms_task,1) == -1)
+        printf("Clock task init failed\n");
+}
+
+
 int ntp_init = 0;
 void ntp_setup(void)
 {
     tv_t tv;
     tz_t tz;
 	time_t sec;
+	struct ip_info getinfo;
 
+
+	// Wait until we have an IP address before we set the time
     if(!network_init)
 		return;
 
 	if(ntp_init == 0)
     {
         ip_addr_t *addr = (ip_addr_t *)os_zalloc(sizeof(ip_addr_t));
-		ipaddr_aton("192.168.200.1", addr);
+
+		// form pool.ntp.org
+		ipaddr_aton("206.108.0.131", addr);
 		sntp_setserver(1,addr);
-		ipaddr_aton("192.168.200.240", addr);
+		ipaddr_aton("167.114.204.238", addr);
 		sntp_setserver(2,addr);
+
+		// Alternate time setting if the local router does NTP
+#if 0
+		if(wifi_get_ip_info(0, &getinfo))
+		{
+			printf("NTP:0 GW: %s\n", ipv4_2str(getinfo.gw.addr));
+			printf("NTP:0 IP: %s\n", ipv4_2str(getinfo.ip.addr));
+			sntp_setserver(1, & getinfo.gw);
+			sntp_setserver(2, & getinfo.ip);
+		}
+		else
+		{
+			printf("NTP:0 failed to get GW address\n");
+			return;
+		}
+#endif
+
         sntp_init();
         os_free(addr);
 		ntp_init = 1;
         printf("NTP:1\n");
     }
+
 	if(ntp_init == 1)
 	{
 		// they hard coded it to +8 hours from GMT
@@ -140,169 +216,9 @@ void ntp_setup(void)
     }
 }
  
-// segnal strength update interval
-int signal_loop = 0;
-
-time_t seconds = 0;
-
-/**
- @brief test task
-  Runs corrected cube demo from Sem
-  Optionally wireframe Earh viewer
- @return void
-*/
-
-int ip_msg_state_last = -1;
-extern int ip_msg_state;
-extern uint8_t ip_msg[];
-char ip_msg_save[256];
-
-void loop(void)
+loop_task()
 {
-	extern int connections;
-	uint32_t time1,time2;
-	uint8_t red, blue,green;
-	long timer = 0;
-	uint16 system_adc_read(void);
-	time_t sec;
-	char *ptr;
 	char buffer[260];
-
-	// get current time
-
-	time(&sec);
-
-	if(sec != seconds)
-	{
-		tft_set_font(winstats,1);
-		tft_font_var(winstats);
-		tft_setpos(winstats, 0,0);
-		ptr = ctime(&sec);
-		//Tue May 17 18:56:01 2016
-		ptr[10] = 0;
-		ptr[19] = 0;
-		tft_printf(winstats,"%s %s\n", ptr, ptr+20);
-		tft_printf(winstats,"%s\n", ptr+11);
-
-	}
-
-	tft_set_font(winstats,0);
-	tft_font_fixed(winstats);
-	tft_setpos(winstats, xpos,ypos);
-
-	count += 1;
-
-#ifdef DEBUG_STATS
-	tft_printf(winstats,"Iter:% 10ld, %+7.2f\n", count, degree);
-#endif
-
-#ifdef VOLTAGE_TEST
-	// FIXME voltage not correct 
-	//       make sure the pin function is assigned
-
-	// Get system voltage 33 = 3.3 volts
-	adc_sum += system_adc_read();
-
-	// FIXME atomic access
-	if(++adc_count == 10)
-	{
-		voltage = ((double) adc_sum / 100.0); 
-		adc_count = 0;
-		adc_sum = 0;
-	}
-#endif
-
-	if(sec != seconds)
-	{
-		seconds=sec;
-	
-#ifdef DEBUG_STATS
-		tft_printf(winstats,"Heap: %d, Conn:%d\n", 
-			system_get_free_heap_size(), connections);
-	
-#ifdef VOLTAGE_TEST
-		tft_printf(winstats,"Volt:%2.2f\n", (float)voltage);
-#endif
-	
-		tft_printf(winstats,"%s\n", ip_msg);
-	
-		tft_printf(winstats,"CH:%02d, DB:-%02d\n", 
-			wifi_get_channel(),
-			wifi_station_get_rssi());
-#else
-		if(ip_msg[0] && strcmp(ip_msg,ip_msg_save) != 0)
-		{
-			strcpy(ip_msg_save,ip_msg);
-			tft_printf(winmsg,"%s\n", ip_msg);
-			printf("ip_msg:[%s]\n", ip_msg);
-		}
-#endif
-
-	}
-	
-#ifdef NETWORK_TEST
-	servertest_message(winmsg);
-#endif
-
-#ifdef WIRECUBE
-	V.x = degree;
-	V.y = degree;
-	V.z = degree;
-// Cube points were defined with sides of 1.0 
-// We want a scale of +/- w/2
-	wire_draw(wincube, cube_points, cube_edges, &V, wincube->w/2, wincube->h/2, dscale, wincube->bg);
-#endif
-
-#ifdef CIRCLE
-	rad = dscale; // +/- 90
-    tft_drawCircle(wincube, wincube->w/2, wincube->h/2, rad ,0);
-	Display bounding circle that changes color around the cube
-	if(dscale_inc < 0.0)
-	{
-		red = 255;
-		blue = 0;
-		green = 0;
-	}
-	else
-	{
-		red = 0;
-		blue = 255;
-		green = 0;
-	}
-	// RGB - YELLOW
-    tft_drawCircle(wincube, wincube->w/2, wincube->h/2, dscale, tft_color565(red,green,blue));
-#endif
-
-    degree += deg_inc;
-    dscale += dscale_inc;
-
-	if(degree <= -360)
-		deg_inc = 4;
-	if(degree >= 360)
-		deg_inc = -4;
-
-    if(dscale < dscale_max/2)
-	{
-	   dscale_inc = -dscale_inc;
-	}
-    if(dscale > dscale_max)
-	{
-	   dscale_inc = -dscale_inc;
-	}
-
-
-#ifdef WIRECUBE
-	V.x = degree;
-	V.y = degree;
-	V.z = degree;
-	//time1 = system_get_time();
-	wire_draw(wincube, cube_points, cube_edges, &V, wincube->w/2, wincube->h/2, dscale, wincube->fg);
-	//wire_draw(wincube, cube_points, cube_edges, &V, wincube->w/2, wincube->h/2, dscale, wincude->fg);
-	//time2 = system_get_time();
-#endif
-
-
-
 
 	// NTP state machine
 	ntp_setup();
@@ -326,6 +242,176 @@ void loop(void)
 			printf("unknow command: %s\n", buffer);
 		}
 	}
+}
+// segnal strength update interval
+int signal_loop = 0;
+
+time_t seconds = 0;
+
+/**
+ @brief test task
+  Runs corrected cube demo from Sem
+  Optionally wireframe Earh viewer
+ @return void
+*/
+
+extern uint8_t ip_msg[];
+
+int skip = 0;
+
+unsigned long last_time = 0;
+
+void loop(void)
+{
+	extern int connections;
+	uint32_t time1,time2;
+	uint8_t red, blue,green;
+	unsigned long t;
+	uint16 system_adc_read(void);
+	time_t sec;
+	// getinfo.ip.addr, getinfo.gw.addr, getinfo.netmask.addr
+	struct ip_info getinfo;
+	char *ptr;
+
+	// get current time
+
+	loop_task();
+
+	// Only run evry 50mS
+	t = ms_read();
+	if((t - last_time) < 50U)
+		return;
+
+	last_time = t;
+	time(&sec);
+	// only update text messages once a second
+	if(sec != seconds)
+	{
+		char tmp[32];
+		tft_set_textpos(winbottom, 0,0);
+		//Tue May 17 18:56:01 2016
+		strncpy(tmp,ctime(&sec),31);
+		tmp[19] = 0;
+		tft_printf(winbottom," %s", tmp);
+		tft_cleareol(winbottom);
+		tft_set_textpos(winbottom, 0,1);
+
+		// detailed connection state
+		//tft_printf(winbottom," %s", ip_msg);
+
+		// IP and disconnected connection state only
+		if(wifi_get_ip_info(0, &getinfo))
+			tft_printf(winbottom," %s", ipv4_2str(getinfo.ip.addr));
+		else
+			tft_printf(winbottom," Disconnected");
+		tft_cleareol(winbottom);
+	}
+	count += 1;
+
+#ifdef DEBUG_STATS
+	tft_set_textpos(wintop, 0,0);
+	tft_set_font(wintop,0);
+	tft_font_fixed(wintop);
+	tft_printf(wintop,"Iter:% 10ld, %+7.2f\n", count, degree);
+
+#ifdef VOLTAGE_TEST
+	// FIXME voltage not correct 
+	//       make sure the pin function is assigned
+
+	// Get system voltage 33 = 3.3 volts
+	adc_sum += system_adc_read();
+
+	// FIXME atomic access
+	if(++adc_count == 10)
+	{
+		voltage = ((double) adc_sum / 100.0); 
+		adc_count = 0;
+		adc_sum = 0;
+	}
+#endif
+
+#endif
+
+	if(sec != seconds)
+	{
+		seconds=sec;
+	
+#ifdef DEBUG_STATS
+		tft_set_textpos(wintop, 0,1);
+		tft_printf(wintop,"Heap: %d, Conn:%d\n", 
+			system_get_free_heap_size(), connections);
+	
+#ifdef VOLTAGE_TEST
+		tft_printf(wintop,"Volt:%2.2f\n", (float)voltage);
+#endif
+	
+		tft_printf(wintop,"CH:%02d, DB:-%02d\n", 
+			wifi_get_channel(),
+			wifi_station_get_rssi());
+#endif
+	}
+	
+#ifdef NETWORK_TEST
+	servertest_message(winmsg);
+#endif
+
+#ifdef CIRCLE
+	rad = dscale; // +/- 90
+    tft_drawCircle(wincube, wincube->w/2, wincube->h/2, rad ,wincube->bg);
+	// RGB 
+#endif
+
+// reset cube to background
+#ifdef WIRECUBE
+	V.x = degree;
+	V.y = degree;
+	V.z = degree;
+// Cube points were defined with sides of 1.0 
+// We want a scale of +/- w/2
+	wire_draw(wincube, cube_points, cube_edges, &V, wincube->w/2, wincube->h/2, dscale, wincube->bg);
+#endif
+
+    degree += deg_inc;
+    dscale += dscale_inc;
+
+	if(degree <= -360)
+		deg_inc = 4;
+	if(degree >= 360)
+		deg_inc = -4;
+
+    if(dscale < dscale_max/2)
+	{
+	   dscale_inc = -dscale_inc;
+	}
+    if(dscale > dscale_max)
+	{
+	   dscale_inc = -dscale_inc;
+	}
+
+#ifdef WIRECUBE
+	V.x = degree;
+	V.y = degree;
+	V.z = degree;
+	wire_draw(wincube, cube_points, cube_edges, &V, wincube->w/2, wincube->h/2, dscale, ILI9341_WHITE);
+#endif
+
+#ifdef CIRCLE
+	// Display bounding circle that changes color around the cube
+	if(dscale_inc < 0.0)
+	{
+		red = 255;
+		blue = 0;
+		green = 0;
+	}
+	else
+	{
+		red = 0;
+		blue = 0;
+		green = 255;
+	}
+	rad = dscale; // +/- 90
+    tft_drawCircle(wincube, wincube->w/2, wincube->h/2, rad, tft_RGBto565(red,green,blue));
+#endif
 }
 
 #if ILI9341_DEBUG & 1
@@ -359,8 +445,6 @@ void test_flashio(window *win)
     uint16_t xpros,ypos;
     tft_set_font(win,0);
     //tft_printf(win, "%x,%x", xxxp[0],xxxp[1]);
-    xpos = win->xpos;
-    ypos = win->ypos;
     for(i=0;i<8;++i)
     {
         tft_setpos(win, i*16,ypos);
@@ -426,8 +510,6 @@ int user_tests(char *str)
 	return(0);
 }
 
-
-
 /**
  @brief main() Initialize user task
  @return void
@@ -444,9 +526,9 @@ void setup(void)
 	extern uint16_t tft_ID;
 	double ang;
 	extern web_init();
+	int w,h;
 
 	ip_msg[0] = 0;
-	ip_msg_save[0] = 0;
 
 // CPU
 // 160MHZ
@@ -475,6 +557,9 @@ void setup(void)
 	printf("Timers init...\n");
 	init_timers();
 
+	// 1000HZ timer
+	ms_init();
+
 #ifdef FATFS_TEST
 	printf("SD Card init...\n");
 	mmc_init(1);
@@ -492,38 +577,78 @@ void setup(void)
 	printf("\nDisplay ID=%08lx\n",ID);
 #endif
 
-	/* Setup main status window */
-#ifdef DEBUG_STATS
-	tft_window_init(winstats,0,0, 
-		master->w * 7 / 10, master->h/2);
+// Message window setup
+#ifdef EARTH
+	w = master->w * 7 / 10;
 #else
-	tft_window_init(winstats,0,0, 
-		master->w * 7 / 10, master->h/4);
+	w = master->w;
+#endif
+	// TOP
+#ifdef DEBUG_STATS
+	tft_window_init(wintop,0,0, w, font_H(0)*4);
+	tft_setTextColor(wintop, ILI9341_WHITE, ILI9341_NAVY);
+#else
+	tft_window_init(wintop,0,0, w, font_H(2)*2);
+	tft_setTextColor(wintop, ILI9341_WHITE, tft_RGBto565(0,64,255));
+#endif
+	tft_set_font(wintop,0);
+	tft_font_var(wintop);
+    tft_fillWin(wintop, wintop->bg);
+	tft_set_textpos(wintop, 0,0);
+
+#ifdef EARTH
+	tft_window_init(winearth,w,0, master->w - w + 1, wintop->h);
+	tft_setTextColor(winearth, ILI9341_WHITE, ILI9341_NAVY);
+    tft_fillWin(winearth, winearth->bg);
 #endif
 
-	tft_setTextColor(winstats, ILI9341_WHITE,0);
-    tft_fillWin(winstats, winstats->bg);
-
-
-	tft_set_font(winstats,1);
-	tft_font_var(winstats);
-	tft_setpos(winstats, 0,0);
+	// BOTOM
 	// TIME,DATE
-	tft_printf(winstats, "\n\n");
-	// Save last display offset for additiona status messages
-	tft_font_fixed(winstats);
-	xpos = winstats->xpos;
-	ypos = winstats->ypos;
+	tft_window_init(winbottom, 0, master->h - 1 - font_H(2)*2, 
+		master->w, font_H(2)*2);
+    tft_set_font(winbottom,2);
+    tft_font_var(winbottom);
+	tft_setTextColor(winbottom, 0, tft_RGBto565(0,255,0));
+	tft_fillWin(winbottom, winbottom->bg);
+    tft_set_textpos(winbottom, 0,0);
 
+// Message window setup
+#ifdef WIRECUBE
+	w = master->w * 7 / 10;
+#else
+	w = master->w;
+#endif
+
+	// MSG
+    tft_window_init(winmsg,0,wintop->h,
+            w, master->h - (wintop->h + winbottom->h));
+
+    tft_setTextColor(winmsg, ILI9341_WHITE,ILI9341_BLUE);
+    tft_fillWin(winmsg, winmsg->bg);
+    // write some text
+    tft_set_font(winmsg,2);
+    tft_font_var(winmsg);
+    tft_set_textpos(winmsg, 0,0);
+
+// CUBE setup
+#ifdef WIRECUBE
 	/* Setup cube/wireframe demo window */
-	/* This is to the right of the winstats window and the same height */
-    tft_window_init(wincube,winstats->w,0, 
-		master->w - winstats->w, winstats->h);
-	tft_setTextColor(wincube, ILI9341_WHITE,0);
+	/* This is to the right of the winmsg window and the same height */
+	tft_window_init(wincube, winmsg->w, wintop->h, master->w - winmsg->w, winmsg->h);
+	tft_setTextColor(wincube, ILI9341_WHITE,ILI9341_BLUE);
     tft_fillWin(wincube, wincube->bg);
+#endif
+
+#ifdef DEBUG_STATS
+	// Display ID
+	tft_setTextColor(winmsg, ILI9341_RED,winmsg->bg);
+	tft_printf(winmsg, "DISP ID: %04lx\n", ID);
+	tft_setTextColor(winmsg, ILI9341_WHITE,winmsg->bg);
+#endif
 
 // Cube points were defined with sides of 1.0 
 // We want a scale of +/- w/2
+#ifdef WIRECUBE
 	if(wincube->w < wincube->h) 
 		dscale_max = wincube->w/2;
 	else
@@ -531,39 +656,15 @@ void setup(void)
 
 	dscale = dscale_max;
 	dscale_inc = dscale_max / 100;
-
-#if defined(EARTH)
-	tft_window_init(winmsg,0, winstats->h, 
-		master->w * 7 / 10, master->h-winstats->h-1);
-#else
-	tft_window_init(winmsg,0, winstats->h-1, 
-		master->w-1, master->h-winstats->h-1);
 #endif
-
-	tft_setTextColor(winmsg, ILI9341_WHITE,ILI9341_NAVY);
-    tft_fillWin(winmsg, winmsg->bg);
-	// write some text
-	tft_set_font(winmsg,1);
-	tft_font_var(winmsg);
-	tft_setpos(winmsg, 0,0);
-
-	tft_setTextColor(winmsg, ILI9341_RED,ILI9341_NAVY);
-	tft_printf(winmsg, "DISP ID: %04lx\n", ID);
-	tft_setTextColor(winmsg, ILI9341_WHITE,ILI9341_NAVY);
 
 #if ILI9341_DEBUG & 1
 	printf("Test Display Read\n");
 	read_tests(winmsg);
 #endif
 
+// Draw Wireframe earth in message area
 #ifdef EARTH
-	/* Test demo area window */
-	tft_window_init(winearth,winmsg->w,winstats->h, 
-		master->w-winmsg->w,master->h-winstats->h);
-	tft_setTextColor(winearth, ILI9341_WHITE,ILI9341_NAVY);
-    tft_fillWin(winearth, winearth->bg);
-	tft_set_font(winearth,1);
-	tft_font_var(winearth);
 	printf("Draw Earth\n");
 
 // Earth points were defined with radius of 0.5, diameter of 1.0
@@ -593,7 +694,7 @@ void setup(void)
 	setup_networking();
 
 #ifdef NETWORK_TEST
-	printf("Setup Network TFT DIsplay Client\n");
+	printf("Setup Network TFT Display Client\n");
 	servertest_setup(TCP_PORT);
 #endif
 
@@ -730,7 +831,6 @@ LOCAL void sendMsgToUserTask(void *arg)
 
 void user_init(void)
 {
-
 	setup();
 
 	// Set up a timer to send the message to User Task
@@ -748,8 +848,6 @@ void user_init(void)
 	system_os_post(IdleTaskPrio, 0, 0);
 #endif
 	printf("User Init Done!\n");
-
-
     system_init_done_cb(init_done_cb);
 }
 #endif

@@ -1,7 +1,6 @@
 var searchData=
 [
   ['readme',['README',['../md_README.html',1,'']]],
-  ['rad',['rad',['../user__main_8c.html#a6cd0a6a37bb53a8363aadc8640107f8d',1,'user_main.c']]],
   ['rbuf',['rbuf',['../structrwbuf__t.html#afd83372241273849c9395d587b146021',1,'rwbuf_t']]],
   ['rcvr_5fdatablock',['rcvr_datablock',['../mmc_8c.html#a59275a8f1cc0f0d24c6f9f1ae578775a',1,'mmc.c']]],
   ['read',['read',['../posix_8c.html#af104a2c05bef787e54c6925616e867df',1,'read(int fd, const void *buf, size_t count):&#160;posix.c'],['../posix_8h.html#af104a2c05bef787e54c6925616e867df',1,'read(int fd, const void *buf, size_t count):&#160;posix.c']]],

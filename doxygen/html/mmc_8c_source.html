@@ -383,7 +383,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;<a class="code" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> pdrv,     <span class="comment">/*&lt; Physical drive nmuber (0) */</span></div>
 <div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;<a class="code" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> *buff,    <span class="comment">/*&lt; Pointer to the data buffer to store read data */</span></div>
 <div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;<a class="code" href="integer_8h.html#ad342ac907eb044443153a22f964bf0af">DWORD</a> sector,  <span class="comment">/*&lt; Start sector number (LBA) */</span></div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;<a class="code" href="integer_8h.html#a36cb3b01d81ffd844bbbfb54003e06ec">UINT</a> <a class="code" href="user__main_8c.html#aa011065eee776eb1bda73597b5d9d5d7">count</a>     <span class="comment">/*&lt; Sector count (1..128) */</span></div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;<a class="code" href="integer_8h.html#a36cb3b01d81ffd844bbbfb54003e06ec">UINT</a> count     <span class="comment">/*&lt; Sector count (1..128) */</span></div>
 <div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;)</div>
 <div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;{</div>
 <div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;    <a class="code" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> cmd;</div>
@@ -421,7 +421,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;<a class="code" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> pdrv,        <span class="comment">/*&lt; Physical drive nmuber (0) */</span></div>
 <div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;<span class="keyword">const</span> <a class="code" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> *buff, <span class="comment">/*&lt; Pointer to the data to be written */</span></div>
 <div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;<a class="code" href="integer_8h.html#ad342ac907eb044443153a22f964bf0af">DWORD</a> sector,     <span class="comment">/*&lt; Start sector number (LBA) */</span></div>
-<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;<a class="code" href="integer_8h.html#a36cb3b01d81ffd844bbbfb54003e06ec">UINT</a> <a class="code" href="user__main_8c.html#aa011065eee776eb1bda73597b5d9d5d7">count</a>                                        <span class="comment">/* Sector count (1..128) */</span></div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;<a class="code" href="integer_8h.html#a36cb3b01d81ffd844bbbfb54003e06ec">UINT</a> count                                        <span class="comment">/* Sector count (1..128) */</span></div>
 <div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;)</div>
 <div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;{</div>
 <div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;    <span class="keywordflow">if</span> (pdrv || !count) <span class="keywordflow">return</span> <a class="code" href="diskio_8h.html#a8a4ccdeaced8c6be7571f8f1d08771a9af4dcc07fd46310b5495fa8025c89a9f3">RES_PARERR</a>;</div>
@@ -604,7 +604,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="diskio_8h_html"><div class="ttname"><a href="diskio_8h.html">diskio.h</a></div><div class="ttdoc">FafFs disk interface modlue include file (C) ChaN, 2013. </div></div>
 <div class="ttc" id="mmc_8c_html_a3d32c27a6be061b865ba539127278f14"><div class="ttname"><a href="mmc_8c.html#a3d32c27a6be061b865ba539127278f14">CMD18</a></div><div class="ttdeci">#define CMD18</div><div class="ttdef"><b>Definition:</b> <a href="mmc_8c_source.html#l00061">mmc.c:61</a></div></div>
 <div class="ttc" id="mmc_8c_html_a78289a7a85ffcfddd626694105dc0780"><div class="ttname"><a href="mmc_8c.html#a78289a7a85ffcfddd626694105dc0780">CMD55</a></div><div class="ttdeci">#define CMD55</div><div class="ttdef"><b>Definition:</b> <a href="mmc_8c_source.html#l00069">mmc.c:69</a></div></div>
-<div class="ttc" id="user__main_8c_html_aa011065eee776eb1bda73597b5d9d5d7"><div class="ttname"><a href="user__main_8c.html#aa011065eee776eb1bda73597b5d9d5d7">count</a></div><div class="ttdeci">LOCAL long count</div><div class="ttdef"><b>Definition:</b> <a href="user__main_8c_source.html#l00080">user_main.c:80</a></div></div>
 <div class="ttc" id="diskio_8h_html_ac52ec66c278308382fdf7b2c57f0ad8c"><div class="ttname"><a href="diskio_8h.html#ac52ec66c278308382fdf7b2c57f0ad8c">CT_MMC</a></div><div class="ttdeci">#define CT_MMC</div><div class="ttdef"><b>Definition:</b> <a href="diskio_8h_source.html#l00097">diskio.h:97</a></div></div>
 <div class="ttc" id="mmc_8c_html_a95ef69f6e5608dd73fd22f29bf619808"><div class="ttname"><a href="mmc_8c.html#a95ef69f6e5608dd73fd22f29bf619808">mmc_disk_read</a></div><div class="ttdeci">MEMSPACE DRESULT mmc_disk_read(BYTE pdrv, BYTE *buff, DWORD sector, UINT count)</div><div class="ttdoc">Read Sector(s) </div><div class="ttdef"><b>Definition:</b> <a href="mmc_8c_source.html#l00342">mmc.c:342</a></div></div>
 <div class="ttc" id="mmc_8c_html_aee2c673fba987178f4642531fdeefe9e"><div class="ttname"><a href="mmc_8c.html#aee2c673fba987178f4642531fdeefe9e">CMD25</a></div><div class="ttdeci">#define CMD25</div><div class="ttdef"><b>Definition:</b> <a href="mmc_8c_source.html#l00065">mmc.c:65</a></div></div>
@@ -665,7 +664,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat May 21 2016 20:04:36 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jun 20 2016 21:46:13 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

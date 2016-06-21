@@ -12,6 +12,8 @@ Network test client This code receives a message and displays iit.
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{network_8c_a462d02d06dadbf41aa44824e310aaaf0}{ipv4\-\_\-2str} (\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\-\_\-t} ip)
+\item 
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{network_8c_a33001f6e7c0326d6a8f20acbc62a1b3a}{wifi\-\_\-event\-\_\-cb} (System\-\_\-\-Event\-\_\-t $\ast$event\-\_\-p)
 \begin{DoxyCompactList}\small\item\em W\-I\-F\-I Event Callback. \end{DoxyCompactList}\item 
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{network_8c_ad9b36f95313ac904d2d3ace6f844201b}{setup\-\_\-networking} ()
@@ -32,7 +34,9 @@ static struct ip\-\_\-info \hyperlink{network_8c_a1202cd63c360958e6272f9a20fa90f
 static \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} \hyperlink{network_8c_ad6ffa7743848d35021d59a06df02d7cb}{macaddr} \mbox{[}6\mbox{]}
 \item 
 static \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} \hyperlink{network_8c_ac7c4860b47674f6bb351f6875e50533f}{received} = 0
-\end{DoxyCompactItemize}
+\item 
+static char \hyperlink{network_8c_a252582da71dd6f7e793a6243bdcd0ab4}{\-\_\-ipv4\-\_\-2str} \mbox{[}32\mbox{]}
+\begin{DoxyCompactList}\small\item\em Convert I\-P address to string. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -53,6 +57,17 @@ Definition in file \hyperlink{network_8c_source}{network.\-c}.
 
 
 \subsection{Function Documentation}
+\hypertarget{network_8c_a462d02d06dadbf41aa44824e310aaaf0}{\index{network.\-c@{network.\-c}!ipv4\-\_\-2str@{ipv4\-\_\-2str}}
+\index{ipv4\-\_\-2str@{ipv4\-\_\-2str}!network.c@{network.\-c}}
+\subsubsection[{ipv4\-\_\-2str}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} char$\ast$ ipv4\-\_\-2str (
+\begin{DoxyParamCaption}
+\item[{{\bf uint32\-\_\-t}}]{ip}
+\end{DoxyParamCaption}
+)}}\label{network_8c_a462d02d06dadbf41aa44824e310aaaf0}
+
+
+Definition at line 58 of file network.\-c.
+
 \hypertarget{network_8c_ad9b36f95313ac904d2d3ace6f844201b}{\index{network.\-c@{network.\-c}!setup\-\_\-networking@{setup\-\_\-networking}}
 \index{setup\-\_\-networking@{setup\-\_\-networking}!network.c@{network.\-c}}
 \subsubsection[{setup\-\_\-networking}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void setup\-\_\-networking (
@@ -73,11 +88,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 144 of file network.\-c.
-
-
-
-Referenced by setup().
+Definition at line 157 of file network.\-c.
 
 \hypertarget{network_8c_a33001f6e7c0326d6a8f20acbc62a1b3a}{\index{network.\-c@{network.\-c}!wifi\-\_\-event\-\_\-cb@{wifi\-\_\-event\-\_\-cb}}
 \index{wifi\-\_\-event\-\_\-cb@{wifi\-\_\-event\-\_\-cb}!network.c@{network.\-c}}
@@ -100,7 +111,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 59 of file network.\-c.
+Definition at line 72 of file network.\-c.
 
 
 
@@ -109,6 +120,29 @@ Referenced by setup\-\_\-networking().
 
 
 \subsection{Variable Documentation}
+\hypertarget{network_8c_a252582da71dd6f7e793a6243bdcd0ab4}{\index{network.\-c@{network.\-c}!\-\_\-ipv4\-\_\-2str@{\-\_\-ipv4\-\_\-2str}}
+\index{\-\_\-ipv4\-\_\-2str@{\-\_\-ipv4\-\_\-2str}!network.c@{network.\-c}}
+\subsubsection[{\-\_\-ipv4\-\_\-2str}]{\setlength{\rightskip}{0pt plus 5cm}char \-\_\-ipv4\-\_\-2str\mbox{[}32\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}}\label{network_8c_a252582da71dd6f7e793a6243bdcd0ab4}
+
+
+Convert I\-P address to string. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em ip} & I\-P\-V4 address \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char $\ast$ pointer to string result 
+\end{DoxyReturn}
+
+
+Definition at line 56 of file network.\-c.
+
+
+
+Referenced by ipv4\-\_\-2str().
+
 \hypertarget{network_8c_a1202cd63c360958e6272f9a20fa90f8b}{\index{network.\-c@{network.\-c}!info@{info}}
 \index{info@{info}!network.c@{network.\-c}}
 \subsubsection[{info}]{\setlength{\rightskip}{0pt plus 5cm}struct ip\-\_\-info info\hspace{0.3cm}{\ttfamily [static]}}}\label{network_8c_a1202cd63c360958e6272f9a20fa90f8b}
@@ -129,7 +163,7 @@ Definition at line 43 of file network.\-c.
 
 
 
-Referenced by loop(), setup(), setup\-\_\-networking(), and wifi\-\_\-event\-\_\-cb().
+Referenced by setup\-\_\-networking(), and wifi\-\_\-event\-\_\-cb().
 
 \hypertarget{network_8c_aeceba101b4877f92b9c39706420d26a3}{\index{network.\-c@{network.\-c}!ip\-\_\-msg\-\_\-state@{ip\-\_\-msg\-\_\-state}}
 \index{ip\-\_\-msg\-\_\-state@{ip\-\_\-msg\-\_\-state}!network.c@{network.\-c}}
@@ -162,7 +196,7 @@ Definition at line 42 of file network.\-c.
 
 
 
-Referenced by ntp\-\_\-setup(), and wifi\-\_\-event\-\_\-cb().
+Referenced by wifi\-\_\-event\-\_\-cb().
 
 \hypertarget{network_8c_ac7c4860b47674f6bb351f6875e50533f}{\index{network.\-c@{network.\-c}!received@{received}}
 \index{received@{received}!network.c@{network.\-c}}

@@ -118,12 +118,15 @@ README</h1>
 <li>Small Printf with full floating point support along with ftoa/atof and integer conversions</li>
 <li>BDF fonts and a BDF font to C conversion code and optimized display code</li>
 <li>WEB server using SD CARD with CGI processing - files and CGI results can be ANY SIZE!</li>
-<li>WEB server can update TFT display</li>
+<li>WEB server can update TFT display<ul>
+<li>Simple door sign status update using web page - see files/msg.cgi and <a class="el" href="web_8c.html" title="Small web server for esp8266. ">web/web.c</a> for code</li>
+</ul>
+</li>
 <li>Network server client example for display updates</li>
 <li>Uart network server client for serial uart to network bridge.</li>
 <li>Generic queue handling code</li>
 <li>Uart driver.</li>
-<li>POSIX wrappers for FatFS support by ChaN</li>
+<li>POSIX wrappers for FatFS support by ChaN - provides unix file I/O operations</li>
 <li>POSIX time functions and RTC set with NTP</li>
 <li>Timers used by rtc and time functions</li>
 <li>HSPI code that can handle multiple chip select and clock frequencies</li>
@@ -300,7 +303,7 @@ README</h1>
 </ul>
 </li>
 <li>fatfs<ul>
-<li>SD CARD support with FatFS and POSIX wrappers<ul>
+<li>SD CARD support with FatFS and POSIX wrappers - provides unix file I/O operations<ul>
 <li>modified to use hardware abstraction</li>
 </ul>
 </li>
@@ -324,7 +327,7 @@ README</h1>
 <li><a class="el" href="fatfs__utils_8h.html" title="fatfs test utilities with user interface ">fatfs_utils.h</a></li>
 <li><a class="el" href="mmc__hal_8c.html">mmc_hal.c</a></li>
 <li><a class="el" href="mmc__hal_8h.html" title="MMC Hardware Layer for FatFs. ">mmc_hal.h</a></li>
-<li><a class="el" href="posix_8c.html" title="PRovides hardware abstraction layer to MMC.C. ">posix.c</a></li>
+<li><a class="el" href="posix_8c.html" title="PRovides hardware abstraction layer to MMC.C. ">posix.c</a> - provides unix file I/O operation</li>
 <li><a class="el" href="posix_8h.html" title="POSIX wrapper for FatFS. ">posix.h</a></li>
 </ul>
 </li>
@@ -489,7 +492,19 @@ README</h1>
 </li>
 </ul>
 </li>
-<li>wire<ul>
+</ul>
+<p>I created a door sign status display that can be updated via a web page web page running on the esp8266</p>
+<ul>
+<li>Copy the file files/msg.cgi to the root folder of a fat32 SD card and modify to suit your needs.</li>
+<li>Use: open a web browser to the web server runing on the esp8266<ul>
+<li>For example: <a href="http://192.168.200.116/msg.cgi">http://192.168.200.116/msg.cgi</a></li>
+<li>You can update status and return time information on the TFT display by entering information on the page.</li>
+</ul>
+</li>
+<li>See the Video</li>
+</ul>
+<p>wire</p>
+<ul>
 <li><a class="el" href="wire_8c.html" title="wireframe view code ">wire.c</a></li>
 <li><a class="el" href="wire_8h.html" title="wireframe view code ">wire.h</a><ul>
 <li>Wireframe viewer code - uses CORDIC</li>
@@ -504,8 +519,8 @@ README</h1>
 </ul>
 </li>
 </ul>
-</li>
-<li>yield<ul>
+<p>yield</p>
+<ul>
 <li>README.txt</li>
 <li>cont.S</li>
 <li><a class="el" href="cont_8h.html">cont.h</a></li>
@@ -520,6 +535,18 @@ README</h1>
 </ul>
 </li>
 </ul>
+<dl class="section user"><dt>Demo Video</dt><dd><ul>
+<li>See <a class="el" href="web_8c.html" title="Small web server for esp8266. ">web.c</a> for details.<ul>
+<li>I created a door status display that can be updated via a web page web page</li>
+<li>I did a status update while recording the video</li>
+</ul>
+</li>
+</ul>
+</dd></dl>
+<ul>
+<li>Result: <div class="image">
+<img src="https://github.com/magore/esp8266_ili9341/blob/master/video.jpg" />
+</div>
 </li>
 </ul>
 <dl class="section user"><dt>Demo Images</dt><dd><ul>
@@ -537,7 +564,7 @@ README</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat May 21 2016 20:04:37 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jun 20 2016 21:46:14 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

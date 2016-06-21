@@ -33,6 +33,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 extern int network_init;
 
 /* network.c */
+MEMSPACE char *ipv4_2str(uint32_t ip);
 MEMSPACE void poll_network_message ( window *win );
 void ntp_setup ( void );
 MEMSPACE void my_receive ( void *arg , char *pdata , unsigned short len );

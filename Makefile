@@ -55,12 +55,12 @@ ifdef BIG
 	FW_ARGS := -ff 80m -fm qio -fs 32m
 	LD_SCRIPT		= eagle.app.v6.new.2048.ld
 	# The ipaddress of the module - either fixed or by DHCP
-	IPADDR=192.168.200.116
+	IPADDR=192.168.200.110
 	SIZE := 0x400000
 else
 	FW_ARGS := -ff 80m -fm qio -fs 4m
 	SIZE := 0x80000
-	IPADDR=192.168.200.116
+	IPADDR=192.168.200.110
 	LD_SCRIPT		= eagle.app.v6.new.512.ld
 endif
 
@@ -88,10 +88,13 @@ FATFS_TEST = 1
 
 # Display wireframe earth demo in lower right of display
 # EARTH = 1
-EARTH = 
+EARTH = 1
 
 # Spinning Cube demo in upper right of display
 WIRECUBE = 1
+
+# Circle demo
+CIRCLE = 
 
 # include simple scanf
 SCANF = 1
@@ -101,8 +104,7 @@ SCANF = 1
 #   heap and connection count
 #   connection and wifi status
 #   voltage
-# DEBUG_STATS = 1
-DEBUG_STATS = 
+DEBUG_STATS = 1
 
 # Display voltage - only works if DEBUG_STATS = 1
 VOLTAGE_TEST = 1
@@ -116,7 +118,7 @@ WEBSERVER = 1
 # 4 send/yield task information
 # 8 HTML processing
 # 16 characters from socket I/O
-WEB_DEBUG = 1 
+WEB_DEBUG = 1+8
 
 # Maximum number of WEB connections
 MAX_CONNECTIONS = 8
@@ -242,6 +244,10 @@ endif
 ifdef WIRECUBE
 	MODULES	+= wire
 	CFLAGS  += -DWIRECUBE
+endif
+
+ifdef CIRCLE
+	CFLAGS  += -DCIRCLE
 endif
 
 ifdef EARTH

@@ -23,8 +23,6 @@ var searchData=
   ['acmd13',['ACMD13',['../mmc_8c.html#a4be8f501d86d24b02923846db618fc71',1,'mmc.c']]],
   ['acmd23',['ACMD23',['../mmc_8c.html#aa38144d651e2880f92c65bb683621f78',1,'mmc.c']]],
   ['acmd41',['ACMD41',['../mmc_8c.html#a9b6fdfed1b57ac31269b6b9987e0761b',1,'mmc.c']]],
-  ['adc_5fcount',['adc_count',['../user__main_8c.html#a0647f376c74acc605b4fbced69aad89a',1,'user_main.c']]],
-  ['adc_5fsum',['adc_sum',['../user__main_8c.html#a6bbb7b7905a729da46ed55c7dc579318',1,'user_main.c']]],
   ['addfontname',['AddFontName',['../bdffontutil_8c.html#a6293de28b724a18693465ec67868d958',1,'AddFontName(_font *font):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a6293de28b724a18693465ec67868d958',1,'AddFontName(_font *font):&#160;bdffontutil.c']]],
   ['adjustfonttable',['AdjustFontTable',['../bdffontutil_8c.html#a1b1c337030d89f81b06857192e4e0179',1,'AdjustFontTable(_font *font):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a1b1c337030d89f81b06857192e4e0179',1,'AdjustFontTable(_font *font):&#160;bdffontutil.c']]],
   ['all',['all',['../unionuint32__t__bytes.html#a83b0c87830b60d185365dbadf8efd4a0',1,'uint32_t_bytes']]],

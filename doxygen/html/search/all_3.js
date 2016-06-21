@@ -92,7 +92,6 @@ var searchData=
   ['cordic_5ft_5fstr',['Cordic_T_STR',['../cordic2c_8c.html#a7c5645f685b278110b72d4003b2aee52',1,'cordic2c.c']]],
   ['cordic_5ftable',['CORDIC_TABLE',['../cordic_8c.html#a575a13df8fab592b70c5968d27dbd338',1,'cordic.c']]],
   ['cordit1',['cordit1',['../cordic2c_8c.html#aa47551f0ba056c573807f6dfa1b09d2d',1,'cordic2c.c']]],
-  ['count',['count',['../user__main_8c.html#aa011065eee776eb1bda73597b5d9d5d7',1,'user_main.c']]],
   ['cpy_5fflash',['cpy_flash',['../flash_8c.html#a9a70a218c9d4bae2e51bda4d7219712f',1,'cpy_flash(uint8_t *src, uint8_t *dest, int size):&#160;flash.c'],['../flash_8h.html#a9a70a218c9d4bae2e51bda4d7219712f',1,'cpy_flash(uint8_t *src, uint8_t *dest, int size):&#160;flash.c']]],
   ['create_5fchain',['create_chain',['../ff_8c.html#af4867a858b508137d008e00d138fd4b8',1,'ff.c']]],
   ['create_5fconnection',['create_connection',['../web_8c.html#aef2853a921eb49702f064eaa925b16e1',1,'create_connection(espconn_t *conn):&#160;web.c'],['../web_8h.html#aef2853a921eb49702f064eaa925b16e1',1,'create_connection(espconn_t *conn):&#160;web.c']]],

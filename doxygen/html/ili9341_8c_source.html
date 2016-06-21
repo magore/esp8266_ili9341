@@ -892,270 +892,281 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l01048"></a><span class="lineno"> 1048</span>&#160;    win-&gt;<a class="code" href="structwindow.html#a64bdec4f0ee274a96d696b16de783746">ypos</a> = y;</div>
 <div class="line"><a name="l01049"></a><span class="lineno"> 1049</span>&#160;}</div>
 <div class="line"><a name="l01050"></a><span class="lineno"> 1050</span>&#160;</div>
-<div class="line"><a name="l01056"></a><span class="lineno"> 1056</span>&#160;<a class="code" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
-<div class="line"><a name="l01057"></a><span class="lineno"><a class="line" href="ili9341_8h.html#a439a47a3afc781f1f2dd1fff2efefe42"> 1057</a></span>&#160;<a class="code" href="ili9341_8c.html#a439a47a3afc781f1f2dd1fff2efefe42">tft_set_font</a>(<a class="code" href="structwindow.html">window</a> *win, <a class="code" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> index)</div>
-<div class="line"><a name="l01058"></a><span class="lineno"> 1058</span>&#160;{</div>
-<div class="line"><a name="l01059"></a><span class="lineno"> 1059</span>&#160;    win-&gt;<a class="code" href="structwindow.html#acee24e56db43557a46cbb5ca3fe35021">font</a> = index;</div>
-<div class="line"><a name="l01060"></a><span class="lineno"> 1060</span>&#160;}</div>
-<div class="line"><a name="l01061"></a><span class="lineno"> 1061</span>&#160;</div>
-<div class="line"><a name="l01065"></a><span class="lineno"><a class="line" href="ili9341_8h.html#a616f9992d5ed309e96288a7e08b87bf3"> 1065</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="ili9341_8c.html#a616f9992d5ed309e96288a7e08b87bf3">tft_get_font_height</a>(<a class="code" href="structwindow.html">window</a> *win)</div>
-<div class="line"><a name="l01066"></a><span class="lineno"> 1066</span>&#160;{</div>
-<div class="line"><a name="l01067"></a><span class="lineno"> 1067</span>&#160;    <span class="keywordtype">int</span> ret;</div>
-<div class="line"><a name="l01068"></a><span class="lineno"> 1068</span>&#160;    <a class="code" href="struct__fontc.html">_fontc</a> f;</div>
-<div class="line"><a name="l01069"></a><span class="lineno"> 1069</span>&#160;    ret = <a class="code" href="font_8c.html#acea4413f1d84d044b7d83a96bb0bcb79">font_attr</a>(win, <span class="charliteral">&#39; &#39;</span>, &amp;f);</div>
-<div class="line"><a name="l01070"></a><span class="lineno"> 1070</span>&#160;    <span class="keywordflow">if</span>(ret &lt; 0)</div>
-<div class="line"><a name="l01071"></a><span class="lineno"> 1071</span>&#160;        <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l01072"></a><span class="lineno"> 1072</span>&#160;    <span class="keywordflow">return</span>(f.<a class="code" href="struct__fontc.html#a98f97c237dfb1027c38813a17ef6dcd6">Height</a>);</div>
-<div class="line"><a name="l01073"></a><span class="lineno"> 1073</span>&#160;}</div>
-<div class="line"><a name="l01074"></a><span class="lineno"> 1074</span>&#160;</div>
-<div class="line"><a name="l01075"></a><span class="lineno"> 1075</span>&#160;</div>
-<div class="line"><a name="l01079"></a><span class="lineno"> 1079</span>&#160;<a class="code" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
-<div class="line"><a name="l01080"></a><span class="lineno"><a class="line" href="ili9341_8h.html#a16c17b6c49729dabf2eee1d575486e74"> 1080</a></span>&#160;<a class="code" href="ili9341_8c.html#a16c17b6c49729dabf2eee1d575486e74">tft_font_fixed</a>(<a class="code" href="structwindow.html">window</a> *win)</div>
-<div class="line"><a name="l01081"></a><span class="lineno"> 1081</span>&#160;{</div>
-<div class="line"><a name="l01082"></a><span class="lineno"> 1082</span>&#160;    win-&gt;<a class="code" href="structwindow.html#ad58fae853f87093ef4f0139df0a3f33d">flags</a> &amp;= ~<a class="code" href="ili9341_8h.html#a29fe4e7cb4d2be27f14f14431856391c">FONT_VAR</a>;</div>
-<div class="line"><a name="l01083"></a><span class="lineno"> 1083</span>&#160;}</div>
-<div class="line"><a name="l01084"></a><span class="lineno"> 1084</span>&#160;</div>
-<div class="line"><a name="l01085"></a><span class="lineno"> 1085</span>&#160;</div>
-<div class="line"><a name="l01089"></a><span class="lineno"> 1089</span>&#160;<a class="code" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
-<div class="line"><a name="l01090"></a><span class="lineno"><a class="line" href="ili9341_8h.html#a6a3d78858315dd032ed3b31099867584"> 1090</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="ili9341_8c.html#a6a3d78858315dd032ed3b31099867584">tft_font_var</a>(<a class="code" href="structwindow.html">window</a> *win)</div>
-<div class="line"><a name="l01091"></a><span class="lineno"> 1091</span>&#160;{</div>
-<div class="line"><a name="l01092"></a><span class="lineno"> 1092</span>&#160;    win-&gt;<a class="code" href="structwindow.html#ad58fae853f87093ef4f0139df0a3f33d">flags</a> |= <a class="code" href="ili9341_8h.html#a29fe4e7cb4d2be27f14f14431856391c">FONT_VAR</a>;</div>
-<div class="line"><a name="l01093"></a><span class="lineno"> 1093</span>&#160;}</div>
-<div class="line"><a name="l01094"></a><span class="lineno"> 1094</span>&#160;</div>
-<div class="line"><a name="l01095"></a><span class="lineno"> 1095</span>&#160;</div>
-<div class="line"><a name="l01103"></a><span class="lineno"><a class="line" href="ili9341_8h.html#abbf471bb78e19ca798b644121089aeed"> 1103</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="ili9341_8c.html#abbf471bb78e19ca798b644121089aeed">tft_drawFastVLine</a>(<a class="code" href="structwindow.html">window</a> *win,int16_t x, int16_t y,</div>
-<div class="line"><a name="l01104"></a><span class="lineno"> 1104</span>&#160;int16_t h, <a class="code" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> color)</div>
-<div class="line"><a name="l01105"></a><span class="lineno"> 1105</span>&#160;{</div>
-<div class="line"><a name="l01106"></a><span class="lineno"> 1106</span>&#160;    <span class="comment">// function clips</span></div>
-<div class="line"><a name="l01107"></a><span class="lineno"> 1107</span>&#160;    <a class="code" href="ili9341_8c.html#a3c9368b6d6f6388a7c7f9ed89743e47f">tft_fillRectWH</a>(win, x,y ,1, h, color);</div>
-<div class="line"><a name="l01108"></a><span class="lineno"> 1108</span>&#160;}</div>
-<div class="line"><a name="l01109"></a><span class="lineno"> 1109</span>&#160;</div>
+<div class="line"><a name="l01057"></a><span class="lineno"> 1057</span>&#160;<a class="code" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
+<div class="line"><a name="l01058"></a><span class="lineno"><a class="line" href="ili9341_8c.html#a2eb6ca3fa55bfe5ecf510bc4b25916fc"> 1058</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="ili9341_8c.html#a2eb6ca3fa55bfe5ecf510bc4b25916fc">tft_set_textpos</a>(<a class="code" href="structwindow.html">window</a> *win, int16_t x, int16_t y)</div>
+<div class="line"><a name="l01059"></a><span class="lineno"> 1059</span>&#160;{</div>
+<div class="line"><a name="l01060"></a><span class="lineno"> 1060</span>&#160;    win-&gt;<a class="code" href="structwindow.html#a890a7dba31e7328500f4e5e41e51aab7">xpos</a> = x * <a class="code" href="font_8c.html#a647c0e54986f2520898707b8accd28f3">font_W</a>(win-&gt;<a class="code" href="structwindow.html#acee24e56db43557a46cbb5ca3fe35021">font</a>);</div>
+<div class="line"><a name="l01061"></a><span class="lineno"> 1061</span>&#160;    win-&gt;<a class="code" href="structwindow.html#a64bdec4f0ee274a96d696b16de783746">ypos</a> = y * <a class="code" href="font_8c.html#aec37c6383e20a1fef1cd4924060ed693">font_H</a>(win-&gt;<a class="code" href="structwindow.html#acee24e56db43557a46cbb5ca3fe35021">font</a>);</div>
+<div class="line"><a name="l01062"></a><span class="lineno"> 1062</span>&#160;}</div>
+<div class="line"><a name="l01063"></a><span class="lineno"> 1063</span>&#160;</div>
+<div class="line"><a name="l01064"></a><span class="lineno"> 1064</span>&#160;</div>
+<div class="line"><a name="l01070"></a><span class="lineno"> 1070</span>&#160;<a class="code" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
+<div class="line"><a name="l01071"></a><span class="lineno"><a class="line" href="ili9341_8h.html#a439a47a3afc781f1f2dd1fff2efefe42"> 1071</a></span>&#160;<a class="code" href="ili9341_8c.html#a439a47a3afc781f1f2dd1fff2efefe42">tft_set_font</a>(<a class="code" href="structwindow.html">window</a> *win, <a class="code" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> index)</div>
+<div class="line"><a name="l01072"></a><span class="lineno"> 1072</span>&#160;{</div>
+<div class="line"><a name="l01073"></a><span class="lineno"> 1073</span>&#160;    <span class="keywordflow">if</span>(win-&gt;<a class="code" href="structwindow.html#acee24e56db43557a46cbb5ca3fe35021">font</a> &gt; <a class="code" href="font_8c.html#a809b205bdd1c95f9a10bb429681a8f9e">font_max</a>())</div>
+<div class="line"><a name="l01074"></a><span class="lineno"> 1074</span>&#160;        win-&gt;<a class="code" href="structwindow.html#acee24e56db43557a46cbb5ca3fe35021">font</a> = <a class="code" href="font_8c.html#a809b205bdd1c95f9a10bb429681a8f9e">font_max</a>();</div>
+<div class="line"><a name="l01075"></a><span class="lineno"> 1075</span>&#160;    win-&gt;<a class="code" href="structwindow.html#acee24e56db43557a46cbb5ca3fe35021">font</a> = index;</div>
+<div class="line"><a name="l01076"></a><span class="lineno"> 1076</span>&#160;}</div>
+<div class="line"><a name="l01077"></a><span class="lineno"> 1077</span>&#160;</div>
+<div class="line"><a name="l01081"></a><span class="lineno"><a class="line" href="ili9341_8h.html#a616f9992d5ed309e96288a7e08b87bf3"> 1081</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="ili9341_8c.html#a616f9992d5ed309e96288a7e08b87bf3">tft_get_font_height</a>(<a class="code" href="structwindow.html">window</a> *win)</div>
+<div class="line"><a name="l01082"></a><span class="lineno"> 1082</span>&#160;{</div>
+<div class="line"><a name="l01083"></a><span class="lineno"> 1083</span>&#160;    <span class="keywordtype">int</span> ret;</div>
+<div class="line"><a name="l01084"></a><span class="lineno"> 1084</span>&#160;    <a class="code" href="struct__fontc.html">_fontc</a> f;</div>
+<div class="line"><a name="l01085"></a><span class="lineno"> 1085</span>&#160;    ret = <a class="code" href="font_8c.html#acea4413f1d84d044b7d83a96bb0bcb79">font_attr</a>(win, <span class="charliteral">&#39; &#39;</span>, &amp;f);</div>
+<div class="line"><a name="l01086"></a><span class="lineno"> 1086</span>&#160;    <span class="keywordflow">if</span>(ret &lt; 0)</div>
+<div class="line"><a name="l01087"></a><span class="lineno"> 1087</span>&#160;        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l01088"></a><span class="lineno"> 1088</span>&#160;    <span class="keywordflow">return</span>(f.<a class="code" href="struct__fontc.html#a98f97c237dfb1027c38813a17ef6dcd6">Height</a>);</div>
+<div class="line"><a name="l01089"></a><span class="lineno"> 1089</span>&#160;}</div>
+<div class="line"><a name="l01090"></a><span class="lineno"> 1090</span>&#160;</div>
+<div class="line"><a name="l01091"></a><span class="lineno"> 1091</span>&#160;</div>
+<div class="line"><a name="l01095"></a><span class="lineno"> 1095</span>&#160;<a class="code" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
+<div class="line"><a name="l01096"></a><span class="lineno"><a class="line" href="ili9341_8h.html#a16c17b6c49729dabf2eee1d575486e74"> 1096</a></span>&#160;<a class="code" href="ili9341_8c.html#a16c17b6c49729dabf2eee1d575486e74">tft_font_fixed</a>(<a class="code" href="structwindow.html">window</a> *win)</div>
+<div class="line"><a name="l01097"></a><span class="lineno"> 1097</span>&#160;{</div>
+<div class="line"><a name="l01098"></a><span class="lineno"> 1098</span>&#160;    win-&gt;<a class="code" href="structwindow.html#ad58fae853f87093ef4f0139df0a3f33d">flags</a> &amp;= ~<a class="code" href="ili9341_8h.html#a29fe4e7cb4d2be27f14f14431856391c">FONT_VAR</a>;</div>
+<div class="line"><a name="l01099"></a><span class="lineno"> 1099</span>&#160;}</div>
+<div class="line"><a name="l01100"></a><span class="lineno"> 1100</span>&#160;</div>
+<div class="line"><a name="l01101"></a><span class="lineno"> 1101</span>&#160;</div>
+<div class="line"><a name="l01105"></a><span class="lineno"> 1105</span>&#160;<a class="code" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
+<div class="line"><a name="l01106"></a><span class="lineno"><a class="line" href="ili9341_8h.html#a6a3d78858315dd032ed3b31099867584"> 1106</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="ili9341_8c.html#a6a3d78858315dd032ed3b31099867584">tft_font_var</a>(<a class="code" href="structwindow.html">window</a> *win)</div>
+<div class="line"><a name="l01107"></a><span class="lineno"> 1107</span>&#160;{</div>
+<div class="line"><a name="l01108"></a><span class="lineno"> 1108</span>&#160;    win-&gt;<a class="code" href="structwindow.html#ad58fae853f87093ef4f0139df0a3f33d">flags</a> |= <a class="code" href="ili9341_8h.html#a29fe4e7cb4d2be27f14f14431856391c">FONT_VAR</a>;</div>
+<div class="line"><a name="l01109"></a><span class="lineno"> 1109</span>&#160;}</div>
 <div class="line"><a name="l01110"></a><span class="lineno"> 1110</span>&#160;</div>
-<div class="line"><a name="l01118"></a><span class="lineno"><a class="line" href="ili9341_8h.html#ae425260d907faa87a1b8e336f24ba54c"> 1118</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="ili9341_8c.html#ae425260d907faa87a1b8e336f24ba54c">tft_drawFastHLine</a>(<a class="code" href="structwindow.html">window</a> *win, int16_t x, int16_t y,</div>
-<div class="line"><a name="l01119"></a><span class="lineno"> 1119</span>&#160;int16_t w, <a class="code" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> color)</div>
-<div class="line"><a name="l01120"></a><span class="lineno"> 1120</span>&#160;{</div>
-<div class="line"><a name="l01121"></a><span class="lineno"> 1121</span>&#160;    <span class="comment">// function clips</span></div>
-<div class="line"><a name="l01122"></a><span class="lineno"> 1122</span>&#160;    <a class="code" href="ili9341_8c.html#a3c9368b6d6f6388a7c7f9ed89743e47f">tft_fillRectWH</a>(win, x,y ,w, 1, color);</div>
-<div class="line"><a name="l01123"></a><span class="lineno"> 1123</span>&#160;}</div>
-<div class="line"><a name="l01124"></a><span class="lineno"> 1124</span>&#160;</div>
+<div class="line"><a name="l01111"></a><span class="lineno"> 1111</span>&#160;</div>
+<div class="line"><a name="l01119"></a><span class="lineno"><a class="line" href="ili9341_8h.html#abbf471bb78e19ca798b644121089aeed"> 1119</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="ili9341_8c.html#abbf471bb78e19ca798b644121089aeed">tft_drawFastVLine</a>(<a class="code" href="structwindow.html">window</a> *win,int16_t x, int16_t y,</div>
+<div class="line"><a name="l01120"></a><span class="lineno"> 1120</span>&#160;int16_t h, <a class="code" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> color)</div>
+<div class="line"><a name="l01121"></a><span class="lineno"> 1121</span>&#160;{</div>
+<div class="line"><a name="l01122"></a><span class="lineno"> 1122</span>&#160;    <span class="comment">// function clips</span></div>
+<div class="line"><a name="l01123"></a><span class="lineno"> 1123</span>&#160;    <a class="code" href="ili9341_8c.html#a3c9368b6d6f6388a7c7f9ed89743e47f">tft_fillRectWH</a>(win, x,y ,1, h, color);</div>
+<div class="line"><a name="l01124"></a><span class="lineno"> 1124</span>&#160;}</div>
 <div class="line"><a name="l01125"></a><span class="lineno"> 1125</span>&#160;</div>
-<div class="line"><a name="l01135"></a><span class="lineno"> 1135</span>&#160;<span class="preprocessor">#if 0</span></div>
-<div class="line"><a name="l01136"></a><span class="lineno"> 1136</span>&#160;<span class="preprocessor"></span><span class="keywordtype">void</span> <a class="code" href="ili9341_8c.html#a7cef55bef133e9918955b4d2a53cf230">tft_drawLine</a>(<a class="code" href="structwindow.html">window</a> *win, int16_t x0, int16_t y0, int16_t x1, int16_t y1, <a class="code" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> color)</div>
-<div class="line"><a name="l01137"></a><span class="lineno"> 1137</span>&#160;{</div>
-<div class="line"><a name="l01138"></a><span class="lineno"> 1138</span>&#160;    <span class="keywordtype">int</span> npts, i, delx, dely, xi, yi, diff;</div>
-<div class="line"><a name="l01139"></a><span class="lineno"> 1139</span>&#160;</div>
-<div class="line"><a name="l01140"></a><span class="lineno"> 1140</span>&#160;    delx = (x1-x0); xi = <a class="code" href="str_8h.html#a8c5ff70b6b28cd0157c50a22406f92c4">SIGN</a>(delx); delx = <a class="code" href="str_8h.html#a996f7be338ccb40d1a2a5abc1ad61759">ABS</a>(delx);</div>
-<div class="line"><a name="l01141"></a><span class="lineno"> 1141</span>&#160;    dely = (y1-y0); yi = <a class="code" href="str_8h.html#a8c5ff70b6b28cd0157c50a22406f92c4">SIGN</a>(dely); dely = <a class="code" href="str_8h.html#a996f7be338ccb40d1a2a5abc1ad61759">ABS</a>(dely);</div>
-<div class="line"><a name="l01142"></a><span class="lineno"> 1142</span>&#160;    diff = (delx-dely);</div>
-<div class="line"><a name="l01143"></a><span class="lineno"> 1143</span>&#160;    npts = <a class="code" href="str_8h.html#aacc3ee1a7f283f8ef65cea31f4436a95">MAX</a>(delx,dely);</div>
-<div class="line"><a name="l01144"></a><span class="lineno"> 1144</span>&#160;</div>
-<div class="line"><a name="l01145"></a><span class="lineno"> 1145</span>&#160;    <span class="keywordflow">for</span>(i=0;i&lt;=npts;++i) </div>
-<div class="line"><a name="l01146"></a><span class="lineno"> 1146</span>&#160;    {</div>
-<div class="line"><a name="l01147"></a><span class="lineno"> 1147</span>&#160;        <a class="code" href="ili9341_8c.html#a675036a93108cdafe0b1060ba024c485">tft_drawPixel</a>(win, x0, y0, color);</div>
-<div class="line"><a name="l01148"></a><span class="lineno"> 1148</span>&#160;        <span class="keywordflow">if</span>(diff &gt;= 0) </div>
-<div class="line"><a name="l01149"></a><span class="lineno"> 1149</span>&#160;        {</div>
-<div class="line"><a name="l01150"></a><span class="lineno"> 1150</span>&#160;            diff -= dely; x0 += xi;</div>
-<div class="line"><a name="l01151"></a><span class="lineno"> 1151</span>&#160;            <span class="keywordflow">if</span>(dely &gt;= delx) </div>
-<div class="line"><a name="l01152"></a><span class="lineno"> 1152</span>&#160;            {</div>
-<div class="line"><a name="l01153"></a><span class="lineno"> 1153</span>&#160;                diff +=delx; y0 +=yi;</div>
-<div class="line"><a name="l01154"></a><span class="lineno"> 1154</span>&#160;            }</div>
-<div class="line"><a name="l01155"></a><span class="lineno"> 1155</span>&#160;        }</div>
-<div class="line"><a name="l01156"></a><span class="lineno"> 1156</span>&#160;        <span class="keywordflow">else</span> </div>
-<div class="line"><a name="l01157"></a><span class="lineno"> 1157</span>&#160;        {</div>
-<div class="line"><a name="l01158"></a><span class="lineno"> 1158</span>&#160;            diff += delx; y0 += yi;</div>
-<div class="line"><a name="l01159"></a><span class="lineno"> 1159</span>&#160;            <span class="keywordflow">if</span>(delx &gt;= dely) </div>
-<div class="line"><a name="l01160"></a><span class="lineno"> 1160</span>&#160;            {</div>
-<div class="line"><a name="l01161"></a><span class="lineno"> 1161</span>&#160;                diff -= dely; x0 += xi;</div>
-<div class="line"><a name="l01162"></a><span class="lineno"> 1162</span>&#160;            }</div>
-<div class="line"><a name="l01163"></a><span class="lineno"> 1163</span>&#160;        }</div>
-<div class="line"><a name="l01164"></a><span class="lineno"> 1164</span>&#160;    }</div>
-<div class="line"><a name="l01165"></a><span class="lineno"> 1165</span>&#160;}</div>
-<div class="line"><a name="l01166"></a><span class="lineno"> 1166</span>&#160;</div>
-<div class="line"><a name="l01167"></a><span class="lineno"> 1167</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l01168"></a><span class="lineno"> 1168</span>&#160;<span class="preprocessor"></span><span class="keywordtype">void</span> <a class="code" href="ili9341_8c.html#a7cef55bef133e9918955b4d2a53cf230">tft_drawLine</a>(<a class="code" href="structwindow.html">window</a> *win, int16_t x0, int16_t y0, int16_t x1, int16_t y1, <a class="code" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> color)</div>
-<div class="line"><a name="l01179"></a><span class="lineno"> 1179</span>&#160;{</div>
-<div class="line"><a name="l01180"></a><span class="lineno"> 1180</span>&#160;</div>
-<div class="line"><a name="l01181"></a><span class="lineno"> 1181</span>&#160;<span class="preprocessor">#define USE_OPTIMIZATION_DRAWLINE</span></div>
-<div class="line"><a name="l01182"></a><span class="lineno"> 1182</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l01183"></a><span class="lineno"> 1183</span>&#160;    int16_t dx = <a class="code" href="str_8h.html#a996f7be338ccb40d1a2a5abc1ad61759">ABS</a>(x1 - x0);</div>
-<div class="line"><a name="l01184"></a><span class="lineno"> 1184</span>&#160;    int16_t dy = -<a class="code" href="str_8h.html#a996f7be338ccb40d1a2a5abc1ad61759">ABS</a>(y1 - y0);</div>
-<div class="line"><a name="l01185"></a><span class="lineno"> 1185</span>&#160;    <a class="code" href="earth2wireframe_8c.html#aef44329758059c91c76d334e8fc09700">int8_t</a> sx = (x0 &lt; x1) ? 1 : -1;</div>
-<div class="line"><a name="l01186"></a><span class="lineno"> 1186</span>&#160;    <a class="code" href="earth2wireframe_8c.html#aef44329758059c91c76d334e8fc09700">int8_t</a> sy = (y0 &lt; y1) ? 1 : -1;</div>
-<div class="line"><a name="l01187"></a><span class="lineno"> 1187</span>&#160;    int16_t err = dx + dy;</div>
-<div class="line"><a name="l01188"></a><span class="lineno"> 1188</span>&#160;    int16_t e2 = 0;</div>
-<div class="line"><a name="l01189"></a><span class="lineno"> 1189</span>&#160;</div>
-<div class="line"><a name="l01190"></a><span class="lineno"> 1190</span>&#160;<span class="preprocessor">#ifdef USE_OPTIMIZATION_DRAWLINE</span></div>
-<div class="line"><a name="l01191"></a><span class="lineno"> 1191</span>&#160;<span class="preprocessor"></span>    <a class="code" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> startX = x0;</div>
-<div class="line"><a name="l01192"></a><span class="lineno"> 1192</span>&#160;    <a class="code" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> startY = y0;</div>
-<div class="line"><a name="l01193"></a><span class="lineno"> 1193</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l01194"></a><span class="lineno"> 1194</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l01195"></a><span class="lineno"> 1195</span>&#160;    <span class="keywordflow">for</span> (;;)</div>
-<div class="line"><a name="l01196"></a><span class="lineno"> 1196</span>&#160;    {</div>
-<div class="line"><a name="l01197"></a><span class="lineno"> 1197</span>&#160;<span class="preprocessor">#ifdef USE_OPTIMIZATION_DRAWLINE</span></div>
-<div class="line"><a name="l01198"></a><span class="lineno"> 1198</span>&#160;<span class="preprocessor"></span>            <span class="comment">// Require correction</span></div>
-<div class="line"><a name="l01199"></a><span class="lineno"> 1199</span>&#160;            <span class="keywordflow">if</span> ((startX != x0) &amp;&amp; (startY != y0)) <span class="comment">// draw line and not draw point</span></div>
-<div class="line"><a name="l01200"></a><span class="lineno"> 1200</span>&#160;            {</div>
-<div class="line"><a name="l01201"></a><span class="lineno"> 1201</span>&#160;</div>
-<div class="line"><a name="l01202"></a><span class="lineno"> 1202</span>&#160;                <a class="code" href="ili9341_8c.html#a49f75769b08991ac4a56bfb2f4e1fa05">tft_fillRectXY</a>(win, startX, startY, x0 - sx, y0 - sy, color);</div>
-<div class="line"><a name="l01203"></a><span class="lineno"> 1203</span>&#160;                startX = x0;</div>
-<div class="line"><a name="l01204"></a><span class="lineno"> 1204</span>&#160;                startY = y0;</div>
-<div class="line"><a name="l01205"></a><span class="lineno"> 1205</span>&#160;            }</div>
-<div class="line"><a name="l01206"></a><span class="lineno"> 1206</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l01207"></a><span class="lineno"> 1207</span>&#160;<span class="preprocessor"></span>            <a class="code" href="ili9341_8c.html#a675036a93108cdafe0b1060ba024c485">tft_drawPixel</a>(win, x0, y0, color);</div>
-<div class="line"><a name="l01208"></a><span class="lineno"> 1208</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l01209"></a><span class="lineno"> 1209</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l01210"></a><span class="lineno"> 1210</span>&#160;        e2 = 2*err;</div>
-<div class="line"><a name="l01211"></a><span class="lineno"> 1211</span>&#160;        <span class="keywordflow">if</span> (e2 &gt;= dy)</div>
-<div class="line"><a name="l01212"></a><span class="lineno"> 1212</span>&#160;        {</div>
-<div class="line"><a name="l01213"></a><span class="lineno"> 1213</span>&#160;            <span class="keywordflow">if</span> (x0 == x1) <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l01214"></a><span class="lineno"> 1214</span>&#160;            err += dy;</div>
-<div class="line"><a name="l01215"></a><span class="lineno"> 1215</span>&#160;            x0 += sx;</div>
-<div class="line"><a name="l01216"></a><span class="lineno"> 1216</span>&#160;        }</div>
-<div class="line"><a name="l01217"></a><span class="lineno"> 1217</span>&#160;        <span class="keywordflow">if</span> (e2 &lt;= dx)</div>
-<div class="line"><a name="l01218"></a><span class="lineno"> 1218</span>&#160;        {</div>
-<div class="line"><a name="l01219"></a><span class="lineno"> 1219</span>&#160;            <span class="keywordflow">if</span> (y0 == y1) <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l01220"></a><span class="lineno"> 1220</span>&#160;            err += dx;</div>
-<div class="line"><a name="l01221"></a><span class="lineno"> 1221</span>&#160;            y0 += sy;</div>
-<div class="line"><a name="l01222"></a><span class="lineno"> 1222</span>&#160;        }</div>
-<div class="line"><a name="l01223"></a><span class="lineno"> 1223</span>&#160;    }</div>
-<div class="line"><a name="l01224"></a><span class="lineno"> 1224</span>&#160;<span class="preprocessor">#ifdef USE_OPTIMIZATION_DRAWLINE</span></div>
-<div class="line"><a name="l01225"></a><span class="lineno"> 1225</span>&#160;<span class="preprocessor"></span>    <span class="comment">// function clips</span></div>
-<div class="line"><a name="l01226"></a><span class="lineno"> 1226</span>&#160;    <a class="code" href="ili9341_8c.html#a49f75769b08991ac4a56bfb2f4e1fa05">tft_fillRectXY</a>(win, startX, startY, x0, y0, color);</div>
-<div class="line"><a name="l01227"></a><span class="lineno"> 1227</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l01228"></a><span class="lineno"> 1228</span>&#160;<span class="preprocessor"></span>}</div>
-<div class="line"><a name="l01229"></a><span class="lineno"> 1229</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l01230"></a><span class="lineno"> 1230</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l01234"></a><span class="lineno"> 1234</span>&#160;</div>
-<div class="line"><a name="l01238"></a><span class="lineno"> 1238</span>&#160;<a class="code" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
-<div class="line"><a name="l01239"></a><span class="lineno"><a class="line" href="ili9341_8h.html#a9e2f1c5c213183804492d12ab89a1b43"> 1239</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="ili9341_8c.html#a9e2f1c5c213183804492d12ab89a1b43">tft_cleareol</a>(<a class="code" href="structwindow.html">window</a> *win)</div>
-<div class="line"><a name="l01240"></a><span class="lineno"> 1240</span>&#160;{</div>
-<div class="line"><a name="l01241"></a><span class="lineno"> 1241</span>&#160;    <span class="keywordtype">int</span> ret, rem;</div>
-<div class="line"><a name="l01242"></a><span class="lineno"> 1242</span>&#160;    <a class="code" href="struct__fontc.html">_fontc</a> f;</div>
-<div class="line"><a name="l01243"></a><span class="lineno"> 1243</span>&#160;    ret = <a class="code" href="font_8c.html#acea4413f1d84d044b7d83a96bb0bcb79">font_attr</a>(win,<span class="charliteral">&#39; &#39;</span>, &amp;f);</div>
-<div class="line"><a name="l01244"></a><span class="lineno"> 1244</span>&#160;    <span class="keywordflow">if</span>(ret &lt; 0)</div>
-<div class="line"><a name="l01245"></a><span class="lineno"> 1245</span>&#160;        <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l01246"></a><span class="lineno"> 1246</span>&#160;    rem = (win-&gt;<a class="code" href="structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae">w</a> - 1 - win-&gt;<a class="code" href="structwindow.html#a890a7dba31e7328500f4e5e41e51aab7">xpos</a>);</div>
-<div class="line"><a name="l01247"></a><span class="lineno"> 1247</span>&#160;    <span class="keywordflow">if</span>(rem &gt; 0)</div>
-<div class="line"><a name="l01248"></a><span class="lineno"> 1248</span>&#160;    {</div>
-<div class="line"><a name="l01249"></a><span class="lineno"> 1249</span>&#160;        <span class="comment">// function clips</span></div>
-<div class="line"><a name="l01250"></a><span class="lineno"> 1250</span>&#160;        <a class="code" href="ili9341_8c.html#a3c9368b6d6f6388a7c7f9ed89743e47f">tft_fillRectWH</a>(win, win-&gt;<a class="code" href="structwindow.html#a890a7dba31e7328500f4e5e41e51aab7">xpos</a>, win-&gt;<a class="code" href="structwindow.html#a64bdec4f0ee274a96d696b16de783746">ypos</a>, rem, f.<a class="code" href="struct__fontc.html#a98f97c237dfb1027c38813a17ef6dcd6">Height</a>, win-&gt;<a class="code" href="structwindow.html#affcf5d29153103c2537542f5a4f8ba87">bg</a>);</div>
-<div class="line"><a name="l01251"></a><span class="lineno"> 1251</span>&#160;    }</div>
-<div class="line"><a name="l01252"></a><span class="lineno"> 1252</span>&#160;    win-&gt;<a class="code" href="structwindow.html#a890a7dba31e7328500f4e5e41e51aab7">xpos</a> = win-&gt;<a class="code" href="structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae">w</a>; <span class="comment">// one past end</span></div>
-<div class="line"><a name="l01253"></a><span class="lineno"> 1253</span>&#160;}</div>
-<div class="line"><a name="l01254"></a><span class="lineno"> 1254</span>&#160;</div>
-<div class="line"><a name="l01258"></a><span class="lineno"> 1258</span>&#160;<a class="code" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
-<div class="line"><a name="l01259"></a><span class="lineno"><a class="line" href="ili9341_8h.html#ab2312256c9579261cfa1ed62c4e82410"> 1259</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="ili9341_8c.html#ab2312256c9579261cfa1ed62c4e82410">tft_clearline</a>(<a class="code" href="structwindow.html">window</a> *win)</div>
-<div class="line"><a name="l01260"></a><span class="lineno"> 1260</span>&#160;{</div>
-<div class="line"><a name="l01261"></a><span class="lineno"> 1261</span>&#160;    <span class="keywordtype">int</span> ret, rem;</div>
-<div class="line"><a name="l01262"></a><span class="lineno"> 1262</span>&#160;    <a class="code" href="struct__fontc.html">_fontc</a> f;</div>
-<div class="line"><a name="l01263"></a><span class="lineno"> 1263</span>&#160;    ret = <a class="code" href="font_8c.html#acea4413f1d84d044b7d83a96bb0bcb79">font_attr</a>(win,<span class="charliteral">&#39; &#39;</span>, &amp;f);</div>
-<div class="line"><a name="l01264"></a><span class="lineno"> 1264</span>&#160;    <span class="keywordflow">if</span>(ret &lt; 0)</div>
-<div class="line"><a name="l01265"></a><span class="lineno"> 1265</span>&#160;        <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l01266"></a><span class="lineno"> 1266</span>&#160;    rem = (win-&gt;<a class="code" href="structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae">w</a> - 1 - win-&gt;<a class="code" href="structwindow.html#a890a7dba31e7328500f4e5e41e51aab7">xpos</a>);</div>
-<div class="line"><a name="l01267"></a><span class="lineno"> 1267</span>&#160;    <span class="keywordflow">if</span>(rem &gt; 0)</div>
-<div class="line"><a name="l01268"></a><span class="lineno"> 1268</span>&#160;    {</div>
-<div class="line"><a name="l01269"></a><span class="lineno"> 1269</span>&#160;        <span class="comment">// function clips</span></div>
-<div class="line"><a name="l01270"></a><span class="lineno"> 1270</span>&#160;        <a class="code" href="ili9341_8c.html#a3c9368b6d6f6388a7c7f9ed89743e47f">tft_fillRectWH</a>(win, 0, win-&gt;<a class="code" href="structwindow.html#a64bdec4f0ee274a96d696b16de783746">ypos</a>, rem, f.<a class="code" href="struct__fontc.html#a98f97c237dfb1027c38813a17ef6dcd6">Height</a>, win-&gt;<a class="code" href="structwindow.html#affcf5d29153103c2537542f5a4f8ba87">bg</a>);</div>
-<div class="line"><a name="l01271"></a><span class="lineno"> 1271</span>&#160;    }</div>
-<div class="line"><a name="l01272"></a><span class="lineno"> 1272</span>&#160;    win-&gt;<a class="code" href="structwindow.html#a890a7dba31e7328500f4e5e41e51aab7">xpos</a> = 0;</div>
-<div class="line"><a name="l01273"></a><span class="lineno"> 1273</span>&#160;}</div>
-<div class="line"><a name="l01274"></a><span class="lineno"> 1274</span>&#160;</div>
-<div class="line"><a name="l01275"></a><span class="lineno"> 1275</span>&#160;</div>
-<div class="line"><a name="l01276"></a><span class="lineno"> 1276</span>&#160;</div>
-<div class="line"><a name="l01281"></a><span class="lineno"><a class="line" href="ili9341_8h.html#afaf6907405d24bf529df5590f450d3cd"> 1281</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="ili9341_8c.html#afaf6907405d24bf529df5590f450d3cd">tft_putch</a>(<a class="code" href="structwindow.html">window</a> *win, <span class="keywordtype">int</span> c)</div>
-<div class="line"><a name="l01282"></a><span class="lineno"> 1282</span>&#160;{</div>
-<div class="line"><a name="l01283"></a><span class="lineno"> 1283</span>&#160;    <a class="code" href="struct__fontc.html">_fontc</a> f;</div>
-<div class="line"><a name="l01284"></a><span class="lineno"> 1284</span>&#160;    <span class="keywordtype">int</span> ret;</div>
-<div class="line"><a name="l01285"></a><span class="lineno"> 1285</span>&#160;    <span class="keywordtype">int</span> width;</div>
-<div class="line"><a name="l01286"></a><span class="lineno"> 1286</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="user__main_8c.html#aa011065eee776eb1bda73597b5d9d5d7">count</a>;</div>
-<div class="line"><a name="l01287"></a><span class="lineno"> 1287</span>&#160;    <span class="keywordtype">int</span> rem;</div>
-<div class="line"><a name="l01288"></a><span class="lineno"> 1288</span>&#160;</div>
-<div class="line"><a name="l01289"></a><span class="lineno"> 1289</span>&#160;    <span class="keywordflow">if</span>(c &lt; 0 || c &gt; 0x7e)</div>
-<div class="line"><a name="l01290"></a><span class="lineno"> 1290</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l01126"></a><span class="lineno"> 1126</span>&#160;</div>
+<div class="line"><a name="l01134"></a><span class="lineno"><a class="line" href="ili9341_8h.html#ae425260d907faa87a1b8e336f24ba54c"> 1134</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="ili9341_8c.html#ae425260d907faa87a1b8e336f24ba54c">tft_drawFastHLine</a>(<a class="code" href="structwindow.html">window</a> *win, int16_t x, int16_t y,</div>
+<div class="line"><a name="l01135"></a><span class="lineno"> 1135</span>&#160;int16_t w, <a class="code" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> color)</div>
+<div class="line"><a name="l01136"></a><span class="lineno"> 1136</span>&#160;{</div>
+<div class="line"><a name="l01137"></a><span class="lineno"> 1137</span>&#160;    <span class="comment">// function clips</span></div>
+<div class="line"><a name="l01138"></a><span class="lineno"> 1138</span>&#160;    <a class="code" href="ili9341_8c.html#a3c9368b6d6f6388a7c7f9ed89743e47f">tft_fillRectWH</a>(win, x,y ,w, 1, color);</div>
+<div class="line"><a name="l01139"></a><span class="lineno"> 1139</span>&#160;}</div>
+<div class="line"><a name="l01140"></a><span class="lineno"> 1140</span>&#160;</div>
+<div class="line"><a name="l01141"></a><span class="lineno"> 1141</span>&#160;</div>
+<div class="line"><a name="l01151"></a><span class="lineno"> 1151</span>&#160;<span class="preprocessor">#if 0</span></div>
+<div class="line"><a name="l01152"></a><span class="lineno"> 1152</span>&#160;<span class="preprocessor"></span><span class="keywordtype">void</span> <a class="code" href="ili9341_8c.html#a7cef55bef133e9918955b4d2a53cf230">tft_drawLine</a>(<a class="code" href="structwindow.html">window</a> *win, int16_t x0, int16_t y0, int16_t x1, int16_t y1, <a class="code" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> color)</div>
+<div class="line"><a name="l01153"></a><span class="lineno"> 1153</span>&#160;{</div>
+<div class="line"><a name="l01154"></a><span class="lineno"> 1154</span>&#160;    <span class="keywordtype">int</span> npts, i, delx, dely, xi, yi, diff;</div>
+<div class="line"><a name="l01155"></a><span class="lineno"> 1155</span>&#160;</div>
+<div class="line"><a name="l01156"></a><span class="lineno"> 1156</span>&#160;    delx = (x1-x0); xi = <a class="code" href="str_8h.html#a8c5ff70b6b28cd0157c50a22406f92c4">SIGN</a>(delx); delx = <a class="code" href="str_8h.html#a996f7be338ccb40d1a2a5abc1ad61759">ABS</a>(delx);</div>
+<div class="line"><a name="l01157"></a><span class="lineno"> 1157</span>&#160;    dely = (y1-y0); yi = <a class="code" href="str_8h.html#a8c5ff70b6b28cd0157c50a22406f92c4">SIGN</a>(dely); dely = <a class="code" href="str_8h.html#a996f7be338ccb40d1a2a5abc1ad61759">ABS</a>(dely);</div>
+<div class="line"><a name="l01158"></a><span class="lineno"> 1158</span>&#160;    diff = (delx-dely);</div>
+<div class="line"><a name="l01159"></a><span class="lineno"> 1159</span>&#160;    npts = <a class="code" href="str_8h.html#aacc3ee1a7f283f8ef65cea31f4436a95">MAX</a>(delx,dely);</div>
+<div class="line"><a name="l01160"></a><span class="lineno"> 1160</span>&#160;</div>
+<div class="line"><a name="l01161"></a><span class="lineno"> 1161</span>&#160;    <span class="keywordflow">for</span>(i=0;i&lt;=npts;++i) </div>
+<div class="line"><a name="l01162"></a><span class="lineno"> 1162</span>&#160;    {</div>
+<div class="line"><a name="l01163"></a><span class="lineno"> 1163</span>&#160;        <a class="code" href="ili9341_8c.html#a675036a93108cdafe0b1060ba024c485">tft_drawPixel</a>(win, x0, y0, color);</div>
+<div class="line"><a name="l01164"></a><span class="lineno"> 1164</span>&#160;        <span class="keywordflow">if</span>(diff &gt;= 0) </div>
+<div class="line"><a name="l01165"></a><span class="lineno"> 1165</span>&#160;        {</div>
+<div class="line"><a name="l01166"></a><span class="lineno"> 1166</span>&#160;            diff -= dely; x0 += xi;</div>
+<div class="line"><a name="l01167"></a><span class="lineno"> 1167</span>&#160;            <span class="keywordflow">if</span>(dely &gt;= delx) </div>
+<div class="line"><a name="l01168"></a><span class="lineno"> 1168</span>&#160;            {</div>
+<div class="line"><a name="l01169"></a><span class="lineno"> 1169</span>&#160;                diff +=delx; y0 +=yi;</div>
+<div class="line"><a name="l01170"></a><span class="lineno"> 1170</span>&#160;            }</div>
+<div class="line"><a name="l01171"></a><span class="lineno"> 1171</span>&#160;        }</div>
+<div class="line"><a name="l01172"></a><span class="lineno"> 1172</span>&#160;        <span class="keywordflow">else</span> </div>
+<div class="line"><a name="l01173"></a><span class="lineno"> 1173</span>&#160;        {</div>
+<div class="line"><a name="l01174"></a><span class="lineno"> 1174</span>&#160;            diff += delx; y0 += yi;</div>
+<div class="line"><a name="l01175"></a><span class="lineno"> 1175</span>&#160;            <span class="keywordflow">if</span>(delx &gt;= dely) </div>
+<div class="line"><a name="l01176"></a><span class="lineno"> 1176</span>&#160;            {</div>
+<div class="line"><a name="l01177"></a><span class="lineno"> 1177</span>&#160;                diff -= dely; x0 += xi;</div>
+<div class="line"><a name="l01178"></a><span class="lineno"> 1178</span>&#160;            }</div>
+<div class="line"><a name="l01179"></a><span class="lineno"> 1179</span>&#160;        }</div>
+<div class="line"><a name="l01180"></a><span class="lineno"> 1180</span>&#160;    }</div>
+<div class="line"><a name="l01181"></a><span class="lineno"> 1181</span>&#160;}</div>
+<div class="line"><a name="l01182"></a><span class="lineno"> 1182</span>&#160;</div>
+<div class="line"><a name="l01183"></a><span class="lineno"> 1183</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l01184"></a><span class="lineno"> 1184</span>&#160;<span class="preprocessor"></span><span class="keywordtype">void</span> <a class="code" href="ili9341_8c.html#a7cef55bef133e9918955b4d2a53cf230">tft_drawLine</a>(<a class="code" href="structwindow.html">window</a> *win, int16_t x0, int16_t y0, int16_t x1, int16_t y1, <a class="code" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> color)</div>
+<div class="line"><a name="l01195"></a><span class="lineno"> 1195</span>&#160;{</div>
+<div class="line"><a name="l01196"></a><span class="lineno"> 1196</span>&#160;</div>
+<div class="line"><a name="l01197"></a><span class="lineno"> 1197</span>&#160;<span class="preprocessor">#define USE_OPTIMIZATION_DRAWLINE</span></div>
+<div class="line"><a name="l01198"></a><span class="lineno"> 1198</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l01199"></a><span class="lineno"> 1199</span>&#160;    int16_t dx = <a class="code" href="str_8h.html#a996f7be338ccb40d1a2a5abc1ad61759">ABS</a>(x1 - x0);</div>
+<div class="line"><a name="l01200"></a><span class="lineno"> 1200</span>&#160;    int16_t dy = -<a class="code" href="str_8h.html#a996f7be338ccb40d1a2a5abc1ad61759">ABS</a>(y1 - y0);</div>
+<div class="line"><a name="l01201"></a><span class="lineno"> 1201</span>&#160;    <a class="code" href="earth2wireframe_8c.html#aef44329758059c91c76d334e8fc09700">int8_t</a> sx = (x0 &lt; x1) ? 1 : -1;</div>
+<div class="line"><a name="l01202"></a><span class="lineno"> 1202</span>&#160;    <a class="code" href="earth2wireframe_8c.html#aef44329758059c91c76d334e8fc09700">int8_t</a> sy = (y0 &lt; y1) ? 1 : -1;</div>
+<div class="line"><a name="l01203"></a><span class="lineno"> 1203</span>&#160;    int16_t err = dx + dy;</div>
+<div class="line"><a name="l01204"></a><span class="lineno"> 1204</span>&#160;    int16_t e2 = 0;</div>
+<div class="line"><a name="l01205"></a><span class="lineno"> 1205</span>&#160;</div>
+<div class="line"><a name="l01206"></a><span class="lineno"> 1206</span>&#160;<span class="preprocessor">#ifdef USE_OPTIMIZATION_DRAWLINE</span></div>
+<div class="line"><a name="l01207"></a><span class="lineno"> 1207</span>&#160;<span class="preprocessor"></span>    <a class="code" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> startX = x0;</div>
+<div class="line"><a name="l01208"></a><span class="lineno"> 1208</span>&#160;    <a class="code" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> startY = y0;</div>
+<div class="line"><a name="l01209"></a><span class="lineno"> 1209</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l01210"></a><span class="lineno"> 1210</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l01211"></a><span class="lineno"> 1211</span>&#160;    <span class="keywordflow">for</span> (;;)</div>
+<div class="line"><a name="l01212"></a><span class="lineno"> 1212</span>&#160;    {</div>
+<div class="line"><a name="l01213"></a><span class="lineno"> 1213</span>&#160;<span class="preprocessor">#ifdef USE_OPTIMIZATION_DRAWLINE</span></div>
+<div class="line"><a name="l01214"></a><span class="lineno"> 1214</span>&#160;<span class="preprocessor"></span>            <span class="comment">// Require correction</span></div>
+<div class="line"><a name="l01215"></a><span class="lineno"> 1215</span>&#160;            <span class="keywordflow">if</span> ((startX != x0) &amp;&amp; (startY != y0)) <span class="comment">// draw line and not draw point</span></div>
+<div class="line"><a name="l01216"></a><span class="lineno"> 1216</span>&#160;            {</div>
+<div class="line"><a name="l01217"></a><span class="lineno"> 1217</span>&#160;</div>
+<div class="line"><a name="l01218"></a><span class="lineno"> 1218</span>&#160;                <a class="code" href="ili9341_8c.html#a49f75769b08991ac4a56bfb2f4e1fa05">tft_fillRectXY</a>(win, startX, startY, x0 - sx, y0 - sy, color);</div>
+<div class="line"><a name="l01219"></a><span class="lineno"> 1219</span>&#160;                startX = x0;</div>
+<div class="line"><a name="l01220"></a><span class="lineno"> 1220</span>&#160;                startY = y0;</div>
+<div class="line"><a name="l01221"></a><span class="lineno"> 1221</span>&#160;            }</div>
+<div class="line"><a name="l01222"></a><span class="lineno"> 1222</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l01223"></a><span class="lineno"> 1223</span>&#160;<span class="preprocessor"></span>            <a class="code" href="ili9341_8c.html#a675036a93108cdafe0b1060ba024c485">tft_drawPixel</a>(win, x0, y0, color);</div>
+<div class="line"><a name="l01224"></a><span class="lineno"> 1224</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l01225"></a><span class="lineno"> 1225</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l01226"></a><span class="lineno"> 1226</span>&#160;        e2 = 2*err;</div>
+<div class="line"><a name="l01227"></a><span class="lineno"> 1227</span>&#160;        <span class="keywordflow">if</span> (e2 &gt;= dy)</div>
+<div class="line"><a name="l01228"></a><span class="lineno"> 1228</span>&#160;        {</div>
+<div class="line"><a name="l01229"></a><span class="lineno"> 1229</span>&#160;            <span class="keywordflow">if</span> (x0 == x1) <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l01230"></a><span class="lineno"> 1230</span>&#160;            err += dy;</div>
+<div class="line"><a name="l01231"></a><span class="lineno"> 1231</span>&#160;            x0 += sx;</div>
+<div class="line"><a name="l01232"></a><span class="lineno"> 1232</span>&#160;        }</div>
+<div class="line"><a name="l01233"></a><span class="lineno"> 1233</span>&#160;        <span class="keywordflow">if</span> (e2 &lt;= dx)</div>
+<div class="line"><a name="l01234"></a><span class="lineno"> 1234</span>&#160;        {</div>
+<div class="line"><a name="l01235"></a><span class="lineno"> 1235</span>&#160;            <span class="keywordflow">if</span> (y0 == y1) <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l01236"></a><span class="lineno"> 1236</span>&#160;            err += dx;</div>
+<div class="line"><a name="l01237"></a><span class="lineno"> 1237</span>&#160;            y0 += sy;</div>
+<div class="line"><a name="l01238"></a><span class="lineno"> 1238</span>&#160;        }</div>
+<div class="line"><a name="l01239"></a><span class="lineno"> 1239</span>&#160;    }</div>
+<div class="line"><a name="l01240"></a><span class="lineno"> 1240</span>&#160;<span class="preprocessor">#ifdef USE_OPTIMIZATION_DRAWLINE</span></div>
+<div class="line"><a name="l01241"></a><span class="lineno"> 1241</span>&#160;<span class="preprocessor"></span>    <span class="comment">// function clips</span></div>
+<div class="line"><a name="l01242"></a><span class="lineno"> 1242</span>&#160;    <a class="code" href="ili9341_8c.html#a49f75769b08991ac4a56bfb2f4e1fa05">tft_fillRectXY</a>(win, startX, startY, x0, y0, color);</div>
+<div class="line"><a name="l01243"></a><span class="lineno"> 1243</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l01244"></a><span class="lineno"> 1244</span>&#160;<span class="preprocessor"></span>}</div>
+<div class="line"><a name="l01245"></a><span class="lineno"> 1245</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l01246"></a><span class="lineno"> 1246</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l01250"></a><span class="lineno"> 1250</span>&#160;</div>
+<div class="line"><a name="l01254"></a><span class="lineno"> 1254</span>&#160;<a class="code" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
+<div class="line"><a name="l01255"></a><span class="lineno"><a class="line" href="ili9341_8h.html#a9e2f1c5c213183804492d12ab89a1b43"> 1255</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="ili9341_8c.html#a9e2f1c5c213183804492d12ab89a1b43">tft_cleareol</a>(<a class="code" href="structwindow.html">window</a> *win)</div>
+<div class="line"><a name="l01256"></a><span class="lineno"> 1256</span>&#160;{</div>
+<div class="line"><a name="l01257"></a><span class="lineno"> 1257</span>&#160;    <span class="keywordtype">int</span> ret, rem;</div>
+<div class="line"><a name="l01258"></a><span class="lineno"> 1258</span>&#160;    <a class="code" href="struct__fontc.html">_fontc</a> f;</div>
+<div class="line"><a name="l01259"></a><span class="lineno"> 1259</span>&#160;    ret = <a class="code" href="font_8c.html#acea4413f1d84d044b7d83a96bb0bcb79">font_attr</a>(win,<span class="charliteral">&#39; &#39;</span>, &amp;f);</div>
+<div class="line"><a name="l01260"></a><span class="lineno"> 1260</span>&#160;    <span class="keywordflow">if</span>(ret &lt; 0)</div>
+<div class="line"><a name="l01261"></a><span class="lineno"> 1261</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l01262"></a><span class="lineno"> 1262</span>&#160;    rem = (win-&gt;<a class="code" href="structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae">w</a> - 1 - win-&gt;<a class="code" href="structwindow.html#a890a7dba31e7328500f4e5e41e51aab7">xpos</a>);</div>
+<div class="line"><a name="l01263"></a><span class="lineno"> 1263</span>&#160;    <span class="keywordflow">if</span>(rem &gt; 0)</div>
+<div class="line"><a name="l01264"></a><span class="lineno"> 1264</span>&#160;    {</div>
+<div class="line"><a name="l01265"></a><span class="lineno"> 1265</span>&#160;        <span class="comment">// function clips</span></div>
+<div class="line"><a name="l01266"></a><span class="lineno"> 1266</span>&#160;        <a class="code" href="ili9341_8c.html#a3c9368b6d6f6388a7c7f9ed89743e47f">tft_fillRectWH</a>(win, win-&gt;<a class="code" href="structwindow.html#a890a7dba31e7328500f4e5e41e51aab7">xpos</a>, win-&gt;<a class="code" href="structwindow.html#a64bdec4f0ee274a96d696b16de783746">ypos</a>, rem, f.<a class="code" href="struct__fontc.html#a98f97c237dfb1027c38813a17ef6dcd6">Height</a>, win-&gt;<a class="code" href="structwindow.html#affcf5d29153103c2537542f5a4f8ba87">bg</a>);</div>
+<div class="line"><a name="l01267"></a><span class="lineno"> 1267</span>&#160;    }</div>
+<div class="line"><a name="l01268"></a><span class="lineno"> 1268</span>&#160;    win-&gt;<a class="code" href="structwindow.html#a890a7dba31e7328500f4e5e41e51aab7">xpos</a> = win-&gt;<a class="code" href="structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae">w</a>; <span class="comment">// one past end</span></div>
+<div class="line"><a name="l01269"></a><span class="lineno"> 1269</span>&#160;}</div>
+<div class="line"><a name="l01270"></a><span class="lineno"> 1270</span>&#160;</div>
+<div class="line"><a name="l01274"></a><span class="lineno"> 1274</span>&#160;<a class="code" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
+<div class="line"><a name="l01275"></a><span class="lineno"><a class="line" href="ili9341_8h.html#ab2312256c9579261cfa1ed62c4e82410"> 1275</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="ili9341_8c.html#ab2312256c9579261cfa1ed62c4e82410">tft_clearline</a>(<a class="code" href="structwindow.html">window</a> *win)</div>
+<div class="line"><a name="l01276"></a><span class="lineno"> 1276</span>&#160;{</div>
+<div class="line"><a name="l01277"></a><span class="lineno"> 1277</span>&#160;    <span class="keywordtype">int</span> ret, rem;</div>
+<div class="line"><a name="l01278"></a><span class="lineno"> 1278</span>&#160;    <a class="code" href="struct__fontc.html">_fontc</a> f;</div>
+<div class="line"><a name="l01279"></a><span class="lineno"> 1279</span>&#160;    ret = <a class="code" href="font_8c.html#acea4413f1d84d044b7d83a96bb0bcb79">font_attr</a>(win,<span class="charliteral">&#39; &#39;</span>, &amp;f);</div>
+<div class="line"><a name="l01280"></a><span class="lineno"> 1280</span>&#160;    <span class="keywordflow">if</span>(ret &lt; 0)</div>
+<div class="line"><a name="l01281"></a><span class="lineno"> 1281</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l01282"></a><span class="lineno"> 1282</span>&#160;    rem = (win-&gt;<a class="code" href="structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae">w</a> - 1 - win-&gt;<a class="code" href="structwindow.html#a890a7dba31e7328500f4e5e41e51aab7">xpos</a>);</div>
+<div class="line"><a name="l01283"></a><span class="lineno"> 1283</span>&#160;    <span class="keywordflow">if</span>(rem &gt; 0)</div>
+<div class="line"><a name="l01284"></a><span class="lineno"> 1284</span>&#160;    {</div>
+<div class="line"><a name="l01285"></a><span class="lineno"> 1285</span>&#160;        <span class="comment">// function clips</span></div>
+<div class="line"><a name="l01286"></a><span class="lineno"> 1286</span>&#160;        <a class="code" href="ili9341_8c.html#a3c9368b6d6f6388a7c7f9ed89743e47f">tft_fillRectWH</a>(win, 0, win-&gt;<a class="code" href="structwindow.html#a64bdec4f0ee274a96d696b16de783746">ypos</a>, rem, f.<a class="code" href="struct__fontc.html#a98f97c237dfb1027c38813a17ef6dcd6">Height</a>, win-&gt;<a class="code" href="structwindow.html#affcf5d29153103c2537542f5a4f8ba87">bg</a>);</div>
+<div class="line"><a name="l01287"></a><span class="lineno"> 1287</span>&#160;    }</div>
+<div class="line"><a name="l01288"></a><span class="lineno"> 1288</span>&#160;    win-&gt;<a class="code" href="structwindow.html#a890a7dba31e7328500f4e5e41e51aab7">xpos</a> = 0;</div>
+<div class="line"><a name="l01289"></a><span class="lineno"> 1289</span>&#160;}</div>
+<div class="line"><a name="l01290"></a><span class="lineno"> 1290</span>&#160;</div>
 <div class="line"><a name="l01291"></a><span class="lineno"> 1291</span>&#160;</div>
-<div class="line"><a name="l01292"></a><span class="lineno"> 1292</span>&#160;    <span class="keywordflow">if</span>(c &gt;= <span class="charliteral">&#39; &#39;</span>)</div>
-<div class="line"><a name="l01293"></a><span class="lineno"> 1293</span>&#160;    {</div>
-<div class="line"><a name="l01294"></a><span class="lineno"> 1294</span>&#160;        ret = <a class="code" href="font_8c.html#acea4413f1d84d044b7d83a96bb0bcb79">font_attr</a>(win, c, &amp;f);</div>
-<div class="line"><a name="l01295"></a><span class="lineno"> 1295</span>&#160;        <span class="keywordflow">if</span>(ret &lt; 0)</div>
-<div class="line"><a name="l01296"></a><span class="lineno"> 1296</span>&#160;            <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l01297"></a><span class="lineno"> 1297</span>&#160;    }</div>
-<div class="line"><a name="l01298"></a><span class="lineno"> 1298</span>&#160;    <span class="keywordflow">else</span> </div>
-<div class="line"><a name="l01299"></a><span class="lineno"> 1299</span>&#160;    {</div>
-<div class="line"><a name="l01300"></a><span class="lineno"> 1300</span>&#160;        <span class="comment">// use space to get font attributes </span></div>
-<div class="line"><a name="l01301"></a><span class="lineno"> 1301</span>&#160;        ret = <a class="code" href="font_8c.html#acea4413f1d84d044b7d83a96bb0bcb79">font_attr</a>(win,<span class="charliteral">&#39; &#39;</span>, &amp;f);</div>
-<div class="line"><a name="l01302"></a><span class="lineno"> 1302</span>&#160;        <span class="keywordflow">if</span>(ret &lt; 0)</div>
-<div class="line"><a name="l01303"></a><span class="lineno"> 1303</span>&#160;            <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l01304"></a><span class="lineno"> 1304</span>&#160;    }</div>
-<div class="line"><a name="l01305"></a><span class="lineno"> 1305</span>&#160;</div>
-<div class="line"><a name="l01306"></a><span class="lineno"> 1306</span>&#160;    <span class="comment">// Normal visible characters</span></div>
-<div class="line"><a name="l01307"></a><span class="lineno"> 1307</span>&#160;    <span class="keywordflow">if</span>(c &gt;= <span class="charliteral">&#39; &#39;</span>)</div>
-<div class="line"><a name="l01308"></a><span class="lineno"> 1308</span>&#160;    {</div>
-<div class="line"><a name="l01309"></a><span class="lineno"> 1309</span>&#160;        (void) <a class="code" href="font_8c.html#a87fb749b0b5887e26f76d1292b93b0ed">tft_drawChar</a>(win, c);</div>
-<div class="line"><a name="l01310"></a><span class="lineno"> 1310</span>&#160;        <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l01311"></a><span class="lineno"> 1311</span>&#160;    }</div>
-<div class="line"><a name="l01312"></a><span class="lineno"> 1312</span>&#160;</div>
-<div class="line"><a name="l01313"></a><span class="lineno"> 1313</span>&#160;    <span class="comment">// Control characters</span></div>
-<div class="line"><a name="l01314"></a><span class="lineno"> 1314</span>&#160;    <span class="keywordflow">if</span>(c == <span class="charliteral">&#39;\n&#39;</span>)</div>
+<div class="line"><a name="l01292"></a><span class="lineno"> 1292</span>&#160;</div>
+<div class="line"><a name="l01297"></a><span class="lineno"><a class="line" href="ili9341_8h.html#afaf6907405d24bf529df5590f450d3cd"> 1297</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="ili9341_8c.html#afaf6907405d24bf529df5590f450d3cd">tft_putch</a>(<a class="code" href="structwindow.html">window</a> *win, <span class="keywordtype">int</span> c)</div>
+<div class="line"><a name="l01298"></a><span class="lineno"> 1298</span>&#160;{</div>
+<div class="line"><a name="l01299"></a><span class="lineno"> 1299</span>&#160;    <a class="code" href="struct__fontc.html">_fontc</a> f;</div>
+<div class="line"><a name="l01300"></a><span class="lineno"> 1300</span>&#160;    <span class="keywordtype">int</span> ret;</div>
+<div class="line"><a name="l01301"></a><span class="lineno"> 1301</span>&#160;    <span class="keywordtype">int</span> width;</div>
+<div class="line"><a name="l01302"></a><span class="lineno"> 1302</span>&#160;    <span class="keywordtype">int</span> count;</div>
+<div class="line"><a name="l01303"></a><span class="lineno"> 1303</span>&#160;    <span class="keywordtype">int</span> rem;</div>
+<div class="line"><a name="l01304"></a><span class="lineno"> 1304</span>&#160;</div>
+<div class="line"><a name="l01305"></a><span class="lineno"> 1305</span>&#160;    <span class="keywordflow">if</span>(c &lt; 0 || c &gt; 0x7e)</div>
+<div class="line"><a name="l01306"></a><span class="lineno"> 1306</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l01307"></a><span class="lineno"> 1307</span>&#160;</div>
+<div class="line"><a name="l01308"></a><span class="lineno"> 1308</span>&#160;    <span class="keywordflow">if</span>(c &gt;= <span class="charliteral">&#39; &#39;</span>)</div>
+<div class="line"><a name="l01309"></a><span class="lineno"> 1309</span>&#160;    {</div>
+<div class="line"><a name="l01310"></a><span class="lineno"> 1310</span>&#160;        ret = <a class="code" href="font_8c.html#acea4413f1d84d044b7d83a96bb0bcb79">font_attr</a>(win, c, &amp;f);</div>
+<div class="line"><a name="l01311"></a><span class="lineno"> 1311</span>&#160;        <span class="keywordflow">if</span>(ret &lt; 0)</div>
+<div class="line"><a name="l01312"></a><span class="lineno"> 1312</span>&#160;            <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l01313"></a><span class="lineno"> 1313</span>&#160;    }</div>
+<div class="line"><a name="l01314"></a><span class="lineno"> 1314</span>&#160;    <span class="keywordflow">else</span> </div>
 <div class="line"><a name="l01315"></a><span class="lineno"> 1315</span>&#160;    {</div>
-<div class="line"><a name="l01316"></a><span class="lineno"> 1316</span>&#160;        <a class="code" href="ili9341_8c.html#a9e2f1c5c213183804492d12ab89a1b43">tft_cleareol</a>(win);</div>
-<div class="line"><a name="l01317"></a><span class="lineno"> 1317</span>&#160;        win-&gt;<a class="code" href="structwindow.html#a890a7dba31e7328500f4e5e41e51aab7">xpos</a> = 0;</div>
-<div class="line"><a name="l01318"></a><span class="lineno"> 1318</span>&#160;        win-&gt;<a class="code" href="structwindow.html#a64bdec4f0ee274a96d696b16de783746">ypos</a> += f.<a class="code" href="struct__fontc.html#a98f97c237dfb1027c38813a17ef6dcd6">Height</a>;</div>
-<div class="line"><a name="l01319"></a><span class="lineno"> 1319</span>&#160;    }</div>
-<div class="line"><a name="l01320"></a><span class="lineno"> 1320</span>&#160;    <span class="keywordflow">if</span>(c == <span class="charliteral">&#39;\f&#39;</span>)</div>
-<div class="line"><a name="l01321"></a><span class="lineno"> 1321</span>&#160;    {</div>
-<div class="line"><a name="l01322"></a><span class="lineno"> 1322</span>&#160;        <a class="code" href="ili9341_8c.html#a90dda5b7ba495fcca6ab4e5259f6c6fe">tft_fillWin</a>(win,win-&gt;<a class="code" href="structwindow.html#affcf5d29153103c2537542f5a4f8ba87">bg</a>);</div>
-<div class="line"><a name="l01323"></a><span class="lineno"> 1323</span>&#160;        win-&gt;<a class="code" href="structwindow.html#a890a7dba31e7328500f4e5e41e51aab7">xpos</a> = 0;</div>
-<div class="line"><a name="l01324"></a><span class="lineno"> 1324</span>&#160;        win-&gt;<a class="code" href="structwindow.html#a64bdec4f0ee274a96d696b16de783746">ypos</a> = 0;</div>
-<div class="line"><a name="l01325"></a><span class="lineno"> 1325</span>&#160;    }</div>
-<div class="line"><a name="l01326"></a><span class="lineno"> 1326</span>&#160;    <span class="keywordflow">if</span>(c == <span class="charliteral">&#39;\t&#39;</span>)</div>
-<div class="line"><a name="l01327"></a><span class="lineno"> 1327</span>&#160;    {</div>
-<div class="line"><a name="l01328"></a><span class="lineno"> 1328</span>&#160;        count = win-&gt;<a class="code" href="structwindow.html#a88d2836d45dd428d8fadfd703f0f965f">tabstop</a> - (win-&gt;<a class="code" href="structwindow.html#a890a7dba31e7328500f4e5e41e51aab7">xpos</a> % win-&gt;<a class="code" href="structwindow.html#a88d2836d45dd428d8fadfd703f0f965f">tabstop</a>);<span class="comment">// skip size to next tabstop</span></div>
-<div class="line"><a name="l01329"></a><span class="lineno"> 1329</span>&#160;        <span class="comment">// Will we overflow ?</span></div>
-<div class="line"><a name="l01330"></a><span class="lineno"> 1330</span>&#160;        <span class="keywordflow">if</span>(win-&gt;<a class="code" href="structwindow.html#a890a7dba31e7328500f4e5e41e51aab7">xpos</a> + count &gt; win-&gt;<a class="code" href="structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae">w</a>)</div>
-<div class="line"><a name="l01331"></a><span class="lineno"> 1331</span>&#160;        {</div>
-<div class="line"><a name="l01332"></a><span class="lineno"> 1332</span>&#160;            count = (win-&gt;<a class="code" href="structwindow.html#a890a7dba31e7328500f4e5e41e51aab7">xpos</a> + <a class="code" href="user__main_8c.html#aa011065eee776eb1bda73597b5d9d5d7">count</a>) - win-&gt;<a class="code" href="structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae">w</a> -1;</div>
-<div class="line"><a name="l01333"></a><span class="lineno"> 1333</span>&#160;            <a class="code" href="ili9341_8c.html#a9e2f1c5c213183804492d12ab89a1b43">tft_cleareol</a>(win);</div>
-<div class="line"><a name="l01334"></a><span class="lineno"> 1334</span>&#160;            <span class="keywordflow">if</span>(win-&gt;<a class="code" href="structwindow.html#ad58fae853f87093ef4f0139df0a3f33d">flags</a> &amp; <a class="code" href="ili9341_8h.html#ab73b6f81ca48b2c6565e527a069914b3">WRAP_H</a>)</div>
-<div class="line"><a name="l01335"></a><span class="lineno"> 1335</span>&#160;            {</div>
-<div class="line"><a name="l01336"></a><span class="lineno"> 1336</span>&#160;                <a class="code" href="ili9341_8c.html#a3c9368b6d6f6388a7c7f9ed89743e47f">tft_fillRectWH</a>(win, 0, win-&gt;<a class="code" href="structwindow.html#a64bdec4f0ee274a96d696b16de783746">ypos</a>, count, f.<a class="code" href="struct__fontc.html#a98f97c237dfb1027c38813a17ef6dcd6">Height</a>, win-&gt;<a class="code" href="structwindow.html#affcf5d29153103c2537542f5a4f8ba87">bg</a>);</div>
-<div class="line"><a name="l01337"></a><span class="lineno"> 1337</span>&#160;                win-&gt;<a class="code" href="structwindow.html#a890a7dba31e7328500f4e5e41e51aab7">xpos</a> = <a class="code" href="user__main_8c.html#aa011065eee776eb1bda73597b5d9d5d7">count</a>;</div>
-<div class="line"><a name="l01338"></a><span class="lineno"> 1338</span>&#160;                win-&gt;<a class="code" href="structwindow.html#a64bdec4f0ee274a96d696b16de783746">ypos</a> += f.<a class="code" href="struct__fontc.html#a98f97c237dfb1027c38813a17ef6dcd6">Height</a>;</div>
-<div class="line"><a name="l01339"></a><span class="lineno"> 1339</span>&#160;            }</div>
-<div class="line"><a name="l01340"></a><span class="lineno"> 1340</span>&#160;        }</div>
-<div class="line"><a name="l01341"></a><span class="lineno"> 1341</span>&#160;        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l01342"></a><span class="lineno"> 1342</span>&#160;        {</div>
-<div class="line"><a name="l01343"></a><span class="lineno"> 1343</span>&#160;            <a class="code" href="ili9341_8c.html#a3c9368b6d6f6388a7c7f9ed89743e47f">tft_fillRectWH</a>(win, win-&gt;<a class="code" href="structwindow.html#a890a7dba31e7328500f4e5e41e51aab7">xpos</a>, win-&gt;<a class="code" href="structwindow.html#a64bdec4f0ee274a96d696b16de783746">ypos</a>, count, f.<a class="code" href="struct__fontc.html#a98f97c237dfb1027c38813a17ef6dcd6">Height</a>, win-&gt;<a class="code" href="structwindow.html#affcf5d29153103c2537542f5a4f8ba87">bg</a>);</div>
-<div class="line"><a name="l01344"></a><span class="lineno"> 1344</span>&#160;            win-&gt;<a class="code" href="structwindow.html#a890a7dba31e7328500f4e5e41e51aab7">xpos</a> += <a class="code" href="user__main_8c.html#aa011065eee776eb1bda73597b5d9d5d7">count</a>;</div>
-<div class="line"><a name="l01345"></a><span class="lineno"> 1345</span>&#160;        }</div>
-<div class="line"><a name="l01346"></a><span class="lineno"> 1346</span>&#160;    }</div>
-<div class="line"><a name="l01347"></a><span class="lineno"> 1347</span>&#160;}</div>
-<div class="line"><a name="l01348"></a><span class="lineno"> 1348</span>&#160;</div>
-<div class="line"><a name="l01349"></a><span class="lineno"> 1349</span>&#160;</div>
-<div class="line"><a name="l01350"></a><span class="lineno"> 1350</span>&#160;<span class="comment">/* tft_printf removes the need for most of the draw string functions */</span></div>
+<div class="line"><a name="l01316"></a><span class="lineno"> 1316</span>&#160;        <span class="comment">// use space to get font attributes </span></div>
+<div class="line"><a name="l01317"></a><span class="lineno"> 1317</span>&#160;        ret = <a class="code" href="font_8c.html#acea4413f1d84d044b7d83a96bb0bcb79">font_attr</a>(win,<span class="charliteral">&#39; &#39;</span>, &amp;f);</div>
+<div class="line"><a name="l01318"></a><span class="lineno"> 1318</span>&#160;        <span class="keywordflow">if</span>(ret &lt; 0)</div>
+<div class="line"><a name="l01319"></a><span class="lineno"> 1319</span>&#160;            <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l01320"></a><span class="lineno"> 1320</span>&#160;    }</div>
+<div class="line"><a name="l01321"></a><span class="lineno"> 1321</span>&#160;</div>
+<div class="line"><a name="l01322"></a><span class="lineno"> 1322</span>&#160;    <span class="comment">// Normal visible characters</span></div>
+<div class="line"><a name="l01323"></a><span class="lineno"> 1323</span>&#160;    <span class="keywordflow">if</span>(c &gt;= <span class="charliteral">&#39; &#39;</span>)</div>
+<div class="line"><a name="l01324"></a><span class="lineno"> 1324</span>&#160;    {</div>
+<div class="line"><a name="l01325"></a><span class="lineno"> 1325</span>&#160;        (void) <a class="code" href="font_8c.html#a87fb749b0b5887e26f76d1292b93b0ed">tft_drawChar</a>(win, c);</div>
+<div class="line"><a name="l01326"></a><span class="lineno"> 1326</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l01327"></a><span class="lineno"> 1327</span>&#160;    }</div>
+<div class="line"><a name="l01328"></a><span class="lineno"> 1328</span>&#160;</div>
+<div class="line"><a name="l01329"></a><span class="lineno"> 1329</span>&#160;    <span class="comment">// Control characters</span></div>
+<div class="line"><a name="l01330"></a><span class="lineno"> 1330</span>&#160;    <span class="keywordflow">if</span>(c == <span class="charliteral">&#39;\n&#39;</span>)</div>
+<div class="line"><a name="l01331"></a><span class="lineno"> 1331</span>&#160;    {</div>
+<div class="line"><a name="l01332"></a><span class="lineno"> 1332</span>&#160;        <a class="code" href="ili9341_8c.html#a9e2f1c5c213183804492d12ab89a1b43">tft_cleareol</a>(win);</div>
+<div class="line"><a name="l01333"></a><span class="lineno"> 1333</span>&#160;        win-&gt;<a class="code" href="structwindow.html#a890a7dba31e7328500f4e5e41e51aab7">xpos</a> = 0;</div>
+<div class="line"><a name="l01334"></a><span class="lineno"> 1334</span>&#160;        win-&gt;<a class="code" href="structwindow.html#a64bdec4f0ee274a96d696b16de783746">ypos</a> += f.<a class="code" href="struct__fontc.html#a98f97c237dfb1027c38813a17ef6dcd6">Height</a>;</div>
+<div class="line"><a name="l01335"></a><span class="lineno"> 1335</span>&#160;    }</div>
+<div class="line"><a name="l01336"></a><span class="lineno"> 1336</span>&#160;    <span class="keywordflow">if</span>(c == <span class="charliteral">&#39;\f&#39;</span>)</div>
+<div class="line"><a name="l01337"></a><span class="lineno"> 1337</span>&#160;    {</div>
+<div class="line"><a name="l01338"></a><span class="lineno"> 1338</span>&#160;        <a class="code" href="ili9341_8c.html#a90dda5b7ba495fcca6ab4e5259f6c6fe">tft_fillWin</a>(win,win-&gt;<a class="code" href="structwindow.html#affcf5d29153103c2537542f5a4f8ba87">bg</a>);</div>
+<div class="line"><a name="l01339"></a><span class="lineno"> 1339</span>&#160;        win-&gt;<a class="code" href="structwindow.html#a890a7dba31e7328500f4e5e41e51aab7">xpos</a> = 0;</div>
+<div class="line"><a name="l01340"></a><span class="lineno"> 1340</span>&#160;        win-&gt;<a class="code" href="structwindow.html#a64bdec4f0ee274a96d696b16de783746">ypos</a> = 0;</div>
+<div class="line"><a name="l01341"></a><span class="lineno"> 1341</span>&#160;    }</div>
+<div class="line"><a name="l01342"></a><span class="lineno"> 1342</span>&#160;    <span class="keywordflow">if</span>(c == <span class="charliteral">&#39;\t&#39;</span>)</div>
+<div class="line"><a name="l01343"></a><span class="lineno"> 1343</span>&#160;    {</div>
+<div class="line"><a name="l01344"></a><span class="lineno"> 1344</span>&#160;        count = win-&gt;<a class="code" href="structwindow.html#a88d2836d45dd428d8fadfd703f0f965f">tabstop</a> - (win-&gt;<a class="code" href="structwindow.html#a890a7dba31e7328500f4e5e41e51aab7">xpos</a> % win-&gt;<a class="code" href="structwindow.html#a88d2836d45dd428d8fadfd703f0f965f">tabstop</a>);<span class="comment">// skip size to next tabstop</span></div>
+<div class="line"><a name="l01345"></a><span class="lineno"> 1345</span>&#160;        <span class="comment">// Will we overflow ?</span></div>
+<div class="line"><a name="l01346"></a><span class="lineno"> 1346</span>&#160;        <span class="keywordflow">if</span>(win-&gt;<a class="code" href="structwindow.html#a890a7dba31e7328500f4e5e41e51aab7">xpos</a> + count &gt; win-&gt;<a class="code" href="structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae">w</a>)</div>
+<div class="line"><a name="l01347"></a><span class="lineno"> 1347</span>&#160;        {</div>
+<div class="line"><a name="l01348"></a><span class="lineno"> 1348</span>&#160;            count = (win-&gt;<a class="code" href="structwindow.html#a890a7dba31e7328500f4e5e41e51aab7">xpos</a> + count) - win-&gt;<a class="code" href="structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae">w</a> -1;</div>
+<div class="line"><a name="l01349"></a><span class="lineno"> 1349</span>&#160;            <a class="code" href="ili9341_8c.html#a9e2f1c5c213183804492d12ab89a1b43">tft_cleareol</a>(win);</div>
+<div class="line"><a name="l01350"></a><span class="lineno"> 1350</span>&#160;            <span class="keywordflow">if</span>(win-&gt;<a class="code" href="structwindow.html#ad58fae853f87093ef4f0139df0a3f33d">flags</a> &amp; <a class="code" href="ili9341_8h.html#ab73b6f81ca48b2c6565e527a069914b3">WRAP_H</a>)</div>
+<div class="line"><a name="l01351"></a><span class="lineno"> 1351</span>&#160;            {</div>
+<div class="line"><a name="l01352"></a><span class="lineno"> 1352</span>&#160;                <a class="code" href="ili9341_8c.html#a3c9368b6d6f6388a7c7f9ed89743e47f">tft_fillRectWH</a>(win, 0, win-&gt;<a class="code" href="structwindow.html#a64bdec4f0ee274a96d696b16de783746">ypos</a>, count, f.<a class="code" href="struct__fontc.html#a98f97c237dfb1027c38813a17ef6dcd6">Height</a>, win-&gt;<a class="code" href="structwindow.html#affcf5d29153103c2537542f5a4f8ba87">bg</a>);</div>
+<div class="line"><a name="l01353"></a><span class="lineno"> 1353</span>&#160;                win-&gt;<a class="code" href="structwindow.html#a890a7dba31e7328500f4e5e41e51aab7">xpos</a> = count;</div>
+<div class="line"><a name="l01354"></a><span class="lineno"> 1354</span>&#160;                win-&gt;<a class="code" href="structwindow.html#a64bdec4f0ee274a96d696b16de783746">ypos</a> += f.<a class="code" href="struct__fontc.html#a98f97c237dfb1027c38813a17ef6dcd6">Height</a>;</div>
+<div class="line"><a name="l01355"></a><span class="lineno"> 1355</span>&#160;            }</div>
+<div class="line"><a name="l01356"></a><span class="lineno"> 1356</span>&#160;        }</div>
+<div class="line"><a name="l01357"></a><span class="lineno"> 1357</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l01358"></a><span class="lineno"> 1358</span>&#160;        {</div>
+<div class="line"><a name="l01359"></a><span class="lineno"> 1359</span>&#160;            <a class="code" href="ili9341_8c.html#a3c9368b6d6f6388a7c7f9ed89743e47f">tft_fillRectWH</a>(win, win-&gt;<a class="code" href="structwindow.html#a890a7dba31e7328500f4e5e41e51aab7">xpos</a>, win-&gt;<a class="code" href="structwindow.html#a64bdec4f0ee274a96d696b16de783746">ypos</a>, count, f.<a class="code" href="struct__fontc.html#a98f97c237dfb1027c38813a17ef6dcd6">Height</a>, win-&gt;<a class="code" href="structwindow.html#affcf5d29153103c2537542f5a4f8ba87">bg</a>);</div>
+<div class="line"><a name="l01360"></a><span class="lineno"> 1360</span>&#160;            win-&gt;<a class="code" href="structwindow.html#a890a7dba31e7328500f4e5e41e51aab7">xpos</a> += count;</div>
+<div class="line"><a name="l01361"></a><span class="lineno"> 1361</span>&#160;        }</div>
+<div class="line"><a name="l01362"></a><span class="lineno"> 1362</span>&#160;    }</div>
+<div class="line"><a name="l01363"></a><span class="lineno"> 1363</span>&#160;}</div>
+<div class="line"><a name="l01364"></a><span class="lineno"> 1364</span>&#160;</div>
+<div class="line"><a name="l01365"></a><span class="lineno"> 1365</span>&#160;</div>
+<div class="line"><a name="l01366"></a><span class="lineno"> 1366</span>&#160;<span class="comment">/* tft_printf removes the need for most of the draw string functions */</span></div>
 <div class="ttc" id="structwindow_html_ad89fdeb11ce94e2e7501f7290372d6ae"><div class="ttname"><a href="structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae">window::w</a></div><div class="ttdeci">int16_t w</div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8h_source.html#l00040">ili9341.h:40</a></div></div>
 <div class="ttc" id="ili9341_8c_html_a4c1271aab64c58f75e6de6471f430bbe"><div class="ttname"><a href="ili9341_8c.html#a4c1271aab64c58f75e6de6471f430bbe">tft_setRotation</a></div><div class="ttdeci">MEMSPACE void tft_setRotation(uint8_t m)</div><div class="ttdoc">Set Display rotation, applies to the master window only Set hardware display rotation and memory fill...</div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l00817">ili9341.c:817</a></div></div>
-<div class="ttc" id="ili9341_8c_html_a616f9992d5ed309e96288a7e08b87bf3"><div class="ttname"><a href="ili9341_8c.html#a616f9992d5ed309e96288a7e08b87bf3">tft_get_font_height</a></div><div class="ttdeci">int tft_get_font_height(window *win)</div><div class="ttdoc">Get font height. </div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l01065">ili9341.c:1065</a></div></div>
+<div class="ttc" id="ili9341_8c_html_a616f9992d5ed309e96288a7e08b87bf3"><div class="ttname"><a href="ili9341_8c.html#a616f9992d5ed309e96288a7e08b87bf3">tft_get_font_height</a></div><div class="ttdeci">int tft_get_font_height(window *win)</div><div class="ttdoc">Get font height. </div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l01081">ili9341.c:1081</a></div></div>
 <div class="ttc" id="ili9341_8c_html_ae282613acd29016b23947b0b053170b5"><div class="ttname"><a href="ili9341_8c.html#ae282613acd29016b23947b0b053170b5">tft_readPixel</a></div><div class="ttdeci">uint16_t tft_readPixel(window *win, int16_t x, int16_t y)</div><div class="ttdoc">Read one pixel and return color in 1bit 565 RGB format We clip the window to the current view Note: R...</div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l00787">ili9341.c:787</a></div></div>
 <div class="ttc" id="ili9341_8h_html_a9e86747a04cc5cca5f61042d742b7e40"><div class="ttname"><a href="ili9341_8h.html#a9e86747a04cc5cca5f61042d742b7e40">TFT_YOFF</a></div><div class="ttdeci">#define TFT_YOFF</div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8h_source.html#l00082">ili9341.h:82</a></div></div>
 <div class="ttc" id="earth2wireframe_8c_html_a32f2e37ee053cf2ce8ca28d1f74630e5"><div class="ttname"><a href="earth2wireframe_8c.html#a32f2e37ee053cf2ce8ca28d1f74630e5">int32_t</a></div><div class="ttdeci">int int32_t</div><div class="ttdef"><b>Definition:</b> <a href="earth2wireframe_8c_source.html#l00043">earth2wireframe.c:43</a></div></div>
 <div class="ttc" id="ili9341_8c_html_afd0704ffdcfd5d17f5437814c2860130"><div class="ttname"><a href="ili9341_8c.html#afd0704ffdcfd5d17f5437814c2860130">tft_ID</a></div><div class="ttdeci">uint16_t tft_ID</div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l00036">ili9341.c:36</a></div></div>
 <div class="ttc" id="ili9341_8h_html_a5d907e919a478ce1710418ea2c7a3565"><div class="ttname"><a href="ili9341_8h.html#a5d907e919a478ce1710418ea2c7a3565">TFT_COMMAND</a></div><div class="ttdeci">#define TFT_COMMAND</div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8h_source.html#l00062">ili9341.h:62</a></div></div>
 <div class="ttc" id="ili9341_8c_html_aa975fa5ad6bb7e52356d9d66ac733196"><div class="ttname"><a href="ili9341_8c.html#aa975fa5ad6bb7e52356d9d66ac733196">tft_spi_TX</a></div><div class="ttdeci">void tft_spi_TX(uint8_t *data, int bytes, uint8_t command)</div><div class="ttdoc">Transmit 8 bit data array. </div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l00082">ili9341.c:82</a></div></div>
+<div class="ttc" id="ili9341_8c_html_a2eb6ca3fa55bfe5ecf510bc4b25916fc"><div class="ttname"><a href="ili9341_8c.html#a2eb6ca3fa55bfe5ecf510bc4b25916fc">tft_set_textpos</a></div><div class="ttdeci">MEMSPACE void tft_set_textpos(window *win, int16_t x, int16_t y)</div><div class="ttdoc">Set current window text pointer in characters (per current rotation) - overall font bounding box...</div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l01058">ili9341.c:1058</a></div></div>
 <div class="ttc" id="ili9341_8h_html_a29fe4e7cb4d2be27f14f14431856391c"><div class="ttname"><a href="ili9341_8h.html#a29fe4e7cb4d2be27f14f14431856391c">FONT_VAR</a></div><div class="ttdeci">#define FONT_VAR</div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8h_source.html#l00085">ili9341.h:85</a></div></div>
 <div class="ttc" id="ili9341_8c_html_a3cbe26ff6bbd20f42551fcfa12351142"><div class="ttname"><a href="ili9341_8c.html#a3cbe26ff6bbd20f42551fcfa12351142">tft_readRegister</a></div><div class="ttdeci">MEMSPACE uint32_t tft_readRegister(uint8_t command, uint8_t parameter)</div><div class="ttdoc">==================================== </div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l00286">ili9341.c:286</a></div></div>
-<div class="ttc" id="ili9341_8c_html_ae425260d907faa87a1b8e336f24ba54c"><div class="ttname"><a href="ili9341_8c.html#ae425260d907faa87a1b8e336f24ba54c">tft_drawFastHLine</a></div><div class="ttdeci">void tft_drawFastHLine(window *win, int16_t x, int16_t y, int16_t w, uint16_t color)</div><div class="ttdoc">Fast virtical line drawing. </div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l01118">ili9341.c:1118</a></div></div>
-<div class="ttc" id="structwindow_html_a822391abd5d09e6ce7152f68cff3ef2b"><div class="ttname"><a href="structwindow.html#a822391abd5d09e6ce7152f68cff3ef2b">window::h</a></div><div class="ttdeci">int16_t h</div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8h_source.html#l00042">ili9341.h:42</a></div></div>
+<div class="ttc" id="ili9341_8c_html_ae425260d907faa87a1b8e336f24ba54c"><div class="ttname"><a href="ili9341_8c.html#ae425260d907faa87a1b8e336f24ba54c">tft_drawFastHLine</a></div><div class="ttdeci">void tft_drawFastHLine(window *win, int16_t x, int16_t y, int16_t w, uint16_t color)</div><div class="ttdoc">Fast virtical line drawing. </div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l01134">ili9341.c:1134</a></div></div>
+<div class="ttc" id="structwindow_html_a822391abd5d09e6ce7152f68cff3ef2b"><div class="ttname"><a href="structwindow.html#a822391abd5d09e6ce7152f68cff3ef2b">window::h</a></div><div class="ttdeci">int16_t h</div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8h_source.html#l00041">ili9341.h:41</a></div></div>
 <div class="ttc" id="hspi_8c_html_a0603c3e5a8c6c29e5deb5609b28e86bc"><div class="ttname"><a href="hspi_8c.html#a0603c3e5a8c6c29e5deb5609b28e86bc">hspi_RX</a></div><div class="ttdeci">void hspi_RX(uint8_t *data, int count)</div><div class="ttdoc">HSPI read using FIFO. </div><div class="ttdef"><b>Definition:</b> <a href="hspi_8c_source.html#l00348">hspi.c:348</a></div></div>
 <div class="ttc" id="send_8c_html_a273cf69d639a59973b6019625df33e30"><div class="ttname"><a href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a></div><div class="ttdeci">unsigned short uint16_t</div><div class="ttdef"><b>Definition:</b> <a href="send_8c_source.html#l00018">send.c:18</a></div></div>
 <div class="ttc" id="ili9341_8c_html_a9aedd26c42606ba58f2f0a483619f323"><div class="ttname"><a href="ili9341_8c.html#a9aedd26c42606ba58f2f0a483619f323">tft_bit_blit</a></div><div class="ttdeci">void tft_bit_blit(window *win, uint8_t *ptr, int16_t x, int16_t y, int16_t w, int16_t h)</div><div class="ttdoc">BLIT functions </div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l00354">ili9341.c:354</a></div></div>
-<div class="ttc" id="structwindow_html_ad58fae853f87093ef4f0139df0a3f33d"><div class="ttname"><a href="structwindow.html#ad58fae853f87093ef4f0139df0a3f33d">window::flags</a></div><div class="ttdeci">uint16_t flags</div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8h_source.html#l00039">ili9341.h:39</a></div></div>
+<div class="ttc" id="structwindow_html_ad58fae853f87093ef4f0139df0a3f33d"><div class="ttname"><a href="structwindow.html#ad58fae853f87093ef4f0139df0a3f33d">window::flags</a></div><div class="ttdeci">uint16_t flags</div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8h_source.html#l00043">ili9341.h:43</a></div></div>
 <div class="ttc" id="user__config_8h_html"><div class="ttname"><a href="user__config_8h.html">user_config.h</a></div><div class="ttdoc">Master include file for project Includes all project includes and defines here. </div></div>
 <div class="ttc" id="structwindow_html_affcf5d29153103c2537542f5a4f8ba87"><div class="ttname"><a href="structwindow.html#affcf5d29153103c2537542f5a4f8ba87">window::bg</a></div><div class="ttdeci">uint16_t bg</div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8h_source.html#l00045">ili9341.h:45</a></div></div>
 <div class="ttc" id="ili9341_8c_html_a3c9368b6d6f6388a7c7f9ed89743e47f"><div class="ttname"><a href="ili9341_8c.html#a3c9368b6d6f6388a7c7f9ed89743e47f">tft_fillRectWH</a></div><div class="ttdeci">void tft_fillRectWH(window *win, int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color)</div><div class="ttdoc">Partial window Fill with color We clip the window to the current view. </div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l00467">ili9341.c:467</a></div></div>
 <div class="ttc" id="unionuint32__t__bytes_html_a83b0c87830b60d185365dbadf8efd4a0"><div class="ttname"><a href="unionuint32__t__bytes.html#a83b0c87830b60d185365dbadf8efd4a0">uint32_t_bytes::all</a></div><div class="ttdeci">uint32_t all</div><div class="ttdef"><b>Definition:</b> <a href="ili9341__adafruit_8h_source.html#l00065">ili9341_adafruit.h:65</a></div></div>
 <div class="ttc" id="ili9341_8c_html_a944393583142b4a19593eec1a743b90e"><div class="ttname"><a href="ili9341_8c.html#a944393583142b4a19593eec1a743b90e">tft_Cmd</a></div><div class="ttdeci">void tft_Cmd(uint8_t cmd)</div><div class="ttdoc">Transmit 8 bit command. </div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l00170">ili9341.c:170</a></div></div>
 <div class="ttc" id="earth2wireframe_8c_html_ad0fe97585b8891f5e4f2b9a6426330a4"><div class="ttname"><a href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div><div class="ttdeci">#define MEMSPACE</div><div class="ttdef"><b>Definition:</b> <a href="earth2wireframe_8c_source.html#l00045">earth2wireframe.c:45</a></div></div>
-<div class="ttc" id="ili9341_8c_html_a16c17b6c49729dabf2eee1d575486e74"><div class="ttname"><a href="ili9341_8c.html#a16c17b6c49729dabf2eee1d575486e74">tft_font_fixed</a></div><div class="ttdeci">MEMSPACE tft_font_fixed(window *win)</div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l01080">ili9341.c:1080</a></div></div>
+<div class="ttc" id="ili9341_8c_html_a16c17b6c49729dabf2eee1d575486e74"><div class="ttname"><a href="ili9341_8c.html#a16c17b6c49729dabf2eee1d575486e74">tft_font_fixed</a></div><div class="ttdeci">MEMSPACE tft_font_fixed(window *win)</div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l01096">ili9341.c:1096</a></div></div>
 <div class="ttc" id="ili9341_8c_html_aeedc758e5bf61e7ffb28d4a85de854e6"><div class="ttname"><a href="ili9341_8c.html#aeedc758e5bf61e7ffb28d4a85de854e6">tft_setTextColor</a></div><div class="ttdeci">MEMSPACE void tft_setTextColor(window *win, uint16_t fg, uint16_t bg)</div><div class="ttdoc">==================================== </div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l01032">ili9341.c:1032</a></div></div>
 <div class="ttc" id="structwindow_html_a890a7dba31e7328500f4e5e41e51aab7"><div class="ttname"><a href="structwindow.html#a890a7dba31e7328500f4e5e41e51aab7">window::xpos</a></div><div class="ttdeci">int16_t xpos</div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8h_source.html#l00036">ili9341.h:36</a></div></div>
 <div class="ttc" id="structwindow_html_afbd48ebcb41e68d0f458dac593578aa8"><div class="ttname"><a href="structwindow.html#afbd48ebcb41e68d0f458dac593578aa8">window::rotation</a></div><div class="ttdeci">uint8_t rotation</div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8h_source.html#l00046">ili9341.h:46</a></div></div>
@@ -1166,7 +1177,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="ili9341__adafruit_8h_html_a6d18ed48efb3186877a07d0e81155453"><div class="ttname"><a href="ili9341__adafruit_8h.html#a6d18ed48efb3186877a07d0e81155453">MADCTL_MX</a></div><div class="ttdeci">#define MADCTL_MX</div><div class="ttdef"><b>Definition:</b> <a href="ili9341__adafruit_8h_source.html#l00077">ili9341_adafruit.h:77</a></div></div>
 <div class="ttc" id="ili9341_8h_html_a6f4107e5a75e752c31df21aa1fedc09c"><div class="ttname"><a href="ili9341_8h.html#a6f4107e5a75e752c31df21aa1fedc09c">TFT_DATA</a></div><div class="ttdeci">#define TFT_DATA</div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8h_source.html#l00061">ili9341.h:61</a></div></div>
 <div class="ttc" id="ili9341__adafruit_8h_html_a310ca5d5d75b141c72e36a14e8b2bb8a"><div class="ttname"><a href="ili9341__adafruit_8h.html#a310ca5d5d75b141c72e36a14e8b2bb8a">ILI9341_INVON</a></div><div class="ttdeci">#define ILI9341_INVON</div><div class="ttdef"><b>Definition:</b> <a href="ili9341__adafruit_8h_source.html#l00101">ili9341_adafruit.h:101</a></div></div>
-<div class="ttc" id="user__main_8c_html_aa011065eee776eb1bda73597b5d9d5d7"><div class="ttname"><a href="user__main_8c.html#aa011065eee776eb1bda73597b5d9d5d7">count</a></div><div class="ttdeci">LOCAL long count</div><div class="ttdef"><b>Definition:</b> <a href="user__main_8c_source.html#l00080">user_main.c:80</a></div></div>
 <div class="ttc" id="ili9341_8c_html_a49f75769b08991ac4a56bfb2f4e1fa05"><div class="ttname"><a href="ili9341_8c.html#a49f75769b08991ac4a56bfb2f4e1fa05">tft_fillRectXY</a></div><div class="ttdeci">void tft_fillRectXY(window *win, int16_t x, int16_t y, int16_t xl, int16_t yl, uint16_t color)</div><div class="ttdoc">Fill rectangle with color We clip the window to the current view. </div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l00529">ili9341.c:529</a></div></div>
 <div class="ttc" id="send_8c_html_a435d1572bf3f880d55459d9805097f62"><div class="ttname"><a href="send_8c.html#a435d1572bf3f880d55459d9805097f62">uint32_t</a></div><div class="ttdeci">unsigned int uint32_t</div><div class="ttdef"><b>Definition:</b> <a href="send_8c_source.html#l00019">send.c:19</a></div></div>
 <div class="ttc" id="unionuint32__t__bytes_html"><div class="ttname"><a href="unionuint32__t__bytes.html">uint32_t_bytes</a></div><div class="ttdef"><b>Definition:</b> <a href="ili9341__adafruit_8h_source.html#l00055">ili9341_adafruit.h:55</a></div></div>
@@ -1179,7 +1189,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="ili9341_8h_html_ac6ec92dc5d86fc3febd00f889911718f"><div class="ttname"><a href="ili9341_8h.html#ac6ec92dc5d86fc3febd00f889911718f">TFT_RST_ACTIVE</a></div><div class="ttdeci">#define TFT_RST_ACTIVE</div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8h_source.html#l00075">ili9341.h:75</a></div></div>
 <div class="ttc" id="str_8h_html_a8c5ff70b6b28cd0157c50a22406f92c4"><div class="ttname"><a href="str_8h.html#a8c5ff70b6b28cd0157c50a22406f92c4">SIGN</a></div><div class="ttdeci">#define SIGN(x)</div><div class="ttdef"><b>Definition:</b> <a href="str_8h_source.html#l00033">str.h:33</a></div></div>
 <div class="ttc" id="ili9341__adafruit_8h_html_a659f0d6f0c258a3d91f882a59dfa76f5"><div class="ttname"><a href="ili9341__adafruit_8h.html#a659f0d6f0c258a3d91f882a59dfa76f5">MADCTL_BGR</a></div><div class="ttdeci">#define MADCTL_BGR</div><div class="ttdef"><b>Definition:</b> <a href="ili9341__adafruit_8h_source.html#l00080">ili9341_adafruit.h:80</a></div></div>
-<div class="ttc" id="font_8c_html_a87fb749b0b5887e26f76d1292b93b0ed"><div class="ttname"><a href="font_8c.html#a87fb749b0b5887e26f76d1292b93b0ed">tft_drawChar</a></div><div class="ttdeci">void tft_drawChar(window *win, uint8_t c)</div><div class="ttdoc">Display a character and optionally wrap the graphic cursor. </div><div class="ttdef"><b>Definition:</b> <a href="font_8c_source.html#l00157">font.c:157</a></div></div>
+<div class="ttc" id="font_8c_html_a87fb749b0b5887e26f76d1292b93b0ed"><div class="ttname"><a href="font_8c.html#a87fb749b0b5887e26f76d1292b93b0ed">tft_drawChar</a></div><div class="ttdeci">void tft_drawChar(window *win, uint8_t c)</div><div class="ttdoc">Display a character and optionally wrap the graphic cursor. </div><div class="ttdef"><b>Definition:</b> <a href="font_8c_source.html#l00187">font.c:187</a></div></div>
 <div class="ttc" id="hspi_8c_html_af1a0f7a7dd3cac5dd6b8489f7ff308dc"><div class="ttname"><a href="hspi_8c.html#af1a0f7a7dd3cac5dd6b8489f7ff308dc">hspi_waitReady</a></div><div class="ttdeci">void hspi_waitReady(void)</div><div class="ttdoc">HSPI Ready wait. </div><div class="ttdef"><b>Definition:</b> <a href="hspi_8c_source.html#l00189">hspi.c:189</a></div></div>
 <div class="ttc" id="ili9341_8h_html_a9d8bf18fe27c3b37d767477f93515780"><div class="ttname"><a href="ili9341_8h.html#a9d8bf18fe27c3b37d767477f93515780">TFT_XOFF</a></div><div class="ttdeci">#define TFT_XOFF</div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8h_source.html#l00081">ili9341.h:81</a></div></div>
 <div class="ttc" id="ili9341_8c_html_a04d77513a2a6464617b3effa276196ae"><div class="ttname"><a href="ili9341_8c.html#a04d77513a2a6464617b3effa276196ae">tft_window_clip_args</a></div><div class="ttdeci">MEMSPACE int tft_window_clip_args(window *win, int16_t *x, int16_t *y, int16_t *w, int16_t *h)</div><div class="ttdoc">clip arguments to window limits Arguments position x,y width w and height h to be clipped ...</div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l00949">ili9341.c:949</a></div></div>
@@ -1192,40 +1202,42 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="ili9341_8c_html_a460d9cc0fd386002d9485f2a0ed585d8"><div class="ttname"><a href="ili9341_8c.html#a460d9cc0fd386002d9485f2a0ed585d8">tftwin</a></div><div class="ttdeci">window tftwin</div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l00034">ili9341.c:34</a></div></div>
 <div class="ttc" id="ili9341_8c_html_ad2eda0e245536550e1a28da1d652629e"><div class="ttname"><a href="ili9341_8c.html#ad2eda0e245536550e1a28da1d652629e">tft_spi_TXRX</a></div><div class="ttdeci">void tft_spi_TXRX(uint8_t *data, int bytes, uint8_t command)</div><div class="ttdoc">Transmit and read 8 bit data array. </div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l00097">ili9341.c:97</a></div></div>
 <div class="ttc" id="ili9341_8h_html_a47812ee8398e07058b8e7fdc5fbb887d"><div class="ttname"><a href="ili9341_8h.html#a47812ee8398e07058b8e7fdc5fbb887d">TFT_INIT</a></div><div class="ttdeci">#define TFT_INIT</div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8h_source.html#l00060">ili9341.h:60</a></div></div>
-<div class="ttc" id="ili9341_8c_html_abbf471bb78e19ca798b644121089aeed"><div class="ttname"><a href="ili9341_8c.html#abbf471bb78e19ca798b644121089aeed">tft_drawFastVLine</a></div><div class="ttdeci">void tft_drawFastVLine(window *win, int16_t x, int16_t y, int16_t h, uint16_t color)</div><div class="ttdoc">Fast virtical line drawing. </div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l01103">ili9341.c:1103</a></div></div>
+<div class="ttc" id="ili9341_8c_html_abbf471bb78e19ca798b644121089aeed"><div class="ttname"><a href="ili9341_8c.html#abbf471bb78e19ca798b644121089aeed">tft_drawFastVLine</a></div><div class="ttdeci">void tft_drawFastVLine(window *win, int16_t x, int16_t y, int16_t h, uint16_t color)</div><div class="ttdoc">Fast virtical line drawing. </div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l01119">ili9341.c:1119</a></div></div>
 <div class="ttc" id="earth2wireframe_8c_html_aef44329758059c91c76d334e8fc09700"><div class="ttname"><a href="earth2wireframe_8c.html#aef44329758059c91c76d334e8fc09700">int8_t</a></div><div class="ttdeci">signed char int8_t</div><div class="ttdef"><b>Definition:</b> <a href="earth2wireframe_8c_source.html#l00040">earth2wireframe.c:40</a></div></div>
+<div class="ttc" id="font_8c_html_a809b205bdd1c95f9a10bb429681a8f9e"><div class="ttname"><a href="font_8c.html#a809b205bdd1c95f9a10bb429681a8f9e">font_max</a></div><div class="ttdeci">int font_max()</div><div class="ttdef"><b>Definition:</b> <a href="font_8c_source.html#l00046">font.c:46</a></div></div>
 <div class="ttc" id="hspi_8c_html_a95e93b2eb7fb8bd8548f2ad9022aac58"><div class="ttname"><a href="hspi_8c.html#a95e93b2eb7fb8bd8548f2ad9022aac58">hspi_TX</a></div><div class="ttdeci">void hspi_TX(uint8_t *data, int count)</div><div class="ttdoc">SPI buffered write functions. </div><div class="ttdef"><b>Definition:</b> <a href="hspi_8c_source.html#l00295">hspi.c:295</a></div></div>
-<div class="ttc" id="ili9341_8c_html_ab2312256c9579261cfa1ed62c4e82410"><div class="ttname"><a href="ili9341_8c.html#ab2312256c9579261cfa1ed62c4e82410">tft_clearline</a></div><div class="ttdeci">MEMSPACE void tft_clearline(window *win)</div><div class="ttdoc">Clear display text line. </div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l01259">ili9341.c:1259</a></div></div>
-<div class="ttc" id="structwindow_html_a95c7023fc42e79ab42c291b90a490776"><div class="ttname"><a href="structwindow.html#a95c7023fc42e79ab42c291b90a490776">window::y</a></div><div class="ttdeci">int16_t y</div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8h_source.html#l00043">ili9341.h:43</a></div></div>
-<div class="ttc" id="ili9341_8c_html_a439a47a3afc781f1f2dd1fff2efefe42"><div class="ttname"><a href="ili9341_8c.html#a439a47a3afc781f1f2dd1fff2efefe42">tft_set_font</a></div><div class="ttdeci">MEMSPACE tft_set_font(window *win, uint16_t index)</div><div class="ttdoc">Set current font size (per current rotation) </div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l01057">ili9341.c:1057</a></div></div>
+<div class="ttc" id="ili9341_8c_html_ab2312256c9579261cfa1ed62c4e82410"><div class="ttname"><a href="ili9341_8c.html#ab2312256c9579261cfa1ed62c4e82410">tft_clearline</a></div><div class="ttdeci">MEMSPACE void tft_clearline(window *win)</div><div class="ttdoc">Clear display text line. </div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l01275">ili9341.c:1275</a></div></div>
+<div class="ttc" id="structwindow_html_a95c7023fc42e79ab42c291b90a490776"><div class="ttname"><a href="structwindow.html#a95c7023fc42e79ab42c291b90a490776">window::y</a></div><div class="ttdeci">int16_t y</div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8h_source.html#l00039">ili9341.h:39</a></div></div>
+<div class="ttc" id="ili9341_8c_html_a439a47a3afc781f1f2dd1fff2efefe42"><div class="ttname"><a href="ili9341_8c.html#a439a47a3afc781f1f2dd1fff2efefe42">tft_set_font</a></div><div class="ttdeci">MEMSPACE tft_set_font(window *win, uint16_t index)</div><div class="ttdoc">Set current font size (per current rotation) </div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l01071">ili9341.c:1071</a></div></div>
 <div class="ttc" id="ili9341_8h_html_a56374956f4abcec35dfd77815f40e9a7"><div class="ttname"><a href="ili9341_8h.html#a56374956f4abcec35dfd77815f40e9a7">TFT_RST_DEACTIVE</a></div><div class="ttdeci">#define TFT_RST_DEACTIVE</div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8h_source.html#l00076">ili9341.h:76</a></div></div>
 <div class="ttc" id="ili9341__adafruit_8h_html_aa373acfd567ed1ab59f04d44fe1e5b6f"><div class="ttname"><a href="ili9341__adafruit_8h.html#aa373acfd567ed1ab59f04d44fe1e5b6f">ILI9341_INVOFF</a></div><div class="ttdeci">#define ILI9341_INVOFF</div><div class="ttdef"><b>Definition:</b> <a href="ili9341__adafruit_8h_source.html#l00100">ili9341_adafruit.h:100</a></div></div>
 <div class="ttc" id="ili9341_8c_html_a675036a93108cdafe0b1060ba024c485"><div class="ttname"><a href="ili9341_8c.html#a675036a93108cdafe0b1060ba024c485">tft_drawPixel</a></div><div class="ttdeci">void tft_drawPixel(window *win, int16_t x, int16_t y, int16_t color)</div><div class="ttdoc">Pixel functions </div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l00556">ili9341.c:556</a></div></div>
 <div class="ttc" id="flash_8c_html_a96d99653ceafa913b2f1331ef7219be8"><div class="ttname"><a href="flash_8c.html#a96d99653ceafa913b2f1331ef7219be8">bittestv</a></div><div class="ttdeci">int bittestv(unsigned char *ptr, int off)</div><div class="ttdoc">Test bit in byte array. </div><div class="ttdef"><b>Definition:</b> <a href="flash_8c_source.html#l00146">flash.c:146</a></div></div>
 <div class="ttc" id="str_8h_html_a996f7be338ccb40d1a2a5abc1ad61759"><div class="ttname"><a href="str_8h.html#a996f7be338ccb40d1a2a5abc1ad61759">ABS</a></div><div class="ttdeci">#define ABS(x)</div><div class="ttdef"><b>Definition:</b> <a href="str_8h_source.html#l00032">str.h:32</a></div></div>
-<div class="ttc" id="structwindow_html_acee24e56db43557a46cbb5ca3fe35021"><div class="ttname"><a href="structwindow.html#acee24e56db43557a46cbb5ca3fe35021">window::font</a></div><div class="ttdeci">uint16_t font</div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8h_source.html#l00038">ili9341.h:38</a></div></div>
-<div class="ttc" id="ili9341_8c_html_a7cef55bef133e9918955b4d2a53cf230"><div class="ttname"><a href="ili9341_8c.html#a7cef55bef133e9918955b4d2a53cf230">tft_drawLine</a></div><div class="ttdeci">void tft_drawLine(window *win, int16_t x0, int16_t y0, int16_t x1, int16_t y1, uint16_t color)</div><div class="ttdoc">Draw line From my blit test code testit.c 1984 - 1985 Mike Gore. </div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l01178">ili9341.c:1178</a></div></div>
+<div class="ttc" id="structwindow_html_acee24e56db43557a46cbb5ca3fe35021"><div class="ttname"><a href="structwindow.html#acee24e56db43557a46cbb5ca3fe35021">window::font</a></div><div class="ttdeci">uint16_t font</div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8h_source.html#l00042">ili9341.h:42</a></div></div>
+<div class="ttc" id="ili9341_8c_html_a7cef55bef133e9918955b4d2a53cf230"><div class="ttname"><a href="ili9341_8c.html#a7cef55bef133e9918955b4d2a53cf230">tft_drawLine</a></div><div class="ttdeci">void tft_drawLine(window *win, int16_t x0, int16_t y0, int16_t x1, int16_t y1, uint16_t color)</div><div class="ttdoc">Draw line From my blit test code testit.c 1984 - 1985 Mike Gore. </div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l01194">ili9341.c:1194</a></div></div>
 <div class="ttc" id="structwindow_html_a64bdec4f0ee274a96d696b16de783746"><div class="ttname"><a href="structwindow.html#a64bdec4f0ee274a96d696b16de783746">window::ypos</a></div><div class="ttdeci">int16_t ypos</div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8h_source.html#l00037">ili9341.h:37</a></div></div>
-<div class="ttc" id="ili9341_8c_html_a6a3d78858315dd032ed3b31099867584"><div class="ttname"><a href="ili9341_8c.html#a6a3d78858315dd032ed3b31099867584">tft_font_var</a></div><div class="ttdeci">MEMSPACE void tft_font_var(window *win)</div><div class="ttdoc">Set current font type to variable. </div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l01090">ili9341.c:1090</a></div></div>
+<div class="ttc" id="font_8c_html_a647c0e54986f2520898707b8accd28f3"><div class="ttname"><a href="font_8c.html#a647c0e54986f2520898707b8accd28f3">font_W</a></div><div class="ttdeci">int font_W(int font)</div><div class="ttdoc">Get font Width used for character to character spacing. </div><div class="ttdef"><b>Definition:</b> <a href="font_8c_source.html#l00067">font.c:67</a></div></div>
+<div class="ttc" id="ili9341_8c_html_a6a3d78858315dd032ed3b31099867584"><div class="ttname"><a href="ili9341_8c.html#a6a3d78858315dd032ed3b31099867584">tft_font_var</a></div><div class="ttdeci">MEMSPACE void tft_font_var(window *win)</div><div class="ttdoc">Set current font type to variable. </div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l01106">ili9341.c:1106</a></div></div>
 <div class="ttc" id="structwindow_html_ac8739cdb3c50efcc1deaa5ab955a5e62"><div class="ttname"><a href="structwindow.html#ac8739cdb3c50efcc1deaa5ab955a5e62">window::fg</a></div><div class="ttdeci">uint16_t fg</div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8h_source.html#l00044">ili9341.h:44</a></div></div>
 <div class="ttc" id="ili9341_8h_html_a9f802b7a538ae2dfa1480d98c4dcd8e2"><div class="ttname"><a href="ili9341_8h.html#a9f802b7a538ae2dfa1480d98c4dcd8e2">TFT_CS_INIT</a></div><div class="ttdeci">#define TFT_CS_INIT</div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8h_source.html#l00055">ili9341.h:55</a></div></div>
 <div class="ttc" id="ili9341_8c_html_a28ac4cdd7bd9de529370205c64b88f8e"><div class="ttname"><a href="ili9341_8c.html#a28ac4cdd7bd9de529370205c64b88f8e">tft_spi_begin</a></div><div class="ttdeci">void tft_spi_begin()</div><div class="ttdoc">Obtain SPI bus for TFT display, assert chip select return: void. </div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l00060">ili9341.c:60</a></div></div>
 <div class="ttc" id="ili9341_8c_html_aecac98906474a88c3017fc3761328506"><div class="ttname"><a href="ili9341_8c.html#aecac98906474a88c3017fc3761328506">tft_565toRGB</a></div><div class="ttdeci">void tft_565toRGB(uint16_t color, uint8_t *r, uint8_t *g, uint8_t *b)</div><div class="ttdoc">Color conversions </div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l00868">ili9341.c:868</a></div></div>
 <div class="ttc" id="ili9341_8c_html_a14e5cdfbb744c04570df508551f77add"><div class="ttname"><a href="ili9341_8c.html#a14e5cdfbb744c04570df508551f77add">tft_init</a></div><div class="ttdeci">MEMSPACE window * tft_init(void)</div><div class="ttdoc">Initialize TFT. </div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l00126">ili9341.c:126</a></div></div>
-<div class="ttc" id="ili9341_8c_html_adaf98866e7cbd787fde096143d394699"><div class="ttname"><a href="ili9341_8c.html#adaf98866e7cbd787fde096143d394699">tft_setpos</a></div><div class="ttdeci">MEMSPACE void tft_setpos(window *win, int16_t x, int16_t y)</div><div class="ttdoc">Set current window text pointer (per current rotation) </div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l01045">ili9341.c:1045</a></div></div>
+<div class="ttc" id="ili9341_8c_html_adaf98866e7cbd787fde096143d394699"><div class="ttname"><a href="ili9341_8c.html#adaf98866e7cbd787fde096143d394699">tft_setpos</a></div><div class="ttdeci">MEMSPACE void tft_setpos(window *win, int16_t x, int16_t y)</div><div class="ttdoc">Set current window text pointer in pixels (per current rotation) </div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l01045">ili9341.c:1045</a></div></div>
 <div class="ttc" id="ili9341_8c_html_a98e0ecaf3fc85ced7c0b7a2a504df02f"><div class="ttname"><a href="ili9341_8c.html#a98e0ecaf3fc85ced7c0b7a2a504df02f">tft_Vscroll</a></div><div class="ttdeci">void tft_Vscroll(window *win, int dir)</div><div class="ttdoc">Scroll window up by dir lines We start at the top of the window and move down. </div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l00738">ili9341.c:738</a></div></div>
 <div class="ttc" id="ili9341_8c_html_a90dda5b7ba495fcca6ab4e5259f6c6fe"><div class="ttname"><a href="ili9341_8c.html#a90dda5b7ba495fcca6ab4e5259f6c6fe">tft_fillWin</a></div><div class="ttdeci">void tft_fillWin(window *win, uint16_t color)</div><div class="ttdoc">Fill functions </div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l00452">ili9341.c:452</a></div></div>
 <div class="ttc" id="ili9341_8c_html_a4f8c3c083a3cd3792dd3d995c1eb2ec5"><div class="ttname"><a href="ili9341_8c.html#a4f8c3c083a3cd3792dd3d995c1eb2ec5">tft_spi_end</a></div><div class="ttdeci">void tft_spi_end()</div><div class="ttdoc">Release SPI bus from TFT display, deassert chip select return: void. </div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l00070">ili9341.c:70</a></div></div>
 <div class="ttc" id="ili9341_8c_html_a08bf5b6422229993b5d68e48c7b39619"><div class="ttname"><a href="ili9341_8c.html#a08bf5b6422229993b5d68e48c7b39619">tft_readRect</a></div><div class="ttdeci">void tft_readRect(window *win, int16_t x, int16_t y, int16_t w, int16_t h, uint16_t *color)</div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l00674">ili9341.c:674</a></div></div>
-<div class="ttc" id="structwindow_html_a879b99940dfc34772f0257f54c67b817"><div class="ttname"><a href="structwindow.html#a879b99940dfc34772f0257f54c67b817">window::x</a></div><div class="ttdeci">int16_t x</div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8h_source.html#l00041">ili9341.h:41</a></div></div>
+<div class="ttc" id="structwindow_html_a879b99940dfc34772f0257f54c67b817"><div class="ttname"><a href="structwindow.html#a879b99940dfc34772f0257f54c67b817">window::x</a></div><div class="ttdeci">int16_t x</div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8h_source.html#l00038">ili9341.h:38</a></div></div>
 <div class="ttc" id="structwindow_html"><div class="ttname"><a href="structwindow.html">window</a></div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8h_source.html#l00034">ili9341.h:34</a></div></div>
 <div class="ttc" id="struct__fontc_html_a98f97c237dfb1027c38813a17ef6dcd6"><div class="ttname"><a href="struct__fontc.html#a98f97c237dfb1027c38813a17ef6dcd6">_fontc::Height</a></div><div class="ttdeci">int8_t Height</div><div class="ttdef"><b>Definition:</b> <a href="display_2font_8h_source.html#l00098">font.h:98</a></div></div>
-<div class="ttc" id="ili9341_8c_html_a9e2f1c5c213183804492d12ab89a1b43"><div class="ttname"><a href="ili9341_8c.html#a9e2f1c5c213183804492d12ab89a1b43">tft_cleareol</a></div><div class="ttdeci">MEMSPACE void tft_cleareol(window *win)</div><div class="ttdoc">Character and String functions </div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l01239">ili9341.c:1239</a></div></div>
+<div class="ttc" id="ili9341_8c_html_a9e2f1c5c213183804492d12ab89a1b43"><div class="ttname"><a href="ili9341_8c.html#a9e2f1c5c213183804492d12ab89a1b43">tft_cleareol</a></div><div class="ttdeci">MEMSPACE void tft_cleareol(window *win)</div><div class="ttdoc">Character and String functions </div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l01255">ili9341.c:1255</a></div></div>
 <div class="ttc" id="ili9341_8c_html_a666fba3ffecff43f44c647bed2d012fe"><div class="ttname"><a href="ili9341_8c.html#a666fba3ffecff43f44c647bed2d012fe">tft_Cmd_Data_TX</a></div><div class="ttdeci">void tft_Cmd_Data_TX(uint8_t cmd, uint8_t *data, int bytes)</div><div class="ttdoc">Transmit 8 bit command and optionally send data buffer. </div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l00189">ili9341.c:189</a></div></div>
 <div class="ttc" id="ili9341_8c_html_a79545feceb8eca011c3f424b36035010"><div class="ttname"><a href="ili9341_8c.html#a79545feceb8eca011c3f424b36035010">tft_readId</a></div><div class="ttdeci">MEMSPACE uint32_t tft_readId(void)</div><div class="ttdoc">Read ILI9341 device ID should be 9341 This does not work for really high SPI clock speeds Make sure t...</div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l00326">ili9341.c:326</a></div></div>
 <div class="ttc" id="ili9341_8c_html_ac276806b0f70c3a69aaefa4a7937643b"><div class="ttname"><a href="ili9341_8c.html#ac276806b0f70c3a69aaefa4a7937643b">tft_invertDisplay</a></div><div class="ttdeci">MEMSPACE void tft_invertDisplay(int flag)</div><div class="ttdoc">Invert the display. </div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l00880">ili9341.c:880</a></div></div>
 <div class="ttc" id="hspi_8c_html_a0047584af8bcc7c6d1fa924277a53bef"><div class="ttname"><a href="hspi_8c.html#a0047584af8bcc7c6d1fa924277a53bef">hspi_cs_enable</a></div><div class="ttdeci">void hspi_cs_enable(uint8_t cs)</div><div class="ttdoc">HSPI CS enable function. </div><div class="ttdef"><b>Definition:</b> <a href="hspi_8c_source.html#l00038">hspi.c:38</a></div></div>
-<div class="ttc" id="font_8c_html_acea4413f1d84d044b7d83a96bb0bcb79"><div class="ttname"><a href="font_8c.html#acea4413f1d84d044b7d83a96bb0bcb79">font_attr</a></div><div class="ttdeci">int font_attr(window *win, int c, _fontc *f)</div><div class="ttdoc">Get font attributes for a font. </div><div class="ttdef"><b>Definition:</b> <a href="font_8c_source.html#l00051">font.c:51</a></div></div>
+<div class="ttc" id="font_8c_html_acea4413f1d84d044b7d83a96bb0bcb79"><div class="ttname"><a href="font_8c.html#acea4413f1d84d044b7d83a96bb0bcb79">font_attr</a></div><div class="ttdeci">int font_attr(window *win, int c, _fontc *f)</div><div class="ttdoc">Get font attributes for a font. </div><div class="ttdef"><b>Definition:</b> <a href="font_8c_source.html#l00081">font.c:81</a></div></div>
 <div class="ttc" id="ili9341_8c_html_aad54db2d053d783c70669fdbd414fda1"><div class="ttname"><a href="ili9341_8c.html#aad54db2d053d783c70669fdbd414fda1">tft_spi_RX</a></div><div class="ttdeci">void tft_spi_RX(uint8_t *data, int bytes, uint8_t command)</div><div class="ttdoc">read 8 bit data array </div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l00113">ili9341.c:113</a></div></div>
 <div class="ttc" id="ili9341_8c_html_a617c5b04fa66ee51cb311e55e312ad1b"><div class="ttname"><a href="ili9341_8c.html#a617c5b04fa66ee51cb311e55e312ad1b">tft_clock</a></div><div class="ttdeci">uint16_t tft_clock</div><div class="ttdoc">cahce of SPI clock devisor </div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l00047">ili9341.c:47</a></div></div>
 <div class="ttc" id="structwindow_html_a88d2836d45dd428d8fadfd703f0f965f"><div class="ttname"><a href="structwindow.html#a88d2836d45dd428d8fadfd703f0f965f">window::tabstop</a></div><div class="ttdeci">uint8_t tabstop</div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8h_source.html#l00047">ili9341.h:47</a></div></div>
@@ -1235,15 +1247,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="ili9341_8h_html_a27547bc8807c95c9e8e541e8cc92fece"><div class="ttname"><a href="ili9341_8h.html#a27547bc8807c95c9e8e541e8cc92fece">TFT_H</a></div><div class="ttdeci">#define TFT_H</div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8h_source.html#l00080">ili9341.h:80</a></div></div>
 <div class="ttc" id="struct__fontc_html"><div class="ttname"><a href="struct__fontc.html">_fontc</a></div><div class="ttdef"><b>Definition:</b> <a href="display_2font_8h_source.html#l00089">font.h:89</a></div></div>
 <div class="ttc" id="hspi_8c_html_ad51b63e020ab17a48b8b4b9d8ba00059"><div class="ttname"><a href="hspi_8c.html#ad51b63e020ab17a48b8b4b9d8ba00059">hspi_cs_disable</a></div><div class="ttdeci">void hspi_cs_disable(uint8_t cs)</div><div class="ttdoc">HSPI CS disable function. </div><div class="ttdef"><b>Definition:</b> <a href="hspi_8c_source.html#l00052">hspi.c:52</a></div></div>
+<div class="ttc" id="font_8c_html_aec37c6383e20a1fef1cd4924060ed693"><div class="ttname"><a href="font_8c.html#aec37c6383e20a1fef1cd4924060ed693">font_H</a></div><div class="ttdeci">int font_H(int font)</div><div class="ttdoc">Get font height used for line to line spacing. </div><div class="ttdef"><b>Definition:</b> <a href="font_8c_source.html#l00057">font.c:57</a></div></div>
 <div class="ttc" id="hspi_8c_html_a1ea1bd90994ac123b4c62bfa511b6972"><div class="ttname"><a href="hspi_8c.html#a1ea1bd90994ac123b4c62bfa511b6972">hspi_TXRX</a></div><div class="ttdeci">void hspi_TXRX(uint8_t *data, int count)</div><div class="ttdoc">HSPI write and read using FIFO. </div><div class="ttdef"><b>Definition:</b> <a href="hspi_8c_source.html#l00322">hspi.c:322</a></div></div>
 <div class="ttc" id="ili9341_8c_html_a6384a05f7010d4ecb9e1d9166c2a5a56"><div class="ttname"><a href="ili9341_8c.html#a6384a05f7010d4ecb9e1d9166c2a5a56">tft_spi_init</a></div><div class="ttdeci">void tft_spi_init(uint16_t prescale)</div><div class="ttdoc">Obtain SPI bus for TFT display, assert chip select return: void. </div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l00051">ili9341.c:51</a></div></div>
 <div class="ttc" id="str_8h_html_aacc3ee1a7f283f8ef65cea31f4436a95"><div class="ttname"><a href="str_8h.html#aacc3ee1a7f283f8ef65cea31f4436a95">MAX</a></div><div class="ttdeci">#define MAX(x, y)</div><div class="ttdef"><b>Definition:</b> <a href="str_8h_source.html#l00034">str.h:34</a></div></div>
 <div class="ttc" id="ili9341_8c_html_a5a31e1132605d6a60b66c4e969b56b37"><div class="ttname"><a href="ili9341_8c.html#a5a31e1132605d6a60b66c4e969b56b37">tft_window_init</a></div><div class="ttdeci">MEMSPACE void tft_window_init(window *win, int16_t x, int16_t y, int16_t w, int16_t h)</div><div class="ttdoc">Initialize window structure we default values FIXME check x+w, y+h absolute limits against TFT limuts...</div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l01002">ili9341.c:1002</a></div></div>
-<div class="ttc" id="ili9341_8c_html_afaf6907405d24bf529df5590f450d3cd"><div class="ttname"><a href="ili9341_8c.html#afaf6907405d24bf529df5590f450d3cd">tft_putch</a></div><div class="ttdeci">void tft_putch(window *win, int c)</div><div class="ttdoc">put character in current winoow </div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l01281">ili9341.c:1281</a></div></div>
+<div class="ttc" id="ili9341_8c_html_afaf6907405d24bf529df5590f450d3cd"><div class="ttname"><a href="ili9341_8c.html#afaf6907405d24bf529df5590f450d3cd">tft_putch</a></div><div class="ttdeci">void tft_putch(window *win, int c)</div><div class="ttdoc">put character in current winoow </div><div class="ttdef"><b>Definition:</b> <a href="ili9341_8c_source.html#l01297">ili9341.c:1297</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat May 21 2016 20:04:36 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jun 20 2016 21:46:13 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

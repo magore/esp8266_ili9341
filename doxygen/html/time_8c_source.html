@@ -258,7 +258,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;<a class="code" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
 <div class="line"><a name="l00285"></a><span class="lineno"><a class="line" href="time_8h.html#a8386ff819a39512ea00cfc78ce5a27d5">  285</a></span>&#160;<a class="code" href="time_8h.html#a3346b04b0420b32ccf6b706551b70762">time_t</a> <a class="code" href="time_8c.html#a8386ff819a39512ea00cfc78ce5a27d5">timegm</a>( <a class="code" href="structtm.html">tm_t</a> *t )</div>
 <div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;{</div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;    <a class="code" href="time_8h.html#a3346b04b0420b32ccf6b706551b70762">time_t</a> days,<a class="code" href="user__main_8c.html#ae112d79896ed83ac05e155da60e85523">seconds</a>;</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;    <a class="code" href="time_8h.html#a3346b04b0420b32ccf6b706551b70762">time_t</a> days,seconds;</div>
 <div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;</div>
 <div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;    <span class="keywordtype">int</span> year = t-&gt;<a class="code" href="structtm.html#a33adf78fd6476b2120ce3b9c4a852053">tm_year</a> + 1900;</div>
 <div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;    <span class="keywordtype">int</span> mon = t-&gt;<a class="code" href="structtm.html#a112ac36fa2f593777138a417cf031e17">tm_mon</a>;                          <span class="comment">// 0..11</span></div>
@@ -481,10 +481,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00601"></a><span class="lineno">  601</span>&#160;</div>
 <div class="line"><a name="l00602"></a><span class="lineno">  602</span>&#160;</div>
 <div class="line"><a name="l00608"></a><span class="lineno">  608</span>&#160;<a class="code" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
-<div class="line"><a name="l00609"></a><span class="lineno"><a class="line" href="time_8h.html#a054fae207409ed1e0be1c30edaab9a7b">  609</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="time_8c.html#a054fae207409ed1e0be1c30edaab9a7b">clock_set</a>(<a class="code" href="send_8c.html#a435d1572bf3f880d55459d9805097f62">uint32_t</a> <a class="code" href="user__main_8c.html#ae112d79896ed83ac05e155da60e85523">seconds</a>, <a class="code" href="send_8c.html#a435d1572bf3f880d55459d9805097f62">uint32_t</a> us)</div>
+<div class="line"><a name="l00609"></a><span class="lineno"><a class="line" href="time_8h.html#a054fae207409ed1e0be1c30edaab9a7b">  609</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="time_8c.html#a054fae207409ed1e0be1c30edaab9a7b">clock_set</a>(<a class="code" href="send_8c.html#a435d1572bf3f880d55459d9805097f62">uint32_t</a> seconds, <a class="code" href="send_8c.html#a435d1572bf3f880d55459d9805097f62">uint32_t</a> us)</div>
 <div class="line"><a name="l00610"></a><span class="lineno">  610</span>&#160;{</div>
 <div class="line"><a name="l00611"></a><span class="lineno">  611</span>&#160;    <a class="code" href="structtimespec.html">ts_t</a> ts;</div>
-<div class="line"><a name="l00612"></a><span class="lineno">  612</span>&#160;    ts.<a class="code" href="structtimespec.html#afc3302668d7cb5952f590da69fdd4955">tv_sec</a> = <a class="code" href="user__main_8c.html#ae112d79896ed83ac05e155da60e85523">seconds</a>;</div>
+<div class="line"><a name="l00612"></a><span class="lineno">  612</span>&#160;    ts.<a class="code" href="structtimespec.html#afc3302668d7cb5952f590da69fdd4955">tv_sec</a> = seconds;</div>
 <div class="line"><a name="l00613"></a><span class="lineno">  613</span>&#160;    ts.<a class="code" href="structtimespec.html#ae3c7510dafa8cbcaede866ed13c99683">tv_nsec</a> = us * 1000<a class="code" href="cal__dex_8c.html#a7577d49f3bfffb1cf048eef843177784">L</a>;</div>
 <div class="line"><a name="l00614"></a><span class="lineno">  614</span>&#160;</div>
 <div class="line"><a name="l00615"></a><span class="lineno">  615</span>&#160;    <a class="code" href="timer__hal_8c.html#a4ebca9883466f2cc6fea0547e0e64e79">clock_settime</a>(0, (<a class="code" href="structtimespec.html">ts_t</a> *) &amp;ts);</div>
@@ -508,7 +508,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00646"></a><span class="lineno">  646</span>&#160;{</div>
 <div class="line"><a name="l00647"></a><span class="lineno">  647</span>&#160;    <a class="code" href="structtm.html">tm_t</a> <a class="code" href="structtm.html">tm</a>;</div>
 <div class="line"><a name="l00648"></a><span class="lineno">  648</span>&#160;    <a class="code" href="structtimespec.html">ts_t</a> ts;</div>
-<div class="line"><a name="l00649"></a><span class="lineno">  649</span>&#160;    <a class="code" href="time_8h.html#a3346b04b0420b32ccf6b706551b70762">time_t</a> <a class="code" href="user__main_8c.html#ae112d79896ed83ac05e155da60e85523">seconds</a>;</div>
+<div class="line"><a name="l00649"></a><span class="lineno">  649</span>&#160;    <a class="code" href="time_8h.html#a3346b04b0420b32ccf6b706551b70762">time_t</a> seconds;</div>
 <div class="line"><a name="l00650"></a><span class="lineno">  650</span>&#160;</div>
 <div class="line"><a name="l00651"></a><span class="lineno">  651</span>&#160;    tm.<a class="code" href="structtm.html#a33adf78fd6476b2120ce3b9c4a852053">tm_year</a>=tm.<a class="code" href="structtm.html#a112ac36fa2f593777138a417cf031e17">tm_mon</a>=tm.<a class="code" href="structtm.html#ab8d8904bad43b0c8b96e61941c5b5310">tm_mday</a>=tm.<a class="code" href="structtm.html#a3e7ca4e37f1abcaf56b8a916c38eb9fe">tm_hour</a>=tm.<a class="code" href="structtm.html#af414eb7c86cc3099595211eee4d4211b">tm_min</a>=tm.<a class="code" href="structtm.html#a4d098a9a5c03a00b2ee61e10851de81e">tm_sec</a>=0;</div>
 <div class="line"><a name="l00652"></a><span class="lineno">  652</span>&#160;</div>
@@ -576,7 +576,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00714"></a><span class="lineno">  714</span>&#160;</div>
 <div class="line"><a name="l00715"></a><span class="lineno">  715</span>&#160;    seconds = <a class="code" href="time_8c.html#a8386ff819a39512ea00cfc78ce5a27d5">timegm</a>(&amp;tm);</div>
 <div class="line"><a name="l00716"></a><span class="lineno">  716</span>&#160;</div>
-<div class="line"><a name="l00717"></a><span class="lineno">  717</span>&#160;    ts.<a class="code" href="structtimespec.html#afc3302668d7cb5952f590da69fdd4955">tv_sec</a> = <a class="code" href="user__main_8c.html#ae112d79896ed83ac05e155da60e85523">seconds</a>;</div>
+<div class="line"><a name="l00717"></a><span class="lineno">  717</span>&#160;    ts.<a class="code" href="structtimespec.html#afc3302668d7cb5952f590da69fdd4955">tv_sec</a> = seconds;</div>
 <div class="line"><a name="l00718"></a><span class="lineno">  718</span>&#160;    ts.<a class="code" href="structtimespec.html#ae3c7510dafa8cbcaede866ed13c99683">tv_nsec</a> = 0<a class="code" href="cal__dex_8c.html#a7577d49f3bfffb1cf048eef843177784">L</a>;</div>
 <div class="line"><a name="l00719"></a><span class="lineno">  719</span>&#160;    <a class="code" href="timer__hal_8c.html#a4ebca9883466f2cc6fea0547e0e64e79">clock_settime</a>(0, (<a class="code" href="structtimespec.html">ts_t</a> *) &amp;ts);</div>
 <div class="line"><a name="l00720"></a><span class="lineno">  720</span>&#160;</div>
@@ -647,7 +647,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="time_8c_html_a77d6bba12950028852621634ffaf4835"><div class="ttname"><a href="time_8c.html#a77d6bba12950028852621634ffaf4835">ctime</a></div><div class="ttdeci">MEMSPACE char * ctime(time_t *tp)</div><div class="ttdoc">Convert local time_t *t epoch time into POSIX asctime() string __ctime_buf[]. </div><div class="ttdef"><b>Definition:</b> <a href="time_8c_source.html#l00401">time.c:401</a></div></div>
 <div class="ttc" id="structtm_html_a3e7ca4e37f1abcaf56b8a916c38eb9fe"><div class="ttname"><a href="structtm.html#a3e7ca4e37f1abcaf56b8a916c38eb9fe">tm::tm_hour</a></div><div class="ttdeci">int tm_hour</div><div class="ttdef"><b>Definition:</b> <a href="time_8h_source.html#l00047">time.h:47</a></div></div>
 <div class="ttc" id="time_8c_html_a51f8059d5a58b35f401245c1f2cabc2d"><div class="ttname"><a href="time_8c.html#a51f8059d5a58b35f401245c1f2cabc2d">__days</a></div><div class="ttdeci">static const uint16_t __days[]</div><div class="ttdoc">days in each month. </div><div class="ttdef"><b>Definition:</b> <a href="time_8c_source.html#l00052">time.c:52</a></div></div>
-<div class="ttc" id="user__main_8c_html_ae112d79896ed83ac05e155da60e85523"><div class="ttname"><a href="user__main_8c.html#ae112d79896ed83ac05e155da60e85523">seconds</a></div><div class="ttdeci">time_t seconds</div><div class="ttdef"><b>Definition:</b> <a href="user__main_8c_source.html#l00146">user_main.c:146</a></div></div>
 <div class="ttc" id="time_8c_html_acab85c85e1497507b279edab985ac1e5"><div class="ttname"><a href="time_8c.html#acab85c85e1497507b279edab985ac1e5">__days_sum</a></div><div class="ttdeci">static const uint16_t __days_sum[]</div><div class="ttdoc">accumulated days to the start of a month in a year. </div><div class="ttdef"><b>Definition:</b> <a href="time_8c_source.html#l00043">time.c:43</a></div></div>
 <div class="ttc" id="time_8c_html_a054fae207409ed1e0be1c30edaab9a7b"><div class="ttname"><a href="time_8c.html#a054fae207409ed1e0be1c30edaab9a7b">clock_set</a></div><div class="ttdeci">MEMSPACE void clock_set(uint32_t seconds, uint32_t us)</div><div class="ttdoc">Set system clock with seconds and microseconds. </div><div class="ttdef"><b>Definition:</b> <a href="time_8c_source.html#l00609">time.c:609</a></div></div>
 <div class="ttc" id="timer__hal_8h_html"><div class="ttname"><a href="timer__hal_8h.html">timer_hal.h</a></div><div class="ttdoc">timer hardware abstartion layer functions </div></div>
@@ -660,7 +659,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat May 21 2016 20:04:36 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jun 20 2016 21:46:13 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

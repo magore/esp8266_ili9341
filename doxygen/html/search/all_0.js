@@ -48,6 +48,7 @@ var searchData=
   ['_5fgnu_5fsource',['_GNU_SOURCE',['../user__config_8h.html#a369266c24eacffb87046522897a570d5',1,'user_config.h']]],
   ['_5fheap_5fstart',['_heap_start',['../sys_8h.html#ab750b0b8889cb7d718f12d66f01fd954',1,'sys.h']]],
   ['_5fhspi_5finit_5fdone',['_hspi_init_done',['../hspi_8c.html#a9d8a27ff6d91c4aa89e8719b960d7404',1,'hspi.c']]],
+  ['_5fipv4_5f2str',['_ipv4_2str',['../network_8c.html#a252582da71dd6f7e793a6243bdcd0ab4',1,'network.c']]],
   ['_5fled',['_led',['../web_8c.html#a9caaaad7e2fdc8c9f2e927980c57d639',1,'web.c']]],
   ['_5flfn_5funicode',['_LFN_UNICODE',['../ffconf_8h.html#a8dd7e7f166bb146970b394d53cf01d80',1,'ffconf.h']]],
   ['_5fmax_5flfn',['_MAX_LFN',['../ffconf_8h.html#a14e73a5c703a586c614b3e40b849f82c',1,'ffconf.h']]],
@@ -88,9 +89,7 @@ var searchData=
   ['_5fuse_5fwrite',['_USE_WRITE',['../diskio_8h.html#a1dd0d2b46dce637878416d489d2ddde2',1,'diskio.h']]],
   ['_5fvolume_5fstrs',['_VOLUME_STRS',['../ffconf_8h.html#a75c97afb8b06935364e42e3ec3fdc6c4',1,'ffconf.h']]],
   ['_5fvolumes',['_VOLUMES',['../ffconf_8h.html#a366da9a40c8ceb3103a6b72ca02b9969',1,'ffconf.h']]],
-  ['_5fwincube',['_wincube',['../user__main_8c.html#a866c81e27316302aaaedac093dd7d5ed',1,'user_main.c']]],
-  ['_5fwinmsg',['_winmsg',['../user__main_8c.html#a40f0738f31dc022f067c98e9062f016b',1,'user_main.c']]],
-  ['_5fwinstats',['_winstats',['../user__main_8c.html#aa4a88b28ea091b169527b17432896747',1,'user_main.c']]],
+  ['_5fwinbottom',['_winbottom',['../user__main_8c.html#ab18ad328fa194c2bbe0fb9573c8180b3',1,'user_main.c']]],
   ['_5fword_5faccess',['_WORD_ACCESS',['../ffconf_8h.html#a943a47fa5ed8073725b45e49e5634dea',1,'ffconf.h']]],
   ['_5fwrite_5fbyte_5ffn',['_write_byte_fn',['../web_8c.html#a620628fcf72ac4e4d0228ff38d31bbd1',1,'web.c']]]
 ];

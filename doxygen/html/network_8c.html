@@ -104,6 +104,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a462d02d06dadbf41aa44824e310aaaf0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="network_8c.html#a462d02d06dadbf41aa44824e310aaaf0">ipv4_2str</a> (<a class="el" href="send_8c.html#a435d1572bf3f880d55459d9805097f62">uint32_t</a> ip)</td></tr>
+<tr class="separator:a462d02d06dadbf41aa44824e310aaaf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a33001f6e7c0326d6a8f20acbc62a1b3a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="network_8c.html#a33001f6e7c0326d6a8f20acbc62a1b3a">wifi_event_cb</a> (System_Event_t *event_p)</td></tr>
 <tr class="memdesc:a33001f6e7c0326d6a8f20acbc62a1b3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">WIFI Event Callback.  <a href="#a33001f6e7c0326d6a8f20acbc62a1b3a">More...</a><br/></td></tr>
 <tr class="separator:a33001f6e7c0326d6a8f20acbc62a1b3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -127,6 +129,9 @@ Variables</h2></td></tr>
 <tr class="separator:ad6ffa7743848d35021d59a06df02d7cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac7c4860b47674f6bb351f6875e50533f"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="network_8c.html#ac7c4860b47674f6bb351f6875e50533f">received</a> = 0</td></tr>
 <tr class="separator:ac7c4860b47674f6bb351f6875e50533f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a252582da71dd6f7e793a6243bdcd0ab4"><td class="memItemLeft" align="right" valign="top">static char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="network_8c.html#a252582da71dd6f7e793a6243bdcd0ab4">_ipv4_2str</a> [32]</td></tr>
+<tr class="memdesc:a252582da71dd6f7e793a6243bdcd0ab4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert IP address to string.  <a href="#a252582da71dd6f7e793a6243bdcd0ab4">More...</a><br/></td></tr>
+<tr class="separator:a252582da71dd6f7e793a6243bdcd0ab4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Network test client This code receives a message and displays iit. </p>
@@ -138,6 +143,24 @@ Variables</h2></td></tr>
 
 <p>Definition in file <a class="el" href="network_8c_source.html">network.c</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a462d02d06dadbf41aa44824e310aaaf0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> char* ipv4_2str </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="send_8c.html#a435d1572bf3f880d55459d9805097f62">uint32_t</a>&#160;</td>
+          <td class="paramname"><em>ip</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="network_8c_source.html#l00058">58</a> of file <a class="el" href="network_8c_source.html">network.c</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="ad9b36f95313ac904d2d3ace6f844201b"></a>
 <div class="memitem">
 <div class="memproto">
@@ -158,9 +181,7 @@ Variables</h2></td></tr>
 <p>if(!wifi_station_set_auto_connect( TRUE) ) printf("ERROR wifi_station_set_auto_connect(1)\n"); IP4_ADDR( &amp; info.ip , 192 , 168 , 200 , 123); IP4_ADDR( &amp; info.netmask , 255 , 255 , 255 , 0); IP4_ADDR( &amp; info.gw, 192 , 168 , 200 , 1); if(!wifi_set_ip_info( STATION_IF , &amp;info) ) printf( "ERROR wifi_set_ip_info() \n "); if(!wifi_station_set_auto_connect( TRUE) ) printf( "ERROR wifi_station_set_auto_connect(1) \n "); Setup Wifi Network Credits: ideas borrowed from David Ogilvy(MetalPhreak) </p>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="network_8c_source.html#l00144">144</a> of file <a class="el" href="network_8c_source.html">network.c</a>.</p>
-
-<p>Referenced by <a class="el" href="user__main_8c_source.html#l00436">setup()</a>.</p>
+<p>Definition at line <a class="el" href="network_8c_source.html#l00157">157</a> of file <a class="el" href="network_8c_source.html">network.c</a>.</p>
 
 </div>
 </div>
@@ -187,13 +208,46 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="network_8c_source.html#l00059">59</a> of file <a class="el" href="network_8c_source.html">network.c</a>.</p>
+<p>Definition at line <a class="el" href="network_8c_source.html#l00072">72</a> of file <a class="el" href="network_8c_source.html">network.c</a>.</p>
 
-<p>Referenced by <a class="el" href="network_8c_source.html#l00144">setup_networking()</a>.</p>
+<p>Referenced by <a class="el" href="network_8c_source.html#l00157">setup_networking()</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
+<a class="anchor" id="a252582da71dd6f7e793a6243bdcd0ab4"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char _ipv4_2str[32]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convert IP address to string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">ip</td><td>IPV4 address </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>char * pointer to string result </dd></dl>
+
+<p>Definition at line <a class="el" href="network_8c_source.html#l00056">56</a> of file <a class="el" href="network_8c_source.html">network.c</a>.</p>
+
+<p>Referenced by <a class="el" href="network_8c_source.html#l00058">ipv4_2str()</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a1202cd63c360958e6272f9a20fa90f8b"></a>
 <div class="memitem">
 <div class="memproto">
@@ -214,7 +268,7 @@ Variables</h2></td></tr>
 
 <p>Definition at line <a class="el" href="network_8c_source.html#l00047">47</a> of file <a class="el" href="network_8c_source.html">network.c</a>.</p>
 
-<p>Referenced by <a class="el" href="fatfs__utils_8c_source.html#l00397">fatfs_stat()</a>, <a class="el" href="bdffontutil_8c_source.html#l00553">FreeFont()</a>, <a class="el" href="bdffontutil_8c_source.html#l00511">InitFonts()</a>, <a class="el" href="network_8c_source.html#l00144">setup_networking()</a>, and <a class="el" href="posix_8c_source.html#l01583">stat()</a>.</p>
+<p>Referenced by <a class="el" href="fatfs__utils_8c_source.html#l00397">fatfs_stat()</a>, <a class="el" href="bdffontutil_8c_source.html#l00553">FreeFont()</a>, <a class="el" href="bdffontutil_8c_source.html#l00511">InitFonts()</a>, <a class="el" href="network_8c_source.html#l00157">setup_networking()</a>, and <a class="el" href="posix_8c_source.html#l01583">stat()</a>.</p>
 
 </div>
 </div>
@@ -230,7 +284,7 @@ Variables</h2></td></tr>
 
 <p>Definition at line <a class="el" href="network_8c_source.html#l00043">43</a> of file <a class="el" href="network_8c_source.html">network.c</a>.</p>
 
-<p>Referenced by <a class="el" href="user__main_8c_source.html#l00160">loop()</a>, <a class="el" href="user__main_8c_source.html#l00436">setup()</a>, <a class="el" href="network_8c_source.html#l00144">setup_networking()</a>, and <a class="el" href="network_8c_source.html#l00059">wifi_event_cb()</a>.</p>
+<p>Referenced by <a class="el" href="network_8c_source.html#l00157">setup_networking()</a>, and <a class="el" href="network_8c_source.html#l00072">wifi_event_cb()</a>.</p>
 
 </div>
 </div>
@@ -246,7 +300,7 @@ Variables</h2></td></tr>
 
 <p>Definition at line <a class="el" href="network_8c_source.html#l00044">44</a> of file <a class="el" href="network_8c_source.html">network.c</a>.</p>
 
-<p>Referenced by <a class="el" href="network_8c_source.html#l00059">wifi_event_cb()</a>.</p>
+<p>Referenced by <a class="el" href="network_8c_source.html#l00072">wifi_event_cb()</a>.</p>
 
 </div>
 </div>
@@ -270,7 +324,7 @@ Variables</h2></td></tr>
 
 <p>Definition at line <a class="el" href="network_8c_source.html#l00048">48</a> of file <a class="el" href="network_8c_source.html">network.c</a>.</p>
 
-<p>Referenced by <a class="el" href="network_8c_source.html#l00144">setup_networking()</a>.</p>
+<p>Referenced by <a class="el" href="network_8c_source.html#l00157">setup_networking()</a>.</p>
 
 </div>
 </div>
@@ -286,7 +340,7 @@ Variables</h2></td></tr>
 
 <p>Definition at line <a class="el" href="network_8c_source.html#l00042">42</a> of file <a class="el" href="network_8c_source.html">network.c</a>.</p>
 
-<p>Referenced by <a class="el" href="user__main_8c_source.html#l00090">ntp_setup()</a>, and <a class="el" href="network_8c_source.html#l00059">wifi_event_cb()</a>.</p>
+<p>Referenced by <a class="el" href="network_8c_source.html#l00072">wifi_event_cb()</a>.</p>
 
 </div>
 </div>
@@ -332,14 +386,14 @@ Variables</h2></td></tr>
 
 <p>Definition at line <a class="el" href="network_8c_source.html#l00046">46</a> of file <a class="el" href="network_8c_source.html">network.c</a>.</p>
 
-<p>Referenced by <a class="el" href="network_8c_source.html#l00144">setup_networking()</a>.</p>
+<p>Referenced by <a class="el" href="network_8c_source.html#l00157">setup_networking()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat May 21 2016 20:04:37 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jun 20 2016 21:46:14 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
