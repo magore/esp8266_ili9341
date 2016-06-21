@@ -283,7 +283,7 @@ ___
    * See web.c for details.
       * I created a door status display that can be updated via a web page web page 
       * I did a status update while recording the video
-    * Result: ![](https://github.com/magore/esp8266_ili9341/blob/master/video.jpg)
+    * Result: ![](https://github.com/magore/esp8266_ili9341/blob/master/video.mp4)
 
 @par Demo Images
    * Running demo and sending a message to the network window
