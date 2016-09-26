@@ -1,0 +1,252 @@
+\hypertarget{structr2__t}{}\section{r2\+\_\+t Struct Reference}
+\label{structr2__t}\index{r2\+\_\+t@{r2\+\_\+t}}
+
+
+A\+D\+F4351 R2 structure Noise Mode 2bits \mbox{[}D\+B30\+:D\+B29\mbox{]} (Noise\+Spure\+Mode) The noise mode optimizes either improved spurious or improved phase noise.  
+
+
+
+
+{\ttfamily \#include $<$adf4351.\+h$>$}
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} \hyperlink{structr2__t_a3afba2088cc33e95e833436e6a111a6a}{Control\+Bits}\+:3
+\item 
+\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} \hyperlink{structr2__t_a21c5fab8a85d13d5e47de5588780b094}{Reset\+\_\+\+R\+\_\+N}\+:1
+\item 
+\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} \hyperlink{structr2__t_a378d00b9682aa05bffb1a3e61da036e4}{C\+P3S}\+:1
+\item 
+\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} \hyperlink{structr2__t_a3aadc869234fb281b178032be276ca00}{Power\+Down}\+:1
+\item 
+\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} \hyperlink{structr2__t_a05ebd4a6ece2e0641678b20f162e08ab}{Phase\+Polarity}\+:1
+\item 
+\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} \hyperlink{structr2__t_a406cd49f63cb56882de02e7fe2ace6bf}{L\+DP}\+:1
+\item 
+\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} \hyperlink{structr2__t_a42f019ff5be1600c098175eb64ab55da}{L\+DF}\+:1
+\item 
+\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} \hyperlink{structr2__t_a71530b2c7c16577560cd14f14f320572}{C\+PC}\+:4
+\item 
+\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} \hyperlink{structr2__t_a14726d1cf923d8e12279cd3038fa0540}{D\+Buf\+R\+F\+Div}\+:1
+\item 
+\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} \hyperlink{structr2__t_a0abc2956b7cbc989552c17264973d24d}{R}\+:10
+\item 
+\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} \hyperlink{structr2__t_aa036b7abbb6147e0c155101addc1490c}{R\+E\+Fin\+D\+I\+V2}\+:1
+\item 
+\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} \hyperlink{structr2__t_aa675f6a674217e14be9e3e1754530a78}{R\+E\+Fin\+M\+U\+L2}\+:1
+\item 
+\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} \hyperlink{structr2__t_a284292bd7e449b3c4641639ed6826310}{Mux\+Out}\+:3
+\item 
+\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} \hyperlink{structr2__t_a40bc8b8cb7d9e77e57abd0e8be4f01af}{Noise\+Spur\+Mode}\+:2
+\item 
+\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} \hyperlink{structr2__t_af67e412a4c526894fee5ce321dfce083}{res0L}\+:1
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A\+D\+F4351 R2 structure Noise Mode 2bits \mbox{[}D\+B30\+:D\+B29\mbox{]} (Noise\+Spure\+Mode) The noise mode optimizes either improved spurious or improved phase noise. 
+
+Low Spur Mode Used for fast-\/locking applications when the P\+LL closed-\/loop bandwidth is greater then 1/10 of RF O\+UT step resolution (f R\+ES). Dither is enabled. ( Dither improves spurious respose by randomizes the fractional quantization noise to resembles white noise rather than spurious noise. ) Down side\+: Wide loop filter can not attenuate spurs as much as a narrow loop bandwidth.
+
+Low Noise Mode Used for best noise performance. Dither is disabled. Pick narrow loop filter bandwidth to ensures low noise and attenuate spurs.
+
+M\+U\+X\+O\+UT 3bits Bits\mbox{[}D\+B28\+:D\+B26\mbox{]} (Muf\+Out) Note N counter output must be disabled for V\+CO band selection to operate.
+
+R\+E\+Fin doubler \mbox{[}D\+B25\mbox{]} (R\+E\+Fin\+M2) \mbox{[}D\+B25\mbox{]} = 1 enable doubler, R\+E\+Fin maximum is 30\+M\+Hz \mbox{[}D\+B25\mbox{]} = 0 disables doubler
+
+Reference divide by 2 (R\+E\+Fin\+D2) \mbox{[}D\+B24\mbox{]} = 1 enable divider \mbox{[}D\+B24\mbox{]} = 0 disable divider
+
+R Counter \mbox{[}D\+B23\+:D\+B14\mbox{]} (R) Must be between 1 and 1023 Divides R\+E\+Fin to provide P\+FD.
+
+Double Buffer RF divider \mbox{[}D\+B13\mbox{]} (D\+Buf\+R\+F\+Div) \mbox{[}D\+B13\mbox{]} = 1 enables double buffering of RF Divider \mbox{[}D\+B22\+:D\+B20\mbox{]} in R4
+
+Charge Pump Current \mbox{[}D\+B12\+:D\+B9\mbox{]} (C\+PC) Set the charge pump current to match your loop filter design.
+
+Lock Detect Function \mbox{[}D\+B8\mbox{]} (L\+DF) Examine 40 or 5 P\+FD cycles to ascertain if lock achieved. \mbox{[}D\+B8\mbox{]} = 0, examine 40 P\+FD cycles Use this for fractional-\/N mode. \mbox{[}D\+B8\mbox{]} = 1, examine 5 P\+FD cycles. Use this integer-\/N mode. \mbox{[}D\+B8\mbox{]} = 1, the number of P\+FD cycles monitored is 5.
+
+Lock Detect Precision \mbox{[}D\+B7\mbox{]} (L\+DP) \mbox{[}D\+B7\mbox{]} = 0 comparison window of lock detect circuit is 6ns. \mbox{[}D\+B7\mbox{]} = 1 comparison window of lock detect circuit is 10ns. Lock Detect circuit goes high when consecutive P\+DF cycles are less than either 40 or 5 as set by \mbox{[}D\+B8\mbox{]} (L\+DF) So if \mbox{[}D\+B8\+:D\+B7\mbox{]} = 00 then 40 consecutive P\+FD cycles of 10 ns or less must occur before digital lock detect goes high. \mbox{[}D\+B8\+:D\+B7\mbox{]} = 00, use this for fractional-\/N \mbox{[}D\+B8\+:D\+B7\mbox{]} = 11, use this for integer-\/N
+
+Phase Detector Polarity \mbox{[}D\+B6\mbox{]} The D\+B6 bit sets the phase detector polarity. \mbox{[}D\+B6\mbox{]} = 1, use this if you have a passive loop filter or noninverting active loop filter. \mbox{[}D\+B6\mbox{]} = 0, use this if you have an an inverting active filter.
+
+Power Down \mbox{[}D\+B5\mbox{]} (Power\+Down) \mbox{[}D\+B5\mbox{]} = 1 Synthesizer counters forced their load state conditions. V\+CO is powered down. Charge pump is forced into three-\/state mode. Digital lock detect circuitry is reset. RF O\+UT buffers are disabled.
+
+Charge Pump Three State \mbox{[}D\+B4\mbox{]} (C\+P3S) \mbox{[}D\+B4\mbox{]} = three-\/state mode \mbox{[}D\+B4\mbox{]} = 0 for normal operation.
+
+Counter Reset \mbox{[}D\+B3\mbox{]} (Reset\+\_\+\+R\+\_\+N) \mbox{[}D\+B3\mbox{]} = 1 reset R counter and N counter \mbox{[}D\+B3\mbox{]} = 0 for normal operation. 
+
+Definition at line 175 of file adf4351.\+h.
+
+
+
+\subsection{Field Documentation}
+\index{r2\+\_\+t@{r2\+\_\+t}!Control\+Bits@{Control\+Bits}}
+\index{Control\+Bits@{Control\+Bits}!r2\+\_\+t@{r2\+\_\+t}}
+\subsubsection[{\texorpdfstring{Control\+Bits}{ControlBits}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint32\+\_\+t} r2\+\_\+t\+::\+Control\+Bits}\hypertarget{structr2__t_a3afba2088cc33e95e833436e6a111a6a}{}\label{structr2__t_a3afba2088cc33e95e833436e6a111a6a}
+bit\+: 0.. 2 Control bits 
+
+Definition at line 177 of file adf4351.\+h.
+
+
+
+Referenced by A\+D\+F4351\+\_\+\+Init().
+
+\index{r2\+\_\+t@{r2\+\_\+t}!C\+P3S@{C\+P3S}}
+\index{C\+P3S@{C\+P3S}!r2\+\_\+t@{r2\+\_\+t}}
+\subsubsection[{\texorpdfstring{C\+P3S}{CP3S}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint32\+\_\+t} r2\+\_\+t\+::\+C\+P3S}\hypertarget{structr2__t_a378d00b9682aa05bffb1a3e61da036e4}{}\label{structr2__t_a378d00b9682aa05bffb1a3e61da036e4}
+bit\+: 4 Charge Pump 3 state 
+
+Definition at line 179 of file adf4351.\+h.
+
+
+
+Referenced by A\+D\+F4351\+\_\+dump\+\_\+registers(), A\+D\+F4351\+\_\+\+Get\+Reg32(), and A\+D\+F4351\+\_\+\+Init().
+
+\index{r2\+\_\+t@{r2\+\_\+t}!C\+PC@{C\+PC}}
+\index{C\+PC@{C\+PC}!r2\+\_\+t@{r2\+\_\+t}}
+\subsubsection[{\texorpdfstring{C\+PC}{CPC}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint32\+\_\+t} r2\+\_\+t\+::\+C\+PC}\hypertarget{structr2__t_a71530b2c7c16577560cd14f14f320572}{}\label{structr2__t_a71530b2c7c16577560cd14f14f320572}
+bit\+: 9..12 Charge Pump Current 
+
+Definition at line 184 of file adf4351.\+h.
+
+
+
+Referenced by A\+D\+F4351\+\_\+dump\+\_\+registers(), A\+D\+F4351\+\_\+\+Get\+Reg32(), and A\+D\+F4351\+\_\+\+Init().
+
+\index{r2\+\_\+t@{r2\+\_\+t}!D\+Buf\+R\+F\+Div@{D\+Buf\+R\+F\+Div}}
+\index{D\+Buf\+R\+F\+Div@{D\+Buf\+R\+F\+Div}!r2\+\_\+t@{r2\+\_\+t}}
+\subsubsection[{\texorpdfstring{D\+Buf\+R\+F\+Div}{DBufRFDiv}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint32\+\_\+t} r2\+\_\+t\+::\+D\+Buf\+R\+F\+Div}\hypertarget{structr2__t_a14726d1cf923d8e12279cd3038fa0540}{}\label{structr2__t_a14726d1cf923d8e12279cd3038fa0540}
+bit\+: 13 Double Buffer RF divider 
+
+Definition at line 185 of file adf4351.\+h.
+
+
+
+Referenced by A\+D\+F4351\+\_\+dump\+\_\+registers(), A\+D\+F4351\+\_\+\+Get\+Reg32(), and A\+D\+F4351\+\_\+\+Init().
+
+\index{r2\+\_\+t@{r2\+\_\+t}!L\+DF@{L\+DF}}
+\index{L\+DF@{L\+DF}!r2\+\_\+t@{r2\+\_\+t}}
+\subsubsection[{\texorpdfstring{L\+DF}{LDF}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint32\+\_\+t} r2\+\_\+t\+::\+L\+DF}\hypertarget{structr2__t_a42f019ff5be1600c098175eb64ab55da}{}\label{structr2__t_a42f019ff5be1600c098175eb64ab55da}
+bit\+: 8 Lock Detect Function 
+
+Definition at line 183 of file adf4351.\+h.
+
+
+
+Referenced by A\+D\+F4351\+\_\+dump\+\_\+registers(), A\+D\+F4351\+\_\+\+Get\+Reg32(), and A\+D\+F4351\+\_\+\+Init().
+
+\index{r2\+\_\+t@{r2\+\_\+t}!L\+DP@{L\+DP}}
+\index{L\+DP@{L\+DP}!r2\+\_\+t@{r2\+\_\+t}}
+\subsubsection[{\texorpdfstring{L\+DP}{LDP}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint32\+\_\+t} r2\+\_\+t\+::\+L\+DP}\hypertarget{structr2__t_a406cd49f63cb56882de02e7fe2ace6bf}{}\label{structr2__t_a406cd49f63cb56882de02e7fe2ace6bf}
+bit\+: 7 Lock Detect Precision 
+
+Definition at line 182 of file adf4351.\+h.
+
+
+
+Referenced by A\+D\+F4351\+\_\+dump\+\_\+registers(), A\+D\+F4351\+\_\+\+Get\+Reg32(), and A\+D\+F4351\+\_\+\+Init().
+
+\index{r2\+\_\+t@{r2\+\_\+t}!Mux\+Out@{Mux\+Out}}
+\index{Mux\+Out@{Mux\+Out}!r2\+\_\+t@{r2\+\_\+t}}
+\subsubsection[{\texorpdfstring{Mux\+Out}{MuxOut}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint32\+\_\+t} r2\+\_\+t\+::\+Mux\+Out}\hypertarget{structr2__t_a284292bd7e449b3c4641639ed6826310}{}\label{structr2__t_a284292bd7e449b3c4641639ed6826310}
+bit\+: 26..28 M\+U\+X\+O\+UT 
+
+Definition at line 189 of file adf4351.\+h.
+
+
+
+Referenced by A\+D\+F4351\+\_\+dump\+\_\+registers(), A\+D\+F4351\+\_\+\+Get\+Reg32(), A\+D\+F4351\+\_\+\+Init(), and A\+D\+F4351\+\_\+status().
+
+\index{r2\+\_\+t@{r2\+\_\+t}!Noise\+Spur\+Mode@{Noise\+Spur\+Mode}}
+\index{Noise\+Spur\+Mode@{Noise\+Spur\+Mode}!r2\+\_\+t@{r2\+\_\+t}}
+\subsubsection[{\texorpdfstring{Noise\+Spur\+Mode}{NoiseSpurMode}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint32\+\_\+t} r2\+\_\+t\+::\+Noise\+Spur\+Mode}\hypertarget{structr2__t_a40bc8b8cb7d9e77e57abd0e8be4f01af}{}\label{structr2__t_a40bc8b8cb7d9e77e57abd0e8be4f01af}
+bit\+: 29..30 Low Noise and Low Spur Modes 
+
+Definition at line 190 of file adf4351.\+h.
+
+
+
+Referenced by A\+D\+F4351\+\_\+\+Config(), A\+D\+F4351\+\_\+dump\+\_\+registers(), A\+D\+F4351\+\_\+\+Get\+Reg32(), and A\+D\+F4351\+\_\+\+Init().
+
+\index{r2\+\_\+t@{r2\+\_\+t}!Phase\+Polarity@{Phase\+Polarity}}
+\index{Phase\+Polarity@{Phase\+Polarity}!r2\+\_\+t@{r2\+\_\+t}}
+\subsubsection[{\texorpdfstring{Phase\+Polarity}{PhasePolarity}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint32\+\_\+t} r2\+\_\+t\+::\+Phase\+Polarity}\hypertarget{structr2__t_a05ebd4a6ece2e0641678b20f162e08ab}{}\label{structr2__t_a05ebd4a6ece2e0641678b20f162e08ab}
+bit\+: 6 Phase Detector Polarity 
+
+Definition at line 181 of file adf4351.\+h.
+
+
+
+Referenced by A\+D\+F4351\+\_\+dump\+\_\+registers(), A\+D\+F4351\+\_\+\+Get\+Reg32(), and A\+D\+F4351\+\_\+\+Init().
+
+\index{r2\+\_\+t@{r2\+\_\+t}!Power\+Down@{Power\+Down}}
+\index{Power\+Down@{Power\+Down}!r2\+\_\+t@{r2\+\_\+t}}
+\subsubsection[{\texorpdfstring{Power\+Down}{PowerDown}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint32\+\_\+t} r2\+\_\+t\+::\+Power\+Down}\hypertarget{structr2__t_a3aadc869234fb281b178032be276ca00}{}\label{structr2__t_a3aadc869234fb281b178032be276ca00}
+bit\+: 5 Power Down 
+
+Definition at line 180 of file adf4351.\+h.
+
+
+
+Referenced by A\+D\+F4351\+\_\+dump\+\_\+registers(), A\+D\+F4351\+\_\+\+Get\+Reg32(), and A\+D\+F4351\+\_\+\+Init().
+
+\index{r2\+\_\+t@{r2\+\_\+t}!R@{R}}
+\index{R@{R}!r2\+\_\+t@{r2\+\_\+t}}
+\subsubsection[{\texorpdfstring{R}{R}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint32\+\_\+t} r2\+\_\+t\+::R}\hypertarget{structr2__t_a0abc2956b7cbc989552c17264973d24d}{}\label{structr2__t_a0abc2956b7cbc989552c17264973d24d}
+bit\+: 14..23 10bit R Counter 
+
+Definition at line 186 of file adf4351.\+h.
+
+
+
+Referenced by A\+D\+F4351\+\_\+\+Config(), A\+D\+F4351\+\_\+dump\+\_\+registers(), A\+D\+F4351\+\_\+\+Get\+Reg32(), and A\+D\+F4351\+\_\+\+Init().
+
+\index{r2\+\_\+t@{r2\+\_\+t}!R\+E\+Fin\+D\+I\+V2@{R\+E\+Fin\+D\+I\+V2}}
+\index{R\+E\+Fin\+D\+I\+V2@{R\+E\+Fin\+D\+I\+V2}!r2\+\_\+t@{r2\+\_\+t}}
+\subsubsection[{\texorpdfstring{R\+E\+Fin\+D\+I\+V2}{REFinDIV2}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint32\+\_\+t} r2\+\_\+t\+::\+R\+E\+Fin\+D\+I\+V2}\hypertarget{structr2__t_aa036b7abbb6147e0c155101addc1490c}{}\label{structr2__t_aa036b7abbb6147e0c155101addc1490c}
+bit\+: 24 R\+E\+Fin / 2 
+
+Definition at line 187 of file adf4351.\+h.
+
+
+
+Referenced by A\+D\+F4351\+\_\+dump\+\_\+registers(), A\+D\+F4351\+\_\+\+Get\+Reg32(), A\+D\+F4351\+\_\+\+Init(), and A\+D\+F4351\+\_\+\+P\+F\+D().
+
+\index{r2\+\_\+t@{r2\+\_\+t}!R\+E\+Fin\+M\+U\+L2@{R\+E\+Fin\+M\+U\+L2}}
+\index{R\+E\+Fin\+M\+U\+L2@{R\+E\+Fin\+M\+U\+L2}!r2\+\_\+t@{r2\+\_\+t}}
+\subsubsection[{\texorpdfstring{R\+E\+Fin\+M\+U\+L2}{REFinMUL2}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint32\+\_\+t} r2\+\_\+t\+::\+R\+E\+Fin\+M\+U\+L2}\hypertarget{structr2__t_aa675f6a674217e14be9e3e1754530a78}{}\label{structr2__t_aa675f6a674217e14be9e3e1754530a78}
+bit\+: 25 R\+E\+Fin $\ast$ 2 
+
+Definition at line 188 of file adf4351.\+h.
+
+
+
+Referenced by A\+D\+F4351\+\_\+dump\+\_\+registers(), A\+D\+F4351\+\_\+\+Get\+Reg32(), A\+D\+F4351\+\_\+\+Init(), and A\+D\+F4351\+\_\+\+P\+F\+D().
+
+\index{r2\+\_\+t@{r2\+\_\+t}!res0L@{res0L}}
+\index{res0L@{res0L}!r2\+\_\+t@{r2\+\_\+t}}
+\subsubsection[{\texorpdfstring{res0L}{res0L}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint32\+\_\+t} r2\+\_\+t\+::res0L}\hypertarget{structr2__t_af67e412a4c526894fee5ce321dfce083}{}\label{structr2__t_af67e412a4c526894fee5ce321dfce083}
+bit\+: 31 reserved 
+
+Definition at line 191 of file adf4351.\+h.
+
+
+
+Referenced by A\+D\+F4351\+\_\+\+Init().
+
+\index{r2\+\_\+t@{r2\+\_\+t}!Reset\+\_\+\+R\+\_\+N@{Reset\+\_\+\+R\+\_\+N}}
+\index{Reset\+\_\+\+R\+\_\+N@{Reset\+\_\+\+R\+\_\+N}!r2\+\_\+t@{r2\+\_\+t}}
+\subsubsection[{\texorpdfstring{Reset\+\_\+\+R\+\_\+N}{Reset_R_N}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint32\+\_\+t} r2\+\_\+t\+::\+Reset\+\_\+\+R\+\_\+N}\hypertarget{structr2__t_a21c5fab8a85d13d5e47de5588780b094}{}\label{structr2__t_a21c5fab8a85d13d5e47de5588780b094}
+bit\+: 3 R and N Reset 
+
+Definition at line 178 of file adf4351.\+h.
+
+
+
+Referenced by A\+D\+F4351\+\_\+dump\+\_\+registers(), A\+D\+F4351\+\_\+\+Get\+Reg32(), and A\+D\+F4351\+\_\+\+Init().
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+adf4351/\hyperlink{adf4351_8h}{adf4351.\+h}\end{DoxyCompactItemize}

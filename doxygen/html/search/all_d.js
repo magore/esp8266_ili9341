@@ -17,7 +17,10 @@ var searchData=
   ['nlink_5ft',['nlink_t',['../posix_8h.html#a9e3c03dae15b90102eb1770dd95adadc',1,'posix.h']]],
   ['no_5fparity',['NO_PARITY',['../uart_8h.html#acb045cca45821ff8ef1e749914313198a4bffe960d7eae89d5b85412e4edfd453',1,'uart.h']]],
   ['no_5fstdio',['NO_STDIO',['../user__config_8h.html#a3efe3c2f44d74058903aac7898836e7f',1,'user_config.h']]],
+  ['noisespurmode',['NoiseSpurMode',['../structr2__t.html#a40bc8b8cb7d9e77e57abd0e8be4f01af',1,'r2_t']]],
+  ['normaltask',['NormalTask',['../user__main_8c.html#ab1856f0b47db20c7a57f0ad84c0852e2',1,'user_main.c']]],
   ['normaltaskprio',['NormalTaskPrio',['../user__main_8c.html#ad4b201d4a81874b691535905a1087fe0',1,'user_main.c']]],
+  ['normaltaskqueue',['NormalTaskQueue',['../user__main_8c.html#abb72a19bfadab64df56d11000f9ef0fc',1,'user_main.c']]],
   ['normaltaskqueuelen',['NormalTaskQueueLen',['../user__main_8c.html#a1c07392725f8ce9719872dd267291407',1,'user_main.c']]],
   ['ns',['NS',['../ff_8c.html#a06c201f90533d5b49cd039c960327968',1,'ff.c']]],
   ['ns_5fbody',['NS_BODY',['../ff_8c.html#a4a0e89b504dece19e2e4b02c83782ca2',1,'ff.c']]],
@@ -26,6 +29,7 @@ var searchData=
   ['ns_5flast',['NS_LAST',['../ff_8c.html#a5a0742bfc1d94f0c3baa5ede485048c4',1,'ff.c']]],
   ['ns_5flfn',['NS_LFN',['../ff_8c.html#ae957b8d4065ea0b3eed822aec5368d29',1,'ff.c']]],
   ['ns_5floss',['NS_LOSS',['../ff_8c.html#ac92c92c3a3d6b9235ac98feeb00e565a',1,'ff.c']]],
-  ['ntp_5fsetup',['ntp_setup',['../network_8h.html#a9aaa25ef08319cd23e2cdee0b6405de5',1,'network.h']]],
+  ['ntp_5finit',['ntp_init',['../user__main_8c.html#ae406634b9e0b25eda1da44f1d4ec26c0',1,'user_main.c']]],
+  ['ntp_5fsetup',['ntp_setup',['../user__main_8c.html#a9aaa25ef08319cd23e2cdee0b6405de5',1,'ntp_setup(void):&#160;user_main.c'],['../network_8h.html#a9aaa25ef08319cd23e2cdee0b6405de5',1,'ntp_setup(void):&#160;user_main.c']]],
   ['num',['NUM',['../cal__dex_8c.html#aaf0952059602752258dccaa015d7b54a',1,'cal_dex.c']]]
 ];

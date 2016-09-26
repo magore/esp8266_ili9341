@@ -1,5 +1,5 @@
 /**
- @file sup.c 
+ @file stdlib.c
 
  @brief Part of Small printf, and verious conversion code with floating point support
 
@@ -21,81 +21,110 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include "stdlib.h"
 
-#ifdef PRINTF_TEST
-	#define MEMSPACE /* */
-	#include <stdio.h>
-	#include <stdlib.h>
-	typedef unsigned char uint8_t;
-	typedef signed char int8_t;
-	typedef unsigned short uint16_t;
-	typedef unsigned int uint32_t;
-	typedef int int32_t;
-#else
-	#include "user_config.h"
-#endif
-#include "sup.h"
+#ifdef FLOAT
 
-
-/// @brief Reverse a string
-///  Example: abcdef -> fedcba
-/// @param[in] str: string 
-/// @return string length
-MEMSPACE 
-void reverse(char *str)
+/// @brief Raise number to exponent power (exponent is integer)
+/// @param[in] num: number
+/// @param[in] exp:  interger exponent
+/// @return num ** exp
+MEMSPACE
+double iexp(double num, int exp)
 {
-        uint8_t temp;
-        int i;
-		int len = strlen(str);
-        // Reverse
-        // We only exchange up to half way
-        for (i = 0; i < (len >> 1); i++)
-        {
-                temp = str[len - i - 1];
-                str[len - i - 1] = str[i];
-                str[i] = temp;
-        }
+    double a;
+    if(exp==0)
+        return(1.0);
+    if(exp <0)
+    {
+        a = 1.0 / num;
+        exp = 1 - exp;
+    }
+    else
+    {
+        exp = exp - 1;
+        a = num;
+    }
+    while(exp)
+    {
+        if(exp & 0x01)
+            num *= a;
+        if(exp >>= 1)
+            a *= a;
+    }
+    return(num);
 }
 
-/// @brief Upercase a string
-/// @param[in] str: string 
-/// @return void
-MEMSPACE 
-void strupper(char *str)
-{
 
-	while(*str)
+/// @brief Scale a number to 1.0 .. 9.99999...
+/// @param[in] num: number
+/// @param[out] *exp: interger power of 10 for scale factor
+/// @return scaled number
+MEMSPACE 
+double scale10(double num, int *exp)
+{
+	int exp10,exp2;
+	double scale;
+
+	if(!num)
 	{
-		if(*str >= 'a' && *str <= 'z')
-			*str -= 0x20;
-		++str;
+		*exp = 0;
+		return(0.0);
 	}
+	// extract exponent
+	frexp(num, &exp2);
+	// aproximate exponent in base 10
+	exp10 = ((double) exp2) / (double) 3.321928095;
+
+	// convert scale to 10.0**exp10
+	scale = iexp((double)10.0, exp10);
+
+	// remove scale
+	num /= scale;
+
+	// correct for over/under
+	while(num >= (double)10.0) 
+	{
+		num /= (double) 10.0;
+		++exp10;
+	}
+	while(num < (double) 1.0) 
+	{
+		num *= (double) 10.0;
+		--exp10;
+	}
+
+	*exp = exp10;
+	return(num);
 }
+#endif // ifdef FLOAT
 
 /// @brief Convert ASCII character to radix based digit , or -1
 /// @param[in] c: character
 /// @param[in] radix: radix
 /// @return radix based digit , or -1
+/// @see strtol
 MEMSPACE 
 int atodigit(int c,int radix)
 {
-        int ret = -1;
-        if(c >= '0' && c <= '9')
-                ret = c - '0';
-        else if(c >= 'A' && c <= 'F')
-                ret = c - 'A' + 10;
-        else if(c >= 'a' && c <= 'f')
-                ret = c - 'a' + 10;
-		else return (-1);
-        return((ret >= radix) ? -1 : ret);
+	int ret = -1;
+	if(c >= '0' && c <= '9')
+			ret = c - '0';
+	else if(c >= 'A' && c <= 'F')
+			ret = c - 'A' + 10;
+	else if(c >= 'a' && c <= 'f')
+			ret = c - 'a' + 10;
+	else return (-1);
+	return((ret >= radix) ? -1 : ret);
 }
 
 /// @brief Convert ASCII string to number in a given base
 /// @param[in] str: string
 /// @param[in] base: radix
 /// @return long value
+/// @see strtol
 MEMSPACE
-long aton(uint8_t *str,int base)
+long aton(char *str, int base)
 {
     unsigned long num;
     char *endptr;
@@ -104,7 +133,8 @@ long aton(uint8_t *str,int base)
     return(num);
 }
 
-#ifndef PRINTF_TEST
+// Skip if we have the linux stdlib.h
+#ifndef _STDLIB_H
 
 /// @brief Convert ASCII string to number in a given base
 /// @param[in] nptr: string
@@ -154,24 +184,38 @@ long strtol(const char *nptr, char **endptr, int base)
 
 /// @brief Convert ASCII string to number in base 10
 /// @param[in] str: string
-/// @return long value
+/// @return int value
+/// @see strtol
 MEMSPACE 
-long atoi(uint8_t *str)
+int atoi(const char *str)
 {
 	unsigned long num;
 	char *endptr;
+	num = strtol(str, &endptr, 10);
+	return((int)num);
+}
 
+/// @brief Convert ASCII string to number in base 10
+/// @param[in] str: string
+/// @return long value
+/// @see strtol
+MEMSPACE 
+long atol(const char *str)
+{
+	unsigned long num;
+	char *endptr;
 	num = strtol(str, &endptr, 10);
 	return(num);
 }
+
+
 
 #ifdef FLOAT
 /// @brief atof ASCII to float
 /// @param[in] str: string
 /// @return number
 MEMSPACE 
-double atof(str)
-char *str;
+double atof(const char *str)
 {
 	double num;
 	double frac;
@@ -218,10 +262,11 @@ char *str;
 			return(num);
 		if(sign<0)
 			power = -power;
-		return(num * t_iexp(10.0, power));
+		// iexp - number to integer power
+		return(num * iexp(10.0, power));
 	}
 	return(num);
 }
-#endif
+#endif // ifdef FLOAT
+#endif // ifndef _STDLIB_H
 
-#endif

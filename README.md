@@ -13,6 +13,7 @@
  * ESP8266 ILI9341 with multiple window support WEB server and other networking demos
     * The specific display is an TM022HDH26 display I got from ebay.
  * I wrote the following support functions from scratch
+   * ADF4351 Wideband Synthesizer diriver and test code
    * Font compiler and display code
    * ILI9341 display driver with multiple custom sized window support 
     * (I rewrote most of Adafruit code ili9341 graphics library)
@@ -27,7 +28,7 @@
    * BDF fonts and a BDF font to C conversion code and optimized display code
    * WEB server using SD CARD with CGI processing - files and CGI results can be ANY SIZE!
    * WEB server can update TFT display
-      * Simple door sign status update using web page - see files/msg.cgi and web/web.c for code
+      * Simple door sign status update using web page - see html/msg.cgi and web/web.c for code
    * Network server client example for display updates
    * Uart network server client for serial uart to network bridge.
    * Generic queue handling code
@@ -68,13 +69,20 @@ ___
        * Tested with esp_iot_sdk_v1.5.2 as of 21 Jun 2016
     * term115200 - shell script to launch terminal to 115200 baud
 
+  * adf4351
+    * Analog Devices ADF4351 Wideband Synthesizer with Integrated VCO driver
+      * adf4351.c
+      * adf4351.h
+    * Hardware Abstarction layer
+    * adf4351_hal.c
+    * adf4351_hal.h
+
   * bridge
     * bridge.c
     * bridge.h
       * Serial bridge code - send and receive serial data via network
       * Opens a port on port 23 so you can use telnet to test
         * Note: at the moment no telnet command processing is done.
-      
   * cordic
     * cordic.c        
       * My 3D transformation functions based on CORDIC and gradians/100
@@ -105,6 +113,9 @@ ___
         * multiple window support 
         * readPixel() works on most all 4 wire displays now
         * scrolling window support
+	* tft_printf.c
+	* tft_printf.h
+	  * Printf interface to display library tft_printf()
 
   * docs 
     * ili9431 and esp8266 related documents
@@ -186,6 +197,10 @@ ___
            * P - Proportional size fonts
            * O - Other
 
+   * html
+     * An example web site with files that can be put on an SD card
+     * Used for testing web.c
+   
    * include 
      * misc esp8266 include files
 
@@ -197,7 +212,14 @@ ___
       * timer.c - simple timers (only intended for quick functions)
       * timer_hal.h
       * timer_hal.c - timer hardware abstraction layer
-
+     * implementation of some C stdlib functions
+      * stdlib.c 
+     * implementation of some C ctype, string and strings functions
+      * str.c    
+      * str.h
+    * queue.c
+    * queue.h
+      * Generic ring buffer support code
    * network
      * Simple network server - displays message sent by send.c 
       * network.c
@@ -206,16 +228,21 @@ ___
      * My small printf with floating support, misc I/O functions
         * Makefile       
           * Build and test printf
-        * pr.c           
-          * Printf interface to display library tft_printf()
         * printf.c       
         * printf.h       
           * My printf code
+        * test_printf.c
+          * Test functions for printf.c that can be run under linux to verify results
+
+   * scanf
+    * scanf.c
+      * Simple scanf
 
    * send.c
      * Send message to network server 
      * Example: ./send -i 192.168.200.116 -m '\fscrolling\ntext\n1\n2\n3\n4'
         * These escape characters are processed on the display: \n, \t, \f
+
 
    * user    
      * Main user demo task
@@ -223,41 +250,41 @@ ___
         * Intializes ESP8266 and sets up demo with 4 active windows with independent attributes
 
    * utils
-    * hspi.c              
-    * hspi.h              
-      * My rewritten HPSI code that avoids unaligned read and writes
-      * Origonal Code from CHERTS and Sem
-    * queue.c
-    * queue.h
-      * Generic ring buffer support code
-    * uart.c
-    * uart.h
-    * uart_register.h
-      * Interrup driven receive and transmit code
-    * util.c
-    * util.h
-      * Flash read
-      * Bittest functions 
-       * For system requiring specific memory alignment access methods
-      * POSIX malloc,calloc and free wrappers
+    * Debugging printf wrapper
+      * debug.c              
+      * debug.h              
+    * My rewritten HPSI code that avoids unaligned read and writes (based on code ideas from CHERTS and Sem)
+      * hspi.c              
+      * hspi.h              
+    * Serial I/O Interrup driven receive and transmit code
+      * uart.c
+      * uart.h
+      * uart_register.h
+    * Flash read, Bittest functions, For systems requiring specific memory alignment access methods
+      * flash.c
+      * flash.h
+    * POSIX malloc,calloc and free wrappers
+      * sys.c
+      * sys.h
 
    * web
-     * web.c
-     * web.h
-        * Web server with FAT filesystem SD CARD support 
-		* Served files can be ANY SIZE!
-        * CGI files can have an extension of: html,htm,text,txt,cgi
-		  * Only tokens of the form @_ token _@ are replaced by the rewrite function
-            * @see rewrite_cgi_token() in web.c
+    * Web server with FAT filesystem SD CARD support 
+      * web.c
+      * web.h
+    * Features
+	  * Served files can be ANY SIZE!
+      * CGI files can have an extension of: html,htm,text,txt,cgi
+	  * Only tokens of the form @_ token _@ are replaced by the rewrite function
+        * @see rewrite_cgi_token() in web.c
 		* CGI results can be ANY SIZE
 		* Uses yield function to continue background tasks while serving requests
+    * Applications
       * I created a door sign status display that can be updated via a web page web page running on the esp8266
-        * Copy the file files/msg.cgi to the root folder of a fat32 SD card and modify to suit your needs.
+        * Copy the file html/msg.cgi to the root folder of a fat32 SD card and modify to suit your needs.
         * Use: open a web browser to the web server runing on the esp8266
           * For example: http://192.168.200.116/msg.cgi
           * You can update status and return time information on the TFT display by entering information on the page.
         * See the Video
-   
    * wire
      * wire.c
      * wire.h

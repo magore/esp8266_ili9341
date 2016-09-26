@@ -24,6 +24,388 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <user_config.h>
 #include "str.h"
 
+
+///@brief Convert Character into HEX digit.
+///
+/// @param[in] c: character.
+///
+/// @return HEX digit [0..F] on success.
+/// @return 0xff on fail.
+MEMSPACE 
+uint8_t hexd( char c )
+{
+    if( c >= '0' && c <= '9' )
+        return(c - '0');
+    if( c >= 'a' && c <= 'f')
+        return(c - 'a' + 10);
+    if( c >= 'A' && c <= 'F')
+        return(c - 'A' + 10);
+    return(0xff);                                 // error
+}
+
+///@brief Convert ASCII hex string to long integer.
+///
+///@param[in] p: String to convert.
+///
+///@return long integer result.
+///@see strtol() for return overflow and underflow results.
+MEMSPACE
+long atoh(const char *p)
+{
+    return strtol(p, (char **) NULL, 16);
+}
+
+
+// ==================================================
+// Skip these functions if we have linux ctype.h
+#ifndef _CTYPE_H
+
+/// @brief test if a character is a digit
+/// @param[in] c: character
+/// @return true or false
+MEMSPACE
+int isdigit(int c)
+{
+    if(c >= '0' && c <= '9')
+        return(1);
+    return(0);
+}
+
+///@brief Is a character upper case
+///
+/// @param[in] c: character.
+///
+/// @return 1 of upper case, else 0 
+MEMSPACE
+int isupper(int c)
+{
+	if(c >= 'A' && c <= 'Z')
+		return(1);
+	return(0);
+}
+
+///@brief Is a character lower case
+///
+/// @param[in] c: character.
+///
+/// @return 1 of lower case, else 0 
+MEMSPACE
+int islower(int c)
+{
+	if(c >= 'a' && c <= 'a')
+		return(1);
+	return(0);
+}
+
+///@brief Convert character to lower case, only if it is upper case
+///
+/// @param[in] c: character.
+///
+/// @return character or lowercase value or character
+MEMSPACE
+int tolower(int c)
+{
+	if(isupper(c))
+		return(c - 'A' + 'a');
+	return(c);
+}
+
+///@brief Convert character to upper case, only if it is lower case
+///
+/// @param[in] c: character.
+///
+/// @return character or upper case value or character
+MEMSPACE
+int toupper(int c)
+{
+	if(islower(c))
+		return(c - 'a' + 'A');
+	return(c);
+}
+#endif	// ifndef _CTYPE_H
+// ==================================================
+
+// ==================================================
+// Skip these functions if we have linux string.h
+#ifndef _STRING_H
+
+/// @brief String Length
+/// @param[in] str: string
+/// @return string length
+MEMSPACE
+size_t strlen(const char *str)
+{
+    int len=0;
+    // String length
+    while(*str++)
+        ++len;
+    return(len);
+}
+
+///@brief Compare two strings 
+///
+///@param[in] str: string to match.
+///@param[in] pat: pattern to compare.
+///
+///@return 0 on match, < 0 implies str sorts before pat, > 0 implies str sorts after pat
+MEMSPACE
+int strcmp(const char *str, const char *pat)
+{
+	int ret = 0;
+	int c1,c2;
+	while (1)
+	{
+		c1 = *str++;
+		c2 = *pat++;
+		if ( (ret = c1 - c2) != 0 || c2 == 0)
+			break;
+	}
+	return(ret);
+}
+
+///@brief Compare two strings maximum len bytes in size
+///
+///@param[in] str: string to match.
+///@param[in] pat: pattern to compare.
+///@param[in] len: maximum string length for compare
+///@return 0 on match, < 0 implies str sorts before pat, > 0 implies str sorts after pat
+MEMSPACE
+int strncmp(const char *str, const char *pat, size_t len)
+{
+    int ret = 0;
+    int c1,c2;
+    while (len--)
+    {
+        c1 = *str++;
+        c2 = *pat++;
+        if ( (ret = c1 - c2) != 0 || c2 == 0)
+            break;
+    }
+    return(ret);
+}
+#endif // _STRING_H
+// ==================================================
+
+// ==================================================
+// Skip these functions if we have linux strings.h
+#ifndef _STRINGS_H
+
+///@brief Compare two strings without case
+///
+///@param[in] str: string to match.
+///@param[in] pat: pattern to compare.
+///
+///@return 0 on match, < 0 implies str sorts before pat, > 0 implies str sorts after pat
+MEMSPACE
+int strcasecmp(const char *str, const char *pat)
+{
+	int ret = 0;
+	int c1,c2;
+	while (1)
+	{
+		c1 = toupper(*str++);
+		c2 = toupper(*pat++);
+		if ( (ret = c1 - c2) != 0 || c2 == 0)
+			break;
+	}
+	return(ret);
+}
+
+///@brief Compare two strings without case maximum len bytes in size
+///
+///@param[in] str: string to match.
+///@param[in] pat: pattern to compare.
+///@param[in] len: maximum string length for compare
+///@return 0 on match, < 0 implies str sorts before pat, > 0 implies str sorts after pat
+MEMSPACE
+int strncasecmp(const char *str, const char *pat, size_t len)
+{
+	int ret = 0;
+	int c1,c2;
+	while (len--)
+	{
+		c1 = toupper(*str++);
+		c2 = toupper(*pat++);
+		if ( (ret = c1 - c2) != 0 || c2 == 0)
+			break;
+	}
+	return(ret);
+}
+#endif // ifndef STRINGS_H
+// ==================================================
+
+///@brief Compare two strings.
+///
+///@param[in] str: string to match.
+///@param[in] pat: pattern to compare.
+///
+///@return string lenth on match.
+///@return 0 on no match.
+MEMSPACE 
+int MATCH(char *str, char *pat)
+{
+    int len;
+    len = strlen(pat);
+    if(strcmp(str,pat) == 0 )
+        return(len);
+    return(0);
+}
+
+
+///@brief Compare two strings without case.
+///
+///@param[in] str: string to match.
+///@param[in] pat: pattern to compare.
+///
+///@return string lenth on match.
+///@return 0 on no match.
+MEMSPACE 
+int MATCHI(char *str, char *pat)
+{
+    int len;
+    len = strlen(pat);
+    if(strcasecmp(str,pat) == 0 )
+        return(len);
+    return(0);
+}
+
+///@brief Compare two strings limted to length of pattern.
+///
+///@param[in] str: string to match.
+///@param[in] pat: pattern to compare.
+///
+///@return string lenth on match.
+///@return 0 on no match.
+///@warning Matches sub strings so be caeful.
+MEMSPACE 
+int MATCH_LEN(char *str, char *pat)
+{
+    int len;
+
+    if(!str || !pat)
+        return(0);
+    len = strlen(pat);
+
+    if( len )
+    {
+        if(strncmp(str,pat,len) == 0 )
+            return(len);
+    }
+    return(0);
+}
+
+
+///@brief Compare two strings without case limted to length of pattern.
+///
+///@param[in] str: string to match.
+///@param[in] pat: pattern to compare.
+///
+///@return string lenth on match.
+///@return 0 on no match.
+///@warning Matches sub strings so be caeful.
+MEMSPACE 
+int MATCHI_LEN(char *str, char *pat)
+{
+    int len;
+
+    if(!str || !pat)
+        return(0);
+    len = strlen(pat);
+
+    if( len )
+    {
+        if(strncasecmp(str,pat,len) == 0 )
+            return(len);
+    }
+    return(0);
+}
+
+
+/// @brief Reverse a string in place
+///  Example: abcdef -> fedcba
+/// @param[in] str: string 
+/// @return string length
+MEMSPACE 
+void reverse(char *str)
+{
+	char temp;
+	int i;
+	int len = strlen(str);
+	// Reverse
+	// We only exchange up to half way
+	for (i = 0; i < (len >> 1); i++)
+	{
+		temp = str[len - i - 1];
+		str[len - i - 1] = str[i];
+		str[i] = temp;
+	}
+}
+
+/// @brief UPPERCASE a string
+/// @param[in] str: string 
+/// @return void
+MEMSPACE 
+void strupper(char *str)
+{
+
+	while(*str)
+	{
+		if(*str >= 'a' && *str <= 'z')
+			*str -= 0x20;
+		++str;
+	}
+}
+
+///@brief Allocate space for string with maximum size.
+///
+/// - Copies tring into allocated space limited to maximum size.
+///
+///@param[in] str: user string.
+///@param[in] len: maximum string length.
+///
+///@return pointer to alocated string.
+
+MEMSPACE 
+char *strnalloc(char *str, int len)
+{
+    char *ptr;
+
+    if(!str)
+        return(NULL);
+    ptr = calloc(len+1,1);
+    if(!ptr)
+        return(ptr);
+    strncpy(ptr,str,len);
+    return(ptr);
+
+}
+
+
+///@brief Allocate space for string.
+///
+/// - Copies tring into allocated space.
+///
+///@param[in] str: user string.
+///
+///@return pointer to alocated string.
+///@return NULL on out of memory.
+MEMSPACE 
+char *stralloc(char *str)
+{
+    char *ptr;
+    int len;
+
+    if(!str)
+        return(str);;
+    len  = strlen(str);
+    ptr = calloc(len+1,1);
+    if(!ptr)
+        return(ptr);
+    strcpy(ptr,str);
+    return(ptr);
+}
+
+
 ///@brief Skip white space in a string - tabs and spaces.
 ///
 ///@param[in] ptr: input string
@@ -110,57 +492,6 @@ void trim_tail(char *str)
     }
 }
 
-
-
-///@brief Allocate space for string with maximum size.
-///
-/// - Copies tring into allocated space limited to maximum size.
-///
-///@param[in] str: user string.
-///@param[in] len: maximum string length.
-///
-///@return pointer to alocated string.
-
-MEMSPACE 
-char *strnalloc(char *str, int len)
-{
-    char *ptr;
-
-    if(!str)
-        return(NULL);
-    ptr = calloc(len+1,1);
-    if(!ptr)
-        return(ptr);
-    strncpy(ptr,str,len);
-    return(ptr);
-
-}
-
-
-///@brief Allocate space for string.
-///
-/// - Copies tring into allocated space.
-///
-///@param[in] str: user string.
-///
-///@return pointer to alocated string.
-///@return NULL on out of memory.
-MEMSPACE 
-char *stralloc(char *str)
-{
-    char *ptr;
-    int len;
-
-    if(!str)
-        return(str);;
-    len  = strlen(str);
-    ptr = calloc(len+1,1);
-    if(!ptr)
-        return(ptr);
-    strcpy(ptr,str);
-    return(ptr);
-}
-
 ///@brief return next token
 ///
 /// - Skips all non printable ASCII characters before token
@@ -239,274 +570,6 @@ int token(char *str, char *pat)
 
     if(strncmp(str,pat,patlen) == 0)
         return(len);
-    return(0);
-}
-
-
-///@brief Convert Character into HEX digit.
-///
-/// @param[in] c: character.
-///
-/// @return HEX digit [0..F] on success.
-/// @return 0xff on fail.
-MEMSPACE 
-uint8_t hexd( char c )
-{
-    if( c >= '0' && c <= '9' )
-        return(c - '0');
-    if( c >= 'a' && c <= 'f')
-        return(c - 'a' + 10);
-    if( c >= 'A' && c <= 'F')
-        return(c - 'A' + 10);
-    return(0xff);                                 // error
-}
-
-///@brief Convert ASCII hex string to long integer.
-///
-///@param[in] p: String to convert.
-///
-///@return long integer result.
-///@see strtol() for return overflow and underflow results.
-MEMSPACE
-long atoh(const char *p)
-{
-    return strtol(p, (char **) NULL, 16);
-}
-
-
-
-///@brief Is a character upper case
-///
-/// @param[in] c: character.
-///
-/// @return 1 of upper case, else 0 
-MEMSPACE
-int isupper(int c)
-{
-	if(c >= 'A' && c <= 'Z')
-		return(1);
-	return(0);
-}
-///@brief Is a character lower case
-///
-/// @param[in] c: character.
-///
-/// @return 1 of lower case, else 0 
-MEMSPACE
-int islower(int c)
-{
-	if(c >= 'a' && c <= 'a')
-		return(1);
-	return(0);
-}
-
-///@brief Convert character to lower case, only if it is upper case
-///
-/// @param[in] c: character.
-///
-/// @return character or lowercase value or character
-MEMSPACE
-int tolower(int c)
-{
-	if(isupper(c))
-		return(c - 'A' + 'a');
-	return(c);
-}
-///@brief Convert character to upper case, only if it is lower case
-///
-/// @param[in] c: character.
-///
-/// @return character or upper case value or character
-MEMSPACE
-int toupper(int c)
-{
-	if(islower(c))
-		return(c - 'a' + 'A');
-	return(c);
-}
-
-#if 0
-/// @brief String Length
-/// @param[in] str: string
-/// @return string length
-MEMSPACE
-size_t strlen(const char *str)
-{
-    int len=0;
-    // String length
-    while(*str++)
-        ++len;
-    return(len);
-}
-
-///@brief Compare two strings 
-///
-///@param[in] str: string to match.
-///@param[in] pat: pattern to compare.
-///
-///@return 0 on match, < 0 implies str sorts before pat, > 0 implies str sorts after pat
-MEMSPACE
-int strcmp(const char *str, const char *pat)
-{
-	int ret = 0;
-	int c1,c2;
-	while (1)
-	{
-		c1 = *str++;
-		c2 = *ptr++;
-		if ( (ret = c1 - c2) != 0 || c2 == 0)
-			break;
-	}
-	return(ret);
-}
-///@brief Compare two strings maximum len bytes in size
-///
-///@param[in] str: string to match.
-///@param[in] pat: pattern to compare.
-///@param[in] len: maximum string length for compare
-///@return 0 on match, < 0 implies str sorts before pat, > 0 implies str sorts after pat
-MEMSPACE
-int strncmp(const char *str, const char *pat, size_t len)
-{
-    int ret = 0;
-    int c1,c2;
-    while (len--)
-    {
-        c1 = *str++;
-        c2 = *ptr++;
-        if ( (ret = c1 - c2) != 0 || c2 == 0)
-            break;
-    }
-    return(ret);
-}
-
-#endif
-
-///@brief Compare two strings without case
-///
-///@param[in] str: string to match.
-///@param[in] pat: pattern to compare.
-///
-///@return 0 on match, < 0 implies str sorts before pat, > 0 implies str sorts after pat
-MEMSPACE
-int strcasecmp(const char *str, const char *pat)
-{
-	int ret = 0;
-	int c1,c2;
-	while (1)
-	{
-		c1 = toupper(*str++);
-		c2 = toupper(*pat++);
-		if ( (ret = c1 - c2) != 0 || c2 == 0)
-			break;
-	}
-	return(ret);
-}
-
-///@brief Compare two strings without case maximum len bytes in size
-///
-///@param[in] str: string to match.
-///@param[in] pat: pattern to compare.
-///@param[in] len: maximum string length for compare
-///@return 0 on match, < 0 implies str sorts before pat, > 0 implies str sorts after pat
-MEMSPACE
-int strncasecmp(const char *str, const char *pat, size_t len)
-{
-	int ret = 0;
-	int c1,c2;
-	while (len--)
-	{
-		c1 = toupper(*str++);
-		c2 = toupper(*pat++);
-		if ( (ret = c1 - c2) != 0 || c2 == 0)
-			break;
-	}
-	return(ret);
-}
-
-///@brief Compare two strings.
-///
-///@param[in] str: string to match.
-///@param[in] pat: pattern to compare.
-///
-///@return string lenth on match.
-///@return 0 on no match.
-MEMSPACE 
-int MATCH(char *str, char *pat)
-{
-    int len;
-    len = strlen(pat);
-    if(strcmp(str,pat) == 0 )
-        return(len);
-    return(0);
-}
-
-
-///@brief Compare two strings without case.
-///
-///@param[in] str: string to match.
-///@param[in] pat: pattern to compare.
-///
-///@return string lenth on match.
-///@return 0 on no match.
-MEMSPACE 
-int MATCHI(char *str, char *pat)
-{
-    int len;
-    len = strlen(pat);
-    if(strcasecmp(str,pat) == 0 )
-        return(len);
-    return(0);
-}
-
-///@brief Compare two strings limted to length of pattern.
-///
-///@param[in] str: string to match.
-///@param[in] pat: pattern to compare.
-///
-///@return string lenth on match.
-///@return 0 on no match.
-///@warning Matches sub strings so be caeful.
-MEMSPACE 
-int MATCH_LEN(char *str, char *pat)
-{
-    int len;
-
-    if(!str || !pat)
-        return(0);
-    len = strlen(pat);
-
-    if( len )
-    {
-        if(strncmp(str,pat,len) == 0 )
-            return(len);
-    }
-    return(0);
-}
-
-
-///@brief Compare two strings without case limted to length of pattern.
-///
-///@param[in] str: string to match.
-///@param[in] pat: pattern to compare.
-///
-///@return string lenth on match.
-///@return 0 on no match.
-///@warning Matches sub strings so be caeful.
-MEMSPACE 
-int MATCHI_LEN(char *str, char *pat)
-{
-    int len;
-
-    if(!str || !pat)
-        return(0);
-    len = strlen(pat);
-
-    if( len )
-    {
-        if(strncasecmp(str,pat,len) == 0 )
-            return(len);
-    }
     return(0);
 }
 

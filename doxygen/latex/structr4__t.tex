@@ -1,0 +1,205 @@
+\hypertarget{structr4__t}{}\section{r4\+\_\+t Struct Reference}
+\label{structr4__t}\index{r4\+\_\+t@{r4\+\_\+t}}
+
+
+A\+D\+F4351 R4 structure.  
+
+
+
+
+{\ttfamily \#include $<$adf4351.\+h$>$}
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} \hyperlink{structr4__t_a9f03fbb2e74ac5c97c73cd70755d95eb}{Control\+Bits}\+:3
+\item 
+\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} \hyperlink{structr4__t_ade4ee7f86064dd89515558dc5aa138bd}{R\+F\+Out\+Power}\+:2
+\item 
+\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} \hyperlink{structr4__t_adf8eb2db5ffd584ec6c5b5496a90f0f5}{R\+F\+Out\+Enable}\+:1
+\item 
+\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} \hyperlink{structr4__t_a92b00824868c7911a73217cbdd48ca96}{Aux\+Out\+Power}\+:2
+\item 
+\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} \hyperlink{structr4__t_ab6c43ed3da1189c3de8cf2cafafb03f3}{Aux\+Out\+Enable}\+:1
+\item 
+\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} \hyperlink{structr4__t_af75cec4d15f4f2e086db3be6d4c3c215}{Aux\+Out\+Sel}\+:1
+\item 
+\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} \hyperlink{structr4__t_a899217c98d1c1eca8780186c8e44470c}{M\+T\+LD}\+:1
+\item 
+\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} \hyperlink{structr4__t_a144b348686f74ef9a401f2c57f324824}{V\+C\+O\+Power\+Down}\+:1
+\item 
+\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} \hyperlink{structr4__t_af9bbf20145437bb5913e815a71cc3eb5}{Band\+Clk\+Div}\+:8
+\item 
+\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} \hyperlink{structr4__t_a6f0ef612a55877310aa2f07c9737e66b}{R\+F\+Div\+Sel}\+:3
+\item 
+\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} \hyperlink{structr4__t_af070024e13538726836fc1c405aa0124}{Feedback\+V\+CO}\+:1
+\item 
+\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} \hyperlink{structr4__t_a39447a9d51f096493dfc6d4a38bf3f9e}{res0L}\+:8
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A\+D\+F4351 R4 structure. 
+
+Feedback Select \mbox{[}D\+B23\mbox{]} (Feedback\+V\+CO) \mbox{[}D\+B23\mbox{]} = 1, feedback is directly from V\+CO to N counters \mbox{[}D\+B23\mbox{]} = 0, feedback is from output of V\+CO RF dividers to N counters.
+
+RF Divider Select \mbox{[}D\+B22\+:20\mbox{]} (R\+F\+Div\+Sel)
+
+Band Select Clock Divider Value \mbox{[}D\+B19\+:12\mbox{]} (Band\+Clk\+Div) \mbox{[}D\+B19\+:12\mbox{]} Divide output of R counter for band select logic Use if R $>$ 125k\+Hz
+
+V\+CO Power Down \mbox{[}D\+B11\mbox{]} (V\+C\+O\+Power\+Down) \mbox{[}D\+B11\mbox{]} = 1 enables V\+CO Power Down \mbox{[}D\+B11\mbox{]} = 0 normal operation
+
+Mute Till Lock Detect \mbox{[}D\+B10\mbox{]} (M\+T\+LD) \mbox{[}D\+B10\mbox{]} = 1 Power Down R\+Fout section until lock achived. \mbox{[}D\+B10\mbox{]} = 0 normal operation
+
+A\+UX Output Select \mbox{[}D\+B9\mbox{]} (A\+U\+X\+Out\+Sel) \mbox{[}D\+B9\mbox{]} = 1 Auxiliary RF is V\+CO frequency \mbox{[}D\+B9\mbox{]} = 0 Auxiliary RF is RF dividers
+
+A\+UX Output Enable \mbox{[}D\+B8\mbox{]} (A\+U\+X\+Out\+Enable) \mbox{[}D\+B8\mbox{]} = 1 Enable A\+UX RF out \mbox{[}D\+B8\mbox{]} = 0 Disable A\+UX RF out
+
+A\+UX Output Power \mbox{[}D\+B7\+:D\+B6\mbox{]} (A\+U\+X\+Out\+Power) \mbox{[}D\+B8\+:D\+B7\mbox{]} = A\+UX RF out level
+
+RF Output Enable \mbox{[}D\+B5\mbox{]} (R\+F\+Out\+Enable) \mbox{[}D\+B5\mbox{]} = 1 Enable RF out \mbox{[}D\+B5\mbox{]} = 0 Disable RF out
+
+RF Output Power \mbox{[}D\+B4\+:D\+B3\mbox{]} (R\+F\+Out\+Power) \mbox{[}D\+B4\+:D\+B3\mbox{]} = RF out level 
+
+Definition at line 280 of file adf4351.\+h.
+
+
+
+\subsection{Field Documentation}
+\index{r4\+\_\+t@{r4\+\_\+t}!Aux\+Out\+Enable@{Aux\+Out\+Enable}}
+\index{Aux\+Out\+Enable@{Aux\+Out\+Enable}!r4\+\_\+t@{r4\+\_\+t}}
+\subsubsection[{\texorpdfstring{Aux\+Out\+Enable}{AuxOutEnable}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint32\+\_\+t} r4\+\_\+t\+::\+Aux\+Out\+Enable}\hypertarget{structr4__t_ab6c43ed3da1189c3de8cf2cafafb03f3}{}\label{structr4__t_ab6c43ed3da1189c3de8cf2cafafb03f3}
+bit\+: 8 A\+UX Output Enable 
+
+Definition at line 286 of file adf4351.\+h.
+
+
+
+Referenced by A\+D\+F4351\+\_\+dump\+\_\+registers(), A\+D\+F4351\+\_\+\+Get\+Reg32(), and A\+D\+F4351\+\_\+\+Init().
+
+\index{r4\+\_\+t@{r4\+\_\+t}!Aux\+Out\+Power@{Aux\+Out\+Power}}
+\index{Aux\+Out\+Power@{Aux\+Out\+Power}!r4\+\_\+t@{r4\+\_\+t}}
+\subsubsection[{\texorpdfstring{Aux\+Out\+Power}{AuxOutPower}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint32\+\_\+t} r4\+\_\+t\+::\+Aux\+Out\+Power}\hypertarget{structr4__t_a92b00824868c7911a73217cbdd48ca96}{}\label{structr4__t_a92b00824868c7911a73217cbdd48ca96}
+bit\+: 6.. 7 A\+UX Output Power 
+
+Definition at line 285 of file adf4351.\+h.
+
+
+
+Referenced by A\+D\+F4351\+\_\+dump\+\_\+registers(), A\+D\+F4351\+\_\+\+Get\+Reg32(), and A\+D\+F4351\+\_\+\+Init().
+
+\index{r4\+\_\+t@{r4\+\_\+t}!Aux\+Out\+Sel@{Aux\+Out\+Sel}}
+\index{Aux\+Out\+Sel@{Aux\+Out\+Sel}!r4\+\_\+t@{r4\+\_\+t}}
+\subsubsection[{\texorpdfstring{Aux\+Out\+Sel}{AuxOutSel}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint32\+\_\+t} r4\+\_\+t\+::\+Aux\+Out\+Sel}\hypertarget{structr4__t_af75cec4d15f4f2e086db3be6d4c3c215}{}\label{structr4__t_af75cec4d15f4f2e086db3be6d4c3c215}
+bit\+: 9 A\+UX Output Select 
+
+Definition at line 287 of file adf4351.\+h.
+
+
+
+Referenced by A\+D\+F4351\+\_\+dump\+\_\+registers(), A\+D\+F4351\+\_\+\+Get\+Reg32(), and A\+D\+F4351\+\_\+\+Init().
+
+\index{r4\+\_\+t@{r4\+\_\+t}!Band\+Clk\+Div@{Band\+Clk\+Div}}
+\index{Band\+Clk\+Div@{Band\+Clk\+Div}!r4\+\_\+t@{r4\+\_\+t}}
+\subsubsection[{\texorpdfstring{Band\+Clk\+Div}{BandClkDiv}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint32\+\_\+t} r4\+\_\+t\+::\+Band\+Clk\+Div}\hypertarget{structr4__t_af9bbf20145437bb5913e815a71cc3eb5}{}\label{structr4__t_af9bbf20145437bb5913e815a71cc3eb5}
+bit\+: 12..19 Band Select Clock Divider Val 
+
+Definition at line 290 of file adf4351.\+h.
+
+
+
+Referenced by A\+D\+F4351\+\_\+\+Config(), A\+D\+F4351\+\_\+dump\+\_\+registers(), A\+D\+F4351\+\_\+\+Get\+Reg32(), and A\+D\+F4351\+\_\+\+Init().
+
+\index{r4\+\_\+t@{r4\+\_\+t}!Control\+Bits@{Control\+Bits}}
+\index{Control\+Bits@{Control\+Bits}!r4\+\_\+t@{r4\+\_\+t}}
+\subsubsection[{\texorpdfstring{Control\+Bits}{ControlBits}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint32\+\_\+t} r4\+\_\+t\+::\+Control\+Bits}\hypertarget{structr4__t_a9f03fbb2e74ac5c97c73cd70755d95eb}{}\label{structr4__t_a9f03fbb2e74ac5c97c73cd70755d95eb}
+bit\+: 0.. 2 control bits 
+
+Definition at line 282 of file adf4351.\+h.
+
+
+
+Referenced by A\+D\+F4351\+\_\+\+Init().
+
+\index{r4\+\_\+t@{r4\+\_\+t}!Feedback\+V\+CO@{Feedback\+V\+CO}}
+\index{Feedback\+V\+CO@{Feedback\+V\+CO}!r4\+\_\+t@{r4\+\_\+t}}
+\subsubsection[{\texorpdfstring{Feedback\+V\+CO}{FeedbackVCO}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint32\+\_\+t} r4\+\_\+t\+::\+Feedback\+V\+CO}\hypertarget{structr4__t_af070024e13538726836fc1c405aa0124}{}\label{structr4__t_af070024e13538726836fc1c405aa0124}
+bit\+: 23 V\+CO Feedback Direct or Divided 
+
+Definition at line 292 of file adf4351.\+h.
+
+
+
+Referenced by A\+D\+F4351\+\_\+\+Config(), A\+D\+F4351\+\_\+dump\+\_\+registers(), A\+D\+F4351\+\_\+\+Get\+Reg32(), and A\+D\+F4351\+\_\+\+Init().
+
+\index{r4\+\_\+t@{r4\+\_\+t}!M\+T\+LD@{M\+T\+LD}}
+\index{M\+T\+LD@{M\+T\+LD}!r4\+\_\+t@{r4\+\_\+t}}
+\subsubsection[{\texorpdfstring{M\+T\+LD}{MTLD}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint32\+\_\+t} r4\+\_\+t\+::\+M\+T\+LD}\hypertarget{structr4__t_a899217c98d1c1eca8780186c8e44470c}{}\label{structr4__t_a899217c98d1c1eca8780186c8e44470c}
+bit\+: 10 Mute Till Lock Detect (M\+T\+LD) 
+
+Definition at line 288 of file adf4351.\+h.
+
+
+
+Referenced by A\+D\+F4351\+\_\+dump\+\_\+registers(), A\+D\+F4351\+\_\+\+Get\+Reg32(), and A\+D\+F4351\+\_\+\+Init().
+
+\index{r4\+\_\+t@{r4\+\_\+t}!res0L@{res0L}}
+\index{res0L@{res0L}!r4\+\_\+t@{r4\+\_\+t}}
+\subsubsection[{\texorpdfstring{res0L}{res0L}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint32\+\_\+t} r4\+\_\+t\+::res0L}\hypertarget{structr4__t_a39447a9d51f096493dfc6d4a38bf3f9e}{}\label{structr4__t_a39447a9d51f096493dfc6d4a38bf3f9e}
+bit\+: 24..31 reserved 
+
+Definition at line 293 of file adf4351.\+h.
+
+
+
+Referenced by A\+D\+F4351\+\_\+\+Init().
+
+\index{r4\+\_\+t@{r4\+\_\+t}!R\+F\+Div\+Sel@{R\+F\+Div\+Sel}}
+\index{R\+F\+Div\+Sel@{R\+F\+Div\+Sel}!r4\+\_\+t@{r4\+\_\+t}}
+\subsubsection[{\texorpdfstring{R\+F\+Div\+Sel}{RFDivSel}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint32\+\_\+t} r4\+\_\+t\+::\+R\+F\+Div\+Sel}\hypertarget{structr4__t_a6f0ef612a55877310aa2f07c9737e66b}{}\label{structr4__t_a6f0ef612a55877310aa2f07c9737e66b}
+bit\+: 20..22 RF Divider Select 
+
+Definition at line 291 of file adf4351.\+h.
+
+
+
+Referenced by A\+D\+F4351\+\_\+\+Config(), A\+D\+F4351\+\_\+dump\+\_\+registers(), A\+D\+F4351\+\_\+\+Get\+Reg32(), and A\+D\+F4351\+\_\+\+Init().
+
+\index{r4\+\_\+t@{r4\+\_\+t}!R\+F\+Out\+Enable@{R\+F\+Out\+Enable}}
+\index{R\+F\+Out\+Enable@{R\+F\+Out\+Enable}!r4\+\_\+t@{r4\+\_\+t}}
+\subsubsection[{\texorpdfstring{R\+F\+Out\+Enable}{RFOutEnable}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint32\+\_\+t} r4\+\_\+t\+::\+R\+F\+Out\+Enable}\hypertarget{structr4__t_adf8eb2db5ffd584ec6c5b5496a90f0f5}{}\label{structr4__t_adf8eb2db5ffd584ec6c5b5496a90f0f5}
+bit\+: 5 RF Output Enable 
+
+Definition at line 284 of file adf4351.\+h.
+
+
+
+Referenced by A\+D\+F4351\+\_\+dump\+\_\+registers(), A\+D\+F4351\+\_\+\+Get\+Reg32(), and A\+D\+F4351\+\_\+\+Init().
+
+\index{r4\+\_\+t@{r4\+\_\+t}!R\+F\+Out\+Power@{R\+F\+Out\+Power}}
+\index{R\+F\+Out\+Power@{R\+F\+Out\+Power}!r4\+\_\+t@{r4\+\_\+t}}
+\subsubsection[{\texorpdfstring{R\+F\+Out\+Power}{RFOutPower}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint32\+\_\+t} r4\+\_\+t\+::\+R\+F\+Out\+Power}\hypertarget{structr4__t_ade4ee7f86064dd89515558dc5aa138bd}{}\label{structr4__t_ade4ee7f86064dd89515558dc5aa138bd}
+bit\+: 3.. 4 Output Power 
+
+Definition at line 283 of file adf4351.\+h.
+
+
+
+Referenced by A\+D\+F4351\+\_\+dump\+\_\+registers(), A\+D\+F4351\+\_\+\+Get\+Reg32(), and A\+D\+F4351\+\_\+\+Init().
+
+\index{r4\+\_\+t@{r4\+\_\+t}!V\+C\+O\+Power\+Down@{V\+C\+O\+Power\+Down}}
+\index{V\+C\+O\+Power\+Down@{V\+C\+O\+Power\+Down}!r4\+\_\+t@{r4\+\_\+t}}
+\subsubsection[{\texorpdfstring{V\+C\+O\+Power\+Down}{VCOPowerDown}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint32\+\_\+t} r4\+\_\+t\+::\+V\+C\+O\+Power\+Down}\hypertarget{structr4__t_a144b348686f74ef9a401f2c57f324824}{}\label{structr4__t_a144b348686f74ef9a401f2c57f324824}
+bit\+: 11 V\+CO Power-\/\+Down 
+
+Definition at line 289 of file adf4351.\+h.
+
+
+
+Referenced by A\+D\+F4351\+\_\+dump\+\_\+registers(), A\+D\+F4351\+\_\+\+Get\+Reg32(), and A\+D\+F4351\+\_\+\+Init().
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+adf4351/\hyperlink{adf4351_8h}{adf4351.\+h}\end{DoxyCompactItemize}

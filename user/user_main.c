@@ -36,6 +36,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	#include "earth_data.h"
 #endif
 
+#ifdef ADF4351
+	#include "adf4351.h"
+#endif
+
 /* 
  * Window layouts    optional
  *
@@ -96,6 +100,27 @@ LOCAL int adc_count = 0;
 double voltage = 0;
 
 unsigned long ms_time = 0;
+
+// ==================================================================
+// ==================================================================
+
+double calcfreq;
+double CurrentFreq = 137000000;
+
+// update every 50 mS
+ADF4351_task()
+{
+	int status;
+	if (CurrentFreq > 138000000.0)
+		CurrentFreq = 137000000.0;
+ 	status = ADF4351_Config(CurrentFreq, 25000000.0, 1000, &calcfreq);
+	if(status)
+		ADF4351_display_error ( status );
+	else
+		ADF4351_sync(1);
+	CurrentFreq += 100000;
+}
+
 
 /// @brief  Clear 1000HZ timer 
 /// We loop in case the update of ms_time is not "atomic" - done in a single instruction
@@ -231,7 +256,7 @@ loop_task()
 		{
 			flag = 1;
 		}
-#ifdef FATFS_TEST
+#ifdef FATFS_SUPPORT
 		if(!flag && fatfs_tests(buffer))
 		{
 			flag = 1;
@@ -266,6 +291,7 @@ void loop(void)
 	extern int connections;
 	uint32_t time1,time2;
 	uint8_t red, blue,green;
+	int ret;
 	unsigned long t;
 	uint16 system_adc_read(void);
 	time_t sec;
@@ -277,6 +303,7 @@ void loop(void)
 
 	loop_task();
 
+
 	// Only run evry 50mS
 	t = ms_read();
 	if((t - last_time) < 50U)
@@ -284,10 +311,14 @@ void loop(void)
 
 	last_time = t;
 	time(&sec);
+
+	ADF4351_task();
+
 	// only update text messages once a second
 	if(sec != seconds)
 	{
 		char tmp[32];
+
 		tft_set_textpos(winbottom, 0,0);
 		//Tue May 17 18:56:01 2016
 		strncpy(tmp,ctime(&sec),31);
@@ -306,6 +337,7 @@ void loop(void)
 			tft_printf(winbottom," Disconnected");
 		tft_cleareol(winbottom);
 	}
+
 	count += 1;
 
 #ifdef DEBUG_STATS
@@ -335,6 +367,7 @@ void loop(void)
 	if(sec != seconds)
 	{
 		seconds=sec;
+
 	
 #ifdef DEBUG_STATS
 		tft_set_textpos(wintop, 0,1);
@@ -462,7 +495,7 @@ void user_help()
 	"setdate YYYY MM DD HH:MM:SS\n"
 	"time\n"
 	);
-#ifdef FATFS_TEST
+#ifdef FATFS_SUPPORT
 	fatfs_help();
 #endif
 }
@@ -499,6 +532,16 @@ int user_tests(char *str)
         ptr += len;
 		ptr = skipspaces(str);
         setdate_r(ptr);
+        return(1);
+    }
+    if ((len = token(ptr,"adf4351")) )
+    {
+        ptr += len;
+		ptr = skipspaces(str);
+#ifdef ADF4351
+	ADF4351_Init();
+	printf("ADF4351 init done\n");
+#endif
         return(1);
     }
     if ((len = token(ptr,"time")) )
@@ -560,12 +603,36 @@ void setup(void)
 	// 1000HZ timer
 	ms_init();
 
-#ifdef FATFS_TEST
+#ifdef FATFS_SUPPORT
 	printf("SD Card init...\n");
 	mmc_init(1);
 #endif
 
+// Test double precision results
+#if 0
 	printf("Display Init\n");
+	ang = 1.2345678901234567890;
+	printf("%e\n",ang);
+	printf("%f\n",ang);
+	printf("%2.16f\n",ang);
+#endif
+
+// Test byte order
+#if 0
+// extensa has LSB to MSB byte order LITTLE_ENDIAN
+	union UUU
+	{
+	  unsigned int  wide32;
+	  unsigned char byte8[sizeof(unsigned int)];
+	};
+	volatile union UUU u;
+
+	printf("Byte Order:\n");
+	u.wide32 = 0x12345678;
+	for (i=0; i < sizeof(unsigned int); i++)
+		printf("byte[%d] = %02x\n", i, u.byte8[i]);
+
+#endif
 
 	// Initialize TFT
 	master = tft_init();
@@ -701,6 +768,11 @@ void setup(void)
 #ifdef WEBSERVER
 	printf("Setup Network WEB SERVER\n");
 	web_init(80);
+#endif
+
+#ifdef ADF4351
+	ADF4351_Init();
+	printf("ADF4351 init done\n");
 #endif
 
     PrintRam();

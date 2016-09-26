@@ -1,163 +1,162 @@
-\hypertarget{hspi_8h}{\section{utils/hspi.h File Reference}
-\label{hspi_8h}\index{utils/hspi.\-h@{utils/hspi.\-h}}
-}
-{\ttfamily \#include \char`\"{}spi\-\_\-register.\-h\char`\"{}}\\*
-{\ttfamily \#include $<$ets\-\_\-sys.\-h$>$}\\*
-{\ttfamily \#include $<$osapi.\-h$>$}\\*
-{\ttfamily \#include $<$os\-\_\-type.\-h$>$}\\*
-{\ttfamily \#include $<$gpio.\-h$>$}\\*
+\hypertarget{hspi_8h}{}\section{utils/hspi.h File Reference}
+\label{hspi_8h}\index{utils/hspi.\+h@{utils/hspi.\+h}}
+{\ttfamily \#include \char`\"{}spi\+\_\+register.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$ets\+\_\+sys.\+h$>$}\\*
+{\ttfamily \#include $<$osapi.\+h$>$}\\*
+{\ttfamily \#include $<$os\+\_\+type.\+h$>$}\\*
+{\ttfamily \#include $<$gpio.\+h$>$}\\*
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#define \hyperlink{hspi_8h_aadd93900fc87105fa3ef514675d4133b}{S\-P\-I}~0
+\#define \hyperlink{hspi_8h_aadd93900fc87105fa3ef514675d4133b}{S\+PI}~0
 \item 
-\#define \hyperlink{hspi_8h_a22bd615ece7185b5f635eae8facd0994}{H\-S\-P\-I}~1
+\#define \hyperlink{hspi_8h_a22bd615ece7185b5f635eae8facd0994}{H\+S\+PI}~1
 \item 
-\#define \hyperlink{hspi_8h_a1eaecab4a7e4f328f38ce57d4d3012d1}{H\-S\-P\-I\-\_\-\-F\-I\-F\-O\-\_\-\-S\-I\-Z\-E}~64
+\#define \hyperlink{hspi_8h_a1eaecab4a7e4f328f38ce57d4d3012d1}{H\+S\+P\+I\+\_\+\+F\+I\+F\+O\+\_\+\+S\+I\+ZE}~64
 \item 
-\#define \hyperlink{hspi_8h_ad9632609fe3a2c77d6bca3d5252980e3}{C\-O\-N\-F\-I\-G\-\_\-\-F\-O\-R\-\_\-\-T\-X}~1
+\#define \hyperlink{hspi_8h_ad9632609fe3a2c77d6bca3d5252980e3}{C\+O\+N\+F\+I\+G\+\_\+\+F\+O\+R\+\_\+\+TX}~1
 \item 
-\#define \hyperlink{hspi_8h_a0a89ba717c8b84a7c3799d310b54e5c2}{C\-O\-N\-F\-I\-G\-\_\-\-F\-O\-R\-\_\-\-R\-X\-\_\-\-T\-X}~2
+\#define \hyperlink{hspi_8h_a0a89ba717c8b84a7c3799d310b54e5c2}{C\+O\+N\+F\+I\+G\+\_\+\+F\+O\+R\+\_\+\+R\+X\+\_\+\+TX}~2
 \end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{hspi_8h_a0047584af8bcc7c6d1fa924277a53bef}{hspi\-\_\-cs\-\_\-enable} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} cs)
-\begin{DoxyCompactList}\small\item\em H\-S\-P\-I C\-S enable function. \end{DoxyCompactList}\item 
-void \hyperlink{hspi_8h_ad51b63e020ab17a48b8b4b9d8ba00059}{hspi\-\_\-cs\-\_\-disable} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} cs)
-\begin{DoxyCompactList}\small\item\em H\-S\-P\-I C\-S disable function. \end{DoxyCompactList}\item 
-void \hyperlink{hspi_8h_a3bce8e04a995ed827790284e27c3746f}{hspi\-\_\-init} (\hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\-\_\-t} prescale, int hwcs)
-\begin{DoxyCompactList}\small\item\em H\-S\-P\-I Initiaization -\/ with automatic chip select Pins\-: M\-I\-S\-O G\-P\-I\-O12 M\-O\-S\-I G\-P\-I\-O13 C\-L\-K G\-P\-I\-O14 C\-S G\-P\-I\-O15 -\/ optional D\-C G\-P\-I\-O2. \end{DoxyCompactList}\item 
-void \hyperlink{hspi_8h_af1a0f7a7dd3cac5dd6b8489f7ff308dc}{hspi\-\_\-wait\-Ready} (void)
-\begin{DoxyCompactList}\small\item\em H\-S\-P\-I Ready wait. \end{DoxyCompactList}\item 
-void \hyperlink{hspi_8h_a95e93b2eb7fb8bd8548f2ad9022aac58}{hspi\-\_\-\-T\-X} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$data, int count)
-\begin{DoxyCompactList}\small\item\em S\-P\-I buffered write functions. \end{DoxyCompactList}\item 
-void \hyperlink{hspi_8h_a1ea1bd90994ac123b4c62bfa511b6972}{hspi\-\_\-\-T\-X\-R\-X} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$data, int count)
-\begin{DoxyCompactList}\small\item\em H\-S\-P\-I write and read using F\-I\-F\-O. \end{DoxyCompactList}\item 
-void \hyperlink{hspi_8h_a0603c3e5a8c6c29e5deb5609b28e86bc}{hspi\-\_\-\-R\-X} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$data, int count)
-\begin{DoxyCompactList}\small\item\em H\-S\-P\-I read using F\-I\-F\-O. \end{DoxyCompactList}\end{DoxyCompactItemize}
+void \hyperlink{hspi_8h_a0047584af8bcc7c6d1fa924277a53bef}{hspi\+\_\+cs\+\_\+enable} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} cs)
+\begin{DoxyCompactList}\small\item\em H\+S\+PI CS enable function. \end{DoxyCompactList}\item 
+void \hyperlink{hspi_8h_ad51b63e020ab17a48b8b4b9d8ba00059}{hspi\+\_\+cs\+\_\+disable} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} cs)
+\begin{DoxyCompactList}\small\item\em H\+S\+PI CS disable function. \end{DoxyCompactList}\item 
+void \hyperlink{hspi_8h_a3bce8e04a995ed827790284e27c3746f}{hspi\+\_\+init} (\hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} prescale, int hwcs)
+\begin{DoxyCompactList}\small\item\em H\+S\+PI Initiaization -\/ with automatic chip select Pins\+: M\+I\+SO G\+P\+I\+O12 M\+O\+SI G\+P\+I\+O13 C\+LK G\+P\+I\+O14 CS G\+P\+I\+O15 -\/ optional DC G\+P\+I\+O2. \end{DoxyCompactList}\item 
+void \hyperlink{hspi_8h_af1a0f7a7dd3cac5dd6b8489f7ff308dc}{hspi\+\_\+wait\+Ready} (void)
+\begin{DoxyCompactList}\small\item\em H\+S\+PI Ready wait. \end{DoxyCompactList}\item 
+void \hyperlink{hspi_8h_a95e93b2eb7fb8bd8548f2ad9022aac58}{hspi\+\_\+\+TX} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} $\ast$data, int \hyperlink{user__main_8c_aa011065eee776eb1bda73597b5d9d5d7}{count})
+\begin{DoxyCompactList}\small\item\em S\+PI buffered write functions. \end{DoxyCompactList}\item 
+void \hyperlink{hspi_8h_a1ea1bd90994ac123b4c62bfa511b6972}{hspi\+\_\+\+T\+X\+RX} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} $\ast$data, int \hyperlink{user__main_8c_aa011065eee776eb1bda73597b5d9d5d7}{count})
+\begin{DoxyCompactList}\small\item\em H\+S\+PI write and read using F\+I\+FO. \end{DoxyCompactList}\item 
+void \hyperlink{hspi_8h_a0603c3e5a8c6c29e5deb5609b28e86bc}{hspi\+\_\+\+RX} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} $\ast$data, int \hyperlink{user__main_8c_aa011065eee776eb1bda73597b5d9d5d7}{count})
+\begin{DoxyCompactList}\small\item\em H\+S\+PI read using F\+I\+FO. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Macro Definition Documentation}
-\hypertarget{hspi_8h_a0a89ba717c8b84a7c3799d310b54e5c2}{\index{hspi.\-h@{hspi.\-h}!C\-O\-N\-F\-I\-G\-\_\-\-F\-O\-R\-\_\-\-R\-X\-\_\-\-T\-X@{C\-O\-N\-F\-I\-G\-\_\-\-F\-O\-R\-\_\-\-R\-X\-\_\-\-T\-X}}
-\index{C\-O\-N\-F\-I\-G\-\_\-\-F\-O\-R\-\_\-\-R\-X\-\_\-\-T\-X@{C\-O\-N\-F\-I\-G\-\_\-\-F\-O\-R\-\_\-\-R\-X\-\_\-\-T\-X}!hspi.h@{hspi.\-h}}
-\subsubsection[{C\-O\-N\-F\-I\-G\-\_\-\-F\-O\-R\-\_\-\-R\-X\-\_\-\-T\-X}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-O\-N\-F\-I\-G\-\_\-\-F\-O\-R\-\_\-\-R\-X\-\_\-\-T\-X~2}}\label{hspi_8h_a0a89ba717c8b84a7c3799d310b54e5c2}
+\index{hspi.\+h@{hspi.\+h}!C\+O\+N\+F\+I\+G\+\_\+\+F\+O\+R\+\_\+\+R\+X\+\_\+\+TX@{C\+O\+N\+F\+I\+G\+\_\+\+F\+O\+R\+\_\+\+R\+X\+\_\+\+TX}}
+\index{C\+O\+N\+F\+I\+G\+\_\+\+F\+O\+R\+\_\+\+R\+X\+\_\+\+TX@{C\+O\+N\+F\+I\+G\+\_\+\+F\+O\+R\+\_\+\+R\+X\+\_\+\+TX}!hspi.\+h@{hspi.\+h}}
+\subsubsection[{\texorpdfstring{C\+O\+N\+F\+I\+G\+\_\+\+F\+O\+R\+\_\+\+R\+X\+\_\+\+TX}{CONFIG_FOR_RX_TX}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+O\+N\+F\+I\+G\+\_\+\+F\+O\+R\+\_\+\+R\+X\+\_\+\+TX~2}\hypertarget{hspi_8h_a0a89ba717c8b84a7c3799d310b54e5c2}{}\label{hspi_8h_a0a89ba717c8b84a7c3799d310b54e5c2}
 
 
-Definition at line 22 of file hspi.\-h.
-
-
-
-Referenced by hspi\-\_\-config(), hspi\-\_\-\-R\-X(), and hspi\-\_\-\-T\-X\-R\-X().
-
-\hypertarget{hspi_8h_ad9632609fe3a2c77d6bca3d5252980e3}{\index{hspi.\-h@{hspi.\-h}!C\-O\-N\-F\-I\-G\-\_\-\-F\-O\-R\-\_\-\-T\-X@{C\-O\-N\-F\-I\-G\-\_\-\-F\-O\-R\-\_\-\-T\-X}}
-\index{C\-O\-N\-F\-I\-G\-\_\-\-F\-O\-R\-\_\-\-T\-X@{C\-O\-N\-F\-I\-G\-\_\-\-F\-O\-R\-\_\-\-T\-X}!hspi.h@{hspi.\-h}}
-\subsubsection[{C\-O\-N\-F\-I\-G\-\_\-\-F\-O\-R\-\_\-\-T\-X}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-O\-N\-F\-I\-G\-\_\-\-F\-O\-R\-\_\-\-T\-X~1}}\label{hspi_8h_ad9632609fe3a2c77d6bca3d5252980e3}
-
-
-Definition at line 21 of file hspi.\-h.
+Definition at line 22 of file hspi.\+h.
 
 
 
-Referenced by hspi\-\_\-config(), and hspi\-\_\-\-T\-X().
+Referenced by hspi\+\_\+config(), hspi\+\_\+\+R\+X(), and hspi\+\_\+\+T\+X\+R\+X().
 
-\hypertarget{hspi_8h_a22bd615ece7185b5f635eae8facd0994}{\index{hspi.\-h@{hspi.\-h}!H\-S\-P\-I@{H\-S\-P\-I}}
-\index{H\-S\-P\-I@{H\-S\-P\-I}!hspi.h@{hspi.\-h}}
-\subsubsection[{H\-S\-P\-I}]{\setlength{\rightskip}{0pt plus 5cm}\#define H\-S\-P\-I~1}}\label{hspi_8h_a22bd615ece7185b5f635eae8facd0994}
-
-
-Definition at line 18 of file hspi.\-h.
+\index{hspi.\+h@{hspi.\+h}!C\+O\+N\+F\+I\+G\+\_\+\+F\+O\+R\+\_\+\+TX@{C\+O\+N\+F\+I\+G\+\_\+\+F\+O\+R\+\_\+\+TX}}
+\index{C\+O\+N\+F\+I\+G\+\_\+\+F\+O\+R\+\_\+\+TX@{C\+O\+N\+F\+I\+G\+\_\+\+F\+O\+R\+\_\+\+TX}!hspi.\+h@{hspi.\+h}}
+\subsubsection[{\texorpdfstring{C\+O\+N\+F\+I\+G\+\_\+\+F\+O\+R\+\_\+\+TX}{CONFIG_FOR_TX}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+O\+N\+F\+I\+G\+\_\+\+F\+O\+R\+\_\+\+TX~1}\hypertarget{hspi_8h_ad9632609fe3a2c77d6bca3d5252980e3}{}\label{hspi_8h_ad9632609fe3a2c77d6bca3d5252980e3}
 
 
-
-Referenced by hspi\-\_\-config(), hspi\-\_\-init(), hspi\-\_\-read\-F\-I\-F\-O(), hspi\-\_\-set\-Bits(), hspi\-\_\-start\-Send(), hspi\-\_\-wait\-Ready(), and hspi\-\_\-write\-F\-I\-F\-O().
-
-\hypertarget{hspi_8h_a1eaecab4a7e4f328f38ce57d4d3012d1}{\index{hspi.\-h@{hspi.\-h}!H\-S\-P\-I\-\_\-\-F\-I\-F\-O\-\_\-\-S\-I\-Z\-E@{H\-S\-P\-I\-\_\-\-F\-I\-F\-O\-\_\-\-S\-I\-Z\-E}}
-\index{H\-S\-P\-I\-\_\-\-F\-I\-F\-O\-\_\-\-S\-I\-Z\-E@{H\-S\-P\-I\-\_\-\-F\-I\-F\-O\-\_\-\-S\-I\-Z\-E}!hspi.h@{hspi.\-h}}
-\subsubsection[{H\-S\-P\-I\-\_\-\-F\-I\-F\-O\-\_\-\-S\-I\-Z\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define H\-S\-P\-I\-\_\-\-F\-I\-F\-O\-\_\-\-S\-I\-Z\-E~64}}\label{hspi_8h_a1eaecab4a7e4f328f38ce57d4d3012d1}
-
-
-Definition at line 19 of file hspi.\-h.
+Definition at line 21 of file hspi.\+h.
 
 
 
-Referenced by hspi\-\_\-read\-F\-I\-F\-O(), hspi\-\_\-\-R\-X(), hspi\-\_\-\-T\-X(), hspi\-\_\-\-T\-X\-R\-X(), and hspi\-\_\-write\-F\-I\-F\-O().
+Referenced by hspi\+\_\+config(), and hspi\+\_\+\+T\+X().
 
-\hypertarget{hspi_8h_aadd93900fc87105fa3ef514675d4133b}{\index{hspi.\-h@{hspi.\-h}!S\-P\-I@{S\-P\-I}}
-\index{S\-P\-I@{S\-P\-I}!hspi.h@{hspi.\-h}}
-\subsubsection[{S\-P\-I}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-P\-I~0}}\label{hspi_8h_aadd93900fc87105fa3ef514675d4133b}
+\index{hspi.\+h@{hspi.\+h}!H\+S\+PI@{H\+S\+PI}}
+\index{H\+S\+PI@{H\+S\+PI}!hspi.\+h@{hspi.\+h}}
+\subsubsection[{\texorpdfstring{H\+S\+PI}{HSPI}}]{\setlength{\rightskip}{0pt plus 5cm}\#define H\+S\+PI~1}\hypertarget{hspi_8h_a22bd615ece7185b5f635eae8facd0994}{}\label{hspi_8h_a22bd615ece7185b5f635eae8facd0994}
 
 
-Definition at line 17 of file hspi.\-h.
+Definition at line 18 of file hspi.\+h.
+
+
+
+Referenced by hspi\+\_\+config(), hspi\+\_\+init(), hspi\+\_\+read\+F\+I\+F\+O(), hspi\+\_\+set\+Bits(), hspi\+\_\+start\+Send(), hspi\+\_\+wait\+Ready(), and hspi\+\_\+write\+F\+I\+F\+O().
+
+\index{hspi.\+h@{hspi.\+h}!H\+S\+P\+I\+\_\+\+F\+I\+F\+O\+\_\+\+S\+I\+ZE@{H\+S\+P\+I\+\_\+\+F\+I\+F\+O\+\_\+\+S\+I\+ZE}}
+\index{H\+S\+P\+I\+\_\+\+F\+I\+F\+O\+\_\+\+S\+I\+ZE@{H\+S\+P\+I\+\_\+\+F\+I\+F\+O\+\_\+\+S\+I\+ZE}!hspi.\+h@{hspi.\+h}}
+\subsubsection[{\texorpdfstring{H\+S\+P\+I\+\_\+\+F\+I\+F\+O\+\_\+\+S\+I\+ZE}{HSPI_FIFO_SIZE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define H\+S\+P\+I\+\_\+\+F\+I\+F\+O\+\_\+\+S\+I\+ZE~64}\hypertarget{hspi_8h_a1eaecab4a7e4f328f38ce57d4d3012d1}{}\label{hspi_8h_a1eaecab4a7e4f328f38ce57d4d3012d1}
+
+
+Definition at line 19 of file hspi.\+h.
+
+
+
+Referenced by hspi\+\_\+read\+F\+I\+F\+O(), hspi\+\_\+\+R\+X(), hspi\+\_\+\+T\+X(), hspi\+\_\+\+T\+X\+R\+X(), and hspi\+\_\+write\+F\+I\+F\+O().
+
+\index{hspi.\+h@{hspi.\+h}!S\+PI@{S\+PI}}
+\index{S\+PI@{S\+PI}!hspi.\+h@{hspi.\+h}}
+\subsubsection[{\texorpdfstring{S\+PI}{SPI}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+PI~0}\hypertarget{hspi_8h_aadd93900fc87105fa3ef514675d4133b}{}\label{hspi_8h_aadd93900fc87105fa3ef514675d4133b}
+
+
+Definition at line 17 of file hspi.\+h.
 
 
 
 \subsection{Function Documentation}
-\hypertarget{hspi_8h_ad51b63e020ab17a48b8b4b9d8ba00059}{\index{hspi.\-h@{hspi.\-h}!hspi\-\_\-cs\-\_\-disable@{hspi\-\_\-cs\-\_\-disable}}
-\index{hspi\-\_\-cs\-\_\-disable@{hspi\-\_\-cs\-\_\-disable}!hspi.h@{hspi.\-h}}
-\subsubsection[{hspi\-\_\-cs\-\_\-disable}]{\setlength{\rightskip}{0pt plus 5cm}void hspi\-\_\-cs\-\_\-disable (
+\index{hspi.\+h@{hspi.\+h}!hspi\+\_\+cs\+\_\+disable@{hspi\+\_\+cs\+\_\+disable}}
+\index{hspi\+\_\+cs\+\_\+disable@{hspi\+\_\+cs\+\_\+disable}!hspi.\+h@{hspi.\+h}}
+\subsubsection[{\texorpdfstring{hspi\+\_\+cs\+\_\+disable(uint8\+\_\+t cs)}{hspi_cs_disable(uint8_t cs)}}]{\setlength{\rightskip}{0pt plus 5cm}void hspi\+\_\+cs\+\_\+disable (
 \begin{DoxyParamCaption}
-\item[{{\bf uint8\-\_\-t}}]{cs}
+\item[{{\bf uint8\+\_\+t}}]{cs}
 \end{DoxyParamCaption}
-)}}\label{hspi_8h_ad51b63e020ab17a48b8b4b9d8ba00059}
+)}\hypertarget{hspi_8h_ad51b63e020ab17a48b8b4b9d8ba00059}{}\label{hspi_8h_ad51b63e020ab17a48b8b4b9d8ba00059}
 
 
-H\-S\-P\-I C\-S disable function. 
+H\+S\+PI CS disable function. 
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em cs} & G\-P\-I\-O C\-S pin \\
+\mbox{\tt in}  & {\em cs} & G\+P\+IO CS pin \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 52 of file hspi.\-c.
+Definition at line 52 of file hspi.\+c.
 
 
 
-Referenced by mmc\-\_\-cs\-\_\-disable(), tft\-\_\-init(), and tft\-\_\-spi\-\_\-end().
+Referenced by A\+D\+F4351\+\_\+gpio\+\_\+init(), mmc\+\_\+cs\+\_\+disable(), tft\+\_\+init(), and tft\+\_\+spi\+\_\+end().
 
-\hypertarget{hspi_8h_a0047584af8bcc7c6d1fa924277a53bef}{\index{hspi.\-h@{hspi.\-h}!hspi\-\_\-cs\-\_\-enable@{hspi\-\_\-cs\-\_\-enable}}
-\index{hspi\-\_\-cs\-\_\-enable@{hspi\-\_\-cs\-\_\-enable}!hspi.h@{hspi.\-h}}
-\subsubsection[{hspi\-\_\-cs\-\_\-enable}]{\setlength{\rightskip}{0pt plus 5cm}void hspi\-\_\-cs\-\_\-enable (
+\index{hspi.\+h@{hspi.\+h}!hspi\+\_\+cs\+\_\+enable@{hspi\+\_\+cs\+\_\+enable}}
+\index{hspi\+\_\+cs\+\_\+enable@{hspi\+\_\+cs\+\_\+enable}!hspi.\+h@{hspi.\+h}}
+\subsubsection[{\texorpdfstring{hspi\+\_\+cs\+\_\+enable(uint8\+\_\+t cs)}{hspi_cs_enable(uint8_t cs)}}]{\setlength{\rightskip}{0pt plus 5cm}void hspi\+\_\+cs\+\_\+enable (
 \begin{DoxyParamCaption}
-\item[{{\bf uint8\-\_\-t}}]{cs}
+\item[{{\bf uint8\+\_\+t}}]{cs}
 \end{DoxyParamCaption}
-)}}\label{hspi_8h_a0047584af8bcc7c6d1fa924277a53bef}
+)}\hypertarget{hspi_8h_a0047584af8bcc7c6d1fa924277a53bef}{}\label{hspi_8h_a0047584af8bcc7c6d1fa924277a53bef}
 
 
-H\-S\-P\-I C\-S enable function. 
+H\+S\+PI CS enable function. 
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em cs} & G\-P\-I\-O C\-S pin \\
+\mbox{\tt in}  & {\em cs} & G\+P\+IO CS pin \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 38 of file hspi.\-c.
+Definition at line 38 of file hspi.\+c.
 
 
 
-Referenced by mmc\-\_\-cs\-\_\-enable(), and tft\-\_\-spi\-\_\-begin().
+Referenced by mmc\+\_\+cs\+\_\+enable(), and tft\+\_\+spi\+\_\+begin().
 
-\hypertarget{hspi_8h_a3bce8e04a995ed827790284e27c3746f}{\index{hspi.\-h@{hspi.\-h}!hspi\-\_\-init@{hspi\-\_\-init}}
-\index{hspi\-\_\-init@{hspi\-\_\-init}!hspi.h@{hspi.\-h}}
-\subsubsection[{hspi\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}void hspi\-\_\-init (
+\index{hspi.\+h@{hspi.\+h}!hspi\+\_\+init@{hspi\+\_\+init}}
+\index{hspi\+\_\+init@{hspi\+\_\+init}!hspi.\+h@{hspi.\+h}}
+\subsubsection[{\texorpdfstring{hspi\+\_\+init(uint16\+\_\+t prescale, int hwcs)}{hspi_init(uint16_t prescale, int hwcs)}}]{\setlength{\rightskip}{0pt plus 5cm}void hspi\+\_\+init (
 \begin{DoxyParamCaption}
-\item[{{\bf uint16\-\_\-t}}]{prescale, }
+\item[{{\bf uint16\+\_\+t}}]{prescale, }
 \item[{int}]{hwcs}
 \end{DoxyParamCaption}
-)}}\label{hspi_8h_a3bce8e04a995ed827790284e27c3746f}
+)}\hypertarget{hspi_8h_a3bce8e04a995ed827790284e27c3746f}{}\label{hspi_8h_a3bce8e04a995ed827790284e27c3746f}
 
 
-H\-S\-P\-I Initiaization -\/ with automatic chip select Pins\-: M\-I\-S\-O G\-P\-I\-O12 M\-O\-S\-I G\-P\-I\-O13 C\-L\-K G\-P\-I\-O14 C\-S G\-P\-I\-O15 -\/ optional D\-C G\-P\-I\-O2. 
+H\+S\+PI Initiaization -\/ with automatic chip select Pins\+: M\+I\+SO G\+P\+I\+O12 M\+O\+SI G\+P\+I\+O13 C\+LK G\+P\+I\+O14 CS G\+P\+I\+O15 -\/ optional DC G\+P\+I\+O2. 
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em prescale} & prescale from C\-P\-U clock 0 .. 0x1fff \\
+\mbox{\tt in}  & {\em prescale} & prescale from C\+PU clock 0 .. 0x1fff \\
 \hline
-\mbox{\tt in}  & {\em hwcs} & enable G\-P\-I\-O15 hardware chip select \\
+\mbox{\tt in}  & {\em hwcs} & enable G\+P\+I\+O15 hardware chip select \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -165,23 +164,23 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 79 of file hspi.\-c.
+Definition at line 79 of file hspi.\+c.
 
 
 
-Referenced by mmc\-\_\-spi\-\_\-init(), tft\-\_\-spi\-\_\-begin(), and tft\-\_\-spi\-\_\-init().
+Referenced by A\+D\+F4351\+\_\+spi\+\_\+begin(), A\+D\+F4351\+\_\+spi\+\_\+init(), mmc\+\_\+spi\+\_\+init(), setup(), tft\+\_\+spi\+\_\+begin(), and tft\+\_\+spi\+\_\+init().
 
-\hypertarget{hspi_8h_a0603c3e5a8c6c29e5deb5609b28e86bc}{\index{hspi.\-h@{hspi.\-h}!hspi\-\_\-\-R\-X@{hspi\-\_\-\-R\-X}}
-\index{hspi\-\_\-\-R\-X@{hspi\-\_\-\-R\-X}!hspi.h@{hspi.\-h}}
-\subsubsection[{hspi\-\_\-\-R\-X}]{\setlength{\rightskip}{0pt plus 5cm}void hspi\-\_\-\-R\-X (
+\index{hspi.\+h@{hspi.\+h}!hspi\+\_\+\+RX@{hspi\+\_\+\+RX}}
+\index{hspi\+\_\+\+RX@{hspi\+\_\+\+RX}!hspi.\+h@{hspi.\+h}}
+\subsubsection[{\texorpdfstring{hspi\+\_\+\+R\+X(uint8\+\_\+t $\ast$data, int count)}{hspi_RX(uint8_t *data, int count)}}]{\setlength{\rightskip}{0pt plus 5cm}void hspi\+\_\+\+RX (
 \begin{DoxyParamCaption}
-\item[{{\bf uint8\-\_\-t} $\ast$}]{data, }
+\item[{{\bf uint8\+\_\+t} $\ast$}]{data, }
 \item[{int}]{count}
 \end{DoxyParamCaption}
-)}}\label{hspi_8h_a0603c3e5a8c6c29e5deb5609b28e86bc}
+)}\hypertarget{hspi_8h_a0603c3e5a8c6c29e5deb5609b28e86bc}{}\label{hspi_8h_a0603c3e5a8c6c29e5deb5609b28e86bc}
 
 
-H\-S\-P\-I read using F\-I\-F\-O. 
+H\+S\+PI read using F\+I\+FO. 
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -195,25 +194,25 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 348 of file hspi.\-c.
+Definition at line 348 of file hspi.\+c.
 
 
 
-Referenced by mmc\-\_\-spi\-\_\-\-R\-X(), mmc\-\_\-spi\-\_\-\-R\-X\-\_\-buffer(), and tft\-\_\-spi\-\_\-\-R\-X().
+Referenced by mmc\+\_\+spi\+\_\+\+R\+X(), mmc\+\_\+spi\+\_\+\+R\+X\+\_\+buffer(), and tft\+\_\+spi\+\_\+\+R\+X().
 
-\hypertarget{hspi_8h_a95e93b2eb7fb8bd8548f2ad9022aac58}{\index{hspi.\-h@{hspi.\-h}!hspi\-\_\-\-T\-X@{hspi\-\_\-\-T\-X}}
-\index{hspi\-\_\-\-T\-X@{hspi\-\_\-\-T\-X}!hspi.h@{hspi.\-h}}
-\subsubsection[{hspi\-\_\-\-T\-X}]{\setlength{\rightskip}{0pt plus 5cm}void hspi\-\_\-\-T\-X (
+\index{hspi.\+h@{hspi.\+h}!hspi\+\_\+\+TX@{hspi\+\_\+\+TX}}
+\index{hspi\+\_\+\+TX@{hspi\+\_\+\+TX}!hspi.\+h@{hspi.\+h}}
+\subsubsection[{\texorpdfstring{hspi\+\_\+\+T\+X(uint8\+\_\+t $\ast$data, int count)}{hspi_TX(uint8_t *data, int count)}}]{\setlength{\rightskip}{0pt plus 5cm}void hspi\+\_\+\+TX (
 \begin{DoxyParamCaption}
-\item[{{\bf uint8\-\_\-t} $\ast$}]{data, }
+\item[{{\bf uint8\+\_\+t} $\ast$}]{data, }
 \item[{int}]{count}
 \end{DoxyParamCaption}
-)}}\label{hspi_8h_a95e93b2eb7fb8bd8548f2ad9022aac58}
+)}\hypertarget{hspi_8h_a95e93b2eb7fb8bd8548f2ad9022aac58}{}\label{hspi_8h_a95e93b2eb7fb8bd8548f2ad9022aac58}
 
 
-S\-P\-I buffered write functions. 
+S\+PI buffered write functions. 
 
-=================================================================H\-S\-P\-I write using F\-I\-F\-O 
+=================================================================H\+S\+PI write using F\+I\+FO 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\tt in}  & {\em $\ast$data} & transmit buffer \\
 \hline
@@ -225,23 +224,23 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 295 of file hspi.\-c.
+Definition at line 295 of file hspi.\+c.
 
 
 
-Referenced by mmc\-\_\-spi\-\_\-\-T\-X(), mmc\-\_\-spi\-\_\-\-T\-X\-\_\-buffer(), and tft\-\_\-spi\-\_\-\-T\-X().
+Referenced by mmc\+\_\+spi\+\_\+\+T\+X(), mmc\+\_\+spi\+\_\+\+T\+X\+\_\+buffer(), and tft\+\_\+spi\+\_\+\+T\+X().
 
-\hypertarget{hspi_8h_a1ea1bd90994ac123b4c62bfa511b6972}{\index{hspi.\-h@{hspi.\-h}!hspi\-\_\-\-T\-X\-R\-X@{hspi\-\_\-\-T\-X\-R\-X}}
-\index{hspi\-\_\-\-T\-X\-R\-X@{hspi\-\_\-\-T\-X\-R\-X}!hspi.h@{hspi.\-h}}
-\subsubsection[{hspi\-\_\-\-T\-X\-R\-X}]{\setlength{\rightskip}{0pt plus 5cm}void hspi\-\_\-\-T\-X\-R\-X (
+\index{hspi.\+h@{hspi.\+h}!hspi\+\_\+\+T\+X\+RX@{hspi\+\_\+\+T\+X\+RX}}
+\index{hspi\+\_\+\+T\+X\+RX@{hspi\+\_\+\+T\+X\+RX}!hspi.\+h@{hspi.\+h}}
+\subsubsection[{\texorpdfstring{hspi\+\_\+\+T\+X\+R\+X(uint8\+\_\+t $\ast$data, int count)}{hspi_TXRX(uint8_t *data, int count)}}]{\setlength{\rightskip}{0pt plus 5cm}void hspi\+\_\+\+T\+X\+RX (
 \begin{DoxyParamCaption}
-\item[{{\bf uint8\-\_\-t} $\ast$}]{data, }
+\item[{{\bf uint8\+\_\+t} $\ast$}]{data, }
 \item[{int}]{count}
 \end{DoxyParamCaption}
-)}}\label{hspi_8h_a1ea1bd90994ac123b4c62bfa511b6972}
+)}\hypertarget{hspi_8h_a1ea1bd90994ac123b4c62bfa511b6972}{}\label{hspi_8h_a1ea1bd90994ac123b4c62bfa511b6972}
 
 
-H\-S\-P\-I write and read using F\-I\-F\-O. 
+H\+S\+PI write and read using F\+I\+FO. 
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -255,31 +254,31 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 322 of file hspi.\-c.
+Definition at line 322 of file hspi.\+c.
 
 
 
-Referenced by mmc\-\_\-spi\-\_\-\-T\-X\-R\-X(), and tft\-\_\-spi\-\_\-\-T\-X\-R\-X().
+Referenced by A\+D\+F4351\+\_\+txrx(), mmc\+\_\+spi\+\_\+\+T\+X\+R\+X(), and tft\+\_\+spi\+\_\+\+T\+X\+R\+X().
 
-\hypertarget{hspi_8h_af1a0f7a7dd3cac5dd6b8489f7ff308dc}{\index{hspi.\-h@{hspi.\-h}!hspi\-\_\-wait\-Ready@{hspi\-\_\-wait\-Ready}}
-\index{hspi\-\_\-wait\-Ready@{hspi\-\_\-wait\-Ready}!hspi.h@{hspi.\-h}}
-\subsubsection[{hspi\-\_\-wait\-Ready}]{\setlength{\rightskip}{0pt plus 5cm}void hspi\-\_\-wait\-Ready (
+\index{hspi.\+h@{hspi.\+h}!hspi\+\_\+wait\+Ready@{hspi\+\_\+wait\+Ready}}
+\index{hspi\+\_\+wait\+Ready@{hspi\+\_\+wait\+Ready}!hspi.\+h@{hspi.\+h}}
+\subsubsection[{\texorpdfstring{hspi\+\_\+wait\+Ready(void)}{hspi_waitReady(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void hspi\+\_\+wait\+Ready (
 \begin{DoxyParamCaption}
 \item[{void}]{}
 \end{DoxyParamCaption}
-)}}\label{hspi_8h_af1a0f7a7dd3cac5dd6b8489f7ff308dc}
+)}\hypertarget{hspi_8h_af1a0f7a7dd3cac5dd6b8489f7ff308dc}{}\label{hspi_8h_af1a0f7a7dd3cac5dd6b8489f7ff308dc}
 
 
-H\-S\-P\-I Ready wait. 
+H\+S\+PI Ready wait. 
 
 \begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
 
 
-Definition at line 189 of file hspi.\-c.
+Definition at line 189 of file hspi.\+c.
 
 
 
-Referenced by esp\-\_\-yield(), hspi\-\_\-config(), hspi\-\_\-cs\-\_\-disable(), hspi\-\_\-cs\-\_\-enable(), hspi\-\_\-init(), hspi\-\_\-\-R\-X(), hspi\-\_\-\-T\-X(), hspi\-\_\-\-T\-X\-R\-X(), loop\-\_\-wrapper(), mmc\-\_\-power\-\_\-off(), mmc\-\_\-spi\-\_\-init(), tft\-\_\-spi\-\_\-begin(), tft\-\_\-spi\-\_\-end(), tft\-\_\-spi\-\_\-\-R\-X(), tft\-\_\-spi\-\_\-\-T\-X(), and tft\-\_\-spi\-\_\-\-T\-X\-R\-X().
+Referenced by A\+D\+F4351\+\_\+gpio\+\_\+init(), A\+D\+F4351\+\_\+spi\+\_\+begin(), A\+D\+F4351\+\_\+spi\+\_\+end(), A\+D\+F4351\+\_\+spi\+\_\+init(), esp\+\_\+yield(), hspi\+\_\+config(), hspi\+\_\+cs\+\_\+disable(), hspi\+\_\+cs\+\_\+enable(), hspi\+\_\+init(), hspi\+\_\+\+R\+X(), hspi\+\_\+\+T\+X(), hspi\+\_\+\+T\+X\+R\+X(), loop\+\_\+wrapper(), mmc\+\_\+power\+\_\+off(), mmc\+\_\+spi\+\_\+init(), tft\+\_\+spi\+\_\+begin(), tft\+\_\+spi\+\_\+end(), tft\+\_\+spi\+\_\+\+R\+X(), tft\+\_\+spi\+\_\+\+T\+X(), and tft\+\_\+spi\+\_\+\+T\+X\+R\+X().
 

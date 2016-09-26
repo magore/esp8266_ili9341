@@ -84,7 +84,7 @@ DEBUG_PRINTF=uart0_printf
 //TELNET_SERIAL = 1
 
 # FatFS code testing
-FATFS_TEST = 1
+FATFS_SUPPORT = 1
 
 # Display wireframe earth demo in lower right of display
 # EARTH = 1
@@ -98,6 +98,10 @@ CIRCLE =
 
 # include simple scanf
 SCANF = 1
+
+# ADF4351 demo
+ADF4351 = 1
+# ADF4351_DEBUG = 1
 
 # Display additional status:
 # 	interation count for spinning cube
@@ -118,7 +122,8 @@ WEBSERVER = 1
 # 4 send/yield task information
 # 8 HTML processing
 # 16 characters from socket I/O
-WEB_DEBUG = 1+8
+#WEB_DEBUG = 1+8
+WEB_DEBUG = 1
 
 # Maximum number of WEB connections
 MAX_CONNECTIONS = 8
@@ -214,6 +219,7 @@ LDFLAGS	= -nostdlib \
 # ===============================================================
 
 
+
 # ===============================================================
 # which modules (subdirectories) of the project to include in compiling
 MODULES	= user printf lib utils driver display cordic network 
@@ -235,7 +241,6 @@ ifdef VOLTAGE_TEST
 	CFLAGS += -DVOLTAGE_TEST
 endif
 
-
 ifdef SCANF
 	MODULES	+= scanf
 	CFLAGS += -DSCANF
@@ -255,9 +260,9 @@ ifdef EARTH
 	CFLAGS  += -DEARTH
 endif
 
-ifdef FATFS_TEST
+ifdef FATFS_SUPPORT
 	MODULES	+= fatfs
-	CFLAGS  += -DFATFS_TEST
+	CFLAGS  += -DFATFS_SUPPORT
 endif
 
 ifdef TELNET_SERIAL
@@ -287,11 +292,22 @@ ifdef YIELD_TASK
 	MODULES	+= yield
 endif
 
+ifdef ADF4351
+	CFLAGS += -DADF4351
+	MODULES	+= adf4351
+
+ifdef ADF4351_DEBUG
+	CFLAGS += -DADF4351_DEBUG
+endif
+
+endif
 
 CFLAGS += -Dprintf=$(DEBUG_PRINTF)
 
 # Include font specifications - needed with proportional fonts 
 CFLAGS  += -DFONTSPECS 
+
+CFLAGS += -DESP8266
 # ===============================================================
 
 LD_SCRIPT	:= $(addprefix -T$(PROJECT_DIR)/ld/,$(LD_SCRIPT))
@@ -456,3 +472,6 @@ send:	send.c
 
 sendtest:	send
 	./send -i $(IPADDR) -m 'testing\nTest3\nscrolling\ntext and even more text\n1\n3'
+
+gcchelp:
+	$(CC) --target-help

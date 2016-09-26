@@ -1,84 +1,101 @@
-\hypertarget{printf_8h}{\section{printf/printf.h File Reference}
-\label{printf_8h}\index{printf/printf.\-h@{printf/printf.\-h}}
-}
+\hypertarget{printf_8h}{}\section{printf/printf.h File Reference}
+\label{printf_8h}\index{printf/printf.\+h@{printf/printf.\+h}}
 
 
 Small printf, and verious conversion code with floating point support.  
 
 
-{\ttfamily \#include $<$stdarg.\-h$>$}\\*
-{\ttfamily \#include \char`\"{}user\-\_\-config.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}sup.\-h\char`\"{}}\\*
+{\ttfamily \#include $<$stdint.\+h$>$}\\*
+{\ttfamily \#include $<$stdarg.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$math.\+h$>$}\\*
 \subsection*{Data Structures}
 \begin{DoxyCompactItemize}
 \item 
-struct \hyperlink{struct__printf__t}{\-\_\-printf\-\_\-t}
+struct \hyperlink{struct__printf__t}{\+\_\+printf\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{printf_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}
 \end{DoxyCompactItemize}
 \subsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
-typedef struct \hyperlink{struct__printf__t}{\-\_\-printf\-\_\-t} \hyperlink{printf_8h_a1efdee46bf8e5af45e76e461e8db9c09}{printf\-\_\-t}
+typedef struct \hyperlink{struct__printf__t}{\+\_\+printf\+\_\+t} \hyperlink{printf_8h_a1efdee46bf8e5af45e76e461e8db9c09}{printf\+\_\+t}
 \end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{printf_8h_a2f4b30f6ffa8d7b04ede343a1bfdcbf5}{t\-\_\-itoa} (long num, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$str, int max, int prec, int sign)
-\begin{DoxyCompactList}\small\item\em Convert number to A\-S\-C\-I\-I returns size of string after conversion Note\-: It is allowed to have more digits converted then prec defines Like itoa but can support leading '+/-\// ' or unsigned and zero padding. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{printf_8h_a39d7df31096f07eba5176fad5a2337f4}{t\-\_\-ntoa} (unsigned long num, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\-\_\-t} $\ast$str, int max, int radix, int prec)
-\begin{DoxyCompactList}\small\item\em Convert number to A\-S\-C\-I\-I Like itoa but can support leading '+/-\// ' or unsigned and zero padding Note\-: It is allowed to have more digits converted then prec defines. \end{DoxyCompactList}\item 
-static \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} double \hyperlink{printf_8h_ae517abe6b3eca804cfda72648f15be21}{t\-\_\-iexp} (double num, int exp)
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{printf_8h_a4af3a4466134e9a6ecab7e18a5795396}{p\+\_\+reverse} (char $\ast$str)
 \item 
-static \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} double \hyperlink{printf_8h_af738e7ee5c3c5f91edf0f5baa51bb151}{t\-\_\-scale10} (double num, int $\ast$exp)
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{printf_8h_a232e21e6be1269388ac97991ef8b3b48}{p\+\_\+strupper} (char $\ast$str)
 \item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{printf_8h_a93b64183a7db6800f8d49160351dbe3a}{t\-\_\-ftoa} (double val, char $\ast$str, int intprec, int prec, int sign)
-\begin{DoxyCompactList}\small\item\em float to A\-S\-C\-I\-I \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{printf_8h_a81b5dc7281a404cfc4c8ee6e3da4d8da}{t\-\_\-etoa} (double x, char $\ast$str, int prec, int sign)
-\begin{DoxyCompactList}\small\item\em float to A\-S\-C\-I\-I \end{DoxyCompactList}\item 
-static \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{printf_8h_aa864d1706b7e941e7f29264cc197cbe1}{\-\_\-puts\-\_\-pad} (\hyperlink{printf_8h_a1efdee46bf8e5af45e76e461e8db9c09}{printf\-\_\-t} $\ast$fn, char $\ast$s, int width, int count, int left)
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} double \hyperlink{printf_8h_a29526ba629435aeaee7e3201242a9234}{iexp} (double num, int exp)
 \item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{printf_8h_ae8e3ea7acfe1bf7a917405584b720bb9}{\-\_\-printf\-\_\-fn} (\hyperlink{printf_8h_a1efdee46bf8e5af45e76e461e8db9c09}{printf\-\_\-t} $\ast$fn, const char $\ast$fmt, va\-\_\-list va)
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} double \hyperlink{printf_8h_a52658cd34151fad98aa1294a2acafa02}{scale10} (double num, int $\ast$exp)
+\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{printf_8h_aa867325aa16ff64b6a8f6f200b7de855}{p\+\_\+itoa} (long num, char $\ast$str, int max, int prec, int sign)
+\begin{DoxyCompactList}\small\item\em Convert number to A\+S\+C\+II returns size of string after conversion Note\+: It is allowed to have more digits converted then prec defines Like itoa but can support leading \textquotesingle{}+/-\// \textquotesingle{} or unsigned and zero padding. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{printf_8h_a6aa7848c7ffe1a823379ec5b1ec86134}{p\+\_\+ntoa} (unsigned long num, char $\ast$str, int max, int radix, int prec)
+\begin{DoxyCompactList}\small\item\em Convert number to A\+S\+C\+II Like itoa but can support leading \textquotesingle{}+/-\// \textquotesingle{} or unsigned and zero padding Note\+: It is allowed to have more digits converted then prec defines. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{printf_8h_aff50ad940101472bdb34f18c916f7490}{p\+\_\+ftoa} (double val, char $\ast$str, int intprec, int prec, int sign)
+\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{printf_8h_aeae9da821b7c85d911872336a063c2cd}{p\+\_\+etoa} (double x, char $\ast$str, int prec, int sign)
+\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{printf_8h_ab713fa5c01f315bdf67d18a6dbcb4ff5}{\+\_\+puts\+\_\+pad} (\hyperlink{printf_8h_a1efdee46bf8e5af45e76e461e8db9c09}{printf\+\_\+t} $\ast$fn, char $\ast$s, int width, int \hyperlink{user__main_8c_aa011065eee776eb1bda73597b5d9d5d7}{count}, int left)
+\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{printf_8h_ae8e3ea7acfe1bf7a917405584b720bb9}{\+\_\+printf\+\_\+fn} (\hyperlink{printf_8h_a1efdee46bf8e5af45e76e461e8db9c09}{printf\+\_\+t} $\ast$fn, const char $\ast$fmt, va\+\_\+list va)
 \begin{DoxyCompactList}\small\item\em vsnprintf function \end{DoxyCompactList}\item 
-static void \hyperlink{printf_8h_add7e5ce45ad6a867a5b2bcf22cdc8589}{\-\_\-putc\-\_\-buffer} (struct \hyperlink{struct__printf__t}{\-\_\-printf\-\_\-t} $\ast$p, char ch)
-\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{printf_8h_a7a6349b4ca3388a0cb82fc3d1d85a6b5}{vsnprintf} (char $\ast$str, size\-\_\-t size, const char $\ast$format, va\-\_\-list va)
+void \hyperlink{printf_8h_a4d8d12cf35eb746982ae22f9e730591d}{\+\_\+putc\+\_\+buffer\+\_\+fn} (struct \hyperlink{struct__printf__t}{\+\_\+printf\+\_\+t} $\ast$p, char ch)
+\begin{DoxyCompactList}\small\item\em \+\_\+putc\+\_\+buffer\+\_\+fn low level function writes a character to a buffer \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{printf_8h_a7a6349b4ca3388a0cb82fc3d1d85a6b5}{vsnprintf} (char $\ast$str, size\+\_\+t size, const char $\ast$format, va\+\_\+list va)
 \begin{DoxyCompactList}\small\item\em vsnprintf function \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{printf_8h_a278630a290b34d009b2e3ad7bf1fc996}{snprintf} (char $\ast$str, size\-\_\-t size, const char $\ast$format,...)
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{printf_8h_a278630a290b34d009b2e3ad7bf1fc996}{snprintf} (char $\ast$str, size\+\_\+t size, const char $\ast$format,...)
 \begin{DoxyCompactList}\small\item\em snprintf function \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Small printf, and verious conversion code with floating point support. \begin{DoxyParagraph}{Copyright \copyright{} 2015 Mike Gore, G\-P\-L License}
+Small printf, and verious conversion code with floating point support. 
+
+\begin{DoxyParagraph}{Copyright \copyright{} 2015 Mike Gore, G\+PL License}
 
 \end{DoxyParagraph}
-\begin{DoxyParagraph}{You are free to use this code under the terms of G\-P\-L}
+\begin{DoxyParagraph}{You are free to use this code under the terms of G\+PL}
 please retain a copy of this notice in any code you use it in.
 \end{DoxyParagraph}
-This is free software\-: you can redistribute it and/or modify it under the terms of the G\-N\-U General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+This is free software\+: you can redistribute it and/or modify it under the terms of the G\+NU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
-This software is distributed in the hope that it will be useful, but W\-I\-T\-H\-O\-U\-T A\-N\-Y W\-A\-R\-R\-A\-N\-T\-Y; without even the implied warranty of M\-E\-R\-C\-H\-A\-N\-T\-A\-B\-I\-L\-I\-T\-Y or F\-I\-T\-N\-E\-S\-S F\-O\-R A P\-A\-R\-T\-I\-C\-U\-L\-A\-R P\-U\-R\-P\-O\-S\-E. See the G\-N\-U General Public License for more details.
+This software is distributed in the hope that it will be useful, but W\+I\+T\+H\+O\+UT A\+NY W\+A\+R\+R\+A\+N\+TY; without even the implied warranty of M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+TY or F\+I\+T\+N\+E\+SS F\+OR A P\+A\+R\+T\+I\+C\+U\+L\+AR P\+U\+R\+P\+O\+SE. See the G\+NU General Public License for more details.
 
-You should have received a copy of the G\-N\-U General Public License along with this program. If not, see \href{http://www.gnu.org/licenses/}{\tt http\-://www.\-gnu.\-org/licenses/}. 
+You should have received a copy of the G\+NU General Public License along with this program. If not, see \href{http://www.gnu.org/licenses/}{\tt http\+://www.\+gnu.\+org/licenses/}. 
 
-Definition in file \hyperlink{printf_8h_source}{printf.\-h}.
+\subsection{Macro Definition Documentation}
+\index{printf.\+h@{printf.\+h}!M\+E\+M\+S\+P\+A\+CE@{M\+E\+M\+S\+P\+A\+CE}}
+\index{M\+E\+M\+S\+P\+A\+CE@{M\+E\+M\+S\+P\+A\+CE}!printf.\+h@{printf.\+h}}
+\subsubsection[{\texorpdfstring{M\+E\+M\+S\+P\+A\+CE}{MEMSPACE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+E\+M\+S\+P\+A\+CE}\hypertarget{printf_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{}\label{printf_8h_ad0fe97585b8891f5e4f2b9a6426330a4}
+
+
+Definition at line 32 of file printf.\+h.
 
 
 
 \subsection{Typedef Documentation}
-\hypertarget{printf_8h_a1efdee46bf8e5af45e76e461e8db9c09}{\index{printf.\-h@{printf.\-h}!printf\-\_\-t@{printf\-\_\-t}}
-\index{printf\-\_\-t@{printf\-\_\-t}!printf.h@{printf.\-h}}
-\subsubsection[{printf\-\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \-\_\-printf\-\_\-t}  {\bf printf\-\_\-t}}}\label{printf_8h_a1efdee46bf8e5af45e76e461e8db9c09}
+\index{printf.\+h@{printf.\+h}!printf\+\_\+t@{printf\+\_\+t}}
+\index{printf\+\_\+t@{printf\+\_\+t}!printf.\+h@{printf.\+h}}
+\subsubsection[{\texorpdfstring{printf\+\_\+t}{printf_t}}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \+\_\+printf\+\_\+t}  {\bf printf\+\_\+t}}\hypertarget{printf_8h_a1efdee46bf8e5af45e76e461e8db9c09}{}\label{printf_8h_a1efdee46bf8e5af45e76e461e8db9c09}
 
 
 \subsection{Function Documentation}
-\hypertarget{printf_8h_ae8e3ea7acfe1bf7a917405584b720bb9}{\index{printf.\-h@{printf.\-h}!\-\_\-printf\-\_\-fn@{\-\_\-printf\-\_\-fn}}
-\index{\-\_\-printf\-\_\-fn@{\-\_\-printf\-\_\-fn}!printf.h@{printf.\-h}}
-\subsubsection[{\-\_\-printf\-\_\-fn}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void \-\_\-printf\-\_\-fn (
+\index{printf.\+h@{printf.\+h}!\+\_\+printf\+\_\+fn@{\+\_\+printf\+\_\+fn}}
+\index{\+\_\+printf\+\_\+fn@{\+\_\+printf\+\_\+fn}!printf.\+h@{printf.\+h}}
+\subsubsection[{\texorpdfstring{\+\_\+printf\+\_\+fn(printf\+\_\+t $\ast$fn, const char $\ast$fmt, va\+\_\+list va)}{_printf_fn(printf_t *fn, const char *fmt, va_list va)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void \+\_\+printf\+\_\+fn (
 \begin{DoxyParamCaption}
-\item[{{\bf printf\-\_\-t} $\ast$}]{fn, }
+\item[{{\bf printf\+\_\+t} $\ast$}]{fn, }
 \item[{const char $\ast$}]{fmt, }
-\item[{va\-\_\-list}]{va}
+\item[{va\+\_\+list}]{va}
 \end{DoxyParamCaption}
-)}}\label{printf_8h_ae8e3ea7acfe1bf7a917405584b720bb9}
+)}\hypertarget{printf_8h_ae8e3ea7acfe1bf7a917405584b720bb9}{}\label{printf_8h_ae8e3ea7acfe1bf7a917405584b720bb9}
 
 
 vsnprintf function 
@@ -89,7 +106,7 @@ vsnprintf function
 \hline
 \mbox{\tt in}  & {\em fmt} & printf forat string \\
 \hline
-\mbox{\tt in}  & {\em va} & va\-\_\-list arguments \\
+\mbox{\tt in}  & {\em va} & va\+\_\+list arguments \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -97,41 +114,216 @@ size of string
 \end{DoxyReturn}
 
 
-Definition at line 536 of file printf.\-c.
+Definition at line 607 of file printf.\+c.
 
 
 
-Referenced by tft\-\_\-printf(), uart0\-\_\-printf(), vsnprintf(), and vsock\-\_\-printf().
+Referenced by tft\+\_\+printf(), uart0\+\_\+printf(), vsnprintf(), and vsock\+\_\+printf().
 
-\hypertarget{printf_8h_add7e5ce45ad6a867a5b2bcf22cdc8589}{\index{printf.\-h@{printf.\-h}!\-\_\-putc\-\_\-buffer@{\-\_\-putc\-\_\-buffer}}
-\index{\-\_\-putc\-\_\-buffer@{\-\_\-putc\-\_\-buffer}!printf.h@{printf.\-h}}
-\subsubsection[{\-\_\-putc\-\_\-buffer}]{\setlength{\rightskip}{0pt plus 5cm}static void \-\_\-putc\-\_\-buffer (
+\index{printf.\+h@{printf.\+h}!\+\_\+putc\+\_\+buffer\+\_\+fn@{\+\_\+putc\+\_\+buffer\+\_\+fn}}
+\index{\+\_\+putc\+\_\+buffer\+\_\+fn@{\+\_\+putc\+\_\+buffer\+\_\+fn}!printf.\+h@{printf.\+h}}
+\subsubsection[{\texorpdfstring{\+\_\+putc\+\_\+buffer\+\_\+fn(struct \+\_\+printf\+\_\+t $\ast$p, char ch)}{_putc_buffer_fn(struct _printf_t *p, char ch)}}]{\setlength{\rightskip}{0pt plus 5cm}void \+\_\+putc\+\_\+buffer\+\_\+fn (
 \begin{DoxyParamCaption}
-\item[{struct {\bf \-\_\-printf\-\_\-t} $\ast$}]{p, }
+\item[{struct {\bf \+\_\+printf\+\_\+t} $\ast$}]{p, }
 \item[{char}]{ch}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{printf_8h_add7e5ce45ad6a867a5b2bcf22cdc8589}
-\hypertarget{printf_8h_aa864d1706b7e941e7f29264cc197cbe1}{\index{printf.\-h@{printf.\-h}!\-\_\-puts\-\_\-pad@{\-\_\-puts\-\_\-pad}}
-\index{\-\_\-puts\-\_\-pad@{\-\_\-puts\-\_\-pad}!printf.h@{printf.\-h}}
-\subsubsection[{\-\_\-puts\-\_\-pad}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf M\-E\-M\-S\-P\-A\-C\-E} void \-\_\-puts\-\_\-pad (
+)}\hypertarget{printf_8h_a4d8d12cf35eb746982ae22f9e730591d}{}\label{printf_8h_a4d8d12cf35eb746982ae22f9e730591d}
+
+
+\+\_\+putc\+\_\+buffer\+\_\+fn low level function writes a character to a buffer 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$p} & structure with pointers and buffer to be written to \\
+\hline
+\mbox{\tt in}  & {\em ch} & character to place in buffer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 865 of file printf.\+c.
+
+
+
+Referenced by vsnprintf().
+
+\index{printf.\+h@{printf.\+h}!\+\_\+puts\+\_\+pad@{\+\_\+puts\+\_\+pad}}
+\index{\+\_\+puts\+\_\+pad@{\+\_\+puts\+\_\+pad}!printf.\+h@{printf.\+h}}
+\subsubsection[{\texorpdfstring{\+\_\+puts\+\_\+pad(printf\+\_\+t $\ast$fn, char $\ast$s, int width, int count, int left)}{_puts_pad(printf_t *fn, char *s, int width, int count, int left)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void \+\_\+puts\+\_\+pad (
 \begin{DoxyParamCaption}
-\item[{{\bf printf\-\_\-t} $\ast$}]{fn, }
+\item[{{\bf printf\+\_\+t} $\ast$}]{fn, }
 \item[{char $\ast$}]{s, }
 \item[{int}]{width, }
 \item[{int}]{count, }
 \item[{int}]{left}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{printf_8h_aa864d1706b7e941e7f29264cc197cbe1}
-\hypertarget{printf_8h_a278630a290b34d009b2e3ad7bf1fc996}{\index{printf.\-h@{printf.\-h}!snprintf@{snprintf}}
-\index{snprintf@{snprintf}!printf.h@{printf.\-h}}
-\subsubsection[{snprintf}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int snprintf (
+)}\hypertarget{printf_8h_ab713fa5c01f315bdf67d18a6dbcb4ff5}{}\label{printf_8h_ab713fa5c01f315bdf67d18a6dbcb4ff5}
+
+
+Definition at line 554 of file printf.\+c.
+
+
+
+Referenced by \+\_\+printf\+\_\+fn().
+
+\index{printf.\+h@{printf.\+h}!iexp@{iexp}}
+\index{iexp@{iexp}!printf.\+h@{printf.\+h}}
+\subsubsection[{\texorpdfstring{iexp(double num, int exp)}{iexp(double num, int exp)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} double iexp (
+\begin{DoxyParamCaption}
+\item[{double}]{num, }
+\item[{int}]{exp}
+\end{DoxyParamCaption}
+)}\hypertarget{printf_8h_a29526ba629435aeaee7e3201242a9234}{}\label{printf_8h_a29526ba629435aeaee7e3201242a9234}
+
+
+Referenced by atol(), p\+\_\+ntoa(), and strupper().
+
+\index{printf.\+h@{printf.\+h}!p\+\_\+etoa@{p\+\_\+etoa}}
+\index{p\+\_\+etoa@{p\+\_\+etoa}!printf.\+h@{printf.\+h}}
+\subsubsection[{\texorpdfstring{p\+\_\+etoa(double x, char $\ast$str, int prec, int sign)}{p_etoa(double x, char *str, int prec, int sign)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int p\+\_\+etoa (
+\begin{DoxyParamCaption}
+\item[{double}]{x, }
+\item[{char $\ast$}]{str, }
+\item[{int}]{prec, }
+\item[{int}]{sign}
+\end{DoxyParamCaption}
+)}\hypertarget{printf_8h_aeae9da821b7c85d911872336a063c2cd}{}\label{printf_8h_aeae9da821b7c85d911872336a063c2cd}
+
+
+Referenced by \+\_\+printf\+\_\+fn(), and p\+\_\+ntoa().
+
+\index{printf.\+h@{printf.\+h}!p\+\_\+ftoa@{p\+\_\+ftoa}}
+\index{p\+\_\+ftoa@{p\+\_\+ftoa}!printf.\+h@{printf.\+h}}
+\subsubsection[{\texorpdfstring{p\+\_\+ftoa(double val, char $\ast$str, int intprec, int prec, int sign)}{p_ftoa(double val, char *str, int intprec, int prec, int sign)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int p\+\_\+ftoa (
+\begin{DoxyParamCaption}
+\item[{double}]{val, }
+\item[{char $\ast$}]{str, }
+\item[{int}]{intprec, }
+\item[{int}]{prec, }
+\item[{int}]{sign}
+\end{DoxyParamCaption}
+)}\hypertarget{printf_8h_aff50ad940101472bdb34f18c916f7490}{}\label{printf_8h_aff50ad940101472bdb34f18c916f7490}
+
+
+Referenced by \+\_\+printf\+\_\+fn(), and p\+\_\+ntoa().
+
+\index{printf.\+h@{printf.\+h}!p\+\_\+itoa@{p\+\_\+itoa}}
+\index{p\+\_\+itoa@{p\+\_\+itoa}!printf.\+h@{printf.\+h}}
+\subsubsection[{\texorpdfstring{p\+\_\+itoa(long num, char $\ast$str, int max, int prec, int sign)}{p_itoa(long num, char *str, int max, int prec, int sign)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int p\+\_\+itoa (
+\begin{DoxyParamCaption}
+\item[{long}]{num, }
+\item[{char $\ast$}]{str, }
+\item[{int}]{max, }
+\item[{int}]{prec, }
+\item[{int}]{sign}
+\end{DoxyParamCaption}
+)}\hypertarget{printf_8h_aa867325aa16ff64b6a8f6f200b7de855}{}\label{printf_8h_aa867325aa16ff64b6a8f6f200b7de855}
+
+
+Convert number to A\+S\+C\+II returns size of string after conversion Note\+: It is allowed to have more digits converted then prec defines Like itoa but can support leading \textquotesingle{}+/-\// \textquotesingle{} or unsigned and zero padding. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em num} & number \\
+\hline
+\mbox{\tt out}  & {\em $\ast$str} & string \\
+\hline
+\mbox{\tt in}  & {\em max} & maximum length or string \\
+\hline
+\mbox{\tt in}  & {\em prec} & minumum number of digits, 0 padded if needed (can be zero) \\
+\hline
+\mbox{\tt in}  & {\em sign} & 2\+: -\/ or +, 1\+: -\/, 0\+: unsigned N\+OT counted as part of prec length (just like printf) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+long value 
+\end{DoxyReturn}
+
+
+Definition at line 222 of file printf.\+c.
+
+
+
+Referenced by \+\_\+printf\+\_\+fn().
+
+\index{printf.\+h@{printf.\+h}!p\+\_\+ntoa@{p\+\_\+ntoa}}
+\index{p\+\_\+ntoa@{p\+\_\+ntoa}!printf.\+h@{printf.\+h}}
+\subsubsection[{\texorpdfstring{p\+\_\+ntoa(unsigned long num, char $\ast$str, int max, int radix, int prec)}{p_ntoa(unsigned long num, char *str, int max, int radix, int prec)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int p\+\_\+ntoa (
+\begin{DoxyParamCaption}
+\item[{unsigned long}]{num, }
+\item[{char $\ast$}]{str, }
+\item[{int}]{max, }
+\item[{int}]{radix, }
+\item[{int}]{prec}
+\end{DoxyParamCaption}
+)}\hypertarget{printf_8h_a6aa7848c7ffe1a823379ec5b1ec86134}{}\label{printf_8h_a6aa7848c7ffe1a823379ec5b1ec86134}
+
+
+Convert number to A\+S\+C\+II Like itoa but can support leading \textquotesingle{}+/-\// \textquotesingle{} or unsigned and zero padding Note\+: It is allowed to have more digits converted then prec defines. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em num} & unsigned number \\
+\hline
+\mbox{\tt out}  & {\em $\ast$str} & string \\
+\hline
+\mbox{\tt in}  & {\em max} & maximum length or string \\
+\hline
+\mbox{\tt in}  & {\em radix} & Radix may only be 2,8,16 \\
+\hline
+\mbox{\tt in}  & {\em prec} & minumum number of digits, zero padded if needed N\+OT counted as part of prec length (just like printf) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns size of string 
+\end{DoxyReturn}
+
+
+Definition at line 299 of file printf.\+c.
+
+
+
+Referenced by \+\_\+printf\+\_\+fn().
+
+\index{printf.\+h@{printf.\+h}!p\+\_\+reverse@{p\+\_\+reverse}}
+\index{p\+\_\+reverse@{p\+\_\+reverse}!printf.\+h@{printf.\+h}}
+\subsubsection[{\texorpdfstring{p\+\_\+reverse(char $\ast$str)}{p_reverse(char *str)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void p\+\_\+reverse (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str}
+\end{DoxyParamCaption}
+)}\hypertarget{printf_8h_a4af3a4466134e9a6ecab7e18a5795396}{}\label{printf_8h_a4af3a4466134e9a6ecab7e18a5795396}
+\index{printf.\+h@{printf.\+h}!p\+\_\+strupper@{p\+\_\+strupper}}
+\index{p\+\_\+strupper@{p\+\_\+strupper}!printf.\+h@{printf.\+h}}
+\subsubsection[{\texorpdfstring{p\+\_\+strupper(char $\ast$str)}{p_strupper(char *str)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void p\+\_\+strupper (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str}
+\end{DoxyParamCaption}
+)}\hypertarget{printf_8h_a232e21e6be1269388ac97991ef8b3b48}{}\label{printf_8h_a232e21e6be1269388ac97991ef8b3b48}
+\index{printf.\+h@{printf.\+h}!scale10@{scale10}}
+\index{scale10@{scale10}!printf.\+h@{printf.\+h}}
+\subsubsection[{\texorpdfstring{scale10(double num, int $\ast$exp)}{scale10(double num, int *exp)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} double scale10 (
+\begin{DoxyParamCaption}
+\item[{double}]{num, }
+\item[{int $\ast$}]{exp}
+\end{DoxyParamCaption}
+)}\hypertarget{printf_8h_a52658cd34151fad98aa1294a2acafa02}{}\label{printf_8h_a52658cd34151fad98aa1294a2acafa02}
+
+
+Referenced by p\+\_\+ntoa(), and strupper().
+
+\index{printf.\+h@{printf.\+h}!snprintf@{snprintf}}
+\index{snprintf@{snprintf}!printf.\+h@{printf.\+h}}
+\subsubsection[{\texorpdfstring{snprintf(char $\ast$str, size\+\_\+t size, const char $\ast$format,...)}{snprintf(char *str, size_t size, const char *format,...)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int snprintf (
 \begin{DoxyParamCaption}
 \item[{char $\ast$}]{str, }
-\item[{size\-\_\-t}]{size, }
+\item[{size\+\_\+t}]{size, }
 \item[{const char $\ast$}]{format, }
 \item[{}]{...}
 \end{DoxyParamCaption}
-)}}\label{printf_8h_a278630a290b34d009b2e3ad7bf1fc996}
+)}\hypertarget{printf_8h_a278630a290b34d009b2e3ad7bf1fc996}{}\label{printf_8h_a278630a290b34d009b2e3ad7bf1fc996}
 
 
 snprintf function 
@@ -152,191 +344,22 @@ string size
 \end{DoxyReturn}
 
 
-Definition at line 848 of file printf.\-c.
+Definition at line 919 of file printf.\+c.
 
 
 
-Referenced by Add\-Font\-Name(), asctime\-\_\-r(), html\-\_\-msg(), ipv4\-\_\-2str(), ts\-\_\-to\-\_\-str(), u5toa(), and wifi\-\_\-event\-\_\-cb().
+Referenced by Add\+Font\+Name(), asctime\+\_\+r(), html\+\_\+msg(), ipv4\+\_\+2str(), ts\+\_\+to\+\_\+str(), u5toa(), and wifi\+\_\+event\+\_\+cb().
 
-\hypertarget{printf_8h_a81b5dc7281a404cfc4c8ee6e3da4d8da}{\index{printf.\-h@{printf.\-h}!t\-\_\-etoa@{t\-\_\-etoa}}
-\index{t\-\_\-etoa@{t\-\_\-etoa}!printf.h@{printf.\-h}}
-\subsubsection[{t\-\_\-etoa}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int t\-\_\-etoa (
-\begin{DoxyParamCaption}
-\item[{double}]{x, }
-\item[{char $\ast$}]{str, }
-\item[{int}]{prec, }
-\item[{int}]{sign}
-\end{DoxyParamCaption}
-)}}\label{printf_8h_a81b5dc7281a404cfc4c8ee6e3da4d8da}
-
-
-float to A\-S\-C\-I\-I 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em x} & value \\
-\hline
-\mbox{\tt in}  & {\em str} & converted string \\
-\hline
-\mbox{\tt in}  & {\em prec} & digits after decimal place \\
-\hline
-\mbox{\tt in}  & {\em sign} & sign \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-size of string 
-\end{DoxyReturn}
-
-
-Definition at line 382 of file printf.\-c.
-
-
-
-Referenced by \-\_\-printf\-\_\-fn().
-
-\hypertarget{printf_8h_a93b64183a7db6800f8d49160351dbe3a}{\index{printf.\-h@{printf.\-h}!t\-\_\-ftoa@{t\-\_\-ftoa}}
-\index{t\-\_\-ftoa@{t\-\_\-ftoa}!printf.h@{printf.\-h}}
-\subsubsection[{t\-\_\-ftoa}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int t\-\_\-ftoa (
-\begin{DoxyParamCaption}
-\item[{double}]{val, }
-\item[{char $\ast$}]{str, }
-\item[{int}]{intprec, }
-\item[{int}]{prec, }
-\item[{int}]{sign}
-\end{DoxyParamCaption}
-)}}\label{printf_8h_a93b64183a7db6800f8d49160351dbe3a}
-
-
-float to A\-S\-C\-I\-I 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em val} & value \\
-\hline
-\mbox{\tt in}  & {\em str} & converted string \\
-\hline
-\mbox{\tt in}  & {\em intprec} & integer precision \\
-\hline
-\mbox{\tt in}  & {\em prec} & precision \\
-\hline
-\mbox{\tt in}  & {\em sign} & sign \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-size of string 
-\end{DoxyReturn}
-
-
-Definition at line 276 of file printf.\-c.
-
-
-
-Referenced by \-\_\-printf\-\_\-fn().
-
-\hypertarget{printf_8h_ae517abe6b3eca804cfda72648f15be21}{\index{printf.\-h@{printf.\-h}!t\-\_\-iexp@{t\-\_\-iexp}}
-\index{t\-\_\-iexp@{t\-\_\-iexp}!printf.h@{printf.\-h}}
-\subsubsection[{t\-\_\-iexp}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf M\-E\-M\-S\-P\-A\-C\-E} double t\-\_\-iexp (
-\begin{DoxyParamCaption}
-\item[{double}]{num, }
-\item[{int}]{exp}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{printf_8h_ae517abe6b3eca804cfda72648f15be21}
-\hypertarget{printf_8h_a2f4b30f6ffa8d7b04ede343a1bfdcbf5}{\index{printf.\-h@{printf.\-h}!t\-\_\-itoa@{t\-\_\-itoa}}
-\index{t\-\_\-itoa@{t\-\_\-itoa}!printf.h@{printf.\-h}}
-\subsubsection[{t\-\_\-itoa}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int t\-\_\-itoa (
-\begin{DoxyParamCaption}
-\item[{long}]{num, }
-\item[{{\bf uint8\-\_\-t} $\ast$}]{str, }
-\item[{int}]{max, }
-\item[{int}]{prec, }
-\item[{int}]{sign}
-\end{DoxyParamCaption}
-)}}\label{printf_8h_a2f4b30f6ffa8d7b04ede343a1bfdcbf5}
-
-
-Convert number to A\-S\-C\-I\-I returns size of string after conversion Note\-: It is allowed to have more digits converted then prec defines Like itoa but can support leading '+/-\// ' or unsigned and zero padding. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em num} & number \\
-\hline
-\mbox{\tt out}  & {\em $\ast$str} & string \\
-\hline
-\mbox{\tt in}  & {\em max} & maximum length or string \\
-\hline
-\mbox{\tt in}  & {\em prec} & minumum number of digits, 0 padded if needed (can be zero) \\
-\hline
-\mbox{\tt in}  & {\em sign} & 2\-: -\/ or +, 1\-: -\/, 0\-: unsigned N\-O\-T counted as part of prec length (just like printf) \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-long value 
-\end{DoxyReturn}
-
-
-Definition at line 61 of file printf.\-c.
-
-
-
-Referenced by \-\_\-printf\-\_\-fn(), and t\-\_\-ftoa().
-
-\hypertarget{printf_8h_a39d7df31096f07eba5176fad5a2337f4}{\index{printf.\-h@{printf.\-h}!t\-\_\-ntoa@{t\-\_\-ntoa}}
-\index{t\-\_\-ntoa@{t\-\_\-ntoa}!printf.h@{printf.\-h}}
-\subsubsection[{t\-\_\-ntoa}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int t\-\_\-ntoa (
-\begin{DoxyParamCaption}
-\item[{unsigned long}]{num, }
-\item[{{\bf uint8\-\_\-t} $\ast$}]{str, }
-\item[{int}]{max, }
-\item[{int}]{radix, }
-\item[{int}]{prec}
-\end{DoxyParamCaption}
-)}}\label{printf_8h_a39d7df31096f07eba5176fad5a2337f4}
-
-
-Convert number to A\-S\-C\-I\-I Like itoa but can support leading '+/-\// ' or unsigned and zero padding Note\-: It is allowed to have more digits converted then prec defines. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em num} & number \\
-\hline
-\mbox{\tt out}  & {\em $\ast$str} & string \\
-\hline
-\mbox{\tt in}  & {\em max} & maximum length or string \\
-\hline
-\mbox{\tt in}  & {\em radix} & Radix may only be 2,8,16 \\
-\hline
-\mbox{\tt in}  & {\em prec} & minumum number of digits, zero padded if needed N\-O\-T counted as part of prec length (just like printf) \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-returns size of string 
-\end{DoxyReturn}
-
-
-Definition at line 138 of file printf.\-c.
-
-
-
-Referenced by \-\_\-printf\-\_\-fn().
-
-\hypertarget{printf_8h_af738e7ee5c3c5f91edf0f5baa51bb151}{\index{printf.\-h@{printf.\-h}!t\-\_\-scale10@{t\-\_\-scale10}}
-\index{t\-\_\-scale10@{t\-\_\-scale10}!printf.h@{printf.\-h}}
-\subsubsection[{t\-\_\-scale10}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf M\-E\-M\-S\-P\-A\-C\-E} double t\-\_\-scale10 (
-\begin{DoxyParamCaption}
-\item[{double}]{num, }
-\item[{int $\ast$}]{exp}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{printf_8h_af738e7ee5c3c5f91edf0f5baa51bb151}
-\hypertarget{printf_8h_a7a6349b4ca3388a0cb82fc3d1d85a6b5}{\index{printf.\-h@{printf.\-h}!vsnprintf@{vsnprintf}}
-\index{vsnprintf@{vsnprintf}!printf.h@{printf.\-h}}
-\subsubsection[{vsnprintf}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int vsnprintf (
+\index{printf.\+h@{printf.\+h}!vsnprintf@{vsnprintf}}
+\index{vsnprintf@{vsnprintf}!printf.\+h@{printf.\+h}}
+\subsubsection[{\texorpdfstring{vsnprintf(char $\ast$str, size\+\_\+t size, const char $\ast$format, va\+\_\+list va)}{vsnprintf(char *str, size_t size, const char *format, va_list va)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int vsnprintf (
 \begin{DoxyParamCaption}
 \item[{char $\ast$}]{str, }
-\item[{size\-\_\-t}]{size, }
+\item[{size\+\_\+t}]{size, }
 \item[{const char $\ast$}]{format, }
-\item[{va\-\_\-list}]{va}
+\item[{va\+\_\+list}]{va}
 \end{DoxyParamCaption}
-)}}\label{printf_8h_a7a6349b4ca3388a0cb82fc3d1d85a6b5}
+)}\hypertarget{printf_8h_a7a6349b4ca3388a0cb82fc3d1d85a6b5}{}\label{printf_8h_a7a6349b4ca3388a0cb82fc3d1d85a6b5}
 
 
 vsnprintf function 
@@ -349,7 +372,7 @@ vsnprintf function
 \hline
 \mbox{\tt in}  & {\em format} & printf forat string \\
 \hline
-\mbox{\tt in}  & {\em va} & va\-\_\-list list of arguments \\
+\mbox{\tt in}  & {\em va} & va\+\_\+list list of arguments \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -357,9 +380,9 @@ string size
 \end{DoxyReturn}
 
 
-Definition at line 820 of file printf.\-c.
+Definition at line 891 of file printf.\+c.
 
 
 
-Referenced by html\-\_\-msg(), and snprintf().
+Referenced by html\+\_\+msg(), and snprintf().
 

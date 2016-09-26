@@ -22,29 +22,190 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
-// Float support
-#define FLOAT
-
-// Used for compiling a stand alone test
-#ifdef PRINTF_TEST
-	#define MEMSPACE /* */
-	#include <stdio.h>
-	#include <stdlib.h>
-	#include <string.h>
-	typedef unsigned char uint8_t;
-	typedef signed char int8_t;
-	typedef unsigned short uint16_t;
-	typedef unsigned int uint32_t;
-	typedef int int32_t;
-#else
-	#include "user_config.h"
+#ifdef TEST_PRINTF
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <string.h>
 #endif
 
+#ifdef ESP8266
+#include "user_config.h"
+#endif
+
+#ifndef MEMSPACE
+#define MEMSPACE /**/
+#endif
+
+#include <stdint.h>
 #include <stdarg.h>
 #include <math.h>
+
 #include "printf.h"
 
+// =======================================================================
+// =======================================================================
+
+// Below we included functions that are defined elsewhere
+// They are included within printf to allow this to be standalone
+// This is done by looking at header defines for the time being
+
+// These functions are defined in our own str.c
+#ifndef _STR_H_
+
+// Skip if we have linux stdlib.h
+#ifndef _STDLIB_H
+/// @brief String Length
+/// @param[in] str: string
+/// @return string length
+MEMSPACE
+size_t strlen(const char *str)
+{
+    int len=0;
+    // String length
+    while(*str++)
+        ++len;
+    return(len);
+}
+#endif // _STDLIB_H
+
+// Skip if we have linux ctype.h
+#ifndef _CTYPE_H
+/// @brief test if a character is a digit
+/// @param[in] c: character
+/// @return true or false
+MEMSPACE 
+int isdigit(int c)
+{
+	if(c >= '0' && c <= '9')
+		return(1);
+	return(0);
+}
+#endif 	// ifndef _CTYPE_H
+#endif	// ifndef _STR_H_
+
+// =======================================================================
+// start of support functions
+// =======================================================================
+
+// These functions are defined in our own str.c
+#ifndef _STR_H_
+/// @brief Reverse a string in place
+///  Example: abcdef -> fedcba
+/// @param[in] str: string 
+/// @return string length
+MEMSPACE 
+void reverse(char *str)
+{
+	char temp;
+	int i;
+	int len = strlen(str);
+	// Reverse
+	// We only exchange up to half way
+	for (i = 0; i < (len >> 1); i++)
+	{
+		temp = str[len - i - 1];
+		str[len - i - 1] = str[i];
+		str[i] = temp;
+	}
+}
+
+/// @brief UPPERCASE a string
+/// @param[in] str: string 
+/// @return void
+MEMSPACE 
+void strupper(char *str)
+{
+
+	while(*str)
+	{
+		if(*str >= 'a' && *str <= 'z')
+			*str -= 0x20;
+		++str;
+	}
+}
+#endif // ifndef _STR_H_
+
+// these functions are defined in our own stdlib.c
+#ifndef _STDLIB_H_
+#ifdef FLOAT
+/// @brief Raise number to integer exponent
+/// @param[in] num: number
+/// @param[in] exp:  integer exponent
+/// @return num ** exp
+MEMSPACE 
+double iexp(double num, int exp)
+{
+	double a;
+	if(exp==0)
+		return(1.0);
+	if(exp <0) 
+	{
+		a = 1.0 / num;
+		exp = 1 - exp;
+	}
+	else 
+	{
+		exp = exp - 1;
+		a = num;
+	}
+	while(exp) 
+	{
+		if(exp & 0x01)
+			num *= a;
+		if(exp >>= 1)
+			a *= a;
+	}
+	return(num);
+}
+
+/// @brief Scale a number to 1.0 .. 9.99999...
+/// @param[in] num: number
+/// @param[out] *exp: interger power of 10 for scale factor
+/// @return scaled number
+MEMSPACE 
+double scale10(double num, int *exp)
+{
+	int exp10,exp2;
+	double scale;
+
+	if(!num)
+	{
+		*exp = 0;
+		return(0.0);
+	}
+	// extract exponent
+	frexp(num, &exp2);
+	// aproximate exponent in base 10
+	exp10 = ((double) exp2) / (double) 3.321928095;
+
+	// convert scale to 10.0**exp10
+	scale = iexp((double)10.0, exp10);
+
+	// remove scale
+	num /= scale;
+
+	// correct for over/under
+	while(num >= (double)10.0) 
+	{
+		num /= (double) 10.0;
+		++exp10;
+	}
+	while(num < (double) 1.0) 
+	{
+		num *= (double) 10.0;
+		--exp10;
+	}
+
+	*exp = exp10;
+	return(num);
+}
+#endif	// ifdef FLOAT
+#endif	// ifndef _STDLIB_H_
+
+// ======================================================================
+// end of support functions
+// ======================================================================
 
 /// @brief Convert number to ASCII
 /// returns size of string after conversion
@@ -58,11 +219,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ///            NOT counted as part of prec length (just like printf)
 /// @return long value
 MEMSPACE 
-int t_itoa(long num, uint8_t *str, int max, int prec, int sign)
+int p_itoa(long num, char *str, int max, int prec, int sign)
 {
 		int digit,sign_ch;
 		int ind;
-        uint8_t *save = str;
+        char *save = str;
 
 		*str = 0;
 
@@ -126,7 +287,7 @@ int t_itoa(long num, uint8_t *str, int max, int prec, int sign)
 /// @brief Convert number to ASCII
 /// Like itoa but can support leading '+/-/ ' or unsigned and zero padding
 /// Note: It is allowed to have more digits converted then prec defines
-/// @param[in] num: number
+/// @param[in] num: unsigned number
 /// @param[out] *str: string
 /// @param[in] max: maximum length or string
 /// @param[in] radix:  Radix may only be 2,8,16
@@ -135,11 +296,11 @@ int t_itoa(long num, uint8_t *str, int max, int prec, int sign)
 /// @return returns size of string
 
 MEMSPACE 
-int t_ntoa(unsigned long num, uint8_t *str, int max, int radix, int prec)
+int p_ntoa(unsigned long num, char *str, int max, int radix, int prec)
 {
-		uint8_t mask,shift,digit;
+		unsigned int mask,shift,digit;
 		int ind;
-        uint8_t *save = str;
+        char *save = str;
 
 		*str = 0;
 
@@ -189,80 +350,6 @@ int t_ntoa(unsigned long num, uint8_t *str, int max, int radix, int prec)
 }
 
 
-#ifdef FLOAT
-
-/// @brief Raise number to exponent power (exponent is integer)
-/// @param[in] num: number
-/// @param[in] exp:  interger exponent
-/// @return num ** exp
-MEMSPACE 
-static double t_iexp(double num, int exp)
-{
-	double a;
-	if(exp==0)
-		return(1.0);
-	if(exp <0) 
-	{
-		a = 1.0 / num;
-		exp = 1 - exp;
-	}
-	else 
-	{
-		exp = exp - 1;
-		a = num;
-	}
-	while(exp) 
-	{
-		if(exp & 0x01)
-			num *= a;
-		if(exp >>= 1)
-			a *= a;
-	}
-	return(num);
-}
-
-/// @brief Scale a number to 1.0 .. 9.99999...
-/// @param[in] num: number
-/// @param[out] *exp: interger power of 10 for scale factor
-/// @return scaled number
-MEMSPACE 
-static double t_scale10(double num, int *exp)
-{
-	int exp10,exp2;
-	double scale;
-
-	if(!num)
-	{
-		*exp = 0;
-		return(0.0);
-	}
-	// extract exponent
-	frexp(num, &exp2);
-	// aproximate exponent in base 10
-	exp10 = ((double) exp2) / (double) 3.321928095;
-
-	// convert scale to 10.0**exp10
-	scale = t_iexp((double)10.0, exp10);
-
-	// remove scale
-	num /= scale;
-
-	// correct for over/under
-	while(num >= (double)10.0) 
-	{
-		num /= (double) 10.0;
-		++exp10;
-	}
-	while(num < (double) 1.0) 
-	{
-		num *= (double) 10.0;
-		--exp10;
-	}
-
-	*exp = exp10;
-	return(num);
-}
-#endif
 
 #ifdef FLOAT
 /// @brief float to ASCII 
@@ -273,7 +360,7 @@ static double t_scale10(double num, int *exp)
 /// @param[in] sign: sign
 /// @return size of string
 MEMSPACE 
-int t_ftoa(double val, char *str, int intprec, int prec, int sign)
+int p_ftoa(double val, char *str, int intprec, int prec, int sign)
 {
 	char *save = str;
 	double intpart, fraction, round, scale;
@@ -304,11 +391,11 @@ int t_ftoa(double val, char *str, int intprec, int prec, int sign)
 	if( val )
 	{
 		// round number based on fraction prec
-		round = 5.0 / t_iexp(10.0, prec+1);
+		round = 5.0 / iexp(10.0, prec+1);
 		val += round;
 
 		// fast reduce val to range 1.0 > val >= 0.1, and return adjusted base 10 exponent
-		val = t_scale10(val,&exp10); /* 10.0 > val >= 1.0, val=val*10.0**exp */
+		val = scale10(val,&exp10); /* 10.0 > val >= 1.0, val=val*10.0**exp */
 		if(val >= 1.0) 
 		{			/* CARRY ? */
 			val /= 10.0;
@@ -351,22 +438,6 @@ int t_ftoa(double val, char *str, int intprec, int prec, int sign)
 			--prec;
 		}
 	}
-
-// FIXME- use t_itoa - scale number and limit digits
-#ifdef JUNK
-	fraction = modf(val, &intpart);
-	num = intpart;
-	count = t_itoa(num, str, 64, intprec, 0);
-	str += count;
-	*str++ = '.';
-	fraction *= t_iexp(10.0, prec);
-	fraction += .5;
-	num = fraction;
-// FIXME - do not use ITOA
-	count = t_itoa(fraction, str, 64, prec, 0);
-	str += count;
-#endif
-
 	*str = 0;
 	return(strlen(save));
 }
@@ -379,7 +450,7 @@ int t_ftoa(double val, char *str, int intprec, int prec, int sign)
 /// @param[in] sign: sign
 /// @return size of string
 MEMSPACE 
-int t_etoa(double x,char *str, int prec, int sign)
+int p_etoa(double x,char *str, int prec, int sign)
 {
     double scale;   	/* scale factor */
     int i,          /* counter */
@@ -480,7 +551,7 @@ int t_etoa(double x,char *str, int prec, int sign)
 // left string is left aligned
 //_puts(buff, width, count, left);
 MEMSPACE
-static void _puts_pad(printf_t *fn, char *s, int width, int count, int left)
+void _puts_pad(printf_t *fn, char *s, int width, int count, int left)
 {
 	int size = 0;
 	int pad = 0;
@@ -706,32 +777,32 @@ void _printf_fn(printf_t *fn, const char *fmt, va_list va)
 		{
 #ifdef FLOAT
 		case 'f':
-			count = t_ftoa(dnum, buff, intprec, prec, sign);
+			count = p_ftoa(dnum, buff, intprec, prec, sign);
 			_puts_pad(fn,buff, width, count, left);
 			break;
 		case 'e':
-			count = t_etoa(dnum, buff, prec, sign);
+			count = p_etoa(dnum, buff, prec, sign);
 			_puts_pad(fn,buff, width, count, left);
 			break;
 #endif
-//int t_itoa(unsigned long num, uint8_t *str, int prec, int sign)
+//int p_itoa(unsigned long num, char *str, int prec, int sign)
 		case 'u':
 		case 'U':
-			count = t_itoa(num, buff, sizeof(buff), prec, 0);
+			count = p_itoa(num, buff, sizeof(buff), prec, 0);
 			_puts_pad(fn,buff, width, count, left);
 			break;
-//int t_itoa(unsigned long num, uint8_t *str, int prec, int sign)
+//int p_itoa(unsigned long num, char *str, int prec, int sign)
 		case 'd':
 		case 'D':
 //printf("<%ld, width:%d, prec:%d, sizeof(buff):%d, left:%d>\n", num, width, prec, (int)sizeof(buff), left);
-			count = t_itoa(num, buff, sizeof(buff), prec, sign);
+			count = p_itoa(num, buff, sizeof(buff), prec, sign);
 //printf("[%s, width:%d, count:%d, left:%d]\n", buff, width, count, left);
 			_puts_pad(fn,buff, width, count, left);
 			break;
-//int t_t_ntoa(unsigned long num, uint8_t *str, int radix, int pad)
+//int p_ntoa(unsigned long num, char *str, int radix, int pad)
 		case 'o':
 		case 'O':
-			count = t_ntoa(num, buff, sizeof(buff), 8, prec);
+			count = p_ntoa(num, buff, sizeof(buff), 8, prec);
 			_puts_pad(fn,buff, width, count, left);
 			break;
 		case 'x':
@@ -739,14 +810,14 @@ void _printf_fn(printf_t *fn, const char *fmt, va_list va)
 		// pointers
 		case 'p':
 		case 'P':
-			count = t_ntoa(num, buff, sizeof(buff), 16, prec);
+			count = p_ntoa(num, buff, sizeof(buff), 16, prec);
 			if(spec == 'X' || spec == 'P')
 				strupper(buff);
 			_puts_pad(fn,buff, width, count, left);
 			break;
 		case 'b':
 		case 'B':
-			count = t_ntoa(num, buff, sizeof(buff), 2, prec);
+			count = p_ntoa(num, buff, sizeof(buff), 2, prec);
 			_puts_pad(fn,buff, width, count, left);
 			break;
 		case 's':
@@ -791,7 +862,7 @@ void _printf_fn(printf_t *fn, const char *fmt, va_list va)
 /// @param[in] *p: structure with pointers and buffer to be written to
 /// @param[in] ch: character to place in buffer
 /// @return void
-static void _putc_buffer_fn(struct _printf_t *p, char ch)
+void _putc_buffer_fn(struct _printf_t *p, char ch)
 {
 	char *str;
 	if (p->len )

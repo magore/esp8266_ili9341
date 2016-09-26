@@ -32,6 +32,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define ESP8266 1
 #define NO_STDIO
+#define FLOAT
 
 #define _GNU_SOURCE
 
@@ -45,6 +46,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // low level memory and flash reading code
 #include "str.h"
 #include "sys.h"
+#include "stdlib.h"
 
 #include <ip_addr.h>
 #include <espconn.h>
@@ -87,7 +89,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "timer.h"
 #include "time.h"
 
-#ifdef FATFS_TEST
+#ifdef FATFS_SUPPORT
 // FATFS
 #include "integer.h"
 #include "ffconf.h"
@@ -129,6 +131,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "bridge.h"
 #endif
 
+#ifdef ADF4351
+#include "adf4351.h"
+#endif
 // ram.c defines alternative safe functions
 #define free safefree
 #define calloc safecalloc

@@ -1,5 +1,5 @@
 /**
- @file debug.h
+ @file debug.c
 
  @brief Small printf user function
 
@@ -21,25 +21,43 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef _DEBUG_H_
-#define _DEBUG_H_
-#include <stdarg.h>
+#include "user_config.h"
 
-#ifdef PRINTF_TEST
-	#define MEMSPACE /* */
-	#include <stdio.h>
-	#include <stdlib.h>
-	typedef unsigned char uint8_t;
-	typedef signed char int8_t;
-	typedef unsigned short uint16_t;
-	typedef unsigned int uint32_t;
-	typedef int int32_t;
-#else
-	#include "user_config.h"
-	#include "printf.h"
-#endif
+#include "printf.h"
 
-/* debug.c */
-int uart0_printf ( const char *fmt , ...);
+/// @brief _uart0_fn low level function that writes a character with uart0har()
+/// @param[in] *p: structure with pointers to track number of bytes written
+/// @param[in] ch: character to write
+/// @return void
+static void _uart0_fn(struct _printf_t *p, char ch)
+{
+        p->size++;
+		uart_putc(0, ch);
+}
+   
+/// @brief printf function
+/// @param[in] format: printf forat string
+/// @param[in] ...: list of arguments
+/// @return size of printed string
+MEMSPACE
+int uart0_printf(const char *format, ...)
+{
+    int len;   
+    int i;
+    printf_t fn;
 
-#endif
+	va_list va;
+
+    fn.put = _uart0_fn;
+    fn.size = 0;
+   
+    va_start(va, format);
+    _printf_fn(&fn, format, va);
+    va_end(va);
+ 
+    len = fn.size;
+
+	//uart_tx_flush(0);
+
+    return len;
+}

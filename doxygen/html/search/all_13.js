@@ -1,11 +1,5 @@
 var searchData=
 [
-  ['t_5fetoa',['t_etoa',['../printf_8c.html#a81b5dc7281a404cfc4c8ee6e3da4d8da',1,'t_etoa(double x, char *str, int prec, int sign):&#160;printf.c'],['../printf_8h.html#a81b5dc7281a404cfc4c8ee6e3da4d8da',1,'t_etoa(double x, char *str, int prec, int sign):&#160;printf.c']]],
-  ['t_5fftoa',['t_ftoa',['../printf_8c.html#a93b64183a7db6800f8d49160351dbe3a',1,'t_ftoa(double val, char *str, int intprec, int prec, int sign):&#160;printf.c'],['../printf_8h.html#a93b64183a7db6800f8d49160351dbe3a',1,'t_ftoa(double val, char *str, int intprec, int prec, int sign):&#160;printf.c']]],
-  ['t_5fiexp',['t_iexp',['../printf_8c.html#ae517abe6b3eca804cfda72648f15be21',1,'t_iexp(double num, int exp):&#160;printf.c'],['../printf_8h.html#ae517abe6b3eca804cfda72648f15be21',1,'t_iexp(double num, int exp):&#160;printf.h']]],
-  ['t_5fitoa',['t_itoa',['../printf_8c.html#a2f4b30f6ffa8d7b04ede343a1bfdcbf5',1,'t_itoa(long num, uint8_t *str, int max, int prec, int sign):&#160;printf.c'],['../printf_8h.html#a2f4b30f6ffa8d7b04ede343a1bfdcbf5',1,'t_itoa(long num, uint8_t *str, int max, int prec, int sign):&#160;printf.c']]],
-  ['t_5fntoa',['t_ntoa',['../printf_8c.html#a39d7df31096f07eba5176fad5a2337f4',1,'t_ntoa(unsigned long num, uint8_t *str, int max, int radix, int prec):&#160;printf.c'],['../printf_8h.html#a39d7df31096f07eba5176fad5a2337f4',1,'t_ntoa(unsigned long num, uint8_t *str, int max, int radix, int prec):&#160;printf.c']]],
-  ['t_5fscale10',['t_scale10',['../printf_8c.html#af738e7ee5c3c5f91edf0f5baa51bb151',1,'t_scale10(double num, int *exp):&#160;printf.c'],['../printf_8h.html#af738e7ee5c3c5f91edf0f5baa51bb151',1,'t_scale10(double num, int *exp):&#160;printf.h']]],
   ['t_5fsscanf',['t_sscanf',['../scanf_8c.html#a380680332be176612ee4fd9c79b641f5',1,'t_sscanf(uint8_t *strp, uint8_t *fmt,...):&#160;scanf.c'],['../scanf_8h.html#a380680332be176612ee4fd9c79b641f5',1,'t_sscanf(uint8_t *strp, uint8_t *fmt,...):&#160;scanf.c']]],
   ['tabstop',['tabstop',['../structwindow.html#a88d2836d45dd428d8fadfd703f0f965f',1,'window']]],
   ['tchar',['TCHAR',['../ff_8h.html#a03bdb8ce5895c7e261aadc2529637546',1,'ff.h']]],

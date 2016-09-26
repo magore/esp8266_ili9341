@@ -21,22 +21,18 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+// only used when testing standalone on linux
 #ifdef PRINTF_TEST
 
-
-#define MEMSPACE /* */
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
+
 #include <stdarg.h>
+#include <stdint.h>
 #include <math.h>
-typedef unsigned char uint8_t;
-typedef signed char int8_t;
-typedef unsigned short uint16_t;
-typedef unsigned int uint32_t;
-typedef int int32_t;
 
 #include "printf.h"
-#include "sup.h"
 
 /// @brief _putc_fn low level function that writes a character with putchar()
 /// @param[in] *p: structure with pointers to track number of bytes written
@@ -44,15 +40,14 @@ typedef int int32_t;
 /// @return void
 static void _putc_fn(struct _printf_t *p, char ch)
 {
-        p->size++;
-        putchar(ch);
+	p->size++;
+	putchar(ch);
 }
 
 /// @brief printf function
 /// @param[in] fmt: printf forat string
 /// @param[in] va_list: vararg list or arguments
 /// @return size of printed string
-MEMSPACE
 int t_printf(const char *format, ...)
 {
     int len;
@@ -70,6 +65,21 @@ int t_printf(const char *format, ...)
     len = fn.size;
 
     return len;
+}
+
+/// @brief Convert ASCII string to number in a given base
+/// @param[in] str: string
+/// @param[in] base: radix
+/// @return long value
+/// @see strtol
+MEMSPACE
+long t_aton(char *str, int base)
+{
+    unsigned long num;
+    char *endptr;
+
+    num = strtol(str, &endptr, base);
+    return(num);
 }
 
 
@@ -293,15 +303,15 @@ int main(int argc, char *argv[])
 		printf("[%+020ld]\n", num);
 		sprintf(str,"%+020ld", num);
 
-		num2 = aton(str,10);
+		num2 = t_aton(str,10);
 		if(num2 != num)
 			printf("**:%ld\n",num2);
 
-		t_ntoa(num, str, sizeof(str), 16, 16);
+		p_ntoa(num, str, sizeof(str), 16, 16);
 		printf("[%s]\n",str);
-		t_ntoa(num, str, sizeof(str), 8, 22);
+		p_ntoa(num, str, sizeof(str), 8, 22);
 		printf("[%s]\n",str);
-		t_ntoa(num, str, sizeof(str), 2, 64);
+		p_ntoa(num, str, sizeof(str), 2, 64);
 		printf("[%s]\n",str);
 
 		printf("\n");
@@ -319,15 +329,15 @@ int main(int argc, char *argv[])
 		printf("[%+020ld]\n", num);
 
 		sprintf(str,"%+020ld", num);
-		num2 = aton(str,10);
+		num2 = t_aton(str,10);
 		if(num2 != num)
 			printf("***:%ld\n",num2);
 
-		t_ntoa(num, str, sizeof(str), 16, 16);
+		p_ntoa(num, str, sizeof(str), 16, 16);
 		printf("[%s]\n",str);
-		t_ntoa(num, str, sizeof(str), 8, 22);
+		p_ntoa(num, str, sizeof(str), 8, 22);
 		printf("[%s]\n",str);
-		t_ntoa(num, str, sizeof(str), 2, 64);
+		p_ntoa(num, str, sizeof(str), 2, 64);
 		printf("[%s]\n",str);
 
 		printf("\n");
@@ -342,15 +352,15 @@ int main(int argc, char *argv[])
 		printf("[%+020ld]\n", num);
 
 		sprintf(str,"%+020ld", num);
-		num2 = aton(str,10);
+		num2 = t_aton(str,10);
 		if(num2 != num)
 			printf("***:%ld\n",num2);
 
-		t_ntoa(num, str, sizeof(str), 16, 16);
+		p_ntoa(num, str, sizeof(str), 16, 16);
 		printf("[%s]\n",str);
-		t_ntoa(num, str, sizeof(str), 8, 22);
+		p_ntoa(num, str, sizeof(str), 8, 22);
 		printf("[%s]\n",str);
-		t_ntoa(num, str, sizeof(str), 2, 64);
+		p_ntoa(num, str, sizeof(str), 2, 64);
 		printf("[%s]\n",str);
 
 		printf("\n");
@@ -371,15 +381,15 @@ int main(int argc, char *argv[])
 	printf("[%+020ld]\n", num);
 	sprintf(str,"%+020ld", num);
 
-	num2 = aton(str,10);
+	num2 = t_aton(str,10);
 	if(num2 != num)
 		printf("***:%ld\n",num2);
 
-	t_ntoa(num, str, sizeof(str), 16, 0);
+	p_ntoa(num, str, sizeof(str), 16, 0);
 	printf("[%s]\n",str);
-	t_ntoa(num, str, sizeof(str), 8, 0);
+	p_ntoa(num, str, sizeof(str), 8, 0);
 	printf("[%s]\n",str);
-	t_ntoa(num, str, sizeof(str), 2, 0);
+	p_ntoa(num, str, sizeof(str), 2, 0);
 	printf("[%s]\n",str);
 
 	printf("\n");
@@ -393,15 +403,15 @@ int main(int argc, char *argv[])
 	printf("[%020lu]\n", num);
 	sprintf(str,"%+020ld", num);
 
-	num2 = aton(str,10);
+	num2 = t_aton(str,10);
 	if(num2 != num)
 		printf("***:%ld\n",num2);
 
-	t_ntoa(num, str, sizeof(str), 16, 0);
+	p_ntoa(num, str, sizeof(str), 16, 0);
 	printf("[%s]\n",str);
-	t_ntoa(num, str, sizeof(str), 8, 0);
+	p_ntoa(num, str, sizeof(str), 8, 0);
 	printf("[%s]\n",str);
-	t_ntoa(num, str, sizeof(str), 2, 0);
+	p_ntoa(num, str, sizeof(str), 2, 0);
 	printf("[%s]\n",str);
 
 	printf("\n");
@@ -413,15 +423,15 @@ int main(int argc, char *argv[])
 	printf("[%+020ld]\n", num);
 	sprintf(str,"%+020ld", num);
 
-	num2 = aton(str,10);
+	num2 = t_aton(str,10);
 	if(num2 != num)
 		printf("***:%ld\n",num2);
 
-	t_ntoa(num, str, sizeof(str), 16, 0);
+	p_ntoa(num, str, sizeof(str), 16, 0);
 	printf("[%s]\n",str);
-	t_ntoa(num, str, sizeof(str), 8, 0);
+	p_ntoa(num, str, sizeof(str), 8, 0);
 	printf("[%s]\n",str);
-	t_ntoa(num, str, sizeof(str), 2, 0);
+	p_ntoa(num, str, sizeof(str), 2, 0);
 	printf("[%s]\n",str);
 
 	printf("\n");
@@ -433,15 +443,15 @@ int main(int argc, char *argv[])
 	printf("[%+ld]\n", num);
 	sprintf(str,"%+020ld", num);
 
-	num2 = aton(str,10);
+	num2 = t_aton(str,10);
 	if(num2 != num)
 		printf("***:%ld\n",num2);
 
-	t_ntoa(num, str, sizeof(str), 16, 0);
+	p_ntoa(num, str, sizeof(str), 16, 0);
 	printf("[%s]\n",str);
-	t_ntoa(num, str, sizeof(str), 8, 0);
+	p_ntoa(num, str, sizeof(str), 8, 0);
 	printf("[%s]\n",str);
-	t_ntoa(num, str, sizeof(str), 2, 0);
+	p_ntoa(num, str, sizeof(str), 2, 0);
 	printf("[%s]\n",str);
 
 	printf("\n");

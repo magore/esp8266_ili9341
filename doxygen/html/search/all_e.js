@@ -19,7 +19,7 @@ var searchData=
   ['open',['open',['../posix_8c.html#a3e5e6f96d36b5cdacfaf6b3976cd5af2',1,'open(const char *pathname, int flags):&#160;posix.c'],['../posix_8h.html#a3e5e6f96d36b5cdacfaf6b3976cd5af2',1,'open(const char *pathname, int flags):&#160;posix.c']]],
   ['optimistic_5fyield',['optimistic_yield',['../user__task_8c.html#a863d8bc03e69f2efee6042bcec7b456b',1,'user_task.c']]],
   ['optimistic_5fyield_5ftime_5fus',['OPTIMISTIC_YIELD_TIME_US',['../user__task_8c.html#a3be2bcf04639d2940e4d48afcde62119',1,'user_task.c']]],
-  ['orighandler',['orighandler',['../cal__dex_8c.html#a2c7db7064dd6e7dc2e87f2cef90989ed',1,'cal_dex.c']]],
+  ['orighandler',['orighandler',['../cal__dex_8c.html#a5196a11f05e9c409acfce39d5a598d48',1,'cal_dex.c']]],
   ['os_5fsnprintf',['os_snprintf',['../ets__sys_8h.html#ae27fa0bb797a88d1e66abff3654dc228',1,'ets_sys.h']]],
   ['out',['out',['../structqueue__t.html#a8f6e1c623d2ceed398a71a0aab93b0fa',1,'queue_t']]]
 ];

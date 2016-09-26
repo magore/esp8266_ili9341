@@ -56,6 +56,18 @@ typedef struct
 #define TFT_CS_ACTIVE   GPIO_OUTPUT_SET(15, 0)
 #define TFT_CS_DEACTIVE GPIO_OUTPUT_SET(15, 1)
 
+// Display reset
+// Alternative we just tie this to power on reset line and free up the line
+#if 0
+	#define TFT_RST_INIT     PIN_FUNC_SELECT(PERIPHS_IO_MUX_GPIO0_U, FUNC_GPIO0); TFT_RST_DEACTIVE
+	#define TFT_RST_ACTIVE    GPIO_OUTPUT_SET(0, 0)
+	#define TFT_RST_DEACTIVE  GPIO_OUTPUT_SET(0, 1)
+#else
+	#define TFT_RST_INIT     
+	#define TFT_RST_ACTIVE
+	#define TFT_RST_DEACTIVE
+#endif
+
 #ifndef SWAP45
 #define TFT_INIT        PIN_FUNC_SELECT(PERIPHS_IO_MUX_GPIO4_U, FUNC_GPIO4); TFT_DATA
 #define TFT_DATA        GPIO_OUTPUT_SET(4, 1)
@@ -66,15 +78,6 @@ typedef struct
 #define TFT_COMMAND     GPIO_OUTPUT_SET(5, 0)
 #endif
 
-#if 0
-	#define TFT_RST_INIT     PIN_FUNC_SELECT(PERIPHS_IO_MUX_GPIO0_U, FUNC_GPIO0); TFT_RST_DEACTIVE
-	#define TFT_RST_ACTIVE    GPIO_OUTPUT_SET(0, 0)
-	#define TFT_RST_DEACTIVE  GPIO_OUTPUT_SET(0, 1)
-#else
-	#define TFT_RST_INIT     
-	#define TFT_RST_ACTIVE
-	#define TFT_RST_DEACTIVE
-#endif
 
 #define TFT_W (MAX_TFT_X-MIN_TFT_X+1)
 #define TFT_H (MAX_TFT_Y-MIN_TFT_Y+1)

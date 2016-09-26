@@ -1,6 +1,7 @@
 var searchData=
 [
   ['hexd',['hexd',['../str_8c.html#a8ebead37e3b32237367ee7951e4bf7b9',1,'hexd(char c):&#160;str.c'],['../str_8h.html#a8ebead37e3b32237367ee7951e4bf7b9',1,'hexd(char c):&#160;str.c']]],
+  ['hightask',['HighTask',['../user__main_8c.html#aa4e3c2b96eb11d8f9cd7a26562652ca0',1,'user_main.c']]],
   ['hspi_5fconfig',['hspi_config',['../hspi_8c.html#a34e8f95d18d9550c20576b48803d6785',1,'hspi.c']]],
   ['hspi_5fcs_5fdisable',['hspi_cs_disable',['../hspi_8c.html#ad51b63e020ab17a48b8b4b9d8ba00059',1,'hspi_cs_disable(uint8_t cs):&#160;hspi.c'],['../hspi_8h.html#ad51b63e020ab17a48b8b4b9d8ba00059',1,'hspi_cs_disable(uint8_t cs):&#160;hspi.c']]],
   ['hspi_5fcs_5fenable',['hspi_cs_enable',['../hspi_8c.html#a0047584af8bcc7c6d1fa924277a53bef',1,'hspi_cs_enable(uint8_t cs):&#160;hspi.c'],['../hspi_8h.html#a0047584af8bcc7c6d1fa924277a53bef',1,'hspi_cs_enable(uint8_t cs):&#160;hspi.c']]],

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['point',['point',['../structpoint.html',1,'']]],
-  ['putbuff',['putbuff',['../structputbuff.html',1,'']]]
+  ['mem_5ft',['mem_t',['../structmem__t.html',1,'']]],
+  ['mime_5ft',['mime_t',['../structmime__t.html',1,'']]]
 ];

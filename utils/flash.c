@@ -22,7 +22,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 
-#include <user_config.h>
+#ifdef ESP8266
+	#include <user_config.h>
+#endif
+#include <stdint.h>
 #include "flash.h"
 
 #define USE_CACHE

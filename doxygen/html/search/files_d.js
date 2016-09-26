@@ -1,13 +1,16 @@
 var searchData=
 [
-  ['test_5fprintf_2ec',['test_printf.c',['../test__printf_8c.html',1,'']]],
-  ['testflash_2ec',['testflash.c',['../testflash_8c.html',1,'']]],
-  ['tft_5fprintf_2ec',['tft_printf.c',['../tft__printf_8c.html',1,'']]],
-  ['tft_5fprintf_2eh',['tft_printf.h',['../tft__printf_8h.html',1,'']]],
-  ['time_2ec',['time.c',['../time_8c.html',1,'']]],
-  ['time_2eh',['time.h',['../time_8h.html',1,'']]],
-  ['timer_2ec',['timer.c',['../timer_8c.html',1,'']]],
-  ['timer_2eh',['timer.h',['../timer_8h.html',1,'']]],
-  ['timer_5fhal_2ec',['timer_hal.c',['../timer__hal_8c.html',1,'']]],
-  ['timer_5fhal_2eh',['timer_hal.h',['../timer__hal_8h.html',1,'']]]
+  ['scanf_2ec',['scanf.c',['../scanf_8c.html',1,'']]],
+  ['scanf_2eh',['scanf.h',['../scanf_8h.html',1,'']]],
+  ['send_2ec',['send.c',['../send_8c.html',1,'']]],
+  ['server_2ec',['server.c',['../server_8c.html',1,'']]],
+  ['server_2eh',['server.h',['../server_8h.html',1,'']]],
+  ['spi_5fregister_2eh',['spi_register.h',['../spi__register_8h.html',1,'']]],
+  ['stdlib_2ec',['stdlib.c',['../stdlib_8c.html',1,'']]],
+  ['stdlib_2eh',['stdlib.h',['../stdlib_8h.html',1,'']]],
+  ['str_2ec',['str.c',['../str_8c.html',1,'']]],
+  ['str_2eh',['str.h',['../str_8h.html',1,'']]],
+  ['sys_2ec',['sys.c',['../sys_8c.html',1,'']]],
+  ['sys_2eh',['sys.h',['../sys_8h.html',1,'']]],
+  ['syscall_2ec',['syscall.c',['../syscall_8c.html',1,'']]]
 ];

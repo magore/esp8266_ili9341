@@ -1,13 +1,16 @@
 var searchData=
 [
+  ['s',['S',['../user__main_8c.html#aa6a210803a601a3b71e9d6d66f1f387d',1,'user_main.c']]],
   ['sar',['sar',['../structex__regs.html#a8fd11e49ee65ba875a04ab28789cf702',1,'ex_regs']]],
   ['sclust',['sclust',['../structFIL.html#ad308b74c8d6975c6a9c30d90b4124c40',1,'FIL::sclust()'],['../structDIR.html#a9212af5877b94d790dd3bab3aa320994',1,'DIR::sclust()']]],
+  ['seconds',['seconds',['../user__main_8c.html#ae112d79896ed83ac05e155da60e85523',1,'user_main.c']]],
   ['sect',['sect',['../structDIR.html#ad01fcc812ed0dad11a593574336adc9e',1,'DIR']]],
   ['send',['send',['../structrwbuf__t.html#a279490994b6576ad00900254a8c07a89',1,'rwbuf_t']]],
   ['setup_5fdone',['setup_done',['../user__task_8c.html#ac27ff692005ec468df1da71ae8840396',1,'user_task.c']]],
   ['sig',['sig',['../structETSEventTag.html#ad1d6c1080c28369b619311d17902b744',1,'ETSEventTag']]],
+  ['signal_5floop',['signal_loop',['../user__main_8c.html#a4b92bd10367d44d30a6d932d9f13b79b',1,'user_main.c']]],
   ['size',['size',['../struct__printf__t.html#a38c7a430cec9b063bf6df7a100d3abaa',1,'_printf_t::size()'],['../structqueue__t.html#a83a13b888f9d4ef127d706559818b779',1,'queue_t::size()'],['../structmem__t.html#ab04d46fb2982c9a26a26244286c1b33b',1,'mem_t::size()']]],
-  ['skip',['skip',['../struct__fontc.html#a44c94e91afa006cb2ffe55a99b3e2d3c',1,'_fontc']]],
+  ['skip',['skip',['../struct__fontc.html#a44c94e91afa006cb2ffe55a99b3e2d3c',1,'_fontc::skip()'],['../user__main_8c.html#a13f77b252237844d7b8b6e3c3047fe50',1,'skip():&#160;user_main.c']]],
   ['slant',['SLANT',['../struct__fontinfo.html#aff56d18df3b46ec10896d15ad3a2e164',1,'_fontinfo']]],
   ['sp_5fret',['sp_ret',['../structcont__.html#a2f886d4182bed43aaf66d3a55a2d23b7',1,'cont_']]],
   ['sp_5fyield',['sp_yield',['../structcont__.html#a59ce8d64c25ff1d02ae24c61080bbf7c',1,'cont_']]],

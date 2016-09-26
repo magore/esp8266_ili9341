@@ -1,0 +1,15 @@
+#!/bin/bash
+#
+
+. /opt/Espressif/esp-open-sdk/setpath
+
+if make flash
+then
+	echo ====================================================
+	echo "CTRL a CTRL ] to exit"
+	echo
+	echo ====================================================
+	miniterm.py --parity N -e --rts 0 --dtr 0 /dev/ttyUSB0 115200
+else
+	echo make failed
+fi

@@ -24,6 +24,7 @@
 
 #ifndef _FLASH_H_
 #define _FLASH_H_
+#include <stdint.h>
 
 /* flash.c */
 uint8_t read_flash8 ( uint8_t *p );

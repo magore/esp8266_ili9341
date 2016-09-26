@@ -1,0 +1,113 @@
+\hypertarget{structr1__t}{}\section{r1\+\_\+t Struct Reference}
+\label{structr1__t}\index{r1\+\_\+t@{r1\+\_\+t}}
+
+
+A\+D\+F4351 R1 Phase Adjust bit \mbox{[}D\+B28\mbox{]} \mbox{[}D\+B28\mbox{]} = 1, Adjust output Do not perform V\+CO band selection or phase resync when R0 updated. Only use when frequency adjustments will be under 1\+M\+Hz! \mbox{[}D\+B28\mbox{]} = 0, Perform V\+CO band selection and phase resync when R0 updated. (only if phase resync is enabled in R3 \mbox{[}D\+B16\+:D\+B15\mbox{]})  
+
+
+
+
+{\ttfamily \#include $<$adf4351.\+h$>$}
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} \hyperlink{structr1__t_a5335bbd53d06ad7afb879d919033404c}{Control\+Bits}\+:3
+\item 
+\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} \hyperlink{structr1__t_a9ea14fcf64bbacfbcfa5afa992c0b87d}{M\+OD}\+:12
+\item 
+\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} \hyperlink{structr1__t_a08f87626a225a1256a9c45bb0d42af8a}{Phase}\+:12
+\item 
+\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} \hyperlink{structr1__t_a9ee672a7fdd3a2d60591d43557feb390}{Prescaler}\+:1
+\item 
+\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} \hyperlink{structr1__t_a339b676bde09218794b49904eb456a38}{Phase\+Adjust}\+:1
+\item 
+\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} \hyperlink{structr1__t_a0ce8c11e3227892e5d9afcde148d9300}{res0L}\+:3
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A\+D\+F4351 R1 Phase Adjust bit \mbox{[}D\+B28\mbox{]} \mbox{[}D\+B28\mbox{]} = 1, Adjust output Do not perform V\+CO band selection or phase resync when R0 updated. Only use when frequency adjustments will be under 1\+M\+Hz! \mbox{[}D\+B28\mbox{]} = 0, Perform V\+CO band selection and phase resync when R0 updated. (only if phase resync is enabled in R3 \mbox{[}D\+B16\+:D\+B15\mbox{]}) 
+
+Prescaler bit \mbox{[}D\+B27\mbox{]} \mbox{[}D\+B27\mbox{]} = 1, prescaler = 8/9, min N is 75 \mbox{[}D\+B27\mbox{]} = 0, prescaler = 4/5, min N is 23, Max V\+CO = 3.\+6\+G\+Hz
+
+Phase Value 12bits \mbox{[}D\+B26\+:D\+B15\mbox{]} RF output phase from 0° to 360° with resolution 360°/\+M\+OD Must be $<$ M\+OD
+
+Mudulus (M\+OD) 12bits (Bits\mbox{[}D\+B14\+:D\+B3\mbox{]}) Ratio of the P\+FD frequency to the channel step resolution on RF out. 
+
+Definition at line 86 of file adf4351.\+h.
+
+
+
+\subsection{Field Documentation}
+\index{r1\+\_\+t@{r1\+\_\+t}!Control\+Bits@{Control\+Bits}}
+\index{Control\+Bits@{Control\+Bits}!r1\+\_\+t@{r1\+\_\+t}}
+\subsubsection[{\texorpdfstring{Control\+Bits}{ControlBits}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint32\+\_\+t} r1\+\_\+t\+::\+Control\+Bits}\hypertarget{structr1__t_a5335bbd53d06ad7afb879d919033404c}{}\label{structr1__t_a5335bbd53d06ad7afb879d919033404c}
+bit\+: 0.. 2 Control bits 
+
+Definition at line 88 of file adf4351.\+h.
+
+
+
+Referenced by A\+D\+F4351\+\_\+\+Init().
+
+\index{r1\+\_\+t@{r1\+\_\+t}!M\+OD@{M\+OD}}
+\index{M\+OD@{M\+OD}!r1\+\_\+t@{r1\+\_\+t}}
+\subsubsection[{\texorpdfstring{M\+OD}{MOD}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint32\+\_\+t} r1\+\_\+t\+::\+M\+OD}\hypertarget{structr1__t_a9ea14fcf64bbacfbcfa5afa992c0b87d}{}\label{structr1__t_a9ea14fcf64bbacfbcfa5afa992c0b87d}
+bit\+: 3..14 12bit modulus value 
+
+Definition at line 89 of file adf4351.\+h.
+
+
+
+Referenced by A\+D\+F4351\+\_\+\+Config(), A\+D\+F4351\+\_\+dump\+\_\+registers(), A\+D\+F4351\+\_\+\+Get\+Reg32(), and A\+D\+F4351\+\_\+\+Init().
+
+\index{r1\+\_\+t@{r1\+\_\+t}!Phase@{Phase}}
+\index{Phase@{Phase}!r1\+\_\+t@{r1\+\_\+t}}
+\subsubsection[{\texorpdfstring{Phase}{Phase}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint32\+\_\+t} r1\+\_\+t\+::\+Phase}\hypertarget{structr1__t_a08f87626a225a1256a9c45bb0d42af8a}{}\label{structr1__t_a08f87626a225a1256a9c45bb0d42af8a}
+bit\+: 15..26 12bit phase value 
+
+Definition at line 90 of file adf4351.\+h.
+
+
+
+Referenced by A\+D\+F4351\+\_\+dump\+\_\+registers(), A\+D\+F4351\+\_\+\+Get\+Reg32(), and A\+D\+F4351\+\_\+\+Init().
+
+\index{r1\+\_\+t@{r1\+\_\+t}!Phase\+Adjust@{Phase\+Adjust}}
+\index{Phase\+Adjust@{Phase\+Adjust}!r1\+\_\+t@{r1\+\_\+t}}
+\subsubsection[{\texorpdfstring{Phase\+Adjust}{PhaseAdjust}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint32\+\_\+t} r1\+\_\+t\+::\+Phase\+Adjust}\hypertarget{structr1__t_a339b676bde09218794b49904eb456a38}{}\label{structr1__t_a339b676bde09218794b49904eb456a38}
+bit\+: 28 phase adjust 
+
+Definition at line 92 of file adf4351.\+h.
+
+
+
+Referenced by A\+D\+F4351\+\_\+dump\+\_\+registers(), A\+D\+F4351\+\_\+\+Get\+Reg32(), and A\+D\+F4351\+\_\+\+Init().
+
+\index{r1\+\_\+t@{r1\+\_\+t}!Prescaler@{Prescaler}}
+\index{Prescaler@{Prescaler}!r1\+\_\+t@{r1\+\_\+t}}
+\subsubsection[{\texorpdfstring{Prescaler}{Prescaler}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint32\+\_\+t} r1\+\_\+t\+::\+Prescaler}\hypertarget{structr1__t_a9ee672a7fdd3a2d60591d43557feb390}{}\label{structr1__t_a9ee672a7fdd3a2d60591d43557feb390}
+bit\+: 27 prescaler 
+
+Definition at line 91 of file adf4351.\+h.
+
+
+
+Referenced by A\+D\+F4351\+\_\+\+Config(), A\+D\+F4351\+\_\+dump\+\_\+registers(), A\+D\+F4351\+\_\+\+Get\+Reg32(), and A\+D\+F4351\+\_\+\+Init().
+
+\index{r1\+\_\+t@{r1\+\_\+t}!res0L@{res0L}}
+\index{res0L@{res0L}!r1\+\_\+t@{r1\+\_\+t}}
+\subsubsection[{\texorpdfstring{res0L}{res0L}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint32\+\_\+t} r1\+\_\+t\+::res0L}\hypertarget{structr1__t_a0ce8c11e3227892e5d9afcde148d9300}{}\label{structr1__t_a0ce8c11e3227892e5d9afcde148d9300}
+bit\+: 29..31 reserved 
+
+Definition at line 93 of file adf4351.\+h.
+
+
+
+Referenced by A\+D\+F4351\+\_\+\+Init().
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+adf4351/\hyperlink{adf4351_8h}{adf4351.\+h}\end{DoxyCompactItemize}

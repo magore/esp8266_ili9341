@@ -31,5 +31,9 @@ var searchData=
   ['_5ftext_5fend',['_text_end',['../cal__dex_8c.html#af0ad9d4bf681198482b41f2cc86f0f8b',1,'cal_dex.c']]],
   ['_5ftext_5fstart',['_text_start',['../cal__dex_8c.html#ac66534749fb69896f1a473745b07aff8',1,'cal_dex.c']]],
   ['_5fts_5fto_5fstr',['_ts_to_str',['../timer_8c.html#a3b37602023ba3cdbbe1394f43abbef2c',1,'timer.c']]],
-  ['_5fwinbottom',['_winbottom',['../user__main_8c.html#ab18ad328fa194c2bbe0fb9573c8180b3',1,'user_main.c']]]
+  ['_5fwinbottom',['_winbottom',['../user__main_8c.html#ab18ad328fa194c2bbe0fb9573c8180b3',1,'user_main.c']]],
+  ['_5fwincube',['_wincube',['../user__main_8c.html#a866c81e27316302aaaedac093dd7d5ed',1,'user_main.c']]],
+  ['_5fwinearth',['_winearth',['../user__main_8c.html#a90c65a7f0b794cb74aed36afadd4f75e',1,'user_main.c']]],
+  ['_5fwinmsg',['_winmsg',['../user__main_8c.html#a40f0738f31dc022f067c98e9062f016b',1,'user_main.c']]],
+  ['_5fwintop',['_wintop',['../user__main_8c.html#afe7500eafa400fd42fff47d3cc09f7c6',1,'user_main.c']]]
 ];

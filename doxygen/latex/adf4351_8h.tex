@@ -1,0 +1,738 @@
+\hypertarget{adf4351_8h}{}\section{adf4351/adf4351.h File Reference}
+\label{adf4351_8h}\index{adf4351/adf4351.\+h@{adf4351/adf4351.\+h}}
+{\ttfamily \#include $<$stdint.\+h$>$}\\*
+{\ttfamily \#include $<$math.\+h$>$}\\*
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structr0__t}{r0\+\_\+t}
+\begin{DoxyCompactList}\small\item\em A\+D\+F4351 R0. \end{DoxyCompactList}\item 
+struct \hyperlink{structr1__t}{r1\+\_\+t}
+\begin{DoxyCompactList}\small\item\em A\+D\+F4351 R1 Phase Adjust bit \mbox{[}D\+B28\mbox{]} \mbox{[}D\+B28\mbox{]} = 1, Adjust output Do not perform V\+CO band selection or phase resync when R0 updated. Only use when frequency adjustments will be under 1\+M\+Hz! \mbox{[}D\+B28\mbox{]} = 0, Perform V\+CO band selection and phase resync when R0 updated. (only if phase resync is enabled in R3 \mbox{[}D\+B16\+:D\+B15\mbox{]}) \end{DoxyCompactList}\item 
+struct \hyperlink{structr2__t}{r2\+\_\+t}
+\begin{DoxyCompactList}\small\item\em A\+D\+F4351 R2 structure Noise Mode 2bits \mbox{[}D\+B30\+:D\+B29\mbox{]} (Noise\+Spure\+Mode) The noise mode optimizes either improved spurious or improved phase noise. \end{DoxyCompactList}\item 
+struct \hyperlink{structr3__t}{r3\+\_\+t}
+\begin{DoxyCompactList}\small\item\em A\+D\+F4351 R3 structure Band Select Clock Mode \mbox{[}D\+B23\mbox{]} (B\+S\+CM) \mbox{[}D\+B23\mbox{]} = 1, use if you need fast band selection Suitable for P\+FD frequencies $>$ 125k\+Hz. Keep band select clock divider $<$= 254. \mbox{[}D\+B23\mbox{]} = 0, use if P\+DF frequencies are $<$ 125k\+Hz. \end{DoxyCompactList}\item 
+struct \hyperlink{structr4__t}{r4\+\_\+t}
+\begin{DoxyCompactList}\small\item\em A\+D\+F4351 R4 structure. \end{DoxyCompactList}\item 
+struct \hyperlink{structr5__t}{r5\+\_\+t}
+\begin{DoxyCompactList}\small\item\em A\+D\+F4351 R5 structure Lock Detect Pin Operation \mbox{[}D\+B23\+:22\mbox{]} (L\+D\+Pin\+Mode) \mbox{[}D\+B23\+:22\mbox{]} 00 = L\+OW \mbox{[}D\+B23\+:22\mbox{]} 01 = Digital Lock Detect \mbox{[}D\+B23\+:22\mbox{]} 10 = L\+OW \mbox{[}D\+B23\+:22\mbox{]} 11 = H\+I\+GH. \end{DoxyCompactList}\item 
+struct \hyperlink{structadf4351__regs__t}{adf4351\+\_\+regs\+\_\+t}
+\begin{DoxyCompactList}\small\item\em A\+D\+F4351 all registers type. \end{DoxyCompactList}\item 
+struct \hyperlink{structadf4351__err__t}{adf4351\+\_\+err\+\_\+t}
+\begin{DoxyCompactList}\small\item\em A\+D\+F4351 Error structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{adf4351_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}
+\item 
+\#define \hyperlink{adf4351_8h_ac5fb1f7862149cdf5cedd63bbf1f17a6}{A\+D\+F4351\+\_\+\+R\+F\+O\+U\+T\+\_\+\+M\+AX}~4400000000.\+0
+\item 
+\#define \hyperlink{adf4351_8h_a8d0aba37f839cc0c10f234af7e513d96}{A\+D\+F4351\+\_\+\+R\+F\+O\+U\+T\+\_\+\+M\+IN}~34375000.\+0
+\item 
+\#define \hyperlink{adf4351_8h_a1908fc514543ffe40d7774b30ed9b3de}{A\+D\+F4351\+\_\+\+V\+C\+O\+\_\+\+M\+IN}~2200000000.\+0
+\item 
+\#define \hyperlink{adf4351_8h_a293264ca2dc758c182320f42951240c1}{A\+D\+F4351\+\_\+\+M\+A\+X\+\_\+\+F\+R\+E\+Q\+\_\+45\+P\+RE}~3000000000.\+0
+\item 
+\#define \hyperlink{adf4351_8h_a8fcfb09d34d3b3a7eae35c04e770cb92}{A\+D\+F4351\+\_\+\+P\+F\+D\+\_\+\+M\+AX}~32000000.\+0
+\item 
+\#define \hyperlink{adf4351_8h_ae410570e072c2b181522ba8b5e1a5402}{A\+D\+F4351\+\_\+\+R\+E\+F\+I\+N\+\_\+\+M\+AX}~250000000.\+0
+\item 
+\#define \hyperlink{adf4351_8h_a432e77d2502272fc369aad0319b93bb6}{A\+D\+F4351\+\_\+\+B\+A\+N\+D\+S\+E\+L\+\_\+\+M\+AX}~125000
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \\*
+\hyperlink{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06ca995ce66d1222115420ccc2605f8856f8}{A\+D\+F4351\+\_\+\+R\+Fout\+\_\+\+R\+A\+N\+GE} = 1, 
+\hyperlink{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06ca35b652c6e3dba87dd31f705638c231bd}{A\+D\+F4351\+\_\+\+R\+Fout\+\_\+\+M\+I\+S\+M\+A\+T\+CH}, 
+\hyperlink{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06ca3c2fdae3609858fc23a175a78956ea5e}{A\+D\+F4351\+\_\+\+R\+E\+Fin\+\_\+\+R\+A\+N\+GE}, 
+\hyperlink{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06caba15cbf8e857d729a6e8da4021fb06b1}{A\+D\+F4351\+\_\+\+Band\+Select\+Clock\+Frequency\+\_\+\+R\+A\+N\+GE}, 
+\\*
+\hyperlink{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06ca7acf49deae0e3115da8b84602e22e227}{A\+D\+F4351\+\_\+\+R\+\_\+\+R\+A\+N\+GE}, 
+\hyperlink{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06cafc3a3e6baa8e0fa3a653b57b3ca03e08}{A\+D\+F4351\+\_\+\+P\+D\+F\+\_\+\+R\+A\+N\+GE}, 
+\hyperlink{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06ca72530a6bbcc2547f3c310d00d952159d}{A\+D\+F4351\+\_\+\+R\+Fout\+D\+I\+V\+\_\+\+R\+A\+N\+GE}, 
+\hyperlink{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06ca57e3a78490e88a903233fec1ec98fb33}{A\+D\+F4351\+\_\+\+N\+\_\+\+R\+A\+N\+GE}, 
+\\*
+\hyperlink{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06cad3c5af209d5c68da4a4bd05b15008f76}{A\+D\+F4351\+\_\+\+I\+N\+T\+\_\+\+R\+A\+N\+GE}, 
+\hyperlink{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06cab20a2e654bc0776b6a9ea59ac1b5b995}{A\+D\+F4351\+\_\+\+M\+O\+D\+\_\+\+R\+A\+N\+GE}, 
+\hyperlink{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06ca9b2ffdd24c189349cd5b6831be5e96a8}{A\+D\+F4351\+\_\+\+F\+R\+A\+C\+\_\+\+R\+A\+N\+GE}, 
+\hyperlink{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06cab181288b9176c29a428d2d6b0973099c}{A\+D\+F4351\+\_\+\+E\+R\+R\+O\+R\+\_\+\+E\+ND}
+ \}\begin{DoxyCompactList}\small\item\em Error numbers. \end{DoxyCompactList}
+\item 
+enum \{ \hyperlink{adf4351_8h_a61dadd085c1777f559549e05962b2c9eac426af872d7676ac2e1810cc6b5e188a}{A\+D\+F4351\+\_\+\+D\+I\+S\+A\+B\+LE}, 
+\hyperlink{adf4351_8h_a61dadd085c1777f559549e05962b2c9ea9503ff1eec5687b5be835720d1e58f8f}{A\+D\+F4351\+\_\+\+E\+N\+A\+B\+LE}
+ \}\begin{DoxyCompactList}\small\item\em Disable/\+Enable. \end{DoxyCompactList}
+\item 
+enum \{ \hyperlink{adf4351_8h_a726ca809ffd3d67ab4b8476646f26635a406bafae1c325e4b7a90a8babd113a00}{A\+D\+F4351\+\_\+\+P\+R\+E\+S\+C\+A\+L\+E\+R\+\_\+4\+\_\+5}, 
+\hyperlink{adf4351_8h_a726ca809ffd3d67ab4b8476646f26635add1287bd1171421395b5a19517efcd0d}{A\+D\+F4351\+\_\+\+P\+R\+E\+S\+C\+A\+L\+E\+R\+\_\+8\+\_\+9}
+ \}\begin{DoxyCompactList}\small\item\em dual-\/modulus prescaler (P/P + 1) \end{DoxyCompactList}
+\item 
+enum \{ \hyperlink{adf4351_8h_a0411cd49bb5b71852cecd93bcbf0ca2da9658360e67613ee187be63b33555007d}{A\+D\+F4351\+\_\+\+L\+O\+W\+\_\+\+N\+O\+I\+S\+E\+\_\+\+M\+O\+DE}, 
+\hyperlink{adf4351_8h_a0411cd49bb5b71852cecd93bcbf0ca2da9a98e704833692a9962390d2b6692e8e}{A\+D\+F4351\+\_\+\+L\+O\+W\+\_\+\+S\+P\+U\+R\+\_\+\+M\+O\+DE} = 3
+ \}\begin{DoxyCompactList}\small\item\em Low Noise and Low Spur Modes. \end{DoxyCompactList}
+\item 
+enum \{ \\*
+\hyperlink{adf4351_8h_abed82baf7f470b522273a3e37c24c600a88b8cb62fb2f4ac7959f67691bd31f58}{A\+D\+F4351\+\_\+\+M\+U\+X\+\_\+\+T\+H\+R\+E\+E\+S\+T\+A\+TE}, 
+\hyperlink{adf4351_8h_abed82baf7f470b522273a3e37c24c600abe66c45a98ce3184965004968acc1edf}{A\+D\+F4351\+\_\+\+M\+U\+X\+\_\+\+D\+V\+DD}, 
+\hyperlink{adf4351_8h_abed82baf7f470b522273a3e37c24c600a0758e1c8934b1320edec8e755ebdf557}{A\+D\+F4351\+\_\+\+M\+U\+X\+\_\+\+D\+G\+ND}, 
+\hyperlink{adf4351_8h_abed82baf7f470b522273a3e37c24c600a60abc6322ac2d9750da1aff58c4a5d6d}{A\+D\+F4351\+\_\+\+M\+U\+X\+\_\+\+R\+C\+O\+U\+N\+T\+ER}, 
+\\*
+\hyperlink{adf4351_8h_abed82baf7f470b522273a3e37c24c600a6edfefd22b30e8c8341c524b0636bc65}{A\+D\+F4351\+\_\+\+M\+U\+X\+\_\+\+N\+D\+I\+V\+I\+D\+ER}, 
+\hyperlink{adf4351_8h_abed82baf7f470b522273a3e37c24c600a0703e5f4444a5fff324110cac45bc522}{A\+D\+F4351\+\_\+\+M\+U\+X\+\_\+\+A\+N\+A\+L\+O\+G\+L\+O\+CK}, 
+\hyperlink{adf4351_8h_abed82baf7f470b522273a3e37c24c600a05d32a902ee999371976caa239a9bda4}{A\+D\+F4351\+\_\+\+M\+U\+X\+\_\+\+D\+I\+G\+I\+T\+A\+L\+L\+O\+CK}
+ \}\begin{DoxyCompactList}\small\item\em M\+U\+X\+O\+UT multiplexer. \end{DoxyCompactList}
+\item 
+enum \{ \hyperlink{adf4351_8h_ab04a0655cd1e3bcac5e8f48c18df1a57a8c9a0e0879bed8f6e0d8c3f9ee05757e}{A\+D\+F4351\+\_\+\+L\+D\+F\+\_\+\+F\+R\+A\+C\+\_\+N}, 
+\hyperlink{adf4351_8h_ab04a0655cd1e3bcac5e8f48c18df1a57a819ca6a059e59fc5fe92e66ae87390e9}{A\+D\+F4351\+\_\+\+L\+D\+F\+\_\+\+I\+N\+T\+\_\+N}
+ \}\begin{DoxyCompactList}\small\item\em Lock Detect Function F\+R\+AC or I\+NT mode. \end{DoxyCompactList}
+\item 
+enum \{ \hyperlink{adf4351_8h_a385c44f6fb256e5716a2302a5b940388abe44bc2c18b0438c2dcc01bafd312371}{A\+D\+F4351\+\_\+\+L\+D\+P\+\_\+10\+NS}, 
+\hyperlink{adf4351_8h_a385c44f6fb256e5716a2302a5b940388ad003d83cf151c7061cb64ea6d706b26d}{A\+D\+F4351\+\_\+\+L\+D\+P\+\_\+6\+NS}
+ \}\begin{DoxyCompactList}\small\item\em The lock detect window time for lock detect circuit. \end{DoxyCompactList}
+\item 
+enum \{ \hyperlink{adf4351_8h_abc5c98fcc1211af2b80116dd6e0a035da9acbf7123aff032887d438f74e9e50bb}{A\+D\+F4351\+\_\+\+P\+O\+L\+A\+R\+I\+T\+Y\+\_\+\+N\+EG}, 
+\hyperlink{adf4351_8h_abc5c98fcc1211af2b80116dd6e0a035dac50e3a516734aad3902be69bf704dde0}{A\+D\+F4351\+\_\+\+P\+O\+L\+A\+R\+I\+T\+Y\+\_\+\+P\+OS}
+ \}\begin{DoxyCompactList}\small\item\em Phase Detector Polarity. \end{DoxyCompactList}
+\item 
+enum \{ \hyperlink{adf4351_8h_ac36f475ca5b446f4fde4c9b90bec77c8a72a57833591a09d899721e9e3d257606}{A\+D\+F4351\+\_\+\+A\+B\+P\+\_\+6\+NS}, 
+\hyperlink{adf4351_8h_ac36f475ca5b446f4fde4c9b90bec77c8a00838bf1c410f9876c71043090b09115}{A\+D\+F4351\+\_\+\+A\+B\+P\+\_\+3\+NS}
+ \}\begin{DoxyCompactList}\small\item\em Antibacklash Pulse Width. \end{DoxyCompactList}
+\item 
+enum \{ \hyperlink{adf4351_8h_a05589fbab0657f08285ebdfe93f5ec9eab7def279810406a2c01433ba61d3a4cb}{A\+D\+F4351\+\_\+\+C\+L\+K\+D\+I\+V\+M\+O\+D\+E\+\_\+\+O\+FF}, 
+\hyperlink{adf4351_8h_a05589fbab0657f08285ebdfe93f5ec9ea340a6a6e364b5522c20733ea3f6ade16}{A\+D\+F4351\+\_\+\+C\+L\+K\+D\+I\+V\+M\+O\+D\+E\+\_\+\+F\+A\+S\+T\+\_\+\+L\+O\+CK}, 
+\hyperlink{adf4351_8h_a05589fbab0657f08285ebdfe93f5ec9ea1251e63e427bda20a3804654f170a61c}{A\+D\+F4351\+\_\+\+C\+L\+K\+D\+I\+V\+M\+O\+D\+E\+\_\+\+R\+E\+S\+Y\+NC}
+ \}\begin{DoxyCompactList}\small\item\em Clock Divider P\+LL lock mode. \end{DoxyCompactList}
+\item 
+enum \{ \hyperlink{adf4351_8h_a16af7b253440dadd46a80a4b9fddba4daaadbdc7ae38b63bfeb32582fe40cfbe6}{A\+D\+F4351\+\_\+\+L\+D\+\_\+\+P\+I\+N\+\_\+\+L\+OW}, 
+\hyperlink{adf4351_8h_a16af7b253440dadd46a80a4b9fddba4dac4f5a7eca8f2637bbcd579d0581e2e79}{A\+D\+F4351\+\_\+\+L\+D\+\_\+\+P\+I\+N\+\_\+\+D\+I\+G\+I\+T\+A\+L\+\_\+\+L\+O\+CK}, 
+\hyperlink{adf4351_8h_a16af7b253440dadd46a80a4b9fddba4dacdbe1b2b9696dedea95f45a412462ee1}{A\+D\+F4351\+\_\+\+L\+D\+\_\+\+P\+I\+N\+\_\+\+L\+O\+W\+\_\+}, 
+\hyperlink{adf4351_8h_a16af7b253440dadd46a80a4b9fddba4daa894c1b6b897ba61291c1645e972f091}{A\+D\+F4351\+\_\+\+L\+D\+\_\+\+P\+I\+N\+\_\+\+H\+I\+GH}
+ \}\begin{DoxyCompactList}\small\item\em Lock Detect Pin Operation type. \end{DoxyCompactList}
+\item 
+enum \{ \hyperlink{adf4351_8h_aba01db17f4a2bfbc3db60dc172972a25a4faaa17b77a0b5a2f2841f90895c775e}{A\+D\+F4351\+\_\+\+P\+O\+W\+E\+R\+\_\+\+N4\+DB}, 
+\hyperlink{adf4351_8h_aba01db17f4a2bfbc3db60dc172972a25a027fceba8ca37006c34b159704a8cd3a}{A\+D\+F4351\+\_\+\+P\+O\+W\+E\+R\+\_\+\+N1\+DB}, 
+\hyperlink{adf4351_8h_aba01db17f4a2bfbc3db60dc172972a25abe095fa81cdee9bdc2768b28e9774dc7}{A\+D\+F4351\+\_\+\+P\+O\+W\+E\+R\+\_\+2\+DB}, 
+\hyperlink{adf4351_8h_aba01db17f4a2bfbc3db60dc172972a25afb56c46cf1b3cbe35a534bb420866071}{A\+D\+F4351\+\_\+\+P\+O\+W\+E\+R\+\_\+5\+DB}
+ \}\begin{DoxyCompactList}\small\item\em Output Power. \end{DoxyCompactList}
+\item 
+enum \{ \hyperlink{adf4351_8h_aaf105ae5beaca1dee30ae54530691fceaddf79ada9b696b4565505d33b76b2332}{A\+D\+F4351\+\_\+\+A\+U\+X\+O\+U\+T\+\_\+\+F\+R\+O\+M\+\_\+\+R\+F\+\_\+\+D\+I\+V\+I\+D\+E\+RS}, 
+\hyperlink{adf4351_8h_aaf105ae5beaca1dee30ae54530691fceaf40b665b1b3fec3420a7caff03b50804}{A\+D\+F4351\+\_\+\+A\+U\+X\+O\+U\+T\+\_\+\+F\+R\+O\+M\+\_\+\+V\+CO}
+ \}\begin{DoxyCompactList}\small\item\em A\+U\+Xout from V\+CO or dividers. \end{DoxyCompactList}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{adf4351_8h_ae9bac3466244b1cf1c43de60bfa88bf3}{A\+D\+F4351\+\_\+sync} (int all)
+\begin{DoxyCompactList}\small\item\em Sync settings to A\+D\+F4351 registers. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} \hyperlink{adf4351_8h_a4efaed51690f11a55c140c3a576c77ba}{A\+D\+F4351\+\_\+\+Get\+Reg32} (int addr)
+\begin{DoxyCompactList}\small\item\em Returns 32bit register value from register buffer. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{adf4351_8h_a324309e3155806af38a6140b8543d39c}{A\+D\+F4351\+\_\+\+C\+H\+A\+R\+G\+E\+\_\+\+P\+U\+M\+P\+\_\+uA} (\hyperlink{earth2wireframe_8c_a32f2e37ee053cf2ce8ca28d1f74630e5}{int32\+\_\+t} x)
+\begin{DoxyCompactList}\small\item\em Convert charge pump current in uA to R2 register value. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{adf4351_8h_a50bcc9731b52a04b7605cea7a7b9b31d}{A\+D\+F4351\+\_\+\+Init} (void)
+\begin{DoxyCompactList}\small\item\em Init all A\+D\+F4351 registers to default values. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{adf4351_8h_a01253786939ed08115fbea3e2989b745}{A\+D\+F\+\_\+dump\+\_\+registers} (void)
+\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} \hyperlink{adf4351_8h_a4880c809bea1b2745d82d735d2e10cbc}{A\+D\+F4351\+\_\+status} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} mode)
+\begin{DoxyCompactList}\small\item\em Read A\+D\+F4351 status Only of value if spi bus input is tied to mux out This function has not been tested! \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} \hyperlink{adf4351_8h_a9948e2df41f01efaaf81303c65b8f956}{A\+D\+F4351\+\_\+\+G\+CD} (\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} u, \hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} v)
+\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} double \hyperlink{adf4351_8h_a028ebcaafaf1da135256b7226060eb43}{A\+D\+F4351\+\_\+\+P\+FD} (double R\+E\+Fin, int R)
+\begin{DoxyCompactList}\small\item\em Compute P\+DF. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{adf4351_8h_a992aef229e9dba29e333afd297fe9c45}{A\+D\+F4351\+\_\+display\+\_\+error} (int error)
+\begin{DoxyCompactList}\small\item\em Display A\+D\+F4351 error return code. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{adf4351_8h_aa81dc41f60eb1698b3866deb0d2a31bc}{A\+D\+F4351\+\_\+\+Config} (double R\+Fout, double R\+E\+Fin, double Channel\+Spacing, double $\ast$R\+Fout\+Calc)
+\begin{DoxyCompactList}\small\item\em Calculate register values for A\+D\+F4351. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+B\+A\+N\+D\+S\+E\+L\+\_\+\+M\+AX@{A\+D\+F4351\+\_\+\+B\+A\+N\+D\+S\+E\+L\+\_\+\+M\+AX}}
+\index{A\+D\+F4351\+\_\+\+B\+A\+N\+D\+S\+E\+L\+\_\+\+M\+AX@{A\+D\+F4351\+\_\+\+B\+A\+N\+D\+S\+E\+L\+\_\+\+M\+AX}!adf4351.\+h@{adf4351.\+h}}
+\subsubsection[{\texorpdfstring{A\+D\+F4351\+\_\+\+B\+A\+N\+D\+S\+E\+L\+\_\+\+M\+AX}{ADF4351_BANDSEL_MAX}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+D\+F4351\+\_\+\+B\+A\+N\+D\+S\+E\+L\+\_\+\+M\+AX~125000}\hypertarget{adf4351_8h_a432e77d2502272fc369aad0319b93bb6}{}\label{adf4351_8h_a432e77d2502272fc369aad0319b93bb6}
+
+
+Definition at line 45 of file adf4351.\+h.
+
+\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+M\+A\+X\+\_\+\+F\+R\+E\+Q\+\_\+45\+P\+RE@{A\+D\+F4351\+\_\+\+M\+A\+X\+\_\+\+F\+R\+E\+Q\+\_\+45\+P\+RE}}
+\index{A\+D\+F4351\+\_\+\+M\+A\+X\+\_\+\+F\+R\+E\+Q\+\_\+45\+P\+RE@{A\+D\+F4351\+\_\+\+M\+A\+X\+\_\+\+F\+R\+E\+Q\+\_\+45\+P\+RE}!adf4351.\+h@{adf4351.\+h}}
+\subsubsection[{\texorpdfstring{A\+D\+F4351\+\_\+\+M\+A\+X\+\_\+\+F\+R\+E\+Q\+\_\+45\+P\+RE}{ADF4351_MAX_FREQ_45PRE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+D\+F4351\+\_\+\+M\+A\+X\+\_\+\+F\+R\+E\+Q\+\_\+45\+P\+RE~3000000000.\+0}\hypertarget{adf4351_8h_a293264ca2dc758c182320f42951240c1}{}\label{adf4351_8h_a293264ca2dc758c182320f42951240c1}
+
+
+Definition at line 42 of file adf4351.\+h.
+
+
+
+Referenced by A\+D\+F4351\+\_\+\+Config().
+
+\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+P\+F\+D\+\_\+\+M\+AX@{A\+D\+F4351\+\_\+\+P\+F\+D\+\_\+\+M\+AX}}
+\index{A\+D\+F4351\+\_\+\+P\+F\+D\+\_\+\+M\+AX@{A\+D\+F4351\+\_\+\+P\+F\+D\+\_\+\+M\+AX}!adf4351.\+h@{adf4351.\+h}}
+\subsubsection[{\texorpdfstring{A\+D\+F4351\+\_\+\+P\+F\+D\+\_\+\+M\+AX}{ADF4351_PFD_MAX}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+D\+F4351\+\_\+\+P\+F\+D\+\_\+\+M\+AX~32000000.\+0}\hypertarget{adf4351_8h_a8fcfb09d34d3b3a7eae35c04e770cb92}{}\label{adf4351_8h_a8fcfb09d34d3b3a7eae35c04e770cb92}
+
+
+Definition at line 43 of file adf4351.\+h.
+
+
+
+Referenced by A\+D\+F4351\+\_\+\+Config().
+
+\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+R\+E\+F\+I\+N\+\_\+\+M\+AX@{A\+D\+F4351\+\_\+\+R\+E\+F\+I\+N\+\_\+\+M\+AX}}
+\index{A\+D\+F4351\+\_\+\+R\+E\+F\+I\+N\+\_\+\+M\+AX@{A\+D\+F4351\+\_\+\+R\+E\+F\+I\+N\+\_\+\+M\+AX}!adf4351.\+h@{adf4351.\+h}}
+\subsubsection[{\texorpdfstring{A\+D\+F4351\+\_\+\+R\+E\+F\+I\+N\+\_\+\+M\+AX}{ADF4351_REFIN_MAX}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+D\+F4351\+\_\+\+R\+E\+F\+I\+N\+\_\+\+M\+AX~250000000.\+0}\hypertarget{adf4351_8h_ae410570e072c2b181522ba8b5e1a5402}{}\label{adf4351_8h_ae410570e072c2b181522ba8b5e1a5402}
+
+
+Definition at line 44 of file adf4351.\+h.
+
+
+
+Referenced by A\+D\+F4351\+\_\+\+Config().
+
+\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+R\+F\+O\+U\+T\+\_\+\+M\+AX@{A\+D\+F4351\+\_\+\+R\+F\+O\+U\+T\+\_\+\+M\+AX}}
+\index{A\+D\+F4351\+\_\+\+R\+F\+O\+U\+T\+\_\+\+M\+AX@{A\+D\+F4351\+\_\+\+R\+F\+O\+U\+T\+\_\+\+M\+AX}!adf4351.\+h@{adf4351.\+h}}
+\subsubsection[{\texorpdfstring{A\+D\+F4351\+\_\+\+R\+F\+O\+U\+T\+\_\+\+M\+AX}{ADF4351_RFOUT_MAX}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+D\+F4351\+\_\+\+R\+F\+O\+U\+T\+\_\+\+M\+AX~4400000000.\+0}\hypertarget{adf4351_8h_ac5fb1f7862149cdf5cedd63bbf1f17a6}{}\label{adf4351_8h_ac5fb1f7862149cdf5cedd63bbf1f17a6}
+
+
+Definition at line 39 of file adf4351.\+h.
+
+
+
+Referenced by A\+D\+F4351\+\_\+\+Config().
+
+\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+R\+F\+O\+U\+T\+\_\+\+M\+IN@{A\+D\+F4351\+\_\+\+R\+F\+O\+U\+T\+\_\+\+M\+IN}}
+\index{A\+D\+F4351\+\_\+\+R\+F\+O\+U\+T\+\_\+\+M\+IN@{A\+D\+F4351\+\_\+\+R\+F\+O\+U\+T\+\_\+\+M\+IN}!adf4351.\+h@{adf4351.\+h}}
+\subsubsection[{\texorpdfstring{A\+D\+F4351\+\_\+\+R\+F\+O\+U\+T\+\_\+\+M\+IN}{ADF4351_RFOUT_MIN}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+D\+F4351\+\_\+\+R\+F\+O\+U\+T\+\_\+\+M\+IN~34375000.\+0}\hypertarget{adf4351_8h_a8d0aba37f839cc0c10f234af7e513d96}{}\label{adf4351_8h_a8d0aba37f839cc0c10f234af7e513d96}
+
+
+Definition at line 40 of file adf4351.\+h.
+
+
+
+Referenced by A\+D\+F4351\+\_\+\+Config().
+
+\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+V\+C\+O\+\_\+\+M\+IN@{A\+D\+F4351\+\_\+\+V\+C\+O\+\_\+\+M\+IN}}
+\index{A\+D\+F4351\+\_\+\+V\+C\+O\+\_\+\+M\+IN@{A\+D\+F4351\+\_\+\+V\+C\+O\+\_\+\+M\+IN}!adf4351.\+h@{adf4351.\+h}}
+\subsubsection[{\texorpdfstring{A\+D\+F4351\+\_\+\+V\+C\+O\+\_\+\+M\+IN}{ADF4351_VCO_MIN}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+D\+F4351\+\_\+\+V\+C\+O\+\_\+\+M\+IN~2200000000.\+0}\hypertarget{adf4351_8h_a1908fc514543ffe40d7774b30ed9b3de}{}\label{adf4351_8h_a1908fc514543ffe40d7774b30ed9b3de}
+
+
+Definition at line 41 of file adf4351.\+h.
+
+
+
+Referenced by A\+D\+F4351\+\_\+\+Config().
+
+\index{adf4351.\+h@{adf4351.\+h}!M\+E\+M\+S\+P\+A\+CE@{M\+E\+M\+S\+P\+A\+CE}}
+\index{M\+E\+M\+S\+P\+A\+CE@{M\+E\+M\+S\+P\+A\+CE}!adf4351.\+h@{adf4351.\+h}}
+\subsubsection[{\texorpdfstring{M\+E\+M\+S\+P\+A\+CE}{MEMSPACE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+E\+M\+S\+P\+A\+CE}\hypertarget{adf4351_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{}\label{adf4351_8h_ad0fe97585b8891f5e4f2b9a6426330a4}
+
+
+Definition at line 33 of file adf4351.\+h.
+
+
+
+\subsection{Enumeration Type Documentation}
+\subsubsection[{\texorpdfstring{anonymous enum}{anonymous enum}}]{\setlength{\rightskip}{0pt plus 5cm}anonymous enum}\hypertarget{adf4351_8h_a385c44f6fb256e5716a2302a5b940388}{}\label{adf4351_8h_a385c44f6fb256e5716a2302a5b940388}
+
+
+The lock detect window time for lock detect circuit. 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{A\+D\+F4351\+\_\+\+L\+D\+P\+\_\+10\+NS@{A\+D\+F4351\+\_\+\+L\+D\+P\+\_\+10\+NS}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+L\+D\+P\+\_\+10\+NS@{A\+D\+F4351\+\_\+\+L\+D\+P\+\_\+10\+NS}}\item[{\em 
+A\+D\+F4351\+\_\+\+L\+D\+P\+\_\+10\+NS\hypertarget{adf4351_8h_a385c44f6fb256e5716a2302a5b940388abe44bc2c18b0438c2dcc01bafd312371}{}\label{adf4351_8h_a385c44f6fb256e5716a2302a5b940388abe44bc2c18b0438c2dcc01bafd312371}
+}]\index{A\+D\+F4351\+\_\+\+L\+D\+P\+\_\+6\+NS@{A\+D\+F4351\+\_\+\+L\+D\+P\+\_\+6\+NS}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+L\+D\+P\+\_\+6\+NS@{A\+D\+F4351\+\_\+\+L\+D\+P\+\_\+6\+NS}}\item[{\em 
+A\+D\+F4351\+\_\+\+L\+D\+P\+\_\+6\+NS\hypertarget{adf4351_8h_a385c44f6fb256e5716a2302a5b940388ad003d83cf151c7061cb64ea6d706b26d}{}\label{adf4351_8h_a385c44f6fb256e5716a2302a5b940388ad003d83cf151c7061cb64ea6d706b26d}
+}]\end{description}
+\end{Desc}
+
+
+Definition at line 401 of file adf4351.\+h.
+
+\subsubsection[{\texorpdfstring{anonymous enum}{anonymous enum}}]{\setlength{\rightskip}{0pt plus 5cm}anonymous enum}\hypertarget{adf4351_8h_abc5c98fcc1211af2b80116dd6e0a035d}{}\label{adf4351_8h_abc5c98fcc1211af2b80116dd6e0a035d}
+
+
+Phase Detector Polarity. 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{A\+D\+F4351\+\_\+\+P\+O\+L\+A\+R\+I\+T\+Y\+\_\+\+N\+EG@{A\+D\+F4351\+\_\+\+P\+O\+L\+A\+R\+I\+T\+Y\+\_\+\+N\+EG}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+P\+O\+L\+A\+R\+I\+T\+Y\+\_\+\+N\+EG@{A\+D\+F4351\+\_\+\+P\+O\+L\+A\+R\+I\+T\+Y\+\_\+\+N\+EG}}\item[{\em 
+A\+D\+F4351\+\_\+\+P\+O\+L\+A\+R\+I\+T\+Y\+\_\+\+N\+EG\hypertarget{adf4351_8h_abc5c98fcc1211af2b80116dd6e0a035da9acbf7123aff032887d438f74e9e50bb}{}\label{adf4351_8h_abc5c98fcc1211af2b80116dd6e0a035da9acbf7123aff032887d438f74e9e50bb}
+}]inverting loop filter \index{A\+D\+F4351\+\_\+\+P\+O\+L\+A\+R\+I\+T\+Y\+\_\+\+P\+OS@{A\+D\+F4351\+\_\+\+P\+O\+L\+A\+R\+I\+T\+Y\+\_\+\+P\+OS}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+P\+O\+L\+A\+R\+I\+T\+Y\+\_\+\+P\+OS@{A\+D\+F4351\+\_\+\+P\+O\+L\+A\+R\+I\+T\+Y\+\_\+\+P\+OS}}\item[{\em 
+A\+D\+F4351\+\_\+\+P\+O\+L\+A\+R\+I\+T\+Y\+\_\+\+P\+OS\hypertarget{adf4351_8h_abc5c98fcc1211af2b80116dd6e0a035dac50e3a516734aad3902be69bf704dde0}{}\label{adf4351_8h_abc5c98fcc1211af2b80116dd6e0a035dac50e3a516734aad3902be69bf704dde0}
+}]noninverting loop filter \end{description}
+\end{Desc}
+
+
+Definition at line 409 of file adf4351.\+h.
+
+\subsubsection[{\texorpdfstring{anonymous enum}{anonymous enum}}]{\setlength{\rightskip}{0pt plus 5cm}anonymous enum}\hypertarget{adf4351_8h_ac36f475ca5b446f4fde4c9b90bec77c8}{}\label{adf4351_8h_ac36f475ca5b446f4fde4c9b90bec77c8}
+
+
+Antibacklash Pulse Width. 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{A\+D\+F4351\+\_\+\+A\+B\+P\+\_\+6\+NS@{A\+D\+F4351\+\_\+\+A\+B\+P\+\_\+6\+NS}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+A\+B\+P\+\_\+6\+NS@{A\+D\+F4351\+\_\+\+A\+B\+P\+\_\+6\+NS}}\item[{\em 
+A\+D\+F4351\+\_\+\+A\+B\+P\+\_\+6\+NS\hypertarget{adf4351_8h_ac36f475ca5b446f4fde4c9b90bec77c8a72a57833591a09d899721e9e3d257606}{}\label{adf4351_8h_ac36f475ca5b446f4fde4c9b90bec77c8a72a57833591a09d899721e9e3d257606}
+}]\index{A\+D\+F4351\+\_\+\+A\+B\+P\+\_\+3\+NS@{A\+D\+F4351\+\_\+\+A\+B\+P\+\_\+3\+NS}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+A\+B\+P\+\_\+3\+NS@{A\+D\+F4351\+\_\+\+A\+B\+P\+\_\+3\+NS}}\item[{\em 
+A\+D\+F4351\+\_\+\+A\+B\+P\+\_\+3\+NS\hypertarget{adf4351_8h_ac36f475ca5b446f4fde4c9b90bec77c8a00838bf1c410f9876c71043090b09115}{}\label{adf4351_8h_ac36f475ca5b446f4fde4c9b90bec77c8a00838bf1c410f9876c71043090b09115}
+}]\end{description}
+\end{Desc}
+
+
+Definition at line 419 of file adf4351.\+h.
+
+\subsubsection[{\texorpdfstring{anonymous enum}{anonymous enum}}]{\setlength{\rightskip}{0pt plus 5cm}anonymous enum}\hypertarget{adf4351_8h_a05589fbab0657f08285ebdfe93f5ec9e}{}\label{adf4351_8h_a05589fbab0657f08285ebdfe93f5ec9e}
+
+
+Clock Divider P\+LL lock mode. 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{A\+D\+F4351\+\_\+\+C\+L\+K\+D\+I\+V\+M\+O\+D\+E\+\_\+\+O\+FF@{A\+D\+F4351\+\_\+\+C\+L\+K\+D\+I\+V\+M\+O\+D\+E\+\_\+\+O\+FF}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+C\+L\+K\+D\+I\+V\+M\+O\+D\+E\+\_\+\+O\+FF@{A\+D\+F4351\+\_\+\+C\+L\+K\+D\+I\+V\+M\+O\+D\+E\+\_\+\+O\+FF}}\item[{\em 
+A\+D\+F4351\+\_\+\+C\+L\+K\+D\+I\+V\+M\+O\+D\+E\+\_\+\+O\+FF\hypertarget{adf4351_8h_a05589fbab0657f08285ebdfe93f5ec9eab7def279810406a2c01433ba61d3a4cb}{}\label{adf4351_8h_a05589fbab0657f08285ebdfe93f5ec9eab7def279810406a2c01433ba61d3a4cb}
+}]\index{A\+D\+F4351\+\_\+\+C\+L\+K\+D\+I\+V\+M\+O\+D\+E\+\_\+\+F\+A\+S\+T\+\_\+\+L\+O\+CK@{A\+D\+F4351\+\_\+\+C\+L\+K\+D\+I\+V\+M\+O\+D\+E\+\_\+\+F\+A\+S\+T\+\_\+\+L\+O\+CK}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+C\+L\+K\+D\+I\+V\+M\+O\+D\+E\+\_\+\+F\+A\+S\+T\+\_\+\+L\+O\+CK@{A\+D\+F4351\+\_\+\+C\+L\+K\+D\+I\+V\+M\+O\+D\+E\+\_\+\+F\+A\+S\+T\+\_\+\+L\+O\+CK}}\item[{\em 
+A\+D\+F4351\+\_\+\+C\+L\+K\+D\+I\+V\+M\+O\+D\+E\+\_\+\+F\+A\+S\+T\+\_\+\+L\+O\+CK\hypertarget{adf4351_8h_a05589fbab0657f08285ebdfe93f5ec9ea340a6a6e364b5522c20733ea3f6ade16}{}\label{adf4351_8h_a05589fbab0657f08285ebdfe93f5ec9ea340a6a6e364b5522c20733ea3f6ade16}
+}]\index{A\+D\+F4351\+\_\+\+C\+L\+K\+D\+I\+V\+M\+O\+D\+E\+\_\+\+R\+E\+S\+Y\+NC@{A\+D\+F4351\+\_\+\+C\+L\+K\+D\+I\+V\+M\+O\+D\+E\+\_\+\+R\+E\+S\+Y\+NC}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+C\+L\+K\+D\+I\+V\+M\+O\+D\+E\+\_\+\+R\+E\+S\+Y\+NC@{A\+D\+F4351\+\_\+\+C\+L\+K\+D\+I\+V\+M\+O\+D\+E\+\_\+\+R\+E\+S\+Y\+NC}}\item[{\em 
+A\+D\+F4351\+\_\+\+C\+L\+K\+D\+I\+V\+M\+O\+D\+E\+\_\+\+R\+E\+S\+Y\+NC\hypertarget{adf4351_8h_a05589fbab0657f08285ebdfe93f5ec9ea1251e63e427bda20a3804654f170a61c}{}\label{adf4351_8h_a05589fbab0657f08285ebdfe93f5ec9ea1251e63e427bda20a3804654f170a61c}
+}]\end{description}
+\end{Desc}
+
+
+Definition at line 428 of file adf4351.\+h.
+
+\subsubsection[{\texorpdfstring{anonymous enum}{anonymous enum}}]{\setlength{\rightskip}{0pt plus 5cm}anonymous enum}\hypertarget{adf4351_8h_a16af7b253440dadd46a80a4b9fddba4d}{}\label{adf4351_8h_a16af7b253440dadd46a80a4b9fddba4d}
+
+
+Lock Detect Pin Operation type. 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{A\+D\+F4351\+\_\+\+L\+D\+\_\+\+P\+I\+N\+\_\+\+L\+OW@{A\+D\+F4351\+\_\+\+L\+D\+\_\+\+P\+I\+N\+\_\+\+L\+OW}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+L\+D\+\_\+\+P\+I\+N\+\_\+\+L\+OW@{A\+D\+F4351\+\_\+\+L\+D\+\_\+\+P\+I\+N\+\_\+\+L\+OW}}\item[{\em 
+A\+D\+F4351\+\_\+\+L\+D\+\_\+\+P\+I\+N\+\_\+\+L\+OW\hypertarget{adf4351_8h_a16af7b253440dadd46a80a4b9fddba4daaadbdc7ae38b63bfeb32582fe40cfbe6}{}\label{adf4351_8h_a16af7b253440dadd46a80a4b9fddba4daaadbdc7ae38b63bfeb32582fe40cfbe6}
+}]\index{A\+D\+F4351\+\_\+\+L\+D\+\_\+\+P\+I\+N\+\_\+\+D\+I\+G\+I\+T\+A\+L\+\_\+\+L\+O\+CK@{A\+D\+F4351\+\_\+\+L\+D\+\_\+\+P\+I\+N\+\_\+\+D\+I\+G\+I\+T\+A\+L\+\_\+\+L\+O\+CK}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+L\+D\+\_\+\+P\+I\+N\+\_\+\+D\+I\+G\+I\+T\+A\+L\+\_\+\+L\+O\+CK@{A\+D\+F4351\+\_\+\+L\+D\+\_\+\+P\+I\+N\+\_\+\+D\+I\+G\+I\+T\+A\+L\+\_\+\+L\+O\+CK}}\item[{\em 
+A\+D\+F4351\+\_\+\+L\+D\+\_\+\+P\+I\+N\+\_\+\+D\+I\+G\+I\+T\+A\+L\+\_\+\+L\+O\+CK\hypertarget{adf4351_8h_a16af7b253440dadd46a80a4b9fddba4dac4f5a7eca8f2637bbcd579d0581e2e79}{}\label{adf4351_8h_a16af7b253440dadd46a80a4b9fddba4dac4f5a7eca8f2637bbcd579d0581e2e79}
+}]\index{A\+D\+F4351\+\_\+\+L\+D\+\_\+\+P\+I\+N\+\_\+\+L\+O\+W\+\_\+@{A\+D\+F4351\+\_\+\+L\+D\+\_\+\+P\+I\+N\+\_\+\+L\+O\+W\+\_\+}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+L\+D\+\_\+\+P\+I\+N\+\_\+\+L\+O\+W\+\_\+@{A\+D\+F4351\+\_\+\+L\+D\+\_\+\+P\+I\+N\+\_\+\+L\+O\+W\+\_\+}}\item[{\em 
+A\+D\+F4351\+\_\+\+L\+D\+\_\+\+P\+I\+N\+\_\+\+L\+O\+W\+\_\+\hypertarget{adf4351_8h_a16af7b253440dadd46a80a4b9fddba4dacdbe1b2b9696dedea95f45a412462ee1}{}\label{adf4351_8h_a16af7b253440dadd46a80a4b9fddba4dacdbe1b2b9696dedea95f45a412462ee1}
+}]\index{A\+D\+F4351\+\_\+\+L\+D\+\_\+\+P\+I\+N\+\_\+\+H\+I\+GH@{A\+D\+F4351\+\_\+\+L\+D\+\_\+\+P\+I\+N\+\_\+\+H\+I\+GH}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+L\+D\+\_\+\+P\+I\+N\+\_\+\+H\+I\+GH@{A\+D\+F4351\+\_\+\+L\+D\+\_\+\+P\+I\+N\+\_\+\+H\+I\+GH}}\item[{\em 
+A\+D\+F4351\+\_\+\+L\+D\+\_\+\+P\+I\+N\+\_\+\+H\+I\+GH\hypertarget{adf4351_8h_a16af7b253440dadd46a80a4b9fddba4daa894c1b6b897ba61291c1645e972f091}{}\label{adf4351_8h_a16af7b253440dadd46a80a4b9fddba4daa894c1b6b897ba61291c1645e972f091}
+}]\end{description}
+\end{Desc}
+
+
+Definition at line 438 of file adf4351.\+h.
+
+\subsubsection[{\texorpdfstring{anonymous enum}{anonymous enum}}]{\setlength{\rightskip}{0pt plus 5cm}anonymous enum}\hypertarget{adf4351_8h_aba01db17f4a2bfbc3db60dc172972a25}{}\label{adf4351_8h_aba01db17f4a2bfbc3db60dc172972a25}
+
+
+Output Power. 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{A\+D\+F4351\+\_\+\+P\+O\+W\+E\+R\+\_\+\+N4\+DB@{A\+D\+F4351\+\_\+\+P\+O\+W\+E\+R\+\_\+\+N4\+DB}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+P\+O\+W\+E\+R\+\_\+\+N4\+DB@{A\+D\+F4351\+\_\+\+P\+O\+W\+E\+R\+\_\+\+N4\+DB}}\item[{\em 
+A\+D\+F4351\+\_\+\+P\+O\+W\+E\+R\+\_\+\+N4\+DB\hypertarget{adf4351_8h_aba01db17f4a2bfbc3db60dc172972a25a4faaa17b77a0b5a2f2841f90895c775e}{}\label{adf4351_8h_aba01db17f4a2bfbc3db60dc172972a25a4faaa17b77a0b5a2f2841f90895c775e}
+}]\index{A\+D\+F4351\+\_\+\+P\+O\+W\+E\+R\+\_\+\+N1\+DB@{A\+D\+F4351\+\_\+\+P\+O\+W\+E\+R\+\_\+\+N1\+DB}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+P\+O\+W\+E\+R\+\_\+\+N1\+DB@{A\+D\+F4351\+\_\+\+P\+O\+W\+E\+R\+\_\+\+N1\+DB}}\item[{\em 
+A\+D\+F4351\+\_\+\+P\+O\+W\+E\+R\+\_\+\+N1\+DB\hypertarget{adf4351_8h_aba01db17f4a2bfbc3db60dc172972a25a027fceba8ca37006c34b159704a8cd3a}{}\label{adf4351_8h_aba01db17f4a2bfbc3db60dc172972a25a027fceba8ca37006c34b159704a8cd3a}
+}]\index{A\+D\+F4351\+\_\+\+P\+O\+W\+E\+R\+\_\+2\+DB@{A\+D\+F4351\+\_\+\+P\+O\+W\+E\+R\+\_\+2\+DB}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+P\+O\+W\+E\+R\+\_\+2\+DB@{A\+D\+F4351\+\_\+\+P\+O\+W\+E\+R\+\_\+2\+DB}}\item[{\em 
+A\+D\+F4351\+\_\+\+P\+O\+W\+E\+R\+\_\+2\+DB\hypertarget{adf4351_8h_aba01db17f4a2bfbc3db60dc172972a25abe095fa81cdee9bdc2768b28e9774dc7}{}\label{adf4351_8h_aba01db17f4a2bfbc3db60dc172972a25abe095fa81cdee9bdc2768b28e9774dc7}
+}]\index{A\+D\+F4351\+\_\+\+P\+O\+W\+E\+R\+\_\+5\+DB@{A\+D\+F4351\+\_\+\+P\+O\+W\+E\+R\+\_\+5\+DB}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+P\+O\+W\+E\+R\+\_\+5\+DB@{A\+D\+F4351\+\_\+\+P\+O\+W\+E\+R\+\_\+5\+DB}}\item[{\em 
+A\+D\+F4351\+\_\+\+P\+O\+W\+E\+R\+\_\+5\+DB\hypertarget{adf4351_8h_aba01db17f4a2bfbc3db60dc172972a25afb56c46cf1b3cbe35a534bb420866071}{}\label{adf4351_8h_aba01db17f4a2bfbc3db60dc172972a25afb56c46cf1b3cbe35a534bb420866071}
+}]\end{description}
+\end{Desc}
+
+
+Definition at line 450 of file adf4351.\+h.
+
+\subsubsection[{\texorpdfstring{anonymous enum}{anonymous enum}}]{\setlength{\rightskip}{0pt plus 5cm}anonymous enum}\hypertarget{adf4351_8h_aaf105ae5beaca1dee30ae54530691fce}{}\label{adf4351_8h_aaf105ae5beaca1dee30ae54530691fce}
+
+
+A\+U\+Xout from V\+CO or dividers. 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{A\+D\+F4351\+\_\+\+A\+U\+X\+O\+U\+T\+\_\+\+F\+R\+O\+M\+\_\+\+R\+F\+\_\+\+D\+I\+V\+I\+D\+E\+RS@{A\+D\+F4351\+\_\+\+A\+U\+X\+O\+U\+T\+\_\+\+F\+R\+O\+M\+\_\+\+R\+F\+\_\+\+D\+I\+V\+I\+D\+E\+RS}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+A\+U\+X\+O\+U\+T\+\_\+\+F\+R\+O\+M\+\_\+\+R\+F\+\_\+\+D\+I\+V\+I\+D\+E\+RS@{A\+D\+F4351\+\_\+\+A\+U\+X\+O\+U\+T\+\_\+\+F\+R\+O\+M\+\_\+\+R\+F\+\_\+\+D\+I\+V\+I\+D\+E\+RS}}\item[{\em 
+A\+D\+F4351\+\_\+\+A\+U\+X\+O\+U\+T\+\_\+\+F\+R\+O\+M\+\_\+\+R\+F\+\_\+\+D\+I\+V\+I\+D\+E\+RS\hypertarget{adf4351_8h_aaf105ae5beaca1dee30ae54530691fceaddf79ada9b696b4565505d33b76b2332}{}\label{adf4351_8h_aaf105ae5beaca1dee30ae54530691fceaddf79ada9b696b4565505d33b76b2332}
+}]R\+Fout is V\+CO after RF dividers \index{A\+D\+F4351\+\_\+\+A\+U\+X\+O\+U\+T\+\_\+\+F\+R\+O\+M\+\_\+\+V\+CO@{A\+D\+F4351\+\_\+\+A\+U\+X\+O\+U\+T\+\_\+\+F\+R\+O\+M\+\_\+\+V\+CO}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+A\+U\+X\+O\+U\+T\+\_\+\+F\+R\+O\+M\+\_\+\+V\+CO@{A\+D\+F4351\+\_\+\+A\+U\+X\+O\+U\+T\+\_\+\+F\+R\+O\+M\+\_\+\+V\+CO}}\item[{\em 
+A\+D\+F4351\+\_\+\+A\+U\+X\+O\+U\+T\+\_\+\+F\+R\+O\+M\+\_\+\+V\+CO\hypertarget{adf4351_8h_aaf105ae5beaca1dee30ae54530691fceaf40b665b1b3fec3420a7caff03b50804}{}\label{adf4351_8h_aaf105ae5beaca1dee30ae54530691fceaf40b665b1b3fec3420a7caff03b50804}
+}]R\+Fout direct from V\+CO \end{description}
+\end{Desc}
+
+
+Definition at line 461 of file adf4351.\+h.
+
+\subsubsection[{\texorpdfstring{anonymous enum}{anonymous enum}}]{\setlength{\rightskip}{0pt plus 5cm}anonymous enum}\hypertarget{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06c}{}\label{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06c}
+
+
+Error numbers. 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{A\+D\+F4351\+\_\+\+R\+Fout\+\_\+\+R\+A\+N\+GE@{A\+D\+F4351\+\_\+\+R\+Fout\+\_\+\+R\+A\+N\+GE}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+R\+Fout\+\_\+\+R\+A\+N\+GE@{A\+D\+F4351\+\_\+\+R\+Fout\+\_\+\+R\+A\+N\+GE}}\item[{\em 
+A\+D\+F4351\+\_\+\+R\+Fout\+\_\+\+R\+A\+N\+GE\hypertarget{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06ca995ce66d1222115420ccc2605f8856f8}{}\label{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06ca995ce66d1222115420ccc2605f8856f8}
+}]\index{A\+D\+F4351\+\_\+\+R\+Fout\+\_\+\+M\+I\+S\+M\+A\+T\+CH@{A\+D\+F4351\+\_\+\+R\+Fout\+\_\+\+M\+I\+S\+M\+A\+T\+CH}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+R\+Fout\+\_\+\+M\+I\+S\+M\+A\+T\+CH@{A\+D\+F4351\+\_\+\+R\+Fout\+\_\+\+M\+I\+S\+M\+A\+T\+CH}}\item[{\em 
+A\+D\+F4351\+\_\+\+R\+Fout\+\_\+\+M\+I\+S\+M\+A\+T\+CH\hypertarget{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06ca35b652c6e3dba87dd31f705638c231bd}{}\label{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06ca35b652c6e3dba87dd31f705638c231bd}
+}]\index{A\+D\+F4351\+\_\+\+R\+E\+Fin\+\_\+\+R\+A\+N\+GE@{A\+D\+F4351\+\_\+\+R\+E\+Fin\+\_\+\+R\+A\+N\+GE}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+R\+E\+Fin\+\_\+\+R\+A\+N\+GE@{A\+D\+F4351\+\_\+\+R\+E\+Fin\+\_\+\+R\+A\+N\+GE}}\item[{\em 
+A\+D\+F4351\+\_\+\+R\+E\+Fin\+\_\+\+R\+A\+N\+GE\hypertarget{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06ca3c2fdae3609858fc23a175a78956ea5e}{}\label{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06ca3c2fdae3609858fc23a175a78956ea5e}
+}]\index{A\+D\+F4351\+\_\+\+Band\+Select\+Clock\+Frequency\+\_\+\+R\+A\+N\+GE@{A\+D\+F4351\+\_\+\+Band\+Select\+Clock\+Frequency\+\_\+\+R\+A\+N\+GE}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+Band\+Select\+Clock\+Frequency\+\_\+\+R\+A\+N\+GE@{A\+D\+F4351\+\_\+\+Band\+Select\+Clock\+Frequency\+\_\+\+R\+A\+N\+GE}}\item[{\em 
+A\+D\+F4351\+\_\+\+Band\+Select\+Clock\+Frequency\+\_\+\+R\+A\+N\+GE\hypertarget{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06caba15cbf8e857d729a6e8da4021fb06b1}{}\label{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06caba15cbf8e857d729a6e8da4021fb06b1}
+}]\index{A\+D\+F4351\+\_\+\+R\+\_\+\+R\+A\+N\+GE@{A\+D\+F4351\+\_\+\+R\+\_\+\+R\+A\+N\+GE}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+R\+\_\+\+R\+A\+N\+GE@{A\+D\+F4351\+\_\+\+R\+\_\+\+R\+A\+N\+GE}}\item[{\em 
+A\+D\+F4351\+\_\+\+R\+\_\+\+R\+A\+N\+GE\hypertarget{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06ca7acf49deae0e3115da8b84602e22e227}{}\label{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06ca7acf49deae0e3115da8b84602e22e227}
+}]\index{A\+D\+F4351\+\_\+\+P\+D\+F\+\_\+\+R\+A\+N\+GE@{A\+D\+F4351\+\_\+\+P\+D\+F\+\_\+\+R\+A\+N\+GE}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+P\+D\+F\+\_\+\+R\+A\+N\+GE@{A\+D\+F4351\+\_\+\+P\+D\+F\+\_\+\+R\+A\+N\+GE}}\item[{\em 
+A\+D\+F4351\+\_\+\+P\+D\+F\+\_\+\+R\+A\+N\+GE\hypertarget{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06cafc3a3e6baa8e0fa3a653b57b3ca03e08}{}\label{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06cafc3a3e6baa8e0fa3a653b57b3ca03e08}
+}]\index{A\+D\+F4351\+\_\+\+R\+Fout\+D\+I\+V\+\_\+\+R\+A\+N\+GE@{A\+D\+F4351\+\_\+\+R\+Fout\+D\+I\+V\+\_\+\+R\+A\+N\+GE}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+R\+Fout\+D\+I\+V\+\_\+\+R\+A\+N\+GE@{A\+D\+F4351\+\_\+\+R\+Fout\+D\+I\+V\+\_\+\+R\+A\+N\+GE}}\item[{\em 
+A\+D\+F4351\+\_\+\+R\+Fout\+D\+I\+V\+\_\+\+R\+A\+N\+GE\hypertarget{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06ca72530a6bbcc2547f3c310d00d952159d}{}\label{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06ca72530a6bbcc2547f3c310d00d952159d}
+}]\index{A\+D\+F4351\+\_\+\+N\+\_\+\+R\+A\+N\+GE@{A\+D\+F4351\+\_\+\+N\+\_\+\+R\+A\+N\+GE}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+N\+\_\+\+R\+A\+N\+GE@{A\+D\+F4351\+\_\+\+N\+\_\+\+R\+A\+N\+GE}}\item[{\em 
+A\+D\+F4351\+\_\+\+N\+\_\+\+R\+A\+N\+GE\hypertarget{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06ca57e3a78490e88a903233fec1ec98fb33}{}\label{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06ca57e3a78490e88a903233fec1ec98fb33}
+}]\index{A\+D\+F4351\+\_\+\+I\+N\+T\+\_\+\+R\+A\+N\+GE@{A\+D\+F4351\+\_\+\+I\+N\+T\+\_\+\+R\+A\+N\+GE}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+I\+N\+T\+\_\+\+R\+A\+N\+GE@{A\+D\+F4351\+\_\+\+I\+N\+T\+\_\+\+R\+A\+N\+GE}}\item[{\em 
+A\+D\+F4351\+\_\+\+I\+N\+T\+\_\+\+R\+A\+N\+GE\hypertarget{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06cad3c5af209d5c68da4a4bd05b15008f76}{}\label{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06cad3c5af209d5c68da4a4bd05b15008f76}
+}]\index{A\+D\+F4351\+\_\+\+M\+O\+D\+\_\+\+R\+A\+N\+GE@{A\+D\+F4351\+\_\+\+M\+O\+D\+\_\+\+R\+A\+N\+GE}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+M\+O\+D\+\_\+\+R\+A\+N\+GE@{A\+D\+F4351\+\_\+\+M\+O\+D\+\_\+\+R\+A\+N\+GE}}\item[{\em 
+A\+D\+F4351\+\_\+\+M\+O\+D\+\_\+\+R\+A\+N\+GE\hypertarget{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06cab20a2e654bc0776b6a9ea59ac1b5b995}{}\label{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06cab20a2e654bc0776b6a9ea59ac1b5b995}
+}]\index{A\+D\+F4351\+\_\+\+F\+R\+A\+C\+\_\+\+R\+A\+N\+GE@{A\+D\+F4351\+\_\+\+F\+R\+A\+C\+\_\+\+R\+A\+N\+GE}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+F\+R\+A\+C\+\_\+\+R\+A\+N\+GE@{A\+D\+F4351\+\_\+\+F\+R\+A\+C\+\_\+\+R\+A\+N\+GE}}\item[{\em 
+A\+D\+F4351\+\_\+\+F\+R\+A\+C\+\_\+\+R\+A\+N\+GE\hypertarget{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06ca9b2ffdd24c189349cd5b6831be5e96a8}{}\label{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06ca9b2ffdd24c189349cd5b6831be5e96a8}
+}]\index{A\+D\+F4351\+\_\+\+E\+R\+R\+O\+R\+\_\+\+E\+ND@{A\+D\+F4351\+\_\+\+E\+R\+R\+O\+R\+\_\+\+E\+ND}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+E\+R\+R\+O\+R\+\_\+\+E\+ND@{A\+D\+F4351\+\_\+\+E\+R\+R\+O\+R\+\_\+\+E\+ND}}\item[{\em 
+A\+D\+F4351\+\_\+\+E\+R\+R\+O\+R\+\_\+\+E\+ND\hypertarget{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06cab181288b9176c29a428d2d6b0973099c}{}\label{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06cab181288b9176c29a428d2d6b0973099c}
+}]\end{description}
+\end{Desc}
+
+
+Definition at line 336 of file adf4351.\+h.
+
+\subsubsection[{\texorpdfstring{anonymous enum}{anonymous enum}}]{\setlength{\rightskip}{0pt plus 5cm}anonymous enum}\hypertarget{adf4351_8h_a61dadd085c1777f559549e05962b2c9e}{}\label{adf4351_8h_a61dadd085c1777f559549e05962b2c9e}
+
+
+Disable/\+Enable. 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{A\+D\+F4351\+\_\+\+D\+I\+S\+A\+B\+LE@{A\+D\+F4351\+\_\+\+D\+I\+S\+A\+B\+LE}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+D\+I\+S\+A\+B\+LE@{A\+D\+F4351\+\_\+\+D\+I\+S\+A\+B\+LE}}\item[{\em 
+A\+D\+F4351\+\_\+\+D\+I\+S\+A\+B\+LE\hypertarget{adf4351_8h_a61dadd085c1777f559549e05962b2c9eac426af872d7676ac2e1810cc6b5e188a}{}\label{adf4351_8h_a61dadd085c1777f559549e05962b2c9eac426af872d7676ac2e1810cc6b5e188a}
+}]\index{A\+D\+F4351\+\_\+\+E\+N\+A\+B\+LE@{A\+D\+F4351\+\_\+\+E\+N\+A\+B\+LE}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+E\+N\+A\+B\+LE@{A\+D\+F4351\+\_\+\+E\+N\+A\+B\+LE}}\item[{\em 
+A\+D\+F4351\+\_\+\+E\+N\+A\+B\+LE\hypertarget{adf4351_8h_a61dadd085c1777f559549e05962b2c9ea9503ff1eec5687b5be835720d1e58f8f}{}\label{adf4351_8h_a61dadd085c1777f559549e05962b2c9ea9503ff1eec5687b5be835720d1e58f8f}
+}]\end{description}
+\end{Desc}
+
+
+Definition at line 354 of file adf4351.\+h.
+
+\subsubsection[{\texorpdfstring{anonymous enum}{anonymous enum}}]{\setlength{\rightskip}{0pt plus 5cm}anonymous enum}\hypertarget{adf4351_8h_a726ca809ffd3d67ab4b8476646f26635}{}\label{adf4351_8h_a726ca809ffd3d67ab4b8476646f26635}
+
+
+dual-\/modulus prescaler (P/P + 1) 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{A\+D\+F4351\+\_\+\+P\+R\+E\+S\+C\+A\+L\+E\+R\+\_\+4\+\_\+5@{A\+D\+F4351\+\_\+\+P\+R\+E\+S\+C\+A\+L\+E\+R\+\_\+4\+\_\+5}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+P\+R\+E\+S\+C\+A\+L\+E\+R\+\_\+4\+\_\+5@{A\+D\+F4351\+\_\+\+P\+R\+E\+S\+C\+A\+L\+E\+R\+\_\+4\+\_\+5}}\item[{\em 
+A\+D\+F4351\+\_\+\+P\+R\+E\+S\+C\+A\+L\+E\+R\+\_\+4\+\_\+5\hypertarget{adf4351_8h_a726ca809ffd3d67ab4b8476646f26635a406bafae1c325e4b7a90a8babd113a00}{}\label{adf4351_8h_a726ca809ffd3d67ab4b8476646f26635a406bafae1c325e4b7a90a8babd113a00}
+}]Prescaler = 4/5\+: N\+M\+IN = 23 \index{A\+D\+F4351\+\_\+\+P\+R\+E\+S\+C\+A\+L\+E\+R\+\_\+8\+\_\+9@{A\+D\+F4351\+\_\+\+P\+R\+E\+S\+C\+A\+L\+E\+R\+\_\+8\+\_\+9}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+P\+R\+E\+S\+C\+A\+L\+E\+R\+\_\+8\+\_\+9@{A\+D\+F4351\+\_\+\+P\+R\+E\+S\+C\+A\+L\+E\+R\+\_\+8\+\_\+9}}\item[{\em 
+A\+D\+F4351\+\_\+\+P\+R\+E\+S\+C\+A\+L\+E\+R\+\_\+8\+\_\+9\hypertarget{adf4351_8h_a726ca809ffd3d67ab4b8476646f26635add1287bd1171421395b5a19517efcd0d}{}\label{adf4351_8h_a726ca809ffd3d67ab4b8476646f26635add1287bd1171421395b5a19517efcd0d}
+}]Prescaler = 8/9\+: N\+M\+IN = 75 \end{description}
+\end{Desc}
+
+
+Definition at line 363 of file adf4351.\+h.
+
+\subsubsection[{\texorpdfstring{anonymous enum}{anonymous enum}}]{\setlength{\rightskip}{0pt plus 5cm}anonymous enum}\hypertarget{adf4351_8h_a0411cd49bb5b71852cecd93bcbf0ca2d}{}\label{adf4351_8h_a0411cd49bb5b71852cecd93bcbf0ca2d}
+
+
+Low Noise and Low Spur Modes. 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{A\+D\+F4351\+\_\+\+L\+O\+W\+\_\+\+N\+O\+I\+S\+E\+\_\+\+M\+O\+DE@{A\+D\+F4351\+\_\+\+L\+O\+W\+\_\+\+N\+O\+I\+S\+E\+\_\+\+M\+O\+DE}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+L\+O\+W\+\_\+\+N\+O\+I\+S\+E\+\_\+\+M\+O\+DE@{A\+D\+F4351\+\_\+\+L\+O\+W\+\_\+\+N\+O\+I\+S\+E\+\_\+\+M\+O\+DE}}\item[{\em 
+A\+D\+F4351\+\_\+\+L\+O\+W\+\_\+\+N\+O\+I\+S\+E\+\_\+\+M\+O\+DE\hypertarget{adf4351_8h_a0411cd49bb5b71852cecd93bcbf0ca2da9658360e67613ee187be63b33555007d}{}\label{adf4351_8h_a0411cd49bb5b71852cecd93bcbf0ca2da9658360e67613ee187be63b33555007d}
+}]\index{A\+D\+F4351\+\_\+\+L\+O\+W\+\_\+\+S\+P\+U\+R\+\_\+\+M\+O\+DE@{A\+D\+F4351\+\_\+\+L\+O\+W\+\_\+\+S\+P\+U\+R\+\_\+\+M\+O\+DE}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+L\+O\+W\+\_\+\+S\+P\+U\+R\+\_\+\+M\+O\+DE@{A\+D\+F4351\+\_\+\+L\+O\+W\+\_\+\+S\+P\+U\+R\+\_\+\+M\+O\+DE}}\item[{\em 
+A\+D\+F4351\+\_\+\+L\+O\+W\+\_\+\+S\+P\+U\+R\+\_\+\+M\+O\+DE\hypertarget{adf4351_8h_a0411cd49bb5b71852cecd93bcbf0ca2da9a98e704833692a9962390d2b6692e8e}{}\label{adf4351_8h_a0411cd49bb5b71852cecd93bcbf0ca2da9a98e704833692a9962390d2b6692e8e}
+}]\end{description}
+\end{Desc}
+
+
+Definition at line 371 of file adf4351.\+h.
+
+\subsubsection[{\texorpdfstring{anonymous enum}{anonymous enum}}]{\setlength{\rightskip}{0pt plus 5cm}anonymous enum}\hypertarget{adf4351_8h_abed82baf7f470b522273a3e37c24c600}{}\label{adf4351_8h_abed82baf7f470b522273a3e37c24c600}
+
+
+M\+U\+X\+O\+UT multiplexer. 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{A\+D\+F4351\+\_\+\+M\+U\+X\+\_\+\+T\+H\+R\+E\+E\+S\+T\+A\+TE@{A\+D\+F4351\+\_\+\+M\+U\+X\+\_\+\+T\+H\+R\+E\+E\+S\+T\+A\+TE}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+M\+U\+X\+\_\+\+T\+H\+R\+E\+E\+S\+T\+A\+TE@{A\+D\+F4351\+\_\+\+M\+U\+X\+\_\+\+T\+H\+R\+E\+E\+S\+T\+A\+TE}}\item[{\em 
+A\+D\+F4351\+\_\+\+M\+U\+X\+\_\+\+T\+H\+R\+E\+E\+S\+T\+A\+TE\hypertarget{adf4351_8h_abed82baf7f470b522273a3e37c24c600a88b8cb62fb2f4ac7959f67691bd31f58}{}\label{adf4351_8h_abed82baf7f470b522273a3e37c24c600a88b8cb62fb2f4ac7959f67691bd31f58}
+}]\index{A\+D\+F4351\+\_\+\+M\+U\+X\+\_\+\+D\+V\+DD@{A\+D\+F4351\+\_\+\+M\+U\+X\+\_\+\+D\+V\+DD}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+M\+U\+X\+\_\+\+D\+V\+DD@{A\+D\+F4351\+\_\+\+M\+U\+X\+\_\+\+D\+V\+DD}}\item[{\em 
+A\+D\+F4351\+\_\+\+M\+U\+X\+\_\+\+D\+V\+DD\hypertarget{adf4351_8h_abed82baf7f470b522273a3e37c24c600abe66c45a98ce3184965004968acc1edf}{}\label{adf4351_8h_abed82baf7f470b522273a3e37c24c600abe66c45a98ce3184965004968acc1edf}
+}]\index{A\+D\+F4351\+\_\+\+M\+U\+X\+\_\+\+D\+G\+ND@{A\+D\+F4351\+\_\+\+M\+U\+X\+\_\+\+D\+G\+ND}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+M\+U\+X\+\_\+\+D\+G\+ND@{A\+D\+F4351\+\_\+\+M\+U\+X\+\_\+\+D\+G\+ND}}\item[{\em 
+A\+D\+F4351\+\_\+\+M\+U\+X\+\_\+\+D\+G\+ND\hypertarget{adf4351_8h_abed82baf7f470b522273a3e37c24c600a0758e1c8934b1320edec8e755ebdf557}{}\label{adf4351_8h_abed82baf7f470b522273a3e37c24c600a0758e1c8934b1320edec8e755ebdf557}
+}]\index{A\+D\+F4351\+\_\+\+M\+U\+X\+\_\+\+R\+C\+O\+U\+N\+T\+ER@{A\+D\+F4351\+\_\+\+M\+U\+X\+\_\+\+R\+C\+O\+U\+N\+T\+ER}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+M\+U\+X\+\_\+\+R\+C\+O\+U\+N\+T\+ER@{A\+D\+F4351\+\_\+\+M\+U\+X\+\_\+\+R\+C\+O\+U\+N\+T\+ER}}\item[{\em 
+A\+D\+F4351\+\_\+\+M\+U\+X\+\_\+\+R\+C\+O\+U\+N\+T\+ER\hypertarget{adf4351_8h_abed82baf7f470b522273a3e37c24c600a60abc6322ac2d9750da1aff58c4a5d6d}{}\label{adf4351_8h_abed82baf7f470b522273a3e37c24c600a60abc6322ac2d9750da1aff58c4a5d6d}
+}]\index{A\+D\+F4351\+\_\+\+M\+U\+X\+\_\+\+N\+D\+I\+V\+I\+D\+ER@{A\+D\+F4351\+\_\+\+M\+U\+X\+\_\+\+N\+D\+I\+V\+I\+D\+ER}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+M\+U\+X\+\_\+\+N\+D\+I\+V\+I\+D\+ER@{A\+D\+F4351\+\_\+\+M\+U\+X\+\_\+\+N\+D\+I\+V\+I\+D\+ER}}\item[{\em 
+A\+D\+F4351\+\_\+\+M\+U\+X\+\_\+\+N\+D\+I\+V\+I\+D\+ER\hypertarget{adf4351_8h_abed82baf7f470b522273a3e37c24c600a6edfefd22b30e8c8341c524b0636bc65}{}\label{adf4351_8h_abed82baf7f470b522273a3e37c24c600a6edfefd22b30e8c8341c524b0636bc65}
+}]\index{A\+D\+F4351\+\_\+\+M\+U\+X\+\_\+\+A\+N\+A\+L\+O\+G\+L\+O\+CK@{A\+D\+F4351\+\_\+\+M\+U\+X\+\_\+\+A\+N\+A\+L\+O\+G\+L\+O\+CK}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+M\+U\+X\+\_\+\+A\+N\+A\+L\+O\+G\+L\+O\+CK@{A\+D\+F4351\+\_\+\+M\+U\+X\+\_\+\+A\+N\+A\+L\+O\+G\+L\+O\+CK}}\item[{\em 
+A\+D\+F4351\+\_\+\+M\+U\+X\+\_\+\+A\+N\+A\+L\+O\+G\+L\+O\+CK\hypertarget{adf4351_8h_abed82baf7f470b522273a3e37c24c600a0703e5f4444a5fff324110cac45bc522}{}\label{adf4351_8h_abed82baf7f470b522273a3e37c24c600a0703e5f4444a5fff324110cac45bc522}
+}]\index{A\+D\+F4351\+\_\+\+M\+U\+X\+\_\+\+D\+I\+G\+I\+T\+A\+L\+L\+O\+CK@{A\+D\+F4351\+\_\+\+M\+U\+X\+\_\+\+D\+I\+G\+I\+T\+A\+L\+L\+O\+CK}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+M\+U\+X\+\_\+\+D\+I\+G\+I\+T\+A\+L\+L\+O\+CK@{A\+D\+F4351\+\_\+\+M\+U\+X\+\_\+\+D\+I\+G\+I\+T\+A\+L\+L\+O\+CK}}\item[{\em 
+A\+D\+F4351\+\_\+\+M\+U\+X\+\_\+\+D\+I\+G\+I\+T\+A\+L\+L\+O\+CK\hypertarget{adf4351_8h_abed82baf7f470b522273a3e37c24c600a05d32a902ee999371976caa239a9bda4}{}\label{adf4351_8h_abed82baf7f470b522273a3e37c24c600a05d32a902ee999371976caa239a9bda4}
+}]\end{description}
+\end{Desc}
+
+
+Definition at line 379 of file adf4351.\+h.
+
+\subsubsection[{\texorpdfstring{anonymous enum}{anonymous enum}}]{\setlength{\rightskip}{0pt plus 5cm}anonymous enum}\hypertarget{adf4351_8h_ab04a0655cd1e3bcac5e8f48c18df1a57}{}\label{adf4351_8h_ab04a0655cd1e3bcac5e8f48c18df1a57}
+
+
+Lock Detect Function F\+R\+AC or I\+NT mode. 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{A\+D\+F4351\+\_\+\+L\+D\+F\+\_\+\+F\+R\+A\+C\+\_\+N@{A\+D\+F4351\+\_\+\+L\+D\+F\+\_\+\+F\+R\+A\+C\+\_\+N}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+L\+D\+F\+\_\+\+F\+R\+A\+C\+\_\+N@{A\+D\+F4351\+\_\+\+L\+D\+F\+\_\+\+F\+R\+A\+C\+\_\+N}}\item[{\em 
+A\+D\+F4351\+\_\+\+L\+D\+F\+\_\+\+F\+R\+A\+C\+\_\+N\hypertarget{adf4351_8h_ab04a0655cd1e3bcac5e8f48c18df1a57a8c9a0e0879bed8f6e0d8c3f9ee05757e}{}\label{adf4351_8h_ab04a0655cd1e3bcac5e8f48c18df1a57a8c9a0e0879bed8f6e0d8c3f9ee05757e}
+}]\index{A\+D\+F4351\+\_\+\+L\+D\+F\+\_\+\+I\+N\+T\+\_\+N@{A\+D\+F4351\+\_\+\+L\+D\+F\+\_\+\+I\+N\+T\+\_\+N}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+L\+D\+F\+\_\+\+I\+N\+T\+\_\+N@{A\+D\+F4351\+\_\+\+L\+D\+F\+\_\+\+I\+N\+T\+\_\+N}}\item[{\em 
+A\+D\+F4351\+\_\+\+L\+D\+F\+\_\+\+I\+N\+T\+\_\+N\hypertarget{adf4351_8h_ab04a0655cd1e3bcac5e8f48c18df1a57a819ca6a059e59fc5fe92e66ae87390e9}{}\label{adf4351_8h_ab04a0655cd1e3bcac5e8f48c18df1a57a819ca6a059e59fc5fe92e66ae87390e9}
+}]\end{description}
+\end{Desc}
+
+
+Definition at line 393 of file adf4351.\+h.
+
+
+
+\subsection{Function Documentation}
+\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+C\+H\+A\+R\+G\+E\+\_\+\+P\+U\+M\+P\+\_\+uA@{A\+D\+F4351\+\_\+\+C\+H\+A\+R\+G\+E\+\_\+\+P\+U\+M\+P\+\_\+uA}}
+\index{A\+D\+F4351\+\_\+\+C\+H\+A\+R\+G\+E\+\_\+\+P\+U\+M\+P\+\_\+uA@{A\+D\+F4351\+\_\+\+C\+H\+A\+R\+G\+E\+\_\+\+P\+U\+M\+P\+\_\+uA}!adf4351.\+h@{adf4351.\+h}}
+\subsubsection[{\texorpdfstring{A\+D\+F4351\+\_\+\+C\+H\+A\+R\+G\+E\+\_\+\+P\+U\+M\+P\+\_\+u\+A(int32\+\_\+t x)}{ADF4351_CHARGE_PUMP_uA(int32_t x)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int A\+D\+F4351\+\_\+\+C\+H\+A\+R\+G\+E\+\_\+\+P\+U\+M\+P\+\_\+uA (
+\begin{DoxyParamCaption}
+\item[{{\bf int32\+\_\+t}}]{x}
+\end{DoxyParamCaption}
+)}\hypertarget{adf4351_8h_a324309e3155806af38a6140b8543d39c}{}\label{adf4351_8h_a324309e3155806af38a6140b8543d39c}
+
+
+Convert charge pump current in uA to R2 register value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 136 of file adf4351.\+c.
+
+
+
+Referenced by A\+D\+F4351\+\_\+\+Init().
+
+\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+Config@{A\+D\+F4351\+\_\+\+Config}}
+\index{A\+D\+F4351\+\_\+\+Config@{A\+D\+F4351\+\_\+\+Config}!adf4351.\+h@{adf4351.\+h}}
+\subsubsection[{\texorpdfstring{A\+D\+F4351\+\_\+\+Config(double R\+Fout, double R\+E\+Fin, double Channel\+Spacing, double $\ast$\+R\+Fout\+Calc)}{ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RFoutCalc)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int A\+D\+F4351\+\_\+\+Config (
+\begin{DoxyParamCaption}
+\item[{double}]{R\+Fout, }
+\item[{double}]{R\+E\+Fin, }
+\item[{double}]{Channel\+Spacing, }
+\item[{double $\ast$}]{R\+Fout\+Calc}
+\end{DoxyParamCaption}
+)}\hypertarget{adf4351_8h_aa81dc41f60eb1698b3866deb0d2a31bc}{}\label{adf4351_8h_aa81dc41f60eb1698b3866deb0d2a31bc}
+
+
+Calculate register values for A\+D\+F4351. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em R\+Fout} & Required output frequency in Hz \\
+\hline
+{\em R\+E\+Fin} & Reference clock in Hz \\
+\hline
+{\em Spacing} & Output channel spacing in Hz  R\+Fout\+Calc\+: Calculated actual output frequency in Hz \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0=\+OK,or} & Error code \\
+\hline
+\end{DoxyRetVals}
+R\+Fout\+V\+CO = \mbox{[}r0\+\_\+\+I\+NT + (r0\+\_\+\+F\+R\+A\+C/r1\+\_\+\+M\+OD)\mbox{]} × (P\+FD) R\+Fout = \mbox{[}r0\+\_\+\+I\+NT + (r0\+\_\+\+F\+R\+A\+C/r1\+\_\+\+M\+OD)\mbox{]} × (P\+FD /\+R\+Fout\+D\+IV) R\+Fout is the RF frequency output. r0\+\_\+\+I\+NT is the integer division factor. r0\+\_\+\+F\+R\+AC is the numerator of the fractional division (0 to M\+OD − 1). r1\+\_\+\+M\+OD is the preset fractional modulus (2 to 4095). R\+Fout\+D\+IV is the V\+CO output divider. P\+FD = R\+E\+Fin × \mbox{[}(1 + R\+E\+Fin\+M\+U\+L2)/(R × (1 + R\+E\+Fin\+D\+I\+V2))\mbox{]} R\+E\+Fin is the reference frequency input. R\+E\+Fin\+M\+U\+L2 is the R\+E\+Fin doubler bit (0 or 1). r2\+\_\+R is R\+E\+Fin division factor (1 to 1023). R\+E\+Fin\+D\+I\+V2 is the reference divide-\/by-\/2 bit (0 or 1). Fres = Channel\+Spacing $\ast$ R\+Fout\+D\+IV r1\+\_\+\+M\+OD=R\+E\+Fin / Fres
+
+Definition at line 415 of file adf4351.\+c.
+
+
+
+Referenced by A\+D\+F4351\+\_\+task().
+
+\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+display\+\_\+error@{A\+D\+F4351\+\_\+display\+\_\+error}}
+\index{A\+D\+F4351\+\_\+display\+\_\+error@{A\+D\+F4351\+\_\+display\+\_\+error}!adf4351.\+h@{adf4351.\+h}}
+\subsubsection[{\texorpdfstring{A\+D\+F4351\+\_\+display\+\_\+error(int error)}{ADF4351_display_error(int error)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void A\+D\+F4351\+\_\+display\+\_\+error (
+\begin{DoxyParamCaption}
+\item[{int}]{error}
+\end{DoxyParamCaption}
+)}\hypertarget{adf4351_8h_a992aef229e9dba29e333afd297fe9c45}{}\label{adf4351_8h_a992aef229e9dba29e333afd297fe9c45}
+
+
+Display A\+D\+F4351 error return code. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em error} & error code \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 380 of file adf4351.\+c.
+
+
+
+Referenced by A\+D\+F4351\+\_\+task().
+
+\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+G\+CD@{A\+D\+F4351\+\_\+\+G\+CD}}
+\index{A\+D\+F4351\+\_\+\+G\+CD@{A\+D\+F4351\+\_\+\+G\+CD}!adf4351.\+h@{adf4351.\+h}}
+\subsubsection[{\texorpdfstring{A\+D\+F4351\+\_\+\+G\+C\+D(uint32\+\_\+t u, uint32\+\_\+t v)}{ADF4351_GCD(uint32_t u, uint32_t v)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} {\bf uint32\+\_\+t} A\+D\+F4351\+\_\+\+G\+CD (
+\begin{DoxyParamCaption}
+\item[{{\bf uint32\+\_\+t}}]{u, }
+\item[{{\bf uint32\+\_\+t}}]{v}
+\end{DoxyParamCaption}
+)}\hypertarget{adf4351_8h_a9948e2df41f01efaaf81303c65b8f956}{}\label{adf4351_8h_a9948e2df41f01efaaf81303c65b8f956}
+\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+Get\+Reg32@{A\+D\+F4351\+\_\+\+Get\+Reg32}}
+\index{A\+D\+F4351\+\_\+\+Get\+Reg32@{A\+D\+F4351\+\_\+\+Get\+Reg32}!adf4351.\+h@{adf4351.\+h}}
+\subsubsection[{\texorpdfstring{A\+D\+F4351\+\_\+\+Get\+Reg32(int addr)}{ADF4351_GetReg32(int addr)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} {\bf uint32\+\_\+t} A\+D\+F4351\+\_\+\+Get\+Reg32 (
+\begin{DoxyParamCaption}
+\item[{int}]{addr}
+\end{DoxyParamCaption}
+)}\hypertarget{adf4351_8h_a4efaed51690f11a55c140c3a576c77ba}{}\label{adf4351_8h_a4efaed51690f11a55c140c3a576c77ba}
+
+
+Returns 32bit register value from register buffer. 
+
+\subsection*{============================================================= }
+
+
+\begin{DoxyParams}{Parameters}
+{\em addr} & Register address \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em register} & value \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line 65 of file adf4351.\+c.
+
+
+
+Referenced by A\+D\+F4351\+\_\+status(), and A\+D\+F4351\+\_\+sync().
+
+\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+Init@{A\+D\+F4351\+\_\+\+Init}}
+\index{A\+D\+F4351\+\_\+\+Init@{A\+D\+F4351\+\_\+\+Init}!adf4351.\+h@{adf4351.\+h}}
+\subsubsection[{\texorpdfstring{A\+D\+F4351\+\_\+\+Init(void)}{ADF4351_Init(void)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void A\+D\+F4351\+\_\+\+Init (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{adf4351_8h_a50bcc9731b52a04b7605cea7a7b9b31d}{}\label{adf4351_8h_a50bcc9731b52a04b7605cea7a7b9b31d}
+
+
+Init all A\+D\+F4351 registers to default values. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 154 of file adf4351.\+c.
+
+
+
+Referenced by setup(), and user\+\_\+tests().
+
+\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+P\+FD@{A\+D\+F4351\+\_\+\+P\+FD}}
+\index{A\+D\+F4351\+\_\+\+P\+FD@{A\+D\+F4351\+\_\+\+P\+FD}!adf4351.\+h@{adf4351.\+h}}
+\subsubsection[{\texorpdfstring{A\+D\+F4351\+\_\+\+P\+F\+D(double R\+E\+Fin, int R)}{ADF4351_PFD(double REFin, int R)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} double A\+D\+F4351\+\_\+\+P\+FD (
+\begin{DoxyParamCaption}
+\item[{double}]{R\+E\+Fin, }
+\item[{int}]{R}
+\end{DoxyParamCaption}
+)}\hypertarget{adf4351_8h_a028ebcaafaf1da135256b7226060eb43}{}\label{adf4351_8h_a028ebcaafaf1da135256b7226060eb43}
+
+
+Compute P\+DF. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em R\+E\+Fin} & Reference in frequency \\
+\hline
+{\em R} & Reference divider \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 346 of file adf4351.\+c.
+
+
+
+Referenced by A\+D\+F4351\+\_\+\+Config().
+
+\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+status@{A\+D\+F4351\+\_\+status}}
+\index{A\+D\+F4351\+\_\+status@{A\+D\+F4351\+\_\+status}!adf4351.\+h@{adf4351.\+h}}
+\subsubsection[{\texorpdfstring{A\+D\+F4351\+\_\+status(uint8\+\_\+t mode)}{ADF4351_status(uint8_t mode)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} {\bf uint32\+\_\+t} A\+D\+F4351\+\_\+status (
+\begin{DoxyParamCaption}
+\item[{{\bf uint8\+\_\+t}}]{mode}
+\end{DoxyParamCaption}
+)}\hypertarget{adf4351_8h_a4880c809bea1b2745d82d735d2e10cbc}{}\label{adf4351_8h_a4880c809bea1b2745d82d735d2e10cbc}
+
+
+Read A\+D\+F4351 status Only of value if spi bus input is tied to mux out This function has not been tested! 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mode} & muxout mode \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+32bit result 
+\end{DoxyReturn}
+
+
+Definition at line 295 of file adf4351.\+c.
+
+\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+sync@{A\+D\+F4351\+\_\+sync}}
+\index{A\+D\+F4351\+\_\+sync@{A\+D\+F4351\+\_\+sync}!adf4351.\+h@{adf4351.\+h}}
+\subsubsection[{\texorpdfstring{A\+D\+F4351\+\_\+sync(int all)}{ADF4351_sync(int all)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void A\+D\+F4351\+\_\+sync (
+\begin{DoxyParamCaption}
+\item[{int}]{all}
+\end{DoxyParamCaption}
+)}\hypertarget{adf4351_8h_ae9bac3466244b1cf1c43de60bfa88bf3}{}\label{adf4351_8h_ae9bac3466244b1cf1c43de60bfa88bf3}
+
+
+Sync settings to A\+D\+F4351 registers. 
+
+\subsection*{============================================================= }
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em all} & sync all registers \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 42 of file adf4351.\+c.
+
+
+
+Referenced by A\+D\+F4351\+\_\+\+Init(), A\+D\+F4351\+\_\+status(), and A\+D\+F4351\+\_\+task().
+
+\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F\+\_\+dump\+\_\+registers@{A\+D\+F\+\_\+dump\+\_\+registers}}
+\index{A\+D\+F\+\_\+dump\+\_\+registers@{A\+D\+F\+\_\+dump\+\_\+registers}!adf4351.\+h@{adf4351.\+h}}
+\subsubsection[{\texorpdfstring{A\+D\+F\+\_\+dump\+\_\+registers(void)}{ADF_dump_registers(void)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void A\+D\+F\+\_\+dump\+\_\+registers (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{adf4351_8h_a01253786939ed08115fbea3e2989b745}{}\label{adf4351_8h_a01253786939ed08115fbea3e2989b745}
