@@ -30,7 +30,9 @@
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{structadf4351__regs__t}{adf4351\+\_\+regs\+\_\+t} \hyperlink{adf4351_8c_a70530166ec574157a09a77a51c01ea02}{regs}
-\begin{DoxyCompactList}\small\item\em A\+D\+F4351 register buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em A\+D\+F4351 register buffer. \end{DoxyCompactList}\item 
+\hyperlink{structadf4351__err__t}{adf4351\+\_\+err\+\_\+t} \hyperlink{adf4351_8c_ab412cdfecfed0dc105177ee96c5b52f2}{adf4351\+\_\+errors} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Verbose Error messages. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Function Documentation}
@@ -88,7 +90,7 @@ Calculate register values for A\+D\+F4351.
 \end{DoxyRetVals}
 R\+Fout\+V\+CO = \mbox{[}r0\+\_\+\+I\+NT + (r0\+\_\+\+F\+R\+A\+C/r1\+\_\+\+M\+OD)\mbox{]} × (P\+FD) R\+Fout = \mbox{[}r0\+\_\+\+I\+NT + (r0\+\_\+\+F\+R\+A\+C/r1\+\_\+\+M\+OD)\mbox{]} × (P\+FD /\+R\+Fout\+D\+IV) R\+Fout is the RF frequency output. r0\+\_\+\+I\+NT is the integer division factor. r0\+\_\+\+F\+R\+AC is the numerator of the fractional division (0 to M\+OD − 1). r1\+\_\+\+M\+OD is the preset fractional modulus (2 to 4095). R\+Fout\+D\+IV is the V\+CO output divider. P\+FD = R\+E\+Fin × \mbox{[}(1 + R\+E\+Fin\+M\+U\+L2)/(R × (1 + R\+E\+Fin\+D\+I\+V2))\mbox{]} R\+E\+Fin is the reference frequency input. R\+E\+Fin\+M\+U\+L2 is the R\+E\+Fin doubler bit (0 or 1). r2\+\_\+R is R\+E\+Fin division factor (1 to 1023). R\+E\+Fin\+D\+I\+V2 is the reference divide-\/by-\/2 bit (0 or 1). Fres = Channel\+Spacing $\ast$ R\+Fout\+D\+IV r1\+\_\+\+M\+OD=R\+E\+Fin / Fres
 
-Definition at line 415 of file adf4351.\+c.
+Definition at line 406 of file adf4351.\+c.
 
 
 
@@ -112,7 +114,7 @@ Display A\+D\+F4351 error return code.
 \end{DoxyParams}
 
 
-Definition at line 380 of file adf4351.\+c.
+Definition at line 378 of file adf4351.\+c.
 
 
 
@@ -302,6 +304,37 @@ Referenced by A\+D\+F4351\+\_\+\+Init(), A\+D\+F4351\+\_\+status(), and user\+\_
 
 
 \subsection{Variable Documentation}
+\index{adf4351.\+c@{adf4351.\+c}!adf4351\+\_\+errors@{adf4351\+\_\+errors}}
+\index{adf4351\+\_\+errors@{adf4351\+\_\+errors}!adf4351.\+c@{adf4351.\+c}}
+\subsubsection[{\texorpdfstring{adf4351\+\_\+errors}{adf4351_errors}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf adf4351\+\_\+err\+\_\+t} adf4351\+\_\+errors\mbox{[}$\,$\mbox{]}}\hypertarget{adf4351_8c_ab412cdfecfed0dc105177ee96c5b52f2}{}\label{adf4351_8c_ab412cdfecfed0dc105177ee96c5b52f2}
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+=
+\{
+   \{ \hyperlink{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06ca29346a5191b706c861aaa10f05e5fca2}{ADF4351\_NOERROR},\textcolor{stringliteral}{"No error"} \},
+   \{ \hyperlink{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06ca995ce66d1222115420ccc2605f8856f8}{ADF4351\_RFout\_RANGE},\textcolor{stringliteral}{"RFout\_RANGE"} \},
+   \{ \hyperlink{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06ca72530a6bbcc2547f3c310d00d952159d}{ADF4351\_RFoutDIV\_RANGE},\textcolor{stringliteral}{"RFoutDIV\_RANGE"} \},
+   \{ \hyperlink{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06ca35b652c6e3dba87dd31f705638c231bd}{ADF4351\_RFout\_MISMATCH},\textcolor{stringliteral}{"RFout\_MISMATCH"} \},
+   \{ \hyperlink{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06ca3c2fdae3609858fc23a175a78956ea5e}{ADF4351\_REFin\_RANGE},\textcolor{stringliteral}{"REFin\_RANGE"} \},
+   \{ \hyperlink{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06caba15cbf8e857d729a6e8da4021fb06b1}{ADF4351\_BandSelectClockFrequency\_RANGE},\textcolor{stringliteral}{"
+      BandSelectClockFrequency\_RANGE"} \},
+   \{ \hyperlink{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06ca7acf49deae0e3115da8b84602e22e227}{ADF4351\_R\_RANGE},\textcolor{stringliteral}{"R\_RANGE"} \},
+   \{ \hyperlink{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06cafc3a3e6baa8e0fa3a653b57b3ca03e08}{ADF4351\_PDF\_RANGE},\textcolor{stringliteral}{"PDF\_RANGE"} \},
+   \{ \hyperlink{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06ca57e3a78490e88a903233fec1ec98fb33}{ADF4351\_N\_RANGE},\textcolor{stringliteral}{"N\_RANGE"} \},
+   \{ \hyperlink{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06cad3c5af209d5c68da4a4bd05b15008f76}{ADF4351\_INT\_RANGE},\textcolor{stringliteral}{"INT\_RANGE"} \},
+   \{ \hyperlink{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06cab20a2e654bc0776b6a9ea59ac1b5b995}{ADF4351\_MOD\_RANGE},\textcolor{stringliteral}{"MOD\_RANGE"} \},
+   \{ \hyperlink{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06ca9b2ffdd24c189349cd5b6831be5e96a8}{ADF4351\_FRAC\_RANGE},\textcolor{stringliteral}{"FRAC\_RANGE"}\},
+   \{ \hyperlink{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06cab181288b9176c29a428d2d6b0973099c}{ADF4351\_ERROR\_END},NULL\}
+\}
+\end{DoxyCode}
+
+
+Verbose Error messages. 
+
+
+
+Definition at line 356 of file adf4351.\+c.
+
 \index{adf4351.\+c@{adf4351.\+c}!regs@{regs}}
 \index{regs@{regs}!adf4351.\+c@{adf4351.\+c}}
 \subsubsection[{\texorpdfstring{regs}{regs}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf adf4351\+\_\+regs\+\_\+t} regs}\hypertarget{adf4351_8c_a70530166ec574157a09a77a51c01ea02}{}\label{adf4351_8c_a70530166ec574157a09a77a51c01ea02}

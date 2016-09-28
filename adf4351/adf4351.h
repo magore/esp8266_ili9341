@@ -326,16 +326,15 @@ typedef struct {
 typedef struct
 {
 	int val;
-#ifdef ADF4351_DEBUG
 	char *msg;
-#endif
 } adf4351_err_t;
 
 /** \brief Error numbers
 */
 enum
 {
-	ADF4351_RFout_RANGE = 1,
+	ADF4351_NOERROR,
+	ADF4351_RFout_RANGE,
 	ADF4351_RFout_MISMATCH,
 	ADF4351_REFin_RANGE,
 	ADF4351_BandSelectClockFrequency_RANGE,

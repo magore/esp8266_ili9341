@@ -83,33 +83,46 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <div class="textblock"><h1><a class="anchor" id="README"></a>
 README</h1>
-<dl class="section user"><dt>Documentation</dt><dd></dd></dl>
-<ul>
-<li>Pleasse use this link for Documentation and this README<ul>
-<li><a href="https://rawgit.com/magore/esp8266_ili9341/master/doxygen/html/index.html">https://rawgit.com/magore/esp8266_ili9341/master/doxygen/html/index.html</a></li>
+<dl class="section user"><dt>Documentation</dt><dd><ul>
+<li>Pleasse use this link for Documentation and this README </li>
 </ul>
-</li>
-</ul>
+</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a href="https://rawgit.com/magore/esp8266_ili9341/master/doxygen/html/index.html">https://rawgit.com/magore/esp8266_ili9341/master/doxygen/html/index.html</a> </dd></dl>
 <dl class="section user"><dt>Copyright</dt><dd><ul>
-<li>See <a class="el" href="md_COPYRIGHT.html">COPYRIGHT.md</a> for a full copyright notice for the project</li>
+<li>See <a class="el" href="md_COPYRIGHT.html">COPYRIGHT.md</a> for a full copyright notice for the project </li>
 </ul>
 </dd></dl>
 <dl class="section user"><dt>Description</dt><dd><ul>
-<li>ESP8266 ILI9341 with multiple window support WEB server and other networking demos<ul>
-<li>The specific display is an TM022HDH26 display I got from ebay.</li>
+<li>ESP8266 support libraries<ul>
+<li>All of the code in this project, except where noted is written by me</li>
+<li>Analog Devices ADF4351 Wideband Synthesizer driver and test code<ul>
+<li>Control is via serial terminal that works while the other demos run</li>
+<li>adf4351 123456000 10000<ul>
+<li>frequency, and channel spacing used in calculations</li>
 </ul>
 </li>
-<li>I wrote the following support functions from scratch<ul>
-<li>ADF4351 Wideband Synthesizer diriver and test code</li>
-<li>Font compiler and display code</li>
-<li>ILI9341 display driver with multiple custom sized window support<ul>
-<li>(I rewrote most of Adafruit code ili9341 graphics library)</li>
-<li>readPixel() and custom sized window scrolling</li>
+<li>adf4351_scan 144e6 145e6 10000<ul>
+<li>start frequency, end frequency, channel spacing</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>ILI9341 display driver<ul>
+<li>Mutiple custom size window support</li>
+<li>Window scrolling</li>
+<li>readPixel() function suported</li>
+<li>The specific display this was tested on is a TM022HDH26 display I got from ebay.</li>
 <li>Not limited by ILI9341 hardware scroll restrictions.</li>
 </ul>
 </li>
-<li>CORDIC C table generator and 3D transformation code support functions</li>
-<li>Wire frame viewer and C generator for Earth coastline data<ul>
+</ul>
+</li>
+</ul>
+</dd></dl>
+<ul>
+<li>BDF compiler and fonts - creates C code used in the display drivers</li>
+<li>Wireframe Viewer<ul>
+<li>Code generator for Earth coastline data</li>
 <li>I created two wireframe demos<ul>
 <li>Cube wireframe dataset</li>
 <li>Earth coastline dataset - wireframe view still needs hidden line removal option</li>
@@ -117,39 +130,44 @@ README</h1>
 </li>
 </ul>
 </li>
-<li>Small Printf with full floating point support along with ftoa/atof and integer conversions</li>
-<li>BDF fonts and a BDF font to C conversion code and optimized display code</li>
-<li>WEB server using SD CARD with CGI processing - files and CGI results can be ANY SIZE!</li>
+<li>CORDIC C code generator and 3D transformation code support functions use by wireframe viewer code</li>
+<li>Small PRINTF with full floating point support - much smaller then GNU full verson along</li>
+<li>ATOF and various integer conversions</li>
+<li>WEB server using SD CARD with CGI processing - files and CGI results can be ANY SIZE!<ul>
+<li>Example web site for testing</li>
 <li>WEB server can update TFT display<ul>
 <li>Simple door sign status update using web page - see html/msg.cgi and <a class="el" href="web_8c.html" title="Small web server for esp8266. ">web/web.c</a> for code</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>Network server client example for display updates</li>
 <li>Uart network server client for serial uart to network bridge.</li>
 <li>Generic queue handling code</li>
 <li>Uart driver.</li>
-<li>POSIX wrappers for FatFS support by ChaN - provides unix file I/O operations</li>
-<li>POSIX time functions and RTC set with NTP</li>
-<li>Timers used by rtc and time functions</li>
-<li>HSPI code that can handle multiple chip select and clock frequencies</li>
-</ul>
-</li>
+<li>POSIX wrappers for FatFS - provides unix file I/O operations<ul>
 <li>Includes FatFS SD card support by ChaN</li>
 </ul>
-</dd></dl>
+</li>
+<li>POSIX time functions and RTC set with NTP</li>
+<li>Multiple timers used by rtc and time functions</li>
+<li>HSPI code that can handle multiple devices each with varying clock frequencies</li>
+</ul>
 <dl class="section user"><dt>Credits</dt><dd><ul>
-<li>Built using ESP Open SDK - or esp8266-devkit by CHERTS </li>
+<li>Project compiles using ESP Open SDK - or esp8266-devkit by CHERTS </li>
 </ul>
 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a href="https://github.com/pfalcon/esp-open-sdk">https://github.com/pfalcon/esp-open-sdk</a> </dd>
 <dd>
 <a href="https://github.com/CHERTS/esp8266-devkit">https://github.com/CHERTS/esp8266-devkit</a><ul>
-<li>Optimized Line drawing function and Makefile from CHERTS </li>
+<li>Display drivers from third parties A few of the display driver functions are from the Adafruit GFX Library </li>
 </ul>
 </dd>
 <dd>
+<a href="https://github.com/adafruit/Adafruit-GFX-Library">https://github.com/adafruit/Adafruit-GFX-Library</a> Optimized Line drawing function and Makefile from CHERTS </dd>
+<dd>
 <a href="https://github.com/CHERTS/esp8266-devkit/tree/master/Espressif/examples/esp8266_ili9341">https://github.com/CHERTS/esp8266-devkit/tree/master/Espressif/examples/esp8266_ili9341</a><ul>
-<li>Fonts: </li>
+<li>Font sources: </li>
 </ul>
 </dd>
 <dd>
@@ -160,7 +178,7 @@ README</h1>
 <a href="http://en.wikipedia.org/wiki/Glyph_Bitmap_Distribution_Format">http://en.wikipedia.org/wiki/Glyph_Bitmap_Distribution_Format</a> </dd>
 <dd>
 <a href="https://partners.adobe.com/public/developer/en/font/5005.BDF_Spec.pdf">https://partners.adobe.com/public/developer/en/font/5005.BDF_Spec.pdf</a><ul>
-<li>FatFS: </li>
+<li>FatFS code by CHaN: </li>
 </ul>
 </dd>
 <dd>
@@ -172,7 +190,7 @@ README</h1>
 <a href="https://github.com/esp8266/Arduino">https://github.com/esp8266/Arduino</a> <hr/>
 </dd></dl>
 <dl class="section user"><dt>Directories</dt><dd><ul>
-<li>.<ul>
+<li>Files<ul>
 <li>Makefile from CHERTS modified for the project<ul>
 <li>Features controlled by variables in Makefile</li>
 </ul>
@@ -187,6 +205,7 @@ README</h1>
 <li>term115200 - shell script to launch terminal to 115200 baud</li>
 </ul>
 </li>
+<li>Directories</li>
 <li>adf4351<ul>
 <li>Analog Devices ADF4351 Wideband Synthesizer with Integrated VCO driver<ul>
 <li><a class="el" href="adf4351_8c.html">adf4351.c</a></li>
@@ -272,7 +291,7 @@ README</h1>
 <li>ili9431 and esp8266 related documents</li>
 </ul>
 </li>
-<li>driver - third party code<ul>
+<li>driver - only third party code<ul>
 <li><a class="el" href="cal__dex_8c.html">cal_dex.c</a><ul>
 <li>Debug exception support by cal (20150421, cal)</li>
 </ul>
@@ -284,9 +303,6 @@ README</h1>
 </li>
 </ul>
 </li>
-</ul>
-</dd></dl>
-<ul>
 <li>earth<ul>
 <li>Earth coast line data and display code</li>
 <li>Still need to add hidden vector removal<ul>
@@ -294,6 +310,13 @@ README</h1>
 <li>Article on coordinate transforms from stackoverflow by Daphna Shezaf</li>
 </ul>
 </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</dd></dl>
+<ul>
 <li>make_wireframe<ul>
 <li><a class="el" href="earth2wireframe_8c.html" title="Convert Earth wireframe in Lon, Lat pairs into X,Y,Z integer fixed point Each group (a set of Lon...">earth2wireframe.c</a><ul>
 <li>Create C structure wire-frame coastline data</li>
@@ -317,15 +340,8 @@ README</h1>
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-</li>
-<li>fatfs<ul>
-<li>SD CARD support with FatFS and POSIX wrappers - provides unix file I/O operations<ul>
-<li>modified to use hardware abstraction</li>
-</ul>
-</li>
-<li>Files originally from FatFs (C)ChaN, 2013<ul>
+<p>fatfs</p><ul>
+<li>FatFs core is by (C)ChaN, 2013<ul>
 <li><a class="el" href="disk_8c.html" title="Allocate, Free and display FILINFO structurs, getfattime(), display error messages. ">disk.c</a></li>
 <li><a class="el" href="disk_8h.html" title="Allocate, Free and display FILINFO structurs, getfattime(), display error messages. ">disk.h</a></li>
 <li><a class="el" href="diskio_8h.html" title="FafFs disk interface modlue include file (C) ChaN, 2013. ">diskio.h</a></li>
@@ -340,18 +356,19 @@ README</h1>
 <li><a class="el" href="unicode_8c.html" title="FatFS Unicode include file R0.10b (C) ChaN, 2014. ">unicode.c</a></li>
 </ul>
 </li>
-<li>My interface and POSIX wrappers<ul>
+</ul>
+<p>SD card HAL and POSIX wrappers - provides unix file I/O operations</p><ul>
+<li>modified to use hardware abstraction</li>
+</ul>
+<p>My interface and POSIX wrappers</p><ul>
 <li><a class="el" href="fatfs__utils_8c.html" title="fatfs test utilities with user interface ">fatfs_utils.c</a></li>
 <li><a class="el" href="fatfs__utils_8h.html" title="fatfs test utilities with user interface ">fatfs_utils.h</a></li>
 <li><a class="el" href="mmc__hal_8c.html">mmc_hal.c</a></li>
 <li><a class="el" href="mmc__hal_8h.html" title="MMC Hardware Layer for FatFs. ">mmc_hal.h</a></li>
-<li><a class="el" href="posix_8c.html" title="PRovides hardware abstraction layer to MMC.C. ">posix.c</a> - provides unix file I/O operation</li>
+<li><a class="el" href="posix_8c.html" title="PRovides hardware abstraction layer to MMC.C. ">posix.c</a> - provides a few dozen unix file I/O operation wrappers for FatFS</li>
 <li><a class="el" href="posix_8h.html" title="POSIX wrapper for FatFS. ">posix.h</a></li>
 </ul>
-</li>
-</ul>
-</li>
-<li>fonts<ul>
+<p>fonts</p><ul>
 <li>BDF Font conversion code<ul>
 <li><a class="el" href="bdffont2c_8c.html" title="BDF to C code converter Copyright © 2015 Mike Gore. ">bdffont2c.c</a><ul>
 <li>Convert BDF fonts to C structures main program</li>
@@ -401,17 +418,16 @@ README</h1>
 </ul>
 </li>
 </ul>
-</li>
-<li>html<ul>
-<li>An example web site with files that can be put on an SD card</li>
+<p>html</p><ul>
+<li>A working web site with files that can be put on an SD card<ul>
 <li>Used for testing <a class="el" href="web_8c.html" title="Small web server for esp8266. ">web.c</a></li>
 </ul>
 </li>
-<li>include<ul>
+</ul>
+<p>include</p><ul>
 <li>misc esp8266 include files</li>
 </ul>
-</li>
-<li>lib<ul>
+<p>lib</p><ul>
 <li>time, rtc and timer functions<ul>
 <li><a class="el" href="time_8h.html" title="Common Linux/POSIX time functions. ">time.h</a></li>
 <li><a class="el" href="time_8c.html" title="Common Linux/POSIX time functions. ">time.c</a> - POSIX time functions</li>
@@ -421,21 +437,18 @@ README</h1>
 <li><a class="el" href="timer__hal_8c.html" title="timer hardware abstartion layer functions ">timer_hal.c</a> - timer hardware abstraction layer</li>
 </ul>
 </li>
-<li>implementation of some C stdlib functions<ul>
+<li>implementation of some posix stdlib functions<ul>
 <li><a class="el" href="stdlib_8c.html" title="Part of Small printf, and verious conversion code with floating point support. ">stdlib.c</a></li>
 </ul>
 </li>
-<li>implementation of some C ctype, string and strings functions<ul>
+<li>implementation of some posix ctype, string and strings functions<ul>
 <li><a class="el" href="str_8c.html" title="String matching functions. ">str.c</a></li>
 <li><a class="el" href="str_8h.html" title="String matching functions. ">str.h</a></li>
 </ul>
 </li>
-</ul>
-</li>
-</ul>
-<p><a class="el" href="queue_8c.html" title="Ring buffer code. ">queue.c</a></p><ul>
-<li><a class="el" href="queue_8h.html" title="Ring buffer code. ">queue.h</a><ul>
-<li>Generic ring buffer support code</li>
+<li>Generic ring buffer support code<ul>
+<li><a class="el" href="queue_8c.html" title="Ring buffer code. ">queue.c</a></li>
+<li><a class="el" href="queue_8h.html" title="Ring buffer code. ">queue.h</a></li>
 </ul>
 </li>
 </ul>
@@ -447,25 +460,22 @@ README</h1>
 </ul>
 <p>printf</p><ul>
 <li>My small printf with floating support, misc I/O functions<ul>
-<li>Makefile<ul>
-<li>Build and test printf</li>
-</ul>
-</li>
 <li><a class="el" href="printf_8c.html" title="Small printf, and verious conversion code with floating point support. ">printf.c</a></li>
-<li><a class="el" href="printf_8h.html" title="Small printf, and verious conversion code with floating point support. ">printf.h</a><ul>
-<li>My printf code</li>
+<li><a class="el" href="printf_8h.html" title="Small printf, and verious conversion code with floating point support. ">printf.h</a></li>
 </ul>
 </li>
-<li><a class="el" href="test__printf_8c.html" title="Test routines for Small printf. ">test_printf.c</a><ul>
-<li>Test functions for <a class="el" href="printf_8c.html" title="Small printf, and verious conversion code with floating point support. ">printf.c</a> that can be run under linux to verify results</li>
+<li>Build and test printf<ul>
+<li>Makefile</li>
 </ul>
 </li>
+<li>Test functions for <a class="el" href="printf_8c.html" title="Small printf, and verious conversion code with floating point support. ">printf.c</a> that can be run under linux to verify results<ul>
+<li><a class="el" href="test__printf_8c.html" title="Test routines for Small printf. ">test_printf.c</a></li>
 </ul>
 </li>
 </ul>
 <p>scanf</p><ul>
-<li><a class="el" href="scanf_8c.html">scanf.c</a><ul>
-<li>Simple scanf</li>
+<li>Simple scanf<ul>
+<li><a class="el" href="scanf_8c.html">scanf.c</a></li>
 </ul>
 </li>
 </ul>
@@ -478,11 +488,11 @@ README</h1>
 </li>
 </ul>
 <p>user</p><ul>
-<li>Main user demo task</li>
-<li><a class="el" href="user__main_8c.html" title="Main user and initialization code This initialize the platform and runs the main user task...">user_main.c</a><ul>
-<li>Intializes ESP8266 and sets up demo with 4 active windows with independent attributes</li>
+<li>Main user demo task<ul>
+<li><a class="el" href="user__main_8c.html" title="Main user and initialization code This initialize the platform and runs the main user task...">user_main.c</a></li>
 </ul>
 </li>
+<li>Intializes ESP8266 and sets up demo with 4 active windows with independent attributes</li>
 </ul>
 <p>utils</p><ul>
 <li>Debugging printf wrapper<ul>
@@ -520,46 +530,49 @@ README</h1>
 </li>
 <li>Features<ul>
 <li>Served files can be ANY SIZE!</li>
-<li>CGI files can have an extension of: html,htm,text,txt,cgi</li>
+<li>CGI files can have an extension of: html,htm,text,txt,cgi<ul>
+<li>CGI results can be ANY SIZE</li>
+</ul>
+</li>
 <li>Only tokens of the form  token _@ are replaced by the rewrite function<ul>
 <li><dl class="section see"><dt>See also</dt><dd><a class="el" href="web_8c.html#abfb5be0ab21dfe56bc934a8965154384" title="Replace CGI token with CGI result CGI tokens have the following syntax @ They start with &quot;@_&quot; and end...">rewrite_cgi_token()</a> in <a class="el" href="web_8c.html" title="Small web server for esp8266. ">web.c</a></dd></dl>
 </li>
-<li>CGI results can be ANY SIZE</li>
-<li>Uses yield function to continue background tasks while serving requests</li>
 </ul>
 </li>
+<li>Uses yield function to continue background tasks while serving requests</li>
 </ul>
 </li>
 <li>Applications<ul>
 <li>I created a door sign status display that can be updated via a web page web page running on the esp8266<ul>
 <li>Copy the file html/msg.cgi to the root folder of a fat32 SD card and modify to suit your needs.</li>
 <li>Use: open a web browser to the web server runing on the esp8266<ul>
+<li>See the Video</li>
 <li>For example: <a href="http://192.168.200.116/msg.cgi">http://192.168.200.116/msg.cgi</a></li>
 <li>You can update status and return time information on the TFT display by entering information on the page.</li>
 </ul>
 </li>
-<li>See the Video</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 <p>wire</p><ul>
+<li>Wireframe viewer code - uses CORDIC<ul>
 <li><a class="el" href="wire_8c.html" title="wireframe view code ">wire.c</a></li>
-<li><a class="el" href="wire_8h.html" title="wireframe view code ">wire.h</a><ul>
-<li>Wireframe viewer code - uses CORDIC</li>
+<li><a class="el" href="wire_8h.html" title="wireframe view code ">wire.h</a></li>
 </ul>
 </li>
-<li><a class="el" href="cube__data_8h.html" title="Wireframe CUBE data used by wireframe viewer The code handles fixed, proportional and bounding box fo...">cube_data.h</a><ul>
-<li>Wireframe CUBE data</li>
+<li>Wireframe CUBE data<ul>
+<li><a class="el" href="cube__data_8h.html" title="Wireframe CUBE data used by wireframe viewer The code handles fixed, proportional and bounding box fo...">cube_data.h</a></li>
 </ul>
 </li>
-<li><a class="el" href="earth__data_8h.html">earth_data.h</a><ul>
-<li>Wireframe EARTH data</li>
+<li>Wireframe EARTH data<ul>
+<li><a class="el" href="earth__data_8h.html">earth_data.h</a></li>
 </ul>
 </li>
 </ul>
 <p>yield</p><ul>
+<li>Yield code from Arduino yield code</li>
 <li>README.txt</li>
 <li>cont.S</li>
 <li><a class="el" href="cont_8h.html">cont.h</a></li>
@@ -568,9 +581,9 @@ README</h1>
 </ul>
 </li>
 <li><a class="el" href="ets__sys_8h.html">ets_sys.h</a></li>
+<li>Main user_init and task replacement with yield support<ul>
 <li><a class="el" href="user__task_8c.html">user_task.c</a></li>
-<li><a class="el" href="user__task_8h.html">user_task.h</a><ul>
-<li>Main user_init and task replacement with yield support</li>
+<li><a class="el" href="user__task_8h.html">user_task.h</a></li>
 </ul>
 </li>
 </ul>
@@ -578,17 +591,15 @@ README</h1>
 <li>See <a class="el" href="web_8c.html" title="Small web server for esp8266. ">web.c</a> for details.<ul>
 <li>I created a door status display that can be updated via a web page web page</li>
 <li>I did a status update while recording the video</li>
+<li>Result: <a href="https://github.com/magore/esp8266_ili9341/blob/master/video.mp4?raw=true">https://github.com/magore/esp8266_ili9341/blob/master/video.mp4?raw=true</a></li>
 </ul>
 </li>
 </ul>
 </dd></dl>
-<ul>
-<li>Result: <a href="https://github.com/magore/esp8266_ili9341/blob/master/video.mp4?raw=true">https://github.com/magore/esp8266_ili9341/blob/master/video.mp4?raw=true</a></li>
-</ul>
 <dl class="section user"><dt>Demo Images</dt><dd><ul>
 <li>Running demo and sending a message to the network window</li>
 <li>"./send -i 192.168.200.116 -m 'testing\nTest3\nscrolling\ntext\n1\n2'"<ul>
-<li>Diagnostics from send ip:192.168.200.116, port:31415, message: testing Test3 scrolling text 1 2 Host name: 192.168.200.116</li>
+<li>Diagnostics from send ip:192.168.200.116, port:31415, message: testing Test3 scrolling text 1 2 Host name: 192.168.200.116<ul>
 <li>Result: <div class="image">
 <img src="https://github.com/magore/esp8266_ili9341/blob/master/display.jpg" />
 </div>
@@ -596,11 +607,13 @@ README</h1>
 </ul>
 </li>
 </ul>
+</li>
+</ul>
 </dd></dl>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 27 2016 22:12:01 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 28 2016 00:49:43 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

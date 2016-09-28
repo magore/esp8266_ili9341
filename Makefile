@@ -101,7 +101,10 @@ SCANF = 1
 
 # ADF4351 demo
 ADF4351 = 1
-# ADF4351_DEBUG = 1
+#ADF4351_DEBUG = 0
+# 1 = calculation debug detail
+# 2 = calculation error debug detail
+ADF4351_DEBUG = 1+2
 
 # Display additional status:
 # 	interation count for spinning cube
@@ -297,7 +300,7 @@ ifdef ADF4351
 	MODULES	+= adf4351
 
 ifdef ADF4351_DEBUG
-	CFLAGS += -DADF4351_DEBUG
+	CFLAGS += -DADF4351_DEBUG=$(ADF4351_DEBUG)
 endif
 
 endif

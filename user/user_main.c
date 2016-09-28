@@ -112,21 +112,21 @@ double freqval = 100e6;
 double freqlast = 0.0;
 double freqspacing = 0.0;
 int adf4351_scan = 0;
-int adf4351_once = 0;
 
 // update every 50 mS
 ADF4351_task()
 {
 	int status;
 	double calcfreq;
-	if (freqval > freqhi)
+
+
+	if (freqval >= freqhi || freqval <freqlow)
 		freqval = freqlow;
 
-	if(!adf4351_once && !adf4351_scan)
+	if(!adf4351_scan)
 		return;
 
-
- 	status = ADF4351_Config(freqval, 25000000.0, 1000, &calcfreq);
+ 	status = ADF4351_Config(freqval, 25000000.0, freqspacing, &calcfreq);
 	if(status)
 	{
 		ADF4351_display_error ( status );
@@ -136,23 +136,6 @@ ADF4351_task()
 	}
 	else
 		ADF4351_sync(1);
-
-	// if the frequency stops changing stop scanning
-	if(adf4351_once)
-	{
-		// stop scanning
-		printf("adf4351 scan stop:  %e\n",freqval);
-		adf4351_scan = 0;
-		adf4351_once = 0;
-		return;
-	}
-
-	if(freqlast == freqval)
-	{
-		printf("adf4351 scan stop:  %e\n",freqval);
-		adf4351_scan = 0;
-		adf4351_once = 0;
-	}
 
 	freqlast = freqval;
 
@@ -328,7 +311,10 @@ int skip = 0;
 int ADF4351_scan = 0;
 #endif
 
-unsigned long last_time = 0;
+unsigned long last_time10 = 0;
+unsigned long last_time50 = 0;
+
+int loop_cnt = 0;
 
 void loop(void)
 {
@@ -347,18 +333,22 @@ void loop(void)
 
 	loop_task();
 
-
-	// Only run evry 50mS
+	// Only run evry 1mS
 	t = ms_read();
-	if((t - last_time) < 50U)
-		return;
-
-	last_time = t;
-	time(&sec);
-
+	if((t - last_time10) >= 1U)
+	{
 #ifdef ADF4351
-	ADF4351_task();
+		ADF4351_task();
 #endif
+		last_time10 = t;
+	}
+
+	// run remaining tests evry 50ms
+	if((t - last_time50) < 50U)
+		return;
+	last_time50 = t;
+
+	time(&sec);
 
 	// only update text messages once a second
 	if(sec != seconds)
@@ -413,8 +403,6 @@ void loop(void)
 	if(sec != seconds)
 	{
 		seconds=sec;
-
-	
 #ifdef DEBUG_STATS
 		tft_set_textpos(wintop, 0,1);
 		tft_printf(wintop,"Heap: %d, Conn:%d\n", 
@@ -540,7 +528,7 @@ void user_help()
 	printf("help\n"
 	"setdate YYYY MM DD HH:MM:SS\n"
 	"time\n"
-    "adf4351 frequency\n"
+    "adf4351 frequency [spacing]\n"
 	"adf4351_scan low hi spacing\n"
 	"adf4351_scan start\n"
 	"adf4351_scan stop\n"
@@ -625,7 +613,6 @@ int user_tests(char *str)
 
 		printf("adf4351 scan start: %10.2f\n",freqval);
 		printf("adf4351 scan start: %e\n",freqval);
-		adf4351_once = 0;
 		adf4351_scan = 1;
 
 		return(1);
@@ -635,20 +622,35 @@ int user_tests(char *str)
 		int status;
 		double freq,result;
 
-        ptr += len;
-		ptr = skipspaces(ptr);
-		printf("input:[%s]\n", ptr);
+		char tmp[256];
 
-		freq = atof(ptr);
+        ptr += len;
+		ptr = get_token(ptr, tmp, 255);
+		freq = atof(tmp);
 		printf("frequency: %8f\n",freq);
 
+		ptr = get_token(ptr, tmp, 255);
+		if(*tmp)
+			freqspacing = atof(tmp);
+		else
+			freqspacing = 1000.0;
+
 		adf4351_scan = 0;
-		adf4351_once = 1;
-		status = ADF4351_Config(freq, 25000000.0, 1000, &result);
+		status = ADF4351_Config(freq, 25000000.0, freqspacing, &result);
+		printf("calculated: %8f\n",freq);
+
 		if(status)
 			ADF4351_display_error ( status );
 		else
 			ADF4351_sync(1);
+
+		// FIXME we treat a mismatch as non-fatal
+		// we should really be looking for an accuracy value
+ 		if(status == ADF4351_RFout_MISMATCH)
+		{
+			ADF4351_sync(1);
+		}
+
 		return(1);
 	}
 #endif

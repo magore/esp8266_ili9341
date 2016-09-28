@@ -351,26 +351,24 @@ double ADF4351_PFD(double REFin, int R)
 	return(PFD);
 }
 
-#ifdef ADF4351_DEBUG
 /** \brief Verbose Error messages
 */
-    adf4351_err_t adf4351_errors[] =
-    {
-       { 0,"No error" },
-       { ADF4351_RFout_RANGE,"RFout_RANGE" },
-       { ADF4351_RFoutDIV_RANGE,"RFoutDIV_RANGE" },
-       { ADF4351_RFout_MISMATCH,"RFout_MISMATCH" },
-       { ADF4351_REFin_RANGE,"REFin_RANGE" },
-       { ADF4351_BandSelectClockFrequency_RANGE,"BandSelectClockFrequency_RANGE" },
-       { ADF4351_R_RANGE,"R_RANGE" },
-       { ADF4351_PDF_RANGE,"PDF_RANGE" },
-       { ADF4351_N_RANGE,"N_RANGE" },
-       { ADF4351_INT_RANGE,"INT_RANGE" },
-       { ADF4351_MOD_RANGE,"MOD_RANGE" },
-       { ADF4351_FRAC_RANGE,"FRAC_RANGE"}
-    };
-#endif
-
+adf4351_err_t adf4351_errors[] =
+{
+   { ADF4351_NOERROR,"No error" },
+   { ADF4351_RFout_RANGE,"RFout_RANGE" },
+   { ADF4351_RFoutDIV_RANGE,"RFoutDIV_RANGE" },
+   { ADF4351_RFout_MISMATCH,"RFout_MISMATCH" },
+   { ADF4351_REFin_RANGE,"REFin_RANGE" },
+   { ADF4351_BandSelectClockFrequency_RANGE,"BandSelectClockFrequency_RANGE" },
+   { ADF4351_R_RANGE,"R_RANGE" },
+   { ADF4351_PDF_RANGE,"PDF_RANGE" },
+   { ADF4351_N_RANGE,"N_RANGE" },
+   { ADF4351_INT_RANGE,"INT_RANGE" },
+   { ADF4351_MOD_RANGE,"MOD_RANGE" },
+   { ADF4351_FRAC_RANGE,"FRAC_RANGE"},
+   { ADF4351_ERROR_END,NULL}
+};
 
 /**
  *  \brief Display ADF4351 error return code
@@ -381,24 +379,17 @@ void ADF4351_display_error(int error)
 {
 	int i;
 	int found = 0;
-	if(error)
+	for(i=0;i<ADF4351_ERROR_END;++i)
 	{
-#ifdef ADF4351_DEBUG
-		for(i=0;i<ADF4351_ERROR_END;++i)
+		if( adf4351_errors[i].val == error )
 		{
-			if( adf4351_errors[error].val == error )
-			{
-				printf("ADF4351 error %s\n", adf4351_errors[error].msg);
-				found = 1;
-			}
+			printf("ADF4351 error %s\n", adf4351_errors[i].msg);
+			found = 1;
 		}
-		if(!found)
-		{
-			printf("ADF4351 missing error message\n");
-		}
-#else
-		printf("ADF4351 error %d\n", error);
-#endif
+	}
+	if(!found)
+	{
+		printf("ADF4351 missing error message:[%d]\n", error);
 	}
 }
 
@@ -434,6 +425,8 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
 	double 		dscale;
 	uint32 		temp;
 
+	*RFoutCalc = 0.0;
+
 /**
  * RFoutVCO = [r0_INT + (r0_FRAC/r1_MOD)] × (PFD)
  * RFout = [r0_INT + (r0_FRAC/r1_MOD)] × (PFD /RFoutDIV)
@@ -454,7 +447,7 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
 	// ==========================
     if (RFout > ADF4351_RFOUT_MAX)
 	{
-#ifdef ADF4351_DEBUG
+#if ADF4351_DEBUG & 2
 		printf("RFout > %f\n", (double) ADF4351_RFOUT_MAX);
 #endif
 		return(ADF4351_RFout_RANGE);
@@ -462,7 +455,7 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
 
     if (RFout < ADF4351_RFOUT_MIN)
 	{
-#ifdef ADF4351_DEBUG
+#if ADF4351_DEBUG & 2
 		printf("RFout < %f\n", (double) ADF4351_RFOUT_MIN);
 #endif
 		return(ADF4351_RFout_RANGE);
@@ -470,7 +463,7 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
 
     if (REFin > ADF4351_REFIN_MAX)
 	{
-#ifdef ADF4351_DEBUG
+#if ADF4351_DEBUG & 2
 		printf("REFin > %f\n", (double) ADF4351_REFIN_MAX);
 #endif
 		return(ADF4351_REFin_RANGE);
@@ -516,10 +509,10 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
 
 	if(r2_R == 4096)
 	{
-#ifdef ADF4351_DEBUG
+#if ADF4351_DEBUG & 2
         printf("r2_R == 4096\n");
 #endif
-        return (ADF4351_R_RANGE);
+        return(ADF4351_R_RANGE);
 	}
 
 	// ==========================
@@ -528,30 +521,30 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
     {
 		if( PFD > ADF4351_PFD_MAX )
 		{
-#ifdef ADF4351_DEBUG
+#if ADF4351_DEBUG & 2
 			printf("PFD: %f > %u && BandClkMode == 0\n", 
 				(double) PFD, (uint32_t) ADF4351_PFD_MAX);
 #endif
-			return( ADF4351_PDF_RANGE);
+			return(ADF4351_PDF_RANGE);
 		}
     }
     else 
     {
 		if( PFD > ADF4351_PFD_MAX && r0_FRAC != 0)
 		{
-#ifdef ADF4351_DEBUG
+#if ADF4351_DEBUG & 2
 			printf("PFD: %f > %u && BandClkMode == 0\n", 
 				(double) PFD, (uint32_t) ADF4351_PFD_MAX);
 #endif
-			return( ADF4351_PDF_RANGE);
+			return(ADF4351_PDF_RANGE);
 		}
 		if (PFD > 90 && r0_FRAC != 0)
 		{
-#ifdef ADF4351_DEBUG
+#if ADF4351_DEBUG & 2
 			printf("PFD: %f > 90 Band Clock Mode && r0_FRAC != 0\n", 	
 				(double) PFD);
 #endif
-			return( ADF4351_PDF_RANGE);
+			return(ADF4351_PDF_RANGE);
 		}
 	}
 
@@ -564,10 +557,10 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
 
 	if(N < N_min || N > 65535U )
 	{
-#ifdef ADF4351_DEBUG
+#if ADF4351_DEBUG & 2
 		printf("N %f out of range\n", (double) N);
 #endif
-		return ( ADF4351_N_RANGE);
+		return(ADF4351_N_RANGE);
 	}
 
 	// ==========================
@@ -577,10 +570,10 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
 	// r0_INt range check
     if (r0_INT > 65535U)
     {
-#ifdef ADF4351_DEBUG
+#if ADF4351_DEBUG & 2
         printf("INT: %u\n", (uint32_t) r0_INT);
 #endif
-		return ( ADF4351_INT_RANGE);
+		return(ADF4351_INT_RANGE);
     }
 
 	// ==========================
@@ -614,20 +607,20 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
 	// r1_MOD Range check
 	if(r1_MOD == 0 || r1_MOD > 4095U) 
 	{
-#ifdef ADF4351_DEBUG
-        printf("MOD: %u\n", (uint32_t) r1_MOD);
+#if ADF4351_DEBUG & 2
+        printf("*MOD: %u, INT: %u, FRAC: %u\n", (uint32_t) r1_MOD, (uint32_t) r0_INT, (uint32_t) r0_FRAC);
 #endif
-		return (ADF4351_MOD_RANGE);
+		return(ADF4351_MOD_RANGE);
 	}
 	
 	// ==========================
 	// r0_FRAC range check
     if (r0_FRAC > 4095U)
     {
-#ifdef ADF4351_DEBUG
-        printf("FRAC: %u\n", (uint32_t) r0_FRAC);
+#if ADF4351_DEBUG & 2
+        printf("MOD: %u, INT: %u, *FRAC: %u\n", (uint32_t) r1_MOD, (uint32_t) r0_INT, (uint32_t) r0_FRAC);
 #endif
-		return (ADF4351_FRAC_RANGE);
+		return(ADF4351_FRAC_RANGE);
     }
 
 	// ==========================
@@ -654,31 +647,31 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
 	// Band Clock Range Check 
 	if (BandSelectClockFrequency > 500000.0)
     {
-#ifdef ADF4351_DEBUG
+#if ADF4351_DEBUG & 2
         printf("Band Slect Clock Frequency %f > 500000\n", 
 			(double) BandSelectClockFrequency);
 #endif
-		return (ADF4351_BandSelectClockFrequency_RANGE);
+		return(ADF4351_BandSelectClockFrequency_RANGE);
     }
 
     if ((BandSelectClockFrequency > 125000.0) & (regs.r3.BandClkMode))
     {
-#ifdef ADF4351_DEBUG
+#if ADF4351_DEBUG & 2
         printf("Band Select Clock Frequency %f > 125000 && regs.r3.BandClkMode\n", 
 			(double) BandSelectClockFrequency);
 #endif
-		return (ADF4351_BandSelectClockFrequency_RANGE);
+		return(ADF4351_BandSelectClockFrequency_RANGE);
     }
 
 	// ==========================
 	// Noise Spur Mode
     if ((regs.r2.NoiseSpurMode == ADF4351_LOW_SPUR_MODE) && (r1_MOD < 50))
     {
-#ifdef ADF4351_DEBUG
+#if ADF4351_DEBUG & 2
         printf("regs.r2.NoiseSpurMode == ADF4351_LOW_SPUR_MODE) && (r1_MOD(%d) < 50\n",
 		(uint32_t) r1_MOD);
 #endif
-		return (ADF4351_MOD_RANGE);
+		return(ADF4351_MOD_RANGE);
     }
 
 	// ==========================
@@ -700,13 +693,7 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
 		( (double) r0_INT + ((double)r0_FRAC / (double)r1_MOD) ) 
 		* ( (double)PFD / (double)(RFoutDIV) );
 
-	// VCO frequecy error ?
-	if (*RFoutCalc != RFout)
-    {
-        return (ADF4351_RFout_MISMATCH);
-    }
-
-#ifdef ADF4351_DEBUG
+#if ADF4351_DEBUG & 1
     printf("RFout:     %f Hz\n", RFout);
     printf("RFoutCalc: %f Hz\n", *RFoutCalc);
     printf("RFin:      %f Hz\n", (double) REFin);
@@ -723,5 +710,11 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
 	printf("  r4_BandClkDiv %u\n", (uint32_t) r4_BandClkDiv);
 #endif
 
-    return 0;
+	// VCO frequecy error ?
+	if (*RFoutCalc != RFout)
+    {
+        return(ADF4351_RFout_MISMATCH);
+    }
+
+    return (0);
 }
