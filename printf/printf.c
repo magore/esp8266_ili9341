@@ -374,7 +374,7 @@ int p_ftoa(double val, char *str, int intprec, int prec, int sign)
 		val = -val;
 		*str++ = '-';
 		if(intprec)
-			++intprec;
+			--intprec;
 	}
 	else
 	{
@@ -479,7 +479,7 @@ int p_etoa(double x,char *str, int prec, int sign)
 		{
 			if(sign == 2)
 				*str++ = '+' ;
-			else
+			else if(sign == 1)	// FIXME
 				*str++ = ' ' ;
 		}
         if ( x > scale ) 
@@ -784,6 +784,7 @@ void _printf_fn(printf_t *fn, const char *fmt, va_list va)
 			count = p_ftoa(dnum, buff, intprec, prec, sign);
 			_puts_pad(fn,buff, width, count, left);
 			break;
+
 		case 'e':
 			count = p_etoa(dnum, buff, prec, sign);
 			_puts_pad(fn,buff, width, count, left);
