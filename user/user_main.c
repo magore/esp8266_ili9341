@@ -104,22 +104,62 @@ unsigned long ms_time = 0;
 // ==================================================================
 // ==================================================================
 
+#ifdef ADF4351
 double calcfreq;
-double CurrentFreq = 137000000;
+double freqlow = 100e6;
+double freqhi = 100e6;
+double freqval = 100e6;
+double freqlast = 0.0;
+double freqspacing = 0.0;
+int adf4351_scan = 0;
+int adf4351_once = 0;
 
 // update every 50 mS
 ADF4351_task()
 {
 	int status;
-	if (CurrentFreq > 138000000.0)
-		CurrentFreq = 137000000.0;
- 	status = ADF4351_Config(CurrentFreq, 25000000.0, 1000, &calcfreq);
+	double calcfreq;
+	if (freqval > freqhi)
+		freqval = freqlow;
+
+	if(!adf4351_once && !adf4351_scan)
+		return;
+
+
+ 	status = ADF4351_Config(freqval, 25000000.0, 1000, &calcfreq);
 	if(status)
+	{
 		ADF4351_display_error ( status );
+		// stop scanning
+		printf("adf4351 scan stop:  %e\n",freqval);
+		adf4351_scan = 0;
+	}
 	else
 		ADF4351_sync(1);
-	CurrentFreq += 100000;
+
+	// if the frequency stops changing stop scanning
+	if(adf4351_once)
+	{
+		// stop scanning
+		printf("adf4351 scan stop:  %e\n",freqval);
+		adf4351_scan = 0;
+		adf4351_once = 0;
+		return;
+	}
+
+	if(freqlast == freqval)
+	{
+		printf("adf4351 scan stop:  %e\n",freqval);
+		adf4351_scan = 0;
+		adf4351_once = 0;
+	}
+
+	freqlast = freqval;
+
+	freqval += freqspacing;
 }
+#endif
+
 
 
 /// @brief  Clear 1000HZ timer 
@@ -264,7 +304,7 @@ loop_task()
 #endif
 		if(!flag)
 		{
-			printf("unknow command: %s\n", buffer);
+			printf("unknown command: %s\n", buffer);
 		}
 	}
 }
@@ -283,6 +323,10 @@ time_t seconds = 0;
 extern uint8_t ip_msg[];
 
 int skip = 0;
+
+#ifdef ADF4351
+int ADF4351_scan = 0;
+#endif
 
 unsigned long last_time = 0;
 
@@ -312,7 +356,9 @@ void loop(void)
 	last_time = t;
 	time(&sec);
 
+#ifdef ADF4351
 	ADF4351_task();
+#endif
 
 	// only update text messages once a second
 	if(sec != seconds)
@@ -494,6 +540,10 @@ void user_help()
 	printf("help\n"
 	"setdate YYYY MM DD HH:MM:SS\n"
 	"time\n"
+    "adf4351 frequency\n"
+	"adf4351_scan low hi spacing\n"
+	"adf4351_scan start\n"
+	"adf4351_scan stop\n"
 	);
 #ifdef FATFS_SUPPORT
 	fatfs_help();
@@ -518,6 +568,7 @@ int user_tests(char *str)
     char *ptr;
     long p1, p2;
 	time_t t;
+	double freq;
 
     ptr = skipspaces(str);
 
@@ -530,20 +581,78 @@ int user_tests(char *str)
     if ((len = token(ptr,"setdate")) )
     {
         ptr += len;
-		ptr = skipspaces(str);
+		ptr = skipspaces(ptr);
         setdate_r(ptr);
         return(1);
     }
+
+#ifdef ADF4351
+    if ((len = token(ptr,"adf4351_scan")) )
+    {
+		int status;
+		char tmp[256];
+
+        ptr += len;
+		ptr = get_token(ptr, tmp, 255);
+		if(strcmp(tmp,"stop") == 0)
+		{
+			printf("adf4351 scan stop:  %e\n",freqval);
+			adf4351_scan = 0;
+			return(1);
+		}
+
+		if(strcmp(tmp,"start") == 0)
+		{
+			adf4351_scan = 1;
+			printf("adf4351 scan start: %e\n",freqval);
+			return(1);
+		}
+		freqlow = atof(tmp);
+
+		ptr = get_token(ptr, tmp, 255);
+		freqhi = atof(tmp);
+
+		ptr = get_token(ptr, tmp, 255);
+		freqspacing = atof(tmp);
+
+		printf("frequency low:      %10.2f\n",freqlow);
+		printf("frequency low:      %e\n",freqlow);
+		printf("frequency hi:       %10.2f\n",freqhi);
+		printf("frequency hi:       %e\n",freqhi);
+		printf("frequency spacing:  %10.2f\n",freqspacing);
+		printf("frequency spacing:  %e\n",freqspacing);
+		freqval = freqlow;
+
+		printf("adf4351 scan start: %10.2f\n",freqval);
+		printf("adf4351 scan start: %e\n",freqval);
+		adf4351_once = 0;
+		adf4351_scan = 1;
+
+		return(1);
+	}
     if ((len = token(ptr,"adf4351")) )
     {
+		int status;
+		double freq,result;
+
         ptr += len;
-		ptr = skipspaces(str);
-#ifdef ADF4351
-	ADF4351_Init();
-	printf("ADF4351 init done\n");
+		ptr = skipspaces(ptr);
+		printf("input:[%s]\n", ptr);
+
+		freq = atof(ptr);
+		printf("frequency: %8f\n",freq);
+
+		adf4351_scan = 0;
+		adf4351_once = 1;
+		status = ADF4351_Config(freq, 25000000.0, 1000, &result);
+		if(status)
+			ADF4351_display_error ( status );
+		else
+			ADF4351_sync(1);
+		return(1);
+	}
 #endif
-        return(1);
-    }
+
     if ((len = token(ptr,"time")) )
     {
 		t = time(0);	

@@ -9,7 +9,6 @@ var searchData=
   ['cal_5fdex_5fhandler',['cal_dex_handler',['../cal__dex_8c.html#aaa92f95616461785d7b1a7d7591ccaa1',1,'cal_dex.c']]],
   ['cal_5fdex_5fversion',['CAL_DEX_VERSION',['../cal__dex_8c.html#acc0f78bdc8572f17f1a1eedc0f4fb6f3',1,'cal_dex.c']]],
   ['cal_5ftprintf',['cal_tprintf',['../cal__dex_8c.html#a930bc9f35121018da9e27272aab1f255',1,'cal_dex.c']]],
-  ['calcfreq',['calcfreq',['../user__main_8c.html#aac536f0ffc80fbf6e12b5ec56cc92e38',1,'user_main.c']]],
   ['calloc',['calloc',['../user__config_8h.html#a84beef8cc122add35118ec7cd35286c4',1,'calloc():&#160;user_config.h'],['../sys_8c.html#ae148919146e88c7c40c7e2f781649b31',1,'calloc(size_t nmemb, size_t size):&#160;sys.c'],['../sys_8h.html#ae148919146e88c7c40c7e2f781649b31',1,'calloc(size_t nmemb, size_t size):&#160;sys.c']]],
   ['cardtype',['CardType',['../mmc_8c.html#ae9edfbb60df250acb70f5f287eb1497a',1,'mmc.c']]],
   ['cdir',['cdir',['../structFATFS.html#a217d0ce0c8cec84aa7f0c142679412c6',1,'FATFS']]],
@@ -126,6 +125,5 @@ var searchData=
   ['cube_5fdata_2eh',['cube_data.h',['../cube__data_8h.html',1,'']]],
   ['cube_5fedges',['cube_edges',['../cube__data_8h.html#a78d7d928e1e362be3b768f133f3af968',1,'cube_data.h']]],
   ['cube_5fpoints',['cube_points',['../cube__data_8h.html#a7fcb338af61341ce6748fc19915891ae',1,'cube_data.h']]],
-  ['currentfreq',['CurrentFreq',['../user__main_8c.html#ad368d7925c13b914f1353064dcc7dc6a',1,'user_main.c']]],
   ['copyright',['COPYRIGHT',['../md_COPYRIGHT.html',1,'']]]
 ];

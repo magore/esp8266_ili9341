@@ -224,13 +224,20 @@ double atof(const char *str)
 
 	while(*str == ' ' || *str == '\t' || *str == '\n')
 		++str;
-	sign = (*str == '-') ? -1 : 1;
-	if(sign == -1 || *str == '+') 
-		str++;
+	sign = 1;
+	if(*str == '-')
+	{
+		++str;
+		sign = -1;
+	}
+	else if(*str == '+')
+	{
+		++str;
+	}
 	num=0.0; 
 	while(isdigit(*str)) 
 	{
-		num = num * 10.0 + *str - '0';
+		num = (num * 10.0) + (double) (*str - '0');
 		str++;
 	}
 	if(*str == '.') 
@@ -239,7 +246,7 @@ double atof(const char *str)
 		frac = 1.0; 
 		while(isdigit(*str)) 
 		{
-			num = num * 10.0 + *str - '0';
+			num = (num * 10.0) + (double) (*str - '0');
 			frac *= 10.0;
 			str++;
 		}
@@ -255,7 +262,7 @@ double atof(const char *str)
 		power=0;
 		while(isdigit(*str)) 
 		{
-			power = power * 10 + *str - '0';
+			power = (power * 10) + (double)(*str - '0');
 			str++;
 		}
 		if(num == 0.0)

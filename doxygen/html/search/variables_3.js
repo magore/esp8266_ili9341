@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['calcfreq',['calcfreq',['../user__main_8c.html#aac536f0ffc80fbf6e12b5ec56cc92e38',1,'user_main.c']]],
   ['cardtype',['CardType',['../mmc_8c.html#ae9edfbb60df250acb70f5f287eb1497a',1,'mmc.c']]],
   ['cdir',['cdir',['../structFATFS.html#a217d0ce0c8cec84aa7f0c142679412c6',1,'FATFS']]],
   ['clkdiv',['ClkDiv',['../structr3__t.html#ad53a3132e2a6601f80cb4e455a4dea49',1,'r3_t']]],
@@ -19,6 +18,5 @@ var searchData=
   ['csize',['csize',['../structFATFS.html#a504a1175f6dcc9a854b9da94463bd108',1,'FATFS']]],
   ['csr',['CSR',['../structr3__t.html#a295a90a5720da8b88db8bf1420c806e2',1,'r3_t']]],
   ['cube_5fedges',['cube_edges',['../cube__data_8h.html#a78d7d928e1e362be3b768f133f3af968',1,'cube_data.h']]],
-  ['cube_5fpoints',['cube_points',['../cube__data_8h.html#a7fcb338af61341ce6748fc19915891ae',1,'cube_data.h']]],
-  ['currentfreq',['CurrentFreq',['../user__main_8c.html#ad368d7925c13b914f1353064dcc7dc6a',1,'user_main.c']]]
+  ['cube_5fpoints',['cube_points',['../cube__data_8h.html#a7fcb338af61341ce6748fc19915891ae',1,'cube_data.h']]]
 ];

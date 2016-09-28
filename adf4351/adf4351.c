@@ -204,9 +204,9 @@ void ADF4351_Init(void)
     regs.r3.res2L         = 0;
 
     regs.r4.ControlBits   = 4U;
-    regs.r4.RFOutPower    = ADF4351_POWER_5DB;
+    regs.r4.RFOutPower    = ADF4351_POWER_N4DB;
     regs.r4.RFOutEnable   = ADF4351_ENABLE;
-    regs.r4.AuxOutPower   = ADF4351_POWER_5DB;
+    regs.r4.AuxOutPower   = ADF4351_POWER_N4DB;
     regs.r4.AuxOutEnable  = ADF4351_ENABLE;
     regs.r4.AuxOutSel     = ADF4351_AUXOUT_FROM_RF_DIVIDERS;
     regs.r4.MTLD          = ADF4351_DISABLE;

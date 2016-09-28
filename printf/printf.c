@@ -742,6 +742,7 @@ void _printf_fn(printf_t *fn, const char *fmt, va_list va)
 			case 'f':
 			case 'F':
 //printf("width:%d, intprec:%d, prec:%d\n", width, intprec, prec);
+				// FIXME K&R defines this as 6
 				if(!precf)
 					prec = 6;
 				intprec = 0;
@@ -759,6 +760,9 @@ void _printf_fn(printf_t *fn, const char *fmt, va_list va)
 				// floats are converted to double by va arg
 			case 'e':
 			case 'E':
+				// FIXME K&R defines 'f' type as 6 - what is this default ?
+				if(!precf)
+					prec = 6;
 				dnum = va_arg(va, double);
 				++fmt;
 				break;
