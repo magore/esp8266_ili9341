@@ -651,7 +651,7 @@ void _printf_fn(printf_t *fn, const char *fmt, va_list va)
 
 		// we accept multiple flag combinations	
 		// we do not care if flags are used more then once (ie. user error)
-		while(*fmt == '-' || *fmt == ' ' | *fmt == '+')
+		while(*fmt == '-' || *fmt == ' ' || *fmt == '+')
 		{
 			if(*fmt == '-') 
 				left = 1;
