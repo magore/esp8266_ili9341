@@ -627,7 +627,7 @@ int user_tests(char *str)
         ptr += len;
 		ptr = get_token(ptr, tmp, 255);
 		freq = atof(tmp);
-		printf("frequency: %8f\n",freq);
+		printf("frequency: %.2f\n",freq);
 
 		ptr = get_token(ptr, tmp, 255);
 		if(*tmp)
@@ -637,7 +637,7 @@ int user_tests(char *str)
 
 		adf4351_scan = 0;
 		status = ADF4351_Config(freq, 25000000.0, freqspacing, &result);
-		printf("calculated: %8f\n",freq);
+		printf("calculated: %.2f\n",freq);
 
 		if(status)
 			ADF4351_display_error ( status );
@@ -724,7 +724,7 @@ void setup(void)
 	printf("Display Init\n");
 	ang = 1.2345678901234567890;
 	printf("%e\n",ang);
-	printf("%f\n",ang);
+	printf("%.2f\n",ang);
 	printf("%2.16f\n",ang);
 #endif
 

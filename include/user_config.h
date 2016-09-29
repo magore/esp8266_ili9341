@@ -45,8 +45,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // low level memory and flash reading code
 #include "str.h"
+#include "std.h"
 #include "sys.h"
-#include "stdlib.h"
 
 #include <ip_addr.h>
 #include <espconn.h>

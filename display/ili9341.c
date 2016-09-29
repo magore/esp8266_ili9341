@@ -379,6 +379,7 @@ void tft_bit_blit(window *win, uint8_t *ptr, int16_t x, int16_t y, int16_t w, in
 // FIXME now we should consider clipping the pixel array
 // Note: Clipping modifies offsets which in turn modifies blit array offsets
 // We could use tft_drawPixel, and it clips - but that the pixel function is very slow
+// For now we clip the arguments and use tft_rel_windows which also clips
 
 	
 	tft_spi_begin();

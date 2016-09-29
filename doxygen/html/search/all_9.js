@@ -6,7 +6,7 @@ var searchData=
   ['idletaskqueue',['IdleTaskQueue',['../user__main_8c.html#a497172baf21b16f0de764c2368988cba',1,'user_main.c']]],
   ['idletaskqueuelen',['IdleTaskQueueLen',['../user__main_8c.html#afbd10fc81998d8d99e705db01a1ab07f',1,'user_main.c']]],
   ['idx',['idx',['../structputbuff.html#a10a3ca93af8df07e9836ebd5230c06d8',1,'putbuff']]],
-  ['iexp',['iexp',['../printf_8h.html#a29526ba629435aeaee7e3201242a9234',1,'iexp(double num, int exp):&#160;printf.h'],['../stdlib_8h.html#a29526ba629435aeaee7e3201242a9234',1,'iexp(double num, int exp):&#160;stdlib.h']]],
+  ['iexp',['iexp',['../printf_8h.html#a29526ba629435aeaee7e3201242a9234',1,'iexp(double num, int exp):&#160;printf.h'],['../std_8h.html#a29526ba629435aeaee7e3201242a9234',1,'iexp(double num, int exp):&#160;std.h']]],
   ['ili9341_2ec',['ili9341.c',['../ili9341_8c.html',1,'']]],
   ['ili9341_2eh',['ili9341.h',['../ili9341_8h.html',1,'']]],
   ['ili9341_5fadafruit_2ec',['ili9341_adafruit.c',['../ili9341__adafruit_8c.html',1,'']]],

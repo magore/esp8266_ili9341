@@ -22,8 +22,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 
-#ifndef _STDLIB_H_
-#define _STDLIB_H_
+#ifndef _STD_H_
+#define _STD_H_
 
 #ifdef ESP8266
     #include "user_config.h"
@@ -52,4 +52,4 @@ MEMSPACE long strtol ( const char *nptr , char **endptr , int base );
 MEMSPACE int atoi ( const char *str );
 MEMSPACE long atol ( const char *str );
 MEMSPACE double atof ( const char *str );
-#endif	// ifndef _STRLIB_H
+#endif	// ifndef _STDLIB_H

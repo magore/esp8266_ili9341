@@ -28,6 +28,9 @@
 #ifdef ESP8266
     #include "user_config.h"
 #endif
+#ifdef AVR
+    #include "user_config.h"
+#endif
 
 #ifndef MEMSPACE
 #define MEMSPACE /**/

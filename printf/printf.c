@@ -127,7 +127,7 @@ void strupper(char *str)
 #endif // ifndef _STR_H_
 
 // these functions are defined in our own stdlib.c
-#ifndef _STDLIB_H_
+#ifndef _STD_H_
 #ifdef FLOAT
 /// @brief Raise number to integer exponent
 /// @param[in] num: number
@@ -201,7 +201,7 @@ double scale10(double num, int *exp)
 	return(num);
 }
 #endif	// ifdef FLOAT
-#endif	// ifndef _STDLIB_H_
+#endif	// ifndef _STD_H_
 
 // ======================================================================
 // end of support functions

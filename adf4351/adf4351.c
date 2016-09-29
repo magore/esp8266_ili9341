@@ -448,7 +448,7 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
     if (RFout > ADF4351_RFOUT_MAX)
 	{
 #if ADF4351_DEBUG & 2
-		printf("RFout > %f\n", (double) ADF4351_RFOUT_MAX);
+		printf("RFout > %.2f\n", (double) ADF4351_RFOUT_MAX);
 #endif
 		return(ADF4351_RFout_RANGE);
 	}
@@ -456,7 +456,7 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
     if (RFout < ADF4351_RFOUT_MIN)
 	{
 #if ADF4351_DEBUG & 2
-		printf("RFout < %f\n", (double) ADF4351_RFOUT_MIN);
+		printf("RFout < %.2f\n", (double) ADF4351_RFOUT_MIN);
 #endif
 		return(ADF4351_RFout_RANGE);
 	}
@@ -464,7 +464,7 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
     if (REFin > ADF4351_REFIN_MAX)
 	{
 #if ADF4351_DEBUG & 2
-		printf("REFin > %f\n", (double) ADF4351_REFIN_MAX);
+		printf("REFin > %.2f\n", (double) ADF4351_REFIN_MAX);
 #endif
 		return(ADF4351_REFin_RANGE);
 	}
@@ -522,7 +522,7 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
 		if( PFD > ADF4351_PFD_MAX )
 		{
 #if ADF4351_DEBUG & 2
-			printf("PFD: %f > %u && BandClkMode == 0\n", 
+			printf("PFD: %.2f > %u && BandClkMode == 0\n", 
 				(double) PFD, (uint32_t) ADF4351_PFD_MAX);
 #endif
 			return(ADF4351_PDF_RANGE);
@@ -533,7 +533,7 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
 		if( PFD > ADF4351_PFD_MAX && r0_FRAC != 0)
 		{
 #if ADF4351_DEBUG & 2
-			printf("PFD: %f > %u && BandClkMode == 0\n", 
+			printf("PFD: %.2f > %u && BandClkMode == 0\n", 
 				(double) PFD, (uint32_t) ADF4351_PFD_MAX);
 #endif
 			return(ADF4351_PDF_RANGE);
@@ -541,7 +541,7 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
 		if (PFD > 90 && r0_FRAC != 0)
 		{
 #if ADF4351_DEBUG & 2
-			printf("PFD: %f > 90 Band Clock Mode && r0_FRAC != 0\n", 	
+			printf("PFD: %.2f > 90 Band Clock Mode && r0_FRAC != 0\n", 	
 				(double) PFD);
 #endif
 			return(ADF4351_PDF_RANGE);
@@ -558,7 +558,7 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
 	if(N < N_min || N > 65535U )
 	{
 #if ADF4351_DEBUG & 2
-		printf("N %f out of range\n", (double) N);
+		printf("N %.2f out of range\n", (double) N);
 #endif
 		return(ADF4351_N_RANGE);
 	}
@@ -648,7 +648,7 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
 	if (BandSelectClockFrequency > 500000.0)
     {
 #if ADF4351_DEBUG & 2
-        printf("Band Slect Clock Frequency %f > 500000\n", 
+        printf("Band Slect Clock Frequency %.2f > 500000\n", 
 			(double) BandSelectClockFrequency);
 #endif
 		return(ADF4351_BandSelectClockFrequency_RANGE);
@@ -657,7 +657,7 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
     if ((BandSelectClockFrequency > 125000.0) & (regs.r3.BandClkMode))
     {
 #if ADF4351_DEBUG & 2
-        printf("Band Select Clock Frequency %f > 125000 && regs.r3.BandClkMode\n", 
+        printf("Band Select Clock Frequency %.2f > 125000 && regs.r3.BandClkMode\n", 
 			(double) BandSelectClockFrequency);
 #endif
 		return(ADF4351_BandSelectClockFrequency_RANGE);
@@ -694,15 +694,15 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
 		* ( (double)PFD / (double)(RFoutDIV) );
 
 #if ADF4351_DEBUG & 1
-    printf("RFout:     %f Hz\n", RFout);
-    printf("RFoutCalc: %f Hz\n", *RFoutCalc);
-    printf("RFin:      %f Hz\n", (double) REFin);
-    printf("PFD:       %f Hz\n", (double) PFD);
+    printf("RFout:     %.2f Hz\n", RFout);
+    printf("RFoutCalc: %.2f Hz\n", *RFoutCalc);
+    printf("RFin:      %.2f Hz\n", (double) REFin);
+    printf("PFD:       %.2f Hz\n", (double) PFD);
 	printf("RFoutDIV:  %d\n", (int) RFoutDIV);
-    printf("  Channel Spacing: %f Hz\n", (double) ChannelSpacing);
-    printf("  BandSelectClockFrequency: %f Hz\n", (double) BandSelectClockFrequency);
+    printf("  Channel Spacing: %.2f Hz\n", (double) ChannelSpacing);
+    printf("  BandSelectClockFrequency: %.2f Hz\n", (double) BandSelectClockFrequency);
     printf("  VCO FeedbackVCO %s\n", regs.r4.FeedbackVCO ? "VCO" : "Divided" );
-    printf("  N: %f Hz\n", (double) N);
+    printf("  N: %.2f Hz\n", (double) N);
 	printf("  r0_INT: %u, r0_FRAC: %u, r0_MOD: %u\n",
 		(uint32_t) r0_INT, (uint32_t)r0_FRAC, (uint32_t) r1_MOD);
 	printf("  r2_R:%u\n", (uint32_t) r2_R);
