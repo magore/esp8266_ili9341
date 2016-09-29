@@ -612,8 +612,11 @@ void _printf_fn(printf_t *fn, const char *fmt, va_list va)
 	int count;
     int spec;
 	int size;
-	long num;
+	long num = 0;
+#ifdef FLOAT
 	double dnum;
+#endif
+	char chartmp[2];
 	char *ptr;
 	char *fmtptr;
 
@@ -836,10 +839,9 @@ void _printf_fn(printf_t *fn, const char *fmt, va_list va)
 			// FIXME
 			if(spec == 'c')
 			{
-				char tmp[2];
-				tmp[0] = (char) va_arg(va, int);
-				tmp[1] = 0;
-				ptr = tmp;
+				chartmp[0] = (char) va_arg(va, int);
+				chartmp[1] = 0;
+				ptr = chartmp;
 			}
 			count = strlen(ptr);
 			if(prec)

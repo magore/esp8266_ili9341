@@ -93,6 +93,17 @@ puts("[%c]\\n, 'a'");
    printf("    [%c]\n", 'a');
 puts("\n");
 
+puts("[%-5c]\\n, 'a'");
+ t_printf("    [%-5c]\n", 'a');
+   printf("    [%-5c]\n", 'a');
+puts("\n");
+
+puts("[%5c]\\n, 'a'");
+ t_printf("    [%5c]\n", 'a');
+   printf("    [%5c]\n", 'a');
+puts("\n");
+
+
 puts("[%-20.2s]\\n, abc");
  t_printf("    [%-20.2s]\n", "abc");
    printf("    [%-20.2s]\n", "abc");
