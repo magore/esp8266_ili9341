@@ -23,25 +23,12 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
-
 #include <user_config.h>
 #include "adf4351_hal.h"
 
 /// =============================================================
 /// =============================================================
 /// HAL
-
-/// @brief Initialize ADF4351 LE pin
-/// @return diplay ID 9341
-MEMSPACE
-void ADF4351_gpio_init(void)
-{
-    ADF4351_LE_INIT;                              // LE PIN
-    ADF4351_LE_HI;                                // LE PIN
-    hspi_waitReady();
-    hspi_cs_disable(ADF4351_LE_PIN);
-}
 
 /// Start SPI Hardware Abstraction Layer
 /// Keep all hardware dependent SPI code in this section
@@ -54,9 +41,16 @@ uint16_t ADF4351_clock = -1;
 MEMSPACE
 void ADF4351_spi_init(void)
 {
-    hspi_waitReady();
+#ifdef ESP8266
+    ADF4351_LE_INIT;
     ADF4351_LE_LOW;
     hspi_init( (ADF4351_clock = 2) , 0);
+    hspi_waitReady();
+#else
+    ADF4351_LE_LOW;
+    SPI0_Init(ADF4351_clock = 2);   //< Initialize the SPI bus
+    SPI0_Mode(0);       //< Set the clocking mode, etc
+#endif
 }
 
 
@@ -64,9 +58,13 @@ void ADF4351_spi_init(void)
 /// return: void
 void ADF4351_spi_begin()
 {
+#ifdef ESP8266
     hspi_waitReady();
     hspi_init(ADF4351_clock, 0);
-//hspi_cs_enable(ADF4351_LE_PIN);
+#else
+    SPI0_Init(ADF4351_clock = 2);   //< Initialize the SPI bus
+    SPI0_Mode(0);       			//< Set the clocking mode, etc
+#endif
     ADF4351_LE_LOW;
 }
 
@@ -75,23 +73,26 @@ void ADF4351_spi_begin()
 /// return: void
 void ADF4351_spi_end()
 {
+#ifdef ESP8266
     hspi_waitReady();
-//hspi_cs_disable(ADF4351_LE_PIN);
+	//hspi_cs_disable(ADF4351_LE_PIN);
     ADF4351_LE_HI;
-    hspi_waitReady();
+    hspi_waitReady();	//just a short delay, nops would work
     ADF4351_LE_LOW;
+#else
+    ADF4351_LE_HI;
+    ADF4351_LE_LOW;
+#endif
 }
-
 
 /// @brief  Transmit 32 bit data value
 /// @param[in] value: 32bit data send
 /// return: spi data
-uint32_t ADF4351_txrx(uint32_t value)
+uint32_t ADF4351_spi_txrx(uint32_t value)
 {
     int i;
     uint8_t tmp[4];
     uint32_t ret;
-
 
 // LITTLE_ENDIAN and BIG_ENDIAN are both defined and of no value
 // extensa has LSB to MSB byte order LITTLE_ENDIAN
@@ -102,9 +103,16 @@ uint32_t ADF4351_txrx(uint32_t value)
         tmp[i] = value & 0xff;
 		value >>=8;
 	}
+
     ADF4351_spi_begin();
+
+#ifdef ESP8266
     hspi_TXRX(tmp,4);   // send data and read any status from MUXOUT
-    ADF4351_spi_end();  // latch
+#else
+    SPI0_TXRX(tmp,4);
+#endif
+
+    ADF4351_spi_end();  // data
 
 // MUXOUT output is tied to SPI RX
 // which is controlled by register 2 DB28:DB26

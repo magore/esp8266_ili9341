@@ -307,10 +307,6 @@ extern uint8_t ip_msg[];
 
 int skip = 0;
 
-#ifdef ADF4351
-int ADF4351_scan = 0;
-#endif
-
 unsigned long last_time10 = 0;
 unsigned long last_time50 = 0;
 

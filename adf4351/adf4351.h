@@ -143,7 +143,7 @@ typedef struct
  * Lock Detect Precision [DB7] (LDP)
  * [DB7] = 0 comparison window of lock detect circuit is 6ns.
  * [DB7] = 1 comparison window of lock detect circuit is 10ns.
- * Lock Detect circuit goes high when consecutive PDF 
+ * Lock Detect circuit goes high when consecutive PFD
  * cycles are less than either 40 or 5 as set by [DB8] (LDF)
  * So if [DB8:DB7] = 00 then 40 consecutive PFD cycles of 10 ns 
  * or less must occur before digital lock detect goes high.
@@ -196,7 +196,7 @@ typedef struct
  * [DB23] = 1, use if you need fast band selection
  *   Suitable for PFD frequencies > 125kHz.
  *   Keep band select clock divider <= 254.
- * [DB23] = 0, use if PDF frequencies are < 125kHz.
+ * [DB23] = 0, use if PFD frequencies are < 125kHz.
  *
  * Antibacklash Pulse Width [DB22] (ABPW)
  * [DB22] = 0, PFD antibacklash pulse width = 6ns
@@ -212,7 +212,7 @@ typedef struct
  * Cycle Slip Reduction [DB18] (CSR)
  * [DB18] = 1, enable cycle slip reduction
  *             Gives fater lock times
- *             PDF MUST be 50% to work
+ *             PFD MUST be 50% to work
  *             Charge Pump Current must be minimum
  *
  * Clock Divider Mode [DB16:DB15] (ClkDivMode)
@@ -339,7 +339,7 @@ enum
 	ADF4351_REFin_RANGE,
 	ADF4351_BandSelectClockFrequency_RANGE,
 	ADF4351_R_RANGE,
-	ADF4351_PDF_RANGE,
+	ADF4351_PFD_RANGE,
 	ADF4351_RFoutDIV_RANGE,
 	ADF4351_N_RANGE,
 	ADF4351_INT_RANGE,

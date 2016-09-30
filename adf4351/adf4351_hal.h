@@ -28,17 +28,21 @@
 
 #include <user_config.h>
 
+#ifdef ESP8266
 // GPIO pin 0
 #define ADF4351_LE_PIN   0
 #define ADF4351_LE_LOW   GPIO_OUTPUT_SET(0, 0)
 #define ADF4351_LE_HI    GPIO_OUTPUT_SET(0, 1)
-#define ADF4351_LE_INIT  PIN_FUNC_SELECT(PERIPHS_IO_MUX_GPIO0_U, FUNC_GPIO0); ADF4351_LE_HI
-
+#define ADF4351_LE_INIT  PIN_FUNC_SELECT(PERIPHS_IO_MUX_GPIO0_U, FUNC_GPIO0); ADF4351_LE_LOW
+#else
+#define ADF4351_LE_LOW   IO_LOW(ADF4351_CS)
+#define ADF4351_LE_HI    IO_HI(ADF4351_CS)
+#define ADF4351_LE_INIT  IO_LOW(ADF4351_CS)
 #endif
 
-/* adf4351.c */
-MEMSPACE void ADF4351_gpio_init ( void );
-MEMSPACE void ADF4351_spi_init ( );
+#endif // ifndef _ADF4351_HAL_H_
+/* adf4351_hal.c */
+MEMSPACE void ADF4351_spi_init ( void );
 void ADF4351_spi_begin ( void );
 void ADF4351_spi_end ( void );
-uint32_t ADF4351_txrx ( uint32_t value );
+uint32_t ADF4351_spi_txrx ( uint32_t value );

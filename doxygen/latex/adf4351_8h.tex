@@ -12,7 +12,7 @@ struct \hyperlink{structr1__t}{r1\+\_\+t}
 struct \hyperlink{structr2__t}{r2\+\_\+t}
 \begin{DoxyCompactList}\small\item\em A\+D\+F4351 R2 structure Noise Mode 2bits \mbox{[}D\+B30\+:D\+B29\mbox{]} (Noise\+Spure\+Mode) The noise mode optimizes either improved spurious or improved phase noise. \end{DoxyCompactList}\item 
 struct \hyperlink{structr3__t}{r3\+\_\+t}
-\begin{DoxyCompactList}\small\item\em A\+D\+F4351 R3 structure Band Select Clock Mode \mbox{[}D\+B23\mbox{]} (B\+S\+CM) \mbox{[}D\+B23\mbox{]} = 1, use if you need fast band selection Suitable for P\+FD frequencies $>$ 125k\+Hz. Keep band select clock divider $<$= 254. \mbox{[}D\+B23\mbox{]} = 0, use if P\+DF frequencies are $<$ 125k\+Hz. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em A\+D\+F4351 R3 structure Band Select Clock Mode \mbox{[}D\+B23\mbox{]} (B\+S\+CM) \mbox{[}D\+B23\mbox{]} = 1, use if you need fast band selection Suitable for P\+FD frequencies $>$ 125k\+Hz. Keep band select clock divider $<$= 254. \mbox{[}D\+B23\mbox{]} = 0, use if P\+FD frequencies are $<$ 125k\+Hz. \end{DoxyCompactList}\item 
 struct \hyperlink{structr4__t}{r4\+\_\+t}
 \begin{DoxyCompactList}\small\item\em A\+D\+F4351 R4 structure. \end{DoxyCompactList}\item 
 struct \hyperlink{structr5__t}{r5\+\_\+t}
@@ -51,7 +51,7 @@ enum \{ \\*
 \\*
 \hyperlink{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06caba15cbf8e857d729a6e8da4021fb06b1}{A\+D\+F4351\+\_\+\+Band\+Select\+Clock\+Frequency\+\_\+\+R\+A\+N\+GE}, 
 \hyperlink{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06ca7acf49deae0e3115da8b84602e22e227}{A\+D\+F4351\+\_\+\+R\+\_\+\+R\+A\+N\+GE}, 
-\hyperlink{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06cafc3a3e6baa8e0fa3a653b57b3ca03e08}{A\+D\+F4351\+\_\+\+P\+D\+F\+\_\+\+R\+A\+N\+GE}, 
+\hyperlink{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06ca4b3289c9120585b29de2887083fd993f}{A\+D\+F4351\+\_\+\+P\+F\+D\+\_\+\+R\+A\+N\+GE}, 
 \hyperlink{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06ca72530a6bbcc2547f3c310d00d952159d}{A\+D\+F4351\+\_\+\+R\+Fout\+D\+I\+V\+\_\+\+R\+A\+N\+GE}, 
 \\*
 \hyperlink{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06ca57e3a78490e88a903233fec1ec98fb33}{A\+D\+F4351\+\_\+\+N\+\_\+\+R\+A\+N\+GE}, 
@@ -140,7 +140,7 @@ enum \{ \hyperlink{adf4351_8h_aaf105ae5beaca1dee30ae54530691fceaddf79ada9b696b45
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} \hyperlink{adf4351_8h_a9948e2df41f01efaaf81303c65b8f956}{A\+D\+F4351\+\_\+\+G\+CD} (\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} u, \hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} v)
 \item 
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} double \hyperlink{adf4351_8h_a028ebcaafaf1da135256b7226060eb43}{A\+D\+F4351\+\_\+\+P\+FD} (double R\+E\+Fin, int R)
-\begin{DoxyCompactList}\small\item\em Compute P\+DF. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Compute P\+FD. \end{DoxyCompactList}\item 
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{adf4351_8h_a992aef229e9dba29e333afd297fe9c45}{A\+D\+F4351\+\_\+display\+\_\+error} (int error)
 \begin{DoxyCompactList}\small\item\em Display A\+D\+F4351 error return code. \end{DoxyCompactList}\item 
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{adf4351_8h_aa81dc41f60eb1698b3866deb0d2a31bc}{A\+D\+F4351\+\_\+\+Config} (double R\+Fout, double R\+E\+Fin, double Channel\+Spacing, double $\ast$R\+Fout\+Calc)
@@ -387,8 +387,8 @@ A\+D\+F4351\+\_\+\+R\+E\+Fin\+\_\+\+R\+A\+N\+GE\hypertarget{adf4351_8h_adc29c2ff
 A\+D\+F4351\+\_\+\+Band\+Select\+Clock\+Frequency\+\_\+\+R\+A\+N\+GE\hypertarget{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06caba15cbf8e857d729a6e8da4021fb06b1}{}\label{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06caba15cbf8e857d729a6e8da4021fb06b1}
 }]\index{A\+D\+F4351\+\_\+\+R\+\_\+\+R\+A\+N\+GE@{A\+D\+F4351\+\_\+\+R\+\_\+\+R\+A\+N\+GE}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+R\+\_\+\+R\+A\+N\+GE@{A\+D\+F4351\+\_\+\+R\+\_\+\+R\+A\+N\+GE}}\item[{\em 
 A\+D\+F4351\+\_\+\+R\+\_\+\+R\+A\+N\+GE\hypertarget{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06ca7acf49deae0e3115da8b84602e22e227}{}\label{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06ca7acf49deae0e3115da8b84602e22e227}
-}]\index{A\+D\+F4351\+\_\+\+P\+D\+F\+\_\+\+R\+A\+N\+GE@{A\+D\+F4351\+\_\+\+P\+D\+F\+\_\+\+R\+A\+N\+GE}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+P\+D\+F\+\_\+\+R\+A\+N\+GE@{A\+D\+F4351\+\_\+\+P\+D\+F\+\_\+\+R\+A\+N\+GE}}\item[{\em 
-A\+D\+F4351\+\_\+\+P\+D\+F\+\_\+\+R\+A\+N\+GE\hypertarget{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06cafc3a3e6baa8e0fa3a653b57b3ca03e08}{}\label{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06cafc3a3e6baa8e0fa3a653b57b3ca03e08}
+}]\index{A\+D\+F4351\+\_\+\+P\+F\+D\+\_\+\+R\+A\+N\+GE@{A\+D\+F4351\+\_\+\+P\+F\+D\+\_\+\+R\+A\+N\+GE}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+P\+F\+D\+\_\+\+R\+A\+N\+GE@{A\+D\+F4351\+\_\+\+P\+F\+D\+\_\+\+R\+A\+N\+GE}}\item[{\em 
+A\+D\+F4351\+\_\+\+P\+F\+D\+\_\+\+R\+A\+N\+GE\hypertarget{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06ca4b3289c9120585b29de2887083fd993f}{}\label{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06ca4b3289c9120585b29de2887083fd993f}
 }]\index{A\+D\+F4351\+\_\+\+R\+Fout\+D\+I\+V\+\_\+\+R\+A\+N\+GE@{A\+D\+F4351\+\_\+\+R\+Fout\+D\+I\+V\+\_\+\+R\+A\+N\+GE}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+R\+Fout\+D\+I\+V\+\_\+\+R\+A\+N\+GE@{A\+D\+F4351\+\_\+\+R\+Fout\+D\+I\+V\+\_\+\+R\+A\+N\+GE}}\item[{\em 
 A\+D\+F4351\+\_\+\+R\+Fout\+D\+I\+V\+\_\+\+R\+A\+N\+GE\hypertarget{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06ca72530a6bbcc2547f3c310d00d952159d}{}\label{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06ca72530a6bbcc2547f3c310d00d952159d}
 }]\index{A\+D\+F4351\+\_\+\+N\+\_\+\+R\+A\+N\+GE@{A\+D\+F4351\+\_\+\+N\+\_\+\+R\+A\+N\+GE}!adf4351.\+h@{adf4351.\+h}}\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+N\+\_\+\+R\+A\+N\+GE@{A\+D\+F4351\+\_\+\+N\+\_\+\+R\+A\+N\+GE}}\item[{\em 
@@ -528,7 +528,7 @@ Convert charge pump current in uA to R2 register value.
 \end{DoxyParams}
 
 
-Definition at line 136 of file adf4351.\+c.
+Definition at line 135 of file adf4351.\+c.
 
 
 
@@ -564,7 +564,7 @@ Calculate register values for A\+D\+F4351.
 \end{DoxyRetVals}
 R\+Fout\+V\+CO = \mbox{[}r0\+\_\+\+I\+NT + (r0\+\_\+\+F\+R\+A\+C/r1\+\_\+\+M\+OD)\mbox{]} × (P\+FD) R\+Fout = \mbox{[}r0\+\_\+\+I\+NT + (r0\+\_\+\+F\+R\+A\+C/r1\+\_\+\+M\+OD)\mbox{]} × (P\+FD /\+R\+Fout\+D\+IV) R\+Fout is the RF frequency output. r0\+\_\+\+I\+NT is the integer division factor. r0\+\_\+\+F\+R\+AC is the numerator of the fractional division (0 to M\+OD − 1). r1\+\_\+\+M\+OD is the preset fractional modulus (2 to 4095). R\+Fout\+D\+IV is the V\+CO output divider. P\+FD = R\+E\+Fin × \mbox{[}(1 + R\+E\+Fin\+M\+U\+L2)/(R × (1 + R\+E\+Fin\+D\+I\+V2))\mbox{]} R\+E\+Fin is the reference frequency input. R\+E\+Fin\+M\+U\+L2 is the R\+E\+Fin doubler bit (0 or 1). r2\+\_\+R is R\+E\+Fin division factor (1 to 1023). R\+E\+Fin\+D\+I\+V2 is the reference divide-\/by-\/2 bit (0 or 1). Fres = Channel\+Spacing $\ast$ R\+Fout\+D\+IV r1\+\_\+\+M\+OD=R\+E\+Fin / Fres
 
-Definition at line 406 of file adf4351.\+c.
+Definition at line 404 of file adf4351.\+c.
 
 
 
@@ -588,7 +588,7 @@ Display A\+D\+F4351 error return code.
 \end{DoxyParams}
 
 
-Definition at line 378 of file adf4351.\+c.
+Definition at line 376 of file adf4351.\+c.
 
 
 
@@ -627,7 +627,7 @@ Returns 32bit register value from register buffer.
 \end{DoxyRetVals}
 
 
-Definition at line 65 of file adf4351.\+c.
+Definition at line 64 of file adf4351.\+c.
 
 
 
@@ -651,7 +651,7 @@ Init all A\+D\+F4351 registers to default values.
 \end{DoxyParams}
 
 
-Definition at line 154 of file adf4351.\+c.
+Definition at line 153 of file adf4351.\+c.
 
 
 
@@ -667,7 +667,7 @@ Referenced by setup().
 )}\hypertarget{adf4351_8h_a028ebcaafaf1da135256b7226060eb43}{}\label{adf4351_8h_a028ebcaafaf1da135256b7226060eb43}
 
 
-Compute P\+DF. 
+Compute P\+FD. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -678,7 +678,7 @@ Compute P\+DF.
 \end{DoxyParams}
 
 
-Definition at line 346 of file adf4351.\+c.
+Definition at line 344 of file adf4351.\+c.
 
 
 
@@ -705,7 +705,7 @@ Read A\+D\+F4351 status Only of value if spi bus input is tied to mux out This f
 \end{DoxyReturn}
 
 
-Definition at line 295 of file adf4351.\+c.
+Definition at line 293 of file adf4351.\+c.
 
 \index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+sync@{A\+D\+F4351\+\_\+sync}}
 \index{A\+D\+F4351\+\_\+sync@{A\+D\+F4351\+\_\+sync}!adf4351.\+h@{adf4351.\+h}}

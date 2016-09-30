@@ -9,7 +9,6 @@ var searchData=
   ['adf4351_5fle_5fhi',['ADF4351_LE_HI',['../adf4351__hal_8h.html#acc4f6de664493e7dda696a33620756e5',1,'adf4351_hal.h']]],
   ['adf4351_5fle_5finit',['ADF4351_LE_INIT',['../adf4351__hal_8h.html#aab6bf633d615a75341caf6ba44b0a0ce',1,'adf4351_hal.h']]],
   ['adf4351_5fle_5flow',['ADF4351_LE_LOW',['../adf4351__hal_8h.html#ac1c5252250e0adf4fae7f1b8aeb6c162',1,'adf4351_hal.h']]],
-  ['adf4351_5fle_5fpin',['ADF4351_LE_PIN',['../adf4351__hal_8h.html#a18568692e3eb5ccba9890e94df1ba1a7',1,'adf4351_hal.h']]],
   ['adf4351_5fmax_5ffreq_5f45pre',['ADF4351_MAX_FREQ_45PRE',['../adf4351_8h.html#a293264ca2dc758c182320f42951240c1',1,'adf4351.h']]],
   ['adf4351_5fpfd_5fmax',['ADF4351_PFD_MAX',['../adf4351_8h.html#a8fcfb09d34d3b3a7eae35c04e770cb92',1,'adf4351.h']]],
   ['adf4351_5frefin_5fmax',['ADF4351_REFIN_MAX',['../adf4351_8h.html#ae410570e072c2b181522ba8b5e1a5402',1,'adf4351.h']]],

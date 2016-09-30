@@ -41,13 +41,12 @@ adf4351_regs_t regs;
 MEMSPACE
 void ADF4351_sync(int all)
 {
-	int dbuffer = 1;
     int i;
 	uint32_t value;
     for (i=5; i>= 0; --i)
 	{
 		value = ADF4351_GetReg32(i);
-		(void) ADF4351_txrx(value);
+		(void) ADF4351_spi_txrx(value);
 	}
 	// ADF4351_dump_registers();
 }
@@ -68,59 +67,59 @@ uint32_t ADF4351_GetReg32(int addr)
     switch (addr)
     {
         case 0 : 
-    		R =  0
-				| ((regs.r0.FRAC           & 0x0fff ) <<  3 )
-				| ((regs.r0.INT            & 0xffff ) << 15 );
+    		R =  0UL
+				| ((regs.r0.FRAC           & 0x0fffUL ) <<  3 )
+				| ((regs.r0.INT            & 0xffffUL ) << 15 );
 			return(R );
         case 1 : 
-    		R =  1
-				| (( regs.r1.MOD           & 0x0fff ) <<  3 )
-				| (( regs.r1.Phase         & 0x0fff ) << 15 )
-				| (( regs.r1.Prescaler     &      1 ) << 27 )
-				| (( regs.r1.PhaseAdjust   &      1 ) << 28 );
+    		R =  1UL
+				| (( regs.r1.MOD           & 0x0fffUL ) <<  3 )
+				| (( regs.r1.Phase         & 0x0fffUL ) << 15 )
+				| (( regs.r1.Prescaler     &      1UL ) << 27 )
+				| (( regs.r1.PhaseAdjust   &      1UL ) << 28 );
 			return(R );
         case 2 : 
-    		R =  2
-				| (( regs.r2.Reset_R_N     &      1 ) <<  3 )
-				| (( regs.r2.CP3S          &      1 ) <<  4 )
-				| (( regs.r2.PowerDown     &      1 ) <<  5 )
-				| (( regs.r2.PhasePolarity &      1 ) <<  6 )
-				| (( regs.r2.LDP           &      1 ) <<  7 )
-				| (( regs.r2.LDF           &      1 ) <<  8 )
-				| (( regs.r2.CPC           &    0xf ) <<  9 )
-				| (( regs.r2.DBufRFDiv     &      1 ) << 13 )
-				| (( regs.r2.R             &  0x3ff ) << 14 )
-				| (( regs.r2.REFinDIV2     &      1 ) << 24 )
-				| (( regs.r2.REFinMUL2     &      1 ) << 25 )
-				| (( regs.r2.MuxOut        &      7 ) << 26 )
-				| (( regs.r2.NoiseSpurMode &      3 ) << 29 );
+    		R =  2UL
+				| (( regs.r2.Reset_R_N     &      1UL ) <<  3 )
+				| (( regs.r2.CP3S          &      1UL ) <<  4 )
+				| (( regs.r2.PowerDown     &      1UL ) <<  5 )
+				| (( regs.r2.PhasePolarity &      1UL ) <<  6 )
+				| (( regs.r2.LDP           &      1UL ) <<  7 )
+				| (( regs.r2.LDF           &      1UL ) <<  8 )
+				| (( regs.r2.CPC           &    0xfUL ) <<  9 )
+				| (( regs.r2.DBufRFDiv     &      1UL ) << 13 )
+				| (( regs.r2.R             &  0x3ffUL ) << 14 )
+				| (( regs.r2.REFinDIV2     &      1UL ) << 24 )
+				| (( regs.r2.REFinMUL2     &      1UL ) << 25 )
+				| (( regs.r2.MuxOut        &      7UL ) << 26 )
+				| (( regs.r2.NoiseSpurMode &      3UL ) << 29 );
 			return(R );
         case 3 : 
-    		R =  3
-				| (( regs.r3.ClkDiv        & 0x0fff ) <<  3 )
-				| (( regs.r3.ClkDivMode    &      3 ) << 15 )
-				| (( regs.r3.CSR           &      1 ) << 18 )
-				| (( regs.r3.CPC           &      1 ) << 21 )
-				| (( regs.r3.ABPW          &      1 ) << 22 )
-				| (( regs.r3.BandClkMode   &      1 ) << 23 );
+    		R =  3UL
+				| (( regs.r3.ClkDiv        & 0x0fffUL ) <<  3 )
+				| (( regs.r3.ClkDivMode    &      3UL ) << 15 )
+				| (( regs.r3.CSR           &      1UL ) << 18 )
+				| (( regs.r3.CPC           &      1UL ) << 21 )
+				| (( regs.r3.ABPW          &      1UL ) << 22 )
+				| (( regs.r3.BandClkMode   &      1UL ) << 23 );
 			return(R );
         case 4 : 
-    		R =  4
-				| (( regs.r4.RFOutPower    &      3 ) <<  3 )
-				| (( regs.r4.RFOutEnable   &      1 ) <<  5 )
-				| (( regs.r4.AuxOutPower   &      3 ) <<  6 )
-				| (( regs.r4.AuxOutEnable  &      1 ) <<  8 )
-				| (( regs.r4.AuxOutSel     &      1 ) <<  9 )
-				| (( regs.r4.MTLD          &      1 ) << 10 )
-				| (( regs.r4.VCOPowerDown  &      1 ) << 11 )
-				| (( regs.r4.BandClkDiv    &   0xff ) << 12 )
-				| (( regs.r4.RFDivSel      &      7 ) << 20 )
-				| (( regs.r4.FeedbackVCO   &      1 ) << 23 );
+    		R =  4UL
+				| (( regs.r4.RFOutPower    &      3UL ) <<  3 )
+				| (( regs.r4.RFOutEnable   &      1UL ) <<  5 )
+				| (( regs.r4.AuxOutPower   &      3UL ) <<  6 )
+				| (( regs.r4.AuxOutEnable  &      1UL ) <<  8 )
+				| (( regs.r4.AuxOutSel     &      1UL ) <<  9 )
+				| (( regs.r4.MTLD          &      1UL ) << 10 )
+				| (( regs.r4.VCOPowerDown  &      1UL ) << 11 )
+				| (( regs.r4.BandClkDiv    &   0xffUL ) << 12 )
+				| (( regs.r4.RFDivSel      &      7UL ) << 20 )
+				| (( regs.r4.FeedbackVCO   &      1UL ) << 23 );
 			return(R );
         case 5 : 
-    		R =  5
-				| (( 3 )                              << 19 )	// reserved high
-				| (( regs.r5.LDPinMode     &      3 ) << 22 );
+    		R =  5UL
+				| (( 3UL )                              << 19 )	// reserved high
+				| (( regs.r5.LDPinMode     &      3UL ) << 22 );
 			return(R);
     }
     return 0xffffffffU;
@@ -153,7 +152,6 @@ int ADF4351_CHARGE_PUMP_uA(int32_t x)
 MEMSPACE
 void ADF4351_Init(void)
 {
-    ADF4351_gpio_init();
     ADF4351_spi_init();
 
 // Register Address bits
@@ -200,7 +198,7 @@ void ADF4351_Init(void)
 	// CPC 0 for fractional-N, 1 for interger-N
     regs.r3.CPC           = ADF4351_DISABLE;  // fractional-N, ENABLE interger-N
     regs.r3.ABPW          = ADF4351_ABP_6NS; // fractional N, 3ns integer-N
-    regs.r3.BandClkMode   = 0; // for PDF < 125kHz
+    regs.r3.BandClkMode   = 0; // for PFD < 125kHz
     regs.r3.res2L         = 0;
 
     regs.r4.ControlBits   = 4U;
@@ -300,7 +298,7 @@ uint32_t ADF4351_status( uint8_t mode)
     ADF4351_sync(0);
 
 // should read the status value based on mode
-    ret = ADF4351_txrx(ADF4351_GetReg32(2));
+    ret = ADF4351_spi_txrx(ADF4351_GetReg32(2));
 
 // tristate bus
     regs.r2.MuxOut = ADF4351_MUX_THREESTATE;
@@ -332,7 +330,7 @@ uint32_t ADF4351_GCD32(uint32_t u, uint32_t v)
 
 
 /**
- *  \brief Compute PDF
+ *  \brief Compute PFD
  * @param  REFin: Reference in frequency
  * @param  R: Reference divider
  */
@@ -362,7 +360,7 @@ adf4351_err_t adf4351_errors[] =
    { ADF4351_REFin_RANGE,"REFin_RANGE" },
    { ADF4351_BandSelectClockFrequency_RANGE,"BandSelectClockFrequency_RANGE" },
    { ADF4351_R_RANGE,"R_RANGE" },
-   { ADF4351_PDF_RANGE,"PDF_RANGE" },
+   { ADF4351_PFD_RANGE,"PFD_RANGE" },
    { ADF4351_N_RANGE,"N_RANGE" },
    { ADF4351_INT_RANGE,"INT_RANGE" },
    { ADF4351_MOD_RANGE,"MOD_RANGE" },
@@ -423,7 +421,7 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
 	double      Fres;
 
 	double 		dscale;
-	uint32 		temp;
+	uint32_t 	temp;
 
 	*RFoutCalc = 0.0;
 
@@ -516,39 +514,6 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
 	}
 
 	// ==========================
-	// Check for PFD range errors
-	if (regs.r3.BandClkMode == 0)
-    {
-		if( PFD > ADF4351_PFD_MAX )
-		{
-#if ADF4351_DEBUG & 2
-			printf("PFD: %.2f > %u && BandClkMode == 0\n", 
-				(double) PFD, (uint32_t) ADF4351_PFD_MAX);
-#endif
-			return(ADF4351_PDF_RANGE);
-		}
-    }
-    else 
-    {
-		if( PFD > ADF4351_PFD_MAX && r0_FRAC != 0)
-		{
-#if ADF4351_DEBUG & 2
-			printf("PFD: %.2f > %u && BandClkMode == 0\n", 
-				(double) PFD, (uint32_t) ADF4351_PFD_MAX);
-#endif
-			return(ADF4351_PDF_RANGE);
-		}
-		if (PFD > 90 && r0_FRAC != 0)
-		{
-#if ADF4351_DEBUG & 2
-			printf("PFD: %.2f > 90 Band Clock Mode && r0_FRAC != 0\n", 	
-				(double) PFD);
-#endif
-			return(ADF4351_PDF_RANGE);
-		}
-	}
-
-	// ==========================
 	// Compute N based on R4 feedback path select
     if (regs.r4.FeedbackVCO)
         N = ((double)RFout * (double)RFoutDIV) / (double) PFD;
@@ -578,15 +543,15 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
 
 	// ==========================
 	// Modulus
-	// FIXME this solution, which works, disagrees with datasheet
- 	// r1_MOD=REFin/Fres
- 	// Fres = ChannelSpacing/RFoutDIV
+	// FIXME the AD windows driver Main_Form.cs disagrees with their own datasheet
+	// Specifically the RF output divider is not included in the calculation
+	// Datasheet:
+	// Fres is the VCO Channel Spacing
+ 	//   r1_MOD=REFin/Fres
+ 	//   Fres = ChannelSpacing/RFoutDIV
+	//   r1_MOD=(uint32_t) round((double) REFin / (double) Fres);
 
-	// Fres = VCO Channel Spacing
-	Fres = (double) RFoutDIV * ChannelSpacing;
-	
-	// FIXME Main_Form.cs disagrees with datasheet
-	// r1_MOD=(uint32_t) round((double) REFin / (double) Fres);
+	// The tested working solution found in the AD driver Main_Form.cs
 	r1_MOD=(uint32_t) round((double) PFD / (double) ChannelSpacing );
 
 	// ==========================
@@ -622,6 +587,39 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
 #endif
 		return(ADF4351_FRAC_RANGE);
     }
+
+	// ==========================
+	// Check for PFD range errors
+	if (regs.r3.BandClkMode == 0)
+    {
+		if( PFD > ADF4351_PFD_MAX )
+		{
+#if ADF4351_DEBUG & 2
+			printf("PFD: %.2f > %u && BandClkMode == 0\n", 
+				(double) PFD, (uint32_t) ADF4351_PFD_MAX);
+#endif
+			return(ADF4351_PFD_RANGE);
+		}
+    }
+    else 
+    {
+		if( PFD > ADF4351_PFD_MAX && r0_FRAC != 0)
+		{
+#if ADF4351_DEBUG & 2
+			printf("PFD: %.2f > %u && BandClkMode == 0\n", 
+				(double) PFD, (uint32_t) ADF4351_PFD_MAX);
+#endif
+			return(ADF4351_PFD_RANGE);
+		}
+		if (PFD > 90 && r0_FRAC != 0)
+		{
+#if ADF4351_DEBUG & 2
+			printf("PFD: %.2f > 90 Band Clock Mode && r0_FRAC != 0\n", 	
+				(double) PFD);
+#endif
+			return(ADF4351_PFD_RANGE);
+		}
+	}
 
 	// ==========================
 	// Band Clock Divider 

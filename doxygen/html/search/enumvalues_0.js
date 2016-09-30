@@ -33,7 +33,7 @@ var searchData=
   ['adf4351_5fmux_5fthreestate',['ADF4351_MUX_THREESTATE',['../adf4351_8h.html#abed82baf7f470b522273a3e37c24c600a88b8cb62fb2f4ac7959f67691bd31f58',1,'adf4351.h']]],
   ['adf4351_5fn_5frange',['ADF4351_N_RANGE',['../adf4351_8h.html#adc29c2ff13d900c2f185ee95427fb06ca57e3a78490e88a903233fec1ec98fb33',1,'adf4351.h']]],
   ['adf4351_5fnoerror',['ADF4351_NOERROR',['../adf4351_8h.html#adc29c2ff13d900c2f185ee95427fb06ca29346a5191b706c861aaa10f05e5fca2',1,'adf4351.h']]],
-  ['adf4351_5fpdf_5frange',['ADF4351_PDF_RANGE',['../adf4351_8h.html#adc29c2ff13d900c2f185ee95427fb06cafc3a3e6baa8e0fa3a653b57b3ca03e08',1,'adf4351.h']]],
+  ['adf4351_5fpfd_5frange',['ADF4351_PFD_RANGE',['../adf4351_8h.html#adc29c2ff13d900c2f185ee95427fb06ca4b3289c9120585b29de2887083fd993f',1,'adf4351.h']]],
   ['adf4351_5fpolarity_5fneg',['ADF4351_POLARITY_NEG',['../adf4351_8h.html#abc5c98fcc1211af2b80116dd6e0a035da9acbf7123aff032887d438f74e9e50bb',1,'adf4351.h']]],
   ['adf4351_5fpolarity_5fpos',['ADF4351_POLARITY_POS',['../adf4351_8h.html#abc5c98fcc1211af2b80116dd6e0a035dac50e3a516734aad3902be69bf704dde0',1,'adf4351.h']]],
   ['adf4351_5fpower_5f2db',['ADF4351_POWER_2DB',['../adf4351_8h.html#aba01db17f4a2bfbc3db60dc172972a25abe095fa81cdee9bdc2768b28e9774dc7',1,'adf4351.h']]],

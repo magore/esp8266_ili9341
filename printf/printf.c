@@ -363,9 +363,8 @@ MEMSPACE
 int p_ftoa(double val, char *str, int intprec, int prec, int sign)
 {
 	char *save = str;
-	double intpart, fraction, round, scale;
-	int digit,digits,exp10,count;
-	long num;
+	double intpart, round;
+	int digit,exp10;
 
 //printf("val:%f, intprec:%d, prec:%d, sign:%d\n", val, intprec, prec, sign);
 
@@ -606,7 +605,6 @@ void _puts_pad(printf_t *fn, char *s, int width, int count, int left)
 MEMSPACE 
 void _printf_fn(printf_t *fn, const char *fmt, va_list va)
 {
-	char ch;
     int prec, width, intprec, sign, left, fill;
 	int precf, widthf;
 	int count;
@@ -614,7 +612,7 @@ void _printf_fn(printf_t *fn, const char *fmt, va_list va)
 	int size;
 	long num = 0;
 #ifdef FLOAT
-	double dnum;
+	double dnum = 0;
 #endif
 	char chartmp[2];
 	char *ptr;
@@ -829,15 +827,15 @@ void _printf_fn(printf_t *fn, const char *fmt, va_list va)
 			_puts_pad(fn,buff, width, count, left);
 			break;
 		case 's':
+		case 'c':
+			ptr = NULL; // stops bogus error that ptr may be uninitalized
 			if(spec == 's')
 			{
 				ptr = va_arg(va, char *);
 				if(!ptr)
 					ptr = "(NULL)";
 			}
-		case 'c':
-			// FIXME
-			if(spec == 'c')
+			else // 'c'
 			{
 				chartmp[0] = (char) va_arg(va, int);
 				chartmp[1] = 0;
