@@ -14,8 +14,6 @@
 \begin{DoxyCompactList}\small\item\em Convert charge pump current in uA to R2 register value. \end{DoxyCompactList}\item 
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{adf4351_8c_a50bcc9731b52a04b7605cea7a7b9b31d}{A\+D\+F4351\+\_\+\+Init} (void)
 \begin{DoxyCompactList}\small\item\em Init all A\+D\+F4351 registers to default values. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{adf4351_8c_af5df691056aab2589215326ec1bed44c}{A\+D\+F4351\+\_\+dump\+\_\+registers} (void)
-\begin{DoxyCompactList}\small\item\em Display A\+D\+F4351 registers in detail. \end{DoxyCompactList}\item 
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} \hyperlink{adf4351_8c_a4880c809bea1b2745d82d735d2e10cbc}{A\+D\+F4351\+\_\+status} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} mode)
 \begin{DoxyCompactList}\small\item\em Read A\+D\+F4351 status Only of value if spi bus input is tied to mux out This function has not been tested! \end{DoxyCompactList}\item 
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} \hyperlink{adf4351_8c_a9eccb6b9d9f10c6286ae277a6b8ef9ae}{A\+D\+F4351\+\_\+\+G\+C\+D32} (\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} u, \hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} v)
@@ -23,16 +21,14 @@
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} double \hyperlink{adf4351_8c_af4002a973f20e97d67069f506a08fa4e}{A\+D\+F4351\+\_\+\+P\+FD} (double R\+E\+Fin, int R)
 \begin{DoxyCompactList}\small\item\em Compute P\+FD. \end{DoxyCompactList}\item 
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{adf4351_8c_a992aef229e9dba29e333afd297fe9c45}{A\+D\+F4351\+\_\+display\+\_\+error} (int error)
-\begin{DoxyCompactList}\small\item\em Display A\+D\+F4351 error return code. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Verbose Error messages. \end{DoxyCompactList}\item 
 \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{adf4351_8c_aa81dc41f60eb1698b3866deb0d2a31bc}{A\+D\+F4351\+\_\+\+Config} (double R\+Fout, double R\+E\+Fin, double Channel\+Spacing, double $\ast$R\+Fout\+Calc)
 \begin{DoxyCompactList}\small\item\em Calculate register values for A\+D\+F4351. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{structadf4351__regs__t}{adf4351\+\_\+regs\+\_\+t} \hyperlink{adf4351_8c_a70530166ec574157a09a77a51c01ea02}{regs}
-\begin{DoxyCompactList}\small\item\em A\+D\+F4351 register buffer. \end{DoxyCompactList}\item 
-\hyperlink{structadf4351__err__t}{adf4351\+\_\+err\+\_\+t} \hyperlink{adf4351_8c_ab412cdfecfed0dc105177ee96c5b52f2}{adf4351\+\_\+errors} \mbox{[}$\,$\mbox{]}
-\begin{DoxyCompactList}\small\item\em Verbose Error messages. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em A\+D\+F4351 register buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Function Documentation}
@@ -90,7 +86,7 @@ Calculate register values for A\+D\+F4351.
 \end{DoxyRetVals}
 R\+Fout\+V\+CO = \mbox{[}r0\+\_\+\+I\+NT + (r0\+\_\+\+F\+R\+A\+C/r1\+\_\+\+M\+OD)\mbox{]} × (P\+FD) R\+Fout = \mbox{[}r0\+\_\+\+I\+NT + (r0\+\_\+\+F\+R\+A\+C/r1\+\_\+\+M\+OD)\mbox{]} × (P\+FD /\+R\+Fout\+D\+IV) R\+Fout is the RF frequency output. r0\+\_\+\+I\+NT is the integer division factor. r0\+\_\+\+F\+R\+AC is the numerator of the fractional division (0 to M\+OD − 1). r1\+\_\+\+M\+OD is the preset fractional modulus (2 to 4095). R\+Fout\+D\+IV is the V\+CO output divider. P\+FD = R\+E\+Fin × \mbox{[}(1 + R\+E\+Fin\+M\+U\+L2)/(R × (1 + R\+E\+Fin\+D\+I\+V2))\mbox{]} R\+E\+Fin is the reference frequency input. R\+E\+Fin\+M\+U\+L2 is the R\+E\+Fin doubler bit (0 or 1). r2\+\_\+R is R\+E\+Fin division factor (1 to 1023). R\+E\+Fin\+D\+I\+V2 is the reference divide-\/by-\/2 bit (0 or 1). Fres = Channel\+Spacing $\ast$ R\+Fout\+D\+IV r1\+\_\+\+M\+OD=R\+E\+Fin / Fres
 
-Definition at line 404 of file adf4351.\+c.
+Definition at line 412 of file adf4351.\+c.
 
 
 
@@ -105,40 +101,20 @@ Referenced by user\+\_\+tests().
 )}\hypertarget{adf4351_8c_a992aef229e9dba29e333afd297fe9c45}{}\label{adf4351_8c_a992aef229e9dba29e333afd297fe9c45}
 
 
-Display A\+D\+F4351 error return code. 
+Verbose Error messages. 
 
-
+Display A\+D\+F4351 error return code 
 \begin{DoxyParams}{Parameters}
 {\em error} & error code \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 376 of file adf4351.\+c.
+Definition at line 380 of file adf4351.\+c.
 
 
 
 Referenced by user\+\_\+tests().
-
-\index{adf4351.\+c@{adf4351.\+c}!A\+D\+F4351\+\_\+dump\+\_\+registers@{A\+D\+F4351\+\_\+dump\+\_\+registers}}
-\index{A\+D\+F4351\+\_\+dump\+\_\+registers@{A\+D\+F4351\+\_\+dump\+\_\+registers}!adf4351.\+c@{adf4351.\+c}}
-\subsubsection[{\texorpdfstring{A\+D\+F4351\+\_\+dump\+\_\+registers(void)}{ADF4351_dump_registers(void)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void A\+D\+F4351\+\_\+dump\+\_\+registers (
-\begin{DoxyParamCaption}
-\item[{void}]{}
-\end{DoxyParamCaption}
-)}\hypertarget{adf4351_8c_af5df691056aab2589215326ec1bed44c}{}\label{adf4351_8c_af5df691056aab2589215326ec1bed44c}
-
-
-Display A\+D\+F4351 registers in detail. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em none} & \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 232 of file adf4351.\+c.
 
 \index{adf4351.\+c@{adf4351.\+c}!A\+D\+F4351\+\_\+\+G\+C\+D32@{A\+D\+F4351\+\_\+\+G\+C\+D32}}
 \index{A\+D\+F4351\+\_\+\+G\+C\+D32@{A\+D\+F4351\+\_\+\+G\+C\+D32}!adf4351.\+c@{adf4351.\+c}}
@@ -164,7 +140,7 @@ G\+CD of u and v
 \end{DoxyReturn}
 
 
-Definition at line 318 of file adf4351.\+c.
+Definition at line 320 of file adf4351.\+c.
 
 
 
@@ -246,7 +222,7 @@ Compute P\+FD.
 \end{DoxyParams}
 
 
-Definition at line 344 of file adf4351.\+c.
+Definition at line 346 of file adf4351.\+c.
 
 
 
@@ -273,7 +249,7 @@ Read A\+D\+F4351 status Only of value if spi bus input is tied to mux out This f
 \end{DoxyReturn}
 
 
-Definition at line 293 of file adf4351.\+c.
+Definition at line 295 of file adf4351.\+c.
 
 \index{adf4351.\+c@{adf4351.\+c}!A\+D\+F4351\+\_\+sync@{A\+D\+F4351\+\_\+sync}}
 \index{A\+D\+F4351\+\_\+sync@{A\+D\+F4351\+\_\+sync}!adf4351.\+c@{adf4351.\+c}}
@@ -304,37 +280,6 @@ Referenced by A\+D\+F4351\+\_\+\+Init(), A\+D\+F4351\+\_\+status(), and user\+\_
 
 
 \subsection{Variable Documentation}
-\index{adf4351.\+c@{adf4351.\+c}!adf4351\+\_\+errors@{adf4351\+\_\+errors}}
-\index{adf4351\+\_\+errors@{adf4351\+\_\+errors}!adf4351.\+c@{adf4351.\+c}}
-\subsubsection[{\texorpdfstring{adf4351\+\_\+errors}{adf4351_errors}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf adf4351\+\_\+err\+\_\+t} adf4351\+\_\+errors\mbox{[}$\,$\mbox{]}}\hypertarget{adf4351_8c_ab412cdfecfed0dc105177ee96c5b52f2}{}\label{adf4351_8c_ab412cdfecfed0dc105177ee96c5b52f2}
-{\bfseries Initial value\+:}
-\begin{DoxyCode}
-=
-\{
-   \{ \hyperlink{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06ca29346a5191b706c861aaa10f05e5fca2}{ADF4351\_NOERROR},\textcolor{stringliteral}{"No error"} \},
-   \{ \hyperlink{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06ca995ce66d1222115420ccc2605f8856f8}{ADF4351\_RFout\_RANGE},\textcolor{stringliteral}{"RFout\_RANGE"} \},
-   \{ \hyperlink{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06ca72530a6bbcc2547f3c310d00d952159d}{ADF4351\_RFoutDIV\_RANGE},\textcolor{stringliteral}{"RFoutDIV\_RANGE"} \},
-   \{ \hyperlink{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06ca35b652c6e3dba87dd31f705638c231bd}{ADF4351\_RFout\_MISMATCH},\textcolor{stringliteral}{"RFout\_MISMATCH"} \},
-   \{ \hyperlink{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06ca3c2fdae3609858fc23a175a78956ea5e}{ADF4351\_REFin\_RANGE},\textcolor{stringliteral}{"REFin\_RANGE"} \},
-   \{ \hyperlink{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06caba15cbf8e857d729a6e8da4021fb06b1}{ADF4351\_BandSelectClockFrequency\_RANGE},\textcolor{stringliteral}{"
-      BandSelectClockFrequency\_RANGE"} \},
-   \{ \hyperlink{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06ca7acf49deae0e3115da8b84602e22e227}{ADF4351\_R\_RANGE},\textcolor{stringliteral}{"R\_RANGE"} \},
-   \{ \hyperlink{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06ca4b3289c9120585b29de2887083fd993f}{ADF4351\_PFD\_RANGE},\textcolor{stringliteral}{"PFD\_RANGE"} \},
-   \{ \hyperlink{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06ca57e3a78490e88a903233fec1ec98fb33}{ADF4351\_N\_RANGE},\textcolor{stringliteral}{"N\_RANGE"} \},
-   \{ \hyperlink{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06cad3c5af209d5c68da4a4bd05b15008f76}{ADF4351\_INT\_RANGE},\textcolor{stringliteral}{"INT\_RANGE"} \},
-   \{ \hyperlink{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06cab20a2e654bc0776b6a9ea59ac1b5b995}{ADF4351\_MOD\_RANGE},\textcolor{stringliteral}{"MOD\_RANGE"} \},
-   \{ \hyperlink{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06ca9b2ffdd24c189349cd5b6831be5e96a8}{ADF4351\_FRAC\_RANGE},\textcolor{stringliteral}{"FRAC\_RANGE"}\},
-   \{ \hyperlink{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06cab181288b9176c29a428d2d6b0973099c}{ADF4351\_ERROR\_END},NULL\}
-\}
-\end{DoxyCode}
-
-
-Verbose Error messages. 
-
-
-
-Definition at line 354 of file adf4351.\+c.
-
 \index{adf4351.\+c@{adf4351.\+c}!regs@{regs}}
 \index{regs@{regs}!adf4351.\+c@{adf4351.\+c}}
 \subsubsection[{\texorpdfstring{regs}{regs}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf adf4351\+\_\+regs\+\_\+t} regs}\hypertarget{adf4351_8c_a70530166ec574157a09a77a51c01ea02}{}\label{adf4351_8c_a70530166ec574157a09a77a51c01ea02}

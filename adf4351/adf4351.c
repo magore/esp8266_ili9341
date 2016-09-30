@@ -224,6 +224,8 @@ void ADF4351_Init(void)
     ADF4351_sync(1);
 }
 
+#if ADF4351_DEBUG & 2
+
 /**
  *  \brief Display ADF4351 registers in detail
  * @param  none
@@ -280,7 +282,7 @@ void ADF4351_dump_registers(void)
     printf("    LDPinMode     = %d\n", regs.r5.LDPinMode);
 	printf("\n");
 }
-
+#endif
 
 /**
  *  \brief Read ADF4351 status
@@ -351,6 +353,7 @@ double ADF4351_PFD(double REFin, int R)
 
 /** \brief Verbose Error messages
 */
+#if ADF4351_DEBUG & 3
 adf4351_err_t adf4351_errors[] =
 {
    { ADF4351_NOERROR,"No error" },
@@ -367,6 +370,7 @@ adf4351_err_t adf4351_errors[] =
    { ADF4351_FRAC_RANGE,"FRAC_RANGE"},
    { ADF4351_ERROR_END,NULL}
 };
+#endif
 
 /**
  *  \brief Display ADF4351 error return code
@@ -377,6 +381,7 @@ void ADF4351_display_error(int error)
 {
 	int i;
 	int found = 0;
+#if ADF4351_DEBUG & 3
 	for(i=0;i<ADF4351_ERROR_END;++i)
 	{
 		if( adf4351_errors[i].val == error )
@@ -389,6 +394,9 @@ void ADF4351_display_error(int error)
 	{
 		printf("ADF4351 missing error message:[%d]\n", error);
 	}
+#else
+	printf("ADF4351 error:[%d]\n", error);
+#endif
 }
 
 /**
@@ -536,7 +544,7 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
     if (r0_INT > 65535U)
     {
 #if ADF4351_DEBUG & 2
-        printf("INT: %u\n", (uint32_t) r0_INT);
+        printf("INT: %lu\n", (unsigned long) r0_INT);
 #endif
 		return(ADF4351_INT_RANGE);
     }
@@ -560,6 +568,7 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
 
 	// ==========================
 	// Reduce r1_MOD and r0_FRAC by greatest common divisor
+
 	div_gcd = ADF4351_GCD32(r1_MOD, r0_FRAC);
 	r1_MOD /= div_gcd;
 	r0_FRAC /= div_gcd;
@@ -573,7 +582,7 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
 	if(r1_MOD == 0 || r1_MOD > 4095U) 
 	{
 #if ADF4351_DEBUG & 2
-        printf("*MOD: %u, INT: %u, FRAC: %u\n", (uint32_t) r1_MOD, (uint32_t) r0_INT, (uint32_t) r0_FRAC);
+        printf("*MOD: %lu, INT: %lu, FRAC: %lu\n", (unsigned long) r1_MOD, (unsigned long) r0_INT, (unsigned long) r0_FRAC);
 #endif
 		return(ADF4351_MOD_RANGE);
 	}
@@ -583,7 +592,7 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
     if (r0_FRAC > 4095U)
     {
 #if ADF4351_DEBUG & 2
-        printf("MOD: %u, INT: %u, *FRAC: %u\n", (uint32_t) r1_MOD, (uint32_t) r0_INT, (uint32_t) r0_FRAC);
+        printf("MOD: %lu, INT: %lu, *FRAC: %lu\n", (unsigned long) r1_MOD, (unsigned long) r0_INT, (unsigned long) r0_FRAC);
 #endif
 		return(ADF4351_FRAC_RANGE);
     }
@@ -595,8 +604,8 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
 		if( PFD > ADF4351_PFD_MAX )
 		{
 #if ADF4351_DEBUG & 2
-			printf("PFD: %.2f > %u && BandClkMode == 0\n", 
-				(double) PFD, (uint32_t) ADF4351_PFD_MAX);
+			printf("PFD: %.2f > %lu && BandClkMode == 0\n", 
+				(double) PFD, (unsigned long) ADF4351_PFD_MAX);
 #endif
 			return(ADF4351_PFD_RANGE);
 		}
@@ -606,8 +615,8 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
 		if( PFD > ADF4351_PFD_MAX && r0_FRAC != 0)
 		{
 #if ADF4351_DEBUG & 2
-			printf("PFD: %.2f > %u && BandClkMode == 0\n", 
-				(double) PFD, (uint32_t) ADF4351_PFD_MAX);
+			printf("PFD: %.2f > %lu && BandClkMode == 0\n", 
+				(double) PFD, (unsigned long) ADF4351_PFD_MAX);
 #endif
 			return(ADF4351_PFD_RANGE);
 		}
@@ -666,8 +675,8 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
     if ((regs.r2.NoiseSpurMode == ADF4351_LOW_SPUR_MODE) && (r1_MOD < 50))
     {
 #if ADF4351_DEBUG & 2
-        printf("regs.r2.NoiseSpurMode == ADF4351_LOW_SPUR_MODE) && (r1_MOD(%d) < 50\n",
-		(uint32_t) r1_MOD);
+        printf("regs.r2.NoiseSpurMode == ADF4351_LOW_SPUR_MODE) && (r1_MOD(%lu) < 50\n",
+		(unsigned long) r1_MOD);
 #endif
 		return(ADF4351_MOD_RANGE);
     }
@@ -701,11 +710,11 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
     printf("  BandSelectClockFrequency: %.2f Hz\n", (double) BandSelectClockFrequency);
     printf("  VCO FeedbackVCO %s\n", regs.r4.FeedbackVCO ? "VCO" : "Divided" );
     printf("  N: %.2f Hz\n", (double) N);
-	printf("  r0_INT: %u, r0_FRAC: %u, r0_MOD: %u\n",
-		(uint32_t) r0_INT, (uint32_t)r0_FRAC, (uint32_t) r1_MOD);
-	printf("  r2_R:%u\n", (uint32_t) r2_R);
+	printf("  r0_INT: %lu, r0_FRAC: %lu, r1_MOD: %lu\n",
+		(unsigned long) r0_INT, (unsigned long)r0_FRAC, (unsigned long) r1_MOD);
+	printf("  r2_R:%lu\n", (unsigned long) r2_R);
 	printf("  r1_Prescaler: %s\n", r1_Prescaler ? "8/9" : "4/5");
-	printf("  r4_BandClkDiv %u\n", (uint32_t) r4_BandClkDiv);
+	printf("  r4_BandClkDiv %lu\n", (unsigned long) r4_BandClkDiv);
 #endif
 
 	// VCO frequecy error ?
