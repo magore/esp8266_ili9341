@@ -24,11 +24,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 
-#include <user_config.h>
+#include <stdint.h>
+#include <stdarg.h>
+#include <string.h>
+#include <math.h>
+
+#include "disk.h"
+
 #include "ff.h"
 #include "diskio.h"
 #include "posix.h"
-
 
 ///@brief FatFs Drive Volumes
 FATFS Fatfs[_VOLUMES];                            /* File system object for each logical drive */

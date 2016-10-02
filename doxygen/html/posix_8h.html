@@ -101,9 +101,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>POSIX wrapper for FatFS.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;<a class="el" href="user__config_8h_source.html">user_config.h</a>&gt;</code><br />
+<div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &lt;stdarg.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;math.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="mmc__hal_8h_source.html">mmc_hal.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ff_8h_source.html">ff.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="disk_8h_source.html">disk.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="diskio_8h_source.html">diskio.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="fatfs__utils_8h_source.html">fatfs_utils.h</a>&quot;</code><br />
 </div>
 <p><a href="posix_8h_source.html">Go to the source code of this file.</a></p>
@@ -139,7 +144,7 @@ Macros</h2></td></tr>
 <tr class="separator:a822a791a1c06a12b95c14ace75b48ad2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a93db55caeeaf13488a635f8896a6bdf3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a93db55caeeaf13488a635f8896a6bdf3">_FDEV_SETUP_RW</a>&#160;&#160;&#160;(__SRD|__SWR)</td></tr>
 <tr class="separator:a93db55caeeaf13488a635f8896a6bdf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a28002092a0615e21c9943a426e81015f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a28002092a0615e21c9943a426e81015f">modecmp</a>(str,  pat)&#160;&#160;&#160;(<a class="el" href="str_8h.html#afe1fe8029f752b2943bcfaec34e0d418">strcmp</a>(str, pat) == 0 ? 1: 0)</td></tr>
+<tr class="memitem:a28002092a0615e21c9943a426e81015f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a28002092a0615e21c9943a426e81015f">modecmp</a>(str,  pat)&#160;&#160;&#160;(<a class="el" href="str_8h.html#abee00aec80e542c31b536a531ffe761a">strcmp</a>(str, pat) == 0 ? 1: 0)</td></tr>
 <tr class="memdesc:a28002092a0615e21c9943a426e81015f"><td class="mdescLeft">&#160;</td><td class="mdescRight">compare two strings, 1 = match, 0 mismatch.  <a href="#a28002092a0615e21c9943a426e81015f">More...</a><br /></td></tr>
 <tr class="separator:a28002092a0615e21c9943a426e81015f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4dc4d45e07d2abc899bcaf04b2846a87"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a4dc4d45e07d2abc899bcaf04b2846a87">O_ACCMODE</a>&#160;&#160;&#160;00000003 /*&lt; <a class="el" href="posix_8h.html#af104a2c05bef787e54c6925616e867df">read</a>, <a class="el" href="posix_8h.html#a072435300ac99e8d7c3749f45166e797">write</a>, <a class="el" href="posix_8h.html#af104a2c05bef787e54c6925616e867df">read</a>-<a class="el" href="posix_8h.html#a072435300ac99e8d7c3749f45166e797">write</a> modes */</td></tr>
@@ -314,126 +319,126 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a2c01fe0e0aa550b2a8b4dcc326983b57"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> FILE *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a2c01fe0e0aa550b2a8b4dcc326983b57">fileno_to_stream</a> (int <a class="el" href="posix_8h.html#aceb657a1b3c10d576aed287714bfd5d1">fileno</a>)</td></tr>
+<tr class="memitem:a2c01fe0e0aa550b2a8b4dcc326983b57"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> FILE *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a2c01fe0e0aa550b2a8b4dcc326983b57">fileno_to_stream</a> (int <a class="el" href="posix_8h.html#aceb657a1b3c10d576aed287714bfd5d1">fileno</a>)</td></tr>
 <tr class="memdesc:a2c01fe0e0aa550b2a8b4dcc326983b57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert POSIX fileno to POSIX FILE stream pointer.  <a href="#a2c01fe0e0aa550b2a8b4dcc326983b57">More...</a><br /></td></tr>
 <tr class="separator:a2c01fe0e0aa550b2a8b4dcc326983b57"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aceb657a1b3c10d576aed287714bfd5d1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#aceb657a1b3c10d576aed287714bfd5d1">fileno</a> (FILE *stream)</td></tr>
+<tr class="memitem:aceb657a1b3c10d576aed287714bfd5d1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#aceb657a1b3c10d576aed287714bfd5d1">fileno</a> (FILE *stream)</td></tr>
 <tr class="memdesc:aceb657a1b3c10d576aed287714bfd5d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert POSIX stream pointer to POSIX fileno (index of __iob[])  <a href="#aceb657a1b3c10d576aed287714bfd5d1">More...</a><br /></td></tr>
 <tr class="separator:aceb657a1b3c10d576aed287714bfd5d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b859123258b36eb57f4f71d2606d8a5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="structFIL.html">FIL</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a9b859123258b36eb57f4f71d2606d8a5">fileno_to_fatfs</a> (int <a class="el" href="posix_8h.html#aceb657a1b3c10d576aed287714bfd5d1">fileno</a>)</td></tr>
+<tr class="memitem:a9b859123258b36eb57f4f71d2606d8a5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="structFIL.html">FIL</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a9b859123258b36eb57f4f71d2606d8a5">fileno_to_fatfs</a> (int <a class="el" href="posix_8h.html#aceb657a1b3c10d576aed287714bfd5d1">fileno</a>)</td></tr>
 <tr class="memdesc:a9b859123258b36eb57f4f71d2606d8a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert POSIX fileno to FatFS handle.  <a href="#a9b859123258b36eb57f4f71d2606d8a5">More...</a><br /></td></tr>
 <tr class="separator:a9b859123258b36eb57f4f71d2606d8a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a81f14429660ca6a685676d6ceaf5350c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a81f14429660ca6a685676d6ceaf5350c">fatfs_to_fileno</a> (<a class="el" href="structFIL.html">FIL</a> *fh)</td></tr>
+<tr class="memitem:a81f14429660ca6a685676d6ceaf5350c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a81f14429660ca6a685676d6ceaf5350c">fatfs_to_fileno</a> (<a class="el" href="structFIL.html">FIL</a> *fh)</td></tr>
 <tr class="memdesc:a81f14429660ca6a685676d6ceaf5350c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert FatFS file handle to POSIX fileno.  <a href="#a81f14429660ca6a685676d6ceaf5350c">More...</a><br /></td></tr>
 <tr class="separator:a81f14429660ca6a685676d6ceaf5350c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abab788c42cce343cde2f5b8f90015229"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#abab788c42cce343cde2f5b8f90015229">new_file_descriptor</a> (void)</td></tr>
+<tr class="memitem:abab788c42cce343cde2f5b8f90015229"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#abab788c42cce343cde2f5b8f90015229">new_file_descriptor</a> (void)</td></tr>
 <tr class="memdesc:abab788c42cce343cde2f5b8f90015229"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate a POSIX FILE descriptor.  <a href="#abab788c42cce343cde2f5b8f90015229">More...</a><br /></td></tr>
 <tr class="separator:abab788c42cce343cde2f5b8f90015229"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a38496612f759733234128893e4c60a89"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a38496612f759733234128893e4c60a89">free_file_descriptor</a> (int <a class="el" href="posix_8h.html#aceb657a1b3c10d576aed287714bfd5d1">fileno</a>)</td></tr>
+<tr class="memitem:a38496612f759733234128893e4c60a89"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a38496612f759733234128893e4c60a89">free_file_descriptor</a> (int <a class="el" href="posix_8h.html#aceb657a1b3c10d576aed287714bfd5d1">fileno</a>)</td></tr>
 <tr class="memdesc:a38496612f759733234128893e4c60a89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free POSIX fileno FILE descriptor.  <a href="#a38496612f759733234128893e4c60a89">More...</a><br /></td></tr>
 <tr class="separator:a38496612f759733234128893e4c60a89"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a31986cce890109c211ccb14151aafd0e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a31986cce890109c211ccb14151aafd0e">isatty</a> (int <a class="el" href="posix_8h.html#aceb657a1b3c10d576aed287714bfd5d1">fileno</a>)</td></tr>
+<tr class="memitem:a31986cce890109c211ccb14151aafd0e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a31986cce890109c211ccb14151aafd0e">isatty</a> (int <a class="el" href="posix_8h.html#aceb657a1b3c10d576aed287714bfd5d1">fileno</a>)</td></tr>
 <tr class="memdesc:a31986cce890109c211ccb14151aafd0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test POSIX fileno if it is a Serial Console/TTY.  <a href="#a31986cce890109c211ccb14151aafd0e">More...</a><br /></td></tr>
 <tr class="separator:a31986cce890109c211ccb14151aafd0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4ce26afbb10890d31c53a8ff76d992e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a4ce26afbb10890d31c53a8ff76d992e3">perror</a> (const char *s)</td></tr>
+<tr class="memitem:a4ce26afbb10890d31c53a8ff76d992e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a4ce26afbb10890d31c53a8ff76d992e3">perror</a> (const char *s)</td></tr>
 <tr class="memdesc:a4ce26afbb10890d31c53a8ff76d992e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX <a class="el" href="posix_8c.html#a4ce26afbb10890d31c53a8ff76d992e3" title="POSIX perror() - convert POSIX errno to text with user message. ">perror()</a> - convert POSIX errno to text with user message.  <a href="#a4ce26afbb10890d31c53a8ff76d992e3">More...</a><br /></td></tr>
 <tr class="separator:a4ce26afbb10890d31c53a8ff76d992e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf72a013f9f9c7d75ea029f1ed377361"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#abf72a013f9f9c7d75ea029f1ed377361">strerror</a> (int errnum)</td></tr>
-<tr class="memdesc:abf72a013f9f9c7d75ea029f1ed377361"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX <a class="el" href="posix_8c.html#abf72a013f9f9c7d75ea029f1ed377361" title="POSIX strerror() - convert POSIX errno to text with user message. ">strerror()</a> - convert POSIX errno to text with user message.  <a href="#abf72a013f9f9c7d75ea029f1ed377361">More...</a><br /></td></tr>
+<tr class="memitem:abf72a013f9f9c7d75ea029f1ed377361"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#abf72a013f9f9c7d75ea029f1ed377361">strerror</a> (int errnum)</td></tr>
+<tr class="memdesc:abf72a013f9f9c7d75ea029f1ed377361"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX <a class="el" href="posix_8c.html#ae03e9f4fe4bf5e64a70fd186d532a5c8" title="POSIX strerror() - convert POSIX errno to text with user message. ">strerror()</a> - convert POSIX errno to text with user message.  <a href="#abf72a013f9f9c7d75ea029f1ed377361">More...</a><br /></td></tr>
 <tr class="separator:abf72a013f9f9c7d75ea029f1ed377361"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6311c6b29216455ec9b716b9eb31c799"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a6311c6b29216455ec9b716b9eb31c799">strerror_r</a> (int errnum, char *buf, size_t buflen)</td></tr>
+<tr class="memitem:a6311c6b29216455ec9b716b9eb31c799"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a6311c6b29216455ec9b716b9eb31c799">strerror_r</a> (int errnum, char *buf, size_t buflen)</td></tr>
 <tr class="memdesc:a6311c6b29216455ec9b716b9eb31c799"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX <a class="el" href="posix_8c.html#a6311c6b29216455ec9b716b9eb31c799" title="POSIX strerror_r() - convert POSIX errno to text with user message. ">strerror_r()</a> - convert POSIX errno to text with user message.  <a href="#a6311c6b29216455ec9b716b9eb31c799">More...</a><br /></td></tr>
 <tr class="separator:a6311c6b29216455ec9b716b9eb31c799"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac20f0fc565c27bbbb900bde3337b09b9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#ac20f0fc565c27bbbb900bde3337b09b9">fatfs_to_errno</a> (<a class="el" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44c">FRESULT</a> Result)</td></tr>
+<tr class="memitem:ac20f0fc565c27bbbb900bde3337b09b9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#ac20f0fc565c27bbbb900bde3337b09b9">fatfs_to_errno</a> (<a class="el" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44c">FRESULT</a> Result)</td></tr>
 <tr class="memdesc:ac20f0fc565c27bbbb900bde3337b09b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert FafFs error result to POSIX errno.  <a href="#ac20f0fc565c27bbbb900bde3337b09b9">More...</a><br /></td></tr>
 <tr class="separator:ac20f0fc565c27bbbb900bde3337b09b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a607feb06d296e0ff60d5a19538bd17fc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a607feb06d296e0ff60d5a19538bd17fc">posix_fopen_modes_to_open</a> (const char *mode)</td></tr>
+<tr class="memitem:a607feb06d296e0ff60d5a19538bd17fc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a607feb06d296e0ff60d5a19538bd17fc">posix_fopen_modes_to_open</a> (const char *mode)</td></tr>
 <tr class="memdesc:a607feb06d296e0ff60d5a19538bd17fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert POSIX fopen mode to POSIX open mode flags.  <a href="#a607feb06d296e0ff60d5a19538bd17fc">More...</a><br /></td></tr>
 <tr class="separator:a607feb06d296e0ff60d5a19538bd17fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e5e6f96d36b5cdacfaf6b3976cd5af2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a3e5e6f96d36b5cdacfaf6b3976cd5af2">open</a> (const char *pathname, int flags)</td></tr>
+<tr class="memitem:a3e5e6f96d36b5cdacfaf6b3976cd5af2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a3e5e6f96d36b5cdacfaf6b3976cd5af2">open</a> (const char *pathname, int flags)</td></tr>
 <tr class="memdesc:a3e5e6f96d36b5cdacfaf6b3976cd5af2"><td class="mdescLeft">&#160;</td><td class="mdescRight">==================================================================  <a href="#a3e5e6f96d36b5cdacfaf6b3976cd5af2">More...</a><br /></td></tr>
 <tr class="separator:a3e5e6f96d36b5cdacfaf6b3976cd5af2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e661c338f41695d1a1e70aed6255e2d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> FILE *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a8e661c338f41695d1a1e70aed6255e2d">fopen</a> (const char *path, const char *mode)</td></tr>
+<tr class="memitem:a8e661c338f41695d1a1e70aed6255e2d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> FILE *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a8e661c338f41695d1a1e70aed6255e2d">fopen</a> (const char *path, const char *mode)</td></tr>
 <tr class="memdesc:a8e661c338f41695d1a1e70aed6255e2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX Open a file with path name and ascii file mode string.  <a href="#a8e661c338f41695d1a1e70aed6255e2d">More...</a><br /></td></tr>
 <tr class="separator:a8e661c338f41695d1a1e70aed6255e2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a48dc1df1627501d3faed4bf1f9801759"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a48dc1df1627501d3faed4bf1f9801759">close</a> (int <a class="el" href="posix_8h.html#aceb657a1b3c10d576aed287714bfd5d1">fileno</a>)</td></tr>
+<tr class="memitem:a48dc1df1627501d3faed4bf1f9801759"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a48dc1df1627501d3faed4bf1f9801759">close</a> (int <a class="el" href="posix_8h.html#aceb657a1b3c10d576aed287714bfd5d1">fileno</a>)</td></tr>
 <tr class="memdesc:a48dc1df1627501d3faed4bf1f9801759"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX Close a file with fileno handel.  <a href="#a48dc1df1627501d3faed4bf1f9801759">More...</a><br /></td></tr>
 <tr class="separator:a48dc1df1627501d3faed4bf1f9801759"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a521c33bdb3606c9f3546b9cbcd37b9ac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a521c33bdb3606c9f3546b9cbcd37b9ac">syncfs</a> (int fd)</td></tr>
+<tr class="memitem:a521c33bdb3606c9f3546b9cbcd37b9ac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a521c33bdb3606c9f3546b9cbcd37b9ac">syncfs</a> (int fd)</td></tr>
 <tr class="memdesc:a521c33bdb3606c9f3546b9cbcd37b9ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX Sync pending file changes and metadata for specified fileno.  <a href="#a521c33bdb3606c9f3546b9cbcd37b9ac">More...</a><br /></td></tr>
 <tr class="separator:a521c33bdb3606c9f3546b9cbcd37b9ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f7f00d4ec0d99440762b0a664aebf70"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a8f7f00d4ec0d99440762b0a664aebf70">sync</a> (void)</td></tr>
+<tr class="memitem:a8f7f00d4ec0d99440762b0a664aebf70"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a8f7f00d4ec0d99440762b0a664aebf70">sync</a> (void)</td></tr>
 <tr class="memdesc:a8f7f00d4ec0d99440762b0a664aebf70"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX Sync all pending file changes and metadata on ALL files.  <a href="#a8f7f00d4ec0d99440762b0a664aebf70">More...</a><br /></td></tr>
 <tr class="separator:a8f7f00d4ec0d99440762b0a664aebf70"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad6fd240fec1d65213f34b6e6465a8033"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#ad6fd240fec1d65213f34b6e6465a8033">fclose</a> (FILE *stream)</td></tr>
+<tr class="memitem:ad6fd240fec1d65213f34b6e6465a8033"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#ad6fd240fec1d65213f34b6e6465a8033">fclose</a> (FILE *stream)</td></tr>
 <tr class="memdesc:ad6fd240fec1d65213f34b6e6465a8033"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX close a file stream.  <a href="#ad6fd240fec1d65213f34b6e6465a8033">More...</a><br /></td></tr>
 <tr class="separator:ad6fd240fec1d65213f34b6e6465a8033"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a072435300ac99e8d7c3749f45166e797"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="posix_8h.html#a170745d0d946e79c4c2a056d1d158996">ssize_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a072435300ac99e8d7c3749f45166e797">write</a> (int fd, const void *buf, size_t <a class="el" href="user__main_8c.html#aa011065eee776eb1bda73597b5d9d5d7">count</a>)</td></tr>
+<tr class="memitem:a072435300ac99e8d7c3749f45166e797"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="posix_8h.html#a170745d0d946e79c4c2a056d1d158996">ssize_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a072435300ac99e8d7c3749f45166e797">write</a> (int fd, const void *buf, size_t <a class="el" href="user__main_8c.html#aa011065eee776eb1bda73597b5d9d5d7">count</a>)</td></tr>
 <tr class="memdesc:a072435300ac99e8d7c3749f45166e797"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX Write count bytes from *buf to fileno fd.  <a href="#a072435300ac99e8d7c3749f45166e797">More...</a><br /></td></tr>
 <tr class="separator:a072435300ac99e8d7c3749f45166e797"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a148630cbecc0822d9395f002691ffe75"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a148630cbecc0822d9395f002691ffe75">fwrite</a> (const void *ptr, size_t size, size_t nmemb, FILE *stream)</td></tr>
+<tr class="memitem:a148630cbecc0822d9395f002691ffe75"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a148630cbecc0822d9395f002691ffe75">fwrite</a> (const void *ptr, size_t size, size_t nmemb, FILE *stream)</td></tr>
 <tr class="memdesc:a148630cbecc0822d9395f002691ffe75"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX write nmemb elements from buf, size bytes each, to the stream fd.  <a href="#a148630cbecc0822d9395f002691ffe75">More...</a><br /></td></tr>
 <tr class="separator:a148630cbecc0822d9395f002691ffe75"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af104a2c05bef787e54c6925616e867df"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="posix_8h.html#a170745d0d946e79c4c2a056d1d158996">ssize_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#af104a2c05bef787e54c6925616e867df">read</a> (int fd, const void *buf, size_t <a class="el" href="user__main_8c.html#aa011065eee776eb1bda73597b5d9d5d7">count</a>)</td></tr>
+<tr class="memitem:af104a2c05bef787e54c6925616e867df"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="posix_8h.html#a170745d0d946e79c4c2a056d1d158996">ssize_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#af104a2c05bef787e54c6925616e867df">read</a> (int fd, const void *buf, size_t <a class="el" href="user__main_8c.html#aa011065eee776eb1bda73597b5d9d5d7">count</a>)</td></tr>
 <tr class="memdesc:af104a2c05bef787e54c6925616e867df"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX read count bytes from *buf to fileno fd.  <a href="#af104a2c05bef787e54c6925616e867df">More...</a><br /></td></tr>
 <tr class="separator:af104a2c05bef787e54c6925616e867df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a01233ac8fd574e20b0b38472adbee551"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a01233ac8fd574e20b0b38472adbee551">fread</a> (void *ptr, size_t size, size_t nmemb, FILE *stream)</td></tr>
+<tr class="memitem:a01233ac8fd574e20b0b38472adbee551"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a01233ac8fd574e20b0b38472adbee551">fread</a> (void *ptr, size_t size, size_t nmemb, FILE *stream)</td></tr>
 <tr class="memdesc:a01233ac8fd574e20b0b38472adbee551"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX read nmemb elements from buf, size bytes each, to the stream fd.  <a href="#a01233ac8fd574e20b0b38472adbee551">More...</a><br /></td></tr>
 <tr class="separator:a01233ac8fd574e20b0b38472adbee551"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae4ea1b12797e3ba021a1af3cb4ba17bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#ae4ea1b12797e3ba021a1af3cb4ba17bd">lseek</a> (int <a class="el" href="posix_8h.html#aceb657a1b3c10d576aed287714bfd5d1">fileno</a>, size_t position, int whence)</td></tr>
+<tr class="memitem:ae4ea1b12797e3ba021a1af3cb4ba17bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#ae4ea1b12797e3ba021a1af3cb4ba17bd">lseek</a> (int <a class="el" href="posix_8h.html#aceb657a1b3c10d576aed287714bfd5d1">fileno</a>, size_t position, int whence)</td></tr>
 <tr class="memdesc:ae4ea1b12797e3ba021a1af3cb4ba17bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX seek to file position.  <a href="#ae4ea1b12797e3ba021a1af3cb4ba17bd">More...</a><br /></td></tr>
 <tr class="separator:ae4ea1b12797e3ba021a1af3cb4ba17bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad31144743f0014784193221563ca8dd2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#ad31144743f0014784193221563ca8dd2">fseek</a> (FILE *stream, long offset, int whence)</td></tr>
+<tr class="memitem:ad31144743f0014784193221563ca8dd2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#ad31144743f0014784193221563ca8dd2">fseek</a> (FILE *stream, long offset, int whence)</td></tr>
 <tr class="memdesc:ad31144743f0014784193221563ca8dd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX seek to file possition.  <a href="#ad31144743f0014784193221563ca8dd2">More...</a><br /></td></tr>
 <tr class="separator:ad31144743f0014784193221563ca8dd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af53dca187c78408fe2f1958c4eb88603"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#af53dca187c78408fe2f1958c4eb88603">ftell</a> (FILE *stream)</td></tr>
+<tr class="memitem:af53dca187c78408fe2f1958c4eb88603"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#af53dca187c78408fe2f1958c4eb88603">ftell</a> (FILE *stream)</td></tr>
 <tr class="memdesc:af53dca187c78408fe2f1958c4eb88603"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX file position of open stream.  <a href="#af53dca187c78408fe2f1958c4eb88603">More...</a><br /></td></tr>
 <tr class="separator:af53dca187c78408fe2f1958c4eb88603"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a35e6a58f44d4651951ecfeb97f369884"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a35e6a58f44d4651951ecfeb97f369884">rewind</a> (FILE *stream)</td></tr>
+<tr class="memitem:a35e6a58f44d4651951ecfeb97f369884"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a35e6a58f44d4651951ecfeb97f369884">rewind</a> (FILE *stream)</td></tr>
 <tr class="memdesc:a35e6a58f44d4651951ecfeb97f369884"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX rewind file to the beginning.  <a href="#a35e6a58f44d4651951ecfeb97f369884">More...</a><br /></td></tr>
 <tr class="separator:a35e6a58f44d4651951ecfeb97f369884"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb9e5741c01183dfe3179d646b264e5b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#acb9e5741c01183dfe3179d646b264e5b">fgetpos</a> (FILE *stream, size_t *pos)</td></tr>
+<tr class="memitem:acb9e5741c01183dfe3179d646b264e5b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#acb9e5741c01183dfe3179d646b264e5b">fgetpos</a> (FILE *stream, size_t *pos)</td></tr>
 <tr class="memdesc:acb9e5741c01183dfe3179d646b264e5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX get position of file stream.  <a href="#acb9e5741c01183dfe3179d646b264e5b">More...</a><br /></td></tr>
 <tr class="separator:acb9e5741c01183dfe3179d646b264e5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8705d74fe77c1b23824074ecd14be1c7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a8705d74fe77c1b23824074ecd14be1c7">fsetpos</a> (FILE *stream, size_t *pos)</td></tr>
+<tr class="memitem:a8705d74fe77c1b23824074ecd14be1c7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a8705d74fe77c1b23824074ecd14be1c7">fsetpos</a> (FILE *stream, size_t *pos)</td></tr>
 <tr class="memdesc:a8705d74fe77c1b23824074ecd14be1c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX set position of file stream.  <a href="#a8705d74fe77c1b23824074ecd14be1c7">More...</a><br /></td></tr>
 <tr class="separator:a8705d74fe77c1b23824074ecd14be1c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa964d662c19b2021d9cfd0c71bc686bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#aa964d662c19b2021d9cfd0c71bc686bd">unlink</a> (const char *pathname)</td></tr>
+<tr class="memitem:aa964d662c19b2021d9cfd0c71bc686bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#aa964d662c19b2021d9cfd0c71bc686bd">unlink</a> (const char *pathname)</td></tr>
 <tr class="memdesc:aa964d662c19b2021d9cfd0c71bc686bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX delete a file.  <a href="#aa964d662c19b2021d9cfd0c71bc686bd">More...</a><br /></td></tr>
 <tr class="separator:aa964d662c19b2021d9cfd0c71bc686bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6080dee579486f132062435577b77d10"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a6080dee579486f132062435577b77d10">rmdir</a> (const char *pathname)</td></tr>
+<tr class="memitem:a6080dee579486f132062435577b77d10"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a6080dee579486f132062435577b77d10">rmdir</a> (const char *pathname)</td></tr>
 <tr class="memdesc:a6080dee579486f132062435577b77d10"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX delete a directory.  <a href="#a6080dee579486f132062435577b77d10">More...</a><br /></td></tr>
 <tr class="separator:a6080dee579486f132062435577b77d10"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a178d5d21b21c0f60d6ff8dfbbc0d86f5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="time_8h.html#a3346b04b0420b32ccf6b706551b70762">time_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a178d5d21b21c0f60d6ff8dfbbc0d86f5">fat_time_to_unix</a> (<a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> date, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> <a class="el" href="time_8h.html#a32b1cbd925752f0cd61d202bbe204a69">time</a>)</td></tr>
+<tr class="memitem:a178d5d21b21c0f60d6ff8dfbbc0d86f5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="time_8h.html#a3346b04b0420b32ccf6b706551b70762">time_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a178d5d21b21c0f60d6ff8dfbbc0d86f5">fat_time_to_unix</a> (<a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> date, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> <a class="el" href="time_8h.html#a32b1cbd925752f0cd61d202bbe204a69">time</a>)</td></tr>
 <tr class="memdesc:a178d5d21b21c0f60d6ff8dfbbc0d86f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert FatFs file date and time to POSIX epoch seconds.  <a href="#a178d5d21b21c0f60d6ff8dfbbc0d86f5">More...</a><br /></td></tr>
 <tr class="separator:a178d5d21b21c0f60d6ff8dfbbc0d86f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a474e4e6cac62ef12c66b8a597c14e5f6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a474e4e6cac62ef12c66b8a597c14e5f6">ftruncate</a> (int fd, <a class="el" href="posix_8h.html#aac46e03c2018bada012333c31f41df12">off_t</a> length)</td></tr>
+<tr class="memitem:a474e4e6cac62ef12c66b8a597c14e5f6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a474e4e6cac62ef12c66b8a597c14e5f6">ftruncate</a> (int fd, <a class="el" href="posix_8h.html#aac46e03c2018bada012333c31f41df12">off_t</a> length)</td></tr>
 <tr class="memdesc:a474e4e6cac62ef12c66b8a597c14e5f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX truncate open file to length.  <a href="#a474e4e6cac62ef12c66b8a597c14e5f6">More...</a><br /></td></tr>
 <tr class="separator:a474e4e6cac62ef12c66b8a597c14e5f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73a95c4a93875be906e573c00b30c5ea"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a73a95c4a93875be906e573c00b30c5ea">truncate</a> (const char *path, <a class="el" href="posix_8h.html#aac46e03c2018bada012333c31f41df12">off_t</a> length)</td></tr>
+<tr class="memitem:a73a95c4a93875be906e573c00b30c5ea"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a73a95c4a93875be906e573c00b30c5ea">truncate</a> (const char *path, <a class="el" href="posix_8h.html#aac46e03c2018bada012333c31f41df12">off_t</a> length)</td></tr>
 <tr class="memdesc:a73a95c4a93875be906e573c00b30c5ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX truncate named file to length.  <a href="#a73a95c4a93875be906e573c00b30c5ea">More...</a><br /></td></tr>
 <tr class="separator:a73a95c4a93875be906e573c00b30c5ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a85e86e70773c0a204346f965272bd364"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a85e86e70773c0a204346f965272bd364">fstat</a> (int fd, struct <a class="el" href="structstat.html">stat</a> *buf)</td></tr>
+<tr class="memitem:a85e86e70773c0a204346f965272bd364"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a85e86e70773c0a204346f965272bd364">fstat</a> (int fd, struct <a class="el" href="structstat.html">stat</a> *buf)</td></tr>
 <tr class="separator:a85e86e70773c0a204346f965272bd364"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abef70bf7a4af8a1f4998db0035c51781"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#abef70bf7a4af8a1f4998db0035c51781">stat</a> (char *name, struct <a class="el" href="structstat.html">stat</a> *buf)</td></tr>
+<tr class="memitem:abef70bf7a4af8a1f4998db0035c51781"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#abef70bf7a4af8a1f4998db0035c51781">stat</a> (char *name, struct <a class="el" href="structstat.html">stat</a> *buf)</td></tr>
 <tr class="memdesc:abef70bf7a4af8a1f4998db0035c51781"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX stat - get file status of named file.  <a href="#abef70bf7a4af8a1f4998db0035c51781">More...</a><br /></td></tr>
 <tr class="separator:abef70bf7a4af8a1f4998db0035c51781"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39eea0b104438afa9ca0500c2e8d6887"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a39eea0b104438afa9ca0500c2e8d6887">mctime</a> (<a class="el" href="time_8h.html#a3346b04b0420b32ccf6b706551b70762">time_t</a> timev)</td></tr>
+<tr class="memitem:a39eea0b104438afa9ca0500c2e8d6887"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a39eea0b104438afa9ca0500c2e8d6887">mctime</a> (<a class="el" href="time_8h.html#a3346b04b0420b32ccf6b706551b70762">time_t</a> timev)</td></tr>
 <tr class="memdesc:a39eea0b104438afa9ca0500c2e8d6887"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display Ascii formatted time from timev seconds.  <a href="#a39eea0b104438afa9ca0500c2e8d6887">More...</a><br /></td></tr>
 <tr class="separator:a39eea0b104438afa9ca0500c2e8d6887"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a111f2e6e6bc9f0a46210a323cab093c7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a111f2e6e6bc9f0a46210a323cab093c7">dump_stat</a> (struct <a class="el" href="structstat.html">stat</a> *sp)</td></tr>
+<tr class="memitem:a111f2e6e6bc9f0a46210a323cab093c7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a111f2e6e6bc9f0a46210a323cab093c7">dump_stat</a> (struct <a class="el" href="structstat.html">stat</a> *sp)</td></tr>
 <tr class="memdesc:a111f2e6e6bc9f0a46210a323cab093c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display struct stat, from POSIX stat(0 or <a class="el" href="posix_8h.html#a85e86e70773c0a204346f965272bd364">fstat()</a>, in ASCII.  <a href="#a111f2e6e6bc9f0a46210a323cab093c7">More...</a><br /></td></tr>
 <tr class="separator:a111f2e6e6bc9f0a46210a323cab093c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada8cc8f9394cf54db8f338838a9fa7ce"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#ada8cc8f9394cf54db8f338838a9fa7ce">rename</a> (const char *oldpath, const char *newpath)</td></tr>
+<tr class="memitem:ada8cc8f9394cf54db8f338838a9fa7ce"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#ada8cc8f9394cf54db8f338838a9fa7ce">rename</a> (const char *oldpath, const char *newpath)</td></tr>
 <tr class="memdesc:ada8cc8f9394cf54db8f338838a9fa7ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX rename a file by name.  <a href="#ada8cc8f9394cf54db8f338838a9fa7ce">More...</a><br /></td></tr>
 <tr class="separator:ada8cc8f9394cf54db8f338838a9fa7ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a26a07a3db060ffc5659fe03495a29a1c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a26a07a3db060ffc5659fe03495a29a1c">dirname</a> (char *str)</td></tr>
+<tr class="memitem:a26a07a3db060ffc5659fe03495a29a1c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a26a07a3db060ffc5659fe03495a29a1c">dirname</a> (char *str)</td></tr>
 <tr class="memdesc:a26a07a3db060ffc5659fe03495a29a1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the index of the last '/' character.  <a href="#a26a07a3db060ffc5659fe03495a29a1c">More...</a><br /></td></tr>
 <tr class="separator:a26a07a3db060ffc5659fe03495a29a1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d3dfaf2f5a63e2e4eaa128477a9b5e7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a4d3dfaf2f5a63e2e4eaa128477a9b5e7">basename</a> (char *str)</td></tr>
+<tr class="memitem:a4d3dfaf2f5a63e2e4eaa128477a9b5e7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a4d3dfaf2f5a63e2e4eaa128477a9b5e7">basename</a> (char *str)</td></tr>
 <tr class="memdesc:a4d3dfaf2f5a63e2e4eaa128477a9b5e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX Basename of filename.  <a href="#a4d3dfaf2f5a63e2e4eaa128477a9b5e7">More...</a><br /></td></tr>
 <tr class="separator:a4d3dfaf2f5a63e2e4eaa128477a9b5e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0b33c90b99d00a8bd2595f254d1409e1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a0b33c90b99d00a8bd2595f254d1409e1">baseext</a> (char *str)</td></tr>
+<tr class="memitem:a0b33c90b99d00a8bd2595f254d1409e1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a0b33c90b99d00a8bd2595f254d1409e1">baseext</a> (char *str)</td></tr>
 <tr class="memdesc:a0b33c90b99d00a8bd2595f254d1409e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">File extention of a file name.  <a href="#a0b33c90b99d00a8bd2595f254d1409e1">More...</a><br /></td></tr>
 <tr class="separator:a0b33c90b99d00a8bd2595f254d1409e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -502,7 +507,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00143">143</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00150">150</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -516,7 +521,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00144">144</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00151">151</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 <p>Referenced by <a class="el" href="posix_8c_source.html#l00703">fatfs_putc()</a>.</p>
 
@@ -533,7 +538,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
 </div><div class="memdoc">
 <p>fdev_setup_stream() with read intent </p>
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00146">146</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00153">153</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 <p>Referenced by <a class="el" href="posix_8c_source.html#l00853">open()</a>.</p>
 
@@ -550,7 +555,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
 </div><div class="memdoc">
 <p>fdev_setup_stream() with read/write intent </p>
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00148">148</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00155">155</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 <p>Referenced by <a class="el" href="posix_8c_source.html#l00853">open()</a>.</p>
 
@@ -567,7 +572,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
 </div><div class="memdoc">
 <p>fdev_setup_stream() with write intent </p>
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00147">147</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00154">154</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 <p>Referenced by <a class="el" href="posix_8c_source.html#l00853">open()</a>.</p>
 
@@ -583,7 +588,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00127">127</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00134">134</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -597,7 +602,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00247">247</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00254">254</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 <p>Referenced by <a class="el" href="posix_8c_source.html#l01583">stat()</a>.</p>
 
@@ -613,7 +618,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00248">248</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00255">255</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 <p>Referenced by <a class="el" href="posix_8c_source.html#l01583">stat()</a>.</p>
 
@@ -629,7 +634,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00249">249</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00256">256</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 <p>Referenced by <a class="el" href="posix_8c_source.html#l01583">stat()</a>.</p>
 
@@ -648,7 +653,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
 <p>POSIX <a class="el" href="posix_8h.html#ae730c85752284268b39560df693cb207" title="POSIX lstat() ">lstat()</a> </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="posix_8h.html#abef70bf7a4af8a1f4998db0035c51781" title="POSIX stat - get file status of named file. ">stat()</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00288">288</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00295">295</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -664,7 +669,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
 
 <p>Maximum number of POSIX file handles. </p>
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00138">138</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00145">145</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -687,14 +692,14 @@ This is free software: you can redistribute it and/or modify it under the terms 
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;(<a class="el" href="str_8h.html#afe1fe8029f752b2943bcfaec34e0d418">strcmp</a>(str, pat) == 0 ? 1: 0)</td>
+          <td></td><td>&#160;&#160;&#160;(<a class="el" href="str_8h.html#abee00aec80e542c31b536a531ffe761a">strcmp</a>(str, pat) == 0 ? 1: 0)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>compare two strings, 1 = match, 0 mismatch. </p>
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00151">151</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00158">158</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 <p>Referenced by <a class="el" href="posix_8c_source.html#l00606">posix_fopen_modes_to_open()</a>.</p>
 
@@ -716,7 +721,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
 <li>Note: The POSIX correct test of O_RDONLY is: (mode &amp; O_ACCMODE) == O_RDONLY. </li>
 </ul>
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00196">196</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00203">203</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 <p>Referenced by <a class="el" href="posix_8c_source.html#l00853">open()</a>.</p>
 
@@ -732,7 +737,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00205">205</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00212">212</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 <p>Referenced by <a class="el" href="posix_8c_source.html#l00853">open()</a>, and <a class="el" href="posix_8c_source.html#l00606">posix_fopen_modes_to_open()</a>.</p>
 
@@ -748,7 +753,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00207">207</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00214">214</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -762,7 +767,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00200">200</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00207">207</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 <p>Referenced by <a class="el" href="posix_8c_source.html#l00853">open()</a>, and <a class="el" href="posix_8c_source.html#l00606">posix_fopen_modes_to_open()</a>.</p>
 
@@ -778,7 +783,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">00000200 <span class="comment">/*&lt; O_CREAT option, Create fails if file exists </span></div><div class="line"><span class="comment">*/</span></div></div><!-- fragment -->
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00201">201</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00208">208</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -792,7 +797,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00203">203</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00210">210</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -806,7 +811,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00206">206</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00213">213</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -820,7 +825,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00197">197</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00204">204</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 <p>Referenced by <a class="el" href="posix_8c_source.html#l00853">open()</a>, and <a class="el" href="posix_8c_source.html#l00606">posix_fopen_modes_to_open()</a>.</p>
 
@@ -836,7 +841,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00199">199</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00206">206</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 <p>Referenced by <a class="el" href="posix_8c_source.html#l00853">open()</a>, and <a class="el" href="posix_8c_source.html#l00606">posix_fopen_modes_to_open()</a>.</p>
 
@@ -852,7 +857,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00208">208</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00215">215</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -866,7 +871,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00204">204</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00211">211</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 <p>Referenced by <a class="el" href="posix_8c_source.html#l00853">open()</a>, and <a class="el" href="posix_8c_source.html#l00606">posix_fopen_modes_to_open()</a>.</p>
 
@@ -882,7 +887,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00198">198</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00205">205</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 <p>Referenced by <a class="el" href="posix_8c_source.html#l00606">posix_fopen_modes_to_open()</a>.</p>
 
@@ -912,7 +917,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00222">222</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00229">229</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -926,7 +931,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00215">215</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00222">222</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -940,7 +945,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00214">214</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00221">221</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -954,7 +959,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00213">213</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00220">220</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 <p>Referenced by <a class="el" href="posix_8c_source.html#l01583">stat()</a>.</p>
 
@@ -970,7 +975,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00217">217</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00224">224</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -984,7 +989,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00218">218</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00225">225</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1000,7 +1005,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
 
 <p>POSIX File types, see fstat and stat. </p>
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00212">212</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00219">219</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1014,7 +1019,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00216">216</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00223">223</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 <p>Referenced by <a class="el" href="posix_8c_source.html#l01583">stat()</a>.</p>
 
@@ -1030,7 +1035,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00219">219</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00226">226</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1044,7 +1049,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00220">220</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00227">227</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1058,7 +1063,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00237">237</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00244">244</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1072,7 +1077,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00242">242</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00249">249</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1086,7 +1091,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00232">232</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00239">239</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1100,7 +1105,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00240">240</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00247">247</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1114,7 +1119,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00245">245</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00252">252</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1128,7 +1133,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00235">235</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00242">242</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1146,7 +1151,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00228">228</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00235">235</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1164,7 +1169,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00227">227</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00234">234</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1182,7 +1187,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00226">226</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00233">233</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 <p>Referenced by <a class="el" href="posix_8c_source.html#l01662">dump_stat()</a>.</p>
 
@@ -1202,7 +1207,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00229">229</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00236">236</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 <p>Referenced by <a class="el" href="posix_8c_source.html#l01662">dump_stat()</a>.</p>
 
@@ -1234,7 +1239,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
 
 <p>POSIX Fiel type test macros. </p>
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00225">225</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00232">232</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1248,7 +1253,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00238">238</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00245">245</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1262,7 +1267,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00243">243</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00250">250</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1276,7 +1281,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00221">221</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00228">228</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1290,7 +1295,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00233">233</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00240">240</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1304,7 +1309,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00239">239</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00246">246</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1318,7 +1323,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00244">244</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00251">251</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1332,7 +1337,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00234">234</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00241">241</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1346,7 +1351,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00131">131</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00138">138</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 <p>Referenced by <a class="el" href="posix_8c_source.html#l01256">lseek()</a>.</p>
 
@@ -1362,7 +1367,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00132">132</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00139">139</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 <p>Referenced by <a class="el" href="posix_8c_source.html#l01256">lseek()</a>.</p>
 
@@ -1378,7 +1383,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00130">130</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00137">137</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 <p>Referenced by <a class="el" href="posix_8c_source.html#l01386">fsetpos()</a>, and <a class="el" href="posix_8c_source.html#l01350">rewind()</a>.</p>
 
@@ -1395,7 +1400,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00261">261</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00268">268</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1409,7 +1414,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00262">262</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00269">269</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1428,7 +1433,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
 <li>Using these makes code portable accross many acrchitectures </li>
 </ul>
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00254">254</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00261">261</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1442,7 +1447,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00259">259</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00266">266</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1456,7 +1461,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00255">255</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00262">262</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1470,7 +1475,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00256">256</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00263">263</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1484,7 +1489,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00257">257</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00264">264</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1498,7 +1503,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00260">260</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00267">267</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1512,7 +1517,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00264">264</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00271">271</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1526,7 +1531,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00263">263</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00270">270</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1540,7 +1545,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00258">258</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00265">265</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1629,7 +1634,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00154">154</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00161">161</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1639,7 +1644,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> char* baseext </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> char* baseext </td>
           <td>(</td>
           <td class="paramtype">char *&#160;</td>
           <td class="paramname"><em>str</em></td><td>)</td>
@@ -1666,7 +1671,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> char* basename </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> char* basename </td>
           <td>(</td>
           <td class="paramtype">char *&#160;</td>
           <td class="paramname"><em>str</em></td><td>)</td>
@@ -1698,7 +1703,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int close </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int close </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>fileno</em></td><td>)</td>
@@ -1732,7 +1737,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int dirname </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int dirname </td>
           <td>(</td>
           <td class="paramtype">char *&#160;</td>
           <td class="paramname"><em>str</em></td><td>)</td>
@@ -1764,7 +1769,7 @@ index of last '/' character. </dd></dl>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void dump_stat </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void dump_stat </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structstat.html">stat</a> *&#160;</td>
           <td class="paramname"><em>sp</em></td><td>)</td>
@@ -1784,7 +1789,7 @@ index of last '/' character. </dd></dl>
 
 <p>Definition at line <a class="el" href="posix_8c_source.html#l01662">1662</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
-<p>Referenced by <a class="el" href="fatfs__utils_8c_source.html#l00041">mmc_test()</a>.</p>
+<p>Referenced by <a class="el" href="fatfs__utils_8c_source.html#l00047">mmc_test()</a>.</p>
 
 </div>
 </div>
@@ -1793,7 +1798,7 @@ index of last '/' character. </dd></dl>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="time_8h.html#a3346b04b0420b32ccf6b706551b70762">time_t</a> fat_time_to_unix </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="time_8h.html#a3346b04b0420b32ccf6b706551b70762">time_t</a> fat_time_to_unix </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a>&#160;</td>
           <td class="paramname"><em>date</em>, </td>
@@ -1837,7 +1842,7 @@ index of last '/' character. </dd></dl>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int fatfs_to_errno </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int fatfs_to_errno </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44c">FRESULT</a>&#160;</td>
           <td class="paramname"><em>Result</em></td><td>)</td>
@@ -1871,7 +1876,7 @@ EBADMSG if no conversion possible. </dd></dl>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int fatfs_to_fileno </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int fatfs_to_fileno </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structFIL.html">FIL</a> *&#160;</td>
           <td class="paramname"><em>fh</em></td><td>)</td>
@@ -1891,7 +1896,7 @@ EBADMSG if no conversion possible. </dd></dl>
 <dd>
 -1 on error with errno set to EBADF. </dd></dl>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l00228">228</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l00227">227</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
 </div>
 </div>
@@ -1900,7 +1905,7 @@ EBADMSG if no conversion possible. </dd></dl>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int fclose </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int fclose </td>
           <td>(</td>
           <td class="paramtype">FILE *&#160;</td>
           <td class="paramname"><em>stream</em></td><td>)</td>
@@ -1934,7 +1939,7 @@ EBADMSG if no conversion possible. </dd></dl>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int fgetpos </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int fgetpos </td>
           <td>(</td>
           <td class="paramtype">FILE *&#160;</td>
           <td class="paramname"><em>stream</em>, </td>
@@ -1977,7 +1982,7 @@ EBADMSG if no conversion possible. </dd></dl>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int fileno </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int fileno </td>
           <td>(</td>
           <td class="paramtype">FILE *&#160;</td>
           <td class="paramname"><em>stream</em></td><td>)</td>
@@ -2000,9 +2005,9 @@ EBADMSG if no conversion possible. </dd></dl>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l00167">167</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l00166">166</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
-<p>Referenced by <a class="el" href="posix_8c_source.html#l01086">fclose()</a>, <a class="el" href="posix_8c_source.html#l00167">fileno()</a>, <a class="el" href="posix_8c_source.html#l00140">fileno_to_stream()</a>, <a class="el" href="posix_8c_source.html#l00961">fopen()</a>, <a class="el" href="posix_8c_source.html#l01227">fread()</a>, <a class="el" href="posix_8c_source.html#l00390">free_file_descriptor()</a>, <a class="el" href="posix_8c_source.html#l01299">fseek()</a>, <a class="el" href="posix_8c_source.html#l01325">ftell()</a>, <a class="el" href="posix_8c_source.html#l01152">fwrite()</a>, <a class="el" href="posix_8c_source.html#l00853">open()</a>, and <a class="el" href="posix_8c_source.html#l01514">truncate()</a>.</p>
+<p>Referenced by <a class="el" href="posix_8c_source.html#l01086">fclose()</a>, <a class="el" href="posix_8c_source.html#l00166">fileno()</a>, <a class="el" href="posix_8c_source.html#l00139">fileno_to_stream()</a>, <a class="el" href="posix_8c_source.html#l00961">fopen()</a>, <a class="el" href="posix_8c_source.html#l01227">fread()</a>, <a class="el" href="posix_8c_source.html#l00389">free_file_descriptor()</a>, <a class="el" href="posix_8c_source.html#l01299">fseek()</a>, <a class="el" href="posix_8c_source.html#l01325">ftell()</a>, <a class="el" href="posix_8c_source.html#l01152">fwrite()</a>, <a class="el" href="posix_8c_source.html#l00853">open()</a>, and <a class="el" href="posix_8c_source.html#l01514">truncate()</a>.</p>
 
 </div>
 </div>
@@ -2011,7 +2016,7 @@ EBADMSG if no conversion possible. </dd></dl>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="structFIL.html">FIL</a>* fileno_to_fatfs </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="structFIL.html">FIL</a>* fileno_to_fatfs </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>fileno</em></td><td>)</td>
@@ -2034,7 +2039,7 @@ EBADMSG if no conversion possible. </dd></dl>
 <dd>
 NULL if POSIX fileno is invalid NULL </dd></dl>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l00195">195</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l00194">194</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
 <p>Referenced by <a class="el" href="posix_8c_source.html#l00980">close()</a>, <a class="el" href="posix_8c_source.html#l01325">ftell()</a>, <a class="el" href="posix_8c_source.html#l01476">ftruncate()</a>, <a class="el" href="posix_8c_source.html#l01256">lseek()</a>, <a class="el" href="posix_8c_source.html#l00853">open()</a>, <a class="el" href="posix_8c_source.html#l01179">read()</a>, <a class="el" href="posix_8c_source.html#l01057">sync()</a>, <a class="el" href="posix_8c_source.html#l01020">syncfs()</a>, <a class="el" href="posix_8c_source.html#l01514">truncate()</a>, and <a class="el" href="posix_8c_source.html#l01106">write()</a>.</p>
 
@@ -2045,7 +2050,7 @@ NULL if POSIX fileno is invalid NULL </dd></dl>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> FILE* fileno_to_stream </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> FILE* fileno_to_stream </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>fileno</em></td><td>)</td>
@@ -2070,9 +2075,9 @@ NULL if POSIX fileno is invalid NULL </dd></dl>
 <dd>
 NULL on error with errno set, NULL if fileno out of bounds </dd></dl>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l00140">140</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l00139">139</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
-<p>Referenced by <a class="el" href="posix_8c_source.html#l00980">close()</a>, <a class="el" href="posix_8c_source.html#l00195">fileno_to_fatfs()</a>, <a class="el" href="posix_8c_source.html#l00961">fopen()</a>, <a class="el" href="posix_8c_source.html#l00390">free_file_descriptor()</a>, and <a class="el" href="posix_8c_source.html#l00853">open()</a>.</p>
+<p>Referenced by <a class="el" href="posix_8c_source.html#l00980">close()</a>, <a class="el" href="posix_8c_source.html#l00194">fileno_to_fatfs()</a>, <a class="el" href="posix_8c_source.html#l00961">fopen()</a>, <a class="el" href="posix_8c_source.html#l00389">free_file_descriptor()</a>, and <a class="el" href="posix_8c_source.html#l00853">open()</a>.</p>
 
 </div>
 </div>
@@ -2081,7 +2086,7 @@ NULL on error with errno set, NULL if fileno out of bounds </dd></dl>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> FILE* fopen </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> FILE* fopen </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>path</em>, </td>
@@ -2126,7 +2131,7 @@ NULL on error with errno set. </dd></dl>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> size_t fread </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> size_t fread </td>
           <td>(</td>
           <td class="paramtype">void *&#160;</td>
           <td class="paramname"><em>ptr</em>, </td>
@@ -2185,7 +2190,7 @@ NULL on error with errno set. </dd></dl>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int free_file_descriptor </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int free_file_descriptor </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>fileno</em></td><td>)</td>
@@ -2205,7 +2210,7 @@ NULL on error with errno set. </dd></dl>
 <dd>
 -1 on failure. </dd></dl>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l00390">390</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l00389">389</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
 <p>Referenced by <a class="el" href="posix_8c_source.html#l00980">close()</a>, and <a class="el" href="posix_8c_source.html#l00853">open()</a>.</p>
 
@@ -2216,7 +2221,7 @@ NULL on error with errno set. </dd></dl>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int fseek </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int fseek </td>
           <td>(</td>
           <td class="paramtype">FILE *&#160;</td>
           <td class="paramname"><em>stream</em>, </td>
@@ -2273,7 +2278,7 @@ NULL on error with errno set. </dd></dl>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int fsetpos </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int fsetpos </td>
           <td>(</td>
           <td class="paramtype">FILE *&#160;</td>
           <td class="paramname"><em>stream</em>, </td>
@@ -2316,7 +2321,7 @@ NULL on error with errno set. </dd></dl>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int fstat </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int fstat </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>fd</em>, </td>
@@ -2344,7 +2349,7 @@ NULL on error with errno set. </dd></dl>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> long ftell </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> long ftell </td>
           <td>(</td>
           <td class="paramtype">FILE *&#160;</td>
           <td class="paramname"><em>stream</em></td><td>)</td>
@@ -2378,7 +2383,7 @@ NULL on error with errno set. </dd></dl>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int ftruncate </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int ftruncate </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>fd</em>, </td>
@@ -2421,7 +2426,7 @@ NULL on error with errno set. </dd></dl>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> size_t fwrite </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> size_t fwrite </td>
           <td>(</td>
           <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>ptr</em>, </td>
@@ -2480,7 +2485,7 @@ NULL on error with errno set. </dd></dl>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int isatty </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int isatty </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>fileno</em></td><td>)</td>
@@ -2504,9 +2509,9 @@ NULL on error with errno set. </dd></dl>
 0 if POSIX fileno is NOT a Serial TTY. </dd></dl>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>Perhaps we should verify console functions have been added ? </dd></dl>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l00435">435</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l00434">434</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
-<p>Referenced by <a class="el" href="posix_8c_source.html#l00195">fileno_to_fatfs()</a>, <a class="el" href="posix_8c_source.html#l00390">free_file_descriptor()</a>, <a class="el" href="posix_8c_source.html#l00303">new_file_descriptor()</a>, <a class="el" href="posix_8c_source.html#l01057">sync()</a>, and <a class="el" href="posix_8c_source.html#l01020">syncfs()</a>.</p>
+<p>Referenced by <a class="el" href="posix_8c_source.html#l00194">fileno_to_fatfs()</a>, <a class="el" href="posix_8c_source.html#l00389">free_file_descriptor()</a>, <a class="el" href="posix_8c_source.html#l00302">new_file_descriptor()</a>, <a class="el" href="posix_8c_source.html#l01057">sync()</a>, and <a class="el" href="posix_8c_source.html#l01020">syncfs()</a>.</p>
 
 </div>
 </div>
@@ -2515,7 +2520,7 @@ NULL on error with errno set. </dd></dl>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> size_t lseek </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> size_t lseek </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>fileno</em>, </td>
@@ -2572,7 +2577,7 @@ NULL on error with errno set. </dd></dl>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> char* mctime </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> char* mctime </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="time_8h.html#a3346b04b0420b32ccf6b706551b70762">time_t</a>&#160;</td>
           <td class="paramname"><em>timev</em></td><td>)</td>
@@ -2606,7 +2611,7 @@ NULL on error with errno set. </dd></dl>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int new_file_descriptor </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int new_file_descriptor </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -2620,7 +2625,7 @@ NULL on error with errno set. </dd></dl>
 <dd>
 -1 on failure with errno set. </dd></dl>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l00303">303</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l00302">302</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
 <p>Referenced by <a class="el" href="posix_8c_source.html#l00853">open()</a>.</p>
 
@@ -2631,7 +2636,7 @@ NULL on error with errno set. </dd></dl>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int open </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int open </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>pathname</em>, </td>
@@ -2678,7 +2683,7 @@ NULL on error with errno set. </dd></dl>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void perror </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void perror </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>s</em></td><td>)</td>
@@ -2700,7 +2705,7 @@ NULL on error with errno set. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="posix_8c.html#a76ebfe24a40210e5935998c1fa86d3a0" title="POSIX error messages for each errno value. ">sys_errlist</a>[]. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>void. </dd></dl>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l00454">454</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l00453">453</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
 <p>Referenced by <a class="el" href="send_8c_source.html#l00026">escape()</a>, and <a class="el" href="send_8c_source.html#l00087">send_message()</a>.</p>
 
@@ -2711,7 +2716,7 @@ NULL on error with errno set. </dd></dl>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int posix_fopen_modes_to_open </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int posix_fopen_modes_to_open </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>mode</em></td><td>)</td>
@@ -2775,7 +2780,7 @@ NULL on error with errno set. </dd></dl>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="posix_8h.html#a170745d0d946e79c4c2a056d1d158996">ssize_t</a> read </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="posix_8h.html#a170745d0d946e79c4c2a056d1d158996">ssize_t</a> read </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>fd</em>, </td>
@@ -2818,7 +2823,7 @@ NULL on error with errno set. </dd></dl>
 
 <p>Definition at line <a class="el" href="posix_8c_source.html#l01179">1179</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
-<p>Referenced by <a class="el" href="posix_8c_source.html#l01227">fread()</a>, <a class="el" href="uart_8c_source.html#l00273">rx_fifo_read()</a>, and <a class="el" href="send_8c_source.html#l00087">send_message()</a>.</p>
+<p>Referenced by <a class="el" href="posix_8c_source.html#l01227">fread()</a>, <a class="el" href="uart_8c_source.html#l00278">rx_fifo_read()</a>, and <a class="el" href="send_8c_source.html#l00087">send_message()</a>.</p>
 
 </div>
 </div>
@@ -2827,7 +2832,7 @@ NULL on error with errno set. </dd></dl>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int rename </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int rename </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>oldpath</em>, </td>
@@ -2870,7 +2875,7 @@ NULL on error with errno set. </dd></dl>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void rewind </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void rewind </td>
           <td>(</td>
           <td class="paramtype">FILE *&#160;</td>
           <td class="paramname"><em>stream</em></td><td>)</td>
@@ -2900,7 +2905,7 @@ NULL on error with errno set. </dd></dl>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int rmdir </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int rmdir </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>pathname</em></td><td>)</td>
@@ -2932,7 +2937,7 @@ NULL on error with errno set. </dd></dl>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int <a class="el" href="structstat.html">stat</a> </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int <a class="el" href="structstat.html">stat</a> </td>
           <td>(</td>
           <td class="paramtype">char *&#160;</td>
           <td class="paramname"><em>name</em>, </td>
@@ -2968,7 +2973,7 @@ NULL on error with errno set. </dd></dl>
 
 <p>Definition at line <a class="el" href="posix_8c_source.html#l01583">1583</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ff_8c_source.html#l03634">f_getfree()</a>, <a class="el" href="ff_8c_source.html#l04382">f_mkfs()</a>, <a class="el" href="ff_8c_source.html#l02348">find_volume()</a>, <a class="el" href="bdffont2c_8c_source.html#l00091">main()</a>, and <a class="el" href="fatfs__utils_8c_source.html#l00041">mmc_test()</a>.</p>
+<p>Referenced by <a class="el" href="ff_8c_source.html#l03640">f_getfree()</a>, <a class="el" href="ff_8c_source.html#l04388">f_mkfs()</a>, <a class="el" href="ff_8c_source.html#l02354">find_volume()</a>, <a class="el" href="bdffont2c_8c_source.html#l00091">main()</a>, and <a class="el" href="fatfs__utils_8c_source.html#l00047">mmc_test()</a>.</p>
 
 </div>
 </div>
@@ -2977,7 +2982,7 @@ NULL on error with errno set. </dd></dl>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> char* strerror </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> char* strerror </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>errnum</em></td><td>)</td>
@@ -2986,7 +2991,7 @@ NULL on error with errno set. </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>POSIX <a class="el" href="posix_8c.html#abf72a013f9f9c7d75ea029f1ed377361" title="POSIX strerror() - convert POSIX errno to text with user message. ">strerror()</a> - convert POSIX errno to text with user message. </p>
+<p>POSIX <a class="el" href="posix_8c.html#ae03e9f4fe4bf5e64a70fd186d532a5c8" title="POSIX strerror() - convert POSIX errno to text with user message. ">strerror()</a> - convert POSIX errno to text with user message. </p>
 <ul>
 <li>man page strerror (3).</li>
 </ul>
@@ -3008,7 +3013,7 @@ NULL on error with errno set. </dd></dl>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> char* strerror_r </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> char* strerror_r </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>errnum</em>, </td>
@@ -3057,7 +3062,7 @@ NULL on error with errno set. </dd></dl>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void sync </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void sync </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -3081,7 +3086,7 @@ NULL on error with errno set. </dd></dl>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int syncfs </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int syncfs </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>fd</em></td><td>)</td>
@@ -3115,7 +3120,7 @@ NULL on error with errno set. </dd></dl>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int truncate </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int truncate </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>path</em>, </td>
@@ -3158,7 +3163,7 @@ NULL on error with errno set. </dd></dl>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int unlink </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int unlink </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>pathname</em></td><td>)</td>
@@ -3190,7 +3195,7 @@ NULL on error with errno set. </dd></dl>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="posix_8h.html#a170745d0d946e79c4c2a056d1d158996">ssize_t</a> write </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="posix_8h.html#a170745d0d946e79c4c2a056d1d158996">ssize_t</a> write </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>fd</em>, </td>
@@ -3257,9 +3262,9 @@ NULL on error with errno set. </dd></dl>
 <li>__iob[2] = stderr. </li>
 </ul>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l00083">83</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l00082">82</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
-<p>Referenced by <a class="el" href="posix_8c_source.html#l00228">fatfs_to_fileno()</a>, <a class="el" href="posix_8c_source.html#l00167">fileno()</a>, <a class="el" href="posix_8c_source.html#l00140">fileno_to_stream()</a>, <a class="el" href="posix_8c_source.html#l00390">free_file_descriptor()</a>, <a class="el" href="posix_8c_source.html#l00303">new_file_descriptor()</a>, <a class="el" href="posix_8c_source.html#l01179">read()</a>, and <a class="el" href="posix_8c_source.html#l01106">write()</a>.</p>
+<p>Referenced by <a class="el" href="posix_8c_source.html#l00227">fatfs_to_fileno()</a>, <a class="el" href="posix_8c_source.html#l00166">fileno()</a>, <a class="el" href="posix_8c_source.html#l00139">fileno_to_stream()</a>, <a class="el" href="posix_8c_source.html#l00389">free_file_descriptor()</a>, <a class="el" href="posix_8c_source.html#l00302">new_file_descriptor()</a>, <a class="el" href="posix_8c_source.html#l01179">read()</a>, and <a class="el" href="posix_8c_source.html#l01106">write()</a>.</p>
 
 </div>
 </div>
@@ -3276,16 +3281,16 @@ NULL on error with errno set. </dd></dl>
 <p>Note: fdevopen assigns stdin,stdout,stderr. </p>
 <p>POSIX errno. </p>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l00071">71</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l00070">70</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
-<p>Referenced by <a class="el" href="posix_8c_source.html#l00980">close()</a>, <a class="el" href="posix_8c_source.html#l00658">fatfs_getc()</a>, <a class="el" href="posix_8c_source.html#l00703">fatfs_putc()</a>, <a class="el" href="disk_8c_source.html#l00249">fatfs_scan_files()</a>, <a class="el" href="posix_8c_source.html#l00228">fatfs_to_fileno()</a>, <a class="el" href="posix_8c_source.html#l00167">fileno()</a>, <a class="el" href="posix_8c_source.html#l00195">fileno_to_fatfs()</a>, <a class="el" href="posix_8c_source.html#l00140">fileno_to_stream()</a>, <a class="el" href="posix_8c_source.html#l00390">free_file_descriptor()</a>, <a class="el" href="posix_8c_source.html#l01325">ftell()</a>, <a class="el" href="posix_8c_source.html#l01476">ftruncate()</a>, <a class="el" href="posix_8c_source.html#l01256">lseek()</a>, <a class="el" href="posix_8c_source.html#l01644">mctime()</a>, <a class="el" href="posix_8c_source.html#l00303">new_file_descriptor()</a>, <a class="el" href="posix_8c_source.html#l00853">open()</a>, <a class="el" href="posix_8c_source.html#l00454">perror()</a>, <a class="el" href="posix_8c_source.html#l01179">read()</a>, <a class="el" href="posix_8c_source.html#l01696">rename()</a>, <a class="el" href="posix_8c_source.html#l01423">rmdir()</a>, <a class="el" href="posix_8c_source.html#l01583">stat()</a>, <a class="el" href="posix_8c_source.html#l01020">syncfs()</a>, <a class="el" href="posix_8c_source.html#l01514">truncate()</a>, <a class="el" href="posix_8c_source.html#l01401">unlink()</a>, and <a class="el" href="posix_8c_source.html#l01106">write()</a>.</p>
+<p>Referenced by <a class="el" href="posix_8c_source.html#l00980">close()</a>, <a class="el" href="posix_8c_source.html#l00658">fatfs_getc()</a>, <a class="el" href="posix_8c_source.html#l00703">fatfs_putc()</a>, <a class="el" href="disk_8c_source.html#l00254">fatfs_scan_files()</a>, <a class="el" href="posix_8c_source.html#l00227">fatfs_to_fileno()</a>, <a class="el" href="posix_8c_source.html#l00166">fileno()</a>, <a class="el" href="posix_8c_source.html#l00194">fileno_to_fatfs()</a>, <a class="el" href="posix_8c_source.html#l00139">fileno_to_stream()</a>, <a class="el" href="posix_8c_source.html#l00389">free_file_descriptor()</a>, <a class="el" href="posix_8c_source.html#l01325">ftell()</a>, <a class="el" href="posix_8c_source.html#l01476">ftruncate()</a>, <a class="el" href="posix_8c_source.html#l01256">lseek()</a>, <a class="el" href="posix_8c_source.html#l01644">mctime()</a>, <a class="el" href="posix_8c_source.html#l00302">new_file_descriptor()</a>, <a class="el" href="posix_8c_source.html#l00853">open()</a>, <a class="el" href="posix_8c_source.html#l00453">perror()</a>, <a class="el" href="posix_8c_source.html#l01179">read()</a>, <a class="el" href="posix_8c_source.html#l01696">rename()</a>, <a class="el" href="posix_8c_source.html#l01423">rmdir()</a>, <a class="el" href="posix_8c_source.html#l01583">stat()</a>, <a class="el" href="posix_8c_source.html#l01020">syncfs()</a>, <a class="el" href="posix_8c_source.html#l01514">truncate()</a>, <a class="el" href="posix_8c_source.html#l01401">unlink()</a>, and <a class="el" href="posix_8c_source.html#l01106">write()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 30 2016 00:11:27 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 1 2016 22:45:19 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

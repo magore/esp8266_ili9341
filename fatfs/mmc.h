@@ -30,13 +30,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef _MMC_H_
 #define _MMC_H_
 
-// Project includes
-#include <user_config.h>
+#include <stdint.h>
+#include <stdarg.h>
+#include <string.h>
+#include <math.h>
 
 // Fatfs and MMC includes
+#include "mmc_hal.h"
 #include "diskio.h"
 #include "ff.h"
-#include "mmc_hal.h"
 
 /* mmc.c */
 DSTATUS mmc_disk_initialize ( BYTE pdrv );

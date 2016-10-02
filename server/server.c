@@ -22,7 +22,11 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "user_config.h"
+#include <stdint.h>
+#include <stdarg.h>
+#include <string.h>
+#include <math.h>
+
 #include "network.h"
 #include "server.h"
 

@@ -21,7 +21,12 @@
 // Use TAB STOPS to 4 or this document will look wrong
 // ====================================================================
 
-#include <user_config.h>
+#include <stdint.h>
+#include <stdarg.h>
+#include <string.h>
+#include <math.h>
+
+#include "scanf.h"
 
 // ====================================================================
 //
@@ -35,18 +40,16 @@ uint8_t t_sscanf(uint8_t *strp, uint8_t *fmt, ...)
 {
 	va_list	ap;
 	int SIGN = 0;
-	uint8_t  SIZE;
-
-	uint8_t   args = 0; // Arguments
-	uint8_t   width;
-	uint8_t   base;
+	uint8_t SIZE;
+	uint8_t args = 0; // Arguments
+	uint8_t width;
+	uint8_t base;
 	uint8_t	shift;
-	uint8_t  	ch;
-	uint8_t  	spec;
-	uint32_t	num;
+	uint8_t ch;
+	uint8_t spec;
+	unsigned long num;
 
 	va_start(ap,fmt);
-
 
 	while (spec = *fmt++)
 	{
@@ -97,7 +100,7 @@ uint8_t t_sscanf(uint8_t *strp, uint8_t *fmt, ...)
 
 // Init numeric control flags in case we have a number to process
 
-		SIZE = 2;	// Long/Short/Tiny flag, 16bit is default
+		SIZE = sizeof(int);		// Long/Short/Tiny flag, 16bit is default
 		base = 0;		// If base gets set below we have a number!
 		shift = 0;		// Used for fast multiply
 
@@ -105,11 +108,11 @@ uint8_t t_sscanf(uint8_t *strp, uint8_t *fmt, ...)
 //
 
 		if (spec == 'l') {	// Large
-			SIZE = 4;
+			SIZE = sizeof(long);
 			spec = *fmt++;
 		}
 		if (spec == 't') {	// tiny
-			SIZE = 1;
+			SIZE = sizeof(char);
 			spec = *fmt++;
 		}
 		
@@ -120,17 +123,17 @@ uint8_t t_sscanf(uint8_t *strp, uint8_t *fmt, ...)
 				break;
 			case 'c':
 				{
-					uint8_t *c;
-					c = va_arg(ap,uint8_t *);
+					unsigned char *c;
+					c = va_arg(ap,unsigned char *);
 					*c = *strp;
 					++strp;
 				}
 				break;
 			case 's':
 				{
-					uint8_t * p;
-					uint8_t c;
-					p = va_arg(ap,uint8_t *);
+					unsigned char *p;
+					unsigned char c;
+					p = va_arg(ap,unsigned char *);
 					while (width) 
 					{
 						c = *strp;
@@ -145,26 +148,26 @@ uint8_t t_sscanf(uint8_t *strp, uint8_t *fmt, ...)
 				}
 				break;
 			case 'B':
-					SIZE = 4;
+					SIZE = sizeof(long);
 			case 'b':
 				base = 2;
 				shift = 1;
 				break;
 			case 'O':
-					SIZE = 4;
+					SIZE = sizeof(long);
 			case 'o':
 				base = 8;
 				shift = 3;
 				break;
 			case 'X':
-					SIZE = 4;
+					SIZE = sizeof(long);
 			case 'x':
 				base = 16;
 				shift = 4;
 				break;
 			case 'U':
 			case 'D':
-					SIZE = 4;
+					SIZE = sizeof(long);
 			case 'u':
 			case 'd':
 				base = 10;
@@ -206,7 +209,7 @@ uint8_t t_sscanf(uint8_t *strp, uint8_t *fmt, ...)
 					break;
 
 				if(base == 10) {
-					uint32_t	temp;
+					unsigned long temp;
 					num <<= 1;
 					temp = num;
 					num <<= 2;
@@ -219,29 +222,29 @@ uint8_t t_sscanf(uint8_t *strp, uint8_t *fmt, ...)
 				++strp;
 				--width;
 			}				// END WHILE
-			if(SIZE == 4) {
-				uint32_t *c;
-				c = va_arg(ap,uint32_t *);
+			if(SIZE == sizeof(long)) {
+				unsigned long *c;
+				c = va_arg(ap,unsigned long *);
 				if(SIGN)
-					*c = (uint32_t) -num;
+					*c = (unsigned long) -num;
 				else
-					*c = (uint32_t) num;
+					*c = (unsigned long) num;
 			}
-			else if(SIZE == 2) {
-				uint16_t *c;
-				c = va_arg(ap,uint16_t *);
+			else if(SIZE == sizeof(int)) {
+				unsigned int *c;
+				c = va_arg(ap,unsigned int *);
 				if(SIGN)
-					*c = (uint16_t ) -num;
+					*c = (unsigned int) -num;
 				else
-					*c = (uint16_t) num;
+					*c = (unsigned int) num;
 			}
 			else {
-				uint8_t *c;
+				unsigned char *c;
 				c = va_arg(ap,uint8_t *);
 				if(SIGN)
-					*c = (uint32_t) -num;
+					*c = (unsigned char) -num;
 				else
-					*c = (uint32_t) num;
+					*c = (unsigned char) num;
 			}
 		}				// END IF(base && width)
 		++args;

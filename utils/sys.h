@@ -24,7 +24,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef _SYS_H_
 #define _SYS_H_
 
-#include <user_config.h>
+#include <stdint.h>
+#include <stdarg.h>
+#include <string.h>
+#include <math.h>
+
+#ifdef USER_CONFIG
+#include "user_config.h"
+#endif
+
+// Named address space
+#ifndef MEMSPACE
+#define MEMSPACE /**/
+#endif
 
 extern void * _heap_start;
 #define HEAP_START  ((uint32_t) & (_heap_start))

@@ -8,11 +8,19 @@
 #ifndef INCLUDE_HSPI_H_
 #define INCLUDE_HSPI_H_
 
-#include "spi_register.h"                         // from 0.9.4 IoT_Demo
-#include <ets_sys.h>
-#include <osapi.h>
-#include <os_type.h>
-#include <gpio.h>
+#include <stdint.h>
+#include <stdarg.h>
+#include <string.h>
+#include <math.h>
+
+#ifdef USER_CONFIG
+#include "user_config.h"
+#endif
+
+// Named address space
+#ifndef MEMSPACE
+#define MEMSPACE /**/
+#endif
 
 #define SPI         0
 #define HSPI        1

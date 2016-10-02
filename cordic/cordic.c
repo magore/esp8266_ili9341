@@ -32,14 +32,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Run a stand alone test
 // #define TEST
 
-#define CORDIC_TABLE                              /* include the generated cordic table */
+#define CORDIC_TABLE  /* include the generated cordic table */
 
 #ifdef TEST
-#define MEMSPACE                                  /* */
+#define MEMSPACE   /* */
 #include <stdio.h>
 #include <stdlib.h>
 #else
-#include <user_config.h>
+#include <stdint.h>
+#include <stdarg.h>
+#include <string.h>
+#include <math.h>
 #endif
 
 #include <math.h>
@@ -54,7 +57,6 @@ double deg2rad(double deg)
 {
     return (deg * M_PI / 180.0);
 }
-
 
 /// @brief  Compute quadrant of angle and the quadrant modulus
 /// Note:

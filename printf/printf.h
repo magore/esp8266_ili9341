@@ -24,20 +24,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef _PRINTF_H_
 #define _PRINTF_H_
 
-#ifdef ESP8266
-#include "user_config.h"
-#endif
-
-#ifndef MEMSPACE
-#define MEMSPACE /**/
-#endif
-
 #include <stdint.h>
 #include <stdarg.h>
 #include <string.h>
 #include <math.h>
 
-// ====================================================================
+#ifdef USER_CONFIG
+#include "user_config.h"
+#endif
+
+// Named address space
+#ifndef MEMSPACE
+#define MEMSPACE /**/
+#endif
+
+// Weak attribute
+#ifndef WEAK_ATR
+#define WEAK_ATR __attribute__((weak))
+#endif
 
 typedef struct _printf_t
 {
@@ -46,23 +50,28 @@ typedef struct _printf_t
     int len;
 	int size;
 } printf_t;
-#endif
 
-MEMSPACE void p_reverse ( char *str );
-MEMSPACE void p_strupper ( char *str );
 
-MEMSPACE double iexp ( double num , int exp );
-MEMSPACE double scale10 ( double num , int *exp );
-
+/* printf.c */
+MEMSPACE size_t WEAK_ATR strlen ( const char *str );
+#undef isdigit
+MEMSPACE int WEAK_ATR isdigit ( int c );
+MEMSPACE void WEAK_ATR reverse ( char *str );
+MEMSPACE void WEAK_ATR strupper ( char *str );
+MEMSPACE double WEAK_ATR iexp ( double num , int exp );
+MEMSPACE double WEAK_ATR scale10 ( double num , int *exp );
 MEMSPACE int p_itoa ( long num , char *str , int max , int prec , int sign );
 MEMSPACE int p_ntoa ( unsigned long num , char *str , int max , int radix , int prec );
 MEMSPACE int p_ftoa ( double val , char *str , int intprec , int prec , int sign );
 MEMSPACE int p_etoa ( double x , char *str , int prec , int sign );
 MEMSPACE void _puts_pad ( printf_t *fn , char *s , int width , int count , int left );
-
 MEMSPACE void _printf_fn ( printf_t *fn , const char *fmt , va_list va );
 void _putc_buffer_fn ( struct _printf_t *p , char ch );
 MEMSPACE int vsnprintf ( char *str , size_t size , const char *format , va_list va );
 MEMSPACE int snprintf ( char *str , size_t size , const char *format , ...);
 
+// ====================================================================
 
+
+
+#endif	// ifndef _PRINTF_H_

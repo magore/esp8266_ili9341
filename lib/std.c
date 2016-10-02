@@ -21,83 +21,12 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include <stdint.h>
+#include <stdarg.h>
+#include <string.h>
+#include <math.h>
+
 #include "std.h"
-
-#ifdef FLOAT
-
-/// @brief Raise number to exponent power (exponent is integer)
-/// @param[in] num: number
-/// @param[in] exp:  interger exponent
-/// @return num ** exp
-MEMSPACE
-double iexp(double num, int exp)
-{
-    double a;
-    if(exp==0)
-        return(1.0);
-    if(exp <0)
-    {
-        a = 1.0 / num;
-        exp = 1 - exp;
-    }
-    else
-    {
-        exp = exp - 1;
-        a = num;
-    }
-    while(exp)
-    {
-        if(exp & 0x01)
-            num *= a;
-        if(exp >>= 1)
-            a *= a;
-    }
-    return(num);
-}
-
-
-/// @brief Scale a number to 1.0 .. 9.99999...
-/// @param[in] num: number
-/// @param[out] *exp: interger power of 10 for scale factor
-/// @return scaled number
-MEMSPACE 
-double scale10(double num, int *exp)
-{
-	int exp10,exp2;
-	double scale;
-
-	if(!num)
-	{
-		*exp = 0;
-		return(0.0);
-	}
-	// extract exponent
-	frexp(num, &exp2);
-	// aproximate exponent in base 10
-	exp10 = ((double) exp2) / (double) 3.321928095;
-
-	// convert scale to 10.0**exp10
-	scale = iexp((double)10.0, exp10);
-
-	// remove scale
-	num /= scale;
-
-	// correct for over/under
-	while(num >= (double)10.0) 
-	{
-		num /= (double) 10.0;
-		++exp10;
-	}
-	while(num < (double) 1.0) 
-	{
-		num *= (double) 10.0;
-		--exp10;
-	}
-
-	*exp = exp10;
-	return(num);
-}
-#endif // ifdef FLOAT
 
 /// @brief Convert ASCII character to radix based digit , or -1
 /// @param[in] c: character
@@ -105,7 +34,9 @@ double scale10(double num, int *exp)
 /// @return radix based digit , or -1
 /// @see strtol
 MEMSPACE 
-int atodigit(int c,int radix)
+int
+WEAK_ATR
+atodigit(int c,int radix)
 {
 	int ret = -1;
 	if(c >= '0' && c <= '9')
@@ -124,7 +55,9 @@ int atodigit(int c,int radix)
 /// @return long value
 /// @see strtol
 MEMSPACE
-long aton(char *str, int base)
+long
+WEAK_ATR
+aton(char *str, int base)
 {
     unsigned long num;
     char *endptr;
@@ -133,16 +66,15 @@ long aton(char *str, int base)
     return(num);
 }
 
-// Skip if we have the linux stdlib.h
-#ifndef _STDLIB_H
-
 /// @brief Convert ASCII string to number in a given base
 /// @param[in] nptr: string
 /// @param[in] endptr: pointer to string pointer return value
 /// @param[in] base: radix
 /// @return long value
 MEMSPACE 
-long strtol(const char *nptr, char **endptr, int base)
+long
+WEAK_ATR
+strtol(const char *nptr, char **endptr, int base)
 {
 	unsigned long num;
 	int sign;
@@ -187,7 +119,9 @@ long strtol(const char *nptr, char **endptr, int base)
 /// @return int value
 /// @see strtol
 MEMSPACE 
-int atoi(const char *str)
+int
+WEAK_ATR
+atoi(const char *str)
 {
 	unsigned long num;
 	char *endptr;
@@ -200,7 +134,9 @@ int atoi(const char *str)
 /// @return long value
 /// @see strtol
 MEMSPACE 
-long atol(const char *str)
+long
+WEAK_ATR
+atol(const char *str)
 {
 	unsigned long num;
 	char *endptr;
@@ -208,14 +144,90 @@ long atol(const char *str)
 	return(num);
 }
 
-
-
 #ifdef FLOAT
+/// @brief Raise number to exponent power (exponent is integer)
+/// @param[in] num: number
+/// @param[in] exp:  interger exponent
+/// @return num ** exp
+MEMSPACE
+double
+WEAK_ATR
+iexp(double num, int exp)
+{
+    double a;
+    if(exp==0)
+        return(1.0);
+    if(exp <0)
+    {
+        a = 1.0 / num;
+        exp = 1 - exp;
+    }
+    else
+    {
+        exp = exp - 1;
+        a = num;
+    }
+    while(exp)
+    {
+        if(exp & 0x01)
+            num *= a;
+        if(exp >>= 1)
+            a *= a;
+    }
+    return(num);
+}
+
+
+/// @brief Scale a number to 1.0 .. 9.99999...
+/// @param[in] num: number
+/// @param[out] *exp: interger power of 10 for scale factor
+/// @return scaled number
+MEMSPACE 
+double
+WEAK_ATR
+scale10(double num, int *exp)
+{
+	int exp10,exp2;
+	double scale;
+
+	if(!num)
+	{
+		*exp = 0;
+		return(0.0);
+	}
+	// extract exponent
+	frexp(num, &exp2);
+	// aproximate exponent in base 10
+	exp10 = ((double) exp2) / (double) 3.321928095;
+
+	// convert scale to 10.0**exp10
+	scale = iexp((double)10.0, exp10);
+
+	// remove scale
+	num /= scale;
+
+	// correct for over/under
+	while(num >= (double)10.0) 
+	{
+		num /= (double) 10.0;
+		++exp10;
+	}
+	while(num < (double) 1.0) 
+	{
+		num *= (double) 10.0;
+		--exp10;
+	}
+
+	*exp = exp10;
+	return(num);
+}
+
 /// @brief atof ASCII to float
 /// @param[in] str: string
 /// @return number
 MEMSPACE 
-double atof(const char *str)
+double
+atof(const char *str)
 {
 	double num;
 	double frac;
@@ -275,5 +287,4 @@ double atof(const char *str)
 	return(num);
 }
 #endif // ifdef FLOAT
-#endif // ifndef _STDLIB_H
 

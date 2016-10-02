@@ -26,7 +26,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef _TIMER_HAL_H_
 #define _TIMER_HAL_H_
 
-#include <user_config.h>
+#include <stdint.h>
+#include <stdarg.h>
+#include <string.h>
+#include <math.h>
+
+#ifdef USER_CONFIG
+#include "user_config.h"
+#endif
+
+// Named address space
+#ifndef MEMSPACE
+#define MEMSPACE /**/
+#endif
+
 #include "timer.h"
 #include "time.h"
 
@@ -36,7 +49,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /// @brief AVR prescale divider.
 #define TIMER1_PRESCALE     1L
-
 
 ///@brief Computer AVR counts per interrupt.
 #define TIMER1_COUNTS_PER_TIC (F_CPU/TIMER1_PRESCALE/SYSTEM_TASK_HZ)
@@ -67,6 +79,5 @@ MEMSPACE int clock_getres ( clockid_t clk_id , struct timespec *res );
 MEMSPACE void setup_timers_isr ( void );
 MEMSPACE int clock_settime ( clockid_t clk_id , const struct timespec *ts );
 MEMSPACE int clock_gettime ( clockid_t clk_id , struct timespec *ts );
-
 
 #endif                                            // _TIMER_HAL_H_

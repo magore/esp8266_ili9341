@@ -22,8 +22,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 
-#include <user_config.h>
+#include <stdint.h>
+#include <stdarg.h>
+#include <string.h>
+#include <math.h>
 
+#include "web.h"
 
 // References: http://www.w3.org/Protocols/rfc2616/rfc2616.html
 

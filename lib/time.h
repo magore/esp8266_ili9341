@@ -26,7 +26,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef TIME_H
 #define TIME_H
 
-#include <user_config.h>
+#include <stdint.h>
+#include <stdarg.h>
+#include <string.h>
+#include <math.h>
+
+#include "timer_hal.h"
+
 
 #define EPOCH_YEAR    1970    /*< Thursday Jan 1 1970 */
 #define EPOCH_DAY        4    /*< Sunday = 0 ... Saturday = 6 */

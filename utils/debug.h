@@ -24,6 +24,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef _DEBUG_H_
 #define _DEBUG_H_
 
+#include <stdint.h>
+#include <stdarg.h>
+#include <string.h>
+#include <math.h>
+
+#ifdef USER_CONFIG
+#include "user_config.h"
+#endif
+
+// Named address space
+#ifndef MEMSPACE
+#define MEMSPACE /**/
+#endif
+
 /* debug.c */
 int uart0_printf ( const char *fmt , ...);
 

@@ -6,7 +6,7 @@ var searchData=
   ['idletaskqueue',['IdleTaskQueue',['../user__main_8c.html#a497172baf21b16f0de764c2368988cba',1,'user_main.c']]],
   ['idletaskqueuelen',['IdleTaskQueueLen',['../user__main_8c.html#afbd10fc81998d8d99e705db01a1ab07f',1,'user_main.c']]],
   ['idx',['idx',['../structputbuff.html#a10a3ca93af8df07e9836ebd5230c06d8',1,'putbuff']]],
-  ['iexp',['iexp',['../printf_8h.html#a29526ba629435aeaee7e3201242a9234',1,'iexp(double num, int exp):&#160;printf.h'],['../std_8h.html#a29526ba629435aeaee7e3201242a9234',1,'iexp(double num, int exp):&#160;std.h']]],
+  ['iexp',['iexp',['../printf_8h.html#a3bfc95873e495e6f68b3821f3b30f9ba',1,'iexp(double num, int exp):&#160;printf.h'],['../std_8h.html#a3bfc95873e495e6f68b3821f3b30f9ba',1,'iexp(double num, int exp):&#160;std.h']]],
   ['ili9341_2ec',['ili9341.c',['../ili9341_8c.html',1,'']]],
   ['ili9341_2eh',['ili9341.h',['../ili9341_8h.html',1,'']]],
   ['ili9341_5fadafruit_2ec',['ili9341_adafruit.c',['../ili9341__adafruit_8c.html',1,'']]],
@@ -29,6 +29,8 @@ var searchData=
   ['ili9341_5fgmctrp1',['ILI9341_GMCTRP1',['../ili9341__adafruit_8h.html#a5e137029ba159bd4a942dbe44fbb45bd',1,'ili9341_adafruit.h']]],
   ['ili9341_5fgreen',['ILI9341_GREEN',['../ili9341__adafruit_8h.html#a2eb4b5e896b0b144970f33002134bb98',1,'ili9341_adafruit.h']]],
   ['ili9341_5fgreenyellow',['ILI9341_GREENYELLOW',['../ili9341__adafruit_8h.html#a5f9867862411a57b73cecbc0155e7507',1,'ili9341_adafruit.h']]],
+  ['ili9341_5fhal_2ec',['ili9341_hal.c',['../ili9341__hal_8c.html',1,'']]],
+  ['ili9341_5fhal_2eh',['ili9341_hal.h',['../ili9341__hal_8h.html',1,'']]],
   ['ili9341_5finvctr',['ILI9341_INVCTR',['../ili9341__adafruit_8h.html#ac499cd0e0c7f17006dcc2e6998915d57',1,'ili9341_adafruit.h']]],
   ['ili9341_5finvoff',['ILI9341_INVOFF',['../ili9341__adafruit_8h.html#aa373acfd567ed1ab59f04d44fe1e5b6f',1,'ili9341_adafruit.h']]],
   ['ili9341_5finvon',['ILI9341_INVON',['../ili9341__adafruit_8h.html#a310ca5d5d75b141c72e36a14e8b2bb8a',1,'ili9341_adafruit.h']]],
@@ -100,9 +102,9 @@ var searchData=
   ['isatty',['isatty',['../posix_8c.html#a31986cce890109c211ccb14151aafd0e',1,'isatty(int fileno):&#160;posix.c'],['../posix_8h.html#a31986cce890109c211ccb14151aafd0e',1,'isatty(int fileno):&#160;posix.c']]],
   ['isdbcs1',['IsDBCS1',['../ff_8c.html#a58d63a832a117f179e41c7373d013dd6',1,'ff.c']]],
   ['isdbcs2',['IsDBCS2',['../ff_8c.html#a66a3fa880af6078ef181656c1d7d8ef1',1,'ff.c']]],
-  ['isdigit',['isdigit',['../printf_8c.html#ae17eec90d7fec7eb3fcbab2446b998a3',1,'isdigit(int c):&#160;printf.c'],['../str_8c.html#ae17eec90d7fec7eb3fcbab2446b998a3',1,'isdigit(int c):&#160;str.c'],['../str_8h.html#ae17eec90d7fec7eb3fcbab2446b998a3',1,'isdigit(int c):&#160;printf.c'],['../ff_8c.html#a65dee564f69f2ec27f25b67a348018b9',1,'IsDigit():&#160;ff.c']]],
+  ['isdigit',['isdigit',['../printf_8c.html#a8c33a3f5b4322e705d3403f63d55b0a1',1,'isdigit(int c):&#160;printf.c'],['../printf_8h.html#a8c33a3f5b4322e705d3403f63d55b0a1',1,'isdigit(int c):&#160;printf.c'],['../str_8c.html#a8c33a3f5b4322e705d3403f63d55b0a1',1,'isdigit(int c):&#160;str.c'],['../str_8h.html#a8c33a3f5b4322e705d3403f63d55b0a1',1,'isdigit(int c):&#160;printf.c'],['../ff_8c.html#a65dee564f69f2ec27f25b67a348018b9',1,'IsDigit():&#160;ff.c']]],
   ['ishex',['ishex',['../bdffontutil_8c.html#a236d65c81ae4bb3d079e9f2dd971cf04',1,'ishex(int c):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a236d65c81ae4bb3d079e9f2dd971cf04',1,'ishex(int c):&#160;bdffontutil.c']]],
   ['ishexstr',['ishexstr',['../bdffontutil_8c.html#aa8842f574a823375421ac5eabc13bf8c',1,'ishexstr(char *str):&#160;bdffontutil.c'],['../bdffontutil_8h.html#aa8842f574a823375421ac5eabc13bf8c',1,'ishexstr(char *str):&#160;bdffontutil.c']]],
-  ['islower',['islower',['../str_8c.html#a7f14a6a87f41f7ec8872676739c9ec0e',1,'islower(int c):&#160;str.c'],['../str_8h.html#a7f14a6a87f41f7ec8872676739c9ec0e',1,'islower(int c):&#160;str.c'],['../ff_8c.html#a4a9d454724926bd51a3aed589a97f08b',1,'IsLower():&#160;ff.c']]],
-  ['isupper',['isupper',['../str_8c.html#a0a3c929ebadee8388452f8c3809fe744',1,'isupper(int c):&#160;str.c'],['../str_8h.html#a0a3c929ebadee8388452f8c3809fe744',1,'isupper(int c):&#160;str.c'],['../ff_8c.html#a89b2514198590e139dd064c5d534f302',1,'IsUpper():&#160;ff.c']]]
+  ['islower',['IsLower',['../ff_8c.html#a4a9d454724926bd51a3aed589a97f08b',1,'IsLower():&#160;ff.c'],['../str_8c.html#a15c5aeb16e6527e860098b0e062168b5',1,'islower(int c):&#160;str.c'],['../str_8h.html#a15c5aeb16e6527e860098b0e062168b5',1,'islower(int c):&#160;str.c']]],
+  ['isupper',['isupper',['../str_8c.html#aa1caa55b6624cc08af06c04cbfe6c02a',1,'isupper(int c):&#160;str.c'],['../str_8h.html#aa1caa55b6624cc08af06c04cbfe6c02a',1,'isupper(int c):&#160;str.c'],['../ff_8c.html#a89b2514198590e139dd064c5d534f302',1,'IsUpper():&#160;ff.c']]]
 ];

@@ -1,0 +1,210 @@
+\hypertarget{ili9341__hal_8h}{}\section{display/ili9341\+\_\+hal.h File Reference}
+\label{ili9341__hal_8h}\index{display/ili9341\+\_\+hal.\+h@{display/ili9341\+\_\+hal.\+h}}
+
+
+ili9341 driver inspired by Adafruit ili9341 code All code in this file has been rewritten by Mike Gore  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\\*
+{\ttfamily \#include $<$stdarg.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$math.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}str.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}std.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}sys.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}ili9341.\+h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{ili9341__hal_8h_ace16843deffffe3332a7e16f14e1c4f7}{tft\+\_\+spi\+\_\+begin} (void)
+\begin{DoxyCompactList}\small\item\em Obtain S\+PI bus for T\+FT display, assert chip select return\+: void. \end{DoxyCompactList}\item 
+void \hyperlink{ili9341__hal_8h_a6141eafeb5d38b1a5c5061ce0923a650}{tft\+\_\+spi\+\_\+end} (void)
+\begin{DoxyCompactList}\small\item\em Release S\+PI bus from T\+FT display, deassert chip select return\+: void. \end{DoxyCompactList}\item 
+void \hyperlink{ili9341__hal_8h_aa975fa5ad6bb7e52356d9d66ac733196}{tft\+\_\+spi\+\_\+\+TX} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} $\ast$data, int bytes, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} command)
+\begin{DoxyCompactList}\small\item\em Transmit 8 bit data array. \end{DoxyCompactList}\item 
+void \hyperlink{ili9341__hal_8h_ad2eda0e245536550e1a28da1d652629e}{tft\+\_\+spi\+\_\+\+T\+X\+RX} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} $\ast$data, int bytes, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} command)
+\begin{DoxyCompactList}\small\item\em Transmit and read 8 bit data array. \end{DoxyCompactList}\item 
+void \hyperlink{ili9341__hal_8h_aad54db2d053d783c70669fdbd414fda1}{tft\+\_\+spi\+\_\+\+RX} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} $\ast$data, int bytes, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} command)
+\begin{DoxyCompactList}\small\item\em read 8 bit data array \end{DoxyCompactList}\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{structwindow}{window} $\ast$ \hyperlink{ili9341__hal_8h_a14e5cdfbb744c04570df508551f77add}{tft\+\_\+init} (void)
+\begin{DoxyCompactList}\small\item\em Initialize T\+FT. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+ili9341 driver inspired by Adafruit ili9341 code All code in this file has been rewritten by Mike Gore 
+
+\begin{DoxyParagraph}{Copyright \copyright{} 2015 Mike Gore, G\+PL License}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{You are free to use this code under the terms of G\+PL}
+please retain a copy of this notice in any code you use it in.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Copyright \copyright{} 2013 Adafruit Industries. All rights reserved.}
+
+\end{DoxyParagraph}
+\begin{DoxySeeAlso}{See also}
+\href{https://github.com/adafruit/Adafruit-GFX-Library}{\tt https\+://github.\+com/adafruit/\+Adafruit-\/\+G\+F\+X-\/\+Library}
+\end{DoxySeeAlso}
+\begin{DoxyParagraph}{Line drawing function C\+E\+R\+TS}
+
+\end{DoxyParagraph}
+\begin{DoxySeeAlso}{See also}
+\href{https://github.com/CHERTS/esp8266-devkit/tree/master/Espressif/examples/esp8266_ili9341}{\tt https\+://github.\+com/\+C\+H\+E\+R\+T\+S/esp8266-\/devkit/tree/master/\+Espressif/examples/esp8266\+\_\+ili9341}
+\end{DoxySeeAlso}
+This is free software\+: you can redistribute it and/or modify it under the terms of the G\+NU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This software is distributed in the hope that it will be useful, but W\+I\+T\+H\+O\+UT A\+NY W\+A\+R\+R\+A\+N\+TY; without even the implied warranty of M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+TY or F\+I\+T\+N\+E\+SS F\+OR A P\+A\+R\+T\+I\+C\+U\+L\+AR P\+U\+R\+P\+O\+SE. See the G\+NU General Public License for more details.
+
+You should have received a copy of the G\+NU General Public License along with this program. If not, see \href{http://www.gnu.org/licenses/}{\tt http\+://www.\+gnu.\+org/licenses/}. 
+
+\subsection{Function Documentation}
+\index{ili9341\+\_\+hal.\+h@{ili9341\+\_\+hal.\+h}!tft\+\_\+init@{tft\+\_\+init}}
+\index{tft\+\_\+init@{tft\+\_\+init}!ili9341\+\_\+hal.\+h@{ili9341\+\_\+hal.\+h}}
+\subsubsection[{\texorpdfstring{tft\+\_\+init(void)}{tft_init(void)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} {\bf window}$\ast$ tft\+\_\+init (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{ili9341__hal_8h_a14e5cdfbb744c04570df508551f77add}{}\label{ili9341__hal_8h_a14e5cdfbb744c04570df508551f77add}
+
+
+Initialize T\+FT. 
+
+\begin{DoxyReturn}{Returns}
+diplay ID 9341 
+\end{DoxyReturn}
+
+
+Definition at line 162 of file ili9341\+\_\+hal.\+c.
+
+
+
+Referenced by setup().
+
+\index{ili9341\+\_\+hal.\+h@{ili9341\+\_\+hal.\+h}!tft\+\_\+spi\+\_\+begin@{tft\+\_\+spi\+\_\+begin}}
+\index{tft\+\_\+spi\+\_\+begin@{tft\+\_\+spi\+\_\+begin}!ili9341\+\_\+hal.\+h@{ili9341\+\_\+hal.\+h}}
+\subsubsection[{\texorpdfstring{tft\+\_\+spi\+\_\+begin(void)}{tft_spi_begin(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void tft\+\_\+spi\+\_\+begin (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{ili9341__hal_8h_ace16843deffffe3332a7e16f14e1c4f7}{}\label{ili9341__hal_8h_ace16843deffffe3332a7e16f14e1c4f7}
+
+
+Obtain S\+PI bus for T\+FT display, assert chip select return\+: void. 
+
+
+
+Definition at line 96 of file ili9341\+\_\+hal.\+c.
+
+
+
+Referenced by tft\+\_\+bit\+\_\+blit(), tft\+\_\+\+Cmd\+\_\+\+Data\+\_\+\+T\+X(), tft\+\_\+fill\+Rect\+W\+H(), tft\+\_\+invert\+Display(), tft\+\_\+read\+Pixel(), tft\+\_\+read\+Rect(), tft\+\_\+read\+Register(), and tft\+\_\+write\+Rect().
+
+\index{ili9341\+\_\+hal.\+h@{ili9341\+\_\+hal.\+h}!tft\+\_\+spi\+\_\+end@{tft\+\_\+spi\+\_\+end}}
+\index{tft\+\_\+spi\+\_\+end@{tft\+\_\+spi\+\_\+end}!ili9341\+\_\+hal.\+h@{ili9341\+\_\+hal.\+h}}
+\subsubsection[{\texorpdfstring{tft\+\_\+spi\+\_\+end(void)}{tft_spi_end(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void tft\+\_\+spi\+\_\+end (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{ili9341__hal_8h_a6141eafeb5d38b1a5c5061ce0923a650}{}\label{ili9341__hal_8h_a6141eafeb5d38b1a5c5061ce0923a650}
+
+
+Release S\+PI bus from T\+FT display, deassert chip select return\+: void. 
+
+
+
+Definition at line 106 of file ili9341\+\_\+hal.\+c.
+
+
+
+Referenced by tft\+\_\+bit\+\_\+blit(), tft\+\_\+\+Cmd\+\_\+\+Data\+\_\+\+T\+X(), tft\+\_\+fill\+Rect\+W\+H(), tft\+\_\+invert\+Display(), tft\+\_\+read\+Pixel(), tft\+\_\+read\+Rect(), tft\+\_\+read\+Register(), tft\+\_\+spi\+\_\+init(), and tft\+\_\+write\+Rect().
+
+\index{ili9341\+\_\+hal.\+h@{ili9341\+\_\+hal.\+h}!tft\+\_\+spi\+\_\+\+RX@{tft\+\_\+spi\+\_\+\+RX}}
+\index{tft\+\_\+spi\+\_\+\+RX@{tft\+\_\+spi\+\_\+\+RX}!ili9341\+\_\+hal.\+h@{ili9341\+\_\+hal.\+h}}
+\subsubsection[{\texorpdfstring{tft\+\_\+spi\+\_\+\+R\+X(uint8\+\_\+t $\ast$data, int bytes, uint8\+\_\+t command)}{tft_spi_RX(uint8_t *data, int bytes, uint8_t command)}}]{\setlength{\rightskip}{0pt plus 5cm}void tft\+\_\+spi\+\_\+\+RX (
+\begin{DoxyParamCaption}
+\item[{{\bf uint8\+\_\+t} $\ast$}]{data, }
+\item[{int}]{bytes, }
+\item[{{\bf uint8\+\_\+t}}]{command}
+\end{DoxyParamCaption}
+)}\hypertarget{ili9341__hal_8h_aad54db2d053d783c70669fdbd414fda1}{}\label{ili9341__hal_8h_aad54db2d053d783c70669fdbd414fda1}
+
+
+read 8 bit data array 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$data} & data buffer to send \\
+\hline
+\mbox{\tt in}  & {\em bytes} & data buffer size \\
+\hline
+\mbox{\tt in}  & {\em command} & 1 = command, 0 = data return\+: void \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 149 of file ili9341\+\_\+hal.\+c.
+
+
+
+Referenced by tft\+\_\+read\+Rect().
+
+\index{ili9341\+\_\+hal.\+h@{ili9341\+\_\+hal.\+h}!tft\+\_\+spi\+\_\+\+TX@{tft\+\_\+spi\+\_\+\+TX}}
+\index{tft\+\_\+spi\+\_\+\+TX@{tft\+\_\+spi\+\_\+\+TX}!ili9341\+\_\+hal.\+h@{ili9341\+\_\+hal.\+h}}
+\subsubsection[{\texorpdfstring{tft\+\_\+spi\+\_\+\+T\+X(uint8\+\_\+t $\ast$data, int bytes, uint8\+\_\+t command)}{tft_spi_TX(uint8_t *data, int bytes, uint8_t command)}}]{\setlength{\rightskip}{0pt plus 5cm}void tft\+\_\+spi\+\_\+\+TX (
+\begin{DoxyParamCaption}
+\item[{{\bf uint8\+\_\+t} $\ast$}]{data, }
+\item[{int}]{bytes, }
+\item[{{\bf uint8\+\_\+t}}]{command}
+\end{DoxyParamCaption}
+)}\hypertarget{ili9341__hal_8h_aa975fa5ad6bb7e52356d9d66ac733196}{}\label{ili9341__hal_8h_aa975fa5ad6bb7e52356d9d66ac733196}
+
+
+Transmit 8 bit data array. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$data} & data buffer to send \\
+\hline
+\mbox{\tt in}  & {\em bytes} & data buffer size \\
+\hline
+\mbox{\tt in}  & {\em command} & 1 = command, 0 = data return\+: void \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 118 of file ili9341\+\_\+hal.\+c.
+
+
+
+Referenced by tft\+\_\+bit\+\_\+blit(), tft\+\_\+\+Cmd(), tft\+\_\+\+Cmd\+\_\+\+Data\+\_\+\+T\+X(), tft\+\_\+fill\+Rect\+W\+H(), and tft\+\_\+write\+Rect().
+
+\index{ili9341\+\_\+hal.\+h@{ili9341\+\_\+hal.\+h}!tft\+\_\+spi\+\_\+\+T\+X\+RX@{tft\+\_\+spi\+\_\+\+T\+X\+RX}}
+\index{tft\+\_\+spi\+\_\+\+T\+X\+RX@{tft\+\_\+spi\+\_\+\+T\+X\+RX}!ili9341\+\_\+hal.\+h@{ili9341\+\_\+hal.\+h}}
+\subsubsection[{\texorpdfstring{tft\+\_\+spi\+\_\+\+T\+X\+R\+X(uint8\+\_\+t $\ast$data, int bytes, uint8\+\_\+t command)}{tft_spi_TXRX(uint8_t *data, int bytes, uint8_t command)}}]{\setlength{\rightskip}{0pt plus 5cm}void tft\+\_\+spi\+\_\+\+T\+X\+RX (
+\begin{DoxyParamCaption}
+\item[{{\bf uint8\+\_\+t} $\ast$}]{data, }
+\item[{int}]{bytes, }
+\item[{{\bf uint8\+\_\+t}}]{command}
+\end{DoxyParamCaption}
+)}\hypertarget{ili9341__hal_8h_ad2eda0e245536550e1a28da1d652629e}{}\label{ili9341__hal_8h_ad2eda0e245536550e1a28da1d652629e}
+
+
+Transmit and read 8 bit data array. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$data} & data buffer to send \\
+\hline
+\mbox{\tt in}  & {\em bytes} & data buffer size \\
+\hline
+\mbox{\tt in}  & {\em command} & 1 = command, 0 = data return\+: void \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 133 of file ili9341\+\_\+hal.\+c.
+
+
+
+Referenced by tft\+\_\+\+Data(), and tft\+\_\+read\+Pixel().
+

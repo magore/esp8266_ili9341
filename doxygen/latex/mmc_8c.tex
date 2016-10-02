@@ -5,11 +5,14 @@
 M\+MC upper level interface to Fat\+FS.  
 
 
-{\ttfamily \#include $<$user\+\_\+config.\+h$>$}\\*
+{\ttfamily \#include $<$stdint.\+h$>$}\\*
+{\ttfamily \#include $<$stdarg.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$math.\+h$>$}\\*
 {\ttfamily \#include \char`\"{}mmc\+\_\+hal.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}mmc.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}diskio.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}disk.\+h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}mmc.\+h\char`\"{}}\\*
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
@@ -56,27 +59,27 @@ M\+MC upper level interface to Fat\+FS.
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mmc_8c_ab7771efbbd1a015b449d838d7f09959a}{wait\+\_\+ready} (\hyperlink{integer_8h_a36cb3b01d81ffd844bbbfb54003e06ec}{U\+I\+NT} wt)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mmc_8c_ab7771efbbd1a015b449d838d7f09959a}{wait\+\_\+ready} (\hyperlink{integer_8h_a36cb3b01d81ffd844bbbfb54003e06ec}{U\+I\+NT} wt)
 \item 
-static \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mmc_8c_a7f06b74e5ee0cfbbc5779ed2c8a0369a}{mmc\+\_\+deselect} (void)
+static \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mmc_8c_a7f06b74e5ee0cfbbc5779ed2c8a0369a}{mmc\+\_\+deselect} (void)
 \begin{DoxyCompactList}\small\item\em Deselect the card and release S\+PI bus. \end{DoxyCompactList}\item 
-static \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mmc_8c_a2661ae4f7be7777f1015c91d8444fac0}{mmc\+\_\+select} (void)
+static \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mmc_8c_a2661ae4f7be7777f1015c91d8444fac0}{mmc\+\_\+select} (void)
 \begin{DoxyCompactList}\small\item\em Select the card and wait for ready. \end{DoxyCompactList}\item 
-static \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mmc_8c_a59275a8f1cc0f0d24c6f9f1ae578775a}{rcvr\+\_\+datablock} (\hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} $\ast$buff, \hyperlink{integer_8h_a36cb3b01d81ffd844bbbfb54003e06ec}{U\+I\+NT} btr)
+static \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mmc_8c_a59275a8f1cc0f0d24c6f9f1ae578775a}{rcvr\+\_\+datablock} (\hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} $\ast$buff, \hyperlink{integer_8h_a36cb3b01d81ffd844bbbfb54003e06ec}{U\+I\+NT} btr)
 \begin{DoxyCompactList}\small\item\em Receive a data packet from M\+MC. \end{DoxyCompactList}\item 
-static \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mmc_8c_a2174d7259d1d933e0ea0dc45eee4af62}{xmit\+\_\+datablock} (const \hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} $\ast$buff, \hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} \hyperlink{str_8h_ae9142769a957bcb8c0fad1934576f576}{token})
+static \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mmc_8c_a2174d7259d1d933e0ea0dc45eee4af62}{xmit\+\_\+datablock} (const \hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} $\ast$buff, \hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} \hyperlink{str_8h_ae9142769a957bcb8c0fad1934576f576}{token})
 \begin{DoxyCompactList}\small\item\em Send a data packet to M\+MC. \end{DoxyCompactList}\item 
-static \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} \hyperlink{mmc_8c_afd47154c84441f723909d5875aa64efd}{send\+\_\+cmd} (\hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} cmd, \hyperlink{integer_8h_ad342ac907eb044443153a22f964bf0af}{D\+W\+O\+RD} arg)
+static \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} \hyperlink{mmc_8c_afd47154c84441f723909d5875aa64efd}{send\+\_\+cmd} (\hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} cmd, \hyperlink{integer_8h_ad342ac907eb044443153a22f964bf0af}{D\+W\+O\+RD} arg)
 \begin{DoxyCompactList}\small\item\em Send a command packet to M\+MC. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{diskio_8h_adba6790898ce4029c20a34b898ce73c1}{D\+S\+T\+A\+T\+US} \hyperlink{mmc_8c_a2137eb050ce72b79a588d58530065d08}{mmc\+\_\+disk\+\_\+initialize} (\hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} pdrv)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{diskio_8h_adba6790898ce4029c20a34b898ce73c1}{D\+S\+T\+A\+T\+US} \hyperlink{mmc_8c_a2137eb050ce72b79a588d58530065d08}{mmc\+\_\+disk\+\_\+initialize} (\hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} pdrv)
 \begin{DoxyCompactList}\small\item\em Public Functions. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{diskio_8h_adba6790898ce4029c20a34b898ce73c1}{D\+S\+T\+A\+T\+US} \hyperlink{mmc_8c_a3a80808dbeee4b940bbba6128564dcba}{mmc\+\_\+disk\+\_\+status} (\hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} pdrv)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{diskio_8h_adba6790898ce4029c20a34b898ce73c1}{D\+S\+T\+A\+T\+US} \hyperlink{mmc_8c_a3a80808dbeee4b940bbba6128564dcba}{mmc\+\_\+disk\+\_\+status} (\hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} pdrv)
 \begin{DoxyCompactList}\small\item\em Get Disk Status. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{diskio_8h_a54ffb9f13138d2b17dd599ba880696ad}{D\+R\+E\+S\+U\+LT} \hyperlink{mmc_8c_a95ef69f6e5608dd73fd22f29bf619808}{mmc\+\_\+disk\+\_\+read} (\hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} pdrv, \hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} $\ast$buff, \hyperlink{integer_8h_ad342ac907eb044443153a22f964bf0af}{D\+W\+O\+RD} sector, \hyperlink{integer_8h_a36cb3b01d81ffd844bbbfb54003e06ec}{U\+I\+NT} \hyperlink{user__main_8c_aa011065eee776eb1bda73597b5d9d5d7}{count})
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{diskio_8h_a54ffb9f13138d2b17dd599ba880696ad}{D\+R\+E\+S\+U\+LT} \hyperlink{mmc_8c_a95ef69f6e5608dd73fd22f29bf619808}{mmc\+\_\+disk\+\_\+read} (\hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} pdrv, \hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} $\ast$buff, \hyperlink{integer_8h_ad342ac907eb044443153a22f964bf0af}{D\+W\+O\+RD} sector, \hyperlink{integer_8h_a36cb3b01d81ffd844bbbfb54003e06ec}{U\+I\+NT} \hyperlink{user__main_8c_aa011065eee776eb1bda73597b5d9d5d7}{count})
 \begin{DoxyCompactList}\small\item\em Read Sector(s) \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{diskio_8h_a54ffb9f13138d2b17dd599ba880696ad}{D\+R\+E\+S\+U\+LT} \hyperlink{mmc_8c_ac5d707caafd1e9d2bf6bc7c933b13537}{mmc\+\_\+disk\+\_\+write} (\hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} pdrv, const \hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} $\ast$buff, \hyperlink{integer_8h_ad342ac907eb044443153a22f964bf0af}{D\+W\+O\+RD} sector, \hyperlink{integer_8h_a36cb3b01d81ffd844bbbfb54003e06ec}{U\+I\+NT} \hyperlink{user__main_8c_aa011065eee776eb1bda73597b5d9d5d7}{count})
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{diskio_8h_a54ffb9f13138d2b17dd599ba880696ad}{D\+R\+E\+S\+U\+LT} \hyperlink{mmc_8c_ac5d707caafd1e9d2bf6bc7c933b13537}{mmc\+\_\+disk\+\_\+write} (\hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} pdrv, const \hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} $\ast$buff, \hyperlink{integer_8h_ad342ac907eb044443153a22f964bf0af}{D\+W\+O\+RD} sector, \hyperlink{integer_8h_a36cb3b01d81ffd844bbbfb54003e06ec}{U\+I\+NT} \hyperlink{user__main_8c_aa011065eee776eb1bda73597b5d9d5d7}{count})
 \begin{DoxyCompactList}\small\item\em Write Sector(s) \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{diskio_8h_a54ffb9f13138d2b17dd599ba880696ad}{D\+R\+E\+S\+U\+LT} \hyperlink{mmc_8c_a2a87f14a79ee4e7e9b7323d58d7dbba3}{mmc\+\_\+disk\+\_\+ioctl} (\hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} pdrv, \hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} cmd, void $\ast$buff)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{diskio_8h_a54ffb9f13138d2b17dd599ba880696ad}{D\+R\+E\+S\+U\+LT} \hyperlink{mmc_8c_a2a87f14a79ee4e7e9b7323d58d7dbba3}{mmc\+\_\+disk\+\_\+ioctl} (\hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} pdrv, \hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} cmd, void $\ast$buff)
 \begin{DoxyCompactList}\small\item\em Miscellaneous Functions. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -122,7 +125,7 @@ You should have received a copy of the G\+NU General Public License along with t
 \subsubsection[{\texorpdfstring{A\+C\+M\+D13}{ACMD13}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+C\+M\+D13~(0x80+13)    /$\ast$$<$ S\+D\+\_\+\+S\+T\+A\+T\+U\+S (\+S\+D\+C) $\ast$/}\hypertarget{mmc_8c_a4be8f501d86d24b02923846db618fc71}{}\label{mmc_8c_a4be8f501d86d24b02923846db618fc71}
 
 
-Definition at line 58 of file mmc.\+c.
+Definition at line 63 of file mmc.\+c.
 
 
 
@@ -133,7 +136,7 @@ Referenced by mmc\+\_\+disk\+\_\+ioctl().
 \subsubsection[{\texorpdfstring{A\+C\+M\+D23}{ACMD23}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+C\+M\+D23~(0x80+23)    /$\ast$$<$ S\+E\+T\+\_\+\+W\+R\+\_\+\+B\+L\+K\+\_\+\+E\+R\+A\+S\+E\+\_\+\+C\+O\+U\+N\+T (\+S\+D\+C) $\ast$/}\hypertarget{mmc_8c_aa38144d651e2880f92c65bb683621f78}{}\label{mmc_8c_aa38144d651e2880f92c65bb683621f78}
 
 
-Definition at line 63 of file mmc.\+c.
+Definition at line 68 of file mmc.\+c.
 
 
 
@@ -144,7 +147,7 @@ Referenced by mmc\+\_\+disk\+\_\+write().
 \subsubsection[{\texorpdfstring{A\+C\+M\+D41}{ACMD41}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+C\+M\+D41~(0x80+41)    /$\ast$$<$ S\+E\+N\+D\+\_\+\+O\+P\+\_\+\+C\+O\+N\+D (\+S\+D\+C) $\ast$/}\hypertarget{mmc_8c_a9b6fdfed1b57ac31269b6b9987e0761b}{}\label{mmc_8c_a9b6fdfed1b57ac31269b6b9987e0761b}
 
 
-Definition at line 53 of file mmc.\+c.
+Definition at line 58 of file mmc.\+c.
 
 
 
@@ -155,7 +158,7 @@ Referenced by mmc\+\_\+disk\+\_\+initialize().
 \subsubsection[{\texorpdfstring{C\+M\+D0}{CMD0}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+M\+D0~(0)          /$\ast$$<$ G\+O\+\_\+\+I\+D\+L\+E\+\_\+\+S\+T\+A\+TE $\ast$/}\hypertarget{mmc_8c_a938c1466755f12fb04ac0d1b775584d1}{}\label{mmc_8c_a938c1466755f12fb04ac0d1b775584d1}
 
 
-Definition at line 51 of file mmc.\+c.
+Definition at line 56 of file mmc.\+c.
 
 
 
@@ -166,7 +169,7 @@ Referenced by mmc\+\_\+disk\+\_\+initialize(), and send\+\_\+cmd().
 \subsubsection[{\texorpdfstring{C\+M\+D1}{CMD1}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+M\+D1~(1)          /$\ast$$<$ S\+E\+N\+D\+\_\+\+O\+P\+\_\+\+C\+O\+ND (M\+MC) $\ast$/}\hypertarget{mmc_8c_aca9979f299fa78c1128d778084478673}{}\label{mmc_8c_aca9979f299fa78c1128d778084478673}
 
 
-Definition at line 52 of file mmc.\+c.
+Definition at line 57 of file mmc.\+c.
 
 
 
@@ -177,7 +180,7 @@ Referenced by mmc\+\_\+disk\+\_\+initialize().
 \subsubsection[{\texorpdfstring{C\+M\+D10}{CMD10}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+M\+D10~(10)         /$\ast$$<$ S\+E\+N\+D\+\_\+\+C\+ID $\ast$/}\hypertarget{mmc_8c_ae7b800ed8e7bd52e6f570a5ce72b8104}{}\label{mmc_8c_ae7b800ed8e7bd52e6f570a5ce72b8104}
 
 
-Definition at line 56 of file mmc.\+c.
+Definition at line 61 of file mmc.\+c.
 
 
 
@@ -188,7 +191,7 @@ Referenced by mmc\+\_\+disk\+\_\+ioctl().
 \subsubsection[{\texorpdfstring{C\+M\+D12}{CMD12}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+M\+D12~(12)         /$\ast$$<$ S\+T\+O\+P\+\_\+\+T\+R\+A\+N\+S\+M\+I\+S\+S\+I\+ON $\ast$/}\hypertarget{mmc_8c_a8d6283c9b060afbaa0e6d1ff7e5ea7b8}{}\label{mmc_8c_a8d6283c9b060afbaa0e6d1ff7e5ea7b8}
 
 
-Definition at line 57 of file mmc.\+c.
+Definition at line 62 of file mmc.\+c.
 
 
 
@@ -199,7 +202,7 @@ Referenced by mmc\+\_\+disk\+\_\+read(), and send\+\_\+cmd().
 \subsubsection[{\texorpdfstring{C\+M\+D16}{CMD16}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+M\+D16~(16)         /$\ast$$<$ S\+E\+T\+\_\+\+B\+L\+O\+C\+K\+L\+EN $\ast$/}\hypertarget{mmc_8c_aaeab261b94f2031ba41a1d4d857c3541}{}\label{mmc_8c_aaeab261b94f2031ba41a1d4d857c3541}
 
 
-Definition at line 59 of file mmc.\+c.
+Definition at line 64 of file mmc.\+c.
 
 
 
@@ -210,7 +213,7 @@ Referenced by mmc\+\_\+disk\+\_\+initialize().
 \subsubsection[{\texorpdfstring{C\+M\+D17}{CMD17}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+M\+D17~(17)         /$\ast$$<$ R\+E\+A\+D\+\_\+\+S\+I\+N\+G\+L\+E\+\_\+\+B\+L\+O\+CK $\ast$/}\hypertarget{mmc_8c_a6bbfe7dc16a19b7f40efcf554b5666ad}{}\label{mmc_8c_a6bbfe7dc16a19b7f40efcf554b5666ad}
 
 
-Definition at line 60 of file mmc.\+c.
+Definition at line 65 of file mmc.\+c.
 
 
 
@@ -221,7 +224,7 @@ Referenced by mmc\+\_\+disk\+\_\+read().
 \subsubsection[{\texorpdfstring{C\+M\+D18}{CMD18}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+M\+D18~(18)         /$\ast$$<$ R\+E\+A\+D\+\_\+\+M\+U\+L\+T\+I\+P\+L\+E\+\_\+\+B\+L\+O\+CK $\ast$/}\hypertarget{mmc_8c_a3d32c27a6be061b865ba539127278f14}{}\label{mmc_8c_a3d32c27a6be061b865ba539127278f14}
 
 
-Definition at line 61 of file mmc.\+c.
+Definition at line 66 of file mmc.\+c.
 
 
 
@@ -232,14 +235,14 @@ Referenced by mmc\+\_\+disk\+\_\+read().
 \subsubsection[{\texorpdfstring{C\+M\+D23}{CMD23}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+M\+D23~(23)         /$\ast$$<$ S\+E\+T\+\_\+\+B\+L\+O\+C\+K\+\_\+\+C\+O\+U\+NT (M\+MC) $\ast$/}\hypertarget{mmc_8c_a14506e981f38b6177bc36f72c2ca18b1}{}\label{mmc_8c_a14506e981f38b6177bc36f72c2ca18b1}
 
 
-Definition at line 62 of file mmc.\+c.
+Definition at line 67 of file mmc.\+c.
 
 \index{mmc.\+c@{mmc.\+c}!C\+M\+D24@{C\+M\+D24}}
 \index{C\+M\+D24@{C\+M\+D24}!mmc.\+c@{mmc.\+c}}
 \subsubsection[{\texorpdfstring{C\+M\+D24}{CMD24}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+M\+D24~(24)         /$\ast$$<$ W\+R\+I\+T\+E\+\_\+\+B\+L\+O\+CK $\ast$/}\hypertarget{mmc_8c_a252300302c6f7960df547a7f5c25be85}{}\label{mmc_8c_a252300302c6f7960df547a7f5c25be85}
 
 
-Definition at line 64 of file mmc.\+c.
+Definition at line 69 of file mmc.\+c.
 
 
 
@@ -250,7 +253,7 @@ Referenced by mmc\+\_\+disk\+\_\+write().
 \subsubsection[{\texorpdfstring{C\+M\+D25}{CMD25}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+M\+D25~(25)         /$\ast$$<$ W\+R\+I\+T\+E\+\_\+\+M\+U\+L\+T\+I\+P\+L\+E\+\_\+\+B\+L\+O\+CK $\ast$/}\hypertarget{mmc_8c_aee2c673fba987178f4642531fdeefe9e}{}\label{mmc_8c_aee2c673fba987178f4642531fdeefe9e}
 
 
-Definition at line 65 of file mmc.\+c.
+Definition at line 70 of file mmc.\+c.
 
 
 
@@ -261,28 +264,28 @@ Referenced by mmc\+\_\+disk\+\_\+write().
 \subsubsection[{\texorpdfstring{C\+M\+D32}{CMD32}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+M\+D32~(32)         /$\ast$$<$ E\+R\+A\+S\+E\+\_\+\+E\+R\+\_\+\+B\+L\+K\+\_\+\+S\+T\+A\+RT $\ast$/}\hypertarget{mmc_8c_af822a2ff9987b3a48982731fa4ba5f7b}{}\label{mmc_8c_af822a2ff9987b3a48982731fa4ba5f7b}
 
 
-Definition at line 66 of file mmc.\+c.
+Definition at line 71 of file mmc.\+c.
 
 \index{mmc.\+c@{mmc.\+c}!C\+M\+D33@{C\+M\+D33}}
 \index{C\+M\+D33@{C\+M\+D33}!mmc.\+c@{mmc.\+c}}
 \subsubsection[{\texorpdfstring{C\+M\+D33}{CMD33}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+M\+D33~(33)         /$\ast$$<$ E\+R\+A\+S\+E\+\_\+\+E\+R\+\_\+\+B\+L\+K\+\_\+\+E\+ND $\ast$/}\hypertarget{mmc_8c_a309d932899cca7255395821dc32dace0}{}\label{mmc_8c_a309d932899cca7255395821dc32dace0}
 
 
-Definition at line 67 of file mmc.\+c.
+Definition at line 72 of file mmc.\+c.
 
 \index{mmc.\+c@{mmc.\+c}!C\+M\+D38@{C\+M\+D38}}
 \index{C\+M\+D38@{C\+M\+D38}!mmc.\+c@{mmc.\+c}}
 \subsubsection[{\texorpdfstring{C\+M\+D38}{CMD38}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+M\+D38~(38)         /$\ast$$<$ E\+R\+A\+SE $\ast$/}\hypertarget{mmc_8c_a6af4991146dfb0a47c4aa6f166efb046}{}\label{mmc_8c_a6af4991146dfb0a47c4aa6f166efb046}
 
 
-Definition at line 68 of file mmc.\+c.
+Definition at line 73 of file mmc.\+c.
 
 \index{mmc.\+c@{mmc.\+c}!C\+M\+D55@{C\+M\+D55}}
 \index{C\+M\+D55@{C\+M\+D55}!mmc.\+c@{mmc.\+c}}
 \subsubsection[{\texorpdfstring{C\+M\+D55}{CMD55}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+M\+D55~(55)         /$\ast$$<$ A\+P\+P\+\_\+\+C\+MD $\ast$/}\hypertarget{mmc_8c_a78289a7a85ffcfddd626694105dc0780}{}\label{mmc_8c_a78289a7a85ffcfddd626694105dc0780}
 
 
-Definition at line 69 of file mmc.\+c.
+Definition at line 74 of file mmc.\+c.
 
 
 
@@ -293,7 +296,7 @@ Referenced by send\+\_\+cmd().
 \subsubsection[{\texorpdfstring{C\+M\+D58}{CMD58}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+M\+D58~(58)         /$\ast$$<$ R\+E\+A\+D\+\_\+\+O\+CR $\ast$/}\hypertarget{mmc_8c_aa7a26b2cf17e1ff5967820a1fa41a7aa}{}\label{mmc_8c_aa7a26b2cf17e1ff5967820a1fa41a7aa}
 
 
-Definition at line 70 of file mmc.\+c.
+Definition at line 75 of file mmc.\+c.
 
 
 
@@ -304,7 +307,7 @@ Referenced by mmc\+\_\+disk\+\_\+initialize(), and mmc\+\_\+disk\+\_\+ioctl().
 \subsubsection[{\texorpdfstring{C\+M\+D8}{CMD8}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+M\+D8~(8)          /$\ast$$<$ S\+E\+N\+D\+\_\+\+I\+F\+\_\+\+C\+O\+ND $\ast$/}\hypertarget{mmc_8c_ac75b3e0ad1fb013ea946fb49bbe65668}{}\label{mmc_8c_ac75b3e0ad1fb013ea946fb49bbe65668}
 
 
-Definition at line 54 of file mmc.\+c.
+Definition at line 59 of file mmc.\+c.
 
 
 
@@ -315,7 +318,7 @@ Referenced by mmc\+\_\+disk\+\_\+initialize(), and send\+\_\+cmd().
 \subsubsection[{\texorpdfstring{C\+M\+D9}{CMD9}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+M\+D9~(9)          /$\ast$$<$ S\+E\+N\+D\+\_\+\+C\+SD $\ast$/}\hypertarget{mmc_8c_a1fac6a251d7e7dc204d21639bf521459}{}\label{mmc_8c_a1fac6a251d7e7dc204d21639bf521459}
 
 
-Definition at line 55 of file mmc.\+c.
+Definition at line 60 of file mmc.\+c.
 
 
 
@@ -337,7 +340,7 @@ Deselect the card and release S\+PI bus.
 
 
 
-Definition at line 101 of file mmc.\+c.
+Definition at line 106 of file mmc.\+c.
 
 
 
@@ -359,7 +362,7 @@ Stat
 \end{DoxyReturn}
 
 
-Definition at line 246 of file mmc.\+c.
+Definition at line 251 of file mmc.\+c.
 
 \index{mmc.\+c@{mmc.\+c}!mmc\+\_\+disk\+\_\+ioctl@{mmc\+\_\+disk\+\_\+ioctl}}
 \index{mmc\+\_\+disk\+\_\+ioctl@{mmc\+\_\+disk\+\_\+ioctl}!mmc.\+c@{mmc.\+c}}
@@ -386,7 +389,7 @@ non zero error
 
 \end{DoxyItemize}
 
-Definition at line 434 of file mmc.\+c.
+Definition at line 439 of file mmc.\+c.
 
 \index{mmc.\+c@{mmc.\+c}!mmc\+\_\+disk\+\_\+read@{mmc\+\_\+disk\+\_\+read}}
 \index{mmc\+\_\+disk\+\_\+read@{mmc\+\_\+disk\+\_\+read}!mmc.\+c@{mmc.\+c}}
@@ -409,7 +412,7 @@ non zero error
 \end{DoxyReturn}
 
 
-Definition at line 342 of file mmc.\+c.
+Definition at line 347 of file mmc.\+c.
 
 \index{mmc.\+c@{mmc.\+c}!mmc\+\_\+disk\+\_\+status@{mmc\+\_\+disk\+\_\+status}}
 \index{mmc\+\_\+disk\+\_\+status@{mmc\+\_\+disk\+\_\+status}!mmc.\+c@{mmc.\+c}}
@@ -429,7 +432,7 @@ S\+T\+A\+\_\+\+N\+O\+I\+N\+IT if no drive
 \end{DoxyReturn}
 
 
-Definition at line 328 of file mmc.\+c.
+Definition at line 333 of file mmc.\+c.
 
 \index{mmc.\+c@{mmc.\+c}!mmc\+\_\+disk\+\_\+write@{mmc\+\_\+disk\+\_\+write}}
 \index{mmc\+\_\+disk\+\_\+write@{mmc\+\_\+disk\+\_\+write}!mmc.\+c@{mmc.\+c}}
@@ -452,7 +455,7 @@ non zero error
 \end{DoxyReturn}
 
 
-Definition at line 383 of file mmc.\+c.
+Definition at line 388 of file mmc.\+c.
 
 \index{mmc.\+c@{mmc.\+c}!mmc\+\_\+select@{mmc\+\_\+select}}
 \index{mmc\+\_\+select@{mmc\+\_\+select}!mmc.\+c@{mmc.\+c}}
@@ -472,7 +475,7 @@ Select the card and wait for ready.
 \end{DoxyReturn}
 
 
-Definition at line 114 of file mmc.\+c.
+Definition at line 119 of file mmc.\+c.
 
 
 
@@ -497,7 +500,7 @@ Receive a data packet from M\+MC.
 \end{DoxyReturn}
 
 
-Definition at line 135 of file mmc.\+c.
+Definition at line 140 of file mmc.\+c.
 
 
 
@@ -522,7 +525,7 @@ bit7==1\+Send failed
 \end{DoxyReturn}
 
 
-Definition at line 194 of file mmc.\+c.
+Definition at line 199 of file mmc.\+c.
 
 
 
@@ -537,7 +540,7 @@ Referenced by mmc\+\_\+disk\+\_\+initialize(), mmc\+\_\+disk\+\_\+ioctl(), mmc\+
 )}\hypertarget{mmc_8c_ab7771efbbd1a015b449d838d7f09959a}{}\label{mmc_8c_ab7771efbbd1a015b449d838d7f09959a}
 
 
-Definition at line 82 of file mmc.\+c.
+Definition at line 87 of file mmc.\+c.
 
 
 
@@ -562,7 +565,7 @@ Send a data packet to M\+MC.
 \end{DoxyReturn}
 
 
-Definition at line 163 of file mmc.\+c.
+Definition at line 168 of file mmc.\+c.
 
 
 
@@ -576,7 +579,7 @@ Referenced by mmc\+\_\+disk\+\_\+write().
 \subsubsection[{\texorpdfstring{Card\+Type}{CardType}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf B\+Y\+TE} Card\+Type\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{mmc_8c_ae9edfbb60df250acb70f5f287eb1497a}{}\label{mmc_8c_ae9edfbb60df250acb70f5f287eb1497a}
 
 
-Definition at line 76 of file mmc.\+c.
+Definition at line 81 of file mmc.\+c.
 
 
 
@@ -587,7 +590,7 @@ Referenced by mmc\+\_\+disk\+\_\+initialize(), mmc\+\_\+disk\+\_\+ioctl(), mmc\+
 \subsubsection[{\texorpdfstring{Stat}{Stat}}]{\setlength{\rightskip}{0pt plus 5cm}volatile {\bf D\+S\+T\+A\+T\+US} Stat = {\bf S\+T\+A\+\_\+\+N\+O\+I\+N\+IT}}\hypertarget{mmc_8c_a014a1e17b21e3c0b80fe0afc0106976f}{}\label{mmc_8c_a014a1e17b21e3c0b80fe0afc0106976f}
 
 
-Definition at line 73 of file mmc.\+c.
+Definition at line 78 of file mmc.\+c.
 
 
 

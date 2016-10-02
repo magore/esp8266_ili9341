@@ -25,16 +25,22 @@
 #ifndef _ADF4351_H_
 #define _ADF4351_H_
 
-#ifdef ESP8266
-    #include "user_config.h"
-#endif
+#include <stdint.h>
+#include <stdarg.h>
+#include <string.h>
+#include <math.h>
 
+#include "adf4351_hal.h"
+
+// Named address space
 #ifndef MEMSPACE
 #define MEMSPACE /**/
 #endif
 
-#include <stdint.h>
-#include <math.h>
+// Weak attribute
+#ifndef WEAK_ATR
+#define WEAK_ATR __attribute__((weak))
+#endif
 
 #define ADF4351_RFOUT_MAX      4400000000.0
 #define ADF4351_RFOUT_MIN        34375000.0

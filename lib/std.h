@@ -1,5 +1,5 @@
 /**
- @file stdlib.h
+ @file std.h
 
  @brief Part of Small printf, and verious conversion code with floating point support
 
@@ -25,31 +25,34 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef _STD_H_
 #define _STD_H_
 
-#ifdef ESP8266
-    #include "user_config.h"
+#include <stdint.h>
+#include <stdarg.h>
+#include <string.h>
+#include <math.h>
+
+#ifdef USER_CONFIG
+#include "user_config.h"
 #endif
 
+// Named address space
 #ifndef MEMSPACE
 #define MEMSPACE /**/
 #endif
 
-#include <stdint.h>
-#include <math.h>
-
-#include "str.h"
-
+// Weak attribute
+#ifndef WEAK_ATR
+#define WEAK_ATR __attribute__((weak))
 #endif
 
-/* stdlib.c */
-MEMSPACE double iexp ( double num , int exp );
-MEMSPACE double scale10 ( double num , int *exp );
-MEMSPACE int atodigit ( int c , int radix );
-MEMSPACE long aton ( char *str , int base );
-
-// Skip if we have the linux strlib.h
-#ifndef _STDLIB_H
-MEMSPACE long strtol ( const char *nptr , char **endptr , int base );
-MEMSPACE int atoi ( const char *str );
-MEMSPACE long atol ( const char *str );
+/* std.c */
+MEMSPACE int WEAK_ATR atodigit ( int c , int radix );
+MEMSPACE long WEAK_ATR aton ( char *str , int base );
+MEMSPACE long WEAK_ATR strtol ( const char *nptr , char **endptr , int base );
+MEMSPACE int WEAK_ATR atoi ( const char *str );
+MEMSPACE long WEAK_ATR atol ( const char *str );
+MEMSPACE double WEAK_ATR iexp ( double num , int exp );
+MEMSPACE double WEAK_ATR scale10 ( double num , int *exp );
 MEMSPACE double atof ( const char *str );
-#endif	// ifndef _STDLIB_H
+
+
+#endif

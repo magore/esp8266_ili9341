@@ -58,9 +58,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define POSIX
 
-#include <user_config.h>
+#include <stdint.h>
+#include <stdarg.h>
+#include <string.h>
+#include <math.h>
+
+#include "mmc_hal.h"
+
 #include "ff.h"
 #include "disk.h"
+#include "diskio.h"
 #include "fatfs_utils.h"
 
 #ifdef ESP8266

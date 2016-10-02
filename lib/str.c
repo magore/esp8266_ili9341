@@ -21,9 +21,16 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <user_config.h>
+#include <stdint.h>
+#include <stdarg.h>
+#include <string.h>
+#include <math.h>
+
+#include "sys.h"
 #include "str.h"
 
+char *strcpy(char *dest, const char *src);
+char *strncpy(char *dest, const char *src, size_t n);
 
 ///@brief Convert Character into HEX digit.
 ///
@@ -56,15 +63,14 @@ long atoh(const char *p)
 }
 
 
-// ==================================================
-// Skip these functions if we have linux ctype.h
-#ifndef _CTYPE_H
-
 /// @brief test if a character is a digit
 /// @param[in] c: character
 /// @return true or false
+#undef isdigit
 MEMSPACE
-int isdigit(int c)
+int
+WEAK_ATR
+isdigit(int c)
 {
     if(c >= '0' && c <= '9')
         return(1);
@@ -76,8 +82,11 @@ int isdigit(int c)
 /// @param[in] c: character.
 ///
 /// @return 1 of upper case, else 0 
+#undef isupper
 MEMSPACE
-int isupper(int c)
+int
+WEAK_ATR
+isupper(int c)
 {
 	if(c >= 'A' && c <= 'Z')
 		return(1);
@@ -89,8 +98,11 @@ int isupper(int c)
 /// @param[in] c: character.
 ///
 /// @return 1 of lower case, else 0 
+#undef islower
 MEMSPACE
-int islower(int c)
+int
+WEAK_ATR
+islower(int c)
 {
 	if(c >= 'a' && c <= 'a')
 		return(1);
@@ -102,8 +114,11 @@ int islower(int c)
 /// @param[in] c: character.
 ///
 /// @return character or lowercase value or character
+#undef tolower
 MEMSPACE
-int tolower(int c)
+int
+WEAK_ATR
+tolower(int c)
 {
 	if(isupper(c))
 		return(c - 'A' + 'a');
@@ -115,25 +130,26 @@ int tolower(int c)
 /// @param[in] c: character.
 ///
 /// @return character or upper case value or character
+#undef toupper
 MEMSPACE
-int toupper(int c)
+int
+WEAK_ATR
+toupper(int c)
 {
 	if(islower(c))
 		return(c - 'a' + 'A');
 	return(c);
 }
-#endif	// ifndef _CTYPE_H
-// ==================================================
 
 // ==================================================
-// Skip these functions if we have linux string.h
-#ifndef _STRING_H
 
 /// @brief String Length
 /// @param[in] str: string
 /// @return string length
 MEMSPACE
-size_t strlen(const char *str)
+size_t
+WEAK_ATR
+strlen(const char *str)
 {
     int len=0;
     // String length
@@ -149,7 +165,9 @@ size_t strlen(const char *str)
 ///
 ///@return 0 on match, < 0 implies str sorts before pat, > 0 implies str sorts after pat
 MEMSPACE
-int strcmp(const char *str, const char *pat)
+int
+WEAK_ATR
+strcmp(const char *str, const char *pat)
 {
 	int ret = 0;
 	int c1,c2;
@@ -170,7 +188,9 @@ int strcmp(const char *str, const char *pat)
 ///@param[in] len: maximum string length for compare
 ///@return 0 on match, < 0 implies str sorts before pat, > 0 implies str sorts after pat
 MEMSPACE
-int strncmp(const char *str, const char *pat, size_t len)
+int
+WEAK_ATR
+strncmp(const char *str, const char *pat, size_t len)
 {
     int ret = 0;
     int c1,c2;
@@ -183,13 +203,9 @@ int strncmp(const char *str, const char *pat, size_t len)
     }
     return(ret);
 }
-#endif // _STRING_H
 // ==================================================
 
 // ==================================================
-// Skip these functions if we have linux strings.h
-#ifndef _STRINGS_H
-
 ///@brief Compare two strings without case
 ///
 ///@param[in] str: string to match.
@@ -197,7 +213,9 @@ int strncmp(const char *str, const char *pat, size_t len)
 ///
 ///@return 0 on match, < 0 implies str sorts before pat, > 0 implies str sorts after pat
 MEMSPACE
-int strcasecmp(const char *str, const char *pat)
+int
+WEAK_ATR
+strcasecmp(const char *str, const char *pat)
 {
 	int ret = 0;
 	int c1,c2;
@@ -218,7 +236,9 @@ int strcasecmp(const char *str, const char *pat)
 ///@param[in] len: maximum string length for compare
 ///@return 0 on match, < 0 implies str sorts before pat, > 0 implies str sorts after pat
 MEMSPACE
-int strncasecmp(const char *str, const char *pat, size_t len)
+int
+WEAK_ATR
+strncasecmp(const char *str, const char *pat, size_t len)
 {
 	int ret = 0;
 	int c1,c2;
@@ -231,8 +251,97 @@ int strncasecmp(const char *str, const char *pat, size_t len)
 	}
 	return(ret);
 }
-#endif // ifndef STRINGS_H
+
 // ==================================================
+
+/// @brief Reverse a string in place
+///  Example: abcdef -> fedcba
+/// @param[in] str: string 
+/// @return string length
+MEMSPACE 
+void
+WEAK_ATR
+reverse(char *str)
+{
+	char temp;
+	int i;
+	int len = strlen(str);
+	// Reverse
+	// We only exchange up to half way
+	for (i = 0; i < (len >> 1); i++)
+	{
+		temp = str[len - i - 1];
+		str[len - i - 1] = str[i];
+		str[i] = temp;
+	}
+}
+
+/// @brief UPPERCASE a string
+/// @param[in] str: string 
+/// @return void
+MEMSPACE 
+void
+WEAK_ATR
+strupper(char *str)
+{
+
+	while(*str)
+	{
+		if(*str >= 'a' && *str <= 'z')
+			*str -= 0x20;
+		++str;
+	}
+}
+
+///@brief Allocate space for string with maximum size.
+///
+/// - Copies tring into allocated space limited to maximum size.
+///
+///@param[in] str: user string.
+///@param[in] len: maximum string length.
+///
+///@return pointer to alocated string.
+
+MEMSPACE 
+char *strnalloc(char *str, int len)
+{
+    char *ptr;
+
+    if(!str)
+        return(NULL);
+    ptr = calloc(len+1,1);
+    if(!ptr)
+        return(ptr);
+    strncpy(ptr,str,len);
+    return(ptr);
+
+}
+
+
+///@brief Allocate space for string.
+///
+/// - Copies tring into allocated space.
+///
+///@param[in] str: user string.
+///
+///@return pointer to alocated string.
+///@return NULL on out of memory.
+MEMSPACE 
+char *stralloc(char *str)
+{
+    char *ptr;
+    int len;
+
+    if(!str)
+        return(str);;
+    len  = strlen(str);
+    ptr = calloc(len+1,1);
+    if(!ptr)
+        return(ptr);
+    strcpy(ptr,str);
+    return(ptr);
+}
+
 
 ///@brief Compare two strings.
 ///
@@ -318,91 +427,6 @@ int MATCHI_LEN(char *str, char *pat)
             return(len);
     }
     return(0);
-}
-
-
-/// @brief Reverse a string in place
-///  Example: abcdef -> fedcba
-/// @param[in] str: string 
-/// @return string length
-MEMSPACE 
-void reverse(char *str)
-{
-	char temp;
-	int i;
-	int len = strlen(str);
-	// Reverse
-	// We only exchange up to half way
-	for (i = 0; i < (len >> 1); i++)
-	{
-		temp = str[len - i - 1];
-		str[len - i - 1] = str[i];
-		str[i] = temp;
-	}
-}
-
-/// @brief UPPERCASE a string
-/// @param[in] str: string 
-/// @return void
-MEMSPACE 
-void strupper(char *str)
-{
-
-	while(*str)
-	{
-		if(*str >= 'a' && *str <= 'z')
-			*str -= 0x20;
-		++str;
-	}
-}
-
-///@brief Allocate space for string with maximum size.
-///
-/// - Copies tring into allocated space limited to maximum size.
-///
-///@param[in] str: user string.
-///@param[in] len: maximum string length.
-///
-///@return pointer to alocated string.
-
-MEMSPACE 
-char *strnalloc(char *str, int len)
-{
-    char *ptr;
-
-    if(!str)
-        return(NULL);
-    ptr = calloc(len+1,1);
-    if(!ptr)
-        return(ptr);
-    strncpy(ptr,str,len);
-    return(ptr);
-
-}
-
-
-///@brief Allocate space for string.
-///
-/// - Copies tring into allocated space.
-///
-///@param[in] str: user string.
-///
-///@return pointer to alocated string.
-///@return NULL on out of memory.
-MEMSPACE 
-char *stralloc(char *str)
-{
-    char *ptr;
-    int len;
-
-    if(!str)
-        return(str);;
-    len  = strlen(str);
-    ptr = calloc(len+1,1);
-    if(!ptr)
-        return(ptr);
-    strcpy(ptr,str);
-    return(ptr);
 }
 
 

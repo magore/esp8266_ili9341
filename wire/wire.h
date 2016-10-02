@@ -24,6 +24,29 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef _WIRE_H_
 #define _WIRE_H_
 
+#include <stdint.h>
+#include <stdarg.h>
+#include <string.h>
+#include <math.h>
+
+
+#ifdef USER_CONFIG
+#include "user_config.h"
+#endif
+
+#include "wire_types.h"
+
+// Named address space
+#ifndef MEMSPACE
+#define MEMSPACE /**/
+#endif
+
+// Weak attribute
+#ifndef WEAK_ATR
+#define WEAK_ATR __attribute__((weak))
+#endif
+
+
 /* wire.c */
 void wire2fp ( wire_p *in , point *out );
 void wire_draw ( window *win , const wire_p *wire , const wire_e *edge , point *view , int x , int y , double scale , uint16_t color );

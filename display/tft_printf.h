@@ -25,11 +25,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #ifndef _TFT_PRINTF_H_
 #define _TFT_PRINTF_H
-#include "user_config.h"
+
+#include <stdint.h>
 #include <stdarg.h>
+#include <string.h>
+#include <math.h>
+
+#ifdef USER_CONFIG
+#include "user_config.h"
+#endif
+
+// Named address space
+#ifndef MEMSPACE
+#define MEMSPACE /**/
+#endif
+
 #include "printf.h"
 
-/* pr.c */
-MEMSPACE int tft_printf ( int size , const char *fmt , ...);
+/* tft_printf.c */
+MEMSPACE int tft_printf ( window *win , const char *fmt , ...);
 
 #endif

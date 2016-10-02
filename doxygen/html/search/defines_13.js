@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['weak_5fatr',['WEAK_ATR',['../printf_8h.html#a399da2caab82ec1bb3d5a8fbc5306768',1,'WEAK_ATR():&#160;printf.h'],['../std_8h.html#a399da2caab82ec1bb3d5a8fbc5306768',1,'WEAK_ATR():&#160;std.h'],['../str_8h.html#a399da2caab82ec1bb3d5a8fbc5306768',1,'WEAK_ATR():&#160;str.h'],['../ili9341__adafruit_8h.html#a399da2caab82ec1bb3d5a8fbc5306768',1,'WEAK_ATR():&#160;ili9341_adafruit.h'],['../network_8h.html#a399da2caab82ec1bb3d5a8fbc5306768',1,'WEAK_ATR():&#160;network.h'],['../wire_8h.html#a399da2caab82ec1bb3d5a8fbc5306768',1,'WEAK_ATR():&#160;wire.h'],['../mmc__hal_8h.html#a399da2caab82ec1bb3d5a8fbc5306768',1,'WEAK_ATR():&#160;mmc_hal.h'],['../server_8h.html#a399da2caab82ec1bb3d5a8fbc5306768',1,'WEAK_ATR():&#160;server.h'],['../web_8h.html#a399da2caab82ec1bb3d5a8fbc5306768',1,'WEAK_ATR():&#160;web.h'],['../user__task_8h.html#a399da2caab82ec1bb3d5a8fbc5306768',1,'WEAK_ATR():&#160;user_task.h'],['../adf4351__hal_8h.html#a399da2caab82ec1bb3d5a8fbc5306768',1,'WEAK_ATR():&#160;adf4351_hal.h']]],
   ['wire_5f2fp',['WIRE_2FP',['../wire__types_8h.html#aac0d606ebb0121e068fddb41f0a8a9f5',1,'wire_types.h']]],
   ['wire_5fend',['WIRE_END',['../wire__types_8h.html#ab77fdc8aba86e1a03e2385821e86ec31',1,'wire_types.h']]],
   ['wire_5fhalf',['WIRE_HALF',['../wire__types_8h.html#adfa05d6e3bc2de299352807bbe52cf79',1,'wire_types.h']]],

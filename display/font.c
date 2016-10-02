@@ -27,7 +27,16 @@
 */
 
 
-#include <user_config.h>
+#include <stdint.h>
+#include <stdarg.h>
+#include <string.h>
+#include <math.h>
+
+#ifdef USER_CONFIG
+#include "user_config.h"
+#endif
+
+#include "font.h"
 
 /// @brief save fonts in flash
 #define MEMSPACE_FONT MEMSPACE

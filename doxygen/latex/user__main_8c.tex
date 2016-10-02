@@ -6,6 +6,7 @@ Main user and initialization code This initialize the platform and runs the main
 
 
 {\ttfamily \#include \char`\"{}user\+\_\+config.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}std.\+h\char`\"{}}\\*
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
@@ -36,13 +37,13 @@ void \hyperlink{user__main_8c_a8c3a7f0ee91987679040299af24bd503}{ets\+\_\+timer\
 \item 
 void \hyperlink{user__main_8c_a6ea5d30094305d8b476b09164dd38f3f}{ets\+\_\+timer\+\_\+setfn} (\hyperlink{ets__sys_8h_ab895f72aa58b986445e6661c4eacaa86}{E\+T\+S\+Timer} $\ast$ptimer, \hyperlink{ets__sys_8h_a9b98fc011315c1e79ebaf55e92265afa}{E\+T\+S\+Timer\+Func} $\ast$pfunction, void $\ast$parg)
 \item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{user__main_8c_aa527aed56b3e044b16d50ca2f6eeb04d}{ms\+\_\+clear} ()
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{user__main_8c_aa527aed56b3e044b16d50ca2f6eeb04d}{ms\+\_\+clear} ()
 \begin{DoxyCompactList}\small\item\em Clear 1000\+HZ timer We loop in case the update of ms\+\_\+time is not \char`\"{}atomic\char`\"{} -\/ done in a single instruction. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} unsigned long \hyperlink{user__main_8c_a579b1507f56ef6a300ed2b6bcb2dca80}{ms\+\_\+read} ()
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} unsigned long \hyperlink{user__main_8c_a579b1507f56ef6a300ed2b6bcb2dca80}{ms\+\_\+read} ()
 \begin{DoxyCompactList}\small\item\em Read 1000\+HZ timer We loop in case the update of ms\+\_\+time is not \char`\"{}atomic\char`\"{} -\/ done in a single instruction. \end{DoxyCompactList}\item 
 void \hyperlink{user__main_8c_ad00817ae93e26408219a68cadd8424fa}{ms\+\_\+task} (void)
 \begin{DoxyCompactList}\small\item\em 1000\+HZ timer task \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{user__main_8c_af02c169744cad045548cd4d79e6205e4}{ms\+\_\+init} ()
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{user__main_8c_af02c169744cad045548cd4d79e6205e4}{ms\+\_\+init} ()
 \begin{DoxyCompactList}\small\item\em Initialize 1000\+HZ timer task. \end{DoxyCompactList}\item 
 void \hyperlink{user__main_8c_a9aaa25ef08319cd23e2cdee0b6405de5}{ntp\+\_\+setup} (void)
 \item 
@@ -52,23 +53,23 @@ void \hyperlink{user__main_8c_a5652e5c73b538dc763c1f4583643105b}{loop} (void)
 \item 
 void \hyperlink{user__main_8c_acf488387a6eadb21c378fffd6f4aae63}{user\+\_\+help} ()
 \item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{user__main_8c_a1a52190bd844126271cd2caa94782ee5}{user\+\_\+tests} (char $\ast$str)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{user__main_8c_a1a52190bd844126271cd2caa94782ee5}{user\+\_\+tests} (char $\ast$str)
 \begin{DoxyCompactList}\small\item\em help functions test parser \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{user__main_8c_a53d692b2f2d330182b01bdd9b7f6e97b}{setup} (void)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{user__main_8c_a53d692b2f2d330182b01bdd9b7f6e97b}{setup} (void)
 \begin{DoxyCompactList}\small\item\em \hyperlink{send_8c_a0ddf1224851353fc92bfbff6f499fa97}{main()} Initialize user task \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} L\+O\+C\+AL void \hyperlink{user__main_8c_a64a245b3a430024097b2175a6502edf1}{init\+\_\+done\+\_\+cb} (void)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} L\+O\+C\+AL void \hyperlink{user__main_8c_a64a245b3a430024097b2175a6502edf1}{init\+\_\+done\+\_\+cb} (void)
 \begin{DoxyCompactList}\small\item\em Callback for system\+\_\+init\+\_\+done\+\_\+cb() Sends message to run task. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} L\+O\+C\+AL void \hyperlink{user__main_8c_aa4e3c2b96eb11d8f9cd7a26562652ca0}{High\+Task} (os\+\_\+event\+\_\+t $\ast$events)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} L\+O\+C\+AL void \hyperlink{user__main_8c_aa4e3c2b96eb11d8f9cd7a26562652ca0}{High\+Task} (os\+\_\+event\+\_\+t $\ast$events)
 \begin{DoxyCompactList}\small\item\em High Priority Task Queue. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} L\+O\+C\+AL void \hyperlink{user__main_8c_ab1856f0b47db20c7a57f0ad84c0852e2}{Normal\+Task} (os\+\_\+event\+\_\+t $\ast$events)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} L\+O\+C\+AL void \hyperlink{user__main_8c_ab1856f0b47db20c7a57f0ad84c0852e2}{Normal\+Task} (os\+\_\+event\+\_\+t $\ast$events)
 \begin{DoxyCompactList}\small\item\em Normal Priority Task Queue. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} L\+O\+C\+AL void \hyperlink{user__main_8c_ad79c2eed789976f508b9c3e7459691c5}{Idle\+Task} (os\+\_\+event\+\_\+t $\ast$events)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} L\+O\+C\+AL void \hyperlink{user__main_8c_ad79c2eed789976f508b9c3e7459691c5}{Idle\+Task} (os\+\_\+event\+\_\+t $\ast$events)
 \begin{DoxyCompactList}\small\item\em Idle Priority Task Queue. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} L\+O\+C\+AL void \hyperlink{user__main_8c_a1a6298ceb314c1707e92070ad4a9416d}{User\+Task} (os\+\_\+event\+\_\+t $\ast$events)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} L\+O\+C\+AL void \hyperlink{user__main_8c_a1a6298ceb314c1707e92070ad4a9416d}{User\+Task} (os\+\_\+event\+\_\+t $\ast$events)
 \begin{DoxyCompactList}\small\item\em User Message handler task Runs corrected cube demo from Sem Optionally wireframe Earth viewer. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} L\+O\+C\+AL void \hyperlink{user__main_8c_a1c325cd5f5c4958a2217e947f8ca59ea}{send\+Msg\+To\+User\+Task} (void $\ast$arg)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} L\+O\+C\+AL void \hyperlink{user__main_8c_a1c325cd5f5c4958a2217e947f8ca59ea}{send\+Msg\+To\+User\+Task} (void $\ast$arg)
 \begin{DoxyCompactList}\small\item\em Message passing function Sends message to run task. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{user__main_8c_aa8253cd89ed4b268472ed62f4f2074ae}{user\+\_\+init} (void)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{user__main_8c_aa8253cd89ed4b268472ed62f4f2074ae}{user\+\_\+init} (void)
 \end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -819,7 +820,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 43 of file network.\+c.
+Definition at line 48 of file network.\+c.
 
 
 

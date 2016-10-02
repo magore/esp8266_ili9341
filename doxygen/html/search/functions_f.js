@@ -4,8 +4,6 @@ var searchData=
   ['p_5fftoa',['p_ftoa',['../printf_8h.html#aff50ad940101472bdb34f18c916f7490',1,'printf.h']]],
   ['p_5fitoa',['p_itoa',['../printf_8c.html#aa867325aa16ff64b6a8f6f200b7de855',1,'p_itoa(long num, char *str, int max, int prec, int sign):&#160;printf.c'],['../printf_8h.html#aa867325aa16ff64b6a8f6f200b7de855',1,'p_itoa(long num, char *str, int max, int prec, int sign):&#160;printf.c']]],
   ['p_5fntoa',['p_ntoa',['../printf_8c.html#a6aa7848c7ffe1a823379ec5b1ec86134',1,'p_ntoa(unsigned long num, char *str, int max, int radix, int prec):&#160;printf.c'],['../printf_8h.html#a6aa7848c7ffe1a823379ec5b1ec86134',1,'p_ntoa(unsigned long num, char *str, int max, int radix, int prec):&#160;printf.c']]],
-  ['p_5freverse',['p_reverse',['../printf_8h.html#a4af3a4466134e9a6ecab7e18a5795396',1,'printf.h']]],
-  ['p_5fstrupper',['p_strupper',['../printf_8h.html#a232e21e6be1269388ac97991ef8b3b48',1,'printf.h']]],
   ['parse_5fhttp_5frequest',['parse_http_request',['../web_8c.html#a574da7d2e02f16c3ff0727061b90c46c',1,'parse_http_request(rwbuf_t *p, hinfo_t *hi):&#160;web.c'],['../web_8h.html#a574da7d2e02f16c3ff0727061b90c46c',1,'parse_http_request(rwbuf_t *p, hinfo_t *hi):&#160;web.c']]],
   ['perror',['perror',['../posix_8c.html#a4ce26afbb10890d31c53a8ff76d992e3',1,'perror(const char *s):&#160;posix.c'],['../posix_8h.html#a4ce26afbb10890d31c53a8ff76d992e3',1,'perror(const char *s):&#160;posix.c']]],
   ['perspectiveprojection',['PerspectiveProjection',['../cordic_8c.html#a793b036235e0fdd6e799866fcb14e7e4',1,'PerspectiveProjection(point *P, double scale, int x, int y):&#160;cordic.c'],['../cordic_8h.html#a793b036235e0fdd6e799866fcb14e7e4',1,'PerspectiveProjection(point *P, double scale, int x, int y):&#160;cordic.c']]],

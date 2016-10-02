@@ -26,10 +26,14 @@
 */
 
 /* define ADF4351 global data */
+#include <stdint.h>
+#include <stdarg.h>
+#include <string.h>
+#include <math.h>
+
 #include "adf4351_hal.h"
 #include "adf4351.h"
 
-#include <math.h>
 
 /// @brief ADF4351 register buffer
 adf4351_regs_t regs;

@@ -5,9 +5,14 @@
 System utilities.  
 
 
-{\ttfamily \#include $<$user\+\_\+config.\+h$>$}\\*
+{\ttfamily \#include $<$stdint.\+h$>$}\\*
+{\ttfamily \#include $<$stdarg.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$math.\+h$>$}\\*
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{sys_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}
 \item 
 \#define \hyperlink{sys_8h_ae9739bcecd10d5962cc10c12bf01594f}{H\+E\+A\+P\+\_\+\+S\+T\+A\+RT}~((\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t}) \& (\hyperlink{sys_8h_ab750b0b8889cb7d718f12d66f01fd954}{\+\_\+heap\+\_\+start}))
 \item 
@@ -16,25 +21,25 @@ System utilities.
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void $\ast$ \hyperlink{sys_8h_a22b308551dea873face80619301d5618}{malloc} (size\+\_\+t size)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void $\ast$ \hyperlink{sys_8h_a22b308551dea873face80619301d5618}{malloc} (size\+\_\+t size)
 \begin{DoxyCompactList}\small\item\em calloc may be aliased to safecalloc \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void $\ast$ \hyperlink{sys_8h_ae148919146e88c7c40c7e2f781649b31}{calloc} (size\+\_\+t nmemb, size\+\_\+t size)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void $\ast$ \hyperlink{sys_8h_ae148919146e88c7c40c7e2f781649b31}{calloc} (size\+\_\+t nmemb, size\+\_\+t size)
 \begin{DoxyCompactList}\small\item\em calloc buffer P\+O\+S\+IX function \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{sys_8h_a0f8c52d1c359b700088f8417b48e467b}{free} (void $\ast$p)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{sys_8h_a0f8c52d1c359b700088f8417b48e467b}{free} (void $\ast$p)
 \begin{DoxyCompactList}\small\item\em Free buffer P\+O\+S\+IX function We only call os\+\_\+free() is pointer is not null. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} \hyperlink{sys_8h_a077ad54a717a75f55a74aff8692b9be2}{free\+Ram} (void)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} \hyperlink{sys_8h_a077ad54a717a75f55a74aff8692b9be2}{free\+Ram} (void)
 \begin{DoxyCompactList}\small\item\em Return Free memory. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{sys_8h_a685d93545b12079d00ffc678d3611333}{Print\+Ram} (void)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{sys_8h_a685d93545b12079d00ffc678d3611333}{Print\+Ram} (void)
 \begin{DoxyCompactList}\small\item\em Display Free memory and regions. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void $\ast$ \hyperlink{sys_8h_a65ca18fba3d6cdb9ce8ca8040a96e0c5}{safecalloc} (size\+\_\+t nmemb, size\+\_\+t size)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void $\ast$ \hyperlink{sys_8h_a65ca18fba3d6cdb9ce8ca8040a96e0c5}{safecalloc} (size\+\_\+t nmemb, size\+\_\+t size)
 \begin{DoxyCompactList}\small\item\em Safe Calloc -\/ Display Error message if Calloc fails. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void $\ast$ \hyperlink{sys_8h_aca19f0f1e5d805c1e5f61101fa4690f1}{safemalloc} (size\+\_\+t size)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void $\ast$ \hyperlink{sys_8h_aca19f0f1e5d805c1e5f61101fa4690f1}{safemalloc} (size\+\_\+t size)
 \begin{DoxyCompactList}\small\item\em Safe Malloc -\/ Display Error message if Malloc fails. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{sys_8h_a61f06ee340417c629633142e0a5db288}{safefree} (void $\ast$p)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{sys_8h_a61f06ee340417c629633142e0a5db288}{safefree} (void $\ast$p)
 \begin{DoxyCompactList}\small\item\em Safe free -\/ Only free a pointer if it is in malloc memory range. We want to try to catch frees of static or bogus data. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{sys_8h_a3d3120b9c1d6fa02648d6e317f0f6e44}{reset} (void)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{sys_8h_a3d3120b9c1d6fa02648d6e317f0f6e44}{reset} (void)
 \begin{DoxyCompactList}\small\item\em reset system \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{sys_8h_a9b9f170e9a01e51b57656fcda1f183df}{wdt\+\_\+reset} (void)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{sys_8h_a9b9f170e9a01e51b57656fcda1f183df}{wdt\+\_\+reset} (void)
 \begin{DoxyCompactList}\small\item\em reset watchdog \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -64,7 +69,7 @@ You should have received a copy of the G\+NU General Public License along with t
 \subsubsection[{\texorpdfstring{H\+E\+A\+P\+\_\+\+E\+ND}{HEAP_END}}]{\setlength{\rightskip}{0pt plus 5cm}\#define H\+E\+A\+P\+\_\+\+E\+ND~(({\bf uint32\+\_\+t}) (0x3\+F\+F\+F\+C000\+U -\/ 1\+U))}\hypertarget{sys_8h_a7437bbfa3a1415a7d91fded74239a762}{}\label{sys_8h_a7437bbfa3a1415a7d91fded74239a762}
 
 
-Definition at line 31 of file sys.\+h.
+Definition at line 43 of file sys.\+h.
 
 
 
@@ -75,11 +80,18 @@ Referenced by Print\+Ram(), and safefree().
 \subsubsection[{\texorpdfstring{H\+E\+A\+P\+\_\+\+S\+T\+A\+RT}{HEAP_START}}]{\setlength{\rightskip}{0pt plus 5cm}\#define H\+E\+A\+P\+\_\+\+S\+T\+A\+RT~(({\bf uint32\+\_\+t}) \& ({\bf \+\_\+heap\+\_\+start}))}\hypertarget{sys_8h_ae9739bcecd10d5962cc10c12bf01594f}{}\label{sys_8h_ae9739bcecd10d5962cc10c12bf01594f}
 
 
-Definition at line 30 of file sys.\+h.
+Definition at line 42 of file sys.\+h.
 
 
 
 Referenced by Print\+Ram(), and safefree().
+
+\index{sys.\+h@{sys.\+h}!M\+E\+M\+S\+P\+A\+CE@{M\+E\+M\+S\+P\+A\+CE}}
+\index{M\+E\+M\+S\+P\+A\+CE@{M\+E\+M\+S\+P\+A\+CE}!sys.\+h@{sys.\+h}}
+\subsubsection[{\texorpdfstring{M\+E\+M\+S\+P\+A\+CE}{MEMSPACE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+E\+M\+S\+P\+A\+CE}\hypertarget{sys_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{}\label{sys_8h_ad0fe97585b8891f5e4f2b9a6426330a4}
+
+
+Definition at line 38 of file sys.\+h.
 
 
 
@@ -108,7 +120,7 @@ void $\ast$ buffer
 \end{DoxyReturn}
 
 
-Definition at line 52 of file sys.\+c.
+Definition at line 56 of file sys.\+c.
 
 
 
@@ -135,7 +147,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 65 of file sys.\+c.
+Definition at line 69 of file sys.\+c.
 
 
 
@@ -160,7 +172,7 @@ free memory in bytes.
 \end{DoxySeeAlso}
 
 
-Definition at line 76 of file sys.\+c.
+Definition at line 80 of file sys.\+c.
 
 \index{sys.\+h@{sys.\+h}!malloc@{malloc}}
 \index{malloc@{malloc}!sys.\+h@{sys.\+h}}
@@ -183,7 +195,7 @@ void $\ast$ buffer
 \end{DoxyReturn}
 
 
-Definition at line 39 of file sys.\+c.
+Definition at line 43 of file sys.\+c.
 
 \index{sys.\+h@{sys.\+h}!Print\+Ram@{Print\+Ram}}
 \index{Print\+Ram@{Print\+Ram}!sys.\+h@{sys.\+h}}
@@ -201,7 +213,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 85 of file sys.\+c.
+Definition at line 89 of file sys.\+c.
 
 
 
@@ -223,7 +235,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 155 of file sys.\+c.
+Definition at line 159 of file sys.\+c.
 
 
 
@@ -257,7 +269,7 @@ void.
 
 \end{DoxyItemize}
 
-Definition at line 100 of file sys.\+c.
+Definition at line 104 of file sys.\+c.
 
 \index{sys.\+h@{sys.\+h}!safefree@{safefree}}
 \index{safefree@{safefree}!sys.\+h@{sys.\+h}}
@@ -284,7 +296,7 @@ void.
 
 \end{DoxyItemize}
 
-Definition at line 139 of file sys.\+c.
+Definition at line 143 of file sys.\+c.
 
 \index{sys.\+h@{sys.\+h}!safemalloc@{safemalloc}}
 \index{safemalloc@{safemalloc}!sys.\+h@{sys.\+h}}
@@ -311,7 +323,7 @@ void.
 
 \end{DoxyItemize}
 
-Definition at line 117 of file sys.\+c.
+Definition at line 121 of file sys.\+c.
 
 \index{sys.\+h@{sys.\+h}!wdt\+\_\+reset@{wdt\+\_\+reset}}
 \index{wdt\+\_\+reset@{wdt\+\_\+reset}!sys.\+h@{sys.\+h}}
@@ -329,7 +341,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 164 of file sys.\+c.
+Definition at line 168 of file sys.\+c.
 
 
 

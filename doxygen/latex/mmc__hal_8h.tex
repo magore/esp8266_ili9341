@@ -5,9 +5,16 @@
 M\+MC Hardware Layer for Fat\+Fs.  
 
 
-{\ttfamily \#include \char`\"{}user\+\_\+config.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$stdint.\+h$>$}\\*
+{\ttfamily \#include $<$stdarg.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$math.\+h$>$}\\*
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}
+\item 
+\#define \hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR}~\hyperlink{user__task_8c_ade20ba3eb51f42d2b2deb917303c9a5e}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}((weak))
 \item 
 \#define \hyperlink{mmc__hal_8h_ae150a8179a17d87a2a72bc2d5705d835}{mmc\+\_\+cli}()~cli() /$\ast$$<$ interrupt disable $\ast$/
 \item 
@@ -26,43 +33,43 @@ M\+MC Hardware Layer for Fat\+Fs.
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mmc__hal_8h_a35434a6e722b07d8fee213c2256391be}{mmc\+\_\+install\+\_\+timer} (void)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mmc__hal_8h_a35434a6e722b07d8fee213c2256391be}{mmc\+\_\+install\+\_\+timer} (void)
 \begin{DoxyCompactList}\small\item\em Install M\+MC timer task\+: \hyperlink{mmc__hal_8c_a3371d3911fed5af510a9b6e313773171}{mmc\+\_\+task()} \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mmc__hal_8h_ae417c25675099d771b870e525cd7b124}{mmc\+\_\+spi\+\_\+\+T\+X\+\_\+buffer} (const \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} $\ast$data, int \hyperlink{user__main_8c_aa011065eee776eb1bda73597b5d9d5d7}{count})
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mmc__hal_8h_ae417c25675099d771b870e525cd7b124}{mmc\+\_\+spi\+\_\+\+T\+X\+\_\+buffer} (const \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} $\ast$data, int \hyperlink{user__main_8c_aa011065eee776eb1bda73597b5d9d5d7}{count})
 \begin{DoxyCompactList}\small\item\em S\+PI write buffer. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mmc__hal_8h_a4ffe99e5651f10c46f3babc9325ef82f}{mmc\+\_\+spi\+\_\+\+R\+X\+\_\+buffer} (const \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} $\ast$data, int \hyperlink{user__main_8c_aa011065eee776eb1bda73597b5d9d5d7}{count})
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mmc__hal_8h_a4ffe99e5651f10c46f3babc9325ef82f}{mmc\+\_\+spi\+\_\+\+R\+X\+\_\+buffer} (const \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} $\ast$data, int \hyperlink{user__main_8c_aa011065eee776eb1bda73597b5d9d5d7}{count})
 \begin{DoxyCompactList}\small\item\em S\+PI read buffer. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} \hyperlink{mmc__hal_8h_a8cb914c8127c4bc99546102507e330cc}{mmc\+\_\+spi\+\_\+\+RX} (void)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} \hyperlink{mmc__hal_8h_a8cb914c8127c4bc99546102507e330cc}{mmc\+\_\+spi\+\_\+\+RX} (void)
 \begin{DoxyCompactList}\small\item\em S\+PI read 1 byte. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mmc__hal_8h_acb7cc45118bb7683c9950e0f35f252ce}{mmc\+\_\+spi\+\_\+\+TX} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} data)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mmc__hal_8h_acb7cc45118bb7683c9950e0f35f252ce}{mmc\+\_\+spi\+\_\+\+TX} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} data)
 \begin{DoxyCompactList}\small\item\em S\+PI write 1 byte. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} \hyperlink{mmc__hal_8h_aef3ff7459eeb9454068bd884c5dcb951}{mmc\+\_\+spi\+\_\+\+T\+X\+RX} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} data)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} \hyperlink{mmc__hal_8h_aef3ff7459eeb9454068bd884c5dcb951}{mmc\+\_\+spi\+\_\+\+T\+X\+RX} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} data)
 \begin{DoxyCompactList}\small\item\em S\+PI read and write 1 byte. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mmc__hal_8h_a95af3dbb0e5e0a16710138786c29fb4f}{mmc\+\_\+set\+\_\+ms\+\_\+timeout} (\hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} ms)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mmc__hal_8h_a95af3dbb0e5e0a16710138786c29fb4f}{mmc\+\_\+set\+\_\+ms\+\_\+timeout} (\hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} ms)
 \begin{DoxyCompactList}\small\item\em Set M\+MC timeout timer in Milliseconds. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mmc__hal_8h_a852a35d5ff10bfbe64bcb06ca9a3aeb8}{mmc\+\_\+test\+\_\+timeout} (void)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mmc__hal_8h_a852a35d5ff10bfbe64bcb06ca9a3aeb8}{mmc\+\_\+test\+\_\+timeout} (void)
 \begin{DoxyCompactList}\small\item\em Wait for timeout. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mmc__hal_8h_ad417477e66c88b40dcce683fd6a5c47a}{mmc\+\_\+init} (int verbose)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mmc__hal_8h_ad417477e66c88b40dcce683fd6a5c47a}{mmc\+\_\+init} (int verbose)
 \begin{DoxyCompactList}\small\item\em Initialize M\+MC and Fat\+Fs interface, display diagnostics. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mmc__hal_8h_a7c8d13c34124d4ef83ecabc43fbdb8ad}{mmc\+\_\+spi\+\_\+init} (\hyperlink{earth2wireframe_8c_a32f2e37ee053cf2ce8ca28d1f74630e5}{int32\+\_\+t} clock)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mmc__hal_8h_a7c8d13c34124d4ef83ecabc43fbdb8ad}{mmc\+\_\+spi\+\_\+init} (\hyperlink{earth2wireframe_8c_a32f2e37ee053cf2ce8ca28d1f74630e5}{int32\+\_\+t} clock)
 \begin{DoxyCompactList}\small\item\em M\+MC S\+PI bus init. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mmc__hal_8h_a3e75b44ca014c1a21a8ab2e30568da85}{mmc\+\_\+slow} (void)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mmc__hal_8h_a3e75b44ca014c1a21a8ab2e30568da85}{mmc\+\_\+slow} (void)
 \begin{DoxyCompactList}\small\item\em M\+MC set slow S\+PI bus speed. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mmc__hal_8h_a283cf543bfebd952817b5af109c5989e}{mmc\+\_\+fast} (void)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mmc__hal_8h_a283cf543bfebd952817b5af109c5989e}{mmc\+\_\+fast} (void)
 \begin{DoxyCompactList}\small\item\em M\+MC fast S\+PI bus speed. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mmc__hal_8h_a8b718faa35b9304193cd0c074b542f8a}{mmc\+\_\+power\+\_\+on} (void)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mmc__hal_8h_a8b718faa35b9304193cd0c074b542f8a}{mmc\+\_\+power\+\_\+on} (void)
 \begin{DoxyCompactList}\small\item\em M\+MC power ON initialize. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mmc__hal_8h_ac9deae120e9c3b519ea62bf4c486e2ea}{mmc\+\_\+power\+\_\+off} (void)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mmc__hal_8h_ac9deae120e9c3b519ea62bf4c486e2ea}{mmc\+\_\+power\+\_\+off} (void)
 \begin{DoxyCompactList}\small\item\em M\+MC power off. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mmc__hal_8h_a7ac4f7882f3b101ffb74878828d30b42}{mmc\+\_\+power\+\_\+status} (void)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mmc__hal_8h_a7ac4f7882f3b101ffb74878828d30b42}{mmc\+\_\+power\+\_\+status} (void)
 \begin{DoxyCompactList}\small\item\em M\+MC power status. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mmc__hal_8h_a4b1e22f96f354e1014788fc87e30adbf}{mmc\+\_\+cs\+\_\+enable} (void)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mmc__hal_8h_a4b1e22f96f354e1014788fc87e30adbf}{mmc\+\_\+cs\+\_\+enable} (void)
 \begin{DoxyCompactList}\small\item\em M\+MC CS enable. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mmc__hal_8h_ac611ee39afca3e8f850c15b95e2a7d80}{mmc\+\_\+cs\+\_\+disable} (void)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mmc__hal_8h_ac611ee39afca3e8f850c15b95e2a7d80}{mmc\+\_\+cs\+\_\+disable} (void)
 \begin{DoxyCompactList}\small\item\em M\+MC CS disable. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mmc__hal_8h_ab9dae194babcfe774428305a575556cc}{mmc\+\_\+ins\+\_\+status} (void)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mmc__hal_8h_ab9dae194babcfe774428305a575556cc}{mmc\+\_\+ins\+\_\+status} (void)
 \begin{DoxyCompactList}\small\item\em M\+MC Card Inserted status. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mmc__hal_8h_a5d4cd1450305a6f9ad8ebd1a19a606c5}{mmc\+\_\+wp\+\_\+status} (void)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mmc__hal_8h_a5d4cd1450305a6f9ad8ebd1a19a606c5}{mmc\+\_\+wp\+\_\+status} (void)
 \begin{DoxyCompactList}\small\item\em M\+MC Card Write Protect status. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -81,6 +88,13 @@ M\+MC Hardware Layer for Fat\+Fs.
 
 
 \subsection{Macro Definition Documentation}
+\index{mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}!M\+E\+M\+S\+P\+A\+CE@{M\+E\+M\+S\+P\+A\+CE}}
+\index{M\+E\+M\+S\+P\+A\+CE@{M\+E\+M\+S\+P\+A\+CE}!mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}}
+\subsubsection[{\texorpdfstring{M\+E\+M\+S\+P\+A\+CE}{MEMSPACE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+E\+M\+S\+P\+A\+CE}\hypertarget{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{}\label{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}
+
+
+Definition at line 27 of file mmc\+\_\+hal.\+h.
+
 \index{mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}!mmc\+\_\+cli@{mmc\+\_\+cli}}
 \index{mmc\+\_\+cli@{mmc\+\_\+cli}!mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}}
 \subsubsection[{\texorpdfstring{mmc\+\_\+cli}{mmc_cli}}]{\setlength{\rightskip}{0pt plus 5cm}\#define mmc\+\_\+cli(
@@ -90,7 +104,7 @@ M\+MC Hardware Layer for Fat\+Fs.
 )~cli() /$\ast$$<$ interrupt disable $\ast$/}\hypertarget{mmc__hal_8h_ae150a8179a17d87a2a72bc2d5705d835}{}\label{mmc__hal_8h_ae150a8179a17d87a2a72bc2d5705d835}
 
 
-Definition at line 35 of file mmc\+\_\+hal.\+h.
+Definition at line 52 of file mmc\+\_\+hal.\+h.
 
 
 
@@ -101,14 +115,14 @@ Referenced by mmc\+\_\+set\+\_\+ms\+\_\+timeout().
 \subsubsection[{\texorpdfstring{mmc\+\_\+disk\+\_\+initialize}{mmc_disk_initialize}}]{\setlength{\rightskip}{0pt plus 5cm}\#define mmc\+\_\+disk\+\_\+initialize~{\bf disk\+\_\+initialize}	/$\ast$$<$ {\bf disk\+\_\+initialize}() $\ast$/}\hypertarget{mmc__hal_8h_aff158a334ad05bff4ddec6d37cee27fb}{}\label{mmc__hal_8h_aff158a334ad05bff4ddec6d37cee27fb}
 
 
-Definition at line 39 of file mmc\+\_\+hal.\+h.
+Definition at line 56 of file mmc\+\_\+hal.\+h.
 
 \index{mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}!mmc\+\_\+disk\+\_\+ioctl@{mmc\+\_\+disk\+\_\+ioctl}}
 \index{mmc\+\_\+disk\+\_\+ioctl@{mmc\+\_\+disk\+\_\+ioctl}!mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}}
 \subsubsection[{\texorpdfstring{mmc\+\_\+disk\+\_\+ioctl}{mmc_disk_ioctl}}]{\setlength{\rightskip}{0pt plus 5cm}\#define mmc\+\_\+disk\+\_\+ioctl~{\bf disk\+\_\+ioctl}           /$\ast$$<$ {\bf disk\+\_\+ioctl} $\ast$/}\hypertarget{mmc__hal_8h_a8ac2eb91d5f4e69388376228678c5912}{}\label{mmc__hal_8h_a8ac2eb91d5f4e69388376228678c5912}
 
 
-Definition at line 43 of file mmc\+\_\+hal.\+h.
+Definition at line 60 of file mmc\+\_\+hal.\+h.
 
 
 
@@ -119,21 +133,21 @@ Referenced by mmc\+\_\+init().
 \subsubsection[{\texorpdfstring{mmc\+\_\+disk\+\_\+read}{mmc_disk_read}}]{\setlength{\rightskip}{0pt plus 5cm}\#define mmc\+\_\+disk\+\_\+read~{\bf disk\+\_\+read}             /$\ast$$<$ {\bf disk\+\_\+read}() $\ast$/}\hypertarget{mmc__hal_8h_a730cbb43427fc64acf49f9b6c85d6c71}{}\label{mmc__hal_8h_a730cbb43427fc64acf49f9b6c85d6c71}
 
 
-Definition at line 41 of file mmc\+\_\+hal.\+h.
+Definition at line 58 of file mmc\+\_\+hal.\+h.
 
 \index{mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}!mmc\+\_\+disk\+\_\+status@{mmc\+\_\+disk\+\_\+status}}
 \index{mmc\+\_\+disk\+\_\+status@{mmc\+\_\+disk\+\_\+status}!mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}}
 \subsubsection[{\texorpdfstring{mmc\+\_\+disk\+\_\+status}{mmc_disk_status}}]{\setlength{\rightskip}{0pt plus 5cm}\#define mmc\+\_\+disk\+\_\+status~{\bf disk\+\_\+status}			/$\ast$$<$ {\bf disk\+\_\+status}() $\ast$/}\hypertarget{mmc__hal_8h_ae5aaad207550110193363805a79159ee}{}\label{mmc__hal_8h_ae5aaad207550110193363805a79159ee}
 
 
-Definition at line 40 of file mmc\+\_\+hal.\+h.
+Definition at line 57 of file mmc\+\_\+hal.\+h.
 
 \index{mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}!mmc\+\_\+disk\+\_\+write@{mmc\+\_\+disk\+\_\+write}}
 \index{mmc\+\_\+disk\+\_\+write@{mmc\+\_\+disk\+\_\+write}!mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}}
 \subsubsection[{\texorpdfstring{mmc\+\_\+disk\+\_\+write}{mmc_disk_write}}]{\setlength{\rightskip}{0pt plus 5cm}\#define mmc\+\_\+disk\+\_\+write~{\bf disk\+\_\+write}			/$\ast$$<$ {\bf disk\+\_\+read}() $\ast$/}\hypertarget{mmc__hal_8h_a0dbf394d39f84f5e956d77108b3f9787}{}\label{mmc__hal_8h_a0dbf394d39f84f5e956d77108b3f9787}
 
 
-Definition at line 42 of file mmc\+\_\+hal.\+h.
+Definition at line 59 of file mmc\+\_\+hal.\+h.
 
 \index{mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}!mmc\+\_\+sei@{mmc\+\_\+sei}}
 \index{mmc\+\_\+sei@{mmc\+\_\+sei}!mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}}
@@ -144,11 +158,18 @@ Definition at line 42 of file mmc\+\_\+hal.\+h.
 )~sei() /$\ast$$<$ interrupt enable $\ast$/}\hypertarget{mmc__hal_8h_ae88a5c46f00c634234441978491b16fe}{}\label{mmc__hal_8h_ae88a5c46f00c634234441978491b16fe}
 
 
-Definition at line 36 of file mmc\+\_\+hal.\+h.
+Definition at line 53 of file mmc\+\_\+hal.\+h.
 
 
 
 Referenced by mmc\+\_\+set\+\_\+ms\+\_\+timeout().
+
+\index{mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}!W\+E\+A\+K\+\_\+\+A\+TR@{W\+E\+A\+K\+\_\+\+A\+TR}}
+\index{W\+E\+A\+K\+\_\+\+A\+TR@{W\+E\+A\+K\+\_\+\+A\+TR}!mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}}
+\subsubsection[{\texorpdfstring{W\+E\+A\+K\+\_\+\+A\+TR}{WEAK_ATR}}]{\setlength{\rightskip}{0pt plus 5cm}\#define W\+E\+A\+K\+\_\+\+A\+TR~{\bf \+\_\+\+\_\+attribute\+\_\+\+\_\+}((weak))}\hypertarget{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{}\label{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}
+
+
+Definition at line 32 of file mmc\+\_\+hal.\+h.
 
 
 
@@ -172,7 +193,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 390 of file mmc\+\_\+hal.\+c.
+Definition at line 393 of file mmc\+\_\+hal.\+c.
 
 
 
@@ -197,7 +218,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 372 of file mmc\+\_\+hal.\+c.
+Definition at line 375 of file mmc\+\_\+hal.\+c.
 
 
 
@@ -222,7 +243,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 309 of file mmc\+\_\+hal.\+c.
+Definition at line 312 of file mmc\+\_\+hal.\+c.
 
 
 
@@ -249,7 +270,7 @@ Initialize M\+MC and Fat\+Fs interface, display diagnostics.
 \end{DoxyReturn}
 
 
-Definition at line 195 of file mmc\+\_\+hal.\+c.
+Definition at line 198 of file mmc\+\_\+hal.\+c.
 
 
 
@@ -274,7 +295,7 @@ M\+MC Card Inserted status.
 
 \end{DoxyItemize}
 
-Definition at line 406 of file mmc\+\_\+hal.\+c.
+Definition at line 409 of file mmc\+\_\+hal.\+c.
 
 
 
@@ -299,7 +320,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 74 of file mmc\+\_\+hal.\+c.
+Definition at line 77 of file mmc\+\_\+hal.\+c.
 
 
 
@@ -324,7 +345,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 343 of file mmc\+\_\+hal.\+c.
+Definition at line 346 of file mmc\+\_\+hal.\+c.
 
 
 
@@ -349,7 +370,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 320 of file mmc\+\_\+hal.\+c.
+Definition at line 323 of file mmc\+\_\+hal.\+c.
 
 
 
@@ -374,7 +395,7 @@ M\+MC power status.
 
 \end{DoxyItemize}
 
-Definition at line 360 of file mmc\+\_\+hal.\+c.
+Definition at line 363 of file mmc\+\_\+hal.\+c.
 
 \index{mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}!mmc\+\_\+set\+\_\+ms\+\_\+timeout@{mmc\+\_\+set\+\_\+ms\+\_\+timeout}}
 \index{mmc\+\_\+set\+\_\+ms\+\_\+timeout@{mmc\+\_\+set\+\_\+ms\+\_\+timeout}!mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}}
@@ -400,7 +421,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 159 of file mmc\+\_\+hal.\+c.
+Definition at line 162 of file mmc\+\_\+hal.\+c.
 
 
 
@@ -425,7 +446,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 297 of file mmc\+\_\+hal.\+c.
+Definition at line 300 of file mmc\+\_\+hal.\+c.
 
 
 
@@ -447,7 +468,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 275 of file mmc\+\_\+hal.\+c.
+Definition at line 278 of file mmc\+\_\+hal.\+c.
 
 
 
@@ -469,7 +490,7 @@ uint8\+\_\+t value
 \end{DoxyReturn}
 
 
-Definition at line 112 of file mmc\+\_\+hal.\+c.
+Definition at line 115 of file mmc\+\_\+hal.\+c.
 
 \index{mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}!mmc\+\_\+spi\+\_\+\+R\+X\+\_\+buffer@{mmc\+\_\+spi\+\_\+\+R\+X\+\_\+buffer}}
 \index{mmc\+\_\+spi\+\_\+\+R\+X\+\_\+buffer@{mmc\+\_\+spi\+\_\+\+R\+X\+\_\+buffer}!mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}}
@@ -495,7 +516,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 100 of file mmc\+\_\+hal.\+c.
+Definition at line 103 of file mmc\+\_\+hal.\+c.
 
 
 
@@ -522,7 +543,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 127 of file mmc\+\_\+hal.\+c.
+Definition at line 130 of file mmc\+\_\+hal.\+c.
 
 
 
@@ -552,7 +573,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 86 of file mmc\+\_\+hal.\+c.
+Definition at line 89 of file mmc\+\_\+hal.\+c.
 
 
 
@@ -579,7 +600,7 @@ uint8\+\_\+t value read
 \end{DoxyReturn}
 
 
-Definition at line 141 of file mmc\+\_\+hal.\+c.
+Definition at line 144 of file mmc\+\_\+hal.\+c.
 
 
 
@@ -603,7 +624,7 @@ Wait for timeout.
 \end{DoxyReturn}
 
 
-Definition at line 170 of file mmc\+\_\+hal.\+c.
+Definition at line 173 of file mmc\+\_\+hal.\+c.
 
 
 
@@ -628,7 +649,7 @@ M\+MC Card Write Protect status.
 
 \end{DoxyItemize}
 
-Definition at line 419 of file mmc\+\_\+hal.\+c.
+Definition at line 422 of file mmc\+\_\+hal.\+c.
 
 
 

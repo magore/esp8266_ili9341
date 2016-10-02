@@ -22,9 +22,11 @@
 */
 
 
+#include <stdint.h>
+#include <stdarg.h>
+#include <string.h>
+#include <math.h>
 
-
-#include "user_config.h"
 #include "bridge.h"
 
 os_event_t bridge_task_queue[bridge_task_queue_length];

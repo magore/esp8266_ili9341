@@ -25,7 +25,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef __TIMER_H__
 #define __TIMER_H__
 
-#include <user_config.h>
+#include <stdint.h>
+#include <stdarg.h>
+#include <string.h>
+#include <math.h>
+
+#include "timer_hal.h"
+
 #include <time.h>
 
 ///@brief Number of user timer tasks

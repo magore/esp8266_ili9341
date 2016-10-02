@@ -26,7 +26,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef _DISK_H_
 #define _DISK_H_
 
-#include <user_config.h>
+#include <stdint.h>
+#include <stdarg.h>
+#include <string.h>
+#include <math.h>
+
+#include "mmc_hal.h"
 
 #include "ff.h"
 #include "diskio.h"

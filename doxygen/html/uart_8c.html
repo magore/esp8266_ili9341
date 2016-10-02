@@ -97,7 +97,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>Uart driver for ESP8266.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;<a class="el" href="user__config_8h_source.html">user_config.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &lt;stdarg.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;math.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="uart_8h_source.html">uart.h</a>&quot;</code><br />
 </div>
 <p><a href="uart_8c_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -121,58 +125,58 @@ Functions</h2></td></tr>
 <tr class="memitem:a6b9147fc5ffaf0a602cc60a8addb8a38"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a6b9147fc5ffaf0a602cc60a8addb8a38">rx_fifo_flush</a> (int uart_no)</td></tr>
 <tr class="memdesc:a6b9147fc5ffaf0a602cc60a8addb8a38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flush receive fifo for a uart.  <a href="#a6b9147fc5ffaf0a602cc60a8addb8a38">More...</a><br /></td></tr>
 <tr class="separator:a6b9147fc5ffaf0a602cc60a8addb8a38"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6f8397ebf08ae984ed48144d0287a048"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a6f8397ebf08ae984ed48144d0287a048">tx_fifo_used</a> (int uart_no)</td></tr>
+<tr class="memitem:a6f8397ebf08ae984ed48144d0287a048"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a6f8397ebf08ae984ed48144d0287a048">tx_fifo_used</a> (int uart_no)</td></tr>
 <tr class="memdesc:a6f8397ebf08ae984ed48144d0287a048"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of bytes used in transmit fifo.  <a href="#a6f8397ebf08ae984ed48144d0287a048">More...</a><br /></td></tr>
 <tr class="separator:a6f8397ebf08ae984ed48144d0287a048"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3c0f172370540e0d1840c415c2c7b661"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a3c0f172370540e0d1840c415c2c7b661">tx_fifo_free</a> (int uart_no)</td></tr>
+<tr class="memitem:a3c0f172370540e0d1840c415c2c7b661"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a3c0f172370540e0d1840c415c2c7b661">tx_fifo_free</a> (int uart_no)</td></tr>
 <tr class="memdesc:a3c0f172370540e0d1840c415c2c7b661"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of bytes free in transmit fifo.  <a href="#a3c0f172370540e0d1840c415c2c7b661">More...</a><br /></td></tr>
 <tr class="separator:a3c0f172370540e0d1840c415c2c7b661"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a50e81b3a1433d1947bdff1b9bdf425d3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a50e81b3a1433d1947bdff1b9bdf425d3">tx_fifo_empty</a> (int uart_no)</td></tr>
+<tr class="memitem:a50e81b3a1433d1947bdff1b9bdf425d3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a50e81b3a1433d1947bdff1b9bdf425d3">tx_fifo_empty</a> (int uart_no)</td></tr>
 <tr class="memdesc:a50e81b3a1433d1947bdff1b9bdf425d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test if the transmit fifo is empty.  <a href="#a50e81b3a1433d1947bdff1b9bdf425d3">More...</a><br /></td></tr>
 <tr class="separator:a50e81b3a1433d1947bdff1b9bdf425d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09c378ce1610cb5e63469a4ee6813de2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a09c378ce1610cb5e63469a4ee6813de2">rx_fifo_used</a> (int uart_no)</td></tr>
+<tr class="memitem:a09c378ce1610cb5e63469a4ee6813de2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a09c378ce1610cb5e63469a4ee6813de2">rx_fifo_used</a> (int uart_no)</td></tr>
 <tr class="memdesc:a09c378ce1610cb5e63469a4ee6813de2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of bytes used in receive fifo.  <a href="#a09c378ce1610cb5e63469a4ee6813de2">More...</a><br /></td></tr>
 <tr class="separator:a09c378ce1610cb5e63469a4ee6813de2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa59d5d55b7cd6551d97ef6af22949c82"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#aa59d5d55b7cd6551d97ef6af22949c82">rx_fifo_free</a> (int uart_no)</td></tr>
+<tr class="memitem:aa59d5d55b7cd6551d97ef6af22949c82"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#aa59d5d55b7cd6551d97ef6af22949c82">rx_fifo_free</a> (int uart_no)</td></tr>
 <tr class="memdesc:aa59d5d55b7cd6551d97ef6af22949c82"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of bytes free in receive fifo.  <a href="#aa59d5d55b7cd6551d97ef6af22949c82">More...</a><br /></td></tr>
 <tr class="separator:aa59d5d55b7cd6551d97ef6af22949c82"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3ffd1f20ba2ca3ef0894473091b25012"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a3ffd1f20ba2ca3ef0894473091b25012">rx_fifo_empty</a> (int uart_no)</td></tr>
+<tr class="memitem:a3ffd1f20ba2ca3ef0894473091b25012"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a3ffd1f20ba2ca3ef0894473091b25012">rx_fifo_empty</a> (int uart_no)</td></tr>
 <tr class="memdesc:a3ffd1f20ba2ca3ef0894473091b25012"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test if the receive fifo is empty.  <a href="#a3ffd1f20ba2ca3ef0894473091b25012">More...</a><br /></td></tr>
 <tr class="separator:a3ffd1f20ba2ca3ef0894473091b25012"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a768fe76dc08754a1812bc4e5e2f1b0e0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a768fe76dc08754a1812bc4e5e2f1b0e0">tx_fifo_putc</a> (int uart_no, <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> c)</td></tr>
+<tr class="memitem:a768fe76dc08754a1812bc4e5e2f1b0e0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a768fe76dc08754a1812bc4e5e2f1b0e0">tx_fifo_putc</a> (int uart_no, <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> c)</td></tr>
 <tr class="memdesc:a768fe76dc08754a1812bc4e5e2f1b0e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a byte to the trasmit fifo We assume that <a class="el" href="uart_8c.html#a3c0f172370540e0d1840c415c2c7b661" title="Get the number of bytes free in transmit fifo. ">tx_fifo_free()</a> was called!  <a href="#a768fe76dc08754a1812bc4e5e2f1b0e0">More...</a><br /></td></tr>
 <tr class="separator:a768fe76dc08754a1812bc4e5e2f1b0e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a82ec27afa5b913b022cc57c1bd5d5528"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a82ec27afa5b913b022cc57c1bd5d5528">rx_fifo_getc</a> (int uart_no)</td></tr>
+<tr class="memitem:a82ec27afa5b913b022cc57c1bd5d5528"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a82ec27afa5b913b022cc57c1bd5d5528">rx_fifo_getc</a> (int uart_no)</td></tr>
 <tr class="memdesc:a82ec27afa5b913b022cc57c1bd5d5528"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove a byte from the receive fifo We assume that <a class="el" href="uart_8c.html#a09c378ce1610cb5e63469a4ee6813de2" title="Get the number of bytes used in receive fifo. ">rx_fifo_used()</a> was called!  <a href="#a82ec27afa5b913b022cc57c1bd5d5528">More...</a><br /></td></tr>
 <tr class="separator:a82ec27afa5b913b022cc57c1bd5d5528"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6658637d750ec2e2366ac3881dbd9f6e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a6658637d750ec2e2366ac3881dbd9f6e">tx_fifo_write</a> (int uart_no, <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> *buf, int size)</td></tr>
+<tr class="memitem:a6658637d750ec2e2366ac3881dbd9f6e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a6658637d750ec2e2366ac3881dbd9f6e">tx_fifo_write</a> (int uart_no, <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> *buf, int size)</td></tr>
 <tr class="memdesc:a6658637d750ec2e2366ac3881dbd9f6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a data buffer to the transmit fifo Note: This function does not wait/block util there is enough free space to meet the request. So you must check that the return value matches the size.  <a href="#a6658637d750ec2e2366ac3881dbd9f6e">More...</a><br /></td></tr>
 <tr class="separator:a6658637d750ec2e2366ac3881dbd9f6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ee039ccb34468de12203a7027fee1ce"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a5ee039ccb34468de12203a7027fee1ce">rx_fifo_read</a> (int uart_no, <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> *buf, int size)</td></tr>
+<tr class="memitem:a5ee039ccb34468de12203a7027fee1ce"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a5ee039ccb34468de12203a7027fee1ce">rx_fifo_read</a> (int uart_no, <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> *buf, int size)</td></tr>
 <tr class="memdesc:a5ee039ccb34468de12203a7027fee1ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a data buffer from the receive fifo Note: This function does not wait/block util there is enough free space to meet the request. So you must check that the return value matches the size.  <a href="#a5ee039ccb34468de12203a7027fee1ce">More...</a><br /></td></tr>
 <tr class="separator:a5ee039ccb34468de12203a7027fee1ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3d19962bf637dbfa1fbd66020570f64f"><td class="memItemLeft" align="right" valign="top">LOCAL <a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a3d19962bf637dbfa1fbd66020570f64f">uart_putb</a> (uint8 uart_no, uint8 data)</td></tr>
+<tr class="memitem:a3d19962bf637dbfa1fbd66020570f64f"><td class="memItemLeft" align="right" valign="top">LOCAL <a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a3d19962bf637dbfa1fbd66020570f64f">uart_putb</a> (uint8 uart_no, uint8 data)</td></tr>
 <tr class="memdesc:a3d19962bf637dbfa1fbd66020570f64f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Blocking I/O functions.  <a href="#a3d19962bf637dbfa1fbd66020570f64f">More...</a><br /></td></tr>
 <tr class="separator:a3d19962bf637dbfa1fbd66020570f64f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d03af0672e67715b10ea90aca69743d"><td class="memItemLeft" align="right" valign="top">LOCAL <a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a2d03af0672e67715b10ea90aca69743d">uart_getb</a> (int uart_no)</td></tr>
+<tr class="memitem:a2d03af0672e67715b10ea90aca69743d"><td class="memItemLeft" align="right" valign="top">LOCAL <a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a2d03af0672e67715b10ea90aca69743d">uart_getb</a> (int uart_no)</td></tr>
 <tr class="memdesc:a2d03af0672e67715b10ea90aca69743d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a byte from a uart Note: This function waits/blocks util the read can happen.  <a href="#a2d03af0672e67715b10ea90aca69743d">More...</a><br /></td></tr>
 <tr class="separator:a2d03af0672e67715b10ea90aca69743d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4edbb01728f45e11ed6717416bbb9309"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a4edbb01728f45e11ed6717416bbb9309">uart_putc</a> (uint8 uart_no, char c)</td></tr>
+<tr class="memitem:a4edbb01728f45e11ed6717416bbb9309"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a4edbb01728f45e11ed6717416bbb9309">uart_putc</a> (uint8 uart_no, char c)</td></tr>
 <tr class="memdesc:a4edbb01728f45e11ed6717416bbb9309"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a byte from a uart with NL to CR/NL conversion Note: This function waits/blocks util the write can happen.  <a href="#a4edbb01728f45e11ed6717416bbb9309">More...</a><br /></td></tr>
 <tr class="separator:a4edbb01728f45e11ed6717416bbb9309"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a64dbce670a0ba6a547378d2305d03dfa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a64dbce670a0ba6a547378d2305d03dfa">uart_getc</a> (int uart_no)</td></tr>
+<tr class="memitem:a64dbce670a0ba6a547378d2305d03dfa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a64dbce670a0ba6a547378d2305d03dfa">uart_getc</a> (int uart_no)</td></tr>
 <tr class="memdesc:a64dbce670a0ba6a547378d2305d03dfa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a byte from a uart with NL to CR/NL conversion Note: This function waits/blocks util the read can happen.  <a href="#a64dbce670a0ba6a547378d2305d03dfa">More...</a><br /></td></tr>
 <tr class="separator:a64dbce670a0ba6a547378d2305d03dfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a38d539495f2c5329441ccedc26081afa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a38d539495f2c5329441ccedc26081afa">uart0_putc</a> (uint8 c)</td></tr>
+<tr class="memitem:a38d539495f2c5329441ccedc26081afa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a38d539495f2c5329441ccedc26081afa">uart0_putc</a> (uint8 c)</td></tr>
 <tr class="memdesc:a38d539495f2c5329441ccedc26081afa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a byte to uart0 with NL to CR/NL conversion Note: This function waits/blocks util the write can happen.  <a href="#a38d539495f2c5329441ccedc26081afa">More...</a><br /></td></tr>
 <tr class="separator:a38d539495f2c5329441ccedc26081afa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49dc3c01092320490b61e1f480b76b9b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a49dc3c01092320490b61e1f480b76b9b">uart0_getc</a> ()</td></tr>
+<tr class="memitem:a49dc3c01092320490b61e1f480b76b9b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a49dc3c01092320490b61e1f480b76b9b">uart0_getc</a> ()</td></tr>
 <tr class="memdesc:a49dc3c01092320490b61e1f480b76b9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a byte from uart0 with NL to CR/NL conversion Note: This function waits/blocks util the read can happen.  <a href="#a49dc3c01092320490b61e1f480b76b9b">More...</a><br /></td></tr>
 <tr class="separator:a49dc3c01092320490b61e1f480b76b9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e535e1ea0c08984d0de21b4d2cb4cec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a5e535e1ea0c08984d0de21b4d2cb4cec">uart1_putc</a> (uint8 c)</td></tr>
+<tr class="memitem:a5e535e1ea0c08984d0de21b4d2cb4cec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a5e535e1ea0c08984d0de21b4d2cb4cec">uart1_putc</a> (uint8 c)</td></tr>
 <tr class="memdesc:a5e535e1ea0c08984d0de21b4d2cb4cec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a byte to uart1 with NL to CR/NL conversion Note: This function waits/blocks util the write can happen.  <a href="#a5e535e1ea0c08984d0de21b4d2cb4cec">More...</a><br /></td></tr>
 <tr class="separator:a5e535e1ea0c08984d0de21b4d2cb4cec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abedb89603c5e67609094af8047f22bd3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#abedb89603c5e67609094af8047f22bd3">uart1_getc</a> ()</td></tr>
+<tr class="memitem:abedb89603c5e67609094af8047f22bd3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#abedb89603c5e67609094af8047f22bd3">uart1_getc</a> ()</td></tr>
 <tr class="memdesc:abedb89603c5e67609094af8047f22bd3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a byte from uart1 with NL to CR/NL conversion Note: This function waits/blocks util the read can happen.  <a href="#abedb89603c5e67609094af8047f22bd3">More...</a><br /></td></tr>
 <tr class="separator:abedb89603c5e67609094af8047f22bd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa018dc93fd77400560f0ab7e8d78f59a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#aa018dc93fd77400560f0ab7e8d78f59a">uart_callback</a> (void *p)</td></tr>
@@ -181,22 +185,22 @@ Functions</h2></td></tr>
 <tr class="memitem:ace748ed36c0f9b9c90310db65b3afeab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#ace748ed36c0f9b9c90310db65b3afeab">uart0_gets_add</a> (<a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> data)</td></tr>
 <tr class="memdesc:ace748ed36c0f9b9c90310db65b3afeab"><td class="mdescLeft">&#160;</td><td class="mdescRight">transfer data into the uart0_gets_receive_queue Provide line buffering for <a class="el" href="uart_8c.html#a9d100391356ca809d7cd75e23633f213" title="uart0_gets non-blocking line buffered gets ">uart0_gets()</a>  <a href="#ace748ed36c0f9b9c90310db65b3afeab">More...</a><br /></td></tr>
 <tr class="separator:ace748ed36c0f9b9c90310db65b3afeab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b9078ded4ced8bfa5d73c2a77e90028"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a1b9078ded4ced8bfa5d73c2a77e90028">uart0_gets_init</a> (int size)</td></tr>
+<tr class="memitem:a1b9078ded4ced8bfa5d73c2a77e90028"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a1b9078ded4ced8bfa5d73c2a77e90028">uart0_gets_init</a> (int size)</td></tr>
 <tr class="memdesc:a1b9078ded4ced8bfa5d73c2a77e90028"><td class="mdescLeft">&#160;</td><td class="mdescRight">allocate and initialize uart0_gets data structures Provide line buffering for <a class="el" href="uart_8c.html#a9d100391356ca809d7cd75e23633f213" title="uart0_gets non-blocking line buffered gets ">uart0_gets()</a>  <a href="#a1b9078ded4ced8bfa5d73c2a77e90028">More...</a><br /></td></tr>
 <tr class="separator:a1b9078ded4ced8bfa5d73c2a77e90028"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d100391356ca809d7cd75e23633f213"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a9d100391356ca809d7cd75e23633f213">uart0_gets</a> (char *buf, int max)</td></tr>
+<tr class="memitem:a9d100391356ca809d7cd75e23633f213"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a9d100391356ca809d7cd75e23633f213">uart0_gets</a> (char *buf, int max)</td></tr>
 <tr class="memdesc:a9d100391356ca809d7cd75e23633f213"><td class="mdescLeft">&#160;</td><td class="mdescRight">uart0_gets non-blocking line buffered gets  <a href="#a9d100391356ca809d7cd75e23633f213">More...</a><br /></td></tr>
 <tr class="separator:a9d100391356ca809d7cd75e23633f213"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afde4532b11b79411c904be3b2672c5e8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#afde4532b11b79411c904be3b2672c5e8">uart_config</a> (uint8 uart_no, <a class="el" href="send_8c.html#a435d1572bf3f880d55459d9805097f62">uint32_t</a> baud, <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> data_bits, <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> stop_bits, <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> parity)</td></tr>
+<tr class="memitem:afde4532b11b79411c904be3b2672c5e8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#afde4532b11b79411c904be3b2672c5e8">uart_config</a> (uint8 uart_no, <a class="el" href="send_8c.html#a435d1572bf3f880d55459d9805097f62">uint32_t</a> baud, <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> data_bits, <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> stop_bits, <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> parity)</td></tr>
 <tr class="memdesc:afde4532b11b79411c904be3b2672c5e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uart configuration, baud rate, data and stop bits, parity.  <a href="#afde4532b11b79411c904be3b2672c5e8">More...</a><br /></td></tr>
 <tr class="separator:afde4532b11b79411c904be3b2672c5e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5afb95571d79d939651ef59768fde839"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a5afb95571d79d939651ef59768fde839">uart_init</a> (<a class="el" href="uart_8h.html#a9aa1e56362027f49bfbe4378b8c889a4">UartBaudRate</a> uart0_br, <a class="el" href="uart_8h.html#a9aa1e56362027f49bfbe4378b8c889a4">UartBaudRate</a> uart1_br)</td></tr>
+<tr class="memitem:a5afb95571d79d939651ef59768fde839"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a5afb95571d79d939651ef59768fde839">uart_init</a> (<a class="el" href="uart_8h.html#a9aa1e56362027f49bfbe4378b8c889a4">UartBaudRate</a> uart0_br, <a class="el" href="uart_8h.html#a9aa1e56362027f49bfbe4378b8c889a4">UartBaudRate</a> uart1_br)</td></tr>
 <tr class="memdesc:a5afb95571d79d939651ef59768fde839"><td class="mdescLeft">&#160;</td><td class="mdescRight">initialize uart0 and uart1 Defaults: 8 = data bits, 1 = stop bits, no parity  <a href="#a5afb95571d79d939651ef59768fde839">More...</a><br /></td></tr>
 <tr class="separator:a5afb95571d79d939651ef59768fde839"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2429f7cf15a9fba99f1c3d1d6499299"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#ae2429f7cf15a9fba99f1c3d1d6499299">uart_reattach</a> ()</td></tr>
+<tr class="memitem:ae2429f7cf15a9fba99f1c3d1d6499299"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#ae2429f7cf15a9fba99f1c3d1d6499299">uart_reattach</a> ()</td></tr>
 <tr class="memdesc:ae2429f7cf15a9fba99f1c3d1d6499299"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reinitialize uart0 and uart1 calls <a class="el" href="uart_8c.html#a5afb95571d79d939651ef59768fde839" title="initialize uart0 and uart1 Defaults: 8 = data bits, 1 = stop bits, no parity ">uart_init()</a>  <a href="#ae2429f7cf15a9fba99f1c3d1d6499299">More...</a><br /></td></tr>
 <tr class="separator:ae2429f7cf15a9fba99f1c3d1d6499299"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a83db8ea8db21280f74e2546414fc80f7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a83db8ea8db21280f74e2546414fc80f7">UART_SetPrintPort</a> (uint8 uart_no)</td></tr>
+<tr class="memitem:a83db8ea8db21280f74e2546414fc80f7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a83db8ea8db21280f74e2546414fc80f7">UART_SetPrintPort</a> (uint8 uart_no)</td></tr>
 <tr class="memdesc:a83db8ea8db21280f74e2546414fc80f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Install debug uart.  <a href="#a83db8ea8db21280f74e2546414fc80f7">More...</a><br /></td></tr>
 <tr class="separator:a83db8ea8db21280f74e2546414fc80f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -237,7 +241,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int rx_fifo_empty </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int rx_fifo_empty </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>uart_no</em></td><td>)</td>
@@ -255,9 +259,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 if empty, 0 otherwise </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00182">182</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00187">187</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
-<p>Referenced by <a class="el" href="uart_8c_source.html#l00319">uart_getb()</a>.</p>
+<p>Referenced by <a class="el" href="uart_8c_source.html#l00324">uart_getb()</a>.</p>
 
 </div>
 </div>
@@ -284,9 +288,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00105">105</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00110">110</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
-<p>Referenced by <a class="el" href="uart_8c_source.html#l00587">uart_config()</a>.</p>
+<p>Referenced by <a class="el" href="uart_8c_source.html#l00592">uart_config()</a>.</p>
 
 </div>
 </div>
@@ -295,7 +299,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int rx_fifo_free </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int rx_fifo_free </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>uart_no</em></td><td>)</td>
@@ -313,7 +317,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>bytes free </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00168">168</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00173">173</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
 </div>
 </div>
@@ -322,7 +326,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> rx_fifo_getc </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> rx_fifo_getc </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>uart_no</em></td><td>)</td>
@@ -340,9 +344,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>c, (or 0 if fill user error) </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00215">215</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00220">220</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
-<p>Referenced by <a class="el" href="uart_8c_source.html#l00319">uart_getb()</a>.</p>
+<p>Referenced by <a class="el" href="uart_8c_source.html#l00324">uart_getb()</a>.</p>
 
 </div>
 </div>
@@ -351,7 +355,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int rx_fifo_read </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int rx_fifo_read </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>uart_no</em>, </td>
@@ -387,7 +391,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>number of bytes actually read from the fifo - may not be size! </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00273">273</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00278">278</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
 </div>
 </div>
@@ -396,7 +400,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int rx_fifo_used </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int rx_fifo_used </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>uart_no</em></td><td>)</td>
@@ -414,9 +418,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>bytes in use </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00155">155</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00160">160</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
-<p>Referenced by <a class="el" href="uart_8c_source.html#l00215">rx_fifo_getc()</a>, <a class="el" href="uart_8c_source.html#l00273">rx_fifo_read()</a>, and <a class="el" href="uart_8c_source.html#l00421">uart_callback()</a>.</p>
+<p>Referenced by <a class="el" href="uart_8c_source.html#l00220">rx_fifo_getc()</a>, <a class="el" href="uart_8c_source.html#l00278">rx_fifo_read()</a>, and <a class="el" href="uart_8c_source.html#l00426">uart_callback()</a>.</p>
 
 </div>
 </div>
@@ -425,7 +429,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int tx_fifo_empty </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int tx_fifo_empty </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>uart_no</em></td><td>)</td>
@@ -443,9 +447,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 if empty, 0 otherwise </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00143">143</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00148">148</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
-<p>Referenced by <a class="el" href="uart_8c_source.html#l00421">uart_callback()</a>.</p>
+<p>Referenced by <a class="el" href="uart_8c_source.html#l00426">uart_callback()</a>.</p>
 
 </div>
 </div>
@@ -472,9 +476,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00094">94</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00099">99</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
-<p>Referenced by <a class="el" href="uart_8c_source.html#l00587">uart_config()</a>.</p>
+<p>Referenced by <a class="el" href="uart_8c_source.html#l00592">uart_config()</a>.</p>
 
 </div>
 </div>
@@ -483,7 +487,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int tx_fifo_free </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int tx_fifo_free </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>uart_no</em></td><td>)</td>
@@ -501,9 +505,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>bytes free </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00130">130</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00135">135</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
-<p>Referenced by <a class="el" href="uart_8c_source.html#l00199">tx_fifo_putc()</a>, <a class="el" href="uart_8c_source.html#l00238">tx_fifo_write()</a>, <a class="el" href="uart_8c_source.html#l00421">uart_callback()</a>, and <a class="el" href="uart_8c_source.html#l00305">uart_putb()</a>.</p>
+<p>Referenced by <a class="el" href="uart_8c_source.html#l00204">tx_fifo_putc()</a>, <a class="el" href="uart_8c_source.html#l00243">tx_fifo_write()</a>, <a class="el" href="uart_8c_source.html#l00426">uart_callback()</a>, and <a class="el" href="uart_8c_source.html#l00310">uart_putb()</a>.</p>
 
 </div>
 </div>
@@ -512,7 +516,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> tx_fifo_putc </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> tx_fifo_putc </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>uart_no</em>, </td>
@@ -541,9 +545,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>c, (or 0 if full user error) </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00199">199</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00204">204</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
-<p>Referenced by <a class="el" href="uart_8c_source.html#l00305">uart_putb()</a>.</p>
+<p>Referenced by <a class="el" href="uart_8c_source.html#l00310">uart_putb()</a>.</p>
 
 </div>
 </div>
@@ -552,7 +556,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int tx_fifo_used </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int tx_fifo_used </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>uart_no</em></td><td>)</td>
@@ -570,7 +574,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>bytes in use </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00118">118</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00123">123</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
 </div>
 </div>
@@ -579,7 +583,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int tx_fifo_write </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int tx_fifo_write </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>uart_no</em>, </td>
@@ -615,7 +619,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>number of bytes sent </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00238">238</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00243">243</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
 </div>
 </div>
@@ -624,7 +628,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> uart0_getc </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> uart0_getc </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -636,9 +640,9 @@ Variables</h2></td></tr>
 <p>Read a byte from uart0 with NL to CR/NL conversion Note: This function waits/blocks util the read can happen. </p>
 <dl class="section return"><dt>Returns</dt><dd>byte read </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00384">384</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00389">389</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
-<p>Referenced by <a class="el" href="uart_8c_source.html#l00645">uart_init()</a>.</p>
+<p>Referenced by <a class="el" href="uart_8c_source.html#l00650">uart_init()</a>.</p>
 
 </div>
 </div>
@@ -647,7 +651,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int uart0_gets </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int uart0_gets </td>
           <td>(</td>
           <td class="paramtype">char *&#160;</td>
           <td class="paramname"><em>buf</em>, </td>
@@ -676,7 +680,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0, or number of characters in line </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00548">548</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00553">553</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
 <p>Referenced by <a class="el" href="user__main_8c_source.html#l00267">loop_task()</a>.</p>
 
@@ -705,9 +709,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00492">492</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00497">497</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
-<p>Referenced by <a class="el" href="uart_8c_source.html#l00421">uart_callback()</a>.</p>
+<p>Referenced by <a class="el" href="uart_8c_source.html#l00426">uart_callback()</a>.</p>
 
 </div>
 </div>
@@ -716,7 +720,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void uart0_gets_init </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void uart0_gets_init </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>size</em></td><td>)</td>
@@ -734,9 +738,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00528">528</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00533">533</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
-<p>Referenced by <a class="el" href="uart_8c_source.html#l00645">uart_init()</a>.</p>
+<p>Referenced by <a class="el" href="uart_8c_source.html#l00650">uart_init()</a>.</p>
 
 </div>
 </div>
@@ -745,7 +749,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void uart0_putc </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void uart0_putc </td>
           <td>(</td>
           <td class="paramtype">uint8&#160;</td>
           <td class="paramname"><em>c</em></td><td>)</td>
@@ -763,9 +767,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00373">373</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00378">378</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
-<p>Referenced by <a class="el" href="uart_8c_source.html#l00645">uart_init()</a>, and <a class="el" href="uart_8c_source.html#l00683">UART_SetPrintPort()</a>.</p>
+<p>Referenced by <a class="el" href="uart_8c_source.html#l00650">uart_init()</a>, and <a class="el" href="uart_8c_source.html#l00688">UART_SetPrintPort()</a>.</p>
 
 </div>
 </div>
@@ -774,7 +778,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> uart1_getc </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> uart1_getc </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -786,7 +790,7 @@ Variables</h2></td></tr>
 <p>Read a byte from uart1 with NL to CR/NL conversion Note: This function waits/blocks util the read can happen. </p>
 <dl class="section return"><dt>Returns</dt><dd>byte read </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00408">408</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00413">413</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
 </div>
 </div>
@@ -795,7 +799,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void uart1_putc </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void uart1_putc </td>
           <td>(</td>
           <td class="paramtype">uint8&#160;</td>
           <td class="paramname"><em>c</em></td><td>)</td>
@@ -813,9 +817,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00397">397</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00402">402</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
-<p>Referenced by <a class="el" href="uart_8c_source.html#l00683">UART_SetPrintPort()</a>.</p>
+<p>Referenced by <a class="el" href="uart_8c_source.html#l00688">UART_SetPrintPort()</a>.</p>
 
 </div>
 </div>
@@ -842,9 +846,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00421">421</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00426">426</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
-<p>Referenced by <a class="el" href="uart_8c_source.html#l00645">uart_init()</a>.</p>
+<p>Referenced by <a class="el" href="uart_8c_source.html#l00650">uart_init()</a>.</p>
 
 </div>
 </div>
@@ -853,7 +857,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void uart_config </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void uart_config </td>
           <td>(</td>
           <td class="paramtype">uint8&#160;</td>
           <td class="paramname"><em>uart_no</em>, </td>
@@ -903,9 +907,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00587">587</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00592">592</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
-<p>Referenced by <a class="el" href="uart_8c_source.html#l00645">uart_init()</a>.</p>
+<p>Referenced by <a class="el" href="uart_8c_source.html#l00650">uart_init()</a>.</p>
 
 </div>
 </div>
@@ -914,7 +918,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">LOCAL <a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> uart_getb </td>
+          <td class="memname">LOCAL <a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> uart_getb </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>uart_no</em></td><td>)</td>
@@ -932,9 +936,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>byte read </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00319">319</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00324">324</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
-<p>Referenced by <a class="el" href="uart_8c_source.html#l00353">uart_getc()</a>.</p>
+<p>Referenced by <a class="el" href="uart_8c_source.html#l00358">uart_getc()</a>.</p>
 
 </div>
 </div>
@@ -943,7 +947,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> uart_getc </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> uart_getc </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>uart_no</em></td><td>)</td>
@@ -961,9 +965,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>byte read </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00353">353</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00358">358</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
-<p>Referenced by <a class="el" href="uart_8c_source.html#l00384">uart0_getc()</a>, and <a class="el" href="uart_8c_source.html#l00408">uart1_getc()</a>.</p>
+<p>Referenced by <a class="el" href="uart_8c_source.html#l00389">uart0_getc()</a>, and <a class="el" href="uart_8c_source.html#l00413">uart1_getc()</a>.</p>
 
 </div>
 </div>
@@ -972,7 +976,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void uart_init </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void uart_init </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="uart_8h.html#a9aa1e56362027f49bfbe4378b8c889a4">UartBaudRate</a>&#160;</td>
           <td class="paramname"><em>uart0_br</em>, </td>
@@ -1001,9 +1005,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00645">645</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00650">650</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
-<p>Referenced by <a class="el" href="user__main_8c_source.html#l00668">setup()</a>, and <a class="el" href="uart_8c_source.html#l00670">uart_reattach()</a>.</p>
+<p>Referenced by <a class="el" href="user__main_8c_source.html#l00668">setup()</a>, and <a class="el" href="uart_8c_source.html#l00675">uart_reattach()</a>.</p>
 
 </div>
 </div>
@@ -1012,7 +1016,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">LOCAL <a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void uart_putb </td>
+          <td class="memname">LOCAL <a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void uart_putb </td>
           <td>(</td>
           <td class="paramtype">uint8&#160;</td>
           <td class="paramname"><em>uart_no</em>, </td>
@@ -1041,9 +1045,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00305">305</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00310">310</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
-<p>Referenced by <a class="el" href="uart_8c_source.html#l00337">uart_putc()</a>.</p>
+<p>Referenced by <a class="el" href="uart_8c_source.html#l00342">uart_putc()</a>.</p>
 
 </div>
 </div>
@@ -1052,7 +1056,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void uart_putc </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void uart_putc </td>
           <td>(</td>
           <td class="paramtype">uint8&#160;</td>
           <td class="paramname"><em>uart_no</em>, </td>
@@ -1081,9 +1085,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00337">337</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00342">342</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
-<p>Referenced by <a class="el" href="debug_8c_source.html#l00032">_uart0_fn()</a>, <a class="el" href="uart_8c_source.html#l00373">uart0_putc()</a>, and <a class="el" href="uart_8c_source.html#l00397">uart1_putc()</a>.</p>
+<p>Referenced by <a class="el" href="debug_8c_source.html#l00037">_uart0_fn()</a>, <a class="el" href="uart_8c_source.html#l00378">uart0_putc()</a>, and <a class="el" href="uart_8c_source.html#l00402">uart1_putc()</a>.</p>
 
 </div>
 </div>
@@ -1092,7 +1096,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void uart_reattach </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void uart_reattach </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -1104,7 +1108,7 @@ Variables</h2></td></tr>
 <p>Reinitialize uart0 and uart1 calls <a class="el" href="uart_8c.html#a5afb95571d79d939651ef59768fde839" title="initialize uart0 and uart1 Defaults: 8 = data bits, 1 = stop bits, no parity ">uart_init()</a> </p>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00670">670</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00675">675</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
 </div>
 </div>
@@ -1131,7 +1135,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00062">62</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00067">67</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
 </div>
 </div>
@@ -1158,7 +1162,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00052">52</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00057">57</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
 </div>
 </div>
@@ -1167,7 +1171,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void UART_SetPrintPort </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void UART_SetPrintPort </td>
           <td>(</td>
           <td class="paramtype">uint8&#160;</td>
           <td class="paramname"><em>uart_no</em></td><td>)</td>
@@ -1179,7 +1183,7 @@ Variables</h2></td></tr>
 <p>Install debug uart. </p>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00683">683</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00688">688</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
 </div>
 </div>
@@ -1206,9 +1210,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00082">82</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00087">87</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
-<p>Referenced by <a class="el" href="uart_8c_source.html#l00421">uart_callback()</a>.</p>
+<p>Referenced by <a class="el" href="uart_8c_source.html#l00426">uart_callback()</a>.</p>
 
 </div>
 </div>
@@ -1235,9 +1239,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00072">72</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00077">77</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
-<p>Referenced by <a class="el" href="uart_8c_source.html#l00421">uart_callback()</a>.</p>
+<p>Referenced by <a class="el" href="uart_8c_source.html#l00426">uart_callback()</a>.</p>
 
 </div>
 </div>
@@ -1254,9 +1258,9 @@ Variables</h2></td></tr>
 
 <p>uart0 gets line bufer </p>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00037">37</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00042">42</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
-<p>Referenced by <a class="el" href="uart_8c_source.html#l00548">uart0_gets()</a>, <a class="el" href="uart_8c_source.html#l00492">uart0_gets_add()</a>, and <a class="el" href="uart_8c_source.html#l00528">uart0_gets_init()</a>.</p>
+<p>Referenced by <a class="el" href="uart_8c_source.html#l00553">uart0_gets()</a>, <a class="el" href="uart_8c_source.html#l00497">uart0_gets_add()</a>, and <a class="el" href="uart_8c_source.html#l00533">uart0_gets_init()</a>.</p>
 
 </div>
 </div>
@@ -1272,9 +1276,9 @@ Variables</h2></td></tr>
 
 <p>uart0 gets line buffer ready flag </p>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00039">39</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00044">44</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
-<p>Referenced by <a class="el" href="uart_8c_source.html#l00548">uart0_gets()</a>, <a class="el" href="uart_8c_source.html#l00492">uart0_gets_add()</a>, and <a class="el" href="uart_8c_source.html#l00528">uart0_gets_init()</a>.</p>
+<p>Referenced by <a class="el" href="uart_8c_source.html#l00553">uart0_gets()</a>, <a class="el" href="uart_8c_source.html#l00497">uart0_gets_add()</a>, and <a class="el" href="uart_8c_source.html#l00533">uart0_gets_init()</a>.</p>
 
 </div>
 </div>
@@ -1290,7 +1294,7 @@ Variables</h2></td></tr>
 
 <p>uart0 receive queue </p>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00035">35</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00040">40</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
 </div>
 </div>
@@ -1306,16 +1310,16 @@ Variables</h2></td></tr>
 
 <p>uar0 gets line buffer size </p>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00041">41</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00046">46</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
-<p>Referenced by <a class="el" href="uart_8c_source.html#l00548">uart0_gets()</a>, <a class="el" href="uart_8c_source.html#l00492">uart0_gets_add()</a>, and <a class="el" href="uart_8c_source.html#l00528">uart0_gets_init()</a>.</p>
+<p>Referenced by <a class="el" href="uart_8c_source.html#l00553">uart0_gets()</a>, <a class="el" href="uart_8c_source.html#l00497">uart0_gets_add()</a>, and <a class="el" href="uart_8c_source.html#l00533">uart0_gets_init()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 30 2016 00:11:27 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 1 2016 22:45:19 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

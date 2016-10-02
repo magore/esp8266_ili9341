@@ -5,7 +5,10 @@
 Small web server for esp8266.  
 
 
-{\ttfamily \#include $<$user\+\_\+config.\+h$>$}\\*
+{\ttfamily \#include $<$stdint.\+h$>$}\\*
+{\ttfamily \#include $<$stdarg.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$math.\+h$>$}\\*
 \subsection*{Data Structures}
 \begin{DoxyCompactItemize}
 \item 
@@ -21,6 +24,10 @@ struct \hyperlink{structrwbuf__t}{rwbuf\+\_\+t}
 \end{DoxyCompactItemize}
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{web_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}
+\item 
+\#define \hyperlink{web_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR}~\hyperlink{user__task_8c_ade20ba3eb51f42d2b2deb917303c9a5e}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}((weak))
 \item 
 \#define \hyperlink{web_8h_a053b7859476cc9867ec62c49e68d3fa1}{M\+A\+X\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+O\+NS}~1
 \item 
@@ -99,92 +106,92 @@ enum \{ \\*
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{web_8h_aaaac061db0c7646d5b6c8bdfe3089ae7}{led\+\_\+on} (int led)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{web_8h_aaaac061db0c7646d5b6c8bdfe3089ae7}{led\+\_\+on} (int led)
 \item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{web_8h_aec67a5a0b10a3ad2bbfe81de832ef239}{led\+\_\+off} (int led)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{web_8h_aec67a5a0b10a3ad2bbfe81de832ef239}{led\+\_\+off} (int led)
 \begin{DoxyCompactList}\small\item\em Turn off virtual L\+ED. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{web_8h_ac827567ee25b284c2992fed88249ab96}{rwbuf\+\_\+rinit} (\hyperlink{structrwbuf__t}{rwbuf\+\_\+t} $\ast$p)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{web_8h_ac827567ee25b284c2992fed88249ab96}{rwbuf\+\_\+rinit} (\hyperlink{structrwbuf__t}{rwbuf\+\_\+t} $\ast$p)
 \begin{DoxyCompactList}\small\item\em Initialize socket read status and read index. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{web_8h_a6a137266340baece84e055b2d49cd0c2}{rwbuf\+\_\+winit} (\hyperlink{structrwbuf__t}{rwbuf\+\_\+t} $\ast$p)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{web_8h_a6a137266340baece84e055b2d49cd0c2}{rwbuf\+\_\+winit} (\hyperlink{structrwbuf__t}{rwbuf\+\_\+t} $\ast$p)
 \begin{DoxyCompactList}\small\item\em Initialize socket send status and write index. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{web_8h_a89dceabcd370d352c3efed0e689fd551}{display\+\_\+ipv4} (char $\ast$msg, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} $\ast$ip, int port)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{web_8h_a89dceabcd370d352c3efed0e689fd551}{display\+\_\+ipv4} (char $\ast$msg, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} $\ast$ip, int port)
 \begin{DoxyCompactList}\small\item\em Display I\+P\+V4 address. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{web_8h_af089b318dcc1ebbec17ae7392a19e457}{rwbuf\+\_\+delete} (\hyperlink{structrwbuf__t}{rwbuf\+\_\+t} $\ast$p)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{web_8h_af089b318dcc1ebbec17ae7392a19e457}{rwbuf\+\_\+delete} (\hyperlink{structrwbuf__t}{rwbuf\+\_\+t} $\ast$p)
 \begin{DoxyCompactList}\small\item\em Delete socket read/write buffers. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{structrwbuf__t}{rwbuf\+\_\+t} $\ast$ \hyperlink{web_8h_a0768c5077e8cfa177735808798193071}{rwbuf\+\_\+create} (void)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{structrwbuf__t}{rwbuf\+\_\+t} $\ast$ \hyperlink{web_8h_a0768c5077e8cfa177735808798193071}{rwbuf\+\_\+create} (void)
 \begin{DoxyCompactList}\small\item\em Create socket read/write buffer for a connection. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{structrwbuf__t}{rwbuf\+\_\+t} $\ast$ \hyperlink{web_8h_a63cfcb009066f483330ec359b8493fbe}{find\+\_\+connection} (\hyperlink{web_8h_a6dae30cd245bde804cf3e2c09e39a4b6}{espconn\+\_\+t} $\ast$conn, int $\ast$index, char $\ast$msg)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{structrwbuf__t}{rwbuf\+\_\+t} $\ast$ \hyperlink{web_8h_a63cfcb009066f483330ec359b8493fbe}{find\+\_\+connection} (\hyperlink{web_8h_a6dae30cd245bde804cf3e2c09e39a4b6}{espconn\+\_\+t} $\ast$conn, int $\ast$index, char $\ast$msg)
 \begin{DoxyCompactList}\small\item\em Find a read/write socket buffer for an espconn connection. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{structrwbuf__t}{rwbuf\+\_\+t} $\ast$ \hyperlink{web_8h_aef2853a921eb49702f064eaa925b16e1}{create\+\_\+connection} (\hyperlink{web_8h_a6dae30cd245bde804cf3e2c09e39a4b6}{espconn\+\_\+t} $\ast$conn)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{structrwbuf__t}{rwbuf\+\_\+t} $\ast$ \hyperlink{web_8h_aef2853a921eb49702f064eaa925b16e1}{create\+\_\+connection} (\hyperlink{web_8h_a6dae30cd245bde804cf3e2c09e39a4b6}{espconn\+\_\+t} $\ast$conn)
 \begin{DoxyCompactList}\small\item\em Allocate read/write socket buffers and add it to the working pool. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{web_8h_ae8b95c674148542469e51d10c4cbaf0a}{delete\+\_\+connection} (\hyperlink{structrwbuf__t}{rwbuf\+\_\+t} $\ast$p)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{web_8h_ae8b95c674148542469e51d10c4cbaf0a}{delete\+\_\+connection} (\hyperlink{structrwbuf__t}{rwbuf\+\_\+t} $\ast$p)
 \begin{DoxyCompactList}\small\item\em Delete a \hyperlink{structrwbuf__t}{rwbuf\+\_\+t} entry using its index. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{web_8h_abd703ce6226c13df800f38c7bc4c3807}{write\+\_\+byte} (\hyperlink{structrwbuf__t}{rwbuf\+\_\+t} $\ast$p, int c)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{web_8h_abd703ce6226c13df800f38c7bc4c3807}{write\+\_\+byte} (\hyperlink{structrwbuf__t}{rwbuf\+\_\+t} $\ast$p, int c)
 \begin{DoxyCompactList}\small\item\em Write a byte (buffered) using the \hyperlink{structrwbuf__t}{rwbuf\+\_\+t} socket buffers for this connection If the buffers are full the socket is written using espconn\+\_\+send. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{web_8h_a6b59ca0b6eea0b246eb56ae2b37ee2d8}{wait\+\_\+send} (\hyperlink{structrwbuf__t}{rwbuf\+\_\+t} $\ast$p)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{web_8h_a6b59ca0b6eea0b246eb56ae2b37ee2d8}{wait\+\_\+send} (\hyperlink{structrwbuf__t}{rwbuf\+\_\+t} $\ast$p)
 \begin{DoxyCompactList}\small\item\em Wait for buffer to send for this connection If the buffers have any data in them it is written using espconn\+\_\+send. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{web_8h_ab224823f1d3f5c81a78949da4345ed87}{write\+\_\+flush} (\hyperlink{structrwbuf__t}{rwbuf\+\_\+t} $\ast$p)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{web_8h_ab224823f1d3f5c81a78949da4345ed87}{write\+\_\+flush} (\hyperlink{structrwbuf__t}{rwbuf\+\_\+t} $\ast$p)
 \begin{DoxyCompactList}\small\item\em Flush the the socket write buffers for this connection If the buffers have any data in them it is written using espconn\+\_\+send. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{web_8h_a751d54408d691ebc079108ffc42ee436}{write\+\_\+len} (\hyperlink{structrwbuf__t}{rwbuf\+\_\+t} $\ast$p, char $\ast$str, int len)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{web_8h_a751d54408d691ebc079108ffc42ee436}{write\+\_\+len} (\hyperlink{structrwbuf__t}{rwbuf\+\_\+t} $\ast$p, char $\ast$str, int len)
 \begin{DoxyCompactList}\small\item\em Write data using buffered write\+\_\+byte function. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{web_8h_a2a5efc80e175181baf607f7f9a1358e5}{write\+\_\+str} (\hyperlink{structrwbuf__t}{rwbuf\+\_\+t} $\ast$p, char $\ast$str)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{web_8h_a2a5efc80e175181baf607f7f9a1358e5}{write\+\_\+str} (\hyperlink{structrwbuf__t}{rwbuf\+\_\+t} $\ast$p, char $\ast$str)
 \begin{DoxyCompactList}\small\item\em Write string using buffered write\+\_\+byte function. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{web_8h_a912affa80386fb06e19c3ce5342701f5}{vsock\+\_\+printf} (\hyperlink{structrwbuf__t}{rwbuf\+\_\+t} $\ast$p, const char $\ast$fmt, va\+\_\+list va)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{web_8h_a912affa80386fb06e19c3ce5342701f5}{vsock\+\_\+printf} (\hyperlink{structrwbuf__t}{rwbuf\+\_\+t} $\ast$p, const char $\ast$fmt, va\+\_\+list va)
 \begin{DoxyCompactList}\small\item\em vsock\+\_\+printf function \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{web_8h_a38a7c7d1f5222edff77e9a7a20195696}{sock\+\_\+printf} (\hyperlink{structrwbuf__t}{rwbuf\+\_\+t} $\ast$p, const char $\ast$fmt,...)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{web_8h_a38a7c7d1f5222edff77e9a7a20195696}{sock\+\_\+printf} (\hyperlink{structrwbuf__t}{rwbuf\+\_\+t} $\ast$p, const char $\ast$fmt,...)
 \begin{DoxyCompactList}\small\item\em sock\+\_\+printf function \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{web_8h_a5cb82637d6d97812355aaa7a7fb4ccbe}{html\+\_\+msg} (\hyperlink{structrwbuf__t}{rwbuf\+\_\+t} $\ast$p, int status, char type, char $\ast$fmt,...)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{web_8h_a5cb82637d6d97812355aaa7a7fb4ccbe}{html\+\_\+msg} (\hyperlink{structrwbuf__t}{rwbuf\+\_\+t} $\ast$p, int status, char type, char $\ast$fmt,...)
 \begin{DoxyCompactList}\small\item\em Send an H\+T\+ML status message to socket. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{web_8h_a2ea8a8e37ac5c7099311e4d9cdb77efb}{meminit} (\hyperlink{structmem__t}{mem\+\_\+t} $\ast$p, char $\ast$ptr, int size)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{web_8h_a2ea8a8e37ac5c7099311e4d9cdb77efb}{meminit} (\hyperlink{structmem__t}{mem\+\_\+t} $\ast$p, char $\ast$ptr, int size)
 \begin{DoxyCompactList}\small\item\em in memory memory gets function \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{web_8h_ad834fe4d9506060f80d873fb20c186d5}{memgets} (\hyperlink{structmem__t}{mem\+\_\+t} $\ast$p)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{web_8h_ad834fe4d9506060f80d873fb20c186d5}{memgets} (\hyperlink{structmem__t}{mem\+\_\+t} $\ast$p)
 \begin{DoxyCompactList}\small\item\em Memory gets function We A\+S\+S\+U\+ME we can replace any ~\newline
  with a \textbackslash{}0. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{web_8h_ae16ca93f35df1d6e5040aa464fec44ab}{mime\+\_\+type} (int type)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{web_8h_ae16ca93f35df1d6e5040aa464fec44ab}{mime\+\_\+type} (int type)
 \begin{DoxyCompactList}\small\item\em return strung pointer for mime type index \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{web_8h_aec5e03bbb08e40de50b3da6413e26931}{file\+\_\+type} (char $\ast$name)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{web_8h_aec5e03bbb08e40de50b3da6413e26931}{file\+\_\+type} (char $\ast$name)
 \begin{DoxyCompactList}\small\item\em Determin mimetype using file name extension. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{web_8h_aeebdbab253618d52a35054978fe4bb0e}{html\+\_\+status} (int status)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{web_8h_aeebdbab253618d52a35054978fe4bb0e}{html\+\_\+status} (int status)
 \begin{DoxyCompactList}\small\item\em Convert html status into string using http\+\_\+status table. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{web_8h_a9022b922953aabe534b7b68e6f3a90af}{init\+\_\+hinfo} (\hyperlink{structhinfo__t}{hinfo\+\_\+t} $\ast$hi)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{web_8h_a9022b922953aabe534b7b68e6f3a90af}{init\+\_\+hinfo} (\hyperlink{structhinfo__t}{hinfo\+\_\+t} $\ast$hi)
 \item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{web_8h_a93274f0048175d7ed429598e951a2c77}{match\+\_\+headers} (char $\ast$str, char $\ast$$\ast$p)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{web_8h_a93274f0048175d7ed429598e951a2c77}{match\+\_\+headers} (char $\ast$str, char $\ast$$\ast$p)
 \begin{DoxyCompactList}\small\item\em Match G\+E\+T/\+P\+O\+ST message headers. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{web_8h_ab29b4d9382acde5a32fa0aad1068c38b}{process\+\_\+args} (\hyperlink{structhinfo__t}{hinfo\+\_\+t} $\ast$hi, char $\ast$ptr)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{web_8h_ab29b4d9382acde5a32fa0aad1068c38b}{process\+\_\+args} (\hyperlink{structhinfo__t}{hinfo\+\_\+t} $\ast$hi, char $\ast$ptr)
 \begin{DoxyCompactList}\small\item\em Process G\+ET argments or P\+O\+ST message name/value data. H\+T\+ML encoding is done in place often reducting the size of the result. Convert name=value pairs into null terminated strings. Names and values are each terminated with an E\+OS by replaceing \textquotesingle{}?\textquotesingle{}, \textquotesingle{}\&\textquotesingle{}, \textquotesingle{}=\textquotesingle{} characters seen while scaning. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{web_8h_afb148431af519ffd7c3191ed3edd4d50}{first\+\_\+arg} (\hyperlink{structhinfo__t}{hinfo\+\_\+t} $\ast$hi)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{web_8h_afb148431af519ffd7c3191ed3edd4d50}{first\+\_\+arg} (\hyperlink{structhinfo__t}{hinfo\+\_\+t} $\ast$hi)
 \begin{DoxyCompactList}\small\item\em Find first P\+O\+S\+T/\+G\+ET argument. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{web_8h_ac2b1c83b2901da05a13fbc48e9c9f030}{next\+\_\+arg} (\hyperlink{structhinfo__t}{hinfo\+\_\+t} $\ast$hi)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{web_8h_ac2b1c83b2901da05a13fbc48e9c9f030}{next\+\_\+arg} (\hyperlink{structhinfo__t}{hinfo\+\_\+t} $\ast$hi)
 \begin{DoxyCompactList}\small\item\em Find next P\+O\+S\+T/\+G\+ET argument We have to skip a name and a value. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{web_8h_a35cc0d5292df6d1df5cf3ea63e44d0b7}{arg\+\_\+name} (\hyperlink{structhinfo__t}{hinfo\+\_\+t} $\ast$hi)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{web_8h_a35cc0d5292df6d1df5cf3ea63e44d0b7}{arg\+\_\+name} (\hyperlink{structhinfo__t}{hinfo\+\_\+t} $\ast$hi)
 \begin{DoxyCompactList}\small\item\em Return the argument name for current argument. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{web_8h_a12e823b35aaf4392e282d39057f45eb8}{arg\+\_\+value} (\hyperlink{structhinfo__t}{hinfo\+\_\+t} $\ast$hi)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{web_8h_a12e823b35aaf4392e282d39057f45eb8}{arg\+\_\+value} (\hyperlink{structhinfo__t}{hinfo\+\_\+t} $\ast$hi)
 \begin{DoxyCompactList}\small\item\em Return the argument value for current argument. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{web_8h_a142e7c44af77016bb329676f4466da7e}{http\+\_\+value} (\hyperlink{structhinfo__t}{hinfo\+\_\+t} $\ast$hi, char $\ast$str)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{web_8h_a142e7c44af77016bb329676f4466da7e}{http\+\_\+value} (\hyperlink{structhinfo__t}{hinfo\+\_\+t} $\ast$hi, char $\ast$str)
 \begin{DoxyCompactList}\small\item\em Lookup and argument name and return its value. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{web_8h_aac0e14d0751e24b7143060600fe7822a}{is\+\_\+header} (char $\ast$str, char $\ast$$\ast$p)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{web_8h_aac0e14d0751e24b7143060600fe7822a}{is\+\_\+header} (char $\ast$str, char $\ast$$\ast$p)
 \begin{DoxyCompactList}\small\item\em Does the string look like a header token with a \textquotesingle{}\+:\textquotesingle{} ? \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{web_8h_a1723d513f866e03e8195adf0139b1603}{nextbreak} (char $\ast$ptr)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{web_8h_a1723d513f866e03e8195adf0139b1603}{nextbreak} (char $\ast$ptr)
 \begin{DoxyCompactList}\small\item\em Find next space or ? character. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{web_8h_a099953c3f11ff53e89c99b0be5212b70}{u5toa} (char $\ast$ptr, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} num)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{web_8h_a099953c3f11ff53e89c99b0be5212b70}{u5toa} (char $\ast$ptr, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} num)
 \begin{DoxyCompactList}\small\item\em Print a decimal number into a string without an E\+OS. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{web_8h_acfdd7b32cc9e6b5214ddbf8120a9ed7b}{html\+\_\+head} (\hyperlink{structrwbuf__t}{rwbuf\+\_\+t} $\ast$p, int status, char type, int len)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{web_8h_acfdd7b32cc9e6b5214ddbf8120a9ed7b}{html\+\_\+head} (\hyperlink{structrwbuf__t}{rwbuf\+\_\+t} $\ast$p, int status, char type, int len)
 \begin{DoxyCompactList}\small\item\em Write H\+T\+TP Contenet-\/\+Type/\+Content-\/\+Length header. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{web_8h_a574da7d2e02f16c3ff0727061b90c46c}{parse\+\_\+http\+\_\+request} (\hyperlink{structrwbuf__t}{rwbuf\+\_\+t} $\ast$p, \hyperlink{structhinfo__t}{hinfo\+\_\+t} $\ast$hi)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{web_8h_a574da7d2e02f16c3ff0727061b90c46c}{parse\+\_\+http\+\_\+request} (\hyperlink{structrwbuf__t}{rwbuf\+\_\+t} $\ast$p, \hyperlink{structhinfo__t}{hinfo\+\_\+t} $\ast$hi)
 \begin{DoxyCompactList}\small\item\em Get arguments for a G\+ET or P\+O\+ST request. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{web_8h_a4abb48d4494fe24bdb3966a30a380f94}{is\+\_\+cgitoken\+\_\+char} (int c)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{web_8h_a4abb48d4494fe24bdb3966a30a380f94}{is\+\_\+cgitoken\+\_\+char} (int c)
 \begin{DoxyCompactList}\small\item\em test to see if a character is a valid member of the C\+GI token character set C\+GI tokens have the following syntax @ They start with \char`\"{}@\+\_\+\char`\"{} and end with \char`\"{}\+\_\+@\char`\"{} \char`\"{}@\+\_\+\char`\"{} must be first two characters of string May have upper and lower case letters, numbers and \textquotesingle{}-\/\textquotesingle{} \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{web_8h_a1923a5ddca00d254e13a605602f68972}{find\+\_\+cgitoken\+\_\+start} (char $\ast$str)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{web_8h_a1923a5ddca00d254e13a605602f68972}{find\+\_\+cgitoken\+\_\+start} (char $\ast$str)
 \begin{DoxyCompactList}\small\item\em Find start of C\+GI token in a string C\+GI tokens have the following syntax @ They start with \char`\"{}@\+\_\+\char`\"{} and end with \char`\"{}\+\_\+@\char`\"{} \char`\"{}@\+\_\+\char`\"{} must be first two characters of string May have upper and lower case letters, numbers and \textquotesingle{}-\/\textquotesingle{} param\mbox{[}in\mbox{]} $\ast$str\+: string to search. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{web_8h_a048ebac3422330a50ba449d817ff49d8}{is\+\_\+cgitoken} (char $\ast$str)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{web_8h_a048ebac3422330a50ba449d817ff49d8}{is\+\_\+cgitoken} (char $\ast$str)
 \begin{DoxyCompactList}\small\item\em Does the string have a C\+GI T\+O\+K\+EN at the beginning ? C\+GI tokens have the following syntax @ They start with \char`\"{}@\+\_\+\char`\"{} and end with \char`\"{}\+\_\+@\char`\"{} \char`\"{}@\+\_\+\char`\"{} must be first two characters of string May have upper and lower case letters, numbers and \textquotesingle{}-\/\textquotesingle{}. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{web_8h_abfb5be0ab21dfe56bc934a8965154384}{rewrite\+\_\+cgi\+\_\+token} (\hyperlink{structrwbuf__t}{rwbuf\+\_\+t} $\ast$p, char $\ast$src)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{web_8h_abfb5be0ab21dfe56bc934a8965154384}{rewrite\+\_\+cgi\+\_\+token} (\hyperlink{structrwbuf__t}{rwbuf\+\_\+t} $\ast$p, char $\ast$src)
 \begin{DoxyCompactList}\small\item\em Replace C\+GI token with C\+GI result C\+GI tokens have the following syntax @ They start with \char`\"{}@\+\_\+\char`\"{} and end with \char`\"{}\+\_\+@\char`\"{} \char`\"{}@\+\_\+\char`\"{} must be first two characters of string May have upper and lower case letters, numbers and \textquotesingle{}-\/\textquotesingle{}. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{web_8h_a8914bb442212946291b6afbf4f3e728e}{web\+\_\+task} (void)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{web_8h_a8914bb442212946291b6afbf4f3e728e}{web\+\_\+task} (void)
 \begin{DoxyCompactList}\small\item\em Process A\+LL incoming H\+T\+TP requests. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{web_8h_a0981a27ccb83326c4e96a0859f6511b5}{web\+\_\+init\+\_\+connections} (void)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{web_8h_a0981a27ccb83326c4e96a0859f6511b5}{web\+\_\+init\+\_\+connections} (void)
 \item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{web_8h_aa7a1c2f567713688983ddecf9fa0d8d6}{web\+\_\+init} (int port)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{web_8h_aa7a1c2f567713688983ddecf9fa0d8d6}{web\+\_\+init} (int port)
 \begin{DoxyCompactList}\small\item\em Setup W\+EB server and accept connections. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -209,18 +216,32 @@ You should have received a copy of the G\+NU General Public License along with t
 \subsubsection[{\texorpdfstring{I\+O\+\_\+\+M\+AX}{IO_MAX}}]{\setlength{\rightskip}{0pt plus 5cm}\#define I\+O\+\_\+\+M\+AX~512}\hypertarget{web_8h_a51a214aeaf13aa7f3eac284e5a4fc93e}{}\label{web_8h_a51a214aeaf13aa7f3eac284e5a4fc93e}
 
 
-Definition at line 66 of file web.\+h.
+Definition at line 83 of file web.\+h.
 
 \index{web.\+h@{web.\+h}!M\+A\+X\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+O\+NS@{M\+A\+X\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+O\+NS}}
 \index{M\+A\+X\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+O\+NS@{M\+A\+X\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+O\+NS}!web.\+h@{web.\+h}}
 \subsubsection[{\texorpdfstring{M\+A\+X\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+O\+NS}{MAX_CONNECTIONS}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+A\+X\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+O\+NS~1}\hypertarget{web_8h_a053b7859476cc9867ec62c49e68d3fa1}{}\label{web_8h_a053b7859476cc9867ec62c49e68d3fa1}
 
 
-Definition at line 33 of file web.\+h.
+Definition at line 50 of file web.\+h.
 
 
 
 Referenced by create\+\_\+connection(), delete\+\_\+connection(), find\+\_\+connection(), setup(), and tcp\+\_\+accept().
+
+\index{web.\+h@{web.\+h}!M\+E\+M\+S\+P\+A\+CE@{M\+E\+M\+S\+P\+A\+CE}}
+\index{M\+E\+M\+S\+P\+A\+CE@{M\+E\+M\+S\+P\+A\+CE}!web.\+h@{web.\+h}}
+\subsubsection[{\texorpdfstring{M\+E\+M\+S\+P\+A\+CE}{MEMSPACE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+E\+M\+S\+P\+A\+CE}\hypertarget{web_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{}\label{web_8h_ad0fe97585b8891f5e4f2b9a6426330a4}
+
+
+Definition at line 38 of file web.\+h.
+
+\index{web.\+h@{web.\+h}!W\+E\+A\+K\+\_\+\+A\+TR@{W\+E\+A\+K\+\_\+\+A\+TR}}
+\index{W\+E\+A\+K\+\_\+\+A\+TR@{W\+E\+A\+K\+\_\+\+A\+TR}!web.\+h@{web.\+h}}
+\subsubsection[{\texorpdfstring{W\+E\+A\+K\+\_\+\+A\+TR}{WEAK_ATR}}]{\setlength{\rightskip}{0pt plus 5cm}\#define W\+E\+A\+K\+\_\+\+A\+TR~{\bf \+\_\+\+\_\+attribute\+\_\+\+\_\+}((weak))}\hypertarget{web_8h_a399da2caab82ec1bb3d5a8fbc5306768}{}\label{web_8h_a399da2caab82ec1bb3d5a8fbc5306768}
+
+
+Definition at line 43 of file web.\+h.
 
 
 
@@ -230,7 +251,7 @@ Referenced by create\+\_\+connection(), delete\+\_\+connection(), find\+\_\+conn
 \subsubsection[{\texorpdfstring{espconn\+\_\+t}{espconn_t}}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct espconn {\bf espconn\+\_\+t}}\hypertarget{web_8h_a6dae30cd245bde804cf3e2c09e39a4b6}{}\label{web_8h_a6dae30cd245bde804cf3e2c09e39a4b6}
 
 
-Definition at line 29 of file web.\+h.
+Definition at line 46 of file web.\+h.
 
 
 
@@ -275,7 +296,7 @@ T\+O\+K\+E\+N\+\_\+\+C\+A\+C\+H\+E\+\_\+\+C\+O\+N\+T\+R\+OL\hypertarget{web_8h_a
 \end{Desc}
 
 
-Definition at line 69 of file web.\+h.
+Definition at line 86 of file web.\+h.
 
 \subsubsection[{\texorpdfstring{anonymous enum}{anonymous enum}}]{\setlength{\rightskip}{0pt plus 5cm}anonymous enum}\hypertarget{web_8h_a99fb83031ce9923c84392b4e92f956b5}{}\label{web_8h_a99fb83031ce9923c84392b4e92f956b5}
 \begin{Desc}
@@ -315,7 +336,7 @@ S\+T\+A\+T\+U\+S\+\_\+\+S\+E\+R\+V\+\_\+\+U\+N\+A\+V\+A\+IL\hypertarget{web_8h_a
 \end{Desc}
 
 
-Definition at line 100 of file web.\+h.
+Definition at line 117 of file web.\+h.
 
 \subsubsection[{\texorpdfstring{anonymous enum}{anonymous enum}}]{\setlength{\rightskip}{0pt plus 5cm}anonymous enum}\hypertarget{web_8h_abc6126af1d45847bc59afa0aa3216b04}{}\label{web_8h_abc6126af1d45847bc59afa0aa3216b04}
 \begin{Desc}
@@ -351,7 +372,7 @@ P\+T\+Y\+P\+E\+\_\+\+E\+RR\hypertarget{web_8h_abc6126af1d45847bc59afa0aa3216b04a
 \end{Desc}
 
 
-Definition at line 118 of file web.\+h.
+Definition at line 135 of file web.\+h.
 
 
 
@@ -377,7 +398,7 @@ argument name
 \end{DoxyReturn}
 
 
-Definition at line 1207 of file web.\+c.
+Definition at line 1211 of file web.\+c.
 
 
 
@@ -404,7 +425,7 @@ argument value
 \end{DoxyReturn}
 
 
-Definition at line 1255 of file web.\+c.
+Definition at line 1259 of file web.\+c.
 
 
 
@@ -431,7 +452,7 @@ Allocate read/write socket buffers and add it to the working pool.
 \end{DoxyReturn}
 
 
-Definition at line 462 of file web.\+c.
+Definition at line 466 of file web.\+c.
 
 
 
@@ -455,7 +476,7 @@ Delete a \hyperlink{structrwbuf__t}{rwbuf\+\_\+t} entry using its index.
 \end{DoxyParams}
 
 
-Definition at line 508 of file web.\+c.
+Definition at line 512 of file web.\+c.
 
 
 
@@ -488,7 +509,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 268 of file web.\+c.
+Definition at line 272 of file web.\+c.
 
 
 
@@ -515,7 +536,7 @@ index into mimetype table
 \end{DoxyReturn}
 
 
-Definition at line 906 of file web.\+c.
+Definition at line 910 of file web.\+c.
 
 \index{web.\+h@{web.\+h}!find\+\_\+cgitoken\+\_\+start@{find\+\_\+cgitoken\+\_\+start}}
 \index{find\+\_\+cgitoken\+\_\+start@{find\+\_\+cgitoken\+\_\+start}!web.\+h@{web.\+h}}
@@ -533,7 +554,7 @@ offset of start of token, or -\/1 if not found
 \end{DoxyReturn}
 
 
-Definition at line 1885 of file web.\+c.
+Definition at line 1889 of file web.\+c.
 
 \index{web.\+h@{web.\+h}!find\+\_\+connection@{find\+\_\+connection}}
 \index{find\+\_\+connection@{find\+\_\+connection}!web.\+h@{web.\+h}}
@@ -562,7 +583,7 @@ Find a read/write socket buffer for an espconn connection.
 \end{DoxyReturn}
 
 
-Definition at line 387 of file web.\+c.
+Definition at line 391 of file web.\+c.
 
 
 
@@ -589,7 +610,7 @@ argument value pair
 \end{DoxyReturn}
 
 
-Definition at line 1144 of file web.\+c.
+Definition at line 1148 of file web.\+c.
 
 
 
@@ -625,7 +646,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1427 of file web.\+c.
+Definition at line 1431 of file web.\+c.
 
 \index{web.\+h@{web.\+h}!html\+\_\+msg@{html\+\_\+msg}}
 \index{html\+\_\+msg@{html\+\_\+msg}!web.\+h@{web.\+h}}
@@ -660,7 +681,7 @@ bytes written, 0 on wrror
 \end{DoxyReturn}
 
 
-Definition at line 763 of file web.\+c.
+Definition at line 767 of file web.\+c.
 
 \index{web.\+h@{web.\+h}!html\+\_\+status@{html\+\_\+status}}
 \index{html\+\_\+status@{html\+\_\+status}!web.\+h@{web.\+h}}
@@ -683,7 +704,7 @@ http\+\_\+status entry mathing status, or 500 Internal Server Error
 \end{DoxyReturn}
 
 
-Definition at line 940 of file web.\+c.
+Definition at line 944 of file web.\+c.
 
 
 
@@ -713,7 +734,7 @@ argument value
 \end{DoxyReturn}
 
 
-Definition at line 1331 of file web.\+c.
+Definition at line 1335 of file web.\+c.
 
 \index{web.\+h@{web.\+h}!init\+\_\+hinfo@{init\+\_\+hinfo}}
 \index{init\+\_\+hinfo@{init\+\_\+hinfo}!web.\+h@{web.\+h}}
@@ -732,7 +753,7 @@ Initilize \hyperlink{structhinfo__t}{hinfo\+\_\+t} structure
 \end{DoxyReturn}
 
 
-Definition at line 965 of file web.\+c.
+Definition at line 969 of file web.\+c.
 
 
 
@@ -754,7 +775,7 @@ size of token or -\/1 on fail
 \end{DoxyReturn}
 
 
-Definition at line 1912 of file web.\+c.
+Definition at line 1916 of file web.\+c.
 
 \index{web.\+h@{web.\+h}!is\+\_\+cgitoken\+\_\+char@{is\+\_\+cgitoken\+\_\+char}}
 \index{is\+\_\+cgitoken\+\_\+char@{is\+\_\+cgitoken\+\_\+char}!web.\+h@{web.\+h}}
@@ -777,7 +798,7 @@ test to see if a character is a valid member of the C\+GI token character set C\
 \end{DoxyReturn}
 
 
-Definition at line 1860 of file web.\+c.
+Definition at line 1864 of file web.\+c.
 
 \index{web.\+h@{web.\+h}!is\+\_\+header@{is\+\_\+header}}
 \index{is\+\_\+header@{is\+\_\+header}!web.\+h@{web.\+h}}
@@ -803,7 +824,7 @@ Does the string look like a header token with a \textquotesingle{}\+:\textquotes
 \end{DoxyReturn}
 
 
-Definition at line 1360 of file web.\+c.
+Definition at line 1364 of file web.\+c.
 
 
 
@@ -830,7 +851,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 188 of file web.\+c.
+Definition at line 192 of file web.\+c.
 
 \index{web.\+h@{web.\+h}!led\+\_\+on@{led\+\_\+on}}
 \index{led\+\_\+on@{led\+\_\+on}!web.\+h@{web.\+h}}
@@ -841,7 +862,7 @@ Definition at line 188 of file web.\+c.
 )}\hypertarget{web_8h_aaaac061db0c7646d5b6c8bdfe3089ae7}{}\label{web_8h_aaaac061db0c7646d5b6c8bdfe3089ae7}
 
 
-Definition at line 178 of file web.\+c.
+Definition at line 182 of file web.\+c.
 
 \index{web.\+h@{web.\+h}!match\+\_\+headers@{match\+\_\+headers}}
 \index{match\+\_\+headers@{match\+\_\+headers}!web.\+h@{web.\+h}}
@@ -867,7 +888,7 @@ header index or -\/1 on no match
 \end{DoxyReturn}
 
 
-Definition at line 986 of file web.\+c.
+Definition at line 990 of file web.\+c.
 
 
 
@@ -895,7 +916,7 @@ pointer to string
 \end{DoxyReturn}
 
 
-Definition at line 862 of file web.\+c.
+Definition at line 866 of file web.\+c.
 
 
 
@@ -928,7 +949,7 @@ pointer to start of memory area (ptr)
 \end{DoxyReturn}
 
 
-Definition at line 843 of file web.\+c.
+Definition at line 847 of file web.\+c.
 
 
 
@@ -955,7 +976,7 @@ pointer to string, if out of range uses index P\+T\+Y\+P\+E\+\_\+\+E\+RR
 \end{DoxyReturn}
 
 
-Definition at line 893 of file web.\+c.
+Definition at line 897 of file web.\+c.
 
 
 
@@ -982,7 +1003,7 @@ argument value pair
 \end{DoxyReturn}
 
 
-Definition at line 1156 of file web.\+c.
+Definition at line 1160 of file web.\+c.
 
 
 
@@ -1009,7 +1030,7 @@ first space or ? character
 \end{DoxyReturn}
 
 
-Definition at line 1385 of file web.\+c.
+Definition at line 1389 of file web.\+c.
 
 
 
@@ -1039,7 +1060,7 @@ Get arguments for a G\+ET or P\+O\+ST request.
 \end{DoxyReturn}
 
 
-Definition at line 1444 of file web.\+c.
+Definition at line 1448 of file web.\+c.
 
 \index{web.\+h@{web.\+h}!process\+\_\+args@{process\+\_\+args}}
 \index{process\+\_\+args@{process\+\_\+args}!web.\+h@{web.\+h}}
@@ -1065,7 +1086,7 @@ $\ast$ptr pointer that points to just past the header area.
 \end{DoxyReturn}
 
 
-Definition at line 1025 of file web.\+c.
+Definition at line 1029 of file web.\+c.
 
 
 
@@ -1095,7 +1116,7 @@ length of replaced text or 0 if no C\+GI handler was matched
 \end{DoxyReturn}
 
 
-Definition at line 1954 of file web.\+c.
+Definition at line 1958 of file web.\+c.
 
 \index{web.\+h@{web.\+h}!rwbuf\+\_\+create@{rwbuf\+\_\+create}}
 \index{rwbuf\+\_\+create@{rwbuf\+\_\+create}!web.\+h@{web.\+h}}
@@ -1113,7 +1134,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 323 of file web.\+c.
+Definition at line 327 of file web.\+c.
 
 
 
@@ -1140,7 +1161,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 285 of file web.\+c.
+Definition at line 289 of file web.\+c.
 
 
 
@@ -1167,7 +1188,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 237 of file web.\+c.
+Definition at line 241 of file web.\+c.
 
 
 
@@ -1194,7 +1215,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 251 of file web.\+c.
+Definition at line 255 of file web.\+c.
 
 
 
@@ -1227,7 +1248,7 @@ bytes written
 \end{DoxyReturn}
 
 
-Definition at line 740 of file web.\+c.
+Definition at line 744 of file web.\+c.
 
 
 
@@ -1257,7 +1278,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1406 of file web.\+c.
+Definition at line 1410 of file web.\+c.
 
 
 
@@ -1290,7 +1311,7 @@ bytes written
 \end{DoxyReturn}
 
 
-Definition at line 718 of file web.\+c.
+Definition at line 722 of file web.\+c.
 
 
 
@@ -1317,7 +1338,7 @@ Wait for buffer to send for this connection If the buffers have any data in them
 \end{DoxyReturn}
 
 
-Definition at line 593 of file web.\+c.
+Definition at line 597 of file web.\+c.
 
 
 
@@ -1344,7 +1365,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 2337 of file web.\+c.
+Definition at line 2341 of file web.\+c.
 
 
 
@@ -1359,7 +1380,7 @@ Referenced by setup().
 )}\hypertarget{web_8h_a0981a27ccb83326c4e96a0859f6511b5}{}\label{web_8h_a0981a27ccb83326c4e96a0859f6511b5}
 
 
-Definition at line 2322 of file web.\+c.
+Definition at line 2326 of file web.\+c.
 
 \index{web.\+h@{web.\+h}!web\+\_\+task@{web\+\_\+task}}
 \index{web\+\_\+task@{web\+\_\+task}!web.\+h@{web.\+h}}
@@ -1380,7 +1401,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 2285 of file web.\+c.
+Definition at line 2289 of file web.\+c.
 
 
 
@@ -1407,7 +1428,7 @@ Write a byte (buffered) using the \hyperlink{structrwbuf__t}{rwbuf\+\_\+t} socke
 \end{DoxyParams}
 
 
-Definition at line 538 of file web.\+c.
+Definition at line 542 of file web.\+c.
 
 
 
@@ -1434,7 +1455,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 631 of file web.\+c.
+Definition at line 635 of file web.\+c.
 
 
 
@@ -1467,7 +1488,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 675 of file web.\+c.
+Definition at line 679 of file web.\+c.
 
 
 
@@ -1497,5 +1518,5 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 688 of file web.\+c.
+Definition at line 692 of file web.\+c.
 

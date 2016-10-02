@@ -26,9 +26,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef _NETWORK_H_
 #define _NETWORK_H_
 
-#include <ip_addr.h>
-#include <c_types.h>
-#include <espconn.h>
+#include <stdint.h>
+#include <stdarg.h>
+#include <string.h>
+#include <math.h>
+
+#ifdef USER_CONFIG
+#include "user_config.h"
+#endif
+
+// Named address space
+#ifndef MEMSPACE
+#define MEMSPACE /**/
+#endif
+
+// Weak attribute
+#ifndef WEAK_ATR
+#define WEAK_ATR __attribute__((weak))
+#endif
 
 extern int network_init;
 

@@ -41,16 +41,23 @@ POSSIBILITY OF SUCH DAMAGE.
 #ifndef _ILI9341_ADAFRUIT_H_
 #define _ILI9341_ADAFRUIT_H_
 
-#include <ets_sys.h>
-#include <osapi.h>
-#include <os_type.h>
-#include <gpio.h>
-#include <mem.h>
-#include "str.h"
-#include "sys.h"
-#include "hspi.h"
+#include <stdint.h>
+#include <stdarg.h>
+#include <string.h>
+#include <math.h>
+
 #include "font.h"
 #include "ili9341.h"
+
+// Named address space
+#ifndef MEMSPACE
+#define MEMSPACE /**/
+#endif
+
+// Weak attribute
+#ifndef WEAK_ATR
+#define WEAK_ATR __attribute__((weak))
+#endif
 
 typedef union
 {
@@ -160,6 +167,7 @@ typedef union
 #define ILI9341_GREENYELLOW 0xAFE5                /* 173, 255,  47 */
 #define ILI9341_PINK        0xF81F
 
+#endif                                            // _ILI9341_ADAFRUIT_H_
 // ============================================================
 
 /* ili9341_adafruit.c */
@@ -174,4 +182,3 @@ MEMSPACE void tft_drawRoundRect ( window *win , int16_t x , int16_t y , int16_t 
 MEMSPACE void tft_fillRoundRect ( window *win , int16_t x , int16_t y , int16_t w , int16_t h , int16_t r , uint16_t color );
 MEMSPACE void tft_drawTriangle ( window *win , int16_t x0 , int16_t y0 , int16_t x1 , int16_t y1 , int16_t x2 , int16_t y2 , uint16_t color );
 MEMSPACE void tft_fillTriangle ( window *win , int16_t x0 , int16_t y0 , int16_t x1 , int16_t y1 , int16_t x2 , int16_t y2 , uint16_t color );
-#endif                                            // _ILI9341_ADAFRUIT_H_

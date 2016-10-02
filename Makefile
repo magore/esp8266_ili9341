@@ -232,6 +232,22 @@ EXTRA_INCDIR    = user include $(SDK_BASE)/include
 
 # ===============================================================
 
+# Named address space aliases
+CFLAGS += -DMEMSPACE=ICACHE_FLASH_ATTR
+CFLAGS += -DMEMSPACE_RO=ICACHE_RODATA_ATTR
+# ESP8266 specific support
+CFLAGS += -DESP8266
+CFLAGS += -D_GNU_SOURCE
+# Floating point support for printf
+CFLAGS += -DFLOAT
+# files should include user_config.h
+CFLAGS += -DUSER_CONFIG
+
+# PRINTF and FONTS
+# Include font specifications - needed with proportional fonts 
+CFLAGS  += -DFONTSPECS 
+CFLAGS += -Dprintf=$(DEBUG_PRINTF) 
+# TFT display DEBUG level
 ifdef ILI9341_DEBUG
 	CFLAGS  += -DILI9341_DEBUG=$(ILI9341_DEBUG)
 endif
@@ -266,13 +282,14 @@ endif
 ifdef FATFS_SUPPORT
 	MODULES	+= fatfs
 	CFLAGS  += -DFATFS_SUPPORT
+	# posix.c posix.h flag to say we have no stdio support - so make our own
+	CFLAGS += -DNO_STDIO
 endif
 
 ifdef TELNET_SERIAL
 	CFLAGS += -DTELNET_SERIAL
 	MODULES	+= bridge
 endif
-
 
 ifdef NETWORK_TEST
 	MODULES += server
@@ -298,19 +315,13 @@ endif
 ifdef ADF4351
 	CFLAGS += -DADF4351
 	MODULES	+= adf4351
-
 ifdef ADF4351_DEBUG
 	CFLAGS += -DADF4351_DEBUG=$(ADF4351_DEBUG)
 endif
-
 endif
 
-CFLAGS += -Dprintf=$(DEBUG_PRINTF)
 
-# Include font specifications - needed with proportional fonts 
-CFLAGS  += -DFONTSPECS 
 
-CFLAGS += -DESP8266
 # ===============================================================
 
 LD_SCRIPT	:= $(addprefix -T$(PROJECT_DIR)/ld/,$(LD_SCRIPT))
@@ -440,6 +451,10 @@ $(FW_BASE):
 
 # ===============================================================
 clean:
+	-@$(MAKE) -C printf clean
+	-@$(MAKE) -C cordic/make_cordic clean
+	-@$(MAKE) -C earth clean
+	-@$(MAKE) -C fonts clean
 	rm -f $(APP_AR)
 	rm -rf $(BUILD_DIR)
 	rm -rf $(BUILD_BASE)

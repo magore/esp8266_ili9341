@@ -23,7 +23,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 #include "user_config.h"
 
 #ifdef WIRECUBE
@@ -48,6 +47,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *         winbottom
  */
 
+#include "std.h"
 
 /* Master Window, Full size of TFT */
 window *master;

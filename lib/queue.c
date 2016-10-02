@@ -21,7 +21,13 @@
 */
 
 
-#include "user_config.h"
+#include <stdint.h>
+#include <stdarg.h>
+#include <string.h>
+#include <math.h>
+
+#include "queue.h"
+
 /**
   @brief Create a ring buffer of a given size
   @param[in] size: size of rin buffer

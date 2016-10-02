@@ -5,7 +5,10 @@
 Fat\+FS file system module include file R0.\+10b (C) ChaN, 2014.  
 
 
-{\ttfamily \#include \char`\"{}user\+\_\+config.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$stdint.\+h$>$}\\*
+{\ttfamily \#include $<$stdarg.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$math.\+h$>$}\\*
 {\ttfamily \#include \char`\"{}integer.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}ffconf.\+h\char`\"{}}\\*
 \subsection*{Data Structures}
@@ -225,7 +228,7 @@ Definition at line 26 of file ff.\+h.
 )~x}\hypertarget{ff_8h_ae936e4c15227768f7da4e0951def89c8}{}\label{ff_8h_ae936e4c15227768f7da4e0951def89c8}
 
 
-Definition at line 73 of file ff.\+h.
+Definition at line 77 of file ff.\+h.
 
 \index{ff.\+h@{ff.\+h}!\+\_\+\+T\+E\+XT@{\+\_\+\+T\+E\+XT}}
 \index{\+\_\+\+T\+E\+XT@{\+\_\+\+T\+E\+XT}!ff.\+h@{ff.\+h}}
@@ -236,14 +239,14 @@ Definition at line 73 of file ff.\+h.
 )~x}\hypertarget{ff_8h_a3232964568d17bb4a1af30f9db826ce2}{}\label{ff_8h_a3232964568d17bb4a1af30f9db826ce2}
 
 
-Definition at line 74 of file ff.\+h.
+Definition at line 78 of file ff.\+h.
 
 \index{ff.\+h@{ff.\+h}!A\+M\+\_\+\+A\+RC@{A\+M\+\_\+\+A\+RC}}
 \index{A\+M\+\_\+\+A\+RC@{A\+M\+\_\+\+A\+RC}!ff.\+h@{ff.\+h}}
 \subsubsection[{\texorpdfstring{A\+M\+\_\+\+A\+RC}{AM_ARC}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+M\+\_\+\+A\+RC~0x20                          /$\ast$ Archive $\ast$/}\hypertarget{ff_8h_ae8174d00798e34e7c9e95898cb9e1a09}{}\label{ff_8h_ae8174d00798e34e7c9e95898cb9e1a09}
 
 
-Definition at line 317 of file ff.\+h.
+Definition at line 321 of file ff.\+h.
 
 
 
@@ -254,7 +257,7 @@ Referenced by f\+\_\+chmod(), f\+\_\+rename(), f\+\_\+sync(), and fatfs\+\_\+fil
 \subsubsection[{\texorpdfstring{A\+M\+\_\+\+D\+IR}{AM_DIR}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+M\+\_\+\+D\+IR~0x10                          /$\ast$ Directory $\ast$/}\hypertarget{ff_8h_a3a9db44e978ed6c13b641e092d4cd7d3}{}\label{ff_8h_a3a9db44e978ed6c13b641e092d4cd7d3}
 
 
-Definition at line 316 of file ff.\+h.
+Definition at line 320 of file ff.\+h.
 
 
 
@@ -265,7 +268,7 @@ Referenced by f\+\_\+chdir(), f\+\_\+mkdir(), f\+\_\+open(), f\+\_\+opendir(), f
 \subsubsection[{\texorpdfstring{A\+M\+\_\+\+H\+ID}{AM_HID}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+M\+\_\+\+H\+ID~0x02                          /$\ast$ Hidden $\ast$/}\hypertarget{ff_8h_aa90c4c921c1955fd407d8bbf17f1674e}{}\label{ff_8h_aa90c4c921c1955fd407d8bbf17f1674e}
 
 
-Definition at line 312 of file ff.\+h.
+Definition at line 316 of file ff.\+h.
 
 
 
@@ -276,7 +279,7 @@ Referenced by f\+\_\+chmod(), and fatfs\+\_\+filinfo\+\_\+list().
 \subsubsection[{\texorpdfstring{A\+M\+\_\+\+L\+FN}{AM_LFN}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+M\+\_\+\+L\+FN~0x0\+F                          /$\ast$ L\+F\+N entry $\ast$/}\hypertarget{ff_8h_a91161ef62e0e85ba3c2876d3d339473d}{}\label{ff_8h_a91161ef62e0e85ba3c2876d3d339473d}
 
 
-Definition at line 315 of file ff.\+h.
+Definition at line 319 of file ff.\+h.
 
 
 
@@ -287,7 +290,7 @@ Referenced by dir\+\_\+find(), dir\+\_\+read(), and fit\+\_\+lfn().
 \subsubsection[{\texorpdfstring{A\+M\+\_\+\+M\+A\+SK}{AM_MASK}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+M\+\_\+\+M\+A\+SK~0x3\+F                          /$\ast$ Mask of defined bits $\ast$/}\hypertarget{ff_8h_aefa78fd6b130faaca4e115602869b57c}{}\label{ff_8h_aefa78fd6b130faaca4e115602869b57c}
 
 
-Definition at line 318 of file ff.\+h.
+Definition at line 322 of file ff.\+h.
 
 
 
@@ -298,7 +301,7 @@ Referenced by dir\+\_\+find(), and dir\+\_\+read().
 \subsubsection[{\texorpdfstring{A\+M\+\_\+\+R\+DO}{AM_RDO}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+M\+\_\+\+R\+DO~0x01                          /$\ast$ Read only $\ast$/}\hypertarget{ff_8h_add6d85d1e7a02b4f6188783ef91a5f1e}{}\label{ff_8h_add6d85d1e7a02b4f6188783ef91a5f1e}
 
 
-Definition at line 311 of file ff.\+h.
+Definition at line 315 of file ff.\+h.
 
 
 
@@ -309,7 +312,7 @@ Referenced by f\+\_\+chmod(), f\+\_\+open(), f\+\_\+unlink(), fatfs\+\_\+filinfo
 \subsubsection[{\texorpdfstring{A\+M\+\_\+\+S\+YS}{AM_SYS}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+M\+\_\+\+S\+YS~0x04                          /$\ast$ System $\ast$/}\hypertarget{ff_8h_a1f25d5c17b5a3a6397b3398add8cdc15}{}\label{ff_8h_a1f25d5c17b5a3a6397b3398add8cdc15}
 
 
-Definition at line 313 of file ff.\+h.
+Definition at line 317 of file ff.\+h.
 
 
 
@@ -320,7 +323,7 @@ Referenced by f\+\_\+chmod(), fatfs\+\_\+filinfo\+\_\+list(), and stat().
 \subsubsection[{\texorpdfstring{A\+M\+\_\+\+V\+OL}{AM_VOL}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+M\+\_\+\+V\+OL~0x08                          /$\ast$ Volume label $\ast$/}\hypertarget{ff_8h_a5cfae62dabae0a54809e43b36685ce7c}{}\label{ff_8h_a5cfae62dabae0a54809e43b36685ce7c}
 
 
-Definition at line 314 of file ff.\+h.
+Definition at line 318 of file ff.\+h.
 
 
 
@@ -331,7 +334,7 @@ Referenced by dir\+\_\+find(), dir\+\_\+read(), and f\+\_\+setlabel().
 \subsubsection[{\texorpdfstring{C\+R\+E\+A\+T\+E\+\_\+\+L\+I\+N\+K\+M\+AP}{CREATE_LINKMAP}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+R\+E\+A\+T\+E\+\_\+\+L\+I\+N\+K\+M\+AP~0x\+F\+F\+F\+F\+F\+F\+FF}\hypertarget{ff_8h_aee297a9011164cf485a4df2a72758b08}{}\label{ff_8h_aee297a9011164cf485a4df2a72758b08}
 
 
-Definition at line 321 of file ff.\+h.
+Definition at line 325 of file ff.\+h.
 
 
 
@@ -342,7 +345,7 @@ Referenced by f\+\_\+lseek().
 \subsubsection[{\texorpdfstring{E\+OF}{EOF}}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\+OF~(-\/1)}\hypertarget{ff_8h_a59adc4c82490d23754cd39c2fb99b0da}{}\label{ff_8h_a59adc4c82490d23754cd39c2fb99b0da}
 
 
-Definition at line 257 of file ff.\+h.
+Definition at line 261 of file ff.\+h.
 
 
 
@@ -357,7 +360,7 @@ Referenced by f\+\_\+printf(), f\+\_\+putc(), f\+\_\+puts(), fatfs\+\_\+getc(), 
 )~(((fp)-\/$>$fptr == (fp)-\/$>$fsize) ? 1 \+: 0)}\hypertarget{ff_8h_a970cdd8970a3a94967ad64cfc5d4c161}{}\label{ff_8h_a970cdd8970a3a94967ad64cfc5d4c161}
 
 
-Definition at line 251 of file ff.\+h.
+Definition at line 255 of file ff.\+h.
 
 \index{ff.\+h@{ff.\+h}!f\+\_\+error@{f\+\_\+error}}
 \index{f\+\_\+error@{f\+\_\+error}!ff.\+h@{ff.\+h}}
@@ -368,7 +371,7 @@ Definition at line 251 of file ff.\+h.
 )~((fp)-\/$>$err)}\hypertarget{ff_8h_a25cbdabeed318802cf0e9db6671a33b7}{}\label{ff_8h_a25cbdabeed318802cf0e9db6671a33b7}
 
 
-Definition at line 252 of file ff.\+h.
+Definition at line 256 of file ff.\+h.
 
 \index{ff.\+h@{ff.\+h}!f\+\_\+size@{f\+\_\+size}}
 \index{f\+\_\+size@{f\+\_\+size}!ff.\+h@{ff.\+h}}
@@ -379,7 +382,7 @@ Definition at line 252 of file ff.\+h.
 )~((fp)-\/$>$fsize)}\hypertarget{ff_8h_a26f33722c5bf1aa3cd6f0290a83eb2bc}{}\label{ff_8h_a26f33722c5bf1aa3cd6f0290a83eb2bc}
 
 
-Definition at line 254 of file ff.\+h.
+Definition at line 258 of file ff.\+h.
 
 \index{ff.\+h@{ff.\+h}!f\+\_\+tell@{f\+\_\+tell}}
 \index{f\+\_\+tell@{f\+\_\+tell}!ff.\+h@{ff.\+h}}
@@ -390,14 +393,14 @@ Definition at line 254 of file ff.\+h.
 )~((fp)-\/$>$fptr)}\hypertarget{ff_8h_a5e1daca7ce13cdc277e42185f7f9124f}{}\label{ff_8h_a5e1daca7ce13cdc277e42185f7f9124f}
 
 
-Definition at line 253 of file ff.\+h.
+Definition at line 257 of file ff.\+h.
 
 \index{ff.\+h@{ff.\+h}!F\+A\+\_\+\+\_\+\+D\+I\+R\+TY@{F\+A\+\_\+\+\_\+\+D\+I\+R\+TY}}
 \index{F\+A\+\_\+\+\_\+\+D\+I\+R\+TY@{F\+A\+\_\+\+\_\+\+D\+I\+R\+TY}!ff.\+h@{ff.\+h}}
 \subsubsection[{\texorpdfstring{F\+A\+\_\+\+\_\+\+D\+I\+R\+TY}{FA__DIRTY}}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\+A\+\_\+\+\_\+\+D\+I\+R\+TY~0x40}\hypertarget{ff_8h_a5b2962e3616a1e9eb709d95f4c75c67c}{}\label{ff_8h_a5b2962e3616a1e9eb709d95f4c75c67c}
 
 
-Definition at line 300 of file ff.\+h.
+Definition at line 304 of file ff.\+h.
 
 
 
@@ -408,7 +411,7 @@ Referenced by f\+\_\+lseek(), f\+\_\+read(), f\+\_\+sync(), f\+\_\+truncate(), a
 \subsubsection[{\texorpdfstring{F\+A\+\_\+\+\_\+\+W\+R\+I\+T\+T\+EN}{FA__WRITTEN}}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\+A\+\_\+\+\_\+\+W\+R\+I\+T\+T\+EN~0x20}\hypertarget{ff_8h_ac4b7d5223f84df91c306ffbff536fae4}{}\label{ff_8h_ac4b7d5223f84df91c306ffbff536fae4}
 
 
-Definition at line 299 of file ff.\+h.
+Definition at line 303 of file ff.\+h.
 
 
 
@@ -419,7 +422,7 @@ Referenced by f\+\_\+lseek(), f\+\_\+open(), f\+\_\+sync(), f\+\_\+truncate(), a
 \subsubsection[{\texorpdfstring{F\+A\+\_\+\+C\+R\+E\+A\+T\+E\+\_\+\+A\+L\+W\+A\+YS}{FA_CREATE_ALWAYS}}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\+A\+\_\+\+C\+R\+E\+A\+T\+E\+\_\+\+A\+L\+W\+A\+YS~0x08}\hypertarget{ff_8h_afba4546b131dea4b24727fa20a80e29f}{}\label{ff_8h_afba4546b131dea4b24727fa20a80e29f}
 
 
-Definition at line 297 of file ff.\+h.
+Definition at line 301 of file ff.\+h.
 
 
 
@@ -430,7 +433,7 @@ Referenced by f\+\_\+open(), fatfs\+\_\+copy(), fatfs\+\_\+create(), and open().
 \subsubsection[{\texorpdfstring{F\+A\+\_\+\+C\+R\+E\+A\+T\+E\+\_\+\+N\+EW}{FA_CREATE_NEW}}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\+A\+\_\+\+C\+R\+E\+A\+T\+E\+\_\+\+N\+EW~0x04}\hypertarget{ff_8h_a417bb1babd1785fd181a806b5613eba3}{}\label{ff_8h_a417bb1babd1785fd181a806b5613eba3}
 
 
-Definition at line 296 of file ff.\+h.
+Definition at line 300 of file ff.\+h.
 
 
 
@@ -441,7 +444,7 @@ Referenced by f\+\_\+open().
 \subsubsection[{\texorpdfstring{F\+A\+\_\+\+O\+P\+E\+N\+\_\+\+A\+L\+W\+A\+YS}{FA_OPEN_ALWAYS}}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\+A\+\_\+\+O\+P\+E\+N\+\_\+\+A\+L\+W\+A\+YS~0x10}\hypertarget{ff_8h_a17b01553029920ac0468912b4bcb16c7}{}\label{ff_8h_a17b01553029920ac0468912b4bcb16c7}
 
 
-Definition at line 298 of file ff.\+h.
+Definition at line 302 of file ff.\+h.
 
 
 
@@ -452,7 +455,7 @@ Referenced by f\+\_\+open(), and open().
 \subsubsection[{\texorpdfstring{F\+A\+\_\+\+O\+P\+E\+N\+\_\+\+E\+X\+I\+S\+T\+I\+NG}{FA_OPEN_EXISTING}}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\+A\+\_\+\+O\+P\+E\+N\+\_\+\+E\+X\+I\+S\+T\+I\+NG~0x00}\hypertarget{ff_8h_a0c5dd686b10f84c2a2b3954957a5979a}{}\label{ff_8h_a0c5dd686b10f84c2a2b3954957a5979a}
 
 
-Definition at line 292 of file ff.\+h.
+Definition at line 296 of file ff.\+h.
 
 
 
@@ -463,7 +466,7 @@ Referenced by fatfs\+\_\+cat(), fatfs\+\_\+copy(), and truncate().
 \subsubsection[{\texorpdfstring{F\+A\+\_\+\+R\+E\+AD}{FA_READ}}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\+A\+\_\+\+R\+E\+AD~0x01}\hypertarget{ff_8h_a1f4f3530ff03abbd979b072536e72290}{}\label{ff_8h_a1f4f3530ff03abbd979b072536e72290}
 
 
-Definition at line 291 of file ff.\+h.
+Definition at line 295 of file ff.\+h.
 
 
 
@@ -474,7 +477,7 @@ Referenced by f\+\_\+open(), f\+\_\+read(), f\+\_\+setlabel(), fatfs\+\_\+cat(),
 \subsubsection[{\texorpdfstring{F\+A\+\_\+\+W\+R\+I\+TE}{FA_WRITE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\+A\+\_\+\+W\+R\+I\+TE~0x02}\hypertarget{ff_8h_afa366963220c89b882c0361794020c14}{}\label{ff_8h_afa366963220c89b882c0361794020c14}
 
 
-Definition at line 295 of file ff.\+h.
+Definition at line 299 of file ff.\+h.
 
 
 
@@ -485,7 +488,7 @@ Referenced by f\+\_\+lseek(), f\+\_\+open(), f\+\_\+truncate(), f\+\_\+write(), 
 \subsubsection[{\texorpdfstring{F\+S\+\_\+\+F\+A\+T12}{FS_FAT12}}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\+S\+\_\+\+F\+A\+T12~1}\hypertarget{ff_8h_aab755aa1b4f81f4aabee4a5d4738cfb0}{}\label{ff_8h_aab755aa1b4f81f4aabee4a5d4738cfb0}
 
 
-Definition at line 305 of file ff.\+h.
+Definition at line 309 of file ff.\+h.
 
 
 
@@ -496,7 +499,7 @@ Referenced by f\+\_\+getfree(), f\+\_\+mkfs(), find\+\_\+volume(), get\+\_\+fat(
 \subsubsection[{\texorpdfstring{F\+S\+\_\+\+F\+A\+T16}{FS_FAT16}}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\+S\+\_\+\+F\+A\+T16~2}\hypertarget{ff_8h_a7ef90a36d99edfc0138a2155a17a79b9}{}\label{ff_8h_a7ef90a36d99edfc0138a2155a17a79b9}
 
 
-Definition at line 306 of file ff.\+h.
+Definition at line 310 of file ff.\+h.
 
 
 
@@ -507,7 +510,7 @@ Referenced by f\+\_\+getfree(), f\+\_\+mkfs(), find\+\_\+volume(), get\+\_\+fat(
 \subsubsection[{\texorpdfstring{F\+S\+\_\+\+F\+A\+T32}{FS_FAT32}}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\+S\+\_\+\+F\+A\+T32~3}\hypertarget{ff_8h_ac63e0796095a789cefdbc3c3c676c9ce}{}\label{ff_8h_ac63e0796095a789cefdbc3c3c676c9ce}
 
 
-Definition at line 307 of file ff.\+h.
+Definition at line 311 of file ff.\+h.
 
 
 
@@ -522,7 +525,7 @@ Referenced by dir\+\_\+sdi(), f\+\_\+getlabel(), f\+\_\+mkdir(), f\+\_\+mkfs(), 
 )~({\bf B\+Y\+TE})(vol)           /$\ast$$<$ Each logical drive is bound to the same physical drive number $\ast$/}\hypertarget{ff_8h_a6577ed2f95527745bf4d27c53488b9a7}{}\label{ff_8h_a6577ed2f95527745bf4d27c53488b9a7}
 
 
-Definition at line 54 of file ff.\+h.
+Definition at line 58 of file ff.\+h.
 
 
 
@@ -537,7 +540,7 @@ Referenced by f\+\_\+mkfs(), and find\+\_\+volume().
 )~0                     /$\ast$$<$ Find first valid partition or in S\+FD $\ast$/}\hypertarget{ff_8h_aadc4a9aefaf2588bdd7565549f5d91e7}{}\label{ff_8h_aadc4a9aefaf2588bdd7565549f5d91e7}
 
 
-Definition at line 55 of file ff.\+h.
+Definition at line 59 of file ff.\+h.
 
 
 
@@ -552,7 +555,7 @@ Referenced by f\+\_\+mkfs(), and find\+\_\+volume().
 )~({\bf D\+W\+O\+RD})((({\bf D\+W\+O\+RD})$\ast$(({\bf B\+Y\+TE}$\ast$)(ptr)+3)$<$$<$24)$\vert$(({\bf D\+W\+O\+RD})$\ast$(({\bf B\+Y\+TE}$\ast$)(ptr)+2)$<$$<$16)$\vert$(({\bf W\+O\+RD})$\ast$(({\bf B\+Y\+TE}$\ast$)(ptr)+1)$<$$<$8)$\vert$$\ast$({\bf B\+Y\+TE}$\ast$)(ptr))}\hypertarget{ff_8h_a4690304ddc975516f7dc02575c96e34e}{}\label{ff_8h_a4690304ddc975516f7dc02575c96e34e}
 
 
-Definition at line 333 of file ff.\+h.
+Definition at line 337 of file ff.\+h.
 
 
 
@@ -567,7 +570,7 @@ Referenced by check\+\_\+fs(), f\+\_\+getfree(), f\+\_\+getlabel(), f\+\_\+mkfs(
 )~({\bf W\+O\+RD})((({\bf W\+O\+RD})$\ast$(({\bf B\+Y\+TE}$\ast$)(ptr)+1)$<$$<$8)$\vert$({\bf W\+O\+RD})$\ast$({\bf B\+Y\+TE}$\ast$)(ptr))}\hypertarget{ff_8h_a398519bb08da6457e62567d1f0b567e3}{}\label{ff_8h_a398519bb08da6457e62567d1f0b567e3}
 
 
-Definition at line 332 of file ff.\+h.
+Definition at line 336 of file ff.\+h.
 
 
 
@@ -583,7 +586,7 @@ Referenced by check\+\_\+fs(), cmp\+\_\+lfn(), f\+\_\+getfree(), f\+\_\+mkfs(), 
 )~$\ast$({\bf B\+Y\+TE}$\ast$)(ptr)=({\bf B\+Y\+TE})(val); $\ast$(({\bf B\+Y\+TE}$\ast$)(ptr)+1)=({\bf B\+Y\+TE})(({\bf W\+O\+RD})(val)$>$$>$8); $\ast$(({\bf B\+Y\+TE}$\ast$)(ptr)+2)=({\bf B\+Y\+TE})(({\bf D\+W\+O\+RD})(val)$>$$>$16); $\ast$(({\bf B\+Y\+TE}$\ast$)(ptr)+3)=({\bf B\+Y\+TE})(({\bf D\+W\+O\+RD})(val)$>$$>$24)}\hypertarget{ff_8h_abf5aba973d95ac5843b80aa7379cdd66}{}\label{ff_8h_abf5aba973d95ac5843b80aa7379cdd66}
 
 
-Definition at line 335 of file ff.\+h.
+Definition at line 339 of file ff.\+h.
 
 
 
@@ -599,7 +602,7 @@ Referenced by f\+\_\+mkdir(), f\+\_\+mkfs(), f\+\_\+open(), f\+\_\+setlabel(), f
 )~$\ast$({\bf B\+Y\+TE}$\ast$)(ptr)=({\bf B\+Y\+TE})(val); $\ast$(({\bf B\+Y\+TE}$\ast$)(ptr)+1)=({\bf B\+Y\+TE})(({\bf W\+O\+RD})(val)$>$$>$8)}\hypertarget{ff_8h_a95ceb4c25b216e71baa7102939edfd0d}{}\label{ff_8h_a95ceb4c25b216e71baa7102939edfd0d}
 
 
-Definition at line 334 of file ff.\+h.
+Definition at line 338 of file ff.\+h.
 
 
 
@@ -613,7 +616,7 @@ Referenced by f\+\_\+mkfs(), f\+\_\+sync(), f\+\_\+utime(), fit\+\_\+lfn(), put\
 \subsubsection[{\texorpdfstring{T\+C\+H\+AR}{TCHAR}}]{\setlength{\rightskip}{0pt plus 5cm}typedef char {\bf T\+C\+H\+AR}}\hypertarget{ff_8h_a03bdb8ce5895c7e261aadc2529637546}{}\label{ff_8h_a03bdb8ce5895c7e261aadc2529637546}
 
 
-Definition at line 72 of file ff.\+h.
+Definition at line 76 of file ff.\+h.
 
 
 
@@ -672,7 +675,7 @@ F\+R\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+P\+A\+R\+A\+M\+E\+T\+ER\hypertarget{ff_8h
 \end{Desc}
 
 
-Definition at line 179 of file ff.\+h.
+Definition at line 183 of file ff.\+h.
 
 
 
@@ -686,7 +689,7 @@ Definition at line 179 of file ff.\+h.
 )}\hypertarget{ff_8h_a53c7e9a7fb3c279254cd2d0445667e2f}{}\label{ff_8h_a53c7e9a7fb3c279254cd2d0445667e2f}
 
 
-Definition at line 3132 of file ff.\+c.
+Definition at line 3138 of file ff.\+c.
 
 
 
@@ -714,7 +717,7 @@ Referenced by f\+\_\+close().
 )}\hypertarget{ff_8h_ab60b118acf7efa6ea19abb5db05ecccb}{}\label{ff_8h_ab60b118acf7efa6ea19abb5db05ecccb}
 
 
-Definition at line 3947 of file ff.\+c.
+Definition at line 3953 of file ff.\+c.
 
 
 
@@ -729,7 +732,7 @@ Referenced by fatfs\+\_\+tests().
 )}\hypertarget{ff_8h_a53882db20ef4323dcfd1874d7733ffc3}{}\label{ff_8h_a53882db20ef4323dcfd1874d7733ffc3}
 
 
-Definition at line 3078 of file ff.\+c.
+Definition at line 3084 of file ff.\+c.
 
 
 
@@ -744,7 +747,7 @@ Referenced by close(), fatfs\+\_\+cat(), fatfs\+\_\+copy(), fatfs\+\_\+create(),
 )}\hypertarget{ff_8h_ab5f7376b6f3e3bcc7f5ff5497c8b7364}{}\label{ff_8h_ab5f7376b6f3e3bcc7f5ff5497c8b7364}
 
 
-Definition at line 3516 of file ff.\+c.
+Definition at line 3522 of file ff.\+c.
 
 \index{ff.\+h@{ff.\+h}!f\+\_\+fdisk@{f\+\_\+fdisk}}
 \index{f\+\_\+fdisk@{f\+\_\+fdisk}!ff.\+h@{ff.\+h}}
@@ -783,7 +786,7 @@ Referenced by f\+\_\+setlabel().
 )}\hypertarget{ff_8h_acb865a03dbac0031ac5cb8a031f7b71c}{}\label{ff_8h_acb865a03dbac0031ac5cb8a031f7b71c}
 
 
-Definition at line 3170 of file ff.\+c.
+Definition at line 3176 of file ff.\+c.
 
 
 
@@ -800,7 +803,7 @@ Referenced by fatfs\+\_\+pwd().
 )}\hypertarget{ff_8h_a0ff39f75a87cbda9cd6ea65d83f16cec}{}\label{ff_8h_a0ff39f75a87cbda9cd6ea65d83f16cec}
 
 
-Definition at line 3634 of file ff.\+c.
+Definition at line 3640 of file ff.\+c.
 
 
 
@@ -817,7 +820,7 @@ Referenced by fatfs\+\_\+ls(), and fatfs\+\_\+status().
 )}\hypertarget{ff_8h_ac4ff40a674bcbfe40d81b1e8e54befc6}{}\label{ff_8h_ac4ff40a674bcbfe40d81b1e8e54befc6}
 
 
-Definition at line 4139 of file ff.\+c.
+Definition at line 4145 of file ff.\+c.
 
 \index{ff.\+h@{ff.\+h}!f\+\_\+gets@{f\+\_\+gets}}
 \index{f\+\_\+gets@{f\+\_\+gets}!ff.\+h@{ff.\+h}}
@@ -830,7 +833,7 @@ Definition at line 4139 of file ff.\+c.
 )}\hypertarget{ff_8h_a0fa54bd310785ecdaed19dda8f60dac5}{}\label{ff_8h_a0fa54bd310785ecdaed19dda8f60dac5}
 
 
-Definition at line 4739 of file ff.\+c.
+Definition at line 4745 of file ff.\+c.
 
 \index{ff.\+h@{ff.\+h}!f\+\_\+lseek@{f\+\_\+lseek}}
 \index{f\+\_\+lseek@{f\+\_\+lseek}!ff.\+h@{ff.\+h}}
@@ -842,7 +845,7 @@ Definition at line 4739 of file ff.\+c.
 )}\hypertarget{ff_8h_a5df0ac672ada972e89ef4b003e57f964}{}\label{ff_8h_a5df0ac672ada972e89ef4b003e57f964}
 
 
-Definition at line 3262 of file ff.\+c.
+Definition at line 3268 of file ff.\+c.
 
 
 
@@ -857,7 +860,7 @@ Referenced by ftruncate(), lseek(), open(), and truncate().
 )}\hypertarget{ff_8h_a4b4d38db58e89c526cfcf53200d719d0}{}\label{ff_8h_a4b4d38db58e89c526cfcf53200d719d0}
 
 
-Definition at line 3867 of file ff.\+c.
+Definition at line 3873 of file ff.\+c.
 
 
 
@@ -874,7 +877,7 @@ Referenced by fatfs\+\_\+mkdir().
 )}\hypertarget{ff_8h_a799aff9594e708c8be357281cf85428b}{}\label{ff_8h_a799aff9594e708c8be357281cf85428b}
 
 
-Definition at line 4382 of file ff.\+c.
+Definition at line 4388 of file ff.\+c.
 
 
 
@@ -891,7 +894,7 @@ Referenced by fatfs\+\_\+tests().
 )}\hypertarget{ff_8h_a16a934c2bbfa2160295810adc49d5509}{}\label{ff_8h_a16a934c2bbfa2160295810adc49d5509}
 
 
-Definition at line 2563 of file ff.\+c.
+Definition at line 2569 of file ff.\+c.
 
 
 
@@ -908,7 +911,7 @@ Referenced by fatfs\+\_\+tests(), and mmc\+\_\+init().
 )}\hypertarget{ff_8h_aefdef7126128d99d0b3bd82c28e54d80}{}\label{ff_8h_aefdef7126128d99d0b3bd82c28e54d80}
 
 
-Definition at line 2610 of file ff.\+c.
+Definition at line 2616 of file ff.\+c.
 
 
 
@@ -924,7 +927,7 @@ Referenced by fatfs\+\_\+cat(), fatfs\+\_\+copy(), fatfs\+\_\+create(), open(), 
 )}\hypertarget{ff_8h_ab63b213c75f7335fbb63a1f3f70e5fc7}{}\label{ff_8h_ab63b213c75f7335fbb63a1f3f70e5fc7}
 
 
-Definition at line 3453 of file ff.\+c.
+Definition at line 3459 of file ff.\+c.
 
 
 
@@ -941,7 +944,7 @@ Referenced by fatfs\+\_\+ls(), and fatfs\+\_\+scan\+\_\+files().
 )}\hypertarget{ff_8h_a4ce26253177c167df849e76f69b5c66c}{}\label{ff_8h_a4ce26253177c167df849e76f69b5c66c}
 
 
-Definition at line 4946 of file ff.\+c.
+Definition at line 4952 of file ff.\+c.
 
 \index{ff.\+h@{ff.\+h}!f\+\_\+putc@{f\+\_\+putc}}
 \index{f\+\_\+putc@{f\+\_\+putc}!ff.\+h@{ff.\+h}}
@@ -953,7 +956,7 @@ Definition at line 4946 of file ff.\+c.
 )}\hypertarget{ff_8h_ad1d73b8d01c2ef89eddf920b7fcc6beb}{}\label{ff_8h_ad1d73b8d01c2ef89eddf920b7fcc6beb}
 
 
-Definition at line 4895 of file ff.\+c.
+Definition at line 4901 of file ff.\+c.
 
 \index{ff.\+h@{ff.\+h}!f\+\_\+puts@{f\+\_\+puts}}
 \index{f\+\_\+puts@{f\+\_\+puts}!ff.\+h@{ff.\+h}}
@@ -965,7 +968,7 @@ Definition at line 4895 of file ff.\+c.
 )}\hypertarget{ff_8h_a699fc03ffa785ceab8812a7f204421f3}{}\label{ff_8h_a699fc03ffa785ceab8812a7f204421f3}
 
 
-Definition at line 4920 of file ff.\+c.
+Definition at line 4926 of file ff.\+c.
 
 \index{ff.\+h@{ff.\+h}!f\+\_\+read@{f\+\_\+read}}
 \index{f\+\_\+read@{f\+\_\+read}!ff.\+h@{ff.\+h}}
@@ -979,7 +982,7 @@ Definition at line 4920 of file ff.\+c.
 )}\hypertarget{ff_8h_ac4c3dcb6869ca252888eebabe39727b3}{}\label{ff_8h_ac4c3dcb6869ca252888eebabe39727b3}
 
 
-Definition at line 2770 of file ff.\+c.
+Definition at line 2776 of file ff.\+c.
 
 
 
@@ -995,7 +998,7 @@ Referenced by f\+\_\+gets(), fatfs\+\_\+cat(), fatfs\+\_\+copy(), fatfs\+\_\+get
 )}\hypertarget{ff_8h_ab39e82a110695de45f416f3149358012}{}\label{ff_8h_ab39e82a110695de45f416f3149358012}
 
 
-Definition at line 3547 of file ff.\+c.
+Definition at line 3553 of file ff.\+c.
 
 
 
@@ -1011,7 +1014,7 @@ Referenced by fatfs\+\_\+ls(), and fatfs\+\_\+scan\+\_\+files().
 )}\hypertarget{ff_8h_aa775b9b024acfeb3a66523cab497d142}{}\label{ff_8h_aa775b9b024acfeb3a66523cab497d142}
 
 
-Definition at line 4040 of file ff.\+c.
+Definition at line 4046 of file ff.\+c.
 
 
 
@@ -1026,7 +1029,7 @@ Referenced by fatfs\+\_\+rename(), and rename().
 )}\hypertarget{ff_8h_aa82bca64e28bc0d656a7999dd0eadec7}{}\label{ff_8h_aa82bca64e28bc0d656a7999dd0eadec7}
 
 
-Definition at line 4211 of file ff.\+c.
+Definition at line 4217 of file ff.\+c.
 
 \index{ff.\+h@{ff.\+h}!f\+\_\+stat@{f\+\_\+stat}}
 \index{f\+\_\+stat@{f\+\_\+stat}!ff.\+h@{ff.\+h}}
@@ -1038,7 +1041,7 @@ Definition at line 4211 of file ff.\+c.
 )}\hypertarget{ff_8h_abe1f60daab5c7d11170c334fb832c798}{}\label{ff_8h_abe1f60daab5c7d11170c334fb832c798}
 
 
-Definition at line 3595 of file ff.\+c.
+Definition at line 3601 of file ff.\+c.
 
 
 
@@ -1053,7 +1056,7 @@ Referenced by fatfs\+\_\+stat(), and stat().
 )}\hypertarget{ff_8h_ad69c7246b122ba56a134939ee0eaf847}{}\label{ff_8h_ad69c7246b122ba56a134939ee0eaf847}
 
 
-Definition at line 3028 of file ff.\+c.
+Definition at line 3034 of file ff.\+c.
 
 
 
@@ -1068,7 +1071,7 @@ Referenced by f\+\_\+close(), and syncfs().
 )}\hypertarget{ff_8h_a691a27b40c348f7c84b42e911636f38a}{}\label{ff_8h_a691a27b40c348f7c84b42e911636f38a}
 
 
-Definition at line 3718 of file ff.\+c.
+Definition at line 3724 of file ff.\+c.
 
 
 
@@ -1083,7 +1086,7 @@ Referenced by ftruncate(), and truncate().
 )}\hypertarget{ff_8h_a2858167fcd0bced48e9be434b3895efe}{}\label{ff_8h_a2858167fcd0bced48e9be434b3895efe}
 
 
-Definition at line 3783 of file ff.\+c.
+Definition at line 3789 of file ff.\+c.
 
 
 
@@ -1099,7 +1102,7 @@ Referenced by fatfs\+\_\+rm(), fatfs\+\_\+rmdir(), rmdir(), and unlink().
 )}\hypertarget{ff_8h_aafaa718d1a487e12a8f0087173dba0b9}{}\label{ff_8h_aafaa718d1a487e12a8f0087173dba0b9}
 
 
-Definition at line 3995 of file ff.\+c.
+Definition at line 4001 of file ff.\+c.
 
 \index{ff.\+h@{ff.\+h}!f\+\_\+write@{f\+\_\+write}}
 \index{f\+\_\+write@{f\+\_\+write}!ff.\+h@{ff.\+h}}
@@ -1113,7 +1116,7 @@ Definition at line 3995 of file ff.\+c.
 )}\hypertarget{ff_8h_ae6a4dfae8a9e308bdb2283a37ef680f2}{}\label{ff_8h_ae6a4dfae8a9e308bdb2283a37ef680f2}
 
 
-Definition at line 2886 of file ff.\+c.
+Definition at line 2892 of file ff.\+c.
 
 
 
@@ -1129,7 +1132,7 @@ Referenced by f\+\_\+printf(), f\+\_\+putc(), f\+\_\+puts(), fatfs\+\_\+copy(), 
 )}\hypertarget{ff_8h_ae5146230b88ddb4a6a69340e0fd1eabd}{}\label{ff_8h_ae5146230b88ddb4a6a69340e0fd1eabd}
 
 
-Definition at line 15 of file unicode.\+c.
+Definition at line 21 of file unicode.\+c.
 
 
 
@@ -1144,7 +1147,7 @@ Referenced by create\+\_\+name(), f\+\_\+getlabel(), f\+\_\+gets(), f\+\_\+setla
 )}\hypertarget{ff_8h_a917ffbec1c231c16e2b1baac2f69d876}{}\label{ff_8h_a917ffbec1c231c16e2b1baac2f69d876}
 
 
-Definition at line 148 of file syscall.\+c.
+Definition at line 153 of file syscall.\+c.
 
 \index{ff.\+h@{ff.\+h}!ff\+\_\+memfree@{ff\+\_\+memfree}}
 \index{ff\+\_\+memfree@{ff\+\_\+memfree}!ff.\+h@{ff.\+h}}
@@ -1155,7 +1158,7 @@ Definition at line 148 of file syscall.\+c.
 )}\hypertarget{ff_8h_ab85fd090c8b8b17846ccc1e8cda16a9b}{}\label{ff_8h_ab85fd090c8b8b17846ccc1e8cda16a9b}
 
 
-Definition at line 161 of file syscall.\+c.
+Definition at line 166 of file syscall.\+c.
 
 \index{ff.\+h@{ff.\+h}!ff\+\_\+wtoupper@{ff\+\_\+wtoupper}}
 \index{ff\+\_\+wtoupper@{ff\+\_\+wtoupper}!ff.\+h@{ff.\+h}}
@@ -1166,7 +1169,7 @@ Definition at line 161 of file syscall.\+c.
 )}\hypertarget{ff_8h_af3555c2976dfadc4f1e5cbacc275a012}{}\label{ff_8h_af3555c2976dfadc4f1e5cbacc275a012}
 
 
-Definition at line 27 of file unicode.\+c.
+Definition at line 33 of file unicode.\+c.
 
 
 
@@ -1191,7 +1194,7 @@ F\+A\+T32 time.
 \end{DoxySeeAlso}
 
 
-Definition at line 119 of file disk.\+c.
+Definition at line 124 of file disk.\+c.
 
 
 

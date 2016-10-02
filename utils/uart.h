@@ -25,8 +25,20 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include <stdint.h>
+#include <stdarg.h>
+#include <string.h>
+#include <math.h>
 
+#ifdef USER_CONFIG
 #include "user_config.h"
+#endif
+
+// Named address space
+#ifndef MEMSPACE
+#define MEMSPACE /**/
+#endif
+
 #include "uart_register.h"
 
 #define UART0   0

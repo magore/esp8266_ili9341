@@ -29,16 +29,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <string.h>
 #endif
 
-#ifdef ESP8266
-#include "user_config.h"
-#endif
-
-#ifndef MEMSPACE
-#define MEMSPACE /**/
-#endif
-
 #include <stdint.h>
 #include <stdarg.h>
+#include <string.h>
 #include <math.h>
 
 #include "printf.h"
@@ -50,16 +43,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // They are included within printf to allow this to be standalone
 // This is done by looking at header defines for the time being
 
-// These functions are defined in our own str.c
-#ifndef _STR_H_
-
-// Skip if we have linux stdlib.h
-#ifndef _STDLIB_H
 /// @brief String Length
 /// @param[in] str: string
 /// @return string length
 MEMSPACE
-size_t strlen(const char *str)
+size_t 
+WEAK_ATR
+strlen(const char *str)
 {
     int len=0;
     // String length
@@ -67,35 +57,34 @@ size_t strlen(const char *str)
         ++len;
     return(len);
 }
-#endif // _STDLIB_H
 
 // Skip if we have linux ctype.h
-#ifndef _CTYPE_H
 /// @brief test if a character is a digit
 /// @param[in] c: character
 /// @return true or false
+#undef isdigit
 MEMSPACE 
-int isdigit(int c)
+int
+WEAK_ATR
+isdigit(int c)
 {
 	if(c >= '0' && c <= '9')
 		return(1);
 	return(0);
 }
-#endif 	// ifndef _CTYPE_H
-#endif	// ifndef _STR_H_
 
 // =======================================================================
 // start of support functions
 // =======================================================================
 
-// These functions are defined in our own str.c
-#ifndef _STR_H_
 /// @brief Reverse a string in place
 ///  Example: abcdef -> fedcba
 /// @param[in] str: string 
 /// @return string length
 MEMSPACE 
-void reverse(char *str)
+void
+WEAK_ATR
+reverse(char *str)
 {
 	char temp;
 	int i;
@@ -114,7 +103,9 @@ void reverse(char *str)
 /// @param[in] str: string 
 /// @return void
 MEMSPACE 
-void strupper(char *str)
+void 
+WEAK_ATR
+strupper(char *str)
 {
 
 	while(*str)
@@ -124,17 +115,17 @@ void strupper(char *str)
 		++str;
 	}
 }
-#endif // ifndef _STR_H_
 
 // these functions are defined in our own stdlib.c
-#ifndef _STD_H_
 #ifdef FLOAT
 /// @brief Raise number to integer exponent
 /// @param[in] num: number
 /// @param[in] exp:  integer exponent
 /// @return num ** exp
 MEMSPACE 
-double iexp(double num, int exp)
+double
+WEAK_ATR
+iexp(double num, int exp)
 {
 	double a;
 	if(exp==0)
@@ -164,7 +155,9 @@ double iexp(double num, int exp)
 /// @param[out] *exp: interger power of 10 for scale factor
 /// @return scaled number
 MEMSPACE 
-double scale10(double num, int *exp)
+double
+WEAK_ATR
+scale10(double num, int *exp)
 {
 	int exp10,exp2;
 	double scale;
@@ -200,9 +193,7 @@ double scale10(double num, int *exp)
 	*exp = exp10;
 	return(num);
 }
-#endif	// ifdef FLOAT
-#endif	// ifndef _STD_H_
-
+#endif
 // ======================================================================
 // end of support functions
 // ======================================================================

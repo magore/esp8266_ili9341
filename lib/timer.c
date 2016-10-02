@@ -22,12 +22,16 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <user_config.h>
-#include <time.h>
+#include <stdint.h>
+#include <stdarg.h>
+#include <string.h>
+#include <math.h>
 
 ///@brief system interrupt rate in HZ
 #define SYSTEM_HZ 1000L
 #include "timer.h"
+
+#include "time.h"
 
 /// @brief  array or user timers
 extern TIMERS timer_irq[];

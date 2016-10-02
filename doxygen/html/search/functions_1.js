@@ -26,10 +26,10 @@ var searchData=
   ['asctime_5fr',['asctime_r',['../time_8c.html#a7ffc52def0c7fbf70c50248e3f7d6a8a',1,'asctime_r(tm_t *t, char *buf):&#160;time.c'],['../time_8h.html#a7ffc52def0c7fbf70c50248e3f7d6a8a',1,'asctime_r(tm_t *t, char *buf):&#160;time.c']]],
   ['asincordic',['asinCordic',['../cordic2c_8c.html#a6797cc1f28fd7c359145ea548dc302d0',1,'cordic2c.c']]],
   ['atexit',['atexit',['../user__task_8c.html#a7962f8536e3c743c8380411e184c7e2f',1,'atexit(void(*func)()):&#160;user_task.c'],['../user__task_8h.html#a7962f8536e3c743c8380411e184c7e2f',1,'atexit(void(*func)()):&#160;user_task.c']]],
-  ['atodigit',['atodigit',['../std_8c.html#a8c0b521d598596dde4e31d56f672ad76',1,'atodigit(int c, int radix):&#160;std.c'],['../std_8h.html#a8c0b521d598596dde4e31d56f672ad76',1,'atodigit(int c, int radix):&#160;std.c']]],
+  ['atodigit',['atodigit',['../std_8c.html#a59730fb03338ddeb839b44d73fcbdbae',1,'atodigit(int c, int radix):&#160;std.c'],['../std_8h.html#a59730fb03338ddeb839b44d73fcbdbae',1,'atodigit(int c, int radix):&#160;std.c']]],
   ['atof',['atof',['../std_8h.html#a7e733f84057711222341263fe2f0bd15',1,'std.h']]],
   ['atoh',['atoh',['../str_8c.html#a65e529a87a8bcaf0b2cb9b6edc3a8fde',1,'atoh(const char *p):&#160;str.c'],['../str_8h.html#a65e529a87a8bcaf0b2cb9b6edc3a8fde',1,'atoh(const char *p):&#160;str.c']]],
-  ['atoi',['atoi',['../std_8c.html#ae640e0202e5f4904efa121a07af97c5e',1,'atoi(const char *str):&#160;std.c'],['../std_8h.html#ae640e0202e5f4904efa121a07af97c5e',1,'atoi(const char *str):&#160;std.c'],['../ets__sys_8h.html#ad228deceea1bac4d9f171f647c265059',1,'atoi(const char *nptr):&#160;std.c']]],
-  ['atol',['atol',['../std_8c.html#ae952cb1ae6aec6b2b6c02ae67e9ea87b',1,'atol(const char *str):&#160;std.c'],['../std_8h.html#ae952cb1ae6aec6b2b6c02ae67e9ea87b',1,'atol(const char *str):&#160;std.c']]],
-  ['aton',['aton',['../std_8c.html#a5fb184d7bd50561c60bf64b7cda0eb62',1,'aton(char *str, int base):&#160;std.c'],['../std_8h.html#a5fb184d7bd50561c60bf64b7cda0eb62',1,'aton(char *str, int base):&#160;std.c']]]
+  ['atoi',['atoi',['../std_8c.html#a5e52552a833a57b0ef1a319d7a37636a',1,'atoi(const char *str):&#160;std.c'],['../std_8h.html#a5e52552a833a57b0ef1a319d7a37636a',1,'atoi(const char *str):&#160;std.c'],['../ets__sys_8h.html#ad228deceea1bac4d9f171f647c265059',1,'atoi(const char *nptr):&#160;std.c']]],
+  ['atol',['atol',['../std_8c.html#a4b90fd10a4c7adfd208271c9a9da489e',1,'atol(const char *str):&#160;std.c'],['../std_8h.html#a4b90fd10a4c7adfd208271c9a9da489e',1,'atol(const char *str):&#160;std.c']]],
+  ['aton',['aton',['../std_8c.html#ad23b78288cf499d88eab0aa271a01d03',1,'aton(char *str, int base):&#160;std.c'],['../std_8h.html#ad23b78288cf499d88eab0aa271a01d03',1,'aton(char *str, int base):&#160;std.c']]]
 ];

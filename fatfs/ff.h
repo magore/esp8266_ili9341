@@ -30,7 +30,11 @@ extern "C"
 {
 #endif
 
-#include "user_config.h"
+#include <stdint.h>
+#include <stdarg.h>
+#include <string.h>
+#include <math.h>
+
 #include "integer.h"                          /* Basic integer types */
 #include "ffconf.h"                           /* FatFs configuration options */
 

@@ -123,7 +123,13 @@
 /                   Fixed LFN entry is not deleted on delete/rename an object with lossy converted SFN.
 /---------------------------------------------------------------------------*/
 
-#include "user_config.h" 
+#include <stdint.h>
+#include <stdarg.h>
+#include <string.h>
+#include <math.h>
+
+#include "mmc_hal.h"
+
 #include "ff.h"                                   /* Declarations of FatFs API */
 #include "diskio.h"                               /* Declarations of disk I/O functions */
 

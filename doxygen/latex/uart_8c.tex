@@ -5,7 +5,11 @@
 Uart driver for E\+S\+P8266.  
 
 
-{\ttfamily \#include \char`\"{}user\+\_\+config.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$stdint.\+h$>$}\\*
+{\ttfamily \#include $<$stdarg.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$math.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}uart.\+h\char`\"{}}\\*
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -21,57 +25,57 @@ void \hyperlink{uart_8c_a69f8feef88b9921367f37e8db445eeaf}{tx\+\_\+fifo\+\_\+flu
 \begin{DoxyCompactList}\small\item\em Flush transmit fifo for a uart. \end{DoxyCompactList}\item 
 void \hyperlink{uart_8c_a6b9147fc5ffaf0a602cc60a8addb8a38}{rx\+\_\+fifo\+\_\+flush} (int uart\+\_\+no)
 \begin{DoxyCompactList}\small\item\em Flush receive fifo for a uart. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{uart_8c_a6f8397ebf08ae984ed48144d0287a048}{tx\+\_\+fifo\+\_\+used} (int uart\+\_\+no)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{uart_8c_a6f8397ebf08ae984ed48144d0287a048}{tx\+\_\+fifo\+\_\+used} (int uart\+\_\+no)
 \begin{DoxyCompactList}\small\item\em Get the number of bytes used in transmit fifo. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{uart_8c_a3c0f172370540e0d1840c415c2c7b661}{tx\+\_\+fifo\+\_\+free} (int uart\+\_\+no)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{uart_8c_a3c0f172370540e0d1840c415c2c7b661}{tx\+\_\+fifo\+\_\+free} (int uart\+\_\+no)
 \begin{DoxyCompactList}\small\item\em Get the number of bytes free in transmit fifo. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{uart_8c_a50e81b3a1433d1947bdff1b9bdf425d3}{tx\+\_\+fifo\+\_\+empty} (int uart\+\_\+no)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{uart_8c_a50e81b3a1433d1947bdff1b9bdf425d3}{tx\+\_\+fifo\+\_\+empty} (int uart\+\_\+no)
 \begin{DoxyCompactList}\small\item\em Test if the transmit fifo is empty. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{uart_8c_a09c378ce1610cb5e63469a4ee6813de2}{rx\+\_\+fifo\+\_\+used} (int uart\+\_\+no)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{uart_8c_a09c378ce1610cb5e63469a4ee6813de2}{rx\+\_\+fifo\+\_\+used} (int uart\+\_\+no)
 \begin{DoxyCompactList}\small\item\em Get the number of bytes used in receive fifo. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{uart_8c_aa59d5d55b7cd6551d97ef6af22949c82}{rx\+\_\+fifo\+\_\+free} (int uart\+\_\+no)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{uart_8c_aa59d5d55b7cd6551d97ef6af22949c82}{rx\+\_\+fifo\+\_\+free} (int uart\+\_\+no)
 \begin{DoxyCompactList}\small\item\em Get the number of bytes free in receive fifo. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{uart_8c_a3ffd1f20ba2ca3ef0894473091b25012}{rx\+\_\+fifo\+\_\+empty} (int uart\+\_\+no)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{uart_8c_a3ffd1f20ba2ca3ef0894473091b25012}{rx\+\_\+fifo\+\_\+empty} (int uart\+\_\+no)
 \begin{DoxyCompactList}\small\item\em Test if the receive fifo is empty. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} \hyperlink{uart_8c_a768fe76dc08754a1812bc4e5e2f1b0e0}{tx\+\_\+fifo\+\_\+putc} (int uart\+\_\+no, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} c)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} \hyperlink{uart_8c_a768fe76dc08754a1812bc4e5e2f1b0e0}{tx\+\_\+fifo\+\_\+putc} (int uart\+\_\+no, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} c)
 \begin{DoxyCompactList}\small\item\em Add a byte to the trasmit fifo We assume that \hyperlink{uart_8c_a3c0f172370540e0d1840c415c2c7b661}{tx\+\_\+fifo\+\_\+free()} was called! \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} \hyperlink{uart_8c_a82ec27afa5b913b022cc57c1bd5d5528}{rx\+\_\+fifo\+\_\+getc} (int uart\+\_\+no)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} \hyperlink{uart_8c_a82ec27afa5b913b022cc57c1bd5d5528}{rx\+\_\+fifo\+\_\+getc} (int uart\+\_\+no)
 \begin{DoxyCompactList}\small\item\em Remove a byte from the receive fifo We assume that \hyperlink{uart_8c_a09c378ce1610cb5e63469a4ee6813de2}{rx\+\_\+fifo\+\_\+used()} was called! \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{uart_8c_a6658637d750ec2e2366ac3881dbd9f6e}{tx\+\_\+fifo\+\_\+write} (int uart\+\_\+no, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} $\ast$buf, int size)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{uart_8c_a6658637d750ec2e2366ac3881dbd9f6e}{tx\+\_\+fifo\+\_\+write} (int uart\+\_\+no, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} $\ast$buf, int size)
 \begin{DoxyCompactList}\small\item\em Write a data buffer to the transmit fifo Note\+: This function does not wait/block util there is enough free space to meet the request. So you must check that the return value matches the size. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{uart_8c_a5ee039ccb34468de12203a7027fee1ce}{rx\+\_\+fifo\+\_\+read} (int uart\+\_\+no, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} $\ast$buf, int size)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{uart_8c_a5ee039ccb34468de12203a7027fee1ce}{rx\+\_\+fifo\+\_\+read} (int uart\+\_\+no, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} $\ast$buf, int size)
 \begin{DoxyCompactList}\small\item\em Read a data buffer from the receive fifo Note\+: This function does not wait/block util there is enough free space to meet the request. So you must check that the return value matches the size. \end{DoxyCompactList}\item 
-L\+O\+C\+AL \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{uart_8c_a3d19962bf637dbfa1fbd66020570f64f}{uart\+\_\+putb} (uint8 uart\+\_\+no, uint8 data)
+L\+O\+C\+AL \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{uart_8c_a3d19962bf637dbfa1fbd66020570f64f}{uart\+\_\+putb} (uint8 uart\+\_\+no, uint8 data)
 \begin{DoxyCompactList}\small\item\em Blocking I/O functions. \end{DoxyCompactList}\item 
-L\+O\+C\+AL \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} \hyperlink{uart_8c_a2d03af0672e67715b10ea90aca69743d}{uart\+\_\+getb} (int uart\+\_\+no)
+L\+O\+C\+AL \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} \hyperlink{uart_8c_a2d03af0672e67715b10ea90aca69743d}{uart\+\_\+getb} (int uart\+\_\+no)
 \begin{DoxyCompactList}\small\item\em Read a byte from a uart Note\+: This function waits/blocks util the read can happen. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{uart_8c_a4edbb01728f45e11ed6717416bbb9309}{uart\+\_\+putc} (uint8 uart\+\_\+no, char c)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{uart_8c_a4edbb01728f45e11ed6717416bbb9309}{uart\+\_\+putc} (uint8 uart\+\_\+no, char c)
 \begin{DoxyCompactList}\small\item\em Write a byte from a uart with NL to C\+R/\+NL conversion Note\+: This function waits/blocks util the write can happen. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} \hyperlink{uart_8c_a64dbce670a0ba6a547378d2305d03dfa}{uart\+\_\+getc} (int uart\+\_\+no)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} \hyperlink{uart_8c_a64dbce670a0ba6a547378d2305d03dfa}{uart\+\_\+getc} (int uart\+\_\+no)
 \begin{DoxyCompactList}\small\item\em Read a byte from a uart with NL to C\+R/\+NL conversion Note\+: This function waits/blocks util the read can happen. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{uart_8c_a38d539495f2c5329441ccedc26081afa}{uart0\+\_\+putc} (uint8 c)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{uart_8c_a38d539495f2c5329441ccedc26081afa}{uart0\+\_\+putc} (uint8 c)
 \begin{DoxyCompactList}\small\item\em Write a byte to uart0 with NL to C\+R/\+NL conversion Note\+: This function waits/blocks util the write can happen. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} \hyperlink{uart_8c_a49dc3c01092320490b61e1f480b76b9b}{uart0\+\_\+getc} ()
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} \hyperlink{uart_8c_a49dc3c01092320490b61e1f480b76b9b}{uart0\+\_\+getc} ()
 \begin{DoxyCompactList}\small\item\em Read a byte from uart0 with NL to C\+R/\+NL conversion Note\+: This function waits/blocks util the read can happen. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{uart_8c_a5e535e1ea0c08984d0de21b4d2cb4cec}{uart1\+\_\+putc} (uint8 c)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{uart_8c_a5e535e1ea0c08984d0de21b4d2cb4cec}{uart1\+\_\+putc} (uint8 c)
 \begin{DoxyCompactList}\small\item\em Write a byte to uart1 with NL to C\+R/\+NL conversion Note\+: This function waits/blocks util the write can happen. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} \hyperlink{uart_8c_abedb89603c5e67609094af8047f22bd3}{uart1\+\_\+getc} ()
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} \hyperlink{uart_8c_abedb89603c5e67609094af8047f22bd3}{uart1\+\_\+getc} ()
 \begin{DoxyCompactList}\small\item\em Read a byte from uart1 with NL to C\+R/\+NL conversion Note\+: This function waits/blocks util the read can happen. \end{DoxyCompactList}\item 
 void \hyperlink{uart_8c_aa018dc93fd77400560f0ab7e8d78f59a}{uart\+\_\+callback} (void $\ast$p)
 \begin{DoxyCompactList}\small\item\em Uart interrupt callback function Process all receive and transmit events here. \end{DoxyCompactList}\item 
 void \hyperlink{uart_8c_ace748ed36c0f9b9c90310db65b3afeab}{uart0\+\_\+gets\+\_\+add} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} data)
 \begin{DoxyCompactList}\small\item\em transfer data into the uart0\+\_\+gets\+\_\+receive\+\_\+queue Provide line buffering for \hyperlink{uart_8c_a9d100391356ca809d7cd75e23633f213}{uart0\+\_\+gets()} \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{uart_8c_a1b9078ded4ced8bfa5d73c2a77e90028}{uart0\+\_\+gets\+\_\+init} (int size)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{uart_8c_a1b9078ded4ced8bfa5d73c2a77e90028}{uart0\+\_\+gets\+\_\+init} (int size)
 \begin{DoxyCompactList}\small\item\em allocate and initialize uart0\+\_\+gets data structures Provide line buffering for \hyperlink{uart_8c_a9d100391356ca809d7cd75e23633f213}{uart0\+\_\+gets()} \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{uart_8c_a9d100391356ca809d7cd75e23633f213}{uart0\+\_\+gets} (char $\ast$buf, int max)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{uart_8c_a9d100391356ca809d7cd75e23633f213}{uart0\+\_\+gets} (char $\ast$buf, int max)
 \begin{DoxyCompactList}\small\item\em uart0\+\_\+gets non-\/blocking line buffered gets \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{uart_8c_afde4532b11b79411c904be3b2672c5e8}{uart\+\_\+config} (uint8 uart\+\_\+no, \hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} baud, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} data\+\_\+bits, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} stop\+\_\+bits, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} parity)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{uart_8c_afde4532b11b79411c904be3b2672c5e8}{uart\+\_\+config} (uint8 uart\+\_\+no, \hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} baud, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} data\+\_\+bits, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} stop\+\_\+bits, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} parity)
 \begin{DoxyCompactList}\small\item\em Uart configuration, baud rate, data and stop bits, parity. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{uart_8c_a5afb95571d79d939651ef59768fde839}{uart\+\_\+init} (\hyperlink{uart_8h_a9aa1e56362027f49bfbe4378b8c889a4}{Uart\+Baud\+Rate} uart0\+\_\+br, \hyperlink{uart_8h_a9aa1e56362027f49bfbe4378b8c889a4}{Uart\+Baud\+Rate} uart1\+\_\+br)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{uart_8c_a5afb95571d79d939651ef59768fde839}{uart\+\_\+init} (\hyperlink{uart_8h_a9aa1e56362027f49bfbe4378b8c889a4}{Uart\+Baud\+Rate} uart0\+\_\+br, \hyperlink{uart_8h_a9aa1e56362027f49bfbe4378b8c889a4}{Uart\+Baud\+Rate} uart1\+\_\+br)
 \begin{DoxyCompactList}\small\item\em initialize uart0 and uart1 Defaults\+: 8 = data bits, 1 = stop bits, no parity \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{uart_8c_ae2429f7cf15a9fba99f1c3d1d6499299}{uart\+\_\+reattach} ()
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{uart_8c_ae2429f7cf15a9fba99f1c3d1d6499299}{uart\+\_\+reattach} ()
 \begin{DoxyCompactList}\small\item\em Reinitialize uart0 and uart1 calls \hyperlink{uart_8c_a5afb95571d79d939651ef59768fde839}{uart\+\_\+init()} \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{uart_8c_a83db8ea8db21280f74e2546414fc80f7}{U\+A\+R\+T\+\_\+\+Set\+Print\+Port} (uint8 uart\+\_\+no)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{uart_8c_a83db8ea8db21280f74e2546414fc80f7}{U\+A\+R\+T\+\_\+\+Set\+Print\+Port} (uint8 uart\+\_\+no)
 \begin{DoxyCompactList}\small\item\em Install debug uart. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -140,7 +144,7 @@ Test if the receive fifo is empty.
 \end{DoxyReturn}
 
 
-Definition at line 182 of file uart.\+c.
+Definition at line 187 of file uart.\+c.
 
 
 
@@ -167,7 +171,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 105 of file uart.\+c.
+Definition at line 110 of file uart.\+c.
 
 
 
@@ -194,7 +198,7 @@ bytes free
 \end{DoxyReturn}
 
 
-Definition at line 168 of file uart.\+c.
+Definition at line 173 of file uart.\+c.
 
 \index{uart.\+c@{uart.\+c}!rx\+\_\+fifo\+\_\+getc@{rx\+\_\+fifo\+\_\+getc}}
 \index{rx\+\_\+fifo\+\_\+getc@{rx\+\_\+fifo\+\_\+getc}!uart.\+c@{uart.\+c}}
@@ -217,7 +221,7 @@ c, (or 0 if fill user error)
 \end{DoxyReturn}
 
 
-Definition at line 215 of file uart.\+c.
+Definition at line 220 of file uart.\+c.
 
 
 
@@ -250,7 +254,7 @@ number of bytes actually read from the fifo -\/ may not be size!
 \end{DoxyReturn}
 
 
-Definition at line 273 of file uart.\+c.
+Definition at line 278 of file uart.\+c.
 
 \index{uart.\+c@{uart.\+c}!rx\+\_\+fifo\+\_\+used@{rx\+\_\+fifo\+\_\+used}}
 \index{rx\+\_\+fifo\+\_\+used@{rx\+\_\+fifo\+\_\+used}!uart.\+c@{uart.\+c}}
@@ -273,7 +277,7 @@ bytes in use
 \end{DoxyReturn}
 
 
-Definition at line 155 of file uart.\+c.
+Definition at line 160 of file uart.\+c.
 
 
 
@@ -300,7 +304,7 @@ Test if the transmit fifo is empty.
 \end{DoxyReturn}
 
 
-Definition at line 143 of file uart.\+c.
+Definition at line 148 of file uart.\+c.
 
 
 
@@ -327,7 +331,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 94 of file uart.\+c.
+Definition at line 99 of file uart.\+c.
 
 
 
@@ -354,7 +358,7 @@ bytes free
 \end{DoxyReturn}
 
 
-Definition at line 130 of file uart.\+c.
+Definition at line 135 of file uart.\+c.
 
 
 
@@ -384,7 +388,7 @@ c, (or 0 if full user error)
 \end{DoxyReturn}
 
 
-Definition at line 199 of file uart.\+c.
+Definition at line 204 of file uart.\+c.
 
 
 
@@ -411,7 +415,7 @@ bytes in use
 \end{DoxyReturn}
 
 
-Definition at line 118 of file uart.\+c.
+Definition at line 123 of file uart.\+c.
 
 \index{uart.\+c@{uart.\+c}!tx\+\_\+fifo\+\_\+write@{tx\+\_\+fifo\+\_\+write}}
 \index{tx\+\_\+fifo\+\_\+write@{tx\+\_\+fifo\+\_\+write}!uart.\+c@{uart.\+c}}
@@ -440,7 +444,7 @@ number of bytes sent
 \end{DoxyReturn}
 
 
-Definition at line 238 of file uart.\+c.
+Definition at line 243 of file uart.\+c.
 
 \index{uart.\+c@{uart.\+c}!uart0\+\_\+getc@{uart0\+\_\+getc}}
 \index{uart0\+\_\+getc@{uart0\+\_\+getc}!uart.\+c@{uart.\+c}}
@@ -458,7 +462,7 @@ byte read
 \end{DoxyReturn}
 
 
-Definition at line 384 of file uart.\+c.
+Definition at line 389 of file uart.\+c.
 
 
 
@@ -488,7 +492,7 @@ uart0\+\_\+gets non-\/blocking line buffered gets
 \end{DoxyReturn}
 
 
-Definition at line 548 of file uart.\+c.
+Definition at line 553 of file uart.\+c.
 
 
 
@@ -515,7 +519,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 492 of file uart.\+c.
+Definition at line 497 of file uart.\+c.
 
 
 
@@ -542,7 +546,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 528 of file uart.\+c.
+Definition at line 533 of file uart.\+c.
 
 
 
@@ -569,7 +573,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 373 of file uart.\+c.
+Definition at line 378 of file uart.\+c.
 
 
 
@@ -591,7 +595,7 @@ byte read
 \end{DoxyReturn}
 
 
-Definition at line 408 of file uart.\+c.
+Definition at line 413 of file uart.\+c.
 
 \index{uart.\+c@{uart.\+c}!uart1\+\_\+putc@{uart1\+\_\+putc}}
 \index{uart1\+\_\+putc@{uart1\+\_\+putc}!uart.\+c@{uart.\+c}}
@@ -614,7 +618,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 397 of file uart.\+c.
+Definition at line 402 of file uart.\+c.
 
 
 
@@ -641,7 +645,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 421 of file uart.\+c.
+Definition at line 426 of file uart.\+c.
 
 
 
@@ -680,7 +684,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 587 of file uart.\+c.
+Definition at line 592 of file uart.\+c.
 
 
 
@@ -707,7 +711,7 @@ byte read
 \end{DoxyReturn}
 
 
-Definition at line 319 of file uart.\+c.
+Definition at line 324 of file uart.\+c.
 
 
 
@@ -734,7 +738,7 @@ byte read
 \end{DoxyReturn}
 
 
-Definition at line 353 of file uart.\+c.
+Definition at line 358 of file uart.\+c.
 
 
 
@@ -764,7 +768,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 645 of file uart.\+c.
+Definition at line 650 of file uart.\+c.
 
 
 
@@ -794,7 +798,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 305 of file uart.\+c.
+Definition at line 310 of file uart.\+c.
 
 
 
@@ -824,7 +828,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 337 of file uart.\+c.
+Definition at line 342 of file uart.\+c.
 
 
 
@@ -846,7 +850,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 670 of file uart.\+c.
+Definition at line 675 of file uart.\+c.
 
 \index{uart.\+c@{uart.\+c}!uart\+\_\+rx\+\_\+disable@{uart\+\_\+rx\+\_\+disable}}
 \index{uart\+\_\+rx\+\_\+disable@{uart\+\_\+rx\+\_\+disable}!uart.\+c@{uart.\+c}}
@@ -869,7 +873,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 62 of file uart.\+c.
+Definition at line 67 of file uart.\+c.
 
 \index{uart.\+c@{uart.\+c}!uart\+\_\+rx\+\_\+enable@{uart\+\_\+rx\+\_\+enable}}
 \index{uart\+\_\+rx\+\_\+enable@{uart\+\_\+rx\+\_\+enable}!uart.\+c@{uart.\+c}}
@@ -892,7 +896,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 52 of file uart.\+c.
+Definition at line 57 of file uart.\+c.
 
 \index{uart.\+c@{uart.\+c}!U\+A\+R\+T\+\_\+\+Set\+Print\+Port@{U\+A\+R\+T\+\_\+\+Set\+Print\+Port}}
 \index{U\+A\+R\+T\+\_\+\+Set\+Print\+Port@{U\+A\+R\+T\+\_\+\+Set\+Print\+Port}!uart.\+c@{uart.\+c}}
@@ -910,7 +914,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 683 of file uart.\+c.
+Definition at line 688 of file uart.\+c.
 
 \index{uart.\+c@{uart.\+c}!uart\+\_\+tx\+\_\+disable@{uart\+\_\+tx\+\_\+disable}}
 \index{uart\+\_\+tx\+\_\+disable@{uart\+\_\+tx\+\_\+disable}!uart.\+c@{uart.\+c}}
@@ -933,7 +937,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 82 of file uart.\+c.
+Definition at line 87 of file uart.\+c.
 
 
 
@@ -960,7 +964,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 72 of file uart.\+c.
+Definition at line 77 of file uart.\+c.
 
 
 
@@ -978,7 +982,7 @@ uart0 gets line bufer
 
 
 
-Definition at line 37 of file uart.\+c.
+Definition at line 42 of file uart.\+c.
 
 
 
@@ -993,7 +997,7 @@ uart0 gets line buffer ready flag
 
 
 
-Definition at line 39 of file uart.\+c.
+Definition at line 44 of file uart.\+c.
 
 
 
@@ -1008,7 +1012,7 @@ uart0 receive queue
 
 
 
-Definition at line 35 of file uart.\+c.
+Definition at line 40 of file uart.\+c.
 
 \index{uart.\+c@{uart.\+c}!uart0\+\_\+gets\+\_\+size@{uart0\+\_\+gets\+\_\+size}}
 \index{uart0\+\_\+gets\+\_\+size@{uart0\+\_\+gets\+\_\+size}!uart.\+c@{uart.\+c}}
@@ -1019,7 +1023,7 @@ uar0 gets line buffer size
 
 
 
-Definition at line 41 of file uart.\+c.
+Definition at line 46 of file uart.\+c.
 
 
 

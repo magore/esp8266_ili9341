@@ -5,19 +5,23 @@
 printf wrapper for ili9341 drivers  
 
 
-{\ttfamily \#include \char`\"{}user\+\_\+config.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$stdint.\+h$>$}\\*
 {\ttfamily \#include $<$stdarg.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$math.\+h$>$}\\*
 {\ttfamily \#include \char`\"{}printf.\+h\char`\"{}}\\*
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
 \#define \hyperlink{tft__printf_8h_a4a813536fc66580588777d68e847bf5d}{\+\_\+\+T\+F\+T\+\_\+\+P\+R\+I\+N\+T\+F\+\_\+H}
+\item 
+\#define \hyperlink{tft__printf_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}
 \end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{tft__printf_8h_a45a23ad0cd35d17f2dc6c16e1a4c39df}{tft\+\_\+printf} (int size, const char $\ast$fmt,...)
-\end{DoxyCompactItemize}
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{tft__printf_8h_ad6d6dda4facdc045d477c0cc9403e0c1}{tft\+\_\+printf} (\hyperlink{structwindow}{window} $\ast$win, const char $\ast$fmt,...)
+\begin{DoxyCompactList}\small\item\em tft\+\_\+printf function \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -43,15 +47,46 @@ You should have received a copy of the G\+NU General Public License along with t
 
 Definition at line 27 of file tft\+\_\+printf.\+h.
 
+\index{tft\+\_\+printf.\+h@{tft\+\_\+printf.\+h}!M\+E\+M\+S\+P\+A\+CE@{M\+E\+M\+S\+P\+A\+CE}}
+\index{M\+E\+M\+S\+P\+A\+CE@{M\+E\+M\+S\+P\+A\+CE}!tft\+\_\+printf.\+h@{tft\+\_\+printf.\+h}}
+\subsubsection[{\texorpdfstring{M\+E\+M\+S\+P\+A\+CE}{MEMSPACE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+E\+M\+S\+P\+A\+CE}\hypertarget{tft__printf_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{}\label{tft__printf_8h_ad0fe97585b8891f5e4f2b9a6426330a4}
+
+
+Definition at line 40 of file tft\+\_\+printf.\+h.
+
 
 
 \subsection{Function Documentation}
 \index{tft\+\_\+printf.\+h@{tft\+\_\+printf.\+h}!tft\+\_\+printf@{tft\+\_\+printf}}
 \index{tft\+\_\+printf@{tft\+\_\+printf}!tft\+\_\+printf.\+h@{tft\+\_\+printf.\+h}}
-\subsubsection[{\texorpdfstring{tft\+\_\+printf(int size, const char $\ast$fmt,...)}{tft_printf(int size, const char *fmt,...)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int tft\+\_\+printf (
+\subsubsection[{\texorpdfstring{tft\+\_\+printf(window $\ast$win, const char $\ast$fmt,...)}{tft_printf(window *win, const char *fmt,...)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int tft\+\_\+printf (
 \begin{DoxyParamCaption}
-\item[{int}]{size, }
+\item[{{\bf window} $\ast$}]{win, }
 \item[{const char $\ast$}]{fmt, }
 \item[{}]{...}
 \end{DoxyParamCaption}
-)}\hypertarget{tft__printf_8h_a45a23ad0cd35d17f2dc6c16e1a4c39df}{}\label{tft__printf_8h_a45a23ad0cd35d17f2dc6c16e1a4c39df}
+)}\hypertarget{tft__printf_8h_ad6d6dda4facdc045d477c0cc9403e0c1}{}\label{tft__printf_8h_ad6d6dda4facdc045d477c0cc9403e0c1}
+
+
+tft\+\_\+printf function 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$win} & Window Structure \\
+\hline
+\mbox{\tt in}  & {\em fmt} & printf forat string \\
+\hline
+\mbox{\tt in}  & {\em ...} & vararg list or arguments \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+size of string 
+\end{DoxyReturn}
+
+
+Definition at line 49 of file tft\+\_\+printf.\+c.
+
+
+
+Referenced by loop(), servertest\+\_\+message(), and setup().
+

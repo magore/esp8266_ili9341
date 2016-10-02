@@ -31,6 +31,11 @@
 #ifndef _ILI9341_H_
 #define _ILI9341_H_
 
+#include <stdint.h>
+#include <stdarg.h>
+#include <string.h>
+#include <math.h>
+
 typedef struct
 {
     int16_t xpos;       // x pos
@@ -47,48 +52,31 @@ typedef struct
 	uint8_t tabstop;
 } window;
 
+#include "ili9341_hal.h"
 
-// ==========================================================
-// We use automatic CS mode configured with hspi
-#define TFT_CS_PIN		15
-// Note: PERIPHS_IO_MUX_MTDO_U, is tied to GPIO 15 alternate function
-#define TFT_CS_INIT     PIN_FUNC_SELECT(PERIPHS_IO_MUX_MTDO_U, 3); TFT_CS_DEACTIVE
-#define TFT_CS_ACTIVE   GPIO_OUTPUT_SET(15, 0)
-#define TFT_CS_DEACTIVE GPIO_OUTPUT_SET(15, 1)
-
-// Display reset
-// Alternative we just tie this to power on reset line and free up the line
-#if 0
-	#define TFT_RST_INIT     PIN_FUNC_SELECT(PERIPHS_IO_MUX_GPIO0_U, FUNC_GPIO0); TFT_RST_DEACTIVE
-	#define TFT_RST_ACTIVE    GPIO_OUTPUT_SET(0, 0)
-	#define TFT_RST_DEACTIVE  GPIO_OUTPUT_SET(0, 1)
-#else
-	#define TFT_RST_INIT     
-	#define TFT_RST_ACTIVE
-	#define TFT_RST_DEACTIVE
+// Named address space
+#ifndef MEMSPACE
+#define MEMSPACE /**/
 #endif
 
-#ifndef SWAP45
-#define TFT_INIT        PIN_FUNC_SELECT(PERIPHS_IO_MUX_GPIO4_U, FUNC_GPIO4); TFT_DATA
-#define TFT_DATA        GPIO_OUTPUT_SET(4, 1)
-#define TFT_COMMAND     GPIO_OUTPUT_SET(4, 0)
-#else
-#define TFT_INIT        PIN_FUNC_SELECT(PERIPHS_IO_MUX_GPIO5_U, FUNC_GPIO5); TFT_DATA
-#define TFT_DATA        GPIO_OUTPUT_SET(5, 1)
-#define TFT_COMMAND     GPIO_OUTPUT_SET(5, 0)
+// Weak attribute
+#ifndef WEAK_ATR
+#define WEAK_ATR __attribute__((weak))
 #endif
 
-
-#define TFT_W (MAX_TFT_X-MIN_TFT_X+1)
-#define TFT_H (MAX_TFT_Y-MIN_TFT_Y+1)
-#define TFT_XOFF (MIN_TFT_X)
-#define TFT_YOFF (MIN_TFT_Y)
+#include "font.h"
+#include "ili9341_adafruit.h"
 
 // FIXED font is default
 #define FONT_VAR   1
 #define WRAP_H	   2
 #define WRAP_V	   4
 #define WRAP	   (WRAP_H | WRAP_V)
+
+#define TFT_W (MAX_TFT_X-MIN_TFT_X+1)
+#define TFT_H (MAX_TFT_Y-MIN_TFT_Y+1)
+#define TFT_XOFF (MIN_TFT_X)
+#define TFT_YOFF (MIN_TFT_Y)
 
 /// @brief  Pass 8-bit (each) R,G,B, get back 16-bit packed color
 /// ILI9341 defaults to MSB/LSB data so we have to reverse it
@@ -107,14 +95,8 @@ int font_attr ( window *win , int c , _fontc *f );
 void tft_drawChar ( window *win , uint8_t c );
 
 
+
 /* ili9341.c */
-void tft_spi_init ( uint16_t prescale );
-void tft_spi_begin ( void );
-void tft_spi_end ( void );
-void tft_spi_TX ( uint8_t *data , int bytes , uint8_t command );
-void tft_spi_TXRX ( uint8_t *data , int bytes , uint8_t command );
-void tft_spi_RX ( uint8_t *data , int bytes , uint8_t command );
-MEMSPACE window *tft_init ( void );
 void tft_Cmd ( uint8_t cmd );
 uint8_t tft_Data ( uint8_t data );
 void tft_Cmd_Data_TX ( uint8_t cmd , uint8_t *data , int bytes );
@@ -139,10 +121,11 @@ MEMSPACE int tft_window_clip_args ( window *win , int16_t *x , int16_t *y , int1
 MEMSPACE void tft_window_init ( window *win , int16_t x , int16_t y , int16_t w , int16_t h );
 MEMSPACE void tft_setTextColor ( window *win , uint16_t fg , uint16_t bg );
 MEMSPACE void tft_setpos ( window *win , int16_t x , int16_t y );
-MEMSPACE tft_set_font ( window *win , uint16_t index );
-int tft_get_font_height ( window *win );
-MEMSPACE tft_font_fixed ( window *win );
+MEMSPACE void tft_set_textpos ( window *win , int16_t x , int16_t y );
+MEMSPACE void tft_set_font ( window *win , uint16_t index );
+MEMSPACE void tft_font_fixed ( window *win );
 MEMSPACE void tft_font_var ( window *win );
+int tft_get_font_height ( window *win );
 void tft_drawFastVLine ( window *win , int16_t x , int16_t y , int16_t h , uint16_t color );
 void tft_drawFastHLine ( window *win , int16_t x , int16_t y , int16_t w , uint16_t color );
 void tft_drawLine ( window *win , int16_t x0 , int16_t y0 , int16_t x1 , int16_t y1 , uint16_t color );

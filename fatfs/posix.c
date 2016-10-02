@@ -52,11 +52,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 
-#include <user_config.h>
-
-#include "ff.h"
-#include "disk.h"
-#include "diskio.h"
+#include <stdint.h>
+#include <stdarg.h>
+#include <string.h>
+#include <math.h>
 
 #include "posix.h"
 
@@ -477,7 +476,8 @@ void perror(const char *s)
 /// @see sys_errlist[].
 /// @return  char *
 MEMSPACE
-char *strerror(int errnum)
+char 
+WEAK_ATR *strerror(int errnum)
 {
         return( (char *)sys_errlist[errnum] );
 }

@@ -45,7 +45,6 @@ var searchData=
   ['_5ffs_5frpath',['_FS_RPATH',['../ffconf_8h.html#a52faf11025401372f71e9d81905b7af4',1,'ffconf.h']]],
   ['_5ffs_5ftimeout',['_FS_TIMEOUT',['../ffconf_8h.html#a526e3cac667f53cc9a48507873348e60',1,'ffconf.h']]],
   ['_5ffs_5ftiny',['_FS_TINY',['../ffconf_8h.html#aa21b30e70610594d3af3a28832b584f6',1,'ffconf.h']]],
-  ['_5fgnu_5fsource',['_GNU_SOURCE',['../user__config_8h.html#a369266c24eacffb87046522897a570d5',1,'user_config.h']]],
   ['_5fheap_5fstart',['_heap_start',['../sys_8h.html#ab750b0b8889cb7d718f12d66f01fd954',1,'sys.h']]],
   ['_5fhspi_5finit_5fdone',['_hspi_init_done',['../hspi_8c.html#a9d8a27ff6d91c4aa89e8719b960d7404',1,'hspi.c']]],
   ['_5fipv4_5f2str',['_ipv4_2str',['../network_8c.html#a252582da71dd6f7e793a6243bdcd0ab4',1,'network.c']]],

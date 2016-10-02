@@ -5,10 +5,10 @@
 P\+Rovides hardware abstraction layer to M\+M\+C.\+C.  
 
 
-{\ttfamily \#include $<$user\+\_\+config.\+h$>$}\\*
-{\ttfamily \#include \char`\"{}ff.\+h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}disk.\+h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}diskio.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$stdint.\+h$>$}\\*
+{\ttfamily \#include $<$stdarg.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$math.\+h$>$}\\*
 {\ttfamily \#include \char`\"{}posix.\+h\char`\"{}}\\*
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
@@ -18,89 +18,89 @@ P\+Rovides hardware abstraction layer to M\+M\+C.\+C.
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} F\+I\+LE $\ast$ \hyperlink{posix_8c_a2c01fe0e0aa550b2a8b4dcc326983b57}{fileno\+\_\+to\+\_\+stream} (int \hyperlink{posix_8h_aceb657a1b3c10d576aed287714bfd5d1}{fileno})
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} F\+I\+LE $\ast$ \hyperlink{posix_8c_a2c01fe0e0aa550b2a8b4dcc326983b57}{fileno\+\_\+to\+\_\+stream} (int \hyperlink{posix_8h_aceb657a1b3c10d576aed287714bfd5d1}{fileno})
 \begin{DoxyCompactList}\small\item\em Convert P\+O\+S\+IX fileno to P\+O\+S\+IX F\+I\+LE stream pointer. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_aceb657a1b3c10d576aed287714bfd5d1}{fileno} (F\+I\+LE $\ast$stream)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_aceb657a1b3c10d576aed287714bfd5d1}{fileno} (F\+I\+LE $\ast$stream)
 \begin{DoxyCompactList}\small\item\em Convert P\+O\+S\+IX stream pointer to P\+O\+S\+IX fileno (index of \+\_\+\+\_\+iob\mbox{[}\mbox{]}) \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{structFIL}{F\+IL} $\ast$ \hyperlink{posix_8c_a9b859123258b36eb57f4f71d2606d8a5}{fileno\+\_\+to\+\_\+fatfs} (int \hyperlink{posix_8h_aceb657a1b3c10d576aed287714bfd5d1}{fileno})
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{structFIL}{F\+IL} $\ast$ \hyperlink{posix_8c_a9b859123258b36eb57f4f71d2606d8a5}{fileno\+\_\+to\+\_\+fatfs} (int \hyperlink{posix_8h_aceb657a1b3c10d576aed287714bfd5d1}{fileno})
 \begin{DoxyCompactList}\small\item\em Convert P\+O\+S\+IX fileno to Fat\+FS handle. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a81f14429660ca6a685676d6ceaf5350c}{fatfs\+\_\+to\+\_\+fileno} (\hyperlink{structFIL}{F\+IL} $\ast$fh)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a81f14429660ca6a685676d6ceaf5350c}{fatfs\+\_\+to\+\_\+fileno} (\hyperlink{structFIL}{F\+IL} $\ast$fh)
 \begin{DoxyCompactList}\small\item\em Convert Fat\+FS file handle to P\+O\+S\+IX fileno. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_abab788c42cce343cde2f5b8f90015229}{new\+\_\+file\+\_\+descriptor} (void)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_abab788c42cce343cde2f5b8f90015229}{new\+\_\+file\+\_\+descriptor} (void)
 \begin{DoxyCompactList}\small\item\em Allocate a P\+O\+S\+IX F\+I\+LE descriptor. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a38496612f759733234128893e4c60a89}{free\+\_\+file\+\_\+descriptor} (int \hyperlink{posix_8h_aceb657a1b3c10d576aed287714bfd5d1}{fileno})
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a38496612f759733234128893e4c60a89}{free\+\_\+file\+\_\+descriptor} (int \hyperlink{posix_8h_aceb657a1b3c10d576aed287714bfd5d1}{fileno})
 \begin{DoxyCompactList}\small\item\em Free P\+O\+S\+IX fileno F\+I\+LE descriptor. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a31986cce890109c211ccb14151aafd0e}{isatty} (int \hyperlink{posix_8h_aceb657a1b3c10d576aed287714bfd5d1}{fileno})
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a31986cce890109c211ccb14151aafd0e}{isatty} (int \hyperlink{posix_8h_aceb657a1b3c10d576aed287714bfd5d1}{fileno})
 \begin{DoxyCompactList}\small\item\em Test P\+O\+S\+IX fileno if it is a Serial Console/\+T\+TY. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{posix_8c_a4ce26afbb10890d31c53a8ff76d992e3}{perror} (const char $\ast$s)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{posix_8c_a4ce26afbb10890d31c53a8ff76d992e3}{perror} (const char $\ast$s)
 \begin{DoxyCompactList}\small\item\em P\+O\+S\+IX \hyperlink{posix_8c_a4ce26afbb10890d31c53a8ff76d992e3}{perror()} -\/ convert P\+O\+S\+IX errno to text with user message. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{posix_8c_abf72a013f9f9c7d75ea029f1ed377361}{strerror} (int errnum)
-\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX \hyperlink{posix_8c_abf72a013f9f9c7d75ea029f1ed377361}{strerror()} -\/ convert P\+O\+S\+IX errno to text with user message. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{posix_8c_a6311c6b29216455ec9b716b9eb31c799}{strerror\+\_\+r} (int errnum, char $\ast$buf, size\+\_\+t buflen)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char \hyperlink{adf4351__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR} $\ast$ \hyperlink{posix_8c_ae03e9f4fe4bf5e64a70fd186d532a5c8}{strerror} (int errnum)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX \hyperlink{posix_8c_ae03e9f4fe4bf5e64a70fd186d532a5c8}{strerror()} -\/ convert P\+O\+S\+IX errno to text with user message. \end{DoxyCompactList}\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{posix_8c_a6311c6b29216455ec9b716b9eb31c799}{strerror\+\_\+r} (int errnum, char $\ast$buf, size\+\_\+t buflen)
 \begin{DoxyCompactList}\small\item\em P\+O\+S\+IX \hyperlink{posix_8c_a6311c6b29216455ec9b716b9eb31c799}{strerror\+\_\+r()} -\/ convert P\+O\+S\+IX errno to text with user message. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_ac20f0fc565c27bbbb900bde3337b09b9}{fatfs\+\_\+to\+\_\+errno} (\hyperlink{ff_8h_a49d0171ecbd362cda5680a0d360db44c}{F\+R\+E\+S\+U\+LT} Result)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_ac20f0fc565c27bbbb900bde3337b09b9}{fatfs\+\_\+to\+\_\+errno} (\hyperlink{ff_8h_a49d0171ecbd362cda5680a0d360db44c}{F\+R\+E\+S\+U\+LT} Result)
 \begin{DoxyCompactList}\small\item\em Convert Faf\+Fs error result to P\+O\+S\+IX errno. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a607feb06d296e0ff60d5a19538bd17fc}{posix\+\_\+fopen\+\_\+modes\+\_\+to\+\_\+open} (const char $\ast$mode)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a607feb06d296e0ff60d5a19538bd17fc}{posix\+\_\+fopen\+\_\+modes\+\_\+to\+\_\+open} (const char $\ast$mode)
 \begin{DoxyCompactList}\small\item\em Convert P\+O\+S\+IX fopen mode to P\+O\+S\+IX open mode flags. \end{DoxyCompactList}\item 
-static \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a6a61d582ee213d204cecbf5c2cc4b7a9}{fatfs\+\_\+getc} (F\+I\+LE $\ast$stream)
+static \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a6a61d582ee213d204cecbf5c2cc4b7a9}{fatfs\+\_\+getc} (F\+I\+LE $\ast$stream)
 \begin{DoxyCompactList}\small\item\em ================================================================== \end{DoxyCompactList}\item 
-static \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a871226f966e7a8cbf2263fe0c65dd4a5}{fatfs\+\_\+putc} (char c, F\+I\+LE $\ast$stream)
+static \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a871226f966e7a8cbf2263fe0c65dd4a5}{fatfs\+\_\+putc} (char c, F\+I\+LE $\ast$stream)
 \begin{DoxyCompactList}\small\item\em Private Fat\+Fs function called by fputc() to put a byte from file stream \hyperlink{posix_8c_a3e5e6f96d36b5cdacfaf6b3976cd5af2}{open()} assigns stream-\/$>$put = \hyperlink{posix_8c_a871226f966e7a8cbf2263fe0c65dd4a5}{fatfs\+\_\+putc()} \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a3e5e6f96d36b5cdacfaf6b3976cd5af2}{open} (const char $\ast$pathname, int flags)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a3e5e6f96d36b5cdacfaf6b3976cd5af2}{open} (const char $\ast$pathname, int flags)
 \begin{DoxyCompactList}\small\item\em ================================================================== \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} F\+I\+LE $\ast$ \hyperlink{posix_8c_a8e661c338f41695d1a1e70aed6255e2d}{fopen} (const char $\ast$path, const char $\ast$mode)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} F\+I\+LE $\ast$ \hyperlink{posix_8c_a8e661c338f41695d1a1e70aed6255e2d}{fopen} (const char $\ast$path, const char $\ast$mode)
 \begin{DoxyCompactList}\small\item\em P\+O\+S\+IX Open a file with path name and ascii file mode string. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a48dc1df1627501d3faed4bf1f9801759}{close} (int \hyperlink{posix_8h_aceb657a1b3c10d576aed287714bfd5d1}{fileno})
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a48dc1df1627501d3faed4bf1f9801759}{close} (int \hyperlink{posix_8h_aceb657a1b3c10d576aed287714bfd5d1}{fileno})
 \begin{DoxyCompactList}\small\item\em P\+O\+S\+IX Close a file with fileno handel. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a521c33bdb3606c9f3546b9cbcd37b9ac}{syncfs} (int fd)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a521c33bdb3606c9f3546b9cbcd37b9ac}{syncfs} (int fd)
 \begin{DoxyCompactList}\small\item\em P\+O\+S\+IX Sync pending file changes and metadata for specified fileno. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{posix_8c_a8f7f00d4ec0d99440762b0a664aebf70}{sync} (void)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{posix_8c_a8f7f00d4ec0d99440762b0a664aebf70}{sync} (void)
 \begin{DoxyCompactList}\small\item\em P\+O\+S\+IX Sync all pending file changes and metadata on A\+LL files. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_ad6fd240fec1d65213f34b6e6465a8033}{fclose} (F\+I\+LE $\ast$stream)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_ad6fd240fec1d65213f34b6e6465a8033}{fclose} (F\+I\+LE $\ast$stream)
 \begin{DoxyCompactList}\small\item\em P\+O\+S\+IX close a file stream. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{posix_8h_a170745d0d946e79c4c2a056d1d158996}{ssize\+\_\+t} \hyperlink{posix_8c_a072435300ac99e8d7c3749f45166e797}{write} (int fd, const void $\ast$buf, size\+\_\+t \hyperlink{user__main_8c_aa011065eee776eb1bda73597b5d9d5d7}{count})
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{posix_8h_a170745d0d946e79c4c2a056d1d158996}{ssize\+\_\+t} \hyperlink{posix_8c_a072435300ac99e8d7c3749f45166e797}{write} (int fd, const void $\ast$buf, size\+\_\+t \hyperlink{user__main_8c_aa011065eee776eb1bda73597b5d9d5d7}{count})
 \begin{DoxyCompactList}\small\item\em P\+O\+S\+IX Write count bytes from $\ast$buf to fileno fd. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} size\+\_\+t \hyperlink{posix_8c_a148630cbecc0822d9395f002691ffe75}{fwrite} (const void $\ast$ptr, size\+\_\+t size, size\+\_\+t nmemb, F\+I\+LE $\ast$stream)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} size\+\_\+t \hyperlink{posix_8c_a148630cbecc0822d9395f002691ffe75}{fwrite} (const void $\ast$ptr, size\+\_\+t size, size\+\_\+t nmemb, F\+I\+LE $\ast$stream)
 \begin{DoxyCompactList}\small\item\em P\+O\+S\+IX write nmemb elements from buf, size bytes each, to the stream fd. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{posix_8h_a170745d0d946e79c4c2a056d1d158996}{ssize\+\_\+t} \hyperlink{posix_8c_af104a2c05bef787e54c6925616e867df}{read} (int fd, const void $\ast$buf, size\+\_\+t \hyperlink{user__main_8c_aa011065eee776eb1bda73597b5d9d5d7}{count})
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{posix_8h_a170745d0d946e79c4c2a056d1d158996}{ssize\+\_\+t} \hyperlink{posix_8c_af104a2c05bef787e54c6925616e867df}{read} (int fd, const void $\ast$buf, size\+\_\+t \hyperlink{user__main_8c_aa011065eee776eb1bda73597b5d9d5d7}{count})
 \begin{DoxyCompactList}\small\item\em P\+O\+S\+IX read count bytes from $\ast$buf to fileno fd. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} size\+\_\+t \hyperlink{posix_8c_a01233ac8fd574e20b0b38472adbee551}{fread} (void $\ast$ptr, size\+\_\+t size, size\+\_\+t nmemb, F\+I\+LE $\ast$stream)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} size\+\_\+t \hyperlink{posix_8c_a01233ac8fd574e20b0b38472adbee551}{fread} (void $\ast$ptr, size\+\_\+t size, size\+\_\+t nmemb, F\+I\+LE $\ast$stream)
 \begin{DoxyCompactList}\small\item\em P\+O\+S\+IX read nmemb elements from buf, size bytes each, to the stream fd. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} size\+\_\+t \hyperlink{posix_8c_ae4ea1b12797e3ba021a1af3cb4ba17bd}{lseek} (int \hyperlink{posix_8h_aceb657a1b3c10d576aed287714bfd5d1}{fileno}, size\+\_\+t position, int whence)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} size\+\_\+t \hyperlink{posix_8c_ae4ea1b12797e3ba021a1af3cb4ba17bd}{lseek} (int \hyperlink{posix_8h_aceb657a1b3c10d576aed287714bfd5d1}{fileno}, size\+\_\+t position, int whence)
 \begin{DoxyCompactList}\small\item\em P\+O\+S\+IX seek to file position. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_ad31144743f0014784193221563ca8dd2}{fseek} (F\+I\+LE $\ast$stream, long offset, int whence)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_ad31144743f0014784193221563ca8dd2}{fseek} (F\+I\+LE $\ast$stream, long offset, int whence)
 \begin{DoxyCompactList}\small\item\em P\+O\+S\+IX seek to file possition. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} long \hyperlink{posix_8c_af53dca187c78408fe2f1958c4eb88603}{ftell} (F\+I\+LE $\ast$stream)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} long \hyperlink{posix_8c_af53dca187c78408fe2f1958c4eb88603}{ftell} (F\+I\+LE $\ast$stream)
 \begin{DoxyCompactList}\small\item\em P\+O\+S\+IX file position of open stream. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{posix_8c_a35e6a58f44d4651951ecfeb97f369884}{rewind} (F\+I\+LE $\ast$stream)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{posix_8c_a35e6a58f44d4651951ecfeb97f369884}{rewind} (F\+I\+LE $\ast$stream)
 \begin{DoxyCompactList}\small\item\em P\+O\+S\+IX rewind file to the beginning. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_acb9e5741c01183dfe3179d646b264e5b}{fgetpos} (F\+I\+LE $\ast$stream, size\+\_\+t $\ast$pos)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_acb9e5741c01183dfe3179d646b264e5b}{fgetpos} (F\+I\+LE $\ast$stream, size\+\_\+t $\ast$pos)
 \begin{DoxyCompactList}\small\item\em P\+O\+S\+IX get position of file stream. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a8705d74fe77c1b23824074ecd14be1c7}{fsetpos} (F\+I\+LE $\ast$stream, size\+\_\+t $\ast$pos)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a8705d74fe77c1b23824074ecd14be1c7}{fsetpos} (F\+I\+LE $\ast$stream, size\+\_\+t $\ast$pos)
 \begin{DoxyCompactList}\small\item\em P\+O\+S\+IX set position of file stream. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_aa964d662c19b2021d9cfd0c71bc686bd}{unlink} (const char $\ast$pathname)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_aa964d662c19b2021d9cfd0c71bc686bd}{unlink} (const char $\ast$pathname)
 \begin{DoxyCompactList}\small\item\em P\+O\+S\+IX delete a file. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a6080dee579486f132062435577b77d10}{rmdir} (const char $\ast$pathname)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a6080dee579486f132062435577b77d10}{rmdir} (const char $\ast$pathname)
 \begin{DoxyCompactList}\small\item\em P\+O\+S\+IX delete a directory. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{time_8h_a3346b04b0420b32ccf6b706551b70762}{time\+\_\+t} \hyperlink{posix_8c_a178d5d21b21c0f60d6ff8dfbbc0d86f5}{fat\+\_\+time\+\_\+to\+\_\+unix} (\hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} date, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} \hyperlink{time_8h_a32b1cbd925752f0cd61d202bbe204a69}{time})
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{time_8h_a3346b04b0420b32ccf6b706551b70762}{time\+\_\+t} \hyperlink{posix_8c_a178d5d21b21c0f60d6ff8dfbbc0d86f5}{fat\+\_\+time\+\_\+to\+\_\+unix} (\hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} date, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} \hyperlink{time_8h_a32b1cbd925752f0cd61d202bbe204a69}{time})
 \begin{DoxyCompactList}\small\item\em Convert Fat\+Fs file date and time to P\+O\+S\+IX epoch seconds. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a474e4e6cac62ef12c66b8a597c14e5f6}{ftruncate} (int fd, \hyperlink{posix_8h_aac46e03c2018bada012333c31f41df12}{off\+\_\+t} length)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a474e4e6cac62ef12c66b8a597c14e5f6}{ftruncate} (int fd, \hyperlink{posix_8h_aac46e03c2018bada012333c31f41df12}{off\+\_\+t} length)
 \begin{DoxyCompactList}\small\item\em P\+O\+S\+IX truncate open file to length. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a73a95c4a93875be906e573c00b30c5ea}{truncate} (const char $\ast$path, \hyperlink{posix_8h_aac46e03c2018bada012333c31f41df12}{off\+\_\+t} length)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a73a95c4a93875be906e573c00b30c5ea}{truncate} (const char $\ast$path, \hyperlink{posix_8h_aac46e03c2018bada012333c31f41df12}{off\+\_\+t} length)
 \begin{DoxyCompactList}\small\item\em P\+O\+S\+IX truncate named file to length. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_abef70bf7a4af8a1f4998db0035c51781}{stat} (char $\ast$name, struct \hyperlink{structstat}{stat} $\ast$buf)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_abef70bf7a4af8a1f4998db0035c51781}{stat} (char $\ast$name, struct \hyperlink{structstat}{stat} $\ast$buf)
 \begin{DoxyCompactList}\small\item\em P\+O\+S\+IX stat -\/ get file status of named file. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{posix_8c_a39eea0b104438afa9ca0500c2e8d6887}{mctime} (\hyperlink{time_8h_a3346b04b0420b32ccf6b706551b70762}{time\+\_\+t} timev)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{posix_8c_a39eea0b104438afa9ca0500c2e8d6887}{mctime} (\hyperlink{time_8h_a3346b04b0420b32ccf6b706551b70762}{time\+\_\+t} timev)
 \begin{DoxyCompactList}\small\item\em Display Ascii formatted time from timev seconds. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{posix_8c_a111f2e6e6bc9f0a46210a323cab093c7}{dump\+\_\+stat} (struct \hyperlink{structstat}{stat} $\ast$sp)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{posix_8c_a111f2e6e6bc9f0a46210a323cab093c7}{dump\+\_\+stat} (struct \hyperlink{structstat}{stat} $\ast$sp)
 \begin{DoxyCompactList}\small\item\em Display struct stat, from P\+O\+S\+IX stat(0 or \hyperlink{posix_8h_a85e86e70773c0a204346f965272bd364}{fstat()}, in A\+S\+C\+II. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_ada8cc8f9394cf54db8f338838a9fa7ce}{rename} (const char $\ast$oldpath, const char $\ast$newpath)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_ada8cc8f9394cf54db8f338838a9fa7ce}{rename} (const char $\ast$oldpath, const char $\ast$newpath)
 \begin{DoxyCompactList}\small\item\em P\+O\+S\+IX rename a file by name. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a26a07a3db060ffc5659fe03495a29a1c}{dirname} (char $\ast$str)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a26a07a3db060ffc5659fe03495a29a1c}{dirname} (char $\ast$str)
 \begin{DoxyCompactList}\small\item\em Return the index of the last \textquotesingle{}/\textquotesingle{} character. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{posix_8c_a4d3dfaf2f5a63e2e4eaa128477a9b5e7}{basename} (char $\ast$str)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{posix_8c_a4d3dfaf2f5a63e2e4eaa128477a9b5e7}{basename} (char $\ast$str)
 \begin{DoxyCompactList}\small\item\em P\+O\+S\+IX Basename of filename. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{posix_8c_a0b33c90b99d00a8bd2595f254d1409e1}{baseext} (char $\ast$str)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{posix_8c_a0b33c90b99d00a8bd2595f254d1409e1}{baseext} (char $\ast$str)
 \begin{DoxyCompactList}\small\item\em File extention of a file name. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -188,7 +188,7 @@ Maximum number or P\+O\+S\+IX file handels.
 
 
 
-Definition at line 74 of file posix.\+c.
+Definition at line 73 of file posix.\+c.
 
 
 
@@ -520,7 +520,7 @@ fileno on success.
 \end{DoxyReturn}
 
 
-Definition at line 228 of file posix.\+c.
+Definition at line 227 of file posix.\+c.
 
 \index{posix.\+c@{posix.\+c}!fclose@{fclose}}
 \index{fclose@{fclose}!posix.\+c@{posix.\+c}}
@@ -615,7 +615,7 @@ int fileno on success
 
 \end{DoxyItemize}
 
-Definition at line 167 of file posix.\+c.
+Definition at line 166 of file posix.\+c.
 
 
 
@@ -649,7 +649,7 @@ N\+U\+LL if P\+O\+S\+IX fileno is invalid N\+U\+LL
 \end{DoxyReturn}
 
 
-Definition at line 195 of file posix.\+c.
+Definition at line 194 of file posix.\+c.
 
 
 
@@ -687,7 +687,7 @@ N\+U\+LL on error with errno set, N\+U\+LL if fileno out of bounds
 \end{DoxyReturn}
 
 
-Definition at line 140 of file posix.\+c.
+Definition at line 139 of file posix.\+c.
 
 
 
@@ -796,7 +796,7 @@ fileno on success.
 \end{DoxyReturn}
 
 
-Definition at line 390 of file posix.\+c.
+Definition at line 389 of file posix.\+c.
 
 
 
@@ -1020,7 +1020,7 @@ Test P\+O\+S\+IX fileno if it is a Serial Console/\+T\+TY.
 \item[\hyperlink{todo__todo000003}{Todo}]Perhaps we should verify console functions have been added ? \end{DoxyRefDesc}
 
 
-Definition at line 435 of file posix.\+c.
+Definition at line 434 of file posix.\+c.
 
 
 
@@ -1125,7 +1125,7 @@ fileno on success.
 \end{DoxyReturn}
 
 
-Definition at line 303 of file posix.\+c.
+Definition at line 302 of file posix.\+c.
 
 
 
@@ -1199,7 +1199,7 @@ void.
 \end{DoxyReturn}
 
 
-Definition at line 454 of file posix.\+c.
+Definition at line 453 of file posix.\+c.
 
 
 
@@ -1441,14 +1441,14 @@ Referenced by f\+\_\+getfree(), f\+\_\+mkfs(), find\+\_\+volume(), main(), and m
 
 \index{posix.\+c@{posix.\+c}!strerror@{strerror}}
 \index{strerror@{strerror}!posix.\+c@{posix.\+c}}
-\subsubsection[{\texorpdfstring{strerror(int errnum)}{strerror(int errnum)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} char$\ast$ strerror (
+\subsubsection[{\texorpdfstring{strerror(int errnum)}{strerror(int errnum)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} char {\bf W\+E\+A\+K\+\_\+\+A\+TR}$\ast$ strerror (
 \begin{DoxyParamCaption}
 \item[{int}]{errnum}
 \end{DoxyParamCaption}
-)}\hypertarget{posix_8c_abf72a013f9f9c7d75ea029f1ed377361}{}\label{posix_8c_abf72a013f9f9c7d75ea029f1ed377361}
+)}\hypertarget{posix_8c_ae03e9f4fe4bf5e64a70fd186d532a5c8}{}\label{posix_8c_ae03e9f4fe4bf5e64a70fd186d532a5c8}
 
 
-P\+O\+S\+IX \hyperlink{posix_8c_abf72a013f9f9c7d75ea029f1ed377361}{strerror()} -\/ convert P\+O\+S\+IX errno to text with user message. 
+P\+O\+S\+IX \hyperlink{posix_8c_ae03e9f4fe4bf5e64a70fd186d532a5c8}{strerror()} -\/ convert P\+O\+S\+IX errno to text with user message. 
 
 
 \begin{DoxyItemize}
@@ -1686,7 +1686,7 @@ P\+O\+S\+IX fileno to P\+O\+S\+IX F\+I\+LE stream table.
 \item \+\_\+\+\_\+iob\mbox{[}2\mbox{]} = stderr. 
 \end{DoxyItemize}
 
-Definition at line 83 of file posix.\+c.
+Definition at line 82 of file posix.\+c.
 
 
 
@@ -1701,7 +1701,7 @@ Note\+: fdevopen assigns stdin,stdout,stderr.
 
 P\+O\+S\+IX errno. 
 
-Definition at line 71 of file posix.\+c.
+Definition at line 70 of file posix.\+c.
 
 
 
@@ -1719,7 +1719,7 @@ P\+O\+S\+IX error messages for each errno value.
 \item man page errno (3) 
 \end{DoxyItemize}
 
-Definition at line 88 of file posix.\+c.
+Definition at line 87 of file posix.\+c.
 
 
 

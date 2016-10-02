@@ -94,9 +94,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">std.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Part of Small printf, and verious conversion code with floating point support.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &lt;stdarg.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
 <code>#include &lt;math.h&gt;</code><br />
-<code>#include &quot;<a class="el" href="str_8h_source.html">str.h</a>&quot;</code><br />
 </div>
 <p><a href="std_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -104,32 +108,43 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Macros</h2></td></tr>
 <tr class="memitem:ad0fe97585b8891f5e4f2b9a6426330a4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="std_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></td></tr>
 <tr class="separator:ad0fe97585b8891f5e4f2b9a6426330a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a399da2caab82ec1bb3d5a8fbc5306768"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="std_8h.html#a399da2caab82ec1bb3d5a8fbc5306768">WEAK_ATR</a>&#160;&#160;&#160;<a class="el" href="user__task_8c.html#ade20ba3eb51f42d2b2deb917303c9a5e">__attribute__</a>((weak))</td></tr>
+<tr class="separator:a399da2caab82ec1bb3d5a8fbc5306768"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a29526ba629435aeaee7e3201242a9234"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="std_8h.html#a29526ba629435aeaee7e3201242a9234">iexp</a> (double num, int exp)</td></tr>
-<tr class="separator:a29526ba629435aeaee7e3201242a9234"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a52658cd34151fad98aa1294a2acafa02"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="std_8h.html#a52658cd34151fad98aa1294a2acafa02">scale10</a> (double num, int *exp)</td></tr>
-<tr class="separator:a52658cd34151fad98aa1294a2acafa02"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8c0b521d598596dde4e31d56f672ad76"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="std_8h.html#a8c0b521d598596dde4e31d56f672ad76">atodigit</a> (int c, int radix)</td></tr>
-<tr class="memdesc:a8c0b521d598596dde4e31d56f672ad76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert ASCII character to radix based digit , or -1.  <a href="#a8c0b521d598596dde4e31d56f672ad76">More...</a><br /></td></tr>
-<tr class="separator:a8c0b521d598596dde4e31d56f672ad76"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5fb184d7bd50561c60bf64b7cda0eb62"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="std_8h.html#a5fb184d7bd50561c60bf64b7cda0eb62">aton</a> (char *str, int base)</td></tr>
-<tr class="memdesc:a5fb184d7bd50561c60bf64b7cda0eb62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert ASCII string to number in a given base.  <a href="#a5fb184d7bd50561c60bf64b7cda0eb62">More...</a><br /></td></tr>
-<tr class="separator:a5fb184d7bd50561c60bf64b7cda0eb62"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae7a25f0631dd53c026fd8636e8bcb42e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="std_8h.html#ae7a25f0631dd53c026fd8636e8bcb42e">strtol</a> (const char *nptr, char **endptr, int base)</td></tr>
-<tr class="memdesc:ae7a25f0631dd53c026fd8636e8bcb42e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert ASCII string to number in a given base.  <a href="#ae7a25f0631dd53c026fd8636e8bcb42e">More...</a><br /></td></tr>
-<tr class="separator:ae7a25f0631dd53c026fd8636e8bcb42e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae640e0202e5f4904efa121a07af97c5e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="std_8h.html#ae640e0202e5f4904efa121a07af97c5e">atoi</a> (const char *str)</td></tr>
-<tr class="memdesc:ae640e0202e5f4904efa121a07af97c5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert ASCII string to number in base 10.  <a href="#ae640e0202e5f4904efa121a07af97c5e">More...</a><br /></td></tr>
-<tr class="separator:ae640e0202e5f4904efa121a07af97c5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae952cb1ae6aec6b2b6c02ae67e9ea87b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="std_8h.html#ae952cb1ae6aec6b2b6c02ae67e9ea87b">atol</a> (const char *str)</td></tr>
-<tr class="memdesc:ae952cb1ae6aec6b2b6c02ae67e9ea87b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert ASCII string to number in base 10.  <a href="#ae952cb1ae6aec6b2b6c02ae67e9ea87b">More...</a><br /></td></tr>
-<tr class="separator:ae952cb1ae6aec6b2b6c02ae67e9ea87b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e733f84057711222341263fe2f0bd15"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="std_8h.html#a7e733f84057711222341263fe2f0bd15">atof</a> (const char *str)</td></tr>
+<tr class="memitem:a59730fb03338ddeb839b44d73fcbdbae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int <a class="el" href="adf4351__hal_8h.html#a399da2caab82ec1bb3d5a8fbc5306768">WEAK_ATR</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="std_8h.html#a59730fb03338ddeb839b44d73fcbdbae">atodigit</a> (int c, int radix)</td></tr>
+<tr class="memdesc:a59730fb03338ddeb839b44d73fcbdbae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert ASCII character to radix based digit , or -1.  <a href="#a59730fb03338ddeb839b44d73fcbdbae">More...</a><br /></td></tr>
+<tr class="separator:a59730fb03338ddeb839b44d73fcbdbae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad23b78288cf499d88eab0aa271a01d03"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> long <a class="el" href="adf4351__hal_8h.html#a399da2caab82ec1bb3d5a8fbc5306768">WEAK_ATR</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="std_8h.html#ad23b78288cf499d88eab0aa271a01d03">aton</a> (char *str, int base)</td></tr>
+<tr class="memdesc:ad23b78288cf499d88eab0aa271a01d03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert ASCII string to number in a given base.  <a href="#ad23b78288cf499d88eab0aa271a01d03">More...</a><br /></td></tr>
+<tr class="separator:ad23b78288cf499d88eab0aa271a01d03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f11f96430e97c2d99e440be154803eb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> long <a class="el" href="adf4351__hal_8h.html#a399da2caab82ec1bb3d5a8fbc5306768">WEAK_ATR</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="std_8h.html#a8f11f96430e97c2d99e440be154803eb">strtol</a> (const char *nptr, char **endptr, int base)</td></tr>
+<tr class="memdesc:a8f11f96430e97c2d99e440be154803eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert ASCII string to number in a given base.  <a href="#a8f11f96430e97c2d99e440be154803eb">More...</a><br /></td></tr>
+<tr class="separator:a8f11f96430e97c2d99e440be154803eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e52552a833a57b0ef1a319d7a37636a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int <a class="el" href="adf4351__hal_8h.html#a399da2caab82ec1bb3d5a8fbc5306768">WEAK_ATR</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="std_8h.html#a5e52552a833a57b0ef1a319d7a37636a">atoi</a> (const char *str)</td></tr>
+<tr class="memdesc:a5e52552a833a57b0ef1a319d7a37636a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert ASCII string to number in base 10.  <a href="#a5e52552a833a57b0ef1a319d7a37636a">More...</a><br /></td></tr>
+<tr class="separator:a5e52552a833a57b0ef1a319d7a37636a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b90fd10a4c7adfd208271c9a9da489e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> long <a class="el" href="adf4351__hal_8h.html#a399da2caab82ec1bb3d5a8fbc5306768">WEAK_ATR</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="std_8h.html#a4b90fd10a4c7adfd208271c9a9da489e">atol</a> (const char *str)</td></tr>
+<tr class="memdesc:a4b90fd10a4c7adfd208271c9a9da489e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert ASCII string to number in base 10.  <a href="#a4b90fd10a4c7adfd208271c9a9da489e">More...</a><br /></td></tr>
+<tr class="separator:a4b90fd10a4c7adfd208271c9a9da489e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3bfc95873e495e6f68b3821f3b30f9ba"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> double <a class="el" href="adf4351__hal_8h.html#a399da2caab82ec1bb3d5a8fbc5306768">WEAK_ATR</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="std_8h.html#a3bfc95873e495e6f68b3821f3b30f9ba">iexp</a> (double num, int exp)</td></tr>
+<tr class="separator:a3bfc95873e495e6f68b3821f3b30f9ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18cb6603872c4a89c8b93b31d17c5ccc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> double <a class="el" href="adf4351__hal_8h.html#a399da2caab82ec1bb3d5a8fbc5306768">WEAK_ATR</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="std_8h.html#a18cb6603872c4a89c8b93b31d17c5ccc">scale10</a> (double num, int *exp)</td></tr>
+<tr class="separator:a18cb6603872c4a89c8b93b31d17c5ccc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e733f84057711222341263fe2f0bd15"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="std_8h.html#a7e733f84057711222341263fe2f0bd15">atof</a> (const char *str)</td></tr>
 <tr class="separator:a7e733f84057711222341263fe2f0bd15"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Macro Definition Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Part of Small printf, and verious conversion code with floating point support. </p>
+<dl class="section user"><dt>Copyright &copy; 2015 Mike Gore, GPL License</dt><dd></dd></dl>
+<dl class="section user"><dt>You are free to use this code under the terms of GPL</dt><dd>please retain a copy of this notice in any code you use it in.</dd></dl>
+<p>This is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</p>
+<p>This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</p>
+<p>You should have received a copy of the GNU General Public License along with this program. If not, see <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>. </p>
+
+<p>Definition in file <a class="el" href="std_8h_source.html">std.h</a>.</p>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
 <a class="anchor" id="ad0fe97585b8891f5e4f2b9a6426330a4"></a>
 <div class="memitem">
 <div class="memproto">
@@ -140,17 +155,31 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="std_8h_source.html#l00033">33</a> of file <a class="el" href="std_8h_source.html">std.h</a>.</p>
+<p>Definition at line <a class="el" href="std_8h_source.html#l00039">39</a> of file <a class="el" href="std_8h_source.html">std.h</a>.</p>
 
 </div>
 </div>
-<h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a8c0b521d598596dde4e31d56f672ad76"></a>
+<a class="anchor" id="a399da2caab82ec1bb3d5a8fbc5306768"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int atodigit </td>
+          <td class="memname">#define WEAK_ATR&#160;&#160;&#160;<a class="el" href="user__task_8c.html#ade20ba3eb51f42d2b2deb917303c9a5e">__attribute__</a>((weak))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="std_8h_source.html#l00044">44</a> of file <a class="el" href="std_8h_source.html">std.h</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a59730fb03338ddeb839b44d73fcbdbae"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int <a class="el" href="adf4351__hal_8h.html#a399da2caab82ec1bb3d5a8fbc5306768">WEAK_ATR</a> atodigit </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>c</em>, </td>
@@ -178,11 +207,11 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>radix based digit , or -1 </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="std_8c.html#ae7a25f0631dd53c026fd8636e8bcb42e" title="Convert ASCII string to number in a given base. ">strtol</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="std_8c.html#a8f11f96430e97c2d99e440be154803eb" title="Convert ASCII string to number in a given base. ">strtol</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="std_8c_source.html#l00108">108</a> of file <a class="el" href="std_8c_source.html">std.c</a>.</p>
+<p>Definition at line <a class="el" href="std_8c_source.html#l00039">39</a> of file <a class="el" href="std_8c_source.html">std.c</a>.</p>
 
-<p>Referenced by <a class="el" href="std_8c_source.html#l00145">strtol()</a>.</p>
+<p>Referenced by <a class="el" href="std_8c_source.html#l00077">strtol()</a>.</p>
 
 </div>
 </div>
@@ -191,7 +220,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> double atof </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> double atof </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>str</em></td><td>)</td>
@@ -200,16 +229,16 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Referenced by <a class="el" href="std_8c_source.html#l00203">atol()</a>, and <a class="el" href="user__main_8c_source.html#l00547">user_tests()</a>.</p>
+<p>Referenced by <a class="el" href="std_8c_source.html#l00139">atol()</a>, and <a class="el" href="user__main_8c_source.html#l00547">user_tests()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ae640e0202e5f4904efa121a07af97c5e"></a>
+<a class="anchor" id="a5e52552a833a57b0ef1a319d7a37636a"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int atoi </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int <a class="el" href="adf4351__hal_8h.html#a399da2caab82ec1bb3d5a8fbc5306768">WEAK_ATR</a> atoi </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>str</em></td><td>)</td>
@@ -226,18 +255,18 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>int value </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="std_8c.html#ae7a25f0631dd53c026fd8636e8bcb42e" title="Convert ASCII string to number in a given base. ">strtol</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="std_8c.html#a8f11f96430e97c2d99e440be154803eb" title="Convert ASCII string to number in a given base. ">strtol</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="std_8c_source.html#l00190">190</a> of file <a class="el" href="std_8c_source.html">std.c</a>.</p>
+<p>Definition at line <a class="el" href="std_8c_source.html#l00124">124</a> of file <a class="el" href="std_8c_source.html">std.c</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ae952cb1ae6aec6b2b6c02ae67e9ea87b"></a>
+<a class="anchor" id="a4b90fd10a4c7adfd208271c9a9da489e"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> long atol </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> long <a class="el" href="adf4351__hal_8h.html#a399da2caab82ec1bb3d5a8fbc5306768">WEAK_ATR</a> atol </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>str</em></td><td>)</td>
@@ -254,18 +283,18 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>long value </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="std_8c.html#ae7a25f0631dd53c026fd8636e8bcb42e" title="Convert ASCII string to number in a given base. ">strtol</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="std_8c.html#a8f11f96430e97c2d99e440be154803eb" title="Convert ASCII string to number in a given base. ">strtol</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="std_8c_source.html#l00203">203</a> of file <a class="el" href="std_8c_source.html">std.c</a>.</p>
+<p>Definition at line <a class="el" href="std_8c_source.html#l00139">139</a> of file <a class="el" href="std_8c_source.html">std.c</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a5fb184d7bd50561c60bf64b7cda0eb62"></a>
+<a class="anchor" id="ad23b78288cf499d88eab0aa271a01d03"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> long aton </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> long <a class="el" href="adf4351__hal_8h.html#a399da2caab82ec1bb3d5a8fbc5306768">WEAK_ATR</a> aton </td>
           <td>(</td>
           <td class="paramtype">char *&#160;</td>
           <td class="paramname"><em>str</em>, </td>
@@ -293,18 +322,18 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>long value </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="std_8c.html#ae7a25f0631dd53c026fd8636e8bcb42e" title="Convert ASCII string to number in a given base. ">strtol</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="std_8c.html#a8f11f96430e97c2d99e440be154803eb" title="Convert ASCII string to number in a given base. ">strtol</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="std_8c_source.html#l00127">127</a> of file <a class="el" href="std_8c_source.html">std.c</a>.</p>
+<p>Definition at line <a class="el" href="std_8c_source.html#l00060">60</a> of file <a class="el" href="std_8c_source.html">std.c</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a29526ba629435aeaee7e3201242a9234"></a>
+<a class="anchor" id="a3bfc95873e495e6f68b3821f3b30f9ba"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> double iexp </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> double <a class="el" href="adf4351__hal_8h.html#a399da2caab82ec1bb3d5a8fbc5306768">WEAK_ATR</a> iexp </td>
           <td>(</td>
           <td class="paramtype">double&#160;</td>
           <td class="paramname"><em>num</em>, </td>
@@ -325,12 +354,12 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a52658cd34151fad98aa1294a2acafa02"></a>
+<a class="anchor" id="a18cb6603872c4a89c8b93b31d17c5ccc"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> double scale10 </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> double <a class="el" href="adf4351__hal_8h.html#a399da2caab82ec1bb3d5a8fbc5306768">WEAK_ATR</a> scale10 </td>
           <td>(</td>
           <td class="paramtype">double&#160;</td>
           <td class="paramname"><em>num</em>, </td>
@@ -351,12 +380,12 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ae7a25f0631dd53c026fd8636e8bcb42e"></a>
+<a class="anchor" id="a8f11f96430e97c2d99e440be154803eb"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> long strtol </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> long <a class="el" href="adf4351__hal_8h.html#a399da2caab82ec1bb3d5a8fbc5306768">WEAK_ATR</a> strtol </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>nptr</em>, </td>
@@ -392,16 +421,16 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>long value </dd></dl>
 
-<p>Definition at line <a class="el" href="std_8c_source.html#l00145">145</a> of file <a class="el" href="std_8c_source.html">std.c</a>.</p>
+<p>Definition at line <a class="el" href="std_8c_source.html#l00077">77</a> of file <a class="el" href="std_8c_source.html">std.c</a>.</p>
 
-<p>Referenced by <a class="el" href="str_8c_source.html#l00053">atoh()</a>, <a class="el" href="std_8c_source.html#l00190">atoi()</a>, <a class="el" href="std_8c_source.html#l00203">atol()</a>, <a class="el" href="std_8c_source.html#l00127">aton()</a>, <a class="el" href="testflash_8c_source.html#l00004">main()</a>, and <a class="el" href="time_8c_source.html#l00645">setdate_r()</a>.</p>
+<p>Referenced by <a class="el" href="str_8c_source.html#l00060">atoh()</a>, <a class="el" href="std_8c_source.html#l00124">atoi()</a>, <a class="el" href="std_8c_source.html#l00139">atol()</a>, <a class="el" href="std_8c_source.html#l00060">aton()</a>, <a class="el" href="testflash_8c_source.html#l00004">main()</a>, and <a class="el" href="time_8c_source.html#l00647">setdate_r()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 30 2016 00:11:27 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 1 2016 22:45:19 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

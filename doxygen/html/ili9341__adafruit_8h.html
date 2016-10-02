@@ -95,14 +95,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">ili9341_adafruit.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;<a class="el" href="ets__sys_8h_source.html">ets_sys.h</a>&gt;</code><br />
-<code>#include &lt;osapi.h&gt;</code><br />
-<code>#include &lt;os_type.h&gt;</code><br />
-<code>#include &lt;gpio.h&gt;</code><br />
-<code>#include &lt;mem.h&gt;</code><br />
-<code>#include &quot;<a class="el" href="str_8h_source.html">str.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="sys_8h_source.html">sys.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="hspi_8h_source.html">hspi.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &lt;stdarg.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;math.h&gt;</code><br />
 <code>#include &quot;font.h&quot;</code><br />
 <code>#include &quot;<a class="el" href="ili9341_8h_source.html">ili9341.h</a>&quot;</code><br />
 </div>
@@ -115,6 +111,10 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
+<tr class="memitem:ad0fe97585b8891f5e4f2b9a6426330a4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341__adafruit_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></td></tr>
+<tr class="separator:ad0fe97585b8891f5e4f2b9a6426330a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a399da2caab82ec1bb3d5a8fbc5306768"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341__adafruit_8h.html#a399da2caab82ec1bb3d5a8fbc5306768">WEAK_ATR</a>&#160;&#160;&#160;<a class="el" href="user__task_8c.html#ade20ba3eb51f42d2b2deb917303c9a5e">__attribute__</a>((weak))</td></tr>
+<tr class="separator:a399da2caab82ec1bb3d5a8fbc5306768"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a67e6b135b49133e3d6ce16e754383a64"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341__adafruit_8h.html#a67e6b135b49133e3d6ce16e754383a64">MIN_TFT_Y</a>&#160;&#160;&#160;0</td></tr>
 <tr class="separator:a67e6b135b49133e3d6ce16e754383a64"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af33f42d2e97ceb3d86b1f5ea80acb0ef"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341__adafruit_8h.html#af33f42d2e97ceb3d86b1f5ea80acb0ef">MAX_TFT_Y</a>&#160;&#160;&#160;319</td></tr>
@@ -264,37 +264,37 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a70178a557e297238cb4c025b3940921c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341__adafruit_8h.html#a70178a557e297238cb4c025b3940921c">tft_configRegister</a> (void)</td></tr>
+<tr class="memitem:a70178a557e297238cb4c025b3940921c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341__adafruit_8h.html#a70178a557e297238cb4c025b3940921c">tft_configRegister</a> (void)</td></tr>
 <tr class="memdesc:a70178a557e297238cb4c025b3940921c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize ILI9341 display.  <a href="#a70178a557e297238cb4c025b3940921c">More...</a><br /></td></tr>
 <tr class="separator:a70178a557e297238cb4c025b3940921c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6555e949cac7115ac45eecc10e6f5dd9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341__adafruit_8h.html#a6555e949cac7115ac45eecc10e6f5dd9">tft_drawBitmap</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t x, int16_t y, const <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> *bitmap, int16_t w, int16_t h)</td></tr>
+<tr class="memitem:a6555e949cac7115ac45eecc10e6f5dd9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341__adafruit_8h.html#a6555e949cac7115ac45eecc10e6f5dd9">tft_drawBitmap</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t x, int16_t y, const <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> *bitmap, int16_t w, int16_t h)</td></tr>
 <tr class="memdesc:a6555e949cac7115ac45eecc10e6f5dd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw bitmap Replaced by <a class="el" href="ili9341_8c.html#a2e70141c8de6a4199f9fc39d8cfc758c" title="Write a rectangle pixel array. ">tft_writeRect()</a>  <a href="#a6555e949cac7115ac45eecc10e6f5dd9">More...</a><br /></td></tr>
 <tr class="separator:a6555e949cac7115ac45eecc10e6f5dd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acdea63f06f35ff590e7910b4150debd0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341__adafruit_8h.html#acdea63f06f35ff590e7910b4150debd0">tft_drawCircle</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t x0, int16_t y0, int16_t r, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> color)</td></tr>
+<tr class="memitem:acdea63f06f35ff590e7910b4150debd0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341__adafruit_8h.html#acdea63f06f35ff590e7910b4150debd0">tft_drawCircle</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t x0, int16_t y0, int16_t r, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> color)</td></tr>
 <tr class="memdesc:acdea63f06f35ff590e7910b4150debd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw a circle outline.  <a href="#acdea63f06f35ff590e7910b4150debd0">More...</a><br /></td></tr>
 <tr class="separator:acdea63f06f35ff590e7910b4150debd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ab6da43ee2245051f4f48a063efb012"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341__adafruit_8h.html#a9ab6da43ee2245051f4f48a063efb012">tft_drawCircleHelper</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t x0, int16_t y0, int16_t r, <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> cornername, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> color)</td></tr>
+<tr class="memitem:a9ab6da43ee2245051f4f48a063efb012"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341__adafruit_8h.html#a9ab6da43ee2245051f4f48a063efb012">tft_drawCircleHelper</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t x0, int16_t y0, int16_t r, <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> cornername, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> color)</td></tr>
 <tr class="memdesc:a9ab6da43ee2245051f4f48a063efb012"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw a circle helper.  <a href="#a9ab6da43ee2245051f4f48a063efb012">More...</a><br /></td></tr>
 <tr class="separator:a9ab6da43ee2245051f4f48a063efb012"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a33b9d8c2ce553e56d4996f2a8dc55773"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341__adafruit_8h.html#a33b9d8c2ce553e56d4996f2a8dc55773">tft_fillCircleHelper</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t x0, int16_t y0, int16_t r, <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> cornername, int16_t delta, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> color)</td></tr>
+<tr class="memitem:a33b9d8c2ce553e56d4996f2a8dc55773"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341__adafruit_8h.html#a33b9d8c2ce553e56d4996f2a8dc55773">tft_fillCircleHelper</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t x0, int16_t y0, int16_t r, <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> cornername, int16_t delta, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> color)</td></tr>
 <tr class="memdesc:a33b9d8c2ce553e56d4996f2a8dc55773"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fill circle helper.  <a href="#a33b9d8c2ce553e56d4996f2a8dc55773">More...</a><br /></td></tr>
 <tr class="separator:a33b9d8c2ce553e56d4996f2a8dc55773"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a964954bfbc54b4b4e3d5ecf731f1380e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341__adafruit_8h.html#a964954bfbc54b4b4e3d5ecf731f1380e">tft_fillCircle</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t x0, int16_t y0, int16_t r, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> color)</td></tr>
+<tr class="memitem:a964954bfbc54b4b4e3d5ecf731f1380e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341__adafruit_8h.html#a964954bfbc54b4b4e3d5ecf731f1380e">tft_fillCircle</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t x0, int16_t y0, int16_t r, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> color)</td></tr>
 <tr class="memdesc:a964954bfbc54b4b4e3d5ecf731f1380e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fill circle.  <a href="#a964954bfbc54b4b4e3d5ecf731f1380e">More...</a><br /></td></tr>
 <tr class="separator:a964954bfbc54b4b4e3d5ecf731f1380e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afb26011e885aa7c741e30d691175273b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341__adafruit_8h.html#afb26011e885aa7c741e30d691175273b">tft_drawRect</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t x, int16_t y, int16_t w, int16_t h, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> color)</td></tr>
+<tr class="memitem:afb26011e885aa7c741e30d691175273b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341__adafruit_8h.html#afb26011e885aa7c741e30d691175273b">tft_drawRect</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t x, int16_t y, int16_t w, int16_t h, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> color)</td></tr>
 <tr class="memdesc:afb26011e885aa7c741e30d691175273b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw a rectangle.  <a href="#afb26011e885aa7c741e30d691175273b">More...</a><br /></td></tr>
 <tr class="separator:afb26011e885aa7c741e30d691175273b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a80857f260fb5efd7f955a728f3c139b9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341__adafruit_8h.html#a80857f260fb5efd7f955a728f3c139b9">tft_drawRoundRect</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t x, int16_t y, int16_t w, int16_t h, int16_t r, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> color)</td></tr>
+<tr class="memitem:a80857f260fb5efd7f955a728f3c139b9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341__adafruit_8h.html#a80857f260fb5efd7f955a728f3c139b9">tft_drawRoundRect</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t x, int16_t y, int16_t w, int16_t h, int16_t r, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> color)</td></tr>
 <tr class="memdesc:a80857f260fb5efd7f955a728f3c139b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw a rounded rectangle.  <a href="#a80857f260fb5efd7f955a728f3c139b9">More...</a><br /></td></tr>
 <tr class="separator:a80857f260fb5efd7f955a728f3c139b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada116c33c4be6326c20ec3281545e39e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341__adafruit_8h.html#ada116c33c4be6326c20ec3281545e39e">tft_fillRoundRect</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t x, int16_t y, int16_t w, int16_t h, int16_t r, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> color)</td></tr>
+<tr class="memitem:ada116c33c4be6326c20ec3281545e39e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341__adafruit_8h.html#ada116c33c4be6326c20ec3281545e39e">tft_fillRoundRect</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t x, int16_t y, int16_t w, int16_t h, int16_t r, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> color)</td></tr>
 <tr class="memdesc:ada116c33c4be6326c20ec3281545e39e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fill a rounded rectangle.  <a href="#ada116c33c4be6326c20ec3281545e39e">More...</a><br /></td></tr>
 <tr class="separator:ada116c33c4be6326c20ec3281545e39e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa5c14c0f98729b37500233548eff4664"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341__adafruit_8h.html#aa5c14c0f98729b37500233548eff4664">tft_drawTriangle</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t x0, int16_t y0, int16_t x1, int16_t y1, int16_t x2, int16_t y2, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> color)</td></tr>
+<tr class="memitem:aa5c14c0f98729b37500233548eff4664"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341__adafruit_8h.html#aa5c14c0f98729b37500233548eff4664">tft_drawTriangle</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t x0, int16_t y0, int16_t x1, int16_t y1, int16_t x2, int16_t y2, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> color)</td></tr>
 <tr class="memdesc:aa5c14c0f98729b37500233548eff4664"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw a triangle.  <a href="#aa5c14c0f98729b37500233548eff4664">More...</a><br /></td></tr>
 <tr class="separator:aa5c14c0f98729b37500233548eff4664"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae5a07f4dcd1a2347a49e9e7d6af7ded8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341__adafruit_8h.html#ae5a07f4dcd1a2347a49e9e7d6af7ded8">tft_fillTriangle</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t x0, int16_t y0, int16_t x1, int16_t y1, int16_t x2, int16_t y2, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> color)</td></tr>
+<tr class="memitem:ae5a07f4dcd1a2347a49e9e7d6af7ded8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341__adafruit_8h.html#ae5a07f4dcd1a2347a49e9e7d6af7ded8">tft_fillTriangle</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t x0, int16_t y0, int16_t x1, int16_t y1, int16_t x2, int16_t y2, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> color)</td></tr>
 <tr class="memdesc:ae5a07f4dcd1a2347a49e9e7d6af7ded8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fill a triangle.  <a href="#ae5a07f4dcd1a2347a49e9e7d6af7ded8">More...</a><br /></td></tr>
 <tr class="separator:ae5a07f4dcd1a2347a49e9e7d6af7ded8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -314,7 +314,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00143">143</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00150">150</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -328,7 +328,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00152">152</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00159">159</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 <p>Referenced by <a class="el" href="user__main_8c_source.html#l00668">setup()</a>.</p>
 
@@ -344,7 +344,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00106">106</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00113">113</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -358,7 +358,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00154">154</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00161">161</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -372,7 +372,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00146">146</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00153">153</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -386,7 +386,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00145">145</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00152">152</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -400,7 +400,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00151">151</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00158">158</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -414,7 +414,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00119">119</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00126">126</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -428,7 +428,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00103">103</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00110">110</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -442,7 +442,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00104">104</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00111">111</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -456,7 +456,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00115">115</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00122">122</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -470,7 +470,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00116">116</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00123">123</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -484,7 +484,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00117">117</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00124">124</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -498,7 +498,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00102">102</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00109">109</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -512,7 +512,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00135">135</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00142">142</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -526,7 +526,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00134">134</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00141">141</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -540,7 +540,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00153">153</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00160">160</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -554,7 +554,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00160">160</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00167">167</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -568,7 +568,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00118">118</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00125">125</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -582,9 +582,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00100">100</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00107">107</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00881">tft_invertDisplay()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00765">tft_invertDisplay()</a>.</p>
 
 </div>
 </div>
@@ -598,9 +598,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00101">101</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00108">108</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00881">tft_invertDisplay()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00765">tft_invertDisplay()</a>.</p>
 
 </div>
 </div>
@@ -614,7 +614,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00150">150</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00157">157</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -628,9 +628,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00112">112</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00119">119</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00818">tft_setRotation()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00702">tft_setRotation()</a>.</p>
 
 </div>
 </div>
@@ -644,7 +644,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00156">156</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00163">163</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -658,7 +658,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00147">147</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00154">154</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -672,7 +672,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00144">144</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00151">151</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 <p>Referenced by <a class="el" href="user__main_8c_source.html#l00668">setup()</a>.</p>
 
@@ -688,7 +688,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00084">84</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00091">91</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -702,7 +702,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00092">92</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00099">99</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -716,7 +716,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00149">149</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00156">156</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -730,7 +730,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00159">159</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00166">166</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -744,7 +744,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00107">107</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00114">114</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -758,7 +758,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00161">161</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00168">168</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -772,7 +772,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00113">113</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00120">120</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -786,7 +786,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00111">111</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00118">118</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -800,7 +800,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00091">91</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00098">98</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -814,7 +814,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00148">148</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00155">155</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -828,7 +828,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00121">121</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00128">128</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -842,7 +842,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00122">122</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00129">129</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -856,7 +856,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00123">123</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00130">130</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -870,7 +870,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00124">124</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00131">131</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -884,7 +884,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00125">125</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00132">132</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -898,7 +898,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00109">109</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00116">116</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -912,7 +912,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00108">108</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00115">115</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -926,7 +926,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00086">86</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00093">93</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -940,7 +940,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00087">87</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00094">94</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -954,7 +954,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00129">129</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00136">136</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -968,7 +968,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00130">130</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00137">137</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -982,7 +982,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00131">131</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00138">138</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -996,7 +996,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00132">132</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00139">139</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -1010,7 +1010,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00097">97</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00104">104</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -1024,7 +1024,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00095">95</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00102">102</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -1038,7 +1038,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00094">94</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00101">101</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -1052,7 +1052,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00096">96</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00103">103</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -1066,7 +1066,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00098">98</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00105">105</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -1080,7 +1080,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00155">155</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00162">162</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 <p>Referenced by <a class="el" href="user__main_8c_source.html#l00668">setup()</a>.</p>
 
@@ -1096,7 +1096,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00089">89</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00096">96</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -1110,7 +1110,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00090">90</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00097">97</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -1124,7 +1124,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00085">85</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00092">92</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -1138,7 +1138,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00126">126</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00133">133</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -1152,7 +1152,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00127">127</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00134">134</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -1166,7 +1166,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00158">158</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00165">165</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 <p>Referenced by <a class="el" href="user__main_8c_source.html#l00315">loop()</a>, and <a class="el" href="user__main_8c_source.html#l00668">setup()</a>.</p>
 
@@ -1182,7 +1182,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00157">157</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00164">164</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -1196,9 +1196,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00080">80</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00087">87</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00818">tft_setRotation()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00702">tft_setRotation()</a>.</p>
 
 </div>
 </div>
@@ -1212,7 +1212,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00082">82</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00089">89</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -1226,7 +1226,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00079">79</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00086">86</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -1240,9 +1240,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00078">78</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00085">85</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00818">tft_setRotation()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00702">tft_setRotation()</a>.</p>
 
 </div>
 </div>
@@ -1256,9 +1256,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00077">77</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00084">84</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00818">tft_setRotation()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00702">tft_setRotation()</a>.</p>
 
 </div>
 </div>
@@ -1272,9 +1272,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00076">76</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00083">83</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00818">tft_setRotation()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00702">tft_setRotation()</a>.</p>
 
 </div>
 </div>
@@ -1288,7 +1288,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00081">81</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00088">88</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -1302,7 +1302,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00073">73</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00080">80</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -1316,7 +1316,30 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00071">71</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00078">78</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad0fe97585b8891f5e4f2b9a6426330a4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MEMSPACE</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This is the core graphics library for all our displays, providing a common set of graphics primitives (points, lines, circles, etc.). It needs to be paired with a hardware-specific library for each display device we carry (to handle the lower-level functions).</p>
+<p>Adafruit invests time and resources providing this open source code, please support Adafruit &amp; open-source hardware by purchasing products from Adafruit!</p>
+<p>Copyright (c) 2013 Adafruit Industries. All rights reserved.</p>
+<p>Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</p>
+<ul>
+<li>Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.</li>
+<li>Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.</li>
+</ul>
+<p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. </p>
+
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00054">54</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -1330,7 +1353,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00072">72</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00079">79</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -1344,7 +1367,21 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00070">70</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00077">77</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a399da2caab82ec1bb3d5a8fbc5306768"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define WEAK_ATR&#160;&#160;&#160;<a class="el" href="user__task_8c.html#ade20ba3eb51f42d2b2deb917303c9a5e">__attribute__</a>((weak))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="ili9341__adafruit_8h_source.html#l00059">59</a> of file <a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>.</p>
 
 </div>
 </div>
@@ -1354,7 +1391,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void tft_configRegister </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void tft_configRegister </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -1374,9 +1411,9 @@ Functions</h2></td></tr>
 </ul>
 <p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p><dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8c_source.html#l00050">50</a> of file <a class="el" href="ili9341__adafruit_8c_source.html">ili9341_adafruit.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8c_source.html#l00054">54</a> of file <a class="el" href="ili9341__adafruit_8c_source.html">ili9341_adafruit.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00126">tft_init()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341__hal_8c_source.html#l00162">tft_init()</a>.</p>
 
 </div>
 </div>
@@ -1385,7 +1422,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void tft_drawBitmap </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void tft_drawBitmap </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structwindow.html">window</a> *&#160;</td>
           <td class="paramname"><em>win</em>, </td>
@@ -1442,7 +1479,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8c_source.html#l00177">177</a> of file <a class="el" href="ili9341__adafruit_8c_source.html">ili9341_adafruit.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8c_source.html#l00181">181</a> of file <a class="el" href="ili9341__adafruit_8c_source.html">ili9341_adafruit.c</a>.</p>
 
 </div>
 </div>
@@ -1451,7 +1488,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void tft_drawCircle </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void tft_drawCircle </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structwindow.html">window</a> *&#160;</td>
           <td class="paramname"><em>win</em>, </td>
@@ -1501,7 +1538,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8c_source.html#l00194">194</a> of file <a class="el" href="ili9341__adafruit_8c_source.html">ili9341_adafruit.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8c_source.html#l00198">198</a> of file <a class="el" href="ili9341__adafruit_8c_source.html">ili9341_adafruit.c</a>.</p>
 
 <p>Referenced by <a class="el" href="user__main_8c_source.html#l00315">loop()</a>.</p>
 
@@ -1512,7 +1549,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void tft_drawCircleHelper </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void tft_drawCircleHelper </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structwindow.html">window</a> *&#160;</td>
           <td class="paramname"><em>win</em>, </td>
@@ -1569,9 +1606,9 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8c_source.html#l00241">241</a> of file <a class="el" href="ili9341__adafruit_8c_source.html">ili9341_adafruit.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8c_source.html#l00245">245</a> of file <a class="el" href="ili9341__adafruit_8c_source.html">ili9341_adafruit.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341__adafruit_8c_source.html#l00377">tft_drawRoundRect()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341__adafruit_8c_source.html#l00381">tft_drawRoundRect()</a>.</p>
 
 </div>
 </div>
@@ -1580,7 +1617,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void tft_drawRect </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void tft_drawRect </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structwindow.html">window</a> *&#160;</td>
           <td class="paramname"><em>win</em>, </td>
@@ -1637,7 +1674,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8c_source.html#l00356">356</a> of file <a class="el" href="ili9341__adafruit_8c_source.html">ili9341_adafruit.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8c_source.html#l00360">360</a> of file <a class="el" href="ili9341__adafruit_8c_source.html">ili9341_adafruit.c</a>.</p>
 
 </div>
 </div>
@@ -1646,7 +1683,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void tft_drawRoundRect </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void tft_drawRoundRect </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structwindow.html">window</a> *&#160;</td>
           <td class="paramname"><em>win</em>, </td>
@@ -1710,7 +1747,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8c_source.html#l00377">377</a> of file <a class="el" href="ili9341__adafruit_8c_source.html">ili9341_adafruit.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8c_source.html#l00381">381</a> of file <a class="el" href="ili9341__adafruit_8c_source.html">ili9341_adafruit.c</a>.</p>
 
 </div>
 </div>
@@ -1719,7 +1756,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void tft_drawTriangle </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void tft_drawTriangle </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structwindow.html">window</a> *&#160;</td>
           <td class="paramname"><em>win</em>, </td>
@@ -1790,7 +1827,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8c_source.html#l00430">430</a> of file <a class="el" href="ili9341__adafruit_8c_source.html">ili9341_adafruit.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8c_source.html#l00434">434</a> of file <a class="el" href="ili9341__adafruit_8c_source.html">ili9341_adafruit.c</a>.</p>
 
 </div>
 </div>
@@ -1799,7 +1836,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void tft_fillCircle </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void tft_fillCircle </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structwindow.html">window</a> *&#160;</td>
           <td class="paramname"><em>win</em>, </td>
@@ -1849,7 +1886,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8c_source.html#l00339">339</a> of file <a class="el" href="ili9341__adafruit_8c_source.html">ili9341_adafruit.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8c_source.html#l00343">343</a> of file <a class="el" href="ili9341__adafruit_8c_source.html">ili9341_adafruit.c</a>.</p>
 
 </div>
 </div>
@@ -1858,7 +1895,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void tft_fillCircleHelper </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void tft_fillCircleHelper </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structwindow.html">window</a> *&#160;</td>
           <td class="paramname"><em>win</em>, </td>
@@ -1922,9 +1959,9 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8c_source.html#l00295">295</a> of file <a class="el" href="ili9341__adafruit_8c_source.html">ili9341_adafruit.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8c_source.html#l00299">299</a> of file <a class="el" href="ili9341__adafruit_8c_source.html">ili9341_adafruit.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341__adafruit_8c_source.html#l00339">tft_fillCircle()</a>, and <a class="el" href="ili9341__adafruit_8c_source.html#l00407">tft_fillRoundRect()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341__adafruit_8c_source.html#l00343">tft_fillCircle()</a>, and <a class="el" href="ili9341__adafruit_8c_source.html#l00411">tft_fillRoundRect()</a>.</p>
 
 </div>
 </div>
@@ -1933,7 +1970,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void tft_fillRoundRect </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void tft_fillRoundRect </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structwindow.html">window</a> *&#160;</td>
           <td class="paramname"><em>win</em>, </td>
@@ -1997,7 +2034,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8c_source.html#l00407">407</a> of file <a class="el" href="ili9341__adafruit_8c_source.html">ili9341_adafruit.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8c_source.html#l00411">411</a> of file <a class="el" href="ili9341__adafruit_8c_source.html">ili9341_adafruit.c</a>.</p>
 
 </div>
 </div>
@@ -2006,7 +2043,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void tft_fillTriangle </td>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void tft_fillTriangle </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structwindow.html">window</a> *&#160;</td>
           <td class="paramname"><em>win</em>, </td>
@@ -2077,14 +2114,14 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="ili9341__adafruit_8c_source.html#l00451">451</a> of file <a class="el" href="ili9341__adafruit_8c_source.html">ili9341_adafruit.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341__adafruit_8c_source.html#l00455">455</a> of file <a class="el" href="ili9341__adafruit_8c_source.html">ili9341_adafruit.c</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 30 2016 00:11:27 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 1 2016 22:45:19 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

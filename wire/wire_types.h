@@ -1,5 +1,5 @@
 /**
- @file wire.h
+ @file wire_types.h
 
  @brief wireframe view code
 

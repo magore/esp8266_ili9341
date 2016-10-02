@@ -21,11 +21,11 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
-#ifdef ESP8266
-	#include <user_config.h>
-#endif
 #include <stdint.h>
+#include <stdarg.h>
+#include <string.h>
+#include <math.h>
+
 #include "flash.h"
 
 #define USE_CACHE

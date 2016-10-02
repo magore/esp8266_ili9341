@@ -11,12 +11,17 @@
 /* (C)ChaN, 2012                                                          */
 /*------------------------------------------------------------------------*/
 
-#include <user_config.h>
+#include <stdint.h>
+#include <stdarg.h>
+#include <string.h>
+#include <math.h>
+
 //#include <stdlib.h>		/* ANSI memory controls */
 //#include <malloc.h>		/* ANSI memory controls */
 
 #include "ff.h"
 
+#include "mmc_hal.h"
 
 #if _FS_REENTRANT
 /*------------------------------------------------------------------------*/

@@ -40,6 +40,9 @@ typedef struct
     double z;
 } point;
 
+#ifdef USER_CONFIG
+#include "user_config.h"
+#endif
 
 /* cordic.c */
 MEMSPACE double deg2rad ( double deg );

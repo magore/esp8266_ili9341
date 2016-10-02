@@ -26,46 +26,58 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef __USER_CONFIG_H__
 #define __USER_CONFIG_H__
 
-#define MEMSPACE ICACHE_FLASH_ATTR
-#define MEMSPACE_RO ICACHE_RODATA_ATTR
-//#define MEMSPACE_RO static const
-
-#define ESP8266 1
-#define NO_STDIO
-#define FLOAT
-
-#define _GNU_SOURCE
-
+#include <stdint.h>
 #include <stdarg.h>
+#include <string.h>
+
+#ifdef ESP8266
 #include <osapi.h>
 #include <os_type.h>
 #include <c_types.h>
-
+#include "spi_register.h"  // from 0.9.4 IoT_Demo
 #include <ets_sys.h>
+#include <ip_addr.h>
+#include <espconn.h>
+#include <gpio.h>
+#include <user_interface.h>
+#include <mem.h>
+#include <stdbool.h>
+
+#ifndef MEMSPACE
+#define MEMSPACE ICACHE_FLASH_ATTR
+#endif
+#ifndef MEMSPACE_RO
+#define MEMSPACE_RO ICACHE_RODATA_ATTR
+#endif
+//#define MEMSPACE_RO static const
+#endif
+
+#include <math.h>
+
+// ram.c defines alternative safe functions
+// sys.c defines alternative safe functions
+#ifndef free
+    #define free(p) safefree(p)
+#endif
+#ifndef calloc
+    #define calloc(n,s) safecalloc(n,s)
+#endif
+#ifndef malloc
+    #define malloc(s) safemalloc(s)
+#endif
 
 // low level memory and flash reading code
 #include "str.h"
 #include "std.h"
 #include "sys.h"
 
-#include <ip_addr.h>
-#include <espconn.h>
-#include <gpio.h>
-#include <user_interface.h>
-#include <mem.h>
-
-#define MMC_SLOW (80000000UL/500000UL)
-#define MMC_FAST (80000000UL/2500000UL)
-
-
-#define get_line(buf,size) uart0_gets(buf,size)
-
-#include <uart_register.h>
 
 // Simple queue reoutines
 #include "queue.h"
 
 // Hardware UART
+#define get_line(buf,size) uart0_gets(buf,size)
+#include <uart_register.h>
 #include "uart.h"
 
 // Hardware SPI
@@ -89,15 +101,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "timer.h"
 #include "time.h"
 
-#ifdef FATFS_SUPPORT
 // FATFS
+#ifdef FATFS_SUPPORT
+#define MMC_SLOW (80000000UL/500000UL)
+#define MMC_FAST (80000000UL/2500000UL)
+#include "mmc_hal.h"
+#include "mmc.h"
 #include "integer.h"
 #include "ffconf.h"
 #include "ff.h"
 #include "diskio.h"
 #include "disk.h"
-#include "mmc_hal.h"
-
 // FATFS POSIX WRAPPER
 #include "posix.h"
 // FATFS user tests and user interface
@@ -108,6 +122,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MEMSPACE_FONT MEMSPACE
 #include "font.h"
 #include "ili9341_adafruit.h"
+#include "ili9341_hal.h"
 #include "ili9341.h"
 
 // CORDIC math functions
@@ -117,7 +132,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Wireframe viewer functions
 #include "wire_types.h"
 #include "wire.h"
-
 
 #include "network.h"
 
@@ -132,22 +146,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 #ifdef ADF4351
+#include "adf4351_hal.h"
 #include "adf4351.h"
 #endif
-// ram.c defines alternative safe functions
-#define free safefree
-#define calloc safecalloc
-#define malloc safemalloc
 
-// sys.c defines alternative safe functions
-#ifndef free
-    #define free(p) safefree(p)
-#endif
-#ifndef calloc
-    #define calloc(n,s) safecalloc(n,s)
-#endif
-#ifndef malloc
-    #define malloc(s) safemalloc(s)
-#endif
-
-#endif
+#endif // __USER_CONFIG_H__

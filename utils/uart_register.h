@@ -22,6 +22,20 @@
 #ifndef UART_REGISTER_H_
 #define UART_REGISTER_H_
 
+#include <stdint.h>
+#include <stdarg.h>
+#include <string.h>
+#include <math.h>
+
+#ifdef USER_CONFIG
+#include "user_config.h"
+#endif
+
+// Named address space
+#ifndef MEMSPACE
+#define MEMSPACE /**/
+#endif
+
 #define REG_UART_BASE(i)                (0x60000000 + (i)*0xf00)
 //version value:32'h062000
 

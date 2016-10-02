@@ -24,7 +24,20 @@
 
 #ifndef _FLASH_H_
 #define _FLASH_H_
+
 #include <stdint.h>
+#include <stdarg.h>
+#include <string.h>
+#include <math.h>
+
+#ifdef USER_CONFIG
+#include "user_config.h"
+#endif
+
+// Named address space
+#ifndef MEMSPACE
+#define MEMSPACE /**/
+#endif
 
 /* flash.c */
 uint8_t read_flash8 ( uint8_t *p );

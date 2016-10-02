@@ -24,13 +24,13 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 // Can override stack in cont.h by defining it here
 // FIXME DEBUG
 #define CONT_STACKSIZE 4096
-#include "user_config.h"
 
-#include "ets_sys.h"
-#include "os_type.h"
-#include "osapi.h"
-#include "mem.h"
-#include "user_interface.h"
+#include <stdint.h>
+#include <stdarg.h>
+#include <string.h>
+#include <math.h>
+
+#include "user_task.h"
 
 #define LOOP_TASK_PRIORITY 0
 #define LOOP_QUEUE_SIZE    1
