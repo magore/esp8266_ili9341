@@ -1,0 +1,3224 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:w="urn:schemas-microsoft-com:office:word"
+ xmlns="http://www.w3.org/TR/REC-html40">
+
+<!-- Mirrored from www3.sympatico.ca/magore/sources/focuser/readme.html by HTTrack Website Copier/3.x [XR&CO'2013], Tue, 04 Aug 2015 22:17:02 GMT -->
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=windows-1252">
+  <meta name="ProgId" content="Word.Document">
+  <meta name="Generator" content="Microsoft Word 9">
+  <meta name="Originator" content="Microsoft Word 9">
+  <link rel="File-List" href="readme_files/filelist.html">
+  <title>Open Source Dual Focus Motor Controller April 2003 README FILE</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>magore</o:Author>
+  <o:LastAuthor>magore</o:LastAuthor>
+  <o:Revision>3</o:Revision>
+  <o:TotalTime>5</o:TotalTime>
+  <o:Created>2003-04-06T05:49:00Z</o:Created>
+  <o:LastSaved>2003-04-06T05:49:00Z</o:LastSaved>
+  <o:Pages>3</o:Pages>
+  <o:Words>1007</o:Words>
+  <o:Characters>5744</o:Characters>
+  <o:Company>405 Midwood Cres, Waterloo</o:Company>
+  <o:Lines>47</o:Lines>
+  <o:Paragraphs>11</o:Paragraphs>
+  <o:CharactersWithSpaces>7054</o:CharactersWithSpaces>
+  <o:Version>9.4402</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+  <style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ /* Font Definitions */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@font-face
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	{font-family:Wingdings;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	panose-1:5 0 0 0 0 0 0 0 0 0;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	mso-font-charset:2;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	mso-generic-font-family:auto;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	mso-font-pitch:variable;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	mso-font-signature:0 268435456 0 0 -2147483648 0;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ /* Style Definitions */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	{mso-style-parent:"";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	margin:0in;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	margin-bottom:.0001pt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	mso-pagination:widow-orphan;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	font-size:12.0pt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	font-family:"Times New Roman";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	mso-fareast-font-family:"Times New Roman";}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+h1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	{mso-style-next:Normal;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	margin-top:0in;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	margin-right:-81.0pt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	margin-bottom:0in;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	margin-left:1.0in;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	margin-bottom:.0001pt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	mso-pagination:widow-orphan;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	page-break-after:avoid;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	mso-outline-level:1;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	font-size:12.0pt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	font-family:"Times New Roman";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	mso-font-kerning:0pt;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+p.MsoTitle, li.MsoTitle, div.MsoTitle
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	{margin-top:0in;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	margin-right:-.5in;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	margin-bottom:0in;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	margin-left:0in;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	margin-bottom:.0001pt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	text-align:center;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	mso-pagination:widow-orphan;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	font-size:12.0pt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	font-family:"Times New Roman";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	mso-fareast-font-family:"Times New Roman";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	font-weight:bold;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+p.MsoBodyText, li.MsoBodyText, div.MsoBodyText
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	{margin-top:0in;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	margin-right:-81.0pt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	margin-bottom:0in;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	margin-left:0in;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	margin-bottom:.0001pt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	mso-pagination:widow-orphan;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	font-size:12.0pt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	font-family:"Times New Roman";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	mso-fareast-font-family:"Times New Roman";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	font-weight:bold;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@page Section1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	{size:8.5in 11.0in;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	margin:1.0in 1.25in 1.0in 1.25in;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	mso-header-margin:.5in;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	mso-footer-margin:.5in;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	mso-paper-source:0;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+div.Section1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	{page:Section1;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ /* List Definitions */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@list l0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	{mso-list-id:987829429;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	mso-list-type:hybrid;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	mso-list-template-ids:456787386 67698689 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@list l0:level1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	{mso-level-number-format:bullet;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	mso-level-text:\F0B7;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	mso-level-tab-stop:.5in;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	mso-level-number-position:left;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	text-indent:-.25in;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	font-family:Symbol;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@list l1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	{mso-list-id:999194151;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	mso-list-type:hybrid;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	mso-list-template-ids:-397883804 67698689 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@list l1:level1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	{mso-level-number-format:bullet;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	mso-level-text:\F0B7;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	mso-level-tab-stop:.5in;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	mso-level-number-position:left;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	text-indent:-.25in;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	font-family:Symbol;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@list l1:level2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	{mso-level-number-format:bullet;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	mso-level-text:o;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	mso-level-tab-stop:1.0in;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	mso-level-number-position:left;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	text-indent:-.25in;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	font-family:"Courier New";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	mso-bidi-font-family:"Times New Roman";}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ol
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	{margin-bottom:0in;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ul
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	{margin-bottom:0in;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </style>
+</head>
+<body lang="EN-US" style="">
+<div class="Section1">
+<div style="text-align: justify;"> </div>
+<span style="font-weight: bold;"> Open Source Dual Focus Motor
+Controller April 2003 README FILE </span><br>
+/// ====================================================================<br>
+// Copyright &nbsp;© 2003 Mike Gore, Waterloo, ON N2L 5N4, Canada<br>
+//<br>
+// Permission is hereby granted to use this Software for any purpose<br>
+// including combining with commercial products, creating derivative<br>
+// works, and redistribution of source or binary code, without<br>
+// limitation or consideration. Any redistributed copies of this<br>
+// Software must include the above Copyright Notice.<br>
+//<br>
+// THIS SOFTWARE IS PROVIDED "AS IS". THE AUTHOR MAKES NO<br>
+// WARRANTIES REGARDING THIS SOFTWARE, EXPRESS OR IMPLIED, AS TO ITS<br>
+// SUITABILITY OR FITNESS FOR A PARTICULAR PURPOSE.<br>
+// ====================================================================<br>
+// History<br>
+// Written:&nbsp; 2 April 2003&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mike
+Gore &lt;magore@icr1.uwater.loo.ca&gt;<br>
+// April 2 - April 8th extesive edits<br>
+// April 8 Alpha release<br>
+// April 11 Almost Beta Release<br>
+<br>
+<br>
+<table cellpadding="2" cellspacing="2" border="1"
+ style="text-align: left; width: 700px;">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"> <br>
+      <b>What is this?</b><br>
+Source code and diagrams for a dual focus motor controller. This design
+is for a modified Meade 1206 <br>
+focus motor with 4096 encoder on focus knob and a stock JMI NGS-F with
+2160 encoder <br>
+Also included is a beta ASCOM driver for interfacing with the controller<br>
+      <br style="font-weight: bold;">
+      <span style="font-weight: bold;"> What do I need to make it work?</span><br>
+I used a PICF16F876 CPU – see diagram for more details. The compiled
+code is in a file called <br>
+FOCUS.HEX. You will need a Microchip PIC Start PLUS, Microchip ICD or
+some other method to<br>
+program the HEX file into the CPU. - <span style="font-weight: bold;">Note:
+the .HEX and .COD file is included</span> <br>
+      <br>
+      <b>Why give it away?</b><br>
+I use several tools that are open source and have gained a great deal
+from this process       I hope others can continue to work on and
+improve this code – if so we all will have something to gain from it. <br>
+      <br>
+      <b>What is needed to recompile this project?</b><br>
+I used the HI-TECH C compiler and have made extensive use of memory
+banking using defines for better portability (I needed most of the
+PIC16F876 internal RAM for this project.) The project make extensive use
+of 8,16 and 32 bits signed and unsigned numbers. Except for the printf
+() library used  by HI-TECH C I have written all of my own support
+function for this project. There are several other C compilers worth
+looking at both commercial and non-commercial (CCS, BYTECRAFT an the PIC
+port of SDCC) the batch file focus.bat will compile the project. I have
+also included a project file forMPLAB – you will have to edit the
+project to change directory names if you intend to use it (I would
+suggest a text editor and use search and replace) <br>
+      <br>
+      <b>Porting to another CPU?</b><br>
+Porting this code to a different CPU should not be all that hard  – I
+moved from a PIC project of   similar complexity to an 8031 based CPU in
+about 2 days using similar libraries.<br>
+      <br>
+      <b>What are all the switch statements for?</b><br>
+The PIC does not have a real stack – so these switch statements are
+actually <span style="font-weight: bold;">state machines </span>designed
+to break up all of the tasks that have to run in parallel. The
+processes motor0_Task (), motor1_Task (), quad0_Task (), quad1_Task (),
+etc run every 100uS but only a tiny bit of each one runs at any given
+time. Since most of the switch statements have ascending case statements
+with no gaps the compiler translates these into jump tables, which are
+very fast <br>
+      <br>
+      <span style="font-weight: bold;"> Why are you duplicating&nbsp;
+code and using constant indexes in motor0_Task () and </span><span
+ style="font-weight: bold;">motor1_Task (), etc?</span><br>
+      <span style=""> </span>The compiler converts the constant index
+into a compile time memory reference – the code is &nbsp;way faster and
+way smaller. The speed is very important since we run so many tasks at
+the 100uS rate.<b><br>
+      </b><br>
+      <b><br>
+Why are you using a 100uS task rate?</b><br>
+Good question! The 1 wire bus timing was the main initial reason then
+the encoder update rate was another since I wanted portB but 6 and &amp;
+for the ICD (In circuit debugger) – say what? (Only the top 4 bits of
+portB have interrupt on change and I needed all four bits to use that
+feature). The encoder task &nbsp;also permits update on every state
+change giving a four fond increase in resolution when compared to just
+counting the A and B transitions…. However that said I am sure this
+model could be totally changed &nbsp;and things could still be made to
+work. <br>
+      <br>
+      <b>Where is the rest of the documentation?</b><br>
+      <span style=""></span>In the code (More or less 8-) I tried to
+add enough detail in the code be useful. <br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<br>
+<span style="font-size: 12pt; font-family: &quot;Times New Roman&quot;;"> </span><br>
+<br>
+<big><big><b>Code Operation:</b></big></big> <br>
+<br>
+<table cellpadding="2" cellspacing="2" border="1"
+ style="text-align: left; width: 700px;">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"><big><span
+ style="font-weight: bold;">Symbols</span></big><br>
+      </td>
+      <td style="vertical-align: top;"><big><span
+ style="font-weight: bold;">Definition</span></big><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">DIR<br>
+      </td>
+      <td style="vertical-align: top;">1 = IN, 0 = OUT</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">TIME<br>
+      </td>
+      <td style="vertical-align: top;">32bit time value in 0.001-second
+steps</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">REL<br>
+      </td>
+      <td style="vertical-align: top;">32bit +/- distance in encoder
+tics</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">POS<br>
+      </td>
+      <td style="vertical-align: top;">32bit absolute position in
+encoder tics</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">n<br>
+      </td>
+      <td style="vertical-align: top;">0 or 1 motor number</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">ARGS<br>
+      </td>
+      <td style="vertical-align: top;"><span style=""> </span>User set
+limits command line arguments - see Ln definition below</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><big><span
+ style="font-weight: bold;">Command</span></big><br>
+      </td>
+      <td style="vertical-align: top; text-align: justify;"><span
+ style="font-weight: bold;"></span><big style="font-weight: bold;">Definition</big><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">A<span style=""> </span></td>
+      <td style="vertical-align: top;">Display Motor voltage (Analog
+Voltage) scaled * 1000</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 75px;">B<br>
+      </td>
+      <td style="vertical-align: top;"><span style=""></span>Motor
+Backlash Tests (Comple option)<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Cn<br>
+      </td>
+      <td style="vertical-align: top;">Init motor n parameters to
+factory setting and reset NVRAM</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Dn<br>
+      </td>
+      <td style="vertical-align: top;">Display User Limits<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">En<br>
+      </td>
+      <td style="vertical-align: top;"> Enable interactive mode = 1,
+Computer mode 0 (interactive mode waits for all commands to finish)</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Hn<br>
+      </td>
+      <td style="vertical-align: top;"> Halt  move command and update
+NVRAM - waits for breaking to finish before returning</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Gn POS<br>
+      </td>
+      <td style="vertical-align: top;">Move      motor n to position
+POS – see notes (1,2,3)</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">I<br>
+      </td>
+      <td style="vertical-align: top;">Display interrupt timer overhead
+in CPU tics</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Ln ARGS<br>
+      <br>
+      </td>
+      <td style="vertical-align: top;"> Set Limits and Parameters for
+motor n<br>
+1)Limit in encoder tics (0 is always a lower limit)<br>
+2)Breaking time in 1mS increments for use after a move<br>
+3)Watchdog timeout in 1mS increments when the encoder sees no motion<br>
+4)Slow zone, the distance in encoder tics from a target when the motor
+switches to slow speed<br>
+5)Slop in encoder tics of backlash compensation when moving in the
+Outward direction <br>
+(Outward direction is with gravity, Inward is against) <br>
+6)HEX Slow speed control bit mask – 8bit PWM mask – see note (4) <br>
+7)HEX Fast speed control bit mask – 8bit PWM mask – see note (4)<br>
+8)Clutch flag, 0 = no clutch, 1 = has clutch - see note (1,5) <br>
+      <br>
+      <span style="font-weight: bold;">Example:
+l0,1800,200,1000,50,0,11,ff,0</span><br>
+      <br>
+Limit = 1800 <br>
+Breaking time = 200mS <br>
+Watchdog = 1000mS <br>
+Slow zone = 50 encoder tics <br>
+Slop/Backlash = 0 <br>
+Slow Speed = 0x11<span style=""> </span>(about 1/4<sup>th</sup> power)<br>
+Fast Speed = 0xff (full power)<br>
+Clutch = 0 (no clutch)</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Mn<br>
+      </td>
+      <td style="vertical-align: top;"><span style=""> </span>Move
+motor n for time TIME in direction DIR– see note (1,2)</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Pn<br>
+      </td>
+      <td style="vertical-align: top;">Motor n position and movement
+status<br>
+(ie 0,IDLE or 123,BUSY<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Rn<br>
+      </td>
+      <td style="vertical-align: top;"><span style=""> </span>Move
+motor n REL distance – see note (1,2,3)</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Sn<br>
+      </td>
+      <td style="vertical-align: top;"><span style=""></span>Display
+Status of Motor n (IDLE or BUSY)<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">T<br>
+      </td>
+      <td style="vertical-align: top;">Display Temperature *10 in
+degrees C</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">V<br>
+      </td>
+      <td style="vertical-align: top;">Display Firmware Version(Compile
+Date)</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Z<br>
+      </td>
+      <td style="vertical-align: top;">Zero motor n position values -
+see note(2)</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><big><big><span
+ style="font-weight: bold;">Notes:</span></big></big><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Note (1)</td>
+      <td style="vertical-align: top;"><span style=""></span>Be careful
+when moving motors that have no slip clutch<br>
+If the system sees no movement in a user given time then system trigger
+a watchdog <br>
+timer and return the error !WATCHDOG</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 60px;">Note (2)</td>
+      <td style="vertical-align: top;"><span style=""> When a motion
+command finishes the NVRAM will be updated</span></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Note (3)</td>
+      <td style="vertical-align: top;">The move command will always
+finish a move in the Inward direction against gravity. <br>
+Mechanical slop setting is used to determine backlash compensation</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Note (4)</td>
+      <td style="vertical-align: top;">The PWM mask is an 8bit value
+that gets rotated once every 100uS. The least significant bit is used to
+determine if power is applied to the motor. So for example 0x03 or 0x11
+represent the same value and is typical of a slow speed setting. 0xff is
+the fastest speed. Note: 0x11 has advantages over 0x03 in that the
+transitions from 0’s to 1’s is more evenly spread out and has higher
+frequency components</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Note (5)</td>
+      <td style="vertical-align: top;">Currently this is ignored -
+still thinking about how best to use it </td>
+    </tr>
+  </tbody>
+</table>
+<table cellpadding="2" cellspacing="2" border="1"
+ style="text-align: left; width: 700px;">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"><big><big><span
+ style="font-weight: bold;">Using the code</span></big></big><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><br>
+      <big style="font-weight: bold;"><big>Copyright Notes: </big></big><br>
+      <div style="margin-left: 40px;">&nbsp;The basis for the windows
+ASCOM driver was orginallay written by Doug George<br>
+&nbsp;I have adopted the same copyright from for my code - Please read
+the copyright in the source files.<br>
+      <span style="font-weight: bold;">(Both commercial and private use
+are permitted!)<br>
+      <br>
+      </span></div>
+      <big><big style="font-weight: bold;"> Notes:<br>
+      </big></big>
+      <ul>
+        <li>The visual studio V6 source code for the windows driver is
+in the directory focus\windows</li>
+      </ul>
+      <ul>
+        <li> The baudrate&nbsp; is set to 38400 buad, 8bits, no parity,
+no flow control</li>
+      </ul>
+      <ul>
+        <li> The code has had all basic tests done</li>
+      </ul>
+      <ul>
+        <li> The code does not have the ASCOM prefixes yet since it is
+still in beta testing mode</li>
+      </ul>
+      <ul>
+        <li> To setup the driver change into the directory
+focus\windows\DualFocusDriver\Release<br>
+        </li>
+      </ul>
+      <ul>
+        <li> Run the command regsvr32 dualfocusdriverdll  (And if you
+change file locations afterward!)</li>
+      </ul>
+      <ul>
+        <li>Run testit.vbs to open the chooser - adjust any settings</li>
+      </ul>
+      <ul>
+        <li>Run regedit and open
+HKEY_LOCAL_MACHINE\SOFTWARE\ASCOM\FOCUS Drivers\DualFocus.Focuser and
+edit the (Default) key to add a driver Title.</li>
+      </ul>
+      <ul>
+        <li>Run test.vbs and you will see your new title in the
+dropdown list</li>
+      </ul>
+      <ul>
+        <li>You can also test the code with a serial terminal program
+(such as hyperterm) and run the basic tests using the commands listed in
+the table above - start out with "e1" command to enable interactive
+mode. </li>
+      </ul>
+      <ul>
+        <li> Once you are ready, run the program testit.vbs located in
+the focus\windows\DualFocusDriver directory. (testit - from the command
+prompt)</li>
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<br>
+</div>
+</body>
+
+<!-- Mirrored from www3.sympatico.ca/magore/sources/focuser/readme.html by HTTrack Website Copier/3.x [XR&CO'2013], Tue, 04 Aug 2015 22:17:03 GMT -->
+</html>

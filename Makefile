@@ -101,10 +101,13 @@ SCANF = 1
 
 # ADF4351 demo
 ADF4351 = 1
-#ADF4351_DEBUG = 0
-# 1 = calculation debug detail
-# 2 = calculation error debug detail
-ADF4351_DEBUG = 1+2
+# Debug options can be combined by adding or oring
+# 1 = errors
+# 2 = calculation detail
+# 4 = register dumps
+# Example for everything
+#  ADF4351_DEBUG = 1+2+4
+ADF4351_DEBUG = 1
 
 # Display additional status:
 # 	interation count for spinning cube

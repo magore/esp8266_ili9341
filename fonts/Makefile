@@ -18,8 +18,9 @@ FONTS_P = fonts/P/12-Adobe-Helvetica.bdf \
 FONTS_B = fixed/7x13B.bdf \
 	fonts/C/24-Terminus-Bold.bdf \
 	fonts/C/32-Terminus-Bold.bdf 
-    
-all:	bdffont2c bigS copyfonts cleanfont
+
+#all:	bdffont2c bigS copyfonts cleanfont
+all:	bdffont2c bigT copyfonts cleanfont
 
 install:	all 
 	cp -p bdffont2c /usr/local/bin
@@ -58,11 +59,20 @@ bigP:	cleanfont bdffont2c
 	$(CC) $(CFLAGS) -g -o bdfview bdfview.c bdffontutil.o
 	./bdfview -n 5 -p 3 -t 
 
+# Smallest bounding box
 bigS:	cleanfont bdffont2c 
 	./bdffont2c -s -p 2 -l 32 -u 127 -o fonts.h $(FONTS_B)
 	$(CC) $(CFLAGS) -g -o bdfview bdfview.c bdffontutil.o
 	./bdfview -n 2 -p 3 -t 
 
+# Smallest bounding box, convert to proportional
+bigT:	cleanfont bdffont2c
+	./bdffont2c -s -p 3 -l 32 -u 127 -o fonts.h $(FONTS_B) \
+		freefont/FreeSansBold.bdf
+	$(CC) $(CFLAGS) -g -o bdfview bdfview.c bdffontutil.o
+	./bdfview -n 3 -p 3 -t 
+
+# Various viewer tests with different font groups
 testP:    cleanfont bdffont2c 
 	./bdffont2c -o fonts.h -l 32 -u 127 fonts/P/10-Adobe*.bdf 
 	$(CC) $(CFLAGS) -g -o bdfview bdfview.c bdffontutil.o
@@ -77,10 +87,9 @@ testS:    cleanfont bdffont2c
 	./bdffont2c -s -p 2 -o fonts.h -l 32 -u 127 fonts/P/10-Adobe*.bdf
 	$(CC) $(CFLAGS) -g -o bdfview bdfview.c bdffontutil.o
 	./bdfview -p 2 -t 
-	
+
 cleanfont:
 	rm -f fonts.h 
 
 clean:
-	rm -f bdffont2c *\.o fonts.h bdfview
-
+	rm -f bdffont2c *\.o fonts.h bdfview *\.bdf

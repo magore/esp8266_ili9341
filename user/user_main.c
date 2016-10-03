@@ -112,12 +112,27 @@ double freqval = 100e6;
 double freqlast = 0.0;
 double freqspacing = 0.0;
 int adf4351_scan = 0;
+int adf4351_x = 0;
+int adf4351_y = 0;
 
 // update every 50 mS
-ADF4351_task()
+void ADF4351_update(double freq)
+{
+    tft_set_font(winmsg,3);
+    tft_font_var(winmsg);
+    tft_set_textpos(winmsg, 0,0);
+	tft_printf(winmsg, "%4.3f", freq/1000000.0);
+    tft_set_font(winmsg,1);
+	tft_printf(winmsg, "MHz");
+	tft_cleareol(winmsg);
+	ADF4351_sync(1);
+}
+
+// update every 50 mS
+void ADF4351_task()
 {
 	int status;
-	double calcfreq;
+	double result;
 
 
 	if (freqval >= freqhi || freqval <freqlow)
@@ -126,7 +141,7 @@ ADF4351_task()
 	if(!adf4351_scan)
 		return;
 
- 	status = ADF4351_Config(freqval, 25000000.0, freqspacing, &calcfreq);
+ 	status = ADF4351_Config(freqval, 25000000.0, freqspacing, &result);
 	if(status)
 	{
 		ADF4351_display_error ( status );
@@ -135,7 +150,7 @@ ADF4351_task()
 		adf4351_scan = 0;
 	}
 	else
-		ADF4351_sync(1);
+		ADF4351_update(result);
 
 	freqlast = freqval;
 
@@ -638,13 +653,13 @@ int user_tests(char *str)
 		if(status)
 			ADF4351_display_error ( status );
 		else
-			ADF4351_sync(1);
+			ADF4351_update(result);
 
 		// FIXME we treat a mismatch as non-fatal
 		// we should really be looking for an accuracy value
  		if(status == ADF4351_RFout_MISMATCH)
 		{
-			ADF4351_sync(1);
+			ADF4351_sync(result);
 		}
 
 		return(1);
@@ -819,6 +834,7 @@ void setup(void)
 	tft_printf(winmsg, "DISP ID: %04lx\n", ID);
 	tft_setTextColor(winmsg, ILI9341_WHITE,winmsg->bg);
 #endif
+
 
 // Cube points were defined with sides of 1.0 
 // We want a scale of +/- w/2

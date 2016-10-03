@@ -137,7 +137,7 @@ int font_attr(window *win, int c, _fontc *f)
 		// Skip is the combined width, and an optional character spacing gap
 		// Some characters have no active size (like the space character )
 		// so we just use the master font width and gap
-        if(!(f->flags & FONT_VAR) || !f->w)
+        if( !(f->flags & FONT_VAR) || !f->w )
             f->skip = z->Width + z->gap;
         else
 			f->skip = f->x + f->w + z->gap;	// Include the X offset, Width and Gap
@@ -239,7 +239,7 @@ void tft_drawChar(window *win, uint8_t c)
 // be cleared..
 
 // FIXME we should do this in two parts - font area and then the gap area.
-// Since we alwasy want to clear the gap - but not always the font - when fixed.
+// Since we always want to clear the gap - but not always the font - when fixed.
 
 // Optionally clear the font area, then the gap
     if(f.h != f.Height ||  f.w != f.skip || f.x != 0 || f.y != 0)

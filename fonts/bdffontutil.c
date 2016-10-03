@@ -42,6 +42,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <limits.h>
 #include <errno.h>
 #include <stdint.h>
+#include <ctype.h>
 
 #include "font.h"
 #include "bdffontutil.h"
@@ -1515,7 +1516,7 @@ void FontAdjustSmall(_font *font)
  @brief Find gap size for proportional font (gap between characters) 
   Searching for the smallest width feature in a font 
   Set update font->gap
-  Work in progress
+  Work in progress - perhaps we should use or "|" ?
  @param[in] *font: Font pointer
  @return: void
 */
@@ -1524,6 +1525,7 @@ void ComputeGapSize(_font *font)
 	int x,y;
 	int w,h;
 	int Width;
+	int Span = MAXWIDTH;
 	int i;
 	int offset = 0;
 
@@ -1534,9 +1536,10 @@ void ComputeGapSize(_font *font)
 	// Compute the gap between fonts
 	// Most fixed fonts have a built in gap
 	// Most proportional fonts do not have a gap built in
-	// Scan the font and find the maximal width
+	//
+	// Find smallest non blank horizonal feature in all glyphs
+	// FIXME - perhaps we want to scan just the center ?
 
-	Width = 0;
 	for(i=0;i<font->Glyphs;++i)
 	{
 		// Does font->specs exist ?
@@ -1553,48 +1556,73 @@ void ComputeGapSize(_font *font)
 			h = font->Height;
 			offset = i * ((w*h)+7)/8;
 		}
-		
-		flag = 0;
-		minx = MAXWIDTH ;
-		maxx = 0;
-		// Compute the smallest font bounding box for this Glyph
-		// scan font maxy to miny
+
+		// Scan a Character "Glyph" 
+		//   Compute width of smallest non-blank feature
 		for (y=0;y <h; ++y) {
+			flag = 0;
+			minx = MAXWIDTH ;
+			maxx = 0;
 			for (x=0;x < w; ++x) 
 			{
 				if(bittestxy(font->bitmap+offset, x,y, w,h))
 				{
-					flag = 1;
-					if(x < minx)
+					flag = 1;	// a bit is set
+					if(x <= minx)
 						minx = x;
 					if(x > maxx)
 						maxx = x;
 				}
-		
+			}
+			// Compute width of character in this column
+			if(flag)
+			{
+				// minimum span
+				Width = (maxx - minx + 1);
+				if(Span < Width)
+					Span = Width;
 			}
 		}
-		// if flag is set we do not have to test minx == MAXWIDTH
-		if(flag && (maxx - minx + 1) > Width)
-			Width = (maxx - minx + 1);
+	}
+
+	// should never happen!
+	// implies font data without any pixels turned on!
+	if(Span == MAXWIDTH)
+	{
+		Span = 0;
 	}
 
 	// Some fixed width fonts may not have built in gaps
-    // If not add one
-	// We scan all fonts looking for the widest one - then compare to font->Width
+    // So if not then we add one by scanning all the glyphs
+	// and find the narrowest on-blank glyph we find.
 
 	if(font->Fixed)
 	{
 		// If there is no gap, then add one
-		if(Width >= font->Width)
-			font->gap = (Width+3)/4;
+		// FIXME
+		if(Span > 0)
+		{
+			// font->gap = (Width+3)/4;
+			font->gap = Span;
+		}
 		else
-			font->gap = 0;
+		{
+			//FIXME our ili9341 display code adds an offset to the gap
+			//move that code here!
+			font->gap = 1;
+		}
 		return;
 	}
 	// Porportional fonts do not have gaps built in - so add one
-	font->gap = (Width+3)/4;
-	if(!font->gap)
-		font->gap++;
+	if(Span > 0)
+	{
+		// font->gap = (Width+3)/4;
+		font->gap = Span;
+	}
+	else
+	{
+		font->gap = 1;
+	}
 }
 
 

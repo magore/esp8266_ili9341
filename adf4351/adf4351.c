@@ -34,6 +34,10 @@
 #include "adf4351_hal.h"
 #include "adf4351.h"
 
+// ADF4351_DEBUG
+// 1 = errors
+// 2 = calculations
+// 4 = register dumps included
 
 /// @brief ADF4351 register buffer
 adf4351_regs_t regs;
@@ -52,7 +56,9 @@ void ADF4351_sync(int all)
 		value = ADF4351_GetReg32(i);
 		(void) ADF4351_spi_txrx(value);
 	}
-	// ADF4351_dump_registers();
+#if ADF4351_DEBUG & 4
+	ADF4351_dump_registers();
+#endif
 }
 /// =============================================================
 /// =============================================================
@@ -228,7 +234,7 @@ void ADF4351_Init(void)
     ADF4351_sync(1);
 }
 
-#if ADF4351_DEBUG & 2
+#if ADF4351_DEBUG & 4
 
 /**
  *  \brief Display ADF4351 registers in detail
@@ -357,7 +363,7 @@ double ADF4351_PFD(double REFin, int R)
 
 /** \brief Verbose Error messages
 */
-#if ADF4351_DEBUG & 3
+#if ADF4351_DEBUG & 1
 adf4351_err_t adf4351_errors[] =
 {
    { ADF4351_NOERROR,"No error" },
@@ -385,7 +391,7 @@ void ADF4351_display_error(int error)
 {
 	int i;
 	int found = 0;
-#if ADF4351_DEBUG & 3
+#if ADF4351_DEBUG & 1
 	for(i=0;i<ADF4351_ERROR_END;++i)
 	{
 		if( adf4351_errors[i].val == error )
@@ -457,7 +463,7 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
 	// ==========================
     if (RFout > ADF4351_RFOUT_MAX)
 	{
-#if ADF4351_DEBUG & 2
+#if ADF4351_DEBUG & 1
 		printf("RFout > %.2f\n", (double) ADF4351_RFOUT_MAX);
 #endif
 		return(ADF4351_RFout_RANGE);
@@ -465,7 +471,7 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
 
     if (RFout < ADF4351_RFOUT_MIN)
 	{
-#if ADF4351_DEBUG & 2
+#if ADF4351_DEBUG & 1
 		printf("RFout < %.2f\n", (double) ADF4351_RFOUT_MIN);
 #endif
 		return(ADF4351_RFout_RANGE);
@@ -473,7 +479,7 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
 
     if (REFin > ADF4351_REFIN_MAX)
 	{
-#if ADF4351_DEBUG & 2
+#if ADF4351_DEBUG & 1
 		printf("REFin > %.2f\n", (double) ADF4351_REFIN_MAX);
 #endif
 		return(ADF4351_REFin_RANGE);
@@ -519,7 +525,7 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
 
 	if(r2_R == 4096)
 	{
-#if ADF4351_DEBUG & 2
+#if ADF4351_DEBUG & 1
         printf("r2_R == 4096\n");
 #endif
         return(ADF4351_R_RANGE);
@@ -534,7 +540,7 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
 
 	if(N < N_min || N > 65535U )
 	{
-#if ADF4351_DEBUG & 2
+#if ADF4351_DEBUG & 1
 		printf("N %.2f out of range\n", (double) N);
 #endif
 		return(ADF4351_N_RANGE);
@@ -547,7 +553,7 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
 	// r0_INt range check
     if (r0_INT > 65535U)
     {
-#if ADF4351_DEBUG & 2
+#if ADF4351_DEBUG & 1
         printf("INT: %lu\n", (unsigned long) r0_INT);
 #endif
 		return(ADF4351_INT_RANGE);
@@ -585,7 +591,7 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
 	// r1_MOD Range check
 	if(r1_MOD == 0 || r1_MOD > 4095U) 
 	{
-#if ADF4351_DEBUG & 2
+#if ADF4351_DEBUG & 1
         printf("*MOD: %lu, INT: %lu, FRAC: %lu\n", (unsigned long) r1_MOD, (unsigned long) r0_INT, (unsigned long) r0_FRAC);
 #endif
 		return(ADF4351_MOD_RANGE);
@@ -595,7 +601,7 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
 	// r0_FRAC range check
     if (r0_FRAC > 4095U)
     {
-#if ADF4351_DEBUG & 2
+#if ADF4351_DEBUG & 1
         printf("MOD: %lu, INT: %lu, *FRAC: %lu\n", (unsigned long) r1_MOD, (unsigned long) r0_INT, (unsigned long) r0_FRAC);
 #endif
 		return(ADF4351_FRAC_RANGE);
@@ -607,7 +613,7 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
     {
 		if( PFD > ADF4351_PFD_MAX )
 		{
-#if ADF4351_DEBUG & 2
+#if ADF4351_DEBUG & 1
 			printf("PFD: %.2f > %lu && BandClkMode == 0\n", 
 				(double) PFD, (unsigned long) ADF4351_PFD_MAX);
 #endif
@@ -618,7 +624,7 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
     {
 		if( PFD > ADF4351_PFD_MAX && r0_FRAC != 0)
 		{
-#if ADF4351_DEBUG & 2
+#if ADF4351_DEBUG & 1
 			printf("PFD: %.2f > %lu && BandClkMode == 0\n", 
 				(double) PFD, (unsigned long) ADF4351_PFD_MAX);
 #endif
@@ -626,7 +632,7 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
 		}
 		if (PFD > 90 && r0_FRAC != 0)
 		{
-#if ADF4351_DEBUG & 2
+#if ADF4351_DEBUG & 1
 			printf("PFD: %.2f > 90 Band Clock Mode && r0_FRAC != 0\n", 	
 				(double) PFD);
 #endif
@@ -658,7 +664,7 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
 	// Band Clock Range Check 
 	if (BandSelectClockFrequency > 500000.0)
     {
-#if ADF4351_DEBUG & 2
+#if ADF4351_DEBUG & 1
         printf("Band Slect Clock Frequency %.2f > 500000\n", 
 			(double) BandSelectClockFrequency);
 #endif
@@ -667,7 +673,7 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
 
     if ((BandSelectClockFrequency > 125000.0) & (regs.r3.BandClkMode))
     {
-#if ADF4351_DEBUG & 2
+#if ADF4351_DEBUG & 1
         printf("Band Select Clock Frequency %.2f > 125000 && regs.r3.BandClkMode\n", 
 			(double) BandSelectClockFrequency);
 #endif
@@ -678,7 +684,7 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
 	// Noise Spur Mode
     if ((regs.r2.NoiseSpurMode == ADF4351_LOW_SPUR_MODE) && (r1_MOD < 50))
     {
-#if ADF4351_DEBUG & 2
+#if ADF4351_DEBUG & 1
         printf("regs.r2.NoiseSpurMode == ADF4351_LOW_SPUR_MODE) && (r1_MOD(%lu) < 50\n",
 		(unsigned long) r1_MOD);
 #endif
@@ -704,7 +710,7 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
 		( (double) r0_INT + ((double)r0_FRAC / (double)r1_MOD) ) 
 		* ( (double)PFD / (double)(RFoutDIV) );
 
-#if ADF4351_DEBUG & 1
+#if ADF4351_DEBUG & 2
     printf("RFout:     %.2f Hz\n", RFout);
     printf("RFoutCalc: %.2f Hz\n", *RFoutCalc);
     printf("RFin:      %.2f Hz\n", (double) REFin);

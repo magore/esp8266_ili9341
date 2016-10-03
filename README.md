@@ -54,6 +54,7 @@
     Optimized Line drawing function and Makefile from CHERTS 
       @see https://github.com/CHERTS/esp8266-devkit/tree/master/Espressif/examples/esp8266_ili9341
   * Font sources:
+    @see https://www.gnu.org/software/freefont/
     @see https://www.rockbox.org
     @see http://www.cl.cam.ac.uk/~mgk25/ucs-fonts.html
     @see http://en.wikipedia.org/wiki/Glyph_Bitmap_Distribution_Format
