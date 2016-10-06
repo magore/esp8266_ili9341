@@ -1,6 +1,6 @@
 /**
  @file     ADF4351_hal.h
- @version  V0.10
+ @version V0.10
  @date     22 Sept 2016
 
  @brief ADF4351_HAL driver
@@ -63,3 +63,4 @@ MEMSPACE void ADF4351_spi_init ( void );
 void ADF4351_spi_begin ( void );
 void ADF4351_spi_end ( void );
 uint32_t ADF4351_spi_txrx ( uint32_t value );
+

@@ -2,7 +2,7 @@
 \label{cordic_8c}\index{cordic/cordic.\+c@{cordic/cordic.\+c}}
 
 
-Cordic Routines Handle angle outside of the first quadrant Added standalone test to verify C\+O\+R\+D\+IC against math library Add Documenation and references.  
+Cordic Routines Handle angle outside of the first quadrant Added standalone test to verify C\+O\+R\+D\+IC against math library Add Documentation and references.  
 
 
 {\ttfamily \#include $<$stdint.\+h$>$}\\*
@@ -14,7 +14,7 @@ Cordic Routines Handle angle outside of the first quadrant Added standalone test
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#define \hyperlink{cordic_8c_a575a13df8fab592b70c5968d27dbd338}{C\+O\+R\+D\+I\+C\+\_\+\+T\+A\+B\+LE}~/$\ast$ include the generated cordic table $\ast$/
+\#define \hyperlink{cordic_8c_a575a13df8fab592b70c5968d27dbd338}{C\+O\+R\+D\+I\+C\+\_\+\+T\+A\+B\+LE}~/$\ast$ include the generated Cordic table $\ast$/
 \end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
@@ -30,7 +30,7 @@ void \hyperlink{cordic_8c_a9e686d8e990a05ea18655a368e6d1918}{Circular} (\hyperli
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{cordic_8c_a5d8ba4ae520a41add87512173a9289ef}{cordic\+\_\+deg} (double deg, double $\ast$s, double $\ast$c)
 \begin{DoxyCompactList}\small\item\em Compute Sin and Cos from angle in degrees using Cordic. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{cordic_8c_ab5dff4f6a6c29502d824cc7574c13f1c}{cordic\+\_\+rad} (double \hyperlink{user__main_8c_a6cd0a6a37bb53a8363aadc8640107f8d}{rad}, double $\ast$s, double $\ast$c)
-\begin{DoxyCompactList}\small\item\em Compute Sin and Cos from angle in rads using Cordic. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Compute Sin and Cos from angle in Rads using Cordic. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{cordic_8c_ae708dfda7767e28c3faeedf2c46deafd}{scale\+\_\+point} (\hyperlink{structpoint}{point} $\ast$P, double scale)
 \begin{DoxyCompactList}\small\item\em Scale x,y,z by scale factor. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{cordic_8c_a11f885e103030cb15b2f3477e21b780f}{shift\+\_\+point} (\hyperlink{structpoint}{point} $\ast$P, \hyperlink{structpoint}{point} $\ast$shift)
@@ -43,7 +43,7 @@ void \hyperlink{cordic_8c_a9e686d8e990a05ea18655a368e6d1918}{Circular} (\hyperli
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{cordic2c__inc_8h_a97ad155ac7434ee543385126cd1d3313}{Cordic\+\_\+T} \hyperlink{cordic_8c_a46b4b48ef8c0c01099eb3bcdde8aa8db}{X}
-\begin{DoxyCompactList}\small\item\em Main Cordic rountine -\/ used for basic trig and vector rotations We use fixed point numbers, where 1.\+0=Cordic\+\_\+\+One \hyperlink{cordic_8h}{cordic.\+h}. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Main Cordic routine -\/ used for basic trig and vector rotations We use fixed point numbers, where 1.\+0=Cordic\+\_\+\+One \hyperlink{cordic_8h}{cordic.\+h}. \end{DoxyCompactList}\item 
 \hyperlink{cordic2c__inc_8h_a97ad155ac7434ee543385126cd1d3313}{Cordic\+\_\+T} \hyperlink{cordic_8c_ab746e677f466f17031e92ed577fc3c15}{Y}
 \item 
 \hyperlink{cordic2c__inc_8h_a97ad155ac7434ee543385126cd1d3313}{Cordic\+\_\+T} \hyperlink{cordic_8c_a3da94d1c83a43c30add6c05fbbe1f194}{Z}
@@ -51,9 +51,9 @@ void \hyperlink{cordic_8c_a9e686d8e990a05ea18655a368e6d1918}{Circular} (\hyperli
 
 
 \subsection{Detailed Description}
-Cordic Routines Handle angle outside of the first quadrant Added standalone test to verify C\+O\+R\+D\+IC against math library Add Documenation and references. 
+Cordic Routines Handle angle outside of the first quadrant Added standalone test to verify C\+O\+R\+D\+IC against math library Add Documentation and references. 
 
-Cordic Code Modified by Mike Gore 2015 to generate C Cordic tables The code has been adjusted to quads (Where 90 degrees = 1.\+0) The angle is just the fractional part of a floating point number The interger part is the quadrant. This makes computations for code using the tables much faster.
+Cordic Code Modified by Mike Gore 2015 to generate C Cordic tables The code has been adjusted to quads (Where 90 degrees = 1.\+0) The angle is just the fractional part of a floating point number The integer part is the quadrant. This makes computations for code using the tables much faster.
 
 \begin{DoxySeeAlso}{See also}
 \href{http://en.wikipedia.org/wiki/CORDIC}{\tt http\+://en.\+wikipedia.\+org/wiki/\+C\+O\+R\+D\+IC} 
@@ -72,13 +72,13 @@ This software is distributed in the hope that it will be useful, but W\+I\+T\+H\
 
 You should have received a copy of the G\+NU General Public License along with this program. If not, see \href{http://www.gnu.org/licenses/}{\tt http\+://www.\+gnu.\+org/licenses/}.
 
-Orginal Documentation
+Original Documentation
 
-C\+O\+R\+D\+IC algorithms. The original code was published in Docter Dobbs Journal issue ddj9010. The ddj version can be obtained using F\+TP from S\+I\+M\+T\+EL and other places.
+C\+O\+R\+D\+IC algorithms. The original code was published in Doctor Dobbs Journal issue ddj9010. The ddj version can be obtained using F\+TP from S\+I\+M\+T\+EL and other places.
 
 Converted to A\+N\+S\+I-\/C (with prototypes) by P. Knoppers, 13-\/\+Apr-\/1992.
 
-The main advantage of the C\+O\+R\+D\+IC algorithms is that all commonly used math functions (\mbox{[}a\mbox{]}sin\mbox{[}h\mbox{]} \mbox{[}a\mbox{]}cos\mbox{[}h\mbox{]} \mbox{[}a\mbox{]}tan\mbox{[}h\mbox{]} atah\href{y/x}{\tt h} ln exp sqrt) are implemented using only shift, add, subtract and compare. All values are treated as integers. Actually they are fixed point doubleing point values. The position of the fixed point is a compile time constant (Cordic\+\_\+\+T\+\_\+\+Fraction\+Bits). I don\textquotesingle{}t believe that this can be easily fixed...
+The main advantage of the C\+O\+R\+D\+IC algorithms is that all commonly used math Functions (\mbox{[}a\mbox{]}sin\mbox{[}h\mbox{]} \mbox{[}a\mbox{]}cos\mbox{[}h\mbox{]} \mbox{[}a\mbox{]}tan\mbox{[}h\mbox{]} atah\href{y/x}{\tt h} ln exp sqrt) are Implemented using only shifts, add, subtract and compare. All values are treated as integers. Actually they are fixed point values. The position of the fixed point is a compile time constant (Cordic\+\_\+\+T\+\_\+\+Fraction\+Bits). I don\textquotesingle{}t believe that this can be easily fixed...
 
 Some initialization of internal tables and constants is necessary before all functions can be used. The constant \char`\"{}\+Cordic\+\_\+\+Half\+P\+I\char`\"{} must be determined before compile time, all others are computed during run-\/time -\/ see \hyperlink{cordic2c_8c_a0ddf1224851353fc92bfbff6f499fa97}{main()} below.
 
@@ -89,7 +89,7 @@ The layout of the code is adapted to my personal preferences. PK.
 \subsection{Macro Definition Documentation}
 \index{cordic.\+c@{cordic.\+c}!C\+O\+R\+D\+I\+C\+\_\+\+T\+A\+B\+LE@{C\+O\+R\+D\+I\+C\+\_\+\+T\+A\+B\+LE}}
 \index{C\+O\+R\+D\+I\+C\+\_\+\+T\+A\+B\+LE@{C\+O\+R\+D\+I\+C\+\_\+\+T\+A\+B\+LE}!cordic.\+c@{cordic.\+c}}
-\subsubsection[{\texorpdfstring{C\+O\+R\+D\+I\+C\+\_\+\+T\+A\+B\+LE}{CORDIC_TABLE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+O\+R\+D\+I\+C\+\_\+\+T\+A\+B\+LE~/$\ast$ include the generated cordic table $\ast$/}\hypertarget{cordic_8c_a575a13df8fab592b70c5968d27dbd338}{}\label{cordic_8c_a575a13df8fab592b70c5968d27dbd338}
+\subsubsection[{\texorpdfstring{C\+O\+R\+D\+I\+C\+\_\+\+T\+A\+B\+LE}{CORDIC_TABLE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+O\+R\+D\+I\+C\+\_\+\+T\+A\+B\+LE~/$\ast$ include the generated Cordic table $\ast$/}\hypertarget{cordic_8c_a575a13df8fab592b70c5968d27dbd338}{}\label{cordic_8c_a575a13df8fab592b70c5968d27dbd338}
 
 
 Definition at line 35 of file cordic.\+c.
@@ -230,7 +230,7 @@ Referenced by cordic\+\_\+deg(), and cordic\+\_\+rad().
 )}\hypertarget{cordic_8c_ab5dff4f6a6c29502d824cc7574c13f1c}{}\label{cordic_8c_ab5dff4f6a6c29502d824cc7574c13f1c}
 
 
-Compute Sin and Cos from angle in rads using Cordic. 
+Compute Sin and Cos from angle in Rads using Cordic. 
 
 \begin{DoxySeeAlso}{See also}
 \href{http://en.wikipedia.org/wiki/CORDIC}{\tt http\+://en.\+wikipedia.\+org/wiki/\+C\+O\+R\+D\+IC} 
@@ -382,7 +382,7 @@ Definition at line 251 of file cordic.\+c.
 \subsubsection[{\texorpdfstring{X}{X}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Cordic\+\_\+T} X}\hypertarget{cordic_8c_a46b4b48ef8c0c01099eb3bcdde8aa8db}{}\label{cordic_8c_a46b4b48ef8c0c01099eb3bcdde8aa8db}
 
 
-Main Cordic rountine -\/ used for basic trig and vector rotations We use fixed point numbers, where 1.\+0=Cordic\+\_\+\+One \hyperlink{cordic_8h}{cordic.\+h}. 
+Main Cordic routine -\/ used for basic trig and vector rotations We use fixed point numbers, where 1.\+0=Cordic\+\_\+\+One \hyperlink{cordic_8h}{cordic.\+h}. 
 
 \begin{DoxySeeAlso}{See also}
 \href{http://en.wikipedia.org/wiki/CORDIC}{\tt http\+://en.\+wikipedia.\+org/wiki/\+C\+O\+R\+D\+IC} 

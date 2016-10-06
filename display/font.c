@@ -106,7 +106,7 @@ int font_attr(window *win, int c, _fontc *f)
 // If we have font specifications defined and included we can use them.
 // Notes: Normally for small fixed fonts we do not want to included them.
 // However; if the font is large we can define just the active part of 
-// the charater to reduce the overall size. 
+// the character to reduce the overall size.
 
     if(z->specs)
     {
@@ -115,7 +115,7 @@ int font_attr(window *win, int c, _fontc *f)
 
 // Copy the full font specification into ram for easy access
 // This does not use much memory as it does not include the bitmap itself
-// This method avoids memory agignment access errors on the ESP8266.
+// This method avoids memory alignment access errors on the ESP8266.
 
         cpy_flash((uint8_t *)&(z->specs[num]), (uint8_t *)&s,sizeof(_fontspecs));
 
@@ -162,8 +162,8 @@ int font_attr(window *win, int c, _fontc *f)
 		f->skip = z->Width + z->gap;
 
 		// Each bitmap is a bit array w by h in size without any padding
-		// except at the end of the array which is rounded to the next byte boundry.
-        offset = ((z->Width * z->Height)+7)/8; /* round to byte boundry */
+		// except at the end of the array which is rounded to the next byte boundary.
+        offset = ((z->Width * z->Height)+7)/8; /* round to byte boundary */
         f->ptr += (offset * num);
 
     }
@@ -235,7 +235,7 @@ void tft_drawChar(window *win, uint8_t c)
 // Conditionally clear the character area - not needed for full size fixed fonts..
 // If the character is not full size then pre-clear the full font bit array
 // (saves the more complex tests of clearing additional areas around the active font)
-// Note: We use skip instead of Width because of the additiional gap that must also
+// Note: We use skip instead of Width because of the additional gap that must also
 // be cleared..
 
 // FIXME we should do this in two parts - font area and then the gap area.

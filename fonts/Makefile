@@ -1,6 +1,6 @@
 CFLAGS=-D_GNU_SOURCE
 
-
+# Various fixed mono size font sets
 FONTS_C = fixed/7x13.bdf \
 	fixed/7x13B.bdf \
 	fonts/C/24-Terminus.bdf \
@@ -8,6 +8,15 @@ FONTS_C = fixed/7x13.bdf \
 	fonts/C/32-Terminus.bdf \
 	fonts/C/32-Terminus-Bold.bdf 
 
+# Various fixed bold mono size font sets
+FONTS_B = fixed/7x13B.bdf \
+	fonts/C/24-Terminus-Bold.bdf \
+	fonts/C/32-Terminus-Bold.bdf 
+
+# Various fixed bold mono size font sets - with extra large Freefont set
+FONTS_BE = $(FONTS_B) freefont/FreeSansBold.bdf
+
+# Various proportional size font sets
 FONTS_P = fonts/P/12-Adobe-Helvetica.bdf \
 	fonts/P/12-Adobe-Helvetica-Bold.bdf \
 	fonts/P/21-Adobe-Helvetica.bdf \
@@ -15,12 +24,8 @@ FONTS_P = fonts/P/12-Adobe-Helvetica.bdf \
 	fonts/P/35-Adobe-Helvetica.bdf \
 	fonts/P/35-Adobe-Helvetica-Bold.bdf
 
-FONTS_B = fixed/7x13B.bdf \
-	fonts/C/24-Terminus-Bold.bdf \
-	fonts/C/32-Terminus-Bold.bdf 
-
-#all:	bdffont2c bigS copyfonts cleanfont
-all:	bdffont2c bigT copyfonts cleanfont
+#all:	bdffont2c pfont copyfonts cleanfont
+all:	bdffont2c pfont_sbb copyfonts cleanfont
 
 install:	all 
 	cp -p bdffont2c /usr/local/bin
@@ -38,55 +43,74 @@ bdffontutil.o:	bdffontutil.c
 bdffont2c: bdffont2c.o bdffontutil.o
 	$(CC) $(CFLAGS) -g -o bdffont2c bdffont2c.o bdffontutil.o
 
-bdfview:	bdffontutil.o fonts.h
-	$(CC) $(CFLAGS) -g -o bdfview bdfview.c bdffontutil.o
+# Give help page
+help:	install
+	./bdffont2c
 
-# Fixed font set 
-big:	cleanfont bdffont2c 
-	./bdffont2c -p 2 -l 32 -u 127 -o fonts.h $(FONTS_C)
+# ============================================================
+# bdffont2c: [-o font_output_file ] [ -l lower_bound ] [ -u upper_bound ] [ -preview ] [ -Preview ] bdf files...
+#  -o: output file containg C STructures of converted font data
+#  -u: limit Glyph processing above limit
+#  -l: limit Glyph processing below limit
+#  -p 1 Preview font bitmap data - only parts with 1 bits set
+#  -p 2 Preview Full font bitmap data - everything inside font bounding box
+#  -p 3 Preview Proportional font bitmap data and fixed - everything inside font bounding box
+#  -f convert any font to fixed size bitmap - everything inside font bounding box
+#  -s Compact font to smallest bounding box
+#     Notes: modifies or creates font specs
+#  bdf files...: One of more BDF format font files
+# ============================================================
+
+# Always compile
+.PHONY:	bdfview
+bdfview:
 	$(CC) $(CFLAGS) -g -o bdfview bdfview.c bdffontutil.o
-	./bdfview -n 5 -p 2 -t 
+# ============================================================
+
+# Examples
+# Fixed font set 
+fixed:	cleanfont bdffont2c 
+	./bdffont2c -p 2 -l 32 -u 127 -o fonts.h $(FONTS_C)
 
 # Fixed font set force to fixed mode
-bigF:	cleanfont bdffont2c 
+ffont:	cleanfont bdffont2c 
 	./bdffont2c -f -p 2 -l 32 -u 127 -o fonts.h $(FONTS_C)
-	$(CC) $(CFLAGS) -g -o bdfview bdfview.c bdffontutil.o
-	./bdfview -n 5 -p 2 -t 
-
-# Proprtional font set
-bigP:	cleanfont bdffont2c 
-	./bdffont2c -p 3 -l 32 -u 127 -o fonts.h $(FONTS_P)
-	$(CC) $(CFLAGS) -g -o bdfview bdfview.c bdffontutil.o
-	./bdfview -n 5 -p 3 -t 
 
 # Smallest bounding box
-bigS:	cleanfont bdffont2c 
+ffont_sbb:	cleanfont bdffont2c 
 	./bdffont2c -s -p 2 -l 32 -u 127 -o fonts.h $(FONTS_B)
-	$(CC) $(CFLAGS) -g -o bdfview bdfview.c bdffontutil.o
-	./bdfview -n 2 -p 3 -t 
+
+# Proportional font set
+pfont:	cleanfont bdffont2c 
+	./bdffont2c -p 3 -l 32 -u 127 -o fonts.h $(FONTS_P)
 
 # Smallest bounding box, convert to proportional
-bigT:	cleanfont bdffont2c
-	./bdffont2c -s -p 3 -l 32 -u 127 -o fonts.h $(FONTS_B) \
-		freefont/FreeSansBold.bdf
-	$(CC) $(CFLAGS) -g -o bdfview bdfview.c bdffontutil.o
-	./bdfview -n 3 -p 3 -t 
+pfont_sbb:	cleanfont bdffont2c
+	./bdffont2c -s -p 3 -l 32 -u 127 -o fonts.h $(FONTS_BE)
 
+# ============================================================
 # Various viewer tests with different font groups
-testP:    cleanfont bdffont2c 
-	./bdffont2c -o fonts.h -l 32 -u 127 fonts/P/10-Adobe*.bdf 
-	$(CC) $(CFLAGS) -g -o bdfview bdfview.c bdffontutil.o
-	./bdfview -p 2 -t 
 
-testF:    cleanfont bdffont2c 
-	./bdffont2c -p 1 -f -o fonts.h -l 32 -u 127 fonts/P/10-Adobe*.bdf 
-	$(CC) $(CFLAGS) -g -o bdfview bdfview.c bdffontutil.o
-	#./bdfview -p 2 -t 
+# view font index 5
+# Preview Full font bitmap data - everything inside font bounding box
+test_ffont:    ffont bdfview 
+	./bdfview -n 5 -p 2 
 
-testS:    cleanfont bdffont2c 
-	./bdffont2c -s -p 2 -o fonts.h -l 32 -u 127 fonts/P/10-Adobe*.bdf
-	$(CC) $(CFLAGS) -g -o bdfview bdfview.c bdffontutil.o
-	./bdfview -p 2 -t 
+# view font index 2
+# Preview Proportional font bitmap data and fixed - everything inside font bounding box
+test_ffont_sbb:    ffont_sbb bdfview 
+	./bdfview -n 2 -p 3 
+
+# view font index 5
+# Preview Proportional font bitmap data and fixed - everything inside font bounding box
+test_pfont:	pfont bdfview 
+	./bdfview -n 5 -p 3 
+
+# view font index 3
+# Preview Proportional font bitmap data and fixed - everything inside font bounding box
+test_pfont_sbb:	pfont_sbb bdfview 
+	./bdfview -n 3 -p 3 
+# ============================================================
 
 cleanfont:
 	rm -f fonts.h 

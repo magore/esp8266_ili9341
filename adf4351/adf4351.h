@@ -1,4 +1,4 @@
-/**
+﻿/**
  @file     ADF4351.h
  @brief    ADF4351 driver
  @date     22 Sept 2016
@@ -86,7 +86,7 @@ typedef struct
  * RF output phase from 0° to 360° with resolution 360°/MOD
  * Must be < MOD 
  *
- * Mudulus (MOD) 12bits (Bits[DB14:DB3]) 
+ * Modulus (MOD) 12bits (Bits[DB14:DB3]) 
  * Ratio of the PFD frequency to the channel step resolution on RF out.
  */
 typedef struct
@@ -105,17 +105,17 @@ typedef struct
  *
  * Low Spur Mode 
  * Used for fast-locking applications when the PLL closed-loop bandwidth 
- * is greater then 1/10 of RF OUT step resolution (f RES).
+ * is greater than 1/10 of RF OUT step resolution (f RES).
  * Dither is enabled. 
- * ( Dither improves spurious respose by randomizes the fractional 
+ * ( Dither improves spurious response by randomizes the fractional 
  *    quantization noise to resembles white noise rather than spurious noise. )
- * Down side: Wide loop filter can not attenuate spurs as much as a 
+ * Down side: Wide loop filter cannot attenuate spurs as much as a 
  * narrow loop bandwidth.
  *
  * Low Noise Mode 
  * Used for best noise performance.
  * Dither is disabled. 
- * Pick narrow loop filter bandwidth to ensures low noise and attenuate spurs. 
+ * Pick narrow loop filter bandwidth to ensure low noise and attenuate spurs. 
  *
  * MUXOUT 3bits Bits[DB28:DB26] (MufOut)
  * Note N counter output must be disabled for VCO band selection to operate.
@@ -160,7 +160,7 @@ typedef struct
  * The DB6 bit sets the phase detector polarity. 
  * [DB6] = 1, use this if you have a passive loop filter or 
  *   noninverting active loop filter.
- * [DB6] = 0, use this if you have an an inverting active filter.
+ * [DB6] = 0, use this if you have an inverting active filter.
  *
  * Power Down [DB5] (PowerDown)
  * [DB5] = 1 
@@ -217,7 +217,7 @@ typedef struct
  *
  * Cycle Slip Reduction [DB18] (CSR)
  * [DB18] = 1, enable cycle slip reduction
- *             Gives fater lock times
+ *             Gives faster lock times
  *             PFD MUST be 50% to work
  *             Charge Pump Current must be minimum
  *
@@ -261,7 +261,7 @@ typedef struct
  * [DB11] = 0 normal operation
  *
  * Mute Till Lock Detect [DB10] (MTLD)
- * [DB10] = 1 Power Down RFout section until lock achived.
+ * [DB10] = 1 Power Down RFout section until lock achieved.
  * [DB10] = 0 normal operation
  *
  * AUX Output Select [DB9] (AUXOutSel)
@@ -482,4 +482,5 @@ MEMSPACE uint32_t ADF4351_GCD ( uint32_t u , uint32_t v );
 MEMSPACE double ADF4351_PFD ( double REFin , int R );
 MEMSPACE void ADF4351_display_error ( int error );
 MEMSPACE int ADF4351_Config( double RFout , double REFin , double ChannelSpacing , double *RFoutCalc );
+
 

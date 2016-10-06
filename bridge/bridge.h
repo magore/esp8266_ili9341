@@ -1,7 +1,7 @@
 /**
  @file bridge.c
 
- @brief Serial bridge
+ @brief Serial Bridge
 
  @par Copyright &copy; 2015 Mike Gore, GPL License
  @par You are free to use this code under the terms of GPL
@@ -45,7 +45,7 @@
 
 #include "queue.h"
 
-/// @brief brige task queue an priority
+/// @brief bridge task queue and priority
 enum
 {
 	bridge_task_id				= USER_TASK_PRIO_1,
@@ -70,3 +70,4 @@ MEMSPACE bridge_task_init ( int port );
 MEMSPACE static void bridge_task ( os_event_t *events );
 
 #endif
+

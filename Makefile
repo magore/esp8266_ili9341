@@ -23,12 +23,13 @@ ROOT_DIR=/opt/Espressif/esp-open-sdk
 XTENSA_TOOLS_ROOT ?= $(ROOT_DIR)/xtensa-lx106-elf/bin
 # base directory of the ESP8266 SDK package, absolute
 SDK_BASE	?= $(ROOT_DIR)/sdk
-
-# ===============================================================
-# esptool path and port
 SDK_TOOLS	?= $(SDK_BASE)/tools
 ESPTOOL		?= $(SDK_TOOLS)/esptool.py
 ESPPORT		?= /dev/ttyUSB0
+
+# Export path
+export PATH := $(XTENSA_TOOLS_ROOT):$(PATH)
+
 # esptool baud rate 
 BAUD=256000
 
@@ -278,7 +279,9 @@ ifdef CIRCLE
 endif
 
 ifdef EARTH
+ifndef WIRECUBE
 	MODULES	+= wire
+endif
 	CFLAGS  += -DEARTH
 endif
 
@@ -373,7 +376,13 @@ endef
 # ===============================================================
 .PHONY: all checkdirs clean
 
-all: checkdirs $(FW) send
+all: support checkdirs $(FW) send
+
+.PHONY: support
+support:
+	-@$(MAKE) -C cordic/make_cordic all
+	-@$(MAKE) -C earth all
+	-@$(MAKE) -C fonts all
 
 checkdirs: $(BUILD_DIR) $(FW_BASE)
 
@@ -410,7 +419,7 @@ size:	$(ELF)
 
 $(FW):	$(ELF) size
 	$(vecho) "Firmware $@"
-	esptool.py elf2image $(FW_ARGS) $(ELF) -o $(BUILD_BASE)/region-
+	$(ESPTOOL) elf2image $(FW_ARGS) $(ELF) -o $(BUILD_BASE)/region-
 	$(Q) dd if=$(FILE_IRAM) of=$(FILE_IRAM_PAD) ibs=64K conv=sync 2>&1 >/dev/null
 	$(Q) cat $(FILE_IRAM_PAD) $(FILE_IROM) > $(FW)
 

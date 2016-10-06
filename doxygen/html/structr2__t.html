@@ -131,8 +131,8 @@ Data Fields</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>ADF4351 R2 structure Noise Mode 2bits [DB30:DB29] (NoiseSpureMode) The noise mode optimizes either improved spurious or improved phase noise. </p>
-<p>Low Spur Mode Used for fast-locking applications when the PLL closed-loop bandwidth is greater then 1/10 of RF OUT step resolution (f RES). Dither is enabled. ( Dither improves spurious respose by randomizes the fractional quantization noise to resembles white noise rather than spurious noise. ) Down side: Wide loop filter can not attenuate spurs as much as a narrow loop bandwidth.</p>
-<p>Low Noise Mode Used for best noise performance. Dither is disabled. Pick narrow loop filter bandwidth to ensures low noise and attenuate spurs.</p>
+<p>Low Spur Mode Used for fast-locking applications when the PLL closed-loop bandwidth is greater than 1/10 of RF OUT step resolution (f RES). Dither is enabled. ( Dither improves spurious response by randomizes the fractional quantization noise to resembles white noise rather than spurious noise. ) Down side: Wide loop filter cannot attenuate spurs as much as a narrow loop bandwidth.</p>
+<p>Low Noise Mode Used for best noise performance. Dither is disabled. Pick narrow loop filter bandwidth to ensure low noise and attenuate spurs.</p>
 <p>MUXOUT 3bits Bits[DB28:DB26] (MufOut) Note N counter output must be disabled for VCO band selection to operate.</p>
 <p>REFin doubler [DB25] (REFinM2) [DB25] = 1 enable doubler, REFin maximum is 30MHz [DB25] = 0 disables doubler</p>
 <p>Reference divide by 2 (REFinD2) [DB24] = 1 enable divider [DB24] = 0 disable divider</p>
@@ -141,7 +141,7 @@ Data Fields</h2></td></tr>
 <p>Charge Pump Current [DB12:DB9] (CPC) Set the charge pump current to match your loop filter design.</p>
 <p>Lock Detect Function [DB8] (LDF) Examine 40 or 5 PFD cycles to ascertain if lock achieved. [DB8] = 0, examine 40 PFD cycles Use this for fractional-N mode. [DB8] = 1, examine 5 PFD cycles. Use this integer-N mode. [DB8] = 1, the number of PFD cycles monitored is 5.</p>
 <p>Lock Detect Precision [DB7] (LDP) [DB7] = 0 comparison window of lock detect circuit is 6ns. [DB7] = 1 comparison window of lock detect circuit is 10ns. Lock Detect circuit goes high when consecutive PFD cycles are less than either 40 or 5 as set by [DB8] (LDF) So if [DB8:DB7] = 00 then 40 consecutive PFD cycles of 10 ns or less must occur before digital lock detect goes high. [DB8:DB7] = 00, use this for fractional-N [DB8:DB7] = 11, use this for integer-N</p>
-<p>Phase Detector Polarity [DB6] The DB6 bit sets the phase detector polarity. [DB6] = 1, use this if you have a passive loop filter or noninverting active loop filter. [DB6] = 0, use this if you have an an inverting active filter.</p>
+<p>Phase Detector Polarity [DB6] The DB6 bit sets the phase detector polarity. [DB6] = 1, use this if you have a passive loop filter or noninverting active loop filter. [DB6] = 0, use this if you have an inverting active filter.</p>
 <p>Power Down [DB5] (PowerDown) [DB5] = 1 Synthesizer counters forced their load state conditions. VCO is powered down. Charge pump is forced into three-state mode. Digital lock detect circuitry is reset. RF OUT buffers are disabled.</p>
 <p>Charge Pump Three State [DB4] (CP3S) [DB4] = three-state mode [DB4] = 0 for normal operation.</p>
 <p>Counter Reset [DB3] (Reset_R_N) [DB3] = 1 reset R counter and N counter [DB3] = 0 for normal operation. </p>
@@ -409,7 +409,7 @@ Data Fields</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Oct 2 2016 22:46:04 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Oct 5 2016 20:59:00 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

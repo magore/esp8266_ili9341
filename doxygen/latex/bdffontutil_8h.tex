@@ -58,23 +58,23 @@ void \hyperlink{bdffontutil_8h_a6293de28b724a18693465ec67868d958}{Add\+Font\+Nam
 int \hyperlink{bdffontutil_8h_aa01d93b9cf1d60cc4ce0adb717384f96}{Find\+Font\+Name} (char $\ast$str)
 \begin{DoxyCompactList}\small\item\em Search for a font name. \end{DoxyCompactList}\item 
 void \hyperlink{bdffontutil_8h_ac01ebab75271c42afb96bb8da7db06c2}{Write\+Font\+Bits} (F\+I\+LE $\ast$out, \hyperlink{struct__font}{\+\_\+font} $\ast$\hyperlink{bdffontutil_8h_a6d9c6f27190f0f04abf55678fe81080d}{font})
-\begin{DoxyCompactList}\small\item\em Write Font bitmap data for all charactres in font. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Write Font bitmap data for all characters in a font. \end{DoxyCompactList}\item 
 void \hyperlink{bdffontutil_8h_a82e40b5e56cab7daedbe210542aa1d99}{Write\+Font\+Info} (F\+I\+LE $\ast$out, \hyperlink{struct__font}{\+\_\+font} $\ast$\hyperlink{bdffontutil_8h_a6d9c6f27190f0f04abf55678fe81080d}{font})
-\begin{DoxyCompactList}\small\item\em Write Information. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Write C Header\+: Font Information Summary. \end{DoxyCompactList}\item 
 void \hyperlink{bdffontutil_8h_a6e780815dcb0ad1738a3710d10751824}{Write\+Font\+Table} (F\+I\+LE $\ast$out, \hyperlink{struct__font}{\+\_\+font} $\ast$\hyperlink{bdffontutil_8h_a6d9c6f27190f0f04abf55678fe81080d}{font})
-\begin{DoxyCompactList}\small\item\em Write Specification Table. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Write Specification Font Table. \end{DoxyCompactList}\item 
 void \hyperlink{bdffontutil_8h_a7c2cf276db0c747638909191d76925da}{Write\+Character\+Bits} (F\+I\+LE $\ast$out, \hyperlink{struct__font}{\+\_\+font} $\ast$\hyperlink{bdffontutil_8h_a6d9c6f27190f0f04abf55678fe81080d}{font}, int num)
-\begin{DoxyCompactList}\small\item\em Write Font bitmap data for one charactre in font. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Write Font bitmap data for one charactre. \end{DoxyCompactList}\item 
 int \hyperlink{bdffontutil_8h_a49c59fe21a56b90ad6f8bcc5549e3dce}{Read\+Bdf} (char $\ast$name, \hyperlink{struct__font}{\+\_\+font} $\ast$\hyperlink{bdffontutil_8h_a6d9c6f27190f0f04abf55678fe81080d}{font}, int lower, int upper)
-\begin{DoxyCompactList}\small\item\em Read B\+DF file Read B\+DF file format. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Read and parse a B\+DF file for specified font and character set range Fills fonts structures. \end{DoxyCompactList}\item 
 void \hyperlink{bdffontutil_8h_a1b1c337030d89f81b06857192e4e0179}{Adjust\+Font\+Table} (\hyperlink{struct__font}{\+\_\+font} $\ast$\hyperlink{bdffontutil_8h_a6d9c6f27190f0f04abf55678fe81080d}{font})
-\begin{DoxyCompactList}\small\item\em Adjust Font offset, renormalize X and Y to 0 Readjust font bounding box. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Adjust Font X Y offset, renormalize X Y to 0 0 Also readjust font bounding box. \end{DoxyCompactList}\item 
 void \hyperlink{bdffontutil_8h_ac2e86eac4bb6e173fbbfae929302e851}{Font\+Adjust\+Full} (\hyperlink{struct__font}{\+\_\+font} $\ast$\hyperlink{bdffontutil_8h_a6d9c6f27190f0f04abf55678fe81080d}{font})
 \begin{DoxyCompactList}\small\item\em Adjust font to full size with no offset. \end{DoxyCompactList}\item 
 void \hyperlink{bdffontutil_8h_ac8e10a9220f9a51589124690c47d099b}{Font\+Adjust\+Small} (\hyperlink{struct__font}{\+\_\+font} $\ast$\hyperlink{bdffontutil_8h_a6d9c6f27190f0f04abf55678fe81080d}{font})
-\begin{DoxyCompactList}\small\item\em Ajust font to use smallest font bounding box for each font Can be used to converting large fixed fonts to more compact form Creates font-\/$>$specs if missing. Updates font-\/$>$specs with new font size and offsets. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Ajust font to use smallest font bounding box for each font Can be used to converting large fixed fonts to more compact form Creates font-\/$>$specs if missing. Updates font-\/$>$specs with new font size and offsets Can convert fixed to proportional or optimize bounding box to smallest size for space savings. \end{DoxyCompactList}\item 
 void \hyperlink{bdffontutil_8h_a5452adc13af52bed8d199861362037e0}{Compute\+Gap\+Size} (\hyperlink{struct__font}{\+\_\+font} $\ast$\hyperlink{bdffontutil_8h_a6d9c6f27190f0f04abf55678fe81080d}{font})
-\begin{DoxyCompactList}\small\item\em Find gap size for proportional font (gap between characters) Searching for the smallest width feature in a font Set update font-\/$>$gap Work in progress -\/ perhaps we should use or \char`\"{}$\vert$\char`\"{} ? \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Find a good gap size (inter-\/character spacing) for any font Currently we searching for the smallest width feature in a font set and use it as the gap Set update font-\/$>$gap F\+I\+X\+ME Alternatively we may wish to consider scanning characters only in their middle (virtically) center. \end{DoxyCompactList}\item 
 void \hyperlink{bdffontutil_8h_acaa9ad09e11f90b8cf7a9e37963e4690}{bsetv} (unsigned char $\ast$ptr, int addr)
 \begin{DoxyCompactList}\small\item\em bit set in byte array \end{DoxyCompactList}\item 
 void \hyperlink{bdffontutil_8h_a972599efcbe9797a7ca0b80e9c3c3707}{bclrv} (unsigned char $\ast$ptr, int addr)
@@ -191,7 +191,7 @@ Referenced by Read\+Bdf().
 )}\hypertarget{bdffontutil_8h_a1b1c337030d89f81b06857192e4e0179}{}\label{bdffontutil_8h_a1b1c337030d89f81b06857192e4e0179}
 
 
-Adjust Font offset, renormalize X and Y to 0 Readjust font bounding box. 
+Adjust Font X Y offset, renormalize X Y to 0 0 Also readjust font bounding box. 
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -233,7 +233,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1651 of file bdffontutil.\+c.
+Definition at line 1639 of file bdffontutil.\+c.
 
 \index{bdffontutil.\+h@{bdffontutil.\+h}!bitclrxy@{bitclrxy}}
 \index{bitclrxy@{bitclrxy}!bdffontutil.\+h@{bdffontutil.\+h}}
@@ -268,7 +268,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1738 of file bdffontutil.\+c.
+Definition at line 1726 of file bdffontutil.\+c.
 
 
 
@@ -307,7 +307,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1710 of file bdffontutil.\+c.
+Definition at line 1698 of file bdffontutil.\+c.
 
 
 
@@ -394,7 +394,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1637 of file bdffontutil.\+c.
+Definition at line 1625 of file bdffontutil.\+c.
 
 \index{bdffontutil.\+h@{bdffontutil.\+h}!btestv@{btestv}}
 \index{btestv@{btestv}!bdffontutil.\+h@{bdffontutil.\+h}}
@@ -420,7 +420,7 @@ Test bit in byte array.
 \end{DoxyReturn}
 
 
-Definition at line 1665 of file bdffontutil.\+c.
+Definition at line 1653 of file bdffontutil.\+c.
 
 \index{bdffontutil.\+h@{bdffontutil.\+h}!Compute\+Gap\+Size@{Compute\+Gap\+Size}}
 \index{Compute\+Gap\+Size@{Compute\+Gap\+Size}!bdffontutil.\+h@{bdffontutil.\+h}}
@@ -431,7 +431,7 @@ Definition at line 1665 of file bdffontutil.\+c.
 )}\hypertarget{bdffontutil_8h_a5452adc13af52bed8d199861362037e0}{}\label{bdffontutil_8h_a5452adc13af52bed8d199861362037e0}
 
 
-Find gap size for proportional font (gap between characters) Searching for the smallest width feature in a font Set update font-\/$>$gap Work in progress -\/ perhaps we should use or \char`\"{}$\vert$\char`\"{} ? 
+Find a good gap size (inter-\/character spacing) for any font Currently we searching for the smallest width feature in a font set and use it as the gap Set update font-\/$>$gap F\+I\+X\+ME Alternatively we may wish to consider scanning characters only in their middle (virtically) center. 
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -443,7 +443,7 @@ Find gap size for proportional font (gap between characters) Searching for the s
 \end{DoxyReturn}
 
 
-Definition at line 1523 of file bdffontutil.\+c.
+Definition at line 1524 of file bdffontutil.\+c.
 
 
 
@@ -689,7 +689,7 @@ Referenced by main().
 )}\hypertarget{bdffontutil_8h_ac8e10a9220f9a51589124690c47d099b}{}\label{bdffontutil_8h_ac8e10a9220f9a51589124690c47d099b}
 
 
-Ajust font to use smallest font bounding box for each font Can be used to converting large fixed fonts to more compact form Creates font-\/$>$specs if missing. Updates font-\/$>$specs with new font size and offsets. 
+Ajust font to use smallest font bounding box for each font Can be used to converting large fixed fonts to more compact form Creates font-\/$>$specs if missing. Updates font-\/$>$specs with new font size and offsets Can convert fixed to proportional or optimize bounding box to smallest size for space savings. 
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -701,7 +701,7 @@ Ajust font to use smallest font bounding box for each font Can be used to conver
 \end{DoxyReturn}
 
 
-Definition at line 1324 of file bdffontutil.\+c.
+Definition at line 1325 of file bdffontutil.\+c.
 
 
 
@@ -770,7 +770,7 @@ Write Font Preview bit bounding box in A\+S\+C\+II character comments.
 \end{DoxyReturn}
 
 
-Definition at line 1765 of file bdffontutil.\+c.
+Definition at line 1753 of file bdffontutil.\+c.
 
 
 
@@ -803,7 +803,7 @@ Write Font Preview as full format in A\+S\+C\+II character comments.
 \end{DoxyReturn}
 
 
-Definition at line 1848 of file bdffontutil.\+c.
+Definition at line 1836 of file bdffontutil.\+c.
 
 
 
@@ -836,7 +836,7 @@ Write Font Preview as proportional format in A\+S\+C\+II character comments.
 \end{DoxyReturn}
 
 
-Definition at line 1950 of file bdffontutil.\+c.
+Definition at line 1938 of file bdffontutil.\+c.
 
 
 
@@ -1082,7 +1082,7 @@ Definition at line 279 of file bdffontutil.\+c.
 )}\hypertarget{bdffontutil_8h_a49c59fe21a56b90ad6f8bcc5549e3dce}{}\label{bdffontutil_8h_a49c59fe21a56b90ad6f8bcc5549e3dce}
 
 
-Read B\+DF file Read B\+DF file format. 
+Read and parse a B\+DF file for specified font and character set range Fills fonts structures. 
 
 \begin{DoxySeeAlso}{See also}
 \+: \href{http://en.wikipedia.org/wiki/Glyph_Bitmap_Distribution_Format}{\tt http\+://en.\+wikipedia.\+org/wiki/\+Glyph\+\_\+\+Bitmap\+\_\+\+Distribution\+\_\+\+Format} 
@@ -1258,7 +1258,7 @@ Referenced by match\+\_\+headers(), Read\+Bdf(), and remove\+\_\+quotes().
 )}\hypertarget{bdffontutil_8h_a7c2cf276db0c747638909191d76925da}{}\label{bdffontutil_8h_a7c2cf276db0c747638909191d76925da}
 
 
-Write Font bitmap data for one charactre in font. 
+Write Font bitmap data for one charactre. 
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -1290,7 +1290,7 @@ Referenced by Write\+Font\+Bits().
 )}\hypertarget{bdffontutil_8h_ac01ebab75271c42afb96bb8da7db06c2}{}\label{bdffontutil_8h_ac01ebab75271c42afb96bb8da7db06c2}
 
 
-Write Font bitmap data for all charactres in font. 
+Write Font bitmap data for all characters in a font. 
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -1337,7 +1337,7 @@ Write all Font characters in a font as A\+S\+C\+II character comments.
 \end{DoxyReturn}
 
 
-Definition at line 2052 of file bdffontutil.\+c.
+Definition at line 2040 of file bdffontutil.\+c.
 
 
 
@@ -1353,7 +1353,7 @@ Referenced by main().
 )}\hypertarget{bdffontutil_8h_a82e40b5e56cab7daedbe210542aa1d99}{}\label{bdffontutil_8h_a82e40b5e56cab7daedbe210542aa1d99}
 
 
-Write Information. 
+Write C Header\+: Font Information Summary. 
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -1383,7 +1383,7 @@ Referenced by Convert\+\_\+\+Font2c(), and main().
 )}\hypertarget{bdffontutil_8h_a6e780815dcb0ad1738a3710d10751824}{}\label{bdffontutil_8h_a6e780815dcb0ad1738a3710d10751824}
 
 
-Write Specification Table. 
+Write Specification Font Table. 
 
 
 \begin{DoxyParams}[1]{Parameters}

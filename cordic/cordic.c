@@ -5,7 +5,7 @@
  @brief Cordic Routines
  Handle angle outside of the first quadrant
  Added standalone test to verify CORDIC against math library
- Add Documenation and references
+ Add Documentation and references
  @see http://en.wikipedia.org/wiki/CORDIC
  @see cordic.h, we use fixed point numbers, where 1.0=Cordic_One
  Note: 1.0 = 90 degrees
@@ -29,10 +29,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 
-// Run a stand alone test
+// Run a standalone test
 // #define TEST
 
-#define CORDIC_TABLE  /* include the generated cordic table */
+#define CORDIC_TABLE  /* include the generated Cordic table */
 
 #ifdef TEST
 #define MEMSPACE   /* */
@@ -67,7 +67,7 @@ double deg2rad(double deg)
 /// @param[out] quad: quadrant 0 = 0 .. 89.9999, 1 = 90 ... 179.999 ..., etc
 /// @return  fractional part of quads
 MEMSPACE
-double angle_quad(double quads,int *quad)
+double angle_quad(double quads, int *quad)
 {
 
     int s,q;
@@ -90,13 +90,13 @@ double angle_quad(double quads,int *quad)
 }
 
 
-/// @brief  Main Cordic rountine - used for basic trig and vector rotations
+/// @brief  Main Cordic routine - used for basic trig and vector rotations
 /// We use fixed point numbers, where 1.0=Cordic_One
 /// @ref cordic.h
 /// @see http://en.wikipedia.org/wiki/CORDIC
-/// @param[in,out] x: in: Cordik_K, out: Cos of z
-/// @param[in,out] y: in: 0, out: Sin of z
-/// @param[in,out] z: in: fixed point version of angle in quads, out: not used
+/// @param[in, out] x: in: Cordik_K, out: Cos of z
+/// @param[in, out] y: in: 0, out: Sin of z
+/// @param[in, out] z: in: fixed point version of angle in quads, out: not used
 /// @return void
 Cordic_T X,Y,Z;
 void Circular (Cordic_T x, Cordic_T y, Cordic_T z)
@@ -217,7 +217,7 @@ void cordic_deg(double deg, double *s, double *c)
 }
 
 
-/// @brief  Compute Sin and Cos from angle in rads using Cordic
+/// @brief  Compute Sin and Cos from angle in Rads using Cordic
 /// @see http://en.wikipedia.org/wiki/CORDIC
 /// @param[in] rad: angle in radians
 /// @param[out] *s: sin
@@ -314,7 +314,7 @@ void PerspectiveProjection(point *P, double scale, int x, int y)
 }
 
 #ifdef TEST
-/// @brief  STand alone test program to verify cordic conversions
+/// @brief  Stand alone test program to verify Cordic conversions
 /// @return void
 int main()
 {
@@ -324,7 +324,7 @@ int main()
 
     i = 0;
 
-// Make sure CORIC convers correctly over a few rotations
+// Make sure CORIC converges correctly over a few rotations
     for(d=0;d<=360;d+=45)
     {
         cordic_deg(d-1,&s,&c);
@@ -334,3 +334,4 @@ int main()
     return(0);
 }
 #endif
+

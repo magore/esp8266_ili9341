@@ -4,7 +4,7 @@
  @brief Cordic Routines
  Handle angle outside of the first quadrant
  Added standalone test to verify CORDIC against math library
- Add Documenation and references
+ Add Documentation and references
  @see http://en.wikipedia.org/wiki/CORDIC
  @see cordic.h, we use fixed point numbers, where 1.0=Cordic_One
  Note: 1.0 = 90 degrees
@@ -58,3 +58,4 @@ MEMSPACE void PerspectiveProjection ( point *P , double scale , int x , int y );
 
 
 #endif // _CORDIC_H_
+

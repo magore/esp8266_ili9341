@@ -47,9 +47,9 @@ A\+D\+F4351 R2 structure Noise Mode 2bits \mbox{[}D\+B30\+:D\+B29\mbox{]} (Noise
 \subsection{Detailed Description}
 A\+D\+F4351 R2 structure Noise Mode 2bits \mbox{[}D\+B30\+:D\+B29\mbox{]} (Noise\+Spure\+Mode) The noise mode optimizes either improved spurious or improved phase noise. 
 
-Low Spur Mode Used for fast-\/locking applications when the P\+LL closed-\/loop bandwidth is greater then 1/10 of RF O\+UT step resolution (f R\+ES). Dither is enabled. ( Dither improves spurious respose by randomizes the fractional quantization noise to resembles white noise rather than spurious noise. ) Down side\+: Wide loop filter can not attenuate spurs as much as a narrow loop bandwidth.
+Low Spur Mode Used for fast-\/locking applications when the P\+LL closed-\/loop bandwidth is greater than 1/10 of RF O\+UT step resolution (f R\+ES). Dither is enabled. ( Dither improves spurious response by randomizes the fractional quantization noise to resembles white noise rather than spurious noise. ) Down side\+: Wide loop filter cannot attenuate spurs as much as a narrow loop bandwidth.
 
-Low Noise Mode Used for best noise performance. Dither is disabled. Pick narrow loop filter bandwidth to ensures low noise and attenuate spurs.
+Low Noise Mode Used for best noise performance. Dither is disabled. Pick narrow loop filter bandwidth to ensure low noise and attenuate spurs.
 
 M\+U\+X\+O\+UT 3bits Bits\mbox{[}D\+B28\+:D\+B26\mbox{]} (Muf\+Out) Note N counter output must be disabled for V\+CO band selection to operate.
 
@@ -67,7 +67,7 @@ Lock Detect Function \mbox{[}D\+B8\mbox{]} (L\+DF) Examine 40 or 5 P\+FD cycles 
 
 Lock Detect Precision \mbox{[}D\+B7\mbox{]} (L\+DP) \mbox{[}D\+B7\mbox{]} = 0 comparison window of lock detect circuit is 6ns. \mbox{[}D\+B7\mbox{]} = 1 comparison window of lock detect circuit is 10ns. Lock Detect circuit goes high when consecutive P\+FD cycles are less than either 40 or 5 as set by \mbox{[}D\+B8\mbox{]} (L\+DF) So if \mbox{[}D\+B8\+:D\+B7\mbox{]} = 00 then 40 consecutive P\+FD cycles of 10 ns or less must occur before digital lock detect goes high. \mbox{[}D\+B8\+:D\+B7\mbox{]} = 00, use this for fractional-\/N \mbox{[}D\+B8\+:D\+B7\mbox{]} = 11, use this for integer-\/N
 
-Phase Detector Polarity \mbox{[}D\+B6\mbox{]} The D\+B6 bit sets the phase detector polarity. \mbox{[}D\+B6\mbox{]} = 1, use this if you have a passive loop filter or noninverting active loop filter. \mbox{[}D\+B6\mbox{]} = 0, use this if you have an an inverting active filter.
+Phase Detector Polarity \mbox{[}D\+B6\mbox{]} The D\+B6 bit sets the phase detector polarity. \mbox{[}D\+B6\mbox{]} = 1, use this if you have a passive loop filter or noninverting active loop filter. \mbox{[}D\+B6\mbox{]} = 0, use this if you have an inverting active filter.
 
 Power Down \mbox{[}D\+B5\mbox{]} (Power\+Down) \mbox{[}D\+B5\mbox{]} = 1 Synthesizer counters forced their load state conditions. V\+CO is powered down. Charge pump is forced into three-\/state mode. Digital lock detect circuitry is reset. RF O\+UT buffers are disabled.
 

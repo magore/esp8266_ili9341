@@ -306,7 +306,7 @@ loop_task()
 		}
 	}
 }
-// segnal strength update interval
+// Signal strength update interval
 int signal_loop = 0;
 
 time_t seconds = 0;
@@ -314,7 +314,7 @@ time_t seconds = 0;
 /**
  @brief test task
   Runs corrected cube demo from Sem
-  Optionally wireframe Earh viewer
+  Optionally wireframe Earth viewer
  @return void
 */
 
@@ -334,7 +334,7 @@ void loop(void)
 	uint8_t red, blue,green;
 	int ret;
 	unsigned long t;
-	uint16 system_adc_read(void);
+	uint16_t system_adc_read(void);
 	time_t sec;
 	// getinfo.ip.addr, getinfo.gw.addr, getinfo.netmask.addr
 	struct ip_info getinfo;
@@ -344,7 +344,7 @@ void loop(void)
 
 	loop_task();
 
-	// Only run evry 1mS
+	// Only run every 1mS
 	t = ms_read();
 	if((t - last_time10) >= 1U)
 	{
@@ -354,7 +354,7 @@ void loop(void)
 		last_time10 = t;
 	}
 
-	// run remaining tests evry 50ms
+	// run remaining tests every 50ms
 	if((t - last_time50) < 50U)
 		return;
 	last_time50 = t;
@@ -552,11 +552,11 @@ void user_help()
 /// @brief help functions test parser
 ///
 /// - Keywords and arguments are matched against test functions
-/// If ther are matched the function along with its argements are called.
+/// If there are matched the function along with its arguments are called.
 
 /// @param[in] str: User supplied command line 
 /// 
-/// @return 1 The ruturn code indicates a command matched.
+/// @return 1 The return code indicates a command matched.
 /// @return 0 if no rules matched
 MEMSPACE
 int user_tests(char *str)

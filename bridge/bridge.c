@@ -47,7 +47,7 @@ static char tcp_data_send_buffer_busy;
 static struct espconn *esp_data_tcp_connection;
 
 /**
-  @brief Accept an incomming connection, setup connect_callback
+  @brief Accept an incoming connection, setup connect_callback
   @param[in] *esp_config, ESP8266 network type an mode configuration structure
   @param[in] *esp_tcp_config,  network protocol structure
   @param[in] port,  network port to listen on
@@ -128,7 +128,7 @@ static void tcp_data_disconnect_callback(void *arg)
 }
 
 /**
-  @brief incomming connection setup callbacks
+  @brief incoming connection setup callbacks
   @param[in] *new_connection:
   @return void
 */
@@ -186,7 +186,7 @@ bridge_task_init(int port)
 
 /**
   @brief Main serial bridge task
-  @param[in] *events: event signal message strurture  - not used
+  @param[in] *events: event signal message structure  - not used
   @return void
 */
 MEMSPACE
@@ -214,3 +214,4 @@ static void bridge_task(os_event_t *events)
 		}
 	}
 }
+

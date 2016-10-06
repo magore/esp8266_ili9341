@@ -1,8 +1,8 @@
-/**
+﻿/**
  @file     ADF4351.c
  @date     22 Sept 2016
  @brief    ADF4351 driver
- *  Calculate register values for ADF4351 given:
+ * Calculate register values for ADF4351 given:
  *    RFout:    Required output frequency in Hz
  *    REFin:    Reference clock in Hz
  *    Spacing:  Output channel spacing in Hz
@@ -44,7 +44,7 @@ adf4351_regs_t regs;
 /// =============================================================
 /// =============================================================
 
-/// @brief  Sync settings to ADF4351 registers
+/// @brief Sync settings to ADF4351 registers
 /// @param[in] all: sync all registers
 MEMSPACE
 void ADF4351_sync(int all)
@@ -189,7 +189,7 @@ void ADF4351_Init(void)
 // FRAC-N mode [LDP:LDF] = 00 fractional-N
 
     regs.r2.LDP           = ADF4351_LDP_10NS;		// fractional-N
-    regs.r2.LDF           = ADF4351_LDF_FRAC_N;	// fractinal-N
+    regs.r2.LDF           = ADF4351_LDF_FRAC_N;	// fractional-N
     regs.r2.CPC           = ADF4351_CHARGE_PUMP_uA(2500);
     regs.r2.DBufRFDiv     = ADF4351_DISABLE;
     regs.r2.R             = 1;
@@ -203,10 +203,10 @@ void ADF4351_Init(void)
     regs.r3.ClkDiv        = 150;
     regs.r3.ClkDivMode    = 0;	
     regs.r3.res0L         = 0;
-    regs.r3.CSR           = ADF4351_DISABLE;	// disbale cycle slip
+    regs.r3.CSR           = ADF4351_DISABLE;	// disable cycle slip
     regs.r3.res1L         = 0;
-	// CPC 0 for fractional-N, 1 for interger-N
-    regs.r3.CPC           = ADF4351_DISABLE;  // fractional-N, ENABLE interger-N
+	// CPC 0 for fractional-N, 1 for integer-N
+    regs.r3.CPC           = ADF4351_DISABLE;  // fractional-N, ENABLE integer-N
     regs.r3.ABPW          = ADF4351_ABP_6NS; // fractional N, 3ns integer-N
     regs.r3.BandClkMode   = 0; // for PFD < 125kHz
     regs.r3.res2L         = 0;
@@ -219,7 +219,7 @@ void ADF4351_Init(void)
     regs.r4.AuxOutSel     = ADF4351_AUXOUT_FROM_RF_DIVIDERS;
     regs.r4.MTLD          = ADF4351_DISABLE;
     regs.r4.VCOPowerDown  =  ADF4351_DISABLE;
-    regs.r4.BandClkDiv    = 200;	/* minumum value  is 1 */
+    regs.r4.BandClkDiv    = 200;	/* minimum value  is 1 */
     regs.r4.RFDivSel      = 0; 	/* by 1 */
     regs.r4.FeedbackVCO   = 1;
     regs.r4.res0L         = 0;
@@ -321,7 +321,7 @@ uint32_t ADF4351_status( uint8_t mode)
 
 
 /**
- *  \brief Return the GCD of two unsifned 32bit numbers
+ *  \brief Return the GCD of two unsigned 32bit numbers
  * @param  u: first number 
  * @param  v: second number 
  * @return GCD of u and v
@@ -665,7 +665,7 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
 	if (BandSelectClockFrequency > 500000.0)
     {
 #if ADF4351_DEBUG & 1
-        printf("Band Slect Clock Frequency %.2f > 500000\n", 
+        printf("Band Select Clock Frequency %.2f > 500000\n", 
 			(double) BandSelectClockFrequency);
 #endif
 		return(ADF4351_BandSelectClockFrequency_RANGE);
@@ -727,7 +727,7 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
 	printf("  r4_BandClkDiv %lu\n", (unsigned long) r4_BandClkDiv);
 #endif
 
-	// VCO frequecy error ?
+	// VCO frequency error ?
 	if (*RFoutCalc != RFout)
     {
         return(ADF4351_RFout_MISMATCH);
@@ -735,3 +735,4 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
 
     return (0);
 }
+

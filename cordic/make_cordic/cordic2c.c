@@ -3,22 +3,22 @@
  @brief Cordic Code Modified by Mike Gore 2015 to generate C Cordic tables 
  The code has been adjusted to quads (Where 90 degrees = 1.0) 
  The angle is just the fractional part of a floating point number 
- The interger part is the quadrant. 
+ The integer part is the quadrant. 
  This makes computations for code using the tables much faster.
 
 
- Orginal Documentation
+ Original Documentation
 
  CORDIC algorithms.
- The original code was published in Docter Dobbs Journal issue ddj9010.
+ The original code was published in Doctor Dobbs Journal issue ddj9010.
  The ddj version can be obtained using FTP from SIMTEL and other places.
  *
  Converted to ANSI-C (with prototypes) by P. Knoppers, 13-Apr-1992.
  *
  The main advantage of the CORDIC algorithms is that all commonly used math
- functions ([a]sin[h] [a]cos[h] [a]tan[h] atah[h](y/x) ln exp sqrt) are
- implemented using only shift, add, subtract and compare. All values are
- treated as integers. Actually they are fixed point doubleing point values.
+ Functions ([a]sin[h] [a]cos[h] [a]tan[h] atah[h](y/x) ln exp sqrt) are
+ Implemented using only shifts, add, subtract and compare. All values are
+ treated as integers. Actually they are fixed point values.
  The position of the fixed point is a compile time constant (Cordic_T_FractionBits).
  I don't believe that this can be easily fixed...
  
@@ -59,7 +59,7 @@
 
 
 /**
- * @brief cordic algorithm identities for circular functions
+ * @brief Cordic algorithm identities for circular functions
  * starting with [x, y, z] and then
  * driving z to 0 gives: [P*(x*cos(z)-y*sin(z)), P*(y*cos(z)+x*sin(z)), 0]
  * driving y to 0 gives: [P*sqrt(x^2+y^2), 0, z+atan(y/x)]
@@ -88,7 +88,7 @@
  * compute atan(x) and atanh(x) using infinite series
  *  atan(x) =  x - x^3/3 + x^5/5 - x^7/7 + . . . for x^2 < 1
  *  atanh(x) = x + x^3/3 + x^5/5 + x^7/7 + . . . for x^2 < 1
- * To calcuate these functions to 32 bits of precision, pick
+ * To calculate these functions to 32 bits of precision, pick
  * terms[i] s.t. ((2^-i)^(terms[i]))/(terms[i]) < 2^-32
  * For x <= 2^(-11), atan(x) = atanh(x) = x with 32 bits of accuracy
  */
@@ -142,8 +142,8 @@ char *get_date()
   @brief Create Cordic tables 
   Normalize base number system to 1.0 == Cordic_One == PI/2 (90 degrees)
   Example .5 is 50 gradians or PI/4
-  This value as great adavantages:
-  - interger part is small on the unit circle
+  This value as great advantages:
+  - integer part is small on the unit circle
   - integer part is the circle quadrant number (think range reductions)
 */
 
@@ -207,7 +207,7 @@ void PrintXYZ (char *str)
 }
 
 
-/// @brief  Main Cordic rountine - used for basic trig and vector rotations
+/// @brief  Main Cordic routine - used for basic trig and vector rotations
 /// @see http://en.wikipedia.org/wiki/CORDIC
 /// @param[in,out] x: Cordik_K, out: Cos of z
 /// @param[in,out] y: 0, out: Sin of z
@@ -248,7 +248,7 @@ void Circular (Cordic_T x, Cordic_T y, Cordic_T z)
   @brief  This is the circular method. One slight change from the 
   other methods is the y < vecmode test. this is to implement arcsin, 
   otherwise it can be y < 0 and you can compute arcsin from arctan using
-  trig identities, so its not essential.  
+  trig identities, so it is not essential.  
   @see http://en.wikipedia.org/wiki/CORDIC
   @param[in,out] x: in: Cordik_K, out: Cos of z
   @param[in,out] y: in: 0
@@ -285,7 +285,7 @@ void cordit1(Cordic_T x, Cordic_T y, Cordic_T z, Cordic_T vecmode)
     }
 }
 
-/// @brief  Comutute ArcSine (a)
+/// @brief  Compute ArcSine (a)
 ///  Only works for |a| < 0.98 
 /// @param[in] a: Sine
 /// @return  ArcSine (a)
@@ -312,7 +312,7 @@ Cordic_T asinCordic(Cordic_T a)
 }
 
 
-/// @brief  Create C Cordic Tables andd test the results
+/// @brief  Create C Cordic Tables and test the results
 /// @return  0
 int main (int argc, char *argv[])
 {

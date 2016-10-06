@@ -623,7 +623,7 @@ int FindFontName(char *str)
 }
 
 /**
- @brief Write Font bitmap data for all charactres in font
+ @brief Write Font bitmap data for all characters in a font
  @param[in] *out: File handle
  @param[in] *font: Font pointer
  @return: void
@@ -646,7 +646,7 @@ void WriteFontBits(FILE * out, _font *font)
 }
 
 /**
- @brief Write Information
+ @brief Write C Header: Font Information Summary
  @param[in] *out: File handle
  @param[in] *font: Font pointer
  @return: void
@@ -676,7 +676,7 @@ void WriteFontInfo(FILE * out, _font *font)
 }
 
 /**
- @brief Write Specification Table
+ @brief Write Specification Font Table
  @param[in] *out: File handle
  @param[in] *font: Font pointer
  @return: void
@@ -712,7 +712,7 @@ void WriteFontTable(FILE * out, _font *font)
 	fprintf(out, "\n#endif\n");
 }
 /**
- @brief Write Font bitmap data for one charactre in font
+ @brief Write Font bitmap data for one charactre 
  @param[in] *out: File handle
  @param[in] *font: Font pointer
  @param[in] num: character number
@@ -778,8 +778,8 @@ void WriteCharacterBits(FILE * out, _font *font, int num)
 
 
 /**
- @brief Read BDF file
-  Read BDF file format
+ @brief Read and parse a BDF file for specified font and character set range
+  Fills fonts structures
  @see: http://en.wikipedia.org/wiki/Glyph_Bitmap_Distribution_Format
  @param[in] *name: BDF File name
  @param[in] *font: Font pointer
@@ -1182,8 +1182,8 @@ int ReadBdf(char *name, _font *font, int lower, int upper)
 }
 
 /**
- @brief Adjust Font offset, renormalize  X and Y to 0
- Readjust font bounding box 
+ @brief Adjust Font X Y offset, renormalize X Y to 0 0
+ Also readjust font bounding box 
  @param[in] *font: Font pointer
  @return: void
 */
@@ -1317,6 +1317,7 @@ void FontAdjustFull(_font *font)
   Can be used to converting large fixed fonts to more compact form
   Creates font->specs if missing.
   Updates font->specs with new font size and offsets
+  Can convert fixed to proportional or optimize bounding box to smallest size for space savings
  @param[in] *font: Font pointer
  @return: void
 */
@@ -1513,10 +1514,10 @@ void FontAdjustSmall(_font *font)
 // ======================================================
 
 /**
- @brief Find gap size for proportional font (gap between characters) 
-  Searching for the smallest width feature in a font 
+ @brief Find a good gap size (inter-character spacing) for any font
+  Currently we searching for the smallest width feature in a font set and use it as the gap
   Set update font->gap
-  Work in progress - perhaps we should use or "|" ?
+  FIXME Alternatively we may wish to consider scanning characters only in their middle (virtically) center
  @param[in] *font: Font pointer
  @return: void
 */
@@ -1525,7 +1526,7 @@ void ComputeGapSize(_font *font)
 	int x,y;
 	int w,h;
 	int Width;
-	int Span = MAXWIDTH;
+	int Span;
 	int i;
 	int offset = 0;
 
@@ -1538,8 +1539,10 @@ void ComputeGapSize(_font *font)
 	// Most proportional fonts do not have a gap built in
 	//
 	// Find smallest non blank horizonal feature in all glyphs
+
 	// FIXME - perhaps we want to scan just the center ?
 
+	Span = MAXWIDTH;
 	for(i=0;i<font->Glyphs;++i)
 	{
 		// Does font->specs exist ?
@@ -1560,6 +1563,7 @@ void ComputeGapSize(_font *font)
 		// Scan a Character "Glyph" 
 		//   Compute width of smallest non-blank feature
 		for (y=0;y <h; ++y) {
+			// We find the largest span on a line by line basis 
 			flag = 0;
 			minx = MAXWIDTH ;
 			maxx = 0;
@@ -1596,24 +1600,8 @@ void ComputeGapSize(_font *font)
     // So if not then we add one by scanning all the glyphs
 	// and find the narrowest on-blank glyph we find.
 
-	if(font->Fixed)
-	{
-		// If there is no gap, then add one
-		// FIXME
-		if(Span > 0)
-		{
-			// font->gap = (Width+3)/4;
-			font->gap = Span;
-		}
-		else
-		{
-			//FIXME our ili9341 display code adds an offset to the gap
-			//move that code here!
-			font->gap = 1;
-		}
-		return;
-	}
-	// Porportional fonts do not have gaps built in - so add one
+	// FIXME check font rendering code to verify we are
+    // not adjusting this gap size assumption
 	if(Span > 0)
 	{
 		// font->gap = (Width+3)/4;

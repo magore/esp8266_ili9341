@@ -1,0 +1,29 @@
+#!/bin/bash
+#
+# Author:  Mike Gore
+# Date:    2 Oct 2016
+# What:    This script converts all TTF in this directory to BDF fonts 
+# Depends: otf2bdf - OpenType to BDF font converter is from the FreeType project
+# Fonts:   TTF files are all from GNU Freefonts 
+#          BDF files were generated using this script.
+#
+# GNU Freefonts are Copyright GNU Freefont contributors.
+# (Copyright notice is also in each font)
+
+# Make sure we have TTF to BDF converter package installed.
+# apt-get only works under debian based Linux distros with apt package manager
+apt-get install -y -q otf2bdf
+
+# Get a list of the ttf files we wish to convert
+FILES=$(find . -type f | grep "\.ttf$")
+for i in $FILES
+do
+	NAME=$(echo $i | sed -e "s/\.ttf//")
+	echo Converting "$NAME.ttf" to "$NAME.bdf"
+	otf2bdf -v -r 300 -w Bold "$NAME.ttf" > "$NAME.bdf"
+	if [ ! -f "$NAME.bdf" ]
+	then
+		echo "Error: expected \"$NAME.bdf\" - file not found"
+	fi
+done
+

@@ -1,6 +1,6 @@
 /**
  @file     ADF4351_hal.c
- @version  V0.10
+ @version V0.10
  @date     22 Sept 2016
  
  @brief ADF4351_HAL driver
@@ -37,10 +37,10 @@
 /// Start SPI Hardware Abstraction Layer
 /// Keep all hardware dependent SPI code in this section
 
-/// @brief cahce of SPI clock devisor
+/// @brief cache of SPI clock devisor
 uint16_t ADF4351_clock = -1;
 
-/// @brief  Obtain SPI bus for ADF4351 display, raise LE
+/// @brief Obtain SPI bus for ADF4351 display, raises LE
 /// return: void
 MEMSPACE
 void ADF4351_spi_init(void)
@@ -120,7 +120,7 @@ uint32_t ADF4351_spi_txrx(uint32_t value)
 
 // MUXOUT output is tied to SPI RX
 // which is controlled by register 2 DB28:DB26
-// so we only get valid data if register 2 has been conigured correctly
+// so we only get valid data if register 2 has been configured correctly
 // MSB ... LSB order
     ret = 0;
     for(i=3;i>=0;--i)
@@ -130,4 +130,5 @@ uint32_t ADF4351_spi_txrx(uint32_t value)
     }
     return(ret);
 }
+
 

@@ -50,7 +50,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "fonts.h"
 
 
-main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
 	char *ptr;
 	int i;
@@ -59,6 +59,10 @@ main(int argc, char *argv[])
 	int numfonts = 0;
 	int table = 0;
 	int bits = 0;
+	int info = 0;
+	int header = 0;
+	int ccode = 0;
+
 	_font *p;
 
 	for(numfonts=0;allfonts[numfonts] != NULL;++numfonts)
@@ -71,16 +75,41 @@ main(int argc, char *argv[])
 		if(*ptr == '-')
 		{
 			++ptr;
+			// Table
 			if(*ptr == 't')
 			{
 				table = 1;
 				continue;
 			}
+			// Bits
 			if(*ptr == 'b')
 			{
 				bits = 1;
 				continue;
 			}
+
+			// C Code
+			if(*ptr == 'c')
+			{
+				ccode = 1;
+				continue;
+			}
+
+			// Header
+			if(*ptr == 'h')
+			{
+				header = 1;
+				continue;
+			}
+
+			// Info
+			if(*ptr == 'h')
+			{
+				info = 1;
+				continue;
+			}
+
+			// Preview mode
 			if(*ptr == 'p')
 			{
 				++ptr;
@@ -94,6 +123,7 @@ main(int argc, char *argv[])
 				}
 				continue;
 			}
+			// Font Index
 			if(*ptr == 'n')
 			{
 				++ptr;
@@ -116,19 +146,24 @@ main(int argc, char *argv[])
 
 	}
 	p = allfonts[fontind];
-	FontHeaderInfo( stdout, p, argv[0], NULL);
 
-	WriteFontInfo( stdout, p);
+    if(header)
+		FontHeaderInfo( stdout, p, argv[0], NULL);
 
-	Convert_Font2c(stdout, p);
+    if(info)
+		WriteFontInfo( stdout, p);
 
-#ifdef JUNK
+    if(ccode)
+		Convert_Font2c(stdout, p);
+
     if(bits)
 		WriteFontBits ( stdout, p);
+
     if(table)
 		WriteFontTable ( stdout, p);
-#endif
 
-	WriteFontBitsPreview(stdout, p,preview);
+    if(preview)
+		WriteFontBitsPreview(stdout, p,preview);
+
 	return(0);
 }
