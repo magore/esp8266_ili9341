@@ -140,7 +140,21 @@
 \end{DoxyItemize}
 \item term115200 -\/ shell script to launch terminal to 115200 baud
 \end{DoxyItemize}
+\item Eclipse Project files and Directories
+\begin{DoxyItemize}
+\item Change .settings/language.\+settings.\+xml
+\item .settings
+\begin{DoxyItemize}
+\item .settings/language.\+settings.\+xml
+\begin{DoxyItemize}
+\item Contains path to cross compiler for indexing -\/ matches assumptions in S\+DK installer script\+: get\+\_\+esp-\/open-\/sdk
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item .cproject
+\item .project
+\end{DoxyItemize}
 \item Directories
+\begin{DoxyItemize}
 \item adf4351
 \begin{DoxyItemize}
 \item Analog Devices A\+D\+F4351 Wideband Synthesizer with Integrated V\+CO driver
@@ -166,9 +180,11 @@
 \end{DoxyItemize}
 \item cordic
 \begin{DoxyItemize}
+\item C\+O\+R\+D\+IC -\/ very fast 2\+D/3D trig conversion
 \item \hyperlink{cordic_8c}{cordic.\+c}
+\item \hyperlink{cordic_8h}{cordic.\+h}
 \begin{DoxyItemize}
-\item My 3D transformation functions based on C\+O\+R\+D\+IC and gradians/100
+\item My 3D transformation functions are based on C\+O\+R\+D\+IC and gradians/100
 \item 1 = 90degrees so the integer part reflects the quadrant
 \end{DoxyItemize}
 \item \hyperlink{cordic2c__inc_8h}{cordic2c\+\_\+inc.\+h}
@@ -195,6 +211,16 @@
 \end{DoxyItemize}
 \item display
 \begin{DoxyItemize}
+\item My mostly rewritten ili9341 display driver code handles multiple windows
+\begin{DoxyItemize}
+\item Depends on a few modified Adifruit functions under directory driver
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyParagraph}
+
+\begin{DoxyItemize}
 \item \hyperlink{font_8c}{font.\+c}
 \item font.\+h
 \begin{DoxyItemize}
@@ -207,20 +233,29 @@
 \item \hyperlink{ili9341_8c}{ili9341.\+c}
 \item \hyperlink{ili9341_8h}{ili9341.\+h}
 \begin{DoxyItemize}
-\item My mostly rewritten ili9341 display driver code handles multiple windows
-\begin{DoxyItemize}
-\item Optimized line drawing function is from C\+H\+E\+R\+TS
-\item Non optimized version is also supplied that I wrote in 1984
 \item multiple window support
 \item read\+Pixel() works on most all 4 wire displays now
 \item scrolling window support
+\item Optimized line drawing function is from C\+H\+E\+R\+TS
+\begin{DoxyItemize}
+\item Non optimized version is also supplied that I wrote in 1984
 \end{DoxyItemize}
 \end{DoxyItemize}
-\item \hyperlink{tft__printf_8c}{tft\+\_\+printf.\+c}
+\end{DoxyItemize}
+
+\hyperlink{ili9341__hal_8c}{ili9341\+\_\+hal.\+c}
+\begin{DoxyItemize}
+\item \hyperlink{ili9341__hal_8h}{ili9341\+\_\+hal.\+h}
+\begin{DoxyItemize}
+\item D\+Isplay hardware abstraction layer
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\hyperlink{tft__printf_8c}{tft\+\_\+printf.\+c}
+\begin{DoxyItemize}
 \item \hyperlink{tft__printf_8h}{tft\+\_\+printf.\+h}
 \begin{DoxyItemize}
 \item Printf interface to display library \hyperlink{tft__printf_8c_ad6d6dda4facdc045d477c0cc9403e0c1}{tft\+\_\+printf()}
-\end{DoxyItemize}
 \end{DoxyItemize}
 \item docs
 \begin{DoxyItemize}
@@ -235,7 +270,7 @@
 \item \hyperlink{ili9341__adafruit_8c}{ili9341\+\_\+adafruit.\+c}
 \item \hyperlink{ili9341__adafruit_8h}{ili9341\+\_\+adafruit.\+h}
 \begin{DoxyItemize}
-\item Adafruit display -\/ just those few functions that I have not rewritten
+\item Adafruit display -\/ just those remaining functions that I have not rewritten
 \end{DoxyItemize}
 \end{DoxyItemize}
 \item earth
@@ -247,14 +282,6 @@
 \begin{DoxyItemize}
 \item Article on coordinate transforms from stackoverflow by Daphna Shezaf
 \end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyParagraph}
-
-\begin{DoxyItemize}
-\item make\+\_\+wireframe
-\begin{DoxyItemize}
 \item \hyperlink{earth2wireframe_8c}{earth2wireframe.\+c}
 \begin{DoxyItemize}
 \item Create C structure wire-\/frame coastline data
@@ -276,8 +303,7 @@
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
-
-fatfs
+\item fatfs
 \begin{DoxyItemize}
 \item Fat\+Fs core is by (C)ChaN, 2013
 \begin{DoxyItemize}
@@ -295,19 +321,30 @@ fatfs
 \item \hyperlink{unicode_8c}{unicode.\+c}
 \end{DoxyItemize}
 \end{DoxyItemize}
-
-SD card H\+AL and P\+O\+S\+IX wrappers -\/ provides unix file I/O operations
-\begin{DoxyItemize}
-\item modified to use hardware abstraction
 \end{DoxyItemize}
 
-My interface and P\+O\+S\+IX wrappers
+fatfs SD card H\+AL and P\+O\+S\+IX wrappers -\/ provides unix file I/O operations
 \begin{DoxyItemize}
+\item modified to use hardware abstraction
 \item \hyperlink{fatfs__utils_8c}{fatfs\+\_\+utils.\+c}
 \item \hyperlink{fatfs__utils_8h}{fatfs\+\_\+utils.\+h}
+\begin{DoxyItemize}
+\item user tests and commands
+\begin{DoxyItemize}
+\item fatfs\+\_\+alloc\+\_\+finfo fatfs\+\_\+cat fatfs\+\_\+cd fatfs\+\_\+copy fatfs\+\_\+create fatfs\+\_\+filinfo\+\_\+list
+\item fatfs\+\_\+help fatfs\+\_\+ls fatfs\+\_\+mkdir fatfs\+\_\+pwd fatfs\+\_\+rename fatfs\+\_\+rm fatfs\+\_\+rmdir fatfs\+\_\+stat fatfs\+\_\+status fatfs\+\_\+tests
+\end{DoxyItemize}
+\end{DoxyItemize}
 \item \hyperlink{mmc__hal_8c}{mmc\+\_\+hal.\+c}
 \item \hyperlink{mmc__hal_8h}{mmc\+\_\+hal.\+h}
-\item \hyperlink{posix_8c}{posix.\+c} -\/ provides a few dozen unix file I/O operation wrappers for Fat\+FS
+\begin{DoxyItemize}
+\item M\+MC Hardware abstraction layer
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+My P\+O\+S\+IX wrappers for fatfs
+\begin{DoxyItemize}
+\item \hyperlink{posix_8c}{posix.\+c} -\/ provides a P\+O\+S\+IX interface for Fat\+FS -\/ unix file I/O wrappers
 \item \hyperlink{posix_8h}{posix.\+h}
 \end{DoxyItemize}
 
@@ -360,6 +397,10 @@ fonts
 \item O -\/ Other
 \end{DoxyItemize}
 \end{DoxyItemize}
+\item freefont
+\begin{DoxyItemize}
+\item Freefont fonts www.\+gnu.\+org/software/freefont
+\end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
 
@@ -373,7 +414,18 @@ html
 
 include
 \begin{DoxyItemize}
-\item misc esp8266 include files
+\item \hyperlink{user__config_8h}{user\+\_\+config.\+h}
+\begin{DoxyItemize}
+\item Master include and config header
+\end{DoxyItemize}
+\item \hyperlink{spi__register_8h}{spi\+\_\+register.\+h}
+\begin{DoxyItemize}
+\item From Espressif
+\end{DoxyItemize}
+\item uart\+\_\+register.\+h
+\begin{DoxyItemize}
+\item From Espressif
+\end{DoxyItemize}
 \end{DoxyItemize}
 
 lib
@@ -389,7 +441,8 @@ lib
 \end{DoxyItemize}
 \item implementation of some posix stdlib functions
 \begin{DoxyItemize}
-\item stdlib.\+c
+\item \hyperlink{std_8c}{std.\+c}
+\item \hyperlink{std_8h}{std.\+h}
 \end{DoxyItemize}
 \item implementation of some posix ctype, string and strings functions
 \begin{DoxyItemize}
@@ -408,6 +461,7 @@ network
 \item Simple network server -\/ displays message sent by \hyperlink{send_8c}{send.\+c}
 \begin{DoxyItemize}
 \item \hyperlink{network_8c}{network.\+c}
+\item \hyperlink{network_8h}{network.\+h}
 \end{DoxyItemize}
 \end{DoxyItemize}
 
@@ -493,10 +547,9 @@ web
 \item \hyperlink{web_8h}{web.\+h}
 \end{DoxyItemize}
 \item Features
-\begin{DoxyItemize}
 \item Served files can be A\+NY S\+I\+Z\+E!
-\item C\+GI files can have an extension of\+: html,htm,text,txt,cgi
 \begin{DoxyItemize}
+\item C\+GI files can have an extension of\+: html,htm,text,txt,cgi
 \item C\+GI results can be A\+NY S\+I\+ZE
 \end{DoxyItemize}
 \item Only tokens of the form  token \+\_\+@ are replaced by the rewrite function
@@ -507,7 +560,6 @@ web
 
 \end{DoxyItemize}
 \item Uses yield function to continue background tasks while serving requests
-\end{DoxyItemize}
 \item Applications
 \begin{DoxyItemize}
 \item I created a door sign status display that can be updated via a web page web page running on the esp8266
