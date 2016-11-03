@@ -22,11 +22,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifdef TEST_PRINTF
-#include <stdio.h>
-#include <stdlib.h>
-#include <ctype.h>
-#include <string.h>
+#ifdef USER_CONFIG
+#include "user_config.h"
 #endif
 
 #include <stdint.h>
@@ -34,7 +31,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <string.h>
 #include <math.h>
 
-#include "printf.h"
+#include "mathio.h"
 
 // =======================================================================
 // =======================================================================
@@ -115,85 +112,6 @@ strupper(char *str)
 		++str;
 	}
 }
-
-// these functions are defined in our own stdlib.c
-#ifdef FLOAT
-/// @brief Raise number to integer exponent
-/// @param[in] num: number
-/// @param[in] exp:  integer exponent
-/// @return num ** exp
-MEMSPACE 
-double
-WEAK_ATR
-iexp(double num, int exp)
-{
-	double a;
-	if(exp==0)
-		return(1.0);
-	if(exp <0) 
-	{
-		a = 1.0 / num;
-		exp = 1 - exp;
-	}
-	else 
-	{
-		exp = exp - 1;
-		a = num;
-	}
-	while(exp) 
-	{
-		if(exp & 0x01)
-			num *= a;
-		if(exp >>= 1)
-			a *= a;
-	}
-	return(num);
-}
-
-/// @brief Scale a number to 1.0 .. 9.99999...
-/// @param[in] num: number
-/// @param[out] *exp: interger power of 10 for scale factor
-/// @return scaled number
-MEMSPACE 
-double
-WEAK_ATR
-scale10(double num, int *exp)
-{
-	int exp10,exp2;
-	double scale;
-
-	if(!num)
-	{
-		*exp = 0;
-		return(0.0);
-	}
-	// extract exponent
-	frexp(num, &exp2);
-	// aproximate exponent in base 10
-	exp10 = ((double) exp2) / (double) 3.321928095;
-
-	// convert scale to 10.0**exp10
-	scale = iexp((double)10.0, exp10);
-
-	// remove scale
-	num /= scale;
-
-	// correct for over/under
-	while(num >= (double)10.0) 
-	{
-		num /= (double) 10.0;
-		++exp10;
-	}
-	while(num < (double) 1.0) 
-	{
-		num *= (double) 10.0;
-		--exp10;
-	}
-
-	*exp = exp10;
-	return(num);
-}
-#endif
 // ======================================================================
 // end of support functions
 // ======================================================================
@@ -342,7 +260,7 @@ int p_ntoa(unsigned long num, char *str, int max, int radix, int prec)
 
 
 
-#ifdef FLOAT
+#ifdef FLOATIO
 /// @brief float to ASCII 
 /// @param[in] val: value
 /// @param[in] str: converted string
@@ -588,13 +506,15 @@ void _puts_pad(printf_t *fn, char *s, int width, int count, int left)
 //printf("_puts_pad:size:%d\n", size);
 }	// _puts_pad()
 
+
+
 /// @brief vsnprintf function
 /// @param[out] fn: output character function pointer 
 /// @param[in] fmt: printf forat string
 /// @param[in] va: va_list arguments
 /// @return size of string
 MEMSPACE 
-void _printf_fn(printf_t *fn, const char *fmt, va_list va)
+void _printf_fn(printf_t *fn, __memx const char *fmt, va_list va)
 {
     int prec, width, intprec, sign, left, fill;
 	int precf, widthf;
@@ -602,12 +522,12 @@ void _printf_fn(printf_t *fn, const char *fmt, va_list va)
     int spec;
 	int size;
 	long num = 0;
-#ifdef FLOAT
+#ifdef FLOATIO
 	double dnum = 0;
 #endif
 	char chartmp[2];
 	char *ptr;
-	char *fmtptr;
+	__memx const char *fmtptr;
 
 	// buff has to be at least as big at the largest converted number
 	// in this case base 2 long long with sign and end of string
@@ -623,7 +543,7 @@ void _printf_fn(printf_t *fn, const char *fmt, va_list va)
 			continue;
         }
 
-		fmtptr = (char *) fmt;
+		fmtptr = fmt;
 		// process % specifier
 		fmt++;
 
@@ -730,7 +650,7 @@ void _printf_fn(printf_t *fn, const char *fmt, va_list va)
 					num = va_arg(va, long);
 				++fmt;
 				break;
-#ifdef FLOAT
+#ifdef FLOATIO
 			case 'f':
 			case 'F':
 //printf("width:%d, intprec:%d, prec:%d\n", width, intprec, prec);
@@ -752,7 +672,7 @@ void _printf_fn(printf_t *fn, const char *fmt, va_list va)
 				// floats are converted to double by va arg
 			case 'e':
 			case 'E':
-				// FIXME K&R defines 'f' type as 6 - what is this default ?
+				// FIXME K&R defines 'f' type as 6 - and matches GNU printf
 				if(!precf)
 					prec = 6;
 				dnum = va_arg(va, double);
@@ -771,7 +691,7 @@ void _printf_fn(printf_t *fn, const char *fmt, va_list va)
 
 		switch(spec) 
 		{
-#ifdef FLOAT
+#ifdef FLOATIO
 		case 'f':
 			count = p_ftoa(dnum, buff, intprec, prec, sign);
 			_puts_pad(fn,buff, width, count, left);
@@ -802,6 +722,7 @@ void _printf_fn(printf_t *fn, const char *fmt, va_list va)
 			count = p_ntoa(num, buff, sizeof(buff), 8, prec);
 			_puts_pad(fn,buff, width, count, left);
 			break;
+//int p_ntoa(unsigned long num, char *str, int radix, int pad)
 		case 'x':
 		case 'X':
 		// pointers
@@ -853,8 +774,9 @@ void _printf_fn(printf_t *fn, const char *fmt, va_list va)
 
 
 // ====================================================================
-
-/// @brief _putc_buffer_fn low level function writes a character to a buffer
+/// @brief _putc_buffer_fn - character output to a string buffer
+/// Used by snprintf and vsnprintf
+/// You can make _printf_fn call this helper for each character
 /// @param[in] *p: structure with pointers and buffer to be written to
 /// @param[in] ch: character to place in buffer
 /// @return void
@@ -866,7 +788,7 @@ void _putc_buffer_fn(struct _printf_t *p, char ch)
 		if(ch)
 		{
 			p->len--;
-			p->size++;
+			p->sent++;
 			str = (char *) p->buffer;
 			*str++ = ch;
 			p->buffer = (void *) str;
@@ -875,8 +797,7 @@ void _putc_buffer_fn(struct _printf_t *p, char ch)
 	*((char *)p->buffer) = 0;
 }   
 
-
-
+// ====================================================================
 /// @brief vsnprintf function
 /// @param[out] str: string buffer for result
 /// @param[in] size: maximum length of converted string
@@ -895,7 +816,7 @@ int vsnprintf(char* str, size_t size, const char *format, va_list va)
 
     fn.put = _putc_buffer_fn;
     fn.len = size;
-    fn.size = 0;
+    fn.sent = 0;
     fn.buffer = (void *) str;
 
     _printf_fn(&fn, format, va);
@@ -905,6 +826,7 @@ int vsnprintf(char* str, size_t size, const char *format, va_list va)
     return( len );
 }
 
+// ====================================================================
 /// @brief snprintf function
 /// @param[out] str: string buffer for result
 /// @param[in] size: maximum length of converted string
@@ -918,9 +840,51 @@ int snprintf(char* str, size_t size, const char *format, ...)
     va_list va;
 
     va_start(va, format);
-    len= vsnprintf(str, size, format, va);
+    len = vsnprintf(str, size, format, va);
     va_end(va);
 
     return len;
 }
 
+// ====================================================================
+/// @brief sprintf function is not recommended because it can overflow
+// ====================================================================
+
+#ifdef DEFINE_PRINTF
+// ====================================================================
+/// @brief _putc_fn - character output to fputs(c,stdout)
+/// You can make _printf_fn call this helper for each character
+/// @param[in] *p: structure function pointer, buffer, len and size 
+/// @param[in] ch: character to write
+/// @return void
+MEMSPACE
+static void _putc_fn(struct _printf_t *p, char ch)
+{
+	p->sent++;
+	putchar(ch);
+}
+
+/// @brief printf function
+///  Example user defined printf function using fputc for I/O
+///  This method allows I/O to devices and strings without typical C++ overhead
+/// @param[in] fmt: printf forat string
+/// @param[in] va_list: vararg list or arguments
+/// @return size of printed string
+/// TODO create a devprintf using an array of function prointers ?
+int 
+printf(const char *format, ...)
+{
+	int i;
+	printf_t fn;
+	va_list va;
+
+	fn.put = _putc_fn;
+	fn.sent = 0;
+
+	va_start(va, format);
+	_printf_fn(&fn, format, va);
+	va_end(va);
+
+	return ((int)fn.sent);
+}
+#endif

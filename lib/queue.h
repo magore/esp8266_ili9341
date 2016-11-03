@@ -24,23 +24,18 @@
 #ifndef _QUEUE_H_
 #define _QUEUE_H_
 
-#include <stdint.h>
-#include <stdarg.h>
-#include <string.h>
-#include <math.h>
-
-#ifdef USER_CONFIG
-#include "user_config.h"
-#endif
-
 // Named address space
 #ifndef MEMSPACE
 #define MEMSPACE /**/
 #endif
 
+#define QUEUE_OVERRUN		1
+#define QUEUE_EOL			2
+
 /// @brief queue structure
 typedef struct {
 	char *buf;		/* Ring buffer */
+	uint8_t flags;  /* flags */
 	size_t in;		/* input offset */
 	size_t out;		/* output offset */
 	size_t bytes;	/* bytes used */

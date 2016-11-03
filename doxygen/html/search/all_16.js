@@ -1,12 +1,12 @@
 var searchData=
 [
   ['w',['w',['../struct__fontc.html#a9c2af0354d2b2009e7b6684e25fd479b',1,'_fontc::w()'],['../structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae',1,'window::w()']]],
-  ['wait_5fready',['wait_ready',['../mmc_8c.html#ab7771efbbd1a015b449d838d7f09959a',1,'mmc.c']]],
+  ['wait_5fready',['wait_ready',['../mmc_8c.html#ab7771efbbd1a015b449d838d7f09959a',1,'wait_ready(UINT wt):&#160;mmc.c'],['../mmc_8h.html#ab7771efbbd1a015b449d838d7f09959a',1,'wait_ready(UINT wt):&#160;mmc.c']]],
   ['wait_5fsend',['wait_send',['../web_8c.html#a6b59ca0b6eea0b246eb56ae2b37ee2d8',1,'wait_send(rwbuf_t *p):&#160;web.c'],['../web_8h.html#a6b59ca0b6eea0b246eb56ae2b37ee2d8',1,'wait_send(rwbuf_t *p):&#160;web.c']]],
   ['wbuf',['wbuf',['../structrwbuf__t.html#a68386231f3d907ec4508c090925782a2',1,'rwbuf_t']]],
   ['wchar',['WCHAR',['../integer_8h.html#a570001c92f314285ad3e7139d8c58cf7',1,'integer.h']]],
-  ['wdt_5freset',['wdt_reset',['../sys_8c.html#a9b9f170e9a01e51b57656fcda1f183df',1,'wdt_reset(void):&#160;sys.c'],['../sys_8h.html#a9b9f170e9a01e51b57656fcda1f183df',1,'wdt_reset(void):&#160;sys.c']]],
-  ['weak_5fatr',['WEAK_ATR',['../printf_8h.html#a399da2caab82ec1bb3d5a8fbc5306768',1,'WEAK_ATR():&#160;printf.h'],['../std_8h.html#a399da2caab82ec1bb3d5a8fbc5306768',1,'WEAK_ATR():&#160;std.h'],['../str_8h.html#a399da2caab82ec1bb3d5a8fbc5306768',1,'WEAK_ATR():&#160;str.h'],['../ili9341__adafruit_8h.html#a399da2caab82ec1bb3d5a8fbc5306768',1,'WEAK_ATR():&#160;ili9341_adafruit.h'],['../network_8h.html#a399da2caab82ec1bb3d5a8fbc5306768',1,'WEAK_ATR():&#160;network.h'],['../wire_8h.html#a399da2caab82ec1bb3d5a8fbc5306768',1,'WEAK_ATR():&#160;wire.h'],['../mmc__hal_8h.html#a399da2caab82ec1bb3d5a8fbc5306768',1,'WEAK_ATR():&#160;mmc_hal.h'],['../server_8h.html#a399da2caab82ec1bb3d5a8fbc5306768',1,'WEAK_ATR():&#160;server.h'],['../web_8h.html#a399da2caab82ec1bb3d5a8fbc5306768',1,'WEAK_ATR():&#160;web.h'],['../user__task_8h.html#a399da2caab82ec1bb3d5a8fbc5306768',1,'WEAK_ATR():&#160;user_task.h'],['../adf4351__hal_8h.html#a399da2caab82ec1bb3d5a8fbc5306768',1,'WEAK_ATR():&#160;adf4351_hal.h']]],
+  ['wdt_5freset',['wdt_reset',['../system_8c.html#a9b9f170e9a01e51b57656fcda1f183df',1,'system.c']]],
+  ['weak_5fatr',['WEAK_ATR',['../stringsup_8h.html#a399da2caab82ec1bb3d5a8fbc5306768',1,'WEAK_ATR():&#160;stringsup.h'],['../ili9341__adafruit_8h.html#a399da2caab82ec1bb3d5a8fbc5306768',1,'WEAK_ATR():&#160;ili9341_adafruit.h'],['../ili9341_8h.html#a399da2caab82ec1bb3d5a8fbc5306768',1,'WEAK_ATR():&#160;ili9341.h'],['../mathio_8h.html#a399da2caab82ec1bb3d5a8fbc5306768',1,'WEAK_ATR():&#160;mathio.h'],['../mmc__hal_8h.html#a399da2caab82ec1bb3d5a8fbc5306768',1,'WEAK_ATR():&#160;mmc_hal.h']]],
   ['web_2ec',['web.c',['../web_8c.html',1,'']]],
   ['web_2eh',['web.h',['../web_8h.html',1,'']]],
   ['web_5fconnections',['web_connections',['../web_8c.html#a18c3cff4e8a9ff56871f13dfb3cd48ad',1,'web.c']]],

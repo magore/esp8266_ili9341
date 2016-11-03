@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['heap_5fend',['HEAP_END',['../sys_8h.html#a7437bbfa3a1415a7d91fded74239a762',1,'sys.h']]],
-  ['heap_5fstart',['HEAP_START',['../sys_8h.html#ae9739bcecd10d5962cc10c12bf01594f',1,'sys.h']]],
+  ['heap_5fend',['HEAP_END',['../system_8c.html#a7437bbfa3a1415a7d91fded74239a762',1,'system.c']]],
+  ['heap_5fstart',['HEAP_START',['../system_8c.html#ae9739bcecd10d5962cc10c12bf01594f',1,'system.c']]],
   ['hightaskprio',['HighTaskPrio',['../user__main_8c.html#af976ca45c03d9124fb316a5c46f860f3',1,'user_main.c']]],
   ['hightaskqueuelen',['HighTaskQueueLen',['../user__main_8c.html#a756fbf8ddcd39c8c1aa8481b6eab32ff',1,'user_main.c']]],
   ['hspi',['HSPI',['../hspi_8h.html#a22bd615ece7185b5f635eae8facd0994',1,'hspi.h']]],

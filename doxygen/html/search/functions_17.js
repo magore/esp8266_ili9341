@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['xmit_5fdatablock',['xmit_datablock',['../mmc_8c.html#a2174d7259d1d933e0ea0dc45eee4af62',1,'mmc.c']]]
+  ['xchg_5fspi',['xchg_spi',['../mmc_8c.html#a38f29ae10012d1cdd2e694aa2c340e22',1,'mmc.c']]],
+  ['xmit_5fspi_5fmulti',['xmit_spi_multi',['../mmc_8c.html#a8c2f6f09ffb61f5c8d4b7474fc9ac744',1,'mmc.c']]]
 ];

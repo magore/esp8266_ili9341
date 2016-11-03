@@ -1,10 +1,5 @@
 \hypertarget{adf4351_8h}{}\section{adf4351/adf4351.h File Reference}
 \label{adf4351_8h}\index{adf4351/adf4351.\+h@{adf4351/adf4351.\+h}}
-{\ttfamily \#include $<$stdint.\+h$>$}\\*
-{\ttfamily \#include $<$stdarg.\+h$>$}\\*
-{\ttfamily \#include $<$string.\+h$>$}\\*
-{\ttfamily \#include $<$math.\+h$>$}\\*
-{\ttfamily \#include \char`\"{}adf4351\+\_\+hal.\+h\char`\"{}}\\*
 \subsection*{Data Structures}
 \begin{DoxyCompactItemize}
 \item 
@@ -145,7 +140,21 @@ enum \{ \hyperlink{adf4351_8h_aaf105ae5beaca1dee30ae54530691fceaddf79ada9b696b45
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{adf4351_8h_a992aef229e9dba29e333afd297fe9c45}{A\+D\+F4351\+\_\+display\+\_\+error} (int error)
 \begin{DoxyCompactList}\small\item\em Verbose Error messages. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{adf4351_8h_aa81dc41f60eb1698b3866deb0d2a31bc}{A\+D\+F4351\+\_\+\+Config} (double R\+Fout, double R\+E\+Fin, double Channel\+Spacing, double $\ast$R\+Fout\+Calc)
-\begin{DoxyCompactList}\small\item\em Calculate register values for A\+D\+F4351. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Calculate register values for A\+D\+F4351. \end{DoxyCompactList}\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{adf4351_8h_a22e5a483e33a77208f48d669184c6cf4}{A\+D\+F4351\+\_\+spi\+\_\+init} (void)
+\begin{DoxyCompactList}\small\item\em Obtain S\+PI bus for A\+D\+F4351 display, raises LE return\+: void. \end{DoxyCompactList}\item 
+void \hyperlink{adf4351_8h_ad279f7ea1a85c24df9819fa6b43aa59b}{A\+D\+F4351\+\_\+spi\+\_\+begin} (void)
+\begin{DoxyCompactList}\small\item\em Obtain S\+PI bus for A\+D\+F4351 display, LE L\+OW return\+: void. \end{DoxyCompactList}\item 
+void \hyperlink{adf4351_8h_afb162a1b1ac7eacac2cdf075360c24ae}{A\+D\+F4351\+\_\+spi\+\_\+end} (void)
+\begin{DoxyCompactList}\small\item\em Release S\+PI bus from A\+D\+F4351, LE H\+I\+GH return\+: void. \end{DoxyCompactList}\item 
+\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} \hyperlink{adf4351_8h_ac619bf6662e9b756783b676d302e2732}{A\+D\+F4351\+\_\+spi\+\_\+txrx} (\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} value)
+\begin{DoxyCompactList}\small\item\em Transmit 32 bit data value. \end{DoxyCompactList}\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{adf4351_8h_ac8e49da22dd0ed771cbfbe81c313d290}{A\+D\+F4351\+\_\+update} (double freq)
+\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{adf4351_8h_a795f082266241ad0f8befe3b98eb7afc}{A\+D\+F4351\+\_\+task} (void)
+\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{adf4351_8h_aa04820fdf56ad71c4d1680da0dda6634}{adf4351\+\_\+cmd} (char $\ast$line)
+\end{DoxyCompactItemize}
 
 
 \subsection{Macro Definition Documentation}
@@ -154,14 +163,14 @@ enum \{ \hyperlink{adf4351_8h_aaf105ae5beaca1dee30ae54530691fceaddf79ada9b696b45
 \subsubsection[{\texorpdfstring{A\+D\+F4351\+\_\+\+B\+A\+N\+D\+S\+E\+L\+\_\+\+M\+AX}{ADF4351_BANDSEL_MAX}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+D\+F4351\+\_\+\+B\+A\+N\+D\+S\+E\+L\+\_\+\+M\+AX~125000}\hypertarget{adf4351_8h_a432e77d2502272fc369aad0319b93bb6}{}\label{adf4351_8h_a432e77d2502272fc369aad0319b93bb6}
 
 
-Definition at line 51 of file adf4351.\+h.
+Definition at line 34 of file adf4351.\+h.
 
 \index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+M\+A\+X\+\_\+\+F\+R\+E\+Q\+\_\+45\+P\+RE@{A\+D\+F4351\+\_\+\+M\+A\+X\+\_\+\+F\+R\+E\+Q\+\_\+45\+P\+RE}}
 \index{A\+D\+F4351\+\_\+\+M\+A\+X\+\_\+\+F\+R\+E\+Q\+\_\+45\+P\+RE@{A\+D\+F4351\+\_\+\+M\+A\+X\+\_\+\+F\+R\+E\+Q\+\_\+45\+P\+RE}!adf4351.\+h@{adf4351.\+h}}
 \subsubsection[{\texorpdfstring{A\+D\+F4351\+\_\+\+M\+A\+X\+\_\+\+F\+R\+E\+Q\+\_\+45\+P\+RE}{ADF4351_MAX_FREQ_45PRE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+D\+F4351\+\_\+\+M\+A\+X\+\_\+\+F\+R\+E\+Q\+\_\+45\+P\+RE~3000000000.\+0}\hypertarget{adf4351_8h_a293264ca2dc758c182320f42951240c1}{}\label{adf4351_8h_a293264ca2dc758c182320f42951240c1}
 
 
-Definition at line 48 of file adf4351.\+h.
+Definition at line 31 of file adf4351.\+h.
 
 
 
@@ -172,7 +181,7 @@ Referenced by A\+D\+F4351\+\_\+\+Config().
 \subsubsection[{\texorpdfstring{A\+D\+F4351\+\_\+\+P\+F\+D\+\_\+\+M\+AX}{ADF4351_PFD_MAX}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+D\+F4351\+\_\+\+P\+F\+D\+\_\+\+M\+AX~32000000.\+0}\hypertarget{adf4351_8h_a8fcfb09d34d3b3a7eae35c04e770cb92}{}\label{adf4351_8h_a8fcfb09d34d3b3a7eae35c04e770cb92}
 
 
-Definition at line 49 of file adf4351.\+h.
+Definition at line 32 of file adf4351.\+h.
 
 
 
@@ -183,7 +192,7 @@ Referenced by A\+D\+F4351\+\_\+\+Config().
 \subsubsection[{\texorpdfstring{A\+D\+F4351\+\_\+\+R\+E\+F\+I\+N\+\_\+\+M\+AX}{ADF4351_REFIN_MAX}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+D\+F4351\+\_\+\+R\+E\+F\+I\+N\+\_\+\+M\+AX~250000000.\+0}\hypertarget{adf4351_8h_ae410570e072c2b181522ba8b5e1a5402}{}\label{adf4351_8h_ae410570e072c2b181522ba8b5e1a5402}
 
 
-Definition at line 50 of file adf4351.\+h.
+Definition at line 33 of file adf4351.\+h.
 
 
 
@@ -194,7 +203,7 @@ Referenced by A\+D\+F4351\+\_\+\+Config().
 \subsubsection[{\texorpdfstring{A\+D\+F4351\+\_\+\+R\+F\+O\+U\+T\+\_\+\+M\+AX}{ADF4351_RFOUT_MAX}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+D\+F4351\+\_\+\+R\+F\+O\+U\+T\+\_\+\+M\+AX~4400000000.\+0}\hypertarget{adf4351_8h_ac5fb1f7862149cdf5cedd63bbf1f17a6}{}\label{adf4351_8h_ac5fb1f7862149cdf5cedd63bbf1f17a6}
 
 
-Definition at line 45 of file adf4351.\+h.
+Definition at line 28 of file adf4351.\+h.
 
 
 
@@ -205,7 +214,7 @@ Referenced by A\+D\+F4351\+\_\+\+Config().
 \subsubsection[{\texorpdfstring{A\+D\+F4351\+\_\+\+R\+F\+O\+U\+T\+\_\+\+M\+IN}{ADF4351_RFOUT_MIN}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+D\+F4351\+\_\+\+R\+F\+O\+U\+T\+\_\+\+M\+IN~34375000.\+0}\hypertarget{adf4351_8h_a8d0aba37f839cc0c10f234af7e513d96}{}\label{adf4351_8h_a8d0aba37f839cc0c10f234af7e513d96}
 
 
-Definition at line 46 of file adf4351.\+h.
+Definition at line 29 of file adf4351.\+h.
 
 
 
@@ -216,7 +225,7 @@ Referenced by A\+D\+F4351\+\_\+\+Config().
 \subsubsection[{\texorpdfstring{A\+D\+F4351\+\_\+\+V\+C\+O\+\_\+\+M\+IN}{ADF4351_VCO_MIN}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+D\+F4351\+\_\+\+V\+C\+O\+\_\+\+M\+IN~2200000000.\+0}\hypertarget{adf4351_8h_a1908fc514543ffe40d7774b30ed9b3de}{}\label{adf4351_8h_a1908fc514543ffe40d7774b30ed9b3de}
 
 
-Definition at line 47 of file adf4351.\+h.
+Definition at line 30 of file adf4351.\+h.
 
 
 
@@ -241,7 +250,7 @@ A\+D\+F4351\+\_\+\+L\+D\+P\+\_\+6\+NS\hypertarget{adf4351_8h_a385c44f6fb256e5716
 \end{Desc}
 
 
-Definition at line 406 of file adf4351.\+h.
+Definition at line 389 of file adf4351.\+h.
 
 \subsubsection[{\texorpdfstring{anonymous enum}{anonymous enum}}]{\setlength{\rightskip}{0pt plus 5cm}anonymous enum}\hypertarget{adf4351_8h_abc5c98fcc1211af2b80116dd6e0a035d}{}\label{adf4351_8h_abc5c98fcc1211af2b80116dd6e0a035d}
 
@@ -259,7 +268,7 @@ A\+D\+F4351\+\_\+\+P\+O\+L\+A\+R\+I\+T\+Y\+\_\+\+P\+OS\hypertarget{adf4351_8h_ab
 \end{Desc}
 
 
-Definition at line 414 of file adf4351.\+h.
+Definition at line 397 of file adf4351.\+h.
 
 \subsubsection[{\texorpdfstring{anonymous enum}{anonymous enum}}]{\setlength{\rightskip}{0pt plus 5cm}anonymous enum}\hypertarget{adf4351_8h_ac36f475ca5b446f4fde4c9b90bec77c8}{}\label{adf4351_8h_ac36f475ca5b446f4fde4c9b90bec77c8}
 
@@ -277,7 +286,7 @@ A\+D\+F4351\+\_\+\+A\+B\+P\+\_\+3\+NS\hypertarget{adf4351_8h_ac36f475ca5b446f4fd
 \end{Desc}
 
 
-Definition at line 424 of file adf4351.\+h.
+Definition at line 407 of file adf4351.\+h.
 
 \subsubsection[{\texorpdfstring{anonymous enum}{anonymous enum}}]{\setlength{\rightskip}{0pt plus 5cm}anonymous enum}\hypertarget{adf4351_8h_a05589fbab0657f08285ebdfe93f5ec9e}{}\label{adf4351_8h_a05589fbab0657f08285ebdfe93f5ec9e}
 
@@ -297,7 +306,7 @@ A\+D\+F4351\+\_\+\+C\+L\+K\+D\+I\+V\+M\+O\+D\+E\+\_\+\+R\+E\+S\+Y\+NC\hypertarge
 \end{Desc}
 
 
-Definition at line 433 of file adf4351.\+h.
+Definition at line 416 of file adf4351.\+h.
 
 \subsubsection[{\texorpdfstring{anonymous enum}{anonymous enum}}]{\setlength{\rightskip}{0pt plus 5cm}anonymous enum}\hypertarget{adf4351_8h_a16af7b253440dadd46a80a4b9fddba4d}{}\label{adf4351_8h_a16af7b253440dadd46a80a4b9fddba4d}
 
@@ -319,7 +328,7 @@ A\+D\+F4351\+\_\+\+L\+D\+\_\+\+P\+I\+N\+\_\+\+H\+I\+GH\hypertarget{adf4351_8h_a1
 \end{Desc}
 
 
-Definition at line 443 of file adf4351.\+h.
+Definition at line 426 of file adf4351.\+h.
 
 \subsubsection[{\texorpdfstring{anonymous enum}{anonymous enum}}]{\setlength{\rightskip}{0pt plus 5cm}anonymous enum}\hypertarget{adf4351_8h_aba01db17f4a2bfbc3db60dc172972a25}{}\label{adf4351_8h_aba01db17f4a2bfbc3db60dc172972a25}
 
@@ -341,7 +350,7 @@ A\+D\+F4351\+\_\+\+P\+O\+W\+E\+R\+\_\+5\+DB\hypertarget{adf4351_8h_aba01db17f4a2
 \end{Desc}
 
 
-Definition at line 455 of file adf4351.\+h.
+Definition at line 438 of file adf4351.\+h.
 
 \subsubsection[{\texorpdfstring{anonymous enum}{anonymous enum}}]{\setlength{\rightskip}{0pt plus 5cm}anonymous enum}\hypertarget{adf4351_8h_aaf105ae5beaca1dee30ae54530691fce}{}\label{adf4351_8h_aaf105ae5beaca1dee30ae54530691fce}
 
@@ -359,7 +368,7 @@ A\+D\+F4351\+\_\+\+A\+U\+X\+O\+U\+T\+\_\+\+F\+R\+O\+M\+\_\+\+V\+CO\hypertarget{a
 \end{Desc}
 
 
-Definition at line 466 of file adf4351.\+h.
+Definition at line 449 of file adf4351.\+h.
 
 \subsubsection[{\texorpdfstring{anonymous enum}{anonymous enum}}]{\setlength{\rightskip}{0pt plus 5cm}anonymous enum}\hypertarget{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06c}{}\label{adf4351_8h_adc29c2ff13d900c2f185ee95427fb06c}
 
@@ -399,7 +408,7 @@ A\+D\+F4351\+\_\+\+E\+R\+R\+O\+R\+\_\+\+E\+ND\hypertarget{adf4351_8h_adc29c2ff13
 \end{Desc}
 
 
-Definition at line 340 of file adf4351.\+h.
+Definition at line 323 of file adf4351.\+h.
 
 \subsubsection[{\texorpdfstring{anonymous enum}{anonymous enum}}]{\setlength{\rightskip}{0pt plus 5cm}anonymous enum}\hypertarget{adf4351_8h_a61dadd085c1777f559549e05962b2c9e}{}\label{adf4351_8h_a61dadd085c1777f559549e05962b2c9e}
 
@@ -417,7 +426,7 @@ A\+D\+F4351\+\_\+\+E\+N\+A\+B\+LE\hypertarget{adf4351_8h_a61dadd085c1777f559549e
 \end{Desc}
 
 
-Definition at line 359 of file adf4351.\+h.
+Definition at line 342 of file adf4351.\+h.
 
 \subsubsection[{\texorpdfstring{anonymous enum}{anonymous enum}}]{\setlength{\rightskip}{0pt plus 5cm}anonymous enum}\hypertarget{adf4351_8h_a726ca809ffd3d67ab4b8476646f26635}{}\label{adf4351_8h_a726ca809ffd3d67ab4b8476646f26635}
 
@@ -435,7 +444,7 @@ A\+D\+F4351\+\_\+\+P\+R\+E\+S\+C\+A\+L\+E\+R\+\_\+8\+\_\+9\hypertarget{adf4351_8
 \end{Desc}
 
 
-Definition at line 368 of file adf4351.\+h.
+Definition at line 351 of file adf4351.\+h.
 
 \subsubsection[{\texorpdfstring{anonymous enum}{anonymous enum}}]{\setlength{\rightskip}{0pt plus 5cm}anonymous enum}\hypertarget{adf4351_8h_a0411cd49bb5b71852cecd93bcbf0ca2d}{}\label{adf4351_8h_a0411cd49bb5b71852cecd93bcbf0ca2d}
 
@@ -453,7 +462,7 @@ A\+D\+F4351\+\_\+\+L\+O\+W\+\_\+\+S\+P\+U\+R\+\_\+\+M\+O\+DE\hypertarget{adf4351
 \end{Desc}
 
 
-Definition at line 376 of file adf4351.\+h.
+Definition at line 359 of file adf4351.\+h.
 
 \subsubsection[{\texorpdfstring{anonymous enum}{anonymous enum}}]{\setlength{\rightskip}{0pt plus 5cm}anonymous enum}\hypertarget{adf4351_8h_abed82baf7f470b522273a3e37c24c600}{}\label{adf4351_8h_abed82baf7f470b522273a3e37c24c600}
 
@@ -481,7 +490,7 @@ A\+D\+F4351\+\_\+\+M\+U\+X\+\_\+\+D\+I\+G\+I\+T\+A\+L\+L\+O\+CK\hypertarget{adf4
 \end{Desc}
 
 
-Definition at line 384 of file adf4351.\+h.
+Definition at line 367 of file adf4351.\+h.
 
 \subsubsection[{\texorpdfstring{anonymous enum}{anonymous enum}}]{\setlength{\rightskip}{0pt plus 5cm}anonymous enum}\hypertarget{adf4351_8h_ab04a0655cd1e3bcac5e8f48c18df1a57}{}\label{adf4351_8h_ab04a0655cd1e3bcac5e8f48c18df1a57}
 
@@ -499,7 +508,7 @@ A\+D\+F4351\+\_\+\+L\+D\+F\+\_\+\+I\+N\+T\+\_\+N\hypertarget{adf4351_8h_ab04a065
 \end{Desc}
 
 
-Definition at line 398 of file adf4351.\+h.
+Definition at line 381 of file adf4351.\+h.
 
 
 
@@ -522,11 +531,34 @@ Convert charge pump current in uA to R2 register value.
 \end{DoxyParams}
 
 
-Definition at line 145 of file adf4351.\+c.
+Definition at line 150 of file adf4351.\+c.
 
 
 
 Referenced by A\+D\+F4351\+\_\+\+Init().
+
+\index{adf4351.\+h@{adf4351.\+h}!adf4351\+\_\+cmd@{adf4351\+\_\+cmd}}
+\index{adf4351\+\_\+cmd@{adf4351\+\_\+cmd}!adf4351.\+h@{adf4351.\+h}}
+\subsubsection[{\texorpdfstring{adf4351\+\_\+cmd(char $\ast$line)}{adf4351_cmd(char *line)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int adf4351\+\_\+cmd (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{line}
+\end{DoxyParamCaption}
+)}\hypertarget{adf4351_8h_aa04820fdf56ad71c4d1680da0dda6634}{}\label{adf4351_8h_aa04820fdf56ad71c4d1680da0dda6634}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em line} & -\/ command line \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 98 of file adf4351\+\_\+cmd.\+c.
+
+
+
+Referenced by user\+\_\+tests().
 
 \index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+Config@{A\+D\+F4351\+\_\+\+Config}}
 \index{A\+D\+F4351\+\_\+\+Config@{A\+D\+F4351\+\_\+\+Config}!adf4351.\+h@{adf4351.\+h}}
@@ -558,11 +590,11 @@ Calculate register values for A\+D\+F4351.
 \end{DoxyRetVals}
 R\+Fout\+V\+CO = \mbox{[}r0\+\_\+\+I\+NT + (r0\+\_\+\+F\+R\+A\+C/r1\+\_\+\+M\+OD)\mbox{]} × (P\+FD) R\+Fout = \mbox{[}r0\+\_\+\+I\+NT + (r0\+\_\+\+F\+R\+A\+C/r1\+\_\+\+M\+OD)\mbox{]} × (P\+FD /\+R\+Fout\+D\+IV) R\+Fout is the RF frequency output. r0\+\_\+\+I\+NT is the integer division factor. r0\+\_\+\+F\+R\+AC is the numerator of the fractional division (0 to M\+OD − 1). r1\+\_\+\+M\+OD is the preset fractional modulus (2 to 4095). R\+Fout\+D\+IV is the V\+CO output divider. P\+FD = R\+E\+Fin × \mbox{[}(1 + R\+E\+Fin\+M\+U\+L2)/(R × (1 + R\+E\+Fin\+D\+I\+V2))\mbox{]} R\+E\+Fin is the reference frequency input. R\+E\+Fin\+M\+U\+L2 is the R\+E\+Fin doubler bit (0 or 1). r2\+\_\+R is R\+E\+Fin division factor (1 to 1023). R\+E\+Fin\+D\+I\+V2 is the reference divide-\/by-\/2 bit (0 or 1). Fres = Channel\+Spacing $\ast$ R\+Fout\+D\+IV r1\+\_\+\+M\+OD=R\+E\+Fin / Fres
 
-Definition at line 422 of file adf4351.\+c.
+Definition at line 427 of file adf4351.\+c.
 
 
 
-Referenced by user\+\_\+tests().
+Referenced by adf4351\+\_\+cmd(), and A\+D\+F4351\+\_\+task().
 
 \index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+display\+\_\+error@{A\+D\+F4351\+\_\+display\+\_\+error}}
 \index{A\+D\+F4351\+\_\+display\+\_\+error@{A\+D\+F4351\+\_\+display\+\_\+error}!adf4351.\+h@{adf4351.\+h}}
@@ -582,11 +614,11 @@ Display A\+D\+F4351 error return code
 \end{DoxyParams}
 
 
-Definition at line 390 of file adf4351.\+c.
+Definition at line 395 of file adf4351.\+c.
 
 
 
-Referenced by user\+\_\+tests().
+Referenced by adf4351\+\_\+cmd(), and A\+D\+F4351\+\_\+task().
 
 \index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+\+G\+CD@{A\+D\+F4351\+\_\+\+G\+CD}}
 \index{A\+D\+F4351\+\_\+\+G\+CD@{A\+D\+F4351\+\_\+\+G\+CD}!adf4351.\+h@{adf4351.\+h}}
@@ -621,7 +653,7 @@ Returns 32bit register value from register buffer.
 \end{DoxyRetVals}
 
 
-Definition at line 74 of file adf4351.\+c.
+Definition at line 79 of file adf4351.\+c.
 
 
 
@@ -645,7 +677,7 @@ Init all A\+D\+F4351 registers to default values.
 \end{DoxyParams}
 
 
-Definition at line 163 of file adf4351.\+c.
+Definition at line 168 of file adf4351.\+c.
 
 
 
@@ -672,11 +704,92 @@ Compute P\+FD.
 \end{DoxyParams}
 
 
-Definition at line 356 of file adf4351.\+c.
+Definition at line 361 of file adf4351.\+c.
 
 
 
 Referenced by A\+D\+F4351\+\_\+\+Config().
+
+\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+spi\+\_\+begin@{A\+D\+F4351\+\_\+spi\+\_\+begin}}
+\index{A\+D\+F4351\+\_\+spi\+\_\+begin@{A\+D\+F4351\+\_\+spi\+\_\+begin}!adf4351.\+h@{adf4351.\+h}}
+\subsubsection[{\texorpdfstring{A\+D\+F4351\+\_\+spi\+\_\+begin(void)}{ADF4351_spi_begin(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void A\+D\+F4351\+\_\+spi\+\_\+begin (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{adf4351_8h_ad279f7ea1a85c24df9819fa6b43aa59b}{}\label{adf4351_8h_ad279f7ea1a85c24df9819fa6b43aa59b}
+
+
+Obtain S\+PI bus for A\+D\+F4351 display, LE L\+OW return\+: void. 
+
+
+
+Definition at line 81 of file adf4351\+\_\+hal.\+c.
+
+
+
+Referenced by A\+D\+F4351\+\_\+spi\+\_\+txrx().
+
+\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+spi\+\_\+end@{A\+D\+F4351\+\_\+spi\+\_\+end}}
+\index{A\+D\+F4351\+\_\+spi\+\_\+end@{A\+D\+F4351\+\_\+spi\+\_\+end}!adf4351.\+h@{adf4351.\+h}}
+\subsubsection[{\texorpdfstring{A\+D\+F4351\+\_\+spi\+\_\+end(void)}{ADF4351_spi_end(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void A\+D\+F4351\+\_\+spi\+\_\+end (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{adf4351_8h_afb162a1b1ac7eacac2cdf075360c24ae}{}\label{adf4351_8h_afb162a1b1ac7eacac2cdf075360c24ae}
+
+
+Release S\+PI bus from A\+D\+F4351, LE H\+I\+GH return\+: void. 
+
+
+
+Definition at line 100 of file adf4351\+\_\+hal.\+c.
+
+
+
+Referenced by A\+D\+F4351\+\_\+spi\+\_\+txrx().
+
+\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+spi\+\_\+init@{A\+D\+F4351\+\_\+spi\+\_\+init}}
+\index{A\+D\+F4351\+\_\+spi\+\_\+init@{A\+D\+F4351\+\_\+spi\+\_\+init}!adf4351.\+h@{adf4351.\+h}}
+\subsubsection[{\texorpdfstring{A\+D\+F4351\+\_\+spi\+\_\+init(void)}{ADF4351_spi_init(void)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void A\+D\+F4351\+\_\+spi\+\_\+init (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{adf4351_8h_a22e5a483e33a77208f48d669184c6cf4}{}\label{adf4351_8h_a22e5a483e33a77208f48d669184c6cf4}
+
+
+Obtain S\+PI bus for A\+D\+F4351 display, raises LE return\+: void. 
+
+
+
+Definition at line 61 of file adf4351\+\_\+hal.\+c.
+
+
+
+Referenced by A\+D\+F4351\+\_\+\+Init().
+
+\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+spi\+\_\+txrx@{A\+D\+F4351\+\_\+spi\+\_\+txrx}}
+\index{A\+D\+F4351\+\_\+spi\+\_\+txrx@{A\+D\+F4351\+\_\+spi\+\_\+txrx}!adf4351.\+h@{adf4351.\+h}}
+\subsubsection[{\texorpdfstring{A\+D\+F4351\+\_\+spi\+\_\+txrx(uint32\+\_\+t value)}{ADF4351_spi_txrx(uint32_t value)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint32\+\_\+t} A\+D\+F4351\+\_\+spi\+\_\+txrx (
+\begin{DoxyParamCaption}
+\item[{{\bf uint32\+\_\+t}}]{value}
+\end{DoxyParamCaption}
+)}\hypertarget{adf4351_8h_ac619bf6662e9b756783b676d302e2732}{}\label{adf4351_8h_ac619bf6662e9b756783b676d302e2732}
+
+
+Transmit 32 bit data value. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em value} & 32bit data send return\+: spi data \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 120 of file adf4351\+\_\+hal.\+c.
+
+
+
+Referenced by A\+D\+F4351\+\_\+status(), and A\+D\+F4351\+\_\+sync().
 
 \index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+status@{A\+D\+F4351\+\_\+status}}
 \index{A\+D\+F4351\+\_\+status@{A\+D\+F4351\+\_\+status}!adf4351.\+h@{adf4351.\+h}}
@@ -699,7 +812,7 @@ Read A\+D\+F4351 status Only of value if spi bus input is tied to mux out This f
 \end{DoxyReturn}
 
 
-Definition at line 305 of file adf4351.\+c.
+Definition at line 310 of file adf4351.\+c.
 
 \index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+sync@{A\+D\+F4351\+\_\+sync}}
 \index{A\+D\+F4351\+\_\+sync@{A\+D\+F4351\+\_\+sync}!adf4351.\+h@{adf4351.\+h}}
@@ -721,11 +834,41 @@ Sync settings to A\+D\+F4351 registers.
 \end{DoxyParams}
 
 
-Definition at line 50 of file adf4351.\+c.
+Definition at line 55 of file adf4351.\+c.
 
 
 
-Referenced by A\+D\+F4351\+\_\+\+Init(), A\+D\+F4351\+\_\+status(), and user\+\_\+tests().
+Referenced by adf4351\+\_\+cmd(), A\+D\+F4351\+\_\+\+Init(), A\+D\+F4351\+\_\+status(), and A\+D\+F4351\+\_\+update().
+
+\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+task@{A\+D\+F4351\+\_\+task}}
+\index{A\+D\+F4351\+\_\+task@{A\+D\+F4351\+\_\+task}!adf4351.\+h@{adf4351.\+h}}
+\subsubsection[{\texorpdfstring{A\+D\+F4351\+\_\+task(void)}{ADF4351_task(void)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void A\+D\+F4351\+\_\+task (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{adf4351_8h_a795f082266241ad0f8befe3b98eb7afc}{}\label{adf4351_8h_a795f082266241ad0f8befe3b98eb7afc}
+
+
+Definition at line 57 of file adf4351\+\_\+cmd.\+c.
+
+
+
+Referenced by loop().
+
+\index{adf4351.\+h@{adf4351.\+h}!A\+D\+F4351\+\_\+update@{A\+D\+F4351\+\_\+update}}
+\index{A\+D\+F4351\+\_\+update@{A\+D\+F4351\+\_\+update}!adf4351.\+h@{adf4351.\+h}}
+\subsubsection[{\texorpdfstring{A\+D\+F4351\+\_\+update(double freq)}{ADF4351_update(double freq)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void A\+D\+F4351\+\_\+update (
+\begin{DoxyParamCaption}
+\item[{double}]{freq}
+\end{DoxyParamCaption}
+)}\hypertarget{adf4351_8h_ac8e49da22dd0ed771cbfbe81c313d290}{}\label{adf4351_8h_ac8e49da22dd0ed771cbfbe81c313d290}
+
+
+Definition at line 50 of file adf4351\+\_\+cmd.\+c.
+
+
+
+Referenced by A\+D\+F4351\+\_\+task().
 
 \index{adf4351.\+h@{adf4351.\+h}!A\+D\+F\+\_\+dump\+\_\+registers@{A\+D\+F\+\_\+dump\+\_\+registers}}
 \index{A\+D\+F\+\_\+dump\+\_\+registers@{A\+D\+F\+\_\+dump\+\_\+registers}!adf4351.\+h@{adf4351.\+h}}

@@ -5,8 +5,16 @@ MEMORY
   dport0_0_seg :                        org = 0x3FF00000, len = 0x10
   dram0_0_seg :                         org = 0x3FFE8000, len = 0x14000
   iram1_0_seg :                         org = 0x40100000, len = 0x8000
-  irom0_0_seg :                         org = 0x40210000, len = 0xC4000 
+  irom0_0_seg :                         org = 0x40210000, len = 0xC0000
 }
+/* Non-FOTA Flash Map (unit: kB)
+Flash capacity 	eagle.flash.bin 	eagle.irom0text.bin 	User data 	len 	User/System Param
+ 512             ≤ 64             ≤ 240             ≥ 176             0x3C000             16
+1024             ≤ 64             ≤ 752             ≥ 176             0xBC000             16
+2048             ≤ 64             ≤ 768             ≥ 176             0xC0000             16
+4096             ≤ 64             ≤ 768             ≥ 176             0xC0000             16
+*/
+
 
 PHDRS
 {
@@ -16,6 +24,7 @@ PHDRS
   iram1_0_phdr PT_LOAD;
   irom0_0_phdr PT_LOAD;
 }
+
 
 /*  Default entry point:  */
 ENTRY(call_user_start)
@@ -150,14 +159,23 @@ SECTIONS
   } >dram0_0_seg :dram0_0_bss_phdr
 /* __stack = 0x3ffc8000; */
 
-.irom0.text : ALIGN(4)
+  .irom0.text : ALIGN(4)
   {
     _irom0_text_start = ABSOLUTE(.);
-    *(.irom0.literal .irom.literal .irom.text.literal .irom0.text .irom.text)
-/* you can relocate libraries from ram cache by including them here */
-/* gcc hal phy pp net80211 lwip wpa main m */
-/* Mike Gore */
+
+    *libmbedtls.a:(.literal .text .literal.* .text.*)
+  /* you can relocate libraries from ram cache by including them here */
+ /* gcc hal phy pp net80211 lwip wpa main m */
+ /* Mike Gore */
+/* gcc hal phy pp net80211 ssl lwip wpa main m */
+    *libgcc.a:(.literal .text .literal.* .text.*)
+    *libphy.a:(.literal .text .literal.* .text.*)
     *libpp.a:(.literal .text .literal.* .text.*)
+    *libnet80211.a:(.literal .text .literal.* .text.*)
+    *libssl.a:(.literal .text .literal.* .text.*)
+    *liblwip.a:(.literal .text .literal.* .text.*)
+    *libwpa.a:(.literal .text .literal.* .text.*)
+    *(.irom0.literal .irom.literal .irom.text.literal .irom0.text .irom.text)
     _irom0_text_end = ABSOLUTE(.);
   } >irom0_0_seg :irom0_0_phdr
 
@@ -208,8 +226,8 @@ SECTIONS
     *(.gnu.linkonce.lit4.*)
     _lit4_end = ABSOLUTE(.);
   } >iram1_0_seg :iram1_0_phdr
-
 }
 
 /* get ROM code address */
 INCLUDE "../ld/eagle.rom.addr.v6.ld"
+

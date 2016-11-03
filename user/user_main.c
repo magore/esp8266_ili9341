@@ -22,15 +22,29 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+#include <stdint.h>
+#include <stdarg.h>
+#include <string.h>
+#include <math.h>
 
 #include "user_config.h"
+#include "fatfs.h"
+
+#include "time.h"
+#include "timer.h"
+
+#include "display/ili9341.h"
+
+#include "network/network.h"
 
 #ifdef WIRECUBE
+	#include "cordic/cordic.h"
 	#include "wire.h"
 	#include "cube_data.h"
 #endif
 
 #ifdef EARTH
+	#include "cordic/cordic.h"
 	#include "wire.h"
 	#include "earth_data.h"
 #endif
@@ -38,6 +52,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifdef ADF4351
 	#include "adf4351.h"
 #endif
+
+#include "esp8266/system.h"
+#include "lib/stringsup.h"
 
 /* 
  * Window layouts    optional
@@ -47,7 +64,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *         winbottom
  */
 
-#include "std.h"
 
 /* Master Window, Full size of TFT */
 window *master;
@@ -103,62 +119,6 @@ unsigned long ms_time = 0;
 
 // ==================================================================
 // ==================================================================
-
-#ifdef ADF4351
-double calcfreq;
-double freqlow = 100e6;
-double freqhi = 100e6;
-double freqval = 100e6;
-double freqlast = 0.0;
-double freqspacing = 0.0;
-int adf4351_scan = 0;
-int adf4351_x = 0;
-int adf4351_y = 0;
-
-// update every 50 mS
-void ADF4351_update(double freq)
-{
-    tft_set_font(winmsg,3);
-    tft_font_var(winmsg);
-    tft_set_textpos(winmsg, 0,0);
-	tft_printf(winmsg, "%4.3f", freq/1000000.0);
-    tft_set_font(winmsg,1);
-	tft_printf(winmsg, "MHz");
-	tft_cleareol(winmsg);
-	ADF4351_sync(1);
-}
-
-// update every 50 mS
-void ADF4351_task()
-{
-	int status;
-	double result;
-
-
-	if (freqval >= freqhi || freqval <freqlow)
-		freqval = freqlow;
-
-	if(!adf4351_scan)
-		return;
-
- 	status = ADF4351_Config(freqval, 25000000.0, freqspacing, &result);
-	if(status)
-	{
-		ADF4351_display_error ( status );
-		// stop scanning
-		printf("adf4351 scan stop:  %e\n",freqval);
-		adf4351_scan = 0;
-	}
-	else
-		ADF4351_update(result);
-
-	freqlast = freqval;
-
-	freqval += freqspacing;
-}
-#endif
-
-
 
 /// @brief  Clear 1000HZ timer 
 /// We loop in case the update of ms_time is not "atomic" - done in a single instruction
@@ -217,7 +177,7 @@ void ntp_setup(void)
 
 	if(ntp_init == 0)
     {
-        ip_addr_t *addr = (ip_addr_t *)os_zalloc(sizeof(ip_addr_t));
+        ip_addr_t *addr = (ip_addr_t *)safecalloc(sizeof(ip_addr_t),1);
 
 		// form pool.ntp.org
 		ipaddr_aton("206.108.0.131", addr);
@@ -285,11 +245,11 @@ loop_task()
 
 	// NTP state machine
 	ntp_setup();
-// Buffered get line uses interrupts and queues
-	if(uart0_gets(buffer,255))
+	if(kbhit(0, 1)) /// second argument 1 = only report when an EOL is detectedEOL
 	{
 		int flag = 0;
-		printf("Command:%s\n",buffer);
+		fgets(buffer,255,stdin);
+		printf("Command:[%s]\n",buffer);
 		if(!flag && user_tests(buffer))
 		{
 			flag = 1;
@@ -302,7 +262,7 @@ loop_task()
 #endif
 		if(!flag)
 		{
-			printf("unknown command: %s\n", buffer);
+			printf("unknown command:[%s]\n", buffer);
 		}
 	}
 }
@@ -533,20 +493,19 @@ void test_flashio(window *win)
 }
 #endif
 
-
 void user_help()
 {
-	printf("help\n"
-	"setdate YYYY MM DD HH:MM:SS\n"
-	"time\n"
-    "adf4351 frequency [spacing]\n"
-	"adf4351_scan low hi spacing\n"
-	"adf4351_scan start\n"
-	"adf4351_scan stop\n"
-	);
 #ifdef FATFS_SUPPORT
 	fatfs_help();
 #endif
+#ifdef ADF4351
+	adf4351_help();
+#endif
+	printf("help\n");
+    printf("mem\n");
+	printf("time\n");
+	printf("setdate YYYY MM DD HH:MM:SS\n");
+	printf("\n");
 }
 
 /// @brief help functions test parser
@@ -577,7 +536,7 @@ int user_tests(char *str)
         user_help();
         return(1);
     }
-    if ((len = token(ptr,"setdate")) )
+    else if ((len = token(ptr,"setdate")) )
     {
         ptr += len;
 		ptr = skipspaces(ptr);
@@ -586,90 +545,23 @@ int user_tests(char *str)
     }
 
 #ifdef ADF4351
-    if ((len = token(ptr,"adf4351_scan")) )
+    else if ((len = token(ptr,"adf4351")) )
     {
-		int status;
-		char tmp[256];
-
         ptr += len;
-		ptr = get_token(ptr, tmp, 255);
-		if(strcmp(tmp,"stop") == 0)
-		{
-			printf("adf4351 scan stop:  %e\n",freqval);
-			adf4351_scan = 0;
-			return(1);
-		}
-
-		if(strcmp(tmp,"start") == 0)
-		{
-			adf4351_scan = 1;
-			printf("adf4351 scan start: %e\n",freqval);
-			return(1);
-		}
-		freqlow = atof(tmp);
-
-		ptr = get_token(ptr, tmp, 255);
-		freqhi = atof(tmp);
-
-		ptr = get_token(ptr, tmp, 255);
-		freqspacing = atof(tmp);
-
-		printf("frequency low:      %10.2f\n",freqlow);
-		printf("frequency low:      %e\n",freqlow);
-		printf("frequency hi:       %10.2f\n",freqhi);
-		printf("frequency hi:       %e\n",freqhi);
-		printf("frequency spacing:  %10.2f\n",freqspacing);
-		printf("frequency spacing:  %e\n",freqspacing);
-		freqval = freqlow;
-
-		printf("adf4351 scan start: %10.2f\n",freqval);
-		printf("adf4351 scan start: %e\n",freqval);
-		adf4351_scan = 1;
-
-		return(1);
-	}
-    if ((len = token(ptr,"adf4351")) )
-    {
-		int status;
-		double freq,result;
-
-		char tmp[256];
-
-        ptr += len;
-		ptr = get_token(ptr, tmp, 255);
-		freq = atof(tmp);
-		printf("frequency: %.2f\n",freq);
-
-		ptr = get_token(ptr, tmp, 255);
-		if(*tmp)
-			freqspacing = atof(tmp);
-		else
-			freqspacing = 1000.0;
-
-		adf4351_scan = 0;
-		status = ADF4351_Config(freq, 25000000.0, freqspacing, &result);
-		printf("calculated: %.2f\n",freq);
-
-		if(status)
-			ADF4351_display_error ( status );
-		else
-			ADF4351_update(result);
-
-		// FIXME we treat a mismatch as non-fatal
-		// we should really be looking for an accuracy value
- 		if(status == ADF4351_RFout_MISMATCH)
-		{
-			ADF4351_sync(result);
-		}
-
+		adf4351_cmd(ptr);
 		return(1);
 	}
 #endif
 
-    if ((len = token(ptr,"time")) )
+    else if ((len = token(ptr,"time")) )
     {
 		t = time(0);	
 		printf("TIME:%s\n", ctime(&t));
+        return(1);
+	}
+    else if ((len = token(ptr,"mem")) )
+    {
+		PrintRam();
         return(1);
 	}
 	return(0);
@@ -710,11 +602,6 @@ void setup(void)
 	printf("System init...\n");
 
     PrintRam();
-
-	if ( espconn_tcp_set_max_con(MAX_CONNECTIONS+2) )
-		printf("espconn_tcp_set_max_con(%d) - failed!\n", MAX_CONNECTIONS+2);
-	else
-		printf("espconn_tcp_set_max_con(%d) - success!\n", MAX_CONNECTIONS+2);
 
 	printf("HSPI init...\n");
 	hspi_init(1,0);
@@ -882,6 +769,10 @@ void setup(void)
 #endif
 
 	setup_networking();
+	if ( espconn_tcp_set_max_con(MAX_CONNECTIONS+2) )
+		printf("espconn_tcp_set_max_con(%d) - failed!\n", MAX_CONNECTIONS+2);
+	else
+		printf("espconn_tcp_set_max_con(%d) - success!\n", MAX_CONNECTIONS+2);
 
 #ifdef NETWORK_TEST
 	printf("Setup Network TFT Display Client\n");

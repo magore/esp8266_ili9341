@@ -16,14 +16,11 @@ sep()
 
 update_packages()
 {
-	sudo apt-get install git make automake autoconf build-essential \
-		gperf bison flex \
-		texinfo libtool libncurses5-dev \
-		wget gawk python-serial libexpat1-dev  \
-		libc6-dev \
-		gcc g++ \
-		unrar \
-		python sed 
+
+sudo apt-get install make unrar-free autoconf automake libtool gcc g++ gperf \
+    flex bison texinfo gawk ncurses-dev libexpat-dev python-dev python python-serial \
+    sed git unzip bash help2man wget bzip2
+
 	sep
 }
 
@@ -116,10 +113,12 @@ set_path()
 	export SDK_HOME="$ROOT_DIR/esp-open-sdk"
 	export SDK_BIN="$SDK_HOME/xtensa-lx106-elf/bin"
 	export PATH="$SDK_BIN:$PATH"
+	export COMPILE=gcc
 
 	echo "ROOT_DIR[$ROOT_DIR]"
 	echo "SDK_HOME[$SDK_HOME]"
 	echo "SDK_BIN[$SDK_BIN]"
+	echo "COMPILE[$COMPILE]"
 	sep
 }
 
@@ -133,6 +132,7 @@ export ROOT_DIR="$ROOT_DIR"
 export SDK_HOME="$SDK_HOME/sdk"
 export SDK_BIN="$SDK_BIN"
 export PATH="\$SDK_BIN:\$PATH"
+export COMPILE="$COMPILE"
 EOF
 	chmod 755 "$SDK_HOME/setpath"
 	sep
@@ -157,10 +157,9 @@ install_open_sdk()
 	echo Target is $SDK_HOME
 	declare DIR=$(basename $SDK_HOME)
 	echo "DIR:[$DIR]"
-	get_git https://github.com/pfalcon "$DIR"
+	git clone --recursive https://github.com/pfalcon/esp-open-sdk.git
 	check_cd $SDK_HOME
 	make STANDALONE=y
-
 
 	check_dir $SDK_HOME/esptool
 	sep
@@ -172,10 +171,10 @@ add_tools()
 	cat $SDK_HOME/sdk/bin/blank.bin \
 		$SDK_HOME/sdk/bin/blank.bin \
 		$SDK_HOME/sdk/bin/blank.bin  >> $SDK_HOME/sdk/bin/clear_eep.bin
+	check_dir $ROOT_DIR
 	get_git https://github.com/themadinventor esptool
 	cp -p esptool/*.py $SDK_HOME/sdk/tools
 	chmod 755 $SDK_HOME/sdk/tools/*
-
 }
 
 #  ==============================================================
@@ -236,7 +235,6 @@ list_libs >"$SDK_HOME"/libs.txt
 add_tools
 
 make_path
-
 
 #build_examples
 

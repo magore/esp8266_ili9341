@@ -41,13 +41,9 @@ POSSIBILITY OF SUCH DAMAGE.
 #ifndef _ILI9341_ADAFRUIT_H_
 #define _ILI9341_ADAFRUIT_H_
 
-#include <stdint.h>
-#include <stdarg.h>
-#include <string.h>
-#include <math.h>
-
 #include "font.h"
 #include "ili9341.h"
+#include "ili9341_adafruit.h"
 
 // Named address space
 #ifndef MEMSPACE

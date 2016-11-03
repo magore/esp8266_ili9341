@@ -32,6 +32,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef _CORDIC_H_
 #define _CORDIC_H_
 
+#include "cordic2c_inc.h"
 /// @brief Point definition
 typedef struct
 {
@@ -39,10 +40,6 @@ typedef struct
     double y;
     double z;
 } point;
-
-#ifdef USER_CONFIG
-#include "user_config.h"
-#endif
 
 /* cordic.c */
 MEMSPACE double deg2rad ( double deg );

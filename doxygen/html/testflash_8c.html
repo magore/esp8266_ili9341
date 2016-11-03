@@ -89,6 +89,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">testflash.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Create or read a flash test pattern file - used for testing esp8266 flash.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
 </div>
@@ -97,9 +100,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="testflash_8c.html#a0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
+<tr class="memdesc:a0ddf1224851353fc92bfbff6f499fa97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create or read a flash test pattern file - used for testing esp8266 flash Depends on esptool from <a href="https://github.com/themadinventor/esptool">https://github.com/themadinventor/esptool</a> Example - test 1 megabyte of flash - we write and verify a pattern ESPTOOL=/usr/local/bin/esptool.py ESPPORT=/dev/ttyUSB0 gcc <a class="el" href="testflash_8c.html" title="Create or read a flash test pattern file - used for testing esp8266 flash. ">testflash.c</a> -o testflash -mkdir tmp  testing first megabyte   Create megabyte size test file ./testflash -s 0x100000 -w tmp/test1w.bin  Write file to ESP8266  -p  -b  write_flash \  \ 0x000000 tmp/test1w.bin  read flash back from ESP8266  -p  -b  read_flash \ 0x000000 0x100000 tmp/test1r.bin  Verify data read back matches what we wrote ./testflash -s 0x100000 -r tmp/test1r.bin.  <a href="#a0ddf1224851353fc92bfbff6f499fa97">More...</a><br /></td></tr>
 <tr class="separator:a0ddf1224851353fc92bfbff6f499fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Create or read a flash test pattern file - used for testing esp8266 flash. </p>
+<dl class="section date"><dt>Date</dt><dd>1 Nov 2016 </dd></dl>
+<dl class="section user"><dt>Copyright &copy; 2015-2016 Mike Gore, GPL License</dt><dd></dd></dl>
+<dl class="section user"><dt>You are free to use this code under the terms of GPL</dt><dd>please retain a copy of this notice in any code you use it in.</dd></dl>
+<p>This is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</p>
+<p>This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</p>
+<p>You should have received a copy of the GNU General Public License along with this program. If not, see <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>. </p>
+
+<p>Definition in file <a class="el" href="testflash_8c_source.html">testflash.c</a>.</p>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="a0ddf1224851353fc92bfbff6f499fa97"></a>
 <div class="memitem">
 <div class="memproto">
@@ -124,14 +138,16 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="testflash_8c_source.html#l00004">4</a> of file <a class="el" href="testflash_8c_source.html">testflash.c</a>.</p>
+<p>Create or read a flash test pattern file - used for testing esp8266 flash Depends on esptool from <a href="https://github.com/themadinventor/esptool">https://github.com/themadinventor/esptool</a> Example - test 1 megabyte of flash - we write and verify a pattern ESPTOOL=/usr/local/bin/esptool.py ESPPORT=/dev/ttyUSB0 gcc <a class="el" href="testflash_8c.html" title="Create or read a flash test pattern file - used for testing esp8266 flash. ">testflash.c</a> -o testflash -mkdir tmp  testing first megabyte   Create megabyte size test file ./testflash -s 0x100000 -w tmp/test1w.bin  Write file to ESP8266  -p  -b  write_flash \  \ 0x000000 tmp/test1w.bin  read flash back from ESP8266  -p  -b  read_flash \ 0x000000 0x100000 tmp/test1r.bin  Verify data read back matches what we wrote ./testflash -s 0x100000 -r tmp/test1r.bin. </p>
+
+<p>Definition at line <a class="el" href="testflash_8c_source.html#l00052">52</a> of file <a class="el" href="testflash_8c_source.html">testflash.c</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Oct 5 2016 21:27:12 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Nov 2 2016 22:32:05 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

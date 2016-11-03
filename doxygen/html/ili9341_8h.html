@@ -98,12 +98,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>ili9341 driver inspired by Adafruit ili9341 code All code in this file has been rewritten by Mike Gore  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
-<code>#include &lt;stdarg.h&gt;</code><br />
-<code>#include &lt;string.h&gt;</code><br />
-<code>#include &lt;math.h&gt;</code><br />
-<code>#include &quot;<a class="el" href="ili9341__hal_8h_source.html">ili9341_hal.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="display_2font_8h_source.html">font.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="display_2font_8h_source.html">font.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ili9341__adafruit_8h_source.html">ili9341_adafruit.h</a>&quot;</code><br />
 </div>
 <p><a href="ili9341_8h_source.html">Go to the source code of this file.</a></p>
@@ -115,6 +110,10 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
+<tr class="memitem:ad0fe97585b8891f5e4f2b9a6426330a4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></td></tr>
+<tr class="separator:ad0fe97585b8891f5e4f2b9a6426330a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a399da2caab82ec1bb3d5a8fbc5306768"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8h.html#a399da2caab82ec1bb3d5a8fbc5306768">WEAK_ATR</a>&#160;&#160;&#160;<a class="el" href="user__task_8c.html#ade20ba3eb51f42d2b2deb917303c9a5e">__attribute__</a>((weak))</td></tr>
+<tr class="separator:a399da2caab82ec1bb3d5a8fbc5306768"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29fe4e7cb4d2be27f14f14431856391c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8h.html#a29fe4e7cb4d2be27f14f14431856391c">FONT_VAR</a>&#160;&#160;&#160;1</td></tr>
 <tr class="separator:a29fe4e7cb4d2be27f14f14431856391c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab73b6f81ca48b2c6565e527a069914b3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8h.html#ab73b6f81ca48b2c6565e527a069914b3">WRAP_H</a>&#160;&#160;&#160;2</td></tr>
@@ -134,6 +133,10 @@ Macros</h2></td></tr>
 <tr class="memitem:a6e05438fee5830ddbc6fa94a1770eefe"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8h.html#a6e05438fee5830ddbc6fa94a1770eefe">tft_RGBto565</a>(r,  g,  b)&#160;&#160;&#160;((<a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a>) (((r) &amp; 0xf8) &lt;&lt; 8) | (((g) &amp; 0xfc) &lt;&lt; 3) | (((b) &amp; 0xf8) &gt;&gt;3))</td></tr>
 <tr class="memdesc:a6e05438fee5830ddbc6fa94a1770eefe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pass 8-bit (each) R,G,B, get back 16-bit packed color ILI9341 defaults to MSB/LSB data so we have to reverse it.  <a href="#a6e05438fee5830ddbc6fa94a1770eefe">More...</a><br /></td></tr>
 <tr class="separator:a6e05438fee5830ddbc6fa94a1770eefe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac9153aee4bdb92701df902e06a74eb3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8h.html#aac9153aee4bdb92701df902e06a74eb3">SWAP</a>(a,  b)&#160;&#160;&#160;do { a ^= b; b ^= a; a ^= b; } while(0)</td></tr>
+<tr class="separator:aac9153aee4bdb92701df902e06a74eb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a996f7be338ccb40d1a2a5abc1ad61759"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8h.html#a996f7be338ccb40d1a2a5abc1ad61759">ABS</a>(x)&#160;&#160;&#160;((x)&lt;0 ? -(x) : (x))</td></tr>
+<tr class="separator:a996f7be338ccb40d1a2a5abc1ad61759"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -259,6 +262,24 @@ Functions</h2></td></tr>
 <tr class="memitem:afaf6907405d24bf529df5590f450d3cd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8h.html#afaf6907405d24bf529df5590f450d3cd">tft_putch</a> (<a class="el" href="structwindow.html">window</a> *win, int c)</td></tr>
 <tr class="memdesc:afaf6907405d24bf529df5590f450d3cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">put character in current winoow  <a href="#afaf6907405d24bf529df5590f450d3cd">More...</a><br /></td></tr>
 <tr class="separator:afaf6907405d24bf529df5590f450d3cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace16843deffffe3332a7e16f14e1c4f7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8h.html#ace16843deffffe3332a7e16f14e1c4f7">tft_spi_begin</a> (void)</td></tr>
+<tr class="memdesc:ace16843deffffe3332a7e16f14e1c4f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtain SPI bus for TFT display, assert chip select return: void.  <a href="#ace16843deffffe3332a7e16f14e1c4f7">More...</a><br /></td></tr>
+<tr class="separator:ace16843deffffe3332a7e16f14e1c4f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6141eafeb5d38b1a5c5061ce0923a650"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8h.html#a6141eafeb5d38b1a5c5061ce0923a650">tft_spi_end</a> (void)</td></tr>
+<tr class="memdesc:a6141eafeb5d38b1a5c5061ce0923a650"><td class="mdescLeft">&#160;</td><td class="mdescRight">Release SPI bus from TFT display, deassert chip select return: void.  <a href="#a6141eafeb5d38b1a5c5061ce0923a650">More...</a><br /></td></tr>
+<tr class="separator:a6141eafeb5d38b1a5c5061ce0923a650"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa975fa5ad6bb7e52356d9d66ac733196"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8h.html#aa975fa5ad6bb7e52356d9d66ac733196">tft_spi_TX</a> (<a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> *data, int bytes, <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> command)</td></tr>
+<tr class="memdesc:aa975fa5ad6bb7e52356d9d66ac733196"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transmit 8 bit data array.  <a href="#aa975fa5ad6bb7e52356d9d66ac733196">More...</a><br /></td></tr>
+<tr class="separator:aa975fa5ad6bb7e52356d9d66ac733196"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2eda0e245536550e1a28da1d652629e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8h.html#ad2eda0e245536550e1a28da1d652629e">tft_spi_TXRX</a> (<a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> *data, int bytes, <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> command)</td></tr>
+<tr class="memdesc:ad2eda0e245536550e1a28da1d652629e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transmit and read 8 bit data array.  <a href="#ad2eda0e245536550e1a28da1d652629e">More...</a><br /></td></tr>
+<tr class="separator:ad2eda0e245536550e1a28da1d652629e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad54db2d053d783c70669fdbd414fda1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8h.html#aad54db2d053d783c70669fdbd414fda1">tft_spi_RX</a> (<a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> *data, int bytes, <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> command)</td></tr>
+<tr class="memdesc:aad54db2d053d783c70669fdbd414fda1"><td class="mdescLeft">&#160;</td><td class="mdescRight">read 8 bit data array  <a href="#aad54db2d053d783c70669fdbd414fda1">More...</a><br /></td></tr>
+<tr class="separator:aad54db2d053d783c70669fdbd414fda1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14e5cdfbb744c04570df508551f77add"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="structwindow.html">window</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8h.html#a14e5cdfbb744c04570df508551f77add">tft_init</a> (void)</td></tr>
+<tr class="memdesc:a14e5cdfbb744c04570df508551f77add"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize TFT.  <a href="#a14e5cdfbb744c04570df508551f77add">More...</a><br /></td></tr>
+<tr class="separator:a14e5cdfbb744c04570df508551f77add"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>ili9341 driver inspired by Adafruit ili9341 code All code in this file has been rewritten by Mike Gore </p>
@@ -274,6 +295,26 @@ Functions</h2></td></tr>
 
 <p>Definition in file <a class="el" href="ili9341_8h_source.html">ili9341.h</a>.</p>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="a996f7be338ccb40d1a2a5abc1ad61759"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ABS</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">x</td><td>)</td>
+          <td>&#160;&#160;&#160;((x)&lt;0 ? -(x) : (x))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="ili9341_8h_source.html#l00083">83</a> of file <a class="el" href="ili9341_8h_source.html">ili9341.h</a>.</p>
+
+<p>Referenced by <a class="el" href="ili9341_8c_source.html#l01017">tft_drawFastHLine()</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a29fe4e7cb4d2be27f14f14431856391c"></a>
 <div class="memitem">
 <div class="memproto">
@@ -284,9 +325,53 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341_8h_source.html#l00071">71</a> of file <a class="el" href="ili9341_8h_source.html">ili9341.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8h_source.html#l00065">65</a> of file <a class="el" href="ili9341_8h_source.html">ili9341.h</a>.</p>
 
-<p>Referenced by <a class="el" href="font_8c_source.html#l00090">font_attr()</a>, <a class="el" href="ili9341_8c_source.html#l00967">tft_font_fixed()</a>, and <a class="el" href="ili9341_8c_source.html#l00977">tft_font_var()</a>.</p>
+<p>Referenced by <a class="el" href="font_8c_source.html#l00094">font_attr()</a>, <a class="el" href="ili9341_8c_source.html#l00966">tft_font_fixed()</a>, and <a class="el" href="ili9341_8c_source.html#l00976">tft_font_var()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad0fe97585b8891f5e4f2b9a6426330a4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MEMSPACE</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="ili9341_8h_source.html#l00053">53</a> of file <a class="el" href="ili9341_8h_source.html">ili9341.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aac9153aee4bdb92701df902e06a74eb3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SWAP</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">a, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">b&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;do { a ^= b; b ^= a; a ^= b; } while(0)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="ili9341_8h_source.html#l00082">82</a> of file <a class="el" href="ili9341_8h_source.html">ili9341.h</a>.</p>
+
+<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00413">tft_fillRectXY()</a>, and <a class="el" href="ili9341__adafruit_8c_source.html#l00458">tft_fillTriangle()</a>.</p>
 
 </div>
 </div>
@@ -300,9 +385,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341_8h_source.html#l00077">77</a> of file <a class="el" href="ili9341_8h_source.html">ili9341.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8h_source.html#l00071">71</a> of file <a class="el" href="ili9341_8h_source.html">ili9341.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341__hal_8c_source.html#l00162">tft_init()</a>, and <a class="el" href="ili9341_8c_source.html#l00702">tft_setRotation()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341__hal_8c_source.html#l00155">tft_init()</a>, and <a class="el" href="ili9341_8c_source.html#l00701">tft_setRotation()</a>.</p>
 
 </div>
 </div>
@@ -346,9 +431,9 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ili9341_8h_source.html#l00086">86</a> of file <a class="el" href="ili9341_8h_source.html">ili9341.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8h_source.html#l00080">80</a> of file <a class="el" href="ili9341_8h_source.html">ili9341.h</a>.</p>
 
-<p>Referenced by <a class="el" href="user__main_8c_source.html#l00330">loop()</a>, <a class="el" href="user__main_8c_source.html#l00683">setup()</a>, <a class="el" href="ili9341_8c_source.html#l00672">tft_readPixel()</a>, and <a class="el" href="ili9341_8c_source.html#l00559">tft_readRect()</a>.</p>
+<p>Referenced by <a class="el" href="user__main_8c_source.html#l00290">loop()</a>, <a class="el" href="user__main_8c_source.html#l00575">setup()</a>, <a class="el" href="ili9341_8c_source.html#l00671">tft_readPixel()</a>, and <a class="el" href="ili9341_8c_source.html#l00558">tft_readRect()</a>.</p>
 
 </div>
 </div>
@@ -362,9 +447,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341_8h_source.html#l00076">76</a> of file <a class="el" href="ili9341_8h_source.html">ili9341.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8h_source.html#l00070">70</a> of file <a class="el" href="ili9341_8h_source.html">ili9341.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341__hal_8c_source.html#l00162">tft_init()</a>, <a class="el" href="ili9341_8c_source.html#l00702">tft_setRotation()</a>, and <a class="el" href="ili9341_8c_source.html#l00623">tft_Vscroll()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341__hal_8c_source.html#l00155">tft_init()</a>, <a class="el" href="ili9341_8c_source.html#l00701">tft_setRotation()</a>, and <a class="el" href="ili9341_8c_source.html#l00622">tft_Vscroll()</a>.</p>
 
 </div>
 </div>
@@ -378,9 +463,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341_8h_source.html#l00078">78</a> of file <a class="el" href="ili9341_8h_source.html">ili9341.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8h_source.html#l00072">72</a> of file <a class="el" href="ili9341_8h_source.html">ili9341.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341__hal_8c_source.html#l00162">tft_init()</a>, and <a class="el" href="ili9341_8c_source.html#l00702">tft_setRotation()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341__hal_8c_source.html#l00155">tft_init()</a>, and <a class="el" href="ili9341_8c_source.html#l00701">tft_setRotation()</a>.</p>
 
 </div>
 </div>
@@ -394,9 +479,23 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341_8h_source.html#l00079">79</a> of file <a class="el" href="ili9341_8h_source.html">ili9341.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8h_source.html#l00073">73</a> of file <a class="el" href="ili9341_8h_source.html">ili9341.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341__hal_8c_source.html#l00162">tft_init()</a>, and <a class="el" href="ili9341_8c_source.html#l00702">tft_setRotation()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341__hal_8c_source.html#l00155">tft_init()</a>, and <a class="el" href="ili9341_8c_source.html#l00701">tft_setRotation()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a399da2caab82ec1bb3d5a8fbc5306768"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define WEAK_ATR&#160;&#160;&#160;<a class="el" href="user__task_8c.html#ade20ba3eb51f42d2b2deb917303c9a5e">__attribute__</a>((weak))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="ili9341_8h_source.html#l00058">58</a> of file <a class="el" href="ili9341_8h_source.html">ili9341.h</a>.</p>
 
 </div>
 </div>
@@ -410,7 +509,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341_8h_source.html#l00074">74</a> of file <a class="el" href="ili9341_8h_source.html">ili9341.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8h_source.html#l00068">68</a> of file <a class="el" href="ili9341_8h_source.html">ili9341.h</a>.</p>
 
 </div>
 </div>
@@ -424,9 +523,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341_8h_source.html#l00072">72</a> of file <a class="el" href="ili9341_8h_source.html">ili9341.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8h_source.html#l00066">66</a> of file <a class="el" href="ili9341_8h_source.html">ili9341.h</a>.</p>
 
-<p>Referenced by <a class="el" href="font_8c_source.html#l00196">tft_drawChar()</a>, <a class="el" href="ili9341_8c_source.html#l01181">tft_putch()</a>, and <a class="el" href="ili9341_8c_source.html#l00887">tft_window_init()</a>.</p>
+<p>Referenced by <a class="el" href="font_8c_source.html#l00200">tft_drawChar()</a>, <a class="el" href="ili9341_8c_source.html#l01180">tft_putch()</a>, and <a class="el" href="ili9341_8c_source.html#l00886">tft_window_init()</a>.</p>
 
 </div>
 </div>
@@ -440,9 +539,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341_8h_source.html#l00073">73</a> of file <a class="el" href="ili9341_8h_source.html">ili9341.h</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8h_source.html#l00067">67</a> of file <a class="el" href="ili9341_8h_source.html">ili9341.h</a>.</p>
 
-<p>Referenced by <a class="el" href="font_8c_source.html#l00196">tft_drawChar()</a>.</p>
+<p>Referenced by <a class="el" href="font_8c_source.html#l00200">tft_drawChar()</a>.</p>
 
 </div>
 </div>
@@ -488,9 +587,9 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>font number </dd></dl>
 
-<p>Definition at line <a class="el" href="font_8c_source.html#l00090">90</a> of file <a class="el" href="font_8c_source.html">font.c</a>.</p>
+<p>Definition at line <a class="el" href="font_8c_source.html#l00094">94</a> of file <a class="el" href="font_8c_source.html">font.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341_8c_source.html#l01139">tft_cleareol()</a>, <a class="el" href="ili9341_8c_source.html#l01159">tft_clearline()</a>, <a class="el" href="font_8c_source.html#l00196">tft_drawChar()</a>, <a class="el" href="ili9341_8c_source.html#l00985">tft_get_font_height()</a>, and <a class="el" href="ili9341_8c_source.html#l01181">tft_putch()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341_8c_source.html#l01138">tft_cleareol()</a>, <a class="el" href="ili9341_8c_source.html#l01158">tft_clearline()</a>, <a class="el" href="font_8c_source.html#l00200">tft_drawChar()</a>, <a class="el" href="ili9341_8c_source.html#l00984">tft_get_font_height()</a>, and <a class="el" href="ili9341_8c_source.html#l01180">tft_putch()</a>.</p>
 
 </div>
 </div>
@@ -517,9 +616,9 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Height in pixels </dd></dl>
 
-<p>Definition at line <a class="el" href="font_8c_source.html#l00066">66</a> of file <a class="el" href="font_8c_source.html">font.c</a>.</p>
+<p>Definition at line <a class="el" href="font_8c_source.html#l00070">70</a> of file <a class="el" href="font_8c_source.html">font.c</a>.</p>
 
-<p>Referenced by <a class="el" href="user__main_8c_source.html#l00683">setup()</a>, and <a class="el" href="ili9341_8c_source.html#l00943">tft_set_textpos()</a>.</p>
+<p>Referenced by <a class="el" href="user__main_8c_source.html#l00575">setup()</a>, and <a class="el" href="ili9341_8c_source.html#l00942">tft_set_textpos()</a>.</p>
 
 </div>
 </div>
@@ -536,9 +635,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="font_8c_source.html#l00055">55</a> of file <a class="el" href="font_8c_source.html">font.c</a>.</p>
+<p>Definition at line <a class="el" href="font_8c_source.html#l00059">59</a> of file <a class="el" href="font_8c_source.html">font.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00956">tft_set_font()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00955">tft_set_font()</a>.</p>
 
 </div>
 </div>
@@ -565,9 +664,9 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Width in pixels </dd></dl>
 
-<p>Definition at line <a class="el" href="font_8c_source.html#l00076">76</a> of file <a class="el" href="font_8c_source.html">font.c</a>.</p>
+<p>Definition at line <a class="el" href="font_8c_source.html#l00080">80</a> of file <a class="el" href="font_8c_source.html">font.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00943">tft_set_textpos()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00942">tft_set_textpos()</a>.</p>
 
 </div>
 </div>
@@ -619,7 +718,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00753">753</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00752">752</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
 </div>
 </div>
@@ -678,9 +777,9 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>(w * h) after clipping </dd></dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00102">102</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00101">101</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00144">tft_rel_window()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00143">tft_rel_window()</a>.</p>
 
 </div>
 </div>
@@ -747,9 +846,9 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void TODO CLIP window - depends on blit array </dd></dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00238">238</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00237">237</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="font_8c_source.html#l00196">tft_drawChar()</a>.</p>
+<p>Referenced by <a class="el" href="font_8c_source.html#l00200">tft_drawChar()</a>.</p>
 
 </div>
 </div>
@@ -776,9 +875,9 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01139">1139</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01138">1138</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="user__main_8c_source.html#l00330">loop()</a>, and <a class="el" href="ili9341_8c_source.html#l01181">tft_putch()</a>.</p>
+<p>Referenced by <a class="el" href="user__main_8c_source.html#l00290">loop()</a>, and <a class="el" href="ili9341_8c_source.html#l01180">tft_putch()</a>.</p>
 
 </div>
 </div>
@@ -804,7 +903,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01159">1159</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01158">1158</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
 </div>
 </div>
@@ -831,9 +930,9 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00054">54</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00053">53</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00238">tft_bit_blit()</a>, <a class="el" href="ili9341_8c_source.html#l00073">tft_Cmd_Data_TX()</a>, <a class="el" href="ili9341_8c_source.html#l00352">tft_fillRectWH()</a>, <a class="el" href="ili9341_8c_source.html#l00765">tft_invertDisplay()</a>, <a class="el" href="ili9341_8c_source.html#l00672">tft_readPixel()</a>, <a class="el" href="ili9341_8c_source.html#l00559">tft_readRect()</a>, <a class="el" href="ili9341_8c_source.html#l00170">tft_readRegister()</a>, and <a class="el" href="ili9341_8c_source.html#l00469">tft_writeRect()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00237">tft_bit_blit()</a>, <a class="el" href="ili9341_8c_source.html#l00072">tft_Cmd_Data_TX()</a>, <a class="el" href="ili9341_8c_source.html#l00351">tft_fillRectWH()</a>, <a class="el" href="ili9341_8c_source.html#l00764">tft_invertDisplay()</a>, <a class="el" href="ili9341_8c_source.html#l00671">tft_readPixel()</a>, <a class="el" href="ili9341_8c_source.html#l00558">tft_readRect()</a>, <a class="el" href="ili9341_8c_source.html#l00169">tft_readRegister()</a>, and <a class="el" href="ili9341_8c_source.html#l00468">tft_writeRect()</a>.</p>
 
 </div>
 </div>
@@ -877,9 +976,9 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00073">73</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00072">72</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00102">tft_abs_window()</a>, <a class="el" href="ili9341__adafruit_8c_source.html#l00054">tft_configRegister()</a>, <a class="el" href="ili9341_8c_source.html#l00441">tft_drawPixel()</a>, and <a class="el" href="ili9341_8c_source.html#l00702">tft_setRotation()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00101">tft_abs_window()</a>, <a class="el" href="ili9341__adafruit_8c_source.html#l00057">tft_configRegister()</a>, <a class="el" href="ili9341_8c_source.html#l00440">tft_drawPixel()</a>, and <a class="el" href="ili9341_8c_source.html#l00701">tft_setRotation()</a>.</p>
 
 </div>
 </div>
@@ -905,9 +1004,9 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00062">62</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00061">61</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00170">tft_readRegister()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00169">tft_readRegister()</a>.</p>
 
 </div>
 </div>
@@ -946,9 +1045,9 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void TODO: To make proportional fonts render even better we should reduce the font gap so that all of the active pixels between two fonts come no nearer then a defined value. Example: consider the characters "Td", the 'd' can actually be part way INSIDE the T </dd></dl>
 
-<p>Definition at line <a class="el" href="font_8c_source.html#l00196">196</a> of file <a class="el" href="font_8c_source.html">font.c</a>.</p>
+<p>Definition at line <a class="el" href="font_8c_source.html#l00200">200</a> of file <a class="el" href="font_8c_source.html">font.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341_8c_source.html#l01181">tft_putch()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341_8c_source.html#l01180">tft_putch()</a>.</p>
 
 </div>
 </div>
@@ -1007,9 +1106,9 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01018">1018</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01017">1017</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341__adafruit_8c_source.html#l00360">tft_drawRect()</a>, <a class="el" href="ili9341__adafruit_8c_source.html#l00381">tft_drawRoundRect()</a>, and <a class="el" href="ili9341__adafruit_8c_source.html#l00455">tft_fillTriangle()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341__adafruit_8c_source.html#l00363">tft_drawRect()</a>, <a class="el" href="ili9341__adafruit_8c_source.html#l00384">tft_drawRoundRect()</a>, and <a class="el" href="ili9341__adafruit_8c_source.html#l00458">tft_fillTriangle()</a>.</p>
 
 </div>
 </div>
@@ -1068,9 +1167,9 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01003">1003</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01002">1002</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341__adafruit_8c_source.html#l00360">tft_drawRect()</a>, <a class="el" href="ili9341__adafruit_8c_source.html#l00381">tft_drawRoundRect()</a>, <a class="el" href="ili9341__adafruit_8c_source.html#l00343">tft_fillCircle()</a>, and <a class="el" href="ili9341__adafruit_8c_source.html#l00299">tft_fillCircleHelper()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341__adafruit_8c_source.html#l00363">tft_drawRect()</a>, <a class="el" href="ili9341__adafruit_8c_source.html#l00384">tft_drawRoundRect()</a>, <a class="el" href="ili9341__adafruit_8c_source.html#l00346">tft_fillCircle()</a>, and <a class="el" href="ili9341__adafruit_8c_source.html#l00302">tft_fillCircleHelper()</a>.</p>
 
 </div>
 </div>
@@ -1148,9 +1247,9 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01078">1078</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01077">1077</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341_8c_source.html#l01018">tft_drawFastHLine()</a>, <a class="el" href="ili9341__adafruit_8c_source.html#l00434">tft_drawTriangle()</a>, and <a class="el" href="wire_8c_source.html#l00057">wire_draw()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341_8c_source.html#l01017">tft_drawFastHLine()</a>, <a class="el" href="ili9341__adafruit_8c_source.html#l00437">tft_drawTriangle()</a>, and <a class="el" href="wire_8c_source.html#l00060">wire_draw()</a>.</p>
 
 </div>
 </div>
@@ -1203,9 +1302,9 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00441">441</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00440">440</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00238">tft_bit_blit()</a>, <a class="el" href="ili9341__adafruit_8c_source.html#l00198">tft_drawCircle()</a>, <a class="el" href="ili9341__adafruit_8c_source.html#l00245">tft_drawCircleHelper()</a>, <a class="el" href="ili9341_8c_source.html#l01018">tft_drawFastHLine()</a>, and <a class="el" href="ili9341_8c_source.html#l00469">tft_writeRect()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00237">tft_bit_blit()</a>, <a class="el" href="ili9341__adafruit_8c_source.html#l00201">tft_drawCircle()</a>, <a class="el" href="ili9341__adafruit_8c_source.html#l00248">tft_drawCircleHelper()</a>, <a class="el" href="ili9341_8c_source.html#l01017">tft_drawFastHLine()</a>, and <a class="el" href="ili9341_8c_source.html#l00468">tft_writeRect()</a>.</p>
 
 </div>
 </div>
@@ -1271,9 +1370,9 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00352">352</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00351">351</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341_8c_source.html#l01139">tft_cleareol()</a>, <a class="el" href="ili9341_8c_source.html#l01159">tft_clearline()</a>, <a class="el" href="font_8c_source.html#l00196">tft_drawChar()</a>, <a class="el" href="ili9341_8c_source.html#l01018">tft_drawFastHLine()</a>, <a class="el" href="ili9341_8c_source.html#l01003">tft_drawFastVLine()</a>, <a class="el" href="ili9341_8c_source.html#l00414">tft_fillRectXY()</a>, <a class="el" href="ili9341__adafruit_8c_source.html#l00411">tft_fillRoundRect()</a>, <a class="el" href="ili9341_8c_source.html#l00337">tft_fillWin()</a>, <a class="el" href="ili9341_8c_source.html#l01181">tft_putch()</a>, and <a class="el" href="ili9341_8c_source.html#l00623">tft_Vscroll()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341_8c_source.html#l01138">tft_cleareol()</a>, <a class="el" href="ili9341_8c_source.html#l01158">tft_clearline()</a>, <a class="el" href="font_8c_source.html#l00200">tft_drawChar()</a>, <a class="el" href="ili9341_8c_source.html#l01017">tft_drawFastHLine()</a>, <a class="el" href="ili9341_8c_source.html#l01002">tft_drawFastVLine()</a>, <a class="el" href="ili9341_8c_source.html#l00413">tft_fillRectXY()</a>, <a class="el" href="ili9341__adafruit_8c_source.html#l00414">tft_fillRoundRect()</a>, <a class="el" href="ili9341_8c_source.html#l00336">tft_fillWin()</a>, <a class="el" href="ili9341_8c_source.html#l01180">tft_putch()</a>, and <a class="el" href="ili9341_8c_source.html#l00622">tft_Vscroll()</a>.</p>
 
 </div>
 </div>
@@ -1339,9 +1438,9 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00414">414</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00413">413</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341_8c_source.html#l01018">tft_drawFastHLine()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341_8c_source.html#l01017">tft_drawFastHLine()</a>.</p>
 
 </div>
 </div>
@@ -1379,9 +1478,9 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00337">337</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00336">336</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="user__main_8c_source.html#l00683">setup()</a>, <a class="el" href="ili9341__hal_8c_source.html#l00162">tft_init()</a>, and <a class="el" href="ili9341_8c_source.html#l01181">tft_putch()</a>.</p>
+<p>Referenced by <a class="el" href="user__main_8c_source.html#l00575">setup()</a>, <a class="el" href="ili9341__hal_8c_source.html#l00155">tft_init()</a>, and <a class="el" href="ili9341_8c_source.html#l01180">tft_putch()</a>.</p>
 
 </div>
 </div>
@@ -1405,9 +1504,9 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00967">967</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00966">966</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="user__main_8c_source.html#l00330">loop()</a>.</p>
+<p>Referenced by <a class="el" href="user__main_8c_source.html#l00290">loop()</a>.</p>
 
 </div>
 </div>
@@ -1433,9 +1532,9 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00977">977</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00976">976</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="user__main_8c_source.html#l00683">setup()</a>.</p>
+<p>Referenced by <a class="el" href="user__main_8c_source.html#l00575">setup()</a>.</p>
 
 </div>
 </div>
@@ -1461,7 +1560,30 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00985">985</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00984">984</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a14e5cdfbb744c04570df508551f77add"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="structwindow.html">window</a>* tft_init </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize TFT. </p>
+<dl class="section return"><dt>Returns</dt><dd>diplay ID 9341 </dd></dl>
+
+<p>Definition at line <a class="el" href="ili9341__hal_8c_source.html#l00155">155</a> of file <a class="el" href="ili9341__hal_8c_source.html">ili9341_hal.c</a>.</p>
+
+<p>Referenced by <a class="el" href="user__main_8c_source.html#l00575">setup()</a>.</p>
 
 </div>
 </div>
@@ -1488,7 +1610,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00765">765</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00764">764</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
 </div>
 </div>
@@ -1525,9 +1647,9 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01181">1181</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01180">1180</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="tft__printf_8c_source.html#l00031">_putc_win()</a>, and <a class="el" href="tft__printf_8c_source.html#l00037">_putc_win_len()</a>.</p>
+<p>Referenced by <a class="el" href="tft__printf_8c_source.html#l00034">_putc_win()</a>, and <a class="el" href="tft__printf_8c_source.html#l00040">_putc_win_len()</a>.</p>
 
 </div>
 </div>
@@ -1546,13 +1668,13 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Read ILI9341 device ID should be 9341 This does not work for really high SPI clock speeds Make sure that when called the clock speed in reduced. </p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="ili9341__hal_8h.html#a14e5cdfbb744c04570df508551f77add" title="Initialize TFT. ">tft_init</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="ili9341__hal_8c.html#a14e5cdfbb744c04570df508551f77add" title="Initialize TFT. ">tft_init</a> </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>32bit value with DIPLAY ID </dd></dl>
 <p>Paramter 0 is unused See Read ID4 Command ( 0xd3 ) for a description of the parameters </p>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00210">210</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00209">209</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341__hal_8c_source.html#l00162">tft_init()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341__hal_8c_source.html#l00155">tft_init()</a>.</p>
 
 </div>
 </div>
@@ -1597,7 +1719,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>color in 565 format </dd></dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00672">672</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00671">671</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
 </div>
 </div>
@@ -1649,9 +1771,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00559">559</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00558">558</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="user__main_8c_source.html#l00330">loop()</a>, and <a class="el" href="ili9341_8c_source.html#l00623">tft_Vscroll()</a>.</p>
+<p>Referenced by <a class="el" href="user__main_8c_source.html#l00290">loop()</a>, and <a class="el" href="ili9341_8c_source.html#l00622">tft_Vscroll()</a>.</p>
 
 </div>
 </div>
@@ -1692,9 +1814,9 @@ Functions</h2></td></tr>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00170">170</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00169">169</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00210">tft_readId()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00209">tft_readId()</a>.</p>
 
 </div>
 </div>
@@ -1753,9 +1875,9 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>bytes w * h after clipping, 0 on error </dd></dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00144">144</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00143">143</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00238">tft_bit_blit()</a>, <a class="el" href="ili9341_8c_source.html#l00441">tft_drawPixel()</a>, <a class="el" href="ili9341_8c_source.html#l00352">tft_fillRectWH()</a>, <a class="el" href="ili9341_8c_source.html#l00672">tft_readPixel()</a>, <a class="el" href="ili9341_8c_source.html#l00559">tft_readRect()</a>, and <a class="el" href="ili9341_8c_source.html#l00469">tft_writeRect()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00237">tft_bit_blit()</a>, <a class="el" href="ili9341_8c_source.html#l00440">tft_drawPixel()</a>, <a class="el" href="ili9341_8c_source.html#l00351">tft_fillRectWH()</a>, <a class="el" href="ili9341_8c_source.html#l00671">tft_readPixel()</a>, <a class="el" href="ili9341_8c_source.html#l00558">tft_readRect()</a>, and <a class="el" href="ili9341_8c_source.html#l00468">tft_writeRect()</a>.</p>
 
 </div>
 </div>
@@ -1792,9 +1914,9 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00956">956</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00955">955</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="user__main_8c_source.html#l00330">loop()</a>, and <a class="el" href="user__main_8c_source.html#l00683">setup()</a>.</p>
+<p>Referenced by <a class="el" href="user__main_8c_source.html#l00290">loop()</a>, and <a class="el" href="user__main_8c_source.html#l00575">setup()</a>.</p>
 
 </div>
 </div>
@@ -1838,9 +1960,9 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00943">943</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00942">942</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="user__main_8c_source.html#l00330">loop()</a>, and <a class="el" href="user__main_8c_source.html#l00683">setup()</a>.</p>
+<p>Referenced by <a class="el" href="user__main_8c_source.html#l00290">loop()</a>, and <a class="el" href="user__main_8c_source.html#l00575">setup()</a>.</p>
 
 </div>
 </div>
@@ -1884,9 +2006,9 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00930">930</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00929">929</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="user__main_8c_source.html#l00330">loop()</a>.</p>
+<p>Referenced by <a class="el" href="user__main_8c_source.html#l00290">loop()</a>.</p>
 
 </div>
 </div>
@@ -1910,9 +2032,9 @@ Functions</h2></td></tr>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00702">702</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00701">701</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="user__main_8c_source.html#l00683">setup()</a>, and <a class="el" href="ili9341__hal_8c_source.html#l00162">tft_init()</a>.</p>
+<p>Referenced by <a class="el" href="user__main_8c_source.html#l00575">setup()</a>, and <a class="el" href="ili9341__hal_8c_source.html#l00155">tft_init()</a>.</p>
 
 </div>
 </div>
@@ -1957,9 +2079,191 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00917">917</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00916">916</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="user__main_8c_source.html#l00683">setup()</a>.</p>
+<p>Referenced by <a class="el" href="user__main_8c_source.html#l00575">setup()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ace16843deffffe3332a7e16f14e1c4f7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tft_spi_begin </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Obtain SPI bus for TFT display, assert chip select return: void. </p>
+
+<p>Definition at line <a class="el" href="ili9341__hal_8c_source.html#l00089">89</a> of file <a class="el" href="ili9341__hal_8c_source.html">ili9341_hal.c</a>.</p>
+
+<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00237">tft_bit_blit()</a>, <a class="el" href="ili9341_8c_source.html#l00072">tft_Cmd_Data_TX()</a>, <a class="el" href="ili9341_8c_source.html#l00351">tft_fillRectWH()</a>, <a class="el" href="ili9341_8c_source.html#l00764">tft_invertDisplay()</a>, <a class="el" href="ili9341_8c_source.html#l00671">tft_readPixel()</a>, <a class="el" href="ili9341_8c_source.html#l00558">tft_readRect()</a>, <a class="el" href="ili9341_8c_source.html#l00169">tft_readRegister()</a>, and <a class="el" href="ili9341_8c_source.html#l00468">tft_writeRect()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6141eafeb5d38b1a5c5061ce0923a650"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tft_spi_end </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Release SPI bus from TFT display, deassert chip select return: void. </p>
+
+<p>Definition at line <a class="el" href="ili9341__hal_8c_source.html#l00099">99</a> of file <a class="el" href="ili9341__hal_8c_source.html">ili9341_hal.c</a>.</p>
+
+<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00237">tft_bit_blit()</a>, <a class="el" href="ili9341_8c_source.html#l00072">tft_Cmd_Data_TX()</a>, <a class="el" href="ili9341_8c_source.html#l00351">tft_fillRectWH()</a>, <a class="el" href="ili9341_8c_source.html#l00764">tft_invertDisplay()</a>, <a class="el" href="ili9341_8c_source.html#l00671">tft_readPixel()</a>, <a class="el" href="ili9341_8c_source.html#l00558">tft_readRect()</a>, <a class="el" href="ili9341_8c_source.html#l00169">tft_readRegister()</a>, <a class="el" href="ili9341__hal_8c_source.html#l00080">tft_spi_init()</a>, and <a class="el" href="ili9341_8c_source.html#l00468">tft_writeRect()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aad54db2d053d783c70669fdbd414fda1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tft_spi_RX </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>bytes</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a>&#160;</td>
+          <td class="paramname"><em>command</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>read 8 bit data array </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">*data</td><td>data buffer to send </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">bytes</td><td>data buffer size </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">command</td><td>1 = command, 0 = data return: void </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="ili9341__hal_8c_source.html#l00142">142</a> of file <a class="el" href="ili9341__hal_8c_source.html">ili9341_hal.c</a>.</p>
+
+<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00558">tft_readRect()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa975fa5ad6bb7e52356d9d66ac733196"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tft_spi_TX </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>bytes</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a>&#160;</td>
+          <td class="paramname"><em>command</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Transmit 8 bit data array. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">*data</td><td>data buffer to send </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">bytes</td><td>data buffer size </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">command</td><td>1 = command, 0 = data return: void </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="ili9341__hal_8c_source.html#l00111">111</a> of file <a class="el" href="ili9341__hal_8c_source.html">ili9341_hal.c</a>.</p>
+
+<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00237">tft_bit_blit()</a>, <a class="el" href="ili9341_8c_source.html#l00053">tft_Cmd()</a>, <a class="el" href="ili9341_8c_source.html#l00072">tft_Cmd_Data_TX()</a>, <a class="el" href="ili9341_8c_source.html#l00351">tft_fillRectWH()</a>, and <a class="el" href="ili9341_8c_source.html#l00468">tft_writeRect()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad2eda0e245536550e1a28da1d652629e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tft_spi_TXRX </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>bytes</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a>&#160;</td>
+          <td class="paramname"><em>command</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Transmit and read 8 bit data array. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">*data</td><td>data buffer to send </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">bytes</td><td>data buffer size </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">command</td><td>1 = command, 0 = data return: void </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="ili9341__hal_8c_source.html#l00126">126</a> of file <a class="el" href="ili9341__hal_8c_source.html">ili9341_hal.c</a>.</p>
+
+<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00061">tft_Data()</a>, and <a class="el" href="ili9341_8c_source.html#l00671">tft_readPixel()</a>.</p>
 
 </div>
 </div>
@@ -1996,9 +2300,9 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00623">623</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00622">622</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="font_8c_source.html#l00196">tft_drawChar()</a>.</p>
+<p>Referenced by <a class="el" href="font_8c_source.html#l00200">tft_drawChar()</a>.</p>
 
 </div>
 </div>
@@ -2025,7 +2329,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 - or - count of clipped values FIXME check negitive offsets, etc </dd></dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00779">779</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00778">778</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
 </div>
 </div>
@@ -2084,9 +2388,9 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void FIXME check negitive offsets, etc </dd></dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00834">834</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00833">833</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00102">tft_abs_window()</a>, <a class="el" href="ili9341_8c_source.html#l00238">tft_bit_blit()</a>, and <a class="el" href="ili9341_8c_source.html#l00887">tft_window_init()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00101">tft_abs_window()</a>, <a class="el" href="ili9341_8c_source.html#l00237">tft_bit_blit()</a>, and <a class="el" href="ili9341_8c_source.html#l00886">tft_window_init()</a>.</p>
 
 </div>
 </div>
@@ -2145,9 +2449,9 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00887">887</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00886">886</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="user__main_8c_source.html#l00683">setup()</a>, and <a class="el" href="ili9341__hal_8c_source.html#l00162">tft_init()</a>.</p>
+<p>Referenced by <a class="el" href="user__main_8c_source.html#l00575">setup()</a>, and <a class="el" href="ili9341__hal_8c_source.html#l00155">tft_init()</a>.</p>
 
 </div>
 </div>
@@ -2213,16 +2517,16 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00469">469</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00468">468</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341__adafruit_8c_source.html#l00181">tft_drawBitmap()</a>, and <a class="el" href="ili9341_8c_source.html#l00623">tft_Vscroll()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341__adafruit_8c_source.html#l00184">tft_drawBitmap()</a>, and <a class="el" href="ili9341_8c_source.html#l00622">tft_Vscroll()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Oct 5 2016 21:27:12 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Nov 2 2016 22:32:05 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

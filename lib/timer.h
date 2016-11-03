@@ -25,17 +25,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef __TIMER_H__
 #define __TIMER_H__
 
-#include <stdint.h>
-#include <stdarg.h>
-#include <string.h>
-#include <math.h>
-
-#include "timer_hal.h"
-
-#include <time.h>
-
 ///@brief Number of user timer tasks
 #define MAX_TIMER_CNT 8
+
+///@brief type of clockid_t.
+typedef uint16_t clockid_t;
 
 ///@brief user timer struct
 typedef struct
@@ -45,7 +39,10 @@ typedef struct
 } TIMERS;
 
 ///@brief System task in HZ.
-#define SYSTEM_TASK_HZ 1000L
+#ifndef SYSTEM_TASK_HZ
+#error #define SYSTEM_TASK_HZ 1000L
+#endif
+
 ///@brief System task in Nanoseconds.
 #define SYSTEM_TASK_TIC_NS ( 1000000000L / SYSTEM_TASK_HZ )
 ///@brief System task in Microseconds.
@@ -67,5 +64,20 @@ MEMSPACE char *ts_to_str ( ts_t *val );
 MEMSPACE void display_ts ( ts_t *val );
 MEMSPACE void clock_elapsed_begin ( void );
 MEMSPACE void clock_elapsed_end ( char *msg );
+MEMSPACE void clock_clear ( void );
+MEMSPACE void disable_timers ( void );
+MEMSPACE void enable_timers ( void );
+void execute_timers ( void );
+MEMSPACE void clock_init ( void );
+void clock_task ( void );
+MEMSPACE void init_timers ( void );
+MEMSPACE int clock_getres ( clockid_t clk_id , struct timespec *res );
+MEMSPACE int clock_settime ( clockid_t clk_id , const struct timespec *ts );
 
-#endif                                            // _TIMER_H_
+extern MEMSPACE int clock_gettime ( clockid_t clk_id , struct timespec *ts );
+/* timer_hal.c */
+MEMSPACE void disable_system_task ( void );
+MEMSPACE void enable_system_task ( void );
+MEMSPACE void install_timers_isr ( void );
+
+#endif   // _TIMER_H_

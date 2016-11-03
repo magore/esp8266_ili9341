@@ -24,25 +24,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef	__WEB_H__
 #define	__WEB_H__
 
-#include <stdint.h>
-#include <stdarg.h>
-#include <string.h>
-#include <math.h>
-
-#ifdef USER_CONFIG
-#include "user_config.h"
-#endif
-
-// Named address space
-#ifndef MEMSPACE
-#define MEMSPACE /**/
-#endif
-
-// Weak attribute
-#ifndef WEAK_ATR
-#define WEAK_ATR __attribute__((weak))
-#endif
-
 typedef struct espconn espconn_t;
 
 // WEB CONNECTIONS

@@ -3,16 +3,9 @@
 
  @brief ili9341 driver inspired by Adafruit ili9341 code
         All code in this file has been rewritten by Mike Gore
- @par Copyright &copy; 2015 Mike Gore, GPL License
+ @par Copyright &copy; 2016 Mike Gore, GPL License
  @par You are free to use this code under the terms of GPL
    please retain a copy of this notice in any code you use it in.
-
- @par Copyright &copy; 2013 Adafruit Industries.  All rights reserved.
- @see https://github.com/adafruit/Adafruit-GFX-Library
-
- @par Line drawing function CERTS
- @see https://github.com/CHERTS/esp8266-devkit/tree/master/Espressif/examples/esp8266_ili9341
-
 
   This is free software: you can redistribute it and/or modify it under the
   terms of the GNU General Public License as published by the Free Software
@@ -27,14 +20,14 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+#include "user_config.h"
 
 #include <stdint.h>
 #include <stdarg.h>
 #include <string.h>
 #include <math.h>
 
-#include "ili9341.h"
-#include "ili9341_hal.h"
+#include "display/ili9341.h"
 
 // TFT master window definition
 extern window tftwin;

@@ -1,2 +1,2 @@
-INPUT         =  . user printf lib utils driver display cordic network  scanf wire fatfs server web yield adf4351 wire earth fonts include cordic/make_cordic
+INPUT         =  . esp8266 lib driver display cordic network user printf io fatfs.sup fatfs fatfs/option fatfs.hal wire server web yield adf4351 wire earth fonts include cordic/make_cordic
 FILE_PATTERNS =  *.h *.c *.md

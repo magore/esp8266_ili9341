@@ -1,14 +1,5 @@
-\hypertarget{mmc__hal_8h}{}\section{fatfs/mmc\+\_\+hal.h File Reference}
-\label{mmc__hal_8h}\index{fatfs/mmc\+\_\+hal.\+h@{fatfs/mmc\+\_\+hal.\+h}}
-
-
-M\+MC Hardware Layer for Fat\+Fs.  
-
-
-{\ttfamily \#include $<$stdint.\+h$>$}\\*
-{\ttfamily \#include $<$stdarg.\+h$>$}\\*
-{\ttfamily \#include $<$string.\+h$>$}\\*
-{\ttfamily \#include $<$math.\+h$>$}\\*
+\hypertarget{mmc__hal_8h}{}\section{fatfs.\+hal/mmc\+\_\+hal.h File Reference}
+\label{mmc__hal_8h}\index{fatfs.\+hal/mmc\+\_\+hal.\+h@{fatfs.\+hal/mmc\+\_\+hal.\+h}}
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
@@ -19,16 +10,6 @@ M\+MC Hardware Layer for Fat\+Fs.
 \#define \hyperlink{mmc__hal_8h_ae150a8179a17d87a2a72bc2d5705d835}{mmc\+\_\+cli}()~cli() /$\ast$$<$ interrupt disable $\ast$/
 \item 
 \#define \hyperlink{mmc__hal_8h_ae88a5c46f00c634234441978491b16fe}{mmc\+\_\+sei}()~sei() /$\ast$$<$ interrupt enable $\ast$/
-\item 
-\#define \hyperlink{mmc__hal_8h_aff158a334ad05bff4ddec6d37cee27fb}{mmc\+\_\+disk\+\_\+initialize}~\hyperlink{diskio_8h_a09cdaa6f36fa409bdf002727bff98eb1}{disk\+\_\+initialize}	/$\ast$$<$ \hyperlink{diskio_8h_a09cdaa6f36fa409bdf002727bff98eb1}{disk\+\_\+initialize}() $\ast$/
-\item 
-\#define \hyperlink{mmc__hal_8h_ae5aaad207550110193363805a79159ee}{mmc\+\_\+disk\+\_\+status}~\hyperlink{diskio_8h_a8348ac5ee6d709420c02e45c111f4793}{disk\+\_\+status}			/$\ast$$<$ \hyperlink{diskio_8h_a8348ac5ee6d709420c02e45c111f4793}{disk\+\_\+status}() $\ast$/
-\item 
-\#define \hyperlink{mmc__hal_8h_a730cbb43427fc64acf49f9b6c85d6c71}{mmc\+\_\+disk\+\_\+read}~\hyperlink{diskio_8h_a075d27f59f550e2cee07d00abcff32e0}{disk\+\_\+read}             /$\ast$$<$ \hyperlink{diskio_8h_a075d27f59f550e2cee07d00abcff32e0}{disk\+\_\+read}() $\ast$/
-\item 
-\#define \hyperlink{mmc__hal_8h_a0dbf394d39f84f5e956d77108b3f9787}{mmc\+\_\+disk\+\_\+write}~\hyperlink{diskio_8h_a0fe56ee4831a44b09cfd96856e069634}{disk\+\_\+write}			/$\ast$$<$ \hyperlink{diskio_8h_a075d27f59f550e2cee07d00abcff32e0}{disk\+\_\+read}() $\ast$/
-\item 
-\#define \hyperlink{mmc__hal_8h_a8ac2eb91d5f4e69388376228678c5912}{mmc\+\_\+disk\+\_\+ioctl}~\hyperlink{diskio_8h_ab00fa450a811dbdabe3c655c1a36fab4}{disk\+\_\+ioctl}           /$\ast$$<$ \hyperlink{diskio_8h_ab00fa450a811dbdabe3c655c1a36fab4}{disk\+\_\+ioctl} $\ast$/
 \end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
@@ -49,6 +30,8 @@ M\+MC Hardware Layer for Fat\+Fs.
 \begin{DoxyCompactList}\small\item\em Set M\+MC timeout timer in Milliseconds. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mmc__hal_8h_a852a35d5ff10bfbe64bcb06ca9a3aeb8}{mmc\+\_\+test\+\_\+timeout} (void)
 \begin{DoxyCompactList}\small\item\em Wait for timeout. \end{DoxyCompactList}\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mmc__hal_8h_abb3b85d2e3abc4df68487df05510bb55}{mmc\+\_\+ms\+\_\+wait} (int ms)
+\begin{DoxyCompactList}\small\item\em Wait for time in milliseconds. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mmc__hal_8h_ad417477e66c88b40dcce683fd6a5c47a}{mmc\+\_\+init} (int verbose)
 \begin{DoxyCompactList}\small\item\em Initialize M\+MC and Fat\+Fs interface, display diagnostics. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mmc__hal_8h_a7c8d13c34124d4ef83ecabc43fbdb8ad}{mmc\+\_\+spi\+\_\+init} (\hyperlink{earth2wireframe_8c_a32f2e37ee053cf2ce8ca28d1f74630e5}{int32\+\_\+t} clock)
@@ -73,27 +56,13 @@ M\+MC Hardware Layer for Fat\+Fs.
 \begin{DoxyCompactList}\small\item\em M\+MC Card Write Protect status. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
-M\+MC Hardware Layer for Fat\+Fs. 
-
-\begin{DoxyParagraph}{Edit History}
-
-\begin{DoxyItemize}
-\item \mbox{[}1.\+0\mbox{]} \mbox{[}Mike Gore\mbox{]} Initial revision of file.
-\end{DoxyItemize}
-\end{DoxyParagraph}
-\begin{DoxyParagraph}{Copyright \copyright{} 2014 Mike Gore, Inc. All rights reserved.}
-
-\end{DoxyParagraph}
-
-
 \subsection{Macro Definition Documentation}
 \index{mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}!M\+E\+M\+S\+P\+A\+CE@{M\+E\+M\+S\+P\+A\+CE}}
 \index{M\+E\+M\+S\+P\+A\+CE@{M\+E\+M\+S\+P\+A\+CE}!mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}}
 \subsubsection[{\texorpdfstring{M\+E\+M\+S\+P\+A\+CE}{MEMSPACE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+E\+M\+S\+P\+A\+CE}\hypertarget{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{}\label{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}
 
 
-Definition at line 27 of file mmc\+\_\+hal.\+h.
+Definition at line 18 of file mmc\+\_\+hal.\+h.
 
 \index{mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}!mmc\+\_\+cli@{mmc\+\_\+cli}}
 \index{mmc\+\_\+cli@{mmc\+\_\+cli}!mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}}
@@ -104,50 +73,11 @@ Definition at line 27 of file mmc\+\_\+hal.\+h.
 )~cli() /$\ast$$<$ interrupt disable $\ast$/}\hypertarget{mmc__hal_8h_ae150a8179a17d87a2a72bc2d5705d835}{}\label{mmc__hal_8h_ae150a8179a17d87a2a72bc2d5705d835}
 
 
-Definition at line 52 of file mmc\+\_\+hal.\+h.
+Definition at line 43 of file mmc\+\_\+hal.\+h.
 
 
 
 Referenced by mmc\+\_\+set\+\_\+ms\+\_\+timeout().
-
-\index{mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}!mmc\+\_\+disk\+\_\+initialize@{mmc\+\_\+disk\+\_\+initialize}}
-\index{mmc\+\_\+disk\+\_\+initialize@{mmc\+\_\+disk\+\_\+initialize}!mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}}
-\subsubsection[{\texorpdfstring{mmc\+\_\+disk\+\_\+initialize}{mmc_disk_initialize}}]{\setlength{\rightskip}{0pt plus 5cm}\#define mmc\+\_\+disk\+\_\+initialize~{\bf disk\+\_\+initialize}	/$\ast$$<$ {\bf disk\+\_\+initialize}() $\ast$/}\hypertarget{mmc__hal_8h_aff158a334ad05bff4ddec6d37cee27fb}{}\label{mmc__hal_8h_aff158a334ad05bff4ddec6d37cee27fb}
-
-
-Definition at line 56 of file mmc\+\_\+hal.\+h.
-
-\index{mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}!mmc\+\_\+disk\+\_\+ioctl@{mmc\+\_\+disk\+\_\+ioctl}}
-\index{mmc\+\_\+disk\+\_\+ioctl@{mmc\+\_\+disk\+\_\+ioctl}!mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}}
-\subsubsection[{\texorpdfstring{mmc\+\_\+disk\+\_\+ioctl}{mmc_disk_ioctl}}]{\setlength{\rightskip}{0pt plus 5cm}\#define mmc\+\_\+disk\+\_\+ioctl~{\bf disk\+\_\+ioctl}           /$\ast$$<$ {\bf disk\+\_\+ioctl} $\ast$/}\hypertarget{mmc__hal_8h_a8ac2eb91d5f4e69388376228678c5912}{}\label{mmc__hal_8h_a8ac2eb91d5f4e69388376228678c5912}
-
-
-Definition at line 60 of file mmc\+\_\+hal.\+h.
-
-
-
-Referenced by mmc\+\_\+init().
-
-\index{mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}!mmc\+\_\+disk\+\_\+read@{mmc\+\_\+disk\+\_\+read}}
-\index{mmc\+\_\+disk\+\_\+read@{mmc\+\_\+disk\+\_\+read}!mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}}
-\subsubsection[{\texorpdfstring{mmc\+\_\+disk\+\_\+read}{mmc_disk_read}}]{\setlength{\rightskip}{0pt plus 5cm}\#define mmc\+\_\+disk\+\_\+read~{\bf disk\+\_\+read}             /$\ast$$<$ {\bf disk\+\_\+read}() $\ast$/}\hypertarget{mmc__hal_8h_a730cbb43427fc64acf49f9b6c85d6c71}{}\label{mmc__hal_8h_a730cbb43427fc64acf49f9b6c85d6c71}
-
-
-Definition at line 58 of file mmc\+\_\+hal.\+h.
-
-\index{mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}!mmc\+\_\+disk\+\_\+status@{mmc\+\_\+disk\+\_\+status}}
-\index{mmc\+\_\+disk\+\_\+status@{mmc\+\_\+disk\+\_\+status}!mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}}
-\subsubsection[{\texorpdfstring{mmc\+\_\+disk\+\_\+status}{mmc_disk_status}}]{\setlength{\rightskip}{0pt plus 5cm}\#define mmc\+\_\+disk\+\_\+status~{\bf disk\+\_\+status}			/$\ast$$<$ {\bf disk\+\_\+status}() $\ast$/}\hypertarget{mmc__hal_8h_ae5aaad207550110193363805a79159ee}{}\label{mmc__hal_8h_ae5aaad207550110193363805a79159ee}
-
-
-Definition at line 57 of file mmc\+\_\+hal.\+h.
-
-\index{mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}!mmc\+\_\+disk\+\_\+write@{mmc\+\_\+disk\+\_\+write}}
-\index{mmc\+\_\+disk\+\_\+write@{mmc\+\_\+disk\+\_\+write}!mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}}
-\subsubsection[{\texorpdfstring{mmc\+\_\+disk\+\_\+write}{mmc_disk_write}}]{\setlength{\rightskip}{0pt plus 5cm}\#define mmc\+\_\+disk\+\_\+write~{\bf disk\+\_\+write}			/$\ast$$<$ {\bf disk\+\_\+read}() $\ast$/}\hypertarget{mmc__hal_8h_a0dbf394d39f84f5e956d77108b3f9787}{}\label{mmc__hal_8h_a0dbf394d39f84f5e956d77108b3f9787}
-
-
-Definition at line 59 of file mmc\+\_\+hal.\+h.
 
 \index{mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}!mmc\+\_\+sei@{mmc\+\_\+sei}}
 \index{mmc\+\_\+sei@{mmc\+\_\+sei}!mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}}
@@ -158,7 +88,7 @@ Definition at line 59 of file mmc\+\_\+hal.\+h.
 )~sei() /$\ast$$<$ interrupt enable $\ast$/}\hypertarget{mmc__hal_8h_ae88a5c46f00c634234441978491b16fe}{}\label{mmc__hal_8h_ae88a5c46f00c634234441978491b16fe}
 
 
-Definition at line 53 of file mmc\+\_\+hal.\+h.
+Definition at line 44 of file mmc\+\_\+hal.\+h.
 
 
 
@@ -169,7 +99,7 @@ Referenced by mmc\+\_\+set\+\_\+ms\+\_\+timeout().
 \subsubsection[{\texorpdfstring{W\+E\+A\+K\+\_\+\+A\+TR}{WEAK_ATR}}]{\setlength{\rightskip}{0pt plus 5cm}\#define W\+E\+A\+K\+\_\+\+A\+TR~{\bf \+\_\+\+\_\+attribute\+\_\+\+\_\+}((weak))}\hypertarget{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{}\label{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}
 
 
-Definition at line 32 of file mmc\+\_\+hal.\+h.
+Definition at line 23 of file mmc\+\_\+hal.\+h.
 
 
 
@@ -193,11 +123,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 393 of file mmc\+\_\+hal.\+c.
-
-
-
-Referenced by mmc\+\_\+deselect().
+Definition at line 407 of file mmc\+\_\+hal.\+c.
 
 \index{mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}!mmc\+\_\+cs\+\_\+enable@{mmc\+\_\+cs\+\_\+enable}}
 \index{mmc\+\_\+cs\+\_\+enable@{mmc\+\_\+cs\+\_\+enable}!mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}}
@@ -218,11 +144,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 375 of file mmc\+\_\+hal.\+c.
-
-
-
-Referenced by mmc\+\_\+select().
+Definition at line 388 of file mmc\+\_\+hal.\+c.
 
 \index{mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}!mmc\+\_\+fast@{mmc\+\_\+fast}}
 \index{mmc\+\_\+fast@{mmc\+\_\+fast}!mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}}
@@ -243,11 +165,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 312 of file mmc\+\_\+hal.\+c.
-
-
-
-Referenced by mmc\+\_\+disk\+\_\+initialize().
+Definition at line 323 of file mmc\+\_\+hal.\+c.
 
 \index{mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}!mmc\+\_\+init@{mmc\+\_\+init}}
 \index{mmc\+\_\+init@{mmc\+\_\+init}!mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}}
@@ -270,7 +188,7 @@ Initialize M\+MC and Fat\+Fs interface, display diagnostics.
 \end{DoxyReturn}
 
 
-Definition at line 198 of file mmc\+\_\+hal.\+c.
+Definition at line 208 of file mmc\+\_\+hal.\+c.
 
 
 
@@ -295,11 +213,7 @@ M\+MC Card Inserted status.
 
 \end{DoxyItemize}
 
-Definition at line 409 of file mmc\+\_\+hal.\+c.
-
-
-
-Referenced by mmc\+\_\+task().
+Definition at line 424 of file mmc\+\_\+hal.\+c.
 
 \index{mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}!mmc\+\_\+install\+\_\+timer@{mmc\+\_\+install\+\_\+timer}}
 \index{mmc\+\_\+install\+\_\+timer@{mmc\+\_\+install\+\_\+timer}!mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}}
@@ -320,11 +234,31 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 77 of file mmc\+\_\+hal.\+c.
+Definition at line 73 of file mmc\+\_\+hal.\+c.
 
 
 
 Referenced by mmc\+\_\+init().
+
+\index{mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}!mmc\+\_\+ms\+\_\+wait@{mmc\+\_\+ms\+\_\+wait}}
+\index{mmc\+\_\+ms\+\_\+wait@{mmc\+\_\+ms\+\_\+wait}!mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}}
+\subsubsection[{\texorpdfstring{mmc\+\_\+ms\+\_\+wait(int ms)}{mmc_ms_wait(int ms)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void mmc\+\_\+ms\+\_\+wait (
+\begin{DoxyParamCaption}
+\item[{int}]{ms}
+\end{DoxyParamCaption}
+)}\hypertarget{mmc__hal_8h_abb3b85d2e3abc4df68487df05510bb55}{}\label{mmc__hal_8h_abb3b85d2e3abc4df68487df05510bb55}
+
+
+Wait for time in milliseconds. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em ms} & timeout in Milliseconds \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 194 of file mmc\+\_\+hal.\+c.
 
 \index{mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}!mmc\+\_\+power\+\_\+off@{mmc\+\_\+power\+\_\+off}}
 \index{mmc\+\_\+power\+\_\+off@{mmc\+\_\+power\+\_\+off}!mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}}
@@ -345,11 +279,11 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 346 of file mmc\+\_\+hal.\+c.
+Definition at line 358 of file mmc\+\_\+hal.\+c.
 
 
 
-Referenced by mmc\+\_\+disk\+\_\+initialize(), and mmc\+\_\+disk\+\_\+ioctl().
+Referenced by power\+\_\+off().
 
 \index{mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}!mmc\+\_\+power\+\_\+on@{mmc\+\_\+power\+\_\+on}}
 \index{mmc\+\_\+power\+\_\+on@{mmc\+\_\+power\+\_\+on}!mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}}
@@ -370,11 +304,11 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 323 of file mmc\+\_\+hal.\+c.
+Definition at line 334 of file mmc\+\_\+hal.\+c.
 
 
 
-Referenced by mmc\+\_\+disk\+\_\+initialize().
+Referenced by power\+\_\+on().
 
 \index{mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}!mmc\+\_\+power\+\_\+status@{mmc\+\_\+power\+\_\+status}}
 \index{mmc\+\_\+power\+\_\+status@{mmc\+\_\+power\+\_\+status}!mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}}
@@ -395,7 +329,7 @@ M\+MC power status.
 
 \end{DoxyItemize}
 
-Definition at line 363 of file mmc\+\_\+hal.\+c.
+Definition at line 376 of file mmc\+\_\+hal.\+c.
 
 \index{mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}!mmc\+\_\+set\+\_\+ms\+\_\+timeout@{mmc\+\_\+set\+\_\+ms\+\_\+timeout}}
 \index{mmc\+\_\+set\+\_\+ms\+\_\+timeout@{mmc\+\_\+set\+\_\+ms\+\_\+timeout}!mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}}
@@ -410,7 +344,7 @@ Set M\+MC timeout timer in Milliseconds.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em ms} & timeout in Milliseconds\\
+\mbox{\tt in}  & {\em ms} & timeout in Milliseconds \\
 \hline
 \end{DoxyParams}
 \begin{DoxySeeAlso}{See also}
@@ -421,11 +355,11 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 162 of file mmc\+\_\+hal.\+c.
+Definition at line 161 of file mmc\+\_\+hal.\+c.
 
 
 
-Referenced by mmc\+\_\+disk\+\_\+initialize(), rcvr\+\_\+datablock(), and wait\+\_\+ready().
+Referenced by mmc\+\_\+disk\+\_\+initialize(), mmc\+\_\+disk\+\_\+read(), mmc\+\_\+ms\+\_\+wait(), rcvr\+\_\+datablock(), and wait\+\_\+ready().
 
 \index{mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}!mmc\+\_\+slow@{mmc\+\_\+slow}}
 \index{mmc\+\_\+slow@{mmc\+\_\+slow}!mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}}
@@ -446,11 +380,11 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 300 of file mmc\+\_\+hal.\+c.
+Definition at line 311 of file mmc\+\_\+hal.\+c.
 
 
 
-Referenced by mmc\+\_\+disk\+\_\+initialize(), mmc\+\_\+init(), and mmc\+\_\+power\+\_\+on().
+Referenced by mmc\+\_\+init(), and mmc\+\_\+power\+\_\+on().
 
 \index{mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}!mmc\+\_\+spi\+\_\+init@{mmc\+\_\+spi\+\_\+init}}
 \index{mmc\+\_\+spi\+\_\+init@{mmc\+\_\+spi\+\_\+init}!mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}}
@@ -468,7 +402,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 278 of file mmc\+\_\+hal.\+c.
+Definition at line 288 of file mmc\+\_\+hal.\+c.
 
 
 
@@ -490,7 +424,7 @@ uint8\+\_\+t value
 \end{DoxyReturn}
 
 
-Definition at line 115 of file mmc\+\_\+hal.\+c.
+Definition at line 113 of file mmc\+\_\+hal.\+c.
 
 \index{mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}!mmc\+\_\+spi\+\_\+\+R\+X\+\_\+buffer@{mmc\+\_\+spi\+\_\+\+R\+X\+\_\+buffer}}
 \index{mmc\+\_\+spi\+\_\+\+R\+X\+\_\+buffer@{mmc\+\_\+spi\+\_\+\+R\+X\+\_\+buffer}!mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}}
@@ -516,11 +450,11 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 103 of file mmc\+\_\+hal.\+c.
+Definition at line 100 of file mmc\+\_\+hal.\+c.
 
 
 
-Referenced by rcvr\+\_\+datablock().
+Referenced by rcvr\+\_\+spi\+\_\+multi().
 
 \index{mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}!mmc\+\_\+spi\+\_\+\+TX@{mmc\+\_\+spi\+\_\+\+TX}}
 \index{mmc\+\_\+spi\+\_\+\+TX@{mmc\+\_\+spi\+\_\+\+TX}!mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}}
@@ -543,11 +477,11 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 130 of file mmc\+\_\+hal.\+c.
+Definition at line 129 of file mmc\+\_\+hal.\+c.
 
 
 
-Referenced by mmc\+\_\+deselect(), mmc\+\_\+disk\+\_\+initialize(), mmc\+\_\+disk\+\_\+ioctl(), mmc\+\_\+power\+\_\+off(), mmc\+\_\+select(), mmc\+\_\+spi\+\_\+init(), rcvr\+\_\+datablock(), send\+\_\+cmd(), and xmit\+\_\+datablock().
+Referenced by mmc\+\_\+power\+\_\+off(), and mmc\+\_\+spi\+\_\+init().
 
 \index{mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}!mmc\+\_\+spi\+\_\+\+T\+X\+\_\+buffer@{mmc\+\_\+spi\+\_\+\+T\+X\+\_\+buffer}}
 \index{mmc\+\_\+spi\+\_\+\+T\+X\+\_\+buffer@{mmc\+\_\+spi\+\_\+\+T\+X\+\_\+buffer}!mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}}
@@ -573,11 +507,11 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 89 of file mmc\+\_\+hal.\+c.
+Definition at line 85 of file mmc\+\_\+hal.\+c.
 
 
 
-Referenced by xmit\+\_\+datablock().
+Referenced by xmit\+\_\+spi\+\_\+multi().
 
 \index{mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}!mmc\+\_\+spi\+\_\+\+T\+X\+RX@{mmc\+\_\+spi\+\_\+\+T\+X\+RX}}
 \index{mmc\+\_\+spi\+\_\+\+T\+X\+RX@{mmc\+\_\+spi\+\_\+\+T\+X\+RX}!mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}}
@@ -604,7 +538,7 @@ Definition at line 144 of file mmc\+\_\+hal.\+c.
 
 
 
-Referenced by mmc\+\_\+disk\+\_\+initialize(), mmc\+\_\+disk\+\_\+ioctl(), rcvr\+\_\+datablock(), send\+\_\+cmd(), wait\+\_\+ready(), and xmit\+\_\+datablock().
+Referenced by xchg\+\_\+spi().
 
 \index{mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}!mmc\+\_\+test\+\_\+timeout@{mmc\+\_\+test\+\_\+timeout}}
 \index{mmc\+\_\+test\+\_\+timeout@{mmc\+\_\+test\+\_\+timeout}!mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}}
@@ -624,11 +558,11 @@ Wait for timeout.
 \end{DoxyReturn}
 
 
-Definition at line 173 of file mmc\+\_\+hal.\+c.
+Definition at line 172 of file mmc\+\_\+hal.\+c.
 
 
 
-Referenced by mmc\+\_\+disk\+\_\+initialize(), rcvr\+\_\+datablock(), and wait\+\_\+ready().
+Referenced by mmc\+\_\+disk\+\_\+initialize(), mmc\+\_\+disk\+\_\+read(), mmc\+\_\+ms\+\_\+wait(), rcvr\+\_\+datablock(), and wait\+\_\+ready().
 
 \index{mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}!mmc\+\_\+wp\+\_\+status@{mmc\+\_\+wp\+\_\+status}}
 \index{mmc\+\_\+wp\+\_\+status@{mmc\+\_\+wp\+\_\+status}!mmc\+\_\+hal.\+h@{mmc\+\_\+hal.\+h}}
@@ -649,9 +583,5 @@ M\+MC Card Write Protect status.
 
 \end{DoxyItemize}
 
-Definition at line 422 of file mmc\+\_\+hal.\+c.
-
-
-
-Referenced by mmc\+\_\+task().
+Definition at line 437 of file mmc\+\_\+hal.\+c.
 

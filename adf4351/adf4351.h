@@ -25,23 +25,6 @@
 #ifndef _ADF4351_H_
 #define _ADF4351_H_
 
-#include <stdint.h>
-#include <stdarg.h>
-#include <string.h>
-#include <math.h>
-
-#include "adf4351_hal.h"
-
-// Named address space
-#ifndef MEMSPACE
-#define MEMSPACE /**/
-#endif
-
-// Weak attribute
-#ifndef WEAK_ATR
-#define WEAK_ATR __attribute__((weak))
-#endif
-
 #define ADF4351_RFOUT_MAX      4400000000.0
 #define ADF4351_RFOUT_MIN        34375000.0
 #define ADF4351_VCO_MIN        2200000000.0
@@ -483,4 +466,13 @@ MEMSPACE double ADF4351_PFD ( double REFin , int R );
 MEMSPACE void ADF4351_display_error ( int error );
 MEMSPACE int ADF4351_Config( double RFout , double REFin , double ChannelSpacing , double *RFoutCalc );
 
+/* adf4351_hal.c */
+MEMSPACE void ADF4351_spi_init ( void );
+void ADF4351_spi_begin ( void );
+void ADF4351_spi_end ( void );
+uint32_t ADF4351_spi_txrx ( uint32_t value );
 
+/* adf4351_cmd.c */
+MEMSPACE void ADF4351_update ( double freq );
+MEMSPACE void ADF4351_task ( void );
+MEMSPACE int adf4351_cmd ( char *line );

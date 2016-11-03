@@ -90,6 +90,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
 <a href="#define-members">Macros</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">timer.h File Reference</div>  </div>
@@ -98,13 +99,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>timer functions  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
-<code>#include &lt;stdarg.h&gt;</code><br />
-<code>#include &lt;string.h&gt;</code><br />
-<code>#include &lt;math.h&gt;</code><br />
-<code>#include &quot;<a class="el" href="timer__hal_8h_source.html">timer_hal.h</a>&quot;</code><br />
-<code>#include &lt;<a class="el" href="time_8h_source.html">time.h</a>&gt;</code><br />
-</div>
+
 <p><a href="timer_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
@@ -118,16 +113,13 @@ Macros</h2></td></tr>
 <tr class="memitem:a492a379b00d0ec04be9cd0994e0b42ae"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="timer_8h.html#a492a379b00d0ec04be9cd0994e0b42ae">MAX_TIMER_CNT</a>&#160;&#160;&#160;8</td></tr>
 <tr class="memdesc:a492a379b00d0ec04be9cd0994e0b42ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of user timer tasks.  <a href="#a492a379b00d0ec04be9cd0994e0b42ae">More...</a><br /></td></tr>
 <tr class="separator:a492a379b00d0ec04be9cd0994e0b42ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab29f444706056b13bca09e97c909bbc5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="timer_8h.html#ab29f444706056b13bca09e97c909bbc5">SYSTEM_TASK_HZ</a>&#160;&#160;&#160;1000L</td></tr>
-<tr class="memdesc:ab29f444706056b13bca09e97c909bbc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">System task in HZ.  <a href="#ab29f444706056b13bca09e97c909bbc5">More...</a><br /></td></tr>
-<tr class="separator:ab29f444706056b13bca09e97c909bbc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac0ca52f7bb0e2b7993bbcb75495d7904"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="timer_8h.html#ac0ca52f7bb0e2b7993bbcb75495d7904">SYSTEM_TASK_TIC_NS</a>&#160;&#160;&#160;( 1000000000L / SYSTEM_TASK_HZ )</td></tr>
-<tr class="memdesc:ac0ca52f7bb0e2b7993bbcb75495d7904"><td class="mdescLeft">&#160;</td><td class="mdescRight">System task in Nanoseconds.  <a href="#ac0ca52f7bb0e2b7993bbcb75495d7904">More...</a><br /></td></tr>
+<tr class="memdesc:ac0ca52f7bb0e2b7993bbcb75495d7904"><td class="mdescLeft">&#160;</td><td class="mdescRight">System task in HZ.  <a href="#ac0ca52f7bb0e2b7993bbcb75495d7904">More...</a><br /></td></tr>
 <tr class="separator:ac0ca52f7bb0e2b7993bbcb75495d7904"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e0b78d1697fa3781598373f4e161ea3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="timer_8h.html#a7e0b78d1697fa3781598373f4e161ea3">SYSTEM_TASK_TIC_US</a>&#160;&#160;&#160;( 1000000L / SYSTEM_TASK_HZ )</td></tr>
 <tr class="memdesc:a7e0b78d1697fa3781598373f4e161ea3"><td class="mdescLeft">&#160;</td><td class="mdescRight">System task in Microseconds.  <a href="#a7e0b78d1697fa3781598373f4e161ea3">More...</a><br /></td></tr>
 <tr class="separator:a7e0b78d1697fa3781598373f4e161ea3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4068229bfd30e574c7a9f1a8c6687582"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="timer_8h.html#a4068229bfd30e574c7a9f1a8c6687582">CLOCK_HZ</a>&#160;&#160;&#160;<a class="el" href="timer_8h.html#ab29f444706056b13bca09e97c909bbc5">SYSTEM_TASK_HZ</a></td></tr>
+<tr class="memitem:a4068229bfd30e574c7a9f1a8c6687582"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="timer_8h.html#a4068229bfd30e574c7a9f1a8c6687582">CLOCK_HZ</a>&#160;&#160;&#160;<a class="el" href="user__config_8h.html#ab29f444706056b13bca09e97c909bbc5">SYSTEM_TASK_HZ</a></td></tr>
 <tr class="memdesc:a4068229bfd30e574c7a9f1a8c6687582"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clock task in HZ defined as System task.  <a href="#a4068229bfd30e574c7a9f1a8c6687582">More...</a><br /></td></tr>
 <tr class="separator:a4068229bfd30e574c7a9f1a8c6687582"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6aacf2441874a27f25ae927bbddf1235"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="timer_8h.html#a6aacf2441874a27f25ae927bbddf1235">CLOCK_TIC_NS</a>&#160;&#160;&#160;<a class="el" href="timer_8h.html#ac0ca52f7bb0e2b7993bbcb75495d7904">SYSTEM_TASK_TIC_NS</a></td></tr>
@@ -136,6 +128,12 @@ Macros</h2></td></tr>
 <tr class="memitem:a1aa52cddadb40365ae68d2c45600d684"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="timer_8h.html#a1aa52cddadb40365ae68d2c45600d684">CLOCK_TIC_US</a>&#160;&#160;&#160;<a class="el" href="timer_8h.html#a7e0b78d1697fa3781598373f4e161ea3">SYSTEM_TASK_TIC_US</a></td></tr>
 <tr class="memdesc:a1aa52cddadb40365ae68d2c45600d684"><td class="mdescLeft">&#160;</td><td class="mdescRight">CLock task in Microseconds defined as System Task.  <a href="#a1aa52cddadb40365ae68d2c45600d684">More...</a><br /></td></tr>
 <tr class="separator:a1aa52cddadb40365ae68d2c45600d684"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:afeece078c6706f33383bf11bbf584518"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="timer_8h.html#afeece078c6706f33383bf11bbf584518">clockid_t</a></td></tr>
+<tr class="memdesc:afeece078c6706f33383bf11bbf584518"><td class="mdescLeft">&#160;</td><td class="mdescRight">type of clockid_t.  <a href="#afeece078c6706f33383bf11bbf584518">More...</a><br /></td></tr>
+<tr class="separator:afeece078c6706f33383bf11bbf584518"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -162,6 +160,41 @@ Functions</h2></td></tr>
 <tr class="memitem:a9f3dff4c1cc1701dc99d7e1d30ffcc06"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="timer_8h.html#a9f3dff4c1cc1701dc99d7e1d30ffcc06">clock_elapsed_end</a> (char *msg)</td></tr>
 <tr class="memdesc:a9f3dff4c1cc1701dc99d7e1d30ffcc06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subtract and display time difference from clock_elapesed_begin().  <a href="#a9f3dff4c1cc1701dc99d7e1d30ffcc06">More...</a><br /></td></tr>
 <tr class="separator:a9f3dff4c1cc1701dc99d7e1d30ffcc06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23ba64ca0da1fe41d4c870ada3e8a04e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="timer_8h.html#a23ba64ca0da1fe41d4c870ada3e8a04e">clock_clear</a> (void)</td></tr>
+<tr class="memdesc:a23ba64ca0da1fe41d4c870ada3e8a04e"><td class="mdescLeft">&#160;</td><td class="mdescRight">clear time and timezone to 0.  <a href="#a23ba64ca0da1fe41d4c870ada3e8a04e">More...</a><br /></td></tr>
+<tr class="separator:a23ba64ca0da1fe41d4c870ada3e8a04e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe2823a39b30ff55fe9326f2b5f0741e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="timer_8h.html#abe2823a39b30ff55fe9326f2b5f0741e">disable_timers</a> (void)</td></tr>
+<tr class="memdesc:abe2823a39b30ff55fe9326f2b5f0741e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable all timer tasks.  <a href="#abe2823a39b30ff55fe9326f2b5f0741e">More...</a><br /></td></tr>
+<tr class="separator:abe2823a39b30ff55fe9326f2b5f0741e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e736ce66a2bc05cc14b7a282fa52b73"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="timer_8h.html#a0e736ce66a2bc05cc14b7a282fa52b73">enable_timers</a> (void)</td></tr>
+<tr class="memdesc:a0e736ce66a2bc05cc14b7a282fa52b73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable timer tasks.  <a href="#a0e736ce66a2bc05cc14b7a282fa52b73">More...</a><br /></td></tr>
+<tr class="separator:a0e736ce66a2bc05cc14b7a282fa52b73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7de37276c1b697f865594c7e5f28e961"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="timer_8h.html#a7de37276c1b697f865594c7e5f28e961">execute_timers</a> (void)</td></tr>
+<tr class="memdesc:a7de37276c1b697f865594c7e5f28e961"><td class="mdescLeft">&#160;</td><td class="mdescRight">Execute all user timers at SYSTEM_HZ rate. Called by system task.  <a href="#a7de37276c1b697f865594c7e5f28e961">More...</a><br /></td></tr>
+<tr class="separator:a7de37276c1b697f865594c7e5f28e961"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa97274e3b8fdcd900c265d3808d5313c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="timer_8h.html#aa97274e3b8fdcd900c265d3808d5313c">clock_init</a> (void)</td></tr>
+<tr class="separator:aa97274e3b8fdcd900c265d3808d5313c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a182d70e09e9436c9c8a2e81b7597f206"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="timer_8h.html#a182d70e09e9436c9c8a2e81b7597f206">clock_task</a> (void)</td></tr>
+<tr class="memdesc:a182d70e09e9436c9c8a2e81b7597f206"><td class="mdescLeft">&#160;</td><td class="mdescRight">1000HZ timer task  <a href="#a182d70e09e9436c9c8a2e81b7597f206">More...</a><br /></td></tr>
+<tr class="separator:a182d70e09e9436c9c8a2e81b7597f206"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a06b0b10204f441d18c79601b4ee13f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="timer_8h.html#a4a06b0b10204f441d18c79601b4ee13f">init_timers</a> (void)</td></tr>
+<tr class="memdesc:a4a06b0b10204f441d18c79601b4ee13f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup all timers tasksi and enable interrupts.  <a href="#a4a06b0b10204f441d18c79601b4ee13f">More...</a><br /></td></tr>
+<tr class="separator:a4a06b0b10204f441d18c79601b4ee13f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab507661341c93c415b27ed9d40839539"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="timer_8h.html#ab507661341c93c415b27ed9d40839539">clock_getres</a> (<a class="el" href="time_8h.html#afeece078c6706f33383bf11bbf584518">clockid_t</a> clk_id, struct <a class="el" href="structtimespec.html">timespec</a> *res)</td></tr>
+<tr class="memdesc:ab507661341c93c415b27ed9d40839539"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read clock time resolution into struct timepec *ts - POSIX function.  <a href="#ab507661341c93c415b27ed9d40839539">More...</a><br /></td></tr>
+<tr class="separator:ab507661341c93c415b27ed9d40839539"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ebca9883466f2cc6fea0547e0e64e79"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="timer_8h.html#a4ebca9883466f2cc6fea0547e0e64e79">clock_settime</a> (<a class="el" href="time_8h.html#afeece078c6706f33383bf11bbf584518">clockid_t</a> clk_id, const struct <a class="el" href="structtimespec.html">timespec</a> *ts)</td></tr>
+<tr class="memdesc:a4ebca9883466f2cc6fea0547e0e64e79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set system clock using seconds and nonoseconds - POSIX function.  <a href="#a4ebca9883466f2cc6fea0547e0e64e79">More...</a><br /></td></tr>
+<tr class="separator:a4ebca9883466f2cc6fea0547e0e64e79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6e5b6a9c1fb8bc6e2093fca40600bf5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="timer_8h.html#aa6e5b6a9c1fb8bc6e2093fca40600bf5">clock_gettime</a> (<a class="el" href="time_8h.html#afeece078c6706f33383bf11bbf584518">clockid_t</a> clk_id, struct <a class="el" href="structtimespec.html">timespec</a> *ts)</td></tr>
+<tr class="memdesc:aa6e5b6a9c1fb8bc6e2093fca40600bf5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generic <a class="el" href="timer_8c.html#aa6e5b6a9c1fb8bc6e2093fca40600bf5" title="Generic clock_gettime() function WITHOUT high resolution. ">clock_gettime()</a> function WITHOUT high resolution.  <a href="#aa6e5b6a9c1fb8bc6e2093fca40600bf5">More...</a><br /></td></tr>
+<tr class="separator:aa6e5b6a9c1fb8bc6e2093fca40600bf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45ccd72c3ad32c4f7a5a8ef74d2653b3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="timer_8h.html#a45ccd72c3ad32c4f7a5a8ef74d2653b3">disable_system_task</a> (void)</td></tr>
+<tr class="separator:a45ccd72c3ad32c4f7a5a8ef74d2653b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9827e02881cff25ff30c35c7d8ed3ac4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="timer_8h.html#a9827e02881cff25ff30c35c7d8ed3ac4">enable_system_task</a> (void)</td></tr>
+<tr class="separator:a9827e02881cff25ff30c35c7d8ed3ac4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49353e09a3623d95083574b87e9aadc5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="timer_8h.html#a49353e09a3623d95083574b87e9aadc5">install_timers_isr</a> (void)</td></tr>
+<tr class="separator:a49353e09a3623d95083574b87e9aadc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>timer functions </p>
@@ -178,14 +211,14 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define CLOCK_HZ&#160;&#160;&#160;<a class="el" href="timer_8h.html#ab29f444706056b13bca09e97c909bbc5">SYSTEM_TASK_HZ</a></td>
+          <td class="memname">#define CLOCK_HZ&#160;&#160;&#160;<a class="el" href="user__config_8h.html#ab29f444706056b13bca09e97c909bbc5">SYSTEM_TASK_HZ</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Clock task in HZ defined as System task. </p>
 
-<p>Definition at line <a class="el" href="timer_8h_source.html#l00055">55</a> of file <a class="el" href="timer_8h_source.html">timer.h</a>.</p>
+<p>Definition at line <a class="el" href="timer_8h_source.html#l00052">52</a> of file <a class="el" href="timer_8h_source.html">timer.h</a>.</p>
 
 </div>
 </div>
@@ -201,7 +234,7 @@ Functions</h2></td></tr>
 
 <p>Clock task in Nanoseconds defined as System Task. </p>
 
-<p>Definition at line <a class="el" href="timer_8h_source.html#l00057">57</a> of file <a class="el" href="timer_8h_source.html">timer.h</a>.</p>
+<p>Definition at line <a class="el" href="timer_8h_source.html#l00054">54</a> of file <a class="el" href="timer_8h_source.html">timer.h</a>.</p>
 
 </div>
 </div>
@@ -217,7 +250,7 @@ Functions</h2></td></tr>
 
 <p>CLock task in Microseconds defined as System Task. </p>
 
-<p>Definition at line <a class="el" href="timer_8h_source.html#l00059">59</a> of file <a class="el" href="timer_8h_source.html">timer.h</a>.</p>
+<p>Definition at line <a class="el" href="timer_8h_source.html#l00056">56</a> of file <a class="el" href="timer_8h_source.html">timer.h</a>.</p>
 
 </div>
 </div>
@@ -233,25 +266,9 @@ Functions</h2></td></tr>
 
 <p>Number of user timer tasks. </p>
 
-<p>Definition at line <a class="el" href="timer_8h_source.html#l00038">38</a> of file <a class="el" href="timer_8h_source.html">timer.h</a>.</p>
+<p>Definition at line <a class="el" href="timer_8h_source.html#l00029">29</a> of file <a class="el" href="timer_8h_source.html">timer.h</a>.</p>
 
-<p>Referenced by <a class="el" href="timer_8c_source.html#l00106">delete_all_timers()</a>, <a class="el" href="timer__hal_8c_source.html#l00106">execute_timers()</a>, <a class="el" href="timer_8c_source.html#l00089">kill_timer()</a>, and <a class="el" href="timer_8c_source.html#l00049">set_timers()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ab29f444706056b13bca09e97c909bbc5"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define SYSTEM_TASK_HZ&#160;&#160;&#160;1000L</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>System task in HZ. </p>
-
-<p>Definition at line <a class="el" href="timer_8h_source.html#l00048">48</a> of file <a class="el" href="timer_8h_source.html">timer.h</a>.</p>
+<p>Referenced by <a class="el" href="timer_8c_source.html#l00117">delete_all_timers()</a>, <a class="el" href="timer_8c_source.html#l00261">execute_timers()</a>, <a class="el" href="timer_8c_source.html#l00100">kill_timer()</a>, and <a class="el" href="timer_8c_source.html#l00060">set_timers()</a>.</p>
 
 </div>
 </div>
@@ -265,11 +282,12 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>System task in HZ. </p>
 <p>System task in Nanoseconds. </p>
 
-<p>Definition at line <a class="el" href="timer_8h_source.html#l00050">50</a> of file <a class="el" href="timer_8h_source.html">timer.h</a>.</p>
+<p>Definition at line <a class="el" href="timer_8h_source.html#l00047">47</a> of file <a class="el" href="timer_8h_source.html">timer.h</a>.</p>
 
-<p>Referenced by <a class="el" href="timer__hal_8c_source.html#l00189">clock_getres()</a>.</p>
+<p>Referenced by <a class="el" href="timer_8c_source.html#l00329">clock_getres()</a>.</p>
 
 </div>
 </div>
@@ -285,11 +303,54 @@ Functions</h2></td></tr>
 
 <p>System task in Microseconds. </p>
 
-<p>Definition at line <a class="el" href="timer_8h_source.html#l00052">52</a> of file <a class="el" href="timer_8h_source.html">timer.h</a>.</p>
+<p>Definition at line <a class="el" href="timer_8h_source.html#l00049">49</a> of file <a class="el" href="timer_8h_source.html">timer.h</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a class="anchor" id="afeece078c6706f33383bf11bbf584518"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> <a class="el" href="time_8h.html#afeece078c6706f33383bf11bbf584518">clockid_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>type of clockid_t. </p>
+
+<p>Definition at line <a class="el" href="timer_8h_source.html#l00032">32</a> of file <a class="el" href="timer_8h_source.html">timer.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a23ba64ca0da1fe41d4c870ada3e8a04e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void clock_clear </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>clear time and timezone to 0. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="timer_8c.html#a4ebca9883466f2cc6fea0547e0e64e79" title="Set system clock using seconds and nonoseconds - POSIX function. ">clock_settime()</a>. </dd>
+<dd>
+<a class="el" href="time_8c.html#aba9a1e17f18817099c795d0559d747a8" title="Set current timezone with struct timezone *tz - POSIX function. ">settimezone()</a>.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>void. </dd></dl>
+
+<p>Definition at line <a class="el" href="timer_8c_source.html#l00221">221</a> of file <a class="el" href="timer_8c_source.html">timer.c</a>.</p>
+
+<p>Referenced by <a class="el" href="timer_8c_source.html#l00293">init_timers()</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a6beae313733d5f16cb62417d41eaca95"></a>
 <div class="memitem">
 <div class="memproto">
@@ -305,10 +366,10 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Store current struct timespec in __clock_elapsed. </p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="timer__hal_8c.html#aa6e5b6a9c1fb8bc6e2093fca40600bf5" title="Generic clock_gettime() function WITHOUT high resolution. ">clock_gettime()</a> <a class="el" href="posix_8h.html#a1c3d85ae80df5590fa314acffd8bf840">POSIX</a> function.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="timer_8c.html#aa6e5b6a9c1fb8bc6e2093fca40600bf5" title="Generic clock_gettime() function WITHOUT high resolution. ">clock_gettime()</a> <a class="el" href="posix_8h.html#a1c3d85ae80df5590fa314acffd8bf840">POSIX</a> function.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="timer_8c_source.html#l00173">173</a> of file <a class="el" href="timer_8c_source.html">timer.c</a>.</p>
+<p>Definition at line <a class="el" href="timer_8c_source.html#l00184">184</a> of file <a class="el" href="timer_8c_source.html">timer.c</a>.</p>
 
 </div>
 </div>
@@ -337,11 +398,182 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="timer__hal_8c.html#aa6e5b6a9c1fb8bc6e2093fca40600bf5" title="Generic clock_gettime() function WITHOUT high resolution. ">clock_gettime()</a>. </dd>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="timer_8c.html#aa6e5b6a9c1fb8bc6e2093fca40600bf5" title="Generic clock_gettime() function WITHOUT high resolution. ">clock_gettime()</a>. </dd>
 <dd>
 clock_elapesed_begin(). </dd></dl>
 
-<p>Definition at line <a class="el" href="timer_8c_source.html#l00189">189</a> of file <a class="el" href="timer_8c_source.html">timer.c</a>.</p>
+<p>Definition at line <a class="el" href="timer_8c_source.html#l00200">200</a> of file <a class="el" href="timer_8c_source.html">timer.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab507661341c93c415b27ed9d40839539"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int clock_getres </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="time_8h.html#afeece078c6706f33383bf11bbf584518">clockid_t</a>&#160;</td>
+          <td class="paramname"><em>clk_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structtimespec.html">timespec</a> *&#160;</td>
+          <td class="paramname"><em>res</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Read clock time resolution into struct timepec *ts - POSIX function. </p>
+<ul>
+<li>Note: We ignore clk_id <dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">clk_id</td><td>unused hardware clock index. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">res</td><td>timespec resolution result.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success. </dd>
+<dd>
+-1 on error. </dd></dl>
+</li>
+</ul>
+
+<p>Definition at line <a class="el" href="timer_8c_source.html#l00329">329</a> of file <a class="el" href="timer_8c_source.html">timer.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa6e5b6a9c1fb8bc6e2093fca40600bf5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int clock_gettime </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="time_8h.html#afeece078c6706f33383bf11bbf584518">clockid_t</a>&#160;</td>
+          <td class="paramname"><em>clk_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structtimespec.html">timespec</a> *&#160;</td>
+          <td class="paramname"><em>ts</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Generic <a class="el" href="timer_8c.html#aa6e5b6a9c1fb8bc6e2093fca40600bf5" title="Generic clock_gettime() function WITHOUT high resolution. ">clock_gettime()</a> function WITHOUT high resolution. </p>
+<p>Read clock time into struct timepec *ts - POSIX function.</p>
+<ul>
+<li>Note: We ignore clk_id, and include low level counter offsets when available.</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">clk_id</td><td>unused hardware clock index. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">ts</td><td>timespec result.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success. </dd>
+<dd>
+-1 on error. </dd></dl>
+
+<p>Definition at line <a class="el" href="timer_8c_source.html#l00377">377</a> of file <a class="el" href="timer_8c_source.html">timer.c</a>.</p>
+
+<p>Referenced by <a class="el" href="timer_8c_source.html#l00184">clock_elapsed_begin()</a>, <a class="el" href="timer_8c_source.html#l00200">clock_elapsed_end()</a>, <a class="el" href="time_8c_source.html#l00561">gettimeofday()</a>, and <a class="el" href="time_8c_source.html#l00583">time()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa97274e3b8fdcd900c265d3808d5313c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void clock_init </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a4ebca9883466f2cc6fea0547e0e64e79"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int clock_settime </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="time_8h.html#afeece078c6706f33383bf11bbf584518">clockid_t</a>&#160;</td>
+          <td class="paramname"><em>clk_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const struct <a class="el" href="structtimespec.html">timespec</a> *&#160;</td>
+          <td class="paramname"><em>ts</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set system clock using seconds and nonoseconds - POSIX function. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">clk_id</td><td>Hardware timer index used when there are more then one.<ul>
+<li>Note: We ignore clk_id for now. </li>
+</ul>
+</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ts</td><td>struct timespec input.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0. </dd></dl>
+
+<p>Definition at line <a class="el" href="timer_8c_source.html#l00345">345</a> of file <a class="el" href="timer_8c_source.html">timer.c</a>.</p>
+
+<p>Referenced by <a class="el" href="timer_8c_source.html#l00221">clock_clear()</a>, <a class="el" href="time_8c_source.html#l00621">clock_set()</a>, <a class="el" href="time_8c_source.html#l00657">setdate_r()</a>, and <a class="el" href="time_8c_source.html#l00600">settimeofday()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a182d70e09e9436c9c8a2e81b7597f206"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void clock_task </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>1000HZ timer task </p>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
+<p>Definition at line <a class="el" href="timer_8c_source.html#l00276">276</a> of file <a class="el" href="timer_8c_source.html">timer.c</a>.</p>
+
+<p>Referenced by <a class="el" href="timer_8c_source.html#l00293">init_timers()</a>.</p>
 
 </div>
 </div>
@@ -362,9 +594,48 @@ clock_elapesed_begin(). </dd></dl>
 <p>Clear ALL user timer tasks. </p>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="timer_8c_source.html#l00106">106</a> of file <a class="el" href="timer_8c_source.html">timer.c</a>.</p>
+<p>Definition at line <a class="el" href="timer_8c_source.html#l00117">117</a> of file <a class="el" href="timer_8c_source.html">timer.c</a>.</p>
 
-<p>Referenced by <a class="el" href="timer__hal_8c_source.html#l00150">init_timers()</a>.</p>
+<p>Referenced by <a class="el" href="timer_8c_source.html#l00293">init_timers()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a45ccd72c3ad32c4f7a5a8ef74d2653b3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void disable_system_task </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Referenced by <a class="el" href="timer_8c_source.html#l00235">disable_timers()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abe2823a39b30ff55fe9326f2b5f0741e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void disable_timers </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Disable all timer tasks. </p>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
+<p>Definition at line <a class="el" href="timer_8c_source.html#l00235">235</a> of file <a class="el" href="timer_8c_source.html">timer.c</a>.</p>
 
 </div>
 </div>
@@ -391,7 +662,114 @@ clock_elapesed_begin(). </dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void. </dd></dl>
 
-<p>Definition at line <a class="el" href="timer_8c_source.html#l00156">156</a> of file <a class="el" href="timer_8c_source.html">timer.c</a>.</p>
+<p>Definition at line <a class="el" href="timer_8c_source.html#l00167">167</a> of file <a class="el" href="timer_8c_source.html">timer.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9827e02881cff25ff30c35c7d8ed3ac4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void enable_system_task </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Referenced by <a class="el" href="timer_8c_source.html#l00248">enable_timers()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0e736ce66a2bc05cc14b7a282fa52b73"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void enable_timers </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enable timer tasks. </p>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
+<p>Definition at line <a class="el" href="timer_8c_source.html#l00248">248</a> of file <a class="el" href="timer_8c_source.html">timer.c</a>.</p>
+
+<p>Referenced by <a class="el" href="timer_8c_source.html#l00293">init_timers()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7de37276c1b697f865594c7e5f28e961"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void execute_timers </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Execute all user timers at SYSTEM_HZ rate. Called by system task. </p>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
+<p>Definition at line <a class="el" href="timer_8c_source.html#l00261">261</a> of file <a class="el" href="timer_8c_source.html">timer.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4a06b0b10204f441d18c79601b4ee13f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void init_timers </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Setup all timers tasksi and enable interrupts. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="timer_8c.html#a182d70e09e9436c9c8a2e81b7597f206" title="1000HZ timer task ">clock_task()</a> </dd>
+<dd>
+: <a class="el" href="timer__hal_8c.html" title="timer hardware abstartion layer functions ">timer_hal.c</a> for hardware dependent interface </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+<p>See <a class="el" href="time_8c.html" title="Common Linux/POSIX time functions. ">time.c</a> </p>
+
+<p>Definition at line <a class="el" href="timer_8c_source.html#l00293">293</a> of file <a class="el" href="timer_8c_source.html">timer.c</a>.</p>
+
+<p>Referenced by <a class="el" href="user__main_8c_source.html#l00575">setup()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a49353e09a3623d95083574b87e9aadc5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void install_timers_isr </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Referenced by <a class="el" href="timer_8c_source.html#l00293">init_timers()</a>.</p>
 
 </div>
 </div>
@@ -423,7 +801,7 @@ clock_elapesed_begin(). </dd></dl>
 <dd>
 -1 on error. </dd></dl>
 
-<p>Definition at line <a class="el" href="timer_8c_source.html#l00089">89</a> of file <a class="el" href="timer_8c_source.html">timer.c</a>.</p>
+<p>Definition at line <a class="el" href="timer_8c_source.html#l00100">100</a> of file <a class="el" href="timer_8c_source.html">timer.c</a>.</p>
 
 </div>
 </div>
@@ -466,9 +844,9 @@ clock_elapesed_begin(). </dd></dl>
 <dd>
 -1 on error. </dd></dl>
 
-<p>Definition at line <a class="el" href="timer_8c_source.html#l00049">49</a> of file <a class="el" href="timer_8c_source.html">timer.c</a>.</p>
+<p>Definition at line <a class="el" href="timer_8c_source.html#l00060">60</a> of file <a class="el" href="timer_8c_source.html">timer.c</a>.</p>
 
-<p>Referenced by <a class="el" href="timer__hal_8c_source.html#l00121">clock_init()</a>, <a class="el" href="timer__hal_8c_source.html#l00150">init_timers()</a>, <a class="el" href="mmc__hal_8c_source.html#l00077">mmc_install_timer()</a>, and <a class="el" href="user__main_8c_source.html#l00197">ms_init()</a>.</p>
+<p>Referenced by <a class="el" href="timer_8c_source.html#l00293">init_timers()</a>, <a class="el" href="mmc__hal_8c_source.html#l00073">mmc_install_timer()</a>, and <a class="el" href="user__main_8c_source.html#l00157">ms_init()</a>.</p>
 
 </div>
 </div>
@@ -506,9 +884,9 @@ clock_elapesed_begin(). </dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void. </dd></dl>
 
-<p>Definition at line <a class="el" href="timer_8c_source.html#l00124">124</a> of file <a class="el" href="timer_8c_source.html">timer.c</a>.</p>
+<p>Definition at line <a class="el" href="timer_8c_source.html#l00135">135</a> of file <a class="el" href="timer_8c_source.html">timer.c</a>.</p>
 
-<p>Referenced by <a class="el" href="timer_8c_source.html#l00189">clock_elapsed_end()</a>.</p>
+<p>Referenced by <a class="el" href="timer_8c_source.html#l00200">clock_elapsed_end()</a>.</p>
 
 </div>
 </div>
@@ -526,16 +904,16 @@ clock_elapesed_begin(). </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="timer_8c_source.html#l00144">144</a> of file <a class="el" href="timer_8c_source.html">timer.c</a>.</p>
+<p>Definition at line <a class="el" href="timer_8c_source.html#l00155">155</a> of file <a class="el" href="timer_8c_source.html">timer.c</a>.</p>
 
-<p>Referenced by <a class="el" href="timer_8c_source.html#l00189">clock_elapsed_end()</a>, and <a class="el" href="timer_8c_source.html#l00156">display_ts()</a>.</p>
+<p>Referenced by <a class="el" href="timer_8c_source.html#l00200">clock_elapsed_end()</a>, and <a class="el" href="timer_8c_source.html#l00167">display_ts()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Oct 5 2016 21:27:12 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Nov 2 2016 22:32:05 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

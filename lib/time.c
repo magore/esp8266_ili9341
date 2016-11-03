@@ -22,13 +22,23 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <stdint.h>
-#include <stdarg.h>
-#include <string.h>
-#include <math.h>
+#include "user_config.h"
 
-#include "timer_hal.h"
-#include "time.h"
+#ifdef AVR
+#include <stdlib.h>
+#include <string.h>
+#endif
+
+#include "fatfs.h"
+
+#include "printf/mathio.h"
+
+#include "lib/time.h"
+#include "lib/timer.h"
+
+#ifdef RTC
+#include "lib/rtc.h"
+#endif
 
 /// @brief  System Clock Time
 extern volatile ts_t __clock;
@@ -629,10 +639,10 @@ MEMSPACE
 int setdate (void)
 {
     char buf[40];
-	extern int get_line (char *buff, int len);
+	extern MEMSPACE char *fgets ( char *str , int size , FILE *stream );
 
     printf("Enter date YYYY MM DD HH:MM:SS >");
-    get_line(buf,40);
+    fgets(buf,39,stdin);
 
 	return(setdate_r(buf));
 }
@@ -653,7 +663,15 @@ int setdate_r (char *buf)
     tm.tm_year=tm.tm_mon=tm.tm_mday=tm.tm_hour=tm.tm_min=tm.tm_sec=0;
 
 
-#ifdef NO_SCANF
+#ifdef SMALL_SSCANF
+    sscanf(buf,"%d %d %d %d:%d:%d",
+        &tm.tm_year,
+        &tm.tm_mon,
+        &tm.tm_mday,
+        &tm.tm_hour,
+        &tm.tm_min,
+        &tm.tm_sec);
+#else
     while(*buf && *buf < '0' && *buf > '9')
         ++buf;
     tm.tm_year = strtol(buf,&buf,10);
@@ -674,14 +692,6 @@ int setdate_r (char *buf)
     tm.tm_sec = strtol(buf,&buf,10);
     while(*buf && *buf < '0' && *buf > '9')
         ++buf;
-#else
-    sscanf(buf,"%d %d %d %d:%d:%d",
-        &tm.tm_year,
-        &tm.tm_mon,
-        &tm.tm_mday,
-        &tm.tm_hour,
-        &tm.tm_min,
-        &tm.tm_sec);
 #endif
 
     tm.tm_mon--;

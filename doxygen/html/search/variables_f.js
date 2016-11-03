@@ -27,5 +27,6 @@ var searchData=
   ['rfoutpower',['RFOutPower',['../structr4__t.html#ade4ee7f86064dd89515558dc5aa138bd',1,'r4_t']]],
   ['rind',['rind',['../structrwbuf__t.html#ad5cbf7a78a5f5d9aa75b38f90e0fb6af',1,'rwbuf_t']]],
   ['rotation',['rotation',['../structwindow.html#afbd48ebcb41e68d0f458dac593578aa8',1,'window']]],
-  ['rsize',['rsize',['../structrwbuf__t.html#aa4094c7e329ae85cc50dbd06d3b50d44',1,'rwbuf_t']]]
+  ['rsize',['rsize',['../structrwbuf__t.html#aa4094c7e329ae85cc50dbd06d3b50d44',1,'rwbuf_t']]],
+  ['rtc_5fok',['rtc_ok',['../rtc_8c.html#a8e105ca35123da90e3d4db81f8848c4a',1,'rtc.c']]]
 ];

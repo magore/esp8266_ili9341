@@ -116,4 +116,4 @@ cleanfont:
 	rm -f fonts.h 
 
 clean:
-	rm -f bdffont2c *\.o fonts.h bdfview *\.bdf
+	-rm -f bdffont2c *\.o fonts.h bdfview *\.bdf

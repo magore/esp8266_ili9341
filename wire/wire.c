@@ -20,14 +20,17 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+#include "user_config.h"
 
 #include <stdint.h>
 #include <stdarg.h>
 #include <string.h>
 #include <math.h>
 
-#include "wire_types.h"
-#include "wire.h"
+#include "display/ili9341.h"
+#include "cordic/cordic.h"
+#include "wire/wire_types.h"
+#include "wire/wire.h"
 
 /*
  @brief convert fixed point coordinate to floating point

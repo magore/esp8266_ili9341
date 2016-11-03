@@ -3,7 +3,8 @@ var searchData=
   ['emit_5fdata',['emit_data',['../bdffontutil_8c.html#a083894d36a7a6960e30d21d88a0da874',1,'emit_data(FILE *out, char *name, unsigned char *data, int size):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a083894d36a7a6960e30d21d88a0da874',1,'emit_data(FILE *out, char *name, unsigned char *data, int size):&#160;bdffontutil.c']]],
   ['emit_5fnumber',['emit_number',['../bdffontutil_8c.html#a052882497beff245c47eafa6b988f2c0',1,'emit_number(FILE *out, char *name, int num):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a052882497beff245c47eafa6b988f2c0',1,'emit_number(FILE *out, char *name, int num):&#160;bdffontutil.c']]],
   ['emit_5fstr',['emit_str',['../bdffontutil_8c.html#adcb08a26399fd69fe0d607897367e4af',1,'emit_str(FILE *out, char *name, unsigned char *data):&#160;bdffontutil.c'],['../bdffontutil_8h.html#adcb08a26399fd69fe0d607897367e4af',1,'emit_str(FILE *out, char *name, unsigned char *data):&#160;bdffontutil.c']]],
-  ['enable_5ftimers',['enable_timers',['../timer__hal_8c.html#ac97e80c15c73721fbc9f5071f6681fac',1,'enable_timers():&#160;timer_hal.c'],['../timer__hal_8h.html#a0e736ce66a2bc05cc14b7a282fa52b73',1,'enable_timers(void):&#160;timer_hal.c']]],
+  ['enable_5fsystem_5ftask',['enable_system_task',['../timer_8h.html#a9827e02881cff25ff30c35c7d8ed3ac4',1,'timer.h']]],
+  ['enable_5ftimers',['enable_timers',['../timer_8c.html#ac97e80c15c73721fbc9f5071f6681fac',1,'enable_timers():&#160;timer.c'],['../timer_8h.html#a0e736ce66a2bc05cc14b7a282fa52b73',1,'enable_timers(void):&#160;timer.c']]],
   ['escape',['escape',['../send_8c.html#ad694096646db9ef480b7bd9e5afe6ab8',1,'send.c']]],
   ['esp_5fschedule',['esp_schedule',['../user__task_8c.html#a5a3c589a14dfdc0378d8c190aba6151a',1,'esp_schedule():&#160;user_task.c'],['../user__task_8h.html#a66d1d76616427ace5a7d32de875ee4a7',1,'esp_schedule(void):&#160;user_task.c']]],
   ['esp_5fyield',['esp_yield',['../user__task_8c.html#a88e45631d7959d57631982c6b57e3be7',1,'esp_yield():&#160;user_task.c'],['../user__task_8h.html#ab15bd123c97825b13a1a7550bafb1f3f',1,'esp_yield(void):&#160;user_task.c']]],
@@ -32,5 +33,5 @@ var searchData=
   ['ets_5fuart_5fprintf',['ets_uart_printf',['../cal__dex_8c.html#a13b7de6e7c126209e587ac1cd5ccb4fc',1,'cal_dex.c']]],
   ['ets_5fvprintf',['ets_vprintf',['../ets__sys_8h.html#adc2f5bdec43573f11176fc8e82a892f6',1,'ets_sys.h']]],
   ['ets_5fvsnprintf',['ets_vsnprintf',['../ets__sys_8h.html#a9b391ddf89d3e76da23e90acbda518d4',1,'ets_sys.h']]],
-  ['execute_5ftimers',['execute_timers',['../timer__hal_8c.html#a67a27354654cf2a2169137adc7274def',1,'execute_timers():&#160;timer_hal.c'],['../timer__hal_8h.html#a7de37276c1b697f865594c7e5f28e961',1,'execute_timers(void):&#160;timer_hal.c']]]
+  ['execute_5ftimers',['execute_timers',['../timer_8c.html#a67a27354654cf2a2169137adc7274def',1,'execute_timers():&#160;timer.c'],['../timer_8h.html#a7de37276c1b697f865594c7e5f28e961',1,'execute_timers(void):&#160;timer.c']]]
 ];

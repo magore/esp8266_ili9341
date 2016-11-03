@@ -108,19 +108,18 @@ README</h1>
 </ul>
 </li>
 <li>ILI9341 display driver<ul>
-<li>Mutiple custom size window support</li>
+<li>Mutiple custom size windows</li>
+<li>Custom fonts</li>
 <li>Window scrolling</li>
 <li>readPixel() function suported</li>
 <li>The specific display this was tested on is a TM022HDH26 display I got from ebay.</li>
 <li>Not limited by ILI9341 hardware scroll restrictions.</li>
 </ul>
 </li>
+<li>BDF FONT compiler tools and fonts sets<ul>
+<li>Tools to creates C code used in the display drivers</li>
 </ul>
 </li>
-</ul>
-</dd></dl>
-<ul>
-<li>BDF compiler and fonts - creates C code used in the display drivers</li>
 <li>Wireframe Viewer<ul>
 <li>Code generator for Earth coastline data</li>
 <li>I created two wireframe demos<ul>
@@ -132,7 +131,7 @@ README</h1>
 </li>
 <li>CORDIC C code generator and 3D transformation code support functions use by wireframe viewer code</li>
 <li>Small PRINTF with full floating point support - much smaller then GNU full verson along</li>
-<li>ATOF and various integer conversions</li>
+<li>Additiona number IO functions, ATOF etc</li>
 <li>WEB server using SD CARD with CGI processing - files and CGI results can be ANY SIZE!<ul>
 <li>Example web site for testing</li>
 <li>WEB server can update TFT display<ul>
@@ -144,15 +143,18 @@ README</h1>
 <li>Network server client example for display updates</li>
 <li>Uart network server client for serial uart to network bridge.</li>
 <li>Generic queue handling code</li>
-<li>Uart driver.</li>
-<li>POSIX wrappers for FatFS - provides unix file I/O operations<ul>
-<li>Includes FatFS SD card support by ChaN</li>
+<li>ESP8266 support for FatFS by ChaN 2016<ul>
+<li>SD card and microSD support</li>
 </ul>
 </li>
+<li>POSIX wrappers for FatFS - provides UNIX/LINUX file I/O operations</li>
 <li>POSIX time functions and RTC set with NTP</li>
 <li>Multiple timers used by rtc and time functions</li>
 <li>HSPI code that can handle multiple devices each with varying clock frequencies</li>
 </ul>
+</li>
+</ul>
+</dd></dl>
 <dl class="section user"><dt>Credits</dt><dd><ul>
 <li>Project compiles using ESP Open SDK - or esp8266-devkit by CHERTS </li>
 </ul>
@@ -180,12 +182,12 @@ README</h1>
 <a href="http://en.wikipedia.org/wiki/Glyph_Bitmap_Distribution_Format">http://en.wikipedia.org/wiki/Glyph_Bitmap_Distribution_Format</a> </dd>
 <dd>
 <a href="https://partners.adobe.com/public/developer/en/font/5005.BDF_Spec.pdf">https://partners.adobe.com/public/developer/en/font/5005.BDF_Spec.pdf</a><ul>
-<li>FatFS code by CHaN: </li>
+<li>FatFS code is by CHaN: </li>
 </ul>
 </dd>
 <dd>
 <a href="http://elm-chan.org/fsw/ff/00index_e.html">http://elm-chan.org/fsw/ff/00index_e.html</a><ul>
-<li>Yield Code extracted from from ESP8266 Arduino Project </li>
+<li>Yield Code extracted from from <a class="el" href="cpu_8h.html#af917fb5672b9339e228304f59f3b250a">ESP8266</a> Arduino Project </li>
 </ul>
 </dd>
 <dd>
@@ -193,22 +195,60 @@ README</h1>
 </dd></dl>
 <dl class="section user"><dt>Directories</dt><dd><ul>
 <li>Files<ul>
+<li><a class="el" href="COPYRIGHT_8md.html">COPYRIGHT.md</a> - Project Copyright file</li>
+<li>Doxyfile - Doxygen configuration file</li>
+<li>display.jpg - image of the ili9341 display while the software is running</li>
+<li>doit - bash script that compiles and uploads firmware then starts miniterm</li>
+<li>doxyfile.inc - automatically created file lists directories to searc for documenation</li>
+<li>header - comon include header that can be used by user C files</li>
+<li>get_esp-open-sdk - shell script to download / compile and install the current version of ESP OPEN SDK<ul>
+<li>This project is now using verions 2.0.0 of the SDK</li>
+<li>Tested on Ubuntu 16.04.1 and Ubuntu 14.04.5</li>
+<li>Installs under /opt/Expressif/esp-open-sdk</li>
+</ul>
+</li>
+<li>get_esptool - downloads the latest version of esptool - required for this project</li>
+<li>header - example C headers required fo C programs in this project</li>
 <li>Makefile from CHERTS modified for the project<ul>
 <li>Features controlled by variables in Makefile</li>
 </ul>
 </li>
-<li><a class="el" href="README_8md.html">README.md</a> - Project readme file</li>
-<li><a class="el" href="COPYRIGHT_8md.html">COPYRIGHT.md</a> - Project Copyright file</li>
-<li>Doxyfile - Doxygen configuration file</li>
-<li>get_esp-open-sdk - shell script to download an install ESP OPEN SDK on Ubuntu 14.04LTS<ul>
-<li>Tested with esp_iot_sdk_v1.5.2 as of 21 Jun 2016</li>
+<li>meminfo.sh - displays current RAM usgae for the project<ul>
+<li>Example: ./meminfo.sh build/demo.elf</li>
 </ul>
 </li>
-<li>term115200 - shell script to launch terminal to 115200 baud</li>
+<li>miniterm - shell script to launch terminal to 115200 baud Defaults to /dev/ttyUSB0 115200</li>
+<li><a class="el" href="README_8md.html">README.md</a> - Project readme file<ul>
+<li>Tested with ESP8266_NONOS_SDK_V2.0.0_16_08_10 1 Nove 2016</li>
+</ul>
+</li>
+<li><a class="el" href="send_8c.html">send.c</a><ul>
+<li>Send message to network server</li>
+<li>Example: ./send -i 192.168.200.116 -m ''<ul>
+<li>These escape characters are processed on the display: <br />
+, , </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>setpath - set the current enviornument for the SDK and tools<ul>
+<li>Example: . setpath</li>
+</ul>
+</li>
+<li><a class="el" href="testflash_8c.html" title="Create or read a flash test pattern file - used for testing esp8266 flash. ">testflash.c</a><ul>
+<li>Create and read a test pattern filled file for flash testing</li>
+</ul>
+</li>
+<li>video.mp4<ul>
+<li>Video of ili9341 display with web server CGI updating the display</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>Eclipse Project files and Directories<ul>
 <li>Change .settings/language.settings.xml</li>
+<li>.cproject</li>
+<li>.project</li>
 <li>.settings<ul>
 <li>.settings/language.settings.xml<ul>
 <li>Contains path to cross compiler for indexing - matches assumptions in SDK installer script: get_esp-open-sdk</li>
@@ -216,26 +256,30 @@ README</h1>
 </li>
 </ul>
 </li>
-<li>.cproject</li>
-<li>.project</li>
 </ul>
 </li>
 <li>Directories<ul>
-<li>adf4351<ul>
-<li>Analog Devices ADF4351 Wideband Synthesizer with Integrated VCO driver<ul>
+<li>adf4351 - Analog Devices ADF4351 Wideband Synthesizer with Integrated VCO driver<ul>
 <li><a class="el" href="adf4351_8c.html">adf4351.c</a></li>
-<li><a class="el" href="adf4351_8h.html">adf4351.h</a></li>
+<li><a class="el" href="adf4351_8h.html">adf4351.h</a><ul>
+<li>Main ADF4351 interface code</li>
 </ul>
 </li>
-<li>Hardware Abstarction layer</li>
+<li><a class="el" href="adf4351__cmd_8c.html">adf4351_cmd.c</a></li>
+<li>adf4351_cmd.h<ul>
+<li>User interface and frequency scanning task</li>
+</ul>
+</li>
 <li><a class="el" href="adf4351__hal_8c.html">adf4351_hal.c</a></li>
-<li><a class="el" href="adf4351__hal_8h.html">adf4351_hal.h</a></li>
+<li>adf4351_hal.h<ul>
+<li>Hardware Abstarction layer</li>
 </ul>
 </li>
-<li>bridge<ul>
+</ul>
+</li>
+<li>bridge - Serial bridge code - send and receive serial data via network<ul>
 <li>bridge.c</li>
 <li>bridge.h<ul>
-<li>Serial bridge code - send and receive serial data via network</li>
 <li>Opens a port on port 23 so you can use telnet to test<ul>
 <li>Note: at the moment no telnet command processing is done.</li>
 </ul>
@@ -244,8 +288,12 @@ README</h1>
 </li>
 </ul>
 </li>
-<li>cordic<ul>
-<li>CORDIC - very fast 2D/3D trig conversion</li>
+</ul>
+</li>
+</ul>
+</dd></dl>
+<ul>
+<li>cordic - CORDIC function - a very fast method to do 2D/3D trig conversions<ul>
 <li><a class="el" href="cordic_8c.html" title="Cordic Routines Handle angle outside of the first quadrant Added standalone test to verify CORDIC aga...">cordic.c</a></li>
 <li><a class="el" href="cordic_8h.html" title="Cordic Routines Handle angle outside of the first quadrant Added standalone test to verify CORDIC aga...">cordic.h</a><ul>
 <li>My 3D transformation functions are based on CORDIC and gradians/100</li>
@@ -275,25 +323,15 @@ README</h1>
 </li>
 </ul>
 </li>
-<li>display<ul>
-<li>My mostly rewritten ili9341 display driver code handles multiple windows<ul>
-<li>Depends on a few modified Adifruit functions under directory driver</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</dd></dl>
-<ul>
+<li>display - My mostly rewritten ili9341 display driver with multiple window support and scrolling<ul>
+<li>Depends on a few modified Adifruit functions under directory driver<ul>
 <li><a class="el" href="font_8c.html" title="Font display for ili9341 driver Displays fonts generated by bdffont2c BDF to C code converter BDF = G...">font.c</a></li>
 <li>font.h<ul>
 <li>My Fixed and proportional font display code</li>
 </ul>
 </li>
 <li><a class="el" href="fonts_8h.html">fonts.h</a><ul>
-<li>Fonts data structures converted BDF fonts</li>
+<li>Font data structures created via the BDF converter - see fonts directory</li>
 </ul>
 </li>
 <li><a class="el" href="ili9341_8c.html" title="ili9341 driver inspired by Adafruit ili9341 code All code in this file has been rewritten by Mike Gor...">ili9341.c</a></li>
@@ -307,23 +345,24 @@ README</h1>
 </li>
 </ul>
 </li>
-</ul>
-<p><a class="el" href="ili9341__hal_8c.html" title="ili9341 driver inspired by Adafruit ili9341 code All code in this file has been rewritten by Mike Gor...">ili9341_hal.c</a></p><ul>
-<li><a class="el" href="ili9341__hal_8h.html" title="ili9341 driver inspired by Adafruit ili9341 code All code in this file has been rewritten by Mike Gor...">ili9341_hal.h</a><ul>
+<li><a class="el" href="ili9341__hal_8c.html" title="ili9341 driver inspired by Adafruit ili9341 code All code in this file has been rewritten by Mike Gor...">ili9341_hal.c</a></li>
+<li>ili9341_hal.h<ul>
 <li>DIsplay hardware abstraction layer</li>
 </ul>
 </li>
-</ul>
-<p><a class="el" href="tft__printf_8c.html">tft_printf.c</a></p><ul>
+<li><a class="el" href="tft__printf_8c.html">tft_printf.c</a></li>
 <li><a class="el" href="tft__printf_8h.html" title="printf wrapper for ili9341 drivers ">tft_printf.h</a><ul>
 <li>Printf interface to display library <a class="el" href="tft__printf_8c.html#ad6d6dda4facdc045d477c0cc9403e0c1" title="tft_printf function ">tft_printf()</a></li>
 </ul>
 </li>
-<li>docs<ul>
-<li>ili9431 and esp8266 related documents</li>
 </ul>
 </li>
-<li>driver - only third party code<ul>
+</ul>
+</li>
+</ul>
+<p>docs - ili9431 and esp8266 related documents</p>
+<ul>
+<li>driver - third party code<ul>
 <li><a class="el" href="cal__dex_8c.html">cal_dex.c</a><ul>
 <li>Debug exception support by cal (20150421, cal)</li>
 </ul>
@@ -335,8 +374,8 @@ README</h1>
 </li>
 </ul>
 </li>
-<li>earth<ul>
-<li>Earth coast line data and display code</li>
+</ul>
+<p>earth - Earth coast line data and display code</p><ul>
 <li>Still need to add hidden vector removal<ul>
 <li>00README.txt<ul>
 <li>Article on coordinate transforms from stackoverflow by Daphna Shezaf</li>
@@ -351,62 +390,111 @@ README</h1>
 <li><a class="el" href="earth__data_8h.html">earth_data.h</a> from Coastline LAt/LONG pairs</li>
 </ul>
 </li>
-<li>data<ul>
+<li>data - Coastline data at various resolutions<ul>
 <li>world.dat</li>
 <li>world_10m.txt</li>
 <li>world_110m.txt</li>
-<li>world_50m.txt<ul>
-<li>Coastline data at various resolutions</li>
+<li>world_50m.txt</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
+<p>esp8266 - ESP8266 specific code</p><ul>
+<li><a class="el" href="bits_8h.html">bits.h</a></li>
+<li><a class="el" href="cpu_8h.html" title="Master Include for FatFs, RTC, Timers AVR8 - Part of HP85 disk emulator. ">cpu.h</a></li>
+<li>Debugging printf wrapper<ul>
+<li><a class="el" href="debug_8c.html" title="Small printf user function. ">debug.c</a></li>
+<li><a class="el" href="debug_8h.html" title="Small printf user function. ">debug.h</a></li>
+</ul>
+</li>
+<li>Flash read, Bittest functions, For systems requiring specific memory alignment access methods<ul>
+<li><a class="el" href="flash_8c.html" title="Flash read and bit test utilities. ">flash.c</a></li>
+<li><a class="el" href="flash_8h.html" title="Flash read and bit test utilities. ">flash.h</a></li>
+</ul>
+</li>
+<li>My rewritten HPSI code that avoids unaligned read and writes (based on code ideas from CHERTS and Sem)<ul>
+<li><a class="el" href="hspi_8c.html" title="HSPI driver for ESP8255 Based on initial work from Sem 2015 - rewrittem Added code to handle proper a...">hspi.c</a></li>
+<li><a class="el" href="hspi_8h.html">hspi.h</a></li>
+</ul>
+</li>
+<li>RTC DS1307 code in progress<ul>
+<li><a class="el" href="rtc_8c.html">rtc.c</a></li>
+<li><a class="el" href="rtc_8h.html">rtc.h</a></li>
+</ul>
+</li>
+<li>POSIX malloc,calloc, free wrappers and reset functions<ul>
+<li><a class="el" href="system_8c.html" title="Memory and system utilities. ">system.c</a></li>
+<li><a class="el" href="system_8h.html" title="System memory and reset utilities. ">system.h</a></li>
+</ul>
+</li>
+<li>Serial I/O Interrupt driven receive and transmit code<ul>
+<li><a class="el" href="uart_8c.html" title="Uart driver for ESP8266. ">uart.c</a></li>
+<li><a class="el" href="uart_8h.html">uart.h</a></li>
+<li>uart_register.h</li>
+</ul>
+</li>
+</ul>
+<p>fatfs - R0.12b FatFs code from (C)ChaN, 2016</p><ul>
+<li>with minimal changes for ESP8266<ul>
+<li>00history.txt</li>
+<li>00readme.txt</li>
+<li><a class="el" href="ff_8c.html">ff.c</a></li>
+<li><a class="el" href="ff_8h.html">ff.h</a></li>
+<li><a class="el" href="ffconf_8h.html">ffconf.h</a></li>
+<li><a class="el" href="integer_8h.html">integer.h</a></li>
+<li>option<ul>
+<li><a class="el" href="cc932_8c.html">cc932.c</a></li>
+<li><a class="el" href="cc936_8c.html">cc936.c</a></li>
+<li><a class="el" href="cc949_8c.html">cc949.c</a></li>
+<li><a class="el" href="cc950_8c.html">cc950.c</a></li>
+<li><a class="el" href="ccsbcs_8c.html">ccsbcs.c</a></li>
+<li><a class="el" href="syscall_8c.html">syscall.c</a></li>
+<li><a class="el" href="unicode_8c.html">unicode.c</a></li>
+</ul>
 </li>
 </ul>
 </li>
-<li>fatfs<ul>
-<li>FatFs core is by (C)ChaN, 2013<ul>
-<li><a class="el" href="disk_8c.html" title="Allocate, Free and display FILINFO structurs, getfattime(), display error messages. ">disk.c</a></li>
-<li><a class="el" href="disk_8h.html" title="Allocate, Free and display FILINFO structurs, getfattime(), display error messages. ">disk.h</a></li>
-<li><a class="el" href="diskio_8h.html" title="FafFs disk interface modlue include file (C) ChaN, 2013. ">diskio.h</a></li>
-<li><a class="el" href="ff_8c.html" title="FatFS file system module include file R0.10b (C) ChaN, 2014. ">ff.c</a></li>
-<li><a class="el" href="ffconf_8h.html" title="FatFS file system module configuration file R0.10b (C) ChaN, 2014. ">ffconf.h</a></li>
-<li><a class="el" href="ff_8h.html" title="FatFS file system module include file R0.10b (C) ChaN, 2014. ">ff.h</a></li>
-<li><a class="el" href="integer_8h.html" title="Integer type definitions for FatFs project module (C) ChaN, 2013. ">integer.h</a></li>
-<li><a class="el" href="mmc_8c.html" title="MMC upper level interface to FatFS. ">mmc.c</a></li>
+</ul>
+<p>fatfs.hal - My updated FatFS hardware abstraction layer code for ESP8266</p><ul>
+<li>Device layer<ul>
+<li><a class="el" href="diskio_8c.html">diskio.c</a></li>
+<li><a class="el" href="diskio_8h.html">diskio.h</a></li>
+</ul>
+</li>
+<li>MMC Code for SD cards<ul>
+<li><a class="el" href="mmc_8c.html">mmc.c</a></li>
 <li><a class="el" href="mmc_8h.html">mmc.h</a></li>
-<li>option</li>
-<li><a class="el" href="syscall_8c.html" title="FatFS OS dependent controls R0.10b (C) ChaN, 2014. ">syscall.c</a></li>
-<li><a class="el" href="unicode_8c.html" title="FatFS Unicode include file R0.10b (C) ChaN, 2014. ">unicode.c</a></li>
 </ul>
 </li>
-</ul>
-</li>
-</ul>
-<p>fatfs SD card HAL and POSIX wrappers - provides unix file I/O operations</p><ul>
-<li>modified to use hardware abstraction</li>
-<li><a class="el" href="fatfs__utils_8c.html" title="fatfs test utilities with user interface ">fatfs_utils.c</a></li>
-<li><a class="el" href="fatfs__utils_8h.html" title="fatfs test utilities with user interface ">fatfs_utils.h</a><ul>
-<li>user tests and commands<ul>
-<li>fatfs_alloc_finfo fatfs_cat fatfs_cd fatfs_copy fatfs_create fatfs_filinfo_list</li>
-<li>fatfs_help fatfs_ls fatfs_mkdir fatfs_pwd fatfs_rename fatfs_rm fatfs_rmdir fatfs_stat fatfs_status fatfs_tests</li>
-</ul>
-</li>
-</ul>
-</li>
+<li>MMC Hardware abstraction layer<ul>
 <li><a class="el" href="mmc__hal_8c.html">mmc_hal.c</a></li>
-<li><a class="el" href="mmc__hal_8h.html" title="MMC Hardware Layer for FatFs. ">mmc_hal.h</a><ul>
-<li>MMC Hardware abstraction layer</li>
+<li><a class="el" href="mmc__hal_8h.html">mmc_hal.h</a></li>
 </ul>
 </li>
 </ul>
-<p>My POSIX wrappers for fatfs</p><ul>
-<li><a class="el" href="posix_8c.html" title="PRovides hardware abstraction layer to MMC.C. ">posix.c</a> - provides a POSIX interface for FatFS - unix file I/O wrappers</li>
-<li><a class="el" href="posix_8h.html" title="POSIX wrapper for FatFS. ">posix.h</a></li>
+<p>fatfs.sup - My POSIX wrappers for FatFS and user interface code</p><ul>
+<li><a class="el" href="fatfs_8h.html">fatfs.h</a><ul>
+<li>Master include file for all FatFS headers</li>
 </ul>
-<p>fonts</p><ul>
-<li>BDF Font conversion code<ul>
+</li>
+<li>FatFS support functions<ul>
+<li><a class="el" href="fatfs__sup_8c.html">fatfs_sup.c</a></li>
+<li><a class="el" href="fatfs__sup_8h.html">fatfs_sup.h</a></li>
+</ul>
+</li>
+<li>User tests and commands<ul>
+<li><a class="el" href="fatfs__utils_8c.html">fatfs_utils.c</a></li>
+<li><a class="el" href="fatfs__utils_8h.html">fatfs_utils.h</a></li>
+</ul>
+</li>
+<li>My POSIX wrappers for fatfs<ul>
+<li><a class="el" href="posix_8c.html">posix.c</a> - provides a POSIX interface for FatFS - unix file I/O wrappers</li>
+<li><a class="el" href="posix_8h.html">posix.h</a></li>
+</ul>
+</li>
+</ul>
+<p>fonts - BDF Font conversion code</p><ul>
 <li><a class="el" href="bdffont2c_8c.html" title="BDF to C code converter Copyright © 2015 Mike Gore. ">bdffont2c.c</a><ul>
 <li>Convert BDF fonts to C structures main program</li>
 </ul>
@@ -457,13 +545,8 @@ README</h1>
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-<p>html</p><ul>
-<li>A working web site with files that can be put on an SD card<ul>
+<p>html - A working web site with files that can be put on an SD card</p><ul>
 <li>Used for testing <a class="el" href="web_8c.html" title="Small web server for esp8266. ">web.c</a></li>
-</ul>
-</li>
 </ul>
 <p>include</p><ul>
 <li><a class="el" href="user__config_8h.html" title="Master include file for project Includes all project includes and defines here. ">user_config.h</a><ul>
@@ -479,24 +562,27 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p>lib</p><ul>
-<li>time, rtc and timer functions<ul>
+<p>ld - Linker scripts</p>
+<ul>
+<li>lib - time, rtc and timer functions<ul>
+<li>POSIX time functions<ul>
 <li><a class="el" href="time_8h.html" title="Common Linux/POSIX time functions. ">time.h</a></li>
-<li><a class="el" href="time_8c.html" title="Common Linux/POSIX time functions. ">time.c</a> - POSIX time functions</li>
+<li><a class="el" href="time_8c.html" title="Common Linux/POSIX time functions. ">time.c</a></li>
+</ul>
+</li>
+<li>Simple timers and tasks<ul>
 <li><a class="el" href="timer_8h.html" title="timer functions ">timer.h</a></li>
-<li><a class="el" href="timer_8c.html" title="timer functions ">timer.c</a> - simple timers (only intended for quick functions)</li>
-<li><a class="el" href="timer__hal_8h.html" title="timer hardware abstartion layer functions ">timer_hal.h</a></li>
+<li><a class="el" href="timer_8c.html" title="timer functions ">timer.c</a></li>
+</ul>
+</li>
+<li>timeer hardware abstation layer<ul>
+<li>timer_hal.h</li>
 <li><a class="el" href="timer__hal_8c.html" title="timer hardware abstartion layer functions ">timer_hal.c</a> - timer hardware abstraction layer</li>
 </ul>
 </li>
-<li>implementation of some posix stdlib functions<ul>
-<li><a class="el" href="std_8c.html">std.c</a></li>
-<li><a class="el" href="std_8h.html" title="Part of Small printf, and verious conversion code with floating point support. ">std.h</a></li>
-</ul>
-</li>
-<li>implementation of some posix ctype, string and strings functions<ul>
-<li><a class="el" href="str_8c.html" title="String matching functions. ">str.c</a></li>
-<li><a class="el" href="str_8h.html" title="String matching functions. ">str.h</a></li>
+<li>implementation of some POSIX ctype and istring functions<ul>
+<li>string.c</li>
+<li>string.h</li>
 </ul>
 </li>
 <li>Generic ring buffer support code<ul>
@@ -505,21 +591,31 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p>network</p><ul>
-<li>Simple network server - displays message sent by <a class="el" href="send_8c.html">send.c</a><ul>
+</li>
+<li>network - Simple network server<ul>
+<li>displays message sent by <a class="el" href="send_8c.html">send.c</a><ul>
 <li><a class="el" href="network_8c.html" title="Network test client This code receives a message and displays iit. ">network.c</a></li>
 <li><a class="el" href="network_8h.html">network.h</a></li>
 </ul>
 </li>
 </ul>
-<p>printf</p><ul>
-<li>My small printf with floating support, misc I/O functions<ul>
-<li><a class="el" href="printf_8c.html" title="Small printf, and verious conversion code with floating point support. ">printf.c</a></li>
-<li><a class="el" href="printf_8h.html" title="Small printf, and verious conversion code with floating point support. ">printf.h</a></li>
-</ul>
 </li>
+<li>printf My small printf with floating support, misc I/O functions<ul>
 <li>Build and test printf<ul>
 <li>Makefile</li>
+</ul>
+</li>
+<li>Number I/O function<ul>
+<li><a class="el" href="mathio_8c.html">mathio.c</a></li>
+<li><a class="el" href="mathio_8h.html" title="Math IO functions, and verious conversion code with floating point support. ">mathio.h</a></li>
+</ul>
+</li>
+<li>printf function with user defined output function - for strings,files or devices<ul>
+<li><a class="el" href="printf_8c.html" title="Small printf, and verious conversion code with floating point support. ">printf.c</a></li>
+</ul>
+</li>
+<li>Simple scanf<ul>
+<li><a class="el" href="sscanf_8c.html">sscanf.c</a></li>
 </ul>
 </li>
 <li>Test functions for <a class="el" href="printf_8c.html" title="Small printf, and verious conversion code with floating point support. ">printf.c</a> that can be run under linux to verify results<ul>
@@ -527,62 +623,25 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p>scanf</p><ul>
-<li>Simple scanf<ul>
-<li><a class="el" href="scanf_8c.html">scanf.c</a></li>
+</li>
+<li>server - Receive network message and display on ili9341 display<ul>
+<li><a class="el" href="server_8c.html" title="Network test client This code receives a message and displays iit. ">server.c</a></li>
+<li><a class="el" href="server_8h.html">server.h</a></li>
 </ul>
 </li>
-</ul>
-<p><a class="el" href="send_8c.html">send.c</a></p><ul>
-<li>Send message to network server</li>
-<li>Example: ./send -i 192.168.200.116 -m ''<ul>
-<li>These escape characters are processed on the display: <br />
-, , </li>
-</ul>
-</li>
-</ul>
-<p>user</p><ul>
-<li>Main user demo task<ul>
+<li>user - Main user demo task<ul>
+<li>Intializes ESP8266 and sets up demo with 4 active windows with independent attributes<ul>
 <li><a class="el" href="user__main_8c.html" title="Main user and initialization code This initialize the platform and runs the main user task...">user_main.c</a></li>
 </ul>
 </li>
-<li>Intializes ESP8266 and sets up demo with 4 active windows with independent attributes</li>
-</ul>
-<p>utils</p><ul>
-<li>Debugging printf wrapper<ul>
-<li><a class="el" href="debug_8c.html" title="Small printf user function. ">debug.c</a></li>
-<li><a class="el" href="debug_8h.html" title="Small printf user function. ">debug.h</a></li>
 </ul>
 </li>
-<li>My rewritten HPSI code that avoids unaligned read and writes (based on code ideas from CHERTS and Sem)<ul>
-<li><a class="el" href="hspi_8c.html" title="HSPI driver for ESP8255 Based on initial work from Sem 2015 - rewrittem Added code to handle proper a...">hspi.c</a></li>
-<li><a class="el" href="hspi_8h.html">hspi.h</a></li>
-</ul>
-</li>
-<li>Serial I/O Interrup driven receive and transmit code<ul>
-<li><a class="el" href="uart_8c.html" title="Uart driver for ESP8266. ">uart.c</a></li>
-<li><a class="el" href="uart_8h.html">uart.h</a></li>
-<li>uart_register.h</li>
-</ul>
-</li>
-<li>Flash read, Bittest functions, For systems requiring specific memory alignment access methods<ul>
-<li><a class="el" href="flash_8c.html" title="Flash read and bit test utilities. ">flash.c</a></li>
-<li><a class="el" href="flash_8h.html" title="Flash read and bit test utilities. ">flash.h</a></li>
-</ul>
-</li>
-<li>POSIX malloc,calloc and free wrappers<ul>
-<li><a class="el" href="sys_8c.html" title="Memory and system utilities. ">sys.c</a></li>
-<li><a class="el" href="sys_8h.html" title="System utilities. ">sys.h</a></li>
-</ul>
-</li>
-</ul>
-<p>web</p><ul>
-<li>Web server with FAT filesystem SD CARD support<ul>
+<li>web - Web server with FAT filesystem SD CARD support<ul>
+<li>Features<ul>
 <li><a class="el" href="web_8c.html" title="Small web server for esp8266. ">web.c</a></li>
 <li><a class="el" href="web_8h.html" title="Small web server for esp8266. ">web.h</a></li>
 </ul>
 </li>
-<li>Features</li>
 <li>Served files can be ANY SIZE!<ul>
 <li>CGI files can have an extension of: html,htm,text,txt,cgi</li>
 <li>CGI results can be ANY SIZE</li>
@@ -595,7 +654,7 @@ README</h1>
 </li>
 <li>Uses yield function to continue background tasks while serving requests</li>
 <li>Applications<ul>
-<li>I created a door sign status display that can be updated via a web page web page running on the esp8266<ul>
+<li>I created a door sign status display that can be updated via a web page web page running on the esp8266</li>
 <li>Copy the file html/msg.cgi to the root folder of a fat32 SD card and modify to suit your needs.</li>
 <li>Use: open a web browser to the web server runing on the esp8266<ul>
 <li>See the Video</li>
@@ -607,14 +666,13 @@ README</h1>
 </li>
 </ul>
 </li>
-</ul>
-<p>wire</p><ul>
-<li>Wireframe viewer code - uses CORDIC<ul>
+<li>wire - Wireframe viewer code - uses CORDIC<ul>
+<li>Wireframe viewer<ul>
 <li><a class="el" href="wire_8c.html" title="wireframe view code ">wire.c</a></li>
 <li><a class="el" href="wire_8h.html" title="wireframe view code ">wire.h</a></li>
 </ul>
 </li>
-<li>Wireframe CUBE data<ul>
+<li>Cube data<ul>
 <li><a class="el" href="cube__data_8h.html" title="Wireframe CUBE data used by wireframe viewer The code handles fixed, proportional and bounding box fo...">cube_data.h</a></li>
 </ul>
 </li>
@@ -623,19 +681,21 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p>yield</p><ul>
-<li>Yield code from Arduino yield code</li>
+</li>
+<li>yield - Yield code from Arduino yield code<ul>
 <li>README.txt</li>
+<li>Context switch code<ul>
 <li>cont.S</li>
 <li><a class="el" href="cont_8h.html">cont.h</a></li>
-<li><a class="el" href="cont__util_8c.html">cont_util.c</a><ul>
-<li>Context switch code</li>
+<li><a class="el" href="cont__util_8c.html">cont_util.c</a></li>
+<li><a class="el" href="ets__sys_8h.html">ets_sys.h</a></li>
 </ul>
 </li>
-<li><a class="el" href="ets__sys_8h.html">ets_sys.h</a></li>
 <li>Main user_init and task replacement with yield support<ul>
 <li><a class="el" href="user__task_8c.html">user_task.c</a></li>
 <li><a class="el" href="user__task_8h.html">user_task.h</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -665,7 +725,7 @@ README</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Oct 5 2016 21:27:13 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Nov 2 2016 22:32:05 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

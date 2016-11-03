@@ -31,11 +31,6 @@
 #ifndef _ILI9341_H_
 #define _ILI9341_H_
 
-#include <stdint.h>
-#include <stdarg.h>
-#include <string.h>
-#include <math.h>
-
 typedef struct
 {
     int16_t xpos;       // x pos
@@ -52,7 +47,6 @@ typedef struct
 	uint8_t tabstop;
 } window;
 
-#include "ili9341_hal.h"
 
 // Named address space
 #ifndef MEMSPACE
@@ -85,6 +79,9 @@ typedef struct
 /// @param[in] g: green data
 #define tft_RGBto565(r, g, b) ((uint16_t) (((r) & 0xf8) << 8) | (((g) & 0xfc) << 3) | (((b) & 0xf8) >>3))
 
+#define SWAP(a, b) do { a ^= b; b ^= a; a ^= b; } while(0)
+#define ABS(x) ((x)<0 ? -(x) : (x))
+
 // ============================================================
 
 /* font.c */
@@ -93,7 +90,6 @@ int font_H(int font);
 int font_W(int font);
 int font_attr ( window *win , int c , _fontc *f );
 void tft_drawChar ( window *win , uint8_t c );
-
 
 
 /* ili9341.c */
@@ -132,5 +128,13 @@ void tft_drawLine ( window *win , int16_t x0 , int16_t y0 , int16_t x1 , int16_t
 MEMSPACE void tft_cleareol ( window *win );
 MEMSPACE void tft_clearline ( window *win );
 void tft_putch ( window *win , int c );
+
+/* ili9341_hal.c */
+void tft_spi_begin ( void );
+void tft_spi_end ( void );
+void tft_spi_TX ( uint8_t *data , int bytes , uint8_t command );
+void tft_spi_TXRX ( uint8_t *data , int bytes , uint8_t command );
+void tft_spi_RX ( uint8_t *data , int bytes , uint8_t command );
+MEMSPACE window *tft_init ( void );
 
 #endif // _ILI9341_SUP_H_

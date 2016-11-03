@@ -31,8 +31,13 @@
 #include <string.h>
 #include <math.h>
 
-#include "adf4351_hal.h"
-#include "adf4351.h"
+#include "user_config.h"
+
+#include "esp8266/hspi.h"
+
+#include "adf4351/adf4351.h"
+
+#include "printf/mathio.h"
 
 // ADF4351_DEBUG
 // 1 = errors
@@ -735,4 +740,5 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
 
     return (0);
 }
+
 

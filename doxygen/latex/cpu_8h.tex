@@ -1,0 +1,233 @@
+\hypertarget{cpu_8h}{}\section{esp8266/cpu.h File Reference}
+\label{cpu_8h}\index{esp8266/cpu.\+h@{esp8266/cpu.\+h}}
+
+
+Master Include for Fat\+Fs, R\+TC, Timers A\+V\+R8 -\/ Part of H\+P85 disk emulator.  
+
+
+{\ttfamily \#include $<$osapi.\+h$>$}\\*
+{\ttfamily \#include $<$os\+\_\+type.\+h$>$}\\*
+{\ttfamily \#include $<$c\+\_\+types.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}spi\+\_\+register.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$ets\+\_\+sys.\+h$>$}\\*
+{\ttfamily \#include $<$ip\+\_\+addr.\+h$>$}\\*
+{\ttfamily \#include $<$espconn.\+h$>$}\\*
+{\ttfamily \#include $<$gpio.\+h$>$}\\*
+{\ttfamily \#include $<$user\+\_\+interface.\+h$>$}\\*
+{\ttfamily \#include $<$mem.\+h$>$}\\*
+{\ttfamily \#include $<$stdbool.\+h$>$}\\*
+{\ttfamily \#include $<$stdint.\+h$>$}\\*
+{\ttfamily \#include $<$stdarg.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}esp8266/bits.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}esp8266/system.\+h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{cpu_8h_a43bafb28b29491ec7f871319b5a3b2f8}{F\+\_\+\+C\+PU}~80000000\+UL
+\item 
+\#define \hyperlink{cpu_8h_af917fb5672b9339e228304f59f3b250a}{E\+S\+P8266}
+\item 
+\#define \hyperlink{cpu_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}~I\+C\+A\+C\+H\+E\+\_\+\+F\+L\+A\+S\+H\+\_\+\+A\+T\+TR
+\item 
+\#define \hyperlink{cpu_8h_a9946b5a72f8c16945877e78578df6a7f}{M\+E\+M\+S\+P\+A\+C\+E\+\_\+\+RO}~I\+C\+A\+C\+H\+E\+\_\+\+R\+O\+D\+A\+T\+A\+\_\+\+A\+T\+TR
+\item 
+\#define \hyperlink{cpu_8h_a52d60ae7ccb513718808b5cdbb26ffa3}{M\+E\+M\+S\+P\+A\+C\+E\+\_\+\+F\+O\+NT}~I\+C\+A\+C\+H\+E\+\_\+\+F\+L\+A\+S\+H\+\_\+\+A\+T\+TR
+\item 
+\#define \hyperlink{cpu_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}~((void $\ast$) 0)
+\item 
+\#define \hyperlink{cpu_8h_a41f9c5fb8b08eb5dc3edce4dcb37fee7}{true}~1
+\item 
+\#define \hyperlink{cpu_8h_a65e9886d74aaee76545e83dd09011727}{false}~0
+\item 
+\#define \hyperlink{cpu_8h_a0ba95ba075f659fa991ee3df107aa3c3}{\+\_\+\+S\+I\+Z\+E\+\_\+T}
+\item 
+\#define \hyperlink{cpu_8h_ab29f444706056b13bca09e97c909bbc5}{S\+Y\+S\+T\+E\+M\+\_\+\+T\+A\+S\+K\+\_\+\+HZ}~1000L
+\begin{DoxyCompactList}\small\item\em user task rate for software timers \end{DoxyCompactList}\item 
+\#define \hyperlink{cpu_8h_a027f5683e524693c2ba74dd55fb42d5a}{Mem\+\_\+\+Clear}(a)~memset(a, 0, sizeof(a))
+\begin{DoxyCompactList}\small\item\em macros to simplify filling buffers \end{DoxyCompactList}\item 
+\#define \hyperlink{cpu_8h_accba58d1237bfcb21e9f4bb040aebc4a}{Mem\+\_\+\+Set}(a,  b)~memset(a, (int) b, sizeof(a))
+\item 
+\#define \hyperlink{cpu_8h_a8ca99a0a57619094a5bff3a009b5cea8}{snprintf}(s,  size,  format,  args...)~rs232\+\_\+snprintf(s, size, P\+S\+TR(format), \#\#args)
+\item 
+\#define \hyperlink{cpu_8h_ab99ed44389e722578695fa0065118fac}{sprintf}(s,  format,  args...)~rs232\+\_\+snprintf(s, 80, P\+S\+TR(format), \#\#args)
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef unsigned long int \hyperlink{cpu_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Master Include for Fat\+Fs, R\+TC, Timers A\+V\+R8 -\/ Part of H\+P85 disk emulator. 
+
+\begin{DoxyParagraph}{Edit History}
+
+\begin{DoxyItemize}
+\item \mbox{[}1.\+0\mbox{]} \mbox{[}Mike Gore\mbox{]} Initial revision of file.
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Copyright \copyright{} 2014 Mike Gore, Inc. All rights reserved.}
+
+\end{DoxyParagraph}
+
+
+\subsection{Macro Definition Documentation}
+\index{cpu.\+h@{cpu.\+h}!\+\_\+\+S\+I\+Z\+E\+\_\+T@{\+\_\+\+S\+I\+Z\+E\+\_\+T}}
+\index{\+\_\+\+S\+I\+Z\+E\+\_\+T@{\+\_\+\+S\+I\+Z\+E\+\_\+T}!cpu.\+h@{cpu.\+h}}
+\subsubsection[{\texorpdfstring{\+\_\+\+S\+I\+Z\+E\+\_\+T}{_SIZE_T}}]{\setlength{\rightskip}{0pt plus 5cm}\#define \+\_\+\+S\+I\+Z\+E\+\_\+T}\hypertarget{cpu_8h_a0ba95ba075f659fa991ee3df107aa3c3}{}\label{cpu_8h_a0ba95ba075f659fa991ee3df107aa3c3}
+
+
+Definition at line 62 of file cpu.\+h.
+
+\index{cpu.\+h@{cpu.\+h}!E\+S\+P8266@{E\+S\+P8266}}
+\index{E\+S\+P8266@{E\+S\+P8266}!cpu.\+h@{cpu.\+h}}
+\subsubsection[{\texorpdfstring{E\+S\+P8266}{ESP8266}}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\+S\+P8266}\hypertarget{cpu_8h_af917fb5672b9339e228304f59f3b250a}{}\label{cpu_8h_af917fb5672b9339e228304f59f3b250a}
+
+
+Definition at line 21 of file cpu.\+h.
+
+\index{cpu.\+h@{cpu.\+h}!F\+\_\+\+C\+PU@{F\+\_\+\+C\+PU}}
+\index{F\+\_\+\+C\+PU@{F\+\_\+\+C\+PU}!cpu.\+h@{cpu.\+h}}
+\subsubsection[{\texorpdfstring{F\+\_\+\+C\+PU}{F_CPU}}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\+\_\+\+C\+PU~80000000\+UL}\hypertarget{cpu_8h_a43bafb28b29491ec7f871319b5a3b2f8}{}\label{cpu_8h_a43bafb28b29491ec7f871319b5a3b2f8}
+
+
+Definition at line 17 of file cpu.\+h.
+
+
+
+Referenced by A\+D\+F4351\+\_\+spi\+\_\+init().
+
+\index{cpu.\+h@{cpu.\+h}!false@{false}}
+\index{false@{false}!cpu.\+h@{cpu.\+h}}
+\subsubsection[{\texorpdfstring{false}{false}}]{\setlength{\rightskip}{0pt plus 5cm}\#define false~0}\hypertarget{cpu_8h_a65e9886d74aaee76545e83dd09011727}{}\label{cpu_8h_a65e9886d74aaee76545e83dd09011727}
+
+
+Definition at line 59 of file cpu.\+h.
+
+\index{cpu.\+h@{cpu.\+h}!Mem\+\_\+\+Clear@{Mem\+\_\+\+Clear}}
+\index{Mem\+\_\+\+Clear@{Mem\+\_\+\+Clear}!cpu.\+h@{cpu.\+h}}
+\subsubsection[{\texorpdfstring{Mem\+\_\+\+Clear}{Mem_Clear}}]{\setlength{\rightskip}{0pt plus 5cm}\#define Mem\+\_\+\+Clear(
+\begin{DoxyParamCaption}
+\item[{}]{a}
+\end{DoxyParamCaption}
+)~memset(a, 0, sizeof(a))}\hypertarget{cpu_8h_a027f5683e524693c2ba74dd55fb42d5a}{}\label{cpu_8h_a027f5683e524693c2ba74dd55fb42d5a}
+
+
+macros to simplify filling buffers 
+
+
+
+Definition at line 71 of file cpu.\+h.
+
+\index{cpu.\+h@{cpu.\+h}!Mem\+\_\+\+Set@{Mem\+\_\+\+Set}}
+\index{Mem\+\_\+\+Set@{Mem\+\_\+\+Set}!cpu.\+h@{cpu.\+h}}
+\subsubsection[{\texorpdfstring{Mem\+\_\+\+Set}{Mem_Set}}]{\setlength{\rightskip}{0pt plus 5cm}\#define Mem\+\_\+\+Set(
+\begin{DoxyParamCaption}
+\item[{}]{a, }
+\item[{}]{b}
+\end{DoxyParamCaption}
+)~memset(a, (int) b, sizeof(a))}\hypertarget{cpu_8h_accba58d1237bfcb21e9f4bb040aebc4a}{}\label{cpu_8h_accba58d1237bfcb21e9f4bb040aebc4a}
+
+
+Definition at line 72 of file cpu.\+h.
+
+\index{cpu.\+h@{cpu.\+h}!M\+E\+M\+S\+P\+A\+CE@{M\+E\+M\+S\+P\+A\+CE}}
+\index{M\+E\+M\+S\+P\+A\+CE@{M\+E\+M\+S\+P\+A\+CE}!cpu.\+h@{cpu.\+h}}
+\subsubsection[{\texorpdfstring{M\+E\+M\+S\+P\+A\+CE}{MEMSPACE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+E\+M\+S\+P\+A\+CE~I\+C\+A\+C\+H\+E\+\_\+\+F\+L\+A\+S\+H\+\_\+\+A\+T\+TR}\hypertarget{cpu_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{}\label{cpu_8h_ad0fe97585b8891f5e4f2b9a6426330a4}
+
+
+Definition at line 25 of file cpu.\+h.
+
+
+
+Referenced by \+\_\+putc\+\_\+buffer\+\_\+fn(), \+\_\+putc\+\_\+win\+\_\+len(), \+\_\+puts\+\_\+pad(), \+\_\+uart0\+\_\+fn(), \+\_\+write\+\_\+byte\+\_\+fn(), A\+D\+F4351\+\_\+\+C\+H\+A\+R\+G\+E\+\_\+\+P\+U\+M\+P\+\_\+u\+A(), A\+D\+F4351\+\_\+display\+\_\+error(), A\+D\+F4351\+\_\+\+G\+C\+D32(), A\+D\+F4351\+\_\+\+Get\+Reg32(), A\+D\+F4351\+\_\+\+Init(), A\+D\+F4351\+\_\+\+P\+F\+D(), A\+D\+F4351\+\_\+status(), A\+D\+F4351\+\_\+sync(), arg\+\_\+name(), arg\+\_\+value(), asctime(), atodigit(), atoh(), atoi(), atol(), aton(), baseext(), basename(), B\+C\+Dto\+B\+I\+N(), B\+I\+Nto\+B\+C\+D(), calloc(), check\+\_\+fs(), chk\+\_\+chr(), Circular(), clmt\+\_\+clust(), clock\+\_\+clear(), clock\+\_\+elapsed\+\_\+begin(), clock\+\_\+elapsed\+\_\+end(), clock\+\_\+getres(), clock\+\_\+set(), clock\+\_\+settime(), clock\+\_\+task(), close(), clrerror(), clust2sect(), cmp\+\_\+lfn(), cordic\+\_\+deg(), cordic\+\_\+quad(), cordic\+\_\+rad(), create\+\_\+chain(), create\+\_\+connection(), create\+\_\+name(), ctime(), ctime\+\_\+gm(), ctime\+\_\+r(), Days\+\_\+\+Per\+\_\+\+Year(), deg2rad(), delete\+\_\+all\+\_\+timers(), delete\+\_\+connection(), deselect(), dir\+\_\+alloc(), dir\+\_\+find(), dir\+\_\+next(), dir\+\_\+read(), dir\+\_\+register(), dir\+\_\+remove(), dir\+\_\+sdi(), dirname(), disable\+\_\+timers(), display\+\_\+ipv4(), dump\+\_\+stat(), f\+\_\+chdir(), f\+\_\+chmod(), f\+\_\+close(), f\+\_\+closedir(), f\+\_\+expand(), f\+\_\+findfirst(), f\+\_\+findnext(), f\+\_\+getcwd(), f\+\_\+getfree(), f\+\_\+getlabel(), f\+\_\+lseek(), f\+\_\+mkdir(), f\+\_\+mkfs(), f\+\_\+mount(), f\+\_\+open(), f\+\_\+opendir(), f\+\_\+putc(), f\+\_\+puts(), f\+\_\+read(), f\+\_\+readdir(), f\+\_\+rename(), f\+\_\+setlabel(), f\+\_\+stat(), f\+\_\+sync(), f\+\_\+truncate(), f\+\_\+unlink(), f\+\_\+utime(), f\+\_\+write(), fat\+\_\+time\+\_\+to\+\_\+unix(), fatfs\+\_\+cat(), fatfs\+\_\+fstype(), fatfs\+\_\+getc(), fatfs\+\_\+help(), fatfs\+\_\+ls(), fatfs\+\_\+putc(), fatfs\+\_\+scan\+\_\+files(), fatfs\+\_\+status(), fatfs\+\_\+to\+\_\+errno(), fatfs\+\_\+to\+\_\+fileno(), fclose(), fdevopen(), feof(), ferror(), fgetc(), fgetpos(), fgets(), file\+\_\+type(), fileno(), fileno\+\_\+to\+\_\+fatfs(), fileno\+\_\+to\+\_\+stream(), find\+\_\+connection(), find\+\_\+volume(), first\+\_\+arg(), follow\+\_\+path(), fopen(), fputc(), fputs(), fread(), free(), free\+\_\+file\+\_\+descriptor(), free\+Ram(), fseek(), fsetpos(), ftell(), ftruncate(), fwrite(), gen\+\_\+numname(), get\+\_\+achar(), get\+\_\+fat(), get\+\_\+fattime(), get\+\_\+fileinfo(), get\+\_\+ldnumber(), get\+\_\+token(), getchar(), gettimeofday(), gettimezone(), gmtime(), gmtime\+\_\+r(), High\+Task(), html\+\_\+head(), html\+\_\+msg(), html\+\_\+status(), http\+\_\+value(), init\+\_\+done\+\_\+cb(), init\+\_\+hinfo(), init\+\_\+timers(), ipv4\+\_\+2str(), is\+\_\+cgitoken\+\_\+char(), is\+\_\+header(), I\+S\+\_\+\+Leap(), isatty(), isdigit(), islower(), isupper(), kill\+\_\+timer(), ld\+\_\+clust(), Leap\+\_\+\+Days\+\_\+\+Since\+\_\+1900(), led\+\_\+off(), led\+\_\+on(), localtime(), localtime\+\_\+r(), loop(), lseek(), malloc(), M\+A\+T\+C\+H(), match\+\_\+headers(), M\+A\+T\+C\+H\+\_\+\+L\+E\+N(), M\+A\+T\+C\+H\+I(), M\+A\+T\+C\+H\+I\+\_\+\+L\+E\+N(), mctime(), mem\+\_\+cmp(), mem\+\_\+cpy(), mem\+\_\+set(), memchr(), memgets(), meminit(), mime\+\_\+type(), mktime(), mmc\+\_\+cs\+\_\+disable(), mmc\+\_\+cs\+\_\+enable(), mmc\+\_\+disk\+\_\+initialize(), mmc\+\_\+disk\+\_\+read(), mmc\+\_\+disk\+\_\+status(), mmc\+\_\+fast(), mmc\+\_\+ins\+\_\+status(), mmc\+\_\+install\+\_\+timer(), mmc\+\_\+power\+\_\+off(), mmc\+\_\+power\+\_\+on(), mmc\+\_\+power\+\_\+status(), mmc\+\_\+set\+\_\+ms\+\_\+timeout(), mmc\+\_\+slow(), mmc\+\_\+spi\+\_\+init(), mmc\+\_\+spi\+\_\+\+R\+X(), mmc\+\_\+spi\+\_\+\+R\+X\+\_\+buffer(), mmc\+\_\+spi\+\_\+\+T\+X(), mmc\+\_\+spi\+\_\+\+T\+X\+\_\+buffer(), mmc\+\_\+spi\+\_\+\+T\+X\+R\+X(), mmc\+\_\+task(), mmc\+\_\+test(), mmc\+\_\+test\+\_\+timeout(), move\+\_\+window(), ms\+\_\+clear(), ms\+\_\+task(), new\+\_\+file\+\_\+descriptor(), next\+\_\+arg(), nextbreak(), nextspace(), Normal\+Task(), open(), p\+\_\+itoa(), p\+\_\+ntoa(), parse\+\_\+http\+\_\+request(), pattern\+\_\+matching(), perror(), pick\+\_\+lfn(), posix\+\_\+fopen\+\_\+modes\+\_\+to\+\_\+open(), power\+\_\+on(), Print\+Ram(), process\+\_\+args(), put\+\_\+fat(), put\+\_\+lfn(), putc(), putc\+\_\+bfd(), putc\+\_\+flush(), putc\+\_\+init(), putchar(), puts(), rcvr\+\_\+datablock(), read(), remove\+\_\+chain(), reset(), reverse(), rewind(), rmdir(), rotate(), rtc\+\_\+init(), rtc\+\_\+read(), rtc\+\_\+run(), rtc\+\_\+run\+\_\+test(), rtc\+\_\+write(), rwbuf\+\_\+create(), rwbuf\+\_\+delete(), rwbuf\+\_\+rinit(), rwbuf\+\_\+winit(), rx\+\_\+fifo\+\_\+empty(), rx\+\_\+fifo\+\_\+flush(), rx\+\_\+fifo\+\_\+free(), rx\+\_\+fifo\+\_\+getb(), rx\+\_\+fifo\+\_\+read(), rx\+\_\+fifo\+\_\+used(), safecalloc(), safefree(), safemalloc(), scale\+\_\+point(), select(), send\+\_\+cmd(), servertest\+\_\+message(), servertest\+\_\+receive(), set\+\_\+timers(), setdate(), settimeofday(), settimezone(), setup(), shift\+\_\+point(), skipchars(), skipspaces(), snprintf(), sock\+\_\+printf(), st\+\_\+dword(), stat(), strcasecmp(), strcmp(), strerror(), strerror\+\_\+r(), strlen(), strnalloc(), strncasecmp(), strncmp(), strtol(), strupper(), sum\+\_\+sfn(), sync(), sync\+\_\+fs(), sync\+\_\+window(), syncfs(), tcp\+\_\+accept(), tft\+\_\+565to\+R\+G\+B(), tft\+\_\+cleareol(), tft\+\_\+config\+Register(), tft\+\_\+draw\+Bitmap(), tft\+\_\+draw\+Circle(), tft\+\_\+draw\+Circle\+Helper(), tft\+\_\+draw\+Fast\+H\+Line(), tft\+\_\+draw\+Rect(), tft\+\_\+draw\+Round\+Rect(), tft\+\_\+draw\+Triangle(), tft\+\_\+fill\+Circle(), tft\+\_\+fill\+Circle\+Helper(), tft\+\_\+fill\+Round\+Rect(), tft\+\_\+font\+\_\+fixed(), tft\+\_\+invert\+Display(), tft\+\_\+read\+Pixel(), tft\+\_\+read\+Register(), tft\+\_\+rel\+\_\+window(), tft\+\_\+set\+\_\+font(), tft\+\_\+set\+\_\+textpos(), tft\+\_\+setpos(), tft\+\_\+set\+Text\+Color(), tft\+\_\+spi\+\_\+\+R\+X(), tft\+\_\+window\+\_\+clip(), tft\+\_\+window\+\_\+clip\+\_\+args(), tft\+\_\+window\+\_\+init(), time(), time\+\_\+to\+\_\+tm(), timegm(), tm\+\_\+mon\+\_\+to\+\_\+ascii(), tm\+\_\+to\+\_\+fat(), token(), tolower(), toupper(), trim\+\_\+tail(), truncate(), ts\+\_\+to\+\_\+str(), tx\+\_\+fifo\+\_\+empty(), tx\+\_\+fifo\+\_\+free(), tx\+\_\+fifo\+\_\+putb(), tx\+\_\+fifo\+\_\+used(), tx\+\_\+fifo\+\_\+write(), u5toa(), uart0\+\_\+getc(), uart0\+\_\+putc(), uart1\+\_\+getc(), uart1\+\_\+putc(), uart\+\_\+getb(), uart\+\_\+getc(), uart\+\_\+putb(), uart\+\_\+putc(), ungetc(), unlink(), user\+\_\+help(), user\+\_\+tests(), User\+Task(), validate(), vsnprintf(), vsock\+\_\+printf(), wait\+\_\+ready(), wait\+\_\+send(), web\+\_\+data\+\_\+connect\+\_\+callback(), web\+\_\+data\+\_\+disconnect\+\_\+callback(), web\+\_\+data\+\_\+receive\+\_\+callback(), web\+\_\+data\+\_\+reconnect\+\_\+callback(), web\+\_\+data\+\_\+sent\+\_\+callback(), wifi\+\_\+event\+\_\+cb(), write(), write\+\_\+byte(), write\+\_\+flush(), write\+\_\+len(), write\+\_\+str(), and xmit\+\_\+spi\+\_\+multi().
+
+\index{cpu.\+h@{cpu.\+h}!M\+E\+M\+S\+P\+A\+C\+E\+\_\+\+F\+O\+NT@{M\+E\+M\+S\+P\+A\+C\+E\+\_\+\+F\+O\+NT}}
+\index{M\+E\+M\+S\+P\+A\+C\+E\+\_\+\+F\+O\+NT@{M\+E\+M\+S\+P\+A\+C\+E\+\_\+\+F\+O\+NT}!cpu.\+h@{cpu.\+h}}
+\subsubsection[{\texorpdfstring{M\+E\+M\+S\+P\+A\+C\+E\+\_\+\+F\+O\+NT}{MEMSPACE_FONT}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+E\+M\+S\+P\+A\+C\+E\+\_\+\+F\+O\+NT~I\+C\+A\+C\+H\+E\+\_\+\+F\+L\+A\+S\+H\+\_\+\+A\+T\+TR}\hypertarget{cpu_8h_a52d60ae7ccb513718808b5cdbb26ffa3}{}\label{cpu_8h_a52d60ae7ccb513718808b5cdbb26ffa3}
+
+
+Definition at line 34 of file cpu.\+h.
+
+\index{cpu.\+h@{cpu.\+h}!M\+E\+M\+S\+P\+A\+C\+E\+\_\+\+RO@{M\+E\+M\+S\+P\+A\+C\+E\+\_\+\+RO}}
+\index{M\+E\+M\+S\+P\+A\+C\+E\+\_\+\+RO@{M\+E\+M\+S\+P\+A\+C\+E\+\_\+\+RO}!cpu.\+h@{cpu.\+h}}
+\subsubsection[{\texorpdfstring{M\+E\+M\+S\+P\+A\+C\+E\+\_\+\+RO}{MEMSPACE_RO}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+E\+M\+S\+P\+A\+C\+E\+\_\+\+RO~I\+C\+A\+C\+H\+E\+\_\+\+R\+O\+D\+A\+T\+A\+\_\+\+A\+T\+TR}\hypertarget{cpu_8h_a9946b5a72f8c16945877e78578df6a7f}{}\label{cpu_8h_a9946b5a72f8c16945877e78578df6a7f}
+
+
+Definition at line 29 of file cpu.\+h.
+
+\index{cpu.\+h@{cpu.\+h}!N\+U\+LL@{N\+U\+LL}}
+\index{N\+U\+LL@{N\+U\+LL}!cpu.\+h@{cpu.\+h}}
+\subsubsection[{\texorpdfstring{N\+U\+LL}{NULL}}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+U\+LL~((void $\ast$) 0)}\hypertarget{cpu_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{}\label{cpu_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}
+
+
+Definition at line 54 of file cpu.\+h.
+
+
+
+Referenced by \+\_\+printf\+\_\+fn(), A\+D\+F4351\+\_\+\+P\+F\+D(), arg\+\_\+name(), arg\+\_\+value(), atoh(), close(), Convert\+\_\+\+Font2c(), create\+\_\+connection(), db\+\_\+calloc(), db\+\_\+free(), delete\+\_\+connection(), execute\+\_\+timers(), fatfs\+\_\+getc(), fatfs\+\_\+putc(), fatfs\+\_\+to\+\_\+fileno(), fgetc(), file\+\_\+type(), fileno(), fileno\+\_\+to\+\_\+fatfs(), fileno\+\_\+to\+\_\+stream(), find\+\_\+connection(), Find\+Font\+Name(), Font\+Header\+Info(), fputc(), free\+\_\+file\+\_\+descriptor(), Free\+Font(), ftell(), ftruncate(), get\+\_\+token(), http\+\_\+value(), init\+\_\+hinfo(), Init\+Fonts(), Init\+Names(), line\+\_\+wrap(), lseek(), main(), match\+\_\+token(), memchr(), memgets(), new\+\_\+file\+\_\+descriptor(), next\+\_\+arg(), open(), perror(), queue\+\_\+del(), queue\+\_\+new(), read(), Read\+Bdf(), remove\+\_\+quotes(), rwbuf\+\_\+create(), rwbuf\+\_\+delete(), send\+\_\+message(), setup(), strnalloc(), sync(), syncfs(), time(), truncate(), wire\+\_\+draw(), and write().
+
+\index{cpu.\+h@{cpu.\+h}!snprintf@{snprintf}}
+\index{snprintf@{snprintf}!cpu.\+h@{cpu.\+h}}
+\subsubsection[{\texorpdfstring{snprintf}{snprintf}}]{\setlength{\rightskip}{0pt plus 5cm}\#define snprintf(
+\begin{DoxyParamCaption}
+\item[{}]{s, }
+\item[{}]{size, }
+\item[{}]{format, }
+\item[{}]{args...}
+\end{DoxyParamCaption}
+)~rs232\+\_\+snprintf(s, size, P\+S\+TR(format), \#\#args)}\hypertarget{cpu_8h_a8ca99a0a57619094a5bff3a009b5cea8}{}\label{cpu_8h_a8ca99a0a57619094a5bff3a009b5cea8}
+
+
+Definition at line 80 of file cpu.\+h.
+
+
+
+Referenced by Add\+Font\+Name(), asctime\+\_\+r(), html\+\_\+msg(), ipv4\+\_\+2str(), ts\+\_\+to\+\_\+str(), u5toa(), and wifi\+\_\+event\+\_\+cb().
+
+\index{cpu.\+h@{cpu.\+h}!sprintf@{sprintf}}
+\index{sprintf@{sprintf}!cpu.\+h@{cpu.\+h}}
+\subsubsection[{\texorpdfstring{sprintf}{sprintf}}]{\setlength{\rightskip}{0pt plus 5cm}\#define sprintf(
+\begin{DoxyParamCaption}
+\item[{}]{s, }
+\item[{}]{format, }
+\item[{}]{args...}
+\end{DoxyParamCaption}
+)~rs232\+\_\+snprintf(s, 80, P\+S\+TR(format), \#\#args)}\hypertarget{cpu_8h_ab99ed44389e722578695fa0065118fac}{}\label{cpu_8h_ab99ed44389e722578695fa0065118fac}
+
+
+Definition at line 84 of file cpu.\+h.
+
+
+
+Referenced by main().
+
+\index{cpu.\+h@{cpu.\+h}!S\+Y\+S\+T\+E\+M\+\_\+\+T\+A\+S\+K\+\_\+\+HZ@{S\+Y\+S\+T\+E\+M\+\_\+\+T\+A\+S\+K\+\_\+\+HZ}}
+\index{S\+Y\+S\+T\+E\+M\+\_\+\+T\+A\+S\+K\+\_\+\+HZ@{S\+Y\+S\+T\+E\+M\+\_\+\+T\+A\+S\+K\+\_\+\+HZ}!cpu.\+h@{cpu.\+h}}
+\subsubsection[{\texorpdfstring{S\+Y\+S\+T\+E\+M\+\_\+\+T\+A\+S\+K\+\_\+\+HZ}{SYSTEM_TASK_HZ}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+Y\+S\+T\+E\+M\+\_\+\+T\+A\+S\+K\+\_\+\+HZ~1000L}\hypertarget{cpu_8h_ab29f444706056b13bca09e97c909bbc5}{}\label{cpu_8h_ab29f444706056b13bca09e97c909bbc5}
+
+
+user task rate for software timers 
+
+
+
+Definition at line 67 of file cpu.\+h.
+
+\index{cpu.\+h@{cpu.\+h}!true@{true}}
+\index{true@{true}!cpu.\+h@{cpu.\+h}}
+\subsubsection[{\texorpdfstring{true}{true}}]{\setlength{\rightskip}{0pt plus 5cm}\#define true~1}\hypertarget{cpu_8h_a41f9c5fb8b08eb5dc3edce4dcb37fee7}{}\label{cpu_8h_a41f9c5fb8b08eb5dc3edce4dcb37fee7}
+
+
+Definition at line 58 of file cpu.\+h.
+
+
+
+\subsection{Typedef Documentation}
+\index{cpu.\+h@{cpu.\+h}!size\+\_\+t@{size\+\_\+t}}
+\index{size\+\_\+t@{size\+\_\+t}!cpu.\+h@{cpu.\+h}}
+\subsubsection[{\texorpdfstring{size\+\_\+t}{size_t}}]{\setlength{\rightskip}{0pt plus 5cm}typedef unsigned long int {\bf size\+\_\+t}}\hypertarget{cpu_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{}\label{cpu_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}
+
+
+Definition at line 63 of file cpu.\+h.
+

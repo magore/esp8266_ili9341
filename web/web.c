@@ -21,13 +21,16 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include "user_config.h"
 
 #include <stdint.h>
 #include <stdarg.h>
 #include <string.h>
 #include <math.h>
 
-#include "web.h"
+#include "fatfs.sup/fatfs.h"
+#include "display/ili9341.h"
+#include "web/web.h"
 
 // References: http://www.w3.org/Protocols/rfc2616/rfc2616.html
 
@@ -37,8 +40,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define CGI_TOKEN_SIZE 128
 /// @brief max size of read/write socket buffers
 #define BUFFER_SIZE 1500
-
-#include "web.h"
 
 extern window *winmsg,*wintop;
 
@@ -227,7 +228,9 @@ static void tcp_accept(espconn_t *esp_config, esp_tcp *esp_tcp_config,
 	if(ret)
 		printf("espconn_tcp_set_max_con_allow(%d): failed\n", MAX_CONNECTIONS);
 	ret = espconn_tcp_get_max_con_allow(esp_config);
+#if WEB_DEBUG & 2
 	printf("espconn_tcp_get_max_con_allow:(%d)\n", ret);
+#endif
 }
 // =======================================================
 
@@ -330,7 +333,7 @@ rwbuf_t *rwbuf_create()
 
 	// connect struction for this connection
 	// Always over allocate to allow an extra EOS or TWO
-	rwbuf_t *p = calloc(sizeof(rwbuf_t)+4,1);
+	rwbuf_t *p = safecalloc(sizeof(rwbuf_t)+4,1);
 	if(!p) 
 	{
 #if WEB_DEBUG & 1
@@ -343,7 +346,7 @@ rwbuf_t *rwbuf_create()
 	// read buffer for this connection
 	rwbuf_rinit(p);
 	// Always over allocate to allow an extra EOS or TWO
-	buf = calloc(BUFFER_SIZE+4,1);
+	buf = safecalloc(BUFFER_SIZE+4,1);
 	if(!buf) 
 	{
 #if WEB_DEBUG & 1
@@ -358,7 +361,7 @@ rwbuf_t *rwbuf_create()
 	// write buffer for this connection
 	rwbuf_winit(p);
 	// Always over allocate to allow an extra EOS or TWO
-	buf = calloc(BUFFER_SIZE+4,1);
+	buf = safecalloc(BUFFER_SIZE+4,1);
 	if(!buf) 
 	{
 #if WEB_DEBUG & 1
@@ -547,7 +550,7 @@ int write_byte(rwbuf_t *p, int c)
  	if(!p || !p->wbuf || !p->conn)
 	{
 #if WEB_DEBUG & 1
-		printf("\nwrite_byte: send Unexpected NULL\n");
+		//printf("\nwrite_byte: send Unexpected NULL\n");
 #endif
 		return(0);
 	}
@@ -560,7 +563,7 @@ int write_byte(rwbuf_t *p, int c)
 		if(!p || !p->wbuf || !p->conn)
 		{
 #if WEB_DEBUG & 1
-			printf("\nwrite_byte: send Unexpected NULL after wait\n");
+			//printf("\nwrite_byte: send Unexpected NULL after wait\n");
 #endif
 			return(0);
 		}
@@ -707,7 +710,7 @@ static void _write_byte_fn(struct _printf_t *pr, char c)
 		rwbuf_t *p = (rwbuf_t *) pr->buffer;
 
         write_byte(p,c);
-        pr->size++;
+        pr->sent++;
 }
 
 
@@ -724,12 +727,12 @@ int vsock_printf(rwbuf_t *p, const char *fmt, va_list va)
 	printf_t fn;
 
     fn.put = _write_byte_fn;
-    fn.size = 0;
+    fn.sent= 0;
 	fn.buffer = (void *) p;
 
     _printf_fn(&fn, fmt, va);
 
-	return(fn.size);
+	return(fn.sent);
 }
 
 
@@ -781,7 +784,7 @@ int html_msg(rwbuf_t *p, int status, char type, char *fmt, ...)
 
 	
 	// Always over allocate to allow an extra EOS or TWO
-	header = calloc(MAX_MSG+4,1);
+	header = safecalloc(MAX_MSG+4,1);
 	if(!header) {
 #if WEB_DEBUG & 1
 		printf("html_msg: calloc failed\n");
@@ -1029,7 +1032,7 @@ MEMSPACE
 char *process_args(hinfo_t *hi, char *ptr)
 {
 	char	*out;
-	uint8_t num, h,l;
+	int h,l,num;
 	char *end;
 	int len;
 	int size = 0;
@@ -1104,11 +1107,11 @@ char *process_args(hinfo_t *hi, char *ptr)
 			}
 
 			// Is the data HEX ?
-			h = hexd( *ptr++ );
-			l = hexd( *ptr++ );
+			h = atodigit( *ptr++, 16);
+			l = atodigit( *ptr++, 16);
 			len -=2;
 
-			if(h & 0xf0 || l & 0xf0) 	// The data was not HEX
+			if(h < 0 || l < 0) 	// The data was not HEX
 			{
 				num = ' ';
 #if WEB_DEBUG & 1+8

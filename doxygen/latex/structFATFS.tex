@@ -2,11 +2,6 @@
 \label{structFATFS}\index{F\+A\+T\+FS@{F\+A\+T\+FS}}
 
 
-File system object structure (\hyperlink{structFATFS}{F\+A\+T\+FS})  
-
-
-
-
 {\ttfamily \#include $<$ff.\+h$>$}
 
 \subsection*{Data Fields}
@@ -15,8 +10,6 @@ File system object structure (\hyperlink{structFATFS}{F\+A\+T\+FS})
 \hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} \hyperlink{structFATFS_add27d97babe807b573eac98a71dc4ae5}{fs\+\_\+type}
 \item 
 \hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} \hyperlink{structFATFS_a6a791560e2687e8b1569bfce61208d2d}{drv}
-\item 
-\hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} \hyperlink{structFATFS_a504a1175f6dcc9a854b9da94463bd108}{csize}
 \item 
 \hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} \hyperlink{structFATFS_a56716c7e7ac10cf46e73ffb2a2e9b545}{n\+\_\+fats}
 \item 
@@ -28,9 +21,13 @@ File system object structure (\hyperlink{structFATFS}{F\+A\+T\+FS})
 \item 
 \hyperlink{integer_8h_a197942eefa7db30960ae396d68339b97}{W\+O\+RD} \hyperlink{structFATFS_a189a00aa038044ffad0fc7f7dcf2aae1}{n\+\_\+rootdir}
 \item 
-\hyperlink{integer_8h_ad342ac907eb044443153a22f964bf0af}{D\+W\+O\+RD} \hyperlink{structFATFS_ad315def289218e26ab78ff90fde700d1}{last\+\_\+clust}
+\hyperlink{integer_8h_a197942eefa7db30960ae396d68339b97}{W\+O\+RD} \hyperlink{structFATFS_ad7fa7a509f8d097a9ab182d6c47be568}{csize}
 \item 
-\hyperlink{integer_8h_ad342ac907eb044443153a22f964bf0af}{D\+W\+O\+RD} \hyperlink{structFATFS_a5fb49e6ac511bd97eaffdd636d0e4165}{free\+\_\+clust}
+\hyperlink{integer_8h_a570001c92f314285ad3e7139d8c58cf7}{W\+C\+H\+AR} $\ast$ \hyperlink{structFATFS_ad1999aa771ae428c3abe14dbe585e981}{lfnbuf}
+\item 
+\hyperlink{integer_8h_ad342ac907eb044443153a22f964bf0af}{D\+W\+O\+RD} \hyperlink{structFATFS_ac26e848817569fedc15a9a4e49ddedd1}{last\+\_\+clst}
+\item 
+\hyperlink{integer_8h_ad342ac907eb044443153a22f964bf0af}{D\+W\+O\+RD} \hyperlink{structFATFS_ac834248773bf338df807f0d7e6b6a579}{free\+\_\+clst}
 \item 
 \hyperlink{integer_8h_ad342ac907eb044443153a22f964bf0af}{D\+W\+O\+RD} \hyperlink{structFATFS_a217d0ce0c8cec84aa7f0c142679412c6}{cdir}
 \item 
@@ -53,9 +50,9 @@ File system object structure (\hyperlink{structFATFS}{F\+A\+T\+FS})
 
 
 \subsection{Detailed Description}
-File system object structure (\hyperlink{structFATFS}{F\+A\+T\+FS}) 
 
-Definition at line 84 of file ff.\+h.
+
+Definition at line 92 of file ff.\+h.
 
 
 
@@ -65,7 +62,7 @@ Definition at line 84 of file ff.\+h.
 \subsubsection[{\texorpdfstring{cdir}{cdir}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\+W\+O\+RD} F\+A\+T\+F\+S\+::cdir}\hypertarget{structFATFS_a217d0ce0c8cec84aa7f0c142679412c6}{}\label{structFATFS_a217d0ce0c8cec84aa7f0c142679412c6}
 
 
-Definition at line 105 of file ff.\+h.
+Definition at line 118 of file ff.\+h.
 
 
 
@@ -73,98 +70,98 @@ Referenced by f\+\_\+chdir(), f\+\_\+getcwd(), f\+\_\+unlink(), find\+\_\+volume
 
 \index{F\+A\+T\+FS@{F\+A\+T\+FS}!csize@{csize}}
 \index{csize@{csize}!F\+A\+T\+FS@{F\+A\+T\+FS}}
-\subsubsection[{\texorpdfstring{csize}{csize}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf B\+Y\+TE} F\+A\+T\+F\+S\+::csize}\hypertarget{structFATFS_a504a1175f6dcc9a854b9da94463bd108}{}\label{structFATFS_a504a1175f6dcc9a854b9da94463bd108}
+\subsubsection[{\texorpdfstring{csize}{csize}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf W\+O\+RD} F\+A\+T\+F\+S\+::csize}\hypertarget{structFATFS_ad7fa7a509f8d097a9ab182d6c47be568}{}\label{structFATFS_ad7fa7a509f8d097a9ab182d6c47be568}
 
 
-Definition at line 88 of file ff.\+h.
+Definition at line 100 of file ff.\+h.
 
 
 
-Referenced by clmt\+\_\+clust(), clust2sect(), dir\+\_\+next(), dir\+\_\+sdi(), f\+\_\+lseek(), f\+\_\+mkdir(), f\+\_\+read(), f\+\_\+setlabel(), f\+\_\+write(), fatfs\+\_\+ls(), fatfs\+\_\+status(), find\+\_\+volume(), and remove\+\_\+chain().
+Referenced by clmt\+\_\+clust(), clust2sect(), dir\+\_\+next(), dir\+\_\+register(), dir\+\_\+sdi(), f\+\_\+expand(), f\+\_\+lseek(), f\+\_\+mkdir(), f\+\_\+open(), f\+\_\+read(), f\+\_\+write(), fatfs\+\_\+ls(), fatfs\+\_\+status(), find\+\_\+volume(), get\+\_\+fat(), and remove\+\_\+chain().
 
 \index{F\+A\+T\+FS@{F\+A\+T\+FS}!database@{database}}
 \index{database@{database}!F\+A\+T\+FS@{F\+A\+T\+FS}}
 \subsubsection[{\texorpdfstring{database}{database}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\+W\+O\+RD} F\+A\+T\+F\+S\+::database}\hypertarget{structFATFS_a5b6c0bc2e9fd2ae8ef714210a74a2d5d}{}\label{structFATFS_a5b6c0bc2e9fd2ae8ef714210a74a2d5d}
 
 
-Definition at line 112 of file ff.\+h.
+Definition at line 130 of file ff.\+h.
 
 
 
-Referenced by clust2sect(), fatfs\+\_\+status(), and find\+\_\+volume().
+Referenced by clust2sect(), f\+\_\+getfree(), fatfs\+\_\+status(), find\+\_\+volume(), and put\+\_\+fat().
 
 \index{F\+A\+T\+FS@{F\+A\+T\+FS}!dirbase@{dirbase}}
 \index{dirbase@{dirbase}!F\+A\+T\+FS@{F\+A\+T\+FS}}
 \subsubsection[{\texorpdfstring{dirbase}{dirbase}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\+W\+O\+RD} F\+A\+T\+F\+S\+::dirbase}\hypertarget{structFATFS_a3f72fd998dbcce4652a85a81fe944bc4}{}\label{structFATFS_a3f72fd998dbcce4652a85a81fe944bc4}
 
 
-Definition at line 111 of file ff.\+h.
+Definition at line 129 of file ff.\+h.
 
 
 
-Referenced by dir\+\_\+sdi(), f\+\_\+mkdir(), f\+\_\+rename(), fatfs\+\_\+status(), and find\+\_\+volume().
+Referenced by dir\+\_\+sdi(), f\+\_\+mkdir(), fatfs\+\_\+status(), and find\+\_\+volume().
 
 \index{F\+A\+T\+FS@{F\+A\+T\+FS}!drv@{drv}}
 \index{drv@{drv}!F\+A\+T\+FS@{F\+A\+T\+FS}}
 \subsubsection[{\texorpdfstring{drv}{drv}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf B\+Y\+TE} F\+A\+T\+F\+S\+::drv}\hypertarget{structFATFS_a6a791560e2687e8b1569bfce61208d2d}{}\label{structFATFS_a6a791560e2687e8b1569bfce61208d2d}
 
 
-Definition at line 87 of file ff.\+h.
+Definition at line 94 of file ff.\+h.
 
 
 
-Referenced by f\+\_\+lseek(), f\+\_\+read(), f\+\_\+sync(), f\+\_\+truncate(), f\+\_\+write(), find\+\_\+volume(), move\+\_\+window(), remove\+\_\+chain(), sync\+\_\+fs(), sync\+\_\+window(), and validate().
+Referenced by f\+\_\+expand(), f\+\_\+lseek(), f\+\_\+open(), f\+\_\+read(), f\+\_\+sync(), f\+\_\+truncate(), f\+\_\+write(), find\+\_\+volume(), move\+\_\+window(), remove\+\_\+chain(), sync\+\_\+fs(), sync\+\_\+window(), and validate().
 
 \index{F\+A\+T\+FS@{F\+A\+T\+FS}!fatbase@{fatbase}}
 \index{fatbase@{fatbase}!F\+A\+T\+FS@{F\+A\+T\+FS}}
 \subsubsection[{\texorpdfstring{fatbase}{fatbase}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\+W\+O\+RD} F\+A\+T\+F\+S\+::fatbase}\hypertarget{structFATFS_a848fba02c4aabe02ef2984e578f33d64}{}\label{structFATFS_a848fba02c4aabe02ef2984e578f33d64}
 
 
-Definition at line 110 of file ff.\+h.
+Definition at line 128 of file ff.\+h.
 
 
 
 Referenced by f\+\_\+getfree(), fatfs\+\_\+status(), find\+\_\+volume(), get\+\_\+fat(), put\+\_\+fat(), and sync\+\_\+window().
 
-\index{F\+A\+T\+FS@{F\+A\+T\+FS}!free\+\_\+clust@{free\+\_\+clust}}
-\index{free\+\_\+clust@{free\+\_\+clust}!F\+A\+T\+FS@{F\+A\+T\+FS}}
-\subsubsection[{\texorpdfstring{free\+\_\+clust}{free_clust}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\+W\+O\+RD} F\+A\+T\+F\+S\+::free\+\_\+clust}\hypertarget{structFATFS_a5fb49e6ac511bd97eaffdd636d0e4165}{}\label{structFATFS_a5fb49e6ac511bd97eaffdd636d0e4165}
+\index{F\+A\+T\+FS@{F\+A\+T\+FS}!free\+\_\+clst@{free\+\_\+clst}}
+\index{free\+\_\+clst@{free\+\_\+clst}!F\+A\+T\+FS@{F\+A\+T\+FS}}
+\subsubsection[{\texorpdfstring{free\+\_\+clst}{free_clst}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\+W\+O\+RD} F\+A\+T\+F\+S\+::free\+\_\+clst}\hypertarget{structFATFS_ac834248773bf338df807f0d7e6b6a579}{}\label{structFATFS_ac834248773bf338df807f0d7e6b6a579}
 
 
-Definition at line 102 of file ff.\+h.
+Definition at line 115 of file ff.\+h.
 
 
 
-Referenced by create\+\_\+chain(), f\+\_\+getfree(), find\+\_\+volume(), remove\+\_\+chain(), and sync\+\_\+fs().
+Referenced by create\+\_\+chain(), f\+\_\+expand(), f\+\_\+getfree(), find\+\_\+volume(), remove\+\_\+chain(), and sync\+\_\+fs().
 
 \index{F\+A\+T\+FS@{F\+A\+T\+FS}!fs\+\_\+type@{fs\+\_\+type}}
 \index{fs\+\_\+type@{fs\+\_\+type}!F\+A\+T\+FS@{F\+A\+T\+FS}}
 \subsubsection[{\texorpdfstring{fs\+\_\+type}{fs_type}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf B\+Y\+TE} F\+A\+T\+F\+S\+::fs\+\_\+type}\hypertarget{structFATFS_add27d97babe807b573eac98a71dc4ae5}{}\label{structFATFS_add27d97babe807b573eac98a71dc4ae5}
 
 
-Definition at line 86 of file ff.\+h.
+Definition at line 93 of file ff.\+h.
 
 
 
-Referenced by dir\+\_\+sdi(), f\+\_\+getfree(), f\+\_\+getlabel(), f\+\_\+mkdir(), f\+\_\+mkfs(), f\+\_\+mount(), f\+\_\+rename(), fatfs\+\_\+status(), find\+\_\+volume(), get\+\_\+fat(), ld\+\_\+clust(), put\+\_\+fat(), sync\+\_\+fs(), and validate().
+Referenced by create\+\_\+chain(), dir\+\_\+alloc(), dir\+\_\+find(), dir\+\_\+next(), dir\+\_\+read(), dir\+\_\+register(), dir\+\_\+remove(), dir\+\_\+sdi(), f\+\_\+chdir(), f\+\_\+chmod(), f\+\_\+expand(), f\+\_\+getcwd(), f\+\_\+getfree(), f\+\_\+getlabel(), f\+\_\+lseek(), f\+\_\+mkdir(), f\+\_\+mkfs(), f\+\_\+mount(), f\+\_\+open(), f\+\_\+opendir(), f\+\_\+rename(), f\+\_\+setlabel(), f\+\_\+sync(), f\+\_\+unlink(), f\+\_\+utime(), f\+\_\+write(), fatfs\+\_\+status(), find\+\_\+volume(), follow\+\_\+path(), get\+\_\+fat(), get\+\_\+fileinfo(), ld\+\_\+clust(), put\+\_\+fat(), remove\+\_\+chain(), st\+\_\+clust(), sync\+\_\+fs(), and validate().
 
 \index{F\+A\+T\+FS@{F\+A\+T\+FS}!fsi\+\_\+flag@{fsi\+\_\+flag}}
 \index{fsi\+\_\+flag@{fsi\+\_\+flag}!F\+A\+T\+FS@{F\+A\+T\+FS}}
 \subsubsection[{\texorpdfstring{fsi\+\_\+flag}{fsi_flag}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf B\+Y\+TE} F\+A\+T\+F\+S\+::fsi\+\_\+flag}\hypertarget{structFATFS_a84e9cdc5a6a8e33ea7ec192058abf161}{}\label{structFATFS_a84e9cdc5a6a8e33ea7ec192058abf161}
 
 
-Definition at line 91 of file ff.\+h.
+Definition at line 97 of file ff.\+h.
 
 
 
-Referenced by create\+\_\+chain(), f\+\_\+getfree(), find\+\_\+volume(), remove\+\_\+chain(), and sync\+\_\+fs().
+Referenced by create\+\_\+chain(), f\+\_\+expand(), f\+\_\+getfree(), find\+\_\+volume(), remove\+\_\+chain(), and sync\+\_\+fs().
 
 \index{F\+A\+T\+FS@{F\+A\+T\+FS}!fsize@{fsize}}
 \index{fsize@{fsize}!F\+A\+T\+FS@{F\+A\+T\+FS}}
 \subsubsection[{\texorpdfstring{fsize}{fsize}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\+W\+O\+RD} F\+A\+T\+F\+S\+::fsize}\hypertarget{structFATFS_a53e9560659f14e66f306c2c444198bf3}{}\label{structFATFS_a53e9560659f14e66f306c2c444198bf3}
 
 
-Definition at line 108 of file ff.\+h.
+Definition at line 126 of file ff.\+h.
 
 
 
@@ -175,40 +172,51 @@ Referenced by fatfs\+\_\+status(), find\+\_\+volume(), and sync\+\_\+window().
 \subsubsection[{\texorpdfstring{id}{id}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf W\+O\+RD} F\+A\+T\+F\+S\+::id}\hypertarget{structFATFS_a417095d7c20d56d417dc0998e0dd5a5c}{}\label{structFATFS_a417095d7c20d56d417dc0998e0dd5a5c}
 
 
-Definition at line 92 of file ff.\+h.
+Definition at line 98 of file ff.\+h.
 
 
 
 Referenced by f\+\_\+open(), f\+\_\+opendir(), find\+\_\+volume(), and validate().
 
-\index{F\+A\+T\+FS@{F\+A\+T\+FS}!last\+\_\+clust@{last\+\_\+clust}}
-\index{last\+\_\+clust@{last\+\_\+clust}!F\+A\+T\+FS@{F\+A\+T\+FS}}
-\subsubsection[{\texorpdfstring{last\+\_\+clust}{last_clust}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\+W\+O\+RD} F\+A\+T\+F\+S\+::last\+\_\+clust}\hypertarget{structFATFS_ad315def289218e26ab78ff90fde700d1}{}\label{structFATFS_ad315def289218e26ab78ff90fde700d1}
+\index{F\+A\+T\+FS@{F\+A\+T\+FS}!last\+\_\+clst@{last\+\_\+clst}}
+\index{last\+\_\+clst@{last\+\_\+clst}!F\+A\+T\+FS@{F\+A\+T\+FS}}
+\subsubsection[{\texorpdfstring{last\+\_\+clst}{last_clst}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\+W\+O\+RD} F\+A\+T\+F\+S\+::last\+\_\+clst}\hypertarget{structFATFS_ac26e848817569fedc15a9a4e49ddedd1}{}\label{structFATFS_ac26e848817569fedc15a9a4e49ddedd1}
 
 
-Definition at line 101 of file ff.\+h.
+Definition at line 114 of file ff.\+h.
 
 
 
-Referenced by create\+\_\+chain(), f\+\_\+open(), find\+\_\+volume(), and sync\+\_\+fs().
+Referenced by create\+\_\+chain(), f\+\_\+expand(), f\+\_\+open(), find\+\_\+volume(), and sync\+\_\+fs().
+
+\index{F\+A\+T\+FS@{F\+A\+T\+FS}!lfnbuf@{lfnbuf}}
+\index{lfnbuf@{lfnbuf}!F\+A\+T\+FS@{F\+A\+T\+FS}}
+\subsubsection[{\texorpdfstring{lfnbuf}{lfnbuf}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf W\+C\+H\+AR}$\ast$ F\+A\+T\+F\+S\+::lfnbuf}\hypertarget{structFATFS_ad1999aa771ae428c3abe14dbe585e981}{}\label{structFATFS_ad1999aa771ae428c3abe14dbe585e981}
+
+
+Definition at line 105 of file ff.\+h.
+
+
+
+Referenced by create\+\_\+name(), dir\+\_\+find(), dir\+\_\+read(), dir\+\_\+register(), find\+\_\+volume(), and get\+\_\+fileinfo().
 
 \index{F\+A\+T\+FS@{F\+A\+T\+FS}!n\+\_\+fatent@{n\+\_\+fatent}}
 \index{n\+\_\+fatent@{n\+\_\+fatent}!F\+A\+T\+FS@{F\+A\+T\+FS}}
 \subsubsection[{\texorpdfstring{n\+\_\+fatent}{n_fatent}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\+W\+O\+RD} F\+A\+T\+F\+S\+::n\+\_\+fatent}\hypertarget{structFATFS_a8da50eeba6469bc20d60ca0cf9a1307c}{}\label{structFATFS_a8da50eeba6469bc20d60ca0cf9a1307c}
 
 
-Definition at line 107 of file ff.\+h.
+Definition at line 125 of file ff.\+h.
 
 
 
-Referenced by clust2sect(), create\+\_\+chain(), dir\+\_\+next(), dir\+\_\+sdi(), f\+\_\+getfree(), f\+\_\+lseek(), f\+\_\+truncate(), fatfs\+\_\+status(), find\+\_\+volume(), get\+\_\+fat(), put\+\_\+fat(), and remove\+\_\+chain().
+Referenced by clust2sect(), create\+\_\+chain(), dir\+\_\+next(), dir\+\_\+sdi(), f\+\_\+expand(), f\+\_\+getfree(), f\+\_\+lseek(), fatfs\+\_\+status(), find\+\_\+volume(), get\+\_\+fat(), put\+\_\+fat(), and remove\+\_\+chain().
 
 \index{F\+A\+T\+FS@{F\+A\+T\+FS}!n\+\_\+fats@{n\+\_\+fats}}
 \index{n\+\_\+fats@{n\+\_\+fats}!F\+A\+T\+FS@{F\+A\+T\+FS}}
 \subsubsection[{\texorpdfstring{n\+\_\+fats}{n_fats}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf B\+Y\+TE} F\+A\+T\+F\+S\+::n\+\_\+fats}\hypertarget{structFATFS_a56716c7e7ac10cf46e73ffb2a2e9b545}{}\label{structFATFS_a56716c7e7ac10cf46e73ffb2a2e9b545}
 
 
-Definition at line 89 of file ff.\+h.
+Definition at line 95 of file ff.\+h.
 
 
 
@@ -219,7 +227,7 @@ Referenced by fatfs\+\_\+status(), find\+\_\+volume(), and sync\+\_\+window().
 \subsubsection[{\texorpdfstring{n\+\_\+rootdir}{n_rootdir}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf W\+O\+RD} F\+A\+T\+F\+S\+::n\+\_\+rootdir}\hypertarget{structFATFS_a189a00aa038044ffad0fc7f7dcf2aae1}{}\label{structFATFS_a189a00aa038044ffad0fc7f7dcf2aae1}
 
 
-Definition at line 93 of file ff.\+h.
+Definition at line 99 of file ff.\+h.
 
 
 
@@ -230,7 +238,7 @@ Referenced by dir\+\_\+next(), dir\+\_\+sdi(), fatfs\+\_\+status(), and find\+\_
 \subsubsection[{\texorpdfstring{volbase}{volbase}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\+W\+O\+RD} F\+A\+T\+F\+S\+::volbase}\hypertarget{structFATFS_a8f0ca578755749d204f59dc83f1a7649}{}\label{structFATFS_a8f0ca578755749d204f59dc83f1a7649}
 
 
-Definition at line 109 of file ff.\+h.
+Definition at line 127 of file ff.\+h.
 
 
 
@@ -241,29 +249,29 @@ Referenced by f\+\_\+getlabel(), find\+\_\+volume(), and sync\+\_\+fs().
 \subsubsection[{\texorpdfstring{wflag}{wflag}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf B\+Y\+TE} F\+A\+T\+F\+S\+::wflag}\hypertarget{structFATFS_a647e43c9ccae94b7274793d1909897de}{}\label{structFATFS_a647e43c9ccae94b7274793d1909897de}
 
 
-Definition at line 90 of file ff.\+h.
+Definition at line 96 of file ff.\+h.
 
 
 
-Referenced by check\+\_\+fs(), dir\+\_\+next(), dir\+\_\+register(), dir\+\_\+remove(), f\+\_\+chmod(), f\+\_\+mkdir(), f\+\_\+open(), f\+\_\+read(), f\+\_\+rename(), f\+\_\+setlabel(), f\+\_\+sync(), f\+\_\+utime(), f\+\_\+write(), put\+\_\+fat(), and sync\+\_\+window().
+Referenced by check\+\_\+fs(), dir\+\_\+next(), dir\+\_\+register(), dir\+\_\+remove(), f\+\_\+chmod(), f\+\_\+mkdir(), f\+\_\+open(), f\+\_\+read(), f\+\_\+rename(), f\+\_\+setlabel(), f\+\_\+sync(), f\+\_\+utime(), f\+\_\+write(), put\+\_\+fat(), sum\+\_\+sfn(), and sync\+\_\+window().
 
 \index{F\+A\+T\+FS@{F\+A\+T\+FS}!win@{win}}
 \index{win@{win}!F\+A\+T\+FS@{F\+A\+T\+FS}}
 \subsubsection[{\texorpdfstring{win}{win}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf B\+Y\+TE} F\+A\+T\+F\+S\+::win\mbox{[}{\bf \+\_\+\+M\+A\+X\+\_\+\+SS}\mbox{]}}\hypertarget{structFATFS_a7cc35a593465e727ab87723c14610644}{}\label{structFATFS_a7cc35a593465e727ab87723c14610644}
 
 
-Definition at line 114 of file ff.\+h.
+Definition at line 132 of file ff.\+h.
 
 
 
-Referenced by check\+\_\+fs(), dir\+\_\+next(), dir\+\_\+sdi(), f\+\_\+getfree(), f\+\_\+getlabel(), f\+\_\+mkdir(), f\+\_\+mkfs(), f\+\_\+read(), f\+\_\+rename(), f\+\_\+setlabel(), f\+\_\+write(), find\+\_\+volume(), get\+\_\+fat(), move\+\_\+window(), put\+\_\+fat(), sync\+\_\+fs(), and sync\+\_\+window().
+Referenced by check\+\_\+fs(), dir\+\_\+next(), dir\+\_\+sdi(), f\+\_\+expand(), f\+\_\+getfree(), f\+\_\+getlabel(), f\+\_\+mkdir(), f\+\_\+read(), f\+\_\+rename(), f\+\_\+write(), find\+\_\+volume(), follow\+\_\+path(), get\+\_\+fat(), move\+\_\+window(), put\+\_\+fat(), sync\+\_\+fs(), and sync\+\_\+window().
 
 \index{F\+A\+T\+FS@{F\+A\+T\+FS}!winsect@{winsect}}
 \index{winsect@{winsect}!F\+A\+T\+FS@{F\+A\+T\+FS}}
 \subsubsection[{\texorpdfstring{winsect}{winsect}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\+W\+O\+RD} F\+A\+T\+F\+S\+::winsect}\hypertarget{structFATFS_ac60e69c00e6bf7c25febfbac4dc1476b}{}\label{structFATFS_ac60e69c00e6bf7c25febfbac4dc1476b}
 
 
-Definition at line 113 of file ff.\+h.
+Definition at line 131 of file ff.\+h.
 
 
 

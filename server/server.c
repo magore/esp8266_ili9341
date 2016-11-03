@@ -22,13 +22,16 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include "user_config.h"
+
 #include <stdint.h>
 #include <stdarg.h>
 #include <string.h>
 #include <math.h>
 
-#include "network.h"
-#include "server.h"
+#include "display/ili9341.h"
+#include "network/network.h"
+#include "server/server.h"
 
 static struct espconn *TCP_Server;
 uint8_t network_msg[256];
@@ -100,10 +103,10 @@ void servertest_setup(int port)
     os_memset(network_msg,0,sizeof(network_msg));
 
 	// TCP server
-	TCP_Server =(struct espconn *)os_zalloc(sizeof(struct espconn));
+	TCP_Server =(struct espconn *)safecalloc(sizeof(struct espconn),1);
 	TCP_Server->type = ESPCONN_TCP;
 	TCP_Server->state = ESPCONN_NONE;
-	TCP_Server->proto.tcp =(esp_tcp *)os_zalloc(sizeof(esp_tcp));
+	TCP_Server->proto.tcp =(esp_tcp *)safecalloc(sizeof(esp_tcp),1);
 	TCP_Server->proto.tcp->local_port = port;
 	// Receive Callback
 	espconn_regist_recvcb(TCP_Server, servertest_receive);

@@ -1,0 +1,136 @@
+\hypertarget{diskio_8c}{}\section{fatfs.\+hal/diskio.c File Reference}
+\label{diskio_8c}\index{fatfs.\+hal/diskio.\+c@{fatfs.\+hal/diskio.\+c}}
+{\ttfamily \#include \char`\"{}user\+\_\+config.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}diskio.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}mmc.\+h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{diskio_8c_a5eccf61399d126e38e5f2f7ec61bb29f}{D\+R\+V\+\_\+\+M\+MC}~0
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{diskio_8h_adba6790898ce4029c20a34b898ce73c1}{D\+S\+T\+A\+T\+US} \hyperlink{diskio_8c_a8348ac5ee6d709420c02e45c111f4793}{disk\+\_\+status} (\hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} pdrv)
+\item 
+\hyperlink{diskio_8h_adba6790898ce4029c20a34b898ce73c1}{D\+S\+T\+A\+T\+US} \hyperlink{diskio_8c_a09cdaa6f36fa409bdf002727bff98eb1}{disk\+\_\+initialize} (\hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} pdrv)
+\item 
+\hyperlink{diskio_8h_aacdfef1dad6565f65c26d12fe0ea4b2b}{D\+R\+E\+S\+U\+LT} \hyperlink{diskio_8c_a075d27f59f550e2cee07d00abcff32e0}{disk\+\_\+read} (\hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} pdrv, \hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} $\ast$buff, \hyperlink{integer_8h_ad342ac907eb044443153a22f964bf0af}{D\+W\+O\+RD} sector, \hyperlink{integer_8h_a36cb3b01d81ffd844bbbfb54003e06ec}{U\+I\+NT} \hyperlink{user__main_8c_aa011065eee776eb1bda73597b5d9d5d7}{count})
+\item 
+\hyperlink{diskio_8h_aacdfef1dad6565f65c26d12fe0ea4b2b}{D\+R\+E\+S\+U\+LT} \hyperlink{diskio_8c_a0fe56ee4831a44b09cfd96856e069634}{disk\+\_\+write} (\hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} pdrv, const \hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} $\ast$buff, \hyperlink{integer_8h_ad342ac907eb044443153a22f964bf0af}{D\+W\+O\+RD} sector, \hyperlink{integer_8h_a36cb3b01d81ffd844bbbfb54003e06ec}{U\+I\+NT} \hyperlink{user__main_8c_aa011065eee776eb1bda73597b5d9d5d7}{count})
+\item 
+\hyperlink{diskio_8h_aacdfef1dad6565f65c26d12fe0ea4b2b}{D\+R\+E\+S\+U\+LT} \hyperlink{diskio_8c_ab00fa450a811dbdabe3c655c1a36fab4}{disk\+\_\+ioctl} (\hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} pdrv, \hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} cmd, void $\ast$buff)
+\item 
+void \hyperlink{diskio_8c_a045f8898a243c16aca4e64e069c49c03}{disk\+\_\+timerproc} (void)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\index{diskio.\+c@{diskio.\+c}!D\+R\+V\+\_\+\+M\+MC@{D\+R\+V\+\_\+\+M\+MC}}
+\index{D\+R\+V\+\_\+\+M\+MC@{D\+R\+V\+\_\+\+M\+MC}!diskio.\+c@{diskio.\+c}}
+\subsubsection[{\texorpdfstring{D\+R\+V\+\_\+\+M\+MC}{DRV_MMC}}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\+R\+V\+\_\+\+M\+MC~0}\hypertarget{diskio_8c_a5eccf61399d126e38e5f2f7ec61bb29f}{}\label{diskio_8c_a5eccf61399d126e38e5f2f7ec61bb29f}
+
+
+Definition at line 10 of file diskio.\+c.
+
+
+
+Referenced by disk\+\_\+initialize(), disk\+\_\+ioctl(), disk\+\_\+read(), disk\+\_\+status(), and disk\+\_\+write().
+
+
+
+\subsection{Function Documentation}
+\index{diskio.\+c@{diskio.\+c}!disk\+\_\+initialize@{disk\+\_\+initialize}}
+\index{disk\+\_\+initialize@{disk\+\_\+initialize}!diskio.\+c@{diskio.\+c}}
+\subsubsection[{\texorpdfstring{disk\+\_\+initialize(\+B\+Y\+T\+E pdrv)}{disk_initialize(BYTE pdrv)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\+S\+T\+A\+T\+US} disk\+\_\+initialize (
+\begin{DoxyParamCaption}
+\item[{{\bf B\+Y\+TE}}]{pdrv}
+\end{DoxyParamCaption}
+)}\hypertarget{diskio_8c_a09cdaa6f36fa409bdf002727bff98eb1}{}\label{diskio_8c_a09cdaa6f36fa409bdf002727bff98eb1}
+
+
+Definition at line 53 of file diskio.\+c.
+
+
+
+Referenced by f\+\_\+mkfs(), find\+\_\+volume(), and mmc\+\_\+init().
+
+\index{diskio.\+c@{diskio.\+c}!disk\+\_\+ioctl@{disk\+\_\+ioctl}}
+\index{disk\+\_\+ioctl@{disk\+\_\+ioctl}!diskio.\+c@{diskio.\+c}}
+\subsubsection[{\texorpdfstring{disk\+\_\+ioctl(\+B\+Y\+T\+E pdrv, B\+Y\+T\+E cmd, void $\ast$buff)}{disk_ioctl(BYTE pdrv, BYTE cmd, void *buff)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\+R\+E\+S\+U\+LT} disk\+\_\+ioctl (
+\begin{DoxyParamCaption}
+\item[{{\bf B\+Y\+TE}}]{pdrv, }
+\item[{{\bf B\+Y\+TE}}]{cmd, }
+\item[{void $\ast$}]{buff}
+\end{DoxyParamCaption}
+)}\hypertarget{diskio_8c_ab00fa450a811dbdabe3c655c1a36fab4}{}\label{diskio_8c_ab00fa450a811dbdabe3c655c1a36fab4}
+
+
+Definition at line 130 of file diskio.\+c.
+
+
+
+Referenced by f\+\_\+mkfs(), find\+\_\+volume(), mmc\+\_\+init(), remove\+\_\+chain(), and sync\+\_\+fs().
+
+\index{diskio.\+c@{diskio.\+c}!disk\+\_\+read@{disk\+\_\+read}}
+\index{disk\+\_\+read@{disk\+\_\+read}!diskio.\+c@{diskio.\+c}}
+\subsubsection[{\texorpdfstring{disk\+\_\+read(\+B\+Y\+T\+E pdrv, B\+Y\+T\+E $\ast$buff, D\+W\+O\+R\+D sector, U\+I\+N\+T count)}{disk_read(BYTE pdrv, BYTE *buff, DWORD sector, UINT count)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\+R\+E\+S\+U\+LT} disk\+\_\+read (
+\begin{DoxyParamCaption}
+\item[{{\bf B\+Y\+TE}}]{pdrv, }
+\item[{{\bf B\+Y\+TE} $\ast$}]{buff, }
+\item[{{\bf D\+W\+O\+RD}}]{sector, }
+\item[{{\bf U\+I\+NT}}]{count}
+\end{DoxyParamCaption}
+)}\hypertarget{diskio_8c_a075d27f59f550e2cee07d00abcff32e0}{}\label{diskio_8c_a075d27f59f550e2cee07d00abcff32e0}
+
+
+Definition at line 76 of file diskio.\+c.
+
+
+
+Referenced by f\+\_\+expand(), f\+\_\+lseek(), f\+\_\+mkfs(), f\+\_\+open(), f\+\_\+read(), f\+\_\+write(), and move\+\_\+window().
+
+\index{diskio.\+c@{diskio.\+c}!disk\+\_\+status@{disk\+\_\+status}}
+\index{disk\+\_\+status@{disk\+\_\+status}!diskio.\+c@{diskio.\+c}}
+\subsubsection[{\texorpdfstring{disk\+\_\+status(\+B\+Y\+T\+E pdrv)}{disk_status(BYTE pdrv)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\+S\+T\+A\+T\+US} disk\+\_\+status (
+\begin{DoxyParamCaption}
+\item[{{\bf B\+Y\+TE}}]{pdrv}
+\end{DoxyParamCaption}
+)}\hypertarget{diskio_8c_a8348ac5ee6d709420c02e45c111f4793}{}\label{diskio_8c_a8348ac5ee6d709420c02e45c111f4793}
+
+
+Definition at line 30 of file diskio.\+c.
+
+
+
+Referenced by find\+\_\+volume(), and validate().
+
+\index{diskio.\+c@{diskio.\+c}!disk\+\_\+timerproc@{disk\+\_\+timerproc}}
+\index{disk\+\_\+timerproc@{disk\+\_\+timerproc}!diskio.\+c@{diskio.\+c}}
+\subsubsection[{\texorpdfstring{disk\+\_\+timerproc(void)}{disk_timerproc(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void disk\+\_\+timerproc (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{diskio_8c_a045f8898a243c16aca4e64e069c49c03}{}\label{diskio_8c_a045f8898a243c16aca4e64e069c49c03}
+
+
+Definition at line 156 of file diskio.\+c.
+
+\index{diskio.\+c@{diskio.\+c}!disk\+\_\+write@{disk\+\_\+write}}
+\index{disk\+\_\+write@{disk\+\_\+write}!diskio.\+c@{diskio.\+c}}
+\subsubsection[{\texorpdfstring{disk\+\_\+write(\+B\+Y\+T\+E pdrv, const B\+Y\+T\+E $\ast$buff, D\+W\+O\+R\+D sector, U\+I\+N\+T count)}{disk_write(BYTE pdrv, const BYTE *buff, DWORD sector, UINT count)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\+R\+E\+S\+U\+LT} disk\+\_\+write (
+\begin{DoxyParamCaption}
+\item[{{\bf B\+Y\+TE}}]{pdrv, }
+\item[{const {\bf B\+Y\+TE} $\ast$}]{buff, }
+\item[{{\bf D\+W\+O\+RD}}]{sector, }
+\item[{{\bf U\+I\+NT}}]{count}
+\end{DoxyParamCaption}
+)}\hypertarget{diskio_8c_a0fe56ee4831a44b09cfd96856e069634}{}\label{diskio_8c_a0fe56ee4831a44b09cfd96856e069634}
+
+
+Definition at line 103 of file diskio.\+c.
+
+
+
+Referenced by f\+\_\+expand(), f\+\_\+lseek(), f\+\_\+mkfs(), f\+\_\+read(), f\+\_\+sync(), f\+\_\+truncate(), f\+\_\+write(), sync\+\_\+fs(), and sync\+\_\+window().
+

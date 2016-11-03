@@ -20,23 +20,26 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+#include "user_config.h"
+
 #include <stdint.h>
 #include <stdarg.h>
 #include <string.h>
 #include <math.h>
 
-#include "tft_printf.h"
-#include "printf.h"
+#include "display/ili9341.h"
+#include "display/tft_printf.h"
+#include "printf/mathio.h"
 
 static void _putc_win(struct _printf_t *p, char ch)
 {
-	p->size++;
+	p->sent++;
 	tft_putch((window *) p->buffer, ch);
 }
 
 static void _putc_win_len(struct _printf_t *p, char ch)
 {
-	p->size++;
+	p->sent++;
 	tft_putch((window *) p->buffer, ch);
 }
 
@@ -52,7 +55,7 @@ int tft_printf(window *win, const char *fmt, ... )
     printf_t fn;
 
     fn.put = _putc_win;
-    fn.size = 0;
+    fn.sent = 0;
     fn.buffer = (void *) win;
 
     va_list va;
@@ -62,7 +65,7 @@ int tft_printf(window *win, const char *fmt, ... )
 
     va_end(va);
 
-	return(fn.size);
+	return(fn.sent);
 
 }
 

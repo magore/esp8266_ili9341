@@ -28,33 +28,51 @@
 #include <string.h>
 #include <math.h>
 
-#include "adf4351_hal.h"
+#include "user_config.h"
 
 /// =============================================================
 /// =============================================================
 /// HAL
 
+#ifdef ESP8266
+// GPIO pin 0
+#define ADF4351_LE_PIN   0
+#define ADF4351_LE_LOW   GPIO_OUTPUT_SET(0, 0)
+#define ADF4351_LE_HI    GPIO_OUTPUT_SET(0, 1)
+#define ADF4351_LE_INIT  PIN_FUNC_SELECT(PERIPHS_IO_MUX_GPIO0_U, FUNC_GPIO0); ADF4351_LE_LOW
+#endif
+
+#ifdef AVR
+#define ADF4351_LE_LOW   IO_LOW(ADF4351_CS)
+#define ADF4351_LE_HI    IO_HI(ADF4351_CS)
+#define ADF4351_LE_INIT  IO_LOW(ADF4351_CS)
+#endif
+
+
 /// Start SPI Hardware Abstraction Layer
 /// Keep all hardware dependent SPI code in this section
 
 /// @brief cache of SPI clock devisor
-uint16_t ADF4351_clock = -1;
+uint32_t ADF4351_clock = -1;
 
 /// @brief Obtain SPI bus for ADF4351 display, raises LE
 /// return: void
 MEMSPACE
 void ADF4351_spi_init(void)
 {
+
 #ifdef ESP8266
-    ADF4351_LE_INIT;
-    ADF4351_LE_LOW;
     hspi_init( (ADF4351_clock = 2) , 0);
     hspi_waitReady();
-#else
-    ADF4351_LE_LOW;
-    SPI0_Init(ADF4351_clock = 2);   //< Initialize the SPI bus
+#endif
+
+#ifdef AVR
+    SPI0_Init(ADF4351_clock = F_CPU);   //< Initialize the SPI bus
     SPI0_Mode(0);       //< Set the clocking mode, etc
 #endif
+
+    ADF4351_LE_INIT;
+    ADF4351_LE_LOW;
 }
 
 
@@ -62,13 +80,17 @@ void ADF4351_spi_init(void)
 /// return: void
 void ADF4351_spi_begin()
 {
+
 #ifdef ESP8266
     hspi_waitReady();
     hspi_init(ADF4351_clock, 0);
-#else
-    SPI0_Init(ADF4351_clock = 2);   //< Initialize the SPI bus
+#endif
+
+#ifdef AVR
+    SPI0_Speed(ADF4351_clock);   	//< Initialize the SPI bus
     SPI0_Mode(0);       			//< Set the clocking mode, etc
 #endif
+
     ADF4351_LE_LOW;
 }
 
@@ -77,16 +99,19 @@ void ADF4351_spi_begin()
 /// return: void
 void ADF4351_spi_end()
 {
+
 #ifdef ESP8266
     hspi_waitReady();
-	//hspi_cs_disable(ADF4351_LE_PIN);
     ADF4351_LE_HI;
     hspi_waitReady();	//just a short delay, nops would work
     ADF4351_LE_LOW;
-#else
+#endif
+
+#ifdef AVR
     ADF4351_LE_HI;
     ADF4351_LE_LOW;
 #endif
+
 }
 
 /// @brief  Transmit 32 bit data value
@@ -98,9 +123,6 @@ uint32_t ADF4351_spi_txrx(uint32_t value)
     uint8_t tmp[4];
     uint32_t ret;
 
-// LITTLE_ENDIAN and BIG_ENDIAN are both defined and of no value
-// extensa has LSB to MSB byte order LITTLE_ENDIAN
-// FIXME use functions
 // we have to send MSB to LSB
     for(i=3;i>=0;--i) 
 	{
@@ -112,7 +134,8 @@ uint32_t ADF4351_spi_txrx(uint32_t value)
 
 #ifdef ESP8266
     hspi_TXRX(tmp,4);   // send data and read any status from MUXOUT
-#else
+#endif
+#ifdef AVR
     SPI0_TXRX(tmp,4);
 #endif
 

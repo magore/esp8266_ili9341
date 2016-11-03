@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['ld_5fclust',['ld_clust',['../ff_8c.html#a84c9014cddbbfa6f1ade308bbc4a9a00',1,'ff.c']]],
+  ['ld_5fclust',['ld_clust',['../ff_8c.html#ab71a8ed00e289dbdc10eaf58c85e986d',1,'ff.c']]],
+  ['ld_5fdword',['ld_dword',['../ff_8c.html#aa4880817cfec23d4e560b785d1ceefcb',1,'ff.c']]],
+  ['ld_5fword',['ld_word',['../ff_8c.html#afb2ad66be348163ba091faf871b0d9b6',1,'ff.c']]],
   ['leap_5fdays_5fsince_5f1900',['Leap_Days_Since_1900',['../time_8c.html#ae735aeba371be4c38d738538bcbd8ff1',1,'time.c']]],
   ['led_5foff',['led_off',['../web_8c.html#aec67a5a0b10a3ad2bbfe81de832ef239',1,'led_off(int led):&#160;web.c'],['../web_8h.html#aec67a5a0b10a3ad2bbfe81de832ef239',1,'led_off(int led):&#160;web.c']]],
   ['led_5fon',['led_on',['../web_8c.html#aaaac061db0c7646d5b6c8bdfe3089ae7',1,'led_on(int led):&#160;web.c'],['../web_8h.html#aaaac061db0c7646d5b6c8bdfe3089ae7',1,'led_on(int led):&#160;web.c']]],

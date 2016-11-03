@@ -1,14 +1,7 @@
-\hypertarget{uart_8h}{}\section{utils/uart.h File Reference}
-\label{uart_8h}\index{utils/uart.\+h@{utils/uart.\+h}}
-{\ttfamily \#include $<$stdint.\+h$>$}\\*
-{\ttfamily \#include $<$stdarg.\+h$>$}\\*
-{\ttfamily \#include $<$string.\+h$>$}\\*
-{\ttfamily \#include $<$math.\+h$>$}\\*
-{\ttfamily \#include \char`\"{}uart\+\_\+register.\+h\char`\"{}}\\*
+\hypertarget{uart_8h}{}\section{esp8266/uart.h File Reference}
+\label{uart_8h}\index{esp8266/uart.\+h@{esp8266/uart.\+h}}
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
-\item 
-\#define \hyperlink{uart_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}
 \item 
 \#define \hyperlink{uart_8h_a0508661f121639ffdee7de2353a0def2}{U\+A\+R\+T0}~0
 \item 
@@ -60,7 +53,7 @@ enum \hyperlink{uart_8h_a9aa1e56362027f49bfbe4378b8c889a4}{Uart\+Baud\+Rate} \{ 
 void \hyperlink{uart_8h_ae08356fea716912edfef1013171b24ba}{uart\+\_\+rx\+\_\+enable} (uint8 uart\+\_\+no)
 \begin{DoxyCompactList}\small\item\em Enable receive interrupts for a uart. \end{DoxyCompactList}\item 
 void \hyperlink{uart_8h_a4c32ce5693fc8c1a40244b5cc82e796e}{uart\+\_\+rx\+\_\+disable} (uint8 uart\+\_\+no)
-\begin{DoxyCompactList}\small\item\em D\+Isable receive interrupts for a uart. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Disable receive interrupts for a uart. \end{DoxyCompactList}\item 
 void \hyperlink{uart_8h_a9fee6d0362cbec0ae882acb55d3a825f}{uart\+\_\+tx\+\_\+enable} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} uart\+\_\+no)
 \begin{DoxyCompactList}\small\item\em Enable transmit interrupts for a uart. \end{DoxyCompactList}\item 
 void \hyperlink{uart_8h_a87198ab19fb4f97a978baf08b478d150}{uart\+\_\+tx\+\_\+disable} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} uart\+\_\+no)
@@ -81,46 +74,60 @@ void \hyperlink{uart_8h_a6b9147fc5ffaf0a602cc60a8addb8a38}{rx\+\_\+fifo\+\_\+flu
 \begin{DoxyCompactList}\small\item\em Get the number of bytes free in receive fifo. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{uart_8h_a3ffd1f20ba2ca3ef0894473091b25012}{rx\+\_\+fifo\+\_\+empty} (int uart\+\_\+no)
 \begin{DoxyCompactList}\small\item\em Test if the receive fifo is empty. \end{DoxyCompactList}\item 
-\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} \hyperlink{uart_8h_a768fe76dc08754a1812bc4e5e2f1b0e0}{tx\+\_\+fifo\+\_\+putc} (int uart\+\_\+no, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} c)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{uart_8h_ae0c0e0aa888920f223867fa541b068ac}{tx\+\_\+fifo\+\_\+putb} (int uart\+\_\+no, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} c)
 \begin{DoxyCompactList}\small\item\em Add a byte to the trasmit fifo We assume that \hyperlink{uart_8c_a3c0f172370540e0d1840c415c2c7b661}{tx\+\_\+fifo\+\_\+free()} was called! \end{DoxyCompactList}\item 
-\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} \hyperlink{uart_8h_a82ec27afa5b913b022cc57c1bd5d5528}{rx\+\_\+fifo\+\_\+getc} (int uart\+\_\+no)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{uart_8h_a41c7b573c10fdd3aadc72669f96c2e71}{rx\+\_\+fifo\+\_\+getb} (int uart\+\_\+no)
 \begin{DoxyCompactList}\small\item\em Remove a byte from the receive fifo We assume that \hyperlink{uart_8c_a09c378ce1610cb5e63469a4ee6813de2}{rx\+\_\+fifo\+\_\+used()} was called! \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{uart_8h_a6658637d750ec2e2366ac3881dbd9f6e}{tx\+\_\+fifo\+\_\+write} (int uart\+\_\+no, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} $\ast$buf, int size)
 \begin{DoxyCompactList}\small\item\em Write a data buffer to the transmit fifo Note\+: This function does not wait/block util there is enough free space to meet the request. So you must check that the return value matches the size. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{uart_8h_a5ee039ccb34468de12203a7027fee1ce}{rx\+\_\+fifo\+\_\+read} (int uart\+\_\+no, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} $\ast$buf, int size)
 \begin{DoxyCompactList}\small\item\em Read a data buffer from the receive fifo Note\+: This function does not wait/block util there is enough free space to meet the request. So you must check that the return value matches the size. \end{DoxyCompactList}\item 
-L\+O\+C\+AL \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{uart_8h_a3d19962bf637dbfa1fbd66020570f64f}{uart\+\_\+putb} (uint8 uart\+\_\+no, uint8 data)
-\begin{DoxyCompactList}\small\item\em Blocking I/O functions. \end{DoxyCompactList}\item 
-L\+O\+C\+AL \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} \hyperlink{uart_8h_a2d03af0672e67715b10ea90aca69743d}{uart\+\_\+getb} (int uart\+\_\+no)
+L\+O\+C\+AL \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{uart_8h_a5d37288e478d3aefe796f405d90e2c06}{uart\+\_\+putb} (uint8 uart\+\_\+no, uint8 data)
+\begin{DoxyCompactList}\small\item\em Polled Blocking I/O functions that poll. \end{DoxyCompactList}\item 
+L\+O\+C\+AL \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{uart_8h_a385bdf5aba0beedc8862cb7afff7fee7}{uart\+\_\+getb} (int uart\+\_\+no)
 \begin{DoxyCompactList}\small\item\em Read a byte from a uart Note\+: This function waits/blocks util the read can happen. \end{DoxyCompactList}\item 
-\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{uart_8h_a4edbb01728f45e11ed6717416bbb9309}{uart\+\_\+putc} (uint8 uart\+\_\+no, char c)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{uart_8h_aad52b616aa1f07c5a59a5ddb6be602dc}{uart\+\_\+putc} (uint8 uart\+\_\+no, char c)
 \begin{DoxyCompactList}\small\item\em Write a byte from a uart with NL to C\+R/\+NL conversion Note\+: This function waits/blocks util the write can happen. \end{DoxyCompactList}\item 
-\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} \hyperlink{uart_8h_a64dbce670a0ba6a547378d2305d03dfa}{uart\+\_\+getc} (int uart\+\_\+no)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{uart_8h_adf42ba60e6a57087df07a521240569c7}{uart\+\_\+getc} (int uart\+\_\+no)
 \begin{DoxyCompactList}\small\item\em Read a byte from a uart with NL to C\+R/\+NL conversion Note\+: This function waits/blocks util the read can happen. \end{DoxyCompactList}\item 
-\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{uart_8h_a38d539495f2c5329441ccedc26081afa}{uart0\+\_\+putc} (uint8 c)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{uart_8h_ad5837c0512e852837f615c22769355c9}{uart0\+\_\+putc} (uint8 c)
 \begin{DoxyCompactList}\small\item\em Write a byte to uart0 with NL to C\+R/\+NL conversion Note\+: This function waits/blocks util the write can happen. \end{DoxyCompactList}\item 
-\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} \hyperlink{uart_8h_a6b1663edd13295a3a4f7877a69307b71}{uart0\+\_\+getc} (void)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{uart_8h_a38d52679a02040deeb1484f6880ee1fd}{uart0\+\_\+getc} (void)
 \begin{DoxyCompactList}\small\item\em Read a byte from uart0 with NL to C\+R/\+NL conversion Note\+: This function waits/blocks util the read can happen. \end{DoxyCompactList}\item 
-\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{uart_8h_a5e535e1ea0c08984d0de21b4d2cb4cec}{uart1\+\_\+putc} (uint8 c)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{uart_8h_a68627c49cc4901c400c82adeea5a6b1d}{uart1\+\_\+putc} (uint8 c)
 \begin{DoxyCompactList}\small\item\em Write a byte to uart1 with NL to C\+R/\+NL conversion Note\+: This function waits/blocks util the write can happen. \end{DoxyCompactList}\item 
-\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} \hyperlink{uart_8h_ae9305ea080959cfb9dd6ec24a1b3585b}{uart1\+\_\+getc} (void)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{uart_8h_a148e8cd7cbfcbbd80ad1220f1390e6b8}{uart1\+\_\+getc} (void)
 \begin{DoxyCompactList}\small\item\em Read a byte from uart1 with NL to C\+R/\+NL conversion Note\+: This function waits/blocks util the read can happen. \end{DoxyCompactList}\item 
+L\+O\+C\+AL \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{uart_8h_a08addb9b5aa3cbe9dbba1c0c0242a6e6}{uart\+\_\+queue\+\_\+putb} (uint8 uart\+\_\+no, uint8 data)
+\item 
+void \hyperlink{uart_8h_aac4c92fd5bb979408d209ca8e7c3865c}{uart\+\_\+task} (void)
+\item 
+L\+O\+C\+AL \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{uart_8h_acc12e198ec89c68b7f51d99a4924ed28}{uart\+\_\+queue\+\_\+getb} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} uart\+\_\+no)
+\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{uart_8h_a7d280257d3443fa5f3d6bb7007e2a543}{uart\+\_\+queue\+\_\+putc} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} uart\+\_\+no, char c)
+\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{uart_8h_acf7576240a5fa89eff860522a060c907}{uart0\+\_\+queue\+\_\+putc} (char c)
+\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{uart_8h_a590b4e9b5fbf412cbad4a6fcb36c3e2d}{uart1\+\_\+queue\+\_\+putc} (char c)
+\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} \hyperlink{uart_8h_ad8e620f0a708b7e3d7ba1aaa623f7692}{uart\+\_\+queue\+\_\+getc} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} uart\+\_\+no)
+\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} \hyperlink{uart_8h_a7a2b340567e2b891eaf85a00de17d62c}{uart0\+\_\+queue\+\_\+getc} (void)
+\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} \hyperlink{uart_8h_abefd5e7ba3ed2b292bc9ac6d842773cb}{uart1\+\_\+queue\+\_\+getc} (void)
+\item 
+int \hyperlink{uart_8h_ac5b65ec6f77f4b3dbefd863b767711b7}{kbhit} (int uart\+\_\+no, int eol)
+\begin{DoxyCompactList}\small\item\em high level function to see if we have input data available \end{DoxyCompactList}\item 
 void \hyperlink{uart_8h_aa018dc93fd77400560f0ab7e8d78f59a}{uart\+\_\+callback} (void $\ast$p)
 \begin{DoxyCompactList}\small\item\em Uart interrupt callback function Process all receive and transmit events here. \end{DoxyCompactList}\item 
-void \hyperlink{uart_8h_ace748ed36c0f9b9c90310db65b3afeab}{uart0\+\_\+gets\+\_\+add} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} data)
-\begin{DoxyCompactList}\small\item\em transfer data into the uart0\+\_\+gets\+\_\+receive\+\_\+queue Provide line buffering for \hyperlink{uart_8c_a9d100391356ca809d7cd75e23633f213}{uart0\+\_\+gets()} \end{DoxyCompactList}\item 
-\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{uart_8h_a1b9078ded4ced8bfa5d73c2a77e90028}{uart0\+\_\+gets\+\_\+init} (int size)
-\begin{DoxyCompactList}\small\item\em allocate and initialize uart0\+\_\+gets data structures Provide line buffering for \hyperlink{uart_8c_a9d100391356ca809d7cd75e23633f213}{uart0\+\_\+gets()} \end{DoxyCompactList}\item 
-\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{uart_8h_a9d100391356ca809d7cd75e23633f213}{uart0\+\_\+gets} (char $\ast$buf, int max)
-\begin{DoxyCompactList}\small\item\em uart0\+\_\+gets non-\/blocking line buffered gets \end{DoxyCompactList}\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{uart_8h_a83db8ea8db21280f74e2546414fc80f7}{U\+A\+R\+T\+\_\+\+Set\+Print\+Port} (uint8 uart\+\_\+no)
+\begin{DoxyCompactList}\small\item\em Install debug uart. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{uart_8h_afde4532b11b79411c904be3b2672c5e8}{uart\+\_\+config} (uint8 uart\+\_\+no, \hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} baud, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} data\+\_\+bits, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} stop\+\_\+bits, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} parity)
 \begin{DoxyCompactList}\small\item\em Uart configuration, baud rate, data and stop bits, parity. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{uart_8h_a5afb95571d79d939651ef59768fde839}{uart\+\_\+init} (\hyperlink{uart_8h_a9aa1e56362027f49bfbe4378b8c889a4}{Uart\+Baud\+Rate} uart0\+\_\+br, \hyperlink{uart_8h_a9aa1e56362027f49bfbe4378b8c889a4}{Uart\+Baud\+Rate} uart1\+\_\+br)
 \begin{DoxyCompactList}\small\item\em initialize uart0 and uart1 Defaults\+: 8 = data bits, 1 = stop bits, no parity \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{uart_8h_aeb10f06d9b9e69150d7cb2a760163ad7}{uart\+\_\+reattach} (void)
-\begin{DoxyCompactList}\small\item\em Reinitialize uart0 and uart1 calls \hyperlink{uart_8c_a5afb95571d79d939651ef59768fde839}{uart\+\_\+init()} \end{DoxyCompactList}\item 
-\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{uart_8h_a83db8ea8db21280f74e2546414fc80f7}{U\+A\+R\+T\+\_\+\+Set\+Print\+Port} (uint8 uart\+\_\+no)
-\begin{DoxyCompactList}\small\item\em Install debug uart. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Reinitialize uart0 and uart1 calls \hyperlink{uart_8c_a5afb95571d79d939651ef59768fde839}{uart\+\_\+init()} \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Macro Definition Documentation}
@@ -129,58 +136,39 @@ void \hyperlink{uart_8h_ace748ed36c0f9b9c90310db65b3afeab}{uart0\+\_\+gets\+\_\+
 \subsubsection[{\texorpdfstring{F\+U\+N\+C\+\_\+\+U0\+R\+XD}{FUNC_U0RXD}}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\+U\+N\+C\+\_\+\+U0\+R\+XD~0}\hypertarget{uart_8h_acb983a46a8eb86eae3df40a82eccaed6}{}\label{uart_8h_acb983a46a8eb86eae3df40a82eccaed6}
 
 
-Definition at line 88 of file uart.\+h.
-
-
-
-Referenced by uart\+\_\+config().
+Definition at line 73 of file uart.\+h.
 
 \index{uart.\+h@{uart.\+h}!F\+U\+N\+C\+\_\+\+U0\+T\+XD@{F\+U\+N\+C\+\_\+\+U0\+T\+XD}}
 \index{F\+U\+N\+C\+\_\+\+U0\+T\+XD@{F\+U\+N\+C\+\_\+\+U0\+T\+XD}!uart.\+h@{uart.\+h}}
 \subsubsection[{\texorpdfstring{F\+U\+N\+C\+\_\+\+U0\+T\+XD}{FUNC_U0TXD}}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\+U\+N\+C\+\_\+\+U0\+T\+XD~0}\hypertarget{uart_8h_ae18547ea6266e7165ecbe4f07ac2bbf1}{}\label{uart_8h_ae18547ea6266e7165ecbe4f07ac2bbf1}
 
 
-Definition at line 84 of file uart.\+h.
-
-
-
-Referenced by uart\+\_\+config().
-
-\index{uart.\+h@{uart.\+h}!M\+E\+M\+S\+P\+A\+CE@{M\+E\+M\+S\+P\+A\+CE}}
-\index{M\+E\+M\+S\+P\+A\+CE@{M\+E\+M\+S\+P\+A\+CE}!uart.\+h@{uart.\+h}}
-\subsubsection[{\texorpdfstring{M\+E\+M\+S\+P\+A\+CE}{MEMSPACE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+E\+M\+S\+P\+A\+CE}\hypertarget{uart_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{}\label{uart_8h_ad0fe97585b8891f5e4f2b9a6426330a4}
-
-
-Definition at line 39 of file uart.\+h.
+Definition at line 69 of file uart.\+h.
 
 \index{uart.\+h@{uart.\+h}!U\+A\+R\+T0@{U\+A\+R\+T0}}
 \index{U\+A\+R\+T0@{U\+A\+R\+T0}!uart.\+h@{uart.\+h}}
 \subsubsection[{\texorpdfstring{U\+A\+R\+T0}{UART0}}]{\setlength{\rightskip}{0pt plus 5cm}\#define U\+A\+R\+T0~0}\hypertarget{uart_8h_a0508661f121639ffdee7de2353a0def2}{}\label{uart_8h_a0508661f121639ffdee7de2353a0def2}
 
 
-Definition at line 44 of file uart.\+h.
+Definition at line 29 of file uart.\+h.
 
 
 
-Referenced by rx\+\_\+fifo\+\_\+empty(), rx\+\_\+fifo\+\_\+free(), rx\+\_\+fifo\+\_\+getc(), rx\+\_\+fifo\+\_\+read(), rx\+\_\+fifo\+\_\+used(), tx\+\_\+fifo\+\_\+write(), uart\+\_\+config(), and uart\+\_\+init().
+Referenced by rx\+\_\+fifo\+\_\+empty(), rx\+\_\+fifo\+\_\+free(), rx\+\_\+fifo\+\_\+getb(), rx\+\_\+fifo\+\_\+read(), and rx\+\_\+fifo\+\_\+used().
 
 \index{uart.\+h@{uart.\+h}!U\+A\+R\+T1@{U\+A\+R\+T1}}
 \index{U\+A\+R\+T1@{U\+A\+R\+T1}!uart.\+h@{uart.\+h}}
 \subsubsection[{\texorpdfstring{U\+A\+R\+T1}{UART1}}]{\setlength{\rightskip}{0pt plus 5cm}\#define U\+A\+R\+T1~1}\hypertarget{uart_8h_a8d69bf04d07af4fbbab5a8bd291f65ff}{}\label{uart_8h_a8d69bf04d07af4fbbab5a8bd291f65ff}
 
 
-Definition at line 45 of file uart.\+h.
-
-
-
-Referenced by uart\+\_\+init().
+Definition at line 30 of file uart.\+h.
 
 \index{uart.\+h@{uart.\+h}!U\+A\+R\+T\+\_\+\+F\+I\+F\+O\+\_\+\+L\+EN@{U\+A\+R\+T\+\_\+\+F\+I\+F\+O\+\_\+\+L\+EN}}
 \index{U\+A\+R\+T\+\_\+\+F\+I\+F\+O\+\_\+\+L\+EN@{U\+A\+R\+T\+\_\+\+F\+I\+F\+O\+\_\+\+L\+EN}!uart.\+h@{uart.\+h}}
 \subsubsection[{\texorpdfstring{U\+A\+R\+T\+\_\+\+F\+I\+F\+O\+\_\+\+L\+EN}{UART_FIFO_LEN}}]{\setlength{\rightskip}{0pt plus 5cm}\#define U\+A\+R\+T\+\_\+\+F\+I\+F\+O\+\_\+\+L\+EN~128  /$\ast$ define the tx fifo length $\ast$/}\hypertarget{uart_8h_a653fc44b41db6efb3884c15ce8d6c30e}{}\label{uart_8h_a653fc44b41db6efb3884c15ce8d6c30e}
 
 
-Definition at line 80 of file uart.\+h.
+Definition at line 65 of file uart.\+h.
 
 
 
@@ -231,7 +219,7 @@ B\+I\+T\+\_\+\+R\+A\+T\+E\+\_\+3686400\hypertarget{uart_8h_a9aa1e56362027f49bfbe
 \end{Desc}
 
 
-Definition at line 59 of file uart.\+h.
+Definition at line 44 of file uart.\+h.
 
 \index{uart.\+h@{uart.\+h}!Uart\+Parity\+Mode@{Uart\+Parity\+Mode}}
 \index{Uart\+Parity\+Mode@{Uart\+Parity\+Mode}!uart.\+h@{uart.\+h}}
@@ -249,7 +237,7 @@ O\+D\+D\+\_\+\+P\+A\+R\+I\+TY\hypertarget{uart_8h_acb045cca45821ff8ef1e749914313
 \end{Desc}
 
 
-Definition at line 53 of file uart.\+h.
+Definition at line 38 of file uart.\+h.
 
 \index{uart.\+h@{uart.\+h}!Uart\+Stop\+Bits\+Num@{Uart\+Stop\+Bits\+Num}}
 \index{Uart\+Stop\+Bits\+Num@{Uart\+Stop\+Bits\+Num}!uart.\+h@{uart.\+h}}
@@ -265,11 +253,39 @@ T\+W\+O\+\_\+\+S\+T\+O\+P\+\_\+\+B\+IT\hypertarget{uart_8h_a0ecb1f01cc124cfef8bb
 \end{Desc}
 
 
-Definition at line 47 of file uart.\+h.
+Definition at line 32 of file uart.\+h.
 
 
 
 \subsection{Function Documentation}
+\index{uart.\+h@{uart.\+h}!kbhit@{kbhit}}
+\index{kbhit@{kbhit}!uart.\+h@{uart.\+h}}
+\subsubsection[{\texorpdfstring{kbhit(int uart\+\_\+no, int eol)}{kbhit(int uart_no, int eol)}}]{\setlength{\rightskip}{0pt plus 5cm}int kbhit (
+\begin{DoxyParamCaption}
+\item[{int}]{uart\+\_\+no, }
+\item[{int}]{eol}
+\end{DoxyParamCaption}
+)}\hypertarget{uart_8h_ac5b65ec6f77f4b3dbefd863b767711b7}{}\label{uart_8h_ac5b65ec6f77f4b3dbefd863b767711b7}
+
+
+high level function to see if we have input data available 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em uart\+\_\+no} & uart number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+byte read 
+\end{DoxyReturn}
+
+
+Definition at line 555 of file uart.\+c.
+
+
+
+Referenced by loop\+\_\+task().
+
 \index{uart.\+h@{uart.\+h}!rx\+\_\+fifo\+\_\+empty@{rx\+\_\+fifo\+\_\+empty}}
 \index{rx\+\_\+fifo\+\_\+empty@{rx\+\_\+fifo\+\_\+empty}!uart.\+h@{uart.\+h}}
 \subsubsection[{\texorpdfstring{rx\+\_\+fifo\+\_\+empty(int uart\+\_\+no)}{rx_fifo_empty(int uart_no)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int rx\+\_\+fifo\+\_\+empty (
@@ -291,7 +307,7 @@ Test if the receive fifo is empty.
 \end{DoxyReturn}
 
 
-Definition at line 187 of file uart.\+c.
+Definition at line 183 of file uart.\+c.
 
 
 
@@ -318,11 +334,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 110 of file uart.\+c.
-
-
-
-Referenced by uart\+\_\+config().
+Definition at line 106 of file uart.\+c.
 
 \index{uart.\+h@{uart.\+h}!rx\+\_\+fifo\+\_\+free@{rx\+\_\+fifo\+\_\+free}}
 \index{rx\+\_\+fifo\+\_\+free@{rx\+\_\+fifo\+\_\+free}!uart.\+h@{uart.\+h}}
@@ -345,15 +357,15 @@ bytes free
 \end{DoxyReturn}
 
 
-Definition at line 173 of file uart.\+c.
+Definition at line 169 of file uart.\+c.
 
-\index{uart.\+h@{uart.\+h}!rx\+\_\+fifo\+\_\+getc@{rx\+\_\+fifo\+\_\+getc}}
-\index{rx\+\_\+fifo\+\_\+getc@{rx\+\_\+fifo\+\_\+getc}!uart.\+h@{uart.\+h}}
-\subsubsection[{\texorpdfstring{rx\+\_\+fifo\+\_\+getc(int uart\+\_\+no)}{rx_fifo_getc(int uart_no)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} {\bf uint8\+\_\+t} rx\+\_\+fifo\+\_\+getc (
+\index{uart.\+h@{uart.\+h}!rx\+\_\+fifo\+\_\+getb@{rx\+\_\+fifo\+\_\+getb}}
+\index{rx\+\_\+fifo\+\_\+getb@{rx\+\_\+fifo\+\_\+getb}!uart.\+h@{uart.\+h}}
+\subsubsection[{\texorpdfstring{rx\+\_\+fifo\+\_\+getb(int uart\+\_\+no)}{rx_fifo_getb(int uart_no)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int rx\+\_\+fifo\+\_\+getb (
 \begin{DoxyParamCaption}
 \item[{int}]{uart\+\_\+no}
 \end{DoxyParamCaption}
-)}\hypertarget{uart_8h_a82ec27afa5b913b022cc57c1bd5d5528}{}\label{uart_8h_a82ec27afa5b913b022cc57c1bd5d5528}
+)}\hypertarget{uart_8h_a41c7b573c10fdd3aadc72669f96c2e71}{}\label{uart_8h_a41c7b573c10fdd3aadc72669f96c2e71}
 
 
 Remove a byte from the receive fifo We assume that \hyperlink{uart_8c_a09c378ce1610cb5e63469a4ee6813de2}{rx\+\_\+fifo\+\_\+used()} was called! 
@@ -368,7 +380,7 @@ c, (or 0 if fill user error)
 \end{DoxyReturn}
 
 
-Definition at line 220 of file uart.\+c.
+Definition at line 218 of file uart.\+c.
 
 
 
@@ -401,7 +413,7 @@ number of bytes actually read from the fifo -\/ may not be size!
 \end{DoxyReturn}
 
 
-Definition at line 278 of file uart.\+c.
+Definition at line 265 of file uart.\+c.
 
 \index{uart.\+h@{uart.\+h}!rx\+\_\+fifo\+\_\+used@{rx\+\_\+fifo\+\_\+used}}
 \index{rx\+\_\+fifo\+\_\+used@{rx\+\_\+fifo\+\_\+used}!uart.\+h@{uart.\+h}}
@@ -424,11 +436,11 @@ bytes in use
 \end{DoxyReturn}
 
 
-Definition at line 160 of file uart.\+c.
+Definition at line 156 of file uart.\+c.
 
 
 
-Referenced by rx\+\_\+fifo\+\_\+getc(), rx\+\_\+fifo\+\_\+read(), and uart\+\_\+callback().
+Referenced by rx\+\_\+fifo\+\_\+getb(), and rx\+\_\+fifo\+\_\+read().
 
 \index{uart.\+h@{uart.\+h}!tx\+\_\+fifo\+\_\+empty@{tx\+\_\+fifo\+\_\+empty}}
 \index{tx\+\_\+fifo\+\_\+empty@{tx\+\_\+fifo\+\_\+empty}!uart.\+h@{uart.\+h}}
@@ -451,11 +463,11 @@ Test if the transmit fifo is empty.
 \end{DoxyReturn}
 
 
-Definition at line 148 of file uart.\+c.
+Definition at line 144 of file uart.\+c.
 
 
 
-Referenced by uart\+\_\+callback().
+Referenced by uart1\+\_\+getc().
 
 \index{uart.\+h@{uart.\+h}!tx\+\_\+fifo\+\_\+flush@{tx\+\_\+fifo\+\_\+flush}}
 \index{tx\+\_\+fifo\+\_\+flush@{tx\+\_\+fifo\+\_\+flush}!uart.\+h@{uart.\+h}}
@@ -478,11 +490,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 99 of file uart.\+c.
-
-
-
-Referenced by uart\+\_\+config().
+Definition at line 95 of file uart.\+c.
 
 \index{uart.\+h@{uart.\+h}!tx\+\_\+fifo\+\_\+free@{tx\+\_\+fifo\+\_\+free}}
 \index{tx\+\_\+fifo\+\_\+free@{tx\+\_\+fifo\+\_\+free}!uart.\+h@{uart.\+h}}
@@ -505,20 +513,20 @@ bytes free
 \end{DoxyReturn}
 
 
-Definition at line 135 of file uart.\+c.
+Definition at line 131 of file uart.\+c.
 
 
 
-Referenced by tx\+\_\+fifo\+\_\+putc(), tx\+\_\+fifo\+\_\+write(), uart\+\_\+callback(), and uart\+\_\+putb().
+Referenced by tx\+\_\+fifo\+\_\+putb(), tx\+\_\+fifo\+\_\+write(), and uart\+\_\+putb().
 
-\index{uart.\+h@{uart.\+h}!tx\+\_\+fifo\+\_\+putc@{tx\+\_\+fifo\+\_\+putc}}
-\index{tx\+\_\+fifo\+\_\+putc@{tx\+\_\+fifo\+\_\+putc}!uart.\+h@{uart.\+h}}
-\subsubsection[{\texorpdfstring{tx\+\_\+fifo\+\_\+putc(int uart\+\_\+no, uint8\+\_\+t c)}{tx_fifo_putc(int uart_no, uint8_t c)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} {\bf uint8\+\_\+t} tx\+\_\+fifo\+\_\+putc (
+\index{uart.\+h@{uart.\+h}!tx\+\_\+fifo\+\_\+putb@{tx\+\_\+fifo\+\_\+putb}}
+\index{tx\+\_\+fifo\+\_\+putb@{tx\+\_\+fifo\+\_\+putb}!uart.\+h@{uart.\+h}}
+\subsubsection[{\texorpdfstring{tx\+\_\+fifo\+\_\+putb(int uart\+\_\+no, uint8\+\_\+t c)}{tx_fifo_putb(int uart_no, uint8_t c)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int tx\+\_\+fifo\+\_\+putb (
 \begin{DoxyParamCaption}
 \item[{int}]{uart\+\_\+no, }
 \item[{{\bf uint8\+\_\+t}}]{c}
 \end{DoxyParamCaption}
-)}\hypertarget{uart_8h_a768fe76dc08754a1812bc4e5e2f1b0e0}{}\label{uart_8h_a768fe76dc08754a1812bc4e5e2f1b0e0}
+)}\hypertarget{uart_8h_ae0c0e0aa888920f223867fa541b068ac}{}\label{uart_8h_ae0c0e0aa888920f223867fa541b068ac}
 
 
 Add a byte to the trasmit fifo We assume that \hyperlink{uart_8c_a3c0f172370540e0d1840c415c2c7b661}{tx\+\_\+fifo\+\_\+free()} was called! 
@@ -535,7 +543,7 @@ c, (or 0 if full user error)
 \end{DoxyReturn}
 
 
-Definition at line 204 of file uart.\+c.
+Definition at line 200 of file uart.\+c.
 
 
 
@@ -562,7 +570,7 @@ bytes in use
 \end{DoxyReturn}
 
 
-Definition at line 123 of file uart.\+c.
+Definition at line 119 of file uart.\+c.
 
 \index{uart.\+h@{uart.\+h}!tx\+\_\+fifo\+\_\+write@{tx\+\_\+fifo\+\_\+write}}
 \index{tx\+\_\+fifo\+\_\+write@{tx\+\_\+fifo\+\_\+write}!uart.\+h@{uart.\+h}}
@@ -591,15 +599,15 @@ number of bytes sent
 \end{DoxyReturn}
 
 
-Definition at line 243 of file uart.\+c.
+Definition at line 238 of file uart.\+c.
 
 \index{uart.\+h@{uart.\+h}!uart0\+\_\+getc@{uart0\+\_\+getc}}
 \index{uart0\+\_\+getc@{uart0\+\_\+getc}!uart.\+h@{uart.\+h}}
-\subsubsection[{\texorpdfstring{uart0\+\_\+getc(void)}{uart0_getc(void)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} {\bf uint8\+\_\+t} uart0\+\_\+getc (
+\subsubsection[{\texorpdfstring{uart0\+\_\+getc(void)}{uart0_getc(void)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int uart0\+\_\+getc (
 \begin{DoxyParamCaption}
 \item[{void}]{}
 \end{DoxyParamCaption}
-)}\hypertarget{uart_8h_a6b1663edd13295a3a4f7877a69307b71}{}\label{uart_8h_a6b1663edd13295a3a4f7877a69307b71}
+)}\hypertarget{uart_8h_a38d52679a02040deeb1484f6880ee1fd}{}\label{uart_8h_a38d52679a02040deeb1484f6880ee1fd}
 
 
 Read a byte from uart0 with NL to C\+R/\+NL conversion Note\+: This function waits/blocks util the read can happen. 
@@ -609,103 +617,15 @@ byte read
 \end{DoxyReturn}
 
 
-Definition at line 389 of file uart.\+c.
-
-
-
-Referenced by uart\+\_\+init().
-
-\index{uart.\+h@{uart.\+h}!uart0\+\_\+gets@{uart0\+\_\+gets}}
-\index{uart0\+\_\+gets@{uart0\+\_\+gets}!uart.\+h@{uart.\+h}}
-\subsubsection[{\texorpdfstring{uart0\+\_\+gets(char $\ast$buf, int max)}{uart0_gets(char *buf, int max)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int uart0\+\_\+gets (
-\begin{DoxyParamCaption}
-\item[{char $\ast$}]{buf, }
-\item[{int}]{max}
-\end{DoxyParamCaption}
-)}\hypertarget{uart_8h_a9d100391356ca809d7cd75e23633f213}{}\label{uart_8h_a9d100391356ca809d7cd75e23633f213}
-
-
-uart0\+\_\+gets non-\/blocking line buffered gets 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em buf} & user buffer to fill \\
-\hline
-\mbox{\tt in}  & {\em max} & miximum size of buf \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-0, or number of characters in line 
-\end{DoxyReturn}
-
-
-Definition at line 553 of file uart.\+c.
-
-
-
-Referenced by loop\+\_\+task().
-
-\index{uart.\+h@{uart.\+h}!uart0\+\_\+gets\+\_\+add@{uart0\+\_\+gets\+\_\+add}}
-\index{uart0\+\_\+gets\+\_\+add@{uart0\+\_\+gets\+\_\+add}!uart.\+h@{uart.\+h}}
-\subsubsection[{\texorpdfstring{uart0\+\_\+gets\+\_\+add(uint8\+\_\+t data)}{uart0_gets_add(uint8_t data)}}]{\setlength{\rightskip}{0pt plus 5cm}void uart0\+\_\+gets\+\_\+add (
-\begin{DoxyParamCaption}
-\item[{{\bf uint8\+\_\+t}}]{data}
-\end{DoxyParamCaption}
-)}\hypertarget{uart_8h_ace748ed36c0f9b9c90310db65b3afeab}{}\label{uart_8h_ace748ed36c0f9b9c90310db65b3afeab}
-
-
-transfer data into the uart0\+\_\+gets\+\_\+receive\+\_\+queue Provide line buffering for \hyperlink{uart_8c_a9d100391356ca809d7cd75e23633f213}{uart0\+\_\+gets()} 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em data} & character to add to queue \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-void 
-\end{DoxyReturn}
-
-
-Definition at line 497 of file uart.\+c.
-
-
-
-Referenced by uart\+\_\+callback().
-
-\index{uart.\+h@{uart.\+h}!uart0\+\_\+gets\+\_\+init@{uart0\+\_\+gets\+\_\+init}}
-\index{uart0\+\_\+gets\+\_\+init@{uart0\+\_\+gets\+\_\+init}!uart.\+h@{uart.\+h}}
-\subsubsection[{\texorpdfstring{uart0\+\_\+gets\+\_\+init(int size)}{uart0_gets_init(int size)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void uart0\+\_\+gets\+\_\+init (
-\begin{DoxyParamCaption}
-\item[{int}]{size}
-\end{DoxyParamCaption}
-)}\hypertarget{uart_8h_a1b9078ded4ced8bfa5d73c2a77e90028}{}\label{uart_8h_a1b9078ded4ced8bfa5d73c2a77e90028}
-
-
-allocate and initialize uart0\+\_\+gets data structures Provide line buffering for \hyperlink{uart_8c_a9d100391356ca809d7cd75e23633f213}{uart0\+\_\+gets()} 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em size} & size of line buffer \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-void 
-\end{DoxyReturn}
-
-
-Definition at line 533 of file uart.\+c.
-
-
-
-Referenced by uart\+\_\+init().
+Definition at line 370 of file uart.\+c.
 
 \index{uart.\+h@{uart.\+h}!uart0\+\_\+putc@{uart0\+\_\+putc}}
 \index{uart0\+\_\+putc@{uart0\+\_\+putc}!uart.\+h@{uart.\+h}}
-\subsubsection[{\texorpdfstring{uart0\+\_\+putc(uint8 c)}{uart0_putc(uint8 c)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void uart0\+\_\+putc (
+\subsubsection[{\texorpdfstring{uart0\+\_\+putc(uint8 c)}{uart0_putc(uint8 c)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int uart0\+\_\+putc (
 \begin{DoxyParamCaption}
 \item[{uint8}]{c}
 \end{DoxyParamCaption}
-)}\hypertarget{uart_8h_a38d539495f2c5329441ccedc26081afa}{}\label{uart_8h_a38d539495f2c5329441ccedc26081afa}
+)}\hypertarget{uart_8h_ad5837c0512e852837f615c22769355c9}{}\label{uart_8h_ad5837c0512e852837f615c22769355c9}
 
 
 Write a byte to uart0 with NL to C\+R/\+NL conversion Note\+: This function waits/blocks util the write can happen. 
@@ -720,19 +640,37 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 378 of file uart.\+c.
+Definition at line 359 of file uart.\+c.
 
-
-
-Referenced by uart\+\_\+init(), and U\+A\+R\+T\+\_\+\+Set\+Print\+Port().
-
-\index{uart.\+h@{uart.\+h}!uart1\+\_\+getc@{uart1\+\_\+getc}}
-\index{uart1\+\_\+getc@{uart1\+\_\+getc}!uart.\+h@{uart.\+h}}
-\subsubsection[{\texorpdfstring{uart1\+\_\+getc(void)}{uart1_getc(void)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} {\bf uint8\+\_\+t} uart1\+\_\+getc (
+\index{uart.\+h@{uart.\+h}!uart0\+\_\+queue\+\_\+getc@{uart0\+\_\+queue\+\_\+getc}}
+\index{uart0\+\_\+queue\+\_\+getc@{uart0\+\_\+queue\+\_\+getc}!uart.\+h@{uart.\+h}}
+\subsubsection[{\texorpdfstring{uart0\+\_\+queue\+\_\+getc(void)}{uart0_queue_getc(void)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} {\bf uint8\+\_\+t} uart0\+\_\+queue\+\_\+getc (
 \begin{DoxyParamCaption}
 \item[{void}]{}
 \end{DoxyParamCaption}
-)}\hypertarget{uart_8h_ae9305ea080959cfb9dd6ec24a1b3585b}{}\label{uart_8h_ae9305ea080959cfb9dd6ec24a1b3585b}
+)}\hypertarget{uart_8h_a7a2b340567e2b891eaf85a00de17d62c}{}\label{uart_8h_a7a2b340567e2b891eaf85a00de17d62c}
+
+
+Referenced by uart1\+\_\+getc().
+
+\index{uart.\+h@{uart.\+h}!uart0\+\_\+queue\+\_\+putc@{uart0\+\_\+queue\+\_\+putc}}
+\index{uart0\+\_\+queue\+\_\+putc@{uart0\+\_\+queue\+\_\+putc}!uart.\+h@{uart.\+h}}
+\subsubsection[{\texorpdfstring{uart0\+\_\+queue\+\_\+putc(char c)}{uart0_queue_putc(char c)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void uart0\+\_\+queue\+\_\+putc (
+\begin{DoxyParamCaption}
+\item[{char}]{c}
+\end{DoxyParamCaption}
+)}\hypertarget{uart_8h_acf7576240a5fa89eff860522a060c907}{}\label{uart_8h_acf7576240a5fa89eff860522a060c907}
+
+
+Referenced by uart1\+\_\+getc().
+
+\index{uart.\+h@{uart.\+h}!uart1\+\_\+getc@{uart1\+\_\+getc}}
+\index{uart1\+\_\+getc@{uart1\+\_\+getc}!uart.\+h@{uart.\+h}}
+\subsubsection[{\texorpdfstring{uart1\+\_\+getc(void)}{uart1_getc(void)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int uart1\+\_\+getc (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{uart_8h_a148e8cd7cbfcbbd80ad1220f1390e6b8}{}\label{uart_8h_a148e8cd7cbfcbbd80ad1220f1390e6b8}
 
 
 Read a byte from uart1 with NL to C\+R/\+NL conversion Note\+: This function waits/blocks util the read can happen. 
@@ -742,15 +680,15 @@ byte read
 \end{DoxyReturn}
 
 
-Definition at line 413 of file uart.\+c.
+Definition at line 394 of file uart.\+c.
 
 \index{uart.\+h@{uart.\+h}!uart1\+\_\+putc@{uart1\+\_\+putc}}
 \index{uart1\+\_\+putc@{uart1\+\_\+putc}!uart.\+h@{uart.\+h}}
-\subsubsection[{\texorpdfstring{uart1\+\_\+putc(uint8 c)}{uart1_putc(uint8 c)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void uart1\+\_\+putc (
+\subsubsection[{\texorpdfstring{uart1\+\_\+putc(uint8 c)}{uart1_putc(uint8 c)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int uart1\+\_\+putc (
 \begin{DoxyParamCaption}
 \item[{uint8}]{c}
 \end{DoxyParamCaption}
-)}\hypertarget{uart_8h_a5e535e1ea0c08984d0de21b4d2cb4cec}{}\label{uart_8h_a5e535e1ea0c08984d0de21b4d2cb4cec}
+)}\hypertarget{uart_8h_a68627c49cc4901c400c82adeea5a6b1d}{}\label{uart_8h_a68627c49cc4901c400c82adeea5a6b1d}
 
 
 Write a byte to uart1 with NL to C\+R/\+NL conversion Note\+: This function waits/blocks util the write can happen. 
@@ -765,11 +703,29 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 402 of file uart.\+c.
+Definition at line 383 of file uart.\+c.
+
+\index{uart.\+h@{uart.\+h}!uart1\+\_\+queue\+\_\+getc@{uart1\+\_\+queue\+\_\+getc}}
+\index{uart1\+\_\+queue\+\_\+getc@{uart1\+\_\+queue\+\_\+getc}!uart.\+h@{uart.\+h}}
+\subsubsection[{\texorpdfstring{uart1\+\_\+queue\+\_\+getc(void)}{uart1_queue_getc(void)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} {\bf uint8\+\_\+t} uart1\+\_\+queue\+\_\+getc (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{uart_8h_abefd5e7ba3ed2b292bc9ac6d842773cb}{}\label{uart_8h_abefd5e7ba3ed2b292bc9ac6d842773cb}
 
 
+Referenced by uart1\+\_\+getc().
 
-Referenced by U\+A\+R\+T\+\_\+\+Set\+Print\+Port().
+\index{uart.\+h@{uart.\+h}!uart1\+\_\+queue\+\_\+putc@{uart1\+\_\+queue\+\_\+putc}}
+\index{uart1\+\_\+queue\+\_\+putc@{uart1\+\_\+queue\+\_\+putc}!uart.\+h@{uart.\+h}}
+\subsubsection[{\texorpdfstring{uart1\+\_\+queue\+\_\+putc(char c)}{uart1_queue_putc(char c)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void uart1\+\_\+queue\+\_\+putc (
+\begin{DoxyParamCaption}
+\item[{char}]{c}
+\end{DoxyParamCaption}
+)}\hypertarget{uart_8h_a590b4e9b5fbf412cbad4a6fcb36c3e2d}{}\label{uart_8h_a590b4e9b5fbf412cbad4a6fcb36c3e2d}
+
+
+Referenced by uart1\+\_\+getc().
 
 \index{uart.\+h@{uart.\+h}!uart\+\_\+callback@{uart\+\_\+callback}}
 \index{uart\+\_\+callback@{uart\+\_\+callback}!uart.\+h@{uart.\+h}}
@@ -782,7 +738,9 @@ Referenced by U\+A\+R\+T\+\_\+\+Set\+Print\+Port().
 
 Uart interrupt callback function Process all receive and transmit events here. 
 
+=================================================================
 
+/$\ast$$\ast$ 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\tt in}  & {\em $\ast$p} & callback pointer -\/ currently unused \\
 \hline
@@ -792,11 +750,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 426 of file uart.\+c.
-
-
-
-Referenced by uart\+\_\+init().
+Definition at line 576 of file uart.\+c.
 
 \index{uart.\+h@{uart.\+h}!uart\+\_\+config@{uart\+\_\+config}}
 \index{uart\+\_\+config@{uart\+\_\+config}!uart.\+h@{uart.\+h}}
@@ -831,19 +785,15 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 592 of file uart.\+c.
-
-
-
-Referenced by uart\+\_\+init().
+Definition at line 686 of file uart.\+c.
 
 \index{uart.\+h@{uart.\+h}!uart\+\_\+getb@{uart\+\_\+getb}}
 \index{uart\+\_\+getb@{uart\+\_\+getb}!uart.\+h@{uart.\+h}}
-\subsubsection[{\texorpdfstring{uart\+\_\+getb(int uart\+\_\+no)}{uart_getb(int uart_no)}}]{\setlength{\rightskip}{0pt plus 5cm}L\+O\+C\+AL {\bf M\+E\+M\+S\+P\+A\+CE} {\bf uint8\+\_\+t} uart\+\_\+getb (
+\subsubsection[{\texorpdfstring{uart\+\_\+getb(int uart\+\_\+no)}{uart_getb(int uart_no)}}]{\setlength{\rightskip}{0pt plus 5cm}L\+O\+C\+AL {\bf M\+E\+M\+S\+P\+A\+CE} int uart\+\_\+getb (
 \begin{DoxyParamCaption}
 \item[{int}]{uart\+\_\+no}
 \end{DoxyParamCaption}
-)}\hypertarget{uart_8h_a2d03af0672e67715b10ea90aca69743d}{}\label{uart_8h_a2d03af0672e67715b10ea90aca69743d}
+)}\hypertarget{uart_8h_a385bdf5aba0beedc8862cb7afff7fee7}{}\label{uart_8h_a385bdf5aba0beedc8862cb7afff7fee7}
 
 
 Read a byte from a uart Note\+: This function waits/blocks util the read can happen. 
@@ -858,7 +808,7 @@ byte read
 \end{DoxyReturn}
 
 
-Definition at line 324 of file uart.\+c.
+Definition at line 305 of file uart.\+c.
 
 
 
@@ -866,11 +816,11 @@ Referenced by uart\+\_\+getc().
 
 \index{uart.\+h@{uart.\+h}!uart\+\_\+getc@{uart\+\_\+getc}}
 \index{uart\+\_\+getc@{uart\+\_\+getc}!uart.\+h@{uart.\+h}}
-\subsubsection[{\texorpdfstring{uart\+\_\+getc(int uart\+\_\+no)}{uart_getc(int uart_no)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} {\bf uint8\+\_\+t} uart\+\_\+getc (
+\subsubsection[{\texorpdfstring{uart\+\_\+getc(int uart\+\_\+no)}{uart_getc(int uart_no)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int uart\+\_\+getc (
 \begin{DoxyParamCaption}
 \item[{int}]{uart\+\_\+no}
 \end{DoxyParamCaption}
-)}\hypertarget{uart_8h_a64dbce670a0ba6a547378d2305d03dfa}{}\label{uart_8h_a64dbce670a0ba6a547378d2305d03dfa}
+)}\hypertarget{uart_8h_adf42ba60e6a57087df07a521240569c7}{}\label{uart_8h_adf42ba60e6a57087df07a521240569c7}
 
 
 Read a byte from a uart with NL to C\+R/\+NL conversion Note\+: This function waits/blocks util the read can happen. 
@@ -885,7 +835,7 @@ byte read
 \end{DoxyReturn}
 
 
-Definition at line 358 of file uart.\+c.
+Definition at line 338 of file uart.\+c.
 
 
 
@@ -915,23 +865,23 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 650 of file uart.\+c.
+Definition at line 745 of file uart.\+c.
 
 
 
-Referenced by setup(), and uart\+\_\+reattach().
+Referenced by setup().
 
 \index{uart.\+h@{uart.\+h}!uart\+\_\+putb@{uart\+\_\+putb}}
 \index{uart\+\_\+putb@{uart\+\_\+putb}!uart.\+h@{uart.\+h}}
-\subsubsection[{\texorpdfstring{uart\+\_\+putb(uint8 uart\+\_\+no, uint8 data)}{uart_putb(uint8 uart_no, uint8 data)}}]{\setlength{\rightskip}{0pt plus 5cm}L\+O\+C\+AL {\bf M\+E\+M\+S\+P\+A\+CE} void uart\+\_\+putb (
+\subsubsection[{\texorpdfstring{uart\+\_\+putb(uint8 uart\+\_\+no, uint8 data)}{uart_putb(uint8 uart_no, uint8 data)}}]{\setlength{\rightskip}{0pt plus 5cm}L\+O\+C\+AL {\bf M\+E\+M\+S\+P\+A\+CE} int uart\+\_\+putb (
 \begin{DoxyParamCaption}
 \item[{uint8}]{uart\+\_\+no, }
 \item[{uint8}]{data}
 \end{DoxyParamCaption}
-)}\hypertarget{uart_8h_a3d19962bf637dbfa1fbd66020570f64f}{}\label{uart_8h_a3d19962bf637dbfa1fbd66020570f64f}
+)}\hypertarget{uart_8h_a5d37288e478d3aefe796f405d90e2c06}{}\label{uart_8h_a5d37288e478d3aefe796f405d90e2c06}
 
 
-Blocking I/O functions. 
+Polled Blocking I/O functions that poll. 
 
 Write a byte to a uart Note\+: This function waits/blocks util the write can happen 
 \begin{DoxyParams}[1]{Parameters}
@@ -945,7 +895,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 310 of file uart.\+c.
+Definition at line 290 of file uart.\+c.
 
 
 
@@ -953,12 +903,12 @@ Referenced by uart\+\_\+putc().
 
 \index{uart.\+h@{uart.\+h}!uart\+\_\+putc@{uart\+\_\+putc}}
 \index{uart\+\_\+putc@{uart\+\_\+putc}!uart.\+h@{uart.\+h}}
-\subsubsection[{\texorpdfstring{uart\+\_\+putc(uint8 uart\+\_\+no, char c)}{uart_putc(uint8 uart_no, char c)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void uart\+\_\+putc (
+\subsubsection[{\texorpdfstring{uart\+\_\+putc(uint8 uart\+\_\+no, char c)}{uart_putc(uint8 uart_no, char c)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int uart\+\_\+putc (
 \begin{DoxyParamCaption}
 \item[{uint8}]{uart\+\_\+no, }
 \item[{char}]{c}
 \end{DoxyParamCaption}
-)}\hypertarget{uart_8h_a4edbb01728f45e11ed6717416bbb9309}{}\label{uart_8h_a4edbb01728f45e11ed6717416bbb9309}
+)}\hypertarget{uart_8h_aad52b616aa1f07c5a59a5ddb6be602dc}{}\label{uart_8h_aad52b616aa1f07c5a59a5ddb6be602dc}
 
 
 Write a byte from a uart with NL to C\+R/\+NL conversion Note\+: This function waits/blocks util the write can happen. 
@@ -975,11 +925,57 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 342 of file uart.\+c.
+Definition at line 324 of file uart.\+c.
 
 
 
-Referenced by \+\_\+uart0\+\_\+fn(), uart0\+\_\+putc(), and uart1\+\_\+putc().
+Referenced by \+\_\+uart0\+\_\+fn(), fatfs\+\_\+cat(), uart0\+\_\+putc(), and uart1\+\_\+putc().
+
+\index{uart.\+h@{uart.\+h}!uart\+\_\+queue\+\_\+getb@{uart\+\_\+queue\+\_\+getb}}
+\index{uart\+\_\+queue\+\_\+getb@{uart\+\_\+queue\+\_\+getb}!uart.\+h@{uart.\+h}}
+\subsubsection[{\texorpdfstring{uart\+\_\+queue\+\_\+getb(uint8\+\_\+t uart\+\_\+no)}{uart_queue_getb(uint8_t uart_no)}}]{\setlength{\rightskip}{0pt plus 5cm}L\+O\+C\+AL {\bf M\+E\+M\+S\+P\+A\+CE} int uart\+\_\+queue\+\_\+getb (
+\begin{DoxyParamCaption}
+\item[{{\bf uint8\+\_\+t}}]{uart\+\_\+no}
+\end{DoxyParamCaption}
+)}\hypertarget{uart_8h_acc12e198ec89c68b7f51d99a4924ed28}{}\label{uart_8h_acc12e198ec89c68b7f51d99a4924ed28}
+
+
+Referenced by uart1\+\_\+getc().
+
+\index{uart.\+h@{uart.\+h}!uart\+\_\+queue\+\_\+getc@{uart\+\_\+queue\+\_\+getc}}
+\index{uart\+\_\+queue\+\_\+getc@{uart\+\_\+queue\+\_\+getc}!uart.\+h@{uart.\+h}}
+\subsubsection[{\texorpdfstring{uart\+\_\+queue\+\_\+getc(uint8\+\_\+t uart\+\_\+no)}{uart_queue_getc(uint8_t uart_no)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} {\bf uint8\+\_\+t} uart\+\_\+queue\+\_\+getc (
+\begin{DoxyParamCaption}
+\item[{{\bf uint8\+\_\+t}}]{uart\+\_\+no}
+\end{DoxyParamCaption}
+)}\hypertarget{uart_8h_ad8e620f0a708b7e3d7ba1aaa623f7692}{}\label{uart_8h_ad8e620f0a708b7e3d7ba1aaa623f7692}
+
+
+Referenced by uart1\+\_\+getc().
+
+\index{uart.\+h@{uart.\+h}!uart\+\_\+queue\+\_\+putb@{uart\+\_\+queue\+\_\+putb}}
+\index{uart\+\_\+queue\+\_\+putb@{uart\+\_\+queue\+\_\+putb}!uart.\+h@{uart.\+h}}
+\subsubsection[{\texorpdfstring{uart\+\_\+queue\+\_\+putb(uint8 uart\+\_\+no, uint8 data)}{uart_queue_putb(uint8 uart_no, uint8 data)}}]{\setlength{\rightskip}{0pt plus 5cm}L\+O\+C\+AL {\bf M\+E\+M\+S\+P\+A\+CE} void uart\+\_\+queue\+\_\+putb (
+\begin{DoxyParamCaption}
+\item[{uint8}]{uart\+\_\+no, }
+\item[{uint8}]{data}
+\end{DoxyParamCaption}
+)}\hypertarget{uart_8h_a08addb9b5aa3cbe9dbba1c0c0242a6e6}{}\label{uart_8h_a08addb9b5aa3cbe9dbba1c0c0242a6e6}
+
+
+Referenced by uart1\+\_\+getc().
+
+\index{uart.\+h@{uart.\+h}!uart\+\_\+queue\+\_\+putc@{uart\+\_\+queue\+\_\+putc}}
+\index{uart\+\_\+queue\+\_\+putc@{uart\+\_\+queue\+\_\+putc}!uart.\+h@{uart.\+h}}
+\subsubsection[{\texorpdfstring{uart\+\_\+queue\+\_\+putc(uint8\+\_\+t uart\+\_\+no, char c)}{uart_queue_putc(uint8_t uart_no, char c)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void uart\+\_\+queue\+\_\+putc (
+\begin{DoxyParamCaption}
+\item[{{\bf uint8\+\_\+t}}]{uart\+\_\+no, }
+\item[{char}]{c}
+\end{DoxyParamCaption}
+)}\hypertarget{uart_8h_a7d280257d3443fa5f3d6bb7007e2a543}{}\label{uart_8h_a7d280257d3443fa5f3d6bb7007e2a543}
+
+
+Referenced by \+\_\+uart0\+\_\+fn(), and uart1\+\_\+getc().
 
 \index{uart.\+h@{uart.\+h}!uart\+\_\+reattach@{uart\+\_\+reattach}}
 \index{uart\+\_\+reattach@{uart\+\_\+reattach}!uart.\+h@{uart.\+h}}
@@ -997,7 +993,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 675 of file uart.\+c.
+Definition at line 794 of file uart.\+c.
 
 \index{uart.\+h@{uart.\+h}!uart\+\_\+rx\+\_\+disable@{uart\+\_\+rx\+\_\+disable}}
 \index{uart\+\_\+rx\+\_\+disable@{uart\+\_\+rx\+\_\+disable}!uart.\+h@{uart.\+h}}
@@ -1008,7 +1004,7 @@ Definition at line 675 of file uart.\+c.
 )}\hypertarget{uart_8h_a4c32ce5693fc8c1a40244b5cc82e796e}{}\label{uart_8h_a4c32ce5693fc8c1a40244b5cc82e796e}
 
 
-D\+Isable receive interrupts for a uart. 
+Disable receive interrupts for a uart. 
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -1020,7 +1016,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 67 of file uart.\+c.
+Definition at line 63 of file uart.\+c.
 
 \index{uart.\+h@{uart.\+h}!uart\+\_\+rx\+\_\+enable@{uart\+\_\+rx\+\_\+enable}}
 \index{uart\+\_\+rx\+\_\+enable@{uart\+\_\+rx\+\_\+enable}!uart.\+h@{uart.\+h}}
@@ -1043,7 +1039,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 57 of file uart.\+c.
+Definition at line 53 of file uart.\+c.
 
 \index{uart.\+h@{uart.\+h}!U\+A\+R\+T\+\_\+\+Set\+Print\+Port@{U\+A\+R\+T\+\_\+\+Set\+Print\+Port}}
 \index{U\+A\+R\+T\+\_\+\+Set\+Print\+Port@{U\+A\+R\+T\+\_\+\+Set\+Print\+Port}!uart.\+h@{uart.\+h}}
@@ -1061,7 +1057,18 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 688 of file uart.\+c.
+Definition at line 654 of file uart.\+c.
+
+\index{uart.\+h@{uart.\+h}!uart\+\_\+task@{uart\+\_\+task}}
+\index{uart\+\_\+task@{uart\+\_\+task}!uart.\+h@{uart.\+h}}
+\subsubsection[{\texorpdfstring{uart\+\_\+task(void)}{uart_task(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void uart\+\_\+task (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{uart_8h_aac4c92fd5bb979408d209ca8e7c3865c}{}\label{uart_8h_aac4c92fd5bb979408d209ca8e7c3865c}
+
+
+Referenced by uart1\+\_\+getc().
 
 \index{uart.\+h@{uart.\+h}!uart\+\_\+tx\+\_\+disable@{uart\+\_\+tx\+\_\+disable}}
 \index{uart\+\_\+tx\+\_\+disable@{uart\+\_\+tx\+\_\+disable}!uart.\+h@{uart.\+h}}
@@ -1084,11 +1091,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 87 of file uart.\+c.
-
-
-
-Referenced by uart\+\_\+callback().
+Definition at line 83 of file uart.\+c.
 
 \index{uart.\+h@{uart.\+h}!uart\+\_\+tx\+\_\+enable@{uart\+\_\+tx\+\_\+enable}}
 \index{uart\+\_\+tx\+\_\+enable@{uart\+\_\+tx\+\_\+enable}!uart.\+h@{uart.\+h}}
@@ -1111,9 +1114,9 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 77 of file uart.\+c.
+Definition at line 73 of file uart.\+c.
 
 
 
-Referenced by uart\+\_\+callback().
+Referenced by tx\+\_\+fifo\+\_\+putb(), tx\+\_\+fifo\+\_\+write(), and uart1\+\_\+getc().
 

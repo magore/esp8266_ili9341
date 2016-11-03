@@ -39,13 +39,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <stdio.h>
 #include <stdlib.h>
 #else
+#include "user_config.h"
 #include <stdint.h>
-#include <stdarg.h>
 #include <string.h>
-#include <math.h>
+#include "printf/mathio.h"
 #endif
 
 #include <math.h>
+
 #include "cordic2c_inc.h"
 #include "cordic.h"
 

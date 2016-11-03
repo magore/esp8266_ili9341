@@ -4,8 +4,10 @@
 {\ttfamily \#include $<$stdarg.\+h$>$}\\*
 {\ttfamily \#include $<$string.\+h$>$}\\*
 {\ttfamily \#include $<$math.\+h$>$}\\*
-{\ttfamily \#include \char`\"{}adf4351\+\_\+hal.\+h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}adf4351.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}user\+\_\+config.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}esp8266/hspi.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}adf4351/adf4351.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}printf/mathio.\+h\char`\"{}}\\*
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -53,7 +55,7 @@ Convert charge pump current in uA to R2 register value.
 \end{DoxyParams}
 
 
-Definition at line 145 of file adf4351.\+c.
+Definition at line 150 of file adf4351.\+c.
 
 
 
@@ -89,11 +91,11 @@ Calculate register values for A\+D\+F4351.
 \end{DoxyRetVals}
 R\+Fout\+V\+CO = \mbox{[}r0\+\_\+\+I\+NT + (r0\+\_\+\+F\+R\+A\+C/r1\+\_\+\+M\+OD)\mbox{]} × (P\+FD) R\+Fout = \mbox{[}r0\+\_\+\+I\+NT + (r0\+\_\+\+F\+R\+A\+C/r1\+\_\+\+M\+OD)\mbox{]} × (P\+FD /\+R\+Fout\+D\+IV) R\+Fout is the RF frequency output. r0\+\_\+\+I\+NT is the integer division factor. r0\+\_\+\+F\+R\+AC is the numerator of the fractional division (0 to M\+OD − 1). r1\+\_\+\+M\+OD is the preset fractional modulus (2 to 4095). R\+Fout\+D\+IV is the V\+CO output divider. P\+FD = R\+E\+Fin × \mbox{[}(1 + R\+E\+Fin\+M\+U\+L2)/(R × (1 + R\+E\+Fin\+D\+I\+V2))\mbox{]} R\+E\+Fin is the reference frequency input. R\+E\+Fin\+M\+U\+L2 is the R\+E\+Fin doubler bit (0 or 1). r2\+\_\+R is R\+E\+Fin division factor (1 to 1023). R\+E\+Fin\+D\+I\+V2 is the reference divide-\/by-\/2 bit (0 or 1). Fres = Channel\+Spacing $\ast$ R\+Fout\+D\+IV r1\+\_\+\+M\+OD=R\+E\+Fin / Fres
 
-Definition at line 422 of file adf4351.\+c.
+Definition at line 427 of file adf4351.\+c.
 
 
 
-Referenced by user\+\_\+tests().
+Referenced by adf4351\+\_\+cmd(), and A\+D\+F4351\+\_\+task().
 
 \index{adf4351.\+c@{adf4351.\+c}!A\+D\+F4351\+\_\+display\+\_\+error@{A\+D\+F4351\+\_\+display\+\_\+error}}
 \index{A\+D\+F4351\+\_\+display\+\_\+error@{A\+D\+F4351\+\_\+display\+\_\+error}!adf4351.\+c@{adf4351.\+c}}
@@ -113,11 +115,11 @@ Display A\+D\+F4351 error return code
 \end{DoxyParams}
 
 
-Definition at line 390 of file adf4351.\+c.
+Definition at line 395 of file adf4351.\+c.
 
 
 
-Referenced by user\+\_\+tests().
+Referenced by adf4351\+\_\+cmd(), and A\+D\+F4351\+\_\+task().
 
 \index{adf4351.\+c@{adf4351.\+c}!A\+D\+F4351\+\_\+\+G\+C\+D32@{A\+D\+F4351\+\_\+\+G\+C\+D32}}
 \index{A\+D\+F4351\+\_\+\+G\+C\+D32@{A\+D\+F4351\+\_\+\+G\+C\+D32}!adf4351.\+c@{adf4351.\+c}}
@@ -143,7 +145,7 @@ G\+CD of u and v
 \end{DoxyReturn}
 
 
-Definition at line 330 of file adf4351.\+c.
+Definition at line 335 of file adf4351.\+c.
 
 
 
@@ -174,7 +176,7 @@ Returns 32bit register value from register buffer.
 \end{DoxyRetVals}
 
 
-Definition at line 74 of file adf4351.\+c.
+Definition at line 79 of file adf4351.\+c.
 
 
 
@@ -198,7 +200,7 @@ Init all A\+D\+F4351 registers to default values.
 \end{DoxyParams}
 
 
-Definition at line 163 of file adf4351.\+c.
+Definition at line 168 of file adf4351.\+c.
 
 
 
@@ -225,7 +227,7 @@ Compute P\+FD.
 \end{DoxyParams}
 
 
-Definition at line 356 of file adf4351.\+c.
+Definition at line 361 of file adf4351.\+c.
 
 
 
@@ -252,7 +254,7 @@ Read A\+D\+F4351 status Only of value if spi bus input is tied to mux out This f
 \end{DoxyReturn}
 
 
-Definition at line 305 of file adf4351.\+c.
+Definition at line 310 of file adf4351.\+c.
 
 \index{adf4351.\+c@{adf4351.\+c}!A\+D\+F4351\+\_\+sync@{A\+D\+F4351\+\_\+sync}}
 \index{A\+D\+F4351\+\_\+sync@{A\+D\+F4351\+\_\+sync}!adf4351.\+c@{adf4351.\+c}}
@@ -274,11 +276,11 @@ Sync settings to A\+D\+F4351 registers.
 \end{DoxyParams}
 
 
-Definition at line 50 of file adf4351.\+c.
+Definition at line 55 of file adf4351.\+c.
 
 
 
-Referenced by A\+D\+F4351\+\_\+\+Init(), A\+D\+F4351\+\_\+status(), and user\+\_\+tests().
+Referenced by adf4351\+\_\+cmd(), A\+D\+F4351\+\_\+\+Init(), A\+D\+F4351\+\_\+status(), and A\+D\+F4351\+\_\+update().
 
 
 
@@ -292,7 +294,7 @@ A\+D\+F4351 register buffer.
 
 
 
-Definition at line 43 of file adf4351.\+c.
+Definition at line 48 of file adf4351.\+c.
 
 
 

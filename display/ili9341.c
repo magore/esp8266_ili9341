@@ -29,17 +29,16 @@
 */
 
 
+#include "user_config.h"
+
 #include <stdint.h>
 #include <stdarg.h>
 #include <string.h>
 #include <math.h>
 
-#include "font.h"
-#include "ili9341_hal.h"
-#include "ili9341.h"
-
-#define SWAP(a, b) do { a ^= b; b ^= a; a ^= b; } while(0)
-#define ABS(x) ((x)<0 ? -(x) : (x))
+#include "display/font.h"
+#include "display/ili9341.h"
+#include "driver/ili9341_adafruit.h"
 
 // TFT master window definition
 window tftwin;

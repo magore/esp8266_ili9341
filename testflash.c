@@ -1,6 +1,54 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
+
+/**
+ @file     testflash.c
+ @date     1 Nov 2016 
+ @brief    Create or read a flash test pattern file - used for testing esp8266 flash
+
+ @par Copyright &copy; 2015-2016 Mike Gore, GPL License
+ @par You are free to use this code under the terms of GPL
+  please retain a copy of this notice in any code you use it in.
+
+  This is free software: you can redistribute it and/or modify it under the
+  terms of the GNU General Public License as published by the Free Software
+  Foundation, either version 3 of the License, or (at your option)
+  any later version.
+
+  This software is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+/**
+ @brief    Create or read a flash test pattern file - used for testing esp8266 flash
+  Depends on esptool from https://github.com/themadinventor/esptool
+  Example - test 1 megabyte of flash - we write and verify a pattern
+	ESPTOOL=/usr/local/bin/esptool.py
+	ESPPORT=/dev/ttyUSB0
+    gcc testflash.c -o testflash
+    -mkdir tmp
+    @echo testing first megabyte
+    @echo
+    @echo Create megabyte size test file
+    ./testflash -s 0x100000 -w tmp/test1w.bin
+    @echo Write file to ESP8266
+    $(ESPTOOL) -p $(ESPPORT) -b $(BAUD) write_flash \
+        $(flashimageoptions) \
+        0x000000 tmp/test1w.bin
+    @echo read flash back from ESP8266
+    $(ESPTOOL) -p $(ESPPORT) -b $(BAUD) read_flash \
+        0x000000 0x100000 tmp/test1r.bin
+    @echo Verify data read back matches what we wrote
+    ./testflash -s 0x100000 -r tmp/test1r.bin
+*/
+
 int main(int argc, char *argv[])
 {
 	int i;
@@ -108,5 +156,9 @@ int main(int argc, char *argv[])
 		}
 		free((void *) buffer);
 	}
-	return(0);
+	if(errors)
+		printf("%d errors\n",errors);
+	else
+		printf("No errors\n");
+	return(errors);
 }

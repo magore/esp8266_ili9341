@@ -32,7 +32,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <stdint.h>
 #include <math.h>
 
-#include "printf.h"
+#include "mathio.h"
 
 /// @brief _putc_fn low level function that writes a character with putchar()
 /// @param[in] *p: structure with pointers to track number of bytes written
@@ -40,7 +40,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /// @return void
 static void _putc_fn(struct _printf_t *p, char ch)
 {
-	p->size++;
+	p->sent++;
 	putchar(ch);
 }
 
@@ -56,32 +56,15 @@ int t_printf(const char *format, ...)
 	va_list va;
 
     fn.put = _putc_fn;
-    fn.size = 0;
+    fn.sent = 0;
 
     va_start(va, format);
     _printf_fn(&fn, format, va);
     va_end(va);
 
-    len = fn.size;
-
-    return len;
+    len = fn.sent;
+    return (len);
 }
-
-/// @brief Convert ASCII string to number in a given base
-/// @param[in] str: string
-/// @param[in] base: radix
-/// @return long value
-/// @see strtol
-MEMSPACE
-long t_aton(char *str, int base)
-{
-    unsigned long num;
-    char *endptr;
-
-    num = strtol(str, &endptr, base);
-    return(num);
-}
-
 
 /// @brief printf tests
 /// Compare printf results from gcc printf and this printf
@@ -390,7 +373,7 @@ int main(int argc, char *argv[])
 		printf("[%+020ld]\n", num);
 		sprintf(str,"%+020ld", num);
 
-		num2 = t_aton(str,10);
+		num2 = aton(str,10);
 		if(num2 != num)
 			printf("**:%ld\n",num2);
 
@@ -416,7 +399,7 @@ int main(int argc, char *argv[])
 		printf("[%+020ld]\n", num);
 
 		sprintf(str,"%+020ld", num);
-		num2 = t_aton(str,10);
+		num2 = aton(str,10);
 		if(num2 != num)
 			printf("***:%ld\n",num2);
 
@@ -439,7 +422,7 @@ int main(int argc, char *argv[])
 		printf("[%+020ld]\n", num);
 
 		sprintf(str,"%+020ld", num);
-		num2 = t_aton(str,10);
+		num2 = aton(str,10);
 		if(num2 != num)
 			printf("***:%ld\n",num2);
 
@@ -468,7 +451,7 @@ int main(int argc, char *argv[])
 	printf("[%+020ld]\n", num);
 	sprintf(str,"%+020ld", num);
 
-	num2 = t_aton(str,10);
+	num2 = aton(str,10);
 	if(num2 != num)
 		printf("***:%ld\n",num2);
 
@@ -490,7 +473,7 @@ int main(int argc, char *argv[])
 	printf("[%020lu]\n", num);
 	sprintf(str,"%+020ld", num);
 
-	num2 = t_aton(str,10);
+	num2 = aton(str,10);
 	if(num2 != num)
 		printf("***:%ld\n",num2);
 
@@ -510,7 +493,7 @@ int main(int argc, char *argv[])
 	printf("[%+020ld]\n", num);
 	sprintf(str,"%+020ld", num);
 
-	num2 = t_aton(str,10);
+	num2 = aton(str,10);
 	if(num2 != num)
 		printf("***:%ld\n",num2);
 
@@ -530,7 +513,7 @@ int main(int argc, char *argv[])
 	printf("[%+ld]\n", num);
 	sprintf(str,"%+020ld", num);
 
-	num2 = t_aton(str,10);
+	num2 = aton(str,10);
 	if(num2 != num)
 		printf("***:%ld\n",num2);
 

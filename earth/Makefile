@@ -11,6 +11,6 @@ earth2wireframe:	earth2wireframe.c
 	gcc earth2wireframe.c -o earth2wireframe -lm
 
 clean:
-	rm earth2wireframe 
+	-rm -f earth2wireframe 
 
   

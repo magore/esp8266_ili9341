@@ -1,0 +1,203 @@
+\hypertarget{mathio_8c}{}\section{printf/mathio.c File Reference}
+\label{mathio_8c}\index{printf/mathio.\+c@{printf/mathio.\+c}}
+{\ttfamily \#include \char`\"{}user\+\_\+config.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$stdint.\+h$>$}\\*
+{\ttfamily \#include $<$stdarg.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}mathio.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$math.\+h$>$}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mathio_8c_a8c0b521d598596dde4e31d56f672ad76}{atodigit} (int c, int radix)
+\begin{DoxyCompactList}\small\item\em Convert A\+S\+C\+II character to radix based digit , or -\/1. \end{DoxyCompactList}\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} long \hyperlink{mathio_8c_a65e529a87a8bcaf0b2cb9b6edc3a8fde}{atoh} (const char $\ast$p)
+\begin{DoxyCompactList}\small\item\em Convert A\+S\+C\+II hex string to long integer. \end{DoxyCompactList}\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} long \hyperlink{mathio_8c_a5fb184d7bd50561c60bf64b7cda0eb62}{aton} (char $\ast$str, int base)
+\begin{DoxyCompactList}\small\item\em Convert A\+S\+C\+II string to number in a given base. \end{DoxyCompactList}\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} long \hyperlink{mathio_8c_ae7a25f0631dd53c026fd8636e8bcb42e}{strtol} (const char $\ast$nptr, char $\ast$$\ast$endptr, int base)
+\begin{DoxyCompactList}\small\item\em Convert A\+S\+C\+II string to number in a given base. \end{DoxyCompactList}\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mathio_8c_ae640e0202e5f4904efa121a07af97c5e}{atoi} (const char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Convert A\+S\+C\+II string to number in base 10. \end{DoxyCompactList}\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} long \hyperlink{mathio_8c_ae952cb1ae6aec6b2b6c02ae67e9ea87b}{atol} (const char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Convert A\+S\+C\+II string to number in base 10. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{mathio.\+c@{mathio.\+c}!atodigit@{atodigit}}
+\index{atodigit@{atodigit}!mathio.\+c@{mathio.\+c}}
+\subsubsection[{\texorpdfstring{atodigit(int c, int radix)}{atodigit(int c, int radix)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int atodigit (
+\begin{DoxyParamCaption}
+\item[{int}]{c, }
+\item[{int}]{radix}
+\end{DoxyParamCaption}
+)}\hypertarget{mathio_8c_a8c0b521d598596dde4e31d56f672ad76}{}\label{mathio_8c_a8c0b521d598596dde4e31d56f672ad76}
+
+
+Convert A\+S\+C\+II character to radix based digit , or -\/1. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & character \\
+\hline
+\mbox{\tt in}  & {\em radix} & radix \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+radix based digit , or -\/1 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{mathio_8c_ae7a25f0631dd53c026fd8636e8bcb42e}{strtol} 
+\end{DoxySeeAlso}
+
+
+Definition at line 24 of file mathio.\+c.
+
+
+
+Referenced by process\+\_\+args(), and strtol().
+
+\index{mathio.\+c@{mathio.\+c}!atoh@{atoh}}
+\index{atoh@{atoh}!mathio.\+c@{mathio.\+c}}
+\subsubsection[{\texorpdfstring{atoh(const char $\ast$p)}{atoh(const char *p)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} long atoh (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{p}
+\end{DoxyParamCaption}
+)}\hypertarget{mathio_8c_a65e529a87a8bcaf0b2cb9b6edc3a8fde}{}\label{mathio_8c_a65e529a87a8bcaf0b2cb9b6edc3a8fde}
+
+
+Convert A\+S\+C\+II hex string to long integer. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em p} & String to convert.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+long integer result. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{mathio_8c_ae7a25f0631dd53c026fd8636e8bcb42e}{strtol()} for return overflow and underflow results. 
+\end{DoxySeeAlso}
+
+
+Definition at line 45 of file mathio.\+c.
+
+\index{mathio.\+c@{mathio.\+c}!atoi@{atoi}}
+\index{atoi@{atoi}!mathio.\+c@{mathio.\+c}}
+\subsubsection[{\texorpdfstring{atoi(const char $\ast$str)}{atoi(const char *str)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int atoi (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{str}
+\end{DoxyParamCaption}
+)}\hypertarget{mathio_8c_ae640e0202e5f4904efa121a07af97c5e}{}\label{mathio_8c_ae640e0202e5f4904efa121a07af97c5e}
+
+
+Convert A\+S\+C\+II string to number in base 10. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int value 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{mathio_8c_ae7a25f0631dd53c026fd8636e8bcb42e}{strtol} 
+\end{DoxySeeAlso}
+
+
+Definition at line 123 of file mathio.\+c.
+
+
+
+Referenced by html\+\_\+status(), main(), parse\+\_\+http\+\_\+request(), and Read\+Bdf().
+
+\index{mathio.\+c@{mathio.\+c}!atol@{atol}}
+\index{atol@{atol}!mathio.\+c@{mathio.\+c}}
+\subsubsection[{\texorpdfstring{atol(const char $\ast$str)}{atol(const char *str)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} long atol (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{str}
+\end{DoxyParamCaption}
+)}\hypertarget{mathio_8c_ae952cb1ae6aec6b2b6c02ae67e9ea87b}{}\label{mathio_8c_ae952cb1ae6aec6b2b6c02ae67e9ea87b}
+
+
+Convert A\+S\+C\+II string to number in base 10. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+long value 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{mathio_8c_ae7a25f0631dd53c026fd8636e8bcb42e}{strtol} 
+\end{DoxySeeAlso}
+
+
+Definition at line 138 of file mathio.\+c.
+
+\index{mathio.\+c@{mathio.\+c}!aton@{aton}}
+\index{aton@{aton}!mathio.\+c@{mathio.\+c}}
+\subsubsection[{\texorpdfstring{aton(char $\ast$str, int base)}{aton(char *str, int base)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} long aton (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str, }
+\item[{int}]{base}
+\end{DoxyParamCaption}
+)}\hypertarget{mathio_8c_a5fb184d7bd50561c60bf64b7cda0eb62}{}\label{mathio_8c_a5fb184d7bd50561c60bf64b7cda0eb62}
+
+
+Convert A\+S\+C\+II string to number in a given base. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & string \\
+\hline
+\mbox{\tt in}  & {\em base} & radix \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+long value 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{mathio_8c_ae7a25f0631dd53c026fd8636e8bcb42e}{strtol} 
+\end{DoxySeeAlso}
+
+
+Definition at line 59 of file mathio.\+c.
+
+\index{mathio.\+c@{mathio.\+c}!strtol@{strtol}}
+\index{strtol@{strtol}!mathio.\+c@{mathio.\+c}}
+\subsubsection[{\texorpdfstring{strtol(const char $\ast$nptr, char $\ast$$\ast$endptr, int base)}{strtol(const char *nptr, char **endptr, int base)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} long strtol (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{nptr, }
+\item[{char $\ast$$\ast$}]{endptr, }
+\item[{int}]{base}
+\end{DoxyParamCaption}
+)}\hypertarget{mathio_8c_ae7a25f0631dd53c026fd8636e8bcb42e}{}\label{mathio_8c_ae7a25f0631dd53c026fd8636e8bcb42e}
+
+
+Convert A\+S\+C\+II string to number in a given base. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em nptr} & string \\
+\hline
+\mbox{\tt in}  & {\em endptr} & pointer to string pointer return value \\
+\hline
+\mbox{\tt in}  & {\em base} & radix \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+long value 
+\end{DoxyReturn}
+
+
+Definition at line 76 of file mathio.\+c.
+
+
+
+Referenced by atoh(), atoi(), atol(), aton(), main(), and setdate\+\_\+r().
+

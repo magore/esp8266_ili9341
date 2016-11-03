@@ -402,3 +402,4 @@ void* __wrap__xtos_set_exception_handler(int exno, void (*exhandler)())
     }
     return res;
 }
+

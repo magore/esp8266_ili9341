@@ -1,13 +1,36 @@
 \hypertarget{testflash_8c}{}\section{testflash.\+c File Reference}
 \label{testflash_8c}\index{testflash.\+c@{testflash.\+c}}
+
+
+Create or read a flash test pattern file -\/ used for testing esp8266 flash.  
+
+
 {\ttfamily \#include $<$stdio.\+h$>$}\\*
 {\ttfamily \#include $<$stdlib.\+h$>$}\\*
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 int \hyperlink{testflash_8c_a0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Create or read a flash test pattern file -\/ used for testing esp8266 flash Depends on esptool from \href{https://github.com/themadinventor/esptool}{\tt https\+://github.\+com/themadinventor/esptool} Example -\/ test 1 megabyte of flash -\/ we write and verify a pattern E\+S\+P\+T\+O\+OL=/usr/local/bin/esptool.py E\+S\+P\+P\+O\+RT=/dev/tty\+U\+S\+B0 gcc \hyperlink{testflash_8c}{testflash.\+c} -\/o testflash -\/mkdir tmp  testing first megabyte   Create megabyte size test file ./testflash -\/s 0x100000 -\/w tmp/test1w.\+bin  Write file to E\+S\+P8266  -\/p  -\/b  write\+\_\+flash \textbackslash{}  \textbackslash{} 0x000000 tmp/test1w.\+bin  read flash back from E\+S\+P8266  -\/p  -\/b  read\+\_\+flash \textbackslash{} 0x000000 0x100000 tmp/test1r.\+bin  Verify data read back matches what we wrote ./testflash -\/s 0x100000 -\/r tmp/test1r.\+bin. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+Create or read a flash test pattern file -\/ used for testing esp8266 flash. 
+
+\begin{DoxyDate}{Date}
+1 Nov 2016 
+\end{DoxyDate}
+\begin{DoxyParagraph}{Copyright \copyright{} 2015-\/2016 Mike Gore, G\+PL License}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{You are free to use this code under the terms of G\+PL}
+please retain a copy of this notice in any code you use it in.
+\end{DoxyParagraph}
+This is free software\+: you can redistribute it and/or modify it under the terms of the G\+NU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This software is distributed in the hope that it will be useful, but W\+I\+T\+H\+O\+UT A\+NY W\+A\+R\+R\+A\+N\+TY; without even the implied warranty of M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+TY or F\+I\+T\+N\+E\+SS F\+OR A P\+A\+R\+T\+I\+C\+U\+L\+AR P\+U\+R\+P\+O\+SE. See the G\+NU General Public License for more details.
+
+You should have received a copy of the G\+NU General Public License along with this program. If not, see \href{http://www.gnu.org/licenses/}{\tt http\+://www.\+gnu.\+org/licenses/}. 
 
 \subsection{Function Documentation}
 \index{testflash.\+c@{testflash.\+c}!main@{main}}
@@ -20,5 +43,9 @@ int \hyperlink{testflash_8c_a0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, 
 )}\hypertarget{testflash_8c_a0ddf1224851353fc92bfbff6f499fa97}{}\label{testflash_8c_a0ddf1224851353fc92bfbff6f499fa97}
 
 
-Definition at line 4 of file testflash.\+c.
+Create or read a flash test pattern file -\/ used for testing esp8266 flash Depends on esptool from \href{https://github.com/themadinventor/esptool}{\tt https\+://github.\+com/themadinventor/esptool} Example -\/ test 1 megabyte of flash -\/ we write and verify a pattern E\+S\+P\+T\+O\+OL=/usr/local/bin/esptool.py E\+S\+P\+P\+O\+RT=/dev/tty\+U\+S\+B0 gcc \hyperlink{testflash_8c}{testflash.\+c} -\/o testflash -\/mkdir tmp  testing first megabyte   Create megabyte size test file ./testflash -\/s 0x100000 -\/w tmp/test1w.\+bin  Write file to E\+S\+P8266  -\/p  -\/b  write\+\_\+flash \textbackslash{}  \textbackslash{} 0x000000 tmp/test1w.\+bin  read flash back from E\+S\+P8266  -\/p  -\/b  read\+\_\+flash \textbackslash{} 0x000000 0x100000 tmp/test1r.\+bin  Verify data read back matches what we wrote ./testflash -\/s 0x100000 -\/r tmp/test1r.\+bin. 
+
+
+
+Definition at line 52 of file testflash.\+c.
 

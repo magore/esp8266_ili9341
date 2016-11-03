@@ -12,6 +12,6 @@ cordic2c:	cordic2c.c
 	gcc -g cordic2c.c -o cordic2c -lm
 
 clean:
-	rm cordic2c test_cordic
+	-rm -f cordic2c test_cordic
 
   

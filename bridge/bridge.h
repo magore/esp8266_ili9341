@@ -24,26 +24,6 @@
 #ifndef _BRIDGE_H_
 #define _BRIDGE_H_
 
-#include <stdint.h>
-#include <stdarg.h>
-#include <string.h>
-#include <math.h>
-
-#ifdef USER_CONFIG
-#include "user_config.h"
-#endif
-
-// Named address space
-#ifndef MEMSPACE
-#define MEMSPACE /**/
-#endif
-
-// Weak attribute
-#ifndef WEAK_ATR
-#define WEAK_ATR __attribute__((weak))
-#endif
-
-#include "queue.h"
 
 /// @brief bridge task queue and priority
 enum

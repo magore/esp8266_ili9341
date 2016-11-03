@@ -32,14 +32,18 @@
 #include <string.h>
 #include <math.h>
 
+
 #ifdef USER_CONFIG
 #include "user_config.h"
 #endif
 
-#include "font.h"
-
 /// @brief save fonts in flash
+#ifndef MEMSPACE
 #define MEMSPACE_FONT MEMSPACE
+#endif
+
+#include "display/ili9341.h"
+#include "display/font.h"
 
 /// @brief Include the Generated Font table
 /// The generated tables always include Font specifications:

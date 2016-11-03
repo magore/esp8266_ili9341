@@ -1,92 +1,96 @@
-\hypertarget{diskio_8h}{}\section{fatfs/diskio.h File Reference}
-\label{diskio_8h}\index{fatfs/diskio.\+h@{fatfs/diskio.\+h}}
-
-
-Faf\+Fs disk interface modlue include file (C) ChaN, 2013.  
-
-
+\hypertarget{diskio_8h}{}\section{fatfs.\+hal/diskio.h File Reference}
+\label{diskio_8h}\index{fatfs.\+hal/diskio.\+h@{fatfs.\+hal/diskio.\+h}}
 {\ttfamily \#include \char`\"{}integer.\+h\char`\"{}}\\*
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structSDIO__CTRL}{S\+D\+I\+O\+\_\+\+C\+T\+RL}
+\end{DoxyCompactItemize}
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#define \hyperlink{diskio_8h_a1dd0d2b46dce637878416d489d2ddde2}{\+\_\+\+U\+S\+E\+\_\+\+W\+R\+I\+TE}~1  /$\ast$$<$ 1\+: Enable \hyperlink{diskio_8h_a0fe56ee4831a44b09cfd96856e069634}{disk\+\_\+write} function $\ast$/
-\begin{DoxyCompactList}\small\item\em Formating changes for Doxygen by Mike Gore 2014. \end{DoxyCompactList}\item 
-\#define \hyperlink{diskio_8h_afe6d1224687dede333375a2475c78ff6}{\+\_\+\+U\+S\+E\+\_\+\+I\+O\+C\+TL}~1  /$\ast$$<$ 1\+: Enable \hyperlink{diskio_8h_ab00fa450a811dbdabe3c655c1a36fab4}{disk\+\_\+ioctl} fucntion $\ast$/
+\#define \hyperlink{diskio_8h_a1dd0d2b46dce637878416d489d2ddde2}{\+\_\+\+U\+S\+E\+\_\+\+W\+R\+I\+TE}~1	/$\ast$ 1\+: Enable \hyperlink{diskio_8h_a0fe56ee4831a44b09cfd96856e069634}{disk\+\_\+write} function $\ast$/
 \item 
-\#define \hyperlink{diskio_8h_abd6503c70d862b979a3f7080a59e9acd}{S\+T\+A\+\_\+\+N\+O\+I\+N\+IT}~0x01  /$\ast$$<$ Drive not initialized $\ast$/
+\#define \hyperlink{diskio_8h_afe6d1224687dede333375a2475c78ff6}{\+\_\+\+U\+S\+E\+\_\+\+I\+O\+C\+TL}~1	/$\ast$ 1\+: Enable \hyperlink{diskio_8h_ab00fa450a811dbdabe3c655c1a36fab4}{disk\+\_\+ioctl} fucntion $\ast$/
 \item 
-\#define \hyperlink{diskio_8h_aec625080763d6cf487e550a6c9a2dd19}{S\+T\+A\+\_\+\+N\+O\+D\+I\+SK}~0x02  /$\ast$$<$ No medium in the drive $\ast$/
+\#define \hyperlink{diskio_8h_ab9be3169a4edb65cd6c59bd26c927846}{\+\_\+\+U\+S\+E\+\_\+\+I\+S\+D\+IO}~1	/$\ast$ 1\+: Enable i\+S\+D\+IO controls via \hyperlink{diskio_8h_ab00fa450a811dbdabe3c655c1a36fab4}{disk\+\_\+ioctl} $\ast$/
 \item 
-\#define \hyperlink{diskio_8h_a9ec6dc5f6620a33fabe388d3a111ca8c}{S\+T\+A\+\_\+\+P\+R\+O\+T\+E\+CT}~0x04  /$\ast$$<$ Write protected $\ast$/
+\#define \hyperlink{diskio_8h_abd6503c70d862b979a3f7080a59e9acd}{S\+T\+A\+\_\+\+N\+O\+I\+N\+IT}~0x01	/$\ast$ Drive not initialized $\ast$/
 \item 
-\#define \hyperlink{diskio_8h_a1b3c492f9aec325f0655941b75256f3c}{C\+T\+R\+L\+\_\+\+S\+Y\+NC}
-\begin{DoxyCompactList}\small\item\em Generic command (used by Fat\+Fs) \end{DoxyCompactList}\item 
-\#define \hyperlink{diskio_8h_a570216006f6a8fc4e1698b1bbb2d1dde}{G\+E\+T\+\_\+\+S\+E\+C\+T\+O\+R\+\_\+\+C\+O\+U\+NT}~1 /$\ast$$<$ Get media size (for only \hyperlink{ff_8h_a799aff9594e708c8be357281cf85428b}{f\+\_\+mkfs}()) $\ast$/
+\#define \hyperlink{diskio_8h_aec625080763d6cf487e550a6c9a2dd19}{S\+T\+A\+\_\+\+N\+O\+D\+I\+SK}~0x02	/$\ast$ No medium in the drive $\ast$/
 \item 
-\#define \hyperlink{diskio_8h_ac73b5cf2135cbd459d109b96c9aa346a}{G\+E\+T\+\_\+\+S\+E\+C\+T\+O\+R\+\_\+\+S\+I\+ZE}
+\#define \hyperlink{diskio_8h_a9ec6dc5f6620a33fabe388d3a111ca8c}{S\+T\+A\+\_\+\+P\+R\+O\+T\+E\+CT}~0x04	/$\ast$ Write protected $\ast$/
 \item 
-\#define \hyperlink{diskio_8h_aec3bb4dfe075d0ba2f3b07b300a95500}{G\+E\+T\+\_\+\+B\+L\+O\+C\+K\+\_\+\+S\+I\+ZE}~3 /$\ast$$<$ Get erase block size (for only \hyperlink{ff_8h_a799aff9594e708c8be357281cf85428b}{f\+\_\+mkfs}()) $\ast$/
+\#define \hyperlink{diskio_8h_a1b3c492f9aec325f0655941b75256f3c}{C\+T\+R\+L\+\_\+\+S\+Y\+NC}~0	/$\ast$ Complete pending \hyperlink{posix_8h_a072435300ac99e8d7c3749f45166e797}{write} process (needed at \hyperlink{ffconf_8h_afb8d35370cfe0c23832ac2d82e854ec6}{\+\_\+\+F\+S\+\_\+\+R\+E\+A\+D\+O\+N\+LY} == 0) $\ast$/
 \item 
-\#define \hyperlink{diskio_8h_a3b1dc812217ea7ffa118b14a3c1ab151}{C\+T\+R\+L\+\_\+\+E\+R\+A\+S\+E\+\_\+\+S\+E\+C\+T\+OR}
+\#define \hyperlink{diskio_8h_a570216006f6a8fc4e1698b1bbb2d1dde}{G\+E\+T\+\_\+\+S\+E\+C\+T\+O\+R\+\_\+\+C\+O\+U\+NT}~1	/$\ast$ Get media size (needed at \hyperlink{ffconf_8h_a62cdce547af40f0c1599698ee151bbd7}{\+\_\+\+U\+S\+E\+\_\+\+M\+K\+FS} == 1) $\ast$/
 \item 
-\#define \hyperlink{diskio_8h_a3b1dc812217ea7ffa118b14a3c1ab151}{C\+T\+R\+L\+\_\+\+E\+R\+A\+S\+E\+\_\+\+S\+E\+C\+T\+OR}~4  /$\ast$$<$ Force erased a block of sectors (for only \hyperlink{ffconf_8h_a0e697dc4206d98eac355ae878dcc286e}{\+\_\+\+U\+S\+E\+\_\+\+E\+R\+A\+SE}) $\ast$/
+\#define \hyperlink{diskio_8h_ac73b5cf2135cbd459d109b96c9aa346a}{G\+E\+T\+\_\+\+S\+E\+C\+T\+O\+R\+\_\+\+S\+I\+ZE}~2	/$\ast$ Get sector size (needed at \hyperlink{ffconf_8h_ac271b697378912f17132cb9c7d0de024}{\+\_\+\+M\+A\+X\+\_\+\+SS} != \hyperlink{ffconf_8h_ad03aa6d0e294709ae15898ee2c14dc3a}{\+\_\+\+M\+I\+N\+\_\+\+SS}) $\ast$/
 \item 
-\#define \hyperlink{diskio_8h_add07021167069f5914211a2f8830fabb}{C\+T\+R\+L\+\_\+\+F\+O\+R\+M\+AT}~5  /$\ast$$<$ Create physical format on the media $\ast$/
+\#define \hyperlink{diskio_8h_aec3bb4dfe075d0ba2f3b07b300a95500}{G\+E\+T\+\_\+\+B\+L\+O\+C\+K\+\_\+\+S\+I\+ZE}~3	/$\ast$ Get erase block size (needed at \hyperlink{ffconf_8h_a62cdce547af40f0c1599698ee151bbd7}{\+\_\+\+U\+S\+E\+\_\+\+M\+K\+FS} == 1) $\ast$/
 \item 
-\#define \hyperlink{diskio_8h_a69bec9079062f809c3586977b2dc5d79}{C\+T\+R\+L\+\_\+\+P\+O\+W\+E\+R\+\_\+\+I\+D\+LE}~6  /$\ast$$<$ Put the device idle state $\ast$/
+\#define \hyperlink{diskio_8h_af09fd84bea8d4e889e272471f44d60d6}{C\+T\+R\+L\+\_\+\+T\+R\+IM}~4	/$\ast$ Inform device that the data on the block of sectors is no longer used (needed at \hyperlink{ffconf_8h_a1f93ee7e57bb9d1221f34bfe80e18a61}{\+\_\+\+U\+S\+E\+\_\+\+T\+R\+IM} == 1) $\ast$/
 \item 
-\#define \hyperlink{diskio_8h_aa1f5a55ea2a24d274c16e51c111c97d8}{C\+T\+R\+L\+\_\+\+P\+O\+W\+E\+R\+\_\+\+O\+FF}~7  /$\ast$$<$ Put the device off state $\ast$/
+\#define \hyperlink{diskio_8h_add07021167069f5914211a2f8830fabb}{C\+T\+R\+L\+\_\+\+F\+O\+R\+M\+AT}~5	/$\ast$ Create physical format on the media $\ast$/
 \item 
-\#define \hyperlink{diskio_8h_af40e5cf3000553a978ff6e30dae70858}{C\+T\+R\+L\+\_\+\+L\+O\+CK}~8  /$\ast$$<$ Lock media removal $\ast$/
+\#define \hyperlink{diskio_8h_a69bec9079062f809c3586977b2dc5d79}{C\+T\+R\+L\+\_\+\+P\+O\+W\+E\+R\+\_\+\+I\+D\+LE}~6	/$\ast$ Put the device idle state $\ast$/
 \item 
-\#define \hyperlink{diskio_8h_a5d06770de580667138ca6101ae5138ac}{C\+T\+R\+L\+\_\+\+U\+N\+L\+O\+CK}~9  /$\ast$$<$ Unlock media removal $\ast$/
+\#define \hyperlink{diskio_8h_aa1f5a55ea2a24d274c16e51c111c97d8}{C\+T\+R\+L\+\_\+\+P\+O\+W\+E\+R\+\_\+\+O\+FF}~7	/$\ast$ Put the device off state $\ast$/
 \item 
-\#define \hyperlink{diskio_8h_a5e40e16d2d7ce196858950f070b9ec03}{C\+T\+R\+L\+\_\+\+E\+J\+E\+CT}~10 /$\ast$$<$ Eject media $\ast$/
+\#define \hyperlink{diskio_8h_af40e5cf3000553a978ff6e30dae70858}{C\+T\+R\+L\+\_\+\+L\+O\+CK}~8	/$\ast$ Lock media removal $\ast$/
 \item 
-\#define \hyperlink{diskio_8h_aba3a81a9a47c7d1bf3ac7749bc72dcfd}{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+T\+Y\+PE}~50 /$\ast$$<$ Get card type $\ast$/
-\begin{DoxyCompactList}\small\item\em M\+M\+C/\+S\+DC specific ioctl command. \end{DoxyCompactList}\item 
-\#define \hyperlink{diskio_8h_ae3b858b81287929f7c7bea3b7aec3087}{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+C\+SD}~51 /$\ast$$<$ Get C\+SD $\ast$/
+\#define \hyperlink{diskio_8h_a5d06770de580667138ca6101ae5138ac}{C\+T\+R\+L\+\_\+\+U\+N\+L\+O\+CK}~9	/$\ast$ Unlock media removal $\ast$/
 \item 
-\#define \hyperlink{diskio_8h_a17ad303dd18b19a4c90ab30a8a1c14c4}{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+C\+ID}~52 /$\ast$$<$ Get C\+ID $\ast$/
+\#define \hyperlink{diskio_8h_a5e40e16d2d7ce196858950f070b9ec03}{C\+T\+R\+L\+\_\+\+E\+J\+E\+CT}~10	/$\ast$ Eject media $\ast$/
 \item 
-\#define \hyperlink{diskio_8h_aff118ba6bd7a9fe7699cee049cff5d6c}{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+O\+CR}~53 /$\ast$$<$ Get O\+CR $\ast$/
+\#define \hyperlink{diskio_8h_aba3a81a9a47c7d1bf3ac7749bc72dcfd}{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+T\+Y\+PE}~50	/$\ast$ Get card type $\ast$/
 \item 
-\#define \hyperlink{diskio_8h_a5cc43c8449b872e16ea5ab42592f793e}{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+S\+D\+S\+T\+AT}~54 /$\ast$$<$ Get SD status $\ast$/
+\#define \hyperlink{diskio_8h_ae3b858b81287929f7c7bea3b7aec3087}{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+C\+SD}~51	/$\ast$ Get C\+SD $\ast$/
 \item 
-\#define \hyperlink{diskio_8h_a23f5fff3341e98825ea1f7367fd09f1a}{A\+T\+A\+\_\+\+G\+E\+T\+\_\+\+R\+EV}~60 /$\ast$$<$ Get F/W revision $\ast$/
+\#define \hyperlink{diskio_8h_a17ad303dd18b19a4c90ab30a8a1c14c4}{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+C\+ID}~52	/$\ast$ Get C\+ID $\ast$/
 \item 
-\#define \hyperlink{diskio_8h_a31f556ab98ab80c39058b38d9283865d}{A\+T\+A\+\_\+\+G\+E\+T\+\_\+\+M\+O\+D\+EL}~61 /$\ast$$<$ Get model name $\ast$/
+\#define \hyperlink{diskio_8h_aff118ba6bd7a9fe7699cee049cff5d6c}{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+O\+CR}~53	/$\ast$ Get O\+CR $\ast$/
 \item 
-\#define \hyperlink{diskio_8h_a469c4f989757ee1ee404134fea3c74ba}{A\+T\+A\+\_\+\+G\+E\+T\+\_\+\+SN}~62 /$\ast$$<$ Get serial number $\ast$/
+\#define \hyperlink{diskio_8h_a5cc43c8449b872e16ea5ab42592f793e}{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+S\+D\+S\+T\+AT}~54	/$\ast$ Get SD status $\ast$/
 \item 
-\#define \hyperlink{diskio_8h_ac52ec66c278308382fdf7b2c57f0ad8c}{C\+T\+\_\+\+M\+MC}~0x01             /$\ast$$<$ M\+M\+C ver 3 $\ast$/
+\#define \hyperlink{diskio_8h_a9eb2d8ccc0b89299bc442396811f8723}{I\+S\+D\+I\+O\+\_\+\+R\+E\+AD}~55	/$\ast$ Read data form SD i\+S\+D\+IO register $\ast$/
 \item 
-\#define \hyperlink{diskio_8h_ad1c9fc863ec15d3320b3850dc571626e}{C\+T\+\_\+\+S\+D1}~0x02             /$\ast$$<$ S\+D ver 1 $\ast$/
+\#define \hyperlink{diskio_8h_a9637dcd58e0f1f301edf0cccff9e3507}{I\+S\+D\+I\+O\+\_\+\+W\+R\+I\+TE}~56	/$\ast$ Write data to SD i\+S\+D\+IO register $\ast$/
 \item 
-\#define \hyperlink{diskio_8h_a0db1b71113e73184a5ba511e7020a922}{C\+T\+\_\+\+S\+D2}~0x04             /$\ast$$<$ S\+D ver 2 $\ast$/
+\#define \hyperlink{diskio_8h_aa79f4043470c49016d80558773e740a5}{I\+S\+D\+I\+O\+\_\+\+M\+R\+I\+TE}~57	/$\ast$ Masked \hyperlink{posix_8h_a072435300ac99e8d7c3749f45166e797}{write} data to SD i\+S\+D\+IO register $\ast$/
 \item 
-\#define \hyperlink{diskio_8h_ae76d94ac83c68d1f025cb0bcad77fa5d}{C\+T\+\_\+\+S\+DC}~(\hyperlink{diskio_8h_ad1c9fc863ec15d3320b3850dc571626e}{C\+T\+\_\+\+S\+D1}$\vert$\hyperlink{diskio_8h_a0db1b71113e73184a5ba511e7020a922}{C\+T\+\_\+\+S\+D2})  /$\ast$$<$ SD $\ast$/
+\#define \hyperlink{diskio_8h_a23f5fff3341e98825ea1f7367fd09f1a}{A\+T\+A\+\_\+\+G\+E\+T\+\_\+\+R\+EV}~60	/$\ast$ Get F/W revision $\ast$/
 \item 
-\#define \hyperlink{diskio_8h_a7d48ce54c27f4f60666309e8627fab47}{C\+T\+\_\+\+B\+L\+O\+CK}~0x08             /$\ast$$<$ Block addressing $\ast$/
+\#define \hyperlink{diskio_8h_a31f556ab98ab80c39058b38d9283865d}{A\+T\+A\+\_\+\+G\+E\+T\+\_\+\+M\+O\+D\+EL}~61	/$\ast$ Get model name $\ast$/
+\item 
+\#define \hyperlink{diskio_8h_a469c4f989757ee1ee404134fea3c74ba}{A\+T\+A\+\_\+\+G\+E\+T\+\_\+\+SN}~62	/$\ast$ Get serial number $\ast$/
+\item 
+\#define \hyperlink{diskio_8h_ac52ec66c278308382fdf7b2c57f0ad8c}{C\+T\+\_\+\+M\+MC}~0x01		/$\ast$ M\+M\+C ver 3 $\ast$/
+\item 
+\#define \hyperlink{diskio_8h_ad1c9fc863ec15d3320b3850dc571626e}{C\+T\+\_\+\+S\+D1}~0x02		/$\ast$ S\+D ver 1 $\ast$/
+\item 
+\#define \hyperlink{diskio_8h_a0db1b71113e73184a5ba511e7020a922}{C\+T\+\_\+\+S\+D2}~0x04		/$\ast$ S\+D ver 2 $\ast$/
+\item 
+\#define \hyperlink{diskio_8h_ae76d94ac83c68d1f025cb0bcad77fa5d}{C\+T\+\_\+\+S\+DC}~(\hyperlink{diskio_8h_ad1c9fc863ec15d3320b3850dc571626e}{C\+T\+\_\+\+S\+D1}$\vert$\hyperlink{diskio_8h_a0db1b71113e73184a5ba511e7020a922}{C\+T\+\_\+\+S\+D2})	/$\ast$ SD $\ast$/
+\item 
+\#define \hyperlink{diskio_8h_a7d48ce54c27f4f60666309e8627fab47}{C\+T\+\_\+\+B\+L\+O\+CK}~0x08		/$\ast$ Block addressing $\ast$/
 \end{DoxyCompactItemize}
 \subsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
 typedef \hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} \hyperlink{diskio_8h_adba6790898ce4029c20a34b898ce73c1}{D\+S\+T\+A\+T\+US}
-\begin{DoxyCompactList}\small\item\em Status of Disk Functions. \end{DoxyCompactList}\item 
-typedef enum \hyperlink{diskio_8h_a8a4ccdeaced8c6be7571f8f1d08771a9}{disk\+\_\+function\+\_\+results} \hyperlink{diskio_8h_a54ffb9f13138d2b17dd599ba880696ad}{D\+R\+E\+S\+U\+LT}
-\begin{DoxyCompactList}\small\item\em Results of Disk Functions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{DoxyCompactItemize}
 \subsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
-enum \hyperlink{diskio_8h_a8a4ccdeaced8c6be7571f8f1d08771a9}{disk\+\_\+function\+\_\+results} \{ \\*
-\hyperlink{diskio_8h_a8a4ccdeaced8c6be7571f8f1d08771a9a2ea4b6ef3fffc17dd1d38ab5c2837737}{R\+E\+S\+\_\+\+OK} = 0, 
-\hyperlink{diskio_8h_a8a4ccdeaced8c6be7571f8f1d08771a9a78011f5557679ec178fb40bd21e89840}{R\+E\+S\+\_\+\+E\+R\+R\+OR}, 
-\hyperlink{diskio_8h_a8a4ccdeaced8c6be7571f8f1d08771a9a442a6d4393dc404827067bc4e981b322}{R\+E\+S\+\_\+\+W\+R\+P\+RT}, 
-\hyperlink{diskio_8h_a8a4ccdeaced8c6be7571f8f1d08771a9aad64c27c69eb1ff39ae67c5f77bb2b1d}{R\+E\+S\+\_\+\+N\+O\+T\+R\+DY}, 
+enum \hyperlink{diskio_8h_aacdfef1dad6565f65c26d12fe0ea4b2b}{D\+R\+E\+S\+U\+LT} \{ \\*
+\hyperlink{diskio_8h_aacdfef1dad6565f65c26d12fe0ea4b2ba2ea4b6ef3fffc17dd1d38ab5c2837737}{R\+E\+S\+\_\+\+OK} = 0, 
+\hyperlink{diskio_8h_aacdfef1dad6565f65c26d12fe0ea4b2ba78011f5557679ec178fb40bd21e89840}{R\+E\+S\+\_\+\+E\+R\+R\+OR}, 
+\hyperlink{diskio_8h_aacdfef1dad6565f65c26d12fe0ea4b2ba442a6d4393dc404827067bc4e981b322}{R\+E\+S\+\_\+\+W\+R\+P\+RT}, 
+\hyperlink{diskio_8h_aacdfef1dad6565f65c26d12fe0ea4b2baad64c27c69eb1ff39ae67c5f77bb2b1d}{R\+E\+S\+\_\+\+N\+O\+T\+R\+DY}, 
 \\*
-\hyperlink{diskio_8h_a8a4ccdeaced8c6be7571f8f1d08771a9af4dcc07fd46310b5495fa8025c89a9f3}{R\+E\+S\+\_\+\+P\+A\+R\+E\+RR}
- \}\begin{DoxyCompactList}\small\item\em Results of Disk Functions. \end{DoxyCompactList}
+\hyperlink{diskio_8h_aacdfef1dad6565f65c26d12fe0ea4b2baf4dcc07fd46310b5495fa8025c89a9f3}{R\+E\+S\+\_\+\+P\+A\+R\+E\+RR}
+ \}
 \end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
@@ -95,86 +99,76 @@ enum \hyperlink{diskio_8h_a8a4ccdeaced8c6be7571f8f1d08771a9}{disk\+\_\+function\
 \item 
 \hyperlink{diskio_8h_adba6790898ce4029c20a34b898ce73c1}{D\+S\+T\+A\+T\+US} \hyperlink{diskio_8h_a8348ac5ee6d709420c02e45c111f4793}{disk\+\_\+status} (\hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} pdrv)
 \item 
-\hyperlink{diskio_8h_a54ffb9f13138d2b17dd599ba880696ad}{D\+R\+E\+S\+U\+LT} \hyperlink{diskio_8h_a075d27f59f550e2cee07d00abcff32e0}{disk\+\_\+read} (\hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} pdrv, \hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} $\ast$buff, \hyperlink{integer_8h_ad342ac907eb044443153a22f964bf0af}{D\+W\+O\+RD} sector, \hyperlink{integer_8h_a36cb3b01d81ffd844bbbfb54003e06ec}{U\+I\+NT} \hyperlink{user__main_8c_aa011065eee776eb1bda73597b5d9d5d7}{count})
+\hyperlink{diskio_8h_aacdfef1dad6565f65c26d12fe0ea4b2b}{D\+R\+E\+S\+U\+LT} \hyperlink{diskio_8h_a075d27f59f550e2cee07d00abcff32e0}{disk\+\_\+read} (\hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} pdrv, \hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} $\ast$buff, \hyperlink{integer_8h_ad342ac907eb044443153a22f964bf0af}{D\+W\+O\+RD} sector, \hyperlink{integer_8h_a36cb3b01d81ffd844bbbfb54003e06ec}{U\+I\+NT} \hyperlink{user__main_8c_aa011065eee776eb1bda73597b5d9d5d7}{count})
 \item 
-\hyperlink{diskio_8h_a54ffb9f13138d2b17dd599ba880696ad}{D\+R\+E\+S\+U\+LT} \hyperlink{diskio_8h_a0fe56ee4831a44b09cfd96856e069634}{disk\+\_\+write} (\hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} pdrv, const \hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} $\ast$buff, \hyperlink{integer_8h_ad342ac907eb044443153a22f964bf0af}{D\+W\+O\+RD} sector, \hyperlink{integer_8h_a36cb3b01d81ffd844bbbfb54003e06ec}{U\+I\+NT} \hyperlink{user__main_8c_aa011065eee776eb1bda73597b5d9d5d7}{count})
+\hyperlink{diskio_8h_aacdfef1dad6565f65c26d12fe0ea4b2b}{D\+R\+E\+S\+U\+LT} \hyperlink{diskio_8h_a0fe56ee4831a44b09cfd96856e069634}{disk\+\_\+write} (\hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} pdrv, const \hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} $\ast$buff, \hyperlink{integer_8h_ad342ac907eb044443153a22f964bf0af}{D\+W\+O\+RD} sector, \hyperlink{integer_8h_a36cb3b01d81ffd844bbbfb54003e06ec}{U\+I\+NT} \hyperlink{user__main_8c_aa011065eee776eb1bda73597b5d9d5d7}{count})
 \item 
-\hyperlink{diskio_8h_a54ffb9f13138d2b17dd599ba880696ad}{D\+R\+E\+S\+U\+LT} \hyperlink{diskio_8h_ab00fa450a811dbdabe3c655c1a36fab4}{disk\+\_\+ioctl} (\hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} pdrv, \hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} cmd, void $\ast$buff)
+\hyperlink{diskio_8h_aacdfef1dad6565f65c26d12fe0ea4b2b}{D\+R\+E\+S\+U\+LT} \hyperlink{diskio_8h_ab00fa450a811dbdabe3c655c1a36fab4}{disk\+\_\+ioctl} (\hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} pdrv, \hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} cmd, void $\ast$buff)
 \item 
 void \hyperlink{diskio_8h_a045f8898a243c16aca4e64e069c49c03}{disk\+\_\+timerproc} (void)
 \end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
-Faf\+Fs disk interface modlue include file (C) ChaN, 2013. 
-
-
-\begin{DoxyItemize}
-\item Minor documenation updates by Mike Gore 2014
-\end{DoxyItemize}
-
-\begin{DoxyParagraph}{Copyright \copyright{} ChaN 2014.}
-
-\end{DoxyParagraph}
-
-
 \subsection{Macro Definition Documentation}
 \index{diskio.\+h@{diskio.\+h}!\+\_\+\+U\+S\+E\+\_\+\+I\+O\+C\+TL@{\+\_\+\+U\+S\+E\+\_\+\+I\+O\+C\+TL}}
 \index{\+\_\+\+U\+S\+E\+\_\+\+I\+O\+C\+TL@{\+\_\+\+U\+S\+E\+\_\+\+I\+O\+C\+TL}!diskio.\+h@{diskio.\+h}}
-\subsubsection[{\texorpdfstring{\+\_\+\+U\+S\+E\+\_\+\+I\+O\+C\+TL}{_USE_IOCTL}}]{\setlength{\rightskip}{0pt plus 5cm}\#define \+\_\+\+U\+S\+E\+\_\+\+I\+O\+C\+TL~1  /$\ast$$<$ 1\+: Enable {\bf disk\+\_\+ioctl} fucntion $\ast$/}\hypertarget{diskio_8h_afe6d1224687dede333375a2475c78ff6}{}\label{diskio_8h_afe6d1224687dede333375a2475c78ff6}
+\subsubsection[{\texorpdfstring{\+\_\+\+U\+S\+E\+\_\+\+I\+O\+C\+TL}{_USE_IOCTL}}]{\setlength{\rightskip}{0pt plus 5cm}\#define \+\_\+\+U\+S\+E\+\_\+\+I\+O\+C\+TL~1	/$\ast$ 1\+: Enable {\bf disk\+\_\+ioctl} fucntion $\ast$/}\hypertarget{diskio_8h_afe6d1224687dede333375a2475c78ff6}{}\label{diskio_8h_afe6d1224687dede333375a2475c78ff6}
 
 
-Definition at line 26 of file diskio.\+h.
+Definition at line 13 of file diskio.\+h.
+
+\index{diskio.\+h@{diskio.\+h}!\+\_\+\+U\+S\+E\+\_\+\+I\+S\+D\+IO@{\+\_\+\+U\+S\+E\+\_\+\+I\+S\+D\+IO}}
+\index{\+\_\+\+U\+S\+E\+\_\+\+I\+S\+D\+IO@{\+\_\+\+U\+S\+E\+\_\+\+I\+S\+D\+IO}!diskio.\+h@{diskio.\+h}}
+\subsubsection[{\texorpdfstring{\+\_\+\+U\+S\+E\+\_\+\+I\+S\+D\+IO}{_USE_ISDIO}}]{\setlength{\rightskip}{0pt plus 5cm}\#define \+\_\+\+U\+S\+E\+\_\+\+I\+S\+D\+IO~1	/$\ast$ 1\+: Enable i\+S\+D\+IO controls via {\bf disk\+\_\+ioctl} $\ast$/}\hypertarget{diskio_8h_ab9be3169a4edb65cd6c59bd26c927846}{}\label{diskio_8h_ab9be3169a4edb65cd6c59bd26c927846}
+
+
+Definition at line 14 of file diskio.\+h.
 
 \index{diskio.\+h@{diskio.\+h}!\+\_\+\+U\+S\+E\+\_\+\+W\+R\+I\+TE@{\+\_\+\+U\+S\+E\+\_\+\+W\+R\+I\+TE}}
 \index{\+\_\+\+U\+S\+E\+\_\+\+W\+R\+I\+TE@{\+\_\+\+U\+S\+E\+\_\+\+W\+R\+I\+TE}!diskio.\+h@{diskio.\+h}}
-\subsubsection[{\texorpdfstring{\+\_\+\+U\+S\+E\+\_\+\+W\+R\+I\+TE}{_USE_WRITE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define \+\_\+\+U\+S\+E\+\_\+\+W\+R\+I\+TE~1  /$\ast$$<$ 1\+: Enable {\bf disk\+\_\+write} function $\ast$/}\hypertarget{diskio_8h_a1dd0d2b46dce637878416d489d2ddde2}{}\label{diskio_8h_a1dd0d2b46dce637878416d489d2ddde2}
+\subsubsection[{\texorpdfstring{\+\_\+\+U\+S\+E\+\_\+\+W\+R\+I\+TE}{_USE_WRITE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define \+\_\+\+U\+S\+E\+\_\+\+W\+R\+I\+TE~1	/$\ast$ 1\+: Enable {\bf disk\+\_\+write} function $\ast$/}\hypertarget{diskio_8h_a1dd0d2b46dce637878416d489d2ddde2}{}\label{diskio_8h_a1dd0d2b46dce637878416d489d2ddde2}
 
 
-Formating changes for Doxygen by Mike Gore 2014. 
-
-
-
-Definition at line 25 of file diskio.\+h.
+Definition at line 12 of file diskio.\+h.
 
 \index{diskio.\+h@{diskio.\+h}!A\+T\+A\+\_\+\+G\+E\+T\+\_\+\+M\+O\+D\+EL@{A\+T\+A\+\_\+\+G\+E\+T\+\_\+\+M\+O\+D\+EL}}
 \index{A\+T\+A\+\_\+\+G\+E\+T\+\_\+\+M\+O\+D\+EL@{A\+T\+A\+\_\+\+G\+E\+T\+\_\+\+M\+O\+D\+EL}!diskio.\+h@{diskio.\+h}}
-\subsubsection[{\texorpdfstring{A\+T\+A\+\_\+\+G\+E\+T\+\_\+\+M\+O\+D\+EL}{ATA_GET_MODEL}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+T\+A\+\_\+\+G\+E\+T\+\_\+\+M\+O\+D\+EL~61 /$\ast$$<$ Get model name $\ast$/}\hypertarget{diskio_8h_a31f556ab98ab80c39058b38d9283865d}{}\label{diskio_8h_a31f556ab98ab80c39058b38d9283865d}
+\subsubsection[{\texorpdfstring{A\+T\+A\+\_\+\+G\+E\+T\+\_\+\+M\+O\+D\+EL}{ATA_GET_MODEL}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+T\+A\+\_\+\+G\+E\+T\+\_\+\+M\+O\+D\+EL~61	/$\ast$ Get model name $\ast$/}\hypertarget{diskio_8h_a31f556ab98ab80c39058b38d9283865d}{}\label{diskio_8h_a31f556ab98ab80c39058b38d9283865d}
 
 
-Definition at line 93 of file diskio.\+h.
+Definition at line 87 of file diskio.\+h.
 
 \index{diskio.\+h@{diskio.\+h}!A\+T\+A\+\_\+\+G\+E\+T\+\_\+\+R\+EV@{A\+T\+A\+\_\+\+G\+E\+T\+\_\+\+R\+EV}}
 \index{A\+T\+A\+\_\+\+G\+E\+T\+\_\+\+R\+EV@{A\+T\+A\+\_\+\+G\+E\+T\+\_\+\+R\+EV}!diskio.\+h@{diskio.\+h}}
-\subsubsection[{\texorpdfstring{A\+T\+A\+\_\+\+G\+E\+T\+\_\+\+R\+EV}{ATA_GET_REV}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+T\+A\+\_\+\+G\+E\+T\+\_\+\+R\+EV~60 /$\ast$$<$ Get F/W revision $\ast$/}\hypertarget{diskio_8h_a23f5fff3341e98825ea1f7367fd09f1a}{}\label{diskio_8h_a23f5fff3341e98825ea1f7367fd09f1a}
+\subsubsection[{\texorpdfstring{A\+T\+A\+\_\+\+G\+E\+T\+\_\+\+R\+EV}{ATA_GET_REV}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+T\+A\+\_\+\+G\+E\+T\+\_\+\+R\+EV~60	/$\ast$ Get F/W revision $\ast$/}\hypertarget{diskio_8h_a23f5fff3341e98825ea1f7367fd09f1a}{}\label{diskio_8h_a23f5fff3341e98825ea1f7367fd09f1a}
 
 
-Definition at line 92 of file diskio.\+h.
+Definition at line 86 of file diskio.\+h.
 
 \index{diskio.\+h@{diskio.\+h}!A\+T\+A\+\_\+\+G\+E\+T\+\_\+\+SN@{A\+T\+A\+\_\+\+G\+E\+T\+\_\+\+SN}}
 \index{A\+T\+A\+\_\+\+G\+E\+T\+\_\+\+SN@{A\+T\+A\+\_\+\+G\+E\+T\+\_\+\+SN}!diskio.\+h@{diskio.\+h}}
-\subsubsection[{\texorpdfstring{A\+T\+A\+\_\+\+G\+E\+T\+\_\+\+SN}{ATA_GET_SN}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+T\+A\+\_\+\+G\+E\+T\+\_\+\+SN~62 /$\ast$$<$ Get serial number $\ast$/}\hypertarget{diskio_8h_a469c4f989757ee1ee404134fea3c74ba}{}\label{diskio_8h_a469c4f989757ee1ee404134fea3c74ba}
+\subsubsection[{\texorpdfstring{A\+T\+A\+\_\+\+G\+E\+T\+\_\+\+SN}{ATA_GET_SN}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+T\+A\+\_\+\+G\+E\+T\+\_\+\+SN~62	/$\ast$ Get serial number $\ast$/}\hypertarget{diskio_8h_a469c4f989757ee1ee404134fea3c74ba}{}\label{diskio_8h_a469c4f989757ee1ee404134fea3c74ba}
 
 
-Definition at line 94 of file diskio.\+h.
+Definition at line 88 of file diskio.\+h.
 
 \index{diskio.\+h@{diskio.\+h}!C\+T\+\_\+\+B\+L\+O\+CK@{C\+T\+\_\+\+B\+L\+O\+CK}}
 \index{C\+T\+\_\+\+B\+L\+O\+CK@{C\+T\+\_\+\+B\+L\+O\+CK}!diskio.\+h@{diskio.\+h}}
-\subsubsection[{\texorpdfstring{C\+T\+\_\+\+B\+L\+O\+CK}{CT_BLOCK}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+T\+\_\+\+B\+L\+O\+CK~0x08             /$\ast$$<$ Block addressing $\ast$/}\hypertarget{diskio_8h_a7d48ce54c27f4f60666309e8627fab47}{}\label{diskio_8h_a7d48ce54c27f4f60666309e8627fab47}
+\subsubsection[{\texorpdfstring{C\+T\+\_\+\+B\+L\+O\+CK}{CT_BLOCK}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+T\+\_\+\+B\+L\+O\+CK~0x08		/$\ast$ Block addressing $\ast$/}\hypertarget{diskio_8h_a7d48ce54c27f4f60666309e8627fab47}{}\label{diskio_8h_a7d48ce54c27f4f60666309e8627fab47}
 
 
-Definition at line 101 of file diskio.\+h.
+Definition at line 96 of file diskio.\+h.
 
 
 
-Referenced by mmc\+\_\+disk\+\_\+initialize(), mmc\+\_\+disk\+\_\+read(), and mmc\+\_\+disk\+\_\+write().
+Referenced by mmc\+\_\+disk\+\_\+initialize(), and mmc\+\_\+disk\+\_\+read().
 
 \index{diskio.\+h@{diskio.\+h}!C\+T\+\_\+\+M\+MC@{C\+T\+\_\+\+M\+MC}}
 \index{C\+T\+\_\+\+M\+MC@{C\+T\+\_\+\+M\+MC}!diskio.\+h@{diskio.\+h}}
-\subsubsection[{\texorpdfstring{C\+T\+\_\+\+M\+MC}{CT_MMC}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+T\+\_\+\+M\+MC~0x01             /$\ast$$<$ M\+M\+C ver 3 $\ast$/}\hypertarget{diskio_8h_ac52ec66c278308382fdf7b2c57f0ad8c}{}\label{diskio_8h_ac52ec66c278308382fdf7b2c57f0ad8c}
+\subsubsection[{\texorpdfstring{C\+T\+\_\+\+M\+MC}{CT_MMC}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+T\+\_\+\+M\+MC~0x01		/$\ast$ M\+M\+C ver 3 $\ast$/}\hypertarget{diskio_8h_ac52ec66c278308382fdf7b2c57f0ad8c}{}\label{diskio_8h_ac52ec66c278308382fdf7b2c57f0ad8c}
 
 
-Definition at line 97 of file diskio.\+h.
+Definition at line 92 of file diskio.\+h.
 
 
 
@@ -182,305 +176,293 @@ Referenced by mmc\+\_\+disk\+\_\+initialize().
 
 \index{diskio.\+h@{diskio.\+h}!C\+T\+\_\+\+S\+D1@{C\+T\+\_\+\+S\+D1}}
 \index{C\+T\+\_\+\+S\+D1@{C\+T\+\_\+\+S\+D1}!diskio.\+h@{diskio.\+h}}
-\subsubsection[{\texorpdfstring{C\+T\+\_\+\+S\+D1}{CT_SD1}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+T\+\_\+\+S\+D1~0x02             /$\ast$$<$ S\+D ver 1 $\ast$/}\hypertarget{diskio_8h_ad1c9fc863ec15d3320b3850dc571626e}{}\label{diskio_8h_ad1c9fc863ec15d3320b3850dc571626e}
+\subsubsection[{\texorpdfstring{C\+T\+\_\+\+S\+D1}{CT_SD1}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+T\+\_\+\+S\+D1~0x02		/$\ast$ S\+D ver 1 $\ast$/}\hypertarget{diskio_8h_ad1c9fc863ec15d3320b3850dc571626e}{}\label{diskio_8h_ad1c9fc863ec15d3320b3850dc571626e}
 
 
-Definition at line 98 of file diskio.\+h.
+Definition at line 93 of file diskio.\+h.
 
 
 
-Referenced by mmc\+\_\+disk\+\_\+initialize(), and mmc\+\_\+disk\+\_\+ioctl().
+Referenced by mmc\+\_\+disk\+\_\+initialize(), and mmc\+\_\+disk\+\_\+read().
 
 \index{diskio.\+h@{diskio.\+h}!C\+T\+\_\+\+S\+D2@{C\+T\+\_\+\+S\+D2}}
 \index{C\+T\+\_\+\+S\+D2@{C\+T\+\_\+\+S\+D2}!diskio.\+h@{diskio.\+h}}
-\subsubsection[{\texorpdfstring{C\+T\+\_\+\+S\+D2}{CT_SD2}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+T\+\_\+\+S\+D2~0x04             /$\ast$$<$ S\+D ver 2 $\ast$/}\hypertarget{diskio_8h_a0db1b71113e73184a5ba511e7020a922}{}\label{diskio_8h_a0db1b71113e73184a5ba511e7020a922}
+\subsubsection[{\texorpdfstring{C\+T\+\_\+\+S\+D2}{CT_SD2}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+T\+\_\+\+S\+D2~0x04		/$\ast$ S\+D ver 2 $\ast$/}\hypertarget{diskio_8h_a0db1b71113e73184a5ba511e7020a922}{}\label{diskio_8h_a0db1b71113e73184a5ba511e7020a922}
 
 
-Definition at line 99 of file diskio.\+h.
+Definition at line 94 of file diskio.\+h.
 
 
 
-Referenced by mmc\+\_\+disk\+\_\+initialize(), and mmc\+\_\+disk\+\_\+ioctl().
+Referenced by mmc\+\_\+disk\+\_\+initialize(), and mmc\+\_\+disk\+\_\+read().
 
 \index{diskio.\+h@{diskio.\+h}!C\+T\+\_\+\+S\+DC@{C\+T\+\_\+\+S\+DC}}
 \index{C\+T\+\_\+\+S\+DC@{C\+T\+\_\+\+S\+DC}!diskio.\+h@{diskio.\+h}}
-\subsubsection[{\texorpdfstring{C\+T\+\_\+\+S\+DC}{CT_SDC}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+T\+\_\+\+S\+DC~({\bf C\+T\+\_\+\+S\+D1}$\vert${\bf C\+T\+\_\+\+S\+D2})  /$\ast$$<$ SD $\ast$/}\hypertarget{diskio_8h_ae76d94ac83c68d1f025cb0bcad77fa5d}{}\label{diskio_8h_ae76d94ac83c68d1f025cb0bcad77fa5d}
+\subsubsection[{\texorpdfstring{C\+T\+\_\+\+S\+DC}{CT_SDC}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+T\+\_\+\+S\+DC~({\bf C\+T\+\_\+\+S\+D1}$\vert${\bf C\+T\+\_\+\+S\+D2})	/$\ast$ SD $\ast$/}\hypertarget{diskio_8h_ae76d94ac83c68d1f025cb0bcad77fa5d}{}\label{diskio_8h_ae76d94ac83c68d1f025cb0bcad77fa5d}
 
 
-Definition at line 100 of file diskio.\+h.
+Definition at line 95 of file diskio.\+h.
 
 
 
-Referenced by mmc\+\_\+disk\+\_\+write().
+Referenced by mmc\+\_\+disk\+\_\+read().
 
 \index{diskio.\+h@{diskio.\+h}!C\+T\+R\+L\+\_\+\+E\+J\+E\+CT@{C\+T\+R\+L\+\_\+\+E\+J\+E\+CT}}
 \index{C\+T\+R\+L\+\_\+\+E\+J\+E\+CT@{C\+T\+R\+L\+\_\+\+E\+J\+E\+CT}!diskio.\+h@{diskio.\+h}}
-\subsubsection[{\texorpdfstring{C\+T\+R\+L\+\_\+\+E\+J\+E\+CT}{CTRL_EJECT}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+T\+R\+L\+\_\+\+E\+J\+E\+CT~10 /$\ast$$<$ Eject media $\ast$/}\hypertarget{diskio_8h_a5e40e16d2d7ce196858950f070b9ec03}{}\label{diskio_8h_a5e40e16d2d7ce196858950f070b9ec03}
+\subsubsection[{\texorpdfstring{C\+T\+R\+L\+\_\+\+E\+J\+E\+CT}{CTRL_EJECT}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+T\+R\+L\+\_\+\+E\+J\+E\+CT~10	/$\ast$ Eject media $\ast$/}\hypertarget{diskio_8h_a5e40e16d2d7ce196858950f070b9ec03}{}\label{diskio_8h_a5e40e16d2d7ce196858950f070b9ec03}
 
 
-Definition at line 82 of file diskio.\+h.
-
-\index{diskio.\+h@{diskio.\+h}!C\+T\+R\+L\+\_\+\+E\+R\+A\+S\+E\+\_\+\+S\+E\+C\+T\+OR@{C\+T\+R\+L\+\_\+\+E\+R\+A\+S\+E\+\_\+\+S\+E\+C\+T\+OR}}
-\index{C\+T\+R\+L\+\_\+\+E\+R\+A\+S\+E\+\_\+\+S\+E\+C\+T\+OR@{C\+T\+R\+L\+\_\+\+E\+R\+A\+S\+E\+\_\+\+S\+E\+C\+T\+OR}!diskio.\+h@{diskio.\+h}}
-\subsubsection[{\texorpdfstring{C\+T\+R\+L\+\_\+\+E\+R\+A\+S\+E\+\_\+\+S\+E\+C\+T\+OR}{CTRL_ERASE_SECTOR}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+T\+R\+L\+\_\+\+E\+R\+A\+S\+E\+\_\+\+S\+E\+C\+T\+OR}\hypertarget{diskio_8h_a3b1dc812217ea7ffa118b14a3c1ab151}{}\label{diskio_8h_a3b1dc812217ea7ffa118b14a3c1ab151}
-{\bfseries Value\+:}
-\begin{DoxyCode}
-4 \textcolor{comment}{/*< Force erased a block of sectors (for only \_USE}
-\textcolor{comment}{\_ERASE) */}
-\end{DoxyCode}
-brief Generic command (not used by Fat\+Fs) 
-
-Definition at line 76 of file diskio.\+h.
-
-
-
-Referenced by f\+\_\+mkfs(), and remove\+\_\+chain().
-
-\index{diskio.\+h@{diskio.\+h}!C\+T\+R\+L\+\_\+\+E\+R\+A\+S\+E\+\_\+\+S\+E\+C\+T\+OR@{C\+T\+R\+L\+\_\+\+E\+R\+A\+S\+E\+\_\+\+S\+E\+C\+T\+OR}}
-\index{C\+T\+R\+L\+\_\+\+E\+R\+A\+S\+E\+\_\+\+S\+E\+C\+T\+OR@{C\+T\+R\+L\+\_\+\+E\+R\+A\+S\+E\+\_\+\+S\+E\+C\+T\+OR}!diskio.\+h@{diskio.\+h}}
-\subsubsection[{\texorpdfstring{C\+T\+R\+L\+\_\+\+E\+R\+A\+S\+E\+\_\+\+S\+E\+C\+T\+OR}{CTRL_ERASE_SECTOR}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+T\+R\+L\+\_\+\+E\+R\+A\+S\+E\+\_\+\+S\+E\+C\+T\+OR~4  /$\ast$$<$ Force erased a block of sectors (for only {\bf \+\_\+\+U\+S\+E\+\_\+\+E\+R\+A\+SE}) $\ast$/}\hypertarget{diskio_8h_a3b1dc812217ea7ffa118b14a3c1ab151}{}\label{diskio_8h_a3b1dc812217ea7ffa118b14a3c1ab151}
-brief Generic command (not used by Fat\+Fs) 
-
-Definition at line 76 of file diskio.\+h.
+Definition at line 73 of file diskio.\+h.
 
 \index{diskio.\+h@{diskio.\+h}!C\+T\+R\+L\+\_\+\+F\+O\+R\+M\+AT@{C\+T\+R\+L\+\_\+\+F\+O\+R\+M\+AT}}
 \index{C\+T\+R\+L\+\_\+\+F\+O\+R\+M\+AT@{C\+T\+R\+L\+\_\+\+F\+O\+R\+M\+AT}!diskio.\+h@{diskio.\+h}}
-\subsubsection[{\texorpdfstring{C\+T\+R\+L\+\_\+\+F\+O\+R\+M\+AT}{CTRL_FORMAT}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+T\+R\+L\+\_\+\+F\+O\+R\+M\+AT~5  /$\ast$$<$ Create physical format on the media $\ast$/}\hypertarget{diskio_8h_add07021167069f5914211a2f8830fabb}{}\label{diskio_8h_add07021167069f5914211a2f8830fabb}
-
-
-Definition at line 77 of file diskio.\+h.
-
-\index{diskio.\+h@{diskio.\+h}!C\+T\+R\+L\+\_\+\+L\+O\+CK@{C\+T\+R\+L\+\_\+\+L\+O\+CK}}
-\index{C\+T\+R\+L\+\_\+\+L\+O\+CK@{C\+T\+R\+L\+\_\+\+L\+O\+CK}!diskio.\+h@{diskio.\+h}}
-\subsubsection[{\texorpdfstring{C\+T\+R\+L\+\_\+\+L\+O\+CK}{CTRL_LOCK}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+T\+R\+L\+\_\+\+L\+O\+CK~8  /$\ast$$<$ Lock media removal $\ast$/}\hypertarget{diskio_8h_af40e5cf3000553a978ff6e30dae70858}{}\label{diskio_8h_af40e5cf3000553a978ff6e30dae70858}
-
-
-Definition at line 80 of file diskio.\+h.
-
-\index{diskio.\+h@{diskio.\+h}!C\+T\+R\+L\+\_\+\+P\+O\+W\+E\+R\+\_\+\+I\+D\+LE@{C\+T\+R\+L\+\_\+\+P\+O\+W\+E\+R\+\_\+\+I\+D\+LE}}
-\index{C\+T\+R\+L\+\_\+\+P\+O\+W\+E\+R\+\_\+\+I\+D\+LE@{C\+T\+R\+L\+\_\+\+P\+O\+W\+E\+R\+\_\+\+I\+D\+LE}!diskio.\+h@{diskio.\+h}}
-\subsubsection[{\texorpdfstring{C\+T\+R\+L\+\_\+\+P\+O\+W\+E\+R\+\_\+\+I\+D\+LE}{CTRL_POWER_IDLE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+T\+R\+L\+\_\+\+P\+O\+W\+E\+R\+\_\+\+I\+D\+LE~6  /$\ast$$<$ Put the device idle state $\ast$/}\hypertarget{diskio_8h_a69bec9079062f809c3586977b2dc5d79}{}\label{diskio_8h_a69bec9079062f809c3586977b2dc5d79}
-
-
-Definition at line 78 of file diskio.\+h.
-
-\index{diskio.\+h@{diskio.\+h}!C\+T\+R\+L\+\_\+\+P\+O\+W\+E\+R\+\_\+\+O\+FF@{C\+T\+R\+L\+\_\+\+P\+O\+W\+E\+R\+\_\+\+O\+FF}}
-\index{C\+T\+R\+L\+\_\+\+P\+O\+W\+E\+R\+\_\+\+O\+FF@{C\+T\+R\+L\+\_\+\+P\+O\+W\+E\+R\+\_\+\+O\+FF}!diskio.\+h@{diskio.\+h}}
-\subsubsection[{\texorpdfstring{C\+T\+R\+L\+\_\+\+P\+O\+W\+E\+R\+\_\+\+O\+FF}{CTRL_POWER_OFF}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+T\+R\+L\+\_\+\+P\+O\+W\+E\+R\+\_\+\+O\+FF~7  /$\ast$$<$ Put the device off state $\ast$/}\hypertarget{diskio_8h_aa1f5a55ea2a24d274c16e51c111c97d8}{}\label{diskio_8h_aa1f5a55ea2a24d274c16e51c111c97d8}
-
-
-Definition at line 79 of file diskio.\+h.
-
-
-
-Referenced by mmc\+\_\+disk\+\_\+ioctl().
-
-\index{diskio.\+h@{diskio.\+h}!C\+T\+R\+L\+\_\+\+S\+Y\+NC@{C\+T\+R\+L\+\_\+\+S\+Y\+NC}}
-\index{C\+T\+R\+L\+\_\+\+S\+Y\+NC@{C\+T\+R\+L\+\_\+\+S\+Y\+NC}!diskio.\+h@{diskio.\+h}}
-\subsubsection[{\texorpdfstring{C\+T\+R\+L\+\_\+\+S\+Y\+NC}{CTRL_SYNC}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+T\+R\+L\+\_\+\+S\+Y\+NC}\hypertarget{diskio_8h_a1b3c492f9aec325f0655941b75256f3c}{}\label{diskio_8h_a1b3c492f9aec325f0655941b75256f3c}
-{\bfseries Value\+:}
-\begin{DoxyCode}
-0 \textcolor{comment}{/*< Flush disk cache (for write functions)}
-\textcolor{comment}{ */}
-\end{DoxyCode}
-
-
-Generic command (used by Fat\+Fs) 
-
-
-
-Definition at line 66 of file diskio.\+h.
-
-
-
-Referenced by f\+\_\+mkfs(), mmc\+\_\+disk\+\_\+ioctl(), and sync\+\_\+fs().
-
-\index{diskio.\+h@{diskio.\+h}!C\+T\+R\+L\+\_\+\+U\+N\+L\+O\+CK@{C\+T\+R\+L\+\_\+\+U\+N\+L\+O\+CK}}
-\index{C\+T\+R\+L\+\_\+\+U\+N\+L\+O\+CK@{C\+T\+R\+L\+\_\+\+U\+N\+L\+O\+CK}!diskio.\+h@{diskio.\+h}}
-\subsubsection[{\texorpdfstring{C\+T\+R\+L\+\_\+\+U\+N\+L\+O\+CK}{CTRL_UNLOCK}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+T\+R\+L\+\_\+\+U\+N\+L\+O\+CK~9  /$\ast$$<$ Unlock media removal $\ast$/}\hypertarget{diskio_8h_a5d06770de580667138ca6101ae5138ac}{}\label{diskio_8h_a5d06770de580667138ca6101ae5138ac}
-
-
-Definition at line 81 of file diskio.\+h.
-
-\index{diskio.\+h@{diskio.\+h}!G\+E\+T\+\_\+\+B\+L\+O\+C\+K\+\_\+\+S\+I\+ZE@{G\+E\+T\+\_\+\+B\+L\+O\+C\+K\+\_\+\+S\+I\+ZE}}
-\index{G\+E\+T\+\_\+\+B\+L\+O\+C\+K\+\_\+\+S\+I\+ZE@{G\+E\+T\+\_\+\+B\+L\+O\+C\+K\+\_\+\+S\+I\+ZE}!diskio.\+h@{diskio.\+h}}
-\subsubsection[{\texorpdfstring{G\+E\+T\+\_\+\+B\+L\+O\+C\+K\+\_\+\+S\+I\+ZE}{GET_BLOCK_SIZE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define G\+E\+T\+\_\+\+B\+L\+O\+C\+K\+\_\+\+S\+I\+ZE~3 /$\ast$$<$ Get erase block size (for only {\bf f\+\_\+mkfs}()) $\ast$/}\hypertarget{diskio_8h_aec3bb4dfe075d0ba2f3b07b300a95500}{}\label{diskio_8h_aec3bb4dfe075d0ba2f3b07b300a95500}
-
-
-Definition at line 71 of file diskio.\+h.
-
-
-
-Referenced by f\+\_\+mkfs(), mmc\+\_\+disk\+\_\+ioctl(), and mmc\+\_\+init().
-
-\index{diskio.\+h@{diskio.\+h}!G\+E\+T\+\_\+\+S\+E\+C\+T\+O\+R\+\_\+\+C\+O\+U\+NT@{G\+E\+T\+\_\+\+S\+E\+C\+T\+O\+R\+\_\+\+C\+O\+U\+NT}}
-\index{G\+E\+T\+\_\+\+S\+E\+C\+T\+O\+R\+\_\+\+C\+O\+U\+NT@{G\+E\+T\+\_\+\+S\+E\+C\+T\+O\+R\+\_\+\+C\+O\+U\+NT}!diskio.\+h@{diskio.\+h}}
-\subsubsection[{\texorpdfstring{G\+E\+T\+\_\+\+S\+E\+C\+T\+O\+R\+\_\+\+C\+O\+U\+NT}{GET_SECTOR_COUNT}}]{\setlength{\rightskip}{0pt plus 5cm}\#define G\+E\+T\+\_\+\+S\+E\+C\+T\+O\+R\+\_\+\+C\+O\+U\+NT~1 /$\ast$$<$ Get media size (for only {\bf f\+\_\+mkfs}()) $\ast$/}\hypertarget{diskio_8h_a570216006f6a8fc4e1698b1bbb2d1dde}{}\label{diskio_8h_a570216006f6a8fc4e1698b1bbb2d1dde}
+\subsubsection[{\texorpdfstring{C\+T\+R\+L\+\_\+\+F\+O\+R\+M\+AT}{CTRL_FORMAT}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+T\+R\+L\+\_\+\+F\+O\+R\+M\+AT~5	/$\ast$ Create physical format on the media $\ast$/}\hypertarget{diskio_8h_add07021167069f5914211a2f8830fabb}{}\label{diskio_8h_add07021167069f5914211a2f8830fabb}
 
 
 Definition at line 68 of file diskio.\+h.
 
+\index{diskio.\+h@{diskio.\+h}!C\+T\+R\+L\+\_\+\+L\+O\+CK@{C\+T\+R\+L\+\_\+\+L\+O\+CK}}
+\index{C\+T\+R\+L\+\_\+\+L\+O\+CK@{C\+T\+R\+L\+\_\+\+L\+O\+CK}!diskio.\+h@{diskio.\+h}}
+\subsubsection[{\texorpdfstring{C\+T\+R\+L\+\_\+\+L\+O\+CK}{CTRL_LOCK}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+T\+R\+L\+\_\+\+L\+O\+CK~8	/$\ast$ Lock media removal $\ast$/}\hypertarget{diskio_8h_af40e5cf3000553a978ff6e30dae70858}{}\label{diskio_8h_af40e5cf3000553a978ff6e30dae70858}
 
 
-Referenced by f\+\_\+mkfs(), and mmc\+\_\+disk\+\_\+ioctl().
+Definition at line 71 of file diskio.\+h.
 
-\index{diskio.\+h@{diskio.\+h}!G\+E\+T\+\_\+\+S\+E\+C\+T\+O\+R\+\_\+\+S\+I\+ZE@{G\+E\+T\+\_\+\+S\+E\+C\+T\+O\+R\+\_\+\+S\+I\+ZE}}
-\index{G\+E\+T\+\_\+\+S\+E\+C\+T\+O\+R\+\_\+\+S\+I\+ZE@{G\+E\+T\+\_\+\+S\+E\+C\+T\+O\+R\+\_\+\+S\+I\+ZE}!diskio.\+h@{diskio.\+h}}
-\subsubsection[{\texorpdfstring{G\+E\+T\+\_\+\+S\+E\+C\+T\+O\+R\+\_\+\+S\+I\+ZE}{GET_SECTOR_SIZE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define G\+E\+T\+\_\+\+S\+E\+C\+T\+O\+R\+\_\+\+S\+I\+ZE}\hypertarget{diskio_8h_ac73b5cf2135cbd459d109b96c9aa346a}{}\label{diskio_8h_ac73b5cf2135cbd459d109b96c9aa346a}
-{\bfseries Value\+:}
-\begin{DoxyCode}
-2 \textcolor{comment}{/*< Get sector size (for multiple sector size (\_MA}
-\textcolor{comment}{X\_SS >= 1024)) */}
-\end{DoxyCode}
+\index{diskio.\+h@{diskio.\+h}!C\+T\+R\+L\+\_\+\+P\+O\+W\+E\+R\+\_\+\+I\+D\+LE@{C\+T\+R\+L\+\_\+\+P\+O\+W\+E\+R\+\_\+\+I\+D\+LE}}
+\index{C\+T\+R\+L\+\_\+\+P\+O\+W\+E\+R\+\_\+\+I\+D\+LE@{C\+T\+R\+L\+\_\+\+P\+O\+W\+E\+R\+\_\+\+I\+D\+LE}!diskio.\+h@{diskio.\+h}}
+\subsubsection[{\texorpdfstring{C\+T\+R\+L\+\_\+\+P\+O\+W\+E\+R\+\_\+\+I\+D\+LE}{CTRL_POWER_IDLE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+T\+R\+L\+\_\+\+P\+O\+W\+E\+R\+\_\+\+I\+D\+LE~6	/$\ast$ Put the device idle state $\ast$/}\hypertarget{diskio_8h_a69bec9079062f809c3586977b2dc5d79}{}\label{diskio_8h_a69bec9079062f809c3586977b2dc5d79}
 
 
 Definition at line 69 of file diskio.\+h.
 
+\index{diskio.\+h@{diskio.\+h}!C\+T\+R\+L\+\_\+\+P\+O\+W\+E\+R\+\_\+\+O\+FF@{C\+T\+R\+L\+\_\+\+P\+O\+W\+E\+R\+\_\+\+O\+FF}}
+\index{C\+T\+R\+L\+\_\+\+P\+O\+W\+E\+R\+\_\+\+O\+FF@{C\+T\+R\+L\+\_\+\+P\+O\+W\+E\+R\+\_\+\+O\+FF}!diskio.\+h@{diskio.\+h}}
+\subsubsection[{\texorpdfstring{C\+T\+R\+L\+\_\+\+P\+O\+W\+E\+R\+\_\+\+O\+FF}{CTRL_POWER_OFF}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+T\+R\+L\+\_\+\+P\+O\+W\+E\+R\+\_\+\+O\+FF~7	/$\ast$ Put the device off state $\ast$/}\hypertarget{diskio_8h_aa1f5a55ea2a24d274c16e51c111c97d8}{}\label{diskio_8h_aa1f5a55ea2a24d274c16e51c111c97d8}
 
 
-Referenced by f\+\_\+mkfs(), and find\+\_\+volume().
-
-\index{diskio.\+h@{diskio.\+h}!M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+C\+ID@{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+C\+ID}}
-\index{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+C\+ID@{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+C\+ID}!diskio.\+h@{diskio.\+h}}
-\subsubsection[{\texorpdfstring{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+C\+ID}{MMC_GET_CID}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+C\+ID~52 /$\ast$$<$ Get C\+ID $\ast$/}\hypertarget{diskio_8h_a17ad303dd18b19a4c90ab30a8a1c14c4}{}\label{diskio_8h_a17ad303dd18b19a4c90ab30a8a1c14c4}
-
-
-Definition at line 87 of file diskio.\+h.
+Definition at line 70 of file diskio.\+h.
 
 
 
-Referenced by mmc\+\_\+disk\+\_\+ioctl().
+Referenced by mmc\+\_\+disk\+\_\+read().
 
-\index{diskio.\+h@{diskio.\+h}!M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+C\+SD@{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+C\+SD}}
-\index{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+C\+SD@{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+C\+SD}!diskio.\+h@{diskio.\+h}}
-\subsubsection[{\texorpdfstring{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+C\+SD}{MMC_GET_CSD}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+C\+SD~51 /$\ast$$<$ Get C\+SD $\ast$/}\hypertarget{diskio_8h_ae3b858b81287929f7c7bea3b7aec3087}{}\label{diskio_8h_ae3b858b81287929f7c7bea3b7aec3087}
-
-
-Definition at line 86 of file diskio.\+h.
-
-
-
-Referenced by mmc\+\_\+disk\+\_\+ioctl().
-
-\index{diskio.\+h@{diskio.\+h}!M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+O\+CR@{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+O\+CR}}
-\index{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+O\+CR@{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+O\+CR}!diskio.\+h@{diskio.\+h}}
-\subsubsection[{\texorpdfstring{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+O\+CR}{MMC_GET_OCR}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+O\+CR~53 /$\ast$$<$ Get O\+CR $\ast$/}\hypertarget{diskio_8h_aff118ba6bd7a9fe7699cee049cff5d6c}{}\label{diskio_8h_aff118ba6bd7a9fe7699cee049cff5d6c}
-
-
-Definition at line 88 of file diskio.\+h.
-
-
-
-Referenced by mmc\+\_\+disk\+\_\+ioctl().
-
-\index{diskio.\+h@{diskio.\+h}!M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+S\+D\+S\+T\+AT@{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+S\+D\+S\+T\+AT}}
-\index{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+S\+D\+S\+T\+AT@{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+S\+D\+S\+T\+AT}!diskio.\+h@{diskio.\+h}}
-\subsubsection[{\texorpdfstring{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+S\+D\+S\+T\+AT}{MMC_GET_SDSTAT}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+S\+D\+S\+T\+AT~54 /$\ast$$<$ Get SD status $\ast$/}\hypertarget{diskio_8h_a5cc43c8449b872e16ea5ab42592f793e}{}\label{diskio_8h_a5cc43c8449b872e16ea5ab42592f793e}
-
-
-Definition at line 89 of file diskio.\+h.
-
-
-
-Referenced by mmc\+\_\+disk\+\_\+ioctl().
-
-\index{diskio.\+h@{diskio.\+h}!M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+T\+Y\+PE@{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+T\+Y\+PE}}
-\index{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+T\+Y\+PE@{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+T\+Y\+PE}!diskio.\+h@{diskio.\+h}}
-\subsubsection[{\texorpdfstring{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+T\+Y\+PE}{MMC_GET_TYPE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+T\+Y\+PE~50 /$\ast$$<$ Get card type $\ast$/}\hypertarget{diskio_8h_aba3a81a9a47c7d1bf3ac7749bc72dcfd}{}\label{diskio_8h_aba3a81a9a47c7d1bf3ac7749bc72dcfd}
-
-
-M\+M\+C/\+S\+DC specific ioctl command. 
-
-
-
-Definition at line 85 of file diskio.\+h.
-
-
-
-Referenced by mmc\+\_\+disk\+\_\+ioctl().
-
-\index{diskio.\+h@{diskio.\+h}!S\+T\+A\+\_\+\+N\+O\+D\+I\+SK@{S\+T\+A\+\_\+\+N\+O\+D\+I\+SK}}
-\index{S\+T\+A\+\_\+\+N\+O\+D\+I\+SK@{S\+T\+A\+\_\+\+N\+O\+D\+I\+SK}!diskio.\+h@{diskio.\+h}}
-\subsubsection[{\texorpdfstring{S\+T\+A\+\_\+\+N\+O\+D\+I\+SK}{STA_NODISK}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+T\+A\+\_\+\+N\+O\+D\+I\+SK~0x02  /$\ast$$<$ No medium in the drive $\ast$/}\hypertarget{diskio_8h_aec625080763d6cf487e550a6c9a2dd19}{}\label{diskio_8h_aec625080763d6cf487e550a6c9a2dd19}
-
-
-Definition at line 60 of file diskio.\+h.
-
-
-
-Referenced by mmc\+\_\+disk\+\_\+initialize(), mmc\+\_\+task(), and mmc\+\_\+test\+\_\+timeout().
-
-\index{diskio.\+h@{diskio.\+h}!S\+T\+A\+\_\+\+N\+O\+I\+N\+IT@{S\+T\+A\+\_\+\+N\+O\+I\+N\+IT}}
-\index{S\+T\+A\+\_\+\+N\+O\+I\+N\+IT@{S\+T\+A\+\_\+\+N\+O\+I\+N\+IT}!diskio.\+h@{diskio.\+h}}
-\subsubsection[{\texorpdfstring{S\+T\+A\+\_\+\+N\+O\+I\+N\+IT}{STA_NOINIT}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+T\+A\+\_\+\+N\+O\+I\+N\+IT~0x01  /$\ast$$<$ Drive not initialized $\ast$/}\hypertarget{diskio_8h_abd6503c70d862b979a3f7080a59e9acd}{}\label{diskio_8h_abd6503c70d862b979a3f7080a59e9acd}
-
-
-Definition at line 59 of file diskio.\+h.
-
-
-
-Referenced by f\+\_\+mkfs(), find\+\_\+volume(), mmc\+\_\+disk\+\_\+initialize(), mmc\+\_\+disk\+\_\+ioctl(), mmc\+\_\+disk\+\_\+read(), mmc\+\_\+disk\+\_\+status(), mmc\+\_\+disk\+\_\+write(), mmc\+\_\+task(), mmc\+\_\+test\+\_\+timeout(), and validate().
-
-\index{diskio.\+h@{diskio.\+h}!S\+T\+A\+\_\+\+P\+R\+O\+T\+E\+CT@{S\+T\+A\+\_\+\+P\+R\+O\+T\+E\+CT}}
-\index{S\+T\+A\+\_\+\+P\+R\+O\+T\+E\+CT@{S\+T\+A\+\_\+\+P\+R\+O\+T\+E\+CT}!diskio.\+h@{diskio.\+h}}
-\subsubsection[{\texorpdfstring{S\+T\+A\+\_\+\+P\+R\+O\+T\+E\+CT}{STA_PROTECT}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+T\+A\+\_\+\+P\+R\+O\+T\+E\+CT~0x04  /$\ast$$<$ Write protected $\ast$/}\hypertarget{diskio_8h_a9ec6dc5f6620a33fabe388d3a111ca8c}{}\label{diskio_8h_a9ec6dc5f6620a33fabe388d3a111ca8c}
+\index{diskio.\+h@{diskio.\+h}!C\+T\+R\+L\+\_\+\+S\+Y\+NC@{C\+T\+R\+L\+\_\+\+S\+Y\+NC}}
+\index{C\+T\+R\+L\+\_\+\+S\+Y\+NC@{C\+T\+R\+L\+\_\+\+S\+Y\+NC}!diskio.\+h@{diskio.\+h}}
+\subsubsection[{\texorpdfstring{C\+T\+R\+L\+\_\+\+S\+Y\+NC}{CTRL_SYNC}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+T\+R\+L\+\_\+\+S\+Y\+NC~0	/$\ast$ Complete pending {\bf write} process (needed at {\bf \+\_\+\+F\+S\+\_\+\+R\+E\+A\+D\+O\+N\+LY} == 0) $\ast$/}\hypertarget{diskio_8h_a1b3c492f9aec325f0655941b75256f3c}{}\label{diskio_8h_a1b3c492f9aec325f0655941b75256f3c}
 
 
 Definition at line 61 of file diskio.\+h.
 
 
 
-Referenced by f\+\_\+mkfs(), find\+\_\+volume(), mmc\+\_\+disk\+\_\+write(), and mmc\+\_\+task().
+Referenced by f\+\_\+mkfs(), mmc\+\_\+disk\+\_\+read(), and sync\+\_\+fs().
+
+\index{diskio.\+h@{diskio.\+h}!C\+T\+R\+L\+\_\+\+T\+R\+IM@{C\+T\+R\+L\+\_\+\+T\+R\+IM}}
+\index{C\+T\+R\+L\+\_\+\+T\+R\+IM@{C\+T\+R\+L\+\_\+\+T\+R\+IM}!diskio.\+h@{diskio.\+h}}
+\subsubsection[{\texorpdfstring{C\+T\+R\+L\+\_\+\+T\+R\+IM}{CTRL_TRIM}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+T\+R\+L\+\_\+\+T\+R\+IM~4	/$\ast$ Inform device that the data on the block of sectors is no longer used (needed at {\bf \+\_\+\+U\+S\+E\+\_\+\+T\+R\+IM} == 1) $\ast$/}\hypertarget{diskio_8h_af09fd84bea8d4e889e272471f44d60d6}{}\label{diskio_8h_af09fd84bea8d4e889e272471f44d60d6}
+
+
+Definition at line 65 of file diskio.\+h.
+
+
+
+Referenced by f\+\_\+mkfs(), mmc\+\_\+disk\+\_\+read(), and remove\+\_\+chain().
+
+\index{diskio.\+h@{diskio.\+h}!C\+T\+R\+L\+\_\+\+U\+N\+L\+O\+CK@{C\+T\+R\+L\+\_\+\+U\+N\+L\+O\+CK}}
+\index{C\+T\+R\+L\+\_\+\+U\+N\+L\+O\+CK@{C\+T\+R\+L\+\_\+\+U\+N\+L\+O\+CK}!diskio.\+h@{diskio.\+h}}
+\subsubsection[{\texorpdfstring{C\+T\+R\+L\+\_\+\+U\+N\+L\+O\+CK}{CTRL_UNLOCK}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+T\+R\+L\+\_\+\+U\+N\+L\+O\+CK~9	/$\ast$ Unlock media removal $\ast$/}\hypertarget{diskio_8h_a5d06770de580667138ca6101ae5138ac}{}\label{diskio_8h_a5d06770de580667138ca6101ae5138ac}
+
+
+Definition at line 72 of file diskio.\+h.
+
+\index{diskio.\+h@{diskio.\+h}!G\+E\+T\+\_\+\+B\+L\+O\+C\+K\+\_\+\+S\+I\+ZE@{G\+E\+T\+\_\+\+B\+L\+O\+C\+K\+\_\+\+S\+I\+ZE}}
+\index{G\+E\+T\+\_\+\+B\+L\+O\+C\+K\+\_\+\+S\+I\+ZE@{G\+E\+T\+\_\+\+B\+L\+O\+C\+K\+\_\+\+S\+I\+ZE}!diskio.\+h@{diskio.\+h}}
+\subsubsection[{\texorpdfstring{G\+E\+T\+\_\+\+B\+L\+O\+C\+K\+\_\+\+S\+I\+ZE}{GET_BLOCK_SIZE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define G\+E\+T\+\_\+\+B\+L\+O\+C\+K\+\_\+\+S\+I\+ZE~3	/$\ast$ Get erase block size (needed at {\bf \+\_\+\+U\+S\+E\+\_\+\+M\+K\+FS} == 1) $\ast$/}\hypertarget{diskio_8h_aec3bb4dfe075d0ba2f3b07b300a95500}{}\label{diskio_8h_aec3bb4dfe075d0ba2f3b07b300a95500}
+
+
+Definition at line 64 of file diskio.\+h.
+
+
+
+Referenced by f\+\_\+mkfs(), mmc\+\_\+disk\+\_\+read(), and mmc\+\_\+init().
+
+\index{diskio.\+h@{diskio.\+h}!G\+E\+T\+\_\+\+S\+E\+C\+T\+O\+R\+\_\+\+C\+O\+U\+NT@{G\+E\+T\+\_\+\+S\+E\+C\+T\+O\+R\+\_\+\+C\+O\+U\+NT}}
+\index{G\+E\+T\+\_\+\+S\+E\+C\+T\+O\+R\+\_\+\+C\+O\+U\+NT@{G\+E\+T\+\_\+\+S\+E\+C\+T\+O\+R\+\_\+\+C\+O\+U\+NT}!diskio.\+h@{diskio.\+h}}
+\subsubsection[{\texorpdfstring{G\+E\+T\+\_\+\+S\+E\+C\+T\+O\+R\+\_\+\+C\+O\+U\+NT}{GET_SECTOR_COUNT}}]{\setlength{\rightskip}{0pt plus 5cm}\#define G\+E\+T\+\_\+\+S\+E\+C\+T\+O\+R\+\_\+\+C\+O\+U\+NT~1	/$\ast$ Get media size (needed at {\bf \+\_\+\+U\+S\+E\+\_\+\+M\+K\+FS} == 1) $\ast$/}\hypertarget{diskio_8h_a570216006f6a8fc4e1698b1bbb2d1dde}{}\label{diskio_8h_a570216006f6a8fc4e1698b1bbb2d1dde}
+
+
+Definition at line 62 of file diskio.\+h.
+
+
+
+Referenced by f\+\_\+mkfs(), and mmc\+\_\+disk\+\_\+read().
+
+\index{diskio.\+h@{diskio.\+h}!G\+E\+T\+\_\+\+S\+E\+C\+T\+O\+R\+\_\+\+S\+I\+ZE@{G\+E\+T\+\_\+\+S\+E\+C\+T\+O\+R\+\_\+\+S\+I\+ZE}}
+\index{G\+E\+T\+\_\+\+S\+E\+C\+T\+O\+R\+\_\+\+S\+I\+ZE@{G\+E\+T\+\_\+\+S\+E\+C\+T\+O\+R\+\_\+\+S\+I\+ZE}!diskio.\+h@{diskio.\+h}}
+\subsubsection[{\texorpdfstring{G\+E\+T\+\_\+\+S\+E\+C\+T\+O\+R\+\_\+\+S\+I\+ZE}{GET_SECTOR_SIZE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define G\+E\+T\+\_\+\+S\+E\+C\+T\+O\+R\+\_\+\+S\+I\+ZE~2	/$\ast$ Get sector size (needed at {\bf \+\_\+\+M\+A\+X\+\_\+\+SS} != {\bf \+\_\+\+M\+I\+N\+\_\+\+SS}) $\ast$/}\hypertarget{diskio_8h_ac73b5cf2135cbd459d109b96c9aa346a}{}\label{diskio_8h_ac73b5cf2135cbd459d109b96c9aa346a}
+
+
+Definition at line 63 of file diskio.\+h.
+
+
+
+Referenced by f\+\_\+mkfs(), and find\+\_\+volume().
+
+\index{diskio.\+h@{diskio.\+h}!I\+S\+D\+I\+O\+\_\+\+M\+R\+I\+TE@{I\+S\+D\+I\+O\+\_\+\+M\+R\+I\+TE}}
+\index{I\+S\+D\+I\+O\+\_\+\+M\+R\+I\+TE@{I\+S\+D\+I\+O\+\_\+\+M\+R\+I\+TE}!diskio.\+h@{diskio.\+h}}
+\subsubsection[{\texorpdfstring{I\+S\+D\+I\+O\+\_\+\+M\+R\+I\+TE}{ISDIO_MRITE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define I\+S\+D\+I\+O\+\_\+\+M\+R\+I\+TE~57	/$\ast$ Masked {\bf write} data to SD i\+S\+D\+IO register $\ast$/}\hypertarget{diskio_8h_aa79f4043470c49016d80558773e740a5}{}\label{diskio_8h_aa79f4043470c49016d80558773e740a5}
+
+
+Definition at line 83 of file diskio.\+h.
+
+
+
+Referenced by mmc\+\_\+disk\+\_\+read().
+
+\index{diskio.\+h@{diskio.\+h}!I\+S\+D\+I\+O\+\_\+\+R\+E\+AD@{I\+S\+D\+I\+O\+\_\+\+R\+E\+AD}}
+\index{I\+S\+D\+I\+O\+\_\+\+R\+E\+AD@{I\+S\+D\+I\+O\+\_\+\+R\+E\+AD}!diskio.\+h@{diskio.\+h}}
+\subsubsection[{\texorpdfstring{I\+S\+D\+I\+O\+\_\+\+R\+E\+AD}{ISDIO_READ}}]{\setlength{\rightskip}{0pt plus 5cm}\#define I\+S\+D\+I\+O\+\_\+\+R\+E\+AD~55	/$\ast$ Read data form SD i\+S\+D\+IO register $\ast$/}\hypertarget{diskio_8h_a9eb2d8ccc0b89299bc442396811f8723}{}\label{diskio_8h_a9eb2d8ccc0b89299bc442396811f8723}
+
+
+Definition at line 81 of file diskio.\+h.
+
+
+
+Referenced by mmc\+\_\+disk\+\_\+read().
+
+\index{diskio.\+h@{diskio.\+h}!I\+S\+D\+I\+O\+\_\+\+W\+R\+I\+TE@{I\+S\+D\+I\+O\+\_\+\+W\+R\+I\+TE}}
+\index{I\+S\+D\+I\+O\+\_\+\+W\+R\+I\+TE@{I\+S\+D\+I\+O\+\_\+\+W\+R\+I\+TE}!diskio.\+h@{diskio.\+h}}
+\subsubsection[{\texorpdfstring{I\+S\+D\+I\+O\+\_\+\+W\+R\+I\+TE}{ISDIO_WRITE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define I\+S\+D\+I\+O\+\_\+\+W\+R\+I\+TE~56	/$\ast$ Write data to SD i\+S\+D\+IO register $\ast$/}\hypertarget{diskio_8h_a9637dcd58e0f1f301edf0cccff9e3507}{}\label{diskio_8h_a9637dcd58e0f1f301edf0cccff9e3507}
+
+
+Definition at line 82 of file diskio.\+h.
+
+
+
+Referenced by mmc\+\_\+disk\+\_\+read().
+
+\index{diskio.\+h@{diskio.\+h}!M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+C\+ID@{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+C\+ID}}
+\index{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+C\+ID@{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+C\+ID}!diskio.\+h@{diskio.\+h}}
+\subsubsection[{\texorpdfstring{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+C\+ID}{MMC_GET_CID}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+C\+ID~52	/$\ast$ Get C\+ID $\ast$/}\hypertarget{diskio_8h_a17ad303dd18b19a4c90ab30a8a1c14c4}{}\label{diskio_8h_a17ad303dd18b19a4c90ab30a8a1c14c4}
+
+
+Definition at line 78 of file diskio.\+h.
+
+
+
+Referenced by mmc\+\_\+disk\+\_\+read().
+
+\index{diskio.\+h@{diskio.\+h}!M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+C\+SD@{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+C\+SD}}
+\index{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+C\+SD@{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+C\+SD}!diskio.\+h@{diskio.\+h}}
+\subsubsection[{\texorpdfstring{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+C\+SD}{MMC_GET_CSD}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+C\+SD~51	/$\ast$ Get C\+SD $\ast$/}\hypertarget{diskio_8h_ae3b858b81287929f7c7bea3b7aec3087}{}\label{diskio_8h_ae3b858b81287929f7c7bea3b7aec3087}
+
+
+Definition at line 77 of file diskio.\+h.
+
+
+
+Referenced by mmc\+\_\+disk\+\_\+read().
+
+\index{diskio.\+h@{diskio.\+h}!M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+O\+CR@{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+O\+CR}}
+\index{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+O\+CR@{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+O\+CR}!diskio.\+h@{diskio.\+h}}
+\subsubsection[{\texorpdfstring{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+O\+CR}{MMC_GET_OCR}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+O\+CR~53	/$\ast$ Get O\+CR $\ast$/}\hypertarget{diskio_8h_aff118ba6bd7a9fe7699cee049cff5d6c}{}\label{diskio_8h_aff118ba6bd7a9fe7699cee049cff5d6c}
+
+
+Definition at line 79 of file diskio.\+h.
+
+
+
+Referenced by mmc\+\_\+disk\+\_\+read().
+
+\index{diskio.\+h@{diskio.\+h}!M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+S\+D\+S\+T\+AT@{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+S\+D\+S\+T\+AT}}
+\index{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+S\+D\+S\+T\+AT@{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+S\+D\+S\+T\+AT}!diskio.\+h@{diskio.\+h}}
+\subsubsection[{\texorpdfstring{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+S\+D\+S\+T\+AT}{MMC_GET_SDSTAT}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+S\+D\+S\+T\+AT~54	/$\ast$ Get SD status $\ast$/}\hypertarget{diskio_8h_a5cc43c8449b872e16ea5ab42592f793e}{}\label{diskio_8h_a5cc43c8449b872e16ea5ab42592f793e}
+
+
+Definition at line 80 of file diskio.\+h.
+
+
+
+Referenced by mmc\+\_\+disk\+\_\+read().
+
+\index{diskio.\+h@{diskio.\+h}!M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+T\+Y\+PE@{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+T\+Y\+PE}}
+\index{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+T\+Y\+PE@{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+T\+Y\+PE}!diskio.\+h@{diskio.\+h}}
+\subsubsection[{\texorpdfstring{M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+T\+Y\+PE}{MMC_GET_TYPE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+T\+Y\+PE~50	/$\ast$ Get card type $\ast$/}\hypertarget{diskio_8h_aba3a81a9a47c7d1bf3ac7749bc72dcfd}{}\label{diskio_8h_aba3a81a9a47c7d1bf3ac7749bc72dcfd}
+
+
+Definition at line 76 of file diskio.\+h.
+
+
+
+Referenced by mmc\+\_\+disk\+\_\+read().
+
+\index{diskio.\+h@{diskio.\+h}!S\+T\+A\+\_\+\+N\+O\+D\+I\+SK@{S\+T\+A\+\_\+\+N\+O\+D\+I\+SK}}
+\index{S\+T\+A\+\_\+\+N\+O\+D\+I\+SK@{S\+T\+A\+\_\+\+N\+O\+D\+I\+SK}!diskio.\+h@{diskio.\+h}}
+\subsubsection[{\texorpdfstring{S\+T\+A\+\_\+\+N\+O\+D\+I\+SK}{STA_NODISK}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+T\+A\+\_\+\+N\+O\+D\+I\+SK~0x02	/$\ast$ No medium in the drive $\ast$/}\hypertarget{diskio_8h_aec625080763d6cf487e550a6c9a2dd19}{}\label{diskio_8h_aec625080763d6cf487e550a6c9a2dd19}
+
+
+Definition at line 54 of file diskio.\+h.
+
+
+
+Referenced by mmc\+\_\+disk\+\_\+initialize(), mmc\+\_\+disk\+\_\+timerproc(), and mmc\+\_\+test\+\_\+timeout().
+
+\index{diskio.\+h@{diskio.\+h}!S\+T\+A\+\_\+\+N\+O\+I\+N\+IT@{S\+T\+A\+\_\+\+N\+O\+I\+N\+IT}}
+\index{S\+T\+A\+\_\+\+N\+O\+I\+N\+IT@{S\+T\+A\+\_\+\+N\+O\+I\+N\+IT}!diskio.\+h@{diskio.\+h}}
+\subsubsection[{\texorpdfstring{S\+T\+A\+\_\+\+N\+O\+I\+N\+IT}{STA_NOINIT}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+T\+A\+\_\+\+N\+O\+I\+N\+IT~0x01	/$\ast$ Drive not initialized $\ast$/}\hypertarget{diskio_8h_abd6503c70d862b979a3f7080a59e9acd}{}\label{diskio_8h_abd6503c70d862b979a3f7080a59e9acd}
+
+
+Definition at line 53 of file diskio.\+h.
+
+
+
+Referenced by disk\+\_\+initialize(), disk\+\_\+status(), f\+\_\+mkfs(), find\+\_\+volume(), mmc\+\_\+disk\+\_\+initialize(), mmc\+\_\+disk\+\_\+read(), mmc\+\_\+disk\+\_\+timerproc(), mmc\+\_\+test\+\_\+timeout(), and validate().
+
+\index{diskio.\+h@{diskio.\+h}!S\+T\+A\+\_\+\+P\+R\+O\+T\+E\+CT@{S\+T\+A\+\_\+\+P\+R\+O\+T\+E\+CT}}
+\index{S\+T\+A\+\_\+\+P\+R\+O\+T\+E\+CT@{S\+T\+A\+\_\+\+P\+R\+O\+T\+E\+CT}!diskio.\+h@{diskio.\+h}}
+\subsubsection[{\texorpdfstring{S\+T\+A\+\_\+\+P\+R\+O\+T\+E\+CT}{STA_PROTECT}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+T\+A\+\_\+\+P\+R\+O\+T\+E\+CT~0x04	/$\ast$ Write protected $\ast$/}\hypertarget{diskio_8h_a9ec6dc5f6620a33fabe388d3a111ca8c}{}\label{diskio_8h_a9ec6dc5f6620a33fabe388d3a111ca8c}
+
+
+Definition at line 55 of file diskio.\+h.
+
+
+
+Referenced by f\+\_\+mkfs(), find\+\_\+volume(), mmc\+\_\+disk\+\_\+read(), and mmc\+\_\+disk\+\_\+timerproc().
 
 
 
 \subsection{Typedef Documentation}
-\index{diskio.\+h@{diskio.\+h}!D\+R\+E\+S\+U\+LT@{D\+R\+E\+S\+U\+LT}}
-\index{D\+R\+E\+S\+U\+LT@{D\+R\+E\+S\+U\+LT}!diskio.\+h@{diskio.\+h}}
-\subsubsection[{\texorpdfstring{D\+R\+E\+S\+U\+LT}{DRESULT}}]{\setlength{\rightskip}{0pt plus 5cm}typedef enum {\bf disk\+\_\+function\+\_\+results}  {\bf D\+R\+E\+S\+U\+LT}}\hypertarget{diskio_8h_a54ffb9f13138d2b17dd599ba880696ad}{}\label{diskio_8h_a54ffb9f13138d2b17dd599ba880696ad}
-
-
-Results of Disk Functions. 
-
 \index{diskio.\+h@{diskio.\+h}!D\+S\+T\+A\+T\+US@{D\+S\+T\+A\+T\+US}}
 \index{D\+S\+T\+A\+T\+US@{D\+S\+T\+A\+T\+US}!diskio.\+h@{diskio.\+h}}
 \subsubsection[{\texorpdfstring{D\+S\+T\+A\+T\+US}{DSTATUS}}]{\setlength{\rightskip}{0pt plus 5cm}typedef {\bf B\+Y\+TE} {\bf D\+S\+T\+A\+T\+US}}\hypertarget{diskio_8h_adba6790898ce4029c20a34b898ce73c1}{}\label{diskio_8h_adba6790898ce4029c20a34b898ce73c1}
 
 
-Status of Disk Functions. 
-
-
-
-Definition at line 31 of file diskio.\+h.
+Definition at line 20 of file diskio.\+h.
 
 
 
 \subsection{Enumeration Type Documentation}
-\index{diskio.\+h@{diskio.\+h}!disk\+\_\+function\+\_\+results@{disk\+\_\+function\+\_\+results}}
-\index{disk\+\_\+function\+\_\+results@{disk\+\_\+function\+\_\+results}!diskio.\+h@{diskio.\+h}}
-\subsubsection[{\texorpdfstring{disk\+\_\+function\+\_\+results}{disk_function_results}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf disk\+\_\+function\+\_\+results}}\hypertarget{diskio_8h_a8a4ccdeaced8c6be7571f8f1d08771a9}{}\label{diskio_8h_a8a4ccdeaced8c6be7571f8f1d08771a9}
-
-
-Results of Disk Functions. 
-
+\index{diskio.\+h@{diskio.\+h}!D\+R\+E\+S\+U\+LT@{D\+R\+E\+S\+U\+LT}}
+\index{D\+R\+E\+S\+U\+LT@{D\+R\+E\+S\+U\+LT}!diskio.\+h@{diskio.\+h}}
+\subsubsection[{\texorpdfstring{D\+R\+E\+S\+U\+LT}{DRESULT}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf D\+R\+E\+S\+U\+LT}}\hypertarget{diskio_8h_aacdfef1dad6565f65c26d12fe0ea4b2b}{}\label{diskio_8h_aacdfef1dad6565f65c26d12fe0ea4b2b}
 \begin{Desc}
 \item[Enumerator]\par
 \begin{description}
 \index{R\+E\+S\+\_\+\+OK@{R\+E\+S\+\_\+\+OK}!diskio.\+h@{diskio.\+h}}\index{diskio.\+h@{diskio.\+h}!R\+E\+S\+\_\+\+OK@{R\+E\+S\+\_\+\+OK}}\item[{\em 
-R\+E\+S\+\_\+\+OK\hypertarget{diskio_8h_a8a4ccdeaced8c6be7571f8f1d08771a9a2ea4b6ef3fffc17dd1d38ab5c2837737}{}\label{diskio_8h_a8a4ccdeaced8c6be7571f8f1d08771a9a2ea4b6ef3fffc17dd1d38ab5c2837737}
+R\+E\+S\+\_\+\+OK\hypertarget{diskio_8h_aacdfef1dad6565f65c26d12fe0ea4b2ba2ea4b6ef3fffc17dd1d38ab5c2837737}{}\label{diskio_8h_aacdfef1dad6565f65c26d12fe0ea4b2ba2ea4b6ef3fffc17dd1d38ab5c2837737}
 }]\index{R\+E\+S\+\_\+\+E\+R\+R\+OR@{R\+E\+S\+\_\+\+E\+R\+R\+OR}!diskio.\+h@{diskio.\+h}}\index{diskio.\+h@{diskio.\+h}!R\+E\+S\+\_\+\+E\+R\+R\+OR@{R\+E\+S\+\_\+\+E\+R\+R\+OR}}\item[{\em 
-R\+E\+S\+\_\+\+E\+R\+R\+OR\hypertarget{diskio_8h_a8a4ccdeaced8c6be7571f8f1d08771a9a78011f5557679ec178fb40bd21e89840}{}\label{diskio_8h_a8a4ccdeaced8c6be7571f8f1d08771a9a78011f5557679ec178fb40bd21e89840}
+R\+E\+S\+\_\+\+E\+R\+R\+OR\hypertarget{diskio_8h_aacdfef1dad6565f65c26d12fe0ea4b2ba78011f5557679ec178fb40bd21e89840}{}\label{diskio_8h_aacdfef1dad6565f65c26d12fe0ea4b2ba78011f5557679ec178fb40bd21e89840}
 }]\index{R\+E\+S\+\_\+\+W\+R\+P\+RT@{R\+E\+S\+\_\+\+W\+R\+P\+RT}!diskio.\+h@{diskio.\+h}}\index{diskio.\+h@{diskio.\+h}!R\+E\+S\+\_\+\+W\+R\+P\+RT@{R\+E\+S\+\_\+\+W\+R\+P\+RT}}\item[{\em 
-R\+E\+S\+\_\+\+W\+R\+P\+RT\hypertarget{diskio_8h_a8a4ccdeaced8c6be7571f8f1d08771a9a442a6d4393dc404827067bc4e981b322}{}\label{diskio_8h_a8a4ccdeaced8c6be7571f8f1d08771a9a442a6d4393dc404827067bc4e981b322}
+R\+E\+S\+\_\+\+W\+R\+P\+RT\hypertarget{diskio_8h_aacdfef1dad6565f65c26d12fe0ea4b2ba442a6d4393dc404827067bc4e981b322}{}\label{diskio_8h_aacdfef1dad6565f65c26d12fe0ea4b2ba442a6d4393dc404827067bc4e981b322}
 }]\index{R\+E\+S\+\_\+\+N\+O\+T\+R\+DY@{R\+E\+S\+\_\+\+N\+O\+T\+R\+DY}!diskio.\+h@{diskio.\+h}}\index{diskio.\+h@{diskio.\+h}!R\+E\+S\+\_\+\+N\+O\+T\+R\+DY@{R\+E\+S\+\_\+\+N\+O\+T\+R\+DY}}\item[{\em 
-R\+E\+S\+\_\+\+N\+O\+T\+R\+DY\hypertarget{diskio_8h_a8a4ccdeaced8c6be7571f8f1d08771a9aad64c27c69eb1ff39ae67c5f77bb2b1d}{}\label{diskio_8h_a8a4ccdeaced8c6be7571f8f1d08771a9aad64c27c69eb1ff39ae67c5f77bb2b1d}
+R\+E\+S\+\_\+\+N\+O\+T\+R\+DY\hypertarget{diskio_8h_aacdfef1dad6565f65c26d12fe0ea4b2baad64c27c69eb1ff39ae67c5f77bb2b1d}{}\label{diskio_8h_aacdfef1dad6565f65c26d12fe0ea4b2baad64c27c69eb1ff39ae67c5f77bb2b1d}
 }]\index{R\+E\+S\+\_\+\+P\+A\+R\+E\+RR@{R\+E\+S\+\_\+\+P\+A\+R\+E\+RR}!diskio.\+h@{diskio.\+h}}\index{diskio.\+h@{diskio.\+h}!R\+E\+S\+\_\+\+P\+A\+R\+E\+RR@{R\+E\+S\+\_\+\+P\+A\+R\+E\+RR}}\item[{\em 
-R\+E\+S\+\_\+\+P\+A\+R\+E\+RR\hypertarget{diskio_8h_a8a4ccdeaced8c6be7571f8f1d08771a9af4dcc07fd46310b5495fa8025c89a9f3}{}\label{diskio_8h_a8a4ccdeaced8c6be7571f8f1d08771a9af4dcc07fd46310b5495fa8025c89a9f3}
+R\+E\+S\+\_\+\+P\+A\+R\+E\+RR\hypertarget{diskio_8h_aacdfef1dad6565f65c26d12fe0ea4b2baf4dcc07fd46310b5495fa8025c89a9f3}{}\label{diskio_8h_aacdfef1dad6565f65c26d12fe0ea4b2baf4dcc07fd46310b5495fa8025c89a9f3}
 }]\end{description}
 \end{Desc}
 
 
-Definition at line 34 of file diskio.\+h.
+Definition at line 23 of file diskio.\+h.
 
 
 
@@ -492,6 +474,10 @@ Definition at line 34 of file diskio.\+h.
 \item[{{\bf B\+Y\+TE}}]{pdrv}
 \end{DoxyParamCaption}
 )}\hypertarget{diskio_8h_a09cdaa6f36fa409bdf002727bff98eb1}{}\label{diskio_8h_a09cdaa6f36fa409bdf002727bff98eb1}
+
+
+Definition at line 53 of file diskio.\+c.
+
 
 
 Referenced by f\+\_\+mkfs(), find\+\_\+volume(), and mmc\+\_\+init().
@@ -507,7 +493,11 @@ Referenced by f\+\_\+mkfs(), find\+\_\+volume(), and mmc\+\_\+init().
 )}\hypertarget{diskio_8h_ab00fa450a811dbdabe3c655c1a36fab4}{}\label{diskio_8h_ab00fa450a811dbdabe3c655c1a36fab4}
 
 
-Referenced by f\+\_\+mkfs(), find\+\_\+volume(), remove\+\_\+chain(), and sync\+\_\+fs().
+Definition at line 130 of file diskio.\+c.
+
+
+
+Referenced by f\+\_\+mkfs(), find\+\_\+volume(), mmc\+\_\+init(), remove\+\_\+chain(), and sync\+\_\+fs().
 
 \index{diskio.\+h@{diskio.\+h}!disk\+\_\+read@{disk\+\_\+read}}
 \index{disk\+\_\+read@{disk\+\_\+read}!diskio.\+h@{diskio.\+h}}
@@ -521,7 +511,11 @@ Referenced by f\+\_\+mkfs(), find\+\_\+volume(), remove\+\_\+chain(), and sync\+
 )}\hypertarget{diskio_8h_a075d27f59f550e2cee07d00abcff32e0}{}\label{diskio_8h_a075d27f59f550e2cee07d00abcff32e0}
 
 
-Referenced by f\+\_\+lseek(), f\+\_\+mkfs(), f\+\_\+read(), f\+\_\+write(), and move\+\_\+window().
+Definition at line 76 of file diskio.\+c.
+
+
+
+Referenced by f\+\_\+expand(), f\+\_\+lseek(), f\+\_\+mkfs(), f\+\_\+open(), f\+\_\+read(), f\+\_\+write(), and move\+\_\+window().
 
 \index{diskio.\+h@{diskio.\+h}!disk\+\_\+status@{disk\+\_\+status}}
 \index{disk\+\_\+status@{disk\+\_\+status}!diskio.\+h@{diskio.\+h}}
@@ -530,6 +524,10 @@ Referenced by f\+\_\+lseek(), f\+\_\+mkfs(), f\+\_\+read(), f\+\_\+write(), and 
 \item[{{\bf B\+Y\+TE}}]{pdrv}
 \end{DoxyParamCaption}
 )}\hypertarget{diskio_8h_a8348ac5ee6d709420c02e45c111f4793}{}\label{diskio_8h_a8348ac5ee6d709420c02e45c111f4793}
+
+
+Definition at line 30 of file diskio.\+c.
+
 
 
 Referenced by find\+\_\+volume(), and validate().
@@ -541,6 +539,10 @@ Referenced by find\+\_\+volume(), and validate().
 \item[{void}]{}
 \end{DoxyParamCaption}
 )}\hypertarget{diskio_8h_a045f8898a243c16aca4e64e069c49c03}{}\label{diskio_8h_a045f8898a243c16aca4e64e069c49c03}
+
+
+Definition at line 156 of file diskio.\+c.
+
 \index{diskio.\+h@{diskio.\+h}!disk\+\_\+write@{disk\+\_\+write}}
 \index{disk\+\_\+write@{disk\+\_\+write}!diskio.\+h@{diskio.\+h}}
 \subsubsection[{\texorpdfstring{disk\+\_\+write(\+B\+Y\+T\+E pdrv, const B\+Y\+T\+E $\ast$buff, D\+W\+O\+R\+D sector, U\+I\+N\+T count)}{disk_write(BYTE pdrv, const BYTE *buff, DWORD sector, UINT count)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\+R\+E\+S\+U\+LT} disk\+\_\+write (
@@ -553,5 +555,9 @@ Referenced by find\+\_\+volume(), and validate().
 )}\hypertarget{diskio_8h_a0fe56ee4831a44b09cfd96856e069634}{}\label{diskio_8h_a0fe56ee4831a44b09cfd96856e069634}
 
 
-Referenced by f\+\_\+lseek(), f\+\_\+mkfs(), f\+\_\+read(), f\+\_\+sync(), f\+\_\+truncate(), f\+\_\+write(), sync\+\_\+fs(), and sync\+\_\+window().
+Definition at line 103 of file diskio.\+c.
+
+
+
+Referenced by f\+\_\+expand(), f\+\_\+lseek(), f\+\_\+mkfs(), f\+\_\+read(), f\+\_\+sync(), f\+\_\+truncate(), f\+\_\+write(), sync\+\_\+fs(), and sync\+\_\+window().
 

@@ -1,13 +1,11 @@
-\hypertarget{mmc__hal_8c}{}\section{fatfs/mmc\+\_\+hal.c File Reference}
-\label{mmc__hal_8c}\index{fatfs/mmc\+\_\+hal.\+c@{fatfs/mmc\+\_\+hal.\+c}}
-{\ttfamily \#include $<$stdint.\+h$>$}\\*
-{\ttfamily \#include $<$stdarg.\+h$>$}\\*
-{\ttfamily \#include $<$string.\+h$>$}\\*
-{\ttfamily \#include $<$math.\+h$>$}\\*
-{\ttfamily \#include \char`\"{}diskio.\+h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}disk.\+h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}ff.\+h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}mmc\+\_\+hal.\+h\char`\"{}}\\*
+\hypertarget{mmc__hal_8c}{}\section{fatfs.\+hal/mmc\+\_\+hal.c File Reference}
+\label{mmc__hal_8c}\index{fatfs.\+hal/mmc\+\_\+hal.\+c@{fatfs.\+hal/mmc\+\_\+hal.\+c}}
+{\ttfamily \#include \char`\"{}user\+\_\+config.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}printf/mathio.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}lib/time.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}lib/timer.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}esp8266/hspi.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}fatfs.\+sup/fatfs.\+h\char`\"{}}\\*
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -29,6 +27,8 @@ static void \hyperlink{mmc__hal_8c_a3371d3911fed5af510a9b6e313773171}{mmc\+\_\+t
 \begin{DoxyCompactList}\small\item\em Set M\+MC timeout timer in Milliseconds. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mmc__hal_8c_a7383533f1b6630ff4f0337f400b4b62e}{mmc\+\_\+test\+\_\+timeout} ()
 \begin{DoxyCompactList}\small\item\em Wait for timeout. \end{DoxyCompactList}\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mmc__hal_8c_abb3b85d2e3abc4df68487df05510bb55}{mmc\+\_\+ms\+\_\+wait} (int ms)
+\begin{DoxyCompactList}\small\item\em Wait for time in milliseconds. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mmc__hal_8c_ad417477e66c88b40dcce683fd6a5c47a}{mmc\+\_\+init} (int verbose)
 \begin{DoxyCompactList}\small\item\em Initialize M\+MC and Fat\+Fs interface, display diagnostics. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mmc__hal_8c_a7c8d13c34124d4ef83ecabc43fbdb8ad}{mmc\+\_\+spi\+\_\+init} (\hyperlink{earth2wireframe_8c_a32f2e37ee053cf2ce8ca28d1f74630e5}{int32\+\_\+t} clock)
@@ -88,11 +88,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 393 of file mmc\+\_\+hal.\+c.
-
-
-
-Referenced by mmc\+\_\+deselect().
+Definition at line 407 of file mmc\+\_\+hal.\+c.
 
 \index{mmc\+\_\+hal.\+c@{mmc\+\_\+hal.\+c}!mmc\+\_\+cs\+\_\+enable@{mmc\+\_\+cs\+\_\+enable}}
 \index{mmc\+\_\+cs\+\_\+enable@{mmc\+\_\+cs\+\_\+enable}!mmc\+\_\+hal.\+c@{mmc\+\_\+hal.\+c}}
@@ -113,11 +109,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 375 of file mmc\+\_\+hal.\+c.
-
-
-
-Referenced by mmc\+\_\+select().
+Definition at line 388 of file mmc\+\_\+hal.\+c.
 
 \index{mmc\+\_\+hal.\+c@{mmc\+\_\+hal.\+c}!mmc\+\_\+fast@{mmc\+\_\+fast}}
 \index{mmc\+\_\+fast@{mmc\+\_\+fast}!mmc\+\_\+hal.\+c@{mmc\+\_\+hal.\+c}}
@@ -138,11 +130,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 312 of file mmc\+\_\+hal.\+c.
-
-
-
-Referenced by mmc\+\_\+disk\+\_\+initialize().
+Definition at line 323 of file mmc\+\_\+hal.\+c.
 
 \index{mmc\+\_\+hal.\+c@{mmc\+\_\+hal.\+c}!mmc\+\_\+init@{mmc\+\_\+init}}
 \index{mmc\+\_\+init@{mmc\+\_\+init}!mmc\+\_\+hal.\+c@{mmc\+\_\+hal.\+c}}
@@ -165,7 +153,7 @@ Initialize M\+MC and Fat\+Fs interface, display diagnostics.
 \end{DoxyReturn}
 
 
-Definition at line 198 of file mmc\+\_\+hal.\+c.
+Definition at line 208 of file mmc\+\_\+hal.\+c.
 
 
 
@@ -190,11 +178,7 @@ M\+MC Card Inserted status.
 
 \end{DoxyItemize}
 
-Definition at line 409 of file mmc\+\_\+hal.\+c.
-
-
-
-Referenced by mmc\+\_\+task().
+Definition at line 424 of file mmc\+\_\+hal.\+c.
 
 \index{mmc\+\_\+hal.\+c@{mmc\+\_\+hal.\+c}!mmc\+\_\+install\+\_\+timer@{mmc\+\_\+install\+\_\+timer}}
 \index{mmc\+\_\+install\+\_\+timer@{mmc\+\_\+install\+\_\+timer}!mmc\+\_\+hal.\+c@{mmc\+\_\+hal.\+c}}
@@ -215,11 +199,31 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 77 of file mmc\+\_\+hal.\+c.
+Definition at line 73 of file mmc\+\_\+hal.\+c.
 
 
 
 Referenced by mmc\+\_\+init().
+
+\index{mmc\+\_\+hal.\+c@{mmc\+\_\+hal.\+c}!mmc\+\_\+ms\+\_\+wait@{mmc\+\_\+ms\+\_\+wait}}
+\index{mmc\+\_\+ms\+\_\+wait@{mmc\+\_\+ms\+\_\+wait}!mmc\+\_\+hal.\+c@{mmc\+\_\+hal.\+c}}
+\subsubsection[{\texorpdfstring{mmc\+\_\+ms\+\_\+wait(int ms)}{mmc_ms_wait(int ms)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void mmc\+\_\+ms\+\_\+wait (
+\begin{DoxyParamCaption}
+\item[{int}]{ms}
+\end{DoxyParamCaption}
+)}\hypertarget{mmc__hal_8c_abb3b85d2e3abc4df68487df05510bb55}{}\label{mmc__hal_8c_abb3b85d2e3abc4df68487df05510bb55}
+
+
+Wait for time in milliseconds. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em ms} & timeout in Milliseconds \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 194 of file mmc\+\_\+hal.\+c.
 
 \index{mmc\+\_\+hal.\+c@{mmc\+\_\+hal.\+c}!mmc\+\_\+power\+\_\+off@{mmc\+\_\+power\+\_\+off}}
 \index{mmc\+\_\+power\+\_\+off@{mmc\+\_\+power\+\_\+off}!mmc\+\_\+hal.\+c@{mmc\+\_\+hal.\+c}}
@@ -240,11 +244,11 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 346 of file mmc\+\_\+hal.\+c.
+Definition at line 358 of file mmc\+\_\+hal.\+c.
 
 
 
-Referenced by mmc\+\_\+disk\+\_\+initialize(), and mmc\+\_\+disk\+\_\+ioctl().
+Referenced by power\+\_\+off().
 
 \index{mmc\+\_\+hal.\+c@{mmc\+\_\+hal.\+c}!mmc\+\_\+power\+\_\+on@{mmc\+\_\+power\+\_\+on}}
 \index{mmc\+\_\+power\+\_\+on@{mmc\+\_\+power\+\_\+on}!mmc\+\_\+hal.\+c@{mmc\+\_\+hal.\+c}}
@@ -265,11 +269,11 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 323 of file mmc\+\_\+hal.\+c.
+Definition at line 334 of file mmc\+\_\+hal.\+c.
 
 
 
-Referenced by mmc\+\_\+disk\+\_\+initialize().
+Referenced by power\+\_\+on().
 
 \index{mmc\+\_\+hal.\+c@{mmc\+\_\+hal.\+c}!mmc\+\_\+power\+\_\+status@{mmc\+\_\+power\+\_\+status}}
 \index{mmc\+\_\+power\+\_\+status@{mmc\+\_\+power\+\_\+status}!mmc\+\_\+hal.\+c@{mmc\+\_\+hal.\+c}}
@@ -290,7 +294,7 @@ M\+MC power status.
 
 \end{DoxyItemize}
 
-Definition at line 363 of file mmc\+\_\+hal.\+c.
+Definition at line 376 of file mmc\+\_\+hal.\+c.
 
 \index{mmc\+\_\+hal.\+c@{mmc\+\_\+hal.\+c}!mmc\+\_\+set\+\_\+ms\+\_\+timeout@{mmc\+\_\+set\+\_\+ms\+\_\+timeout}}
 \index{mmc\+\_\+set\+\_\+ms\+\_\+timeout@{mmc\+\_\+set\+\_\+ms\+\_\+timeout}!mmc\+\_\+hal.\+c@{mmc\+\_\+hal.\+c}}
@@ -305,7 +309,7 @@ Set M\+MC timeout timer in Milliseconds.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em ms} & timeout in Milliseconds\\
+\mbox{\tt in}  & {\em ms} & timeout in Milliseconds \\
 \hline
 \end{DoxyParams}
 \begin{DoxySeeAlso}{See also}
@@ -316,11 +320,11 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 162 of file mmc\+\_\+hal.\+c.
+Definition at line 161 of file mmc\+\_\+hal.\+c.
 
 
 
-Referenced by mmc\+\_\+disk\+\_\+initialize(), rcvr\+\_\+datablock(), and wait\+\_\+ready().
+Referenced by mmc\+\_\+disk\+\_\+initialize(), mmc\+\_\+disk\+\_\+read(), mmc\+\_\+ms\+\_\+wait(), rcvr\+\_\+datablock(), and wait\+\_\+ready().
 
 \index{mmc\+\_\+hal.\+c@{mmc\+\_\+hal.\+c}!mmc\+\_\+slow@{mmc\+\_\+slow}}
 \index{mmc\+\_\+slow@{mmc\+\_\+slow}!mmc\+\_\+hal.\+c@{mmc\+\_\+hal.\+c}}
@@ -341,11 +345,11 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 300 of file mmc\+\_\+hal.\+c.
+Definition at line 311 of file mmc\+\_\+hal.\+c.
 
 
 
-Referenced by mmc\+\_\+disk\+\_\+initialize(), mmc\+\_\+init(), and mmc\+\_\+power\+\_\+on().
+Referenced by mmc\+\_\+init(), and mmc\+\_\+power\+\_\+on().
 
 \index{mmc\+\_\+hal.\+c@{mmc\+\_\+hal.\+c}!mmc\+\_\+spi\+\_\+init@{mmc\+\_\+spi\+\_\+init}}
 \index{mmc\+\_\+spi\+\_\+init@{mmc\+\_\+spi\+\_\+init}!mmc\+\_\+hal.\+c@{mmc\+\_\+hal.\+c}}
@@ -363,7 +367,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 278 of file mmc\+\_\+hal.\+c.
+Definition at line 288 of file mmc\+\_\+hal.\+c.
 
 
 
@@ -385,7 +389,7 @@ uint8\+\_\+t value
 \end{DoxyReturn}
 
 
-Definition at line 115 of file mmc\+\_\+hal.\+c.
+Definition at line 113 of file mmc\+\_\+hal.\+c.
 
 \index{mmc\+\_\+hal.\+c@{mmc\+\_\+hal.\+c}!mmc\+\_\+spi\+\_\+\+R\+X\+\_\+buffer@{mmc\+\_\+spi\+\_\+\+R\+X\+\_\+buffer}}
 \index{mmc\+\_\+spi\+\_\+\+R\+X\+\_\+buffer@{mmc\+\_\+spi\+\_\+\+R\+X\+\_\+buffer}!mmc\+\_\+hal.\+c@{mmc\+\_\+hal.\+c}}
@@ -411,11 +415,11 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 103 of file mmc\+\_\+hal.\+c.
+Definition at line 100 of file mmc\+\_\+hal.\+c.
 
 
 
-Referenced by rcvr\+\_\+datablock().
+Referenced by rcvr\+\_\+spi\+\_\+multi().
 
 \index{mmc\+\_\+hal.\+c@{mmc\+\_\+hal.\+c}!mmc\+\_\+spi\+\_\+\+TX@{mmc\+\_\+spi\+\_\+\+TX}}
 \index{mmc\+\_\+spi\+\_\+\+TX@{mmc\+\_\+spi\+\_\+\+TX}!mmc\+\_\+hal.\+c@{mmc\+\_\+hal.\+c}}
@@ -438,11 +442,11 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 130 of file mmc\+\_\+hal.\+c.
+Definition at line 129 of file mmc\+\_\+hal.\+c.
 
 
 
-Referenced by mmc\+\_\+deselect(), mmc\+\_\+disk\+\_\+initialize(), mmc\+\_\+disk\+\_\+ioctl(), mmc\+\_\+power\+\_\+off(), mmc\+\_\+select(), mmc\+\_\+spi\+\_\+init(), rcvr\+\_\+datablock(), send\+\_\+cmd(), and xmit\+\_\+datablock().
+Referenced by mmc\+\_\+power\+\_\+off(), and mmc\+\_\+spi\+\_\+init().
 
 \index{mmc\+\_\+hal.\+c@{mmc\+\_\+hal.\+c}!mmc\+\_\+spi\+\_\+\+T\+X\+\_\+buffer@{mmc\+\_\+spi\+\_\+\+T\+X\+\_\+buffer}}
 \index{mmc\+\_\+spi\+\_\+\+T\+X\+\_\+buffer@{mmc\+\_\+spi\+\_\+\+T\+X\+\_\+buffer}!mmc\+\_\+hal.\+c@{mmc\+\_\+hal.\+c}}
@@ -468,11 +472,11 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 89 of file mmc\+\_\+hal.\+c.
+Definition at line 85 of file mmc\+\_\+hal.\+c.
 
 
 
-Referenced by xmit\+\_\+datablock().
+Referenced by xmit\+\_\+spi\+\_\+multi().
 
 \index{mmc\+\_\+hal.\+c@{mmc\+\_\+hal.\+c}!mmc\+\_\+spi\+\_\+\+T\+X\+RX@{mmc\+\_\+spi\+\_\+\+T\+X\+RX}}
 \index{mmc\+\_\+spi\+\_\+\+T\+X\+RX@{mmc\+\_\+spi\+\_\+\+T\+X\+RX}!mmc\+\_\+hal.\+c@{mmc\+\_\+hal.\+c}}
@@ -499,7 +503,7 @@ Definition at line 144 of file mmc\+\_\+hal.\+c.
 
 
 
-Referenced by mmc\+\_\+disk\+\_\+initialize(), mmc\+\_\+disk\+\_\+ioctl(), rcvr\+\_\+datablock(), send\+\_\+cmd(), wait\+\_\+ready(), and xmit\+\_\+datablock().
+Referenced by xchg\+\_\+spi().
 
 \index{mmc\+\_\+hal.\+c@{mmc\+\_\+hal.\+c}!mmc\+\_\+task@{mmc\+\_\+task}}
 \index{mmc\+\_\+task@{mmc\+\_\+task}!mmc\+\_\+hal.\+c@{mmc\+\_\+hal.\+c}}
@@ -517,7 +521,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 48 of file mmc\+\_\+hal.\+c.
+Definition at line 53 of file mmc\+\_\+hal.\+c.
 
 
 
@@ -541,11 +545,11 @@ Wait for timeout.
 \end{DoxyReturn}
 
 
-Definition at line 173 of file mmc\+\_\+hal.\+c.
+Definition at line 172 of file mmc\+\_\+hal.\+c.
 
 
 
-Referenced by mmc\+\_\+disk\+\_\+initialize(), rcvr\+\_\+datablock(), and wait\+\_\+ready().
+Referenced by mmc\+\_\+disk\+\_\+initialize(), mmc\+\_\+disk\+\_\+read(), mmc\+\_\+ms\+\_\+wait(), rcvr\+\_\+datablock(), and wait\+\_\+ready().
 
 \index{mmc\+\_\+hal.\+c@{mmc\+\_\+hal.\+c}!mmc\+\_\+wp\+\_\+status@{mmc\+\_\+wp\+\_\+status}}
 \index{mmc\+\_\+wp\+\_\+status@{mmc\+\_\+wp\+\_\+status}!mmc\+\_\+hal.\+c@{mmc\+\_\+hal.\+c}}
@@ -566,11 +570,7 @@ M\+MC Card Write Protect status.
 
 \end{DoxyItemize}
 
-Definition at line 422 of file mmc\+\_\+hal.\+c.
-
-
-
-Referenced by mmc\+\_\+task().
+Definition at line 437 of file mmc\+\_\+hal.\+c.
 
 
 
@@ -584,7 +584,7 @@ M\+MC S\+PI C\+L\+O\+CK cache.
 
 
 
-Definition at line 39 of file mmc\+\_\+hal.\+c.
+Definition at line 44 of file mmc\+\_\+hal.\+c.
 
 
 
@@ -595,7 +595,7 @@ Referenced by mmc\+\_\+cs\+\_\+enable(), mmc\+\_\+fast(), and mmc\+\_\+slow().
 \subsubsection[{\texorpdfstring{\+\_\+mmc\+\_\+pre}{_mmc_pre}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint16\+\_\+t} \+\_\+mmc\+\_\+pre = 0}\hypertarget{mmc__hal_8c_adc0a07c5ad80e8ecbabee0cf04a1564e}{}\label{mmc__hal_8c_adc0a07c5ad80e8ecbabee0cf04a1564e}
 
 
-Definition at line 42 of file mmc\+\_\+hal.\+c.
+Definition at line 47 of file mmc\+\_\+hal.\+c.
 
 
 
@@ -610,7 +610,7 @@ hs the mmc S\+PI bus been initialized yet ?
 
 
 
-Definition at line 274 of file mmc\+\_\+hal.\+c.
+Definition at line 284 of file mmc\+\_\+hal.\+c.
 
 
 
@@ -625,7 +625,7 @@ M\+MC timeout counter in ms.
 
 
 
-Definition at line 36 of file mmc\+\_\+hal.\+c.
+Definition at line 41 of file mmc\+\_\+hal.\+c.
 
 
 
@@ -640,7 +640,7 @@ has the M\+MC interface been initialized yet ?
 
 
 
-Definition at line 192 of file mmc\+\_\+hal.\+c.
+Definition at line 202 of file mmc\+\_\+hal.\+c.
 
 
 
@@ -651,9 +651,9 @@ Referenced by mmc\+\_\+init().
 \subsubsection[{\texorpdfstring{Stat}{Stat}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\+S\+T\+A\+T\+US} Stat}\hypertarget{mmc__hal_8c_a5e05b0c3f7ba56fa9c23be08c497eb9f}{}\label{mmc__hal_8c_a5e05b0c3f7ba56fa9c23be08c497eb9f}
 
 
-Definition at line 78 of file mmc.\+c.
+Definition at line 76 of file mmc.\+c.
 
 
 
-Referenced by mmc\+\_\+disk\+\_\+initialize(), mmc\+\_\+disk\+\_\+ioctl(), mmc\+\_\+disk\+\_\+read(), mmc\+\_\+disk\+\_\+status(), mmc\+\_\+disk\+\_\+write(), mmc\+\_\+init(), mmc\+\_\+task(), and mmc\+\_\+test\+\_\+timeout().
+Referenced by mmc\+\_\+disk\+\_\+initialize(), mmc\+\_\+disk\+\_\+read(), mmc\+\_\+disk\+\_\+status(), mmc\+\_\+disk\+\_\+timerproc(), mmc\+\_\+init(), and mmc\+\_\+test\+\_\+timeout().
 

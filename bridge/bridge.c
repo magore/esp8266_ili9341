@@ -21,22 +21,24 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include "user_config.h"
 
 #include <stdint.h>
 #include <stdarg.h>
 #include <string.h>
 #include <math.h>
 
+#include "queue.h"
 #include "bridge.h"
 
 os_event_t bridge_task_queue[bridge_task_queue_length];
 
 ///@brief uart send queue
 ///@see queue.c
-queue_t *uart_send_queue;
+queue_t *bridge_send_queue;
 ///@brief uart receive queue
 ///@see queue.c
-queue_t *uart_receive_queue;
+queue_t *bridge_receive_queue;
 ///@brief TCP send buffer
 static char *tcp_data_send_buffer;
 ///@brief TCP send buffer busy flag
@@ -104,12 +106,12 @@ static void tcp_data_receive_callback(void *arg, char *data, uint16_t length)
 
 // FIXME NOT WORKING
 //
-	for(current = 0; (current < length) && queue_space(uart_send_queue); current++)
+	for(current = 0; (current < length) && queue_space(bridge_send_queue); current++)
 	{
 		byte = (uint8_t)data[current];
-		queue_pushc(uart_send_queue, byte);
+		queue_pushc(bridge_send_queue, byte);
 	}
-	if(queue_empty(uart_send_queue) && tx_fifo_empty(0))
+	if(queue_empty(bridge_send_queue) && tx_fifo_empty(0))
 		uart_tx_disable(0);
 	else
 		uart_tx_enable(0);
@@ -148,8 +150,8 @@ static void tcp_data_connect_callback(struct espconn *new_connection)
 
 		espconn_set_opt(esp_data_tcp_connection, ESPCONN_REUSEADDR);
 
-		queue_flush(uart_send_queue);
-		queue_flush(uart_receive_queue);
+		queue_flush(bridge_send_queue);
+		queue_flush(bridge_receive_queue);
 	}
 }
 
@@ -163,10 +165,10 @@ bridge_task_init(int port)
 	static struct espconn esp_data_config;
 	static esp_tcp esp_data_tcp_config;
 
-	if(!(uart_send_queue = queue_new(BUFFER_SIZE)))
+	if(!(bridge_send_queue = queue_new(BUFFER_SIZE)))
 		reset();
 
-	if(!(uart_receive_queue = queue_new(BUFFER_SIZE)))
+	if(!(bridge_receive_queue = queue_new(BUFFER_SIZE)))
 		reset();
 
 	if(!(tcp_data_send_buffer = malloc(BUFFER_SIZE)))
@@ -195,14 +197,14 @@ static void bridge_task(os_event_t *events)
 	uint16_t tcp_data_send_buffer_length;
 	uint8_t byte;
 
-	if(!queue_empty(uart_receive_queue) && !tcp_data_send_buffer_busy)
+	if(!queue_empty(bridge_receive_queue) && !tcp_data_send_buffer_busy)
 	{
 		// data available and can be sent now
 		tcp_data_send_buffer_length = 0;
 
-		while((tcp_data_send_buffer_length < BUFFER_SIZE) && !queue_empty(uart_receive_queue))
+		while((tcp_data_send_buffer_length < BUFFER_SIZE) && !queue_empty(bridge_receive_queue))
 		{
-			byte = queue_popc(uart_receive_queue);
+			byte = queue_popc(bridge_receive_queue);
 //uart0_putc(byte);
 			tcp_data_send_buffer[tcp_data_send_buffer_length++] = byte;
 		}

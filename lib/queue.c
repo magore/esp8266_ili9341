@@ -21,12 +21,14 @@
 */
 
 
-#include <stdint.h>
-#include <stdarg.h>
-#include <string.h>
-#include <math.h>
 
-#include "queue.h"
+#include "user_config.h"
+
+#ifdef AVR
+#include <stdlib.h>
+#endif
+
+#include "lib/queue.h"
 
 /**
   @brief Create a ring buffer of a given size
@@ -35,10 +37,10 @@
 */
 queue_t *queue_new(size_t size)
 {
-	queue_t *q = calloc( sizeof(queue_t),1);
+	queue_t *q = safecalloc( sizeof(queue_t),1);
 	if(!q)
 		return(NULL);
-	q->buf = calloc(size+1,1);
+	q->buf = safecalloc(size+1,1);
 	if(!q->buf)
 	{
 		free(q);
@@ -48,6 +50,7 @@ queue_t *queue_new(size_t size)
 	q->out = 0;
 	q->bytes = 0;
 	q->size = size;
+	q->flags = 0;
 	return(q);
 }
 
@@ -70,6 +73,7 @@ void queue_del(queue_t *q)
 		q->out = 0;
 		q->bytes = 0;
 		q->size = 0;
+		q->flags = 0;
 	}
 	free(q);
 }
@@ -82,9 +86,12 @@ void queue_del(queue_t *q)
 */
 void queue_flush(queue_t *q)
 {
+	if(!q)
+		return;
 	q->in = 0;
 	q->out = 0;
 	q->bytes = 0;
+	q->flags = 0;
 }
 
 /**
@@ -134,7 +141,7 @@ size_t queue_full(queue_t *q)
 {
 	if(!q || !q->buf)
 		return(0);
-	return((q->size - q->bytes) ? 0 : 1);
+	return(queue_space(q) ? 0 : 1);
 }
 
 /**
@@ -150,16 +157,15 @@ size_t queue_full(queue_t *q)
 size_t queue_push_buffer(queue_t *q, uint8_t *src, size_t size)
 {
     size_t bytes = 0;
-	int free;
 
     if(!q || !q->buf)
         return(0);
 
-	while(size && (q->size - q->bytes) > 0)
+	while(size && queue_space(q) )
 	{
-		q->buf[q->in++] = *src++;
 		if(q->in >= q->size)
 			q->in = 0;
+		q->buf[q->in++] = *src++;
 		++q->bytes;
 		--size;
 		++bytes;
@@ -214,12 +220,15 @@ int queue_pushc(queue_t *q, uint8_t c)
 
 	if(q->bytes >= q->size)
 	{
+		q->flags |= QUEUE_OVERRUN;
 		return(0);
 	}
-
-	q->buf[q->in] = c;
-	if(++q->in >= q->size)
+	if(q->in >= q->size)
 		q->in = 0;
+
+	if(c == '\n')			// st EOL flasg when we see one
+		q->flags |= QUEUE_EOL;
+	q->buf[q->in++] = c;
 	++q->bytes;
 	return(1);
 }
@@ -241,6 +250,8 @@ int queue_popc(queue_t *q)
 	if(q->bytes)
 	{
 		c = q->buf[q->out];
+		if(c == '\n')		// reset EOL flag after a read
+			q->flags &= ~QUEUE_EOL;
 		if(++q->out >= q->size)
 			q->out = 0;
 		q->bytes--;

@@ -1,0 +1,319 @@
+\hypertarget{system_8h}{}\section{esp8266/system.h File Reference}
+\label{system_8h}\index{esp8266/system.\+h@{esp8266/system.\+h}}
+
+
+System memory and reset utilities.  
+
+
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{system_8h_a9d4b5df3530d1bc733070a4669ba6ebc}{free}(p)~\hyperlink{system_8h_a61f06ee340417c629633142e0a5db288}{safefree}(p)
+\item 
+\#define \hyperlink{system_8h_ad3a606b2415cc9127bbb52d8ed5d3191}{calloc}(n,  s)~\hyperlink{system_8h_a65ca18fba3d6cdb9ce8ca8040a96e0c5}{safecalloc}(n,s)
+\item 
+\#define \hyperlink{system_8h_a6bb12c9cae32ecd32a4584a86c4c6c99}{malloc}(s)~\hyperlink{system_8h_aca19f0f1e5d805c1e5f61101fa4690f1}{safemalloc}(s)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void $\ast$ \hyperlink{system_8h_a22b308551dea873face80619301d5618}{malloc} (\hyperlink{cpu_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} size)
+\begin{DoxyCompactList}\small\item\em malloc buffer P\+O\+S\+IX function \end{DoxyCompactList}\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void $\ast$ \hyperlink{system_8h_ae148919146e88c7c40c7e2f781649b31}{calloc} (\hyperlink{cpu_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} nmemb, \hyperlink{cpu_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} size)
+\begin{DoxyCompactList}\small\item\em calloc buffer P\+O\+S\+IX function \end{DoxyCompactList}\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{system_8h_a0f8c52d1c359b700088f8417b48e467b}{free} (void $\ast$p)
+\begin{DoxyCompactList}\small\item\em Free buffer P\+O\+S\+IX function We only call os\+\_\+free() is pointer is not null. \end{DoxyCompactList}\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{cpu_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} \hyperlink{system_8h_a7d3ee70a877e8e98235593af1d92a350}{free\+Ram} (void)
+\begin{DoxyCompactList}\small\item\em Return Free memory. \end{DoxyCompactList}\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{system_8h_a685d93545b12079d00ffc678d3611333}{Print\+Ram} (void)
+\begin{DoxyCompactList}\small\item\em Display Free memory and regions. \end{DoxyCompactList}\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void $\ast$ \hyperlink{system_8h_a65ca18fba3d6cdb9ce8ca8040a96e0c5}{safecalloc} (\hyperlink{cpu_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} nmemb, \hyperlink{cpu_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} size)
+\begin{DoxyCompactList}\small\item\em Safe Calloc -\/ Display Error message if Calloc fails. \end{DoxyCompactList}\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void $\ast$ \hyperlink{system_8h_aca19f0f1e5d805c1e5f61101fa4690f1}{safemalloc} (\hyperlink{cpu_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} size)
+\begin{DoxyCompactList}\small\item\em Safe Malloc -\/ Display Error message if Malloc fails. \end{DoxyCompactList}\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{system_8h_a61f06ee340417c629633142e0a5db288}{safefree} (void $\ast$p)
+\begin{DoxyCompactList}\small\item\em Safe free -\/ Only free a pointer if it is in malloc memory range. We want to try to catch frees of static or bogus data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+System memory and reset utilities. 
+
+h
+
+\begin{DoxyParagraph}{Copyright \copyright{} 2015 Mike Gore, G\+PL License}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{You are free to use this code under the terms of G\+PL}
+please retain a copy of this notice in any code you use it in.
+\end{DoxyParagraph}
+This is free software\+: you can redistribute it and/or modify it under the terms of the G\+NU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This software is distributed in the hope that it will be useful, but W\+I\+T\+H\+O\+UT A\+NY W\+A\+R\+R\+A\+N\+TY; without even the implied warranty of M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+TY or F\+I\+T\+N\+E\+SS F\+OR A P\+A\+R\+T\+I\+C\+U\+L\+AR P\+U\+R\+P\+O\+SE. See the G\+NU General Public License for more details.
+
+You should have received a copy of the G\+NU General Public License along with this program. If not, see \href{http://www.gnu.org/licenses/}{\tt http\+://www.\+gnu.\+org/licenses/}. 
+
+\subsection{Macro Definition Documentation}
+\index{system.\+h@{system.\+h}!calloc@{calloc}}
+\index{calloc@{calloc}!system.\+h@{system.\+h}}
+\subsubsection[{\texorpdfstring{calloc}{calloc}}]{\setlength{\rightskip}{0pt plus 5cm}\#define calloc(
+\begin{DoxyParamCaption}
+\item[{}]{n, }
+\item[{}]{s}
+\end{DoxyParamCaption}
+)~{\bf safecalloc}(n,s)}\hypertarget{system_8h_ad3a606b2415cc9127bbb52d8ed5d3191}{}\label{system_8h_ad3a606b2415cc9127bbb52d8ed5d3191}
+
+
+Definition at line 52 of file system.\+h.
+
+
+
+Referenced by db\+\_\+calloc(), escape(), and main().
+
+\index{system.\+h@{system.\+h}!free@{free}}
+\index{free@{free}!system.\+h@{system.\+h}}
+\subsubsection[{\texorpdfstring{free}{free}}]{\setlength{\rightskip}{0pt plus 5cm}\#define free(
+\begin{DoxyParamCaption}
+\item[{}]{p}
+\end{DoxyParamCaption}
+)~{\bf safefree}(p)}\hypertarget{system_8h_a9d4b5df3530d1bc733070a4669ba6ebc}{}\label{system_8h_a9d4b5df3530d1bc733070a4669ba6ebc}
+
+
+Definition at line 49 of file system.\+h.
+
+
+
+Referenced by db\+\_\+free(), html\+\_\+msg(), main(), queue\+\_\+del(), queue\+\_\+new(), rwbuf\+\_\+delete(), rx\+\_\+fifo\+\_\+free(), and tx\+\_\+fifo\+\_\+free().
+
+\index{system.\+h@{system.\+h}!malloc@{malloc}}
+\index{malloc@{malloc}!system.\+h@{system.\+h}}
+\subsubsection[{\texorpdfstring{malloc}{malloc}}]{\setlength{\rightskip}{0pt plus 5cm}\#define malloc(
+\begin{DoxyParamCaption}
+\item[{}]{s}
+\end{DoxyParamCaption}
+)~{\bf safemalloc}(s)}\hypertarget{system_8h_a6bb12c9cae32ecd32a4584a86c4c6c99}{}\label{system_8h_a6bb12c9cae32ecd32a4584a86c4c6c99}
+
+
+Definition at line 55 of file system.\+h.
+
+
+
+\subsection{Function Documentation}
+\index{system.\+h@{system.\+h}!calloc@{calloc}}
+\index{calloc@{calloc}!system.\+h@{system.\+h}}
+\subsubsection[{\texorpdfstring{calloc(size\+\_\+t nmemb, size\+\_\+t size)}{calloc(size_t nmemb, size_t size)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void$\ast$ calloc (
+\begin{DoxyParamCaption}
+\item[{{\bf size\+\_\+t}}]{nmemb, }
+\item[{{\bf size\+\_\+t}}]{size}
+\end{DoxyParamCaption}
+)}\hypertarget{system_8h_ae148919146e88c7c40c7e2f781649b31}{}\label{system_8h_ae148919146e88c7c40c7e2f781649b31}
+
+
+calloc buffer P\+O\+S\+IX function 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em nmemb} & number of elements \\
+\hline
+\mbox{\tt in}  & {\em size} & size of elements \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void $\ast$ buffer 
+\end{DoxyReturn}
+
+
+Definition at line 69 of file system.\+c.
+
+
+
+Referenced by safecalloc(), and safemalloc().
+
+\index{system.\+h@{system.\+h}!free@{free}}
+\index{free@{free}!system.\+h@{system.\+h}}
+\subsubsection[{\texorpdfstring{free(void $\ast$p)}{free(void *p)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void free (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{p}
+\end{DoxyParamCaption}
+)}\hypertarget{system_8h_a0f8c52d1c359b700088f8417b48e467b}{}\label{system_8h_a0f8c52d1c359b700088f8417b48e467b}
+
+
+Free buffer P\+O\+S\+IX function We only call os\+\_\+free() is pointer is not null. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$p} & buffer to free \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 87 of file system.\+c.
+
+
+
+Referenced by safefree().
+
+\index{system.\+h@{system.\+h}!free\+Ram@{free\+Ram}}
+\index{free\+Ram@{free\+Ram}!system.\+h@{system.\+h}}
+\subsubsection[{\texorpdfstring{free\+Ram(void)}{freeRam(void)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} {\bf size\+\_\+t} free\+Ram (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{system_8h_a7d3ee70a877e8e98235593af1d92a350}{}\label{system_8h_a7d3ee70a877e8e98235593af1d92a350}
+
+
+Return Free memory. 
+
+\begin{DoxyReturn}{Returns}
+free memory in bytes. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{system_8c_a22b308551dea873face80619301d5618}{malloc()}. 
+\end{DoxySeeAlso}
+
+
+Definition at line 104 of file system.\+c.
+
+\index{system.\+h@{system.\+h}!malloc@{malloc}}
+\index{malloc@{malloc}!system.\+h@{system.\+h}}
+\subsubsection[{\texorpdfstring{malloc(size\+\_\+t size)}{malloc(size_t size)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void$\ast$ malloc (
+\begin{DoxyParamCaption}
+\item[{{\bf size\+\_\+t}}]{size}
+\end{DoxyParamCaption}
+)}\hypertarget{system_8h_a22b308551dea873face80619301d5618}{}\label{system_8h_a22b308551dea873face80619301d5618}
+
+
+malloc buffer P\+O\+S\+IX function 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em size} & size of buffer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void $\ast$ buffer 
+\end{DoxyReturn}
+
+
+Definition at line 51 of file system.\+c.
+
+\index{system.\+h@{system.\+h}!Print\+Ram@{Print\+Ram}}
+\index{Print\+Ram@{Print\+Ram}!system.\+h@{system.\+h}}
+\subsubsection[{\texorpdfstring{Print\+Ram(void)}{PrintRam(void)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void Print\+Ram (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{system_8h_a685d93545b12079d00ffc678d3611333}{}\label{system_8h_a685d93545b12079d00ffc678d3611333}
+
+
+Display Free memory and regions. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 113 of file system.\+c.
+
+
+
+Referenced by calloc(), free(), malloc(), safefree(), setup(), and user\+\_\+tests().
+
+\index{system.\+h@{system.\+h}!safecalloc@{safecalloc}}
+\index{safecalloc@{safecalloc}!system.\+h@{system.\+h}}
+\subsubsection[{\texorpdfstring{safecalloc(size\+\_\+t nmemb, size\+\_\+t size)}{safecalloc(size_t nmemb, size_t size)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void$\ast$ safecalloc (
+\begin{DoxyParamCaption}
+\item[{{\bf size\+\_\+t}}]{nmemb, }
+\item[{{\bf size\+\_\+t}}]{size}
+\end{DoxyParamCaption}
+)}\hypertarget{system_8h_a65ca18fba3d6cdb9ce8ca8040a96e0c5}{}\label{system_8h_a65ca18fba3d6cdb9ce8ca8040a96e0c5}
+
+
+Safe Calloc -\/ Display Error message if Calloc fails. 
+
+
+\begin{DoxyItemize}
+\item We check if the pointer was in the heap.
+\item Otherwise it may have been statically defined -\/ display error. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em nmemb} & number of elements \\
+\hline
+\mbox{\tt in}  & {\em size} & size of elements \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+
+Definition at line 128 of file system.\+c.
+
+
+
+Referenced by fatfs\+\_\+cat(), fdevopen(), html\+\_\+msg(), new\+\_\+file\+\_\+descriptor(), ntp\+\_\+setup(), queue\+\_\+new(), rwbuf\+\_\+create(), servertest\+\_\+setup(), stralloc(), and strnalloc().
+
+\index{system.\+h@{system.\+h}!safefree@{safefree}}
+\index{safefree@{safefree}!system.\+h@{system.\+h}}
+\subsubsection[{\texorpdfstring{safefree(void $\ast$p)}{safefree(void *p)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void safefree (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{p}
+\end{DoxyParamCaption}
+)}\hypertarget{system_8h_a61f06ee340417c629633142e0a5db288}{}\label{system_8h_a61f06ee340417c629633142e0a5db288}
+
+
+Safe free -\/ Only free a pointer if it is in malloc memory range. We want to try to catch frees of static or bogus data. 
+
+
+\begin{DoxyItemize}
+\item We check if the pointer was in the heap.
+\item Otherwise it may have been statically defined -\/ display error. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em p} & pointer to free. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+
+Definition at line 169 of file system.\+c.
+
+
+
+Referenced by fatfs\+\_\+cat(), fatfs\+\_\+tests(), free\+\_\+file\+\_\+descriptor(), and new\+\_\+file\+\_\+descriptor().
+
+\index{system.\+h@{system.\+h}!safemalloc@{safemalloc}}
+\index{safemalloc@{safemalloc}!system.\+h@{system.\+h}}
+\subsubsection[{\texorpdfstring{safemalloc(size\+\_\+t size)}{safemalloc(size_t size)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void$\ast$ safemalloc (
+\begin{DoxyParamCaption}
+\item[{{\bf size\+\_\+t}}]{size}
+\end{DoxyParamCaption}
+)}\hypertarget{system_8h_aca19f0f1e5d805c1e5f61101fa4690f1}{}\label{system_8h_aca19f0f1e5d805c1e5f61101fa4690f1}
+
+
+Safe Malloc -\/ Display Error message if Malloc fails. 
+
+
+\begin{DoxyItemize}
+\item We check if the pointer was in the heap.
+\item Otherwise it may have been statically defined -\/ display error. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em size} & size \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+
+Definition at line 145 of file system.\+c.
+
+
+
+Referenced by fatfs\+\_\+tests().
+

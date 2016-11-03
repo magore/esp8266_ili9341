@@ -34,18 +34,17 @@
 \end{DoxyItemize}
 \item I\+L\+I9341 display driver
 \begin{DoxyItemize}
-\item Mutiple custom size window support
+\item Mutiple custom size windows
+\item Custom fonts
 \item Window scrolling
 \item read\+Pixel() function suported
 \item The specific display this was tested on is a T\+M022\+H\+D\+H26 display I got from ebay.
 \item Not limited by I\+L\+I9341 hardware scroll restrictions.
 \end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyParagraph}
-
+\item B\+DF F\+O\+NT compiler tools and fonts sets
 \begin{DoxyItemize}
-\item B\+DF compiler and fonts -\/ creates C code used in the display drivers
+\item Tools to creates C code used in the display drivers
+\end{DoxyItemize}
 \item Wireframe Viewer
 \begin{DoxyItemize}
 \item Code generator for Earth coastline data
@@ -57,7 +56,7 @@
 \end{DoxyItemize}
 \item C\+O\+R\+D\+IC C code generator and 3D transformation code support functions use by wireframe viewer code
 \item Small P\+R\+I\+N\+TF with full floating point support -\/ much smaller then G\+NU full verson along
-\item A\+T\+OF and various integer conversions
+\item Additiona number IO functions, A\+T\+OF etc
 \item W\+EB server using SD C\+A\+RD with C\+GI processing -\/ files and C\+GI results can be A\+NY S\+I\+Z\+E!
 \begin{DoxyItemize}
 \item Example web site for testing
@@ -69,16 +68,17 @@
 \item Network server client example for display updates
 \item Uart network server client for serial uart to network bridge.
 \item Generic queue handling code
-\item Uart driver.
-\item P\+O\+S\+IX wrappers for Fat\+FS -\/ provides unix file I/O operations
+\item E\+S\+P8266 support for Fat\+FS by ChaN 2016
 \begin{DoxyItemize}
-\item Includes Fat\+FS SD card support by ChaN
+\item SD card and micro\+SD support
 \end{DoxyItemize}
+\item P\+O\+S\+IX wrappers for Fat\+FS -\/ provides U\+N\+I\+X/\+L\+I\+N\+UX file I/O operations
 \item P\+O\+S\+IX time functions and R\+TC set with N\+TP
 \item Multiple timers used by rtc and time functions
 \item H\+S\+PI code that can handle multiple devices each with varying clock frequencies
 \end{DoxyItemize}
-
+\end{DoxyItemize}
+\end{DoxyParagraph}
 \begin{DoxyParagraph}{Credits}
 
 \begin{DoxyItemize}
@@ -110,12 +110,12 @@
 
 \href{https://partners.adobe.com/public/developer/en/font/5005.BDF_Spec.pdf}{\tt https\+://partners.\+adobe.\+com/public/developer/en/font/5005.\+B\+D\+F\+\_\+\+Spec.\+pdf}
 \begin{DoxyItemize}
-\item Fat\+FS code by C\+HaN\+: 
+\item Fat\+FS code is by C\+HaN\+: 
 \end{DoxyItemize}
 
 \href{http://elm-chan.org/fsw/ff/00index_e.html}{\tt http\+://elm-\/chan.\+org/fsw/ff/00index\+\_\+e.\+html}
 \begin{DoxyItemize}
-\item Yield Code extracted from from E\+S\+P8266 Arduino Project 
+\item Yield Code extracted from from \hyperlink{cpu_8h_af917fb5672b9339e228304f59f3b250a}{E\+S\+P8266} Arduino Project 
 \end{DoxyItemize}
 
 \href{https://github.com/esp8266/Arduino}{\tt https\+://github.\+com/esp8266/\+Arduino} 
@@ -127,22 +127,60 @@
 \begin{DoxyItemize}
 \item Files
 \begin{DoxyItemize}
+\item \hyperlink{COPYRIGHT_8md}{C\+O\+P\+Y\+R\+I\+G\+H\+T.\+md} -\/ Project Copyright file
+\item Doxyfile -\/ Doxygen configuration file
+\item display.\+jpg -\/ image of the ili9341 display while the software is running
+\item doit -\/ bash script that compiles and uploads firmware then starts miniterm
+\item doxyfile.\+inc -\/ automatically created file lists directories to searc for documenation
+\item header -\/ comon include header that can be used by user C files
+\item get\+\_\+esp-\/open-\/sdk -\/ shell script to download / compile and install the current version of E\+SP O\+P\+EN S\+DK
+\begin{DoxyItemize}
+\item This project is now using verions 2.\+0.\+0 of the S\+DK
+\item Tested on Ubuntu 16.\+04.\+1 and Ubuntu 14.\+04.\+5
+\item Installs under /opt/\+Expressif/esp-\/open-\/sdk
+\end{DoxyItemize}
+\item get\+\_\+esptool -\/ downloads the latest version of esptool -\/ required for this project
+\item header -\/ example C headers required fo C programs in this project
 \item Makefile from C\+H\+E\+R\+TS modified for the project
 \begin{DoxyItemize}
 \item Features controlled by variables in Makefile
 \end{DoxyItemize}
-\item \hyperlink{README_8md}{R\+E\+A\+D\+M\+E.\+md} -\/ Project readme file
-\item \hyperlink{COPYRIGHT_8md}{C\+O\+P\+Y\+R\+I\+G\+H\+T.\+md} -\/ Project Copyright file
-\item Doxyfile -\/ Doxygen configuration file
-\item get\+\_\+esp-\/open-\/sdk -\/ shell script to download an install E\+SP O\+P\+EN S\+DK on Ubuntu 14.\+04\+L\+TS
+\item meminfo.\+sh -\/ displays current R\+AM usgae for the project
 \begin{DoxyItemize}
-\item Tested with esp\+\_\+iot\+\_\+sdk\+\_\+v1.\+5.\+2 as of 21 Jun 2016
+\item Example\+: ./meminfo.sh build/demo.\+elf
 \end{DoxyItemize}
-\item term115200 -\/ shell script to launch terminal to 115200 baud
+\item miniterm -\/ shell script to launch terminal to 115200 baud Defaults to /dev/tty\+U\+S\+B0 115200
+\item \hyperlink{README_8md}{R\+E\+A\+D\+M\+E.\+md} -\/ Project readme file
+\begin{DoxyItemize}
+\item Tested with E\+S\+P8266\+\_\+\+N\+O\+N\+O\+S\+\_\+\+S\+D\+K\+\_\+\+V2.\+0.\+0\+\_\+16\+\_\+08\+\_\+10 1 Nove 2016
+\end{DoxyItemize}
+\item \hyperlink{send_8c}{send.\+c}
+\begin{DoxyItemize}
+\item Send message to network server
+\item Example\+: ./send -\/i 192.\+168.\+200.\+116 -\/m \textquotesingle{}\textquotesingle{}
+\begin{DoxyItemize}
+\item These escape characters are processed on the display\+: ~\newline
+, , 
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item setpath -\/ set the current enviornument for the S\+DK and tools
+\begin{DoxyItemize}
+\item Example\+: . setpath
+\end{DoxyItemize}
+\item \hyperlink{testflash_8c}{testflash.\+c}
+\begin{DoxyItemize}
+\item Create and read a test pattern filled file for flash testing
+\end{DoxyItemize}
+\item video.\+mp4
+\begin{DoxyItemize}
+\item Video of ili9341 display with web server C\+GI updating the display
+\end{DoxyItemize}
 \end{DoxyItemize}
 \item Eclipse Project files and Directories
 \begin{DoxyItemize}
 \item Change .settings/language.\+settings.\+xml
+\item .cproject
+\item .project
 \item .settings
 \begin{DoxyItemize}
 \item .settings/language.\+settings.\+xml
@@ -150,37 +188,45 @@
 \item Contains path to cross compiler for indexing -\/ matches assumptions in S\+DK installer script\+: get\+\_\+esp-\/open-\/sdk
 \end{DoxyItemize}
 \end{DoxyItemize}
-\item .cproject
-\item .project
 \end{DoxyItemize}
 \item Directories
 \begin{DoxyItemize}
-\item adf4351
-\begin{DoxyItemize}
-\item Analog Devices A\+D\+F4351 Wideband Synthesizer with Integrated V\+CO driver
+\item adf4351 -\/ Analog Devices A\+D\+F4351 Wideband Synthesizer with Integrated V\+CO driver
 \begin{DoxyItemize}
 \item \hyperlink{adf4351_8c}{adf4351.\+c}
 \item \hyperlink{adf4351_8h}{adf4351.\+h}
+\begin{DoxyItemize}
+\item Main A\+D\+F4351 interface code
 \end{DoxyItemize}
-\item Hardware Abstarction layer
+\item \hyperlink{adf4351__cmd_8c}{adf4351\+\_\+cmd.\+c}
+\item adf4351\+\_\+cmd.\+h
+\begin{DoxyItemize}
+\item User interface and frequency scanning task
+\end{DoxyItemize}
 \item \hyperlink{adf4351__hal_8c}{adf4351\+\_\+hal.\+c}
-\item \hyperlink{adf4351__hal_8h}{adf4351\+\_\+hal.\+h}
+\item adf4351\+\_\+hal.\+h
+\begin{DoxyItemize}
+\item Hardware Abstarction layer
 \end{DoxyItemize}
-\item bridge
+\end{DoxyItemize}
+\item bridge -\/ Serial bridge code -\/ send and receive serial data via network
 \begin{DoxyItemize}
 \item bridge.\+c
 \item bridge.\+h
 \begin{DoxyItemize}
-\item Serial bridge code -\/ send and receive serial data via network
 \item Opens a port on port 23 so you can use telnet to test
 \begin{DoxyItemize}
 \item Note\+: at the moment no telnet command processing is done.
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
-\item cordic
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyParagraph}
+
 \begin{DoxyItemize}
-\item C\+O\+R\+D\+IC -\/ very fast 2\+D/3D trig conversion
+\item cordic -\/ C\+O\+R\+D\+IC function -\/ a very fast method to do 2\+D/3D trig conversions
+\begin{DoxyItemize}
 \item \hyperlink{cordic_8c}{cordic.\+c}
 \item \hyperlink{cordic_8h}{cordic.\+h}
 \begin{DoxyItemize}
@@ -209,17 +255,9 @@
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
-\item display
-\begin{DoxyItemize}
-\item My mostly rewritten ili9341 display driver code handles multiple windows
+\item display -\/ My mostly rewritten ili9341 display driver with multiple window support and scrolling
 \begin{DoxyItemize}
 \item Depends on a few modified Adifruit functions under directory driver
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyParagraph}
-
 \begin{DoxyItemize}
 \item \hyperlink{font_8c}{font.\+c}
 \item font.\+h
@@ -228,7 +266,7 @@
 \end{DoxyItemize}
 \item \hyperlink{fonts_8h}{fonts.\+h}
 \begin{DoxyItemize}
-\item Fonts data structures converted B\+DF fonts
+\item Font data structures created via the B\+DF converter -\/ see fonts directory
 \end{DoxyItemize}
 \item \hyperlink{ili9341_8c}{ili9341.\+c}
 \item \hyperlink{ili9341_8h}{ili9341.\+h}
@@ -241,27 +279,25 @@
 \item Non optimized version is also supplied that I wrote in 1984
 \end{DoxyItemize}
 \end{DoxyItemize}
-\end{DoxyItemize}
-
-\hyperlink{ili9341__hal_8c}{ili9341\+\_\+hal.\+c}
-\begin{DoxyItemize}
-\item \hyperlink{ili9341__hal_8h}{ili9341\+\_\+hal.\+h}
+\item \hyperlink{ili9341__hal_8c}{ili9341\+\_\+hal.\+c}
+\item ili9341\+\_\+hal.\+h
 \begin{DoxyItemize}
 \item D\+Isplay hardware abstraction layer
 \end{DoxyItemize}
-\end{DoxyItemize}
-
-\hyperlink{tft__printf_8c}{tft\+\_\+printf.\+c}
-\begin{DoxyItemize}
+\item \hyperlink{tft__printf_8c}{tft\+\_\+printf.\+c}
 \item \hyperlink{tft__printf_8h}{tft\+\_\+printf.\+h}
 \begin{DoxyItemize}
 \item Printf interface to display library \hyperlink{tft__printf_8c_ad6d6dda4facdc045d477c0cc9403e0c1}{tft\+\_\+printf()}
 \end{DoxyItemize}
-\item docs
-\begin{DoxyItemize}
-\item ili9431 and esp8266 related documents
 \end{DoxyItemize}
-\item driver -\/ only third party code
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+docs -\/ ili9431 and esp8266 related documents
+
+
+\begin{DoxyItemize}
+\item driver -\/ third party code
 \begin{DoxyItemize}
 \item \hyperlink{cal__dex_8c}{cal\+\_\+dex.\+c}
 \begin{DoxyItemize}
@@ -273,9 +309,10 @@
 \item Adafruit display -\/ just those remaining functions that I have not rewritten
 \end{DoxyItemize}
 \end{DoxyItemize}
-\item earth
+\end{DoxyItemize}
+
+earth -\/ Earth coast line data and display code
 \begin{DoxyItemize}
-\item Earth coast line data and display code
 \item Still need to add hidden vector removal
 \begin{DoxyItemize}
 \item 00\+R\+E\+A\+D\+M\+E.\+txt
@@ -291,66 +328,119 @@
 \begin{DoxyItemize}
 \item \hyperlink{earth__data_8h}{earth\+\_\+data.\+h} from Coastline L\+At/\+L\+O\+NG pairs
 \end{DoxyItemize}
-\item data
+\item data -\/ Coastline data at various resolutions
 \begin{DoxyItemize}
 \item world.\+dat
 \item world\+\_\+10m.\+txt
 \item world\+\_\+110m.\+txt
 \item world\+\_\+50m.\+txt
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+esp8266 -\/ E\+S\+P8266 specific code
 \begin{DoxyItemize}
-\item Coastline data at various resolutions
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
-\item fatfs
+\item \hyperlink{bits_8h}{bits.\+h}
+\item \hyperlink{cpu_8h}{cpu.\+h}
+\item Debugging printf wrapper
 \begin{DoxyItemize}
-\item Fat\+Fs core is by (C)ChaN, 2013
+\item \hyperlink{debug_8c}{debug.\+c}
+\item \hyperlink{debug_8h}{debug.\+h}
+\end{DoxyItemize}
+\item Flash read, Bittest functions, For systems requiring specific memory alignment access methods
 \begin{DoxyItemize}
-\item \hyperlink{disk_8c}{disk.\+c}
-\item \hyperlink{disk_8h}{disk.\+h}
-\item \hyperlink{diskio_8h}{diskio.\+h}
+\item \hyperlink{flash_8c}{flash.\+c}
+\item \hyperlink{flash_8h}{flash.\+h}
+\end{DoxyItemize}
+\item My rewritten H\+P\+SI code that avoids unaligned read and writes (based on code ideas from C\+H\+E\+R\+TS and Sem)
+\begin{DoxyItemize}
+\item \hyperlink{hspi_8c}{hspi.\+c}
+\item \hyperlink{hspi_8h}{hspi.\+h}
+\end{DoxyItemize}
+\item R\+TC D\+S1307 code in progress
+\begin{DoxyItemize}
+\item \hyperlink{rtc_8c}{rtc.\+c}
+\item \hyperlink{rtc_8h}{rtc.\+h}
+\end{DoxyItemize}
+\item P\+O\+S\+IX malloc,calloc, free wrappers and reset functions
+\begin{DoxyItemize}
+\item \hyperlink{system_8c}{system.\+c}
+\item \hyperlink{system_8h}{system.\+h}
+\end{DoxyItemize}
+\item Serial I/O Interrupt driven receive and transmit code
+\begin{DoxyItemize}
+\item \hyperlink{uart_8c}{uart.\+c}
+\item \hyperlink{uart_8h}{uart.\+h}
+\item uart\+\_\+register.\+h
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+fatfs -\/ R0.\+12b Fat\+Fs code from (C)ChaN, 2016
+\begin{DoxyItemize}
+\item with minimal changes for E\+S\+P8266
+\begin{DoxyItemize}
+\item 00history.\+txt
+\item 00readme.\+txt
 \item \hyperlink{ff_8c}{ff.\+c}
-\item \hyperlink{ffconf_8h}{ffconf.\+h}
 \item \hyperlink{ff_8h}{ff.\+h}
+\item \hyperlink{ffconf_8h}{ffconf.\+h}
 \item \hyperlink{integer_8h}{integer.\+h}
-\item \hyperlink{mmc_8c}{mmc.\+c}
-\item \hyperlink{mmc_8h}{mmc.\+h}
 \item option
+\begin{DoxyItemize}
+\item \hyperlink{cc932_8c}{cc932.\+c}
+\item \hyperlink{cc936_8c}{cc936.\+c}
+\item \hyperlink{cc949_8c}{cc949.\+c}
+\item \hyperlink{cc950_8c}{cc950.\+c}
+\item \hyperlink{ccsbcs_8c}{ccsbcs.\+c}
 \item \hyperlink{syscall_8c}{syscall.\+c}
 \item \hyperlink{unicode_8c}{unicode.\+c}
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-fatfs SD card H\+AL and P\+O\+S\+IX wrappers -\/ provides unix file I/O operations
+fatfs.\+hal -\/ My updated Fat\+FS hardware abstraction layer code for E\+S\+P8266
 \begin{DoxyItemize}
-\item modified to use hardware abstraction
-\item \hyperlink{fatfs__utils_8c}{fatfs\+\_\+utils.\+c}
-\item \hyperlink{fatfs__utils_8h}{fatfs\+\_\+utils.\+h}
+\item Device layer
 \begin{DoxyItemize}
-\item user tests and commands
-\begin{DoxyItemize}
-\item fatfs\+\_\+alloc\+\_\+finfo fatfs\+\_\+cat fatfs\+\_\+cd fatfs\+\_\+copy fatfs\+\_\+create fatfs\+\_\+filinfo\+\_\+list
-\item fatfs\+\_\+help fatfs\+\_\+ls fatfs\+\_\+mkdir fatfs\+\_\+pwd fatfs\+\_\+rename fatfs\+\_\+rm fatfs\+\_\+rmdir fatfs\+\_\+stat fatfs\+\_\+status fatfs\+\_\+tests
+\item \hyperlink{diskio_8c}{diskio.\+c}
+\item \hyperlink{diskio_8h}{diskio.\+h}
 \end{DoxyItemize}
+\item M\+MC Code for SD cards
+\begin{DoxyItemize}
+\item \hyperlink{mmc_8c}{mmc.\+c}
+\item \hyperlink{mmc_8h}{mmc.\+h}
 \end{DoxyItemize}
+\item M\+MC Hardware abstraction layer
+\begin{DoxyItemize}
 \item \hyperlink{mmc__hal_8c}{mmc\+\_\+hal.\+c}
 \item \hyperlink{mmc__hal_8h}{mmc\+\_\+hal.\+h}
-\begin{DoxyItemize}
-\item M\+MC Hardware abstraction layer
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-My P\+O\+S\+IX wrappers for fatfs
+fatfs.\+sup -\/ My P\+O\+S\+IX wrappers for Fat\+FS and user interface code
+\begin{DoxyItemize}
+\item \hyperlink{fatfs_8h}{fatfs.\+h}
+\begin{DoxyItemize}
+\item Master include file for all Fat\+FS headers
+\end{DoxyItemize}
+\item Fat\+FS support functions
+\begin{DoxyItemize}
+\item \hyperlink{fatfs__sup_8c}{fatfs\+\_\+sup.\+c}
+\item \hyperlink{fatfs__sup_8h}{fatfs\+\_\+sup.\+h}
+\end{DoxyItemize}
+\item User tests and commands
+\begin{DoxyItemize}
+\item \hyperlink{fatfs__utils_8c}{fatfs\+\_\+utils.\+c}
+\item \hyperlink{fatfs__utils_8h}{fatfs\+\_\+utils.\+h}
+\end{DoxyItemize}
+\item My P\+O\+S\+IX wrappers for fatfs
 \begin{DoxyItemize}
 \item \hyperlink{posix_8c}{posix.\+c} -\/ provides a P\+O\+S\+IX interface for Fat\+FS -\/ unix file I/O wrappers
 \item \hyperlink{posix_8h}{posix.\+h}
 \end{DoxyItemize}
+\end{DoxyItemize}
 
-fonts
-\begin{DoxyItemize}
-\item B\+DF Font conversion code
+fonts -\/ B\+DF Font conversion code
 \begin{DoxyItemize}
 \item \hyperlink{bdffont2c_8c}{bdffont2c.\+c}
 \begin{DoxyItemize}
@@ -402,14 +492,10 @@ fonts
 \item Freefont fonts www.\+gnu.\+org/software/freefont
 \end{DoxyItemize}
 \end{DoxyItemize}
-\end{DoxyItemize}
 
-html
-\begin{DoxyItemize}
-\item A working web site with files that can be put on an SD card
+html -\/ A working web site with files that can be put on an SD card
 \begin{DoxyItemize}
 \item Used for testing \hyperlink{web_8c}{web.\+c}
-\end{DoxyItemize}
 \end{DoxyItemize}
 
 include
@@ -428,26 +514,31 @@ include
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-lib
+ld -\/ Linker scripts
+
+
 \begin{DoxyItemize}
-\item time, rtc and timer functions
+\item lib -\/ time, rtc and timer functions
+\begin{DoxyItemize}
+\item P\+O\+S\+IX time functions
 \begin{DoxyItemize}
 \item \hyperlink{time_8h}{time.\+h}
-\item \hyperlink{time_8c}{time.\+c} -\/ P\+O\+S\+IX time functions
+\item \hyperlink{time_8c}{time.\+c}
+\end{DoxyItemize}
+\item Simple timers and tasks
+\begin{DoxyItemize}
 \item \hyperlink{timer_8h}{timer.\+h}
-\item \hyperlink{timer_8c}{timer.\+c} -\/ simple timers (only intended for quick functions)
-\item \hyperlink{timer__hal_8h}{timer\+\_\+hal.\+h}
+\item \hyperlink{timer_8c}{timer.\+c}
+\end{DoxyItemize}
+\item timeer hardware abstation layer
+\begin{DoxyItemize}
+\item timer\+\_\+hal.\+h
 \item \hyperlink{timer__hal_8c}{timer\+\_\+hal.\+c} -\/ timer hardware abstraction layer
 \end{DoxyItemize}
-\item implementation of some posix stdlib functions
+\item implementation of some P\+O\+S\+IX ctype and istring functions
 \begin{DoxyItemize}
-\item \hyperlink{std_8c}{std.\+c}
-\item \hyperlink{std_8h}{std.\+h}
-\end{DoxyItemize}
-\item implementation of some posix ctype, string and strings functions
-\begin{DoxyItemize}
-\item \hyperlink{str_8c}{str.\+c}
-\item \hyperlink{str_8h}{str.\+h}
+\item string.\+c
+\item string.\+h
 \end{DoxyItemize}
 \item Generic ring buffer support code
 \begin{DoxyItemize}
@@ -455,98 +546,57 @@ lib
 \item \hyperlink{queue_8h}{queue.\+h}
 \end{DoxyItemize}
 \end{DoxyItemize}
-
-network
+\item network -\/ Simple network server
 \begin{DoxyItemize}
-\item Simple network server -\/ displays message sent by \hyperlink{send_8c}{send.\+c}
+\item displays message sent by \hyperlink{send_8c}{send.\+c}
 \begin{DoxyItemize}
 \item \hyperlink{network_8c}{network.\+c}
 \item \hyperlink{network_8h}{network.\+h}
 \end{DoxyItemize}
 \end{DoxyItemize}
-
-printf
+\item printf My small printf with floating support, misc I/O functions
 \begin{DoxyItemize}
-\item My small printf with floating support, misc I/O functions
-\begin{DoxyItemize}
-\item \hyperlink{printf_8c}{printf.\+c}
-\item \hyperlink{printf_8h}{printf.\+h}
-\end{DoxyItemize}
 \item Build and test printf
 \begin{DoxyItemize}
 \item Makefile
+\end{DoxyItemize}
+\item Number I/O function
+\begin{DoxyItemize}
+\item \hyperlink{mathio_8c}{mathio.\+c}
+\item \hyperlink{mathio_8h}{mathio.\+h}
+\end{DoxyItemize}
+\item printf function with user defined output function -\/ for strings,files or devices
+\begin{DoxyItemize}
+\item \hyperlink{printf_8c}{printf.\+c}
+\end{DoxyItemize}
+\item Simple scanf
+\begin{DoxyItemize}
+\item \hyperlink{sscanf_8c}{sscanf.\+c}
 \end{DoxyItemize}
 \item Test functions for \hyperlink{printf_8c}{printf.\+c} that can be run under linux to verify results
 \begin{DoxyItemize}
 \item \hyperlink{test__printf_8c}{test\+\_\+printf.\+c}
 \end{DoxyItemize}
 \end{DoxyItemize}
-
-scanf
+\item server -\/ Receive network message and display on ili9341 display
 \begin{DoxyItemize}
-\item Simple scanf
-\begin{DoxyItemize}
-\item \hyperlink{scanf_8c}{scanf.\+c}
+\item \hyperlink{server_8c}{server.\+c}
+\item \hyperlink{server_8h}{server.\+h}
 \end{DoxyItemize}
-\end{DoxyItemize}
-
-\hyperlink{send_8c}{send.\+c}
+\item user -\/ Main user demo task
 \begin{DoxyItemize}
-\item Send message to network server
-\item Example\+: ./send -\/i 192.\+168.\+200.\+116 -\/m \textquotesingle{}\textquotesingle{}
-\begin{DoxyItemize}
-\item These escape characters are processed on the display\+: ~\newline
-, , 
-\end{DoxyItemize}
-\end{DoxyItemize}
-
-user
-\begin{DoxyItemize}
-\item Main user demo task
+\item Intializes E\+S\+P8266 and sets up demo with 4 active windows with independent attributes
 \begin{DoxyItemize}
 \item \hyperlink{user__main_8c}{user\+\_\+main.\+c}
 \end{DoxyItemize}
-\item Intializes E\+S\+P8266 and sets up demo with 4 active windows with independent attributes
 \end{DoxyItemize}
-
-utils
+\item web -\/ Web server with F\+AT filesystem SD C\+A\+RD support
 \begin{DoxyItemize}
-\item Debugging printf wrapper
-\begin{DoxyItemize}
-\item \hyperlink{debug_8c}{debug.\+c}
-\item \hyperlink{debug_8h}{debug.\+h}
-\end{DoxyItemize}
-\item My rewritten H\+P\+SI code that avoids unaligned read and writes (based on code ideas from C\+H\+E\+R\+TS and Sem)
-\begin{DoxyItemize}
-\item \hyperlink{hspi_8c}{hspi.\+c}
-\item \hyperlink{hspi_8h}{hspi.\+h}
-\end{DoxyItemize}
-\item Serial I/O Interrup driven receive and transmit code
-\begin{DoxyItemize}
-\item \hyperlink{uart_8c}{uart.\+c}
-\item \hyperlink{uart_8h}{uart.\+h}
-\item uart\+\_\+register.\+h
-\end{DoxyItemize}
-\item Flash read, Bittest functions, For systems requiring specific memory alignment access methods
-\begin{DoxyItemize}
-\item \hyperlink{flash_8c}{flash.\+c}
-\item \hyperlink{flash_8h}{flash.\+h}
-\end{DoxyItemize}
-\item P\+O\+S\+IX malloc,calloc and free wrappers
-\begin{DoxyItemize}
-\item \hyperlink{sys_8c}{sys.\+c}
-\item \hyperlink{sys_8h}{sys.\+h}
-\end{DoxyItemize}
-\end{DoxyItemize}
-
-web
-\begin{DoxyItemize}
-\item Web server with F\+AT filesystem SD C\+A\+RD support
+\item Features
 \begin{DoxyItemize}
 \item \hyperlink{web_8c}{web.\+c}
 \item \hyperlink{web_8h}{web.\+h}
 \end{DoxyItemize}
-\item Features
 \item Served files can be A\+NY S\+I\+Z\+E!
 \begin{DoxyItemize}
 \item C\+GI files can have an extension of\+: html,htm,text,txt,cgi
@@ -563,7 +613,6 @@ web
 \item Applications
 \begin{DoxyItemize}
 \item I created a door sign status display that can be updated via a web page web page running on the esp8266
-\begin{DoxyItemize}
 \item Copy the file html/msg.\+cgi to the root folder of a fat32 SD card and modify to suit your needs.
 \item Use\+: open a web browser to the web server runing on the esp8266
 \begin{DoxyItemize}
@@ -573,16 +622,14 @@ web
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
-\end{DoxyItemize}
-
-wire
+\item wire -\/ Wireframe viewer code -\/ uses C\+O\+R\+D\+IC
 \begin{DoxyItemize}
-\item Wireframe viewer code -\/ uses C\+O\+R\+D\+IC
+\item Wireframe viewer
 \begin{DoxyItemize}
 \item \hyperlink{wire_8c}{wire.\+c}
 \item \hyperlink{wire_8h}{wire.\+h}
 \end{DoxyItemize}
-\item Wireframe C\+U\+BE data
+\item Cube data
 \begin{DoxyItemize}
 \item \hyperlink{cube__data_8h}{cube\+\_\+data.\+h}
 \end{DoxyItemize}
@@ -591,22 +638,21 @@ wire
 \item \hyperlink{earth__data_8h}{earth\+\_\+data.\+h}
 \end{DoxyItemize}
 \end{DoxyItemize}
-
-yield
+\item yield -\/ Yield code from Arduino yield code
 \begin{DoxyItemize}
-\item Yield code from Arduino yield code
 \item R\+E\+A\+D\+M\+E.\+txt
+\item Context switch code
+\begin{DoxyItemize}
 \item cont.\+S
 \item \hyperlink{cont_8h}{cont.\+h}
 \item \hyperlink{cont__util_8c}{cont\+\_\+util.\+c}
-\begin{DoxyItemize}
-\item Context switch code
-\end{DoxyItemize}
 \item \hyperlink{ets__sys_8h}{ets\+\_\+sys.\+h}
+\end{DoxyItemize}
 \item Main user\+\_\+init and task replacement with yield support
 \begin{DoxyItemize}
 \item \hyperlink{user__task_8c}{user\+\_\+task.\+c}
 \item \hyperlink{user__task_8h}{user\+\_\+task.\+h}
+\end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
 
