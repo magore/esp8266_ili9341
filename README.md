@@ -2,7 +2,7 @@
 \section README
 
 @par Documentation
- * Pleasse use this link for Documentation and this README
+ * Please use this link for Documentation and this README
    @see https://rawgit.com/magore/esp8266_ili9341/master/doxygen/html/index.html
 @par Copyright
  * See [COPYRIGHT.md](COPYRIGHT.md) for a full copyright notice for the project
@@ -12,15 +12,15 @@
    * Analog Devices ADF4351 Wideband Synthesizer driver and test code
      * Control is via serial terminal that works while the other demos run
      * adf4351 123456000 10000
-       * frequency, and channel spacing used in calculations
+       * Frequency, and channel spacing used in calculations
      * adf4351_scan 144e6 145e6 10000
        * start frequency, end frequency, channel spacing
    * ILI9341 display driver 
-     * Mutiple custom size windows
+     * Multiple custom size windows
      * Custom fonts
      * Window scrolling 
-     * readPixel() function suported
-     * The specific display this was tested on is a TM022HDH26 display I got from ebay.
+     * readPixel() function supported
+     * The specific display this was tested on is a TM022HDH26 display I got from eBay.
      * Not limited by ILI9341 hardware scroll restrictions.
    * BDF FONT compiler tools and fonts sets 
      * Tools to creates C code used in the display drivers
@@ -30,20 +30,20 @@
        * Cube wireframe dataset
        * Earth coastline dataset - wireframe view still needs hidden line removal option
    * CORDIC C code generator and 3D transformation code support functions use by wireframe viewer code
-   * Small PRINTF with full floating point support - much smaller then GNU full verson along 
-   * Additiona number IO functions, ATOF etc
+   * Small PRINTF with full floating point support - much smaller then GNU full version along 
+   * Additional number IO functions, ATOF etc
    * WEB server using SD CARD with CGI processing - files and CGI results can be ANY SIZE!
      * Example web site for testing
      * WEB server can update TFT display
        * Simple door sign status update using web page - see html/msg.cgi and web/web.c for code
    * Network server client example for display updates
-   * Uart network server client for serial uart to network bridge.
+   * Uart network server client for serial uart to Network Bridge.
    * Generic queue handling code
    * ESP8266 support for FatFS by ChaN 2016 
      * SD card and microSD support
    * POSIX wrappers for FatFS - provides UNIX/LINUX file I/O operations
    * POSIX time functions and RTC set with NTP
-   * Multiple timers used by rtc and time functions
+   * Multiple timers used by RTC and time functions
    * HSPI code that can handle multiple devices each with varying clock frequencies
 
 @par Credits
@@ -61,9 +61,9 @@
     @see http://www.cl.cam.ac.uk/~mgk25/ucs-fonts.html
     @see http://en.wikipedia.org/wiki/Glyph_Bitmap_Distribution_Format
     @see https://partners.adobe.com/public/developer/en/font/5005.BDF_Spec.pdf
-  * FatFS code is by CHaN:
+  * FatFS code is by ChaN:
     @see http://elm-chan.org/fsw/ff/00index_e.html
-  * Yield Code extracted from from ESP8266 Arduino Project
+  * Yield Code extracted from ESP8266 Arduino Project
 	@see https://github.com/esp8266/Arduino
 ___
 
@@ -73,27 +73,27 @@ ___
     * Doxyfile - Doxygen configuration file
     * display.jpg - image of the ili9341 display while the software is running
     * doit - bash script that compiles and uploads firmware then starts miniterm
-    * doxyfile.inc - automatically created file lists directories to searc for documenation
-    * header - comon include header that can be used by user C files
+    * doxyfile.inc - automatically created file lists directories to search for documentation
+    * header - common include header that can be used by user C files
     * get_esp-open-sdk - shell script to download / compile and install the current version of ESP OPEN SDK 
-      * This project is now using verions 2.0.0 of the SDK
+      * This project is now using versions 2.0.0 of the SDK
       * Tested on Ubuntu 16.04.1 and Ubuntu 14.04.5
       * Installs under /opt/Expressif/esp-open-sdk
     * get_esptool - downloads the latest version of esptool - required for this project
-    * header - example C headers required fo C programs in this project
+    * header - example C headers required for C programs in this project
     * Makefile from CHERTS modified for the project
       * Features controlled by variables in Makefile
-    * meminfo.sh - displays current RAM usgae for the project
+    * meminfo.sh - displays current RAM usage for the project
       * Example: ./meminfo.sh build/demo.elf
     * miniterm - shell script to launch terminal to 115200 baud
        Defaults to /dev/ttyUSB0 115200
     * README.md - Project readme file
-      * Tested with ESP8266_NONOS_SDK_V2.0.0_16_08_10 1 Nove 2016
+      * Tested with ESP8266_NONOS_SDK_V2.0.0_16_08_10, 1 Nov 2016
     * send.c
       * Send message to network server 
       * Example: ./send -i 192.168.200.116 -m '\fscrolling\ntext\n1\n2\n3\n4'
         * These escape characters are processed on the display: \n, \t, \f
-    * setpath - set the current enviornument for the SDK and tools
+    * setpath - set the current environment for the SDK and tools
       * Example: . setpath
     * testflash.c
       * Create and read a test pattern filled file for flash testing
@@ -118,7 +118,7 @@ ___
           * User interface and frequency scanning task
         * adf4351_hal.c
         * adf4351_hal.h
-          * Hardware Abstarction layer
+          * Hardware Abstraction layer
 
     * bridge  - Serial bridge code - send and receive serial data via network
         * bridge.c
@@ -144,7 +144,7 @@ ___
              * Make and test CORDIC tables
      
      * display - My mostly rewritten ili9341 display driver with multiple window support and scrolling
-       * Depends on a few modified Adifruit functions under directory driver
+       * Depends on a few modified Adafruit functions under directory driver
          * font.c        
          * font.h        
            * My Fixed and proportional font display code 
@@ -159,7 +159,7 @@ ___
              * Non optimized version is also supplied that I wrote in 1984
          * ili9341_hal.c           
          * ili9341_hal.h           
-             * DIsplay hardware abstraction layer
+             * Display hardware abstraction layer
      	 * tft_printf.c
      	 * tft_printf.h
     	   * Printf interface to display library tft_printf()
@@ -181,7 +181,7 @@ ___
            * Create C structure wire-frame coastline data
            * This code could be easily adapted for any kind of wire-frame
          * Makefile
-           * earth_data.h from Coastline LAt/LONG pairs
+           * earth_data.h from Coastline LAT/LONG pairs
          * data - Coastline data at various resolutions
            * world.dat      
            * world_10m.txt  
@@ -189,11 +189,11 @@ ___
            * world_50m.txt
 
      * esp8266 - ESP8266 specific code
-         * bits.h
-         * cpu.h
+         * bits’
+         * couch
          * Debugging printf wrapper
-           * debug.c
-           * debug.h
+           * debug’s
+           * debug’s
          * Flash read, Bittest functions, For systems requiring specific memory alignment access methods
            * flash.c
            * flash.h
@@ -203,7 +203,7 @@ ___
          * RTC DS1307 code in progress
            * rtc.c
            * rtc.h
-         * POSIX malloc,calloc, free wrappers and reset functions
+         * POSIX malloc, calloc, free wrappers and reset functions
            * system.c
            * system.h
          * Serial I/O Interrupt driven receive and transmit code
@@ -211,7 +211,7 @@ ___
            * uart.h
            * uart_register.h
     
-     * fatfs  - R0.12b FatFs code from (C)ChaN, 2016 
+     * fatfs  - R0.12b FatFS code from (C)ChaN, 2016 
        * with minimal changes for ESP8266
          * 00history.txt
          * 00readme.txt
@@ -249,7 +249,7 @@ ___
            * fatfs_utils.c
            * fatfs_utils.h
          * My POSIX wrappers for fatfs
-           * posix.c - provides a POSIX interface for FatFS - unix file I/O wrappers 
+           * posix.c - provides a POSIX interface for FatFS - Linux file I/O wrappers 
            * posix.h
 
      * fonts - BDF Font conversion code
@@ -288,23 +288,23 @@ ___
          * user_config.h
            * Master include and config header
          * spi_register.h 
-           * From Espressif
+           * From Expressif
          * uart_register.h
-           * From Espressif
+           * From Expressif
 
      * ld - Linker scripts
 
-     * lib - time, rtc and timer functions
+     * lib - time, RTC and timer functions
          * POSIX time functions
            * time.h
            * time.c 
          * Simple timers and tasks
            * timer.h
            * timer.c 
-         * timeer hardware abstation layer
+         * timer hardware abstraction layer
            * timer_hal.h
            * timer_hal.c - timer hardware abstraction layer
-         * implementation of some POSIX ctype and istring functions
+         * implementation of some POSIX ctype and string functions
            * string.c
            * string.h
          * Generic ring buffer support code
@@ -322,11 +322,11 @@ ___
        * Number I/O function
          * mathio.c
          * mathio.h
-       * printf function with user defined output function - for strings,files or devices
+       * printf function with user defined output function - for strings, files or devices
          * printf.c
        * Simple scanf
          * sscanf.c
-       * Test functions for printf.c that can be run under linux to verify results
+       * Test functions for printf.c that can be run under Linux to verify results
          * test_printf.c
 
      * server - Receive network message and display on ili9341 display
@@ -334,10 +334,10 @@ ___
        * server.h
 
      * user - Main user demo task
-       * Intializes ESP8266 and sets up demo with 4 active windows with independent attributes
+       * Initializes ESP8266 and sets up demo with 4 active windows with independent attributes
          * user_main.c
   
-     * web - Web server with FAT filesystem SD CARD support 
+     * web - Web server with FAT file system SD CARD support 
        * Features
          * web.c
          * web.h
@@ -350,7 +350,7 @@ ___
        * Applications
          * I created a door sign status display that can be updated via a web page web page running on the esp8266
          * Copy the file html/msg.cgi to the root folder of a fat32 SD card and modify to suit your needs.
-         * Use: open a web browser to the web server runing on the esp8266
+         * Use: open a web browser to the web server running on the esp8266
            * See the Video
            * For example: http://192.168.200.116/msg.cgi
            * You can update status and return time information on the TFT display by entering information on the page.
