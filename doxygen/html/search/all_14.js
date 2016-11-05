@@ -164,7 +164,7 @@ var searchData=
   ['uint32_5ft_5fbytes',['uint32_t_bytes',['../unionuint32__t__bytes.html',1,'']]],
   ['uint8_5ft',['uint8_t',['../send_8c.html#aba7bc1797add20fe3efdf37ced1182c5',1,'uint8_t():&#160;send.c'],['../earth2wireframe_8c.html#aba7bc1797add20fe3efdf37ced1182c5',1,'uint8_t():&#160;earth2wireframe.c']]],
   ['unget',['unget',['../struct____file.html#a1d139ae3cb11a1fada469a49f7d3d3b6',1,'__file']]],
-  ['ungetc',['ungetc',['../posix_8c.html#af979e8f6598be71d68be7cc49a41626b',1,'posix.c']]],
+  ['ungetc',['ungetc',['../posix_8c.html#af979e8f6598be71d68be7cc49a41626b',1,'ungetc(int c, FILE *stream):&#160;posix.c'],['../posix_8h.html#af979e8f6598be71d68be7cc49a41626b',1,'ungetc(int c, FILE *stream):&#160;posix.c']]],
   ['unicode_2ec',['unicode.c',['../unicode_8c.html',1,'']]],
   ['unlink',['unlink',['../posix_8c.html#aa964d662c19b2021d9cfd0c71bc686bd',1,'unlink(const char *pathname):&#160;posix.c'],['../posix_8h.html#aa964d662c19b2021d9cfd0c71bc686bd',1,'unlink(const char *pathname):&#160;posix.c']]],
   ['unused1',['unused1',['../structcont__.html#ab61b08c26f5251cdb06e9b2173da911f',1,'cont_']]],

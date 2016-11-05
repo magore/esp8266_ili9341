@@ -7,6 +7,7 @@ var searchData=
   ['calloc',['calloc',['../system_8c.html#ae148919146e88c7c40c7e2f781649b31',1,'calloc(size_t nmemb, size_t size):&#160;system.c'],['../system_8h.html#ae148919146e88c7c40c7e2f781649b31',1,'calloc(size_t nmemb, size_t size):&#160;system.c']]],
   ['check_5ffs',['check_fs',['../ff_8c.html#a5a0aaea328e942cf6f21bae6e19e911b',1,'ff.c']]],
   ['chk_5fchr',['chk_chr',['../ff_8c.html#ae4d7b7df154c6409348965aea5462ccc',1,'ff.c']]],
+  ['chmod',['chmod',['../posix_8c.html#a43b14410cd7b1b67c7834ad2d6a193ce',1,'chmod(const char *pathname, mode_t mode):&#160;posix.c'],['../posix_8h.html#a43b14410cd7b1b67c7834ad2d6a193ce',1,'chmod(const char *pathname, mode_t mode):&#160;posix.c']]],
   ['circular',['Circular',['../cordic_8c.html#a9e686d8e990a05ea18655a368e6d1918',1,'Circular(Cordic_T x, Cordic_T y, Cordic_T z):&#160;cordic.c'],['../cordic_8h.html#a9e686d8e990a05ea18655a368e6d1918',1,'Circular(Cordic_T x, Cordic_T y, Cordic_T z):&#160;cordic.c'],['../cordic2c_8c.html#a9e686d8e990a05ea18655a368e6d1918',1,'Circular(Cordic_T x, Cordic_T y, Cordic_T z):&#160;cordic2c.c']]],
   ['clmt_5fclust',['clmt_clust',['../ff_8c.html#ac3e06d01ef9482b307130f53c6b4331b',1,'ff.c']]],
   ['clock_5fclear',['clock_clear',['../timer_8c.html#a7faad7f12590c5756441f44a069f60d5',1,'clock_clear():&#160;timer.c'],['../timer_8h.html#a23ba64ca0da1fe41d4c870ada3e8a04e',1,'clock_clear(void):&#160;timer.c']]],

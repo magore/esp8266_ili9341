@@ -268,64 +268,77 @@ extern FILE *__iob[MAX_FILES];
 #define _FDEV_SETUP_RW    (__SRD|__SWR) /**< fdev_setup_stream() with read/write intent */
 
 // ============================================================================
-/* fatfs/posix.c */
-MEMSPACE int feof ( FILE *stream );
-MEMSPACE int ferror ( FILE *stream );
-MEMSPACE void clrerror ( FILE *stream );
-MEMSPACE FILE *fdevopen ( int (*put )(char ,FILE *), int (*get )(FILE *));
+
+
+/* posix.c */
 MEMSPACE int isatty ( int fileno );
+MEMSPACE int fgetc ( FILE *stream );
+MEMSPACE int fputc ( int c , FILE *stream );
+#ifndef IO_MACROS
+MEMSPACE int getchar ( void );
+MEMSPACE int putchar ( int c );
+#endif
+MEMSPACE int ungetc ( int c , FILE *stream );
+#ifndef IO_MACROS
+MEMSPACE int putc ( int c , FILE *stream );
+#endif
+MEMSPACE char *fgets ( char *str , int size , FILE *stream );
+MEMSPACE int fputs ( const char *str , FILE *stream );
+#ifndef IO_MACROS
+MEMSPACE int puts ( const char *str );
+#endif
+MEMSPACE int feof ( FILE *stream );
+MEMSPACE int fgetpos ( FILE *stream , size_t *pos );
+MEMSPACE int fseek ( FILE *stream , long offset , int whence );
+MEMSPACE int fsetpos ( FILE *stream , size_t *pos );
+MEMSPACE long ftell ( FILE *stream );
+MEMSPACE size_t lseek ( int fileno , size_t position , int whence );
+MEMSPACE void rewind ( FILE *stream );
+MEMSPACE int close ( int fileno );
+MEMSPACE int fileno ( FILE *stream );
+MEMSPACE FILE *fileno_to_stream ( int fileno );
+MEMSPACE FILE *fopen ( const char *path , const char *mode );
+MEMSPACE size_t fread ( void *ptr , size_t size , size_t nmemb , FILE *stream );
+MEMSPACE int ftruncate ( int fd , off_t length );
+MEMSPACE size_t fwrite ( const void *ptr , size_t size , size_t nmemb , FILE *stream );
+MEMSPACE int open ( const char *pathname , int flags );
+MEMSPACE ssize_t read ( int fd , const void *buf , size_t count );
+MEMSPACE void sync ( void );
+MEMSPACE int syncfs ( int fd );
+MEMSPACE int truncate ( const char *path , off_t length );
+MEMSPACE ssize_t write ( int fd , const void *buf , size_t count );
+MEMSPACE int fclose ( FILE *stream );
+MEMSPACE void dump_stat ( struct stat *sp );
+#if 0
+MEMSPACE int fstat ( int fd , struct stat *buf );
+#endif
+MEMSPACE char *mctime ( time_t timev );
+MEMSPACE int stat ( char *name , struct stat *buf );
+MEMSPACE char *basename ( char *str );
+MEMSPACE char *baseext ( char *str );
+MEMSPACE int chmod ( const char *pathname , mode_t mode );
+MEMSPACE int dirname ( char *str );
+#if 0
+MEMSPACE int fchmod ( int fd , mode_t mode );
+#endif
+MEMSPACE int mkdir ( const char *pathname , mode_t mode );
+MEMSPACE int rename ( const char *oldpath , const char *newpath );
+MEMSPACE int rmdir ( const char *pathname );
+MEMSPACE int unlink ( const char *pathname );
+MEMSPACE void clrerror ( FILE *stream );
+MEMSPACE int ferror ( FILE *stream );
 MEMSPACE void perror ( const char *s );
 MEMSPACE char WEAK_ATR *strerror ( int errnum );
 MEMSPACE char *strerror_r ( int errnum , char *buf , size_t buflen );
-MEMSPACE FILE *fileno_to_stream ( int fileno );
-MEMSPACE int fileno ( FILE *stream );
-MEMSPACE int fgetc ( FILE *stream );
-MEMSPACE int fputc ( int c , FILE *stream );
-MEMSPACE int fputs ( const char *str , FILE *stream );
-MEMSPACE char *fgets ( char *str , int size , FILE *stream );
-#ifndef IO_MACROS
-MEMSPACE int putc ( int c , FILE *stream );
-MEMSPACE int putchar ( int c );
-MEMSPACE int getchar ( void );
-MEMSPACE int puts ( const char *str );
-#endif
-MEMSPACE char *basename ( char *str );
-MEMSPACE int dirname ( char *str );
-MEMSPACE char *baseext ( char *str );
-MEMSPACE int free_file_descriptor ( int fileno );
-MEMSPACE int new_file_descriptor ( void );
-MEMSPACE FIL *fileno_to_fatfs ( int fileno );
-MEMSPACE int fatfs_to_fileno ( FIL *fh );
-MEMSPACE int fatfs_to_errno ( FRESULT Result );
-MEMSPACE int posix_fopen_modes_to_open ( const char *mode );
+MEMSPACE FILE *fdevopen ( int (*put )(char ,FILE *), int (*get )(FILE *));
 MEMSPACE int fatfs_getc ( FILE *stream );
 MEMSPACE int fatfs_putc ( char c , FILE *stream );
-MEMSPACE int open ( const char *pathname , int flags );
-MEMSPACE FILE *fopen ( const char *path , const char *mode );
-MEMSPACE int close ( int fileno );
-MEMSPACE int syncfs ( int fd );
-MEMSPACE void sync ( void );
-MEMSPACE int fclose ( FILE *stream );
-MEMSPACE ssize_t write ( int fd , const void *buf , size_t count );
-MEMSPACE size_t fwrite ( const void *ptr , size_t size , size_t nmemb , FILE *stream );
-MEMSPACE ssize_t read ( int fd , const void *buf , size_t count );
-MEMSPACE size_t fread ( void *ptr , size_t size , size_t nmemb , FILE *stream );
-MEMSPACE size_t lseek ( int fileno , size_t position , int whence );
-MEMSPACE int fseek ( FILE *stream , long offset , int whence );
-MEMSPACE long ftell ( FILE *stream );
-MEMSPACE void rewind ( FILE *stream );
-MEMSPACE int fgetpos ( FILE *stream , size_t *pos );
-MEMSPACE int fsetpos ( FILE *stream , size_t *pos );
-MEMSPACE int unlink ( const char *pathname );
-MEMSPACE int rmdir ( const char *pathname );
+MEMSPACE int fatfs_to_errno ( FRESULT Result );
+MEMSPACE int fatfs_to_fileno ( FIL *fh );
 MEMSPACE time_t fat_time_to_unix ( uint16_t date , uint16_t time );
-MEMSPACE int ftruncate ( int fd , off_t length );
-MEMSPACE int truncate ( const char *path , off_t length );
-MEMSPACE int fstat ( int fd , struct stat *buf );
-MEMSPACE int stat ( char *name , struct stat *buf );
-MEMSPACE char *mctime ( time_t timev );
-MEMSPACE void dump_stat ( struct stat *sp );
-MEMSPACE int rename ( const char *oldpath , const char *newpath );
-
+MEMSPACE FIL *fileno_to_fatfs ( int fileno );
+MEMSPACE int free_file_descriptor ( int fileno );
+MEMSPACE int new_file_descriptor ( void );
+MEMSPACE int posix_fopen_modes_to_open ( const char *mode );
 // ============================================================================
 #endif                                            //_POSIX_H_

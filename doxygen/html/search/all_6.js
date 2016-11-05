@@ -217,7 +217,6 @@ var searchData=
   ['fsid',['Fsid',['../ff_8c.html#a0b3f41d8c416222e9b1c16e36d66e18b',1,'ff.c']]],
   ['fsize',['fsize',['../structFATFS.html#a53e9560659f14e66f306c2c444198bf3',1,'FATFS::fsize()'],['../structFILINFO.html#a9e5b78ed7190f73de3ebcbdfbd6d1844',1,'FILINFO::fsize()']]],
   ['fsize_5ft',['FSIZE_t',['../ff_8h.html#a3fc0992ad7436250b6b1a0592214b7f2',1,'ff.h']]],
-  ['fstat',['fstat',['../posix_8h.html#a85e86e70773c0a204346f965272bd364',1,'posix.h']]],
   ['ft',['ft',['../fatfs__utils_8c.html#a150e687e50144668be0e9a560aef0b1e',1,'fatfs_utils.c']]],
   ['ftell',['ftell',['../posix_8c.html#af53dca187c78408fe2f1958c4eb88603',1,'ftell(FILE *stream):&#160;posix.c'],['../posix_8h.html#af53dca187c78408fe2f1958c4eb88603',1,'ftell(FILE *stream):&#160;posix.c']]],
   ['ftime',['ftime',['../structFILINFO.html#ae0f751b79621bf7b29669f177bbe6b9a',1,'FILINFO']]],

@@ -96,7 +96,6 @@ var searchData=
   ['freeram',['freeRam',['../system_8c.html#ae5082975001c0e46f84f049e514d9319',1,'freeRam():&#160;system.c'],['../system_8h.html#a7d3ee70a877e8e98235593af1d92a350',1,'freeRam(void):&#160;system.c']]],
   ['fseek',['fseek',['../posix_8c.html#ad31144743f0014784193221563ca8dd2',1,'fseek(FILE *stream, long offset, int whence):&#160;posix.c'],['../posix_8h.html#ad31144743f0014784193221563ca8dd2',1,'fseek(FILE *stream, long offset, int whence):&#160;posix.c']]],
   ['fsetpos',['fsetpos',['../posix_8c.html#a8705d74fe77c1b23824074ecd14be1c7',1,'fsetpos(FILE *stream, size_t *pos):&#160;posix.c'],['../posix_8h.html#a8705d74fe77c1b23824074ecd14be1c7',1,'fsetpos(FILE *stream, size_t *pos):&#160;posix.c']]],
-  ['fstat',['fstat',['../posix_8h.html#a85e86e70773c0a204346f965272bd364',1,'posix.h']]],
   ['ftell',['ftell',['../posix_8c.html#af53dca187c78408fe2f1958c4eb88603',1,'ftell(FILE *stream):&#160;posix.c'],['../posix_8h.html#af53dca187c78408fe2f1958c4eb88603',1,'ftell(FILE *stream):&#160;posix.c']]],
   ['ftruncate',['ftruncate',['../posix_8c.html#a474e4e6cac62ef12c66b8a597c14e5f6',1,'ftruncate(int fd, off_t length):&#160;posix.c'],['../posix_8h.html#a474e4e6cac62ef12c66b8a597c14e5f6',1,'ftruncate(int fd, off_t length):&#160;posix.c']]],
   ['fwrite',['fwrite',['../posix_8c.html#a148630cbecc0822d9395f002691ffe75',1,'fwrite(const void *ptr, size_t size, size_t nmemb, FILE *stream):&#160;posix.c'],['../posix_8h.html#a148630cbecc0822d9395f002691ffe75',1,'fwrite(const void *ptr, size_t size, size_t nmemb, FILE *stream):&#160;posix.c']]]
