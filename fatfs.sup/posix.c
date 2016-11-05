@@ -51,11 +51,18 @@
    - POSIX file and directory manipulation
         - basename
         - baseext	- NOT POSIX
+        - chdir
         - dirname
+        - getcwd
         - mkdir
         - rename
         - rmdir
         - unlink
+
+   - POSIX TODO - directory scanning functions
+		- closedir
+		- opendir 
+        - readdir
 
    - POSIX error functions
         - clrerror
@@ -1398,6 +1405,29 @@ char *baseext(char *str)
     return(ext);
 }
 
+
+/// @brief POSIX change directory.
+///
+/// - man page chdir (2).
+///
+/// @param[in] pathname: directory to change to
+///
+/// @return 0 on sucess.
+/// @return -1 on error with errno set.
+MEMSPACE
+int chdir(const char *pathname)
+{
+    errno = 0;
+
+    int res = f_chdir(pathname);
+    if(res != FR_OK)
+    {
+        errno = fatfs_to_errno(res);
+        return(-1);
+    }
+    return(0);
+}
+
 /// @brief POSIX chmod function - change file access permission
 /// Unfortunately file f_open modes and f_chmod modes are not the same
 /// Files that are open have way more options - but only while the file is open.
@@ -1484,6 +1514,28 @@ int fchmod(int fd, mode_t mode)
 }
 #endif
 
+/// @brief POSIX get current working directory
+///
+/// - man page getcwd (2).
+///
+/// @param[in] pathname: directory to change to
+///
+/// @return 0 on sucess.
+/// @return -1 on error with errno set.
+MEMSPACE
+char *getcwd(char *pathname, int len)
+{
+	int res;
+    errno = 0;
+
+    res = f_getcwd(pathname, len);
+    if(res != FR_OK)
+    {
+        errno = fatfs_to_errno(res);
+        return(NULL);
+    }
+    return(pathname);
+}
 
 /// @brief POSIX make a directory.
 ///
@@ -1575,6 +1627,52 @@ int unlink(const char *pathname)
         return(-1);
     }
     return(0);
+}
+
+/// ====================================================================
+/// ====================================================================
+///   - POSIX TODO - directory scanning functions
+/// ====================================================================
+/// ====================================================================
+/// @brief POSIX closedir
+/// TODO
+/// - man page closedir (2).
+///
+/// @param[in] dirp: DIR * directory handle
+///
+/// @return 0 on sucess.
+/// @return -1 on error with errno set.
+int closedir(DIR *dirp)
+{
+	return(-1);
+}
+
+/// @brief POSIX opendir
+/// TODO
+/// - man page opendir (2).
+///
+/// @param[in] pathname: directory to delete.
+///
+/// @return DIR * on sucess.
+/// @return NULL on error with errno set.
+DIR *opendir(const char *pathdir)
+{
+	return(NULL);
+}
+
+/// @brief POSIX opendir
+/// TODO
+/// - man page opendir (2).
+///
+/// @param[in] dirp: DIR * directory handle
+/// @param[in] entry: struct dirent *
+/// @param[in] dirent: struct result **
+///
+/// @return DIR * on sucess.
+/// @return NULL on error with errno set.
+int readdir(DIR *dirp, struct dirent *entry, struct dirent **result)
+{
+	return(-1);
 }
 
 

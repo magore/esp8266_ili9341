@@ -699,6 +699,54 @@ README</h1>
 </ul>
 </li>
 </ul>
+<dl class="section user"><dt>Connections</dt><dd><pre class="fragment">* ESP8266           
+  * MISO/GPIO12 
+  * MOSI/GPIO13
+  * CLK/GPIO14
+  * CHIP_EN ---1K--- VCC3.3V
+  * CH_PD   ---1K--- VCC3.3V
+  * REST    ---1K--- VCC3.3V   Ground REST to reset ESP8266 and ILI9341
+  * GPIO  2 ---1K--- VCC3.3V
+  * GPIO  0 ---1K--- VCC3.3V   Ground GPIO 0 to to enable flashing
+  * GPIO 15 ---1K--- GND
+  * GND ------------ GND
+
+* FTDI232 USB/TTL      ESP8266
+  * TXD ----1K--------  RXD
+  * RXD --------------  TXD
+  * RTS ---|&lt;--------- REST    Optional - Diode with Cahtode to RTS, Anode to ESP8266 Reset
+  * DTR ---|&lt;----1K--- GPIO 00 Optional - Diode with cathode to DTR, Anode to 1K to ESP8266 GPIO00 for flashing
+  * GND --------------  GND
+  * Note: if you use the optional DTR,RTS conneections you have to use miniterm script provided
+  recommend using jumpers to anable this feature if you do not wish to have the ESP8266 reset automatically
+
+* ILI9341        ESP8266
+  * Data/Command GPIO 05
+  * CS           GPIO 15
+  * SDI    MOSI  GPIO 13
+  * SDO    MISO  GPIO 12
+  * SCK    CLK   GPIO 14 
+  * RST    REST  RESET
+  * VCC          VCC3.3V
+  * GND          GND
+
+* MMC/SD reader  ESP8266
+  * D3/CS        GPIO 04
+  * CMD/DI MOSI  GPIO 13
+  * D0     MISO  GPIO 12
+  * CLK    CLK   GPIO 14
+  * VCC          VCC3.3V
+  * GND          GND
+
+* ADF4351        ESP8266
+  * LE           GPIO 00
+  * DATA   MOSI  GPIO 13
+  * CLK     CLK  GPIO 14
+  * MUXOUT            NC
+  * CE                NC
+  * VCC          VCC3.3V
+  * GND          GND
+</pre></dd></dl>
 <dl class="section user"><dt>Demo Video</dt><dd><ul>
 <li>See <a class="el" href="web_8c.html" title="Small web server for esp8266. ">web.c</a> for details.<ul>
 <li>I created a door status display that can be updated via a web page web page</li>
@@ -725,7 +773,7 @@ README</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Nov 4 2016 23:56:26 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Nov 5 2016 19:23:33 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

@@ -116,6 +116,29 @@ struct stat
     time_t    st_ctime;  /*<  time of last status change */
 };
 
+struct dirent {
+   ino_t          d_ino;       /* inode number */
+   off_t          d_off;       /* not an offset; see NOTES */
+   unsigned short d_reclen;    /* length of this record */
+   unsigned char  d_type;      /* type of file; not supported
+								  by all filesystem types */
+   char           d_name[256]; /* filename */
+};
+
+#if _USE_LFN != 0
+#define MAX_NAME_LEN _MAX_LFN 
+#else
+#define MAX_NAME_LEN 13
+#endif
+
+#
+typedef struct _dirent {
+    uint8_t     d_type;         // Type
+    uint8_t     d_namlen;       // Length
+    char        d_name[MAX_NAME_LEN];   // Name
+} dirent;
+
+
 ///@brief POSIX lstat()
 ///@see stat()
 #define lstat stat
@@ -316,11 +339,13 @@ MEMSPACE char *mctime ( time_t timev );
 MEMSPACE int stat ( char *name , struct stat *buf );
 MEMSPACE char *basename ( char *str );
 MEMSPACE char *baseext ( char *str );
+MEMSPACE int chdir ( const char *pathname );
 MEMSPACE int chmod ( const char *pathname , mode_t mode );
 MEMSPACE int dirname ( char *str );
 #if 0
 MEMSPACE int fchmod ( int fd , mode_t mode );
 #endif
+MEMSPACE char *getcwd ( char *pathname , int len );
 MEMSPACE int mkdir ( const char *pathname , mode_t mode );
 MEMSPACE int rename ( const char *oldpath , const char *newpath );
 MEMSPACE int rmdir ( const char *pathname );

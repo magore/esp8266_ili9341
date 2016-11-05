@@ -26,6 +26,7 @@ var searchData=
   ['read_5fflash8',['read_flash8',['../flash_8c.html#a8820bdd8a76740aaafe0506ff6040002',1,'read_flash8(uint8_t *p):&#160;flash.c'],['../flash_8h.html#a8820bdd8a76740aaafe0506ff6040002',1,'read_flash8(uint8_t *p):&#160;flash.c']]],
   ['read_5fflash_5fptr',['read_flash_ptr',['../flash_8c.html#ab39a1de20d7b9b1da1fb85100c0cbb10',1,'read_flash_ptr(uint8_t *p):&#160;flash.c'],['../flash_8h.html#ab39a1de20d7b9b1da1fb85100c0cbb10',1,'read_flash_ptr(uint8_t *p):&#160;flash.c']]],
   ['readbdf',['ReadBdf',['../bdffontutil_8c.html#a49c59fe21a56b90ad6f8bcc5549e3dce',1,'ReadBdf(char *name, _font *font, int lower, int upper):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a49c59fe21a56b90ad6f8bcc5549e3dce',1,'ReadBdf(char *name, _font *font, int lower, int upper):&#160;bdffontutil.c']]],
+  ['readdir',['readdir',['../posix_8c.html#a5eb6e59d6c2fbfb27e32706dfc112dff',1,'posix.c']]],
   ['readme_2emd',['README.md',['../README_8md.html',1,'']]],
   ['received',['received',['../structrwbuf__t.html#ac76412a0fbf9dc009ae3f8bb20660883',1,'rwbuf_t::received()'],['../network_8c.html#ac7c4860b47674f6bb351f6875e50533f',1,'received():&#160;network.c'],['../server_8c.html#a082fd9f55493d749cafc1e11ad84a2b6',1,'received():&#160;server.c']]],
   ['refindiv2',['REFinDIV2',['../structr2__t.html#aa036b7abbb6147e0c155101addc1490c',1,'r2_t']]],

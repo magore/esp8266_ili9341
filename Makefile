@@ -32,8 +32,8 @@ ESPPORT		?= /dev/ttyUSB0
 export PATH := $(XTENSA_TOOLS_ROOT):$(PATH)
 
 # esptool baud rate 
-#BAUD=256000
-BAUD=115200
+BAUD=256000
+#BAUD=115200
 
 # CPU frequency
 F_CPU=80000000UL
@@ -48,7 +48,7 @@ TARGET		= demo
 # Firmware Directory
 FW_BASE		= firmware
 
-# SWAP GPIO4 and GPIO5 on some esp-12 boards
+# SWAP GPIO4 and GPIO5 on some esp-12 boards with incorrect pinout labels
 #SWAP45			:= 1
 
 # ===============================================================

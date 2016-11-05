@@ -2,6 +2,7 @@ var searchData=
 [
   ['_5f_5ffile',['__file',['../struct____file.html',1,'']]],
   ['_5fbdffile',['_bdffile',['../struct__bdffile.html',1,'']]],
+  ['_5fdirent',['_dirent',['../struct__dirent.html',1,'']]],
   ['_5fetstimer_5f',['_ETSTIMER_',['../struct__ETSTIMER__.html',1,'']]],
   ['_5ffdid',['_FDID',['../struct__FDID.html',1,'']]],
   ['_5ffont',['_font',['../struct__font.html',1,'']]],
