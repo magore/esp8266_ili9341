@@ -1,10 +1,6 @@
 var searchData=
 [
-  ['d_5fino',['d_ino',['../structdirent.html#aaea0878aa0629630d94e180f5dbc22c5',1,'dirent']]],
   ['d_5fname',['d_name',['../structdirent.html#ae61380f3ccbc6c32e8650d7bce76197b',1,'dirent']]],
-  ['d_5foff',['d_off',['../structdirent.html#af812e4ed54eeb48e843efa6fb9a5465f',1,'dirent']]],
-  ['d_5freclen',['d_reclen',['../structdirent.html#a90dc47836e8ef510437317876368859e',1,'dirent']]],
-  ['d_5ftype',['d_type',['../structdirent.html#adca3b20d5a245f0d8b9f2aa84844b1ff',1,'dirent']]],
   ['data',['data',['../structSDIO__CTRL.html#ab04c9adb4d3027a14925fb30b469f0c0',1,'SDIO_CTRL']]],
   ['database',['database',['../structFATFS.html#a5b6c0bc2e9fd2ae8ef714210a74a2d5d',1,'FATFS']]],
   ['days_5fper_5fyear',['Days_Per_Year',['../time_8c.html#ad4f4473fe0527085b45e8c354faeee7b',1,'time.c']]],

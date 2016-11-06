@@ -123,11 +123,13 @@ struct stat
 #endif
 
 struct dirent {
+#if 0 // unsupported
    ino_t          d_ino;       /* inode number */
    off_t          d_off;       /* not an offset; see NOTES */
    unsigned short d_reclen;    /* length of this record */
    unsigned char  d_type;      /* type of file; not supported
 								  by all filesystem types */
+#endif
    char           d_name[MAX_NAME_LEN]; /* filename */
 };
 

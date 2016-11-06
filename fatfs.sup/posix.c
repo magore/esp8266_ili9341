@@ -59,7 +59,7 @@
         - rmdir
         - unlink
 
-   - POSIX TODO - directory scanning functions
+   - POSIX - directory scanning functions
 		- closedir
 		- opendir 
         - readdir
@@ -1322,7 +1322,8 @@ int stat(char *name, struct stat *buf)
     uint16_t mode;
     errno = 0;
 
-	if (strcmp(name,"/") == 0)
+	// f_stat does not handle / or . as root directory
+	if (strcmp(name,"/") == 0 || strcmp(name,".") == 0)
 	{
 		buf->st_atime = 0;
 		buf->st_mtime = 0;
@@ -1347,6 +1348,7 @@ int stat(char *name, struct stat *buf)
     buf->st_mtime = epoch;                        // Modification time
     buf->st_ctime = epoch;                        // Creation time
 
+	// We only handle read only case
     mode = (FATFS_R | FATFS_X);
     if( !(info.fattrib & AM_RDO))
         mode |= (FATFS_W);                        // enable write if NOT read only
@@ -1642,11 +1644,10 @@ int unlink(const char *pathname)
 
 /// ====================================================================
 /// ====================================================================
-///   - POSIX TODO - directory scanning functions
+///   - POSIX - directory scanning functions
 /// ====================================================================
 /// ====================================================================
 /// @brief POSIX closedir
-/// TODO
 /// - man page closedir (2).
 ///
 /// @param[in] dirp: DIR * directory handle
@@ -1664,7 +1665,6 @@ int closedir(DIR *dirp)
 }
 
 /// @brief POSIX opendir
-/// TODO
 /// - man page opendir (2).
 ///
 /// @param[in] pathname: directory to delete.
@@ -1684,12 +1684,9 @@ DIR *opendir(const char *pathdir)
 }
 
 /// @brief POSIX opendir
-/// TODO
-/// - man page opendir (2).
+/// - man page readdir(2).
 ///
 /// @param[in] dirp: DIR * directory handle
-/// @param[in] entry: struct dirent *
-/// @param[in] dirent: struct result **
 ///
 /// @return DIR * on sucess.
 /// @return NULL on error with errno set.
