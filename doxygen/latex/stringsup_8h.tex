@@ -29,6 +29,12 @@ Various string and character functions.
 \begin{DoxyCompactList}\small\item\em find a character in a string of maximum size \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{cpu_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} \hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR} \hyperlink{stringsup_8h_a895ea3a2f9901e4c962806cc15271339}{strlen} (const char $\ast$str)
 \begin{DoxyCompactList}\small\item\em String Length. \end{DoxyCompactList}\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{stringsup_8h_a2a4e1f2baf0fbb93dbdc4ff162e8b202}{strcpy} (char $\ast$dest, const char $\ast$src)
+\begin{DoxyCompactList}\small\item\em copy a string \end{DoxyCompactList}\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{stringsup_8h_ad632f38aae4098a138813d533eef5093}{strncpy} (char $\ast$dest, const char $\ast$src, \hyperlink{cpu_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} size)
+\begin{DoxyCompactList}\small\item\em copy a string of at most N characters \end{DoxyCompactList}\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{stringsup_8h_a258b53e25783cb95a93cacb815adfa1f}{stpcpy} (char $\ast$dest, const char $\ast$src)
+\begin{DoxyCompactList}\small\item\em copy a string returning a pointer to its end \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR} \hyperlink{stringsup_8h_a00b9d97be21e4f3f5df1019a803c05a6}{reverse} (char $\ast$str)
 \begin{DoxyCompactList}\small\item\em Reverse a string in place Example\+: abcdef -\/$>$ fedcba. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR} \hyperlink{stringsup_8h_a25ac5a1dbdfa1d06d55448cd7b665d1d}{strupper} (char $\ast$str)
@@ -99,7 +105,7 @@ Definition at line 33 of file stringsup.\+h.
 
 
 
-Referenced by isdigit(), islower(), isupper(), memchr(), reverse(), skipchars(), strcasecmp(), strcmp(), strlen(), strncmp(), and tolower().
+Referenced by isdigit(), islower(), isupper(), memchr(), reverse(), skipchars(), stpcpy(), strcasecmp(), strcmp(), strlen(), strncmp(), strncpy(), and tolower().
 
 
 
@@ -153,7 +159,7 @@ return next token
 \end{DoxyReturn}
 
 
-Definition at line 473 of file stringsup.\+c.
+Definition at line 522 of file stringsup.\+c.
 
 \index{stringsup.\+h@{stringsup.\+h}!isdigit@{isdigit}}
 \index{isdigit@{isdigit}!stringsup.\+h@{stringsup.\+h}}
@@ -256,7 +262,7 @@ string lenth on match.
 \end{DoxyReturn}
 
 
-Definition at line 381 of file stringsup.\+c.
+Definition at line 430 of file stringsup.\+c.
 
 \index{stringsup.\+h@{stringsup.\+h}!M\+A\+T\+C\+H\+\_\+\+L\+EN@{M\+A\+T\+C\+H\+\_\+\+L\+EN}}
 \index{M\+A\+T\+C\+H\+\_\+\+L\+EN@{M\+A\+T\+C\+H\+\_\+\+L\+EN}!stringsup.\+h@{stringsup.\+h}}
@@ -287,7 +293,7 @@ Matches sub strings so be caeful.
 \end{DoxyWarning}
 
 
-Definition at line 418 of file stringsup.\+c.
+Definition at line 467 of file stringsup.\+c.
 
 \index{stringsup.\+h@{stringsup.\+h}!M\+A\+T\+C\+HI@{M\+A\+T\+C\+HI}}
 \index{M\+A\+T\+C\+HI@{M\+A\+T\+C\+HI}!stringsup.\+h@{stringsup.\+h}}
@@ -315,7 +321,7 @@ string lenth on match.
 \end{DoxyReturn}
 
 
-Definition at line 400 of file stringsup.\+c.
+Definition at line 449 of file stringsup.\+c.
 
 \index{stringsup.\+h@{stringsup.\+h}!M\+A\+T\+C\+H\+I\+\_\+\+L\+EN@{M\+A\+T\+C\+H\+I\+\_\+\+L\+EN}}
 \index{M\+A\+T\+C\+H\+I\+\_\+\+L\+EN@{M\+A\+T\+C\+H\+I\+\_\+\+L\+EN}!stringsup.\+h@{stringsup.\+h}}
@@ -346,7 +352,7 @@ Matches sub strings so be caeful.
 \end{DoxyWarning}
 
 
-Definition at line 444 of file stringsup.\+c.
+Definition at line 493 of file stringsup.\+c.
 
 
 
@@ -402,7 +408,7 @@ pointer to first white space character
 \end{DoxyReturn}
 
 
-Definition at line 232 of file stringsup.\+c.
+Definition at line 281 of file stringsup.\+c.
 
 
 
@@ -429,7 +435,7 @@ string length
 \end{DoxyReturn}
 
 
-Definition at line 155 of file stringsup.\+c.
+Definition at line 204 of file stringsup.\+c.
 
 \index{stringsup.\+h@{stringsup.\+h}!skipchars@{skipchars}}
 \index{skipchars@{skipchars}!stringsup.\+h@{stringsup.\+h}}
@@ -455,7 +461,7 @@ pointer to string after skipped characters.
 \end{DoxyReturn}
 
 
-Definition at line 254 of file stringsup.\+c.
+Definition at line 303 of file stringsup.\+c.
 
 \index{stringsup.\+h@{stringsup.\+h}!skipspaces@{skipspaces}}
 \index{skipspaces@{skipspaces}!stringsup.\+h@{stringsup.\+h}}
@@ -478,11 +484,37 @@ pointer to first non white space character
 \end{DoxyReturn}
 
 
-Definition at line 215 of file stringsup.\+c.
+Definition at line 264 of file stringsup.\+c.
 
 
 
 Referenced by adf4351\+\_\+cmd(), fatfs\+\_\+tests(), get\+\_\+token(), match\+\_\+headers(), parse\+\_\+http\+\_\+request(), and user\+\_\+tests().
+
+\index{stringsup.\+h@{stringsup.\+h}!stpcpy@{stpcpy}}
+\index{stpcpy@{stpcpy}!stringsup.\+h@{stringsup.\+h}}
+\subsubsection[{\texorpdfstring{stpcpy(char $\ast$dest, const char $\ast$src)}{stpcpy(char *dest, const char *src)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} char$\ast$ stpcpy (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{dest, }
+\item[{const char $\ast$}]{src}
+\end{DoxyParamCaption}
+)}\hypertarget{stringsup_8h_a258b53e25783cb95a93cacb815adfa1f}{}\label{stringsup_8h_a258b53e25783cb95a93cacb815adfa1f}
+
+
+copy a string returning a pointer to its end 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em dest} & string \\
+\hline
+\mbox{\tt in}  & {\em src} & string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string length 
+\end{DoxyReturn}
+
+
+Definition at line 189 of file stringsup.\+c.
 
 \index{stringsup.\+h@{stringsup.\+h}!stralloc@{stralloc}}
 \index{stralloc@{stralloc}!stringsup.\+h@{stringsup.\+h}}
@@ -522,7 +554,7 @@ Allocate space for string.
 \end{DoxyReturn}
 
 
-Definition at line 582 of file stringsup.\+c.
+Definition at line 631 of file stringsup.\+c.
 
 \index{stringsup.\+h@{stringsup.\+h}!strcasecmp@{strcasecmp}}
 \index{strcasecmp@{strcasecmp}!stringsup.\+h@{stringsup.\+h}}
@@ -548,7 +580,7 @@ Compare two strings without case.
 \end{DoxyReturn}
 
 
-Definition at line 336 of file stringsup.\+c.
+Definition at line 385 of file stringsup.\+c.
 
 
 
@@ -578,11 +610,41 @@ Compare two strings.
 \end{DoxyReturn}
 
 
-Definition at line 288 of file stringsup.\+c.
+Definition at line 337 of file stringsup.\+c.
 
 
 
-Referenced by Find\+Font\+Name(), main(), and M\+A\+T\+C\+H().
+Referenced by Find\+Font\+Name(), main(), M\+A\+T\+C\+H(), and stat().
+
+\index{stringsup.\+h@{stringsup.\+h}!strcpy@{strcpy}}
+\index{strcpy@{strcpy}!stringsup.\+h@{stringsup.\+h}}
+\subsubsection[{\texorpdfstring{strcpy(char $\ast$dest, const char $\ast$src)}{strcpy(char *dest, const char *src)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} char$\ast$ strcpy (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{dest, }
+\item[{const char $\ast$}]{src}
+\end{DoxyParamCaption}
+)}\hypertarget{stringsup_8h_a2a4e1f2baf0fbb93dbdc4ff162e8b202}{}\label{stringsup_8h_a2a4e1f2baf0fbb93dbdc4ff162e8b202}
+
+
+copy a string 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em dest} & destination string \\
+\hline
+\mbox{\tt in}  & {\em src} & source string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+destination string 
+\end{DoxyReturn}
+
+
+Definition at line 152 of file stringsup.\+c.
+
+
+
+Referenced by escape(), fatfs\+\_\+scan\+\_\+files(), main(), readdir(), setup\+\_\+networking(), and stralloc().
 
 \index{stringsup.\+h@{stringsup.\+h}!strlen@{strlen}}
 \index{strlen@{strlen}!stringsup.\+h@{stringsup.\+h}}
@@ -636,7 +698,7 @@ pointer to alocated string.
 \end{DoxyReturn}
 
 
-Definition at line 558 of file stringsup.\+c.
+Definition at line 607 of file stringsup.\+c.
 
 \index{stringsup.\+h@{stringsup.\+h}!strncasecmp@{strncasecmp}}
 \index{strncasecmp@{strncasecmp}!stringsup.\+h@{stringsup.\+h}}
@@ -665,7 +727,7 @@ Compare two strings without case maximum len bytes in size.
 \end{DoxyReturn}
 
 
-Definition at line 358 of file stringsup.\+c.
+Definition at line 407 of file stringsup.\+c.
 
 
 
@@ -698,11 +760,44 @@ Compare two strings maximum len bytes in size.
 \end{DoxyReturn}
 
 
-Definition at line 312 of file stringsup.\+c.
+Definition at line 361 of file stringsup.\+c.
 
 
 
 Referenced by M\+A\+T\+C\+H\+\_\+\+L\+E\+N(), match\+\_\+token(), and token().
+
+\index{stringsup.\+h@{stringsup.\+h}!strncpy@{strncpy}}
+\index{strncpy@{strncpy}!stringsup.\+h@{stringsup.\+h}}
+\subsubsection[{\texorpdfstring{strncpy(char $\ast$dest, const char $\ast$src, size\+\_\+t size)}{strncpy(char *dest, const char *src, size_t size)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} char$\ast$ strncpy (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{dest, }
+\item[{const char $\ast$}]{src, }
+\item[{{\bf size\+\_\+t}}]{size}
+\end{DoxyParamCaption}
+)}\hypertarget{stringsup_8h_ad632f38aae4098a138813d533eef5093}{}\label{stringsup_8h_ad632f38aae4098a138813d533eef5093}
+
+
+copy a string of at most N characters 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em dest} & destination string \\
+\hline
+\mbox{\tt in}  & {\em src} & source string \\
+\hline
+\mbox{\tt in}  & {\em size} & maximum destination size \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+destination string 
+\end{DoxyReturn}
+
+
+Definition at line 169 of file stringsup.\+c.
+
+
+
+Referenced by loop(), ls(), main(), strerror\+\_\+r(), and strnalloc().
 
 \index{stringsup.\+h@{stringsup.\+h}!strupper@{strupper}}
 \index{strupper@{strupper}!stringsup.\+h@{stringsup.\+h}}
@@ -725,7 +820,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 177 of file stringsup.\+c.
+Definition at line 226 of file stringsup.\+c.
 
 \index{stringsup.\+h@{stringsup.\+h}!token@{token}}
 \index{token@{token}!stringsup.\+h@{stringsup.\+h}}
@@ -758,7 +853,7 @@ string lenth on match.
 \end{DoxyReturn}
 
 
-Definition at line 516 of file stringsup.\+c.
+Definition at line 565 of file stringsup.\+c.
 
 
 
@@ -848,5 +943,5 @@ Trim White space and control characters from end of string.
 \end{DoxyReturn}
 
 
-Definition at line 197 of file stringsup.\+c.
+Definition at line 246 of file stringsup.\+c.
 

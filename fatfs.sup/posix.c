@@ -1322,13 +1322,24 @@ int stat(char *name, struct stat *buf)
     uint16_t mode;
     errno = 0;
 
+	if (strcmp(name,"/") == 0)
+	{
+		buf->st_atime = 0;
+		buf->st_mtime = 0;
+		buf->st_ctime = 0;
+        buf->st_uid= 0;
+        buf->st_gid= 0;
+		buf->st_size = 0;
+		buf->st_mode = S_IFDIR;
+		return(0);
+	}
+
     res = f_stat(name, &info);
     if(res != FR_OK)
     {
         errno = fatfs_to_errno(res);
         return(-1);
     }
-
 
     buf->st_size = info.fsize;
     epoch = fat_time_to_unix(info.fdate, info.ftime);
@@ -1644,7 +1655,12 @@ int unlink(const char *pathname)
 /// @return -1 on error with errno set.
 int closedir(DIR *dirp)
 {
-	return(-1);
+	int res = f_closedir (dirp);
+    if(res != FR_OK)
+    {
+        errno = fatfs_to_errno(res);
+        return(-1);
+    }
 }
 
 /// @brief POSIX opendir
@@ -1655,9 +1671,16 @@ int closedir(DIR *dirp)
 ///
 /// @return DIR * on sucess.
 /// @return NULL on error with errno set.
+static DIR _dp;
 DIR *opendir(const char *pathdir)
 {
-	return(NULL);
+	int res = f_opendir((DIR *) &_dp, pathdir);
+    if(res != FR_OK)
+    {
+        errno = fatfs_to_errno(res);
+        return(NULL);
+    }
+	return ((DIR *) &_dp);
 }
 
 /// @brief POSIX opendir
@@ -1670,11 +1693,24 @@ DIR *opendir(const char *pathdir)
 ///
 /// @return DIR * on sucess.
 /// @return NULL on error with errno set.
-int readdir(DIR *dirp, struct dirent *entry, struct dirent **result)
+static dirent_t _de;
+dirent_t * readdir(DIR *dirp)
 {
-	return(-1);
-}
+	FILINFO fno;
+	int len;
+	int res;
 
+	_de.d_name[0] = 0;
+ 	res = f_readdir ( dirp, &fno );
+    if(res != FR_OK)
+    {
+        errno = fatfs_to_errno(res);
+        return(NULL);
+    }
+	len = strlen(fno.fname);
+	strcpy(_de.d_name,fno.fname);
+	return( (dirent_t *) &_de);
+}
 
 /// ====================================================================
 /// ====================================================================

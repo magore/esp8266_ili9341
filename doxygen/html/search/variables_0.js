@@ -16,6 +16,8 @@ var searchData=
   ['_5fdata',['_data',['../flash_8c.html#a45c84a718a302530a9e80cce14821e33',1,'flash.c']]],
   ['_5fdata_5fend',['_data_end',['../cal__dex_8c.html#a631d10379fb6298dec3a091dff85fbfe',1,'cal_dex.c']]],
   ['_5fdata_5fstart',['_data_start',['../cal__dex_8c.html#a52ac470a9c391e36c01d0f292c65cf19',1,'cal_dex.c']]],
+  ['_5fde',['_de',['../posix_8c.html#a42837e7607f8e3b8ae74286253989724',1,'posix.c']]],
+  ['_5fdp',['_dp',['../posix_8c.html#ae5badb2fbda49f0741042e68c364532b',1,'posix.c']]],
   ['_5fheap_5fstart',['_heap_start',['../system_8c.html#ab750b0b8889cb7d718f12d66f01fd954',1,'system.c']]],
   ['_5fhspi_5finit_5fdone',['_hspi_init_done',['../hspi_8c.html#a9d8a27ff6d91c4aa89e8719b960d7404',1,'hspi.c']]],
   ['_5fipv4_5f2str',['_ipv4_2str',['../network_8c.html#a252582da71dd6f7e793a6243bdcd0ab4',1,'network.c']]],

@@ -97,9 +97,9 @@
 int \hyperlink{posix_8c_aaeac2b41e8c2c3a5f91c9bd511a8c0a6}{closedir} (\hyperlink{structDIR}{D\+IR} $\ast$dirp)
 \begin{DoxyCompactList}\small\item\em P\+O\+S\+IX closedir T\+O\+DO. \end{DoxyCompactList}\item 
 \hyperlink{structDIR}{D\+IR} $\ast$ \hyperlink{posix_8c_a19051b9081dfef221d9bf4583e935031}{opendir} (const char $\ast$pathdir)
-\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX opendir T\+O\+DO. \end{DoxyCompactList}\item 
-int \hyperlink{posix_8c_a5eb6e59d6c2fbfb27e32706dfc112dff}{readdir} (\hyperlink{structDIR}{D\+IR} $\ast$dirp, struct \hyperlink{structdirent}{dirent} $\ast$entry, struct \hyperlink{structdirent}{dirent} $\ast$$\ast$result)
-\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX opendir T\+O\+DO. \end{DoxyCompactList}\item 
+\item 
+\hyperlink{posix_8h_a6673e8f64ca9ebd7e26e6289dca06e87}{dirent\+\_\+t} $\ast$ \hyperlink{posix_8c_a1508fedaef509d2976b43300306d1400}{readdir} (\hyperlink{structDIR}{D\+IR} $\ast$dirp)
+\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{posix_8c_a03baa4d851a2a855656081a4b7c8d72c}{clrerror} (\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$stream)
 \begin{DoxyCompactList}\small\item\em clrerror resets stream E\+OF and error flags \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_ac37bff9f639fa95401b71839bbabd9a0}{ferror} (\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$stream)
@@ -138,7 +138,11 @@ int \hyperlink{posix_8c_ad65a8842cc674e3ddf69355898c0ecbf}{errno}
 \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$ \hyperlink{posix_8c_aae2f027325f7e73c3aa5e7dc990bd90d}{\+\_\+\+\_\+iob} \mbox{[}\hyperlink{posix_8h_a2c5eecb22513a88c24ae5831a3265e54}{M\+A\+X\+\_\+\+F\+I\+L\+ES}\mbox{]}
 \begin{DoxyCompactList}\small\item\em P\+O\+S\+IX fileno to P\+O\+S\+IX F\+I\+LE stream table. \end{DoxyCompactList}\item 
 const char $\ast$ \hyperlink{posix_8c_a76ebfe24a40210e5935998c1fa86d3a0}{sys\+\_\+errlist} \mbox{[}$\,$\mbox{]}
-\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX error messages for each errno value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX error messages for each errno value. \end{DoxyCompactList}\item 
+static \hyperlink{structDIR}{D\+IR} \hyperlink{posix_8c_ae5badb2fbda49f0741042e68c364532b}{\+\_\+dp}
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX opendir T\+O\+DO. \end{DoxyCompactList}\item 
+static \hyperlink{posix_8h_a6673e8f64ca9ebd7e26e6289dca06e87}{dirent\+\_\+t} \hyperlink{posix_8c_a42837e7607f8e3b8ae74286253989724}{\+\_\+de}
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX opendir T\+O\+DO. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Function Documentation}
@@ -163,7 +167,7 @@ pointer to basename extension.
 \end{DoxyReturn}
 
 
-Definition at line 1396 of file posix.\+c.
+Definition at line 1407 of file posix.\+c.
 
 \index{posix.\+c@{posix.\+c}!basename@{basename}}
 \index{basename@{basename}!posix.\+c@{posix.\+c}}
@@ -195,11 +199,11 @@ pointer to basename of string.
 \end{DoxyReturn}
 
 
-Definition at line 1376 of file posix.\+c.
+Definition at line 1387 of file posix.\+c.
 
 
 
-Referenced by Font\+Header\+Info(), and main().
+Referenced by Font\+Header\+Info(), ls\+\_\+info(), and main().
 
 \index{posix.\+c@{posix.\+c}!chdir@{chdir}}
 \index{chdir@{chdir}!posix.\+c@{posix.\+c}}
@@ -229,7 +233,7 @@ P\+O\+S\+IX change directory.
 \end{DoxyReturn}
 
 
-Definition at line 1418 of file posix.\+c.
+Definition at line 1429 of file posix.\+c.
 
 \index{posix.\+c@{posix.\+c}!chmod@{chmod}}
 \index{chmod@{chmod}!posix.\+c@{posix.\+c}}
@@ -262,7 +266,7 @@ fileno on success.
 \end{DoxyReturn}
 
 
-Definition at line 1443 of file posix.\+c.
+Definition at line 1454 of file posix.\+c.
 
 
 
@@ -338,7 +342,11 @@ P\+O\+S\+IX closedir T\+O\+DO.
 \end{DoxyReturn}
 
 
-Definition at line 1645 of file posix.\+c.
+Definition at line 1656 of file posix.\+c.
+
+
+
+Referenced by ls().
 
 \index{posix.\+c@{posix.\+c}!clrerror@{clrerror}}
 \index{clrerror@{clrerror}!posix.\+c@{posix.\+c}}
@@ -367,7 +375,7 @@ E\+OF on error with errno set.
 \end{DoxyReturn}
 
 
-Definition at line 1691 of file posix.\+c.
+Definition at line 1727 of file posix.\+c.
 
 \index{posix.\+c@{posix.\+c}!dirname@{dirname}}
 \index{dirname@{dirname}!posix.\+c@{posix.\+c}}
@@ -404,7 +412,7 @@ index of last \textquotesingle{}/\textquotesingle{} character.
 \end{DoxyReturn}
 
 
-Definition at line 1481 of file posix.\+c.
+Definition at line 1492 of file posix.\+c.
 
 \index{posix.\+c@{posix.\+c}!dump\+\_\+stat@{dump\+\_\+stat}}
 \index{dump\+\_\+stat@{dump\+\_\+stat}!posix.\+c@{posix.\+c}}
@@ -435,7 +443,7 @@ Definition at line 1233 of file posix.\+c.
 
 
 
-Referenced by mmc\+\_\+test().
+Referenced by fatfs\+\_\+tests(), and mmc\+\_\+test().
 
 \index{posix.\+c@{posix.\+c}!fat\+\_\+time\+\_\+to\+\_\+unix@{fat\+\_\+time\+\_\+to\+\_\+unix}}
 \index{fat\+\_\+time\+\_\+to\+\_\+unix@{fat\+\_\+time\+\_\+to\+\_\+unix}!posix.\+c@{posix.\+c}}
@@ -469,7 +477,7 @@ epoch seconds
 \end{DoxyReturn}
 
 
-Definition at line 2034 of file posix.\+c.
+Definition at line 2070 of file posix.\+c.
 
 
 
@@ -507,7 +515,7 @@ E\+OF on error with errno set.
 \end{DoxyReturn}
 
 
-Definition at line 1836 of file posix.\+c.
+Definition at line 1872 of file posix.\+c.
 
 
 
@@ -545,7 +553,7 @@ E\+OF on error with errno set.
 \end{DoxyReturn}
 
 
-Definition at line 1881 of file posix.\+c.
+Definition at line 1917 of file posix.\+c.
 
 
 
@@ -579,11 +587,11 @@ E\+B\+A\+D\+M\+SG if no conversion possible.
 \end{DoxyReturn}
 
 
-Definition at line 1921 of file posix.\+c.
+Definition at line 1957 of file posix.\+c.
 
 
 
-Referenced by chdir(), chmod(), close(), fatfs\+\_\+getc(), fatfs\+\_\+putc(), ftruncate(), getcwd(), lseek(), mkdir(), open(), read(), rename(), rmdir(), stat(), syncfs(), truncate(), unlink(), and write().
+Referenced by chdir(), chmod(), close(), closedir(), fatfs\+\_\+getc(), fatfs\+\_\+putc(), ftruncate(), getcwd(), lseek(), mkdir(), open(), opendir(), read(), readdir(), rename(), rmdir(), stat(), syncfs(), truncate(), unlink(), and write().
 
 \index{posix.\+c@{posix.\+c}!fatfs\+\_\+to\+\_\+fileno@{fatfs\+\_\+to\+\_\+fileno}}
 \index{fatfs\+\_\+to\+\_\+fileno@{fatfs\+\_\+to\+\_\+fileno}!posix.\+c@{posix.\+c}}
@@ -608,7 +616,7 @@ fileno on success.
 \end{DoxyReturn}
 
 
-Definition at line 1997 of file posix.\+c.
+Definition at line 2033 of file posix.\+c.
 
 \index{posix.\+c@{posix.\+c}!fclose@{fclose}}
 \index{fclose@{fclose}!posix.\+c@{posix.\+c}}
@@ -669,7 +677,7 @@ Assign stdin,stdout,stderr or any use defined I/O N\+OT P\+O\+S\+IX.
 \end{DoxyParams}
 
 
-Definition at line 1781 of file posix.\+c.
+Definition at line 1817 of file posix.\+c.
 
 \index{posix.\+c@{posix.\+c}!feof@{feof}}
 \index{feof@{feof}!posix.\+c@{posix.\+c}}
@@ -729,7 +737,7 @@ ferror reports if the stream has an error flag set
 \end{DoxyReturn}
 
 
-Definition at line 1703 of file posix.\+c.
+Definition at line 1739 of file posix.\+c.
 
 \index{posix.\+c@{posix.\+c}!fgetc@{fgetc}}
 \index{fgetc@{fgetc}!posix.\+c@{posix.\+c}}
@@ -892,7 +900,7 @@ N\+U\+LL if P\+O\+S\+IX fileno is invalid N\+U\+LL
 \end{DoxyReturn}
 
 
-Definition at line 2061 of file posix.\+c.
+Definition at line 2097 of file posix.\+c.
 
 
 
@@ -1105,7 +1113,7 @@ fileno on success.
 \end{DoxyReturn}
 
 
-Definition at line 2096 of file posix.\+c.
+Definition at line 2132 of file posix.\+c.
 
 
 
@@ -1358,7 +1366,7 @@ P\+O\+S\+IX get current working directory.
 \end{DoxyReturn}
 
 
-Definition at line 1526 of file posix.\+c.
+Definition at line 1537 of file posix.\+c.
 
 
 
@@ -1482,7 +1490,7 @@ Definition at line 1296 of file posix.\+c.
 
 
 
-Referenced by dump\+\_\+stat().
+Referenced by dump\+\_\+stat(), and ls\+\_\+info().
 
 \index{posix.\+c@{posix.\+c}!mkdir@{mkdir}}
 \index{mkdir@{mkdir}!posix.\+c@{posix.\+c}}
@@ -1513,7 +1521,7 @@ P\+O\+S\+IX make a directory.
 \end{DoxyReturn}
 
 
-Definition at line 1549 of file posix.\+c.
+Definition at line 1560 of file posix.\+c.
 
 \index{posix.\+c@{posix.\+c}!new\+\_\+file\+\_\+descriptor@{new\+\_\+file\+\_\+descriptor}}
 \index{new\+\_\+file\+\_\+descriptor@{new\+\_\+file\+\_\+descriptor}!posix.\+c@{posix.\+c}}
@@ -1533,7 +1541,7 @@ fileno on success.
 \end{DoxyReturn}
 
 
-Definition at line 2140 of file posix.\+c.
+Definition at line 2176 of file posix.\+c.
 
 
 
@@ -1585,26 +1593,11 @@ Referenced by fopen().
 )}\hypertarget{posix_8c_a19051b9081dfef221d9bf4583e935031}{}\label{posix_8c_a19051b9081dfef221d9bf4583e935031}
 
 
-P\+O\+S\+IX opendir T\+O\+DO. 
+Definition at line 1675 of file posix.\+c.
 
 
-\begin{DoxyItemize}
-\item man page opendir (2).
-\end{DoxyItemize}
 
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em pathname} & directory to delete.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-\hyperlink{structDIR}{D\+IR} $\ast$ on sucess. 
-
-N\+U\+LL on error with errno set. 
-\end{DoxyReturn}
-
-
-Definition at line 1658 of file posix.\+c.
+Referenced by ls().
 
 \index{posix.\+c@{posix.\+c}!perror@{perror}}
 \index{perror@{perror}!posix.\+c@{posix.\+c}}
@@ -1635,7 +1628,7 @@ void.
 \end{DoxyReturn}
 
 
-Definition at line 1719 of file posix.\+c.
+Definition at line 1755 of file posix.\+c.
 
 
 
@@ -1701,7 +1694,7 @@ read and write B\+O\+TH share the same stream buffer and buffer index pointers.
 \end{DoxyWarning}
 
 
-Definition at line 2203 of file posix.\+c.
+Definition at line 2239 of file posix.\+c.
 
 
 
@@ -1835,39 +1828,18 @@ Referenced by fread(), rx\+\_\+fifo\+\_\+read(), and send\+\_\+message().
 
 \index{posix.\+c@{posix.\+c}!readdir@{readdir}}
 \index{readdir@{readdir}!posix.\+c@{posix.\+c}}
-\subsubsection[{\texorpdfstring{readdir(\+D\+I\+R $\ast$dirp, struct dirent $\ast$entry, struct dirent $\ast$$\ast$result)}{readdir(DIR *dirp, struct dirent *entry, struct dirent **result)}}]{\setlength{\rightskip}{0pt plus 5cm}int readdir (
+\subsubsection[{\texorpdfstring{readdir(\+D\+I\+R $\ast$dirp)}{readdir(DIR *dirp)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf dirent\+\_\+t}$\ast$ readdir (
 \begin{DoxyParamCaption}
-\item[{{\bf D\+IR} $\ast$}]{dirp, }
-\item[{struct {\bf dirent} $\ast$}]{entry, }
-\item[{struct {\bf dirent} $\ast$$\ast$}]{result}
+\item[{{\bf D\+IR} $\ast$}]{dirp}
 \end{DoxyParamCaption}
-)}\hypertarget{posix_8c_a5eb6e59d6c2fbfb27e32706dfc112dff}{}\label{posix_8c_a5eb6e59d6c2fbfb27e32706dfc112dff}
+)}\hypertarget{posix_8c_a1508fedaef509d2976b43300306d1400}{}\label{posix_8c_a1508fedaef509d2976b43300306d1400}
 
 
-P\+O\+S\+IX opendir T\+O\+DO. 
+Definition at line 1697 of file posix.\+c.
 
 
-\begin{DoxyItemize}
-\item man page opendir (2).
-\end{DoxyItemize}
 
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em dirp} & \hyperlink{structDIR}{D\+IR} $\ast$ directory handle \\
-\hline
-\mbox{\tt in}  & {\em entry} & struct dirent $\ast$ \\
-\hline
-\mbox{\tt in}  & {\em dirent} & struct result $\ast$$\ast$\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-\hyperlink{structDIR}{D\+IR} $\ast$ on sucess. 
-
-N\+U\+LL on error with errno set. 
-\end{DoxyReturn}
-
-
-Definition at line 1673 of file posix.\+c.
+Referenced by ls().
 
 \index{posix.\+c@{posix.\+c}!rename@{rename}}
 \index{rename@{rename}!posix.\+c@{posix.\+c}}
@@ -1900,7 +1872,7 @@ P\+O\+S\+IX rename a file by name.
 \end{DoxyReturn}
 
 
-Definition at line 1575 of file posix.\+c.
+Definition at line 1586 of file posix.\+c.
 
 \index{posix.\+c@{posix.\+c}!rewind@{rewind}}
 \index{rewind@{rewind}!posix.\+c@{posix.\+c}}
@@ -1958,7 +1930,7 @@ P\+O\+S\+IX delete a directory.
 \end{DoxyReturn}
 
 
-Definition at line 1598 of file posix.\+c.
+Definition at line 1609 of file posix.\+c.
 
 \index{posix.\+c@{posix.\+c}!stat@{stat}}
 \index{stat@{stat}!posix.\+c@{posix.\+c}}
@@ -1995,7 +1967,7 @@ Definition at line 1317 of file posix.\+c.
 
 
 
-Referenced by f\+\_\+getfree(), f\+\_\+mkfs(), find\+\_\+volume(), main(), and mmc\+\_\+test().
+Referenced by f\+\_\+getfree(), f\+\_\+mkfs(), fatfs\+\_\+tests(), find\+\_\+volume(), ls(), ls\+\_\+info(), main(), and mmc\+\_\+test().
 
 \index{posix.\+c@{posix.\+c}!strerror@{strerror}}
 \index{strerror@{strerror}!posix.\+c@{posix.\+c}}
@@ -2026,7 +1998,7 @@ char $\ast$
 \end{DoxyReturn}
 
 
-Definition at line 1745 of file posix.\+c.
+Definition at line 1781 of file posix.\+c.
 
 \index{posix.\+c@{posix.\+c}!strerror\+\_\+r@{strerror\+\_\+r}}
 \index{strerror\+\_\+r@{strerror\+\_\+r}!posix.\+c@{posix.\+c}}
@@ -2063,7 +2035,7 @@ char $\ast$
 \end{DoxyReturn}
 
 
-Definition at line 1762 of file posix.\+c.
+Definition at line 1798 of file posix.\+c.
 
 \index{posix.\+c@{posix.\+c}!sync@{sync}}
 \index{sync@{sync}!posix.\+c@{posix.\+c}}
@@ -2216,7 +2188,7 @@ P\+O\+S\+IX delete a file.
 \end{DoxyReturn}
 
 
-Definition at line 1620 of file posix.\+c.
+Definition at line 1631 of file posix.\+c.
 
 \index{posix.\+c@{posix.\+c}!write@{write}}
 \index{write@{write}!posix.\+c@{posix.\+c}}
@@ -2279,6 +2251,62 @@ P\+O\+S\+IX fileno to P\+O\+S\+IX F\+I\+LE stream table.
 
 Definition at line 130 of file posix.\+c.
 
+\index{posix.\+c@{posix.\+c}!\+\_\+de@{\+\_\+de}}
+\index{\+\_\+de@{\+\_\+de}!posix.\+c@{posix.\+c}}
+\subsubsection[{\texorpdfstring{\+\_\+de}{_de}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf dirent\+\_\+t} \+\_\+de\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{posix_8c_a42837e7607f8e3b8ae74286253989724}{}\label{posix_8c_a42837e7607f8e3b8ae74286253989724}
+
+
+P\+O\+S\+IX opendir T\+O\+DO. 
+
+
+\begin{DoxyItemize}
+\item man page opendir (2).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em dirp} & \hyperlink{structDIR}{D\+IR} $\ast$ directory handle \\
+\hline
+\mbox{\tt in}  & {\em entry} & struct dirent $\ast$ \\
+\hline
+\mbox{\tt in}  & {\em dirent} & struct result $\ast$$\ast$\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{structDIR}{D\+IR} $\ast$ on sucess. 
+
+N\+U\+LL on error with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 1696 of file posix.\+c.
+
+\index{posix.\+c@{posix.\+c}!\+\_\+dp@{\+\_\+dp}}
+\index{\+\_\+dp@{\+\_\+dp}!posix.\+c@{posix.\+c}}
+\subsubsection[{\texorpdfstring{\+\_\+dp}{_dp}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\+IR} \+\_\+dp\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{posix_8c_ae5badb2fbda49f0741042e68c364532b}{}\label{posix_8c_ae5badb2fbda49f0741042e68c364532b}
+
+
+P\+O\+S\+IX opendir T\+O\+DO. 
+
+
+\begin{DoxyItemize}
+\item man page opendir (2).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em pathname} & directory to delete.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{structDIR}{D\+IR} $\ast$ on sucess. 
+
+N\+U\+LL on error with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 1674 of file posix.\+c.
+
 \index{posix.\+c@{posix.\+c}!errno@{errno}}
 \index{errno@{errno}!posix.\+c@{posix.\+c}}
 \subsubsection[{\texorpdfstring{errno}{errno}}]{\setlength{\rightskip}{0pt plus 5cm}int errno}\hypertarget{posix_8c_ad65a8842cc674e3ddf69355898c0ecbf}{}\label{posix_8c_ad65a8842cc674e3ddf69355898c0ecbf}
@@ -2292,7 +2320,7 @@ Definition at line 120 of file posix.\+c.
 
 
 
-Referenced by chdir(), chmod(), close(), fatfs\+\_\+getc(), fatfs\+\_\+putc(), fatfs\+\_\+to\+\_\+fileno(), fgetc(), fileno(), fileno\+\_\+to\+\_\+fatfs(), fileno\+\_\+to\+\_\+stream(), fputc(), free\+\_\+file\+\_\+descriptor(), ftell(), ftruncate(), getcwd(), lseek(), mctime(), mkdir(), new\+\_\+file\+\_\+descriptor(), open(), perror(), read(), rename(), rmdir(), stat(), syncfs(), truncate(), unlink(), and write().
+Referenced by chdir(), chmod(), close(), closedir(), fatfs\+\_\+getc(), fatfs\+\_\+putc(), fatfs\+\_\+to\+\_\+fileno(), fgetc(), fileno(), fileno\+\_\+to\+\_\+fatfs(), fileno\+\_\+to\+\_\+stream(), fputc(), free\+\_\+file\+\_\+descriptor(), ftell(), ftruncate(), getcwd(), lseek(), mctime(), mkdir(), new\+\_\+file\+\_\+descriptor(), open(), opendir(), perror(), read(), readdir(), rename(), rmdir(), stat(), syncfs(), truncate(), unlink(), and write().
 
 \index{posix.\+c@{posix.\+c}!sys\+\_\+errlist@{sys\+\_\+errlist}}
 \index{sys\+\_\+errlist@{sys\+\_\+errlist}!posix.\+c@{posix.\+c}}

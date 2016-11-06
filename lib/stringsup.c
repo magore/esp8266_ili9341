@@ -144,6 +144,55 @@ strlen(const char *str)
     return(len);
 }
 
+/// @brief copy a string 
+/// @param[in] dest: destination string
+/// @param[in] src: source string
+/// @return destination string
+MEMSPACE
+char *strcpy(char *dest, const char *src)
+{
+	char *base = dest;
+	while(*src)
+	{
+		*dest++ = *src++;
+	} 
+	*dest++ = 0;
+    return (base);
+}
+
+/// @brief copy a string of at most N characters
+/// @param[in] dest: destination string
+/// @param[in] src: source string
+/// @param[in] size: maximum destination size
+/// @return destination string
+MEMSPACE
+char *strncpy(char *dest, const char *src, size_t size)
+{
+	char *base = dest;
+	while(*src && size)
+	{
+		*dest++ = *src++;
+		size--;
+	} 
+	while(size--)
+		*dest++ = 0;
+    return (base);
+}
+
+
+/// @brief copy a string returning a pointer to its end
+/// @param[in] dest: string
+/// @param[in] src: string
+/// @return string length
+MEMSPACE
+WEAK_ATR
+char *stpcpy(char *dest, const char *src)
+{
+    while(*src)
+		*dest++ = *src++;
+	return(dest);
+}
+
 // ==================================================
 /// @brief Reverse a string in place
 ///  Example: abcdef -> fedcba

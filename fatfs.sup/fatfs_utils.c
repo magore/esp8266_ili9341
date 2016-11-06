@@ -60,6 +60,7 @@ void fatfs_help( void )
 	"mmc_init\n"
 	"mmc_test\n"
 	"ls dir\n"
+	"uls dir\n"
 #ifdef FATFS_UTILS_FULL
 	"mkdir str\n"
 	"mkfs\n"
@@ -68,6 +69,7 @@ void fatfs_help( void )
 	"status str\n"
 #ifdef FATFS_UTILS_FULL
 	"stat str\n"
+	"ustat str\n"
 	"rm str\n"
 	"rmdir str\n"
 	"rename file1 file2\n"
@@ -164,14 +166,109 @@ void fatfs_ls(char *ptr)
         }
         fatfs_filinfo_list(&fno);
 #ifdef ESP8266
-            optimistic_yield(1000);
-            wdt_reset();
+		optimistic_yield(1000);
+		wdt_reset();
 #endif
     }
     printf("%4u File(s),%10lu bytes total\n%4u Dir(s)", s1, p1, s2);
     if (f_getfree(ptr, (DWORD*)&p1, &fs) == FR_OK)
         printf(", %10luK bytes free\n", p1 * fs->csize / 2);
 }
+
+ls_info(char *name, int verbose)
+{
+	int i;
+    struct stat sp;
+	uint16_t mask;
+	char *cm = "rwx";
+	char attr[12], *p;
+
+
+	if(!verbose)
+	{
+		printf("%s\n",name);
+		return;
+	}
+
+    if(stat(name, &sp) == -1) 
+	{
+        printf("can not stat: %s\n", name);
+        return(0);
+	}
+
+
+	p = attr;
+    if(S_ISDIR(sp.st_mode))
+        *p++ = 'd';
+	else
+        *p++ = '-';
+
+	mask = 4 << 6;
+	for(i=0;i<9;++i)
+	{
+		// User
+		if( sp.st_mode & mask)
+			*p++ = cm[ i % 3];
+		else
+			*p++ = '-';
+		mask >>= 1;
+	}
+	*p = 0;
+
+	printf("%s none none %12ld %s %s\n",
+		attr, 
+        (long) sp.st_size, 
+        mctime((time_t)sp.st_mtime),
+        basename(name));
+}
+
+void ls(char *path, int verbose)
+{
+	struct stat st;
+	DIR *dirp;
+	dirent_t *de;
+	char name[MAX_NAME_LEN+1];
+
+    printf("Listing:[%s]\n",path);
+
+	if (stat(path, &st)) 
+	{ 
+		printf("ls: cannot stat [%s]\n", path); 
+		return; 
+	}
+
+	switch (st.st_mode & S_IFMT) 
+	{
+		case S_IFREG:
+			ls_info(path,verbose);
+			break;
+		case S_IFDIR:
+			dirp = opendir(path);
+			if(!dirp)
+			{
+				printf("opendir failed\n");
+				return;
+			}
+			while (de = readdir(dirp)) 
+			{
+				if(de->d_name[0] == 0)
+					break;
+
+				// FIXME neeed beetter string length tests here
+				strncpy(name,path,MAX_NAME_LEN);
+				strcat(name,"/");
+				strcat(name,de->d_name);
+				ls_info(name,verbose);
+#ifdef ESP8266
+				optimistic_yield(1000);
+				wdt_reset();
+#endif
+			}
+			closedir(dirp);
+			break;
+	  }
+}
+
 
 #ifdef FATFS_UTILS_FULL
 /// @brief Rename a file
@@ -528,6 +625,22 @@ int fatfs_tests(char *str)
         ptr += len;
 		ptr = get_token(ptr, name1, 126);
         fatfs_ls(name1);
+        return(1);
+    }
+    else if ((len = token(ptr,"uls")) )
+    {
+        ptr += len;
+		ptr = get_token(ptr, name1, 126);
+        ls(name1,1);
+        return(1);
+    }
+    else if ((len = token(ptr,"ustat")) )
+    {
+		struct stat p;	
+        ptr += len;
+		ptr = get_token(ptr, name1, 126);
+		stat(name1, &p);                        // POSIX test
+		dump_stat(&p);
         return(1);
     }
     else if ((len = token(ptr,"cat")) )

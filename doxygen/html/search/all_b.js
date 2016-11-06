@@ -39,6 +39,8 @@ var searchData=
   ['loop_5ftask_5fpriority',['LOOP_TASK_PRIORITY',['../user__task_8c.html#a61d0ab51c5d6bf65b8d4bec06352bfd8',1,'user_task.c']]],
   ['loop_5fwrapper',['loop_wrapper',['../user__task_8c.html#a6d42952a725206506581b013ced1810c',1,'loop_wrapper():&#160;user_task.c'],['../user__task_8h.html#a1972e93cc265b40cff77fa574d8715e1',1,'loop_wrapper(void):&#160;user_task.c']]],
   ['low',['low',['../structfreq__t.html#a05c64bd7de3b2d127f9c5b1850507220',1,'freq_t']]],
+  ['ls',['ls',['../fatfs__utils_8c.html#ab7423b7d7ebf9fcf53c2f44b135827dd',1,'fatfs_utils.c']]],
+  ['ls_5finfo',['ls_info',['../fatfs__utils_8c.html#ace2bc18afbbd4754435781529d41b159',1,'fatfs_utils.c']]],
   ['lseek',['lseek',['../posix_8c.html#ae4ea1b12797e3ba021a1af3cb4ba17bd',1,'lseek(int fileno, size_t position, int whence):&#160;posix.c'],['../posix_8h.html#ae4ea1b12797e3ba021a1af3cb4ba17bd',1,'lseek(int fileno, size_t position, int whence):&#160;posix.c']]],
   ['lstat',['lstat',['../posix_8h.html#ae730c85752284268b39560df693cb207',1,'posix.h']]]
 ];

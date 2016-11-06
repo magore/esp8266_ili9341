@@ -9,7 +9,7 @@ var searchData=
   ['read_5fflash8',['read_flash8',['../flash_8c.html#a8820bdd8a76740aaafe0506ff6040002',1,'read_flash8(uint8_t *p):&#160;flash.c'],['../flash_8h.html#a8820bdd8a76740aaafe0506ff6040002',1,'read_flash8(uint8_t *p):&#160;flash.c']]],
   ['read_5fflash_5fptr',['read_flash_ptr',['../flash_8c.html#ab39a1de20d7b9b1da1fb85100c0cbb10',1,'read_flash_ptr(uint8_t *p):&#160;flash.c'],['../flash_8h.html#ab39a1de20d7b9b1da1fb85100c0cbb10',1,'read_flash_ptr(uint8_t *p):&#160;flash.c']]],
   ['readbdf',['ReadBdf',['../bdffontutil_8c.html#a49c59fe21a56b90ad6f8bcc5549e3dce',1,'ReadBdf(char *name, _font *font, int lower, int upper):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a49c59fe21a56b90ad6f8bcc5549e3dce',1,'ReadBdf(char *name, _font *font, int lower, int upper):&#160;bdffontutil.c']]],
-  ['readdir',['readdir',['../posix_8c.html#a5eb6e59d6c2fbfb27e32706dfc112dff',1,'posix.c']]],
+  ['readdir',['readdir',['../posix_8c.html#a1508fedaef509d2976b43300306d1400',1,'readdir(DIR *dirp):&#160;posix.c'],['../posix_8h.html#a58257faf8b13b3f14558613c632b2373',1,'readdir(DIR *dirp):&#160;posix.c']]],
   ['remove_5fchain',['remove_chain',['../ff_8c.html#a9d9d4fa5f45110afd3b5d784c5f8a819',1,'ff.c']]],
   ['remove_5fquotes',['remove_quotes',['../bdffontutil_8c.html#a907e53e4a090147ec953b18f0e1b7915',1,'remove_quotes(char *str):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a907e53e4a090147ec953b18f0e1b7915',1,'remove_quotes(char *str):&#160;bdffontutil.c']]],
   ['rename',['rename',['../posix_8c.html#ada8cc8f9394cf54db8f338838a9fa7ce',1,'rename(const char *oldpath, const char *newpath):&#160;posix.c'],['../posix_8h.html#ada8cc8f9394cf54db8f338838a9fa7ce',1,'rename(const char *oldpath, const char *newpath):&#160;posix.c']]],

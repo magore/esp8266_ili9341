@@ -40,7 +40,7 @@ var searchData=
   ['clock_5ftic_5fus',['CLOCK_TIC_US',['../timer_8h.html#a1aa52cddadb40365ae68d2c45600d684',1,'timer.h']]],
   ['clockid_5ft',['clockid_t',['../time_8h.html#afeece078c6706f33383bf11bbf584518',1,'clockid_t():&#160;time.h'],['../timer_8h.html#afeece078c6706f33383bf11bbf584518',1,'clockid_t():&#160;timer.h']]],
   ['close',['close',['../posix_8c.html#a48dc1df1627501d3faed4bf1f9801759',1,'close(int fileno):&#160;posix.c'],['../posix_8h.html#a48dc1df1627501d3faed4bf1f9801759',1,'close(int fileno):&#160;posix.c']]],
-  ['closedir',['closedir',['../posix_8c.html#aaeac2b41e8c2c3a5f91c9bd511a8c0a6',1,'posix.c']]],
+  ['closedir',['closedir',['../posix_8c.html#aaeac2b41e8c2c3a5f91c9bd511a8c0a6',1,'closedir(DIR *dirp):&#160;posix.c'],['../posix_8h.html#aaeac2b41e8c2c3a5f91c9bd511a8c0a6',1,'closedir(DIR *dirp):&#160;posix.c']]],
   ['clrerror',['clrerror',['../posix_8c.html#a03baa4d851a2a855656081a4b7c8d72c',1,'clrerror(FILE *stream):&#160;posix.c'],['../posix_8h.html#a03baa4d851a2a855656081a4b7c8d72c',1,'clrerror(FILE *stream):&#160;posix.c']]],
   ['cltbl',['cltbl',['../structFIL.html#a28a30613d48cefcf9efbd334cd861fc8',1,'FIL']]],
   ['clust',['clust',['../structFIL.html#aa41312aba551b9a6d1c9d3c8c7d2734b',1,'FIL::clust()'],['../structDIR.html#acfbb8ba2d6e73b6f999ceffd1857c190',1,'DIR::clust()']]],

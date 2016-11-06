@@ -1,11 +1,10 @@
 var searchData=
 [
   ['d_5fino',['d_ino',['../structdirent.html#aaea0878aa0629630d94e180f5dbc22c5',1,'dirent']]],
-  ['d_5fname',['d_name',['../structdirent.html#ae52d525c8057131d7f1155fe7039910d',1,'dirent::d_name()'],['../struct__dirent.html#acbe4fc0cff2822a45781102977d52d74',1,'_dirent::d_name()']]],
-  ['d_5fnamlen',['d_namlen',['../struct__dirent.html#a99e2d7745c4357973a7cd38021582bcb',1,'_dirent']]],
+  ['d_5fname',['d_name',['../structdirent.html#ae61380f3ccbc6c32e8650d7bce76197b',1,'dirent']]],
   ['d_5foff',['d_off',['../structdirent.html#af812e4ed54eeb48e843efa6fb9a5465f',1,'dirent']]],
   ['d_5freclen',['d_reclen',['../structdirent.html#a90dc47836e8ef510437317876368859e',1,'dirent']]],
-  ['d_5ftype',['d_type',['../structdirent.html#adca3b20d5a245f0d8b9f2aa84844b1ff',1,'dirent::d_type()'],['../struct__dirent.html#a7eb055fe66f190ee59050c42b8cabb01',1,'_dirent::d_type()']]],
+  ['d_5ftype',['d_type',['../structdirent.html#adca3b20d5a245f0d8b9f2aa84844b1ff',1,'dirent']]],
   ['data',['data',['../structSDIO__CTRL.html#ab04c9adb4d3027a14925fb30b469f0c0',1,'SDIO_CTRL']]],
   ['database',['database',['../structFATFS.html#a5b6c0bc2e9fd2ae8ef714210a74a2d5d',1,'FATFS']]],
   ['dbufrfdiv',['DBufRFDiv',['../structr2__t.html#a14726d1cf923d8e12279cd3038fa0540',1,'r2_t']]],
