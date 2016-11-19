@@ -106,5 +106,5 @@ var searchData=
   ['buffer',['buffer',['../struct__printf__t.html#ad35884151d0be6667caafad8caacc76f',1,'_printf_t']]],
   ['buffer_5fsize',['BUFFER_SIZE',['../web_8c.html#a6b20d41d6252e9871430c242cb1a56e7',1,'web.c']]],
   ['byte',['BYTE',['../integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58',1,'integer.h']]],
-  ['bytes',['Bytes',['../struct__font.html#a13b0b0e4e91f4d663ba4c3c11bfbda8a',1,'_font::Bytes()'],['../structqueue__t.html#a58398d4ee60bc90ffba2bc3488fe185b',1,'queue_t::bytes()'],['../unionuint32__t__bytes.html#a50aeebe398ee3b740421f1cc8d8583b8',1,'uint32_t_bytes::bytes()']]]
+  ['bytes',['bytes',['../structqueue__t.html#a58398d4ee60bc90ffba2bc3488fe185b',1,'queue_t::bytes()'],['../unionuint32__t__bytes.html#a50aeebe398ee3b740421f1cc8d8583b8',1,'uint32_t_bytes::bytes()'],['../struct__font.html#a13b0b0e4e91f4d663ba4c3c11bfbda8a',1,'_font::Bytes()']]]
 ];

@@ -554,7 +554,7 @@ clean:
 	rm -f send
 	rm -f map.txt
 	rm -f testflash
-	#rm -rf doxygen
+	rm -rf doxygen/*
 
 $(foreach bdir,$(BUILD_DIR),$(eval $(call compile-objects,$(bdir))))
 

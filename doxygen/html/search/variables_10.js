@@ -35,6 +35,7 @@ var searchData=
   ['stack_5fend',['stack_end',['../structcont__.html#ab6e542a519497e515e2d3a62030a1f61',1,'cont_']]],
   ['stack_5fguard1',['stack_guard1',['../structcont__.html#a17c9f5d8bc954cc0381bdbe63d350048',1,'cont_']]],
   ['stack_5fguard2',['stack_guard2',['../structcont__.html#af9e24c89ac69a95ae78a6c7f8a237da0',1,'cont_']]],
+  ['start',['start',['../structdst__t.html#af1868fb321db3637664e3a3bf11cf56b',1,'dst_t']]],
   ['stat',['stat',['../struct__FDID.html#a1a2ff09f2ef172772f4e7312070be708',1,'_FDID::stat()'],['../mmc_8c.html#a014a1e17b21e3c0b80fe0afc0106976f',1,'Stat():&#160;mmc.c'],['../mmc__hal_8c.html#a5e05b0c3f7ba56fa9c23be08c497eb9f',1,'Stat():&#160;mmc.c']]],
   ['stationconfig',['StationConfig',['../network_8c.html#a63cab1cdb68d6495494e1967e0f909cf',1,'network.c']]],
   ['struct_5fname',['STRUCT_NAME',['../struct__fontinfo.html#a861ecb4b5f190ccd1e71b38270240f86',1,'_fontinfo']]],

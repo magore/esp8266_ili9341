@@ -1973,6 +1973,8 @@ int rewrite_cgi_token(rwbuf_t *p, char *src)
 		gettimeofday( &tv, &tz );
 
 		secs = tv.tv_sec;
+		if( is_dst(secs) )
+			tz.tz_dsttime = 1;
 
 		utc = ctime(&secs);
 	

@@ -3,7 +3,6 @@ var searchData=
   ['_5f_5fattribute_5f_5f',['__attribute__',['../user__task_8c.html#ade20ba3eb51f42d2b2deb917303c9a5e',1,'user_task.c']]],
   ['_5f_5fclock',['__clock',['../time_8c.html#a335451dd774ecb4b696d501b4c1b6f30',1,'__clock():&#160;timer.c'],['../time_8h.html#a335451dd774ecb4b696d501b4c1b6f30',1,'__clock():&#160;timer.c'],['../timer_8c.html#a335451dd774ecb4b696d501b4c1b6f30',1,'__clock():&#160;timer.c']]],
   ['_5f_5fclock_5felapsed',['__clock_elapsed',['../timer_8c.html#a11d81711e20909cf489fb56cbbb81558',1,'timer.c']]],
-  ['_5f_5fctime_5fbuf',['__ctime_buf',['../time_8c.html#ae838cadfe9ddcf7c031a644cc153fe1e',1,'time.c']]],
   ['_5f_5fdays',['__days',['../time_8c.html#a51f8059d5a58b35f401245c1f2cabc2d',1,'time.c']]],
   ['_5f_5fdays_5fsum',['__days_sum',['../time_8c.html#acab85c85e1497507b279edab985ac1e5',1,'time.c']]],
   ['_5f_5ffile',['__file',['../struct____file.html',1,'']]],

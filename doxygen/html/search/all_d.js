@@ -17,6 +17,7 @@ var searchData=
   ['nlink_5ft',['nlink_t',['../posix_8h.html#a9e3c03dae15b90102eb1770dd95adadc',1,'posix.h']]],
   ['no_5fparity',['NO_PARITY',['../uart_8h.html#acb045cca45821ff8ef1e749914313198a4bffe960d7eae89d5b85412e4edfd453',1,'uart.h']]],
   ['noisespurmode',['NoiseSpurMode',['../structr2__t.html#a40bc8b8cb7d9e77e57abd0e8be4f01af',1,'r2_t']]],
+  ['normalize',['normalize',['../time_8c.html#a3b1394c042dadbb7086e4facb6c87186',1,'normalize(tm_t *t, int normalize_to_timezone):&#160;time.c'],['../time_8h.html#a3b1394c042dadbb7086e4facb6c87186',1,'normalize(tm_t *t, int normalize_to_timezone):&#160;time.c']]],
   ['normaltask',['NormalTask',['../user__main_8c.html#ab1856f0b47db20c7a57f0ad84c0852e2',1,'user_main.c']]],
   ['normaltaskprio',['NormalTaskPrio',['../user__main_8c.html#ad4b201d4a81874b691535905a1087fe0',1,'user_main.c']]],
   ['normaltaskqueue',['NormalTaskQueue',['../user__main_8c.html#abb72a19bfadab64df56d11000f9ef0fc',1,'user_main.c']]],

@@ -2,7 +2,6 @@ var searchData=
 [
   ['_5f_5fclock',['__clock',['../time_8c.html#a335451dd774ecb4b696d501b4c1b6f30',1,'__clock():&#160;timer.c'],['../time_8h.html#a335451dd774ecb4b696d501b4c1b6f30',1,'__clock():&#160;timer.c'],['../timer_8c.html#a335451dd774ecb4b696d501b4c1b6f30',1,'__clock():&#160;timer.c']]],
   ['_5f_5fclock_5felapsed',['__clock_elapsed',['../timer_8c.html#a11d81711e20909cf489fb56cbbb81558',1,'timer.c']]],
-  ['_5f_5fctime_5fbuf',['__ctime_buf',['../time_8c.html#ae838cadfe9ddcf7c031a644cc153fe1e',1,'time.c']]],
   ['_5f_5fdays',['__days',['../time_8c.html#a51f8059d5a58b35f401245c1f2cabc2d',1,'time.c']]],
   ['_5f_5fdays_5fsum',['__days_sum',['../time_8c.html#acab85c85e1497507b279edab985ac1e5',1,'time.c']]],
   ['_5f_5fiob',['__iob',['../posix_8c.html#aae2f027325f7e73c3aa5e7dc990bd90d',1,'__iob():&#160;posix.c'],['../posix_8h.html#aae2f027325f7e73c3aa5e7dc990bd90d',1,'__iob():&#160;posix.c']]],

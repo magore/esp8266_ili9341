@@ -52,6 +52,14 @@ struct tm
     int32_t tm_gmtoff; /*<  GMT offset in seconds */
 };  
 
+/**
+ tm_isdst value notes
+1 DST in effect - add an hour
+0 DST not in effect
+-1 DST Unknown status
+*/
+
+
 ///@brief POSIX struct tm typedef.
 typedef struct tm tm_t;
 
@@ -62,6 +70,7 @@ struct timeval
     time_t       tv_sec;   /*< seconds */
     uint32_t     tv_usec;  /*< microseconds */
 };
+
 ///@brief POSIX timeval typedef.
 typedef struct timeval tv_t;
 
@@ -71,6 +80,7 @@ struct timezone
     int tz_minuteswest;  /*< minutes west of Greenwich */
     int tz_dsttime;      /*< type of DST correction */
 };
+
 ///@brief POSIX timezone typedef.
 typedef struct timezone tz_t;
 
@@ -80,6 +90,7 @@ struct timespec
     time_t   tv_sec;   /*< seconds */
     long     tv_nsec;  /*< nanoseconds */
 };
+
 ///@brief POSIX timespec typedef.
 typedef struct timespec ts_t;
 
@@ -89,21 +100,34 @@ extern volatile ts_t __clock;
 /// @brief  System Time Zone
 extern tz_t __tzone;
 
+
+///@brief  DST structure
+typedef struct {
+    time_t start;	///@brief Start of local DST in GMT
+    time_t end;		///@brief End of local DST in GMT
+    time_t epoch;	///@brief epoch used to determine the year of DST start and end caluclulation - for caching
+} dst_t;
+
+
+
 /* lib/time.c */
 MEMSPACE char *tm_wday_to_ascii ( int i );
 MEMSPACE char *tm_mon_to_ascii ( int i );
-MEMSPACE int time_to_tm ( time_t epoch , int32_t offset , tm_t *t );
+MEMSPACE int finddayofweek ( int year , int month , int day );
+MEMSPACE int Days_Per_Month ( int month , int year );
+MEMSPACE time_t time_to_tm ( time_t epoch , int32_t offset , tm_t *t );
 MEMSPACE time_t timegm ( tm_t *t );
 MEMSPACE char *asctime_r ( tm_t *t , char *buf );
 MEMSPACE char *asctime ( tm_t *t );
 MEMSPACE char *ctime_r ( time_t *t , char *buf );
 MEMSPACE char *ctime ( time_t *tp );
 MEMSPACE char *ctime_gm ( time_t *tp );
-MEMSPACE tm_t *gmtime_r ( time_t *tp , tm_t *result );
+MEMSPACE tm_t *gmtime_r ( time_t *t , tm_t *result );
 MEMSPACE tm_t *gmtime ( time_t *tp );
 MEMSPACE tm_t *localtime_r ( time_t *t , tm_t *result );
 MEMSPACE tm_t *localtime ( time_t *tp );
 MEMSPACE time_t mktime ( tm_t *t );
+MEMSPACE time_t normalize ( tm_t *t , int normalize_to_timezone );
 MEMSPACE int gettimezone ( tz_t *tz );
 MEMSPACE int settimezone ( tz_t *tz );
 MEMSPACE int gettimeofday ( tv_t *tv , tz_t *tz );
@@ -112,5 +136,11 @@ MEMSPACE int settimeofday ( tv_t *tv , tz_t *tz );
 MEMSPACE void clock_set ( uint32_t seconds , uint32_t us );
 MEMSPACE int setdate ( void );
 MEMSPACE int setdate_r ( char *buf );
+MEMSPACE time_t find_dst ( int dst , time_t epoch , int year , int month , int weekno , int dayno , int hour );
+MEMSPACE void set_dst ( time_t epoch );
+MEMSPACE int is_dst ( time_t epoch );
+MEMSPACE void print_dst ( void );
+MEMSPACE void print_dst_gmt ( void );
+
 
 #endif

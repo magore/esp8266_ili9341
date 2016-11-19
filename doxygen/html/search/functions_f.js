@@ -13,6 +13,8 @@ var searchData=
   ['posix_5ffopen_5fmodes_5fto_5fopen',['posix_fopen_modes_to_open',['../posix_8c.html#a607feb06d296e0ff60d5a19538bd17fc',1,'posix_fopen_modes_to_open(const char *mode):&#160;posix.c'],['../posix_8h.html#a607feb06d296e0ff60d5a19538bd17fc',1,'posix_fopen_modes_to_open(const char *mode):&#160;posix.c']]],
   ['power_5foff',['power_off',['../mmc_8c.html#aeb5620f777b0f4aa1d4f0baed62998a9',1,'mmc.c']]],
   ['power_5fon',['power_on',['../mmc_8c.html#aa2280c6de741431ee6eaecc9a3254874',1,'mmc.c']]],
+  ['print_5fdst',['print_dst',['../time_8c.html#a4ccd9fbdf3321e8f5b7d4f13c1a7db71',1,'print_dst():&#160;time.c'],['../time_8h.html#a4ad16382ead0709235ab5ea871c3d2be',1,'print_dst(void):&#160;time.c']]],
+  ['print_5fdst_5fgmt',['print_dst_gmt',['../time_8c.html#a0a0d74ae196751888b6c149dc8f1ed75',1,'print_dst_gmt():&#160;time.c'],['../time_8h.html#a3c227da686cc61a0543ffd12c673c895',1,'print_dst_gmt(void):&#160;time.c']]],
   ['printf',['printf',['../mathio_8h.html#a98631211a4a8aee62f572375d5b637be',1,'mathio.h']]],
   ['printram',['PrintRam',['../system_8c.html#afed748d7fa3137898a35714f6bb05e4e',1,'PrintRam():&#160;system.c'],['../system_8h.html#a685d93545b12079d00ffc678d3611333',1,'PrintRam(void):&#160;system.c']]],
   ['printxyz',['PrintXYZ',['../cordic2c_8c.html#afc93093d0da5da783668ca27f859a2a7',1,'cordic2c.c']]],

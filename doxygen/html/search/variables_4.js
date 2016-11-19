@@ -16,5 +16,6 @@ var searchData=
   ['drv',['drv',['../structFATFS.html#a6a791560e2687e8b1569bfce61208d2d',1,'FATFS']]],
   ['dscale',['dscale',['../user__main_8c.html#a5a7fc18a07b95d683fd3b5d82528953b',1,'user_main.c']]],
   ['dscale_5finc',['dscale_inc',['../user__main_8c.html#af78937f9d73b46da7a6fe2c35cf6d682',1,'user_main.c']]],
-  ['dscale_5fmax',['dscale_max',['../user__main_8c.html#ae329b479eb10cea05f428899d63b089a',1,'user_main.c']]]
+  ['dscale_5fmax',['dscale_max',['../user__main_8c.html#ae329b479eb10cea05f428899d63b089a',1,'user_main.c']]],
+  ['dst',['dst',['../time_8c.html#a5a388b2bb2a2a9914c7d68ed3d09f7e9',1,'time.c']]]
 ];

@@ -12,6 +12,7 @@ var searchData=
   ['ipv4_5f2str',['ipv4_2str',['../network_8c.html#a462d02d06dadbf41aa44824e310aaaf0',1,'ipv4_2str(uint32_t ip):&#160;network.c'],['../network_8h.html#a462d02d06dadbf41aa44824e310aaaf0',1,'ipv4_2str(uint32_t ip):&#160;network.c']]],
   ['is_5fcgitoken',['is_cgitoken',['../web_8c.html#a048ebac3422330a50ba449d817ff49d8',1,'is_cgitoken(char *str):&#160;web.c'],['../web_8h.html#a048ebac3422330a50ba449d817ff49d8',1,'is_cgitoken(char *str):&#160;web.c']]],
   ['is_5fcgitoken_5fchar',['is_cgitoken_char',['../web_8c.html#a4abb48d4494fe24bdb3966a30a380f94',1,'is_cgitoken_char(int c):&#160;web.c'],['../web_8h.html#a4abb48d4494fe24bdb3966a30a380f94',1,'is_cgitoken_char(int c):&#160;web.c']]],
+  ['is_5fdst',['is_dst',['../time_8c.html#a97ed766c965cf60b39b74a22077caf51',1,'is_dst(time_t epoch):&#160;time.c'],['../time_8h.html#a97ed766c965cf60b39b74a22077caf51',1,'is_dst(time_t epoch):&#160;time.c']]],
   ['is_5fheader',['is_header',['../web_8c.html#aac0e14d0751e24b7143060600fe7822a',1,'is_header(char *str, char **p):&#160;web.c'],['../web_8h.html#aac0e14d0751e24b7143060600fe7822a',1,'is_header(char *str, char **p):&#160;web.c']]],
   ['is_5fleap',['IS_Leap',['../time_8c.html#a7a6b834817c8071e5e31d3693102a2b0',1,'time.c']]],
   ['isatty',['isatty',['../posix_8c.html#a31986cce890109c211ccb14151aafd0e',1,'isatty(int fileno):&#160;posix.c'],['../posix_8h.html#a31986cce890109c211ccb14151aafd0e',1,'isatty(int fileno):&#160;posix.c']]],

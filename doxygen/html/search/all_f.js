@@ -31,6 +31,8 @@ var searchData=
   ['power_5fon',['power_on',['../mmc_8c.html#aa2280c6de741431ee6eaecc9a3254874',1,'mmc.c']]],
   ['powerdown',['PowerDown',['../structr2__t.html#a3aadc869234fb281b178032be276ca00',1,'r2_t']]],
   ['prescaler',['Prescaler',['../structr1__t.html#a9ee672a7fdd3a2d60591d43557feb390',1,'r1_t']]],
+  ['print_5fdst',['print_dst',['../time_8c.html#a4ccd9fbdf3321e8f5b7d4f13c1a7db71',1,'print_dst():&#160;time.c'],['../time_8h.html#a4ad16382ead0709235ab5ea871c3d2be',1,'print_dst(void):&#160;time.c']]],
+  ['print_5fdst_5fgmt',['print_dst_gmt',['../time_8c.html#a0a0d74ae196751888b6c149dc8f1ed75',1,'print_dst_gmt():&#160;time.c'],['../time_8h.html#a3c227da686cc61a0543ffd12c673c895',1,'print_dst_gmt(void):&#160;time.c']]],
   ['printf',['printf',['../mathio_8h.html#a98631211a4a8aee62f572375d5b637be',1,'mathio.h']]],
   ['printf_2ec',['printf.c',['../printf_8c.html',1,'']]],
   ['printf_5ft',['printf_t',['../mathio_8h.html#a1efdee46bf8e5af45e76e461e8db9c09',1,'mathio.h']]],

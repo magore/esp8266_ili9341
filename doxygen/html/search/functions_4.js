@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['days_5fper_5fmonth',['Days_Per_Month',['../time_8c.html#ac8aa3e3bf89628eb458ec88350b8033b',1,'Days_Per_Month(int month, int year):&#160;time.c'],['../time_8h.html#ac8aa3e3bf89628eb458ec88350b8033b',1,'Days_Per_Month(int month, int year):&#160;time.c']]],
   ['days_5fper_5fyear',['Days_Per_Year',['../time_8c.html#ad4f4473fe0527085b45e8c354faeee7b',1,'time.c']]],
   ['db_5fcalloc',['db_calloc',['../bdffontutil_8c.html#a772bc2ec9bca317fb84673f5e9fab1d3',1,'db_calloc(size_t size):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a772bc2ec9bca317fb84673f5e9fab1d3',1,'db_calloc(size_t size):&#160;bdffontutil.c']]],
   ['db_5ffree',['db_free',['../bdffontutil_8c.html#a6042d0098b72b215bcef2d21e803e51d',1,'db_free(void *p):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a6042d0098b72b215bcef2d21e803e51d',1,'db_free(void *p):&#160;bdffontutil.c']]],

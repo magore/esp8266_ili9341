@@ -162,6 +162,7 @@ void ms_init()
 }
 
 
+// FIXME we need to add time zone and timezone processing rules
 int ntp_init = 0;
 void ntp_setup(void)
 {
@@ -201,41 +202,63 @@ void ntp_setup(void)
 		}
 #endif
 
-        sntp_init();
-        os_free(addr);
-		ntp_init = 1;
-        printf("NTP:1\n");
+        if( sntp_set_timezone(0) )
+		{
+			printf("NTP: set_timeone OK\n");
+			sntp_init();
+            os_free(addr);
+		    ntp_init = 1;
+            printf("NTP:1\n");
+		}
+		else
+		{
+			printf("NTP: set_timeone Failed\n");
+		}
     }
 
 	if(ntp_init == 1)
 	{
 		// they hard coded it to +8 hours from GMT
-		sec = sntp_get_current_timestamp();
-		if(sec > 10)
+		if( (sec = sntp_get_current_timestamp()) > 10 )
 		{
+			sntp_stop();
 			ntp_init = 2;
 		}
 	}
-    if(ntp_init == 2)
-    {
-		sntp_stop();
+	if(ntp_init == 2)
+	{
+		time_t s;
+
+		tm_t *p;
+
 		printf("NTP:2\n");
 
 		// they return GMT + 8
-        sec = sec - (8UL * 3600UL);
-
-		// we are GMT - 4
-        sec = sec - (4UL * 3600UL);
+        // sec = sec - (8UL * 3600UL);
 
         tv.tv_sec = sec;
+		printf("ntp_init: %s\n", asctime(gmtime(&sec)));
+		printf("ntp_init: %s\n", ctime_gm(&sec));
+
         tv.tv_usec = 0;
-        tz.tz_minuteswest = 0;
+        tz.tz_minuteswest = 300;
+		tz.tz_dsttime = 0;
 
         settimeofday(&tv, &tz);
 
         printf("SEC:%ld\n",sec);
         printf("TIME:%s\n", ctime(&sec));
+		printf("Zone: %d\n", (int) sntp_get_timezone());
 		ntp_init = 3;
+
+		set_dst(tv.tv_sec);
+
+		print_dst_gmt();
+		print_dst();
+
+		p = gmtime(&tv.tv_sec);
+		mktime(p);
+		printf("Localtime: %s\n", asctime(p));
     }
 }
  
