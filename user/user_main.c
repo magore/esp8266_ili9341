@@ -587,6 +587,12 @@ int user_tests(char *str)
 		PrintRam();
         return(1);
 	}
+    else if ((len = token(ptr,"timetest")) )
+    {
+        ptr += len;
+		timetests(ptr,0);
+        return(1);
+	}
 	return(0);
 }
 

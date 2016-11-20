@@ -310,6 +310,8 @@ fputc(int c, FILE *stream)
     }
 }
 
+
+
 ///@brief functions normally defined as macros
 #ifndef IO_MACROS
 /// @brief get a character from stdin
@@ -851,7 +853,6 @@ size_t fwrite(const void *ptr, size_t size, size_t nmemb, FILE *stream)
 
 	return((size_t) ret);
 }
-
 
 
 
@@ -2270,6 +2271,49 @@ int posix_fopen_modes_to_open(const char *mode)
     return(-1);                                   // nvalid mode
 }
 
+/// ====================================================================
+/// ====================================================================
+/// - POSIX fprintf function
+/// ====================================================================
+/// ====================================================================
 
 
+
+/// @brief fprintf character write function
+/// @param[in] *p: printf user buffer
+/// @param[in] ch: character
+/// TODO if fputc fails we might want to also set an error in the *p structure - error in the stream will already be set
+MEMSPACE
+static void _fprintf_putc(struct _printf_t *p, char ch)
+{
+        p->sent++;
+        fputc(ch, (FILE *) p->buffer);
+}
+
+
+/// @brief fprintf function
+///  Example user defined printf function using fputc for I/O
+///  This method allows I/O to devices and strings without typical C++ overhead
+/// @param[in] *fp: FILE stream pointer
+/// @param[in] fmt: printf forat string
+/// @param[in] ...: vararg list or arguments
+/// @return size of printed result
+MEMSPACE
+int
+fprintf(FILE *fp, const char *format, ...)
+{
+    int i;
+    printf_t fn;
+    va_list va;
+
+	fn.put = _fprintf_putc;
+    fn.sent = 0;
+    fn.buffer = (void *) fp;
+
+    va_start(va, format);
+    _printf_fn(&fn, format, va);
+    va_end(va);
+
+    return ((int)fn.sent);
+}
 

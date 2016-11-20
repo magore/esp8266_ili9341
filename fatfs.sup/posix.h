@@ -366,5 +366,10 @@ MEMSPACE FIL *fileno_to_fatfs ( int fileno );
 MEMSPACE int free_file_descriptor ( int fileno );
 MEMSPACE int new_file_descriptor ( void );
 MEMSPACE int posix_fopen_modes_to_open ( const char *mode );
+
+MEMSPACE static void _fprintf_putc(struct _printf_t *p, char ch);
+MEMSPACE int fprintf(FILE *fp, const char *format, ...);
+
+
 // ============================================================================
 #endif                                            //_POSIX_H_

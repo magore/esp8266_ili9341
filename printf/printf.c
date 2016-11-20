@@ -124,7 +124,7 @@ strupper(char *str)
 /// @param[out] *str: string
 /// @param[in] max: maximum length or string
 /// @param[in] prec:  minumum number of digits, 0 padded if needed (can be zero)
-/// @param[in] sign:  2: - or +, 1: -, 0: unsigned
+/// @param[in] sign:  3: ' ' - or -, 2: - or +, 1: - - or '', 0: unsigned
 ///            NOT counted as part of prec length (just like printf)
 /// @return long value
 MEMSPACE 
@@ -150,22 +150,31 @@ int p_itoa(long num, char *str, int max, int prec, int sign)
 		{
 			if((long)num < 0) 	// -
 			{
-				num = -num;
-				sign_ch = '-';
-				++max;
+				if(sign)
+				{
+					num = -num;
+					sign_ch = '-';
+					++max;
+				}
 			}
 			else 				// + or ' '
 			{
 				if(sign == 2)
+				{
 					sign_ch = '+';
-				else
+					++max;
+				}
+				else if(sign == 3)
+				{
 					sign_ch = ' ';
-				++max;
+					++max;
+				}
 			}
 		}
 //printf("itoa: num:%ld, max:%d, prec:%d, sign:%d, sign_ch:%c\n", num, max,prec, sign, sign_ch);
 
 		// Convert LSB to MSB
+		// FIXME leading zeros
 		ind  = 0;
 		while(ind < max)
         {
@@ -290,7 +299,7 @@ int p_ftoa(double val, char *str, int intprec, int prec, int sign)
 		{
 			if(sign == 2)
 				*str++ = '+';
-			if(sign == 1)
+			if(sign == 3)
 				*str++ = ' ';
 		}
 	}
@@ -387,7 +396,7 @@ int p_etoa(double x,char *str, int prec, int sign)
 		{
 			if(sign == 2)
 				*str++ = '+' ;
-			else if(sign == 1)	// FIXME
+			else if(sign == 3)	// FIXME
 				*str++ = ' ' ;
 		}
         if ( x > scale ) 
@@ -554,7 +563,7 @@ void _printf_fn(printf_t *fn, __memx const char *fmt, va_list va)
 		precf = 0;	// prec was defined
 		width = 0;	// padded width
 		widthf = 0;	// width was defined
-		sign = 0;	// 0 unsigned, 1 signed or space, 2 leading + or minus
+		sign = 0;	// 0 unsigned, 1 signed, 2 + or -, 3 space
 		intprec = 0;// integer number of digits
 
 		// ['-'][' '|'+']
@@ -567,10 +576,10 @@ void _printf_fn(printf_t *fn, __memx const char *fmt, va_list va)
 		{
 			if(*fmt == '-') 
 				left = 1;
-			if(*fmt == ' ') 
-				sign = 1;
 			if(*fmt == '+') 
 				sign = 2;
+			if(*fmt == ' ') 
+				sign = 3;
 			fmt++;
 		}
 
@@ -612,7 +621,6 @@ void _printf_fn(printf_t *fn, __memx const char *fmt, va_list va)
 
 		spec = *fmt;
 
-
 		// process integer arguments
 		switch(spec) 
 		{
@@ -625,29 +633,40 @@ void _printf_fn(printf_t *fn, __memx const char *fmt, va_list va)
 			case 'X':
 			case 'u':
 			case 'U':
-					sign = 0;
+			case 'p':
+					sign = 0; //upsigned
 			case 'D':
 			case 'd':
-			case 'p':
-				if(width && !prec)
-				{
-					if(fill == '0')
-					{
-						// always convert prec to width
-
-						prec = width;
-						width=0;
-						if(sign)
-						{
-							if(prec)
-								--prec;
-						}
-					}
-				}
 				if(size == 1)
 					num = va_arg(va, int);
 				else if(size == 2)
 					num = va_arg(va, long);
+
+				if(spec == 'd' || spec =='D')
+				{
+					if(!sign)
+						sign = 1;
+				}
+				if(width && !prec)
+				{
+					//FIXME if num < 0
+
+					if(fill == '0')
+					{
+						// always convert prec to width
+						prec = width;
+						width=0;
+
+
+						//FIXME this should be in the conversion code
+						//FIXME values of sign ?
+						if(sign)
+						{
+							if(prec && num < 0 || sign == 2 || sign == 3)
+								--prec;
+						}
+					}
+				}
 				++fmt;
 				break;
 #ifdef FLOATIO

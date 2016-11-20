@@ -1,4 +1,6 @@
+#ifdef USER_CODFIG
 #include "user_config.h"
+#endif
 
 #include <stdint.h>
 #include <stdarg.h>
