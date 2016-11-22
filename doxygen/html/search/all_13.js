@@ -13,6 +13,7 @@ var searchData=
   ['terminus_5fbold_5fr_5fx16_5fy32_5fspecs',['Terminus_Bold_R_X16_Y32_specs',['../fonts_8h.html#aa9b0323e5914c987562497bed5650794',1,'fonts.h']]],
   ['test',['TEST',['../earth2wireframe_8c.html#ab946e2e7f7679350627acfded8e2658b',1,'earth2wireframe.c']]],
   ['test_5fprintf_2ec',['test_printf.c',['../test__printf_8c.html',1,'']]],
+  ['test_5ftypes',['test_types',['../user__main_8c.html#ab4b988c39b8bd19b13221ca57e721f96',1,'user_main.c']]],
   ['testflash_2ec',['testflash.c',['../testflash_8c.html',1,'']]],
   ['tft',['tft',['../ili9341_8c.html#aa55d6901951c7fe057e8d32477b5e122',1,'tft():&#160;ili9341.c'],['../ili9341__hal_8c.html#aa55d6901951c7fe057e8d32477b5e122',1,'tft():&#160;ili9341.c']]],
   ['tft_5f565torgb',['tft_565toRGB',['../ili9341_8c.html#aecac98906474a88c3017fc3761328506',1,'tft_565toRGB(uint16_t color, uint8_t *r, uint8_t *g, uint8_t *b):&#160;ili9341.c'],['../ili9341_8h.html#aecac98906474a88c3017fc3761328506',1,'tft_565toRGB(uint16_t color, uint8_t *r, uint8_t *g, uint8_t *b):&#160;ili9341.c']]],

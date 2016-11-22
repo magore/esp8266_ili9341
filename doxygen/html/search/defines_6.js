@@ -47,6 +47,10 @@ var searchData=
   ['fsi_5fleadsig',['FSI_LeadSig',['../ff_8c.html#a318e58c1966aba52b90ab98dcb649883',1,'ff.c']]],
   ['fsi_5fnxt_5ffree',['FSI_Nxt_Free',['../ff_8c.html#a320700cedf300c9b418edf56e5e6b086',1,'ff.c']]],
   ['fsi_5fstrucsig',['FSI_StrucSig',['../ff_8c.html#a3bac0e6ff5907873030db1d0a7c4ebef',1,'ff.c']]],
+  ['func_5fgpio11',['FUNC_GPIO11',['../io_8h.html#adf6695daf9f27feae3c703dfa227f7eb',1,'io.h']]],
+  ['func_5fgpio6',['FUNC_GPIO6',['../io_8h.html#aedbe7c3049b9c807dec94bb7251bc5e4',1,'io.h']]],
+  ['func_5fgpio7',['FUNC_GPIO7',['../io_8h.html#ab7e34079f3896ead83254c115e9cdd55',1,'io.h']]],
+  ['func_5fgpio8',['FUNC_GPIO8',['../io_8h.html#a8512b64bd5d2f56f8328609d903373b4',1,'io.h']]],
   ['func_5fu0rxd',['FUNC_U0RXD',['../uart_8h.html#acb983a46a8eb86eae3df40a82eccaed6',1,'uart.h']]],
   ['func_5fu0txd',['FUNC_U0TXD',['../uart_8h.html#ae18547ea6266e7165ecbe4f07ac2bbf1',1,'uart.h']]]
 ];

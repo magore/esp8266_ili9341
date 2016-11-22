@@ -387,6 +387,7 @@ ___
       * GPIO  2 ---1K--- VCC3.3V
       * GPIO  0 ---1K--- VCC3.3V   Ground GPIO 0 to to enable flashing
       * GPIO 15 ---1K--- GND
+      * GPIO 14 ---1K--- GND
       * GND ------------ GND
 
     * FTDI232 USB/TTL      ESP8266
@@ -399,8 +400,8 @@ ___
       recommend using jumpers to anable this feature if you do not wish to have the ESP8266 reset automatically
 
     * ILI9341        ESP8266
-      * Data/Command GPIO 05
-	  * CS           GPIO 15
+      * Data/Command GPIO 05 
+      * CS           GPIO 15
       * SDI    MOSI  GPIO 13
       * SDO    MISO  GPIO 12
       * SCK    CLK   GPIO 14 
@@ -409,14 +410,14 @@ ___
       * GND          GND
 
     * MMC/SD reader  ESP8266
-      * D3/CS        GPIO 04
+      * D3/CS        GPIO 04 
       * CMD/DI MOSI  GPIO 13
       * D0     MISO  GPIO 12
       * CLK    CLK   GPIO 14
       * VCC          VCC3.3V
       * GND          GND
 
-	* ADF4351        ESP8266
+    * ADF4351        ESP8266
       * LE           GPIO 00
       * DATA   MOSI  GPIO 13
       * CLK     CLK  GPIO 14

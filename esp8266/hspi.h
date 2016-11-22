@@ -18,6 +18,7 @@
 /* hspi.c */
 void hspi_cs_enable ( uint8_t cs );
 void hspi_cs_disable ( uint8_t cs );
+uint8_t hspi_cs_status();
 void hspi_init ( uint16_t prescale , int hwcs );
 void hspi_waitReady ( void );
 void hspi_TX ( uint8_t *data , int count );

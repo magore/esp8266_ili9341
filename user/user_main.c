@@ -310,6 +310,8 @@ unsigned long last_time50 = 0;
 
 int loop_cnt = 0;
 
+int inloop = 0;
+
 void loop(void)
 {
 	extern int connections;
@@ -323,9 +325,32 @@ void loop(void)
 	struct ip_info getinfo;
 	char *ptr;
 
-	// get current time
+	if(inloop)
+	{
+		printf("Error: loop() task overrun\n");
+		return;
+	}
+
+	ret = hspi_cs_status();
+	if(ret != 0xff)
+	{
+		printf("Error: loop() entered with hspi_cs = %d\n",ret);
+		hspi_cs_disable(ret);
+		return;
+	}
+
 
 	loop_task();
+
+	ret = hspi_cs_status();
+	if(ret != 0xff)
+	{
+		printf("Error: loop_task() exit with hspi_cs = %d\n",ret);
+		hspi_cs_disable(ret);
+		return;
+	}
+
+	inloop = 0;
 
 	// Only run every 1mS
 	t = ms_read();
@@ -473,6 +498,15 @@ void loop(void)
 	rad = dscale; // +/- 90
     tft_drawCircle(wincube, wincube->w/2, wincube->h/2, rad, tft_RGBto565(red,green,blue));
 #endif
+
+	ret = hspi_cs_status();
+	if(ret != 0xff)
+	{
+		printf("Exit: loop() with hspi_cs = %d\n",ret);
+		hspi_cs_disable(ret);
+		return;
+	}
+	
 }
 
 #if ILI9341_DEBUG & 1
@@ -597,6 +631,35 @@ int user_tests(char *str)
 }
 
 /**
+ test byte order and basic type sizes
+*/
+test_types()
+{
+	int i;
+// Test byte order
+// extensa has LSB to MSB byte order LITTLE_ENDIAN
+	union UUU
+	{
+	  unsigned int  wide;
+	  unsigned char byte8[sizeof(unsigned int)];
+	};
+	volatile union UUU u;
+
+	printf("Byte Order of 0x12345678:\n");
+	u.wide = 0x12345678;
+	for (i=0; i < sizeof(unsigned int); i++)
+		printf("byte[%d] = %02x\n", i, u.byte8[i]);
+
+// Test basic type sizes
+	printf("sizeof (double) = %d\n", sizeof (double ) );
+	printf("sizeof (float) = %d\n", sizeof (float ) );
+	printf("sizeof (long long) = %d\n", sizeof (long long ) );
+	printf("sizeof (long) = %d\n", sizeof (long ) );
+	printf("sizeof (int) = %d\n", sizeof (int ) );
+	printf("sizeof (char) = %d\n", sizeof (char ) );
+}
+
+/**
  @brief main() Initialize user task
  @return void
 */
@@ -641,36 +704,9 @@ void setup(void)
 	// 1000HZ timer
 	ms_init();
 
-#ifdef FATFS_SUPPORT
-	printf("SD Card init...\n");
-	mmc_init(1);
-#endif
 
-// Test double precision results
-#if 0
-	printf("Display Init\n");
-	ang = 1.2345678901234567890;
-	printf("%e\n",ang);
-	printf("%.2f\n",ang);
-	printf("%2.16f\n",ang);
-#endif
+	test_types();
 
-// Test byte order
-#if 0
-// extensa has LSB to MSB byte order LITTLE_ENDIAN
-	union UUU
-	{
-	  unsigned int  wide32;
-	  unsigned char byte8[sizeof(unsigned int)];
-	};
-	volatile union UUU u;
-
-	printf("Byte Order:\n");
-	u.wide32 = 0x12345678;
-	for (i=0; i < sizeof(unsigned int); i++)
-		printf("byte[%d] = %02x\n", i, u.byte8[i]);
-
-#endif
 
 	// Initialize TFT
 	master = tft_init();
@@ -680,6 +716,17 @@ void setup(void)
 
 #if ILI9341_DEBUG & 1
 	printf("\nDisplay ID=%08lx\n",ID);
+#endif
+
+#ifdef ADF4351
+	ADF4351_Init();
+	printf("ADF4351 init done\n");
+#endif
+
+// Make sure all other GPIO pins are initialized BEFORE SD card
+#ifdef FATFS_SUPPORT
+	printf("SD Card init...\n");
+	mmc_init(1);
 #endif
 
 // Message window setup
@@ -813,10 +860,6 @@ void setup(void)
 	web_init(80);
 #endif
 
-#ifdef ADF4351
-	ADF4351_Init();
-	printf("ADF4351 init done\n");
-#endif
 
     PrintRam();
 

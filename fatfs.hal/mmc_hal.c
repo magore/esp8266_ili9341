@@ -175,16 +175,16 @@ int  mmc_test_timeout()
     if( Stat & STA_NODISK )
         return(1);
 
+#ifdef ESP8266
+        optimistic_yield(1000);
+        wdt_reset();
+#endif
     if(!_mmc_timeout)
     {
         printf("MMC TIMEOUT\n");
         Stat |= (STA_NODISK | STA_NOINIT);
         return(1);
     }
-#ifdef ESP8266
-        optimistic_yield(1000);
-        wdt_reset();
-#endif
     return(0);
 }
 
@@ -216,6 +216,10 @@ int mmc_init(int verbose)
         printf("==============================\n");
         printf("START MMC INIT\n");
     }
+
+#if 1
+	mmc_cs_disable();
+#endif
 
     mmc_slow();
 
@@ -289,6 +293,7 @@ void mmc_spi_init(int32_t clock)
 {
 #ifdef ESP8266
     SD_CS_INIT;
+	mmc_cs_disable();
     hspi_init(clock,0);
     (void)mmc_spi_TX(0xff);
     hspi_waitReady();
@@ -335,6 +340,7 @@ void mmc_power_on()
 {
     int i;
     // SD CS should be off
+	mmc_cs_disable();
     mmc_slow();
     for(i=0;i<20;++i)
     {
@@ -357,6 +363,7 @@ void mmc_power_on()
 MEMSPACE
 void mmc_power_off()
 {
+	mmc_cs_disable();
 #ifdef ESP8266
     hspi_waitReady();
     (void)mmc_spi_TX(0xff);

@@ -225,6 +225,10 @@ var searchData=
   ['ftime',['ftime',['../structFILINFO.html#ae0f751b79621bf7b29669f177bbe6b9a',1,'FILINFO']]],
   ['ftruncate',['ftruncate',['../posix_8c.html#a474e4e6cac62ef12c66b8a597c14e5f6',1,'ftruncate(int fd, off_t length):&#160;posix.c'],['../posix_8h.html#a474e4e6cac62ef12c66b8a597c14e5f6',1,'ftruncate(int fd, off_t length):&#160;posix.c']]],
   ['func',['func',['../structSDIO__CTRL.html#a2f0a17848a6c7c58f826d1888469e6e3',1,'SDIO_CTRL']]],
+  ['func_5fgpio11',['FUNC_GPIO11',['../io_8h.html#adf6695daf9f27feae3c703dfa227f7eb',1,'io.h']]],
+  ['func_5fgpio6',['FUNC_GPIO6',['../io_8h.html#aedbe7c3049b9c807dec94bb7251bc5e4',1,'io.h']]],
+  ['func_5fgpio7',['FUNC_GPIO7',['../io_8h.html#ab7e34079f3896ead83254c115e9cdd55',1,'io.h']]],
+  ['func_5fgpio8',['FUNC_GPIO8',['../io_8h.html#a8512b64bd5d2f56f8328609d903373b4',1,'io.h']]],
   ['func_5fu0rxd',['FUNC_U0RXD',['../uart_8h.html#acb983a46a8eb86eae3df40a82eccaed6',1,'uart.h']]],
   ['func_5fu0txd',['FUNC_U0TXD',['../uart_8h.html#ae18547ea6266e7165ecbe4f07ac2bbf1',1,'uart.h']]],
   ['fwrite',['fwrite',['../posix_8c.html#a148630cbecc0822d9395f002691ffe75',1,'fwrite(const void *ptr, size_t size, size_t nmemb, FILE *stream):&#160;posix.c'],['../posix_8h.html#a148630cbecc0822d9395f002691ffe75',1,'fwrite(const void *ptr, size_t size, size_t nmemb, FILE *stream):&#160;posix.c']]]

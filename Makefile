@@ -48,8 +48,9 @@ TARGET		= demo
 # Firmware Directory
 FW_BASE		= firmware
 
-# SWAP GPIO4 and GPIO5 on some esp-12 boards with incorrect pinout labels
-#SWAP45			:= 1
+# SWAP GPIO4 and GPIO5 on some esp-12 boards have labels reversed
+# My board is reversed
+SWAP45			:= 1
 
 # ===============================================================
 # The settings in this section are related to the flash size of the ESP board

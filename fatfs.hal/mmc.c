@@ -201,7 +201,7 @@ int select (void)
     CS_LOW();
     xchg_spi(0xFF);      /* Dummy clock (force DO enabled) */
 
-    if (wait_ready(500)) 
+    if (wait_ready(1000)) 
 		return 1;          /* OK */
 
 	printf("select failed!\n");
@@ -226,7 +226,7 @@ UINT btr        /*< Byte count (must be multiple of 4) */
     BYTE token;
 
 	//Timer1 = 40; 
-    mmc_set_ms_timeout(400);
+    mmc_set_ms_timeout(1000);
     do                                            /* Wait for data packet in timeout of 400ms */
     {
         token = xchg_spi(0xFF);
@@ -257,7 +257,7 @@ BYTE token        /*< Data/Stop token */
 {
     BYTE resp;
 
-    if (!wait_ready(500)) return 0;
+    if (!wait_ready(1000)) return 0;
 
     xchg_spi(token);                            /* Xmit data token */
     if (token != 0xFD)                            /* Is data token */
@@ -339,7 +339,7 @@ DSTATUS mmc_disk_initialize (void)
     BYTE n, cmd, ty, ocr[4];
 
     power_off();                              	/* Turn off the sock et power to reset the card */
-	//mmc_ms_wait(100);
+	//mmc_ms_wait(100);							/* power_on does the wait */
     //for (Timer1 = 10; Timer1; ) ;       	  	/* Wait for 100ms */
     if (Stat & STA_NODISK) return Stat;       	/* No card in the socket */
 
@@ -351,7 +351,7 @@ DSTATUS mmc_disk_initialize (void)
     if (send_cmd(CMD0, 0) == 1)                	/* Enter Idle state */
     {
         //Timer1=100;			 					/* Initialization timeout of 1000 msec */
-        mmc_set_ms_timeout(250);                   /* Initialization timeout of 1000 msec */
+        mmc_set_ms_timeout(1000);                   /* Initialization timeout of 1000 msec */
         if (send_cmd(CMD8, 0x1AA) == 1)           /* SDv2? */
         {
             for (n = 0; n < 4; n++)
@@ -436,8 +436,16 @@ UINT count     /*< Sector count (1..128) */
 {
     BYTE cmd;
 
-    if (!count) return RES_PARERR;
-    if (Stat & STA_NOINIT) return RES_NOTRDY;
+    if (!count) 
+	{
+		deselect();
+		return RES_PARERR;
+	}
+    if (Stat & STA_NOINIT) 
+	{
+		deselect();
+		return RES_NOTRDY;
+	}
 
     if (!(CardType & CT_BLOCK)) sector *= 512;	/* Convert to byte address if needed */
 
@@ -472,9 +480,21 @@ DWORD sector,     /*< Start sector number (LBA) */
 UINT count                                        /* Sector count (1..128) */
 )
 {
-    if (!count) return RES_PARERR;
-    if (Stat & STA_NOINIT) return RES_NOTRDY;
-    if (Stat & STA_PROTECT) return RES_WRPRT;
+    if (!count) 
+	{
+		deselect();
+		return RES_PARERR;
+	}
+    if (Stat & STA_NOINIT) 
+	{
+		deselect();
+		return RES_NOTRDY;
+	}
+    if (Stat & STA_PROTECT) 
+	{
+		deselect();
+		return RES_WRPRT;
+	}
 
     if (!(CardType & CT_BLOCK)) sector *= 512; /* Convert to byte address if needed */
 
@@ -530,6 +550,8 @@ DRESULT mmc_disk_ioctl (
 	switch (cmd) {
 	case CTRL_SYNC :		/* Make sure that no pending write process. Do not remove this or written sector might not left updated. */
 		if (select()) res = RES_OK;
+//MG
+deselect();
 		break;
 
 	case GET_SECTOR_COUNT :	/* Get number of sectors on the disk (DWORD) */
@@ -580,6 +602,8 @@ DRESULT mmc_disk_ioctl (
 		}
 		if (send_cmd(CMD32, st) == 0 && send_cmd(CMD33, ed) == 0 && send_cmd(CMD38, 0) == 0 && wait_ready(30000))	/* Erase sector block */
 			res = RES_OK;	/* FatFs does not check result of this command */
+//MG
+deselect();
 		break;
 
 	/* Following commands are never used by FatFs module */

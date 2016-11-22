@@ -77,6 +77,7 @@ typedef enum { false, true } bool;
 
 // Hardware SPI
 #include "esp8266/hspi.h"
+#include "esp8266/io.h"
 
 //#include <math.h>
 #undef atof

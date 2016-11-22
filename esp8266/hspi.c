@@ -30,6 +30,7 @@
 #include <math.h>
 
 #include "hspi.h"
+#include "gpio.h"
 
 // @brief HSPI Prescale value - You should set this in your Makefile
 #ifndef HSPI_PRESCALER
@@ -43,12 +44,14 @@ uint8_t _cs_pin = 0xff;
 /// @param[in] cs: GPIO CS pin
 void hspi_cs_enable(uint8_t cs)
 {
-    hspi_waitReady();
+// DEBUG
+	// FIXME allow nesting
 	if(_cs_pin != 0xff)
 	{
 		// This implies a bug!
-		printf("CS en was:%d\n", 0xff & _cs_pin);
+		printf("cs_enable was: %d, want: %d\n", 0xff & _cs_pin, cs);
 	}
+    hspi_waitReady();
 	GPIO_OUTPUT_SET(cs, 0);
 	_cs_pin = cs;
 }
@@ -57,14 +60,25 @@ void hspi_cs_enable(uint8_t cs)
 /// @param[in] cs: GPIO CS pin
 void hspi_cs_disable(uint8_t cs)
 {
-    hspi_waitReady();
+// DEBUG
+	// FIXME allow nesting
 	if(_cs_pin != cs && _cs_pin != 0xff )
 	{
 		// This implies a bug!
-		printf("CS dis was:%d\n", 0xff & _cs_pin);
+		printf("cs_disable was: %d, want: %d\n", 0xff & _cs_pin, cs);
 	}
+    hspi_waitReady();
 	GPIO_OUTPUT_SET(cs, 1);
 	_cs_pin = 0xff;
+}
+
+
+
+/// @brief HSPI CS pin status
+/// return CS pin status
+uint8_t hspi_cs_status()
+{
+	return(_cs_pin);
 }
 
 
@@ -98,6 +112,7 @@ void hspi_init(uint16_t prescale, int hwcs)
     if(_hspi_init_done)
 		hspi_waitReady();
 	
+	/* eagle_soc.h does not define MISO,MOSI,CLK and CS */
     PIN_FUNC_SELECT(PERIPHS_IO_MUX_MTDI_U, 2);    // HSPIQ MISO GPIO12
     PIN_FUNC_SELECT(PERIPHS_IO_MUX_MTCK_U, 2);    // HSPID MOSI GPIO13
     PIN_FUNC_SELECT(PERIPHS_IO_MUX_MTMS_U, 2);    // CLK        GPIO14
@@ -120,13 +135,6 @@ void hspi_init(uint16_t prescale, int hwcs)
         ((1 & SPI_CLKCNT_N) << SPI_CLKCNT_N_S) |
         ((0 & SPI_CLKCNT_H) << SPI_CLKCNT_H_S) |
         ((1 & SPI_CLKCNT_L) << SPI_CLKCNT_L_S));
-/*
-		WRITE_PERI_REG(SPI_FLASH_CLOCK(HSPI),
-        (((prescale - 1) & SPI_CLKDIV_PRE) << SPI_CLKDIV_PRE_S) |
-        ((1 & SPI_CLKCNT_N) << SPI_CLKCNT_N_S) |
-        ((0 & SPI_CLKCNT_H) << SPI_CLKCNT_H_S) |
-        ((1 & SPI_CLKCNT_L) << SPI_CLKCNT_L_S));
-*/
 	}
 
     WRITE_PERI_REG(SPI_FLASH_CTRL1(HSPI), 0);

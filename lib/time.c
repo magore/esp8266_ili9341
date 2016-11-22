@@ -220,6 +220,8 @@ static int Days_Per_Year(int year)
 MEMSPACE
 int Days_Per_Month(int month, int year)
 {
+	int days;
+
 	// Normalize month
 	while(month >= 12)
 	{
@@ -231,9 +233,10 @@ int Days_Per_Month(int month, int year)
 		--year;
 		month += 12;
 	}
+	days = __days[month];
 	if( month ==  1 && IS_Leap(year))
-		return( 1 + __days[month]);
-	return( __days[month]);
+		++days;
+	return( days );
 }
 
 /// @brief  Converts epoch ( seconds from 1 Jan EPOCH_YEAR UTC), offset seconds, to UNIX tm *t.
@@ -549,21 +552,64 @@ time_t tm2epoch( tm_t *t )
 
     int year = t->tm_year + 1900;
     int mon = t->tm_mon;                          // 0..11
-    int mday = t->tm_mday;                        // 1..28,29,30,31
+    int mday = t->tm_mday - 1;                        // 1..28,29,30,31
     int hour = t->tm_hour;                        // 0..23
     int min = t->tm_min;                          // 0..59
     int sec = t->tm_sec;                          // 0..59
 
+#ifdef TIME_DEBUG
+	printf("tm2epoch %4d,%2d,%2d, %02d:%02d:%02d\n",
+		(int)t->tm_year+1900, (int)t->tm_mon, (int)t->tm_mday,
+		(int)t->tm_hour, (int)t->tm_min, (int)t->tm_sec);
+#endif
+
     if (year < EPOCH_YEAR || year > 2106)
+	{
+#ifdef TIME_DEBUG
+		printf("tm2epoch year out of range: %4d\n", year);
+#endif
         return(-1);
+	}
 
-    if(mon > 12 || mday > 31 || hour > 23 || min > 59 || sec > 59)
+    if(mon >= 12 || mon < 0)
+	{
+#ifdef TIME_DEBUG
+		printf("tm2epoch mon out of range: %4d\n", mon);
+#endif
         return(-1);
+	}
 
-    if(mon < 0 || mday < 0 || hour < 0 || min < 0 || sec < 0)
+    if(mday >= Days_Per_Month(mon,year)  || mday < 0)
+	{
+#ifdef TIME_DEBUG
+		printf("tm2epoch mday out of range: %4d\n", mday);
+#endif
         return(-1);
+	}
 
-    --mday;                                       // remove offset
+    if(hour >= 24 || hour < 0)
+	{
+#ifdef TIME_DEBUG
+		printf("tm2epoch hour out of range: %4d\n", hour);
+#endif
+        return(-1);
+	}
+
+    if(min >= 60|| min < 0)
+	{
+#ifdef TIME_DEBUG
+		printf("tm2epoch min out of range: %4d\n", min);
+#endif
+        return(-1);
+	}
+
+    if(sec >= 60 || sec < 0)
+	{
+#ifdef TIME_DEBUG
+		printf("tm2epoch sec out of range: %4d\n", sec);
+#endif
+        return(-1);
+	}
 
 ///  Note: To simplify we caculate Leap Day contributions in stages
 
@@ -696,13 +742,13 @@ time_t normalize(tm_t *t, int normalize_to_timezone)
 		t->tm_mday += Days_Per_Month(t->tm_mon,t->tm_year);
 	}
 
-    if ((t->tm_year + 1900) < EPOCH_YEAR || (t->tm_year +1900) > 2106)
-        return(-1);
 
 	// We can now set the remain values by converting to EPOCH and back again
 	// convert to EPOCH based seconds
 	epoch = tm2epoch( t );
-
+#ifdef TIME_DEBUG
+	printf("%10lu - epoch-1\n",epoch);
+#endif
 	// Normaize to local timezone with DST
 	offset = 0L;
 	isdst = 0;
@@ -718,12 +764,18 @@ time_t normalize(tm_t *t, int normalize_to_timezone)
 			isdst = 1;
 		}
 	}
+#ifdef TIME_DEBUG
+	printf("%10lu - epoch-2\n",epoch);
+#endif
 
 	// convert back to TM structure 
 	epoch = time_to_tm(epoch, offset, t);
 	if(isdst)
 		t->tm_isdst = 1;
 
+#ifdef TIME_DEBUG
+	printf("%10lu - epoch-3\n",epoch);
+#endif
 	return( epoch );
 }
 

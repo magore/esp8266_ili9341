@@ -48,29 +48,35 @@ uint16_t tft_ID;
 // We use automatic CS mode configured with hspi
 #define TFT_CS_PIN		15
 // Note: PERIPHS_IO_MUX_MTDO_U, is tied to GPIO 15 alternate function
-#define TFT_CS_INIT     PIN_FUNC_SELECT(PERIPHS_IO_MUX_MTDO_U, 3); TFT_CS_DEACTIVE
-#define TFT_CS_ACTIVE   GPIO_OUTPUT_SET(15, 0)
-#define TFT_CS_DEACTIVE GPIO_OUTPUT_SET(15, 1)
+#define TFT_CS_INIT     gpio_io_mode(TFT_CS_PIN);
+
+#define TFT_CS_ACTIVE   GPIO_OUTPUT_SET(TFT_CS_PIN, 0)
+#define TFT_CS_DEACTIVE GPIO_OUTPUT_SET(TFT_CS_PIN, 1)
 // Display reset
 // Alternative we just tie this to power on reset line and free up the line
 #if 0
-	#define TFT_RST_INIT     PIN_FUNC_SELECT(PERIPHS_IO_MUX_GPIO0_U, FUNC_GPIO0); TFT_RST_DEACTIVE
-	#define TFT_RST_ACTIVE    GPIO_OUTPUT_SET(0, 0)
-	#define TFT_RST_DEACTIVE  GPIO_OUTPUT_SET(0, 1)
+	#define TFT_RST_PIN		0
+	#define TFT_RST_INIT     gpio_io_mode(TFT_RST_PIN);
+	#define TFT_RST_ACTIVE    GPIO_OUTPUT_SET(TFT_RST_PIN, 0)
+	#define TFT_RST_DEACTIVE  GPIO_OUTPUT_SET(TFT_RST_PIN, 1)
 #else
+	#define TFT_RST_PIN		
 	#define TFT_RST_INIT     
 	#define TFT_RST_ACTIVE
 	#define TFT_RST_DEACTIVE
 #endif
 
-#ifndef SWAP45
-#define TFT_INIT        PIN_FUNC_SELECT(PERIPHS_IO_MUX_GPIO4_U, FUNC_GPIO4); TFT_DATA
-#define TFT_DATA        GPIO_OUTPUT_SET(4, 1)
-#define TFT_COMMAND     GPIO_OUTPUT_SET(4, 0)
+#ifdef SWAP45
+        // Pin 4 and 5 are mislabled
+	#define TFT_CMD_DATA_PIN	4
+	#define TFT_INIT        gpio_io_mode(TFT_CMD_DATA_PIN); TFT_DATA
+	#define TFT_DATA        GPIO_OUTPUT_SET(TFT_CMD_DATA_PIN, 1)
+	#define TFT_COMMAND     GPIO_OUTPUT_SET(TFT_CMD_DATA_PIN, 0)
 #else
-#define TFT_INIT        PIN_FUNC_SELECT(PERIPHS_IO_MUX_GPIO5_U, FUNC_GPIO5); TFT_DATA
-#define TFT_DATA        GPIO_OUTPUT_SET(5, 1)
-#define TFT_COMMAND     GPIO_OUTPUT_SET(5, 0)
+	#define TFT_CMD_DATA_PIN	5
+	#define TFT_INIT        gpio_io_mode(TFT_CMD_DATA_PIN);TFT_DATA
+	#define TFT_DATA        GPIO_OUTPUT_SET(TFT_CMD_DATA_PIN, 1)
+	#define TFT_COMMAND     GPIO_OUTPUT_SET(TFT_CMD_DATA_PIN, 0)
 #endif
 
 #endif

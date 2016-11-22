@@ -24,16 +24,17 @@
 #endif
 
 #ifdef ESP8266
-	#ifndef SWAP45
+	#ifdef SWAP45
+		// Pin 4 and 5 are mislabled
 		#define SD_CS_PIN		5
-		#define SD_CS_ACTIVE   GPIO_OUTPUT_SET(5, 0)
-		#define SD_CS_DEACTIVE GPIO_OUTPUT_SET(5, 1)
-		#define SD_CS_INIT     PIN_FUNC_SELECT(PERIPHS_IO_MUX_GPIO5_U, FUNC_GPIO5); SD_CS_DEACTIVE
+		#define SD_CS_ACTIVE   GPIO_OUTPUT_SET(SD_CS_PIN, 0)
+		#define SD_CS_DEACTIVE GPIO_OUTPUT_SET(SD_CS_PIN, 1)
+		#define SD_CS_INIT     gpio_io_mode(5);
 	#else
 		#define SD_CS_PIN		4
-		#define SD_CS_ACTIVE   GPIO_OUTPUT_SET(4, 0)
-		#define SD_CS_DEACTIVE GPIO_OUTPUT_SET(4, 1)
-		#define SD_CS_INIT     PIN_FUNC_SELECT(PERIPHS_IO_MUX_GPIO4_U, FUNC_GPIO4); SD_CS_DEACTIVE
+		#define SD_CS_ACTIVE   GPIO_OUTPUT_SET(SD_CS_PIN, 0)
+		#define SD_CS_DEACTIVE GPIO_OUTPUT_SET(SD_CS_PIN, 1)
+		#define SD_CS_INIT     gpio_io_mode(SD_CS_PIN); SD_CS_DEACTIVE
 	#endif
 	// FIXME
 	#define mmc_cli() /*< interrupt disable */

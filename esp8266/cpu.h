@@ -48,6 +48,7 @@
 
 #include <stdint.h>
 #include <stdarg.h>
+#include <eagle_soc.h>
 #include "esp8266/bits.h"
 
 #ifndef NULL
