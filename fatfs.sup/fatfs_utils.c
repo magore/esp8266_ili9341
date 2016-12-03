@@ -383,6 +383,12 @@ void fatfs_copy(char *from,char *to)
     int res;
     long size;
 	char *ptr;
+#ifdef ESP8266
+#define MSIZE 4096
+#else
+#define MSIZE 512
+#endif
+
 	
 
     printf("Opening %s\n", from);
@@ -400,7 +406,7 @@ void fatfs_copy(char *from,char *to)
         f_close(&file1);
         return;
     }
-	ptr = safecalloc(512,1);
+	ptr = safecalloc(MSIZE,1);
 	if(!ptr)
 	{
 		printf("Calloc failed!\n");
@@ -412,7 +418,7 @@ void fatfs_copy(char *from,char *to)
     size = 0;
     for (;;)
     {
-        res = f_read(&file1, ptr, 512, &s1);
+        res = f_read(&file1, ptr, MSIZE, &s1);
         if (res || s1 == 0) break;                /* error or eof */
         res = f_write(&file2, ptr, s1, &s2);
         size += s2;

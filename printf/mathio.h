@@ -43,15 +43,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 
-///@brief  We let printf use user defined I/O functions
-typedef struct _printf_t
-{
-    void (*put)(struct _printf_t *, char);
-    void *buffer;
-    int len;
-	int sent;
-} printf_t;
-
 
 // ====================================================================
 /* mathio.c */
@@ -74,22 +65,52 @@ MEMSPACE double atof ( const char *str );
 #undef vnsprintf
 #undef snprintf
 
+// =======================================================================
+/* printf.c */
+///@brief  We let printf use user defined I/O functions
+typedef struct _printf_t
+{
+    void (*put)(struct _printf_t *, char);
+    void *buffer;
+    int len;
+	int sent;
+} printf_t;
 
-/* io/printf.c */
+///@brief format specifier flags
+typedef union {
+    struct {
+      unsigned short width : 1;
+      unsigned short prec : 1;
+      unsigned short plus : 1;
+      unsigned short left : 1;
+      unsigned short space : 1;
+      unsigned short zero : 1;
+      unsigned short neg: 1;
+      unsigned short alt: 1;
+    } b;
+    unsigned short all;
+} f_t;
+
+/* printf.c */
 MEMSPACE size_t WEAK_ATR strlen ( const char *str );
 MEMSPACE int WEAK_ATR isdigit ( int c );
 MEMSPACE void WEAK_ATR reverse ( char *str );
 MEMSPACE void WEAK_ATR strupper ( char *str );
-MEMSPACE int p_itoa ( long num , char *str , int max , int prec , int sign );
-MEMSPACE int p_ntoa ( unsigned long num , char *str , int max , int radix , int prec );
-MEMSPACE int p_ftoa ( double val , char *str , int intprec , int prec , int sign );
-MEMSPACE int p_etoa ( double x , char *str , int prec , int sign );
+MEMSPACE void pch_init ( char *str , int max );
+MEMSPACE int pch ( char ch );
+MEMSPACE int pch_ind ( void );
+MEMSPACE int pch_max_ind ( void );
+MEMSPACE void print_flags ( f_t f );
+MEMSPACE int p_itoa ( unsigned long num , char *str , int max , int width , int prec , f_t f );
+MEMSPACE int p_ntoa ( unsigned long num , char *str , int max , int radix , int width , int prec , f_t f );
+MEMSPACE int p_ftoa ( double val , char *str , int max , int width , int prec , f_t f );
+MEMSPACE int p_etoa ( double val , char *str , int max , int width , int prec , f_t f );
 MEMSPACE void _puts_pad ( printf_t *fn , char *s , int width , int count , int left );
 MEMSPACE void _printf_fn ( printf_t *fn , __memx const char *fmt , va_list va );
-void _putc_buffer_fn ( struct _printf_t *p , char ch );
+MEMSPACE void _putc_buffer_fn ( struct _printf_t *p , char ch );
 MEMSPACE int vsnprintf ( char *str , size_t size , const char *format , va_list va );
 MEMSPACE int snprintf ( char *str , size_t size , const char *format , ...);
-int printf ( const char *format , ...);
+MEMSPACE int printf ( const char *format , ...);
 
 
 /* sscanf.c */

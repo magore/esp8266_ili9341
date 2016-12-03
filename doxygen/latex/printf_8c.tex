@@ -5,11 +5,17 @@
 Small printf, and verious conversion code with floating point support.  
 
 
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
 {\ttfamily \#include $<$stdint.\+h$>$}\\*
 {\ttfamily \#include $<$stdarg.\+h$>$}\\*
 {\ttfamily \#include $<$string.\+h$>$}\\*
 {\ttfamily \#include $<$math.\+h$>$}\\*
 {\ttfamily \#include \char`\"{}mathio.\+h\char`\"{}}\\*
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structp__ch__t}{p\+\_\+ch\+\_\+t}
+\begin{DoxyCompactList}\small\item\em Data structure for character buffer with limits. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -21,20 +27,35 @@ Small printf, and verious conversion code with floating point support.
 \begin{DoxyCompactList}\small\item\em Reverse a string in place Example\+: abcdef -\/$>$ fedcba. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR} \hyperlink{printf_8c_a25ac5a1dbdfa1d06d55448cd7b665d1d}{strupper} (char $\ast$str)
 \begin{DoxyCompactList}\small\item\em U\+P\+P\+E\+R\+C\+A\+SE a string. \end{DoxyCompactList}\item 
-\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{printf_8c_aa867325aa16ff64b6a8f6f200b7de855}{p\+\_\+itoa} (long num, char $\ast$str, int max, int prec, int sign)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{printf_8c_ab10e941ecf6d7512649e377e97d28fac}{pch\+\_\+init} (char $\ast$str, int max)
+\begin{DoxyCompactList}\small\item\em Initialize character buffer with limits. \end{DoxyCompactList}\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{printf_8c_ab454b0d961c8dc93406cc75379c8a1f5}{pch} (char ch)
+\begin{DoxyCompactList}\small\item\em Put character in buffer with limits. \end{DoxyCompactList}\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{printf_8c_a642ddbb02955bf5cb540f7a2f0f09aae}{pch\+\_\+ind} ()
+\begin{DoxyCompactList}\small\item\em Return current index of character buffer with limits. \end{DoxyCompactList}\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{printf_8c_a4188dbfea9bea20687558f35bc34c00d}{pch\+\_\+max\+\_\+ind} ()
+\begin{DoxyCompactList}\small\item\em Return maximum valid index for character buffer. \end{DoxyCompactList}\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{printf_8c_a9c08c55e823a7532f2344a77ef296b4e}{print\+\_\+flags} (\hyperlink{unionf__t}{f\+\_\+t} f)
+\begin{DoxyCompactList}\small\item\em print flags set in t\+\_\+t structure \end{DoxyCompactList}\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{printf_8c_aed58a26406d19bc457c41e3963f24a8a}{p\+\_\+itoa} (unsigned long num, char $\ast$str, int max, int width, int prec, \hyperlink{unionf__t}{f\+\_\+t} f)
 \begin{DoxyCompactList}\small\item\em Convert number to A\+S\+C\+II returns size of string after conversion Note\+: It is allowed to have more digits converted then prec defines Like itoa but can support leading \textquotesingle{}+/-\// \textquotesingle{} or unsigned and zero padding. \end{DoxyCompactList}\item 
-\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{printf_8c_a6aa7848c7ffe1a823379ec5b1ec86134}{p\+\_\+ntoa} (unsigned long num, char $\ast$str, int max, int radix, int prec)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{printf_8c_a5d543681cf37e51d4ed605a2a64c3990}{p\+\_\+ntoa} (unsigned long num, char $\ast$str, int max, int radix, int width, int prec, \hyperlink{unionf__t}{f\+\_\+t} f)
 \begin{DoxyCompactList}\small\item\em Convert number to A\+S\+C\+II Like itoa but can support leading \textquotesingle{}+/-\// \textquotesingle{} or unsigned and zero padding Note\+: It is allowed to have more digits converted then prec defines. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{printf_8c_ab713fa5c01f315bdf67d18a6dbcb4ff5}{\+\_\+puts\+\_\+pad} (\hyperlink{mathio_8h_a1efdee46bf8e5af45e76e461e8db9c09}{printf\+\_\+t} $\ast$fn, char $\ast$s, int width, int \hyperlink{user__main_8c_aa011065eee776eb1bda73597b5d9d5d7}{count}, int left)
 \item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{printf_8c_a1c2762f15e2ae4dea9b52ee9e3532372}{\+\_\+printf\+\_\+fn} (\hyperlink{mathio_8h_a1efdee46bf8e5af45e76e461e8db9c09}{printf\+\_\+t} $\ast$fn, \hyperlink{mathio_8h_a9306b0c3083933632aca02ebb1fe14d5}{\+\_\+\+\_\+memx} const char $\ast$fmt, va\+\_\+list va)
 \begin{DoxyCompactList}\small\item\em vsnprintf function \end{DoxyCompactList}\item 
-void \hyperlink{printf_8c_a4d8d12cf35eb746982ae22f9e730591d}{\+\_\+putc\+\_\+buffer\+\_\+fn} (struct \hyperlink{struct__printf__t}{\+\_\+printf\+\_\+t} $\ast$p, char ch)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{printf_8c_a9b6f7fa030ba96220b734d45d737805a}{\+\_\+putc\+\_\+buffer\+\_\+fn} (struct \hyperlink{struct__printf__t}{\+\_\+printf\+\_\+t} $\ast$p, char ch)
 \begin{DoxyCompactList}\small\item\em \+\_\+putc\+\_\+buffer\+\_\+fn -\/ character output to a string buffer Used by snprintf and vsnprintf You can make \+\_\+printf\+\_\+fn call this helper for each character \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{printf_8c_a7a6349b4ca3388a0cb82fc3d1d85a6b5}{vsnprintf} (char $\ast$str, \hyperlink{cpu_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} size, const char $\ast$format, va\+\_\+list va)
 \begin{DoxyCompactList}\small\item\em vsnprintf function \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{printf_8c_a278630a290b34d009b2e3ad7bf1fc996}{snprintf} (char $\ast$str, \hyperlink{cpu_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} size, const char $\ast$format,...)
 \begin{DoxyCompactList}\small\item\em snprintf function \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structp__ch__t}{p\+\_\+ch\+\_\+t} \hyperlink{printf_8c_aa1e6944673f3194dc3fe8ba626deec55}{\+\_\+pch}
+\begin{DoxyCompactList}\small\item\em Define data structure for character buffer with limits. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -80,7 +101,7 @@ size of string
 \end{DoxyReturn}
 
 
-Definition at line 526 of file printf.\+c.
+Definition at line 739 of file printf.\+c.
 
 
 
@@ -88,12 +109,12 @@ Referenced by fprintf(), snprintf(), tft\+\_\+printf(), uart0\+\_\+printf(), vsn
 
 \index{printf.\+c@{printf.\+c}!\+\_\+putc\+\_\+buffer\+\_\+fn@{\+\_\+putc\+\_\+buffer\+\_\+fn}}
 \index{\+\_\+putc\+\_\+buffer\+\_\+fn@{\+\_\+putc\+\_\+buffer\+\_\+fn}!printf.\+c@{printf.\+c}}
-\subsubsection[{\texorpdfstring{\+\_\+putc\+\_\+buffer\+\_\+fn(struct \+\_\+printf\+\_\+t $\ast$p, char ch)}{_putc_buffer_fn(struct _printf_t *p, char ch)}}]{\setlength{\rightskip}{0pt plus 5cm}void \+\_\+putc\+\_\+buffer\+\_\+fn (
+\subsubsection[{\texorpdfstring{\+\_\+putc\+\_\+buffer\+\_\+fn(struct \+\_\+printf\+\_\+t $\ast$p, char ch)}{_putc_buffer_fn(struct _printf_t *p, char ch)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void \+\_\+putc\+\_\+buffer\+\_\+fn (
 \begin{DoxyParamCaption}
 \item[{struct {\bf \+\_\+printf\+\_\+t} $\ast$}]{p, }
 \item[{char}]{ch}
 \end{DoxyParamCaption}
-)}\hypertarget{printf_8c_a4d8d12cf35eb746982ae22f9e730591d}{}\label{printf_8c_a4d8d12cf35eb746982ae22f9e730591d}
+)}\hypertarget{printf_8c_a9b6f7fa030ba96220b734d45d737805a}{}\label{printf_8c_a9b6f7fa030ba96220b734d45d737805a}
 
 
 \+\_\+putc\+\_\+buffer\+\_\+fn -\/ character output to a string buffer Used by snprintf and vsnprintf You can make \+\_\+printf\+\_\+fn call this helper for each character 
@@ -110,7 +131,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 802 of file printf.\+c.
+Definition at line 1031 of file printf.\+c.
 
 
 
@@ -129,7 +150,7 @@ Referenced by vsnprintf().
 )}\hypertarget{printf_8c_ab713fa5c01f315bdf67d18a6dbcb4ff5}{}\label{printf_8c_ab713fa5c01f315bdf67d18a6dbcb4ff5}
 
 
-Definition at line 471 of file printf.\+c.
+Definition at line 681 of file printf.\+c.
 
 
 
@@ -158,7 +179,7 @@ true or false
 \end{DoxyReturn}
 
 
-Definition at line 66 of file printf.\+c.
+Definition at line 67 of file printf.\+c.
 
 
 
@@ -166,15 +187,16 @@ Referenced by \+\_\+printf\+\_\+fn().
 
 \index{printf.\+c@{printf.\+c}!p\+\_\+itoa@{p\+\_\+itoa}}
 \index{p\+\_\+itoa@{p\+\_\+itoa}!printf.\+c@{printf.\+c}}
-\subsubsection[{\texorpdfstring{p\+\_\+itoa(long num, char $\ast$str, int max, int prec, int sign)}{p_itoa(long num, char *str, int max, int prec, int sign)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int p\+\_\+itoa (
+\subsubsection[{\texorpdfstring{p\+\_\+itoa(unsigned long num, char $\ast$str, int max, int width, int prec, f\+\_\+t f)}{p_itoa(unsigned long num, char *str, int max, int width, int prec, f_t f)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int p\+\_\+itoa (
 \begin{DoxyParamCaption}
-\item[{long}]{num, }
+\item[{unsigned long}]{num, }
 \item[{char $\ast$}]{str, }
 \item[{int}]{max, }
+\item[{int}]{width, }
 \item[{int}]{prec, }
-\item[{int}]{sign}
+\item[{{\bf f\+\_\+t}}]{f}
 \end{DoxyParamCaption}
-)}\hypertarget{printf_8c_aa867325aa16ff64b6a8f6f200b7de855}{}\label{printf_8c_aa867325aa16ff64b6a8f6f200b7de855}
+)}\hypertarget{printf_8c_aed58a26406d19bc457c41e3963f24a8a}{}\label{printf_8c_aed58a26406d19bc457c41e3963f24a8a}
 
 
 Convert number to A\+S\+C\+II returns size of string after conversion Note\+: It is allowed to have more digits converted then prec defines Like itoa but can support leading \textquotesingle{}+/-\// \textquotesingle{} or unsigned and zero padding. 
@@ -197,7 +219,7 @@ long value
 \end{DoxyReturn}
 
 
-Definition at line 131 of file printf.\+c.
+Definition at line 219 of file printf.\+c.
 
 
 
@@ -205,15 +227,17 @@ Referenced by \+\_\+printf\+\_\+fn().
 
 \index{printf.\+c@{printf.\+c}!p\+\_\+ntoa@{p\+\_\+ntoa}}
 \index{p\+\_\+ntoa@{p\+\_\+ntoa}!printf.\+c@{printf.\+c}}
-\subsubsection[{\texorpdfstring{p\+\_\+ntoa(unsigned long num, char $\ast$str, int max, int radix, int prec)}{p_ntoa(unsigned long num, char *str, int max, int radix, int prec)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int p\+\_\+ntoa (
+\subsubsection[{\texorpdfstring{p\+\_\+ntoa(unsigned long num, char $\ast$str, int max, int radix, int width, int prec, f\+\_\+t f)}{p_ntoa(unsigned long num, char *str, int max, int radix, int width, int prec, f_t f)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int p\+\_\+ntoa (
 \begin{DoxyParamCaption}
 \item[{unsigned long}]{num, }
 \item[{char $\ast$}]{str, }
 \item[{int}]{max, }
 \item[{int}]{radix, }
-\item[{int}]{prec}
+\item[{int}]{width, }
+\item[{int}]{prec, }
+\item[{{\bf f\+\_\+t}}]{f}
 \end{DoxyParamCaption}
-)}\hypertarget{printf_8c_a6aa7848c7ffe1a823379ec5b1ec86134}{}\label{printf_8c_a6aa7848c7ffe1a823379ec5b1ec86134}
+)}\hypertarget{printf_8c_a5d543681cf37e51d4ed605a2a64c3990}{}\label{printf_8c_a5d543681cf37e51d4ed605a2a64c3990}
 
 
 Convert number to A\+S\+C\+II Like itoa but can support leading \textquotesingle{}+/-\// \textquotesingle{} or unsigned and zero padding Note\+: It is allowed to have more digits converted then prec defines. 
@@ -236,11 +260,137 @@ returns size of string
 \end{DoxyReturn}
 
 
-Definition at line 217 of file printf.\+c.
+Definition at line 318 of file printf.\+c.
 
 
 
 Referenced by \+\_\+printf\+\_\+fn().
+
+\index{printf.\+c@{printf.\+c}!pch@{pch}}
+\index{pch@{pch}!printf.\+c@{printf.\+c}}
+\subsubsection[{\texorpdfstring{pch(char ch)}{pch(char ch)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int pch (
+\begin{DoxyParamCaption}
+\item[{char}]{ch}
+\end{DoxyParamCaption}
+)}\hypertarget{printf_8c_ab454b0d961c8dc93406cc75379c8a1f5}{}\label{printf_8c_ab454b0d961c8dc93406cc75379c8a1f5}
+
+
+Put character in buffer with limits. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & string \\
+\hline
+\mbox{\tt in}  & {\em max} & maximum number of characters plus E\+OS  init\+\_\+p\+\_\+ch \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 148 of file printf.\+c.
+
+
+
+Referenced by p\+\_\+itoa(), and p\+\_\+ntoa().
+
+\index{printf.\+c@{printf.\+c}!pch\+\_\+ind@{pch\+\_\+ind}}
+\index{pch\+\_\+ind@{pch\+\_\+ind}!printf.\+c@{printf.\+c}}
+\subsubsection[{\texorpdfstring{pch\+\_\+ind()}{pch_ind()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int pch\+\_\+ind (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{printf_8c_a642ddbb02955bf5cb540f7a2f0f09aae}{}\label{printf_8c_a642ddbb02955bf5cb540f7a2f0f09aae}
+
+
+Return current index of character buffer with limits. 
+
+\begin{DoxyReturn}{Returns}
+Buffer index 
+\end{DoxyReturn}
+
+
+Definition at line 161 of file printf.\+c.
+
+
+
+Referenced by p\+\_\+ntoa().
+
+\index{printf.\+c@{printf.\+c}!pch\+\_\+init@{pch\+\_\+init}}
+\index{pch\+\_\+init@{pch\+\_\+init}!printf.\+c@{printf.\+c}}
+\subsubsection[{\texorpdfstring{pch\+\_\+init(char $\ast$str, int max)}{pch_init(char *str, int max)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void pch\+\_\+init (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str, }
+\item[{int}]{max}
+\end{DoxyParamCaption}
+)}\hypertarget{printf_8c_ab10e941ecf6d7512649e377e97d28fac}{}\label{printf_8c_ab10e941ecf6d7512649e377e97d28fac}
+
+
+Initialize character buffer with limits. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & string \\
+\hline
+\mbox{\tt in}  & {\em max} & maximum number of characters plus E\+OS \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+base of string to write to
+
+current string index
+
+maximum string size including E\+OS 
+
+Definition at line 133 of file printf.\+c.
+
+
+
+Referenced by p\+\_\+itoa(), and p\+\_\+ntoa().
+
+\index{printf.\+c@{printf.\+c}!pch\+\_\+max\+\_\+ind@{pch\+\_\+max\+\_\+ind}}
+\index{pch\+\_\+max\+\_\+ind@{pch\+\_\+max\+\_\+ind}!printf.\+c@{printf.\+c}}
+\subsubsection[{\texorpdfstring{pch\+\_\+max\+\_\+ind()}{pch_max_ind()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int pch\+\_\+max\+\_\+ind (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{printf_8c_a4188dbfea9bea20687558f35bc34c00d}{}\label{printf_8c_a4188dbfea9bea20687558f35bc34c00d}
+
+
+Return maximum valid index for character buffer. 
+
+\begin{DoxyReturn}{Returns}
+Buffer index 
+\end{DoxyReturn}
+
+
+Definition at line 169 of file printf.\+c.
+
+\index{printf.\+c@{printf.\+c}!print\+\_\+flags@{print\+\_\+flags}}
+\index{print\+\_\+flags@{print\+\_\+flags}!printf.\+c@{printf.\+c}}
+\subsubsection[{\texorpdfstring{print\+\_\+flags(f\+\_\+t f)}{print_flags(f_t f)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void print\+\_\+flags (
+\begin{DoxyParamCaption}
+\item[{{\bf f\+\_\+t}}]{f}
+\end{DoxyParamCaption}
+)}\hypertarget{printf_8c_a9c08c55e823a7532f2344a77ef296b4e}{}\label{printf_8c_a9c08c55e823a7532f2344a77ef296b4e}
+
+
+print flags set in t\+\_\+t structure 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em f} & \hyperlink{unionf__t}{f\+\_\+t} flags structure \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 181 of file printf.\+c.
 
 \index{printf.\+c@{printf.\+c}!reverse@{reverse}}
 \index{reverse@{reverse}!printf.\+c@{printf.\+c}}
@@ -263,7 +413,7 @@ string length
 \end{DoxyReturn}
 
 
-Definition at line 84 of file printf.\+c.
+Definition at line 85 of file printf.\+c.
 
 
 
@@ -299,7 +449,7 @@ string size
 \end{DoxyReturn}
 
 
-Definition at line 856 of file printf.\+c.
+Definition at line 1086 of file printf.\+c.
 
 \index{printf.\+c@{printf.\+c}!strlen@{strlen}}
 \index{strlen@{strlen}!printf.\+c@{printf.\+c}}
@@ -312,8 +462,6 @@ Definition at line 856 of file printf.\+c.
 
 String Length. 
 
-undefine any potential macro version of these functions
-
 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\tt in}  & {\em str} & string \\
@@ -324,7 +472,7 @@ string length
 \end{DoxyReturn}
 
 
-Definition at line 49 of file printf.\+c.
+Definition at line 50 of file printf.\+c.
 
 
 
@@ -351,7 +499,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 105 of file printf.\+c.
+Definition at line 106 of file printf.\+c.
 
 
 
@@ -387,9 +535,23 @@ string size
 \end{DoxyReturn}
 
 
-Definition at line 827 of file printf.\+c.
+Definition at line 1057 of file printf.\+c.
 
 
 
 Referenced by html\+\_\+msg(), and snprintf().
+
+
+
+\subsection{Variable Documentation}
+\index{printf.\+c@{printf.\+c}!\+\_\+pch@{\+\_\+pch}}
+\index{\+\_\+pch@{\+\_\+pch}!printf.\+c@{printf.\+c}}
+\subsubsection[{\texorpdfstring{\+\_\+pch}{_pch}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf p\+\_\+ch\+\_\+t} \+\_\+pch}\hypertarget{printf_8c_aa1e6944673f3194dc3fe8ba626deec55}{}\label{printf_8c_aa1e6944673f3194dc3fe8ba626deec55}
+
+
+Define data structure for character buffer with limits. 
+
+
+
+Definition at line 126 of file printf.\+c.
 

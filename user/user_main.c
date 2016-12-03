@@ -651,12 +651,25 @@ test_types()
 		printf("byte[%d] = %02x\n", i, u.byte8[i]);
 
 // Test basic type sizes
-	printf("sizeof (double) = %d\n", sizeof (double ) );
-	printf("sizeof (float) = %d\n", sizeof (float ) );
-	printf("sizeof (long long) = %d\n", sizeof (long long ) );
-	printf("sizeof (long) = %d\n", sizeof (long ) );
-	printf("sizeof (int) = %d\n", sizeof (int ) );
-	printf("sizeof (char) = %d\n", sizeof (char ) );
+    printf("sizeof (double) = %d\n", sizeof (double ) );
+    printf("sizeof (float) = %d\n", sizeof (float ) );
+    printf("sizeof (long long) = %d\n", sizeof (long long ) );
+    printf("sizeof (long) = %d\n", sizeof (long ) );
+    printf("sizeof (int) = %d\n", sizeof (int ) );
+    printf("sizeof (char) = %d\n", sizeof (char ) );
+
+    printf("long: %ld\n", 123456789L);
+    printf("unsigned long: %lu\n", 123456789L);
+    printf("long hex: %lx\n", 123456789L);
+
+    printf("int : %d\n", 123456789L);
+    printf("unsigned int: %u\n", 123456789L);
+    printf("int hex: %lx\n", 123456789L);
+
+    printf("int: %d\n", 12345);
+    printf("unsigned int: %u\n", 12345);
+    printf("int hex: %x\n", 12345);
+
 }
 
 /**

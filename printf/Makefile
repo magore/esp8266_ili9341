@@ -1,7 +1,7 @@
 all:	test_printf
 
 test:	test_printf
-	./test_printf | more
+	./test_printf
 
 CFLAGS = -DPRINTF_TEST -DFLOATIO -g
 

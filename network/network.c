@@ -203,7 +203,7 @@ void setup_networking()
         if(!wifi_get_macaddr(STATION_IF, macaddr))
 			printf( "ERROR wifi_get_macaddr()\n");
         printf("wifi_get_opmode: %d, SSID:[%s], PASSWORD:[%s]\n",
-            wifi_get_opmode(),
+            (int)wifi_get_opmode(),
             StationConfig.ssid,
             "**********"
 			/* StationConfig.password */

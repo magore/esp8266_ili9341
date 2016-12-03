@@ -235,10 +235,11 @@ atof(const char *str)
 {
 	double num;
 	double frac;
+	double tmp;
 
-	int power,sign;
+	int digit, power,sign;
 
-	while(*str == ' ' || *str == '\t' || *str == '\n')
+	while(*str == '0' || *str == ' ' || *str == '\t' || *str == '\n')
 		++str;
 	sign = 1;
 	if(*str == '-')
@@ -250,25 +251,30 @@ atof(const char *str)
 	{
 		++str;
 	}
-	num=0.0; 
-	while(isdigit(*str)) 
+	num = 0.0; 
+	while(*str && isdigit(*str)) 
 	{
-		num = (num * 10.0) + (double) (*str - '0');
+		num *= 10.0;	// make room for new digit
+		digit = (*str - '0');
+		num += (double) digit;
 		str++;
 	}
+
 	if(*str == '.') 
 	{
 		++str;
-		frac = 1.0; 
-		while(isdigit(*str)) 
+		frac = 0.1;
+		while(*str && isdigit(*str)) 
 		{
-			num = (num * 10.0) + (double) (*str - '0');
-			frac *= 10.0;
+			tmp = (double) (*str - '0');
+			num += tmp * frac;
+			frac *= 0.1;
 			str++;
 		}
-		num /= frac;
 	}
-	num *= sign;
+	if(sign == -1)
+		num = -num;
+
 	if(*str == 'E' || *str == 'e') 
 	{
 		str++;
@@ -286,7 +292,7 @@ atof(const char *str)
 		if(sign<0)
 			power = -power;
 		// iexp - number to integer power
-		return(num * iexp(10.0, power));
+		num *= iexp(10.0, power);
 	}
 	return(num);
 }
