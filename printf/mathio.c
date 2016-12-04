@@ -191,6 +191,8 @@ double
 scale10(double num, int *exp)
 {
 	int exp10,exp2;
+	int sign;
+
 	double scale;
 
 	if(!num)
@@ -198,6 +200,14 @@ scale10(double num, int *exp)
 		*exp = 0;
 		return(0.0);
 	}
+
+	sign = 0;
+	if(num < 0)
+	{
+		num = -num;
+		sign = 1;
+	}
+		
 	// extract exponent
 	frexp(num, &exp2);
 	// aproximate exponent in base 10
@@ -222,6 +232,8 @@ scale10(double num, int *exp)
 	}
 
 	*exp = exp10;
+	if(sign)
+		return(-num);
 	return(num);
 }
 

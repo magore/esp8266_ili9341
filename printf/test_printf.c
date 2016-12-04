@@ -3,7 +3,7 @@
 
  @brief Test routines for Small printf
 
- @par Copyright &copy; 2015 Mike Gore, GPL License
+ @par Copyright &copy; 2015-2016 Mike Gore, GPL License
  @par You are free to use this code under the terms of GPL
    please retain a copy of this notice in any code you use it in.
 
@@ -35,189 +35,158 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "mathio.h"
 
-/// @brief limit a floating point string to specified digits
-/// @param[in] digits: maximum number of digits to match
+
+/// @brief compare significant digits and exponennt of floating point numbers
+/// We match:
+///   - String lengths
+///   - Signs +/-
+///   - Leading spaces 
+/// Skip all matching leading zeros 
+/// Skip optional matching decimal point
+///   If these step succeeed
+///   Then we collect at most a user specified number of significant digits
+////    for each string;
+///   Then we match optional exponent
+///   Then we convert significant digits for each string to long long values
+///   Then we return the absolute value of the difference of these numbers
 /// @param[in] *str1: known good number string
 /// @param[in] *str2: testing number string
-/// @param[in] *count: actual number of matched digits
-/// return 1 if matched, 0 if not matched
-int float_ncmp(char *str1, char *str2, double *error)
+/// return -1LL if a match step fails - steps listed above with the word match
+/// return absolute value of significant digits as long long
+long long numcmp(uint8_t *str1, uint8_t *str2, int max)
 {
-	char *save;
-	int last = 0;
-	int radix = 0;
-	int c;
-	int expf;
-	int matched = 0;
-	int s1 = 0;
-	int s2 = 0;
-	double n1,n2, result;
-	
-	*error = 0;
 
-	if(strcmp(str1,str2) == 0)
-		return(1);
+	int nzflag = 0;
+	uint8_t n1[64+2],n2[64+2];
+	uint8_t c1,c2;
+	int ind1,ind2;
+	int len1,len2;
+	int count = 0;
+	int offset = 0;
+	long long diff, l1,l2;
 
-	if(strlen(str1) != strlen(str2))
-		return(0);
+	uint8_t *save1 = str1;
+	uint8_t *save2 = str2;
 
-	// Match and discard leading space,0,+/- characters 
-	// BEFORE atof call
-	while(*str1 && *str2)
+	ind1 = 0;
+	ind2 = 0;
+
+	if(max > 64)
+		max = 64;
+
+	len1 = strlen(save1);	
+	len2 = strlen(save2);	
+	if(len1 != len2)
 	{
-		if(*str1 != *str2)
-			return(0);
+		printf("WARN: length mismatch (%d) != (%d)\n", 
+			len1,len2);
+		printf("      str1:[%s]\n", save1);
+		printf("      str2:[%s]\n", save2);
+		return(-1LL);	
+	}
 
+	// discard leading space,,+/- characters 
+	while( (c1 = *str1) && (c2 = *str2) )
+	{
+		if( isdigit(c1) || isdigit(c2) )
+			break;
+
+		if(c1 != c2)
+		{
+			n1[ind1] = 0;
+			n2[ind2] = 0;
+			printf("WARN: mismatch at (%d)\n", count);
+			printf("      str1 offset:%d\n", (int)(str1 - save1));
+			printf("      str2 offset:%d\n", (int)(str2 - save2));
+			printf("      str1:[%s]\n", save1);
+			printf("      str2:[%s]\n", save2);
+			printf("      n1:[%s]\n", n1);
+			printf("      n2:[%s]\n", n2);
+			return(-1LL);	
+		}
+			
 		// sign an leading zeros
-		c = *str1;
-		if(c == '+' || c == '-' || c == ' ')
+		if(c1 == '.' || c1 == ' ' || c1 == '-' || c1 == '+')
 		{
 			++str1;
 			++str2;
-			continue;
-		}
-		// discard leading zeros
-		if(c == '0')
-		{
-			++str1;
-			++str2;
-			continue;
-		}
-		break;	
-	}
-
-	//FIXME consider small precision and rounding cases
-	//This can magnify the error to a bogus value
-
-	// -we need to take in to effect the rounded result
-	//
-	n1 = atof(str1);
-	if(n1 != n1)
-	{
-		*error = 0;
-		printf("N1: NAN [%s]\n",str1);
-		return(0);
-	}
-	if(n1 < 0)
-	{
-		n1 = -n1;
-		s1 = 1;
-	}
-	
-	n2 = atof(str2);
-	if(n2 != n2)
-	{
-		*error = 0;
-		printf("N2: NAN [%s]\n",str2);
-		return(0);
-	}
-	if(n2 < 0)
-	{
-		n2 = -n2;
-		s2 = 1;
-	}
-
-
-	// fixme sign 
-	if(s1 != s2)
-	{
-		result = n1 - n2;
-		*error = result;
-		return(0);
-	}
-
-	if(n1 == 0 && n2 == 0)
-	{
-		result = 0;
-	}
-	else
-	{	
-		if(!n1 || !n2)
-		{
-			if(n2)
-				result = n2;
-			else
-				result = n1;
-		}
-		else 
-		{
-			result = n1 - n2;
-			if(result < 0)
-				result = -result;
-			if(n1)
-				result = result / n1;
-		}
-	}
-	*error = result;
-// FIXME if the format spec has few digits 
-// Such as %.2f we have a number like 1.499999999 
-// Then the error can *seem* quite large when it really is not.
-// There is no simpile fix
-
-	if(result < 1e-12)
-		return(1);
-	return(0);
-	
-// Match digits
-// We want the count of digits
-// offset of first digit mismatch
-#if 0
-	while(*str1 && *str2)
-	{
-		if(*str1 != *str2)
-			return(0);
-		// sign an leading zeros
-		c = *str1;
-		if(c == '+' || c == '-' || c == ' ')
-		{
-			last = c;
-			++str1;
-			++str2;
-			continue;
-		}
-		// discard leading zeros
-		if(c == '0')
-		{
-			last = c;
-			++str1;
-			++str2;
-			continue;
-		}
-		break;	
-	}
-
-	// match number and fraction part excluding optional exponent
-	while(*str1 && *str2 )
-	{
-		if(*str1 != *str2)
-		{
-			*count = matched;
-			return(0);
-		}
-		c = *str1;
-		if(c == '.' )
-		{
-			++str1;
-			++str2;
-			continue;
-		}
-		if(isdigit(c))
-		{
-			++str1;
-			++str2;
-			++matched;
+			++count;
 			continue;
 		}
 		break;
 	}
 
-	*count = matched;
-	if(strcmp(str1,str2) == 0)
-		return(1);
-	return(0);
-#endif
+	while( (c1 = *str1) && (c2 = *str2) )
+	{
+		if( c1 == '.' && c2 == '.' )
+		{
+			++str1;
+			++str2;
+			++count;
+			continue;
+		}
+
+		if( !isdigit(c1) || !isdigit(c2) )
+			break;
+
+		if(!nzflag && (c1 != '0' || c2 != '0'))
+			nzflag = 1;
+		
+		if(nzflag)
+		{
+			// no more then 16 digits
+			if(ind1 < max)
+			{
+				n1[ind1++] = c1;
+				n2[ind2++] = c2;
+			}
+		}
+		++count;
+		++str1;
+		++str2;
+	}
+	n1[ind1] = 0;
+	n2[ind2] = 0;
+
+	c1 = *str1;
+	c2 = *str2;
+
+	if(c1 != c2)
+	{
+		printf("WARN: mismatch at (%d) %02X != %02X\n", 
+			(int) count, (int) c1, (int) c2);
+		printf("      str1 offset:%d\n", (int)(str1 - save1));
+		printf("      str2 offset:%d\n", (int)(str2 - save2));
+		printf("      str1:[%s]\n", save1);
+		printf("      str2:[%s]\n", save2);
+		printf("      n1:[%s]\n", n1);
+		printf("      n2:[%s]\n", n2);
+		return(-1LL);	
+	}
+ 	if(c1 == 'e' || c1 == 'E')
+	{
+		if(strcmp(str1,str2) != 0)
+		{
+			printf("WARN: exponent mismatch at offset:(%d)\n", count);
+			printf("      str1:[%s]\n", save1);
+			printf("      str2:[%s]\n", save2);
+			printf("      n1:[%s]\n", n1);
+			printf("      n2:[%s]\n", n2);
+			return(-1LL);	
+		}
+	}
+
+	l1 = strtoll(n1,NULL,10);
+	l2 = strtoll(n2,NULL,10);
+	diff = l1 - l2;
+	if(diff < 0)
+		diff = -diff;
+
+	return(diff);
 }
 
+
+// ====================================================================
 /// @brief _putc_fn low level function that writes a character with putchar()
 /// @param[in] *p: structure with pointers to track number of bytes written
 /// @param[in] ch: character to write
@@ -281,16 +250,17 @@ int t_vsnprintf(char* str, size_t size, const char *format, va_list va)
 }
 
 
-int display_good = 0;
-long tp_good = 0;
-long tp_bad = 0;
-long tp_fmt = 0;
-
 // ====================================================================
-/// @brief test GCC vsnprintf vs our vsnprintf
-/// @param[in] format: printf forat string
+int display_good = 0;
+long tp_good = 0;	//@brief total good tests
+long tp_bad = 0;	//@brief total bad  tests
+long tp_fmt = 0;	//@brief total empty format string errors
+
+/// @brief Manual test of glibc printf vs ours
+/// We test for a worst case error of +/1 error at 15digits
+/// @param[in] format: printf format string
 /// @param[in] ...: list of arguments
-/// @return string size
+/// @return void
 MEMSPACE
 void tp(const char *format, ...)
 {
@@ -299,9 +269,9 @@ void tp(const char *format, ...)
 	char str1[1024];
 	char str2[1024];
 	int f;
-	double error;
     int find, ind, len;
 	int matched;
+	long long error;
     va_list va;
 
 	memset(str0,sizeof(str0)-1,0);
@@ -321,6 +291,8 @@ void tp(const char *format, ...)
 	else 
 	{
 		printf("ERROR: empty format\n");
+		printf("    G[%s]\n", str1);
+		printf("    B[%s]\n", str2);
 		printf("\n");
 		++tp_fmt;
 		return;
@@ -364,14 +336,17 @@ void tp(const char *format, ...)
 	if(f == 'g' || f == 'G' || f == 'e' || f == 'E' || f == 'f' || f == 'F')
 	{
 		// Compare results to 16 digit window
-		if(float_ncmp(str1,str2, &error) == 0 
-			|| strlen(str1) != strlen(str2))
+		// FIXME 15 is haard coded - compute this value
+		// FIXME does only 'f' and 'e' so far
+		error = numcmp(str1,str2,15);
+
+		// +/- 1 LSB == 2
+		if(error < 0 || error > 2LL)
 		{
 			printf("ERROR: [%s], [%s]\n", format, str0);
 			printf("    G[%s]\n", str1);
 			printf("    B[%s]\n", str2);
-			printf("    error:%.20e\n", error);
-			printf("\n");
+			printf("    error:%lld\n", error);
 			++tp_bad;
 		}
 		else
@@ -381,7 +356,6 @@ void tp(const char *format, ...)
 			{
 				printf("OK:    [%s], [%s]\n", format, str0);
 				printf("    G[%s]\n", str1);
-				printf("\n");
 			}
 		}
 	}
@@ -392,7 +366,6 @@ void tp(const char *format, ...)
 			printf("ERROR: [%s], [%s]\n", format, str0);
 			printf("    G[%s]\n", str1);
 			printf("    B[%s]\n", str2);
-			printf("\n");
 			++tp_bad;
 		}
 		else
@@ -402,7 +375,6 @@ void tp(const char *format, ...)
 			{
 				printf("OK:    [%s], [%s]\n", format, str0);
 				printf("    G[%s]\n", str1);
-				printf("\n");
 			}
 		}
 	}
@@ -410,11 +382,17 @@ void tp(const char *format, ...)
 		return;
 	fflush(stdout);
 }
-		
 
 
 
-int random_tests(int flag, int longf)
+// ====================================================================
+/// @brief Do random printf tests - glibc vc ours
+/// We use random width, an random optional precision
+/// @param[in] flag: 'f' or 'F' or 'e' or 'E'
+/// @param[in] longf: add 'l' to format string
+/// @return void
+MEMSPACE
+void random_tests(int flag, int longf)
 {
 	long lnum;
 	int inum;
@@ -425,6 +403,7 @@ int random_tests(int flag, int longf)
 	int ind;
 	int shift;
 	int precf;
+	int dotf;
 	double sign;
 	char *op = "+- 0";
 	char format[1024];
@@ -437,11 +416,18 @@ int random_tests(int flag, int longf)
 		sign = 1.0;
 	else
 		sign = -1.0;
+
 	if(drand48() >= .5)
 		precf = 1;
 	else
 		precf = 0;
+	if(drand48() >= .5)
+		dotf = 1;
+	else
+		dotf = 0;
+
 	ind = drand48() * 3.99999;	
+
 	
 		
 
@@ -451,7 +437,7 @@ int random_tests(int flag, int longf)
 	{
 		width = drand48() * 16;
 		prec = drand48() * 16;
-		if(precf)
+		if(precf || dotf)
 			snprintf(format,sizeof(format)-1, "%%%c%d.%d%c", op[ind], width, prec, flag);
 		else
 			snprintf(format,sizeof(format)-1, "%%%c%d%c", op[ind], width, flag);
@@ -469,7 +455,7 @@ int random_tests(int flag, int longf)
 			shift = drand48() * (double) sizeof(long) * 8;
 			scale = pow(2.0, shift);
 			lnum = (long) ( sign * drand48() * scale);
-			if(precf)
+			if(precf || dotf)
 				snprintf(format,sizeof(format)-1, "%%%c%d.%dl%c", op[ind], width, prec, flag);
 			else
 				snprintf(format,sizeof(format)-1, "%%%c%dl%c", op[ind], width, flag);
@@ -482,7 +468,7 @@ int random_tests(int flag, int longf)
 			shift = drand48() * (double) sizeof(int) * 8;
 			scale = pow(2.0, shift);
 			inum = (int) ( sign * drand48() * scale);
-			if(precf)
+			if(precf || dotf)
 				snprintf(format,sizeof(format), "%%%c%d.%d%c", op[ind], width, prec, flag);
 			else
 				snprintf(format,sizeof(format), "%%%c%d%c", op[ind], width, flag);
@@ -491,7 +477,8 @@ int random_tests(int flag, int longf)
 	}
 }
 
-/// @brief Fixed printf tests
+// ====================================================================
+/// @brief Manual printf tests - glibc vc ours
 /// Compare printf results from gcc printf and this printf
 /// @return void
 void tests()
@@ -511,8 +498,8 @@ void tests()
     printf("unsigned long: %lu\n", 123456789L);
     printf("long hex: %lx\n", 123456789L);
 
-    printf("int : %d\n", 123456789L);
-    printf("unsigned int: %u\n", 123456789L);
+    printf("int : %d\n", 123456789);
+    printf("unsigned int: %u\n", 123456789);
     printf("int hex: %lx\n", 123456789L);
 
     printf("int: %d\n", 12345);
@@ -686,8 +673,9 @@ void tests()
 	printf("\n");
 	printf("\n");
 }
+
 /// @brief main printf test programe
-/// Run a number of conversion tests
+/// Run a number of conversion tests and display good and bad result totals
 /// @return 0
 #define MAXSTR 256
 int main(int argc, char *argv[])
@@ -726,7 +714,7 @@ int main(int argc, char *argv[])
 			for(i=0;i<1000000;++i)
 				random_tests(iops[k], longf);
 			printf("End:  (%c:%s)\n", iops[k], lops[longf]);
-			printf("Good:%ld, Bad:%ld\n", tp_good, tp_bad);	
+			printf("Good:%ld, Bad:%ld, fmt:%ld\n", tp_good, tp_bad, tp_fmt);	
 			printf("=======================\n");
 		}
 	}
@@ -741,14 +729,15 @@ int main(int argc, char *argv[])
 		for(i=0;i<1000000;++i)
 			random_tests(fops[k], longf);
 		printf("End:  (%c)\n", fops[k]);
-		printf("Good:%ld, Bad:%ld\n", tp_good, tp_bad);	
+		printf("Good:%ld, Bad:%ld, fmt:%ld\n", tp_good, tp_bad, tp_fmt);	
 		printf("=======================\n");
 	}
 	printf("\n\n");
 
-	printf("tests done\n");
+	printf("Random done\n");
 
-	exit(0);
+#if 0
+// work in progress
 
 	printf("=======================\n");
 	printf("1's\n");
@@ -914,6 +903,7 @@ int main(int argc, char *argv[])
 
 	printf("\n");
 	printf("=================================\n");
+#endif
 
 	return(0);
 }

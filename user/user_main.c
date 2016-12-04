@@ -431,7 +431,7 @@ void loop(void)
 		tft_printf(wintop,"Volt:%2.2f\n", (float)voltage);
 #endif
 	
-		tft_printf(wintop,"CH:%02d, DB:-%02d\n", 
+		tft_printf(wintop,"CH:%02d, DB:%+02d\n", 
 			wifi_get_channel(),
 			wifi_station_get_rssi());
 #endif
