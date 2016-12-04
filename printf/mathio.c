@@ -149,7 +149,8 @@ atol(const char *str)
 // Floating point I/O helper functions
 // ==================================================
 #ifdef FLOATIO
-/// @brief Raise number to exponent power (exponent is integer)
+/// @brief Raise number to integer exponent power 
+/// The process is much like a bitwise multiply - and reduces operatiosn required
 /// @param[in] num: number
 /// @param[in] exp:  interger exponent
 /// @return num ** exp
@@ -180,9 +181,8 @@ iexp(double num, int exp)
     return(num);
 }
 
-
 // ==================================================
-/// @brief Scale a number to 1.0 .. 9.99999...
+/// @brief Scale a number to range 1.0 .. 9.99999... and return exponent
 /// @param[in] num: number
 /// @param[out] *exp: interger power of 10 for scale factor
 /// @return scaled number
@@ -278,7 +278,8 @@ atof(const char *str)
 		frac = 0.1;
 		while(*str && isdigit(*str)) 
 		{
-			tmp = (double) (*str - '0');
+			digit = (*str - '0');
+			tmp = (double) digit;
 			num += tmp * frac;
 			frac *= 0.1;
 			str++;
@@ -296,7 +297,9 @@ atof(const char *str)
 		power=0;
 		while(isdigit(*str)) 
 		{
-			power = (power * 10) + (double)(*str - '0');
+			power *= 10.0;
+			digit = (*str - '0');
+			power += (double) digit; 
 			str++;
 		}
 		if(num == 0.0)

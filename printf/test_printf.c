@@ -257,7 +257,7 @@ long tp_bad = 0;	//@brief total bad  tests
 long tp_fmt = 0;	//@brief total empty format string errors
 
 /// @brief Manual test of glibc printf vs ours
-/// We test for a worst case error of +/1 error at 15digits
+/// We test for a worst case error of 1 LSB error at 15digits
 /// @param[in] format: printf format string
 /// @param[in] ...: list of arguments
 /// @return void
@@ -336,12 +336,13 @@ void tp(const char *format, ...)
 	if(f == 'g' || f == 'G' || f == 'e' || f == 'E' || f == 'f' || f == 'F')
 	{
 		// Compare results to 16 digit window
-		// FIXME 15 is haard coded - compute this value
+		// FIXME 16 is haard coded here - we should compute this value
 		// FIXME does only 'f' and 'e' so far
-		error = numcmp(str1,str2,15);
+		error = numcmp(str1,str2,16);
 
-		// +/- 1 LSB == 2
-		if(error < 0 || error > 2LL)
+		// A double 1 LSB error would be 10LL
+		// Remember the numbers may be rounded so we use less then 15LL
+		if(error < 0 || error > 14LL)
 		{
 			printf("ERROR: [%s], [%s]\n", format, str0);
 			printf("    G[%s]\n", str1);
