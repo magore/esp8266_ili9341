@@ -27,6 +27,8 @@ struct \hyperlink{structp__ch__t}{p\+\_\+ch\+\_\+t}
 \begin{DoxyCompactList}\small\item\em Reverse a string in place Example\+: abcdef -\/$>$ fedcba. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR} \hyperlink{printf_8c_a25ac5a1dbdfa1d06d55448cd7b665d1d}{strupper} (char $\ast$str)
 \begin{DoxyCompactList}\small\item\em U\+P\+P\+E\+R\+C\+A\+SE a string. \end{DoxyCompactList}\item 
+int \hyperlink{printf_8c_aa5634582e6d80bdf403844718798e088}{bin2num} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} $\ast$str, int strmax, int nummin, int base, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} $\ast$nump, int numsize, int sign\+\_\+ch)
+\begin{DoxyCompactList}\small\item\em Convert an unsigned number (numsize bytes in size) to A\+S\+C\+II in specified base Notes\+: No limit except available memory on number size. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{printf_8c_ab10e941ecf6d7512649e377e97d28fac}{pch\+\_\+init} (char $\ast$str, int max)
 \begin{DoxyCompactList}\small\item\em Initialize character buffer with limits. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{printf_8c_ab454b0d961c8dc93406cc75379c8a1f5}{pch} (char ch)
@@ -37,10 +39,8 @@ struct \hyperlink{structp__ch__t}{p\+\_\+ch\+\_\+t}
 \begin{DoxyCompactList}\small\item\em Return maximum valid index for character buffer. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{printf_8c_a9c08c55e823a7532f2344a77ef296b4e}{print\+\_\+flags} (\hyperlink{unionf__t}{f\+\_\+t} f)
 \begin{DoxyCompactList}\small\item\em print flags set in t\+\_\+t structure \end{DoxyCompactList}\item 
-\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{printf_8c_aed58a26406d19bc457c41e3963f24a8a}{p\+\_\+itoa} (unsigned long num, char $\ast$str, int max, int width, int prec, \hyperlink{unionf__t}{f\+\_\+t} f)
-\begin{DoxyCompactList}\small\item\em Convert number to A\+S\+C\+II returns size of string after conversion Note\+: It is allowed to have more digits converted then prec defines Like itoa but can support leading \textquotesingle{}+/-\// \textquotesingle{} or unsigned and zero padding. \end{DoxyCompactList}\item 
-\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{printf_8c_a5d543681cf37e51d4ed605a2a64c3990}{p\+\_\+ntoa} (unsigned long num, char $\ast$str, int max, int radix, int width, int prec, \hyperlink{unionf__t}{f\+\_\+t} f)
-\begin{DoxyCompactList}\small\item\em Convert number to A\+S\+C\+II Like itoa but can support leading \textquotesingle{}+/-\// \textquotesingle{} or unsigned and zero padding Note\+: It is allowed to have more digits converted then prec defines. \end{DoxyCompactList}\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{printf_8c_ab538bcf34e0347b5c0329666ab58d0e2}{p\+\_\+ntoa} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} $\ast$nump, int numsize, char $\ast$str, int strmax, int radix, int width, int prec, \hyperlink{unionf__t}{f\+\_\+t} f)
+\begin{DoxyCompactList}\small\item\em Convert number an base 2 .. 16 to A\+S\+C\+II with optional sign Notes\+: 1) Numbers can be any number of digits long -\/ limited only by memory available To print negative numbers convert to positive before calling this function and set f.\+b.\+neg 2) Warning\+: as with printf width and prec are only minimum sizes -\/ results can be bigger We assume all numbers are positive\+: \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{printf_8c_ab713fa5c01f315bdf67d18a6dbcb4ff5}{\+\_\+puts\+\_\+pad} (\hyperlink{mathio_8h_a1efdee46bf8e5af45e76e461e8db9c09}{printf\+\_\+t} $\ast$fn, char $\ast$s, int width, int \hyperlink{user__main_8c_aa011065eee776eb1bda73597b5d9d5d7}{count}, int left)
 \item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{printf_8c_a1c2762f15e2ae4dea9b52ee9e3532372}{\+\_\+printf\+\_\+fn} (\hyperlink{mathio_8h_a1efdee46bf8e5af45e76e461e8db9c09}{printf\+\_\+t} $\ast$fn, \hyperlink{mathio_8h_a9306b0c3083933632aca02ebb1fe14d5}{\+\_\+\+\_\+memx} const char $\ast$fmt, va\+\_\+list va)
@@ -99,9 +99,12 @@ vsnprintf function
 \begin{DoxyReturn}{Returns}
 size of string 
 \end{DoxyReturn}
+Calling Variadic Functions
+\begin{DoxyItemize}
+\item exceprt from \href{https://www.gnu.org/software/libc/manual/html_node/Calling-Variadics.html}{\tt https\+://www.\+gnu.\+org/software/libc/manual/html\+\_\+node/\+Calling-\/\+Variadics.\+html} Since the prototype doesn’t specify types for optional arguments, in a call to a variadic function the default argument promotions are performed on the optional argument values. This means the objects of type char or short int (whether signed or not) are promoted to either int or unsigned int, as appropriate; and that objects of type float are promoted to type double. So, if the caller passes a char as an optional argument, it is promoted to an int, and the function can access it with va\+\_\+arg (ap, int).
+\end{DoxyItemize}
 
-
-Definition at line 739 of file printf.\+c.
+Definition at line 697 of file printf.\+c.
 
 
 
@@ -131,7 +134,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1031 of file printf.\+c.
+Definition at line 1034 of file printf.\+c.
 
 
 
@@ -150,11 +153,56 @@ Referenced by vsnprintf().
 )}\hypertarget{printf_8c_ab713fa5c01f315bdf67d18a6dbcb4ff5}{}\label{printf_8c_ab713fa5c01f315bdf67d18a6dbcb4ff5}
 
 
-Definition at line 681 of file printf.\+c.
+Definition at line 639 of file printf.\+c.
 
 
 
 Referenced by \+\_\+printf\+\_\+fn().
+
+\index{printf.\+c@{printf.\+c}!bin2num@{bin2num}}
+\index{bin2num@{bin2num}!printf.\+c@{printf.\+c}}
+\subsubsection[{\texorpdfstring{bin2num(uint8\+\_\+t $\ast$str, int strmax, int nummin, int base, uint8\+\_\+t $\ast$nump, int numsize, int sign\+\_\+ch)}{bin2num(uint8_t *str, int strmax, int nummin, int base, uint8_t *nump, int numsize, int sign_ch)}}]{\setlength{\rightskip}{0pt plus 5cm}int bin2num (
+\begin{DoxyParamCaption}
+\item[{{\bf uint8\+\_\+t} $\ast$}]{str, }
+\item[{int}]{strmax, }
+\item[{int}]{nummin, }
+\item[{int}]{base, }
+\item[{{\bf uint8\+\_\+t} $\ast$}]{nump, }
+\item[{int}]{numsize, }
+\item[{int}]{sign\+\_\+ch}
+\end{DoxyParamCaption}
+)}\hypertarget{printf_8c_aa5634582e6d80bdf403844718798e088}{}\label{printf_8c_aa5634582e6d80bdf403844718798e088}
+
+
+Convert an unsigned number (numsize bytes in size) to A\+S\+C\+II in specified base Notes\+: No limit except available memory on number size. 
+
+
+\begin{DoxyItemize}
+\item Does not use divide or of multiply instructions -\/ great on 8bit C\+PU\textquotesingle{}s How it works\+: Say you have a table of powers of 2 in a given base base
+\item To get the result add each table entry, in the base, that corresponds to each 1 bit in the binary number.
+\item Now instead of a table we can start with 1 and multiple by 2 contraining each digit into the base we want -\/ this is the same as using the table except we build it on the fly 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em str} & A\+S\+C\+II number string result \\
+\hline
+\mbox{\tt in}  & {\em strmax} & maximum size of str in bytes \\
+\hline
+\mbox{\tt in}  & {\em nummin} & minimum number of digits to display \\
+\hline
+\mbox{\tt in}  & {\em $\ast$nump} & Pointer to binary number \\
+\hline
+\mbox{\tt in}  & {\em numsize} & size of binary number in bytes \\
+\hline
+\mbox{\tt in}  & {\em sign\+\_\+ch} & sign of binary number return converted number string numsize in bytes \\
+\hline
+\end{DoxyParams}
+
+\end{DoxyItemize}
+
+Definition at line 133 of file printf.\+c.
+
+
+
+Referenced by p\+\_\+ntoa().
 
 \index{printf.\+c@{printf.\+c}!isdigit@{isdigit}}
 \index{isdigit@{isdigit}!printf.\+c@{printf.\+c}}
@@ -185,82 +233,46 @@ Definition at line 67 of file printf.\+c.
 
 Referenced by \+\_\+printf\+\_\+fn().
 
-\index{printf.\+c@{printf.\+c}!p\+\_\+itoa@{p\+\_\+itoa}}
-\index{p\+\_\+itoa@{p\+\_\+itoa}!printf.\+c@{printf.\+c}}
-\subsubsection[{\texorpdfstring{p\+\_\+itoa(unsigned long num, char $\ast$str, int max, int width, int prec, f\+\_\+t f)}{p_itoa(unsigned long num, char *str, int max, int width, int prec, f_t f)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int p\+\_\+itoa (
-\begin{DoxyParamCaption}
-\item[{unsigned long}]{num, }
-\item[{char $\ast$}]{str, }
-\item[{int}]{max, }
-\item[{int}]{width, }
-\item[{int}]{prec, }
-\item[{{\bf f\+\_\+t}}]{f}
-\end{DoxyParamCaption}
-)}\hypertarget{printf_8c_aed58a26406d19bc457c41e3963f24a8a}{}\label{printf_8c_aed58a26406d19bc457c41e3963f24a8a}
-
-
-Convert number to A\+S\+C\+II returns size of string after conversion Note\+: It is allowed to have more digits converted then prec defines Like itoa but can support leading \textquotesingle{}+/-\// \textquotesingle{} or unsigned and zero padding. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em num} & number \\
-\hline
-\mbox{\tt out}  & {\em $\ast$str} & string \\
-\hline
-\mbox{\tt in}  & {\em max} & maximum length or string \\
-\hline
-\mbox{\tt in}  & {\em prec} & minumum number of digits, 0 padded if needed (can be zero) \\
-\hline
-\mbox{\tt in}  & {\em sign} & 3\+: \textquotesingle{} \textquotesingle{} -\/ or -\/, 2\+: -\/ or +, 1\+: -\/ -\/ or \textquotesingle{}\textquotesingle{}, 0\+: unsigned N\+OT counted as part of prec length (just like printf) \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-long value 
-\end{DoxyReturn}
-
-
-Definition at line 219 of file printf.\+c.
-
-
-
-Referenced by \+\_\+printf\+\_\+fn().
-
 \index{printf.\+c@{printf.\+c}!p\+\_\+ntoa@{p\+\_\+ntoa}}
 \index{p\+\_\+ntoa@{p\+\_\+ntoa}!printf.\+c@{printf.\+c}}
-\subsubsection[{\texorpdfstring{p\+\_\+ntoa(unsigned long num, char $\ast$str, int max, int radix, int width, int prec, f\+\_\+t f)}{p_ntoa(unsigned long num, char *str, int max, int radix, int width, int prec, f_t f)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int p\+\_\+ntoa (
+\subsubsection[{\texorpdfstring{p\+\_\+ntoa(uint8\+\_\+t $\ast$nump, int numsize, char $\ast$str, int strmax, int radix, int width, int prec, f\+\_\+t f)}{p_ntoa(uint8_t *nump, int numsize, char *str, int strmax, int radix, int width, int prec, f_t f)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int p\+\_\+ntoa (
 \begin{DoxyParamCaption}
-\item[{unsigned long}]{num, }
+\item[{{\bf uint8\+\_\+t} $\ast$}]{nump, }
+\item[{int}]{numsize, }
 \item[{char $\ast$}]{str, }
-\item[{int}]{max, }
+\item[{int}]{strmax, }
 \item[{int}]{radix, }
 \item[{int}]{width, }
 \item[{int}]{prec, }
 \item[{{\bf f\+\_\+t}}]{f}
 \end{DoxyParamCaption}
-)}\hypertarget{printf_8c_a5d543681cf37e51d4ed605a2a64c3990}{}\label{printf_8c_a5d543681cf37e51d4ed605a2a64c3990}
+)}\hypertarget{printf_8c_ab538bcf34e0347b5c0329666ab58d0e2}{}\label{printf_8c_ab538bcf34e0347b5c0329666ab58d0e2}
 
 
-Convert number to A\+S\+C\+II Like itoa but can support leading \textquotesingle{}+/-\// \textquotesingle{} or unsigned and zero padding Note\+: It is allowed to have more digits converted then prec defines. 
+Convert number an base 2 .. 16 to A\+S\+C\+II with optional sign Notes\+: 1) Numbers can be any number of digits long -\/ limited only by memory available To print negative numbers convert to positive before calling this function and set f.\+b.\+neg 2) Warning\+: as with printf width and prec are only minimum sizes -\/ results can be bigger We assume all numbers are positive\+: 
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em num} & unsigned number \\
+\mbox{\tt in}  & {\em nump} & number pointer \\
 \hline
-\mbox{\tt out}  & {\em $\ast$str} & string \\
+\mbox{\tt in}  & {\em numsize} & number size in bytes \\
 \hline
-\mbox{\tt in}  & {\em max} & maximum length or string \\
+\mbox{\tt out}  & {\em $\ast$str} & string result \\
 \hline
-\mbox{\tt in}  & {\em radix} & Radix may only be 2,8,16 \\
+\mbox{\tt in}  & {\em strmax} & strmaximum length of string result \\
 \hline
-\mbox{\tt in}  & {\em prec} & minumum number of digits, zero padded if needed N\+OT counted as part of prec length (just like printf) \\
+\mbox{\tt in}  & {\em radix} & Radix may be 2 .. 16 \\
+\hline
+\mbox{\tt in}  & {\em width} & Width of result padded if needed \\
+\hline
+\mbox{\tt in}  & {\em prec} & minumum number of digits, zero padded if needed \\
+\hline
+\mbox{\tt in}  & {\em f} & flags f.\+b.\+left justify left f.\+b.\+plus display + for positive number, -\/ for negative numbers f.\+b.\+space display \textquotesingle{} \textquotesingle{} for positive, -\/ for negative f.\+b.\+zero pad with zeros if needed f.\+b.\+alt Alternate display form -\/ work in progress f.\+b.\+width Width of result -\/ pad if required f.\+b.\+prec Zero padd to prec if sepcified f.\+b.\+neg Sign of number is negative \\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-returns size of string 
-\end{DoxyReturn}
 
 
-Definition at line 318 of file printf.\+c.
+Definition at line 308 of file printf.\+c.
 
 
 
@@ -289,11 +301,11 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 148 of file printf.\+c.
+Definition at line 231 of file printf.\+c.
 
 
 
-Referenced by p\+\_\+itoa(), and p\+\_\+ntoa().
+Referenced by p\+\_\+ntoa().
 
 \index{printf.\+c@{printf.\+c}!pch\+\_\+ind@{pch\+\_\+ind}}
 \index{pch\+\_\+ind@{pch\+\_\+ind}!printf.\+c@{printf.\+c}}
@@ -311,7 +323,7 @@ Buffer index
 \end{DoxyReturn}
 
 
-Definition at line 161 of file printf.\+c.
+Definition at line 244 of file printf.\+c.
 
 
 
@@ -345,11 +357,11 @@ current string index
 
 maximum string size including E\+OS 
 
-Definition at line 133 of file printf.\+c.
+Definition at line 216 of file printf.\+c.
 
 
 
-Referenced by p\+\_\+itoa(), and p\+\_\+ntoa().
+Referenced by p\+\_\+ntoa().
 
 \index{printf.\+c@{printf.\+c}!pch\+\_\+max\+\_\+ind@{pch\+\_\+max\+\_\+ind}}
 \index{pch\+\_\+max\+\_\+ind@{pch\+\_\+max\+\_\+ind}!printf.\+c@{printf.\+c}}
@@ -367,7 +379,7 @@ Buffer index
 \end{DoxyReturn}
 
 
-Definition at line 169 of file printf.\+c.
+Definition at line 252 of file printf.\+c.
 
 \index{printf.\+c@{printf.\+c}!print\+\_\+flags@{print\+\_\+flags}}
 \index{print\+\_\+flags@{print\+\_\+flags}!printf.\+c@{printf.\+c}}
@@ -390,7 +402,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 181 of file printf.\+c.
+Definition at line 264 of file printf.\+c.
 
 \index{printf.\+c@{printf.\+c}!reverse@{reverse}}
 \index{reverse@{reverse}!printf.\+c@{printf.\+c}}
@@ -417,7 +429,7 @@ Definition at line 85 of file printf.\+c.
 
 
 
-Referenced by p\+\_\+itoa(), and p\+\_\+ntoa().
+Referenced by bin2num().
 
 \index{printf.\+c@{printf.\+c}!snprintf@{snprintf}}
 \index{snprintf@{snprintf}!printf.\+c@{printf.\+c}}
@@ -449,7 +461,7 @@ string size
 \end{DoxyReturn}
 
 
-Definition at line 1086 of file printf.\+c.
+Definition at line 1095 of file printf.\+c.
 
 \index{printf.\+c@{printf.\+c}!strlen@{strlen}}
 \index{strlen@{strlen}!printf.\+c@{printf.\+c}}
@@ -476,7 +488,7 @@ Definition at line 50 of file printf.\+c.
 
 
 
-Referenced by \+\_\+printf\+\_\+fn(), p\+\_\+itoa(), p\+\_\+ntoa(), reverse(), and vsnprintf().
+Referenced by \+\_\+printf\+\_\+fn(), p\+\_\+ntoa(), reverse(), and vsnprintf().
 
 \index{printf.\+c@{printf.\+c}!strupper@{strupper}}
 \index{strupper@{strupper}!printf.\+c@{printf.\+c}}
@@ -535,7 +547,7 @@ string size
 \end{DoxyReturn}
 
 
-Definition at line 1057 of file printf.\+c.
+Definition at line 1066 of file printf.\+c.
 
 
 
@@ -553,5 +565,5 @@ Define data structure for character buffer with limits.
 
 
 
-Definition at line 126 of file printf.\+c.
+Definition at line 209 of file printf.\+c.
 

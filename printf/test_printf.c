@@ -492,6 +492,7 @@ void tests()
     t_printf("sizeof (float) = %d\n", sizeof (float ) );
     t_printf("sizeof (long long) = %d\n", sizeof (long long ) );
     t_printf("sizeof (long) = %d\n", sizeof (long ) );
+    t_printf("sizeof (short) = %d\n", sizeof (short) );
     t_printf("sizeof (int) = %d\n", sizeof (int ) );
     t_printf("sizeof (char) = %d\n", sizeof (char ) );
 

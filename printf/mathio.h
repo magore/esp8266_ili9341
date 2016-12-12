@@ -50,11 +50,17 @@ MEMSPACE int atodigit ( int c , int radix );
 MEMSPACE long atoh ( const char *p );
 MEMSPACE long aton ( char *str , int base );
 MEMSPACE long strtol ( const char *nptr , char **endptr , int base );
+MEMSPACE long long strtoll ( const char *nptr , char **endptr , int base );
+#ifdef UINT128MAX
+MEMSPACE __uint128_t strto128 ( const char *nptr , char **endptr , int base );
+#endif
 MEMSPACE int atoi ( const char *str );
 MEMSPACE long atol ( const char *str );
 MEMSPACE double iexp ( double num , int exp );
 MEMSPACE double scale10 ( double num , int *exp );
+MEMSPACE double strtod ( const char *nptr , char **endptr );
 MEMSPACE double atof ( const char *str );
+
 
 // ====================================================================
 
@@ -96,13 +102,13 @@ MEMSPACE size_t WEAK_ATR strlen ( const char *str );
 MEMSPACE int WEAK_ATR isdigit ( int c );
 MEMSPACE void WEAK_ATR reverse ( char *str );
 MEMSPACE void WEAK_ATR strupper ( char *str );
+int bin2num ( uint8_t *str , int strmax , int nummin , int base , uint8_t *nump , int numsize , int sign_ch );
 MEMSPACE void pch_init ( char *str , int max );
 MEMSPACE int pch ( char ch );
 MEMSPACE int pch_ind ( void );
 MEMSPACE int pch_max_ind ( void );
 MEMSPACE void print_flags ( f_t f );
-MEMSPACE int p_itoa ( unsigned long num , char *str , int max , int width , int prec , f_t f );
-MEMSPACE int p_ntoa ( unsigned long num , char *str , int max , int radix , int width , int prec , f_t f );
+MEMSPACE int p_ntoa ( uint8_t *nump , int numsize , char *str , int strmax , int radix , int width , int prec , f_t f );
 MEMSPACE int p_ftoa ( double val , char *str , int max , int width , int prec , f_t f );
 MEMSPACE int p_etoa ( double val , char *str , int max , int width , int prec , f_t f );
 MEMSPACE void _puts_pad ( printf_t *fn , char *s , int width , int count , int left );

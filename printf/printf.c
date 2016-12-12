@@ -114,6 +114,89 @@ strupper(char *str)
 	}
 }
 
+
+/// @brief Convert an unsigned number (numsize bytes in size) to ASCII in specified base
+/// Notes: No limit except available memory on number size
+///   - Does not use divide or of multiply instructions - great on 8bit CPU's
+/// How it works: Say you have a table of powers of 2 in a given base base
+///   - To get the result add each table entry, in the base, that corresponds 
+///   to each 1 bit in the binary number.
+///   - Now instead of a table we can start with 1 and multiple by 2 contraining each
+///   digit into the base we want - this is the same as using the table except we build it on the fly
+/// @param[out] str: ASCII number string result
+/// @param[in] strmax: maximum size of str in bytes
+/// @param[in] nummin: minimum number of digits to display
+/// @param[in] *nump: Pointer to binary number 
+/// @param[in] numsize: size of binary number in bytes
+/// @param[in] sign_ch: sign of binary number 
+/// return converted number string numsize in bytes
+int bin2num(uint8_t *str, int strmax, int nummin, int base, uint8_t *nump, int numsize, int sign_ch)
+{
+	int i,j,carry;
+	uint8_t data;
+
+	int numbits = numsize * 8;
+
+	for(i=0;i<=nummin;++i)
+		str[i] = 0;	// initial string starts out empty
+
+	// FIXME Little/Big-endian
+	// Loop for all bits (numsize in total) in the binary number (bin)
+	// Examine each bit MSB to LSB order
+	for(i = numbits - 1; i>= 0; --i)
+	{
+		// We extract 1 bit at a time from the binary number (MSB to LSB order) 
+		// 	FIXME Little/Big-endian
+		data = nump[i>>3];
+		// If extracted bit was set carry = 1, else 0
+		// 	FIXME Little/Big-endian
+		carry = ( data & (1 << (i & 7)) ) ? 1 : 0;
+
+		// Multiply base number by two and add the previously extracted bit
+		// Next do base digit to digit carries as needed
+		// Note: nummin is the current string size that can grow as needed
+		// Carry test in the loop can optionally extend base strings size 
+		for(j=0;(j<nummin || carry) ;++j)
+		{
+			if(j >= (strmax - 2))
+				break;
+
+			data = str[j];
+			data = (data<<1) | carry;
+			// process base carry
+			carry = 0;
+			if(data >= base)
+			{
+				data -= base;
+				carry = 1;
+			}
+			str[j] = data;
+		}
+		str[j] = 0; 	// zero next digit if carry extends size
+		nummin = j;		// update nummin if carry extends size
+	}
+
+	// Add ASCII '0' or 'a' offsets to base string
+	for(i=0;i<nummin;++i)
+	{
+		if(str[i] >= 0 && str[i] < 10)
+			str[i] += '0';
+		else str[i] += 'a'-10;
+	}
+
+	// Add optional sign character
+	if(sign_ch && i <= (strmax - 2))
+	{
+		str[i++] = sign_ch;
+		++nummin;
+	}
+	str[i] = 0;		// Terminate string eith EOS
+		
+	reverse(str);	// Reverse in place to correct order
+
+	return(nummin);	// Return string size
+}
+
 // ======================================================================
 /// @brief Data structure for character buffer with limits
 typedef struct {
@@ -198,38 +281,44 @@ void print_flags(f_t f)
 		printf("< 0    flag\n");
 }
 
+/// @brief Convert number an base 2 .. 16 to ASCII with optional sign
+/// Notes:
+/// 1) Numbers can be any number of digits long - limited only by memory available
+///      To print negative numbers convert to positive before calling this function and set f.b.neg 
+/// 2) Warning: as with printf width and prec are only minimum sizes - results can be bigger
+/// We assume all numbers are positive:
+/// @param[in] nump: number pointer
+/// @param[in] numsize: number size in bytes 
+/// @param[out] *str: string result
+/// @param[in] strmax: strmaximum length of string result
+/// @param[in] radix:  Radix may be 2 .. 16
+/// @param[in] width:  Width of result padded if needed
+/// @param[in] prec:  minumum number of digits, zero padded if needed
+/// @param[in] f:  flags
+/// 	f.b.left   justify left 
+/// 	f.b.plus   display + for positive number, - for negative numbers
+/// 	f.b.space  display ' ' for positive, - for negative
+/// 	f.b.zero   pad with zeros if needed
+/// 	f.b.alt    Alternate display form - work in progress
+/// 	f.b.width  Width of result - pad if required
+/// 	f.b.prec   Zero padd to prec if sepcified
+/// 	f.b.neg    Sign of number is negative
 
-#ifdef TEST_PRINTF
-#ifdef DEFINE_PRINTF
-#error DEFINE_PRINNTF must not be defined when testing
-#endif
-#endif
-/// @brief Convert number to ASCII
-/// returns size of string after conversion
-/// Note: It is allowed to have more digits converted then prec defines
-/// Like itoa but can support leading '+/-/ ' or unsigned and zero padding
-/// @param[in] num: number
-/// @param[out] *str: string
-/// @param[in] max: maximum length or string
-/// @param[in] prec:  minumum number of digits, 0 padded if needed (can be zero)
-/// @param[in] sign:  3: ' ' - or -, 2: - or +, 1: - - or '', 0: unsigned
-///            NOT counted as part of prec length (just like printf)
-/// @return long value
 MEMSPACE 
-int p_itoa(unsigned long num, char *str, int max, int width, int prec, f_t f)
+int p_ntoa(uint8_t *nump, int numsize, char *str, int strmax, int radix, int width, int prec, f_t f)
 {
-		int digit,sign_ch;
+		unsigned int sign_ch, mask,shift,digit;
 		int ind;
-		int digits = 0;	/* the minumum number of digits to display not including sign */
-        char *save = str;
+		int digits;
 
 		digits = 0;
 
-		pch_init(str,max);
+		// Unsigned, hex,octal,binary should leave these flasg zero
+			//f.b.space = 0;
+			//f.b.plus = 0;
+			//f.b.neg = 0;
 
 		sign_ch = 0;
-		// If the number we always have a leading chracter of '-', ' ' or '+'
-
 		if(f.b.neg)
 			sign_ch = '-';
 		else if(f.b.plus)
@@ -237,8 +326,8 @@ int p_itoa(unsigned long num, char *str, int max, int width, int prec, f_t f)
 		else if(f.b.space)
 			sign_ch = ' ';
 
-//printf("itoa: num:%ld, max:%d, width:%d, prec:%d, digits:%d, sign_ch:%02x\n", num, max, width, prec, digits, sign_ch);
 //print_flags(f);
+
 		/* Some Combinations of flags are not permitted 
          * - or impact the interpretation of others */
 		if(f.b.zero)
@@ -248,19 +337,9 @@ int p_itoa(unsigned long num, char *str, int max, int width, int prec, f_t f)
 				f.b.zero = 0;
 		}
 
+
 		if(f.b.prec)
-		{
 			digits = prec;
-#if 0
-			// displaying a sign character may reduce the number of digits
-			if(!f.b.left && width <= prec)
-			{
-				/* make room for a sign ? */
-				if(f.b.plus || f.b.neg || f.b.space)
-					--digits;
-			}
-#endif
-		}
 
 		if(!f.b.width && !f.b.prec)
 			digits = 1;	// at least one digit
@@ -281,129 +360,8 @@ int p_itoa(unsigned long num, char *str, int max, int width, int prec, f_t f)
 					--digits;
 			}
 		}
-
-		// Convert number LSB to MSB
-		// FIXME if the number is bigger then the buffer size(max)
-		// both digits and the sign may be lost
-		while(num || digits > 0)
-		{
-			digit = num % 10;
-			num /= 10;
-			if(digit < 0)	// num = -num can fail for 2**n-1
-				digit = -digit;
-			pch(digit + '0');
-			--digits;
-		}
-
-		if(sign_ch)
-			pch(sign_ch);
-		pch(0);
-        reverse(save);
-		ind = strlen(save);
+        ind = bin2num(str, strmax, digits, radix, nump, numsize, sign_ch);
 		return(ind);
-}
-
-/// @brief Convert number to ASCII
-/// Like itoa but can support leading '+/-/ ' or unsigned and zero padding
-/// Note: It is allowed to have more digits converted then prec defines
-/// @param[in] num: unsigned number
-/// @param[out] *str: string
-/// @param[in] max: maximum length or string
-/// @param[in] radix:  Radix may only be 2,8,16
-/// @param[in] prec:  minumum number of digits, zero padded if needed
-///            NOT counted as part of prec length (just like printf)
-/// @return returns size of string
-
-MEMSPACE 
-int p_ntoa(unsigned long num, char *str, int max, int radix, int width, int prec, f_t f)
-{
-		unsigned int sign_ch, mask,shift,digit;
-		int digits;
-        char *save = str;
-
-		digits = 0;
-
-		f.b.space = 0;
-		f.b.plus = 0;
-		f.b.neg = 0;
-
-		pch_init(str,max);
-
-
-		sign_ch = 0;
-		// If the number we always have a leading chracter of '-', ' ' or '+'
-
-
-		/* Some Combinations of flags are not permitted 
-         * - or impact the interpretation of others */
-		if(f.b.zero)
-		{
-			// 0 disabled if precision or left align
-			if(f.b.left || f.b.prec)
-				f.b.zero = 0;
-		}
-
-
-		if(f.b.prec)
-		{
-			digits = prec;
-		}
-
-		if(!f.b.width && !f.b.prec)
-			digits = 1;	// at least one digit
-
-		if(f.b.width)
-		{
-			if(!f.b.zero)
-			{
-				// Width and no leading zeros require at least one digit
-				if(!f.b.prec)
-					digits = 1;	// at least one digit
-			}
-			else	/* precision and 0 can not occur together - previously tested */
-			{
-				digits = width;
-			}
-		}
-		switch(radix)
-		{
-			case 2:
-				mask = 1;
-				shift = 1;
-				break;
-			case 8:
-				mask = 7;
-				shift = 3;
-				break;
-			case 16:
-				mask = 15;
-				shift = 4;
-				break;
-			default:
-				return(0);
-		}
-		// Convert number LSB to MSB
-		// FIXME if the number is bigger then the buffer size(max)
-		// both digits and the sign may be lost
-		while(num || digits > 0)
-		{
-			digit = num & mask;
-			num >>= shift;
-			// convert 
-			if(digit < 10)
-				digit += '0';
-			else
-				digit += ('a'  - 10);
-			pch(digit);
-			--digits;
-		}
-
-		if(sign_ch)
-			pch(sign_ch);
-		pch(0);
-
-        reverse(save);
-		return(strlen(save));
 }
 
 
@@ -742,8 +700,13 @@ void _printf_fn(printf_t *fn, __memx const char *fmt, va_list va)
 	int count;
     int spec;
 	int size;
-	long num = 0;
-	int inum = 0;
+	int sign;
+	short int nums;
+	int numi;
+	long numl;
+	long long numll;
+	uint8_t *nump;
+
 	f_t f;
 #ifdef FLOATIO
 	double dnum = 0;
@@ -773,7 +736,6 @@ void _printf_fn(printf_t *fn, __memx const char *fmt, va_list va)
 		width = 0;	// padded width
 		intprec = 0;// integer number of digits
 
-		size = sizeof(int); // short=1,int=2,long=3 , int is default
 
 		// we accept multiple flag combinations	and duplicates as does GLIBC printf
 		// ['#']['-'][' '|'+']
@@ -821,25 +783,40 @@ void _printf_fn(printf_t *fn, __memx const char *fmt, va_list va)
 			f.b.prec = 1;
 		}
 
-#if 0
+/** Calling Variadic Functions 
+  - exceprt from https://www.gnu.org/software/libc/manual/html_node/Calling-Variadics.html
+Since the prototype doesn’t specify types for optional arguments, in a call to a variadic function the default argument promotions are performed on the optional argument values. This means the objects of type char or short int (whether signed or not) are promoted to either int or unsigned int, as appropriate; and that objects of type float are promoted to type double. So, if the caller passes a char as an optional argument, it is promoted to an int, and the function can access it with va_arg (ap, int).
+*/
+
+		size = sizeof(int); // int is default
+
 		// short
-		if(*fmt == 'h') 
+		if(*fmt == 'h')
 		{
 			fmt++;
-			size = sizeof(short);
+			size = sizeof(int);
 		}
-#endif
+
 		// long
 		if(*fmt == 'l') 
 		{
 			fmt++;
 			size = sizeof(long);
 		}
-		// FIXME todo long long
+
+		// long
+		if(*fmt == 'l')
+		{
+			fmt++;
+			size = sizeof(long long);
+		}
 
 		spec = *fmt;
 
 
+		sign = 0;
+		if(spec == 'd' || spec == 'D')
+			sign = 1;
 		// process integer arguments
 		switch(spec) 
 		{
@@ -851,55 +828,79 @@ void _printf_fn(printf_t *fn, __memx const char *fmt, va_list va)
 			case 'x':
 			case 'X':
 			case 'p':
-						if(f.b.zero && f.b.left)
-							f.b.zero = 0;
-						if(f.b.zero && f.b.prec)
-							f.b.zero = 0;
-						if(f.b.zero && f.b.width)
-						{
-							if(width > prec)
-								prec = width;
-						}
-						if(f.b.zero && f.b.width && f.b.prec)
-						{
-							if(width > prec)
-								prec = width;
-						}
+				if(f.b.zero && f.b.left)
+					f.b.zero = 0;
+				if(f.b.zero && f.b.prec)
+					f.b.zero = 0;
+				if(f.b.zero && f.b.width)
+				{
+					if(width > prec)
+						prec = width;
+				}
+				if(f.b.zero && f.b.width && f.b.prec)
+				{
+					if(width > prec)
+						prec = width;
+				}
 			case 'u':
 			case 'U':
+				f.b.space = 0;
+				f.b.plus = 0;
+				f.b.neg = 0;
 			case 'D':
 			case 'd':
 				// only reached if sizeof short != sizeof int
-				if(size == sizeof(int))
-					num = va_arg(va, int);
-				else if(size == sizeof(long))
-					num = va_arg(va, long);
+//FIXME 32bit hosts pass short as int to vararg functions - make this a conditional
 #if 0
-				if(size == sizeof(short))
-					num = va_arg(va, short);
-#endif
-
-				if(spec == 'd' || spec =='D')
+				if (size == sizeof(short))
 				{
-					if(num < 0)
+					nums = va_arg(va, int);
+					if(sign && nums < 0)
 					{
 						f.b.neg = 1;
-						if(size == sizeof(int))
-							num = (int) -num;
-						else
-							num = -num;
+						nums = -nums;
 					}
+					nump = (uint8_t *) &nums;
+				}
+#endif
+				if(size == sizeof(int))
+				{
+					numi = va_arg(va, int);
+					if(sign && numi < 0)
+					{
+						f.b.neg = 1;
+						numi = -numi;
+					}
+					nump = (uint8_t *) &numi;
+				}
+				else if(size == sizeof(long))
+				{
+					numl = va_arg(va, long);
+					if(sign && numl < 0)
+					{
+						f.b.neg = 1;
+						numl = -numl;
+					}
+					nump = (uint8_t *) &numl;
+				}
+				else if(size == sizeof(long long))
+				{
+					numll = va_arg(va, long long);	//FIXME long long
+					if(sign && numll < 0)
+					{
+						f.b.neg = 1;
+						numll = -numll;
+					}
+					nump = (uint8_t *) &numll;
 				}
 				else
 				{
-					// mask resolution 
-					if(size == sizeof(int) )
-						num &= (unsigned int) -1;
-#if 0
-					if(size == sizeof(short))
-						num &= (unsigned short) -1;
-#endif
+					//FIXME size error
+					// printf("Error size error:%d\n",size);
+					numi = 0;
+					nump = (uint8_t *) &numi;
 				}
+				// FIXME default;
 				++fmt;
 				break;
 #ifdef FLOATIO
@@ -907,7 +908,7 @@ void _printf_fn(printf_t *fn, __memx const char *fmt, va_list va)
 			case 'F':
 			case 'e':
 			case 'E':
-				// FIXME K&R defines 'f' type as 6 - and matches GNU printf
+				// K&R defines 'f' type as 6 - and matches GNU printf
 				if(!f.b.prec)
 				{
 					prec = 6;
@@ -934,27 +935,29 @@ void _printf_fn(printf_t *fn, __memx const char *fmt, va_list va)
 			f.b.space = 0;
 			f.b.plus = 0;
 			// FIXME sign vs FILL
-			count = p_itoa(num, buff, sizeof(buff), width, prec, f);
+			//count = p_itoa(nump, size, buff, sizeof(buff), width, prec, f);
+			count = p_ntoa(nump, size, buff, sizeof(buff), 10, width, prec, f);
 			_puts_pad(fn,buff, width, count, f.b.left);
 			break;
 			// FIXME sign vs FILL
 		case 'd':
 		case 'D':
 //printf("<%ld, width:%d, prec:%d, sizeof(buff):%d, left:%d>\n", num, width, prec, (int)sizeof(buff), f.b.left);
-			count = p_itoa(num, buff, sizeof(buff), width, prec, f);
+			//count = p_itoa(nump, size, buff, sizeof(buff), width, prec, f);
+			count = p_ntoa(nump, size, buff, sizeof(buff), 10, width, prec, f);
 //printf("[%s, width:%d, count:%d, left:%d]\n", buff, width, count, f.b.left);
 			_puts_pad(fn,buff, width, count, f.b.left);
 			break;
 		case 'b':
 		case 'B':
-			count = p_ntoa(num, buff, sizeof(buff), 2, width, prec,f);
+			count = p_ntoa(nump, size, buff, sizeof(buff), 2, width, prec,f);
 			if(spec == 'X' || spec == 'P')
 				strupper(buff);
 			_puts_pad(fn,buff, width, count, f.b.left);
 			break;
 		case 'o':
 		case 'O':
-			count = p_ntoa(num, buff, sizeof(buff), 8, width, prec,f);
+			count = p_ntoa(nump, size, buff, sizeof(buff), 8, width, prec,f);
 			if(spec == 'X' || spec == 'P')
 				strupper(buff);
 			_puts_pad(fn,buff, width, count, f.b.left);
@@ -963,7 +966,7 @@ void _printf_fn(printf_t *fn, __memx const char *fmt, va_list va)
 		case 'X':
 		case 'p':
 		case 'P':
-			count = p_ntoa(num, buff, sizeof(buff), 16, width, prec,f);
+			count = p_ntoa(nump, size, buff, sizeof(buff), 16, width, prec,f);
 			if(spec == 'X' || spec == 'P')
 				strupper(buff);
 			_puts_pad(fn,buff, width, count, f.b.left);
@@ -1044,6 +1047,12 @@ void _putc_buffer_fn(struct _printf_t *p, char ch)
 	}
 	*((char *)p->buffer) = 0;
 }   
+
+#ifdef PRINTF_TEST
+#ifdef DEFINE_PRINTF
+#error DEFINE_PRINTF must not be defined when testing
+#endif
+#endif
 
 #ifndef PRINTF_TEST
 // ====================================================================
