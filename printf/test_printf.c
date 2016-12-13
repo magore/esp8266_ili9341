@@ -273,6 +273,7 @@ void tp(const char *format, ...)
 	int matched;
 	long long error;
     va_list va;
+	int digits;
 
 	memset(str0,sizeof(str0)-1,0);
 	memset(str1,sizeof(str1)-1,0);
@@ -300,6 +301,12 @@ void tp(const char *format, ...)
 	
 	// We may have a size adjustment specifier
 	//FIXME add more as printf gains more type size conversion specifiers
+	if(ind >= 2)
+	{
+		f = format[ind-2];
+		if(f == 'l')	
+			fmt[find++] = f;
+	}
 	f = format[ind-1];
 	if(f == 'l' || f == 'h')	
 		fmt[find++] = f;
@@ -331,14 +338,28 @@ void tp(const char *format, ...)
 	fflush(stdout);
 
 
-	matched = 0;
+
 	//FIXME add more as printf gains more conversion functions
 	if(f == 'g' || f == 'G' || f == 'e' || f == 'E' || f == 'f' || f == 'F')
 	{
-		// Compare results to 16 digit window
-		// FIXME 16 is haard coded here - we should compute this value
-		// FIXME does only 'f' and 'e' so far
-		error = numcmp(str1,str2,16);
+		/*
+		 * Single mantissa 24bits 	base10 digits   7.22 	 
+		 *	   	exponent 8bits   base10 exponent 37
+		 * Double mantissa 53bits 	base10 digits   15.95 	
+		 *		exponent 11bits  base10 exponent 307
+		*/
+		if(sizeof(double) == 8)
+			digits = 16;
+		else if(sizeof(double) == 4)
+			digits = 7;
+		else
+		{
+			fprintf(stderr,"Unexpected size of double:%d\n", (int)sizeof(double));
+			exit(1);
+		}
+
+		// Compare results to N digit window
+		error = numcmp(str1,str2,digits);
 
 		// A double 1 LSB error would be 10LL
 		// Remember the numbers may be rounded so we use less then 15LL
@@ -393,20 +414,23 @@ void tp(const char *format, ...)
 /// @param[in] longf: add 'l' to format string
 /// @return void
 MEMSPACE
-void random_tests(int flag, int longf)
+void random_tests(int flag, char *size)
 {
-	long lnum;
+	int snum;
 	int inum;
+	long lnum;
+	long long llnum;
 	double dnum, scale;
 	
 	int width,prec;
-	int exp;
-	int ind;
+	int exp10;
 	int shift;
 	int precf;
-	int dotf;
 	double sign;
-	char *op = "+- 0";
+	int digits;
+	int dotf;
+	int signind;
+	char *signop = "+- 0";
 	char format[1024];
 	char tmp[1024];
 
@@ -426,54 +450,110 @@ void random_tests(int flag, int longf)
 		dotf = 1;
 	else
 		dotf = 0;
-
-	ind = drand48() * 3.99999;	
-
-	
-		
+	signind = drand48() * 3.99999;	
 
 	//printf("num:%ld\n",num);
 
-	if(flag == 'f' || flag == 'e' )
+	// With f we limit the exponent to +/-2 ** sizeof(long long)
+	if(flag == 'e' || flag == 'f' )
 	{
-		width = drand48() * 16;
-		prec = drand48() * 16;
-		if(precf || dotf)
-			snprintf(format,sizeof(format)-1, "%%%c%d.%d%c", op[ind], width, prec, flag);
+		/*
+		 * Single mantissa 24bits 	base10 digits   7.22 	 
+		 *	   	exponent 8bits   base10 exponent 37
+		 * Double mantissa 53bits 	base10 digits   15.95 	
+		 *		exponent 11bits  base10 exponent 307
+		*/
+
+		// We only test exponent to +/- digits * 2 
+		// If we test numbers greater then (10 ** digits) we start getting
+		// roundoff/truncation errors
+		// 
+		// Glibc printf uses extended precision functions (ie. > double size)
+
+		if(sizeof(double) == 8)
+		{
+			digits = 16;
+		}
+		else if(sizeof(double) == 4)
+		{
+			digits = 7;
+		}
 		else
-			snprintf(format,sizeof(format)-1, "%%%c%d%c", op[ind], width, flag);
-		shift = drand48() * (double) sizeof(long) * 8 * 4;
-		scale = pow(2.0, shift);
+		{
+			fprintf(stderr,"Unexpected size of double:%d\n",(int)sizeof(double));
+			exit(1);
+		}
+		width = drand48() * 2.0 * digits;
+		prec = drand48() * 2.0 * digits;
+		if(precf || dotf)
+			snprintf(format,sizeof(format)-1, "%%%c%d.%d%c", signop[signind], width, prec, flag);
+		else
+			snprintf(format,sizeof(format)-1, "%%%c%d%c", signop[signind], width, flag);
+		
+
+		exp10 = ((drand48() * 2.0) - 1.0) * (double) (digits * 2);
+		scale = iexp(10.0, exp10);
 		dnum = ( sign * drand48() * scale);
 		tp(format, dnum);
 	}
 	else 	/* ASSUME integer or long arguments */
 	{
-		if(longf)
+		if(strcmp(size,"short") == 0)
 		{
-			width = drand48() * 10;
-			prec = drand48() * 10;
-			shift = drand48() * (double) sizeof(long) * 8;
-			scale = pow(2.0, shift);
-			lnum = (long) ( sign * drand48() * scale);
-			if(precf || dotf)
-				snprintf(format,sizeof(format)-1, "%%%c%d.%dl%c", op[ind], width, prec, flag);
-			else
-				snprintf(format,sizeof(format)-1, "%%%c%dl%c", op[ind], width, flag);
-			tp(format, lnum);
-		}
-		else
-		{
-			width = drand48() * 6;
-			prec = drand48() * 6;
+			width = drand48() * (double)(sizeof(short) * 8)/3.321928095;
+			prec = drand48() * (double)(sizeof(short) * 8)/3.321928095;
 			shift = drand48() * (double) sizeof(int) * 8;
 			scale = pow(2.0, shift);
 			inum = (int) ( sign * drand48() * scale);
 			if(precf || dotf)
-				snprintf(format,sizeof(format), "%%%c%d.%d%c", op[ind], width, prec, flag);
+				snprintf(format,sizeof(format)-1, "%%%c%d.%dh%c", signop[signind], width, prec, flag);
 			else
-				snprintf(format,sizeof(format), "%%%c%d%c", op[ind], width, flag);
+				snprintf(format,sizeof(format)-1, "%%%c%dh%c", signop[signind], width, flag);
 			tp(format, inum);
+		}
+		else if(strcmp(size,"int") == 0)
+		{
+			width = drand48() * (double)(sizeof(int) * 8)/3.321928095;
+			prec = drand48() * (double)(sizeof(int) * 8)/3.321928095;
+			shift = drand48() * (double) sizeof(int) * 8;
+			scale = pow(2.0, shift);
+			inum = (int) ( sign * drand48() * scale);
+			if(precf || dotf)
+				snprintf(format,sizeof(format)-1, "%%%c%d.%d%c", signop[signind], width, prec, flag);
+			else
+				snprintf(format,sizeof(format)-1, "%%%c%d%c", signop[signind], width, flag);
+			tp(format, inum);
+		}
+		else if(strcmp(size,"long") == 0)
+		{
+			width = drand48() * (double)(sizeof(long) * 8)/3.321928095;
+			prec = drand48() * (double)(sizeof(long) * 8)/3.321928095;
+			shift = drand48() * (double) sizeof(long) * 8;
+			scale = pow(2.0, shift);
+			lnum = (long) ( sign * drand48() * scale);
+			if(precf || dotf)
+				snprintf(format,sizeof(format)-1, "%%%c%d.%dl%c", signop[signind], width, prec, flag);
+			else
+				snprintf(format,sizeof(format)-1, "%%%c%dl%c", signop[signind], width, flag);
+			tp(format, lnum);
+		}
+		else if(strcmp(size,"long long") == 0)
+		{
+			width = drand48() * (double)(sizeof(long long) * 8)/3.321928095;
+			prec = drand48() * (double)(sizeof(long long) * 8)/3.321928095;
+			shift = drand48() * (double) sizeof(long long) * 8;
+			scale = pow(2.0, shift);
+			llnum = (long) ( sign * drand48() * scale);
+			if(precf || dotf)
+				snprintf(format,sizeof(format)-1, "%%%c%d.%dll%c", signop[signind], width, prec, flag);
+			else
+				snprintf(format,sizeof(format)-1, "%%%c%dll%c", signop[signind], width, flag);
+			tp(format, llnum);
+		}
+		else
+		{
+			fprintf(stderr,"random_tests: bad size[%s]\n", size);
+			exit(1);
 		}
 	}
 }
@@ -496,21 +576,9 @@ void tests()
     t_printf("sizeof (int) = %d\n", sizeof (int ) );
     t_printf("sizeof (char) = %d\n", sizeof (char ) );
 
-    printf("long: %ld\n", 123456789L);
-    printf("unsigned long: %lu\n", 123456789L);
-    printf("long hex: %lx\n", 123456789L);
-
-    printf("int : %d\n", 123456789);
-    printf("unsigned int: %u\n", 123456789);
-    printf("int hex: %lx\n", 123456789L);
-
-    printf("int: %d\n", 12345);
-    printf("unsigned int: %u\n", 12345);
-    printf("int hex: %x\n", 12345);
-
-	
+	printf("=======================\n");
     printf("Start of Manual tests\n");
-	tp("%-sd", 0);
+	tp("%-0d", 0);
 	tp("%-0u", 0);
 	tp("%-0u", 1);
 	tp("%-0u", -1);
@@ -540,6 +608,8 @@ void tests()
 	tp("% -.5ld", 123);
 	tp("% - .5ld", -123);
 	tp("% 1.5ld", -6);
+	if(display_good)
+		printf("\n");
 
 	tp("%-0d", 0);
 	tp("%-0d", 1);
@@ -563,7 +633,8 @@ void tests()
 	tp("%-+03.0d", 0);
 	tp("%-+03.0d", -1);
 	tp("%-+03.0d", 1);
-	printf("\n");
+	if(display_good)
+		printf("\n");
 
 	tp("%+0f", -0.196764);
 	tp("%08.0f", 1.5);
@@ -603,7 +674,8 @@ void tests()
 	tp("%+014.8f", 3.14159265358979);
 	tp("%+14.8f", 3.141);
 	tp("% .2f", -1234567.89);
-	printf("\n");
+	if(display_good)
+		printf("\n");
 
 	tp("%015e", -314.159265358979);
 	tp("%020.5e", 314.159265358979);
@@ -633,6 +705,8 @@ void tests()
 	tp("%010.5e", 314.159265358979e-17);
 	tp("%010.5e", -314.159265358979e-17);
 	tp("%010.5e", 123456789012345678901234567890.159265358979); 
+	if(display_good)
+		printf("\n");
 
 	tp("%e", 314.159265358979);
 	tp("%e", -314.159265358979);
@@ -660,19 +734,25 @@ void tests()
 	tp("%10.10e", 123456789012345678901234567890.159265358979); 
 	tp("%10.15e", 123456789012345678901234567890.159265358979); 
 	tp("%10.20e", 123456789012345678901234567890.159265358979); 
-    printf("\n");
+	tp("%10.20e", 123456789012345678901234567890.159265358979e-50); 
+	tp("%10.20e", 123456789012345678901234567890.159265358979e+50); 
+	tp("%10.20e", 123456789012345678901234567890.159265358979e-100); 
+	tp("%10.20e", 123456789012345678901234567890.159265358979e+100); 
+	if(display_good)
+		printf("\n");
 
 
 	tp("%c", 'a');
 	tp("%-5c", 'a');
 	tp("%5c", 'a');
-	printf("\n");
+	if(display_good)
+		printf("\n");
 	tp("-20.2s", "abc");
 	tp("10.5s", "abc");
-	printf("\n");
-
+	if(display_good)
+		printf("\n");
     printf("End of Manual tests\n");
-	printf("\n");
+	printf("=======================\n");
 	printf("\n");
 }
 
@@ -684,229 +764,98 @@ int main(int argc, char *argv[])
 {
 
 	uint8_t str[MAXSTR+1];
-	long num, num2, mask;
+	long lnum, mask;
 	int i;
 	int k;
-	mask = 1;
-	num = 0;
-	int longf;
+	int size;
 	f_t f;
 
-	char *iops = "duxXo";
-	char *fops = "fe";
-	char *lops[] = { "int", "long", NULL };
-
-
-	display_good = 1;
-	tests();
+	char *intops = "duxXo";
+	char *sizeops[] = { "short", "int", "long", "long long", NULL };
+	char *floatops = "fe";
 
 	display_good = 0;
+	tests();
 
 	printf("\n\n");
 	printf("Start of random tests\n");
+
 	display_good = 0;
-	for(longf=0;longf<=1;++longf)
+	for(size=0;sizeops[size];++size)
 	{
-		for(k=0;iops[k];++k)
+		for(k=0;intops[k];++k)
 		{
 			tp_good = 0;
 			tp_bad = 0;
 			printf("=======================\n");
-			printf("Start:(%c:%s)\n", iops[k], lops[longf]);
+			printf("Start:(%c:%s)\n", intops[k], sizeops[size]);
 			for(i=0;i<1000000;++i)
-				random_tests(iops[k], longf);
-			printf("End:  (%c:%s)\n", iops[k], lops[longf]);
+				random_tests(intops[k], sizeops[size]);
+			printf("End:  (%c:%s)\n", intops[k], sizeops[size]);
 			printf("Good:%ld, Bad:%ld, fmt:%ld\n", tp_good, tp_bad, tp_fmt);	
 			printf("=======================\n");
 		}
 	}
+
 	display_good = 0;
-	longf = 0;
-	for(k=0;fops[k];++k)
+	for(k=0;floatops[k];++k)
 	{
 		tp_good = 0;
 		tp_bad = 0;
 		printf("=======================\n");
-		printf("Start:(%c)\n", fops[k]);
+		printf("Start:(%c)\n", floatops[k]);
 		for(i=0;i<1000000;++i)
-			random_tests(fops[k], longf);
-		printf("End:  (%c)\n", fops[k]);
+			random_tests(floatops[k], "");
+		printf("End:  (%c)\n", floatops[k]);
 		printf("Good:%ld, Bad:%ld, fmt:%ld\n", tp_good, tp_bad, tp_fmt);	
 		printf("=======================\n");
 	}
-	printf("\n\n");
-
+	printf("\n");
 	printf("Random done\n");
 
-#if 0
-// work in progress
-
 	printf("=======================\n");
-	printf("1's\n");
-	num = ~num;
-	for(i=0;i<64;++i)
-	{
-		num &= ~mask;
-		mask <<= 1;
-
-		tp("%+020ld", num);
-		sprintf(str,"%+020ld", num);
-		num2 = aton(str,10);
-		if(num2 != num)
-			printf("**:%ld\n",num2);
-
-		f.all = 0;
-		p_ntoa(num, str, sizeof(str), 16, 16, 16, f);
-		printf("[%s]\n",str);
-		p_ntoa(num, str, sizeof(str), 8, 22, 22, f);
-		printf("[%s]\n",str);
-		p_ntoa(num, str, sizeof(str), 2, 64, 64, f);
-		printf("[%s]\n",str);
-
-		printf("\n");
-		
-	}
-	printf("=================================\n");
-	printf("1's\n");
-	num = 0;
+	printf("testing binary leading 1's\n");
+	lnum = 0;
+	lnum = ~lnum;
 	mask = 1;
-	for(i=0;i<64;++i)
+	while(mask)
 	{
-		num |= mask;
+		lnum &= ~mask;
 		mask <<= 1;
-		tp("%+020ld", num);
-
-		sprintf(str,"%+020ld", num);
-		num2 = aton(str,10);
-		if(num2 != num)
-			printf("***:%ld\n",num2);
-
-		f.all = 0;
-		p_ntoa(num, str, sizeof(str), 16, 16, 16, f);
-		printf("[%s]\n",str);
-		p_ntoa(num, str, sizeof(str), 8, 22, 22, f);
-		printf("[%s]\n",str);
-		p_ntoa(num, str, sizeof(str), 2, 64, 64, f);
-		printf("[%s]\n",str);
-
-		printf("\n");
+		tp("%016lx", lnum);
+		tp("%019ld", lnum);
+		tp("%022lo", lnum);
+		
+	}
+	printf("=================================\n");
+	printf("testing binary trailing 1's\n");
+	lnum = 0;
+	mask = 1;
+	while(mask)
+	{
+		lnum |= mask;
+		mask <<= 1;
+		tp("%016lx", lnum);
+		tp("%019ld", lnum);
+		tp("%022lo", lnum);
 	}
 
 	printf("=================================\n");
-	printf("9's\n");
-	num = 9;
-	for(i=0;i<32;++i)
+	printf("testing base 10 9's\n");
+	lnum = 9;
+	while(1)
 	{
-		tp("%+020ld", num);
-
-		sprintf(str,"%+020ld", num);
-		num2 = aton(str,10);
-		if(num2 != num)
-			printf("***:%ld\n",num2);
-
-		f.all = 0;
-		p_ntoa(num, str, sizeof(str), 16, 16, 16, f);
-		printf("[%s]\n",str);
-		p_ntoa(num, str, sizeof(str), 8, 22, 22, f);
-		printf("[%s]\n",str);
-		p_ntoa(num, str, sizeof(str), 2, 64, 64, f);
-		printf("[%s]\n",str);
-
-		printf("\n");
-
-		if(num &  (1L << ((sizeof(num)*8)-1)))
+		if(lnum &  (1L << ((sizeof(lnum)*8)-1)))
 			break;
-		num *= 10;
-		num += 9;
+		tp("%016lx", lnum);
+		tp("%019ld", lnum);
+		tp("%022lo", lnum);
+		lnum *= 10;
+		lnum += 9;
 		
 	}
 	printf("\n");
 	printf("=================================\n");
-
-
-	printf("-1\n");
-	num = -1;
-	tp("%+020ld", num);
-
-	sprintf(str,"%+020ld", num);
-	num2 = aton(str,10);
-	if(num2 != num)
-		printf("***:%ld\n",num2);
-
-	f.all = 0;
-	p_ntoa(num, str, sizeof(str), 16, 16, 16, f);
-	printf("[%s]\n",str);
-	p_ntoa(num, str, sizeof(str), 8, 22, 22, f);
-	printf("[%s]\n",str);
-	p_ntoa(num, str, sizeof(str), 2, 64, 64, f);
-	printf("[%s]\n",str);
-
-	printf("\n");
-	printf("=================================\n");
-
-	printf("1 << 63\n");
-	num = 1UL;
-	num <<= 63;
-
-	tp("%020lu", num);
-
-	sprintf(str,"%+020ld", num);
-	num2 = aton(str,10);
-	if(num2 != num)
-		printf("***:%ld\n",num2);
-
-	f.all = 0;
-	p_ntoa(num, str, sizeof(str), 16, 16, 16, f);
-	printf("[%s]\n",str);
-	p_ntoa(num, str, sizeof(str), 8, 22,22, f);
-	printf("[%s]\n",str);
-	p_ntoa(num, str, sizeof(str), 2, 64, 64, f);
-	printf("[%s]\n",str);
-
-	printf("\n");
-	printf("=================================\n");
-
-	printf("0\n");
-	num = 0;
-	tp("%+020ld", num);
-
-	sprintf(str,"%+020ld", num);
-	num2 = aton(str,10);
-	if(num2 != num)
-		printf("***:%ld\n",num2);
-
-	f.all = 0;
-	p_ntoa(num, str, sizeof(str), 16, 16, 16, f);
-	printf("[%s]\n",str);
-	p_ntoa(num, str, sizeof(str), 8, 22, 22, f);
-	printf("[%s]\n",str);
-	p_ntoa(num, str, sizeof(str), 2, 64, 64, f);
-	printf("[%s]\n",str);
-
-	printf("\n");
-	printf("=================================\n");
-
-	printf("0\n");
-	num = 0;
-	tp("%+ld", num);
-
-	sprintf(str,"%+020ld", num);
-	num2 = aton(str,10);
-	if(num2 != num)
-		printf("***:%ld\n",num2);
-
-	f.all = 0;
-	p_ntoa(num, str, sizeof(str), 16, 16, 16, f);
-	printf("[%s]\n",str);
-	p_ntoa(num, str, sizeof(str), 8, 22, 22, f);
-	printf("[%s]\n",str);
-	p_ntoa(num, str, sizeof(str), 2, 64, 64, f);
-	printf("[%s]\n",str);
-
-	printf("\n");
-	printf("=================================\n");
-#endif
-
 	return(0);
 }
 #endif	

@@ -114,6 +114,9 @@ strupper(char *str)
 	}
 }
 
+#if __BYTE_ORDER__ != __ORDER_LITTLE_ENDIAN__
+#error bin2num ASSUME little endian
+#endif
 
 /// @brief Convert an unsigned number (numsize bytes in size) to ASCII in specified base
 /// Notes: No limit except available memory on number size
@@ -499,7 +502,11 @@ int p_etoa(double val,char *str, int max, int width, int prec, f_t f)
 	double fscale;
 	int digits;
 	int digit;
-	int exp10 = 0;
+	int exp10;
+	char exp10_str[7];	// +E123  and EOS
+	int  expsize;
+	int i;
+	int sign_ch;
 
 	pch_init(str,max);
 
@@ -572,6 +579,45 @@ ERROR: [% 15.1f], [-10252956608208.250000]
 		//val += fscale;		// round to prec
 	}
 
+	// ====================
+	// Exponent
+    exp10_str[0] = 'e';
+    if ( exp10 < 0 ) 
+	{ 
+		sign_ch = '-';
+		exp10 = -exp10; 
+	}
+	else	
+	{
+		sign_ch = '+';
+	}
+	// result is +NN[N] if we have three digits shorten digits by one
+	expsize = bin2num(exp10_str+1, sizeof(exp10_str)-1-1, 2, 10, (uint8_t *) &exp10, sizeof(int), sign_ch);
+
+#if 0
+    if ( exp10 < 0 ) 
+	{ 
+		exp10_str[1] = '-';
+		exp10 = -exp10; 
+	}
+	else	
+	{
+		exp10_str[1] = '+';
+	}
+	if(exp >= 100)
+		ind = 4;
+	else
+		ind = 3;
+
+	exp10_str[ind] = '0' + (exp % 10);
+	exp10 /= 10;
+	exp10_str[ind] = '0' + (exp % 10);
+	exp10 /= 10;
+	exp10_str[ind] = '0' + (exp % 10);
+#endif
+	
+	// ====================
+
 	// [+]N.FFe+00, where ".e+00" = 5 digits, pch_ind holds optional sign offset
 	if(f.b.zero && !f.b.left)
 	{
@@ -579,6 +625,8 @@ ERROR: [% 15.1f], [-10252956608208.250000]
 			digits = width - pch_ind() - prec - 6;	
 		else
 			digits = width - pch_ind() - 5;
+		if(expsize > 3)
+			--digits;
 		while(digits > 0)
 		{
 			pch('0');
@@ -586,6 +634,8 @@ ERROR: [% 15.1f], [-10252956608208.250000]
 		}
 	}
 
+
+	// Number
 	digit =	val;
 //printf("ival:%.16e, int:%d\n", ival, digit);
 	pch(digit + '0');
@@ -606,19 +656,11 @@ ERROR: [% 15.1f], [-10252956608208.250000]
 			--prec;
 		}
 	}
-    pch('e') ;
-    if ( exp10 < 0 ) 
-	{ 
-		exp10 = -exp10; 
-		pch('-'); 
-	}
-	else	
-	{
-		pch('+'); 
-	}
-    pch('0' + exp10 / 10);
-    pch('0' + exp10 % 10);
-    pch(0);
+
+	for(i=0;exp10_str[i];++i)
+		pch(exp10_str[i]);
+
+	pch(0);
 	return(strlen(str));
 }
               
@@ -701,7 +743,7 @@ void _printf_fn(printf_t *fn, __memx const char *fmt, va_list va)
     int spec;
 	int size;
 	int sign;
-	short int nums;
+	short nums;
 	int numi;
 	long numl;
 	long long numll;
@@ -717,7 +759,11 @@ void _printf_fn(printf_t *fn, __memx const char *fmt, va_list va)
 
 	// buff has to be at least as big at the largest converted number
 	// in this case base 2 long long with sign and end of string
-	char buff[sizeof( long ) * 2 * 8 + 2];
+#ifdef PRINTF_TEST
+	char buff[307 * 2 + 5 + 1];	// double to full size
+#else
+	char buff[sizeof( long long ) * 8 + 2];
+#endif
 
     while(*fmt) 
 	{
@@ -794,7 +840,7 @@ Since the prototype doesn’t specify types for optional arguments, in a call to
 		if(*fmt == 'h')
 		{
 			fmt++;
-			size = sizeof(int);
+			size = sizeof(short);
 		}
 
 		// long
@@ -849,12 +895,10 @@ Since the prototype doesn’t specify types for optional arguments, in a call to
 				f.b.neg = 0;
 			case 'D':
 			case 'd':
-				// only reached if sizeof short != sizeof int
-//FIXME 32bit hosts pass short as int to vararg functions - make this a conditional
-#if 0
-				if (size == sizeof(short))
+//FIXME vararg functions promote short - make this a conditional
+				if(size == sizeof(short))
 				{
-					nums = va_arg(va, int);
+					nums = (short) va_arg(va, int);
 					if(sign && nums < 0)
 					{
 						f.b.neg = 1;
@@ -862,10 +906,9 @@ Since the prototype doesn’t specify types for optional arguments, in a call to
 					}
 					nump = (uint8_t *) &nums;
 				}
-#endif
-				if(size == sizeof(int))
+				else if(size == sizeof(int))
 				{
-					numi = va_arg(va, int);
+					numi = (int) va_arg(va, int);
 					if(sign && numi < 0)
 					{
 						f.b.neg = 1;
@@ -875,7 +918,7 @@ Since the prototype doesn’t specify types for optional arguments, in a call to
 				}
 				else if(size == sizeof(long))
 				{
-					numl = va_arg(va, long);
+					numl = (long) va_arg(va, long);
 					if(sign && numl < 0)
 					{
 						f.b.neg = 1;
@@ -885,7 +928,7 @@ Since the prototype doesn’t specify types for optional arguments, in a call to
 				}
 				else if(size == sizeof(long long))
 				{
-					numll = va_arg(va, long long);	//FIXME long long
+					numll = (long long) va_arg(va, long long);	
 					if(sign && numll < 0)
 					{
 						f.b.neg = 1;
