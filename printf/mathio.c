@@ -1,5 +1,34 @@
+
+/**
+ @file mathio.c 
+
+ @brief String to number conversions with floating point support
+
+ @par Copyright &copy; 2015-2106 Mike Gore, GPL License
+ @par You are free to use this code under the terms of GPL
+   please retain a copy of this notice in any code you use it in.
+
+This is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.
+
+This software is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 #ifdef USER_CODFIG
 #include "user_config.h"
+#endif
+
+#ifdef PRINTF_TEST
+#include <stdio.h>
+#include <stdlib.h>
 #endif
 
 #include <stdint.h>
@@ -65,6 +94,32 @@ aton(char *str, int base)
 
     num = strtol(str, &endptr, base);
     return(num);
+}
+
+// ==================================================
+/// @brief Fast multiply number of any size by 10 
+/// @param[in] str: string
+/// @param[in] size: string size
+/// @return non-zero on overflow , 0 if ok
+MEMSPACE
+int mul10str(uint8_t *str, int size)
+{
+
+    uint16_t d;
+    uint16_t carry = 0;
+    while(size--)
+    {
+        d = *str;
+        d <<= 1;
+        d <<= 1;
+        d += *str;
+        d <<= 1;
+        d += carry;
+        *str = d & 0xff;
+        carry = d >> 8;
+        ++str;
+    }
+	return(carry);
 }
 
 // ==================================================
@@ -162,7 +217,7 @@ strtoll(const char *nptr, char **endptr, int base)
 }
 
 
-#ifdef UINT128MAX   
+#ifdef __SIZEOF_INT128__
 // ==================================================
 /// @brief Convert ASCII string to number in a given base
 /// @param[in] nptr: string

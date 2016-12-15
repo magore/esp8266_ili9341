@@ -1,5 +1,10 @@
 \hypertarget{mathio_8c}{}\section{printf/mathio.c File Reference}
 \label{mathio_8c}\index{printf/mathio.\+c@{printf/mathio.\+c}}
+
+
+String to number conversions with floating point support.  
+
+
 {\ttfamily \#include $<$stdint.\+h$>$}\\*
 {\ttfamily \#include $<$stdarg.\+h$>$}\\*
 {\ttfamily \#include $<$string.\+h$>$}\\*
@@ -14,6 +19,8 @@
 \begin{DoxyCompactList}\small\item\em Convert A\+S\+C\+II hex string to long integer. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} long \hyperlink{mathio_8c_a5fb184d7bd50561c60bf64b7cda0eb62}{aton} (char $\ast$str, int base)
 \begin{DoxyCompactList}\small\item\em Convert A\+S\+C\+II string to number in a given base. \end{DoxyCompactList}\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mathio_8c_aee46e805a6a25105661e6486a419fdc3}{mul10str} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} $\ast$str, int size)
+\begin{DoxyCompactList}\small\item\em Fast multiply number of any size by 10. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} long \hyperlink{mathio_8c_ae7a25f0631dd53c026fd8636e8bcb42e}{strtol} (const char $\ast$nptr, char $\ast$$\ast$endptr, int base)
 \begin{DoxyCompactList}\small\item\em Convert A\+S\+C\+II string to number in a given base. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} long long \hyperlink{mathio_8c_a00a26430103adfe060136c98afc39cab}{strtoll} (const char $\ast$nptr, char $\ast$$\ast$endptr, int base)
@@ -23,6 +30,21 @@
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} long \hyperlink{mathio_8c_ae952cb1ae6aec6b2b6c02ae67e9ea87b}{atol} (const char $\ast$str)
 \begin{DoxyCompactList}\small\item\em Convert A\+S\+C\+II string to number in base 10. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+String to number conversions with floating point support. 
+
+\begin{DoxyParagraph}{Copyright \copyright{} 2015-\/2106 Mike Gore, G\+PL License}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{You are free to use this code under the terms of G\+PL}
+please retain a copy of this notice in any code you use it in.
+\end{DoxyParagraph}
+This is free software\+: you can redistribute it and/or modify it under the terms of the G\+NU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This software is distributed in the hope that it will be useful, but W\+I\+T\+H\+O\+UT A\+NY W\+A\+R\+R\+A\+N\+TY; without even the implied warranty of M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+TY or F\+I\+T\+N\+E\+SS F\+OR A P\+A\+R\+T\+I\+C\+U\+L\+AR P\+U\+R\+P\+O\+SE. See the G\+NU General Public License for more details.
+
+You should have received a copy of the G\+NU General Public License along with this program. If not, see \href{http://www.gnu.org/licenses/}{\tt http\+://www.\+gnu.\+org/licenses/}. 
 
 \subsection{Function Documentation}
 \index{mathio.\+c@{mathio.\+c}!atodigit@{atodigit}}
@@ -52,7 +74,7 @@ radix based digit , or -\/1
 \end{DoxySeeAlso}
 
 
-Definition at line 26 of file mathio.\+c.
+Definition at line 55 of file mathio.\+c.
 
 
 
@@ -82,7 +104,7 @@ long integer result.
 \end{DoxySeeAlso}
 
 
-Definition at line 47 of file mathio.\+c.
+Definition at line 76 of file mathio.\+c.
 
 \index{mathio.\+c@{mathio.\+c}!atoi@{atoi}}
 \index{atoi@{atoi}!mathio.\+c@{mathio.\+c}}
@@ -108,7 +130,7 @@ int value
 \end{DoxySeeAlso}
 
 
-Definition at line 223 of file mathio.\+c.
+Definition at line 278 of file mathio.\+c.
 
 
 
@@ -138,7 +160,7 @@ long value
 \end{DoxySeeAlso}
 
 
-Definition at line 237 of file mathio.\+c.
+Definition at line 292 of file mathio.\+c.
 
 \index{mathio.\+c@{mathio.\+c}!aton@{aton}}
 \index{aton@{aton}!mathio.\+c@{mathio.\+c}}
@@ -167,7 +189,33 @@ long value
 \end{DoxySeeAlso}
 
 
-Definition at line 61 of file mathio.\+c.
+Definition at line 90 of file mathio.\+c.
+
+\index{mathio.\+c@{mathio.\+c}!mul10str@{mul10str}}
+\index{mul10str@{mul10str}!mathio.\+c@{mathio.\+c}}
+\subsubsection[{\texorpdfstring{mul10str(uint8\+\_\+t $\ast$str, int size)}{mul10str(uint8_t *str, int size)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int mul10str (
+\begin{DoxyParamCaption}
+\item[{{\bf uint8\+\_\+t} $\ast$}]{str, }
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}\hypertarget{mathio_8c_aee46e805a6a25105661e6486a419fdc3}{}\label{mathio_8c_aee46e805a6a25105661e6486a419fdc3}
+
+
+Fast multiply number of any size by 10. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & string \\
+\hline
+\mbox{\tt in}  & {\em size} & string size \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+non-\/zero on overflow , 0 if ok 
+\end{DoxyReturn}
+
+
+Definition at line 105 of file mathio.\+c.
 
 \index{mathio.\+c@{mathio.\+c}!strtol@{strtol}}
 \index{strtol@{strtol}!mathio.\+c@{mathio.\+c}}
@@ -196,7 +244,7 @@ long value
 \end{DoxyReturn}
 
 
-Definition at line 78 of file mathio.\+c.
+Definition at line 133 of file mathio.\+c.
 
 
 
@@ -229,5 +277,5 @@ long long
 \end{DoxyReturn}
 
 
-Definition at line 125 of file mathio.\+c.
+Definition at line 180 of file mathio.\+c.
 

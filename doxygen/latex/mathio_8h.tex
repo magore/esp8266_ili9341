@@ -35,6 +35,8 @@ typedef struct \hyperlink{struct__printf__t}{\+\_\+printf\+\_\+t} \hyperlink{mat
 \begin{DoxyCompactList}\small\item\em Convert A\+S\+C\+II hex string to long integer. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} long \hyperlink{mathio_8h_a5fb184d7bd50561c60bf64b7cda0eb62}{aton} (char $\ast$str, int base)
 \begin{DoxyCompactList}\small\item\em Convert A\+S\+C\+II string to number in a given base. \end{DoxyCompactList}\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mathio_8h_aee46e805a6a25105661e6486a419fdc3}{mul10str} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} $\ast$str, int size)
+\begin{DoxyCompactList}\small\item\em Fast multiply number of any size by 10. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} long \hyperlink{mathio_8h_ae7a25f0631dd53c026fd8636e8bcb42e}{strtol} (const char $\ast$nptr, char $\ast$$\ast$endptr, int base)
 \begin{DoxyCompactList}\small\item\em Convert A\+S\+C\+II string to number in a given base. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} long long \hyperlink{mathio_8h_a00a26430103adfe060136c98afc39cab}{strtoll} (const char $\ast$nptr, char $\ast$$\ast$endptr, int base)
@@ -59,7 +61,7 @@ typedef struct \hyperlink{struct__printf__t}{\+\_\+printf\+\_\+t} \hyperlink{mat
 \begin{DoxyCompactList}\small\item\em Reverse a string in place Example\+: abcdef -\/$>$ fedcba. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR} \hyperlink{mathio_8h_a25ac5a1dbdfa1d06d55448cd7b665d1d}{strupper} (char $\ast$str)
 \begin{DoxyCompactList}\small\item\em U\+P\+P\+E\+R\+C\+A\+SE a string. \end{DoxyCompactList}\item 
-int \hyperlink{mathio_8h_aa5634582e6d80bdf403844718798e088}{bin2num} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} $\ast$str, int strmax, int nummin, int base, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} $\ast$nump, int numsize, int sign\+\_\+ch)
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mathio_8h_aa95ef42dcc41a90255c084e0e1a9bcde}{bin2num} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} $\ast$str, int strmax, int nummin, int base, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} $\ast$nump, int numsize, int sign\+\_\+ch)
 \begin{DoxyCompactList}\small\item\em Convert an unsigned number (numsize bytes in size) to A\+S\+C\+II in specified base Notes\+: No limit except available memory on number size. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mathio_8h_ab10e941ecf6d7512649e377e97d28fac}{pch\+\_\+init} (char $\ast$str, int max)
 \begin{DoxyCompactList}\small\item\em Initialize character buffer with limits. \end{DoxyCompactList}\item 
@@ -177,7 +179,7 @@ Calling Variadic Functions
 \item exceprt from \href{https://www.gnu.org/software/libc/manual/html_node/Calling-Variadics.html}{\tt https\+://www.\+gnu.\+org/software/libc/manual/html\+\_\+node/\+Calling-\/\+Variadics.\+html} Since the prototype doesn’t specify types for optional arguments, in a call to a variadic function the default argument promotions are performed on the optional argument values. This means the objects of type char or short int (whether signed or not) are promoted to either int or unsigned int, as appropriate; and that objects of type float are promoted to type double. So, if the caller passes a char as an optional argument, it is promoted to an int, and the function can access it with va\+\_\+arg (ap, int).
 \end{DoxyItemize}
 
-Definition at line 739 of file printf.\+c.
+Definition at line 740 of file printf.\+c.
 
 
 
@@ -207,7 +209,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1077 of file printf.\+c.
+Definition at line 1078 of file printf.\+c.
 
 
 
@@ -226,7 +228,7 @@ Referenced by vsnprintf().
 )}\hypertarget{mathio_8h_ab713fa5c01f315bdf67d18a6dbcb4ff5}{}\label{mathio_8h_ab713fa5c01f315bdf67d18a6dbcb4ff5}
 
 
-Definition at line 681 of file printf.\+c.
+Definition at line 682 of file printf.\+c.
 
 
 
@@ -259,7 +261,7 @@ radix based digit , or -\/1
 \end{DoxySeeAlso}
 
 
-Definition at line 26 of file mathio.\+c.
+Definition at line 55 of file mathio.\+c.
 
 
 
@@ -300,7 +302,7 @@ long integer result.
 \end{DoxySeeAlso}
 
 
-Definition at line 47 of file mathio.\+c.
+Definition at line 76 of file mathio.\+c.
 
 \index{mathio.\+h@{mathio.\+h}!atoi@{atoi}}
 \index{atoi@{atoi}!mathio.\+h@{mathio.\+h}}
@@ -326,7 +328,7 @@ int value
 \end{DoxySeeAlso}
 
 
-Definition at line 223 of file mathio.\+c.
+Definition at line 278 of file mathio.\+c.
 
 \index{mathio.\+h@{mathio.\+h}!atol@{atol}}
 \index{atol@{atol}!mathio.\+h@{mathio.\+h}}
@@ -352,7 +354,7 @@ long value
 \end{DoxySeeAlso}
 
 
-Definition at line 237 of file mathio.\+c.
+Definition at line 292 of file mathio.\+c.
 
 \index{mathio.\+h@{mathio.\+h}!aton@{aton}}
 \index{aton@{aton}!mathio.\+h@{mathio.\+h}}
@@ -381,11 +383,11 @@ long value
 \end{DoxySeeAlso}
 
 
-Definition at line 61 of file mathio.\+c.
+Definition at line 90 of file mathio.\+c.
 
 \index{mathio.\+h@{mathio.\+h}!bin2num@{bin2num}}
 \index{bin2num@{bin2num}!mathio.\+h@{mathio.\+h}}
-\subsubsection[{\texorpdfstring{bin2num(uint8\+\_\+t $\ast$str, int strmax, int nummin, int base, uint8\+\_\+t $\ast$nump, int numsize, int sign\+\_\+ch)}{bin2num(uint8_t *str, int strmax, int nummin, int base, uint8_t *nump, int numsize, int sign_ch)}}]{\setlength{\rightskip}{0pt plus 5cm}int bin2num (
+\subsubsection[{\texorpdfstring{bin2num(uint8\+\_\+t $\ast$str, int strmax, int nummin, int base, uint8\+\_\+t $\ast$nump, int numsize, int sign\+\_\+ch)}{bin2num(uint8_t *str, int strmax, int nummin, int base, uint8_t *nump, int numsize, int sign_ch)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int bin2num (
 \begin{DoxyParamCaption}
 \item[{{\bf uint8\+\_\+t} $\ast$}]{str, }
 \item[{int}]{strmax, }
@@ -395,7 +397,7 @@ Definition at line 61 of file mathio.\+c.
 \item[{int}]{numsize, }
 \item[{int}]{sign\+\_\+ch}
 \end{DoxyParamCaption}
-)}\hypertarget{mathio_8h_aa5634582e6d80bdf403844718798e088}{}\label{mathio_8h_aa5634582e6d80bdf403844718798e088}
+)}\hypertarget{mathio_8h_aa95ef42dcc41a90255c084e0e1a9bcde}{}\label{mathio_8h_aa95ef42dcc41a90255c084e0e1a9bcde}
 
 
 Convert an unsigned number (numsize bytes in size) to A\+S\+C\+II in specified base Notes\+: No limit except available memory on number size. 
@@ -422,7 +424,7 @@ Convert an unsigned number (numsize bytes in size) to A\+S\+C\+II in specified b
 
 \end{DoxyItemize}
 
-Definition at line 136 of file printf.\+c.
+Definition at line 137 of file printf.\+c.
 
 
 
@@ -468,6 +470,32 @@ Definition at line 40 of file stringsup.\+c.
 
 
 Referenced by \+\_\+printf\+\_\+fn(), and atol().
+
+\index{mathio.\+h@{mathio.\+h}!mul10str@{mul10str}}
+\index{mul10str@{mul10str}!mathio.\+h@{mathio.\+h}}
+\subsubsection[{\texorpdfstring{mul10str(uint8\+\_\+t $\ast$str, int size)}{mul10str(uint8_t *str, int size)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int mul10str (
+\begin{DoxyParamCaption}
+\item[{{\bf uint8\+\_\+t} $\ast$}]{str, }
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}\hypertarget{mathio_8h_aee46e805a6a25105661e6486a419fdc3}{}\label{mathio_8h_aee46e805a6a25105661e6486a419fdc3}
+
+
+Fast multiply number of any size by 10. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & string \\
+\hline
+\mbox{\tt in}  & {\em size} & string size \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+non-\/zero on overflow , 0 if ok 
+\end{DoxyReturn}
+
+
+Definition at line 105 of file mathio.\+c.
 
 \index{mathio.\+h@{mathio.\+h}!p\+\_\+etoa@{p\+\_\+etoa}}
 \index{p\+\_\+etoa@{p\+\_\+etoa}!mathio.\+h@{mathio.\+h}}
@@ -540,7 +568,7 @@ Convert number an base 2 .. 16 to A\+S\+C\+II with optional sign Notes\+: 1) Num
 \end{DoxyParams}
 
 
-Definition at line 311 of file printf.\+c.
+Definition at line 312 of file printf.\+c.
 
 
 
@@ -569,7 +597,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 234 of file printf.\+c.
+Definition at line 235 of file printf.\+c.
 
 
 
@@ -591,7 +619,7 @@ Buffer index
 \end{DoxyReturn}
 
 
-Definition at line 247 of file printf.\+c.
+Definition at line 248 of file printf.\+c.
 
 
 
@@ -625,7 +653,7 @@ current string index
 
 maximum string size including E\+OS 
 
-Definition at line 219 of file printf.\+c.
+Definition at line 220 of file printf.\+c.
 
 
 
@@ -647,7 +675,7 @@ Buffer index
 \end{DoxyReturn}
 
 
-Definition at line 255 of file printf.\+c.
+Definition at line 256 of file printf.\+c.
 
 \index{mathio.\+h@{mathio.\+h}!print\+\_\+flags@{print\+\_\+flags}}
 \index{print\+\_\+flags@{print\+\_\+flags}!mathio.\+h@{mathio.\+h}}
@@ -670,7 +698,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 267 of file printf.\+c.
+Definition at line 268 of file printf.\+c.
 
 \index{mathio.\+h@{mathio.\+h}!printf@{printf}}
 \index{printf@{printf}!mathio.\+h@{mathio.\+h}}
@@ -753,7 +781,7 @@ string size
 \end{DoxyReturn}
 
 
-Definition at line 1138 of file printf.\+c.
+Definition at line 1139 of file printf.\+c.
 
 \index{mathio.\+h@{mathio.\+h}!sscanf@{sscanf}}
 \index{sscanf@{sscanf}!mathio.\+h@{mathio.\+h}}
@@ -834,7 +862,7 @@ long value
 \end{DoxyReturn}
 
 
-Definition at line 78 of file mathio.\+c.
+Definition at line 133 of file mathio.\+c.
 
 
 
@@ -867,7 +895,7 @@ long long
 \end{DoxyReturn}
 
 
-Definition at line 125 of file mathio.\+c.
+Definition at line 180 of file mathio.\+c.
 
 \index{mathio.\+h@{mathio.\+h}!strupper@{strupper}}
 \index{strupper@{strupper}!mathio.\+h@{mathio.\+h}}
@@ -926,7 +954,7 @@ string size
 \end{DoxyReturn}
 
 
-Definition at line 1109 of file printf.\+c.
+Definition at line 1110 of file printf.\+c.
 
 
 

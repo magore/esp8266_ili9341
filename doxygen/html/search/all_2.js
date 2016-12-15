@@ -17,7 +17,7 @@ var searchData=
   ['bdfnames',['BDFnames',['../bdffontutil_8c.html#a8d8135c72831c5d6ca04479c82351b62',1,'BDFnames():&#160;bdffontutil.c'],['../bdffontutil_8h.html#a8d8135c72831c5d6ca04479c82351b62',1,'BDFnames():&#160;bdffontutil.c']]],
   ['bdfview_2ec',['bdfview.c',['../bdfview_8c.html',1,'']]],
   ['bg',['bg',['../structwindow.html#affcf5d29153103c2537542f5a4f8ba87',1,'window']]],
-  ['bin2num',['bin2num',['../mathio_8h.html#aa5634582e6d80bdf403844718798e088',1,'bin2num(uint8_t *str, int strmax, int nummin, int base, uint8_t *nump, int numsize, int sign_ch):&#160;printf.c'],['../printf_8c.html#aa5634582e6d80bdf403844718798e088',1,'bin2num(uint8_t *str, int strmax, int nummin, int base, uint8_t *nump, int numsize, int sign_ch):&#160;printf.c']]],
+  ['bin2num',['bin2num',['../mathio_8h.html#aa95ef42dcc41a90255c084e0e1a9bcde',1,'bin2num(uint8_t *str, int strmax, int nummin, int base, uint8_t *nump, int numsize, int sign_ch):&#160;printf.c'],['../printf_8c.html#aa95ef42dcc41a90255c084e0e1a9bcde',1,'bin2num(uint8_t *str, int strmax, int nummin, int base, uint8_t *nump, int numsize, int sign_ch):&#160;printf.c']]],
   ['bintobcd',['BINtoBCD',['../rtc_8c.html#a21b4daa6e014855954f0c65787118d3b',1,'BINtoBCD(uint8_t data):&#160;rtc.c'],['../rtc_8h.html#a21b4daa6e014855954f0c65787118d3b',1,'BINtoBCD(uint8_t data):&#160;rtc.c']]],
   ['bit_5fclr',['BIT_CLR',['../bits_8h.html#a4021778be6452ef56bfb20488d19bcdc',1,'bits.h']]],
   ['bit_5frate_5f115200',['BIT_RATE_115200',['../uart_8h.html#a9aa1e56362027f49bfbe4378b8c889a4ace379f00ef7ff498cbee2a444d896e63',1,'uart.h']]],

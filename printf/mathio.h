@@ -49,9 +49,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 MEMSPACE int atodigit ( int c , int radix );
 MEMSPACE long atoh ( const char *p );
 MEMSPACE long aton ( char *str , int base );
+MEMSPACE int mul10str ( uint8_t *str , int size );
 MEMSPACE long strtol ( const char *nptr , char **endptr , int base );
 MEMSPACE long long strtoll ( const char *nptr , char **endptr , int base );
-#ifdef UINT128MAX
+#ifdef __SIZEOF_INT128__
 MEMSPACE __uint128_t strto128 ( const char *nptr , char **endptr , int base );
 #endif
 MEMSPACE int atoi ( const char *str );
@@ -102,7 +103,7 @@ MEMSPACE size_t WEAK_ATR strlen ( const char *str );
 MEMSPACE int WEAK_ATR isdigit ( int c );
 MEMSPACE void WEAK_ATR reverse ( char *str );
 MEMSPACE void WEAK_ATR strupper ( char *str );
-int bin2num ( uint8_t *str , int strmax , int nummin , int base , uint8_t *nump , int numsize , int sign_ch );
+MEMSPACE int bin2num ( uint8_t *str , int strmax , int nummin , int base , uint8_t *nump , int numsize , int sign_ch );
 MEMSPACE void pch_init ( char *str , int max );
 MEMSPACE int pch ( char ch );
 MEMSPACE int pch_ind ( void );
@@ -117,7 +118,6 @@ MEMSPACE void _putc_buffer_fn ( struct _printf_t *p , char ch );
 MEMSPACE int vsnprintf ( char *str , size_t size , const char *format , va_list va );
 MEMSPACE int snprintf ( char *str , size_t size , const char *format , ...);
 MEMSPACE int printf ( const char *format , ...);
-
 
 /* sscanf.c */
 int sscanf ( const char *strp , const char *fmt , ...);

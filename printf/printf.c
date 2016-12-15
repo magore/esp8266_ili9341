@@ -133,6 +133,7 @@ strupper(char *str)
 /// @param[in] numsize: size of binary number in bytes
 /// @param[in] sign_ch: sign of binary number 
 /// return converted number string numsize in bytes
+MEMSPACE
 int bin2num(uint8_t *str, int strmax, int nummin, int base, uint8_t *nump, int numsize, int sign_ch)
 {
 	int i,j,carry;

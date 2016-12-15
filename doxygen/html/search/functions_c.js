@@ -51,6 +51,7 @@ var searchData=
   ['ms_5finit',['ms_init',['../user__main_8c.html#af02c169744cad045548cd4d79e6205e4',1,'user_main.c']]],
   ['ms_5fread',['ms_read',['../user__main_8c.html#a579b1507f56ef6a300ed2b6bcb2dca80',1,'user_main.c']]],
   ['ms_5ftask',['ms_task',['../user__main_8c.html#ad00817ae93e26408219a68cadd8424fa',1,'user_main.c']]],
+  ['mul10str',['mul10str',['../mathio_8c.html#aee46e805a6a25105661e6486a419fdc3',1,'mul10str(uint8_t *str, int size):&#160;mathio.c'],['../mathio_8h.html#aee46e805a6a25105661e6486a419fdc3',1,'mul10str(uint8_t *str, int size):&#160;mathio.c']]],
   ['my_5freceive',['my_receive',['../network_8h.html#af65ec795e7e4486dd8bb58d757fb6067',1,'network.h']]],
   ['myrand',['myrand',['../timetests_8c.html#a66b9965f3aebbd59ff4d3a6c9ca0040e',1,'timetests.c']]],
   ['mysrand',['mysrand',['../timetests_8c.html#ae3c957237ef10b1dd9d634b6d3ddb0b0',1,'timetests.c']]]
