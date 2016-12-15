@@ -567,15 +567,6 @@ void tests()
 	int i1 = -1;
 	int l1 = -1L;
 
-// Test basic type sizes
-    t_printf("sizeof (double) = %d\n", sizeof (double ) );
-    t_printf("sizeof (float) = %d\n", sizeof (float ) );
-    t_printf("sizeof (long long) = %d\n", sizeof (long long ) );
-    t_printf("sizeof (long) = %d\n", sizeof (long ) );
-    t_printf("sizeof (short) = %d\n", sizeof (short) );
-    t_printf("sizeof (int) = %d\n", sizeof (int ) );
-    t_printf("sizeof (char) = %d\n", sizeof (char ) );
-
 	printf("=======================\n");
     printf("Start of Manual tests\n");
 	tp("%-0d", 0);
@@ -768,17 +759,77 @@ int main(int argc, char *argv[])
 	int i;
 	int k;
 	int size;
+#ifdef __SIZEOF_INT128__
+	__uint128_t num128;
+#endif
+
 	f_t f;
 
 	char *intops = "duxXo";
 	char *sizeops[] = { "short", "int", "long", "long long", NULL };
 	char *floatops = "fe";
 
+	printf("=======================\n");
+    printf("Start of Manual tests\n");
+
+// Test basic type sizes
+    t_printf("sizeof (double) = %d\n", sizeof (double ) );
+    t_printf("sizeof (float) = %d\n", sizeof (float ) );
+#ifdef __SIZEOF_INT128__
+    t_printf("sizeof (__uint128_t) = %d\n", sizeof (__uint128_t) );
+#endif
+    t_printf("sizeof (long long) = %d\n", sizeof (long long ) );
+    t_printf("sizeof (long) = %d\n", sizeof (long ) );
+    t_printf("sizeof (short) = %d\n", sizeof (short) );
+    t_printf("sizeof (int) = %d\n", sizeof (int ) );
+    t_printf("sizeof (char) = %d\n", sizeof (char ) );
+	printf("=======================\n");
+	printf("\n");
+
+
+#ifdef __SIZEOF_INT128__
+	printf("=======================\n");
+	printf("Start of 128 bit int tests\n");
+	// There are no 128bit int constants in gcc - sigh
+	num128 = 1;
+	for(i=0;i<128;++i)
+	{
+		t_printf("2**%03d = [%I128d]\n", i, num128);
+		fflush(stdout);
+		num128 <<= 1;
+	}
+	printf("=======================\n");
+	printf("\n");
+	printf("=======================\n");
+	printf("Start of 128 bit int tests - 40 field width\n");
+	num128 = 1;
+	for(i=0;i<128;++i)
+	{
+		t_printf("2**%03d = [%40I128d]\n", i, num128);
+		fflush(stdout);
+		num128 <<= 1;
+	}
+	printf("=======================\n");
+	printf("\n");
+	printf("=======================\n");
+	printf("Start of 128 bit int tests - 40 field width and leading 0's\n");
+	num128 = 1;
+	for(i=0;i<128;++i)
+	{
+		t_printf("2**%03d = [%+040I128d]\n", i, num128);
+		fflush(stdout);
+		num128 <<= 1;
+	}
+	printf("=======================\n");
+	printf("\n");
+#endif
+
 	display_good = 0;
 	tests();
 
 	printf("\n\n");
 	printf("Start of random tests\n");
+
 
 	display_good = 0;
 	for(size=0;sizeops[size];++size)

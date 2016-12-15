@@ -748,6 +748,9 @@ void _printf_fn(printf_t *fn, __memx const char *fmt, va_list va)
 	int numi;
 	long numl;
 	long long numll;
+#ifdef __SIZEOF_INT128__
+	__uint128_t num128;
+#endif
 	uint8_t *nump;
 
 	f_t f;
@@ -837,29 +840,37 @@ Since the prototype doesn’t specify types for optional arguments, in a call to
 
 		size = sizeof(int); // int is default
 
-		// short
-		if(*fmt == 'h')
+		if( *fmt == 'I' ) 
+		{
+			fmt++;
+			size = 0;
+			while(isdigit(*fmt))
+				size = size*10 + *fmt++ - '0';
+			if(size == 0 || size & 7)
+				size = 0;
+			else
+				size >>= 3;
+		}
+		else if(*fmt == 'h')
 		{
 			fmt++;
 			size = sizeof(short);
 		}
-
-		// long
-		if(*fmt == 'l') 
+		else if(*fmt == 'l') 
 		{
 			fmt++;
 			size = sizeof(long);
+			if(*fmt == 'l')
+			{
+				fmt++;
+				size = sizeof(long long);
+			}
 		}
 
-		// long
-		if(*fmt == 'l')
-		{
-			fmt++;
-			size = sizeof(long long);
-		}
-
-		spec = *fmt;
-
+		if(size)
+			spec = *fmt;
+		else
+			spec = 0;
 
 		sign = 0;
 		if(spec == 'd' || spec == 'D')
@@ -937,6 +948,18 @@ Since the prototype doesn’t specify types for optional arguments, in a call to
 					}
 					nump = (uint8_t *) &numll;
 				}
+#ifdef __SIZEOF_INT128__
+				else if(size == sizeof(__uint128_t))
+				{
+					num128 = (__uint128_t) va_arg(va, __uint128_t);	
+					if(sign && numll < 0)
+					{
+						f.b.neg = 1;
+						num128 = -128;
+					}
+					nump = (uint8_t *) &num128;
+				}
+#endif
 				else
 				{
 					//FIXME size error
