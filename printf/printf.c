@@ -962,10 +962,7 @@ Since the prototype doesn’t specify types for optional arguments, in a call to
 #endif
 				else
 				{
-					//FIXME size error
-					// printf("Error size error:%d\n",size);
-					numi = 0;
-					nump = (uint8_t *) &numi;
+					spec = 0;
 				}
 				// FIXME default;
 				++fmt;
