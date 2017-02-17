@@ -200,6 +200,9 @@ ___
          * My rewritten HPSI code that avoids unaligned read and writes (based on code ideas from CHERTS and Sem)
            * hspi.c
            * hspi.h
+         * Chip select and addressing code for all devices
+           * io.c
+           * io.h
          * RTC DS1307 code in progress
            * rtc.c
            * rtc.h
@@ -400,8 +403,8 @@ ___
       recommend using jumpers to anable this feature if you do not wish to have the ESP8266 reset automatically
 
     * ILI9341        ESP8266
-      * Data/Command GPIO 05 (see SWAP45 in Makefile - my pin lables are backwards!)
-      * CS           GPIO 15
+      * Data/Command GPIO 05 (see io.c and SWAP45 in Makefile - my pin lables are backwards!)
+      * CS           GPIO 15 (see io.c)
       * SDI    MOSI  GPIO 13
       * SDO    MISO  GPIO 12
       * SCK    CLK   GPIO 14 
@@ -410,7 +413,7 @@ ___
       * GND          GND
 
     * MMC/SD reader  ESP8266
-      * D3/CS        GPIO 04 (see SWAP45 in Makefile - my pin lables are backwards!)
+      * D3/CS        GPIO 04 (see io.c and SWAP45 in Makefile - my pin lables are backwards!)
       * CMD/DI MOSI  GPIO 13
       * D0     MISO  GPIO 12
       * CLK    CLK   GPIO 14
@@ -418,7 +421,7 @@ ___
       * GND          GND
 
     * ADF4351        ESP8266
-      * LE           GPIO 00
+      * LE           GPIO 00 (see io.c)
       * DATA   MOSI  GPIO 13
       * CLK     CLK  GPIO 14
       * MUXOUT            NC

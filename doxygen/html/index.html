@@ -418,6 +418,11 @@ README</h1>
 <li><a class="el" href="hspi_8h.html">hspi.h</a></li>
 </ul>
 </li>
+<li>Chip select and addressing code for all devices<ul>
+<li><a class="el" href="io_8c.html" title="IO driver for ESP8255. ">io.c</a></li>
+<li><a class="el" href="io_8h.html">io.h</a></li>
+</ul>
+</li>
 <li>RTC DS1307 code in progress<ul>
 <li><a class="el" href="rtc_8c.html">rtc.c</a></li>
 <li><a class="el" href="rtc_8h.html">rtc.h</a></li>
@@ -722,8 +727,8 @@ README</h1>
   recommend using jumpers to anable this feature if you do not wish to have the ESP8266 reset automatically
 
 * ILI9341        ESP8266
-  * Data/Command GPIO 05 (see SWAP45 in Makefile - my pin lables are backwards!)
-  * CS           GPIO 15
+  * Data/Command GPIO 05 (see io.c and SWAP45 in Makefile - my pin lables are backwards!)
+  * CS           GPIO 15 (see io.c)
   * SDI    MOSI  GPIO 13
   * SDO    MISO  GPIO 12
   * SCK    CLK   GPIO 14 
@@ -732,7 +737,7 @@ README</h1>
   * GND          GND
 
 * MMC/SD reader  ESP8266
-  * D3/CS        GPIO 04 (see SWAP45 in Makefile - my pin lables are backwards!)
+  * D3/CS        GPIO 04 (see io.c and SWAP45 in Makefile - my pin lables are backwards!)
   * CMD/DI MOSI  GPIO 13
   * D0     MISO  GPIO 12
   * CLK    CLK   GPIO 14
@@ -740,7 +745,7 @@ README</h1>
   * GND          GND
 
 * ADF4351        ESP8266
-  * LE           GPIO 00
+  * LE           GPIO 00 (see io.c)
   * DATA   MOSI  GPIO 13
   * CLK     CLK  GPIO 14
   * MUXOUT            NC
@@ -774,7 +779,7 @@ README</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Feb 16 2017 22:26:02 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Feb 16 2017 22:33:52 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

@@ -357,6 +357,11 @@ esp8266 -\/ E\+S\+P8266 specific code
 \item \hyperlink{hspi_8c}{hspi.\+c}
 \item \hyperlink{hspi_8h}{hspi.\+h}
 \end{DoxyItemize}
+\item Chip select and addressing code for all devices
+\begin{DoxyItemize}
+\item \hyperlink{io_8c}{io.\+c}
+\item \hyperlink{io_8h}{io.\+h}
+\end{DoxyItemize}
 \item R\+TC D\+S1307 code in progress
 \begin{DoxyItemize}
 \item \hyperlink{rtc_8c}{rtc.\+c}
@@ -680,8 +685,8 @@ ld -\/ Linker scripts
   recommend using jumpers to anable this feature if you do not wish to have the ESP8266 reset automatically
 
 * ILI9341        ESP8266
-  * Data/Command GPIO 05 (see SWAP45 in Makefile - my pin lables are backwards!)
-  * CS           GPIO 15
+  * Data/Command GPIO 05 (see io.c and SWAP45 in Makefile - my pin lables are backwards!)
+  * CS           GPIO 15 (see io.c)
   * SDI    MOSI  GPIO 13
   * SDO    MISO  GPIO 12
   * SCK    CLK   GPIO 14 
@@ -690,7 +695,7 @@ ld -\/ Linker scripts
   * GND          GND
 
 * MMC/SD reader  ESP8266
-  * D3/CS        GPIO 04 (see SWAP45 in Makefile - my pin lables are backwards!)
+  * D3/CS        GPIO 04 (see io.c and SWAP45 in Makefile - my pin lables are backwards!)
   * CMD/DI MOSI  GPIO 13
   * D0     MISO  GPIO 12
   * CLK    CLK   GPIO 14
@@ -698,7 +703,7 @@ ld -\/ Linker scripts
   * GND          GND
 
 * ADF4351        ESP8266
-  * LE           GPIO 00
+  * LE           GPIO 00 (see io.c)
   * DATA   MOSI  GPIO 13
   * CLK     CLK  GPIO 14
   * MUXOUT            NC

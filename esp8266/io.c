@@ -168,18 +168,10 @@ void gpio_io_mode(int pin)
 			PIN_FUNC_SELECT(PERIPHS_IO_MUX_U0RXD_U, FUNC_GPIO3);
 			break;
 		case  4: // some esp8266-12 boards have incorrect labels 4 and 5 swapped
-#ifdef SWAP45
-			PIN_FUNC_SELECT(PERIPHS_IO_MUX_GPIO5_U, FUNC_GPIO5);
-#else
 			PIN_FUNC_SELECT(PERIPHS_IO_MUX_GPIO4_U, FUNC_GPIO4);
-#endif
 			break;
 		case  5: // some esp8266-12 boards have incorrect labels 4 and 5 swapped
-#ifdef SWAP45
-			PIN_FUNC_SELECT(PERIPHS_IO_MUX_GPIO4_U, FUNC_GPIO4);
-#else
 			PIN_FUNC_SELECT(PERIPHS_IO_MUX_GPIO5_U, FUNC_GPIO5);
-#endif
 			break;
 		case  6:
 			PIN_FUNC_SELECT(PERIPHS_IO_MUX_SD_CLK_U, FUNC_GPIO6);
