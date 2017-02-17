@@ -52,7 +52,8 @@ void hspi_cs_enable(uint8_t cs)
 		printf("cs_enable was: %d, want: %d\n", 0xff & _cs_pin, cs);
 	}
     hspi_waitReady();
-	GPIO_OUTPUT_SET(cs, 0);
+	// GPIO_OUTPUT_SET(cs, 0);
+	chip_select(cs);
 	_cs_pin = cs;
 }
 
@@ -68,11 +69,10 @@ void hspi_cs_disable(uint8_t cs)
 		printf("cs_disable was: %d, want: %d\n", 0xff & _cs_pin, cs);
 	}
     hspi_waitReady();
-	GPIO_OUTPUT_SET(cs, 1);
+	//GPIO_OUTPUT_SET(cs, 1);
+	chip_disable();
 	_cs_pin = 0xff;
 }
-
-
 
 /// @brief HSPI CS pin status
 /// return CS pin status

@@ -50,7 +50,6 @@ uint16_t tft_ID;
 #define tft_delay_us(a) os_delay_us(a)
 // We use automatic CS mode configured with hspi
 #define TFT_CS_PIN		ILI9341_CS
-
 #define TFT_CS_ACTIVE   chip_enable(TFT_CS_PIN)
 #define TFT_CS_DEACTIVE chip_disable();
 #define TFT_CS_INIT
