@@ -44,40 +44,37 @@ uint16_t tft_clock = -1;
 uint16_t tft_ID;
 
 #ifdef ESP8266
+#ifndef ILI9341_CS
+#error ILI9341_CS is undefined
+#endif
 #define tft_delay_us(a) os_delay_us(a)
 // We use automatic CS mode configured with hspi
-#define TFT_CS_PIN		15
-// Note: PERIPHS_IO_MUX_MTDO_U, is tied to GPIO 15 alternate function
-#define TFT_CS_INIT     gpio_io_mode(TFT_CS_PIN);
+#define TFT_CS_PIN		ILI9341_CS
 
-#define TFT_CS_ACTIVE   GPIO_OUTPUT_SET(TFT_CS_PIN, 0)
-#define TFT_CS_DEACTIVE GPIO_OUTPUT_SET(TFT_CS_PIN, 1)
+#define TFT_CS_ACTIVE   chip_enable(TFT_CS_PIN)
+#define TFT_CS_DEACTIVE chip_disable();
+#define TFT_CS_INIT
 // Display reset
 // Alternative we just tie this to power on reset line and free up the line
-#if 0
-	#define TFT_RST_PIN		0
-	#define TFT_RST_INIT     gpio_io_mode(TFT_RST_PIN);
-	#define TFT_RST_ACTIVE    GPIO_OUTPUT_SET(TFT_RST_PIN, 0)
-	#define TFT_RST_DEACTIVE  GPIO_OUTPUT_SET(TFT_RST_PIN, 1)
+#ifdef TFT_RST
+	#define TFT_RST_PIN		TFT_RST
+	#define TFT_RST_ACTIVE    chip_enable(TFT_RST_PIN)
+	#define TFT_RST_DEACTIVE  chip_disable()
+	#define TFT_RST_INIT     
 #else
 	#define TFT_RST_PIN		
-	#define TFT_RST_INIT     
 	#define TFT_RST_ACTIVE
 	#define TFT_RST_DEACTIVE
+	#define TFT_RST_INIT     
 #endif
 
-#ifdef SWAP45
-        // Pin 4 and 5 are mislabled
-	#define TFT_CMD_DATA_PIN	4
-	#define TFT_INIT        gpio_io_mode(TFT_CMD_DATA_PIN); TFT_DATA
-	#define TFT_DATA        GPIO_OUTPUT_SET(TFT_CMD_DATA_PIN, 1)
-	#define TFT_COMMAND     GPIO_OUTPUT_SET(TFT_CMD_DATA_PIN, 0)
-#else
-	#define TFT_CMD_DATA_PIN	5
-	#define TFT_INIT        gpio_io_mode(TFT_CMD_DATA_PIN);TFT_DATA
-	#define TFT_DATA        GPIO_OUTPUT_SET(TFT_CMD_DATA_PIN, 1)
-	#define TFT_COMMAND     GPIO_OUTPUT_SET(TFT_CMD_DATA_PIN, 0)
+#ifndef ADDR_0
+#error ADDR_0 is undefined
 #endif
+
+#define TFT_INIT        
+#define TFT_DATA        chip_addr(1)
+#define TFT_COMMAND     chip_addr(0)
 
 #endif
 

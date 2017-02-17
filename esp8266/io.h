@@ -30,6 +30,11 @@
 #define FUNC_GPIO11 3
 
 /* io.c */
+void chip_select ( int addr );
+void chip_disable ( void );
+void chip_select_init ( void );
+void chip_addr_init ( void );
+void chip_addr ( int addr );
 void gpio_io_mode ( int pin );
 
 #endif                                            /* INCLUDE_IO_H_ */

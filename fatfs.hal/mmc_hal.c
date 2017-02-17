@@ -292,7 +292,6 @@ MEMSPACE
 void mmc_spi_init(int32_t clock)
 {
 #ifdef ESP8266
-    SD_CS_INIT;
 	mmc_cs_disable();
     hspi_init(clock,0);
     (void)mmc_spi_TX(0xff);

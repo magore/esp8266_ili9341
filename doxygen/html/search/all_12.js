@@ -325,7 +325,7 @@ var searchData=
   ['stack_5fguard2',['stack_guard2',['../structcont__.html#af9e24c89ac69a95ae78a6c7f8a237da0',1,'cont_']]],
   ['stackok',['stackok',['../cal__dex_8c.html#a51bf09cac6f861c3a27c59190c3c6cc5',1,'cal_dex.c']]],
   ['start',['start',['../structdst__t.html#af1868fb321db3637664e3a3bf11cf56b',1,'dst_t']]],
-  ['stat',['stat',['../structstat.html',1,'stat'],['../struct__FDID.html#a1a2ff09f2ef172772f4e7312070be708',1,'_FDID::stat()'],['../mmc_8c.html#a014a1e17b21e3c0b80fe0afc0106976f',1,'Stat():&#160;mmc.c'],['../mmc__hal_8c.html#a5e05b0c3f7ba56fa9c23be08c497eb9f',1,'Stat():&#160;mmc.c'],['../posix_8c.html#abef70bf7a4af8a1f4998db0035c51781',1,'stat(char *name, struct stat *buf):&#160;posix.c'],['../posix_8h.html#abef70bf7a4af8a1f4998db0035c51781',1,'stat(char *name, struct stat *buf):&#160;posix.c']]],
+  ['stat',['stat',['../structstat.html',1,'stat'],['../struct__FDID.html#a1a2ff09f2ef172772f4e7312070be708',1,'_FDID::stat()'],['../posix_8c.html#abef70bf7a4af8a1f4998db0035c51781',1,'stat(char *name, struct stat *buf):&#160;posix.c'],['../posix_8h.html#abef70bf7a4af8a1f4998db0035c51781',1,'stat(char *name, struct stat *buf):&#160;posix.c'],['../mmc_8c.html#a014a1e17b21e3c0b80fe0afc0106976f',1,'Stat():&#160;mmc.c'],['../mmc__hal_8c.html#a5e05b0c3f7ba56fa9c23be08c497eb9f',1,'Stat():&#160;mmc.c']]],
   ['stationconfig',['StationConfig',['../network_8c.html#a63cab1cdb68d6495494e1967e0f909cf',1,'network.c']]],
   ['status_5faccepted',['STATUS_ACCEPTED',['../web_8h.html#abc6126af1d45847bc59afa0aa3216b04a544ef68512445722eea8ab61cde6c830',1,'web.h']]],
   ['status_5fbad_5fgateway',['STATUS_BAD_GATEWAY',['../web_8h.html#abc6126af1d45847bc59afa0aa3216b04a11d58f99340eb2b9510382096f7019c5',1,'web.h']]],

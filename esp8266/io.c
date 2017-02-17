@@ -31,6 +31,125 @@
 #include "hspi.h"
 #include "gpio.h"
 
+///@brief set chip enable
+void chip_select(int addr)
+{
+	switch(addr)
+	{
+#ifdef ADF4351_CS
+		case ADF4351_CS:
+			GPIO_OUTPUT_SET(ADF4351_CS, 0);
+			break;
+#endif
+#ifdef ILI9341_CS
+		case ILI9341_CS:
+			GPIO_OUTPUT_SET(ILI9341_CS, 0);
+			break;
+#endif
+#ifdef MMC_CS
+		case MMC_CS:
+			GPIO_OUTPUT_SET(MMC_CS,0);
+			break;
+#endif
+		// DISABLE all chip selects
+		default:
+#ifdef ADF4351_CS
+			GPIO_OUTPUT_SET(ADF4351_CS, 1);
+#endif
+#ifdef ILI9341_CS
+			GPIO_OUTPUT_SET(ILI9341_CS, 1);
+#endif
+#ifdef MMC_CS
+			GPIO_OUTPUT_SET(MMC_CS,1);
+#endif
+			break;
+	}
+#ifndef HAVE_DECODER
+#endif
+}
+
+///@brief disable all chip enable pins
+void chip_disable()
+{
+	chip_select(0xff);
+}
+
+
+///@brief Initialize chip enables
+void chip_select_init()
+{
+#ifdef ADF4351_CS
+	gpio_io_mode(ADF4351_CS);
+	GPIO_OUTPUT_SET(ADF4351_CS, 1);
+#endif
+
+#ifdef ILI9341_CS
+	gpio_io_mode(ILI9341_CS);
+	GPIO_OUTPUT_SET(ILI9341_CS, 1);
+#endif
+
+#ifdef MMC_CS
+	gpio_io_mode(MMC_CS);
+	GPIO_OUTPUT_SET(MMC_CS, 1);
+#endif
+
+#ifndef HAVE_DECODER
+#endif
+
+}
+
+void chip_addr_init()
+{
+#ifdef ADDR_0
+	gpio_io_mode(ADDR_0);
+	GPIO_OUTPUT_SET(ADDR_0, 1);
+#endif
+
+#ifdef ADDR_1
+	gpio_io_mode(ADDR_1);
+	GPIO_OUTPUT_SET(ADDR_0, 1);
+#endif
+}
+
+void chip_addr(int addr)
+{
+	switch(addr)
+	{
+#ifdef ADDR_0
+		case 0:
+			GPIO_OUTPUT_SET(ADDR_0, 0);
+#ifdef ADDR_1
+			GPIO_OUTPUT_SET(ADDR_1, 0);
+#endif
+			break;
+		case 1:
+			GPIO_OUTPUT_SET(ADDR_0, 1);
+#ifdef ADDR_1
+			GPIO_OUTPUT_SET(ADDR_1, 0):
+#endif
+			break;
+#endif // ADDR_0
+
+#ifdef ADDR_1
+		case 2:
+#ifdef ADDR_0
+			GPIO_OUTPUT_SET(ADDR_0, 0);
+#endif
+			GPIO_OUTPUT_SET(ADDR_1, 1);
+			break;
+		case 3:
+#ifdef ADDR_0
+			GPIO_OUTPUT_SET(ADDR_0, 1);
+#endif
+			GPIO_OUTPUT_SET(ADDR_1, 1);
+			break;
+#endif // ADDR_1
+
+		default:
+			break;
+	}
+}
+
 ///@brief set GPIO pin to normal I/O mode
 void gpio_io_mode(int pin)
 {

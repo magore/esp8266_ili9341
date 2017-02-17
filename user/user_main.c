@@ -720,6 +720,12 @@ void setup(void)
 
 	test_types();
 
+	// Functions manage chip selects
+	chip_select_init();
+	chip_select(0xff);
+	// Functions manage user defined address pins
+	chip_addr_init();
+	chip_addr(1);
 
 	// Initialize TFT
 	master = tft_init();

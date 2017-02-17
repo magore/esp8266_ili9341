@@ -34,12 +34,14 @@
 /// =============================================================
 /// HAL
 
+#ifndef ADF4351_CS
+#error You must define the ADF4351 GPIO pin
+#endif
+
 #ifdef ESP8266
-// GPIO pin 0
-#define ADF4351_LE_PIN   0
-#define ADF4351_LE_LOW   GPIO_OUTPUT_SET(ADF4351_LE_PIN, 0)
-#define ADF4351_LE_HI    GPIO_OUTPUT_SET(ADF4351_LE_PIN, 1)
-#define ADF4351_LE_INIT  gpio_io_mode(ADF4351_LE_PIN); ADF4351_LE_LOW
+#define ADF4351_LE_LOW   chip_select(ADF4351_CS)
+#define ADF4351_LE_HI    chip_disable();
+#define ADF4351_LE_INIT  
 #endif
 
 #ifdef AVR
@@ -72,7 +74,8 @@ void ADF4351_spi_init(void)
 #endif
 
     ADF4351_LE_INIT;
-    ADF4351_LE_LOW;
+    //ADF4351_LE_LOW;
+    ADF4351_LE_HI;
 }
 
 
@@ -104,12 +107,12 @@ void ADF4351_spi_end()
     hspi_waitReady();
     ADF4351_LE_HI;
     hspi_waitReady();	//just a short delay, nops would work
-    ADF4351_LE_LOW;
+    //ADF4351_LE_LOW;
 #endif
 
 #ifdef AVR
     ADF4351_LE_HI;
-    ADF4351_LE_LOW;
+    //ADF4351_LE_LOW;
 #endif
 
 }

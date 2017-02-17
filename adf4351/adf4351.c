@@ -597,6 +597,10 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
 	if(r1_MOD == 0 || r1_MOD > 4095U) 
 	{
 #if ADF4351_DEBUG & 1
+		if(r1_MOD == 0)
+			printf("*MOD == 0\n");
+		if(r1_MOD > 4095U)
+			printf("*MOD > 4095\n");
         printf("*MOD: %lu, INT: %lu, FRAC: %lu\n", (unsigned long) r1_MOD, (unsigned long) r0_INT, (unsigned long) r0_FRAC);
 #endif
 		return(ADF4351_MOD_RANGE);
@@ -607,6 +611,8 @@ int ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RF
     if (r0_FRAC > 4095U)
     {
 #if ADF4351_DEBUG & 1
+		if(r0_FRAC > 4095U)
+			printf("*FRAC > 4095\n");
         printf("MOD: %lu, INT: %lu, *FRAC: %lu\n", (unsigned long) r1_MOD, (unsigned long) r0_INT, (unsigned long) r0_FRAC);
 #endif
 		return(ADF4351_FRAC_RANGE);

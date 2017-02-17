@@ -187,20 +187,29 @@ FATFS_SUPPORT = 1
 POSIX_WRAPPERS=1
 
 ifdef FATFS_SUPPORT
+    CFLAGS  += -DFATFS_SUPPORT
 FATFS_UTILS_FULL=1
 FATFS_DEBUG=1
-	MODULES	+= fatfs.sup
-	MODULES	+= fatfs
-	MODULES	+= fatfs/option
-	MODULES	+= fatfs.hal
-    CFLAGS  += -DFATFS_SUPPORT
     CFLAGS  += -DFATFS_DEBUG=$(FATFS_DEBUG)
+
+ifdef SWAP45
+	MMC_CS=5
+else
+	MMC_CS=4
+endif
+
+    CFLAGS  += -DMMC_CS=$(MMC_CS)
+
 ifdef POSIX_WRAPPERS
     CFLAGS += -DPOSIX_WRAPPERS
 endif
 ifdef FATFS_UTILS_FULL
     CFLAGS += -DFATFS_UTILS_FULL
 endif
+	MODULES	+= fatfs.sup
+	MODULES	+= fatfs
+	MODULES	+= fatfs/option
+	MODULES	+= fatfs.hal
 endif
 
 # =========================
@@ -210,13 +219,6 @@ endif
 # =========================
 # ADF4351 demo
 ADF4351 = 1
-# Debug options can be combined by adding or oring
-# 1 = errors
-# 2 = calculation detail
-# 4 = register dumps
-# Example for everything
-#  ADF4351_DEBUG = 1+2+4
-ADF4351_DEBUG = 1
 
 # =========================
 # Yield function support thanks to Arduino Project 
@@ -225,8 +227,18 @@ YIELD_TASK = 1
 
 # =========================
 # =========================
-# ILI9341 Display support
 DISPLAY = 1
+
+ifdef DISPLAY
+# ILI9341 Display support
+	ILI9341_CS = 15
+    CFLAGS  += -DILI9341_CS=$(ILI9341_CS)
+ifdef SWAP45
+	ADDR_0 = 4
+else
+	ADDR_0 = 5
+endif
+    CFLAGS  += -DADDR_0=$(ADDR_0)
 
 # Display Debug messages via serial
 ILI9341_DEBUG = 0 
@@ -240,7 +252,6 @@ WIRECUBE = 1
 # Circle demo
 CIRCLE = 
 
-
 # Display voltage - only works if DEBUG_STATS = 1
 VOLTAGE_TEST = 1
 
@@ -251,7 +262,16 @@ VOLTAGE_TEST = 1
 #   voltage
 DEBUG_STATS = 1
 
-ifdef DISPLAY
+
+# TFT display DEBUG level
+ifdef ILI9341_DEBUG
+	CFLAGS  += -DILI9341_DEBUG=$(ILI9341_DEBUG)
+endif
+
+# ILI9341 Display and FONTS
+# Include font specifications - needed with proportional fonts 
+	CFLAGS  += -DFONTSPECS 
+
 ifdef DEBUG_STATS
 	CFLAGS += -DDEBUG_STATS
 endif
@@ -276,13 +296,6 @@ endif
 	CFLAGS  += -DEARTH
 endif
 
-# ILI9341 Display and FONTS
-# Include font specifications - needed with proportional fonts 
-CFLAGS  += -DFONTSPECS 
-# TFT display DEBUG level
-ifdef ILI9341_DEBUG
-	CFLAGS  += -DILI9341_DEBUG=$(ILI9341_DEBUG)
-endif
 
 endif  # ifdef DISPLAY
 # =========================
@@ -317,11 +330,6 @@ ifdef WEBSERVER
 endif
 
 
-# =========================
-# SWAP GPIO4 and GPIO5 on some esp-12 boards
-ifdef SWAP45
-	CFLAGS += -DSWAP45
-endif
 
 # =========================
 ifdef YIELD_TASK
@@ -332,6 +340,18 @@ endif
 # =========================
 ifdef ADF4351
 	CFLAGS += -DADF4351
+
+	ADF4351_CS=0
+	CFLAGS += -DADF4351_CS=$(ADF4351_CS)
+
+	ADF4351_DEBUG = 1
+# Debug options can be combined by adding or oring
+# 1 = errors
+# 2 = calculation detail
+# 4 = register dumps
+# Example for everything
+#  ADF4351_DEBUG = 1+2+4
+
 	MODULES	+= adf4351
 ifdef ADF4351_DEBUG
 	CFLAGS += -DADF4351_DEBUG=$(ADF4351_DEBUG)
