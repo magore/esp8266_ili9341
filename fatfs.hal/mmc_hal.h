@@ -24,9 +24,6 @@
 #endif
 
 #ifdef ESP8266
-	#define SD_CS_PIN		MMC_CS
-	#define SD_CS_ACTIVE   chip_enable(SD_CS_PIN)
-	#define SD_CS_DEACTIVE chip_disable()
 	// FIXME
 	#define mmc_cli() /*< interrupt disable */
 	// FIXME
@@ -36,26 +33,22 @@
 	#define mmc_sei() sei() /*< interrupt enable */
 #endif
 
-
 /* mmc_hal.c */
 MEMSPACE void mmc_install_timer ( void );
-MEMSPACE void mmc_spi_TX_buffer ( const uint8_t *data , int count );
-MEMSPACE void mmc_spi_RX_buffer ( const uint8_t *data , int count );
-MEMSPACE uint8_t mmc_spi_RX ( void );
-MEMSPACE void mmc_spi_TX ( uint8_t data );
-MEMSPACE uint8_t mmc_spi_TXRX ( uint8_t data );
+void mmc_spi_init ( void );
+void mmc_spi_begin ( void );
+void mmc_spi_end ( void );
+void mmc_slow ( void );
+void mmc_fast ( void );
+void mmc_spi_TX_buffer ( const uint8_t *data , int count );
+void mmc_spi_RX_buffer ( const uint8_t *data , int count );
+uint8_t mmc_spi_TXRX ( uint8_t data );
 MEMSPACE void mmc_set_ms_timeout ( uint16_t ms );
 MEMSPACE int mmc_test_timeout ( void );
 MEMSPACE void mmc_ms_wait ( int ms );
 MEMSPACE int mmc_init ( int verbose );
-MEMSPACE void mmc_spi_init ( int32_t clock );
-MEMSPACE void mmc_slow ( void );
-MEMSPACE void mmc_fast ( void );
 MEMSPACE void mmc_power_on ( void );
 MEMSPACE void mmc_power_off ( void );
-MEMSPACE int mmc_power_status ( void );
-MEMSPACE void mmc_cs_enable ( void );
-MEMSPACE void mmc_cs_disable ( void );
 MEMSPACE int mmc_ins_status ( void );
 MEMSPACE int mmc_wp_status ( void );
 

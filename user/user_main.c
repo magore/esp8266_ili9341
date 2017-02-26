@@ -331,22 +331,22 @@ void loop(void)
 		return;
 	}
 
-	ret = hspi_cs_status();
+	ret = spi_cs_status();
 	if(ret != 0xff)
 	{
-		printf("Error: loop() entered with hspi_cs = %d\n",ret);
-		hspi_cs_disable(ret);
+		printf("Error: loop() entered with spi_cs = %d\n",ret);
+		spi_cs_disable(ret);
 		return;
 	}
 
 
 	loop_task();
 
-	ret = hspi_cs_status();
+	ret = spi_cs_status();
 	if(ret != 0xff)
 	{
-		printf("Error: loop_task() exit with hspi_cs = %d\n",ret);
-		hspi_cs_disable(ret);
+		printf("Error: loop_task() exit with spi_cs = %d\n",ret);
+		spi_cs_disable(ret);
 		return;
 	}
 
@@ -499,11 +499,11 @@ void loop(void)
     tft_drawCircle(wincube, wincube->w/2, wincube->h/2, rad, tft_RGBto565(red,green,blue));
 #endif
 
-	ret = hspi_cs_status();
+	ret = spi_cs_status();
 	if(ret != 0xff)
 	{
-		printf("Exit: loop() with hspi_cs = %d\n",ret);
-		hspi_cs_disable(ret);
+		printf("Exit: loop() with spi_cs = %d\n",ret);
+		spi_cs_disable(ret);
 		return;
 	}
 	
@@ -721,11 +721,17 @@ void setup(void)
 	test_types();
 
 	// Functions manage chip selects
-	chip_select_init();
-	chip_select(0xff);
+#ifdef MMC_CS
+	chip_select_init(MMC_CS);
+#endif
+#ifdef ADF4351_CS
+	chip_select_init(ADF4351_CS);
+#endif
+#ifdef ILI9341_CS
+	chip_select_init(ILI9341_CS);
+#endif
 	// Functions manage user defined address pins
 	chip_addr_init();
-	chip_addr(1);
 
 	// Initialize TFT
 	master = tft_init();

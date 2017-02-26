@@ -130,8 +130,13 @@ MEMSPACE void tft_clearline ( window *win );
 void tft_putch ( window *win , int c );
 
 /* ili9341_hal.c */
+void tft_spi_init ( uint32_t prescale );
 void tft_spi_begin ( void );
 void tft_spi_end ( void );
+void tft_reset_init ( void );
+void tft_reset_enable ( void );
+void tft_addr_init ( void );
+void tft_reset_disable ( void );
 void tft_spi_TX ( uint8_t *data , int bytes , uint8_t command );
 void tft_spi_TXRX ( uint8_t *data , int bytes , uint8_t command );
 void tft_spi_RX ( uint8_t *data , int bytes , uint8_t command );

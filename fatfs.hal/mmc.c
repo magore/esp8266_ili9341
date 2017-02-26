@@ -34,8 +34,9 @@
 #include "fatfs.sup/fatfs.h"
 
 /* Peripheral controls (Platform dependent) */
-#define CS_LOW()        mmc_cs_enable()  /* Set MMC_CS = low */
-#define CS_HIGH()       mmc_cs_disable() /* Set MMC_CS = high */
+#define CS_LOW()        mmc_spi_begin()  /* Set MMC_CS = low */
+#define CS_HIGH()       mmc_spi_end()     /* Set MMC_CS = high */
+
 #define MMC_CD          mmc_ins_status() /* Test if card detected.   yes:true, no:false, default:true */
 #define MMC_WP          mmc_wp_status()  /* Test if write protected. yes:true, no:false, default:false */
 #define FCLK_SLOW()     mmc_slow()      /* Set SPI slow clock (100-400kHz) */
@@ -338,13 +339,11 @@ DSTATUS mmc_disk_initialize (void)
 {
     BYTE n, cmd, ty, ocr[4];
 
-    power_off();                              	/* Turn off the sock et power to reset the card */
-	//mmc_ms_wait(100);							/* power_on does the wait */
     //for (Timer1 = 10; Timer1; ) ;       	  	/* Wait for 100ms */
     if (Stat & STA_NODISK) return Stat;       	/* No card in the socket */
 
-    power_on();                               	/* Turn on the socket power */
     FCLK_SLOW();
+
     for (n = 10; n; n--) xchg_spi(0xFF); 		/* 80 dummy clocks */
 
     ty = 0;

@@ -16,18 +16,51 @@ IO driver for E\+S\+P8255.
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{io_8c_ace584bbaaefcc83f09a7f428e55b52da}{chip\+\_\+select} (int addr)
+void \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{io_8c_afd669aacabf229874a5927c4d0afcf62}{gpio\+\_\+sfr\+\_\+mode} (int pin)
+\begin{DoxyCompactList}\small\item\em set G\+P\+IO pin to normal I/O mode \end{DoxyCompactList}\item 
+void \hyperlink{io_8c_a9eaae771107e6e01ef45ebe31ca99fdb}{chip\+\_\+select\+\_\+init} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} pin)
+\item 
+void \hyperlink{io_8c_aad867d10e56c181c12b29a8871b0898f}{chip\+\_\+select} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} pin)
 \begin{DoxyCompactList}\small\item\em set chip enable \end{DoxyCompactList}\item 
-void \hyperlink{io_8c_a1bf83a64c0a70a49fb761903053b5095}{chip\+\_\+disable} ()
-\begin{DoxyCompactList}\small\item\em disable all chip enable pins \end{DoxyCompactList}\item 
-void \hyperlink{io_8c_a847f7f5fdf010a02a1e4d23761636714}{chip\+\_\+select\+\_\+init} ()
-\begin{DoxyCompactList}\small\item\em Initialize chip enables. \end{DoxyCompactList}\item 
+void \hyperlink{io_8c_adb2f7085f2b840c81a765bf67d14de0e}{chip\+\_\+deselect} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} pin)
+\begin{DoxyCompactList}\small\item\em set chip enable \end{DoxyCompactList}\item 
+void \hyperlink{io_8c_a2974daba5e75ee12a97e157b1b862d6f}{chip\+\_\+select\+\_\+init\+\_\+all} (int pin)
+\item 
 void \hyperlink{io_8c_abd54cabf9040258ff4de02954a575e6a}{chip\+\_\+addr\+\_\+init} ()
 \item 
 void \hyperlink{io_8c_abc9be250079b2b3fb01b888e431ec207}{chip\+\_\+addr} (int addr)
 \item 
-void \hyperlink{io_8c_ab893fa933aa04eae8c4478a9343ba517}{gpio\+\_\+io\+\_\+mode} (int pin)
-\begin{DoxyCompactList}\small\item\em set G\+P\+IO pin to normal I/O mode \end{DoxyCompactList}\end{DoxyCompactItemize}
+void \hyperlink{io_8c_a98abd8ed313db191648e1d7ae2720f83}{spi\+\_\+wait\+Ready} ()
+\item 
+void \hyperlink{io_8c_a05ee90fa01ae24128ba2d624bb1898ec}{spi\+\_\+cs\+\_\+enable} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} cs)
+\begin{DoxyCompactList}\small\item\em S\+PI CS enable function, wait for previous tranaction to finish! \end{DoxyCompactList}\item 
+void \hyperlink{io_8c_a2ac20806538eab2f41c7cba13b306cb9}{spi\+\_\+cs\+\_\+disable} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} cs)
+\begin{DoxyCompactList}\small\item\em S\+PI CS disable function, wait for previous tranaction to finish! \end{DoxyCompactList}\item 
+\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} \hyperlink{io_8c_a64608e66a0079d0e9b08e7598668ef38}{spi\+\_\+cs\+\_\+status} ()
+\begin{DoxyCompactList}\small\item\em S\+PI CS pin status return CS pin status. \end{DoxyCompactList}\item 
+void \hyperlink{io_8c_a07907128317cdc79a94c6970d487b636}{spi\+\_\+init} (\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} clock, int pin)
+\begin{DoxyCompactList}\small\item\em Obtain S\+PI bus for T\+FT display, assert chip select return\+: void. \end{DoxyCompactList}\item 
+void \hyperlink{io_8c_acd8b481ba21b545f53061c5ab7ff451e}{spi\+\_\+begin} (\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} clock, int pin)
+\begin{DoxyCompactList}\small\item\em Obtain S\+PI bus for T\+FT display, assert chip select return\+: void. \end{DoxyCompactList}\item 
+void \hyperlink{io_8c_a7257b43751112d6798620011ab0f2f13}{spi\+\_\+end} (int pin)
+\begin{DoxyCompactList}\small\item\em Release S\+PI bus from T\+FT display, deassert chip select return\+: void. \end{DoxyCompactList}\item 
+void \hyperlink{io_8c_a445c14cf602a0b3dd085ee963a7986a0}{spi\+\_\+\+T\+X\+\_\+buffer} (const \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} $\ast$data, int \hyperlink{user__main_8c_aa011065eee776eb1bda73597b5d9d5d7}{count})
+\begin{DoxyCompactList}\small\item\em S\+PI write buffer. \end{DoxyCompactList}\item 
+void \hyperlink{io_8c_a1fca48fcdb736ef3af2179ae8b10d963}{spi\+\_\+\+R\+X\+\_\+buffer} (const \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} $\ast$data, int \hyperlink{user__main_8c_aa011065eee776eb1bda73597b5d9d5d7}{count})
+\begin{DoxyCompactList}\small\item\em S\+PI read buffer. \end{DoxyCompactList}\item 
+void \hyperlink{io_8c_a79519dd3475dcb68112f162379287e20}{spi\+\_\+\+T\+X\+R\+X\+\_\+buffer} (const \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} $\ast$data, int \hyperlink{user__main_8c_aa011065eee776eb1bda73597b5d9d5d7}{count})
+\begin{DoxyCompactList}\small\item\em S\+PI write/read buffer. \end{DoxyCompactList}\item 
+\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} \hyperlink{io_8c_ab29ed55c6eacdff36215e717c9ec19e1}{spi\+\_\+\+RX} ()
+\begin{DoxyCompactList}\small\item\em S\+PI read 1 byte. \end{DoxyCompactList}\item 
+void \hyperlink{io_8c_ae1df55cfc018c50c9aec77000eae858c}{spi\+\_\+\+TX} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} data)
+\begin{DoxyCompactList}\small\item\em S\+PI write 1 byte. \end{DoxyCompactList}\item 
+\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} \hyperlink{io_8c_a9617412610d280bbb4886674790d7d3e}{spi\+\_\+\+T\+X\+RX} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} data)
+\begin{DoxyCompactList}\small\item\em S\+PI read and write 1 byte. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} \hyperlink{io_8c_a1d1ec6333b265b4dd659ee605a2421de}{\+\_\+cs\+\_\+pin} = 0xff
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -55,11 +88,7 @@ You should have received a copy of the G\+NU General Public License along with t
 )}\hypertarget{io_8c_abc9be250079b2b3fb01b888e431ec207}{}\label{io_8c_abc9be250079b2b3fb01b888e431ec207}
 
 
-Definition at line 114 of file io.\+c.
-
-
-
-Referenced by setup().
+Definition at line 224 of file io.\+c.
 
 \index{io.\+c@{io.\+c}!chip\+\_\+addr\+\_\+init@{chip\+\_\+addr\+\_\+init}}
 \index{chip\+\_\+addr\+\_\+init@{chip\+\_\+addr\+\_\+init}!io.\+c@{io.\+c}}
@@ -70,85 +99,401 @@ Referenced by setup().
 )}\hypertarget{io_8c_abd54cabf9040258ff4de02954a575e6a}{}\label{io_8c_abd54cabf9040258ff4de02954a575e6a}
 
 
-Definition at line 101 of file io.\+c.
+Definition at line 201 of file io.\+c.
 
 
 
-Referenced by setup().
+Referenced by setup(), and tft\+\_\+addr\+\_\+init().
 
-\index{io.\+c@{io.\+c}!chip\+\_\+disable@{chip\+\_\+disable}}
-\index{chip\+\_\+disable@{chip\+\_\+disable}!io.\+c@{io.\+c}}
-\subsubsection[{\texorpdfstring{chip\+\_\+disable()}{chip_disable()}}]{\setlength{\rightskip}{0pt plus 5cm}void chip\+\_\+disable (
+\index{io.\+c@{io.\+c}!chip\+\_\+deselect@{chip\+\_\+deselect}}
+\index{chip\+\_\+deselect@{chip\+\_\+deselect}!io.\+c@{io.\+c}}
+\subsubsection[{\texorpdfstring{chip\+\_\+deselect(uint8\+\_\+t pin)}{chip_deselect(uint8_t pin)}}]{\setlength{\rightskip}{0pt plus 5cm}void chip\+\_\+deselect (
 \begin{DoxyParamCaption}
-\item[{void}]{}
+\item[{{\bf uint8\+\_\+t}}]{pin}
 \end{DoxyParamCaption}
-)}\hypertarget{io_8c_a1bf83a64c0a70a49fb761903053b5095}{}\label{io_8c_a1bf83a64c0a70a49fb761903053b5095}
-
-
-disable all chip enable pins 
-
-
-
-Definition at line 72 of file io.\+c.
-
-
-
-Referenced by hspi\+\_\+cs\+\_\+disable().
-
-\index{io.\+c@{io.\+c}!chip\+\_\+select@{chip\+\_\+select}}
-\index{chip\+\_\+select@{chip\+\_\+select}!io.\+c@{io.\+c}}
-\subsubsection[{\texorpdfstring{chip\+\_\+select(int addr)}{chip_select(int addr)}}]{\setlength{\rightskip}{0pt plus 5cm}void chip\+\_\+select (
-\begin{DoxyParamCaption}
-\item[{int}]{addr}
-\end{DoxyParamCaption}
-)}\hypertarget{io_8c_ace584bbaaefcc83f09a7f428e55b52da}{}\label{io_8c_ace584bbaaefcc83f09a7f428e55b52da}
+)}\hypertarget{io_8c_adb2f7085f2b840c81a765bf67d14de0e}{}\label{io_8c_adb2f7085f2b840c81a765bf67d14de0e}
 
 
 set chip enable 
 
 
 
-Definition at line 35 of file io.\+c.
+Definition at line 178 of file io.\+c.
 
 
 
-Referenced by chip\+\_\+disable(), hspi\+\_\+cs\+\_\+enable(), and setup().
+Referenced by spi\+\_\+cs\+\_\+disable().
+
+\index{io.\+c@{io.\+c}!chip\+\_\+select@{chip\+\_\+select}}
+\index{chip\+\_\+select@{chip\+\_\+select}!io.\+c@{io.\+c}}
+\subsubsection[{\texorpdfstring{chip\+\_\+select(uint8\+\_\+t pin)}{chip_select(uint8_t pin)}}]{\setlength{\rightskip}{0pt plus 5cm}void chip\+\_\+select (
+\begin{DoxyParamCaption}
+\item[{{\bf uint8\+\_\+t}}]{pin}
+\end{DoxyParamCaption}
+)}\hypertarget{io_8c_aad867d10e56c181c12b29a8871b0898f}{}\label{io_8c_aad867d10e56c181c12b29a8871b0898f}
+
+
+set chip enable 
+
+
+
+Definition at line 172 of file io.\+c.
+
+
+
+Referenced by spi\+\_\+cs\+\_\+enable().
 
 \index{io.\+c@{io.\+c}!chip\+\_\+select\+\_\+init@{chip\+\_\+select\+\_\+init}}
 \index{chip\+\_\+select\+\_\+init@{chip\+\_\+select\+\_\+init}!io.\+c@{io.\+c}}
-\subsubsection[{\texorpdfstring{chip\+\_\+select\+\_\+init()}{chip_select_init()}}]{\setlength{\rightskip}{0pt plus 5cm}void chip\+\_\+select\+\_\+init (
+\subsubsection[{\texorpdfstring{chip\+\_\+select\+\_\+init(uint8\+\_\+t pin)}{chip_select_init(uint8_t pin)}}]{\setlength{\rightskip}{0pt plus 5cm}void chip\+\_\+select\+\_\+init (
 \begin{DoxyParamCaption}
-\item[{void}]{}
+\item[{{\bf uint8\+\_\+t}}]{pin}
 \end{DoxyParamCaption}
-)}\hypertarget{io_8c_a847f7f5fdf010a02a1e4d23761636714}{}\label{io_8c_a847f7f5fdf010a02a1e4d23761636714}
+)}\hypertarget{io_8c_a9eaae771107e6e01ef45ebe31ca99fdb}{}\label{io_8c_a9eaae771107e6e01ef45ebe31ca99fdb}
 
 
-Initialize chip enables. 
-
-
-
-Definition at line 79 of file io.\+c.
+Definition at line 165 of file io.\+c.
 
 
 
-Referenced by setup().
+Referenced by chip\+\_\+select\+\_\+init\+\_\+all(), setup(), and tft\+\_\+reset\+\_\+init().
 
-\index{io.\+c@{io.\+c}!gpio\+\_\+io\+\_\+mode@{gpio\+\_\+io\+\_\+mode}}
-\index{gpio\+\_\+io\+\_\+mode@{gpio\+\_\+io\+\_\+mode}!io.\+c@{io.\+c}}
-\subsubsection[{\texorpdfstring{gpio\+\_\+io\+\_\+mode(int pin)}{gpio_io_mode(int pin)}}]{\setlength{\rightskip}{0pt plus 5cm}void gpio\+\_\+io\+\_\+mode (
+\index{io.\+c@{io.\+c}!chip\+\_\+select\+\_\+init\+\_\+all@{chip\+\_\+select\+\_\+init\+\_\+all}}
+\index{chip\+\_\+select\+\_\+init\+\_\+all@{chip\+\_\+select\+\_\+init\+\_\+all}!io.\+c@{io.\+c}}
+\subsubsection[{\texorpdfstring{chip\+\_\+select\+\_\+init\+\_\+all(int pin)}{chip_select_init_all(int pin)}}]{\setlength{\rightskip}{0pt plus 5cm}void chip\+\_\+select\+\_\+init\+\_\+all (
 \begin{DoxyParamCaption}
 \item[{int}]{pin}
 \end{DoxyParamCaption}
-)}\hypertarget{io_8c_ab893fa933aa04eae8c4478a9343ba517}{}\label{io_8c_ab893fa933aa04eae8c4478a9343ba517}
+)}\hypertarget{io_8c_a2974daba5e75ee12a97e157b1b862d6f}{}\label{io_8c_a2974daba5e75ee12a97e157b1b862d6f}
+
+
+Definition at line 183 of file io.\+c.
+
+\index{io.\+c@{io.\+c}!gpio\+\_\+sfr\+\_\+mode@{gpio\+\_\+sfr\+\_\+mode}}
+\index{gpio\+\_\+sfr\+\_\+mode@{gpio\+\_\+sfr\+\_\+mode}!io.\+c@{io.\+c}}
+\subsubsection[{\texorpdfstring{gpio\+\_\+sfr\+\_\+mode(int pin)}{gpio_sfr_mode(int pin)}}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf M\+E\+M\+S\+P\+A\+CE} gpio\+\_\+sfr\+\_\+mode (
+\begin{DoxyParamCaption}
+\item[{int}]{pin}
+\end{DoxyParamCaption}
+)}\hypertarget{io_8c_afd669aacabf229874a5927c4d0afcf62}{}\label{io_8c_afd669aacabf229874a5927c4d0afcf62}
 
 
 set G\+P\+IO pin to normal I/O mode 
 
+A\+VR G\+P\+IO M\+A\+C\+R\+Os. 
+
+Definition at line 37 of file io.\+c.
+
+\index{io.\+c@{io.\+c}!spi\+\_\+begin@{spi\+\_\+begin}}
+\index{spi\+\_\+begin@{spi\+\_\+begin}!io.\+c@{io.\+c}}
+\subsubsection[{\texorpdfstring{spi\+\_\+begin(uint32\+\_\+t clock, int pin)}{spi_begin(uint32_t clock, int pin)}}]{\setlength{\rightskip}{0pt plus 5cm}void spi\+\_\+begin (
+\begin{DoxyParamCaption}
+\item[{{\bf uint32\+\_\+t}}]{clock, }
+\item[{int}]{pin}
+\end{DoxyParamCaption}
+)}\hypertarget{io_8c_acd8b481ba21b545f53061c5ab7ff451e}{}\label{io_8c_acd8b481ba21b545f53061c5ab7ff451e}
 
 
-Definition at line 154 of file io.\+c.
+Obtain S\+PI bus for T\+FT display, assert chip select return\+: void. 
 
 
 
-Referenced by chip\+\_\+addr\+\_\+init(), and chip\+\_\+select\+\_\+init().
+Definition at line 323 of file io.\+c.
+
+
+
+Referenced by A\+D\+F4351\+\_\+spi\+\_\+begin(), mmc\+\_\+spi\+\_\+begin(), and tft\+\_\+spi\+\_\+begin().
+
+\index{io.\+c@{io.\+c}!spi\+\_\+cs\+\_\+disable@{spi\+\_\+cs\+\_\+disable}}
+\index{spi\+\_\+cs\+\_\+disable@{spi\+\_\+cs\+\_\+disable}!io.\+c@{io.\+c}}
+\subsubsection[{\texorpdfstring{spi\+\_\+cs\+\_\+disable(uint8\+\_\+t cs)}{spi_cs_disable(uint8_t cs)}}]{\setlength{\rightskip}{0pt plus 5cm}void spi\+\_\+cs\+\_\+disable (
+\begin{DoxyParamCaption}
+\item[{{\bf uint8\+\_\+t}}]{cs}
+\end{DoxyParamCaption}
+)}\hypertarget{io_8c_a2ac20806538eab2f41c7cba13b306cb9}{}\label{io_8c_a2ac20806538eab2f41c7cba13b306cb9}
+
+
+S\+PI CS disable function, wait for previous tranaction to finish! 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em cs} & G\+P\+IO CS pin \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 285 of file io.\+c.
+
+
+
+Referenced by loop(), spi\+\_\+end(), and spi\+\_\+init().
+
+\index{io.\+c@{io.\+c}!spi\+\_\+cs\+\_\+enable@{spi\+\_\+cs\+\_\+enable}}
+\index{spi\+\_\+cs\+\_\+enable@{spi\+\_\+cs\+\_\+enable}!io.\+c@{io.\+c}}
+\subsubsection[{\texorpdfstring{spi\+\_\+cs\+\_\+enable(uint8\+\_\+t cs)}{spi_cs_enable(uint8_t cs)}}]{\setlength{\rightskip}{0pt plus 5cm}void spi\+\_\+cs\+\_\+enable (
+\begin{DoxyParamCaption}
+\item[{{\bf uint8\+\_\+t}}]{cs}
+\end{DoxyParamCaption}
+)}\hypertarget{io_8c_a05ee90fa01ae24128ba2d624bb1898ec}{}\label{io_8c_a05ee90fa01ae24128ba2d624bb1898ec}
+
+
+S\+PI CS enable function, wait for previous tranaction to finish! 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em cs} & G\+P\+IO CS pin \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 269 of file io.\+c.
+
+
+
+Referenced by spi\+\_\+begin().
+
+\index{io.\+c@{io.\+c}!spi\+\_\+cs\+\_\+status@{spi\+\_\+cs\+\_\+status}}
+\index{spi\+\_\+cs\+\_\+status@{spi\+\_\+cs\+\_\+status}!io.\+c@{io.\+c}}
+\subsubsection[{\texorpdfstring{spi\+\_\+cs\+\_\+status()}{spi_cs_status()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint8\+\_\+t} spi\+\_\+cs\+\_\+status (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{io_8c_a64608e66a0079d0e9b08e7598668ef38}{}\label{io_8c_a64608e66a0079d0e9b08e7598668ef38}
+
+
+S\+PI CS pin status return CS pin status. 
+
+
+
+Definition at line 301 of file io.\+c.
+
+
+
+Referenced by loop().
+
+\index{io.\+c@{io.\+c}!spi\+\_\+end@{spi\+\_\+end}}
+\index{spi\+\_\+end@{spi\+\_\+end}!io.\+c@{io.\+c}}
+\subsubsection[{\texorpdfstring{spi\+\_\+end(int pin)}{spi_end(int pin)}}]{\setlength{\rightskip}{0pt plus 5cm}void spi\+\_\+end (
+\begin{DoxyParamCaption}
+\item[{int}]{pin}
+\end{DoxyParamCaption}
+)}\hypertarget{io_8c_a7257b43751112d6798620011ab0f2f13}{}\label{io_8c_a7257b43751112d6798620011ab0f2f13}
+
+
+Release S\+PI bus from T\+FT display, deassert chip select return\+: void. 
+
+
+
+Definition at line 331 of file io.\+c.
+
+
+
+Referenced by A\+D\+F4351\+\_\+spi\+\_\+end(), mmc\+\_\+spi\+\_\+end(), and tft\+\_\+spi\+\_\+end().
+
+\index{io.\+c@{io.\+c}!spi\+\_\+init@{spi\+\_\+init}}
+\index{spi\+\_\+init@{spi\+\_\+init}!io.\+c@{io.\+c}}
+\subsubsection[{\texorpdfstring{spi\+\_\+init(uint32\+\_\+t clock, int pin)}{spi_init(uint32_t clock, int pin)}}]{\setlength{\rightskip}{0pt plus 5cm}void spi\+\_\+init (
+\begin{DoxyParamCaption}
+\item[{{\bf uint32\+\_\+t}}]{clock, }
+\item[{int}]{pin}
+\end{DoxyParamCaption}
+)}\hypertarget{io_8c_a07907128317cdc79a94c6970d487b636}{}\label{io_8c_a07907128317cdc79a94c6970d487b636}
+
+
+Obtain S\+PI bus for T\+FT display, assert chip select return\+: void. 
+
+
+
+Definition at line 308 of file io.\+c.
+
+
+
+Referenced by A\+D\+F4351\+\_\+spi\+\_\+init(), mmc\+\_\+fast(), mmc\+\_\+slow(), spi\+\_\+begin(), and tft\+\_\+spi\+\_\+init().
+
+\index{io.\+c@{io.\+c}!spi\+\_\+\+RX@{spi\+\_\+\+RX}}
+\index{spi\+\_\+\+RX@{spi\+\_\+\+RX}!io.\+c@{io.\+c}}
+\subsubsection[{\texorpdfstring{spi\+\_\+\+R\+X()}{spi_RX()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint8\+\_\+t} spi\+\_\+\+RX (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{io_8c_ab29ed55c6eacdff36215e717c9ec19e1}{}\label{io_8c_ab29ed55c6eacdff36215e717c9ec19e1}
+
+
+S\+PI read 1 byte. 
+
+\begin{DoxyReturn}{Returns}
+uint8\+\_\+t value 
+\end{DoxyReturn}
+
+
+Definition at line 381 of file io.\+c.
+
+\index{io.\+c@{io.\+c}!spi\+\_\+\+R\+X\+\_\+buffer@{spi\+\_\+\+R\+X\+\_\+buffer}}
+\index{spi\+\_\+\+R\+X\+\_\+buffer@{spi\+\_\+\+R\+X\+\_\+buffer}!io.\+c@{io.\+c}}
+\subsubsection[{\texorpdfstring{spi\+\_\+\+R\+X\+\_\+buffer(const uint8\+\_\+t $\ast$data, int count)}{spi_RX_buffer(const uint8_t *data, int count)}}]{\setlength{\rightskip}{0pt plus 5cm}void spi\+\_\+\+R\+X\+\_\+buffer (
+\begin{DoxyParamCaption}
+\item[{const {\bf uint8\+\_\+t} $\ast$}]{data, }
+\item[{int}]{count}
+\end{DoxyParamCaption}
+)}\hypertarget{io_8c_a1fca48fcdb736ef3af2179ae8b10d963}{}\label{io_8c_a1fca48fcdb736ef3af2179ae8b10d963}
+
+
+S\+PI read buffer. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$data} & transmit buffer \\
+\hline
+\mbox{\tt in}  & {\em count} & number of bytes to write \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 355 of file io.\+c.
+
+
+
+Referenced by mmc\+\_\+spi\+\_\+\+R\+X\+\_\+buffer(), and tft\+\_\+spi\+\_\+\+R\+X().
+
+\index{io.\+c@{io.\+c}!spi\+\_\+\+TX@{spi\+\_\+\+TX}}
+\index{spi\+\_\+\+TX@{spi\+\_\+\+TX}!io.\+c@{io.\+c}}
+\subsubsection[{\texorpdfstring{spi\+\_\+\+T\+X(uint8\+\_\+t data)}{spi_TX(uint8_t data)}}]{\setlength{\rightskip}{0pt plus 5cm}void spi\+\_\+\+TX (
+\begin{DoxyParamCaption}
+\item[{{\bf uint8\+\_\+t}}]{data}
+\end{DoxyParamCaption}
+)}\hypertarget{io_8c_ae1df55cfc018c50c9aec77000eae858c}{}\label{io_8c_ae1df55cfc018c50c9aec77000eae858c}
+
+
+S\+PI write 1 byte. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em data} & value to transmit \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 396 of file io.\+c.
+
+\index{io.\+c@{io.\+c}!spi\+\_\+\+T\+X\+\_\+buffer@{spi\+\_\+\+T\+X\+\_\+buffer}}
+\index{spi\+\_\+\+T\+X\+\_\+buffer@{spi\+\_\+\+T\+X\+\_\+buffer}!io.\+c@{io.\+c}}
+\subsubsection[{\texorpdfstring{spi\+\_\+\+T\+X\+\_\+buffer(const uint8\+\_\+t $\ast$data, int count)}{spi_TX_buffer(const uint8_t *data, int count)}}]{\setlength{\rightskip}{0pt plus 5cm}void spi\+\_\+\+T\+X\+\_\+buffer (
+\begin{DoxyParamCaption}
+\item[{const {\bf uint8\+\_\+t} $\ast$}]{data, }
+\item[{int}]{count}
+\end{DoxyParamCaption}
+)}\hypertarget{io_8c_a445c14cf602a0b3dd085ee963a7986a0}{}\label{io_8c_a445c14cf602a0b3dd085ee963a7986a0}
+
+
+S\+PI write buffer. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$data} & transmit buffer \\
+\hline
+\mbox{\tt in}  & {\em count} & number of bytes to write \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 341 of file io.\+c.
+
+
+
+Referenced by mmc\+\_\+spi\+\_\+\+T\+X\+\_\+buffer(), and tft\+\_\+spi\+\_\+\+T\+X().
+
+\index{io.\+c@{io.\+c}!spi\+\_\+\+T\+X\+RX@{spi\+\_\+\+T\+X\+RX}}
+\index{spi\+\_\+\+T\+X\+RX@{spi\+\_\+\+T\+X\+RX}!io.\+c@{io.\+c}}
+\subsubsection[{\texorpdfstring{spi\+\_\+\+T\+X\+R\+X(uint8\+\_\+t data)}{spi_TXRX(uint8_t data)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint8\+\_\+t} spi\+\_\+\+T\+X\+RX (
+\begin{DoxyParamCaption}
+\item[{{\bf uint8\+\_\+t}}]{data}
+\end{DoxyParamCaption}
+)}\hypertarget{io_8c_a9617412610d280bbb4886674790d7d3e}{}\label{io_8c_a9617412610d280bbb4886674790d7d3e}
+
+
+S\+PI read and write 1 byte. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em data} & value to transmit \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uint8\+\_\+t value read 
+\end{DoxyReturn}
+
+
+Definition at line 410 of file io.\+c.
+
+
+
+Referenced by mmc\+\_\+spi\+\_\+\+T\+X\+R\+X().
+
+\index{io.\+c@{io.\+c}!spi\+\_\+\+T\+X\+R\+X\+\_\+buffer@{spi\+\_\+\+T\+X\+R\+X\+\_\+buffer}}
+\index{spi\+\_\+\+T\+X\+R\+X\+\_\+buffer@{spi\+\_\+\+T\+X\+R\+X\+\_\+buffer}!io.\+c@{io.\+c}}
+\subsubsection[{\texorpdfstring{spi\+\_\+\+T\+X\+R\+X\+\_\+buffer(const uint8\+\_\+t $\ast$data, int count)}{spi_TXRX_buffer(const uint8_t *data, int count)}}]{\setlength{\rightskip}{0pt plus 5cm}void spi\+\_\+\+T\+X\+R\+X\+\_\+buffer (
+\begin{DoxyParamCaption}
+\item[{const {\bf uint8\+\_\+t} $\ast$}]{data, }
+\item[{int}]{count}
+\end{DoxyParamCaption}
+)}\hypertarget{io_8c_a79519dd3475dcb68112f162379287e20}{}\label{io_8c_a79519dd3475dcb68112f162379287e20}
+
+
+S\+PI write/read buffer. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$data} & transmit/receive buffer \\
+\hline
+\mbox{\tt in}  & {\em count} & number of bytes to write \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 369 of file io.\+c.
+
+
+
+Referenced by A\+D\+F4351\+\_\+spi\+\_\+txrx(), and tft\+\_\+spi\+\_\+\+T\+X\+R\+X().
+
+\index{io.\+c@{io.\+c}!spi\+\_\+wait\+Ready@{spi\+\_\+wait\+Ready}}
+\index{spi\+\_\+wait\+Ready@{spi\+\_\+wait\+Ready}!io.\+c@{io.\+c}}
+\subsubsection[{\texorpdfstring{spi\+\_\+wait\+Ready()}{spi_waitReady()}}]{\setlength{\rightskip}{0pt plus 5cm}void spi\+\_\+wait\+Ready (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{io_8c_a98abd8ed313db191648e1d7ae2720f83}{}\label{io_8c_a98abd8ed313db191648e1d7ae2720f83}
+
+
+Definition at line 257 of file io.\+c.
+
+
+
+Referenced by spi\+\_\+cs\+\_\+disable(), spi\+\_\+cs\+\_\+enable(), tft\+\_\+spi\+\_\+\+R\+X(), tft\+\_\+spi\+\_\+\+T\+X(), and tft\+\_\+spi\+\_\+\+T\+X\+R\+X().
+
+
+
+\subsection{Variable Documentation}
+\index{io.\+c@{io.\+c}!\+\_\+cs\+\_\+pin@{\+\_\+cs\+\_\+pin}}
+\index{\+\_\+cs\+\_\+pin@{\+\_\+cs\+\_\+pin}!io.\+c@{io.\+c}}
+\subsubsection[{\texorpdfstring{\+\_\+cs\+\_\+pin}{_cs_pin}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint8\+\_\+t} \+\_\+cs\+\_\+pin = 0xff}\hypertarget{io_8c_a1d1ec6333b265b4dd659ee605a2421de}{}\label{io_8c_a1d1ec6333b265b4dd659ee605a2421de}
+
+
+Definition at line 266 of file io.\+c.
+
+
+
+Referenced by spi\+\_\+cs\+\_\+disable(), spi\+\_\+cs\+\_\+enable(), and spi\+\_\+cs\+\_\+status().
 

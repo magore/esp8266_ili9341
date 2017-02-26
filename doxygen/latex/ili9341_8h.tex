@@ -124,10 +124,20 @@ void \hyperlink{ili9341_8h_a7cef55bef133e9918955b4d2a53cf230}{tft\+\_\+draw\+Lin
 \begin{DoxyCompactList}\small\item\em Clear display text line. \end{DoxyCompactList}\item 
 void \hyperlink{ili9341_8h_afaf6907405d24bf529df5590f450d3cd}{tft\+\_\+putch} (\hyperlink{structwindow}{window} $\ast$win, int c)
 \begin{DoxyCompactList}\small\item\em put character in current winoow \end{DoxyCompactList}\item 
+void \hyperlink{ili9341_8h_ae8a7e08911796339320a3cc3beaea03a}{tft\+\_\+spi\+\_\+init} (\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} prescale)
+\begin{DoxyCompactList}\small\item\em Obtain S\+PI bus for T\+FT display, assert chip select return\+: void. \end{DoxyCompactList}\item 
 void \hyperlink{ili9341_8h_ace16843deffffe3332a7e16f14e1c4f7}{tft\+\_\+spi\+\_\+begin} (void)
 \begin{DoxyCompactList}\small\item\em Obtain S\+PI bus for T\+FT display, assert chip select return\+: void. \end{DoxyCompactList}\item 
 void \hyperlink{ili9341_8h_a6141eafeb5d38b1a5c5061ce0923a650}{tft\+\_\+spi\+\_\+end} (void)
 \begin{DoxyCompactList}\small\item\em Release S\+PI bus from T\+FT display, deassert chip select return\+: void. \end{DoxyCompactList}\item 
+void \hyperlink{ili9341_8h_a54cf2a7ed961e6a81c212c06b2580d16}{tft\+\_\+reset\+\_\+init} (void)
+\begin{DoxyCompactList}\small\item\em Initialize I\+L\+I9341 reset G\+P\+IO return\+: void. \end{DoxyCompactList}\item 
+void \hyperlink{ili9341_8h_ad0b8f3a939e2b4eb04910d938b61f95c}{tft\+\_\+reset\+\_\+enable} (void)
+\begin{DoxyCompactList}\small\item\em enable I\+L\+I9341 reset return\+: void \end{DoxyCompactList}\item 
+void \hyperlink{ili9341_8h_acf603db93753cb0381204da9a4fdefb2}{tft\+\_\+addr\+\_\+init} (void)
+\begin{DoxyCompactList}\small\item\em Initialize I\+L\+I9341 command/data G\+P\+IO return\+: void. \end{DoxyCompactList}\item 
+void \hyperlink{ili9341_8h_adab2982713fd22c9046d2a067781e282}{tft\+\_\+reset\+\_\+disable} (void)
+\begin{DoxyCompactList}\small\item\em disnable I\+L\+I9341 reset return\+: void \end{DoxyCompactList}\item 
 void \hyperlink{ili9341_8h_aa975fa5ad6bb7e52356d9d66ac733196}{tft\+\_\+spi\+\_\+\+TX} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} $\ast$data, int bytes, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} command)
 \begin{DoxyCompactList}\small\item\em Transmit 8 bit data array. \end{DoxyCompactList}\item 
 void \hyperlink{ili9341_8h_ad2eda0e245536550e1a28da1d652629e}{tft\+\_\+spi\+\_\+\+T\+X\+RX} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} $\ast$data, int bytes, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} command)
@@ -497,6 +507,25 @@ Definition at line 101 of file ili9341.\+c.
 
 
 Referenced by tft\+\_\+rel\+\_\+window().
+
+\index{ili9341.\+h@{ili9341.\+h}!tft\+\_\+addr\+\_\+init@{tft\+\_\+addr\+\_\+init}}
+\index{tft\+\_\+addr\+\_\+init@{tft\+\_\+addr\+\_\+init}!ili9341.\+h@{ili9341.\+h}}
+\subsubsection[{\texorpdfstring{tft\+\_\+addr\+\_\+init(void)}{tft_addr_init(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void tft\+\_\+addr\+\_\+init (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{ili9341_8h_acf603db93753cb0381204da9a4fdefb2}{}\label{ili9341_8h_acf603db93753cb0381204da9a4fdefb2}
+
+
+Initialize I\+L\+I9341 command/data G\+P\+IO return\+: void. 
+
+
+
+Definition at line 102 of file ili9341\+\_\+hal.\+c.
+
+
+
+Referenced by tft\+\_\+init().
 
 \index{ili9341.\+h@{ili9341.\+h}!tft\+\_\+bit\+\_\+blit@{tft\+\_\+bit\+\_\+blit}}
 \index{tft\+\_\+bit\+\_\+blit@{tft\+\_\+bit\+\_\+blit}!ili9341.\+h@{ili9341.\+h}}
@@ -1062,7 +1091,7 @@ diplay ID 9341
 \end{DoxyReturn}
 
 
-Definition at line 157 of file ili9341\+\_\+hal.\+c.
+Definition at line 168 of file ili9341\+\_\+hal.\+c.
 
 
 
@@ -1264,6 +1293,63 @@ Definition at line 143 of file ili9341.\+c.
 
 Referenced by tft\+\_\+bit\+\_\+blit(), tft\+\_\+draw\+Pixel(), tft\+\_\+fill\+Rect\+W\+H(), tft\+\_\+read\+Pixel(), tft\+\_\+read\+Rect(), and tft\+\_\+write\+Rect().
 
+\index{ili9341.\+h@{ili9341.\+h}!tft\+\_\+reset\+\_\+disable@{tft\+\_\+reset\+\_\+disable}}
+\index{tft\+\_\+reset\+\_\+disable@{tft\+\_\+reset\+\_\+disable}!ili9341.\+h@{ili9341.\+h}}
+\subsubsection[{\texorpdfstring{tft\+\_\+reset\+\_\+disable(void)}{tft_reset_disable(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void tft\+\_\+reset\+\_\+disable (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{ili9341_8h_adab2982713fd22c9046d2a067781e282}{}\label{ili9341_8h_adab2982713fd22c9046d2a067781e282}
+
+
+disnable I\+L\+I9341 reset return\+: void 
+
+
+
+Definition at line 110 of file ili9341\+\_\+hal.\+c.
+
+
+
+Referenced by tft\+\_\+init().
+
+\index{ili9341.\+h@{ili9341.\+h}!tft\+\_\+reset\+\_\+enable@{tft\+\_\+reset\+\_\+enable}}
+\index{tft\+\_\+reset\+\_\+enable@{tft\+\_\+reset\+\_\+enable}!ili9341.\+h@{ili9341.\+h}}
+\subsubsection[{\texorpdfstring{tft\+\_\+reset\+\_\+enable(void)}{tft_reset_enable(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void tft\+\_\+reset\+\_\+enable (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{ili9341_8h_ad0b8f3a939e2b4eb04910d938b61f95c}{}\label{ili9341_8h_ad0b8f3a939e2b4eb04910d938b61f95c}
+
+
+enable I\+L\+I9341 reset return\+: void 
+
+
+
+Definition at line 93 of file ili9341\+\_\+hal.\+c.
+
+
+
+Referenced by tft\+\_\+init().
+
+\index{ili9341.\+h@{ili9341.\+h}!tft\+\_\+reset\+\_\+init@{tft\+\_\+reset\+\_\+init}}
+\index{tft\+\_\+reset\+\_\+init@{tft\+\_\+reset\+\_\+init}!ili9341.\+h@{ili9341.\+h}}
+\subsubsection[{\texorpdfstring{tft\+\_\+reset\+\_\+init(void)}{tft_reset_init(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void tft\+\_\+reset\+\_\+init (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{ili9341_8h_a54cf2a7ed961e6a81c212c06b2580d16}{}\label{ili9341_8h_a54cf2a7ed961e6a81c212c06b2580d16}
+
+
+Initialize I\+L\+I9341 reset G\+P\+IO return\+: void. 
+
+
+
+Definition at line 84 of file ili9341\+\_\+hal.\+c.
+
+
+
+Referenced by tft\+\_\+init().
+
 \index{ili9341.\+h@{ili9341.\+h}!tft\+\_\+set\+\_\+font@{tft\+\_\+set\+\_\+font}}
 \index{tft\+\_\+set\+\_\+font@{tft\+\_\+set\+\_\+font}!ili9341.\+h@{ili9341.\+h}}
 \subsubsection[{\texorpdfstring{tft\+\_\+set\+\_\+font(window $\ast$win, uint16\+\_\+t index)}{tft_set_font(window *win, uint16_t index)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void tft\+\_\+set\+\_\+font (
@@ -1422,7 +1508,7 @@ Obtain S\+PI bus for T\+FT display, assert chip select return\+: void.
 
 
 
-Definition at line 91 of file ili9341\+\_\+hal.\+c.
+Definition at line 70 of file ili9341\+\_\+hal.\+c.
 
 
 
@@ -1441,11 +1527,30 @@ Release S\+PI bus from T\+FT display, deassert chip select return\+: void.
 
 
 
-Definition at line 101 of file ili9341\+\_\+hal.\+c.
+Definition at line 77 of file ili9341\+\_\+hal.\+c.
 
 
 
-Referenced by tft\+\_\+bit\+\_\+blit(), tft\+\_\+\+Cmd\+\_\+\+Data\+\_\+\+T\+X(), tft\+\_\+fill\+Rect\+W\+H(), tft\+\_\+invert\+Display(), tft\+\_\+read\+Pixel(), tft\+\_\+read\+Rect(), tft\+\_\+read\+Register(), tft\+\_\+spi\+\_\+init(), and tft\+\_\+write\+Rect().
+Referenced by tft\+\_\+bit\+\_\+blit(), tft\+\_\+\+Cmd\+\_\+\+Data\+\_\+\+T\+X(), tft\+\_\+fill\+Rect\+W\+H(), tft\+\_\+invert\+Display(), tft\+\_\+read\+Pixel(), tft\+\_\+read\+Rect(), tft\+\_\+read\+Register(), and tft\+\_\+write\+Rect().
+
+\index{ili9341.\+h@{ili9341.\+h}!tft\+\_\+spi\+\_\+init@{tft\+\_\+spi\+\_\+init}}
+\index{tft\+\_\+spi\+\_\+init@{tft\+\_\+spi\+\_\+init}!ili9341.\+h@{ili9341.\+h}}
+\subsubsection[{\texorpdfstring{tft\+\_\+spi\+\_\+init(uint32\+\_\+t prescale)}{tft_spi_init(uint32_t prescale)}}]{\setlength{\rightskip}{0pt plus 5cm}void tft\+\_\+spi\+\_\+init (
+\begin{DoxyParamCaption}
+\item[{{\bf uint32\+\_\+t}}]{prescale}
+\end{DoxyParamCaption}
+)}\hypertarget{ili9341_8h_ae8a7e08911796339320a3cc3beaea03a}{}\label{ili9341_8h_ae8a7e08911796339320a3cc3beaea03a}
+
+
+Obtain S\+PI bus for T\+FT display, assert chip select return\+: void. 
+
+
+
+Definition at line 63 of file ili9341\+\_\+hal.\+c.
+
+
+
+Referenced by tft\+\_\+init().
 
 \index{ili9341.\+h@{ili9341.\+h}!tft\+\_\+spi\+\_\+\+RX@{tft\+\_\+spi\+\_\+\+RX}}
 \index{tft\+\_\+spi\+\_\+\+RX@{tft\+\_\+spi\+\_\+\+RX}!ili9341.\+h@{ili9341.\+h}}
@@ -1471,7 +1576,7 @@ read 8 bit data array
 \end{DoxyParams}
 
 
-Definition at line 144 of file ili9341\+\_\+hal.\+c.
+Definition at line 155 of file ili9341\+\_\+hal.\+c.
 
 
 
@@ -1501,7 +1606,7 @@ Transmit 8 bit data array.
 \end{DoxyParams}
 
 
-Definition at line 113 of file ili9341\+\_\+hal.\+c.
+Definition at line 124 of file ili9341\+\_\+hal.\+c.
 
 
 
@@ -1531,7 +1636,7 @@ Transmit and read 8 bit data array.
 \end{DoxyParams}
 
 
-Definition at line 128 of file ili9341\+\_\+hal.\+c.
+Definition at line 139 of file ili9341\+\_\+hal.\+c.
 
 
 

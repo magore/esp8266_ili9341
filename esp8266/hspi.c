@@ -38,54 +38,10 @@
 #endif
 
 
-/// @brief hspi CS cached value
-uint8_t _cs_pin = 0xff;
-/// @brief HSPI CS enable function
-/// @param[in] cs: GPIO CS pin
-void hspi_cs_enable(uint8_t cs)
-{
-// DEBUG
-	// FIXME allow nesting
-	if(_cs_pin != 0xff)
-	{
-		// This implies a bug!
-		printf("cs_enable was: %d, want: %d\n", 0xff & _cs_pin, cs);
-	}
-    hspi_waitReady();
-	// GPIO_OUTPUT_SET(cs, 0);
-	chip_select(cs);
-	_cs_pin = cs;
-}
-
-/// @brief HSPI CS disable function
-/// @param[in] cs: GPIO CS pin
-void hspi_cs_disable(uint8_t cs)
-{
-// DEBUG
-	// FIXME allow nesting
-	if(_cs_pin != cs && _cs_pin != 0xff )
-	{
-		// This implies a bug!
-		printf("cs_disable was: %d, want: %d\n", 0xff & _cs_pin, cs);
-	}
-    hspi_waitReady();
-	//GPIO_OUTPUT_SET(cs, 1);
-	chip_disable();
-	_cs_pin = 0xff;
-}
-
-/// @brief HSPI CS pin status
-/// return CS pin status
-uint8_t hspi_cs_status()
-{
-	return(_cs_pin);
-}
-
-
 static _hspi_init_done = 0;
 
 /// @brief hspi clock cached value
-uint16_t hspi_clock = -1;
+uint32_t hspi_clock = -1;
 /// @brief HSPI Initiaization - with automatic chip select
 /// Pins:
 /// 	MISO GPIO12
@@ -96,7 +52,7 @@ uint16_t hspi_clock = -1;
 /// @param[in] prescale: prescale from CPU clock 0 .. 0x1fff
 /// @param[in] hwcs: enable GPIO15 hardware chip select 
 /// @return  void
-void hspi_init(uint16_t prescale, int hwcs)
+void hspi_init(uint32_t prescale, int hwcs)
 {
 
 // FIXME DEBUG 

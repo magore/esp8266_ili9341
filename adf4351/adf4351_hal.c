@@ -38,19 +38,6 @@
 #error You must define the ADF4351 GPIO pin
 #endif
 
-#ifdef ESP8266
-#define ADF4351_LE_LOW   chip_select(ADF4351_CS)
-#define ADF4351_LE_HI    chip_disable();
-#define ADF4351_LE_INIT  
-#endif
-
-#ifdef AVR
-#define ADF4351_LE_LOW   IO_LOW(ADF4351_CS)
-#define ADF4351_LE_HI    IO_HI(ADF4351_CS)
-#define ADF4351_LE_INIT  IO_LOW(ADF4351_CS)
-#endif
-
-
 /// Start SPI Hardware Abstraction Layer
 /// Keep all hardware dependent SPI code in this section
 
@@ -62,20 +49,7 @@ uint32_t ADF4351_clock = -1;
 MEMSPACE
 void ADF4351_spi_init(void)
 {
-
-#ifdef ESP8266
-    hspi_init( (ADF4351_clock = 2) , 0);
-    hspi_waitReady();
-#endif
-
-#ifdef AVR
-    SPI0_Init(ADF4351_clock = F_CPU);   //< Initialize the SPI bus
-    SPI0_Mode(0);       //< Set the clocking mode, etc
-#endif
-
-    ADF4351_LE_INIT;
-    //ADF4351_LE_LOW;
-    ADF4351_LE_HI;
+	spi_init(ADF4351_clock = 2, ADF4351_CS);
 }
 
 
@@ -83,18 +57,7 @@ void ADF4351_spi_init(void)
 /// return: void
 void ADF4351_spi_begin()
 {
-
-#ifdef ESP8266
-    hspi_waitReady();
-    hspi_init(ADF4351_clock, 0);
-#endif
-
-#ifdef AVR
-    SPI0_Speed(ADF4351_clock);   	//< Initialize the SPI bus
-    SPI0_Mode(0);       			//< Set the clocking mode, etc
-#endif
-
-    ADF4351_LE_LOW;
+    spi_begin(ADF4351_clock, ADF4351_CS);
 }
 
 
@@ -102,19 +65,7 @@ void ADF4351_spi_begin()
 /// return: void
 void ADF4351_spi_end()
 {
-
-#ifdef ESP8266
-    hspi_waitReady();
-    ADF4351_LE_HI;
-    hspi_waitReady();	//just a short delay, nops would work
-    //ADF4351_LE_LOW;
-#endif
-
-#ifdef AVR
-    ADF4351_LE_HI;
-    //ADF4351_LE_LOW;
-#endif
-
+	spi_end(ADF4351_CS);
 }
 
 /// @brief  Transmit 32 bit data value
@@ -134,14 +85,7 @@ uint32_t ADF4351_spi_txrx(uint32_t value)
 	}
 
     ADF4351_spi_begin();
-
-#ifdef ESP8266
-    hspi_TXRX(tmp,4);   // send data and read any status from MUXOUT
-#endif
-#ifdef AVR
-    SPI0_TXRX(tmp,4);
-#endif
-
+    spi_TXRX_buffer(tmp,4);   // send data and read any status from MUXOUT
     ADF4351_spi_end();  // data
 
 // MUXOUT output is tied to SPI RX

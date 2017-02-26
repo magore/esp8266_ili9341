@@ -39,7 +39,7 @@ extern window *tft;
 /// Keep all hardware dependent SPI code in this section
 
 /// @brief cahce of SPI clock devisor
-uint16_t tft_clock = -1;
+uint32_t tft_clock = -1;
 
 uint16_t tft_ID;
 
@@ -48,30 +48,11 @@ uint16_t tft_ID;
 #error ILI9341_CS is undefined
 #endif
 #define tft_delay_us(a) os_delay_us(a)
-// We use automatic CS mode configured with hspi
-#define TFT_CS_PIN		ILI9341_CS
-#define TFT_CS_ACTIVE   chip_enable(TFT_CS_PIN)
-#define TFT_CS_DEACTIVE chip_disable();
-#define TFT_CS_INIT
-// Display reset
-// Alternative we just tie this to power on reset line and free up the line
-#ifdef TFT_RST
-	#define TFT_RST_PIN		TFT_RST
-	#define TFT_RST_ACTIVE    chip_enable(TFT_RST_PIN)
-	#define TFT_RST_DEACTIVE  chip_disable()
-	#define TFT_RST_INIT     
-#else
-	#define TFT_RST_PIN		
-	#define TFT_RST_ACTIVE
-	#define TFT_RST_DEACTIVE
-	#define TFT_RST_INIT     
-#endif
 
 #ifndef ADDR_0
 #error ADDR_0 is undefined
 #endif
 
-#define TFT_INIT        
 #define TFT_DATA        chip_addr(1)
 #define TFT_COMMAND     chip_addr(0)
 
@@ -79,31 +60,61 @@ uint16_t tft_ID;
 
 /// @brief  Obtain SPI bus for TFT display, assert chip select
 /// return: void
-void tft_spi_init(uint16_t prescale)
+void tft_spi_init(uint32_t prescale)
 {
-	// start with slow SPI, no hardware CS
-    tft_spi_end();
-	hspi_init( (tft_clock = prescale) , 0);
+	spi_init( (tft_clock = prescale) , ILI9341_CS);
 }
 
 /// @brief  Obtain SPI bus for TFT display, assert chip select
 /// return: void
 void tft_spi_begin()
 {
-    hspi_waitReady();
-	hspi_init(tft_clock, 0);
-	hspi_cs_enable(TFT_CS_PIN);
-    //TFT_CS_ACTIVE;
+	spi_begin(tft_clock, ILI9341_CS);
 }
 
 /// @brief  Release SPI bus from TFT display, deassert chip select
 /// return: void
 void tft_spi_end()
 {
-    hspi_waitReady();
-	hspi_cs_disable(TFT_CS_PIN);
-    //TFT_CS_DEACTIVE;
+    spi_end(ILI9341_CS);
 }
+
+/// @brief  Initialize ILI9341 reset GPIO
+/// return: void
+void tft_reset_init()
+{
+#ifdef ILI9341_RESET
+	chip_select_init(ILI9341_RESET);
+#endif
+}
+
+/// @brief  enable ILI9341 reset 
+/// return: void
+void tft_reset_enable()
+{
+#ifdef ILI9341_RESET
+	chip_enable(ILI9341_RESET);
+#endif
+}
+
+/// @brief  Initialize ILI9341 command/data GPIO
+/// return: void
+void tft_addr_init()
+{
+	chip_addr_init();
+}
+
+
+/// @brief  disnable ILI9341 reset 
+/// return: void
+void tft_reset_disable()
+{
+#ifdef ILI9341_RESET
+	chip_disable(ILI9341_RESET);
+#endif
+}
+
+
 
 /// @brief  Transmit 8 bit data array
 /// @param[in] *data: data buffer to send 
@@ -112,12 +123,12 @@ void tft_spi_end()
 /// return: void 
 void tft_spi_TX(uint8_t *data, int bytes, uint8_t command)
 {
-	hspi_waitReady();
+	spi_waitReady();
 	if(command)
 		TFT_COMMAND;
 	else
 		TFT_DATA;
-	hspi_TX(data,bytes);
+	spi_TX_buffer(data,bytes);
 }
 
 /// @brief  Transmit and read 8 bit data array 
@@ -127,12 +138,12 @@ void tft_spi_TX(uint8_t *data, int bytes, uint8_t command)
 /// return: void 
 void tft_spi_TXRX(uint8_t * data, int bytes, uint8_t command)
 {
-	hspi_waitReady();
+	spi_waitReady();
 	if(command)
 		TFT_COMMAND;
 	else
 		TFT_DATA;
-	hspi_TXRX(data,bytes);
+	spi_TXRX_buffer(data,bytes);
 }
 
 
@@ -143,12 +154,12 @@ void tft_spi_TXRX(uint8_t * data, int bytes, uint8_t command)
 /// return: void 
 void tft_spi_RX(uint8_t *data, int bytes, uint8_t command)
 {
-	hspi_waitReady();
+	spi_waitReady();
 	if(command)
 		TFT_COMMAND;
 	else
 		TFT_DATA;
-	hspi_RX(data,bytes);
+	spi_RX_buffer(data,bytes);
 }
 
 /// @brief Initialize TFT
@@ -156,20 +167,16 @@ void tft_spi_RX(uint8_t *data, int bytes, uint8_t command)
 MEMSPACE
 window *tft_init(void)
 {
-    TFT_RST_INIT;	// RESET PIN
-    TFT_INIT;		// DATA/COMMAND
-    TFT_CS_INIT;	// CHIP SELLECT
-	hspi_cs_disable(TFT_CS_PIN);
-	// TFT_CS_DISABLE;
-
 	// Start with slow clock so tft_readId works
 	// This is the only function that fails at less then 1.
 	// tft_readId is the ONLY SPI bus command that needs this.
 	// Nomal reads work fine.
+	tft_reset_init();
+	tft_addr_init();
 	tft_spi_init(2);
-    TFT_RST_ACTIVE;	
+    tft_reset_enable();
     tft_delay_us(10000);
-    TFT_RST_DEACTIVE;
+    tft_reset_disable();
     tft_delay_us(1000);
 
 	/* Adafruit 9341 TFT Display Initialization */

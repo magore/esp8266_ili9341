@@ -10,7 +10,7 @@ var searchData=
   ['terminus_5fbold_5fr_5fx16_5fy32_5fbitmap',['Terminus_Bold_R_X16_Y32_bitmap',['../fonts_8h.html#a1d14c08f3ded19fb524e079d57fe4aa4',1,'fonts.h']]],
   ['terminus_5fbold_5fr_5fx16_5fy32_5fspecs',['Terminus_Bold_R_X16_Y32_specs',['../fonts_8h.html#aa9b0323e5914c987562497bed5650794',1,'fonts.h']]],
   ['tft',['tft',['../ili9341_8c.html#aa55d6901951c7fe057e8d32477b5e122',1,'tft():&#160;ili9341.c'],['../ili9341__hal_8c.html#aa55d6901951c7fe057e8d32477b5e122',1,'tft():&#160;ili9341.c']]],
-  ['tft_5fclock',['tft_clock',['../ili9341__hal_8c.html#a617c5b04fa66ee51cb311e55e312ad1b',1,'ili9341_hal.c']]],
+  ['tft_5fclock',['tft_clock',['../ili9341__hal_8c.html#aea367e3f9b73fa46e33fde5cc268b148',1,'ili9341_hal.c']]],
   ['tft_5fid',['tft_ID',['../ili9341__hal_8c.html#afd0704ffdcfd5d17f5437814c2860130',1,'ili9341_hal.c']]],
   ['tftwin',['tftwin',['../ili9341_8c.html#a460d9cc0fd386002d9485f2a0ed585d8',1,'tftwin():&#160;ili9341.c'],['../ili9341__hal_8c.html#a460d9cc0fd386002d9485f2a0ed585d8',1,'tftwin():&#160;ili9341.c']]],
   ['timer',['timer',['../structTIMERS.html#a0b10fdb7b0e6b1d3ca49718f47c4514d',1,'TIMERS']]],

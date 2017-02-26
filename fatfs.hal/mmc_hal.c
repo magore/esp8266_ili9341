@@ -77,79 +77,73 @@ void mmc_install_timer( void )
         printf("MMC Clock task init failed\n");
 }
 
+/// @brief  MMC SPI setup and chip select
+/// @return  void
+void mmc_spi_init()
+{
+    mmc_slow();
+}
+
+
+/// @brief  MMC SPI setup and chip select
+/// @return  void
+void mmc_spi_begin()
+{
+    spi_begin(_mmc_clock,MMC_CS);
+}
+
+/// @brief  MMC SPI end and chip deselect
+/// @return  void
+void mmc_spi_end()
+{
+	spi_end(MMC_CS);
+}
+
+/// @brief  MMC set slow SPI bus speed
+/// Only called when deselected
+/// - Used during card detect phase
+/// @return  void
+void mmc_slow()
+{
+	//< In HZ 100khz..400khz
+	spi_init(_mmc_clock = MMC_SLOW, MMC_CS);
+}
+
+
+/// @brief  MMC fast SPI bus speed
+/// Only called when deselected
+/// - Used during normal file IO phases
+/// @return  void
+void mmc_fast()
+{
+	spi_init(_mmc_clock = MMC_FAST, MMC_CS);
+}
+
+
 /// @brief SPI write buffer
 /// @param[in] *data: transmit buffer
 /// @param[in] count: number of bytes to write
 /// @return  void
-MEMSPACE
 void mmc_spi_TX_buffer(const uint8_t *data, int count)
 {
-#ifdef ESP8266
-    hspi_TX((uint8_t *) data,count);
-#endif
-#ifdef AVR
-    SPI0_TX((uint8_t *) data,count);
-#endif
+    spi_TX_buffer((uint8_t *) data,count);
 }
 
 /// @brief SPI read buffer
 /// @param[in] *data: transmit buffer
 /// @param[in] count: number of bytes to write
 /// @return  void
-MEMSPACE
 void mmc_spi_RX_buffer(const uint8_t *data, int count)
 {
-#ifdef ESP8266
-    hspi_RX((uint8_t *) data,count);
-#endif
-#ifdef AVR
-    SPI0_RX((uint8_t *)data,count);
-#endif
+    spi_RX_buffer((uint8_t *) data,count);
 }
-
-/// @brief SPI read 1 byte
-/// @return  uint8_t value
-MEMSPACE
-uint8_t mmc_spi_RX()
-{
-    uint8_t data;
-#ifdef ESP8266
-    hspi_RX(&data,1);
-#endif
-#ifdef AVR
-    SPI0_RX(&data,1);
-#endif
-	return(data);
-}
-
-/// @brief SPI write 1 byte
-/// @param[in] data: value to transmit
-/// @return  void
-MEMSPACE
-void mmc_spi_TX(uint8_t data)
-{
-#ifdef ESP8266
-    hspi_TX(&data,1);
-#endif
-#ifdef AVR
-    SPI0_TX(&data,1);
-#endif
-}
-
 
 /// @brief SPI read and write 1 byte
 /// @param[in] data: value to transmit
 /// @return  uint8_t value read
-MEMSPACE
 uint8_t mmc_spi_TXRX(uint8_t data)
 {
-#ifdef ESP8266
-    hspi_TXRX(&data,1);
-#endif
-#ifdef AVR
-    SPI0_TXRX(&data,1);
-#endif
-    return(data);
+    return( spi_TXRX(data) );
 }
 
 
@@ -211,18 +205,13 @@ int mmc_init(int verbose)
 
     Stat = 0;
 
+	mmc_spi_init();
+
     if( verbose)
     {
         printf("==============================\n");
         printf("START MMC INIT\n");
     }
-
-#if 1
-	mmc_cs_disable();
-#endif
-
-    mmc_slow();
-
     // we only install timers once!
     if(!mmc_init_flag)
         mmc_install_timer();
@@ -282,144 +271,21 @@ int mmc_init(int verbose)
     return( rc ) ;
 }
 
-
-
-/// @brief hs the mmc SPI bus been initialized yet ?
-uint8_t _mmc_spi_init_flag = 0;
-/// @brief  MMC SPI bus init
-/// @return  void
-MEMSPACE
-void mmc_spi_init(int32_t clock)
-{
-#ifdef ESP8266
-	mmc_cs_disable();
-    hspi_init(clock,0);
-    (void)mmc_spi_TX(0xff);
-    hspi_waitReady();
-#endif
-#ifdef AVR
-	IO_HI(MMC_CS);
-    SPI0_Init(clock);	//< Initialize the SPI bus
-    SPI0_Mode(0);		//< Set the clocking mode, etc
-    mmc_spi_TX(0xff);
-#endif
-    _mmc_spi_init_flag=1;
-}
-
-
-/// @brief  MMC set slow SPI bus speed
+/// @brief  MMC Power ON
 ///
-/// - Used during card detect phase
-/// @return  void
-MEMSPACE
-void mmc_slow()
-{
-	mmc_spi_init(_mmc_clock = MMC_SLOW);  //< In HZ 100khz..400khz
-}
-
-
-
-/// @brief  MMC fast SPI bus speed
-///
-/// - Used during normal file IO phases
-/// @return  void
-MEMSPACE
-void mmc_fast()
-{
-	mmc_spi_init(_mmc_clock = MMC_FAST);  
-}
-
-
-/// @brief  MMC power ON initialize
-///
-/// - We do not control power to the MMC device in this project.
-/// @return  void
+/// @return void
 MEMSPACE
 void mmc_power_on()
 {
-    int i;
-    // SD CS should be off
-	mmc_cs_disable();
-    mmc_slow();
-    for(i=0;i<20;++i)
-    {
-#ifdef ESP8266
-        os_delay_us(1000);
-        optimistic_yield(1000);
-        wdt_reset();
-#endif
-#ifdef AVR
-        _delay_us(1000);
-#endif
-    }
 }
 
-/// @brief  MMC power off
+/// @brief  MMC Power OFF
 ///
-/// - We do not control power to the MMC device in this project.
-/// @return  void
-
+/// @return void
 MEMSPACE
 void mmc_power_off()
 {
-	mmc_cs_disable();
-#ifdef ESP8266
-    hspi_waitReady();
-    (void)mmc_spi_TX(0xff);
-    hspi_waitReady();
-#endif
-#ifdef AVR
-    (void)mmc_spi_TX(0xff);
-#endif
 }
-
-
-/// @brief  MMC power status
-///
-/// - We do not control power to the MMC device in this project.
-/// @return  1 power is alwasy on
-MEMSPACE
-int mmc_power_status()
-{
-    return (1);
-}
-
-
-
-/// @brief  MMC CS enable
-///
-/// - MMC SPI chip select
-/// @return  void
-MEMSPACE
-void mmc_cs_enable()
-{
-	// restore clock speed in case another device changed it
-    mmc_spi_init(_mmc_clock);
-#ifdef ESP8266
-    hspi_cs_enable(SD_CS_PIN);
-#endif
-#ifdef AVR
-	IO_LOW(MMC_CS);
-#endif
-}
-
-
-/// @brief MMC CS disable
-///
-/// - MMC SPI chip select
-/// @return  void
-
-MEMSPACE
-void mmc_cs_disable()
-{
-#ifdef ESP8266
-    hspi_cs_disable(SD_CS_PIN);
-#endif
-#ifdef AVR
-	IO_HI(MMC_CS);
-#endif
-}
-
 
 /// @brief  MMC Card Inserted status
 ///

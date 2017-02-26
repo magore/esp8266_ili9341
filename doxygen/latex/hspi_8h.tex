@@ -16,13 +16,7 @@
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{hspi_8h_a0047584af8bcc7c6d1fa924277a53bef}{hspi\+\_\+cs\+\_\+enable} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} cs)
-\begin{DoxyCompactList}\small\item\em H\+S\+PI CS enable function. \end{DoxyCompactList}\item 
-void \hyperlink{hspi_8h_ad51b63e020ab17a48b8b4b9d8ba00059}{hspi\+\_\+cs\+\_\+disable} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} cs)
-\begin{DoxyCompactList}\small\item\em H\+S\+PI CS disable function. \end{DoxyCompactList}\item 
-\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} \hyperlink{hspi_8h_a0c7cbfc87bc4b7aaeac58bc166624546}{hspi\+\_\+cs\+\_\+status} ()
-\begin{DoxyCompactList}\small\item\em H\+S\+PI CS pin status return CS pin status. \end{DoxyCompactList}\item 
-void \hyperlink{hspi_8h_a3bce8e04a995ed827790284e27c3746f}{hspi\+\_\+init} (\hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} prescale, int hwcs)
+void \hyperlink{hspi_8h_a75c90f17c5ded9cd0515d597533ac517}{hspi\+\_\+init} (\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} prescale, int hwcs)
 \begin{DoxyCompactList}\small\item\em H\+S\+PI Initiaization -\/ with automatic chip select Pins\+: M\+I\+SO G\+P\+I\+O12 M\+O\+SI G\+P\+I\+O13 C\+LK G\+P\+I\+O14 CS G\+P\+I\+O15 -\/ optional DC G\+P\+I\+O2. \end{DoxyCompactList}\item 
 void \hyperlink{hspi_8h_af1a0f7a7dd3cac5dd6b8489f7ff308dc}{hspi\+\_\+wait\+Ready} (void)
 \begin{DoxyCompactList}\small\item\em H\+S\+PI Ready wait. \end{DoxyCompactList}\item 
@@ -89,81 +83,14 @@ Definition at line 11 of file hspi.\+h.
 
 
 \subsection{Function Documentation}
-\index{hspi.\+h@{hspi.\+h}!hspi\+\_\+cs\+\_\+disable@{hspi\+\_\+cs\+\_\+disable}}
-\index{hspi\+\_\+cs\+\_\+disable@{hspi\+\_\+cs\+\_\+disable}!hspi.\+h@{hspi.\+h}}
-\subsubsection[{\texorpdfstring{hspi\+\_\+cs\+\_\+disable(uint8\+\_\+t cs)}{hspi_cs_disable(uint8_t cs)}}]{\setlength{\rightskip}{0pt plus 5cm}void hspi\+\_\+cs\+\_\+disable (
-\begin{DoxyParamCaption}
-\item[{{\bf uint8\+\_\+t}}]{cs}
-\end{DoxyParamCaption}
-)}\hypertarget{hspi_8h_ad51b63e020ab17a48b8b4b9d8ba00059}{}\label{hspi_8h_ad51b63e020ab17a48b8b4b9d8ba00059}
-
-
-H\+S\+PI CS disable function. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em cs} & G\+P\+IO CS pin \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 62 of file hspi.\+c.
-
-
-
-Referenced by loop(), mmc\+\_\+cs\+\_\+disable(), tft\+\_\+init(), and tft\+\_\+spi\+\_\+end().
-
-\index{hspi.\+h@{hspi.\+h}!hspi\+\_\+cs\+\_\+enable@{hspi\+\_\+cs\+\_\+enable}}
-\index{hspi\+\_\+cs\+\_\+enable@{hspi\+\_\+cs\+\_\+enable}!hspi.\+h@{hspi.\+h}}
-\subsubsection[{\texorpdfstring{hspi\+\_\+cs\+\_\+enable(uint8\+\_\+t cs)}{hspi_cs_enable(uint8_t cs)}}]{\setlength{\rightskip}{0pt plus 5cm}void hspi\+\_\+cs\+\_\+enable (
-\begin{DoxyParamCaption}
-\item[{{\bf uint8\+\_\+t}}]{cs}
-\end{DoxyParamCaption}
-)}\hypertarget{hspi_8h_a0047584af8bcc7c6d1fa924277a53bef}{}\label{hspi_8h_a0047584af8bcc7c6d1fa924277a53bef}
-
-
-H\+S\+PI CS enable function. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em cs} & G\+P\+IO CS pin \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 45 of file hspi.\+c.
-
-
-
-Referenced by mmc\+\_\+cs\+\_\+enable(), and tft\+\_\+spi\+\_\+begin().
-
-\index{hspi.\+h@{hspi.\+h}!hspi\+\_\+cs\+\_\+status@{hspi\+\_\+cs\+\_\+status}}
-\index{hspi\+\_\+cs\+\_\+status@{hspi\+\_\+cs\+\_\+status}!hspi.\+h@{hspi.\+h}}
-\subsubsection[{\texorpdfstring{hspi\+\_\+cs\+\_\+status()}{hspi_cs_status()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint8\+\_\+t} hspi\+\_\+cs\+\_\+status (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\hypertarget{hspi_8h_a0c7cbfc87bc4b7aaeac58bc166624546}{}\label{hspi_8h_a0c7cbfc87bc4b7aaeac58bc166624546}
-
-
-H\+S\+PI CS pin status return CS pin status. 
-
-
-
-Definition at line 79 of file hspi.\+c.
-
-
-
-Referenced by loop().
-
 \index{hspi.\+h@{hspi.\+h}!hspi\+\_\+init@{hspi\+\_\+init}}
 \index{hspi\+\_\+init@{hspi\+\_\+init}!hspi.\+h@{hspi.\+h}}
-\subsubsection[{\texorpdfstring{hspi\+\_\+init(uint16\+\_\+t prescale, int hwcs)}{hspi_init(uint16_t prescale, int hwcs)}}]{\setlength{\rightskip}{0pt plus 5cm}void hspi\+\_\+init (
+\subsubsection[{\texorpdfstring{hspi\+\_\+init(uint32\+\_\+t prescale, int hwcs)}{hspi_init(uint32_t prescale, int hwcs)}}]{\setlength{\rightskip}{0pt plus 5cm}void hspi\+\_\+init (
 \begin{DoxyParamCaption}
-\item[{{\bf uint16\+\_\+t}}]{prescale, }
+\item[{{\bf uint32\+\_\+t}}]{prescale, }
 \item[{int}]{hwcs}
 \end{DoxyParamCaption}
-)}\hypertarget{hspi_8h_a3bce8e04a995ed827790284e27c3746f}{}\label{hspi_8h_a3bce8e04a995ed827790284e27c3746f}
+)}\hypertarget{hspi_8h_a75c90f17c5ded9cd0515d597533ac517}{}\label{hspi_8h_a75c90f17c5ded9cd0515d597533ac517}
 
 
 H\+S\+PI Initiaization -\/ with automatic chip select Pins\+: M\+I\+SO G\+P\+I\+O12 M\+O\+SI G\+P\+I\+O13 C\+LK G\+P\+I\+O14 CS G\+P\+I\+O15 -\/ optional DC G\+P\+I\+O2. 
@@ -180,11 +107,11 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 99 of file hspi.\+c.
+Definition at line 55 of file hspi.\+c.
 
 
 
-Referenced by A\+D\+F4351\+\_\+spi\+\_\+begin(), A\+D\+F4351\+\_\+spi\+\_\+init(), mmc\+\_\+spi\+\_\+init(), setup(), tft\+\_\+spi\+\_\+begin(), and tft\+\_\+spi\+\_\+init().
+Referenced by setup(), and spi\+\_\+init().
 
 \index{hspi.\+h@{hspi.\+h}!hspi\+\_\+\+RX@{hspi\+\_\+\+RX}}
 \index{hspi\+\_\+\+RX@{hspi\+\_\+\+RX}!hspi.\+h@{hspi.\+h}}
@@ -210,11 +137,11 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 362 of file hspi.\+c.
+Definition at line 318 of file hspi.\+c.
 
 
 
-Referenced by mmc\+\_\+spi\+\_\+\+R\+X(), mmc\+\_\+spi\+\_\+\+R\+X\+\_\+buffer(), and tft\+\_\+spi\+\_\+\+R\+X().
+Referenced by spi\+\_\+\+R\+X(), and spi\+\_\+\+R\+X\+\_\+buffer().
 
 \index{hspi.\+h@{hspi.\+h}!hspi\+\_\+\+TX@{hspi\+\_\+\+TX}}
 \index{hspi\+\_\+\+TX@{hspi\+\_\+\+TX}!hspi.\+h@{hspi.\+h}}
@@ -240,11 +167,11 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 309 of file hspi.\+c.
+Definition at line 265 of file hspi.\+c.
 
 
 
-Referenced by mmc\+\_\+spi\+\_\+\+T\+X(), mmc\+\_\+spi\+\_\+\+T\+X\+\_\+buffer(), and tft\+\_\+spi\+\_\+\+T\+X().
+Referenced by spi\+\_\+\+T\+X(), and spi\+\_\+\+T\+X\+\_\+buffer().
 
 \index{hspi.\+h@{hspi.\+h}!hspi\+\_\+\+T\+X\+RX@{hspi\+\_\+\+T\+X\+RX}}
 \index{hspi\+\_\+\+T\+X\+RX@{hspi\+\_\+\+T\+X\+RX}!hspi.\+h@{hspi.\+h}}
@@ -270,11 +197,11 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 336 of file hspi.\+c.
+Definition at line 292 of file hspi.\+c.
 
 
 
-Referenced by A\+D\+F4351\+\_\+spi\+\_\+txrx(), mmc\+\_\+spi\+\_\+\+T\+X\+R\+X(), and tft\+\_\+spi\+\_\+\+T\+X\+R\+X().
+Referenced by spi\+\_\+\+T\+X\+R\+X(), and spi\+\_\+\+T\+X\+R\+X\+\_\+buffer().
 
 \index{hspi.\+h@{hspi.\+h}!hspi\+\_\+wait\+Ready@{hspi\+\_\+wait\+Ready}}
 \index{hspi\+\_\+wait\+Ready@{hspi\+\_\+wait\+Ready}!hspi.\+h@{hspi.\+h}}
@@ -292,9 +219,9 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 203 of file hspi.\+c.
+Definition at line 159 of file hspi.\+c.
 
 
 
-Referenced by A\+D\+F4351\+\_\+spi\+\_\+begin(), A\+D\+F4351\+\_\+spi\+\_\+end(), A\+D\+F4351\+\_\+spi\+\_\+init(), esp\+\_\+yield(), hspi\+\_\+config(), hspi\+\_\+cs\+\_\+disable(), hspi\+\_\+cs\+\_\+enable(), hspi\+\_\+init(), hspi\+\_\+\+R\+X(), hspi\+\_\+\+T\+X(), hspi\+\_\+\+T\+X\+R\+X(), loop\+\_\+wrapper(), mmc\+\_\+power\+\_\+off(), mmc\+\_\+spi\+\_\+init(), tft\+\_\+spi\+\_\+begin(), tft\+\_\+spi\+\_\+end(), tft\+\_\+spi\+\_\+\+R\+X(), tft\+\_\+spi\+\_\+\+T\+X(), and tft\+\_\+spi\+\_\+\+T\+X\+R\+X().
+Referenced by esp\+\_\+yield(), hspi\+\_\+config(), hspi\+\_\+init(), hspi\+\_\+\+R\+X(), hspi\+\_\+\+T\+X(), hspi\+\_\+\+T\+X\+R\+X(), loop\+\_\+wrapper(), and spi\+\_\+wait\+Ready().
 
