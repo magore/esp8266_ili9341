@@ -58,11 +58,21 @@ uint16_t tft_ID;
 
 #endif
 
-/// @brief  Obtain SPI bus for TFT display, assert chip select
+/// @brief  Initialize TFT SPI clock speed and pin for slow speed 
+/// Only used to read the CHIP ID
 /// return: void
-void tft_spi_init(uint32_t prescale)
+void tft_spi_init_slow()
 {
-	spi_init( (tft_clock = prescale) , ILI9341_CS);
+	tft_clock = 2;
+	chip_select_init(ILI9341_CS);
+}
+
+/// @brief  Initialize TFT SPI clock speed and pin for normal speed 
+/// return: void
+void tft_spi_init_fast()
+{
+	tft_clock = 1;
+	chip_select_init(ILI9341_CS);
 }
 
 /// @brief  Obtain SPI bus for TFT display, assert chip select
@@ -171,9 +181,11 @@ window *tft_init(void)
 	// This is the only function that fails at less then 1.
 	// tft_readId is the ONLY SPI bus command that needs this.
 	// Nomal reads work fine.
-	tft_reset_init();
 	tft_addr_init();
-	tft_spi_init(2);
+	tft_spi_init_slow();
+
+	// reset display
+	tft_reset_init();
     tft_reset_enable();
     tft_delay_us(10000);
     tft_reset_disable();
@@ -186,7 +198,7 @@ window *tft_init(void)
     tft_ID = tft_readId();
 
 	// fast SPI
-	tft_spi_init(1);
+	tft_spi_init_fast();
 
 	/* Setup the master window */
     tft_window_init(tft, TFT_XOFF, TFT_YOFF, TFT_W, TFT_H);

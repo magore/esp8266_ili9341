@@ -14,8 +14,10 @@ ili9341 driver inspired by Adafruit ili9341 code All code in this file has been 
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{ili9341__hal_8c_ae8a7e08911796339320a3cc3beaea03a}{tft\+\_\+spi\+\_\+init} (\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} prescale)
-\begin{DoxyCompactList}\small\item\em Obtain S\+PI bus for T\+FT display, assert chip select return\+: void. \end{DoxyCompactList}\item 
+void \hyperlink{ili9341__hal_8c_ae9b390c9f820454445688b1d4d76d84d}{tft\+\_\+spi\+\_\+init\+\_\+slow} ()
+\begin{DoxyCompactList}\small\item\em Initialize T\+FT S\+PI clock speed and pin for slow speed Only used to read the C\+H\+IP ID return\+: void. \end{DoxyCompactList}\item 
+void \hyperlink{ili9341__hal_8c_abac73802498470361f0016d28706fe49}{tft\+\_\+spi\+\_\+init\+\_\+fast} ()
+\begin{DoxyCompactList}\small\item\em Initialize T\+FT S\+PI clock speed and pin for normal speed return\+: void. \end{DoxyCompactList}\item 
 void \hyperlink{ili9341__hal_8c_a28ac4cdd7bd9de529370205c64b88f8e}{tft\+\_\+spi\+\_\+begin} ()
 \begin{DoxyCompactList}\small\item\em Obtain S\+PI bus for T\+FT display, assert chip select return\+: void. \end{DoxyCompactList}\item 
 void \hyperlink{ili9341__hal_8c_a4f8c3c083a3cd3792dd3d995c1eb2ec5}{tft\+\_\+spi\+\_\+end} ()
@@ -78,7 +80,7 @@ Initialize I\+L\+I9341 command/data G\+P\+IO return\+: void.
 
 
 
-Definition at line 102 of file ili9341\+\_\+hal.\+c.
+Definition at line 112 of file ili9341\+\_\+hal.\+c.
 
 
 
@@ -100,7 +102,7 @@ diplay ID 9341
 \end{DoxyReturn}
 
 
-Definition at line 168 of file ili9341\+\_\+hal.\+c.
+Definition at line 178 of file ili9341\+\_\+hal.\+c.
 
 
 
@@ -119,7 +121,7 @@ disnable I\+L\+I9341 reset return\+: void
 
 
 
-Definition at line 110 of file ili9341\+\_\+hal.\+c.
+Definition at line 120 of file ili9341\+\_\+hal.\+c.
 
 
 
@@ -138,7 +140,7 @@ enable I\+L\+I9341 reset return\+: void
 
 
 
-Definition at line 93 of file ili9341\+\_\+hal.\+c.
+Definition at line 103 of file ili9341\+\_\+hal.\+c.
 
 
 
@@ -157,7 +159,7 @@ Initialize I\+L\+I9341 reset G\+P\+IO return\+: void.
 
 
 
-Definition at line 84 of file ili9341\+\_\+hal.\+c.
+Definition at line 94 of file ili9341\+\_\+hal.\+c.
 
 
 
@@ -176,7 +178,7 @@ Obtain S\+PI bus for T\+FT display, assert chip select return\+: void.
 
 
 
-Definition at line 70 of file ili9341\+\_\+hal.\+c.
+Definition at line 80 of file ili9341\+\_\+hal.\+c.
 
 
 
@@ -195,26 +197,45 @@ Release S\+PI bus from T\+FT display, deassert chip select return\+: void.
 
 
 
-Definition at line 77 of file ili9341\+\_\+hal.\+c.
+Definition at line 87 of file ili9341\+\_\+hal.\+c.
 
 
 
 Referenced by tft\+\_\+bit\+\_\+blit(), tft\+\_\+\+Cmd\+\_\+\+Data\+\_\+\+T\+X(), tft\+\_\+fill\+Rect\+W\+H(), tft\+\_\+invert\+Display(), tft\+\_\+read\+Pixel(), tft\+\_\+read\+Rect(), tft\+\_\+read\+Register(), and tft\+\_\+write\+Rect().
 
-\index{ili9341\+\_\+hal.\+c@{ili9341\+\_\+hal.\+c}!tft\+\_\+spi\+\_\+init@{tft\+\_\+spi\+\_\+init}}
-\index{tft\+\_\+spi\+\_\+init@{tft\+\_\+spi\+\_\+init}!ili9341\+\_\+hal.\+c@{ili9341\+\_\+hal.\+c}}
-\subsubsection[{\texorpdfstring{tft\+\_\+spi\+\_\+init(uint32\+\_\+t prescale)}{tft_spi_init(uint32_t prescale)}}]{\setlength{\rightskip}{0pt plus 5cm}void tft\+\_\+spi\+\_\+init (
+\index{ili9341\+\_\+hal.\+c@{ili9341\+\_\+hal.\+c}!tft\+\_\+spi\+\_\+init\+\_\+fast@{tft\+\_\+spi\+\_\+init\+\_\+fast}}
+\index{tft\+\_\+spi\+\_\+init\+\_\+fast@{tft\+\_\+spi\+\_\+init\+\_\+fast}!ili9341\+\_\+hal.\+c@{ili9341\+\_\+hal.\+c}}
+\subsubsection[{\texorpdfstring{tft\+\_\+spi\+\_\+init\+\_\+fast()}{tft_spi_init_fast()}}]{\setlength{\rightskip}{0pt plus 5cm}void tft\+\_\+spi\+\_\+init\+\_\+fast (
 \begin{DoxyParamCaption}
-\item[{{\bf uint32\+\_\+t}}]{prescale}
+{}
 \end{DoxyParamCaption}
-)}\hypertarget{ili9341__hal_8c_ae8a7e08911796339320a3cc3beaea03a}{}\label{ili9341__hal_8c_ae8a7e08911796339320a3cc3beaea03a}
+)}\hypertarget{ili9341__hal_8c_abac73802498470361f0016d28706fe49}{}\label{ili9341__hal_8c_abac73802498470361f0016d28706fe49}
 
 
-Obtain S\+PI bus for T\+FT display, assert chip select return\+: void. 
+Initialize T\+FT S\+PI clock speed and pin for normal speed return\+: void. 
 
 
 
-Definition at line 63 of file ili9341\+\_\+hal.\+c.
+Definition at line 72 of file ili9341\+\_\+hal.\+c.
+
+
+
+Referenced by tft\+\_\+init().
+
+\index{ili9341\+\_\+hal.\+c@{ili9341\+\_\+hal.\+c}!tft\+\_\+spi\+\_\+init\+\_\+slow@{tft\+\_\+spi\+\_\+init\+\_\+slow}}
+\index{tft\+\_\+spi\+\_\+init\+\_\+slow@{tft\+\_\+spi\+\_\+init\+\_\+slow}!ili9341\+\_\+hal.\+c@{ili9341\+\_\+hal.\+c}}
+\subsubsection[{\texorpdfstring{tft\+\_\+spi\+\_\+init\+\_\+slow()}{tft_spi_init_slow()}}]{\setlength{\rightskip}{0pt plus 5cm}void tft\+\_\+spi\+\_\+init\+\_\+slow (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{ili9341__hal_8c_ae9b390c9f820454445688b1d4d76d84d}{}\label{ili9341__hal_8c_ae9b390c9f820454445688b1d4d76d84d}
+
+
+Initialize T\+FT S\+PI clock speed and pin for slow speed Only used to read the C\+H\+IP ID return\+: void. 
+
+
+
+Definition at line 64 of file ili9341\+\_\+hal.\+c.
 
 
 
@@ -244,7 +265,7 @@ read 8 bit data array
 \end{DoxyParams}
 
 
-Definition at line 155 of file ili9341\+\_\+hal.\+c.
+Definition at line 165 of file ili9341\+\_\+hal.\+c.
 
 
 
@@ -274,7 +295,7 @@ Transmit 8 bit data array.
 \end{DoxyParams}
 
 
-Definition at line 124 of file ili9341\+\_\+hal.\+c.
+Definition at line 134 of file ili9341\+\_\+hal.\+c.
 
 
 
@@ -304,7 +325,7 @@ Transmit and read 8 bit data array.
 \end{DoxyParams}
 
 
-Definition at line 139 of file ili9341\+\_\+hal.\+c.
+Definition at line 149 of file ili9341\+\_\+hal.\+c.
 
 
 
@@ -335,7 +356,7 @@ Definition at line 42 of file ili9341\+\_\+hal.\+c.
 
 
 
-Referenced by tft\+\_\+spi\+\_\+begin(), and tft\+\_\+spi\+\_\+init().
+Referenced by tft\+\_\+spi\+\_\+begin(), tft\+\_\+spi\+\_\+init\+\_\+fast(), and tft\+\_\+spi\+\_\+init\+\_\+slow().
 
 \index{ili9341\+\_\+hal.\+c@{ili9341\+\_\+hal.\+c}!tft\+\_\+\+ID@{tft\+\_\+\+ID}}
 \index{tft\+\_\+\+ID@{tft\+\_\+\+ID}!ili9341\+\_\+hal.\+c@{ili9341\+\_\+hal.\+c}}

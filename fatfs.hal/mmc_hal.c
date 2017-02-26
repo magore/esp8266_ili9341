@@ -82,6 +82,7 @@ void mmc_install_timer( void )
 void mmc_spi_init()
 {
     mmc_slow();
+	chip_select_init(MMC_CS);
 }
 
 
@@ -105,8 +106,7 @@ void mmc_spi_end()
 /// @return  void
 void mmc_slow()
 {
-	//< In HZ 100khz..400khz
-	spi_init(_mmc_clock = MMC_SLOW, MMC_CS);
+	_mmc_clock = MMC_SLOW;
 }
 
 
@@ -116,7 +116,7 @@ void mmc_slow()
 /// @return  void
 void mmc_fast()
 {
-	spi_init(_mmc_clock = MMC_FAST, MMC_CS);
+	_mmc_clock = MMC_FAST;
 }
 
 

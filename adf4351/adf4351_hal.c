@@ -49,7 +49,8 @@ uint32_t ADF4351_clock = -1;
 MEMSPACE
 void ADF4351_spi_init(void)
 {
-	spi_init(ADF4351_clock = 2, ADF4351_CS);
+	ADF4351_clock = 2;
+	chip_select_init(ADF4351_CS);
 }
 
 

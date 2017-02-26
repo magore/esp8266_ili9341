@@ -577,7 +577,7 @@ int write_byte(rwbuf_t *p, int c)
 		if( ret )
 		{
 #if WEB_DEBUG & 1
-			printf("write_byte: sent error:%d\n", ret);
+			printf("write_byte: espconn_send(%d bytes) error:%d\n", p->wind, ret);
 #endif
 		}
 		// flag that send socket is busy with the last send request
@@ -660,7 +660,7 @@ void write_flush(rwbuf_t *p)
 		if( ret )
 		{
 #if WEB_DEBUG & 1
-			printf("write_byte: sent error");
+			printf("write_flush: espconn_send(%d bytes) error:%d\n", p->wind, ret);
 			return;
 #endif
 		}

@@ -331,22 +331,22 @@ void loop(void)
 		return;
 	}
 
-	ret = spi_cs_status();
+	ret = spi_chip_select_status();
 	if(ret != 0xff)
 	{
 		printf("Error: loop() entered with spi_cs = %d\n",ret);
-		spi_cs_disable(ret);
+		spi_end(ret);
 		return;
 	}
 
 
 	loop_task();
 
-	ret = spi_cs_status();
+	ret = spi_chip_select_status();
 	if(ret != 0xff)
 	{
 		printf("Error: loop_task() exit with spi_cs = %d\n",ret);
-		spi_cs_disable(ret);
+		spi_end(ret);
 		return;
 	}
 
@@ -499,11 +499,11 @@ void loop(void)
     tft_drawCircle(wincube, wincube->w/2, wincube->h/2, rad, tft_RGBto565(red,green,blue));
 #endif
 
-	ret = spi_cs_status();
+	ret = spi_chip_select_status();
 	if(ret != 0xff)
 	{
 		printf("Exit: loop() with spi_cs = %d\n",ret);
-		spi_cs_disable(ret);
+		spi_end(ret);
 		return;
 	}
 	
