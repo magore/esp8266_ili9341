@@ -56,11 +56,12 @@ FW_BASE		= firmware
 # esptool.py flash arguments for 512K SPI flash
 # WARNING ADDR_IROM MUST match settings in LD_SCRIPT!
 
-ESP12=1
-ifdef ESP12
+
+#ESP12=1
 # SWAP GPIO4 and GPIO5 on some esp-12 boards have labels reversed
 # My board is reversed
-SWAP45=1
+ifdef ESP12
+	SWAP45=1
 	FW_ARGS := -ff 80m -fm qio 
 	LD_SCRIPT		= eagle.app.v6.new.2048.ld
 	# The ipaddress of the module - either fixed or by DHCP
@@ -474,8 +475,8 @@ status:
 	@if [ ! -d esptool ]; then git clone https://github.com/espressif/esptool; else cd esptool; git pull; cd ..; fi
 	@echo =============================================
 	@echo Note:
-	@if [ $(SWAP45) = "1" ]; then echo "GPIO pins 4 and 5 are swapped"; fi
-	@echo ADDR_0= pin is GPIO $(ADDR_0)
+	@if [ -n "$(SWAP45)" ]; then echo "GPIO pins 4 and 5 are swapped"; fi
+	@echo ADDR_0 pin is GPIO $(ADDR_0)
 	@echo
 	@echo =============================================
 	@echo
