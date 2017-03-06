@@ -84,6 +84,7 @@ var searchData=
   ['_5fputs_5fpad',['_puts_pad',['../mathio_8h.html#ab713fa5c01f315bdf67d18a6dbcb4ff5',1,'_puts_pad(printf_t *fn, char *s, int width, int count, int left):&#160;printf.c'],['../printf_8c.html#ab713fa5c01f315bdf67d18a6dbcb4ff5',1,'_puts_pad(printf_t *fn, char *s, int width, int count, int left):&#160;printf.c']]],
   ['_5frodata_5fend',['_rodata_end',['../cal__dex_8c.html#a9088afdf082e7273471de67d7a306299',1,'cal_dex.c']]],
   ['_5frodata_5fstart',['_rodata_start',['../cal__dex_8c.html#a9b0d08ce55c1dd45663ece989b591af3',1,'cal_dex.c']]],
+  ['_5fsdev',['_sdev',['../struct__sdev.html',1,'']]],
   ['_5fsize_5ft',['_SIZE_T',['../cpu_8h.html#a0ba95ba075f659fa991ee3df107aa3c3',1,'cpu.h']]],
   ['_5fspi_5fclock',['_spi_clock',['../hal_8c.html#a3f4bc3feab2b705606ef696eceb93fba',1,'hal.c']]],
   ['_5fstr_5fvolume_5fid',['_STR_VOLUME_ID',['../ffconf_8h.html#ae89b13dba7638cb22b5587fcb335ffe3',1,'ffconf.h']]],
@@ -118,5 +119,6 @@ var searchData=
   ['_5fwinearth',['_winearth',['../user__main_8c.html#a90c65a7f0b794cb74aed36afadd4f75e',1,'user_main.c']]],
   ['_5fwinmsg',['_winmsg',['../user__main_8c.html#a40f0738f31dc022f067c98e9062f016b',1,'user_main.c']]],
   ['_5fwintop',['_wintop',['../user__main_8c.html#afe7500eafa400fd42fff47d3cc09f7c6',1,'user_main.c']]],
-  ['_5fwrite_5fbyte_5ffn',['_write_byte_fn',['../web_8c.html#a620628fcf72ac4e4d0228ff38d31bbd1',1,'web.c']]]
+  ['_5fwrite_5fbyte_5ffn',['_write_byte_fn',['../web_8c.html#a620628fcf72ac4e4d0228ff38d31bbd1',1,'web.c']]],
+  ['_5fxpt2046',['_xpt2046',['../struct__xpt2046.html',1,'']]]
 ];

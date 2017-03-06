@@ -24,16 +24,18 @@ XTENSA_TOOLS_ROOT ?= $(ROOT_DIR)/xtensa-lx106-elf/bin
 # base directory of the ESP8266 SDK package, absolute
 SDK_BASE	?= $(ROOT_DIR)/sdk
 SDK_TOOLS	?= $(SDK_BASE)/tools
+#ESPTOOL		?= esptool-ck/esptool
 #ESPTOOL		?= $(SDK_TOOLS)/esptool.py
-ESPTOOL		?= /usr/local/bin/esptool.py
+ESPTOOL		?= esptool/esptool.py
 ESPPORT		?= /dev/ttyUSB0
 
 # Export path
 export PATH := $(XTENSA_TOOLS_ROOT):$(PATH)
 
 # esptool baud rate 
-BAUD=256000
 #BAUD=115200
+#BAUD=256000
+BAUD=921600
 
 # CPU frequency
 F_CPU=80000000UL
@@ -48,25 +50,24 @@ TARGET		= demo
 # Firmware Directory
 FW_BASE		= firmware
 
-# SWAP GPIO4 and GPIO5 on some esp-12 boards have labels reversed
-# My board is reversed
-SWAP45			:= 1
 
 # ===============================================================
 # The settings in this section are related to the flash size of the ESP board
 # esptool.py flash arguments for 512K SPI flash
 # WARNING ADDR_IROM MUST match settings in LD_SCRIPT!
 
-BIG  = 1
-ifdef BIG
-	FW_ARGS := -ff 80m -fm qio -fs 32m
+ESP12=1
+ifdef ESP12
+# SWAP GPIO4 and GPIO5 on some esp-12 boards have labels reversed
+# My board is reversed
+SWAP45=1
+	FW_ARGS := -ff 80m -fm qio 
 	LD_SCRIPT		= eagle.app.v6.new.2048.ld
 	# The ipaddress of the module - either fixed or by DHCP
 	IPADDR=192.168.200.110
-	SIZE := 0x400000
 else
-	FW_ARGS := -ff 80m -fm qio -fs 4m
-	SIZE := 0x80000
+	# Default 512K boards
+	FW_ARGS := -ff 80m -fm qio 
 	IPADDR=192.168.200.110
 	LD_SCRIPT		= eagle.app.v6.new.512.ld
 endif
@@ -221,6 +222,10 @@ endif
 ADF4351 = 1
 
 # =========================
+# XPT2046 demo
+XPT2046 = 1
+
+# =========================
 # Yield function support thanks to Arduino Project 
 # You should always leave this on
 YIELD_TASK = 1
@@ -228,7 +233,6 @@ YIELD_TASK = 1
 # =========================
 # =========================
 DISPLAY = 1
-
 ifdef DISPLAY
 # ILI9341 Display support
 	ILI9341_CS = 15
@@ -253,7 +257,7 @@ WIRECUBE = 1
 CIRCLE = 
 
 # Display voltage - only works if DEBUG_STATS = 1
-VOLTAGE_TEST = 1
+#VOLTAGE_TEST = 1
 
 # Display additional status:
 # 	interation count for spinning cube
@@ -278,6 +282,12 @@ endif
 
 ifdef VOLTAGE_TEST
 	CFLAGS += -DVOLTAGE_TEST
+endif
+
+ifdef XPT2046
+	CFLAGS += -DXPT2046
+    CFLAGS += -DXPT2046_CS=2
+	MODULES	+= xpt2046
 endif
 
 ifdef WIRECUBE
@@ -457,7 +467,28 @@ endef
 # ===============================================================
 .PHONY: all checkdirs clean
 
-all: support checkdirs $(FW) send
+all: esptool support checkdirs $(FW) send status
+
+.PHONY: status
+status:
+	@if [ ! -d esptool ]; then git clone https://github.com/espressif/esptool; else cd esptool; git pull; cd ..; fi
+	@echo =============================================
+	@echo Note:
+	@if [ $(SWAP45) = "1" ]; then echo "GPIO pins 4 and 5 are swapped"; fi
+	@echo ADDR_0= pin is GPIO $(ADDR_0)
+	@echo
+	@echo =============================================
+	@echo
+
+#Update esptool
+.PHONY: esptool
+esptool:
+	@echo =============================================
+	@echo "Updating $(ESPTOOL)"
+	@if [ ! -d esptool ]; then git clone https://github.com/espressif/esptool; else cd esptool; git pull; cd ..; fi
+	#
+	#if [ ! -d esptool-ck ]; then git clone https://github.com/igrr/esptool-ck; cd esptool-ck; make; cd ..; else cd esptool-ck; git pull; make; cd .. fi
+	@echo =============================================
 
 .PHONY: support
 support:
@@ -500,7 +531,7 @@ size:	$(ELF)
 
 $(FW):	$(ELF) size
 	$(vecho) "Firmware $@"
-	$(ESPTOOL) elf2image $(FW_ARGS) $(ELF) -o $(BUILD_BASE)/region-
+	$(ESPTOOL) elf2image $(ELF) -o $(BUILD_BASE)/region-
 	$(Q) dd if=$(FILE_IRAM) of=$(FILE_IRAM_PAD) ibs=64K conv=sync 2>&1 >/dev/null
 	$(Q) cat $(FILE_IRAM_PAD) $(FILE_IROM) > $(FW)
 
@@ -521,14 +552,15 @@ $(FW):	$(ELF) size
 
 
 
+
 flash: all
-	$(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) write_flash  0 $(FW)
+	$(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) write_flash $(FW_ARGS)  0 $(FW)
 	miniterm.py --parity N -e --rts 0 --dtr 0 /dev/ttyUSB0 115200
 
 flashzero: checkdirs
 	dd if=/dev/zero of=$(FW_BASE)/zero1.bin bs=1024 count=1024
 	$(ESPTOOL) -p $(ESPPORT) -b $(BAUD) write_flash \
-		$(flashimageoptions) \
+		$(FW_ARGS) \
 		0x000000 $(FW_BASE)/zero1.bin 
 	# 0x000000 $(FW_BASE)/zero1.bin 0x100000 $(FW_BASE)/zero1.bin
 
@@ -542,10 +574,11 @@ testflash:
 	./testflash -s 0x100000 -w tmp/test1w.bin
 	@echo Write file to ESP8266
 	$(ESPTOOL) -p $(ESPPORT) -b $(BAUD) write_flash \
-		$(flashimageoptions) \
+		$(FW_ARGS) \
 		0x000000 tmp/test1w.bin 
 	@echo read flash back from ESP8266
 	$(ESPTOOL) -p $(ESPPORT) -b $(BAUD) read_flash \
+		$(FW_ARGS) \
 		0x000000 0x100000 tmp/test1r.bin 
 	@echo Verify data read back matches what we wrote
 	./testflash -s 0x100000 -r tmp/test1r.bin

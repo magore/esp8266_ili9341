@@ -8,5 +8,7 @@ var searchData=
   ['_5ffontc',['_fontc',['../struct__fontc.html',1,'']]],
   ['_5ffontinfo',['_fontinfo',['../struct__fontinfo.html',1,'']]],
   ['_5ffontspecs',['_fontspecs',['../struct__fontspecs.html',1,'']]],
-  ['_5fprintf_5ft',['_printf_t',['../struct__printf__t.html',1,'']]]
+  ['_5fprintf_5ft',['_printf_t',['../struct__printf__t.html',1,'']]],
+  ['_5fsdev',['_sdev',['../struct__sdev.html',1,'']]],
+  ['_5fxpt2046',['_xpt2046',['../struct__xpt2046.html',1,'']]]
 ];

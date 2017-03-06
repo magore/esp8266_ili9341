@@ -53,6 +53,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	#include "adf4351.h"
 #endif
 
+#ifdef XPT2046
+	#include "xpt2046.h"
+	xpt2046_t xpt2046_stat;
+
+#endif
+
 #include "esp8266/system.h"
 #include "lib/stringsup.h"
 
@@ -317,7 +323,7 @@ void loop(void)
 	extern int connections;
 	uint32_t time1,time2;
 	uint8_t red, blue,green;
-	int ret;
+	int ret, touched;
 	unsigned long t;
 	uint16_t system_adc_read(void);
 	time_t sec;
@@ -358,6 +364,9 @@ void loop(void)
 	{
 #ifdef ADF4351
 		ADF4351_task();
+#endif
+#ifdef XPT2046
+        touched = XPT2046_task ( (xpt2046_t *) &xpt2046_stat );
 #endif
 		last_time10 = t;
 	}
@@ -401,6 +410,22 @@ void loop(void)
 	tft_font_fixed(wintop);
 	tft_printf(wintop,"Iter:% 10ld, %+7.2f\n", count, degree);
 
+#ifdef XPT2046
+		tft_set_textpos(wintop, 0,2);
+		if(touched > 100)
+		{
+			tft_printf(wintop,"Z:%4d, X:%4d,Y:%4d", 
+				touched,
+				xpt2046_stat.X,
+				xpt2046_stat.Y);
+		}
+		else
+		{
+			tft_printf(wintop,"Z:%4d", touched);
+		}
+		tft_cleareol(wintop);
+#endif
+
 #ifdef VOLTAGE_TEST
 	// FIXME voltage not correct 
 	//       make sure the pin function is assigned
@@ -428,9 +453,10 @@ void loop(void)
 			system_get_free_heap_size(), connections);
 	
 #ifdef VOLTAGE_TEST
+		tft_set_textpos(wintop, 0,2);
 		tft_printf(wintop,"Volt:%2.2f\n", (float)voltage);
 #endif
-	
+		tft_set_textpos(wintop, 0,3);
 		tft_printf(wintop,"CH:%02d, DB:%+02d\n", 
 			wifi_get_channel(),
 			wifi_station_get_rssi());
@@ -724,11 +750,17 @@ void setup(void)
 #ifdef MMC_CS
 	chip_select_init(MMC_CS);
 #endif
+
 #ifdef ADF4351_CS
 	chip_select_init(ADF4351_CS);
 #endif
+
 #ifdef ILI9341_CS
 	chip_select_init(ILI9341_CS);
+#endif
+
+#ifdef XPT2046_CS
+	XPT2046_spi_init();
 #endif
 	// Functions manage user defined address pins
 	chip_addr_init();

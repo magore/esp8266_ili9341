@@ -1,0 +1,49 @@
+Inputs Voltage=4096, VXP, VXN, VYP, VYN
+Compute
+
+VX = 4096 = VXN + VXP
+RX = RXN + RXP
+RY = RYN + RYP
+IX = 4096 / (RXN + RXP)
+IX = RXN / VXN
+IX = RXP / VXP
+VY = 4096 = VYN + VYP
+IY = 4096 / (RYN + RYP)
+IY = RYN / VYN
+IY = RYP / VYP
+
+4096 / RX = RXN / VXN = RXP / VXP
+4096 / RY = RYN / VYN = RYP / VYP
+
+4096 = VXP + VXN
+4096 = VYP + VYN
+
+RX = RXP + RXN
+IX = RX / 4096
+RY = RYP + RYN
+IY = RY / 4096
+
+Inputs Voltage=4096, VXNZ1, VYPZ1
+Compute 
+VT = VYPZ1-VXNZ1
+IZ1 = (RXP + RYP + RT) / 4096
+VXN = IZ1 * RXN
+VYP = IZ1 * RYP
+4096 = VXN + VYP + VT
+
+IZ1 = RT / VT
+RT = VT / IZ1
+
+
+
+RZ1 = RXN + RT + RYP
+IZ1 = RZ1 / 4096
+VYP = 4096
+VXN = 0
+VZ1 = RXN * IZ1
+
+VZ2 = RYP * IZ1
+VT = 4096 - (VZ1 + VZ2)
+RT = VT / IZ1
+
+

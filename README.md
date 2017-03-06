@@ -200,9 +200,9 @@ ___
          * My rewritten HPSI code that avoids unaligned read and writes (based on code ideas from CHERTS and Sem)
            * hspi.c
            * hspi.h
-         * Chip select and addressing code for all devices
-           * io.c
-           * io.h
+         * Chip select, addressing code and spi abstraction layer for all devices
+           * hal.c
+           * hal.h
          * RTC DS1307 code in progress
            * rtc.c
            * rtc.h
@@ -366,7 +366,9 @@ ___
          * cube_data.h    
        * Wireframe EARTH data
          * earth_data.h
-  
+     * xpt2046 - touch screen code - work in progress
+         * xpt2046.c 
+         * xpt2046.h 
      * yield - Yield code from Arduino yield code
        * README.txt     
        * Context switch code
@@ -389,18 +391,24 @@ ___
       * REST    ---1K--- VCC3.3V   Ground REST to reset ESP8266 and ILI9341
       * GPIO  2 ---1K--- VCC3.3V
       * GPIO  0 ---1K--- VCC3.3V   Ground GPIO 0 to to enable flashing
-      * GPIO 15 ---1K--- GND
-      * GPIO 14 ---1K--- GND
+      * GPIO 15 ---1K--- GND       Need pull down for boot
+      * GPIO 14 ---1K--- GND       Keeps floating clock signal from generating false clocks on attached devices
       * GND ------------ GND
 
-    * FTDI232 USB/TTL      ESP8266
+    * FTDI232 USB/TTL      ESP8266 
       * TXD ----1K--------  RXD
       * RXD --------------  TXD
-      * RTS ---|<--------- REST    Optional - Diode with Cahtode to RTS, Anode to ESP8266 Reset
+      * RTS ---|<--------- REST    Optional - Diode with Cathode to RTS, Anode to ESP8266 Reset
       * DTR ---|<----1K--- GPIO 00 Optional - Diode with cathode to DTR, Anode to 1K to ESP8266 GPIO00 for flashing
       * GND --------------  GND
       * Note: if you use the optional DTR,RTS conneections you have to use miniterm script provided
-      recommend using jumpers to anable this feature if you do not wish to have the ESP8266 reset automatically
+        recommend using jumpers to anable this feature if you do not wish to have the ESP8266 reset automatically
+
+    * xpt2046        ESP8266
+      * MOSI   MOSI  GPIO 13
+      * MISO   MISO  GPIO 12
+      * SCK    CLK   GPIO 14 
+      * CS           GPIO 02
 
     * ILI9341        ESP8266
       * Data/Command GPIO 05 (see io.c and SWAP45 in Makefile - my pin lables are backwards!)

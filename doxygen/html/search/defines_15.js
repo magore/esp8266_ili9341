@@ -20,5 +20,10 @@ var searchData=
   ['xdir_5fnumsec',['XDIR_NumSec',['../ff_8c.html#a37e729265403caf1ae349714e069a3e6',1,'ff.c']]],
   ['xdir_5fsetsum',['XDIR_SetSum',['../ff_8c.html#a784a27bba3d35dddeb57d7fa99670b2a',1,'ff.c']]],
   ['xdir_5ftype',['XDIR_Type',['../ff_8c.html#a55c8dde2fcff23002e196ae2c3eeaa08',1,'ff.c']]],
-  ['xdir_5fvalidfilesize',['XDIR_ValidFileSize',['../ff_8c.html#a543e2a11cefac978a0108a7973416d56',1,'ff.c']]]
+  ['xdir_5fvalidfilesize',['XDIR_ValidFileSize',['../ff_8c.html#a543e2a11cefac978a0108a7973416d56',1,'ff.c']]],
+  ['xpt2046_5fread_5fx',['XPT2046_READ_X',['../xpt2046_8h.html#aacb7a75fd6c78e1cd4e87fa930654ef6',1,'xpt2046.h']]],
+  ['xpt2046_5fread_5fy',['XPT2046_READ_Y',['../xpt2046_8h.html#aad6adcb00000ad4cdef14ece5e21bd81',1,'xpt2046.h']]],
+  ['xpt2046_5fread_5fz1',['XPT2046_READ_Z1',['../xpt2046_8h.html#a1f7063812ae4edbb96165244ee717815',1,'xpt2046.h']]],
+  ['xpt2046_5fread_5fz2',['XPT2046_READ_Z2',['../xpt2046_8h.html#aee315feb898d4f6f35389cb3068ad1eb',1,'xpt2046.h']]],
+  ['xpt2046_5fsamples',['XPT2046_SAMPLES',['../xpt2046_8h.html#a0f015f6bedcfd4583ed1133ed6d11963',1,'xpt2046.h']]]
 ];
