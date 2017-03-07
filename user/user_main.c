@@ -327,6 +327,7 @@ void loop(void)
 	unsigned long t;
 	uint16_t system_adc_read(void);
 	time_t sec;
+	int X,Y;
 	// getinfo.ip.addr, getinfo.gw.addr, getinfo.netmask.addr
 	struct ip_info getinfo;
 	char *ptr;
@@ -367,6 +368,22 @@ void loop(void)
 #endif
 #ifdef XPT2046
         touched = XPT2046_task ( (xpt2046_t *) &xpt2046_stat );
+		tft_set_textpos(wintop, 0,2);
+		if(touched > 100)
+		{
+			tft_printf(wintop,"Z:%4d, X:%4d,Y:%4d", 
+				touched, xpt2046_stat.X, xpt2046_stat.Y);
+		}
+		else
+		{
+			tft_printf(wintop,"Z:%4d", touched);
+		}
+		tft_cleareol(wintop);
+		if( XPT2046_key((xpt2046_t *) &xpt2046_stat, &X, &Y) )
+		{
+			tft_set_font(winmsg,1);
+			tft_printf(winmsg, "X:%4d, Y:%4d\n",X,Y);
+		}
 #endif
 		last_time10 = t;
 	}
@@ -410,21 +427,6 @@ void loop(void)
 	tft_font_fixed(wintop);
 	tft_printf(wintop,"Iter:% 10ld, %+7.2f\n", count, degree);
 
-#ifdef XPT2046
-		tft_set_textpos(wintop, 0,2);
-		if(touched > 100)
-		{
-			tft_printf(wintop,"Z:%4d, X:%4d,Y:%4d", 
-				touched,
-				xpt2046_stat.X,
-				xpt2046_stat.Y);
-		}
-		else
-		{
-			tft_printf(wintop,"Z:%4d", touched);
-		}
-		tft_cleareol(wintop);
-#endif
 
 #ifdef VOLTAGE_TEST
 	// FIXME voltage not correct 

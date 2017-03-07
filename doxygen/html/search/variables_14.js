@@ -1,20 +1,10 @@
 var searchData=
 [
-  ['w',['w',['../struct__fontc.html#a9c2af0354d2b2009e7b6684e25fd479b',1,'_fontc::w()'],['../structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae',1,'window::w()']]],
-  ['wbuf',['wbuf',['../structrwbuf__t.html#a68386231f3d907ec4508c090925782a2',1,'rwbuf_t']]],
-  ['web_5fconnections',['web_connections',['../web_8c.html#a18c3cff4e8a9ff56871f13dfb3cd48ad',1,'web.c']]],
-  ['webconn',['WebConn',['../web_8c.html#a96c7e595cf56145fc95dc2c66ac3930f',1,'web.c']]],
-  ['webtcp',['WebTcp',['../web_8c.html#a82e626c8ae638c2d59ae0590e5eab381',1,'web.c']]],
-  ['weight_5fname',['WEIGHT_NAME',['../struct__fontinfo.html#a2f528cb5c1bceb6afd91ad138472d071',1,'_fontinfo']]],
-  ['wflag',['wflag',['../structFATFS.html#a647e43c9ccae94b7274793d1909897de',1,'FATFS']]],
-  ['width',['Width',['../struct__fontspecs.html#a8404888a24a2b065d91c4424e1907439',1,'_fontspecs::Width()'],['../struct__font.html#ae3d3b48670f1bf4bf6dbf42794f81b31',1,'_font::Width()'],['../struct__fontc.html#ae3c802e1c35ae9a4e37c8eb2e9644325',1,'_fontc::Width()'],['../unionf__t.html#ad6b1584314c27653690552e95e1ed96f',1,'f_t::width()']]],
-  ['win',['win',['../structFATFS.html#a7cc35a593465e727ab87723c14610644',1,'FATFS']]],
-  ['winbottom',['winbottom',['../user__main_8c.html#af5c755bdc97ff152da4d9c55ca914324',1,'user_main.c']]],
-  ['wincube',['wincube',['../user__main_8c.html#a5803138257b3d97beb4e2c77227e455c',1,'user_main.c']]],
-  ['wind',['wind',['../structrwbuf__t.html#a135345eee44e93f37e57dbabec12c339',1,'rwbuf_t']]],
-  ['winearth',['winearth',['../user__main_8c.html#a17020688c80162fdf6575e888349940c',1,'user_main.c']]],
-  ['winmsg',['winmsg',['../user__main_8c.html#a91a5294702debbeba1acf3cc43784ce9',1,'winmsg():&#160;user_main.c'],['../web_8c.html#a91a5294702debbeba1acf3cc43784ce9',1,'winmsg():&#160;user_main.c']]],
-  ['winsect',['winsect',['../structFATFS.html#ac60e69c00e6bf7c25febfbac4dc1476b',1,'FATFS']]],
-  ['wintop',['wintop',['../user__main_8c.html#aea8414e2642ed66686b8a1c996e06cf7',1,'wintop():&#160;user_main.c'],['../web_8c.html#aff6226bcabba958e69ff897ec86a13b2',1,'wintop():&#160;user_main.c']]],
-  ['wsize',['wsize',['../structrwbuf__t.html#ac723cf150dd35d0f67ba7d38b18863ad',1,'rwbuf_t']]]
+  ['v',['V',['../user__main_8c.html#a521e17d9ccfd7b07bf3a1f6fa1a15e0c',1,'user_main.c']]],
+  ['v_5fatan',['v_atan',['../cordic2c_8c.html#a87f33f8b076298d511ca73b9e458a3ac',1,'cordic2c.c']]],
+  ['v_5fatangrad',['v_atangrad',['../cordic2c__inc_8h.html#abfedbfddd3d22467322bc0ad058d2500',1,'cordic2c_inc.h']]],
+  ['val',['val',['../structadf4351__err__t.html#ab5be0db827951d8d9f360b7b31238d7c',1,'adf4351_err_t::val()'],['../structfreq__t.html#ab480b23ec23b99ffd3e4d628de27676d',1,'freq_t::val()']]],
+  ['vcopowerdown',['VCOPowerDown',['../structr4__t.html#a144b348686f74ef9a401f2c57f324824',1,'r4_t']]],
+  ['volbase',['volbase',['../structFATFS.html#a8f0ca578755749d204f59dc83f1a7649',1,'FATFS']]],
+  ['voltage',['voltage',['../user__main_8c.html#ad3c64efcaba662da1a2f4393d00584e9',1,'user_main.c']]]
 ];

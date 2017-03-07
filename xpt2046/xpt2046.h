@@ -26,7 +26,8 @@
 #define _XPT2046_H_
 
 ///@brief number of time to read and average results
-#define XPT2046_SAMPLES 8 /* make this a power of 2 */
+#define XPT2046_SAMPLES 8 	/* make this a power of 2 */
+#define XPT2046_DEBOUNCE 10 /* Debound value in mS */
 
 ///@brief only need 4 commands for reading position or touch information
 #define XPT2046_READ_Y  0x91    /* Read Y position*/
@@ -39,8 +40,10 @@ typedef struct _xpt2046 {
 	int Z2;	// Z2 driving XN and YP, reading YN
 	int X;	// X Position, driving XP and YN, reading YP
 	int Y;	// Y Position, driving YP and YN, reading XP
-	int XR;	// X Resistance
-	int YR; // Y Resistance
+    int state;  // Debounce state machine
+    int ms;     // Debounce 1mS timer
+	int key_X;	// Debounced X
+	int key_Y;	// Debounced Y
 } xpt2046_t;
 
 typedef struct _sdev {
@@ -52,6 +55,7 @@ typedef struct _sdev {
 MEMSPACE void XPT2046_spi_init ( void );
 uint16_t XPT2046_read ( uint8_t cmd );
 int XPT2046_task ( xpt2046_t *m );
+int XPT2046_key ( xpt2046_t *m , int *X , int *Y );
 
 #endif // _XPT2046_H_
 

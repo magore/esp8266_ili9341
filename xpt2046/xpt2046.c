@@ -137,20 +137,10 @@ uint16_t XPT2046_read(uint8_t cmd)
 }
 
 
-int iabs(int a)
-{
-	if(a < 0)
-		return(-a);
-	return(a);
-}
-
-/// @brief  Check for a touch event 
-/// Average several samples
+/// @brief  Check for a touch event and also do debouncing task
+/// Average several samples for a result
 /// @param[in] *m: touch data structure
 /// return: Z as non zero implies touch event
-
-#define XPT2046_NOISE 8
-
 int XPT2046_task(xpt2046_t *m)
 {
 	int i;
@@ -203,19 +193,82 @@ int XPT2046_task(xpt2046_t *m)
 	}
 	else
 	{
-		m->X = 0;
-		m->Y = 0;
 		m->Z1 = 0;
 		m->Z2 = 0;
 		Z = 0;
 	}
-	// not used yet
-	m->XR = 0;
-	m->YR = 0;
 
+	// Key debounce state machine
+	switch(m->state) 
+	{
+		// wait for key down
+		case 0:                 
+			if(Z > 200)	// key is down
+			{
+				if(++m->ms == XPT2046_DEBOUNCE) 	// wait for key down debounce time
+				{
+					m->ms = 0;
+					m->state = 1;
+				}
+			}
+			else	// Initial condition
+			{
+				m->ms = 0;
+				m->state = 0;
+				m->key_X = m->X;
+				m->key_Y = m->Y;
+			}
+			break;
+		// Wait for key release - debounce release
+        case 1:                 
+			if(Z < 200)
+			{
+				if(++m->ms == XPT2046_DEBOUNCE) 
+				{
+					m->ms = 0;
+					m->state = 2;
+				}
+			}
+			else	// Not released yet - go back
+			{
+				m->ms = 0;
+				m->state = 1;
+			}
+			break;
+		// We are now at debounced release time - valid key depress
+        case 2:
+			// TODO add input queue
+			// read key X,Y here
+			m->key_X = m->X;
+			m->key_Y = m->Y;
+			m->state = 3;
+            break;
+		// Halt
+        case 3:
+            m->ms = 0;
+			break;
+		default:
+            m->ms = 0;
+			m->state = 3;
+			break;
+	}
 	return(Z);
 }
 
+/// @brief  Read a debounced Key position
+/// @param[in] *m: touch data structure
+/// return: if(Z) then *X and *Y has debounced touch coordinates
+int XPT2046_key(xpt2046_t *m, int *X, int *Y)
+{
+	if(m->state == 3)
+	{
+		*X = m->key_X;
+		*Y = m->key_Y;
+		m->state = 0;
+		return(1);
+	}
+	return(0);
+}
 
 ///TODO add filtering
 #if 0
@@ -230,13 +283,13 @@ int XPT2046_task(xpt2046_t *m)
 /// @return 1 on success, 0 on parameter or calculation error
 int sdev(uint16_t *samples, int size, uint16_t min, uint16_t max, sdev_t *Z) 
 {
-	int i;
-	float val, delta, sum, sqsum;
+int i;
+float val, delta, sum, sqsum;
 
-	Z->min = ~0;
-	Z->max = 0;
+Z->min = ~0;
+Z->max = 0;
 
-	// error in sample size ?
+// error in sample size ?
 	if(size < 2)
 		return(0);
 
