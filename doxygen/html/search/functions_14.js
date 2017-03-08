@@ -34,6 +34,8 @@ var searchData=
   ['usage',['usage',['../bdffont2c_8c.html#aa4817482b1728bf62acf8030cab9842c',1,'bdffont2c.c']]],
   ['user_5fhelp',['user_help',['../user__main_8c.html#acf488387a6eadb21c378fffd6f4aae63',1,'user_main.c']]],
   ['user_5finit',['user_init',['../user__main_8c.html#aa8253cd89ed4b268472ed62f4f2074ae',1,'user_init(void):&#160;user_main.c'],['../user__task_8c.html#aa8253cd89ed4b268472ed62f4f2074ae',1,'user_init(void):&#160;user_task.c'],['../user__task_8h.html#aa8253cd89ed4b268472ed62f4f2074ae',1,'user_init(void):&#160;user_main.c']]],
+  ['user_5floop',['user_loop',['../user__main_8c.html#a9c9fec92b60b251c275870d900294a4a',1,'user_main.c']]],
+  ['user_5ftasks',['user_tasks',['../user__main_8c.html#a3142086fde2f8b44c81c6f78beff1cc2',1,'user_main.c']]],
   ['user_5ftests',['user_tests',['../user__main_8c.html#a1a52190bd844126271cd2caa94782ee5',1,'user_main.c']]],
   ['usertask',['UserTask',['../user__main_8c.html#a1a6298ceb314c1707e92070ad4a9416d',1,'user_main.c']]]
 ];

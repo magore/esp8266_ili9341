@@ -1,20 +1,7 @@
 var searchData=
 [
-  ['w',['w',['../struct__fontc.html#a9c2af0354d2b2009e7b6684e25fd479b',1,'_fontc::w()'],['../structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae',1,'window::w()']]],
-  ['wbuf',['wbuf',['../structrwbuf__t.html#a68386231f3d907ec4508c090925782a2',1,'rwbuf_t']]],
-  ['web_5fconnections',['web_connections',['../web_8c.html#a18c3cff4e8a9ff56871f13dfb3cd48ad',1,'web.c']]],
-  ['webconn',['WebConn',['../web_8c.html#a96c7e595cf56145fc95dc2c66ac3930f',1,'web.c']]],
-  ['webtcp',['WebTcp',['../web_8c.html#a82e626c8ae638c2d59ae0590e5eab381',1,'web.c']]],
-  ['weight_5fname',['WEIGHT_NAME',['../struct__fontinfo.html#a2f528cb5c1bceb6afd91ad138472d071',1,'_fontinfo']]],
-  ['wflag',['wflag',['../structFATFS.html#a647e43c9ccae94b7274793d1909897de',1,'FATFS']]],
-  ['width',['width',['../unionf__t.html#ad6b1584314c27653690552e95e1ed96f',1,'f_t::width()'],['../struct__fontspecs.html#a8404888a24a2b065d91c4424e1907439',1,'_fontspecs::Width()'],['../struct__font.html#ae3d3b48670f1bf4bf6dbf42794f81b31',1,'_font::Width()'],['../struct__fontc.html#ae3c802e1c35ae9a4e37c8eb2e9644325',1,'_fontc::Width()']]],
-  ['win',['win',['../structFATFS.html#a7cc35a593465e727ab87723c14610644',1,'FATFS']]],
-  ['winbottom',['winbottom',['../user__main_8c.html#af5c755bdc97ff152da4d9c55ca914324',1,'user_main.c']]],
-  ['wincube',['wincube',['../user__main_8c.html#a5803138257b3d97beb4e2c77227e455c',1,'user_main.c']]],
-  ['wind',['wind',['../structrwbuf__t.html#a135345eee44e93f37e57dbabec12c339',1,'rwbuf_t']]],
-  ['winearth',['winearth',['../user__main_8c.html#a17020688c80162fdf6575e888349940c',1,'user_main.c']]],
-  ['winmsg',['winmsg',['../user__main_8c.html#a91a5294702debbeba1acf3cc43784ce9',1,'winmsg():&#160;user_main.c'],['../web_8c.html#a91a5294702debbeba1acf3cc43784ce9',1,'winmsg():&#160;user_main.c']]],
-  ['winsect',['winsect',['../structFATFS.html#ac60e69c00e6bf7c25febfbac4dc1476b',1,'FATFS']]],
-  ['wintop',['wintop',['../user__main_8c.html#aea8414e2642ed66686b8a1c996e06cf7',1,'wintop():&#160;user_main.c'],['../web_8c.html#aff6226bcabba958e69ff897ec86a13b2',1,'wintop():&#160;user_main.c']]],
-  ['wsize',['wsize',['../structrwbuf__t.html#ac723cf150dd35d0f67ba7d38b18863ad',1,'rwbuf_t']]]
+  ['x',['X',['../struct__fontspecs.html#a7273a891c79308389718266cb0b66f56',1,'_fontspecs::X()'],['../struct__font.html#a64a08fdbdaa19418a9b7a34a2db33150',1,'_font::X()'],['../struct__fontc.html#ad15d00ed46ebe52a085cf05b5ca5da90',1,'_fontc::x()'],['../structwindow.html#a879b99940dfc34772f0257f54c67b817',1,'window::x()'],['../structpoint.html#a9c6b34deaf4900ad4193c17935fd384a',1,'point::x()'],['../structwire__p.html#a7a555c323bd3699ff2db08a3b3e791ed',1,'wire_p::x()'],['../cordic_8c.html#a46b4b48ef8c0c01099eb3bcdde8aa8db',1,'X():&#160;cordic.c'],['../cordic2c_8c.html#a46b4b48ef8c0c01099eb3bcdde8aa8db',1,'X():&#160;cordic2c.c']]],
+  ['xpos',['xpos',['../structwindow.html#a890a7dba31e7328500f4e5e41e51aab7',1,'window']]],
+  ['xq',['XQ',['../struct__xpt2046.html#ac3f7953dda5a05a52276892bee461a29',1,'_xpt2046']]],
+  ['xx1',['xx1',['../structex__regs.html#a12379b0b3152b878eebc8f18a6efeaf0',1,'ex_regs']]]
 ];

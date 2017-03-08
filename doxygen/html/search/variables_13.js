@@ -1,11 +1,10 @@
 var searchData=
 [
-  ['uart_5fdebug_5fport',['uart_debug_port',['../uart_8c.html#a08d467da958b2c20aaa794953255d152',1,'uart.c']]],
-  ['udata',['udata',['../struct____file.html#abe6f3bdb4df4119277132eb3e13a4628',1,'__file']]],
-  ['unget',['unget',['../struct____file.html#a1d139ae3cb11a1fada469a49f7d3d3b6',1,'__file']]],
-  ['unused1',['unused1',['../structcont__.html#ab61b08c26f5251cdb06e9b2173da911f',1,'cont_']]],
-  ['unused2',['unused2',['../structcont__.html#a4571d78e98dbcf7547ea1dc49c7b7a58',1,'cont_']]],
-  ['user_5ftimer_5fhandler',['user_timer_handler',['../structTIMERS.html#a4326e05ca52d80147efafd0d246ecb41',1,'TIMERS']]],
-  ['usertaskqueue',['UserTaskQueue',['../user__main_8c.html#a90f974e2d939cf8c5e29e7ee1356ffc9',1,'user_main.c']]],
-  ['usertimerhandler',['UserTimerHandler',['../user__main_8c.html#a80a8cbc175ca4eb5155834cd80c87c0e',1,'user_main.c']]]
+  ['v',['V',['../user__main_8c.html#a521e17d9ccfd7b07bf3a1f6fa1a15e0c',1,'user_main.c']]],
+  ['v_5fatan',['v_atan',['../cordic2c_8c.html#a87f33f8b076298d511ca73b9e458a3ac',1,'cordic2c.c']]],
+  ['v_5fatangrad',['v_atangrad',['../cordic2c__inc_8h.html#abfedbfddd3d22467322bc0ad058d2500',1,'cordic2c_inc.h']]],
+  ['val',['val',['../structadf4351__err__t.html#ab5be0db827951d8d9f360b7b31238d7c',1,'adf4351_err_t::val()'],['../structfreq__t.html#ab480b23ec23b99ffd3e4d628de27676d',1,'freq_t::val()']]],
+  ['vcopowerdown',['VCOPowerDown',['../structr4__t.html#a144b348686f74ef9a401f2c57f324824',1,'r4_t']]],
+  ['volbase',['volbase',['../structFATFS.html#a8f0ca578755749d204f59dc83f1a7649',1,'FATFS']]],
+  ['voltage',['voltage',['../user__main_8c.html#ad3c64efcaba662da1a2f4393d00584e9',1,'user_main.c']]]
 ];

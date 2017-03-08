@@ -112,7 +112,7 @@ var searchData=
   ['cordic_5ft_5fstr',['Cordic_T_STR',['../cordic2c_8c.html#a7c5645f685b278110b72d4003b2aee52',1,'cordic2c.c']]],
   ['cordic_5ftable',['CORDIC_TABLE',['../cordic_8c.html#a575a13df8fab592b70c5968d27dbd338',1,'cordic.c']]],
   ['cordit1',['cordit1',['../cordic2c_8c.html#aa47551f0ba056c573807f6dfa1b09d2d',1,'cordic2c.c']]],
-  ['count',['count',['../user__main_8c.html#aa011065eee776eb1bda73597b5d9d5d7',1,'user_main.c']]],
+  ['count',['count',['../struct__xpt2046.html#affdd5680717fb00e5f975c0472ed32f1',1,'_xpt2046::count()'],['../user__main_8c.html#aa011065eee776eb1bda73597b5d9d5d7',1,'count():&#160;user_main.c']]],
   ['cp3s',['CP3S',['../structr2__t.html#a378d00b9682aa05bffb1a3e61da036e4',1,'r2_t']]],
   ['cpc',['CPC',['../structr2__t.html#a71530b2c7c16577560cd14f14f320572',1,'r2_t::CPC()'],['../structr3__t.html#a61a4e7b02af2c11e18e823eac349fabf',1,'r3_t::CPC()']]],
   ['cpu_2eh',['cpu.h',['../cpu_8h.html',1,'']]],

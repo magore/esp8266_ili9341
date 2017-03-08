@@ -55,7 +55,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #ifdef XPT2046
 	#include "xpt2046.h"
-	xpt2046_t xpt2046_stat;
 
 #endif
 
@@ -268,7 +267,7 @@ void ntp_setup(void)
     }
 }
  
-loop_task()
+user_tasks()
 {
 	char buffer[260];
 
@@ -316,117 +315,51 @@ unsigned long last_time50 = 0;
 
 int loop_cnt = 0;
 
-int inloop = 0;
 
-void loop(void)
+// main task loop called by yield code
+void user_loop(void)
 {
 	extern int connections;
 	uint32_t time1,time2;
+	unsigned long t;
+	time_t sec;
+	char time_tmp[32];
 	uint8_t red, blue,green;
 	int ret, touched;
-	unsigned long t;
 	uint16_t system_adc_read(void);
-	time_t sec;
-	int X,Y;
+	uint16_t X,Y;
 	// getinfo.ip.addr, getinfo.gw.addr, getinfo.netmask.addr
 	struct ip_info getinfo;
 	char *ptr;
 
-	if(inloop)
-	{
-		printf("Error: loop() task overrun\n");
-		return;
-	}
-
-	ret = spi_chip_select_status();
-	if(ret != 0xff)
-	{
-		printf("Error: loop() entered with spi_cs = %d\n",ret);
-		spi_end(ret);
-		return;
-	}
-
-
-	loop_task();
-
-	ret = spi_chip_select_status();
-	if(ret != 0xff)
-	{
-		printf("Error: loop_task() exit with spi_cs = %d\n",ret);
-		spi_end(ret);
-		return;
-	}
-
-	inloop = 0;
-
-	// Only run every 1mS
+	// Run all remaining tasks once every 1mS
 	t = ms_read();
-	if((t - last_time10) >= 1U)
-	{
-#ifdef ADF4351
-		ADF4351_task();
-#endif
-#ifdef XPT2046
-        touched = XPT2046_task ( (xpt2046_t *) &xpt2046_stat );
-		tft_set_textpos(wintop, 0,2);
-		if(touched > 100)
-		{
-			tft_printf(wintop,"Z:%4d, X:%4d,Y:%4d", 
-				touched, xpt2046_stat.X, xpt2046_stat.Y);
-		}
-		else
-		{
-			tft_printf(wintop,"Z:%4d", touched);
-		}
-		tft_cleareol(wintop);
-		if( XPT2046_key((xpt2046_t *) &xpt2046_stat, &X, &Y) )
-		{
-			tft_set_font(winmsg,1);
-			tft_printf(winmsg, "X:%4d, Y:%4d\n",X,Y);
-		}
-#endif
-		last_time10 = t;
-	}
+	if((t - last_time10) < 1U)
+		return;
+	last_time10 = t;
+	// ========================================================
 
-	// run remaining tests every 50ms
+	user_tasks();
+
+#ifdef ADF4351
+	ADF4351_task();
+#endif
+
+#ifdef XPT2046
+	// This dequeues touch events
+	if( XPT2046_key(&X, &Y) )
+	{
+		tft_printf(winmsg, "X:%4d, Y:%4d\n",X,Y);
+	}
+#endif
+
+	// ========================================================
+	// Only run every 50mS
+	t = ms_read();
 	if((t - last_time50) < 50U)
 		return;
 	last_time50 = t;
-
-	time(&sec);
-
-	// only update text messages once a second
-	if(sec != seconds)
-	{
-		char tmp[32];
-
-		tft_set_textpos(winbottom, 0,0);
-		//Tue May 17 18:56:01 2016
-		strncpy(tmp,ctime(&sec),31);
-		tmp[19] = 0;
-		tft_printf(winbottom," %s", tmp);
-		tft_cleareol(winbottom);
-		tft_set_textpos(winbottom, 0,1);
-
-		// detailed connection state
-		//tft_printf(winbottom," %s", ip_msg);
-
-		// IP and disconnected connection state only
-		if(wifi_get_ip_info(0, &getinfo))
-			tft_printf(winbottom," %s", ipv4_2str(getinfo.ip.addr));
-		else
-			tft_printf(winbottom," Disconnected");
-		tft_cleareol(winbottom);
-	}
-
-	count += 1;
-
-#ifdef DEBUG_STATS
-	tft_set_textpos(wintop, 0,0);
-	tft_set_font(wintop,0);
-	tft_font_fixed(wintop);
-	tft_printf(wintop,"Iter:% 10ld, %+7.2f\n", count, degree);
-
+	// ========================================================
 
 #ifdef VOLTAGE_TEST
 	// FIXME voltage not correct 
@@ -444,27 +377,15 @@ void loop(void)
 	}
 #endif
 
+
+#ifdef DEBUG_STATS
+	count += 1;
+	tft_set_textpos(wintop, 0,0);
+	tft_set_font(wintop,0);
+	tft_font_fixed(wintop);
+	tft_printf(wintop,"Iter:% 10ld, %+7.2f\n", count, degree);
 #endif
 
-	if(sec != seconds)
-	{
-		seconds=sec;
-#ifdef DEBUG_STATS
-		tft_set_textpos(wintop, 0,1);
-		tft_printf(wintop,"Heap: %d, Conn:%d\n", 
-			system_get_free_heap_size(), connections);
-	
-#ifdef VOLTAGE_TEST
-		tft_set_textpos(wintop, 0,2);
-		tft_printf(wintop,"Volt:%2.2f\n", (float)voltage);
-#endif
-		tft_set_textpos(wintop, 0,3);
-		tft_printf(wintop,"CH:%02d, DB:%+02d\n", 
-			wifi_get_channel(),
-			wifi_station_get_rssi());
-#endif
-	}
-	
 #ifdef NETWORK_TEST
 	servertest_message(winmsg);
 #endif
@@ -527,15 +448,99 @@ void loop(void)
     tft_drawCircle(wincube, wincube->w/2, wincube->h/2, rad, tft_RGBto565(red,green,blue));
 #endif
 
+	// ========================================================
+	// Update status messages every second
+	time(&sec);
+	if(sec == seconds)
+		return;
+	seconds=sec;
+	// ========================================================
+
+
+	// ========================================================
+	// TIME
+	tft_set_textpos(winbottom, 0,0);
+	//Tue May 17 18:56:01 2016
+	strncpy(time_tmp,ctime(&sec),31);
+	time_tmp[19] = 0;
+	tft_printf(winbottom," %s", time_tmp);
+	tft_cleareol(winbottom);
+	tft_set_textpos(winbottom, 0,1);
+
+	// ========================================================
+	// CONNECTION status
+	//tft_printf(winbottom," %s", ip_msg);
+	// IP and disconnected connection state only
+	if(wifi_get_ip_info(0, &getinfo))
+		tft_printf(winbottom," %s", ipv4_2str(getinfo.ip.addr));
+	else
+		tft_printf(winbottom," Disconnected");
+	tft_cleareol(winbottom);
+
+#ifdef DEBUG_STATS
+	// ========================================================
+	// HEAP size
+	tft_set_textpos(wintop, 0,1);
+	tft_printf(wintop,"Heap: %d, Conn:%d\n", 
+		system_get_free_heap_size(), connections);
+	
+#ifdef VOLTAGE_TEST
+	// ========================================================
+	// VOLTAGE status
+	tft_set_textpos(wintop, 0,2);
+	tft_printf(wintop,"Volt:%2.2f\n", (float)voltage);
+#endif
+	// ========================================================
+	// WIFI status
+	tft_set_textpos(wintop, 0,3);
+	tft_printf(wintop,"CH:%02d, DB:%+02d\n", 
+		wifi_get_channel(),
+		wifi_station_get_rssi());
+#endif
+
+}
+
+
+
+
+
+int inloop = 0;
+void loop()
+{
+	int ret;
+	if(inloop)
+	{
+		printf("Error: loop() task overrun\n");
+		inloop = 0;
+		return;
+	}
+	inloop = 1;
+
+	// ========================================================
+	// We should not have any SPI devices enabled at this point
 	ret = spi_chip_select_status();
 	if(ret != 0xff)
 	{
-		printf("Exit: loop() with spi_cs = %d\n",ret);
+		printf("Error: loop() entered with spi_cs = %d\n",ret);
 		spi_end(ret);
 		return;
 	}
-	
+
+
+	user_loop();
+
+	// We should not have any SPI devices enabled at this point
+	ret = spi_chip_select_status();
+	if(ret != 0xff)
+	{
+		printf("Error: loop() entered with spi_cs = %d\n",ret);
+		spi_end(ret);
+		return;
+	}
+
+	inloop = 0;
 }
+
 
 #if ILI9341_DEBUG & 1
 MEMSPACE
@@ -548,8 +553,6 @@ void read_tests(window *win)
 	tft_readRect(win, x, y, 16, 1, buffer);
 	for(x=0;x<16;++x)
 	{
-		//color = tft_readPixel(win,x,y);
-		// printf("x:%d,y:%d,c:%04x\n", x,y,color);
 		printf("x:%d,y:%d,c:%04x\n", x,y,buffer[x]);
 	}
 	 printf("\n");
@@ -711,7 +714,6 @@ void setup(void)
     char time[20];
 	int ret;
 	uint16_t *ptr;
-	uint32_t time1,time2;
 	uint32_t ID;
 	extern uint16_t tft_ID;
 	double ang;
@@ -919,7 +921,6 @@ void setup(void)
 	web_init(80);
 #endif
 
-
     PrintRam();
 
 	system_set_os_print(0);
@@ -929,6 +930,7 @@ void setup(void)
 
 // ===========================================================
 // We are using the Arduino Yield code for our main task now
+// This code is no longer called
 #ifndef YIELD_TASK
 
 /* user/user_main.c */

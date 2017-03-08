@@ -258,7 +258,7 @@ WIRECUBE = 1
 CIRCLE = 
 
 # Display voltage - only works if DEBUG_STATS = 1
-#VOLTAGE_TEST = 1
+VOLTAGE_TEST = 1
 
 # Display additional status:
 # 	interation count for spinning cube

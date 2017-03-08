@@ -28,6 +28,7 @@
 ///@brief number of time to read and average results
 #define XPT2046_SAMPLES 8 	/* make this a power of 2 */
 #define XPT2046_DEBOUNCE 10 /* Debound value in mS */
+#define XPT2046_EVENTS 10 /* Number of queued touch events */
 
 ///@brief only need 4 commands for reading position or touch information
 #define XPT2046_READ_Y  0x91    /* Read Y position*/
@@ -35,15 +36,18 @@
 #define XPT2046_READ_Z2 0xc1    /* read Z2 */
 #define XPT2046_READ_X  0xd1	/* Read X position */
 
-typedef struct _xpt2046 {
-	int Z1;	// Z1 driving XN and YP, reading XP
-	int Z2;	// Z2 driving XN and YP, reading YN
-	int X;	// X Position, driving XP and YN, reading YP
-	int Y;	// Y Position, driving YP and YN, reading XP
+typedef struct _xpt2046 
+{
+	// touch debounce state machine
     int state;  // Debounce state machine
     int ms;     // Debounce 1mS timer
-	int key_X;	// Debounced X
-	int key_Y;	// Debounced Y
+
+	// touch input queue
+    int count;	// touch events
+    int head;	// head of touch event queue
+    int tail;	// tail of touch event queue
+	uint16_t XQ[XPT2046_EVENTS+1];	// Debounced X result
+	uint16_t YQ[XPT2046_EVENTS+1];	// Debounced Y result
 } xpt2046_t;
 
 typedef struct _sdev {
@@ -53,9 +57,12 @@ typedef struct _sdev {
 
 /* xpt2046.c */
 MEMSPACE void XPT2046_spi_init ( void );
+void XPT2046_key_flush ( void );
+int XPT2046_key ( uint16_t *X , uint16_t *Y );
 uint16_t XPT2046_read ( uint8_t cmd );
-int XPT2046_task ( xpt2046_t *m );
-int XPT2046_key ( xpt2046_t *m , int *X , int *Y );
+int XPT2046_read_filtered ( uint16_t *X , uint16_t *Y );
+void XPT2046_task ( void );
+
 
 #endif // _XPT2046_H_
 

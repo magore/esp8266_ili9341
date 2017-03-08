@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['x',['X',['../struct__fontspecs.html#a7273a891c79308389718266cb0b66f56',1,'_fontspecs::X()'],['../struct__font.html#a64a08fdbdaa19418a9b7a34a2db33150',1,'_font::X()'],['../struct__xpt2046.html#a0ec6de4636a5f747e363186ff347039f',1,'_xpt2046::X()'],['../struct__fontc.html#ad15d00ed46ebe52a085cf05b5ca5da90',1,'_fontc::x()'],['../structwindow.html#a879b99940dfc34772f0257f54c67b817',1,'window::x()'],['../structpoint.html#a9c6b34deaf4900ad4193c17935fd384a',1,'point::x()'],['../structwire__p.html#a7a555c323bd3699ff2db08a3b3e791ed',1,'wire_p::x()'],['../cordic_8c.html#a46b4b48ef8c0c01099eb3bcdde8aa8db',1,'X():&#160;cordic.c'],['../cordic2c_8c.html#a46b4b48ef8c0c01099eb3bcdde8aa8db',1,'X():&#160;cordic2c.c']]],
+  ['x',['X',['../struct__fontspecs.html#a7273a891c79308389718266cb0b66f56',1,'_fontspecs::X()'],['../struct__font.html#a64a08fdbdaa19418a9b7a34a2db33150',1,'_font::X()'],['../struct__fontc.html#ad15d00ed46ebe52a085cf05b5ca5da90',1,'_fontc::x()'],['../structwindow.html#a879b99940dfc34772f0257f54c67b817',1,'window::x()'],['../structpoint.html#a9c6b34deaf4900ad4193c17935fd384a',1,'point::x()'],['../structwire__p.html#a7a555c323bd3699ff2db08a3b3e791ed',1,'wire_p::x()'],['../cordic_8c.html#a46b4b48ef8c0c01099eb3bcdde8aa8db',1,'X():&#160;cordic.c'],['../cordic2c_8c.html#a46b4b48ef8c0c01099eb3bcdde8aa8db',1,'X():&#160;cordic2c.c']]],
   ['xchg_5fspi',['xchg_spi',['../mmc_8c.html#a38f29ae10012d1cdd2e694aa2c340e22',1,'mmc.c']]],
   ['xdir_5facctime',['XDIR_AccTime',['../ff_8c.html#af0a826e3f3902172e3ebd5a3132a0153',1,'ff.c']]],
   ['xdir_5facctz',['XDIR_AccTZ',['../ff_8c.html#ab12e9f890b539722562824d569969959',1,'ff.c']]],
@@ -28,8 +28,11 @@ var searchData=
   ['xpt2046_2ec',['xpt2046.c',['../xpt2046_8c.html',1,'']]],
   ['xpt2046_2eh',['xpt2046.h',['../xpt2046_8h.html',1,'']]],
   ['xpt2046_5fdebounce',['XPT2046_DEBOUNCE',['../xpt2046_8h.html#a6e35379ae648fa9db798144a9902f8ec',1,'xpt2046.h']]],
-  ['xpt2046_5fkey',['XPT2046_key',['../xpt2046_8h.html#a9aa647a7668fa5cea6346fbaebed609a',1,'xpt2046.h']]],
+  ['xpt2046_5fevents',['XPT2046_EVENTS',['../xpt2046_8h.html#abce5dd412f3f040208dab108718fb875',1,'xpt2046.h']]],
+  ['xpt2046_5fkey',['XPT2046_key',['../xpt2046_8h.html#a56dd08ed90013cd1b0c695b009d11668',1,'xpt2046.h']]],
+  ['xpt2046_5fkey_5fflush',['XPT2046_key_flush',['../xpt2046_8h.html#ab871309defc5020afea02a7997828054',1,'xpt2046.h']]],
   ['xpt2046_5fread',['XPT2046_read',['../xpt2046_8h.html#a1dccf53d8f7692a9ae5f272c7a16f462',1,'xpt2046.h']]],
+  ['xpt2046_5fread_5ffiltered',['XPT2046_read_filtered',['../xpt2046_8h.html#a820028b126d09135f8c5a75b16f2457d',1,'xpt2046.h']]],
   ['xpt2046_5fread_5fx',['XPT2046_READ_X',['../xpt2046_8h.html#aacb7a75fd6c78e1cd4e87fa930654ef6',1,'xpt2046.h']]],
   ['xpt2046_5fread_5fy',['XPT2046_READ_Y',['../xpt2046_8h.html#aad6adcb00000ad4cdef14ece5e21bd81',1,'xpt2046.h']]],
   ['xpt2046_5fread_5fz1',['XPT2046_READ_Z1',['../xpt2046_8h.html#a1f7063812ae4edbb96165244ee717815',1,'xpt2046.h']]],
@@ -37,6 +40,7 @@ var searchData=
   ['xpt2046_5fsamples',['XPT2046_SAMPLES',['../xpt2046_8h.html#a0f015f6bedcfd4583ed1133ed6d11963',1,'xpt2046.h']]],
   ['xpt2046_5fspi_5finit',['XPT2046_spi_init',['../xpt2046_8h.html#acb7288fd027f95ea7db88c6f8c7c2c2a',1,'xpt2046.h']]],
   ['xpt2046_5ft',['xpt2046_t',['../xpt2046_8h.html#a08bf485f6a48ae0788b72c98a416e01c',1,'xpt2046.h']]],
-  ['xpt2046_5ftask',['XPT2046_task',['../xpt2046_8h.html#a1bb9116fd5099a0eab9cec20eca593c2',1,'xpt2046.h']]],
+  ['xpt2046_5ftask',['XPT2046_task',['../xpt2046_8h.html#a76ed09ff4a04f13c65e55ae3c4933f4b',1,'xpt2046.h']]],
+  ['xq',['XQ',['../struct__xpt2046.html#ac3f7953dda5a05a52276892bee461a29',1,'_xpt2046']]],
   ['xx1',['xx1',['../structex__regs.html#a12379b0b3152b878eebc8f18a6efeaf0',1,'ex_regs']]]
 ];

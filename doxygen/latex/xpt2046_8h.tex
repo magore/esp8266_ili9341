@@ -14,6 +14,8 @@ struct \hyperlink{struct__sdev}{\+\_\+sdev}
 \begin{DoxyCompactList}\small\item\em number of time to read and average results \end{DoxyCompactList}\item 
 \#define \hyperlink{xpt2046_8h_a6e35379ae648fa9db798144a9902f8ec}{X\+P\+T2046\+\_\+\+D\+E\+B\+O\+U\+N\+CE}~10 /$\ast$ Debound value in mS $\ast$/
 \item 
+\#define \hyperlink{xpt2046_8h_abce5dd412f3f040208dab108718fb875}{X\+P\+T2046\+\_\+\+E\+V\+E\+N\+TS}~10 /$\ast$ Number of queued touch events $\ast$/
+\item 
 \#define \hyperlink{xpt2046_8h_aad6adcb00000ad4cdef14ece5e21bd81}{X\+P\+T2046\+\_\+\+R\+E\+A\+D\+\_\+Y}~0x91    /$\ast$ Read Y position$\ast$/
 \begin{DoxyCompactList}\small\item\em only need 4 commands for reading position or touch information \end{DoxyCompactList}\item 
 \#define \hyperlink{xpt2046_8h_a1f7063812ae4edbb96165244ee717815}{X\+P\+T2046\+\_\+\+R\+E\+A\+D\+\_\+\+Z1}~0xb1	/$\ast$ Read Z1 $\ast$/
@@ -34,11 +36,15 @@ typedef struct \hyperlink{struct__sdev}{\+\_\+sdev} \hyperlink{xpt2046_8h_a4224e
 \item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{xpt2046_8h_acb7288fd027f95ea7db88c6f8c7c2c2a}{X\+P\+T2046\+\_\+spi\+\_\+init} (void)
 \item 
+void \hyperlink{xpt2046_8h_ab871309defc5020afea02a7997828054}{X\+P\+T2046\+\_\+key\+\_\+flush} (void)
+\item 
+int \hyperlink{xpt2046_8h_a56dd08ed90013cd1b0c695b009d11668}{X\+P\+T2046\+\_\+key} (\hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} $\ast$\hyperlink{cordic2c_8c_a46b4b48ef8c0c01099eb3bcdde8aa8db}{X}, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} $\ast$\hyperlink{cordic2c_8c_ab746e677f466f17031e92ed577fc3c15}{Y})
+\item 
 \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} \hyperlink{xpt2046_8h_a1dccf53d8f7692a9ae5f272c7a16f462}{X\+P\+T2046\+\_\+read} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} cmd)
 \item 
-int \hyperlink{xpt2046_8h_a1bb9116fd5099a0eab9cec20eca593c2}{X\+P\+T2046\+\_\+task} (\hyperlink{xpt2046_8h_a08bf485f6a48ae0788b72c98a416e01c}{xpt2046\+\_\+t} $\ast$m)
+int \hyperlink{xpt2046_8h_a820028b126d09135f8c5a75b16f2457d}{X\+P\+T2046\+\_\+read\+\_\+filtered} (\hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} $\ast$\hyperlink{cordic2c_8c_a46b4b48ef8c0c01099eb3bcdde8aa8db}{X}, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} $\ast$\hyperlink{cordic2c_8c_ab746e677f466f17031e92ed577fc3c15}{Y})
 \item 
-int \hyperlink{xpt2046_8h_a9aa647a7668fa5cea6346fbaebed609a}{X\+P\+T2046\+\_\+key} (\hyperlink{xpt2046_8h_a08bf485f6a48ae0788b72c98a416e01c}{xpt2046\+\_\+t} $\ast$m, int $\ast$\hyperlink{cordic2c_8c_a46b4b48ef8c0c01099eb3bcdde8aa8db}{X}, int $\ast$\hyperlink{cordic2c_8c_ab746e677f466f17031e92ed577fc3c15}{Y})
+void \hyperlink{xpt2046_8h_a76ed09ff4a04f13c65e55ae3c4933f4b}{X\+P\+T2046\+\_\+task} (void)
 \end{DoxyCompactItemize}
 
 
@@ -50,12 +56,19 @@ int \hyperlink{xpt2046_8h_a9aa647a7668fa5cea6346fbaebed609a}{X\+P\+T2046\+\_\+ke
 
 Definition at line 30 of file xpt2046.\+h.
 
+\index{xpt2046.\+h@{xpt2046.\+h}!X\+P\+T2046\+\_\+\+E\+V\+E\+N\+TS@{X\+P\+T2046\+\_\+\+E\+V\+E\+N\+TS}}
+\index{X\+P\+T2046\+\_\+\+E\+V\+E\+N\+TS@{X\+P\+T2046\+\_\+\+E\+V\+E\+N\+TS}!xpt2046.\+h@{xpt2046.\+h}}
+\subsubsection[{\texorpdfstring{X\+P\+T2046\+\_\+\+E\+V\+E\+N\+TS}{XPT2046_EVENTS}}]{\setlength{\rightskip}{0pt plus 5cm}\#define X\+P\+T2046\+\_\+\+E\+V\+E\+N\+TS~10 /$\ast$ Number of queued touch events $\ast$/}\hypertarget{xpt2046_8h_abce5dd412f3f040208dab108718fb875}{}\label{xpt2046_8h_abce5dd412f3f040208dab108718fb875}
+
+
+Definition at line 31 of file xpt2046.\+h.
+
 \index{xpt2046.\+h@{xpt2046.\+h}!X\+P\+T2046\+\_\+\+R\+E\+A\+D\+\_\+X@{X\+P\+T2046\+\_\+\+R\+E\+A\+D\+\_\+X}}
 \index{X\+P\+T2046\+\_\+\+R\+E\+A\+D\+\_\+X@{X\+P\+T2046\+\_\+\+R\+E\+A\+D\+\_\+X}!xpt2046.\+h@{xpt2046.\+h}}
 \subsubsection[{\texorpdfstring{X\+P\+T2046\+\_\+\+R\+E\+A\+D\+\_\+X}{XPT2046_READ_X}}]{\setlength{\rightskip}{0pt plus 5cm}\#define X\+P\+T2046\+\_\+\+R\+E\+A\+D\+\_\+X~0xd1	/$\ast$ Read X position $\ast$/}\hypertarget{xpt2046_8h_aacb7a75fd6c78e1cd4e87fa930654ef6}{}\label{xpt2046_8h_aacb7a75fd6c78e1cd4e87fa930654ef6}
 
 
-Definition at line 36 of file xpt2046.\+h.
+Definition at line 37 of file xpt2046.\+h.
 
 \index{xpt2046.\+h@{xpt2046.\+h}!X\+P\+T2046\+\_\+\+R\+E\+A\+D\+\_\+Y@{X\+P\+T2046\+\_\+\+R\+E\+A\+D\+\_\+Y}}
 \index{X\+P\+T2046\+\_\+\+R\+E\+A\+D\+\_\+Y@{X\+P\+T2046\+\_\+\+R\+E\+A\+D\+\_\+Y}!xpt2046.\+h@{xpt2046.\+h}}
@@ -66,21 +79,21 @@ only need 4 commands for reading position or touch information
 
 
 
-Definition at line 33 of file xpt2046.\+h.
+Definition at line 34 of file xpt2046.\+h.
 
 \index{xpt2046.\+h@{xpt2046.\+h}!X\+P\+T2046\+\_\+\+R\+E\+A\+D\+\_\+\+Z1@{X\+P\+T2046\+\_\+\+R\+E\+A\+D\+\_\+\+Z1}}
 \index{X\+P\+T2046\+\_\+\+R\+E\+A\+D\+\_\+\+Z1@{X\+P\+T2046\+\_\+\+R\+E\+A\+D\+\_\+\+Z1}!xpt2046.\+h@{xpt2046.\+h}}
 \subsubsection[{\texorpdfstring{X\+P\+T2046\+\_\+\+R\+E\+A\+D\+\_\+\+Z1}{XPT2046_READ_Z1}}]{\setlength{\rightskip}{0pt plus 5cm}\#define X\+P\+T2046\+\_\+\+R\+E\+A\+D\+\_\+\+Z1~0xb1	/$\ast$ Read Z1 $\ast$/}\hypertarget{xpt2046_8h_a1f7063812ae4edbb96165244ee717815}{}\label{xpt2046_8h_a1f7063812ae4edbb96165244ee717815}
 
 
-Definition at line 34 of file xpt2046.\+h.
+Definition at line 35 of file xpt2046.\+h.
 
 \index{xpt2046.\+h@{xpt2046.\+h}!X\+P\+T2046\+\_\+\+R\+E\+A\+D\+\_\+\+Z2@{X\+P\+T2046\+\_\+\+R\+E\+A\+D\+\_\+\+Z2}}
 \index{X\+P\+T2046\+\_\+\+R\+E\+A\+D\+\_\+\+Z2@{X\+P\+T2046\+\_\+\+R\+E\+A\+D\+\_\+\+Z2}!xpt2046.\+h@{xpt2046.\+h}}
 \subsubsection[{\texorpdfstring{X\+P\+T2046\+\_\+\+R\+E\+A\+D\+\_\+\+Z2}{XPT2046_READ_Z2}}]{\setlength{\rightskip}{0pt plus 5cm}\#define X\+P\+T2046\+\_\+\+R\+E\+A\+D\+\_\+\+Z2~0xc1    /$\ast$ read Z2 $\ast$/}\hypertarget{xpt2046_8h_aee315feb898d4f6f35389cb3068ad1eb}{}\label{xpt2046_8h_aee315feb898d4f6f35389cb3068ad1eb}
 
 
-Definition at line 35 of file xpt2046.\+h.
+Definition at line 36 of file xpt2046.\+h.
 
 \index{xpt2046.\+h@{xpt2046.\+h}!X\+P\+T2046\+\_\+\+S\+A\+M\+P\+L\+ES@{X\+P\+T2046\+\_\+\+S\+A\+M\+P\+L\+ES}}
 \index{X\+P\+T2046\+\_\+\+S\+A\+M\+P\+L\+ES@{X\+P\+T2046\+\_\+\+S\+A\+M\+P\+L\+ES}!xpt2046.\+h@{xpt2046.\+h}}
@@ -107,17 +120,23 @@ Definition at line 29 of file xpt2046.\+h.
 \subsection{Function Documentation}
 \index{xpt2046.\+h@{xpt2046.\+h}!X\+P\+T2046\+\_\+key@{X\+P\+T2046\+\_\+key}}
 \index{X\+P\+T2046\+\_\+key@{X\+P\+T2046\+\_\+key}!xpt2046.\+h@{xpt2046.\+h}}
-\subsubsection[{\texorpdfstring{X\+P\+T2046\+\_\+key(xpt2046\+\_\+t $\ast$m, int $\ast$\+X, int $\ast$\+Y)}{XPT2046_key(xpt2046_t *m, int *X, int *Y)}}]{\setlength{\rightskip}{0pt plus 5cm}int X\+P\+T2046\+\_\+key (
+\subsubsection[{\texorpdfstring{X\+P\+T2046\+\_\+key(uint16\+\_\+t $\ast$\+X, uint16\+\_\+t $\ast$\+Y)}{XPT2046_key(uint16_t *X, uint16_t *Y)}}]{\setlength{\rightskip}{0pt plus 5cm}int X\+P\+T2046\+\_\+key (
 \begin{DoxyParamCaption}
-\item[{{\bf xpt2046\+\_\+t} $\ast$}]{m, }
-\item[{int $\ast$}]{X, }
-\item[{int $\ast$}]{Y}
+\item[{{\bf uint16\+\_\+t} $\ast$}]{X, }
+\item[{{\bf uint16\+\_\+t} $\ast$}]{Y}
 \end{DoxyParamCaption}
-)}\hypertarget{xpt2046_8h_a9aa647a7668fa5cea6346fbaebed609a}{}\label{xpt2046_8h_a9aa647a7668fa5cea6346fbaebed609a}
+)}\hypertarget{xpt2046_8h_a56dd08ed90013cd1b0c695b009d11668}{}\label{xpt2046_8h_a56dd08ed90013cd1b0c695b009d11668}
 
 
-Referenced by loop().
+Referenced by user\+\_\+loop().
 
+\index{xpt2046.\+h@{xpt2046.\+h}!X\+P\+T2046\+\_\+key\+\_\+flush@{X\+P\+T2046\+\_\+key\+\_\+flush}}
+\index{X\+P\+T2046\+\_\+key\+\_\+flush@{X\+P\+T2046\+\_\+key\+\_\+flush}!xpt2046.\+h@{xpt2046.\+h}}
+\subsubsection[{\texorpdfstring{X\+P\+T2046\+\_\+key\+\_\+flush(void)}{XPT2046_key_flush(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void X\+P\+T2046\+\_\+key\+\_\+flush (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{xpt2046_8h_ab871309defc5020afea02a7997828054}{}\label{xpt2046_8h_ab871309defc5020afea02a7997828054}
 \index{xpt2046.\+h@{xpt2046.\+h}!X\+P\+T2046\+\_\+read@{X\+P\+T2046\+\_\+read}}
 \index{X\+P\+T2046\+\_\+read@{X\+P\+T2046\+\_\+read}!xpt2046.\+h@{xpt2046.\+h}}
 \subsubsection[{\texorpdfstring{X\+P\+T2046\+\_\+read(uint8\+\_\+t cmd)}{XPT2046_read(uint8_t cmd)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint16\+\_\+t} X\+P\+T2046\+\_\+read (
@@ -125,6 +144,14 @@ Referenced by loop().
 \item[{{\bf uint8\+\_\+t}}]{cmd}
 \end{DoxyParamCaption}
 )}\hypertarget{xpt2046_8h_a1dccf53d8f7692a9ae5f272c7a16f462}{}\label{xpt2046_8h_a1dccf53d8f7692a9ae5f272c7a16f462}
+\index{xpt2046.\+h@{xpt2046.\+h}!X\+P\+T2046\+\_\+read\+\_\+filtered@{X\+P\+T2046\+\_\+read\+\_\+filtered}}
+\index{X\+P\+T2046\+\_\+read\+\_\+filtered@{X\+P\+T2046\+\_\+read\+\_\+filtered}!xpt2046.\+h@{xpt2046.\+h}}
+\subsubsection[{\texorpdfstring{X\+P\+T2046\+\_\+read\+\_\+filtered(uint16\+\_\+t $\ast$\+X, uint16\+\_\+t $\ast$\+Y)}{XPT2046_read_filtered(uint16_t *X, uint16_t *Y)}}]{\setlength{\rightskip}{0pt plus 5cm}int X\+P\+T2046\+\_\+read\+\_\+filtered (
+\begin{DoxyParamCaption}
+\item[{{\bf uint16\+\_\+t} $\ast$}]{X, }
+\item[{{\bf uint16\+\_\+t} $\ast$}]{Y}
+\end{DoxyParamCaption}
+)}\hypertarget{xpt2046_8h_a820028b126d09135f8c5a75b16f2457d}{}\label{xpt2046_8h_a820028b126d09135f8c5a75b16f2457d}
 \index{xpt2046.\+h@{xpt2046.\+h}!X\+P\+T2046\+\_\+spi\+\_\+init@{X\+P\+T2046\+\_\+spi\+\_\+init}}
 \index{X\+P\+T2046\+\_\+spi\+\_\+init@{X\+P\+T2046\+\_\+spi\+\_\+init}!xpt2046.\+h@{xpt2046.\+h}}
 \subsubsection[{\texorpdfstring{X\+P\+T2046\+\_\+spi\+\_\+init(void)}{XPT2046_spi_init(void)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void X\+P\+T2046\+\_\+spi\+\_\+init (
@@ -138,12 +165,8 @@ Referenced by setup().
 
 \index{xpt2046.\+h@{xpt2046.\+h}!X\+P\+T2046\+\_\+task@{X\+P\+T2046\+\_\+task}}
 \index{X\+P\+T2046\+\_\+task@{X\+P\+T2046\+\_\+task}!xpt2046.\+h@{xpt2046.\+h}}
-\subsubsection[{\texorpdfstring{X\+P\+T2046\+\_\+task(xpt2046\+\_\+t $\ast$m)}{XPT2046_task(xpt2046_t *m)}}]{\setlength{\rightskip}{0pt plus 5cm}int X\+P\+T2046\+\_\+task (
+\subsubsection[{\texorpdfstring{X\+P\+T2046\+\_\+task(void)}{XPT2046_task(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void X\+P\+T2046\+\_\+task (
 \begin{DoxyParamCaption}
-\item[{{\bf xpt2046\+\_\+t} $\ast$}]{m}
+\item[{void}]{}
 \end{DoxyParamCaption}
-)}\hypertarget{xpt2046_8h_a1bb9116fd5099a0eab9cec20eca593c2}{}\label{xpt2046_8h_a1bb9116fd5099a0eab9cec20eca593c2}
-
-
-Referenced by loop().
-
+)}\hypertarget{xpt2046_8h_a76ed09ff4a04f13c65e55ae3c4933f4b}{}\label{xpt2046_8h_a76ed09ff4a04f13c65e55ae3c4933f4b}

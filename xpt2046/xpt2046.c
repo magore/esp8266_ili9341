@@ -51,6 +51,9 @@ int zstat = 0;
 /// @brief cache of SPI clock devisor
 uint32_t XPT2046_clock = -1;
 
+///@breif touch event queue
+static xpt2046_t xpt2046;
+
 /// @brief Obtain SPI bus for XPT2046, raises LE
 /// return: void
 MEMSPACE
@@ -58,8 +61,39 @@ void XPT2046_spi_init(void)
 {
 	XPT2046_clock = 16;
 	chip_select_init(XPT2046_CS);
+	XPT2046_key_flush();
 }
 
+
+/// @brief  reset touch queue
+void XPT2046_key_flush()
+{
+	xpt2046.state = 0;
+	xpt2046.ms = 0;
+	xpt2046.count = 0;
+	xpt2046.head = 0;
+	xpt2046.tail = 0;
+}
+
+/// @brief  Read a touch event
+/// @param[in] *X: X position
+/// @param[in] *Y: Y position
+/// return: 1 on touch event in queue
+int XPT2046_key(uint16_t *X, uint16_t *Y)
+{
+	XPT2046_task();
+
+	if(xpt2046.count > 0)
+	{
+		*X = (uint16_t) xpt2046.XQ[xpt2046.tail];
+		*Y = (uint16_t) xpt2046.YQ[xpt2046.tail];
+		if(++xpt2046.tail >= XPT2046_EVENTS)
+			xpt2046.tail = 0;
+		xpt2046.count--;
+		return(1);
+	}
+	return(0);
+}
 
 
 /**
@@ -136,138 +170,121 @@ uint16_t XPT2046_read(uint8_t cmd)
     return(val);
 }
 
-
-/// @brief  Check for a touch event and also do debouncing task
-/// Average several samples for a result
-/// @param[in] *m: touch data structure
-/// return: Z as non zero implies touch event
-int XPT2046_task(xpt2046_t *m)
+/// @brief  Read current averaged X andd Y state
+/// If  touch state changes while averaging we restart
+/// @param[in] *X: X position
+/// @param[in] *Y: Y position
+/// return: 1 if touch state is true
+int XPT2046_read_filtered(uint16_t *X, uint16_t *Y)
 {
-	int i;
+	int Z1,Z2,Z;
+	long Xavg = 0;		// Average of count X samples
+	long Yavg = 0;		// Average of count Y samples
+	int T = 0;			// Current touch state, 1 of touch, 0 if not
+	int TL = 2;			// Last touch state - set to invalid
+	int count = 0;		// Sample counter - to compute average 
 
-	int X,Y,Z1,Z2,Z;
-	int Xsum,Ysum,Z1sum,Z2sum,Zsum;
-
-	Xsum=0;
-	Ysum=0;
-	Z1sum=0;
-	Z2sum=0;
-	Zsum=0;
-
-	// To reduce noise we compute the average of a number of samples
-	// Must have at least XPT2046_SAMPLES for a valid test
-	i = 0;
 	do
 	{
-		X = XPT2046_read(XPT2046_READ_X);
-		Y = XPT2046_read(XPT2046_READ_Y);
 		Z1 = XPT2046_read(XPT2046_READ_Z1);
 		Z2 = XPT2046_read(XPT2046_READ_Z2);
-
-		// The touch voltage drop is a rough approximation
 		// of the touch pressure
 		Z = (4095 - Z2) + Z1;
 		if(Z < 0)
 			Z = -Z;
-		if(Z < 200)
-			break;
-		Xsum += X;
-		Ysum += Y;
-		Z1sum += Z1;
-		Z2sum += Z2;
-		Zsum += Z;
-	}
-	while(++i < XPT2046_SAMPLES);
-
-	// Do we have a full set of samples ?
-	if(i == XPT2046_SAMPLES)
-	{
-		// compute average to reduce noise
-		m->X = (Xsum / XPT2046_SAMPLES);
-		m->Y = (Ysum / XPT2046_SAMPLES);
-		m->Z1 = (Z1sum / XPT2046_SAMPLES);
-		m->Z2 = (Z2sum / XPT2046_SAMPLES);
-		Z = (Zsum / XPT2046_SAMPLES);
-		if(Z < 0)
-			Z = -Z;
-	}
-	else
-	{
-		m->Z1 = 0;
-		m->Z2 = 0;
-		Z = 0;
-	}
-
-	// Key debounce state machine
-	switch(m->state) 
-	{
-		// wait for key down
-		case 0:                 
-			if(Z > 200)	// key is down
-			{
-				if(++m->ms == XPT2046_DEBOUNCE) 	// wait for key down debounce time
-				{
-					m->ms = 0;
-					m->state = 1;
-				}
-			}
-			else	// Initial condition
-			{
-				m->ms = 0;
-				m->state = 0;
-				m->key_X = m->X;
-				m->key_Y = m->Y;
-			}
-			break;
-		// Wait for key release - debounce release
-        case 1:                 
-			if(Z < 200)
-			{
-				if(++m->ms == XPT2046_DEBOUNCE) 
-				{
-					m->ms = 0;
-					m->state = 2;
-				}
-			}
-			else	// Not released yet - go back
-			{
-				m->ms = 0;
-				m->state = 1;
-			}
-			break;
-		// We are now at debounced release time - valid key depress
-        case 2:
-			// TODO add input queue
-			// read key X,Y here
-			m->key_X = m->X;
-			m->key_Y = m->Y;
-			m->state = 3;
-            break;
-		// Halt
-        case 3:
-            m->ms = 0;
-			break;
-		default:
-            m->ms = 0;
-			m->state = 3;
-			break;
-	}
-	return(Z);
+		T = (Z > 200) ? 1 : 0;
+		if(T != TL) 
+		{
+			count = 0;
+			TL = T;
+			continue;
+		}
+		Xavg += XPT2046_read(XPT2046_READ_X);
+		Yavg += XPT2046_read(XPT2046_READ_Y);
+		TL = T;
+	}	while(++count < XPT2046_SAMPLES);
+	Xavg /= XPT2046_SAMPLES;
+	Yavg /= XPT2046_SAMPLES;
+	*X = (uint16_t) Xavg;
+	*Y = (uint16_t) Yavg;
+	return(T);	// 1 = touch event, 0 is no touch event
 }
 
-/// @brief  Read a debounced Key position
-/// @param[in] *m: touch data structure
-/// return: if(Z) then *X and *Y has debounced touch coordinates
-int XPT2046_key(xpt2046_t *m, int *X, int *Y)
+
+/// @brief Task to collect debounced touch screen key press events 
+/// return: void
+void XPT2046_task()
 {
-	if(m->state == 3)
+	int i;
+	uint16_t X,Y;
+	int T;
+	long Xavg, Yavg;
+
+	T = XPT2046_read_filtered((uint16_t *)&X, (uint16_t *)&Y);
+	
+	// Key debounce state machine
+	switch(xpt2046.state) 
 	{
-		*X = m->key_X;
-		*Y = m->key_Y;
-		m->state = 0;
-		return(1);
+		// Full init
+		case 0:                 
+			xpt2046.state = 1;
+			xpt2046.ms = 0;
+			xpt2046.count = 0;
+			xpt2046.head = 0;
+			xpt2046.tail = 0;
+			// Fall through to state 1
+		case 1:
+			if(T)	// key is down
+			{
+				// wait for key down debounce time before taking a sample
+				if(++xpt2046.ms < XPT2046_DEBOUNCE) 	
+					break;
+
+				if(xpt2046.count < XPT2046_EVENTS )
+				{
+					xpt2046.XQ[xpt2046.head] = X;
+					xpt2046.YQ[xpt2046.head] = Y;
+					if(++xpt2046.head >= XPT2046_EVENTS)
+						xpt2046.head = 0;
+					xpt2046.count++;
+					xpt2046.state = 2;
+					xpt2046.ms = 0;
+				}
+				else
+				{
+					xpt2046.ms = 0;
+				}
+			}	// if (T)
+			else	// Restart timer and wait for touch debounce time
+			{
+				xpt2046.ms = 0;
+			}
+			break;
+
+			// Wait for touch release debounce time
+        case 2:                 
+			// Released ?
+			if(!T)
+			{
+				// Debounce release time - valid key depress cycle done
+				if(++xpt2046.ms >= XPT2046_DEBOUNCE) 
+				{
+					xpt2046.ms = 0;
+					xpt2046.state = 1;
+				}
+			}
+			else	// Still depressed
+			{
+				xpt2046.ms = 0;
+			}
+			break;
+
+
+			// Error INIT
+		default:
+			xpt2046.state = 0;
+			break;
 	}
-	return(0);
 }
 
 ///TODO add filtering

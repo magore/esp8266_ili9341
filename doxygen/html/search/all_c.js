@@ -19,7 +19,7 @@ var searchData=
   ['matchi_5flen',['MATCHI_LEN',['../stringsup_8c.html#ab012fa46a47fa2430d6ebd25ed38c59e',1,'MATCHI_LEN(char *str, char *pat):&#160;stringsup.c'],['../stringsup_8h.html#ab012fa46a47fa2430d6ebd25ed38c59e',1,'MATCHI_LEN(char *str, char *pat):&#160;stringsup.c']]],
   ['mathio_2ec',['mathio.c',['../mathio_8c.html',1,'']]],
   ['mathio_2eh',['mathio.h',['../mathio_8h.html',1,'']]],
-  ['max',['Max',['../struct__sdev.html#a72bab17004f1930230095b909e87c84f',1,'_sdev::Max()'],['../structp__ch__t.html#a0dee9f28e498d427e53051b7e1846d34',1,'p_ch_t::max()']]],
+  ['max',['max',['../structp__ch__t.html#a0dee9f28e498d427e53051b7e1846d34',1,'p_ch_t::max()'],['../struct__sdev.html#a72bab17004f1930230095b909e87c84f',1,'_sdev::Max()']]],
   ['max_5fconnections',['MAX_CONNECTIONS',['../web_8h.html#a053b7859476cc9867ec62c49e68d3fa1',1,'web.h']]],
   ['max_5fconns',['MAX_CONNS',['../server_8c.html#ad74125223df99954750abebacd84a138',1,'server.c']]],
   ['max_5fdir',['MAX_DIR',['../ff_8c.html#a556a1452c85d74c908fe071754ce4a71',1,'ff.c']]],
