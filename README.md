@@ -22,6 +22,9 @@
      * readPixel() function supported
      * The specific display this was tested on is a TM022HDH26 display I got from eBay.
      * Not limited by ILI9341 hardware scroll restrictions.
+   * xpt2046 touch controller 
+     * filtered read of XY 
+     * debounced key press read of queued events
    * BDF FONT compiler tools and fonts sets 
      * Tools to creates C code used in the display drivers
    * Wireframe Viewer 
@@ -82,7 +85,8 @@ ___
     * get_esptool - downloads the latest version of esptool - required for this project
     * header - example C headers required for C programs in this project
     * Makefile from CHERTS modified for the project
-      * Features controlled by variables in Makefile
+      * Features are all controlled by variables in Makefile
+      * Note the Makefile downloads the latest esptool automatically so it is no longer includd here
     * meminfo.sh - displays current RAM usage for the project
       * Example: ./meminfo.sh build/demo.elf
     * miniterm - shell script to launch terminal to 115200 baud
