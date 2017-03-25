@@ -2,7 +2,6 @@ var searchData=
 [
   ['macaddr',['macaddr',['../network_8c.html#ad6ffa7743848d35021d59a06df02d7cb',1,'network.c']]],
   ['map',['map',['../struct__xpt2046.html#a851cf6f24189bb94005f00867080a4cd',1,'_xpt2046']]],
-  ['master',['master',['../user__main_8c.html#a3c3825d702360b467501feca5bd25dab',1,'user_main.c']]],
   ['max',['max',['../structp__ch__t.html#a0dee9f28e498d427e53051b7e1846d34',1,'p_ch_t::max()'],['../struct__sdev.html#acee505856b840e75edf6af7da7bdaad3',1,'_sdev::max()']]],
   ['mean',['mean',['../struct__sdev.html#a2bd0cf80fd334fabaac9100a2538bcb5',1,'_sdev']]],
   ['mime',['mime',['../structmime__t.html#ad796d16eaee60d7435bff66b2e9b8a8d',1,'mime_t']]],

@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['idletaskprio',['IdleTaskPrio',['../user__main_8c.html#ad590be8723277c812ff664f5c0743548',1,'user_main.c']]],
-  ['idletaskqueuelen',['IdleTaskQueueLen',['../user__main_8c.html#afbd10fc81998d8d99e705db01a1ab07f',1,'user_main.c']]],
   ['ili9341_5fblack',['ILI9341_BLACK',['../ili9341__adafruit_8h.html#a50166b9a65012fb2f8fe0a0d5f519fa3',1,'ili9341_adafruit.h']]],
   ['ili9341_5fblue',['ILI9341_BLUE',['../ili9341__adafruit_8h.html#aa15cf651d66764cb8024808d6ea48eef',1,'ili9341_adafruit.h']]],
   ['ili9341_5fcaset',['ILI9341_CASET',['../ili9341__adafruit_8h.html#a0735e9a5ee316588f5430559b56074c4',1,'ili9341_adafruit.h']]],

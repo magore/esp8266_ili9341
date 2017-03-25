@@ -200,7 +200,7 @@ int main(int argc, char *argv[])
         }
         else
         {
-			// WIRE_HALF gives cale factor of 1 (+/-0.5)
+			// WIRE_HALF gives scale factor of 1 (+/-0.5)
 			x = (cos(lat_rad) * cos(lon_rad)) * WIRE_HALF;
             y = (cos(lat_rad) * sin(lon_rad)) * WIRE_HALF;
             z = sin(lat_rad) * WIRE_HALF;

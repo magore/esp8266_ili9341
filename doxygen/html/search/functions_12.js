@@ -9,7 +9,6 @@ var searchData=
   ['select',['select',['../mmc_8c.html#aa25e843f96b6052ed79d3c70bc013935',1,'mmc.c']]],
   ['send_5fcmd',['send_cmd',['../mmc_8c.html#afd47154c84441f723909d5875aa64efd',1,'mmc.c']]],
   ['send_5fmessage',['send_message',['../send_8c.html#a9a62fadd2a5476668fdec898c42d4922',1,'send.c']]],
-  ['sendmsgtousertask',['sendMsgToUserTask',['../user__main_8c.html#a1c325cd5f5c4958a2217e947f8ca59ea',1,'user_main.c']]],
   ['servertest_5fmessage',['servertest_message',['../server_8c.html#aa4a250922085a8685fc1056dbdbd89dd',1,'servertest_message(window *win):&#160;server.c'],['../server_8h.html#aa4a250922085a8685fc1056dbdbd89dd',1,'servertest_message(window *win):&#160;server.c']]],
   ['servertest_5freceive',['servertest_receive',['../server_8c.html#a6868f619a2b0ed58a4d155c5a458fccb',1,'servertest_receive(void *arg, char *pdata, unsigned short len):&#160;server.c'],['../server_8h.html#a6868f619a2b0ed58a4d155c5a458fccb',1,'servertest_receive(void *arg, char *pdata, unsigned short len):&#160;server.c']]],
   ['servertest_5fsetup',['servertest_setup',['../server_8c.html#ac0a4b06c201a20489dee20d65ad6f4f0',1,'servertest_setup(int port):&#160;server.c'],['../server_8h.html#ac0a4b06c201a20489dee20d65ad6f4f0',1,'servertest_setup(int port):&#160;server.c']]],

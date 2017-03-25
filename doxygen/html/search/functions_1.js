@@ -1,6 +1,7 @@
 var searchData=
 [
   ['abort',['abort',['../user__task_8c.html#ac54f53dc342019e8db34f4aa581a5792',1,'abort():&#160;user_task.c'],['../user__task_8h.html#a8dec7c95227ff149687066cf04029191',1,'abort(void):&#160;user_task.c']]],
+  ['adc_5fread',['adc_read',['../user__main_8c.html#ac9ad8e3830c026847c00b6d46591dbdb',1,'user_main.c']]],
   ['addfontname',['AddFontName',['../bdffontutil_8c.html#a6293de28b724a18693465ec67868d958',1,'AddFontName(_font *font):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a6293de28b724a18693465ec67868d958',1,'AddFontName(_font *font):&#160;bdffontutil.c']]],
   ['adf4351_5fcharge_5fpump_5fua',['ADF4351_CHARGE_PUMP_uA',['../adf4351_8c.html#a324309e3155806af38a6140b8543d39c',1,'ADF4351_CHARGE_PUMP_uA(int32_t x):&#160;adf4351.c'],['../adf4351_8h.html#a324309e3155806af38a6140b8543d39c',1,'ADF4351_CHARGE_PUMP_uA(int32_t x):&#160;adf4351.c']]],
   ['adf4351_5fcmd',['adf4351_cmd',['../adf4351_8h.html#aa04820fdf56ad71c4d1680da0dda6634',1,'adf4351_cmd(char *line):&#160;adf4351_cmd.c'],['../adf4351__cmd_8c.html#ae0f28b621527985bf027ba229052f2bf',1,'adf4351_cmd(char *line):&#160;adf4351_cmd.c']]],

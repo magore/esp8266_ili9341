@@ -33,93 +33,91 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "time.h"
 #include "timer.h"
 
-#include "display/ili9341.h"
-
-#include "network/network.h"
-
-#ifdef WIRECUBE
-	#include "cordic/cordic.h"
-	#include "wire.h"
-	#include "cube_data.h"
-#endif
-
-#ifdef EARTH
-	#include "cordic/cordic.h"
-	#include "wire.h"
-	#include "earth_data.h"
-#endif
 
 #ifdef ADF4351
 	#include "adf4351.h"
 #endif
 
-#ifdef XPT2046
-	#include "xpt2046.h"
-#endif
-
 #include "matrix.h"
-
 #include "esp8266/system.h"
 #include "lib/stringsup.h"
 
-/* 
- * Window layouts    optional
- *
- *         wintop    winearth
- *         winmsg    wincube
- *         winbottom
- */
+#ifdef DISPLAY
+	#include "display/ili9341.h"
+	
+	#include "network/network.h"
+	
+	#ifdef WIRECUBE
+		#include "cordic/cordic.h"
+		#include "wire.h"
+		#include "cube_data.h"
+	#endif
+	
+	#ifdef EARTH
+		#include "cordic/cordic.h"
+		#include "wire.h"
+		#include "earth_data.h"
+	#endif
+	
+	#ifdef XPT2046
+		#include "xpt2046.h"
+	#endif
+	
+	/* 
+	 * Window layouts    optional
+	 *
+	 *         wintop    winearth
+	 *         winmsg    wincube
+	 *         winbottom
+	 */
+	
+	/* Master Window, Full size of TFT */
+	window *master;
+	
+	/* Bottom status window */
+	window _winbottom;
+	window *winbottom = &_winbottom;
+	
+	/* wintop and winearth have the same height
+	/* Top Left status window */
+	window _wintop;
+	window *wintop = &_wintop;
+	
+	/* Earth Top Right status window */
+	window _winearth;
+	window *winearth = &_winearth;
+	
+	/* winmsg and winearth have the same height
+	/* Middle Left status window */
+	window _winmsg;
+	window *winmsg = &_winmsg;
+	
+	/* Right Wireframe window */
+	window _wincube;
+	window *wincube = &_wincube;
 
+	// Rotation angle
+	LOCAL double degree = 0.0;
+	// Rotation increment
+	LOCAL double deg_inc = 4;
+	// Scale increment
+	LOCAL double dscale_inc;
+	// Scale factor
+	LOCAL double dscale;
+	// Scale maximum
+	LOCAL double dscale_max;
 
-/* Master Window, Full size of TFT */
-window *master;
+	LOCAL long count = 0;
+	LOCAL int rad;
+	LOCAL point V;
+	LOCAL point S;
 
-/* Bottom status window */
-window _winbottom;
-window *winbottom = &_winbottom;
+#endif
 
-/* wintop and winearth have the same height
-/* Top Left status window */
-window _wintop;
-window *wintop = &_wintop;
-
-/* Earth Top Right status window */
-window _winearth;
-window *winearth = &_winearth;
-
-/* winmsg and winearth have the same height
-/* Middle Left status window */
-window _winmsg;
-window *winmsg = &_winmsg;
-
-/* Right Wireframe window */
-window _wincube;
-window *wincube = &_wincube;
 
 //extern int printf(const char *fmt, ...);
 void ets_timer_disarm(ETSTimer *ptimer);
 void ets_timer_setfn(ETSTimer *ptimer, ETSTimerFunc *pfunction, void *parg);
-
-
-// Rotation angle
-LOCAL double degree = 0.0;
-// Rotation increment
-LOCAL double deg_inc = 4;
-// Scale increment
-LOCAL double dscale_inc;
-// Scale factor
-LOCAL double dscale;
-// Scale maximum
-LOCAL double dscale_max;
-
-LOCAL long count = 0;
-LOCAL int rad;
-LOCAL point V;
-LOCAL point S;
-
-LOCAL uint32_t adc_sum = 0;
-LOCAL int adc_count = 0;
-double voltage = 0;
 
 unsigned long ms_time = 0;
 
@@ -192,8 +190,8 @@ void ntp_setup(void)
 		ipaddr_aton("167.114.204.238", addr);
 		sntp_setserver(2,addr);
 
-		// Alternate time setting if the local router does NTP
 #if 0
+		// Alternate time setting if the local router does NTP
 		if(wifi_get_ip_info(0, &getinfo))
 		{
 			printf("NTP:0 GW: %s\n", ipv4_2str(getinfo.gw.addr));
@@ -272,8 +270,6 @@ user_tasks()
 {
 	char buffer[260];
 
-	// NTP state machine
-	ntp_setup();
 	if(kbhit(0, 1)) /// second argument 1 = only report when an EOL is detectedEOL
 	{
 		int flag = 0;
@@ -311,50 +307,68 @@ extern uint8_t ip_msg[];
 
 int skip = 0;
 
-unsigned long last_time10 = 0;
-unsigned long last_time50 = 0;
+long last_time10 = 0;
+long last_time50 = 0;
+time_t sec = 0;
 
 int loop_cnt = 0;
 
+// VCC voltage divider
+#define R1 330000.0
+// R2 is actually a variable resister
+#define R2 100000.0
+
+// ADC read error scale
+// Measured error
+#define VERROR 0.95
+// This is reduced to a single constant by the compiler
+#define VSCALE (VERROR*((R1+R2)/R2)/1024.0)
+
+/**
+ @brief return system_adc_read scaled to a float 
+  T_OUT pin is connected to the junction of a voltage divider R1 and R2
+  R1 is connected to VCC
+  R2 is connected to ground
+  T_OUT is connected to the junction of R1 and R2
+//FIXME T_OUT has a loading value
+ @return float
+*/
+float adc_read()
+{
+	uint16_t system_adc_read(void);
+	// system adc read returns 0 .. 1023
+	// range 0 .. 1.0V
+	return( ((float)system_adc_read()) * VSCALE );
+}
 
 // main task loop called by yield code
 void user_loop(void)
 {
 	extern int connections;
 	uint32_t time1,time2;
-	unsigned long t;
-	time_t sec;
+	long t;
+#ifdef DISPLAY
 	char time_tmp[32];
 	uint8_t red, blue,green;
-	int ret, touched;
-	uint16_t system_adc_read(void);
+	int touched;
 	uint16_t X,Y;
+#endif
+
 	// getinfo.ip.addr, getinfo.gw.addr, getinfo.netmask.addr
 	struct ip_info getinfo;
 	char *ptr;
 
+	// ========================================================
 	// Run all remaining tasks once every 1mS
 	t = ms_read();
 	if((t - last_time10) < 1U)
 		return;
 	last_time10 = t;
 	// ========================================================
-
-	user_tasks();
+// Tasks that must run very fast , once every millisecond should be at the top
 
 #ifdef ADF4351
 	ADF4351_task();
-#endif
-
-#ifdef XPT2046
-	// This dequeues touch events
-
-	// FIXME testing shows we need at least 2 samples in a row to be ok
-	//if( (ret = XPT2046_xy_mapped((uint16_t *)&X, (uint16_t *)&Y)) > 1 )
-	if( (ret = XPT2046_xy_filtered_mapped((uint16_t *)&X, (uint16_t *)&Y)) )
-	{
-		tft_set_font(winmsg,0);
-	}
 #endif
 
 	// ========================================================
@@ -365,102 +379,108 @@ void user_loop(void)
 	last_time50 = t;
 	// ========================================================
 
-#ifdef VOLTAGE_TEST
-	// FIXME voltage not correct 
-	//       make sure the pin function is assigned
+	user_tasks();
 
-	// Get system voltage 33 = 3.3 volts
-	adc_sum += system_adc_read();
-
-	// FIXME atomic access
-	if(++adc_count == 10)
-	{
-		voltage = ((double) adc_sum / 100.0); 
-		adc_count = 0;
-		adc_sum = 0;
-	}
-#endif
+	// NTP state machine
+	ntp_setup();
 
 
-#ifdef DEBUG_STATS
-	count += 1;
-	tft_set_textpos(wintop, 0,0);
-	tft_set_font(wintop,0);
-	tft_font_fixed(wintop);
-	tft_printf(wintop,"Iter:% 10ld, %+7.2f\n", count, degree);
-#endif
+#ifdef DISPLAY
+	#ifdef XPT2046
+		// This dequeues touch events
+		// FIXME testing shows we need at least 2 samples in a row to be ok
+		//if( (ret = XPT2046_xy_mapped((uint16_t *)&X, (uint16_t *)&Y)) > 1 )
+		touched = XPT2046_xy_filtered_mapped((uint16_t *)&X, (uint16_t *)&Y);
+	#endif
 
-#ifdef NETWORK_TEST
-	servertest_message(winmsg);
-#endif
+	#ifdef NETWORK_TEST
+		servertest_message(winmsg);
+	#endif
 
-#ifdef CIRCLE
-	rad = dscale; // +/- 90
-    tft_drawCircle(wincube, wincube->w/2, wincube->h/2, rad ,wincube->bg);
-	// RGB 
-#endif
+	#ifdef DEBUG_STATS
+		#ifdef VOLTAGE_TEST
+			#ifdef DEBUG_STATS
+				// Do NOT run adc_read() every millisecond as system_adc_read() blocks WIFI 
+				tft_set_textpos(wintop, 0,2);
+				tft_printf(wintop,"Volt:%2.2f\n", (float)adc_read());
+			#endif
+		#endif // VOLTAGE_TEST
 
-// reset cube to background
-#ifdef WIRECUBE
-	V.x = degree;
-	V.y = degree;
-	V.z = degree;
-// Cube points were defined with sides of 1.0 
-// We want a scale of +/- w/2
-	wire_draw(wincube, cube_points, cube_edges, &V, wincube->w/2, wincube->h/2, dscale, wincube->bg);
-#endif
+		count += 1;
+		tft_set_textpos(wintop, 0,0);
+		tft_set_font(wintop,0);
+		tft_font_fixed(wintop);
+		tft_printf(wintop,"Iter:% 10ld, %+7.2f\n", count, degree);
+	#endif
 
-    degree += deg_inc;
-    dscale += dscale_inc;
+	#ifdef CIRCLE
+		rad = dscale; // +/- 90
+		tft_drawCircle(wincube, wincube->w/2, wincube->h/2, rad ,wincube->bg);
+		// RGB 
+	#endif
+
+	// reset cube to background
+	#ifdef WIRECUBE
+		V.x = degree;
+		V.y = degree;
+		V.z = degree;
+		// Cube points were defined with sides of 1.0 
+		// We want a scale of +/- w/2
+		wire_draw(wincube, cube_points, cube_edges, &V, wincube->w/2, wincube->h/2, dscale, wincube->bg);
+	#endif
+
+	degree += deg_inc;
+	dscale += dscale_inc;
 
 	if(degree <= -360)
 		deg_inc = 4;
 	if(degree >= 360)
 		deg_inc = -4;
 
-    if(dscale < dscale_max/2)
+	if(dscale < dscale_max/2)
 	{
 	   dscale_inc = -dscale_inc;
 	}
-    if(dscale > dscale_max)
+	if(dscale > dscale_max)
 	{
 	   dscale_inc = -dscale_inc;
 	}
 
-#ifdef WIRECUBE
-	V.x = degree;
-	V.y = degree;
-	V.z = degree;
-	wire_draw(wincube, cube_points, cube_edges, &V, wincube->w/2, wincube->h/2, dscale, ILI9341_WHITE);
-#endif
+	#ifdef WIRECUBE
+		V.x = degree;
+		V.y = degree;
+		V.z = degree;
+		wire_draw(wincube, cube_points, cube_edges, &V, wincube->w/2, wincube->h/2, dscale, ILI9341_WHITE);
+	#endif
 
-#ifdef CIRCLE
-	// Display bounding circle that changes color around the cube
-	if(dscale_inc < 0.0)
-	{
-		red = 255;
-		blue = 0;
-		green = 0;
-	}
-	else
-	{
-		red = 0;
-		blue = 0;
-		green = 255;
-	}
-	rad = dscale; // +/- 90
-    tft_drawCircle(wincube, wincube->w/2, wincube->h/2, rad, tft_RGBto565(red,green,blue));
-#endif
+	#ifdef CIRCLE
+		// Display bounding circle that changes color around the cube
+		if(dscale_inc < 0.0)
+		{
+			red = 255;
+			blue = 0;
+			green = 0;
+		}
+		else
+		{
+			red = 0;
+			blue = 0;
+			green = 255;
+		}
+		rad = dscale; // +/- 90
+		tft_drawCircle(wincube, wincube->w/2, wincube->h/2, rad, tft_RGBto565(red,green,blue));
+	#endif
+#endif	// DISPLAY
 
 	// ========================================================
-	// Update status messages every second
+	// Tasks run only once every second go after this
 	time(&sec);
 	if(sec == seconds)
 		return;
 	seconds=sec;
 	// ========================================================
 
-
+#ifdef DISPLAY
 	// ========================================================
 	// TIME
 	tft_set_textpos(winbottom, 0,0);
@@ -481,32 +501,23 @@ void user_loop(void)
 		tft_printf(winbottom," Disconnected");
 	tft_cleareol(winbottom);
 
-#ifdef DEBUG_STATS
-	// ========================================================
-	// HEAP size
-	tft_set_textpos(wintop, 0,1);
-	tft_printf(wintop,"Heap: %d, Conn:%d\n", 
+	#ifdef DEBUG_STATS
+		// ========================================================
+		// HEAP size
+		tft_set_textpos(wintop, 0,1);
+		tft_printf(wintop,"Heap: %d, Conn:%d\n", 
 		system_get_free_heap_size(), connections);
-	
-#ifdef VOLTAGE_TEST
-	// ========================================================
-	// VOLTAGE status
-	tft_set_textpos(wintop, 0,2);
-	tft_printf(wintop,"Volt:%2.2f\n", (float)voltage);
-#endif
-	// ========================================================
-	// WIFI status
-	tft_set_textpos(wintop, 0,3);
-	tft_printf(wintop,"CH:%02d, DB:%+02d\n", 
+		
+		// ========================================================
+		// WIFI status
+		tft_set_textpos(wintop, 0,3);
+		tft_printf(wintop,"CH:%02d, DB:%+02d\n", 
 		wifi_get_channel(),
 		wifi_station_get_rssi());
-#endif
+	#endif	// DEBUG_STATS
+#endif	//DISPLAY
 
 }
-
-
-
-
 
 int inloop = 0;
 void loop()
@@ -546,53 +557,36 @@ void loop()
 }
 
 
-#if ILI9341_DEBUG & 1
-MEMSPACE
-void read_tests(window *win)
-{
-	int x,y;
-	uint16_t color;
-	uint16_t buffer[3*16];	// 16 RGB sets
-	y = 4;
-	tft_readRect(win, x, y, 16, 1, buffer);
-	for(x=0;x<16;++x)
+#ifdef DISPLAY
+	#if ILI9341_DEBUG & 1
+	MEMSPACE
+	void read_tests(window *win)
 	{
-		printf("x:%d,y:%d,c:%04x\n", x,y,buffer[x]);
+		int x,y;
+		uint16_t color;
+		uint16_t buffer[3*16];	// 16 RGB sets
+		y = 4;
+		tft_readRect(win, x, y, 16, 1, buffer);
+		for(x=0;x<16;++x)
+		{
+			printf("x:%d,y:%d,c:%04x\n", x,y,buffer[x]);
+		}
+		 printf("\n");
 	}
-	 printf("\n");
-}
-#endif
+	#endif
 
 
-#ifdef TEST_FLASH
-ICACHE_RODATA_ATTR uint8_t xxx[] = { 1,2,3,4,5,6,7,8 };
-/// @brief Test flash read code
-/// @param[in] *win: window structure
-/// @return  void
-MEMSPACE
-void test_flashio(window *win)
-{
-    uint16_t xpros,ypos;
-    tft_set_font(win,0);
-    //tft_printf(win, "%x,%x", xxxp[0],xxxp[1]);
-    for(i=0;i<8;++i)
-    {
-        tft_setpos(win, i*16,ypos);
-        tft_printf(win, "%02x", read_flash8((uint32_t) &xxx+i));
-    }
-    tft_printf(win, "\n");
-    tft_printf(win, "%08x, %08x", read_flash32((uint8_t *)&xxx), read_flash16((uint8_t *)&xxx));
-}
-#endif
+#endif	//DISPLAY
+
 
 void user_help()
 {
-#ifdef FATFS_SUPPORT
-	fatfs_help();
-#endif
-#ifdef ADF4351
-	adf4351_help();
-#endif
+	#ifdef FATFS_SUPPORT
+		fatfs_help();
+	#endif
+	#ifdef ADF4351
+		adf4351_help();
+	#endif
 	printf("help\n");
     printf("mem\n");
 	printf("time\n");
@@ -602,7 +596,8 @@ void user_help()
 
 
 
-void calibrate(int rotate)
+#ifdef DISPLAY
+void calibrate_3p(int rotate)
 {
 	int i;
 	uint16_t w,h,X1,X2,Y1,Y2;
@@ -693,6 +688,104 @@ void calibrate(int rotate)
 	tft_fillWin(master, master->bg);
 }
 
+void calibrate_5p(int rotate)
+{
+	int i;
+	uint16_t w,h,X1,X2,Y1,Y2;
+	mat_t MatX,MatY;
+	mat_t MatA,MatAI;
+	mat_t RX,RY;
+
+	float XF,YF;
+	float X[5][1];
+	float Y[5][1];
+	float A[5][3];
+
+	tft_setRotation(rotate);
+	tft_fillWin(master, master->bg);
+	tft_set_font(master,1);
+
+	w = master->w;
+	h = master->h;
+
+	X[0][0] = w / 4;
+	Y[0][0] = h / 4;
+
+	X[1][0] = w * 3 / 4;
+	Y[1][0] = h / 4;
+
+	X[2][0] = w / 4;
+	Y[2][0] = h * 3 / 4;
+
+	X[3][0] = w * 3 / 4;
+	Y[3][0] = h * 3 / 4;
+
+	X[4][0] = w / 2;
+	Y[4][0] = h / 2;
+
+	MatX = MatLoad(X,5,1);
+	printf("X\n");
+	MatPrint(MatX);
+	MatY = MatLoad(Y,5,1);
+	printf("Y\n");
+	MatPrint(MatY);
+
+	for(i=0;i<5;++i)
+	{
+		X1 = X[i][0];
+		Y1 = Y[i][0];
+		tft_drawPixel(master, X1, Y1, ILI9341_WHITE);
+		tft_set_textpos(master, 0,0);
+		tft_printf(master,"touch point %3d,%3d", (int)X1, (int)Y1);
+		tft_cleareol(master);
+		while( XPT2046_key_unmapped((uint16_t *)&X2, (uint16_t *)&Y2) == 0 )
+			optimistic_yield(1000);
+		A[i][0] = (float)X2;
+		A[i][1] = (float)Y2;
+		A[i][2] = 1.0;
+		// reset pixel
+		tft_drawPixel(master, X1, Y1, master->bg);
+	}
+
+	MatA = MatLoad(A,5,3);
+	printf("A\n");
+	MatPrint(MatA);
+
+	MatAI = PseudoInvert(MatA);
+	printf("Invert\n");
+	MatPrint(MatAI);
+
+	RX = MatMul(MatAI,MatX);
+	printf("X\n");
+	MatPrint(RX);
+
+	RY = MatMul(MatAI,MatY);
+	printf("Y\n");
+	MatPrint(RY);
+
+	for(i=0;i<10;++i)
+	{
+		while( XPT2046_key_unmapped((uint16_t *)&X1, (uint16_t *)&Y1) == 0 )
+			optimistic_yield(1000);
+		XF = (float)X1;
+		YF = (float)Y1;
+		printf("Touch: X:%.0f,Y:%.0f\n", (double)XF, (double)YF);
+		X2 = (uint16_t)(RX.data[0][0] * XF + RX.data[1][0] * YF + RX.data[2][0]);
+		Y2 = (uint16_t)(RY.data[0][0] * XF + RY.data[1][0] * YF + RY.data[2][0]);
+		printf("LCD: X:%d,Y:%d\n", (int)X2, (int)Y2);
+		tft_drawPixel(master, X2, Y2, ILI9341_WHITE);
+	}
+
+	MatFree(MatA);
+	MatFree(MatX);
+	MatFree(MatY);
+	MatFree(MatAI);
+	MatFree(RX);
+	MatFree(RY);
+
+	tft_fillWin(master, master->bg);
+}
+#endif	//DISPLAY
 
 
 /// @brief help functions test parser
@@ -731,6 +824,32 @@ int user_tests(char *str)
         setdate_r(ptr);
         return(1);
     }
+    else if ((len = token(ptr,"time")) )
+    {
+		t = time(0);	
+		printf("TIME:%s\n", ctime(&t));
+        return(1);
+	}
+    else if ((len = token(ptr,"mem")) )
+    {
+		PrintRam();
+        return(1);
+	}
+    else if ((len = token(ptr,"timetest")) )
+    {
+        ptr += len;
+		timetests(ptr,0);
+        return(1);
+	}
+#ifdef ADF4351
+    else if ((len = token(ptr,"adf4351")) )
+    {
+        ptr += len;
+		adf4351_cmd(ptr);
+		return(1);
+	}
+#endif
+#ifdef DISPLAY
     else if ((len = token(ptr,"calibrate")) )
     {
 		extern xpt2046_t xpt2046;
@@ -738,7 +857,7 @@ int user_tests(char *str)
         ptr += len;
 		ptr = skipspaces(ptr);
         ret = atoi(ptr);
-		calibrate(ret & 3);
+		calibrate_5p(ret & 3);
         return(1);
     }
     else if ((len = token(ptr,"rotate")) )
@@ -762,34 +881,27 @@ int user_tests(char *str)
 			(int) xpt2046.map.ymax);
         return(1);
     }
-#ifdef ADF4351
-    else if ((len = token(ptr,"adf4351")) )
-    {
-        ptr += len;
-		adf4351_cmd(ptr);
-		return(1);
-	}
-#endif
-
-    else if ((len = token(ptr,"time")) )
-    {
-		t = time(0);	
-		printf("TIME:%s\n", ctime(&t));
-        return(1);
-	}
-    else if ((len = token(ptr,"mem")) )
-    {
-		PrintRam();
-        return(1);
-	}
-    else if ((len = token(ptr,"timetest")) )
-    {
-        ptr += len;
-		timetests(ptr,0);
-        return(1);
-	}
+#endif	//DISPLAY
 	return(0);
 }
+
+#ifdef TEST_FLASH
+	ICACHE_RODATA_ATTR uint8_t xxx[] = { 1,2,3,4,5,6,7,8 };
+	/// @brief Test flash read code
+	/// @param[in] *win: window structure
+	/// @return  void
+	MEMSPACE
+	void test_flashio(window *win)
+	{
+		uint16_t xpros,ypos;
+		for(i=0;i<8;++i)
+		{
+			printf("%02x", read_flash8((uint32_t) &xxx+i));
+		}
+		printf("\n");
+		printf("%08x, %08x", read_flash32((uint8_t *)&xxx), read_flash16((uint8_t *)&xxx));
+	}
+#endif
 
 /**
  test byte order and basic type sizes
@@ -877,27 +989,38 @@ void setup(void)
 	// 1000HZ timer
 	ms_init();
 
-
 	test_types();
 
-	// Functions manage chip selects
-#ifdef MMC_CS
-	chip_select_init(MMC_CS);
-#endif
-
-#ifdef ADF4351_CS
-	chip_select_init(ADF4351_CS);
-#endif
-
-#ifdef ILI9341_CS
-	chip_select_init(ILI9341_CS);
-#endif
-
-#ifdef XPT2046_CS
-	XPT2046_spi_init();
-#endif
 	// Functions manage user defined address pins
 	chip_addr_init();
+
+
+#ifdef ADF4351
+	#ifdef ADF4351_CS
+		chip_select_init(ADF4351_CS);
+	#endif
+	ADF4351_Init();
+	printf("ADF4351 init done\n");
+#endif
+
+// Make sure all other GPIO pins are initialized BEFORE SD card
+#ifdef FATFS_SUPPORT
+	// Functions manage chip selects
+	#ifdef MMC_CS
+		chip_select_init(MMC_CS);
+	#endif
+	printf("SD Card init...\n");
+	mmc_init(1);
+#endif
+
+#ifdef DISPLAY
+	#ifdef ILI9341_CS
+		chip_select_init(ILI9341_CS);
+	#endif
+
+	#ifdef XPT2046_CS
+		XPT2046_spi_init();
+	#endif
 
 	// Initialize TFT
 	master = tft_init();
@@ -905,137 +1028,127 @@ void setup(void)
 	// Set master rotation
 	tft_setRotation(1);
 
-#if ILI9341_DEBUG & 1
-	printf("\nDisplay ID=%08lx\n",ID);
-#endif
+	#if ILI9341_DEBUG & 1
+		printf("\nDisplay ID=%08lx\n",ID);
+	#endif
 
-#ifdef ADF4351
-	ADF4351_Init();
-	printf("ADF4351 init done\n");
-#endif
-
-// Make sure all other GPIO pins are initialized BEFORE SD card
-#ifdef FATFS_SUPPORT
-	printf("SD Card init...\n");
-	mmc_init(1);
-#endif
-
-// Message window setup
-#ifdef EARTH
-	w = master->w * 7 / 10;
-#else
-	w = master->w;
-#endif
-	// TOP
-#ifdef DEBUG_STATS
-	tft_window_init(wintop,0,0, w, font_H(0)*4);
-	tft_setTextColor(wintop, ILI9341_WHITE, ILI9341_NAVY);
-#else
-	tft_window_init(wintop,0,0, w, font_H(2)*2);
-	tft_setTextColor(wintop, ILI9341_WHITE, tft_RGBto565(0,64,255));
-#endif
+	// Message window setup
+	#ifdef EARTH
+		w = master->w * 7 / 10;
+	#else
+		w = master->w;
+	#endif
+		// TOP
+	#ifdef DEBUG_STATS
+		tft_window_init(wintop,0,0, w, font_H(0)*4);
+		tft_setTextColor(wintop, ILI9341_WHITE, ILI9341_NAVY);
+	#else
+		tft_window_init(wintop,0,0, w, font_H(2)*2);
+		tft_setTextColor(wintop, ILI9341_WHITE, tft_RGBto565(0,64,255));
+	#endif
 	tft_set_font(wintop,0);
 	tft_font_var(wintop);
-    tft_fillWin(wintop, wintop->bg);
+	tft_fillWin(wintop, wintop->bg);
 	tft_set_textpos(wintop, 0,0);
 
-#ifdef EARTH
-	tft_window_init(winearth,w,0, master->w - w + 1, wintop->h);
-	tft_setTextColor(winearth, ILI9341_WHITE, ILI9341_NAVY);
-    tft_fillWin(winearth, winearth->bg);
-#endif
+	#ifdef EARTH
+		tft_window_init(winearth,w,0, master->w - w + 1, wintop->h);
+		tft_setTextColor(winearth, ILI9341_WHITE, ILI9341_NAVY);
+		tft_fillWin(winearth, winearth->bg);
+	#endif
 
 	// BOTOM
 	// TIME,DATE
 	tft_window_init(winbottom, 0, master->h - 1 - font_H(2)*2, 
 		master->w, font_H(2)*2);
-    tft_set_font(winbottom,2);
-    tft_font_var(winbottom);
+	tft_set_font(winbottom,2);
+	tft_font_var(winbottom);
 	tft_setTextColor(winbottom, 0, tft_RGBto565(0,255,0));
 	tft_fillWin(winbottom, winbottom->bg);
-    tft_set_textpos(winbottom, 0,0);
+	tft_set_textpos(winbottom, 0,0);
 
-// Message window setup
-#ifdef WIRECUBE
-	w = master->w * 7 / 10;
-#else
-	w = master->w;
-#endif
+	// Message window setup
+	#ifdef WIRECUBE
+		w = master->w * 7 / 10;
+	#else
+		w = master->w;
+	#endif
 
 	// MSG
-    tft_window_init(winmsg,0,wintop->h,
-            w, master->h - (wintop->h + winbottom->h));
+	tft_window_init(winmsg,0,wintop->h,
+			w, master->h - (wintop->h + winbottom->h));
 
-    tft_setTextColor(winmsg, ILI9341_WHITE,ILI9341_BLUE);
-    tft_fillWin(winmsg, winmsg->bg);
-    // write some text
-    tft_set_font(winmsg,0);
-    tft_font_var(winmsg);
-    tft_set_textpos(winmsg, 0,0);
+	tft_setTextColor(winmsg, ILI9341_WHITE,ILI9341_BLUE);
+	tft_fillWin(winmsg, winmsg->bg);
+	// write some text
+	tft_set_font(winmsg,0);
+	tft_font_var(winmsg);
+	tft_set_textpos(winmsg, 0,0);
 
-// CUBE setup
-#ifdef WIRECUBE
-	/* Setup cube/wireframe demo window */
-	/* This is to the right of the winmsg window and the same height */
-	tft_window_init(wincube, winmsg->w, wintop->h, master->w - winmsg->w, winmsg->h);
-	tft_setTextColor(wincube, ILI9341_WHITE,ILI9341_BLUE);
-    tft_fillWin(wincube, wincube->bg);
-#endif
+	// CUBE setup
+	#ifdef WIRECUBE
+		/* Setup cube/wireframe demo window */
+		/* This is to the right of the winmsg window and the same height */
+		tft_window_init(wincube, winmsg->w, wintop->h, master->w - winmsg->w, winmsg->h);
+		tft_setTextColor(wincube, ILI9341_WHITE,ILI9341_BLUE);
+		tft_fillWin(wincube, wincube->bg);
+	#endif
 
-#ifdef DEBUG_STATS
-	// Display ID
-	tft_setTextColor(winmsg, ILI9341_RED,winmsg->bg);
-	tft_printf(winmsg, "DISP ID: %04lx\n", ID);
-	tft_setTextColor(winmsg, ILI9341_WHITE,winmsg->bg);
-#endif
+	#ifdef DEBUG_STATS
+		// Display ID
+		tft_setTextColor(winmsg, ILI9341_RED,winmsg->bg);
+		tft_printf(winmsg, "DISP ID: %04lx\n", ID);
+		tft_setTextColor(winmsg, ILI9341_WHITE,winmsg->bg);
+	#endif
 
 
-// Cube points were defined with sides of 1.0 
-// We want a scale of +/- w/2
-#ifdef WIRECUBE
-	if(wincube->w < wincube->h) 
-		dscale_max = wincube->w/2;
-	else
-		dscale_max = wincube->h/2;
+	// Cube points were defined with sides of 1.0 
+	// We want a scale of +/- w/2
+	#ifdef WIRECUBE
+		if(wincube->w < wincube->h) 
+			dscale_max = wincube->w/2;
+		else
+			dscale_max = wincube->h/2;
 
-	dscale = dscale_max;
-	dscale_inc = dscale_max / 100;
-#endif
+		dscale = dscale_max;
+		dscale_inc = dscale_max / 100;
+	#endif
 
-#if ILI9341_DEBUG & 1
-	printf("Test Display Read\n");
-	read_tests(winmsg);
-#endif
+	#if ILI9341_DEBUG & 1
+		printf("Test Display Read\n");
+		read_tests(winmsg);
+	#endif
 
-// Draw Wireframe earth in message area
-#ifdef EARTH
-	printf("Draw Earth\n");
+	// Draw Wireframe earth in message area
+	#ifdef EARTH
+		printf("Draw Earth\n");
 
-// Earth points were defined with radius of 0.5, diameter of 1.0
-// We want a scale of +/- w/2
-	double tscale_max;
-	if(winearth->w < winearth->h) 
-		tscale_max = winearth->w;
-	else
-		tscale_max = winearth->h;
-	V.x = -90;
-	V.y = -90;
-	V.z = -90;
-	// draw earth
-// Earth points were defined over with a scale of -0.5/+0.5 scale - so scale must be 1 or less
-	wire_draw(winearth, earth_data, NULL, &V, winearth->w/2, winearth->h/2, tscale_max, winearth->fg);
-#endif
+	// Earth points were defined with radius of 0.5, diameter of 1.0
+	// We want a scale of +/- w/2
+		double tscale_max;
+		if(winearth->w < winearth->h) 
+			tscale_max = winearth->w;
+		else
+			tscale_max = winearth->h;
+		V.x = -90;
+		V.y = -90;
+		V.z = -90;
+		// draw earth
+	// Earth points were defined over with a scale of -0.5/+0.5 scale - so scale must be 1 or less
+		wire_draw(winearth, earth_data, NULL, &V, winearth->w/2, winearth->h/2, tscale_max, winearth->fg);
+	#endif
+#endif	//DISPLAY
 
 	wdt_reset();
-
 	printf("Setup Tasks\n");
 
-#ifdef TELNET_SERIAL
-	printf("Setup Network Serial Bridge\n");
-	bridge_task_init(23);
-#endif
-
 	setup_networking();
+
+	#ifdef TELNET_SERIAL
+		printf("Setup Network Serial Bridge\n");
+		bridge_task_init(23);
+	#endif
+
 	if ( espconn_tcp_set_max_con(MAX_CONNECTIONS+2) )
 		printf("espconn_tcp_set_max_con(%d) - failed!\n", MAX_CONNECTIONS+2);
 	else
@@ -1055,148 +1168,4 @@ void setup(void)
 
 	system_set_os_print(0);
 
-}
-
-
-// ===========================================================
-// We are using the Arduino Yield code for our main task now
-// This code is no longer called
-#ifndef YIELD_TASK
-
-/* user/user_main.c */
-MEMSPACE LOCAL void init_done_cb ( void );
-MEMSPACE LOCAL void HighTask ( os_event_t *events );
-MEMSPACE LOCAL void NormalTask ( os_event_t *events );
-MEMSPACE LOCAL void IdleTask ( os_event_t *events );
-MEMSPACE LOCAL void UserTask ( os_event_t *events );
-MEMSPACE LOCAL void sendMsgToUserTask ( void *arg );
-LOCAL void loop( void );
-MEMSPACE void user_init ( void );
-
-#define HighTaskPrio        USER_TASK_PRIO_MAX
-#define HighTaskQueueLen    1
-
-#define NormalTaskPrio		USER_TASK_PRIO_2
-#define NormalTaskQueueLen	8
-
-#define IdleTaskPrio        USER_TASK_PRIO_0
-#define IdleTaskQueueLen    1
-
-LOCAL os_timer_t UserTimerHandler;
-
-os_event_t	  UserTaskQueue[UserTaskQueueLen];
-os_event_t    HighTaskQueue[HighTaskQueueLen];
-os_event_t    NormalTaskQueue[NormalTaskQueueLen];
-os_event_t    IdleTaskQueue[IdleTaskQueueLen];
-
-/**
- @brief High Priority Task Queue
- @param[in] events: event structure
- @return void
-*/
-MEMSPACE 
-LOCAL void HighTask(os_event_t *events)
-{
-}
-
-/**
- @brief Normal Priority Task Queue
- @param[in] events: event structure
- @return void
-*/
-MEMSPACE 
-LOCAL void NormalTask(os_event_t *events)
-{
-}
-
-/**
- @brief Idle Priority Task Queue
- @param[in] events: event structure
- @return void
-*/
-MEMSPACE 
-LOCAL void IdleTask(os_event_t *events)
-{
-//Add task to add IdleTask back to the queue
-	system_os_post(IdleTaskPrio, 0, 0);
-}
-
-
-// ===========================================================
-
-// ===========================================================
-// Delay timer in milliseconds
-#define USER_TASK_DELAY_TIMER     	30
-#define RUN_TASK 			0
-#define UserTaskPrio        USER_TASK_PRIO_0
-#define UserTaskQueueLen  	4
-
-
-/**
- @brief Callback for system_init_done_cb()
-  Sends message to run task
- @return void
-*/
-MEMSPACE 
-LOCAL void init_done_cb( void)
-{
-	printf("System init done \r\n");
-	// disable os_printf at this time
-	system_set_os_print(0);
-}
-
-
-/**
- @brief User Message handler task
-  Runs corrected cube demo from Sem
-  Optionally wireframe Earth viewer
- @param[in] events: event structure
- @return void
-*/
-MEMSPACE 
-LOCAL void UserTask(os_event_t *events)
-{
-	switch(events->sig)
-	{
-		case RUN_TASK: 	
-			loop(); 
-			break;
-		default: 
-			break;
-	}
-}
-
-/**
- @brief Message passing function
-  Sends message to run task
- @return void
-*/
-MEMSPACE 
-LOCAL void sendMsgToUserTask(void *arg)
-{
-	system_os_post(USER_TASK_PRIO_0, RUN_TASK, 'a');
-}
-
-
-void user_init(void)
-{
-	setup();
-
-	// Set up a timer to send the message to User Task
-	os_timer_disarm(&UserTimerHandler);
-	os_timer_setfn(&UserTimerHandler,(os_timer_func_t *)sendMsgToUserTask,(void *)0);
-	os_timer_arm(&UserTimerHandler, USER_TASK_DELAY_TIMER, 1);
-	// Setup the user task
-	system_os_task(UserTask, UserTaskPrio, UserTaskQueue, UserTaskQueueLen);
-
-#if 0
-	// Misc Task init - testing only
-	system_os_task(HighTask, HighTaskPrio, HighTaskQueue, HighTaskQueueLen);
-	system_os_task(NormalTask, NormalTaskPrio, NormalTaskQueue, NormalTaskQueueLen);
-	system_os_task(IdleTask, IdleTaskPrio, IdleTaskQueue, IdleTaskQueueLen);
-	system_os_post(IdleTaskPrio, 0, 0);
-#endif
-	printf("User Init Done!\n");
-    system_init_done_cb(init_done_cb);
-}
-#endif
+} //setup()

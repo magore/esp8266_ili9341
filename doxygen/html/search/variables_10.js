@@ -1,10 +1,10 @@
 var searchData=
 [
-  ['s',['S',['../user__main_8c.html#aa6a210803a601a3b71e9d6d66f1f387d',1,'user_main.c']]],
   ['sar',['sar',['../structex__regs.html#a8fd11e49ee65ba875a04ab28789cf702',1,'ex_regs']]],
   ['scan',['scan',['../structfreq__t.html#a7ed144285727b1a56762fb1299e44bf6',1,'freq_t']]],
   ['sclust',['sclust',['../struct__FDID.html#ae2fbaaa31b5d12b333cb6d1ded099412',1,'_FDID']]],
   ['sdev',['sdev',['../struct__sdev.html#a053a14f9e4bd729ce23aafdb1e69e48a',1,'_sdev']]],
+  ['sec',['sec',['../user__main_8c.html#a1559c6c23b2e6367e59be081c3b76d54',1,'user_main.c']]],
   ['seconds',['seconds',['../user__main_8c.html#ae112d79896ed83ac05e155da60e85523',1,'user_main.c']]],
   ['sect',['sect',['../structFIL.html#affec18b48fe716fdae6a60123fc61145',1,'FIL::sect()'],['../structDIR.html#ad01fcc812ed0dad11a593574336adc9e',1,'DIR::sect()']]],
   ['send',['send',['../structrwbuf__t.html#a279490994b6576ad00900254a8c07a89',1,'rwbuf_t']]],

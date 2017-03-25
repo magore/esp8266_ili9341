@@ -737,8 +737,12 @@ README</h1>
   * GPIO  2 ---1K--- VCC3.3V
   * GPIO  0 ---1K--- VCC3.3V   Ground GPIO 0 to to enable flashing
   * GPIO 15 ---1K--- GND       Need pull down for boot
-  * GPIO 14 ---1K--- GND       Keeps floating clock signal from generating false clocks on attached devices
+  * GPIO 14 ---1K--- GND       Keeps floating pins from generating false clocks on attached devices
   * GND ------------ GND
+  * T_OUT ------ +            T_OUT is connected to varaible VR100K 
+                 | 
+    VCC--330K--VR100K-- GND   Variable VR100K is connected to 330K then VCC
+                              Max voltage to T_OUT pin is VCC * 100K / (330K+100K)
 
 * FTDI232 USB/TTL      ESP8266 
   * TXD ----1K--------  RXD
@@ -808,7 +812,7 @@ README</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Mar 25 2017 00:54:29 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Mar 25 2017 19:48:45 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

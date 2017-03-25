@@ -10,6 +10,5 @@ var searchData=
   ['network_5fmsg',['network_msg',['../server_8c.html#a15506d9f599b33b151e5efc4fdbe7021',1,'server.c']]],
   ['next',['next',['../structmem__t.html#a57b0ca2400c977d234c77e9d20a03c46',1,'mem_t']]],
   ['noisespurmode',['NoiseSpurMode',['../structr2__t.html#a40bc8b8cb7d9e77e57abd0e8be4f01af',1,'r2_t']]],
-  ['normaltaskqueue',['NormalTaskQueue',['../user__main_8c.html#abb72a19bfadab64df56d11000f9ef0fc',1,'user_main.c']]],
   ['ntp_5finit',['ntp_init',['../user__main_8c.html#ae406634b9e0b25eda1da44f1d4ec26c0',1,'user_main.c']]]
 ];

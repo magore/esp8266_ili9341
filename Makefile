@@ -242,6 +242,7 @@ YIELD_TASK = 1
 # =========================
 DISPLAY = 1
 ifdef DISPLAY
+    CFLAGS  += -DDISPLAY
 # ILI9341 Display support
 	ILI9341_CS = 15
     CFLAGS  += -DILI9341_CS=$(ILI9341_CS)

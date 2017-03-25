@@ -1,10 +1,6 @@
 var searchData=
 [
   ['id',['id',['../structFATFS.html#a417095d7c20d56d417dc0998e0dd5a5c',1,'FATFS::id()'],['../struct__FDID.html#a363d7bdab408418b911ac1502bc22ea6',1,'_FDID::id()']]],
-  ['idletask',['IdleTask',['../user__main_8c.html#ad79c2eed789976f508b9c3e7459691c5',1,'user_main.c']]],
-  ['idletaskprio',['IdleTaskPrio',['../user__main_8c.html#ad590be8723277c812ff664f5c0743548',1,'user_main.c']]],
-  ['idletaskqueue',['IdleTaskQueue',['../user__main_8c.html#a497172baf21b16f0de764c2368988cba',1,'user_main.c']]],
-  ['idletaskqueuelen',['IdleTaskQueueLen',['../user__main_8c.html#afbd10fc81998d8d99e705db01a1ab07f',1,'user_main.c']]],
   ['idx',['idx',['../structputbuff.html#a10a3ca93af8df07e9836ebd5230c06d8',1,'putbuff']]],
   ['iexp',['iexp',['../mathio_8h.html#a29526ba629435aeaee7e3201242a9234',1,'mathio.h']]],
   ['ili9341_2ec',['ili9341.c',['../ili9341_8c.html',1,'']]],
@@ -79,7 +75,6 @@ var searchData=
   ['index',['index',['../struct__fontc.html#a7cc0370744ff7ea964054d36917c9a2f',1,'_fontc::index()'],['../index.html',1,'(Global Namespace)']]],
   ['info',['info',['../struct__font.html#abf134e8a44e707d3b4e83ab76c952ed9',1,'_font::info()'],['../network_8c.html#a1202cd63c360958e6272f9a20fa90f8b',1,'info():&#160;network.c']]],
   ['init_5fdone',['init_done',['../user__task_8c.html#a5edab2a250321a1426438782d96287b1',1,'init_done():&#160;user_task.c'],['../user__task_8h.html#a18a8df71685bf4d19e642fccc5586374',1,'init_done(void):&#160;user_task.c']]],
-  ['init_5fdone_5fcb',['init_done_cb',['../user__main_8c.html#a64a245b3a430024097b2175a6502edf1',1,'user_main.c']]],
   ['init_5fhinfo',['init_hinfo',['../web_8c.html#a9022b922953aabe534b7b68e6f3a90af',1,'init_hinfo(hinfo_t *hi):&#160;web.c'],['../web_8h.html#a9022b922953aabe534b7b68e6f3a90af',1,'init_hinfo(hinfo_t *hi):&#160;web.c']]],
   ['init_5fnambuf',['INIT_NAMBUF',['../ff_8c.html#a9880dce2d33fe7708f982b5f80a31142',1,'ff.c']]],
   ['init_5ftimers',['init_timers',['../timer_8c.html#acb0c9c995c634465d7d1f534bd862f8e',1,'init_timers():&#160;timer.c'],['../timer_8h.html#a4a06b0b10204f441d18c79601b4ee13f',1,'init_timers(void):&#160;timer.c']]],

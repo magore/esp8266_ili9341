@@ -695,8 +695,12 @@ ld -\/ Linker scripts
   * GPIO  2 ---1K--- VCC3.3V
   * GPIO  0 ---1K--- VCC3.3V   Ground GPIO 0 to to enable flashing
   * GPIO 15 ---1K--- GND       Need pull down for boot
-  * GPIO 14 ---1K--- GND       Keeps floating clock signal from generating false clocks on attached devices
+  * GPIO 14 ---1K--- GND       Keeps floating pins from generating false clocks on attached devices
   * GND ------------ GND
+  * T_OUT ------ +            T_OUT is connected to varaible VR100K 
+                 | 
+    VCC--330K--VR100K-- GND   Variable VR100K is connected to 330K then VCC
+                              Max voltage to T_OUT pin is VCC * 100K / (330K+100K)
 
 * FTDI232 USB/TTL      ESP8266 
   * TXD ----1K--------  RXD

@@ -175,18 +175,12 @@ var searchData=
   ['use_5foptimization_5fdrawline',['USE_OPTIMIZATION_DRAWLINE',['../ili9341_8c.html#a3bc3999315888a41dcf1417cdae450e3',1,'ili9341.c']]],
   ['user_5fconfig_2eh',['user_config.h',['../user__config_8h.html',1,'']]],
   ['user_5fhelp',['user_help',['../user__main_8c.html#acf488387a6eadb21c378fffd6f4aae63',1,'user_main.c']]],
-  ['user_5finit',['user_init',['../user__main_8c.html#aa8253cd89ed4b268472ed62f4f2074ae',1,'user_init(void):&#160;user_main.c'],['../user__task_8c.html#aa8253cd89ed4b268472ed62f4f2074ae',1,'user_init(void):&#160;user_task.c'],['../user__task_8h.html#aa8253cd89ed4b268472ed62f4f2074ae',1,'user_init(void):&#160;user_main.c']]],
+  ['user_5finit',['user_init',['../user__task_8c.html#aa8253cd89ed4b268472ed62f4f2074ae',1,'user_init(void):&#160;user_task.c'],['../user__task_8h.html#aa8253cd89ed4b268472ed62f4f2074ae',1,'user_init(void):&#160;user_task.c']]],
   ['user_5floop',['user_loop',['../user__main_8c.html#a9c9fec92b60b251c275870d900294a4a',1,'user_main.c']]],
   ['user_5fmain_2ec',['user_main.c',['../user__main_8c.html',1,'']]],
   ['user_5ftask_2ec',['user_task.c',['../user__task_8c.html',1,'']]],
   ['user_5ftask_2eh',['user_task.h',['../user__task_8h.html',1,'']]],
-  ['user_5ftask_5fdelay_5ftimer',['USER_TASK_DELAY_TIMER',['../user__main_8c.html#ae984952b3e9d2d59a89487ec470d1ce0',1,'user_main.c']]],
   ['user_5ftasks',['user_tasks',['../user__main_8c.html#a3142086fde2f8b44c81c6f78beff1cc2',1,'user_main.c']]],
   ['user_5ftests',['user_tests',['../user__main_8c.html#a1a52190bd844126271cd2caa94782ee5',1,'user_main.c']]],
-  ['user_5ftimer_5fhandler',['user_timer_handler',['../structTIMERS.html#a4326e05ca52d80147efafd0d246ecb41',1,'TIMERS']]],
-  ['usertask',['UserTask',['../user__main_8c.html#a1a6298ceb314c1707e92070ad4a9416d',1,'user_main.c']]],
-  ['usertaskprio',['UserTaskPrio',['../user__main_8c.html#af93c276fcf04883c775a3a7dced494b2',1,'user_main.c']]],
-  ['usertaskqueue',['UserTaskQueue',['../user__main_8c.html#a90f974e2d939cf8c5e29e7ee1356ffc9',1,'user_main.c']]],
-  ['usertaskqueuelen',['UserTaskQueueLen',['../user__main_8c.html#af507c1fd48ded2dfccefbe445ddfeed2',1,'user_main.c']]],
-  ['usertimerhandler',['UserTimerHandler',['../user__main_8c.html#a80a8cbc175ca4eb5155834cd80c87c0e',1,'user_main.c']]]
+  ['user_5ftimer_5fhandler',['user_timer_handler',['../structTIMERS.html#a4326e05ca52d80147efafd0d246ecb41',1,'TIMERS']]]
 ];

@@ -9,12 +9,9 @@ var searchData=
   ['wflag',['wflag',['../structFATFS.html#a647e43c9ccae94b7274793d1909897de',1,'FATFS']]],
   ['width',['width',['../unionf__t.html#ad6b1584314c27653690552e95e1ed96f',1,'f_t::width()'],['../struct__fontspecs.html#a8404888a24a2b065d91c4424e1907439',1,'_fontspecs::Width()'],['../struct__font.html#ae3d3b48670f1bf4bf6dbf42794f81b31',1,'_font::Width()'],['../struct__fontc.html#ae3c802e1c35ae9a4e37c8eb2e9644325',1,'_fontc::Width()']]],
   ['win',['win',['../structFATFS.html#a7cc35a593465e727ab87723c14610644',1,'FATFS']]],
-  ['winbottom',['winbottom',['../user__main_8c.html#af5c755bdc97ff152da4d9c55ca914324',1,'user_main.c']]],
-  ['wincube',['wincube',['../user__main_8c.html#a5803138257b3d97beb4e2c77227e455c',1,'user_main.c']]],
   ['wind',['wind',['../structrwbuf__t.html#a135345eee44e93f37e57dbabec12c339',1,'rwbuf_t']]],
-  ['winearth',['winearth',['../user__main_8c.html#a17020688c80162fdf6575e888349940c',1,'user_main.c']]],
-  ['winmsg',['winmsg',['../user__main_8c.html#a91a5294702debbeba1acf3cc43784ce9',1,'winmsg():&#160;user_main.c'],['../web_8c.html#a91a5294702debbeba1acf3cc43784ce9',1,'winmsg():&#160;user_main.c']]],
+  ['winmsg',['winmsg',['../web_8c.html#a91a5294702debbeba1acf3cc43784ce9',1,'web.c']]],
   ['winsect',['winsect',['../structFATFS.html#ac60e69c00e6bf7c25febfbac4dc1476b',1,'FATFS']]],
-  ['wintop',['wintop',['../user__main_8c.html#aea8414e2642ed66686b8a1c996e06cf7',1,'wintop():&#160;user_main.c'],['../web_8c.html#aff6226bcabba958e69ff897ec86a13b2',1,'wintop():&#160;user_main.c']]],
+  ['wintop',['wintop',['../web_8c.html#aff6226bcabba958e69ff897ec86a13b2',1,'web.c']]],
   ['wsize',['wsize',['../structrwbuf__t.html#ac723cf150dd35d0f67ba7d38b18863ad',1,'rwbuf_t']]]
 ];

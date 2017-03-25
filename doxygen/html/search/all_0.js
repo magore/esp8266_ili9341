@@ -115,11 +115,6 @@ var searchData=
   ['_5fuse_5fwrite',['_USE_WRITE',['../diskio_8h.html#a1dd0d2b46dce637878416d489d2ddde2',1,'diskio.h']]],
   ['_5fvolume_5fstrs',['_VOLUME_STRS',['../ffconf_8h.html#a75c97afb8b06935364e42e3ec3fdc6c4',1,'ffconf.h']]],
   ['_5fvolumes',['_VOLUMES',['../ffconf_8h.html#a366da9a40c8ceb3103a6b72ca02b9969',1,'ffconf.h']]],
-  ['_5fwinbottom',['_winbottom',['../user__main_8c.html#ab18ad328fa194c2bbe0fb9573c8180b3',1,'user_main.c']]],
-  ['_5fwincube',['_wincube',['../user__main_8c.html#a866c81e27316302aaaedac093dd7d5ed',1,'user_main.c']]],
-  ['_5fwinearth',['_winearth',['../user__main_8c.html#a90c65a7f0b794cb74aed36afadd4f75e',1,'user_main.c']]],
-  ['_5fwinmsg',['_winmsg',['../user__main_8c.html#a40f0738f31dc022f067c98e9062f016b',1,'user_main.c']]],
-  ['_5fwintop',['_wintop',['../user__main_8c.html#afe7500eafa400fd42fff47d3cc09f7c6',1,'user_main.c']]],
   ['_5fwrite_5fbyte_5ffn',['_write_byte_fn',['../web_8c.html#a620628fcf72ac4e4d0228ff38d31bbd1',1,'web.c']]],
   ['_5fxpt2046',['_xpt2046',['../struct__xpt2046.html',1,'']]]
 ];

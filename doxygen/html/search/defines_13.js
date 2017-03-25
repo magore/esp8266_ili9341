@@ -120,8 +120,5 @@ var searchData=
   ['ucordic_5ft_5fstr',['UCordic_T_STR',['../cordic2c_8c.html#a27092bec667d3da85622cfa613527520',1,'cordic2c.c']]],
   ['use_5fcache',['USE_CACHE',['../flash_8c.html#a2565afea33c9e3255c67f748f425543a',1,'flash.c']]],
   ['use_5fets_5fprintf',['USE_ETS_PRINTF',['../cal__dex_8c.html#ace605bda5adf4d197d62796c54bef1b0',1,'cal_dex.c']]],
-  ['use_5foptimization_5fdrawline',['USE_OPTIMIZATION_DRAWLINE',['../ili9341_8c.html#a3bc3999315888a41dcf1417cdae450e3',1,'ili9341.c']]],
-  ['user_5ftask_5fdelay_5ftimer',['USER_TASK_DELAY_TIMER',['../user__main_8c.html#ae984952b3e9d2d59a89487ec470d1ce0',1,'user_main.c']]],
-  ['usertaskprio',['UserTaskPrio',['../user__main_8c.html#af93c276fcf04883c775a3a7dced494b2',1,'user_main.c']]],
-  ['usertaskqueuelen',['UserTaskQueueLen',['../user__main_8c.html#af507c1fd48ded2dfccefbe445ddfeed2',1,'user_main.c']]]
+  ['use_5foptimization_5fdrawline',['USE_OPTIMIZATION_DRAWLINE',['../ili9341_8c.html#a3bc3999315888a41dcf1417cdae450e3',1,'ili9341.c']]]
 ];

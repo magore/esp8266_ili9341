@@ -7,7 +7,6 @@ var searchData=
   ['r3',['r3',['../structadf4351__regs__t.html#a1aa968491b1182f3ae4f426ef5c1b83a',1,'adf4351_regs_t']]],
   ['r4',['r4',['../structadf4351__regs__t.html#a343af9ab05747dd9b977603d02ebb4df',1,'adf4351_regs_t']]],
   ['r5',['r5',['../structadf4351__regs__t.html#ab0bd52a2f47aa3f45d0aa97136ec6e8c',1,'adf4351_regs_t']]],
-  ['rad',['rad',['../user__main_8c.html#a6cd0a6a37bb53a8363aadc8640107f8d',1,'user_main.c']]],
   ['raw',['raw',['../struct__xpt2046.html#a167dbfd40e17aadb4c0edd901db7e118',1,'_xpt2046']]],
   ['rbuf',['rbuf',['../structrwbuf__t.html#afd83372241273849c9395d587b146021',1,'rwbuf_t']]],
   ['received',['received',['../structrwbuf__t.html#ac76412a0fbf9dc009ae3f8bb20660883',1,'rwbuf_t::received()'],['../network_8c.html#ac7c4860b47674f6bb351f6875e50533f',1,'received():&#160;network.c'],['../server_8c.html#a082fd9f55493d749cafc1e11ad84a2b6',1,'received():&#160;server.c']]],

@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['normaltaskprio',['NormalTaskPrio',['../user__main_8c.html#ad4b201d4a81874b691535905a1087fe0',1,'user_main.c']]],
-  ['normaltaskqueuelen',['NormalTaskQueueLen',['../user__main_8c.html#a1c07392725f8ce9719872dd267291407',1,'user_main.c']]],
   ['ns_5fbody',['NS_BODY',['../ff_8c.html#a4a0e89b504dece19e2e4b02c83782ca2',1,'ff.c']]],
   ['ns_5fdot',['NS_DOT',['../ff_8c.html#a2db528782a021797b34bdc6e9e9de1c3',1,'ff.c']]],
   ['ns_5fext',['NS_EXT',['../ff_8c.html#a3b7fad0942e816fdb84d869c1f7a613e',1,'ff.c']]],

@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['s',['S',['../user__main_8c.html#aa6a210803a601a3b71e9d6d66f1f387d',1,'user_main.c']]],
   ['s_5fiexec',['S_IEXEC',['../posix_8h.html#a49a6665b56f38f52ee9b157cefcf4d68',1,'posix.h']]],
   ['s_5fifblk',['S_IFBLK',['../posix_8h.html#a5c5b74a1cb1a1ae83572500b94e1938f',1,'posix.h']]],
   ['s_5fifchr',['S_IFCHR',['../posix_8h.html#aef3a1d1ba22c83e30b5c834dd343b2a8',1,'posix.h']]],
@@ -40,6 +39,7 @@ var searchData=
   ['sdev',['sdev',['../struct__sdev.html#a053a14f9e4bd729ce23aafdb1e69e48a',1,'_sdev::sdev()'],['../xpt2046_8h.html#a3c3571dfe466884bea2a25234aca83ad',1,'sdev():&#160;xpt2046.h']]],
   ['sdev_5ft',['sdev_t',['../xpt2046_8h.html#a4224e555e9e1280374a4987534846703',1,'xpt2046.h']]],
   ['sdio_5fctrl',['SDIO_CTRL',['../structSDIO__CTRL.html',1,'']]],
+  ['sec',['sec',['../user__main_8c.html#a1559c6c23b2e6367e59be081c3b76d54',1,'user_main.c']]],
   ['seconds',['seconds',['../user__main_8c.html#ae112d79896ed83ac05e155da60e85523',1,'user_main.c']]],
   ['sect',['sect',['../structFIL.html#affec18b48fe716fdae6a60123fc61145',1,'FIL::sect()'],['../structDIR.html#ad01fcc812ed0dad11a593574336adc9e',1,'DIR::sect()']]],
   ['seek_5fcur',['SEEK_CUR',['../posix_8h.html#a4c8d0b76b470ba65a43ca46a88320f39',1,'posix.h']]],
@@ -50,7 +50,6 @@ var searchData=
   ['send_2ec',['send.c',['../send_8c.html',1,'']]],
   ['send_5fcmd',['send_cmd',['../mmc_8c.html#afd47154c84441f723909d5875aa64efd',1,'mmc.c']]],
   ['send_5fmessage',['send_message',['../send_8c.html#a9a62fadd2a5476668fdec898c42d4922',1,'send.c']]],
-  ['sendmsgtousertask',['sendMsgToUserTask',['../user__main_8c.html#a1c325cd5f5c4958a2217e947f8ca59ea',1,'user_main.c']]],
   ['sent',['sent',['../struct__printf__t.html#a872716fd701166cd57bd3fffb7b77706',1,'_printf_t']]],
   ['server_2ec',['server.c',['../server_8c.html',1,'']]],
   ['server_2eh',['server.h',['../server_8h.html',1,'']]],

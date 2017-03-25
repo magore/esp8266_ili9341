@@ -1,9 +1,7 @@
 var searchData=
 [
-  ['idletask',['IdleTask',['../user__main_8c.html#ad79c2eed789976f508b9c3e7459691c5',1,'user_main.c']]],
   ['iexp',['iexp',['../mathio_8h.html#a29526ba629435aeaee7e3201242a9234',1,'mathio.h']]],
   ['init_5fdone',['init_done',['../user__task_8c.html#a5edab2a250321a1426438782d96287b1',1,'init_done():&#160;user_task.c'],['../user__task_8h.html#a18a8df71685bf4d19e642fccc5586374',1,'init_done(void):&#160;user_task.c']]],
-  ['init_5fdone_5fcb',['init_done_cb',['../user__main_8c.html#a64a245b3a430024097b2175a6502edf1',1,'user_main.c']]],
   ['init_5fhinfo',['init_hinfo',['../web_8c.html#a9022b922953aabe534b7b68e6f3a90af',1,'init_hinfo(hinfo_t *hi):&#160;web.c'],['../web_8h.html#a9022b922953aabe534b7b68e6f3a90af',1,'init_hinfo(hinfo_t *hi):&#160;web.c']]],
   ['init_5ftimers',['init_timers',['../timer_8c.html#acb0c9c995c634465d7d1f534bd862f8e',1,'init_timers():&#160;timer.c'],['../timer_8h.html#a4a06b0b10204f441d18c79601b4ee13f',1,'init_timers(void):&#160;timer.c']]],
   ['initfonts',['InitFonts',['../bdffontutil_8c.html#a75b1f39c4e8755dca07fd291e52aaedb',1,'InitFonts(_font *font):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a75b1f39c4e8755dca07fd291e52aaedb',1,'InitFonts(_font *font):&#160;bdffontutil.c']]],
