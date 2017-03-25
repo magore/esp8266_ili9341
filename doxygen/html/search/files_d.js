@@ -3,6 +3,8 @@ var searchData=
   ['send_2ec',['send.c',['../send_8c.html',1,'']]],
   ['server_2ec',['server.c',['../server_8c.html',1,'']]],
   ['server_2eh',['server.h',['../server_8h.html',1,'']]],
+  ['sort_2ec',['sort.c',['../sort_8c.html',1,'']]],
+  ['sort_2eh',['sort.h',['../sort_8h.html',1,'']]],
   ['spi_5fregister_2eh',['spi_register.h',['../spi__register_8h.html',1,'']]],
   ['sscanf_2ec',['sscanf.c',['../sscanf_8c.html',1,'']]],
   ['stringsup_2ec',['stringsup.c',['../stringsup_8c.html',1,'']]],

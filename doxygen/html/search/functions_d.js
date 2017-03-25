@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['nearest_5frun',['nearest_run',['../xpt2046_8h.html#abc3bff89c0ea5ee5bb74fa9ce6514789',1,'xpt2046.h']]],
   ['new_5ffile_5fdescriptor',['new_file_descriptor',['../posix_8c.html#abab788c42cce343cde2f5b8f90015229',1,'new_file_descriptor(void):&#160;posix.c'],['../posix_8h.html#abab788c42cce343cde2f5b8f90015229',1,'new_file_descriptor(void):&#160;posix.c']]],
   ['next_5farg',['next_arg',['../web_8c.html#ac2b1c83b2901da05a13fbc48e9c9f030',1,'next_arg(hinfo_t *hi):&#160;web.c'],['../web_8h.html#ac2b1c83b2901da05a13fbc48e9c9f030',1,'next_arg(hinfo_t *hi):&#160;web.c']]],
   ['nextbreak',['nextbreak',['../web_8c.html#a1723d513f866e03e8195adf0139b1603',1,'nextbreak(char *ptr):&#160;web.c'],['../web_8h.html#a1723d513f866e03e8195adf0139b1603',1,'nextbreak(char *ptr):&#160;web.c']]],

@@ -55,8 +55,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #ifdef XPT2046
 	#include "xpt2046.h"
-
 #endif
+
+#include "matrix.h"
 
 #include "esp8266/system.h"
 #include "lib/stringsup.h"
@@ -347,9 +348,12 @@ void user_loop(void)
 
 #ifdef XPT2046
 	// This dequeues touch events
-	if( XPT2046_key(&X, &Y) )
+
+	// FIXME testing shows we need at least 2 samples in a row to be ok
+	//if( (ret = XPT2046_xy_mapped((uint16_t *)&X, (uint16_t *)&Y)) > 1 )
+	if( (ret = XPT2046_xy_filtered_mapped((uint16_t *)&X, (uint16_t *)&Y)) )
 	{
-		tft_printf(winmsg, "X:%4d, Y:%4d\n",X,Y);
+		tft_set_font(winmsg,0);
 	}
 #endif
 
@@ -596,6 +600,101 @@ void user_help()
 	printf("\n");
 }
 
+
+
+void calibrate(int rotate)
+{
+	int i;
+	uint16_t w,h,X1,X2,Y1,Y2;
+	mat_t MatX,MatY;
+	mat_t MatA,MatAI;
+	mat_t RX,RY;
+
+	float XF,YF;
+	float X[3][1];
+	float Y[3][1];
+	float A[3][3];
+
+	tft_setRotation(rotate);
+	tft_fillWin(master, master->bg);
+	tft_set_font(master,1);
+
+	w = master->w;
+	h = master->h;
+
+	X[0][0] = w / 4;
+	Y[0][0] = h / 2;
+	X[1][0] = w * 3 / 4;
+	Y[1][0] = h / 4;
+	X[2][0] = w * 3 / 4;
+	Y[2][0] = h * 3 / 4;
+
+	MatX = MatLoad(X,3,1);
+	printf("X\n");
+	MatPrint(MatX);
+	MatY = MatLoad(Y,3,1);
+	printf("Y\n");
+	MatPrint(MatY);
+
+	for(i=0;i<3;++i)
+	{
+		X1 = X[i][0];
+		Y1 = Y[i][0];
+		tft_drawPixel(master, X1, Y1, ILI9341_WHITE);
+		tft_set_textpos(master, 0,0);
+		tft_printf(master,"touch point %3d,%3d", (int)X1, (int)Y1);
+		tft_cleareol(master);
+		while( XPT2046_key_unmapped((uint16_t *)&X2, (uint16_t *)&Y2) == 0 )
+			optimistic_yield(1000);
+		A[i][0] = (float)X2;
+		A[i][1] = (float)Y2;
+		A[i][2] = 1.0;
+		// reset pixel
+		tft_drawPixel(master, X1, Y1, master->bg);
+	}
+
+	MatA = MatLoad(A,3,3);
+	printf("A\n");
+	MatPrint(MatA);
+
+	MatAI = Invert(MatA);
+	printf("Invert\n");
+	MatPrint(MatAI);
+
+	RX = MatMul(MatAI,MatX);
+	printf("X\n");
+	MatPrint(RX);
+
+	RY = MatMul(MatAI,MatY);
+	printf("Y\n");
+	MatPrint(RY);
+
+
+	for(i=0;i<10;++i)
+	{
+		while( XPT2046_key_unmapped((uint16_t *)&X1, (uint16_t *)&Y1) == 0 )
+			optimistic_yield(1000);
+		XF = (float)X1;
+		YF = (float)Y1;
+		printf("Touch: X:%.0f,Y:%.0f\n", (double)XF, (double)YF);
+		X2 = (uint16_t)(RX.data[0][0] * XF + RX.data[1][0] * YF + RX.data[2][0]);
+		Y2 = (uint16_t)(RY.data[0][0] * XF + RY.data[1][0] * YF + RY.data[2][0]);
+		printf("LCD: X:%d,Y:%d\n", (int)X2, (int)Y2);
+		tft_drawPixel(master, X2, Y2, ILI9341_WHITE);
+	}
+
+	MatFree(MatA);
+	MatFree(MatX);
+	MatFree(MatY);
+	MatFree(MatAI);
+	MatFree(RX);
+	MatFree(RY);
+
+	tft_fillWin(master, master->bg);
+}
+
+
+
 /// @brief help functions test parser
 ///
 /// - Keywords and arguments are matched against test functions
@@ -611,6 +710,7 @@ int user_tests(char *str)
 
     int res;
     int len;
+	int ret;
     char *ptr;
     long p1, p2;
 	time_t t;
@@ -631,7 +731,37 @@ int user_tests(char *str)
         setdate_r(ptr);
         return(1);
     }
+    else if ((len = token(ptr,"calibrate")) )
+    {
+		extern xpt2046_t xpt2046;
 
+        ptr += len;
+		ptr = skipspaces(ptr);
+        ret = atoi(ptr);
+		calibrate(ret & 3);
+        return(1);
+    }
+    else if ((len = token(ptr,"rotate")) )
+    {
+		extern xpt2046_t xpt2046;
+
+        ptr += len;
+		ptr = skipspaces(ptr);
+        ret = atoi(ptr);
+		tft_fillWin(master, master->bg);
+		tft_setRotation(ret & 3);
+		printf("raw: xmin:%4d,ymin:%4d, xmax:%4d,ymax:%4d\n",
+			(int) xpt2046.raw.xmin,
+			(int) xpt2046.raw.ymin,
+			(int) xpt2046.raw.xmax,
+			(int) xpt2046.raw.ymax);
+		printf("map: xmin:%4d,ymin:%4d, xmax:%4d,ymax:%4d\n",
+			(int) xpt2046.map.xmin,
+			(int) xpt2046.map.ymin,
+			(int) xpt2046.map.xmax,
+			(int) xpt2046.map.ymax);
+        return(1);
+    }
 #ifdef ADF4351
     else if ((len = token(ptr,"adf4351")) )
     {
@@ -839,7 +969,7 @@ void setup(void)
     tft_setTextColor(winmsg, ILI9341_WHITE,ILI9341_BLUE);
     tft_fillWin(winmsg, winmsg->bg);
     // write some text
-    tft_set_font(winmsg,2);
+    tft_set_font(winmsg,0);
     tft_font_var(winmsg);
     tft_set_textpos(winmsg, 0,0);
 

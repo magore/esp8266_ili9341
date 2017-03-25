@@ -6,6 +6,7 @@ var searchData=
   ['n_5frootdir',['n_rootdir',['../structFATFS.html#a189a00aa038044ffad0fc7f7dcf2aae1',1,'FATFS']]],
   ['nchr',['nchr',['../structputbuff.html#a125366bfe48077e6f562f95e30b4604a',1,'putbuff']]],
   ['ndata',['ndata',['../structSDIO__CTRL.html#a44edc7d37688ac4f3a1ba3d66e909767',1,'SDIO_CTRL']]],
+  ['nearest_5frun',['nearest_run',['../xpt2046_8h.html#abc3bff89c0ea5ee5bb74fa9ce6514789',1,'xpt2046.h']]],
   ['neg',['neg',['../unionf__t.html#a08d5e77f0fdb784ab1ef1425625e23f7',1,'f_t']]],
   ['network_2ec',['network.c',['../network_8c.html',1,'']]],
   ['network_2eh',['network.h',['../network_8h.html',1,'']]],

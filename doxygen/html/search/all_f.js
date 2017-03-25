@@ -48,6 +48,7 @@ var searchData=
   ['process_5fargs',['process_args',['../web_8c.html#ab29b4d9382acde5a32fa0aad1068c38b',1,'process_args(hinfo_t *hi, char *ptr):&#160;web.c'],['../web_8h.html#ab29b4d9382acde5a32fa0aad1068c38b',1,'process_args(hinfo_t *hi, char *ptr):&#160;web.c']]],
   ['process_5frequests',['process_requests',['../web_8c.html#a83e96b326e5d0ef41c95a83d510705dc',1,'web.c']]],
   ['ps',['ps',['../structex__regs.html#a41791a7ade763f5f965ca2d412914dbb',1,'ex_regs']]],
+  ['pseudoinvert',['PseudoInvert',['../matrix_8c.html#adcf312ca1762403fd593b4a562ff962a',1,'PseudoInvert(mat_t MatA):&#160;matrix.c'],['../matrix_8h.html#adcf312ca1762403fd593b4a562ff962a',1,'PseudoInvert(mat_t MatA):&#160;matrix.c']]],
   ['pte_5fboot',['PTE_Boot',['../ff_8c.html#a74c1bb03f929236b18eb9c4a3df26a8c',1,'ff.c']]],
   ['pte_5fedcyl',['PTE_EdCyl',['../ff_8c.html#a0f96bb9d52c3a5bbd489b59772463cab',1,'ff.c']]],
   ['pte_5fedhead',['PTE_EdHead',['../ff_8c.html#a151137a5b01c29730bbf4ee63c773d12',1,'ff.c']]],

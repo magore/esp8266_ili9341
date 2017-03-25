@@ -71,6 +71,9 @@ typedef enum { false, true } bool;
 // Simple queue reoutines
 #include "queue.h"
 
+// Simple sort functions
+#include "sort.h"
+
 // Hardware UART
 #include <uart_register.h>
 #include "uart.h"

@@ -107,6 +107,7 @@ var searchData=
   ['adf4351_5fupdate',['ADF4351_update',['../adf4351_8h.html#ac8e49da22dd0ed771cbfbe81c313d290',1,'ADF4351_update(double freq):&#160;adf4351_cmd.c'],['../adf4351__cmd_8c.html#af5ee8b8cf7046fc12df16f97668a62b1',1,'ADF4351_update(double freq):&#160;adf4351_cmd.c']]],
   ['adf4351_5fvco_5fmin',['ADF4351_VCO_MIN',['../adf4351_8h.html#a1908fc514543ffe40d7774b30ed9b3de',1,'adf4351.h']]],
   ['adf_5fdump_5fregisters',['ADF_dump_registers',['../adf4351_8h.html#a01253786939ed08115fbea3e2989b745',1,'adf4351.h']]],
+  ['adjugate',['Adjugate',['../matrix_8c.html#a8cd6e3bc1bdeee4558e193c510e05b2d',1,'Adjugate(mat_t MatA):&#160;matrix.c'],['../matrix_8h.html#a8cd6e3bc1bdeee4558e193c510e05b2d',1,'Adjugate(mat_t MatA):&#160;matrix.c']]],
   ['adjustfonttable',['AdjustFontTable',['../bdffontutil_8c.html#a1b1c337030d89f81b06857192e4e0179',1,'AdjustFontTable(_font *font):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a1b1c337030d89f81b06857192e4e0179',1,'AdjustFontTable(_font *font):&#160;bdffontutil.c']]],
   ['all',['all',['../unionuint32__t__bytes.html#a83b0c87830b60d185365dbadf8efd4a0',1,'uint32_t_bytes::all()'],['../unionf__t.html#aab0615c9ada80b0f986b58639ea8c480',1,'f_t::all()']]],
   ['allfonts',['allfonts',['../font_8c.html#ad30601ef15ca84a341c6a7a1dc1d61b1',1,'allfonts():&#160;fonts.h'],['../fonts_8h.html#a9d1e0a6f0f6bc558e1eda2217515d1c5',1,'allfonts():&#160;fonts.h']]],

@@ -1,7 +1,7 @@
 var searchData=
 [
   ['d_5fname',['d_name',['../structdirent.html#ae61380f3ccbc6c32e8650d7bce76197b',1,'dirent']]],
-  ['data',['data',['../structSDIO__CTRL.html#ab04c9adb4d3027a14925fb30b469f0c0',1,'SDIO_CTRL']]],
+  ['data',['data',['../struct__mat.html#a00dcd82a8de11b7f16f7edfde55bcfae',1,'_mat::data()'],['../structSDIO__CTRL.html#ab04c9adb4d3027a14925fb30b469f0c0',1,'SDIO_CTRL::data()']]],
   ['database',['database',['../structFATFS.html#a5b6c0bc2e9fd2ae8ef714210a74a2d5d',1,'FATFS']]],
   ['days_5fper_5fmonth',['Days_Per_Month',['../time_8c.html#ac8aa3e3bf89628eb458ec88350b8033b',1,'Days_Per_Month(int month, int year):&#160;time.c'],['../time_8h.html#ac8aa3e3bf89628eb458ec88350b8033b',1,'Days_Per_Month(int month, int year):&#160;time.c']]],
   ['days_5fper_5fyear',['Days_Per_Year',['../time_8c.html#ad4f4473fe0527085b45e8c354faeee7b',1,'time.c']]],
@@ -19,7 +19,9 @@ var searchData=
   ['delete',['delete',['../structrwbuf__t.html#a54e278f96a331cf0a61d22094c4b9f87',1,'rwbuf_t']]],
   ['delete_5fall_5ftimers',['delete_all_timers',['../timer_8c.html#a62b37d3b3acfee789af6a9dbd47f7267',1,'delete_all_timers():&#160;timer.c'],['../timer_8h.html#a4b27b84577f0a45741aa4b1de370df66',1,'delete_all_timers(void):&#160;timer.c']]],
   ['delete_5fconnection',['delete_connection',['../web_8c.html#ae8b95c674148542469e51d10c4cbaf0a',1,'delete_connection(rwbuf_t *p):&#160;web.c'],['../web_8h.html#ae8b95c674148542469e51d10c4cbaf0a',1,'delete_connection(rwbuf_t *p):&#160;web.c']]],
+  ['deleterowcol',['DeleteRowCol',['../matrix_8c.html#ae6de1b2c3614702d72ae37971e5d33bb',1,'DeleteRowCol(mat_t MatA, int row, int col):&#160;matrix.c'],['../matrix_8h.html#ae6de1b2c3614702d72ae37971e5d33bb',1,'DeleteRowCol(mat_t MatA, int row, int col):&#160;matrix.c']]],
   ['deselect',['deselect',['../mmc_8c.html#af7ba69856a88eef56eabe1d777239392',1,'mmc.c']]],
+  ['determinant',['Determinant',['../matrix_8c.html#a44a96ded1c77d0247a2d641371041ae5',1,'Determinant(mat_t MatA):&#160;matrix.c'],['../matrix_8h.html#a44a96ded1c77d0247a2d641371041ae5',1,'Determinant(mat_t MatA):&#160;matrix.c']]],
   ['dev_5ft',['dev_t',['../posix_8h.html#a451f1b5788fa7cc5d33db47a5992e7a6',1,'posix.h']]],
   ['dir',['DIR',['../structDIR.html',1,'DIR'],['../structDIR.html#a6c2a8c0cf2d55ae99775e93a16593449',1,'DIR::dir()']]],
   ['dir_5falloc',['dir_alloc',['../ff_8c.html#a4d56c285f91e80d8b00c9e1af0ce6989',1,'ff.c']]],

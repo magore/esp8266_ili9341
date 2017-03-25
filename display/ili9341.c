@@ -294,7 +294,8 @@ void tft_bit_blit(window *win, uint8_t *ptr, int16_t x, int16_t y, int16_t w, in
 		wdcount += xx;
 		if(wdcount > 0x3ff)
 		{
-			ets_wdt_disable();
+			optimistic_yield(1000);
+			//ets_wdt_disable();
 			wdcount = 0;
 		}
         off += w;
@@ -392,7 +393,8 @@ void tft_fillRectWH(window *win, int16_t x, int16_t y, int16_t w, int16_t h, uin
 			if(wdcount > 0x3ff)
 			{
 				wdcount = 0;
-				ets_wdt_disable();
+				optimistic_yield(1000);
+				// ets_wdt_disable();
 			}
 		}
 
@@ -507,7 +509,8 @@ void tft_writeRect(window *win, int16_t x, int16_t y, int16_t w, int16_t h, uint
 			if(wdcount > 0x3ff)
 			{
 				wdcount = 0;
-				ets_wdt_disable();
+				optimistic_yield(1000);
+				//ets_wdt_disable();
 			}
 		}
 	}
@@ -531,7 +534,8 @@ void tft_writeRect(window *win, int16_t x, int16_t y, int16_t w, int16_t h, uint
 		if(wdcount >= 0x3ff)
 		{
 			wdcount = 0;
-			ets_wdt_disable();
+			optimistic_yield(1000);
+			// ets_wdt_disable();
 		}
     }
 #endif
@@ -608,7 +612,8 @@ void tft_readRect(window *win, int16_t x, int16_t y, int16_t w, int16_t h, uint1
 
 		if(wdcount >= 0x3ff)
 		{
-			ets_wdt_disable();
+			optimistic_yield(1000);
+			// ets_wdt_disable();
 			wdcount = 0;
 		}
 	}

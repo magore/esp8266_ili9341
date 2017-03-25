@@ -5,6 +5,7 @@ var searchData=
   ['safemalloc',['safemalloc',['../system_8c.html#aca19f0f1e5d805c1e5f61101fa4690f1',1,'safemalloc(size_t size):&#160;system.c'],['../system_8h.html#aca19f0f1e5d805c1e5f61101fa4690f1',1,'safemalloc(size_t size):&#160;system.c']]],
   ['scale10',['scale10',['../mathio_8h.html#a52658cd34151fad98aa1294a2acafa02',1,'mathio.h']]],
   ['scale_5fpoint',['scale_point',['../cordic_8c.html#ae708dfda7767e28c3faeedf2c46deafd',1,'scale_point(point *P, double scale):&#160;cordic.c'],['../cordic_8h.html#ae708dfda7767e28c3faeedf2c46deafd',1,'scale_point(point *P, double scale):&#160;cordic.c']]],
+  ['sdev',['sdev',['../xpt2046_8h.html#a3c3571dfe466884bea2a25234aca83ad',1,'xpt2046.h']]],
   ['select',['select',['../mmc_8c.html#aa25e843f96b6052ed79d3c70bc013935',1,'mmc.c']]],
   ['send_5fcmd',['send_cmd',['../mmc_8c.html#afd47154c84441f723909d5875aa64efd',1,'mmc.c']]],
   ['send_5fmessage',['send_message',['../send_8c.html#a9a62fadd2a5476668fdec898c42d4922',1,'send.c']]],

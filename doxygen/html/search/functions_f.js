@@ -24,6 +24,7 @@ var searchData=
   ['printxyz',['PrintXYZ',['../cordic2c_8c.html#afc93093d0da5da783668ca27f859a2a7',1,'cordic2c.c']]],
   ['process_5fargs',['process_args',['../web_8c.html#ab29b4d9382acde5a32fa0aad1068c38b',1,'process_args(hinfo_t *hi, char *ptr):&#160;web.c'],['../web_8h.html#ab29b4d9382acde5a32fa0aad1068c38b',1,'process_args(hinfo_t *hi, char *ptr):&#160;web.c']]],
   ['process_5frequests',['process_requests',['../web_8c.html#a83e96b326e5d0ef41c95a83d510705dc',1,'web.c']]],
+  ['pseudoinvert',['PseudoInvert',['../matrix_8c.html#adcf312ca1762403fd593b4a562ff962a',1,'PseudoInvert(mat_t MatA):&#160;matrix.c'],['../matrix_8h.html#adcf312ca1762403fd593b4a562ff962a',1,'PseudoInvert(mat_t MatA):&#160;matrix.c']]],
   ['put_5ffat',['put_fat',['../ff_8c.html#a233bbf22750d863f2e9c805e34edda64',1,'ff.c']]],
   ['put_5flfn',['put_lfn',['../ff_8c.html#a64c8872a6cfb7f64a9800465142ef1fb',1,'ff.c']]],
   ['put_5frc',['put_rc',['../fatfs__sup_8c.html#ab3509aecf1844c84f1797e5b567d531c',1,'put_rc(int rc):&#160;fatfs_sup.c'],['../fatfs__sup_8h.html#ab3509aecf1844c84f1797e5b567d531c',1,'put_rc(int rc):&#160;fatfs_sup.c']]],

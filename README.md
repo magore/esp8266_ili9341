@@ -302,6 +302,10 @@ ___
      * ld - Linker scripts
 
      * lib - time, RTC and timer functions
+         * Matrix functions
+           - used for N point least squares screen calibration functions
+           * matrix.c
+           * matrix.h
          * POSIX time functions
            * time.h
            * time.c 
@@ -370,7 +374,12 @@ ___
          * cube_data.h    
        * Wireframe EARTH data
          * earth_data.h
-     * xpt2046 - touch screen code - work in progress
+
+     * xpt2046 - touch screen code 
+         - Serial command: calibrate 1   
+           - runs calibration demo then alows user to set 10 calibrated points
+           - uses matrix.c code 
+         - code is work in progress 
          * xpt2046.c 
          * xpt2046.h 
      * yield - Yield code from Arduino yield code

@@ -3,6 +3,8 @@
 \subsection*{Data Structures}
 \begin{DoxyCompactItemize}
 \item 
+struct \hyperlink{structxpt2046__win}{xpt2046\+\_\+win}
+\begin{DoxyCompactList}\small\item\em initial calibration values for your display Note\+: these values are not rotated \end{DoxyCompactList}\item 
 struct \hyperlink{struct__xpt2046}{\+\_\+xpt2046}
 \item 
 struct \hyperlink{struct__sdev}{\+\_\+sdev}
@@ -10,7 +12,7 @@ struct \hyperlink{struct__sdev}{\+\_\+sdev}
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#define \hyperlink{xpt2046_8h_a0f015f6bedcfd4583ed1133ed6d11963}{X\+P\+T2046\+\_\+\+S\+A\+M\+P\+L\+ES}~8 	/$\ast$ make this a power of 2 $\ast$/
+\#define \hyperlink{xpt2046_8h_a0f015f6bedcfd4583ed1133ed6d11963}{X\+P\+T2046\+\_\+\+S\+A\+M\+P\+L\+ES}~12 	/$\ast$ number of samples to take $\ast$/
 \begin{DoxyCompactList}\small\item\em number of time to read and average results \end{DoxyCompactList}\item 
 \#define \hyperlink{xpt2046_8h_a6e35379ae648fa9db798144a9902f8ec}{X\+P\+T2046\+\_\+\+D\+E\+B\+O\+U\+N\+CE}~10 /$\ast$ Debound value in mS $\ast$/
 \item 
@@ -27,6 +29,8 @@ struct \hyperlink{struct__sdev}{\+\_\+sdev}
 \subsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
+typedef struct \hyperlink{structxpt2046__win}{xpt2046\+\_\+win} \hyperlink{xpt2046_8h_a1e217d8fafba01c2ad20b0986a613316}{xpt2046\+\_\+win\+\_\+t}
+\begin{DoxyCompactList}\small\item\em initial calibration values for your display Note\+: these values are not rotated \end{DoxyCompactList}\item 
 typedef struct \hyperlink{struct__xpt2046}{\+\_\+xpt2046} \hyperlink{xpt2046_8h_a08bf485f6a48ae0788b72c98a416e01c}{xpt2046\+\_\+t}
 \item 
 typedef struct \hyperlink{struct__sdev}{\+\_\+sdev} \hyperlink{xpt2046_8h_a4224e555e9e1280374a4987534846703}{sdev\+\_\+t}
@@ -36,15 +40,39 @@ typedef struct \hyperlink{struct__sdev}{\+\_\+sdev} \hyperlink{xpt2046_8h_a4224e
 \item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{xpt2046_8h_acb7288fd027f95ea7db88c6f8c7c2c2a}{X\+P\+T2046\+\_\+spi\+\_\+init} (void)
 \item 
-void \hyperlink{xpt2046_8h_ab871309defc5020afea02a7997828054}{X\+P\+T2046\+\_\+key\+\_\+flush} (void)
-\item 
-int \hyperlink{xpt2046_8h_a56dd08ed90013cd1b0c695b009d11668}{X\+P\+T2046\+\_\+key} (\hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} $\ast$\hyperlink{cordic2c_8c_a46b4b48ef8c0c01099eb3bcdde8aa8db}{X}, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} $\ast$\hyperlink{cordic2c_8c_ab746e677f466f17031e92ed577fc3c15}{Y})
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{xpt2046_8h_a73c23d30b0f5adc10232894c18112778}{X\+P\+T2046\+\_\+key\+\_\+flush} (void)
 \item 
 \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} \hyperlink{xpt2046_8h_a1dccf53d8f7692a9ae5f272c7a16f462}{X\+P\+T2046\+\_\+read} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} cmd)
 \item 
-int \hyperlink{xpt2046_8h_a820028b126d09135f8c5a75b16f2457d}{X\+P\+T2046\+\_\+read\+\_\+filtered} (\hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} $\ast$\hyperlink{cordic2c_8c_a46b4b48ef8c0c01099eb3bcdde8aa8db}{X}, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} $\ast$\hyperlink{cordic2c_8c_ab746e677f466f17031e92ed577fc3c15}{Y})
+int \hyperlink{xpt2046_8h_a02c4dcf896824df15a98acfbe045d19d}{X\+P\+T2046\+\_\+xy\+\_\+raw} (\hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} $\ast$\hyperlink{cordic2c_8c_a46b4b48ef8c0c01099eb3bcdde8aa8db}{X}, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} $\ast$\hyperlink{cordic2c_8c_ab746e677f466f17031e92ed577fc3c15}{Y})
 \item 
-void \hyperlink{xpt2046_8h_a76ed09ff4a04f13c65e55ae3c4933f4b}{X\+P\+T2046\+\_\+task} (void)
+void \hyperlink{xpt2046_8h_a99c28c3904fbbd1df9105c5a8879c225}{X\+P\+T2046\+\_\+rotate} (\hyperlink{xpt2046_8h_a1e217d8fafba01c2ad20b0986a613316}{xpt2046\+\_\+win\+\_\+t} $\ast$out, \hyperlink{xpt2046_8h_a1e217d8fafba01c2ad20b0986a613316}{xpt2046\+\_\+win\+\_\+t} $\ast$in, int \hyperlink{cordic_8h_a11674104e89537aef6922d07f34e62ae}{rotate})
+\item 
+void \hyperlink{xpt2046_8h_a4b8be7d048e814a78856a22784126f04}{X\+P\+T2046\+\_\+map} (\hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} $\ast$\hyperlink{cordic2c_8c_a46b4b48ef8c0c01099eb3bcdde8aa8db}{X}, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} $\ast$\hyperlink{cordic2c_8c_ab746e677f466f17031e92ed577fc3c15}{Y})
+\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{xpt2046_8h_a904b31f0f0d5c918769495890b91c53d}{X\+P\+T2046\+\_\+xy\+\_\+raw\+\_\+mapped} (\hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} $\ast$\hyperlink{cordic2c_8c_a46b4b48ef8c0c01099eb3bcdde8aa8db}{X}, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} $\ast$\hyperlink{cordic2c_8c_ab746e677f466f17031e92ed577fc3c15}{Y})
+\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{xpt2046_8h_ac22e4f7d0ddbfd16b0c685f90db56656}{X\+P\+T2046\+\_\+xy\+\_\+filtered} (\hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} $\ast$\hyperlink{cordic2c_8c_a46b4b48ef8c0c01099eb3bcdde8aa8db}{X}, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} $\ast$\hyperlink{cordic2c_8c_ab746e677f466f17031e92ed577fc3c15}{Y})
+\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{xpt2046_8h_abc3bff89c0ea5ee5bb74fa9ce6514789}{nearest\+\_\+run} (int $\ast$v, int size, int minsamples, int $\ast$\hyperlink{user__main_8c_aa011065eee776eb1bda73597b5d9d5d7}{count})
+\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{xpt2046_8h_a83de1ddfdba992225e138df8030bf319}{X\+P\+T2046\+\_\+xy\+\_\+filtered\+\_\+mapped} (\hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} $\ast$\hyperlink{cordic2c_8c_a46b4b48ef8c0c01099eb3bcdde8aa8db}{X}, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} $\ast$\hyperlink{cordic2c_8c_ab746e677f466f17031e92ed577fc3c15}{Y})
+\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{xpt2046_8h_a16726a7a1ffb7ff25c3a2601b578cc19}{X\+P\+T2046\+\_\+xy\+\_\+filtered\+\_\+test} (\hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} $\ast$\hyperlink{cordic2c_8c_a46b4b48ef8c0c01099eb3bcdde8aa8db}{X}, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} $\ast$\hyperlink{cordic2c_8c_ab746e677f466f17031e92ed577fc3c15}{Y})
+\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{xpt2046_8h_ab0f1cf1130e264b4181a0b525c9be839}{X\+P\+T2046\+\_\+task} (void)
+\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{xpt2046_8h_af24cb301dadf9ae2bbe836ee1131580d}{X\+P\+T2046\+\_\+key\+\_\+unmapped} (\hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} $\ast$\hyperlink{cordic2c_8c_a46b4b48ef8c0c01099eb3bcdde8aa8db}{X}, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} $\ast$\hyperlink{cordic2c_8c_ab746e677f466f17031e92ed577fc3c15}{Y})
+\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{xpt2046_8h_a944c93b1a6a35c669403c4c71c752394}{X\+P\+T2046\+\_\+setcal} (\hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} xmin, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} ymin, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} xmax, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} ymax)
+\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{xpt2046_8h_a38bf31950b47f6aa9d5bb9c9a6716286}{X\+P\+T2046\+\_\+setmap} (\hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} xmin, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} ymin, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} xmax, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} ymax)
+\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{xpt2046_8h_a953d0aabf207b5c95739258b578fff9f}{X\+P\+T2046\+\_\+xy\+\_\+mapped} (\hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} $\ast$\hyperlink{cordic2c_8c_a46b4b48ef8c0c01099eb3bcdde8aa8db}{X}, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} $\ast$\hyperlink{cordic2c_8c_ab746e677f466f17031e92ed577fc3c15}{Y})
+\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{xpt2046_8h_a69fc6431a2058d4fd8c26af6547cfae5}{X\+P\+T2046\+\_\+key} (\hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} $\ast$\hyperlink{cordic2c_8c_a46b4b48ef8c0c01099eb3bcdde8aa8db}{X}, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} $\ast$\hyperlink{cordic2c_8c_ab746e677f466f17031e92ed577fc3c15}{Y})
+\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{xpt2046_8h_a3c3571dfe466884bea2a25234aca83ad}{sdev} (\hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} $\ast$samples, int size, \hyperlink{xpt2046_8h_a4224e555e9e1280374a4987534846703}{sdev\+\_\+t} $\ast$\hyperlink{cordic2c_8c_a3da94d1c83a43c30add6c05fbbe1f194}{Z})
 \end{DoxyCompactItemize}
 
 
@@ -97,7 +125,7 @@ Definition at line 36 of file xpt2046.\+h.
 
 \index{xpt2046.\+h@{xpt2046.\+h}!X\+P\+T2046\+\_\+\+S\+A\+M\+P\+L\+ES@{X\+P\+T2046\+\_\+\+S\+A\+M\+P\+L\+ES}}
 \index{X\+P\+T2046\+\_\+\+S\+A\+M\+P\+L\+ES@{X\+P\+T2046\+\_\+\+S\+A\+M\+P\+L\+ES}!xpt2046.\+h@{xpt2046.\+h}}
-\subsubsection[{\texorpdfstring{X\+P\+T2046\+\_\+\+S\+A\+M\+P\+L\+ES}{XPT2046_SAMPLES}}]{\setlength{\rightskip}{0pt plus 5cm}\#define X\+P\+T2046\+\_\+\+S\+A\+M\+P\+L\+ES~8 	/$\ast$ make this a power of 2 $\ast$/}\hypertarget{xpt2046_8h_a0f015f6bedcfd4583ed1133ed6d11963}{}\label{xpt2046_8h_a0f015f6bedcfd4583ed1133ed6d11963}
+\subsubsection[{\texorpdfstring{X\+P\+T2046\+\_\+\+S\+A\+M\+P\+L\+ES}{XPT2046_SAMPLES}}]{\setlength{\rightskip}{0pt plus 5cm}\#define X\+P\+T2046\+\_\+\+S\+A\+M\+P\+L\+ES~12 	/$\ast$ number of samples to take $\ast$/}\hypertarget{xpt2046_8h_a0f015f6bedcfd4583ed1133ed6d11963}{}\label{xpt2046_8h_a0f015f6bedcfd4583ed1133ed6d11963}
 
 
 number of time to read and average results 
@@ -115,28 +143,73 @@ Definition at line 29 of file xpt2046.\+h.
 \index{xpt2046.\+h@{xpt2046.\+h}!xpt2046\+\_\+t@{xpt2046\+\_\+t}}
 \index{xpt2046\+\_\+t@{xpt2046\+\_\+t}!xpt2046.\+h@{xpt2046.\+h}}
 \subsubsection[{\texorpdfstring{xpt2046\+\_\+t}{xpt2046_t}}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \+\_\+xpt2046}  {\bf xpt2046\+\_\+t}}\hypertarget{xpt2046_8h_a08bf485f6a48ae0788b72c98a416e01c}{}\label{xpt2046_8h_a08bf485f6a48ae0788b72c98a416e01c}
+\index{xpt2046.\+h@{xpt2046.\+h}!xpt2046\+\_\+win\+\_\+t@{xpt2046\+\_\+win\+\_\+t}}
+\index{xpt2046\+\_\+win\+\_\+t@{xpt2046\+\_\+win\+\_\+t}!xpt2046.\+h@{xpt2046.\+h}}
+\subsubsection[{\texorpdfstring{xpt2046\+\_\+win\+\_\+t}{xpt2046_win_t}}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf xpt2046\+\_\+win}  {\bf xpt2046\+\_\+win\+\_\+t}}\hypertarget{xpt2046_8h_a1e217d8fafba01c2ad20b0986a613316}{}\label{xpt2046_8h_a1e217d8fafba01c2ad20b0986a613316}
 
+
+initial calibration values for your display Note\+: these values are not rotated 
+
+
+\begin{DoxyItemize}
+\item rotations are applied dynamically based on the display state and data structures 
+\end{DoxyItemize}
 
 \subsection{Function Documentation}
+\index{xpt2046.\+h@{xpt2046.\+h}!nearest\+\_\+run@{nearest\+\_\+run}}
+\index{nearest\+\_\+run@{nearest\+\_\+run}!xpt2046.\+h@{xpt2046.\+h}}
+\subsubsection[{\texorpdfstring{nearest\+\_\+run(int $\ast$v, int size, int minsamples, int $\ast$count)}{nearest_run(int *v, int size, int minsamples, int *count)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int nearest\+\_\+run (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{v, }
+\item[{int}]{size, }
+\item[{int}]{minsamples, }
+\item[{int $\ast$}]{count}
+\end{DoxyParamCaption}
+)}\hypertarget{xpt2046_8h_abc3bff89c0ea5ee5bb74fa9ce6514789}{}\label{xpt2046_8h_abc3bff89c0ea5ee5bb74fa9ce6514789}
+\index{xpt2046.\+h@{xpt2046.\+h}!sdev@{sdev}}
+\index{sdev@{sdev}!xpt2046.\+h@{xpt2046.\+h}}
+\subsubsection[{\texorpdfstring{sdev(uint16\+\_\+t $\ast$samples, int size, sdev\+\_\+t $\ast$\+Z)}{sdev(uint16_t *samples, int size, sdev_t *Z)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int sdev (
+\begin{DoxyParamCaption}
+\item[{{\bf uint16\+\_\+t} $\ast$}]{samples, }
+\item[{int}]{size, }
+\item[{{\bf sdev\+\_\+t} $\ast$}]{Z}
+\end{DoxyParamCaption}
+)}\hypertarget{xpt2046_8h_a3c3571dfe466884bea2a25234aca83ad}{}\label{xpt2046_8h_a3c3571dfe466884bea2a25234aca83ad}
 \index{xpt2046.\+h@{xpt2046.\+h}!X\+P\+T2046\+\_\+key@{X\+P\+T2046\+\_\+key}}
 \index{X\+P\+T2046\+\_\+key@{X\+P\+T2046\+\_\+key}!xpt2046.\+h@{xpt2046.\+h}}
-\subsubsection[{\texorpdfstring{X\+P\+T2046\+\_\+key(uint16\+\_\+t $\ast$\+X, uint16\+\_\+t $\ast$\+Y)}{XPT2046_key(uint16_t *X, uint16_t *Y)}}]{\setlength{\rightskip}{0pt plus 5cm}int X\+P\+T2046\+\_\+key (
+\subsubsection[{\texorpdfstring{X\+P\+T2046\+\_\+key(uint16\+\_\+t $\ast$\+X, uint16\+\_\+t $\ast$\+Y)}{XPT2046_key(uint16_t *X, uint16_t *Y)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int X\+P\+T2046\+\_\+key (
 \begin{DoxyParamCaption}
 \item[{{\bf uint16\+\_\+t} $\ast$}]{X, }
 \item[{{\bf uint16\+\_\+t} $\ast$}]{Y}
 \end{DoxyParamCaption}
-)}\hypertarget{xpt2046_8h_a56dd08ed90013cd1b0c695b009d11668}{}\label{xpt2046_8h_a56dd08ed90013cd1b0c695b009d11668}
-
-
-Referenced by user\+\_\+loop().
-
+)}\hypertarget{xpt2046_8h_a69fc6431a2058d4fd8c26af6547cfae5}{}\label{xpt2046_8h_a69fc6431a2058d4fd8c26af6547cfae5}
 \index{xpt2046.\+h@{xpt2046.\+h}!X\+P\+T2046\+\_\+key\+\_\+flush@{X\+P\+T2046\+\_\+key\+\_\+flush}}
 \index{X\+P\+T2046\+\_\+key\+\_\+flush@{X\+P\+T2046\+\_\+key\+\_\+flush}!xpt2046.\+h@{xpt2046.\+h}}
-\subsubsection[{\texorpdfstring{X\+P\+T2046\+\_\+key\+\_\+flush(void)}{XPT2046_key_flush(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void X\+P\+T2046\+\_\+key\+\_\+flush (
+\subsubsection[{\texorpdfstring{X\+P\+T2046\+\_\+key\+\_\+flush(void)}{XPT2046_key_flush(void)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void X\+P\+T2046\+\_\+key\+\_\+flush (
 \begin{DoxyParamCaption}
 \item[{void}]{}
 \end{DoxyParamCaption}
-)}\hypertarget{xpt2046_8h_ab871309defc5020afea02a7997828054}{}\label{xpt2046_8h_ab871309defc5020afea02a7997828054}
+)}\hypertarget{xpt2046_8h_a73c23d30b0f5adc10232894c18112778}{}\label{xpt2046_8h_a73c23d30b0f5adc10232894c18112778}
+\index{xpt2046.\+h@{xpt2046.\+h}!X\+P\+T2046\+\_\+key\+\_\+unmapped@{X\+P\+T2046\+\_\+key\+\_\+unmapped}}
+\index{X\+P\+T2046\+\_\+key\+\_\+unmapped@{X\+P\+T2046\+\_\+key\+\_\+unmapped}!xpt2046.\+h@{xpt2046.\+h}}
+\subsubsection[{\texorpdfstring{X\+P\+T2046\+\_\+key\+\_\+unmapped(uint16\+\_\+t $\ast$\+X, uint16\+\_\+t $\ast$\+Y)}{XPT2046_key_unmapped(uint16_t *X, uint16_t *Y)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int X\+P\+T2046\+\_\+key\+\_\+unmapped (
+\begin{DoxyParamCaption}
+\item[{{\bf uint16\+\_\+t} $\ast$}]{X, }
+\item[{{\bf uint16\+\_\+t} $\ast$}]{Y}
+\end{DoxyParamCaption}
+)}\hypertarget{xpt2046_8h_af24cb301dadf9ae2bbe836ee1131580d}{}\label{xpt2046_8h_af24cb301dadf9ae2bbe836ee1131580d}
+
+
+Referenced by calibrate().
+
+\index{xpt2046.\+h@{xpt2046.\+h}!X\+P\+T2046\+\_\+map@{X\+P\+T2046\+\_\+map}}
+\index{X\+P\+T2046\+\_\+map@{X\+P\+T2046\+\_\+map}!xpt2046.\+h@{xpt2046.\+h}}
+\subsubsection[{\texorpdfstring{X\+P\+T2046\+\_\+map(uint16\+\_\+t $\ast$\+X, uint16\+\_\+t $\ast$\+Y)}{XPT2046_map(uint16_t *X, uint16_t *Y)}}]{\setlength{\rightskip}{0pt plus 5cm}void X\+P\+T2046\+\_\+map (
+\begin{DoxyParamCaption}
+\item[{{\bf uint16\+\_\+t} $\ast$}]{X, }
+\item[{{\bf uint16\+\_\+t} $\ast$}]{Y}
+\end{DoxyParamCaption}
+)}\hypertarget{xpt2046_8h_a4b8be7d048e814a78856a22784126f04}{}\label{xpt2046_8h_a4b8be7d048e814a78856a22784126f04}
 \index{xpt2046.\+h@{xpt2046.\+h}!X\+P\+T2046\+\_\+read@{X\+P\+T2046\+\_\+read}}
 \index{X\+P\+T2046\+\_\+read@{X\+P\+T2046\+\_\+read}!xpt2046.\+h@{xpt2046.\+h}}
 \subsubsection[{\texorpdfstring{X\+P\+T2046\+\_\+read(uint8\+\_\+t cmd)}{XPT2046_read(uint8_t cmd)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint16\+\_\+t} X\+P\+T2046\+\_\+read (
@@ -144,14 +217,35 @@ Referenced by user\+\_\+loop().
 \item[{{\bf uint8\+\_\+t}}]{cmd}
 \end{DoxyParamCaption}
 )}\hypertarget{xpt2046_8h_a1dccf53d8f7692a9ae5f272c7a16f462}{}\label{xpt2046_8h_a1dccf53d8f7692a9ae5f272c7a16f462}
-\index{xpt2046.\+h@{xpt2046.\+h}!X\+P\+T2046\+\_\+read\+\_\+filtered@{X\+P\+T2046\+\_\+read\+\_\+filtered}}
-\index{X\+P\+T2046\+\_\+read\+\_\+filtered@{X\+P\+T2046\+\_\+read\+\_\+filtered}!xpt2046.\+h@{xpt2046.\+h}}
-\subsubsection[{\texorpdfstring{X\+P\+T2046\+\_\+read\+\_\+filtered(uint16\+\_\+t $\ast$\+X, uint16\+\_\+t $\ast$\+Y)}{XPT2046_read_filtered(uint16_t *X, uint16_t *Y)}}]{\setlength{\rightskip}{0pt plus 5cm}int X\+P\+T2046\+\_\+read\+\_\+filtered (
+\index{xpt2046.\+h@{xpt2046.\+h}!X\+P\+T2046\+\_\+rotate@{X\+P\+T2046\+\_\+rotate}}
+\index{X\+P\+T2046\+\_\+rotate@{X\+P\+T2046\+\_\+rotate}!xpt2046.\+h@{xpt2046.\+h}}
+\subsubsection[{\texorpdfstring{X\+P\+T2046\+\_\+rotate(xpt2046\+\_\+win\+\_\+t $\ast$out, xpt2046\+\_\+win\+\_\+t $\ast$in, int rotate)}{XPT2046_rotate(xpt2046_win_t *out, xpt2046_win_t *in, int rotate)}}]{\setlength{\rightskip}{0pt plus 5cm}void X\+P\+T2046\+\_\+rotate (
 \begin{DoxyParamCaption}
-\item[{{\bf uint16\+\_\+t} $\ast$}]{X, }
-\item[{{\bf uint16\+\_\+t} $\ast$}]{Y}
+\item[{{\bf xpt2046\+\_\+win\+\_\+t} $\ast$}]{out, }
+\item[{{\bf xpt2046\+\_\+win\+\_\+t} $\ast$}]{in, }
+\item[{int}]{rotate}
 \end{DoxyParamCaption}
-)}\hypertarget{xpt2046_8h_a820028b126d09135f8c5a75b16f2457d}{}\label{xpt2046_8h_a820028b126d09135f8c5a75b16f2457d}
+)}\hypertarget{xpt2046_8h_a99c28c3904fbbd1df9105c5a8879c225}{}\label{xpt2046_8h_a99c28c3904fbbd1df9105c5a8879c225}
+\index{xpt2046.\+h@{xpt2046.\+h}!X\+P\+T2046\+\_\+setcal@{X\+P\+T2046\+\_\+setcal}}
+\index{X\+P\+T2046\+\_\+setcal@{X\+P\+T2046\+\_\+setcal}!xpt2046.\+h@{xpt2046.\+h}}
+\subsubsection[{\texorpdfstring{X\+P\+T2046\+\_\+setcal(uint16\+\_\+t xmin, uint16\+\_\+t ymin, uint16\+\_\+t xmax, uint16\+\_\+t ymax)}{XPT2046_setcal(uint16_t xmin, uint16_t ymin, uint16_t xmax, uint16_t ymax)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void X\+P\+T2046\+\_\+setcal (
+\begin{DoxyParamCaption}
+\item[{{\bf uint16\+\_\+t}}]{xmin, }
+\item[{{\bf uint16\+\_\+t}}]{ymin, }
+\item[{{\bf uint16\+\_\+t}}]{xmax, }
+\item[{{\bf uint16\+\_\+t}}]{ymax}
+\end{DoxyParamCaption}
+)}\hypertarget{xpt2046_8h_a944c93b1a6a35c669403c4c71c752394}{}\label{xpt2046_8h_a944c93b1a6a35c669403c4c71c752394}
+\index{xpt2046.\+h@{xpt2046.\+h}!X\+P\+T2046\+\_\+setmap@{X\+P\+T2046\+\_\+setmap}}
+\index{X\+P\+T2046\+\_\+setmap@{X\+P\+T2046\+\_\+setmap}!xpt2046.\+h@{xpt2046.\+h}}
+\subsubsection[{\texorpdfstring{X\+P\+T2046\+\_\+setmap(uint16\+\_\+t xmin, uint16\+\_\+t ymin, uint16\+\_\+t xmax, uint16\+\_\+t ymax)}{XPT2046_setmap(uint16_t xmin, uint16_t ymin, uint16_t xmax, uint16_t ymax)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void X\+P\+T2046\+\_\+setmap (
+\begin{DoxyParamCaption}
+\item[{{\bf uint16\+\_\+t}}]{xmin, }
+\item[{{\bf uint16\+\_\+t}}]{ymin, }
+\item[{{\bf uint16\+\_\+t}}]{xmax, }
+\item[{{\bf uint16\+\_\+t}}]{ymax}
+\end{DoxyParamCaption}
+)}\hypertarget{xpt2046_8h_a38bf31950b47f6aa9d5bb9c9a6716286}{}\label{xpt2046_8h_a38bf31950b47f6aa9d5bb9c9a6716286}
 \index{xpt2046.\+h@{xpt2046.\+h}!X\+P\+T2046\+\_\+spi\+\_\+init@{X\+P\+T2046\+\_\+spi\+\_\+init}}
 \index{X\+P\+T2046\+\_\+spi\+\_\+init@{X\+P\+T2046\+\_\+spi\+\_\+init}!xpt2046.\+h@{xpt2046.\+h}}
 \subsubsection[{\texorpdfstring{X\+P\+T2046\+\_\+spi\+\_\+init(void)}{XPT2046_spi_init(void)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void X\+P\+T2046\+\_\+spi\+\_\+init (
@@ -165,8 +259,60 @@ Referenced by setup().
 
 \index{xpt2046.\+h@{xpt2046.\+h}!X\+P\+T2046\+\_\+task@{X\+P\+T2046\+\_\+task}}
 \index{X\+P\+T2046\+\_\+task@{X\+P\+T2046\+\_\+task}!xpt2046.\+h@{xpt2046.\+h}}
-\subsubsection[{\texorpdfstring{X\+P\+T2046\+\_\+task(void)}{XPT2046_task(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void X\+P\+T2046\+\_\+task (
+\subsubsection[{\texorpdfstring{X\+P\+T2046\+\_\+task(void)}{XPT2046_task(void)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void X\+P\+T2046\+\_\+task (
 \begin{DoxyParamCaption}
 \item[{void}]{}
 \end{DoxyParamCaption}
-)}\hypertarget{xpt2046_8h_a76ed09ff4a04f13c65e55ae3c4933f4b}{}\label{xpt2046_8h_a76ed09ff4a04f13c65e55ae3c4933f4b}
+)}\hypertarget{xpt2046_8h_ab0f1cf1130e264b4181a0b525c9be839}{}\label{xpt2046_8h_ab0f1cf1130e264b4181a0b525c9be839}
+\index{xpt2046.\+h@{xpt2046.\+h}!X\+P\+T2046\+\_\+xy\+\_\+filtered@{X\+P\+T2046\+\_\+xy\+\_\+filtered}}
+\index{X\+P\+T2046\+\_\+xy\+\_\+filtered@{X\+P\+T2046\+\_\+xy\+\_\+filtered}!xpt2046.\+h@{xpt2046.\+h}}
+\subsubsection[{\texorpdfstring{X\+P\+T2046\+\_\+xy\+\_\+filtered(uint16\+\_\+t $\ast$\+X, uint16\+\_\+t $\ast$\+Y)}{XPT2046_xy_filtered(uint16_t *X, uint16_t *Y)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int X\+P\+T2046\+\_\+xy\+\_\+filtered (
+\begin{DoxyParamCaption}
+\item[{{\bf uint16\+\_\+t} $\ast$}]{X, }
+\item[{{\bf uint16\+\_\+t} $\ast$}]{Y}
+\end{DoxyParamCaption}
+)}\hypertarget{xpt2046_8h_ac22e4f7d0ddbfd16b0c685f90db56656}{}\label{xpt2046_8h_ac22e4f7d0ddbfd16b0c685f90db56656}
+\index{xpt2046.\+h@{xpt2046.\+h}!X\+P\+T2046\+\_\+xy\+\_\+filtered\+\_\+mapped@{X\+P\+T2046\+\_\+xy\+\_\+filtered\+\_\+mapped}}
+\index{X\+P\+T2046\+\_\+xy\+\_\+filtered\+\_\+mapped@{X\+P\+T2046\+\_\+xy\+\_\+filtered\+\_\+mapped}!xpt2046.\+h@{xpt2046.\+h}}
+\subsubsection[{\texorpdfstring{X\+P\+T2046\+\_\+xy\+\_\+filtered\+\_\+mapped(uint16\+\_\+t $\ast$\+X, uint16\+\_\+t $\ast$\+Y)}{XPT2046_xy_filtered_mapped(uint16_t *X, uint16_t *Y)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int X\+P\+T2046\+\_\+xy\+\_\+filtered\+\_\+mapped (
+\begin{DoxyParamCaption}
+\item[{{\bf uint16\+\_\+t} $\ast$}]{X, }
+\item[{{\bf uint16\+\_\+t} $\ast$}]{Y}
+\end{DoxyParamCaption}
+)}\hypertarget{xpt2046_8h_a83de1ddfdba992225e138df8030bf319}{}\label{xpt2046_8h_a83de1ddfdba992225e138df8030bf319}
+
+
+Referenced by user\+\_\+loop().
+
+\index{xpt2046.\+h@{xpt2046.\+h}!X\+P\+T2046\+\_\+xy\+\_\+filtered\+\_\+test@{X\+P\+T2046\+\_\+xy\+\_\+filtered\+\_\+test}}
+\index{X\+P\+T2046\+\_\+xy\+\_\+filtered\+\_\+test@{X\+P\+T2046\+\_\+xy\+\_\+filtered\+\_\+test}!xpt2046.\+h@{xpt2046.\+h}}
+\subsubsection[{\texorpdfstring{X\+P\+T2046\+\_\+xy\+\_\+filtered\+\_\+test(uint16\+\_\+t $\ast$\+X, uint16\+\_\+t $\ast$\+Y)}{XPT2046_xy_filtered_test(uint16_t *X, uint16_t *Y)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int X\+P\+T2046\+\_\+xy\+\_\+filtered\+\_\+test (
+\begin{DoxyParamCaption}
+\item[{{\bf uint16\+\_\+t} $\ast$}]{X, }
+\item[{{\bf uint16\+\_\+t} $\ast$}]{Y}
+\end{DoxyParamCaption}
+)}\hypertarget{xpt2046_8h_a16726a7a1ffb7ff25c3a2601b578cc19}{}\label{xpt2046_8h_a16726a7a1ffb7ff25c3a2601b578cc19}
+\index{xpt2046.\+h@{xpt2046.\+h}!X\+P\+T2046\+\_\+xy\+\_\+mapped@{X\+P\+T2046\+\_\+xy\+\_\+mapped}}
+\index{X\+P\+T2046\+\_\+xy\+\_\+mapped@{X\+P\+T2046\+\_\+xy\+\_\+mapped}!xpt2046.\+h@{xpt2046.\+h}}
+\subsubsection[{\texorpdfstring{X\+P\+T2046\+\_\+xy\+\_\+mapped(uint16\+\_\+t $\ast$\+X, uint16\+\_\+t $\ast$\+Y)}{XPT2046_xy_mapped(uint16_t *X, uint16_t *Y)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int X\+P\+T2046\+\_\+xy\+\_\+mapped (
+\begin{DoxyParamCaption}
+\item[{{\bf uint16\+\_\+t} $\ast$}]{X, }
+\item[{{\bf uint16\+\_\+t} $\ast$}]{Y}
+\end{DoxyParamCaption}
+)}\hypertarget{xpt2046_8h_a953d0aabf207b5c95739258b578fff9f}{}\label{xpt2046_8h_a953d0aabf207b5c95739258b578fff9f}
+\index{xpt2046.\+h@{xpt2046.\+h}!X\+P\+T2046\+\_\+xy\+\_\+raw@{X\+P\+T2046\+\_\+xy\+\_\+raw}}
+\index{X\+P\+T2046\+\_\+xy\+\_\+raw@{X\+P\+T2046\+\_\+xy\+\_\+raw}!xpt2046.\+h@{xpt2046.\+h}}
+\subsubsection[{\texorpdfstring{X\+P\+T2046\+\_\+xy\+\_\+raw(uint16\+\_\+t $\ast$\+X, uint16\+\_\+t $\ast$\+Y)}{XPT2046_xy_raw(uint16_t *X, uint16_t *Y)}}]{\setlength{\rightskip}{0pt plus 5cm}int X\+P\+T2046\+\_\+xy\+\_\+raw (
+\begin{DoxyParamCaption}
+\item[{{\bf uint16\+\_\+t} $\ast$}]{X, }
+\item[{{\bf uint16\+\_\+t} $\ast$}]{Y}
+\end{DoxyParamCaption}
+)}\hypertarget{xpt2046_8h_a02c4dcf896824df15a98acfbe045d19d}{}\label{xpt2046_8h_a02c4dcf896824df15a98acfbe045d19d}
+\index{xpt2046.\+h@{xpt2046.\+h}!X\+P\+T2046\+\_\+xy\+\_\+raw\+\_\+mapped@{X\+P\+T2046\+\_\+xy\+\_\+raw\+\_\+mapped}}
+\index{X\+P\+T2046\+\_\+xy\+\_\+raw\+\_\+mapped@{X\+P\+T2046\+\_\+xy\+\_\+raw\+\_\+mapped}!xpt2046.\+h@{xpt2046.\+h}}
+\subsubsection[{\texorpdfstring{X\+P\+T2046\+\_\+xy\+\_\+raw\+\_\+mapped(uint16\+\_\+t $\ast$\+X, uint16\+\_\+t $\ast$\+Y)}{XPT2046_xy_raw_mapped(uint16_t *X, uint16_t *Y)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int X\+P\+T2046\+\_\+xy\+\_\+raw\+\_\+mapped (
+\begin{DoxyParamCaption}
+\item[{{\bf uint16\+\_\+t} $\ast$}]{X, }
+\item[{{\bf uint16\+\_\+t} $\ast$}]{Y}
+\end{DoxyParamCaption}
+)}\hypertarget{xpt2046_8h_a904b31f0f0d5c918769495890b91c53d}{}\label{xpt2046_8h_a904b31f0f0d5c918769495890b91c53d}

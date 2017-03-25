@@ -7,6 +7,8 @@ var searchData=
   ['header_5ft',['header_t',['../structheader__t.html',1,'']]],
   ['heap_5fend',['HEAP_END',['../system_8c.html#a7437bbfa3a1415a7d91fded74239a762',1,'system.c']]],
   ['heap_5fstart',['HEAP_START',['../system_8c.html#ae9739bcecd10d5962cc10c12bf01594f',1,'system.c']]],
+  ['heapify',['heapify',['../sort_8c.html#ae25e2660ac46bcd007951b361b4ab227',1,'heapify(int *v, int size, int root):&#160;sort.c'],['../sort_8h.html#ae25e2660ac46bcd007951b361b4ab227',1,'heapify(int *v, int size, int root):&#160;sort.c']]],
+  ['heapsort',['heapsort',['../sort_8c.html#ad24ab1a5336a91ff3b9d9ab764cfc0b5',1,'heapsort(int *v, int size):&#160;sort.c'],['../sort_8h.html#ad24ab1a5336a91ff3b9d9ab764cfc0b5',1,'heapsort(int *v, int size):&#160;sort.c']]],
   ['height',['Height',['../struct__fontspecs.html#a33e92e50bd86f34db768e027e4736089',1,'_fontspecs::Height()'],['../struct__font.html#a5888921d1a78bf917351a275e2033467',1,'_font::Height()'],['../struct__fontc.html#a98f97c237dfb1027c38813a17ef6dcd6',1,'_fontc::Height()']]],
   ['hi',['hi',['../structfreq__t.html#a7467d2b0a15aa7fd7d051f29e3aaa40c',1,'freq_t']]],
   ['hightask',['HighTask',['../user__main_8c.html#aa4e3c2b96eb11d8f9cd7a26562652ca0',1,'user_main.c']]],

@@ -156,6 +156,13 @@ MAX_CONNECTIONS = 8
 
 
 # =========================
+# Matrix Debugging
+# 0 no debugging
+# 1 errors
+# 2 details
+MATDEBUG = 1
+	CFLAGS += -DMATDEBUG=$(MATDEBUG)
+# =========================
 # printf, sscanf and math IO functions
 
 # Debugging printf function

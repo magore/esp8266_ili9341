@@ -20,6 +20,7 @@ var searchData=
   ['adf4351_5ftask',['ADF4351_task',['../adf4351_8h.html#a795f082266241ad0f8befe3b98eb7afc',1,'ADF4351_task(void):&#160;adf4351_cmd.c'],['../adf4351__cmd_8c.html#a0962ad04b53f62648995b660be443ab0',1,'ADF4351_task():&#160;adf4351_cmd.c']]],
   ['adf4351_5fupdate',['ADF4351_update',['../adf4351_8h.html#ac8e49da22dd0ed771cbfbe81c313d290',1,'ADF4351_update(double freq):&#160;adf4351_cmd.c'],['../adf4351__cmd_8c.html#af5ee8b8cf7046fc12df16f97668a62b1',1,'ADF4351_update(double freq):&#160;adf4351_cmd.c']]],
   ['adf_5fdump_5fregisters',['ADF_dump_registers',['../adf4351_8h.html#a01253786939ed08115fbea3e2989b745',1,'adf4351.h']]],
+  ['adjugate',['Adjugate',['../matrix_8c.html#a8cd6e3bc1bdeee4558e193c510e05b2d',1,'Adjugate(mat_t MatA):&#160;matrix.c'],['../matrix_8h.html#a8cd6e3bc1bdeee4558e193c510e05b2d',1,'Adjugate(mat_t MatA):&#160;matrix.c']]],
   ['adjustfonttable',['AdjustFontTable',['../bdffontutil_8c.html#a1b1c337030d89f81b06857192e4e0179',1,'AdjustFontTable(_font *font):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a1b1c337030d89f81b06857192e4e0179',1,'AdjustFontTable(_font *font):&#160;bdffontutil.c']]],
   ['alloc_5fsize',['alloc_size',['../ets__sys_8h.html#aad111197de7c9bbb7510b2c423c6a692',1,'ets_sys.h']]],
   ['angle_5fquad',['angle_quad',['../cordic_8c.html#ae1719101cd5b3cb0c89cf03c436c551e',1,'angle_quad(double quads, int *quad):&#160;cordic.c'],['../cordic_8h.html#a132f4d86aeaa02138e534f93cbf69757',1,'angle_quad(double quads, int *quad):&#160;cordic.c']]],

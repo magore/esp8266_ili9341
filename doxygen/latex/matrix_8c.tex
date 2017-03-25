@@ -1,0 +1,524 @@
+\hypertarget{matrix_8c}{}\section{lib/matrix.c File Reference}
+\label{matrix_8c}\index{lib/matrix.\+c@{lib/matrix.\+c}}
+
+
+matrix functions  
+
+
+{\ttfamily \#include \char`\"{}user\+\_\+config.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}matrix.\+h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{matrix_8c_ad620ce01d6d2d9a701013fcba7b96fa7}{Test\+Square} (\hyperlink{matrix_8h_aff180987da2be77c8864e8c906bf04e6}{mat\+\_\+t} MatA)
+\begin{DoxyCompactList}\small\item\em Credits\+: \href{https://www.cs.rochester.edu/~brown/Crypto/assts/projects/adj.html}{\tt https\+://www.\+cs.\+rochester.\+edu/$\sim$brown/\+Crypto/assts/projects/adj.\+html}. \end{DoxyCompactList}\item 
+\hyperlink{matrix_8h_aff180987da2be77c8864e8c906bf04e6}{mat\+\_\+t} \hyperlink{matrix_8c_adf8d43659cfe0a22ec496504c7131044}{Mat\+Alloc} (int rows, int cols)
+\begin{DoxyCompactList}\small\item\em Allocate a matrix. \end{DoxyCompactList}\item 
+\hyperlink{matrix_8h_aff180987da2be77c8864e8c906bf04e6}{mat\+\_\+t} \hyperlink{matrix_8c_a0151d7c31f203a5f972545a00b049ca8}{Mat\+Alloc\+SQ} (int size)
+\begin{DoxyCompactList}\small\item\em Allocate a matrix. \end{DoxyCompactList}\item 
+void \hyperlink{matrix_8c_a22e8d5f7787f2eeeb3b24250ff04ae74}{Mat\+Free} (\hyperlink{matrix_8h_aff180987da2be77c8864e8c906bf04e6}{mat\+\_\+t} matF)
+\begin{DoxyCompactList}\small\item\em Free a matrix. \end{DoxyCompactList}\item 
+\hyperlink{matrix_8h_aff180987da2be77c8864e8c906bf04e6}{mat\+\_\+t} \hyperlink{matrix_8c_a0c7a027f52545821a79eab132849f737}{Mat\+Load} (void $\ast$\hyperlink{user__main_8c_a521e17d9ccfd7b07bf3a1f6fa1a15e0c}{V}, int rows, int cols)
+\begin{DoxyCompactList}\small\item\em Load a matrix. \end{DoxyCompactList}\item 
+\hyperlink{matrix_8h_aff180987da2be77c8864e8c906bf04e6}{mat\+\_\+t} \hyperlink{matrix_8c_a6bf59fb52b8b93a1b23dc8864e305cab}{Mat\+Load\+SQ} (void $\ast$\hyperlink{user__main_8c_a521e17d9ccfd7b07bf3a1f6fa1a15e0c}{V}, int size)
+\begin{DoxyCompactList}\small\item\em Load a square matrix. \end{DoxyCompactList}\item 
+void \hyperlink{matrix_8c_ad7d7e2a3e3e380e4eed7d226973f04f7}{Mat\+Print} (\hyperlink{matrix_8h_aff180987da2be77c8864e8c906bf04e6}{mat\+\_\+t} matrix)
+\begin{DoxyCompactList}\small\item\em Print a matrix. \end{DoxyCompactList}\item 
+\hyperlink{matrix_8h_aff180987da2be77c8864e8c906bf04e6}{mat\+\_\+t} \hyperlink{matrix_8c_ae6de1b2c3614702d72ae37971e5d33bb}{Delete\+Row\+Col} (\hyperlink{matrix_8h_aff180987da2be77c8864e8c906bf04e6}{mat\+\_\+t} MatA, int row, int col)
+\begin{DoxyCompactList}\small\item\em Create smaller matrix by deleatting specified row and colume Used by Minor and Cofactor. \end{DoxyCompactList}\item 
+\hyperlink{matrix_8h_aff180987da2be77c8864e8c906bf04e6}{mat\+\_\+t} \hyperlink{matrix_8c_a4eb3882ef9097a9cae60775788090348}{Transpose} (\hyperlink{matrix_8h_aff180987da2be77c8864e8c906bf04e6}{mat\+\_\+t} MatA)
+\begin{DoxyCompactList}\small\item\em Transpose matrix. \end{DoxyCompactList}\item 
+float \hyperlink{matrix_8c_a2623c593e54e52b306835fe70e8a417a}{Minor} (\hyperlink{matrix_8h_aff180987da2be77c8864e8c906bf04e6}{mat\+\_\+t} MatA, int row, int col)
+\begin{DoxyCompactList}\small\item\em Compute determinate of the minor submatrix Minor submatrix has one less row and column as a result. \end{DoxyCompactList}\item 
+float \hyperlink{matrix_8c_af2847fd6933b17808bd3a4a9844c4d07}{Cofactor} (\hyperlink{matrix_8h_aff180987da2be77c8864e8c906bf04e6}{mat\+\_\+t} MatA, int row, int col)
+\begin{DoxyCompactList}\small\item\em Cofactor is determinate of minor submatrix $\ast$ (-\/1)exp(row+col) Minor submatrix has one less row and column as a result. \end{DoxyCompactList}\item 
+\hyperlink{matrix_8h_aff180987da2be77c8864e8c906bf04e6}{mat\+\_\+t} \hyperlink{matrix_8c_a8cd6e3bc1bdeee4558e193c510e05b2d}{Adjugate} (\hyperlink{matrix_8h_aff180987da2be77c8864e8c906bf04e6}{mat\+\_\+t} MatA)
+\begin{DoxyCompactList}\small\item\em Adjugate is transpose of cofactor matrix of A. \end{DoxyCompactList}\item 
+float \hyperlink{matrix_8c_a44a96ded1c77d0247a2d641371041ae5}{Determinant} (\hyperlink{matrix_8h_aff180987da2be77c8864e8c906bf04e6}{mat\+\_\+t} MatA)
+\begin{DoxyCompactList}\small\item\em Determinant by recursion using Cofactors. \end{DoxyCompactList}\item 
+\hyperlink{matrix_8h_aff180987da2be77c8864e8c906bf04e6}{mat\+\_\+t} \hyperlink{matrix_8c_a6df82a3c323faae0a3b276494b9fee76}{Invert} (\hyperlink{matrix_8h_aff180987da2be77c8864e8c906bf04e6}{mat\+\_\+t} MatA)
+\begin{DoxyCompactList}\small\item\em Calculate Matrix Inverse. \end{DoxyCompactList}\item 
+\hyperlink{matrix_8h_aff180987da2be77c8864e8c906bf04e6}{mat\+\_\+t} \hyperlink{matrix_8c_adcf312ca1762403fd593b4a562ff962a}{Pseudo\+Invert} (\hyperlink{matrix_8h_aff180987da2be77c8864e8c906bf04e6}{mat\+\_\+t} MatA)
+\begin{DoxyCompactList}\small\item\em Calculate Pseudo Matrix Inverse Used for least square fitting of non square matrix with excess solutions Pseudo Inverse matrix(\+A) = 1/(AT × A) × AT. \end{DoxyCompactList}\item 
+\hyperlink{matrix_8h_aff180987da2be77c8864e8c906bf04e6}{mat\+\_\+t} \hyperlink{matrix_8c_a138294f3ec7022f4a14a4a98aa4cf364}{Mat\+Mul} (\hyperlink{matrix_8h_aff180987da2be77c8864e8c906bf04e6}{mat\+\_\+t} MatA, \hyperlink{matrix_8h_aff180987da2be77c8864e8c906bf04e6}{mat\+\_\+t} MatB)
+\begin{DoxyCompactList}\small\item\em Multiply two matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+matrix functions 
+
+\begin{DoxyParagraph}{Copyright \copyright{} 2016 Mike Gore, G\+PL License}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{You are free to use this code under the terms of G\+PL}
+please retain a copy of this notice in any code you use it in.
+\end{DoxyParagraph}
+This is free software\+: you can redistribute it and/or modify it under the terms of the G\+NU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This software is distributed in the hope that it will be useful, but W\+I\+T\+H\+O\+UT A\+NY W\+A\+R\+R\+A\+N\+TY; without even the implied warranty of M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+TY or F\+I\+T\+N\+E\+SS F\+OR A P\+A\+R\+T\+I\+C\+U\+L\+AR P\+U\+R\+P\+O\+SE. See the G\+NU General Public License for more details.
+
+You should have received a copy of the G\+NU General Public License along with this program. If not, see \href{http://www.gnu.org/licenses/}{\tt http\+://www.\+gnu.\+org/licenses/}. 
+
+\subsection{Function Documentation}
+\index{matrix.\+c@{matrix.\+c}!Adjugate@{Adjugate}}
+\index{Adjugate@{Adjugate}!matrix.\+c@{matrix.\+c}}
+\subsubsection[{\texorpdfstring{Adjugate(mat\+\_\+t Mat\+A)}{Adjugate(mat_t MatA)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf mat\+\_\+t} Adjugate (
+\begin{DoxyParamCaption}
+\item[{{\bf mat\+\_\+t}}]{MatA}
+\end{DoxyParamCaption}
+)}\hypertarget{matrix_8c_a8cd6e3bc1bdeee4558e193c510e05b2d}{}\label{matrix_8c_a8cd6e3bc1bdeee4558e193c510e05b2d}
+
+
+Adjugate is transpose of cofactor matrix of A. 
+
+\begin{DoxySeeAlso}{See also}
+\href{https://en.wikipedia.org/wiki/Adjugate_matrix}{\tt https\+://en.\+wikipedia.\+org/wiki/\+Adjugate\+\_\+matrix} 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em MatA} & matrix A \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Adjugate or A 
+\end{DoxyReturn}
+
+
+Definition at line 300 of file matrix.\+c.
+
+
+
+Referenced by Invert(), and Mat\+Mul().
+
+\index{matrix.\+c@{matrix.\+c}!Cofactor@{Cofactor}}
+\index{Cofactor@{Cofactor}!matrix.\+c@{matrix.\+c}}
+\subsubsection[{\texorpdfstring{Cofactor(mat\+\_\+t Mat\+A, int row, int col)}{Cofactor(mat_t MatA, int row, int col)}}]{\setlength{\rightskip}{0pt plus 5cm}float Cofactor (
+\begin{DoxyParamCaption}
+\item[{{\bf mat\+\_\+t}}]{MatA, }
+\item[{int}]{row, }
+\item[{int}]{col}
+\end{DoxyParamCaption}
+)}\hypertarget{matrix_8c_af2847fd6933b17808bd3a4a9844c4d07}{}\label{matrix_8c_af2847fd6933b17808bd3a4a9844c4d07}
+
+
+Cofactor is determinate of minor submatrix $\ast$ (-\/1)exp(row+col) Minor submatrix has one less row and column as a result. 
+
+\begin{DoxySeeAlso}{See also}
+\href{https://en.wikipedia.org/wiki/Cofactor}{\tt https\+://en.\+wikipedia.\+org/wiki/\+Cofactor} 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em MatA} & matrix A \\
+\hline
+\mbox{\tt in}  & {\em row} & row to delete \\
+\hline
+\mbox{\tt in}  & {\em col} & col to delete \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Determinate $\ast$ (-\/1)exp(row + col) 
+\end{DoxyReturn}
+
+
+Definition at line 286 of file matrix.\+c.
+
+
+
+Referenced by Adjugate(), and Determinant().
+
+\index{matrix.\+c@{matrix.\+c}!Delete\+Row\+Col@{Delete\+Row\+Col}}
+\index{Delete\+Row\+Col@{Delete\+Row\+Col}!matrix.\+c@{matrix.\+c}}
+\subsubsection[{\texorpdfstring{Delete\+Row\+Col(mat\+\_\+t Mat\+A, int row, int col)}{DeleteRowCol(mat_t MatA, int row, int col)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf mat\+\_\+t} Delete\+Row\+Col (
+\begin{DoxyParamCaption}
+\item[{{\bf mat\+\_\+t}}]{MatA, }
+\item[{int}]{row, }
+\item[{int}]{col}
+\end{DoxyParamCaption}
+)}\hypertarget{matrix_8c_ae6de1b2c3614702d72ae37971e5d33bb}{}\label{matrix_8c_ae6de1b2c3614702d72ae37971e5d33bb}
+
+
+Create smaller matrix by deleatting specified row and colume Used by Minor and Cofactor. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em MatA} & matrix A -\/ row and col must be $>$= 2 \\
+\hline
+\mbox{\tt in}  & {\em row} & row to delete \\
+\hline
+\mbox{\tt in}  & {\em col} & col to delete \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+submatrix 
+\end{DoxyReturn}
+
+
+Definition at line 191 of file matrix.\+c.
+
+
+
+Referenced by Minor().
+
+\index{matrix.\+c@{matrix.\+c}!Determinant@{Determinant}}
+\index{Determinant@{Determinant}!matrix.\+c@{matrix.\+c}}
+\subsubsection[{\texorpdfstring{Determinant(mat\+\_\+t Mat\+A)}{Determinant(mat_t MatA)}}]{\setlength{\rightskip}{0pt plus 5cm}float Determinant (
+\begin{DoxyParamCaption}
+\item[{{\bf mat\+\_\+t}}]{MatA}
+\end{DoxyParamCaption}
+)}\hypertarget{matrix_8c_a44a96ded1c77d0247a2d641371041ae5}{}\label{matrix_8c_a44a96ded1c77d0247a2d641371041ae5}
+
+
+Determinant by recursion using Cofactors. 
+
+\begin{DoxySeeAlso}{See also}
+\href{https://en.wikipedia.org/wiki/Determinant}{\tt https\+://en.\+wikipedia.\+org/wiki/\+Determinant} 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em MatA} & square matrix A \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Determinant or 0 
+\end{DoxyReturn}
+
+
+Definition at line 324 of file matrix.\+c.
+
+
+
+Referenced by Invert(), and Minor().
+
+\index{matrix.\+c@{matrix.\+c}!Invert@{Invert}}
+\index{Invert@{Invert}!matrix.\+c@{matrix.\+c}}
+\subsubsection[{\texorpdfstring{Invert(mat\+\_\+t Mat\+A)}{Invert(mat_t MatA)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf mat\+\_\+t} Invert (
+\begin{DoxyParamCaption}
+\item[{{\bf mat\+\_\+t}}]{MatA}
+\end{DoxyParamCaption}
+)}\hypertarget{matrix_8c_a6df82a3c323faae0a3b276494b9fee76}{}\label{matrix_8c_a6df82a3c323faae0a3b276494b9fee76}
+
+
+Calculate Matrix Inverse. 
+
+\begin{DoxySeeAlso}{See also}
+\href{https://en.wikipedia.org/wiki/Invertible_matrix}{\tt https\+://en.\+wikipedia.\+org/wiki/\+Invertible\+\_\+matrix} Method used\+: Adjugate(\+Mat\+A) / Det(\+Mat\+A) 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em MatA} & square matrix A input \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Inverse of MatA or error 
+\end{DoxyReturn}
+
+
+Definition at line 372 of file matrix.\+c.
+
+
+
+Referenced by calibrate(), Mat\+Mul(), and Pseudo\+Invert().
+
+\index{matrix.\+c@{matrix.\+c}!Mat\+Alloc@{Mat\+Alloc}}
+\index{Mat\+Alloc@{Mat\+Alloc}!matrix.\+c@{matrix.\+c}}
+\subsubsection[{\texorpdfstring{Mat\+Alloc(int rows, int cols)}{MatAlloc(int rows, int cols)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf mat\+\_\+t} Mat\+Alloc (
+\begin{DoxyParamCaption}
+\item[{int}]{rows, }
+\item[{int}]{cols}
+\end{DoxyParamCaption}
+)}\hypertarget{matrix_8c_adf8d43659cfe0a22ec496504c7131044}{}\label{matrix_8c_adf8d43659cfe0a22ec496504c7131044}
+
+
+Allocate a matrix. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em size} & size of square matrix to allocate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+float $\ast$$\ast$ 
+\end{DoxyReturn}
+
+
+Definition at line 52 of file matrix.\+c.
+
+
+
+Referenced by Adjugate(), Delete\+Row\+Col(), Mat\+Alloc\+S\+Q(), Mat\+Load(), Mat\+Mul(), and Transpose().
+
+\index{matrix.\+c@{matrix.\+c}!Mat\+Alloc\+SQ@{Mat\+Alloc\+SQ}}
+\index{Mat\+Alloc\+SQ@{Mat\+Alloc\+SQ}!matrix.\+c@{matrix.\+c}}
+\subsubsection[{\texorpdfstring{Mat\+Alloc\+S\+Q(int size)}{MatAllocSQ(int size)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf mat\+\_\+t} Mat\+Alloc\+SQ (
+\begin{DoxyParamCaption}
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}\hypertarget{matrix_8c_a0151d7c31f203a5f972545a00b049ca8}{}\label{matrix_8c_a0151d7c31f203a5f972545a00b049ca8}
+
+
+Allocate a matrix. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em size} & size of square matrix to allocate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+float $\ast$$\ast$ 
+\end{DoxyReturn}
+
+
+Definition at line 91 of file matrix.\+c.
+
+\index{matrix.\+c@{matrix.\+c}!Mat\+Free@{Mat\+Free}}
+\index{Mat\+Free@{Mat\+Free}!matrix.\+c@{matrix.\+c}}
+\subsubsection[{\texorpdfstring{Mat\+Free(mat\+\_\+t mat\+F)}{MatFree(mat_t matF)}}]{\setlength{\rightskip}{0pt plus 5cm}void Mat\+Free (
+\begin{DoxyParamCaption}
+\item[{{\bf mat\+\_\+t}}]{matF}
+\end{DoxyParamCaption}
+)}\hypertarget{matrix_8c_a22e8d5f7787f2eeeb3b24250ff04ae74}{}\label{matrix_8c_a22e8d5f7787f2eeeb3b24250ff04ae74}
+
+
+Free a matrix. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$$\ast$\+Mat} & Matrix to free \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 101 of file matrix.\+c.
+
+
+
+Referenced by calibrate(), Mat\+Mul(), Minor(), and Pseudo\+Invert().
+
+\index{matrix.\+c@{matrix.\+c}!Mat\+Load@{Mat\+Load}}
+\index{Mat\+Load@{Mat\+Load}!matrix.\+c@{matrix.\+c}}
+\subsubsection[{\texorpdfstring{Mat\+Load(void $\ast$\+V, int rows, int cols)}{MatLoad(void *V, int rows, int cols)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf mat\+\_\+t} Mat\+Load (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{V, }
+\item[{int}]{rows, }
+\item[{int}]{cols}
+\end{DoxyParamCaption}
+)}\hypertarget{matrix_8c_a0c7a027f52545821a79eab132849f737}{}\label{matrix_8c_a0c7a027f52545821a79eab132849f737}
+
+
+Load a matrix. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$V} & matrix data \\
+\hline
+\mbox{\tt in}  & {\em size} & size of square matrix \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 134 of file matrix.\+c.
+
+
+
+Referenced by calibrate(), Mat\+Load\+S\+Q(), and Mat\+Mul().
+
+\index{matrix.\+c@{matrix.\+c}!Mat\+Load\+SQ@{Mat\+Load\+SQ}}
+\index{Mat\+Load\+SQ@{Mat\+Load\+SQ}!matrix.\+c@{matrix.\+c}}
+\subsubsection[{\texorpdfstring{Mat\+Load\+S\+Q(void $\ast$\+V, int size)}{MatLoadSQ(void *V, int size)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf mat\+\_\+t} Mat\+Load\+SQ (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{V, }
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}\hypertarget{matrix_8c_a6bf59fb52b8b93a1b23dc8864e305cab}{}\label{matrix_8c_a6bf59fb52b8b93a1b23dc8864e305cab}
+
+
+Load a square matrix. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$V} & square matrix data \\
+\hline
+\mbox{\tt in}  & {\em size} & size of square matrix \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 157 of file matrix.\+c.
+
+
+
+Referenced by Mat\+Mul().
+
+\index{matrix.\+c@{matrix.\+c}!Mat\+Mul@{Mat\+Mul}}
+\index{Mat\+Mul@{Mat\+Mul}!matrix.\+c@{matrix.\+c}}
+\subsubsection[{\texorpdfstring{Mat\+Mul(mat\+\_\+t Mat\+A, mat\+\_\+t Mat\+B)}{MatMul(mat_t MatA, mat_t MatB)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf mat\+\_\+t} Mat\+Mul (
+\begin{DoxyParamCaption}
+\item[{{\bf mat\+\_\+t}}]{MatA, }
+\item[{{\bf mat\+\_\+t}}]{MatB}
+\end{DoxyParamCaption}
+)}\hypertarget{matrix_8c_a138294f3ec7022f4a14a4a98aa4cf364}{}\label{matrix_8c_a138294f3ec7022f4a14a4a98aa4cf364}
+
+
+Multiply two matrix. 
+
+\begin{DoxySeeAlso}{See also}
+\href{https://en.wikipedia.org/wiki/Matrix_multiplication_algorithm}{\tt https\+://en.\+wikipedia.\+org/wiki/\+Matrix\+\_\+multiplication\+\_\+algorithm} C = AB, A is n × m matrix, B is m × p matrix C result n × p matrix (dimensions row size of A, column size of B) Cij = Sum(k=1 .. m) Aik $\ast$ Bik 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em MatA} & matrix A \\
+\hline
+\mbox{\tt in}  & {\em MatB} & matrix B \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+MatA $\ast$ MatB Result dimensions is (row size of A, column size of B) 
+\end{DoxyReturn}
+
+
+Definition at line 461 of file matrix.\+c.
+
+
+
+Referenced by calibrate(), Mat\+Mul(), and Pseudo\+Invert().
+
+\index{matrix.\+c@{matrix.\+c}!Mat\+Print@{Mat\+Print}}
+\index{Mat\+Print@{Mat\+Print}!matrix.\+c@{matrix.\+c}}
+\subsubsection[{\texorpdfstring{Mat\+Print(mat\+\_\+t matrix)}{MatPrint(mat_t matrix)}}]{\setlength{\rightskip}{0pt plus 5cm}void Mat\+Print (
+\begin{DoxyParamCaption}
+\item[{{\bf mat\+\_\+t}}]{matrix}
+\end{DoxyParamCaption}
+)}\hypertarget{matrix_8c_ad7d7e2a3e3e380e4eed7d226973f04f7}{}\label{matrix_8c_ad7d7e2a3e3e380e4eed7d226973f04f7}
+
+
+Print a matrix. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em Mat} & Matrix to print \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 167 of file matrix.\+c.
+
+
+
+Referenced by calibrate(), Invert(), and Mat\+Mul().
+
+\index{matrix.\+c@{matrix.\+c}!Minor@{Minor}}
+\index{Minor@{Minor}!matrix.\+c@{matrix.\+c}}
+\subsubsection[{\texorpdfstring{Minor(mat\+\_\+t Mat\+A, int row, int col)}{Minor(mat_t MatA, int row, int col)}}]{\setlength{\rightskip}{0pt plus 5cm}float Minor (
+\begin{DoxyParamCaption}
+\item[{{\bf mat\+\_\+t}}]{MatA, }
+\item[{int}]{row, }
+\item[{int}]{col}
+\end{DoxyParamCaption}
+)}\hypertarget{matrix_8c_a2623c593e54e52b306835fe70e8a417a}{}\label{matrix_8c_a2623c593e54e52b306835fe70e8a417a}
+
+
+Compute determinate of the minor submatrix Minor submatrix has one less row and column as a result. 
+
+\begin{DoxySeeAlso}{See also}
+\href{https://en.wikipedia.org/wiki/Minor_(linear_algebra)}{\tt https\+://en.\+wikipedia.\+org/wiki/\+Minor\+\_\+(linear\+\_\+algebra)} 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em MatA} & matrix A \\
+\hline
+\mbox{\tt in}  & {\em row} & row to delete \\
+\hline
+\mbox{\tt in}  & {\em col} & col to delete \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Determinate 
+\end{DoxyReturn}
+
+
+Definition at line 268 of file matrix.\+c.
+
+
+
+Referenced by Cofactor().
+
+\index{matrix.\+c@{matrix.\+c}!Pseudo\+Invert@{Pseudo\+Invert}}
+\index{Pseudo\+Invert@{Pseudo\+Invert}!matrix.\+c@{matrix.\+c}}
+\subsubsection[{\texorpdfstring{Pseudo\+Invert(mat\+\_\+t Mat\+A)}{PseudoInvert(mat_t MatA)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf mat\+\_\+t} Pseudo\+Invert (
+\begin{DoxyParamCaption}
+\item[{{\bf mat\+\_\+t}}]{MatA}
+\end{DoxyParamCaption}
+)}\hypertarget{matrix_8c_adcf312ca1762403fd593b4a562ff962a}{}\label{matrix_8c_adcf312ca1762403fd593b4a562ff962a}
+
+
+Calculate Pseudo Matrix Inverse Used for least square fitting of non square matrix with excess solutions Pseudo Inverse matrix(\+A) = 1/(AT × A) × AT. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em MatA} & matrix A input -\/ does not have to be square \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pseudo Inverse of MatA or error 
+\end{DoxyReturn}
+
+
+Definition at line 428 of file matrix.\+c.
+
+
+
+Referenced by Mat\+Mul().
+
+\index{matrix.\+c@{matrix.\+c}!Test\+Square@{Test\+Square}}
+\index{Test\+Square@{Test\+Square}!matrix.\+c@{matrix.\+c}}
+\subsubsection[{\texorpdfstring{Test\+Square(mat\+\_\+t Mat\+A)}{TestSquare(mat_t MatA)}}]{\setlength{\rightskip}{0pt plus 5cm}int Test\+Square (
+\begin{DoxyParamCaption}
+\item[{{\bf mat\+\_\+t}}]{MatA}
+\end{DoxyParamCaption}
+)}\hypertarget{matrix_8c_ad620ce01d6d2d9a701013fcba7b96fa7}{}\label{matrix_8c_ad620ce01d6d2d9a701013fcba7b96fa7}
+
+
+Credits\+: \href{https://www.cs.rochester.edu/~brown/Crypto/assts/projects/adj.html}{\tt https\+://www.\+cs.\+rochester.\+edu/$\sim$brown/\+Crypto/assts/projects/adj.\+html}. 
+
+\begin{DoxyAuthor}{Author}
+Paul Bourke 2002 Test is a matrix is square 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em MatA} & matrix A \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if ssquare, 0 if not 
+\end{DoxyReturn}
+
+
+Definition at line 42 of file matrix.\+c.
+
+\index{matrix.\+c@{matrix.\+c}!Transpose@{Transpose}}
+\index{Transpose@{Transpose}!matrix.\+c@{matrix.\+c}}
+\subsubsection[{\texorpdfstring{Transpose(mat\+\_\+t Mat\+A)}{Transpose(mat_t MatA)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf mat\+\_\+t} Transpose (
+\begin{DoxyParamCaption}
+\item[{{\bf mat\+\_\+t}}]{MatA}
+\end{DoxyParamCaption}
+)}\hypertarget{matrix_8c_a4eb3882ef9097a9cae60775788090348}{}\label{matrix_8c_a4eb3882ef9097a9cae60775788090348}
+
+
+Transpose matrix. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em MatA} & matrix A \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Transpose matrix 
+\end{DoxyReturn}
+
+
+Definition at line 241 of file matrix.\+c.
+
+
+
+Referenced by Pseudo\+Invert().
+
