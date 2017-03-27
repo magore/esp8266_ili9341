@@ -30,6 +30,8 @@
 
 #include "user_config.h"
 
+#if DISPLAY
+
 #ifdef XPT2046
 #include "xpt2046.h"
 
@@ -40,7 +42,6 @@
 /// HAL
 
 extern window *tft;
-extern window *winmsg;
 
 #ifndef XPT2046_CS
 #error You must define the XPT2046 GPIO pin
@@ -55,18 +56,6 @@ uint32_t XPT2046_clock = -1;
 ///@breif touch event queue
 xpt2046_t xpt2046;
 
-///@brief ADC range or xpt2046
-xpt2046_win_t xpt2046_device = {0, 0, 4095, 4095};
-
-///@brief Example map range
-xpt2046_win_t xpt2046_map = {0, 0, 4095, 4095};
-
-///@brief measured ADC values for our ili9341 touch overlay - will be in the range 0 .. 4095
-xpt2046_win_t xpt2046_ili9341_cal = {210, 184, 3366, 3250};
-
-///@brief Map to range we want for the ili9341  display
-xpt2046_win_t xpt2046_ili9341_map = {0, 0, 319, 239};
-
 /// @brief Obtain SPI bus for XPT2046, raises LE
 /// return: void
 MEMSPACE
@@ -74,11 +63,6 @@ void XPT2046_spi_init(void)
 {
 	XPT2046_clock = 40;
 	chip_select_init(XPT2046_CS);
-	// reset calibration to NONE
-	xpt2046.raw = xpt2046_ili9341_cal;
-	// xpt2046.map = xpt2046_device; // maps to 0 .. 4095 - used to measure noise
-	// FIXME get these values from display code so we do rotations
-	xpt2046.map = xpt2046_ili9341_map;	// map to ili9341
 	XPT2046_key_flush();
 	xpt2046.rotation = tft->rotation;
 }
@@ -222,110 +206,6 @@ int XPT2046_xy_raw(uint16_t *X, uint16_t *Y)
 	return(0);		// no touch event
 }
 
-
-/// @brief  rotate map or raw limits to match screen rotation
-/// @param[out] *out: rotated refernce frame
-/// @param[out] *in: original reference frame
-void XPT2046_rotate(xpt2046_win_t *out, xpt2046_win_t *in, int rotate)
-{
-    switch (rotate & 3)
-    {
-        case 0:
-			// reverse X
-			out->xmin = 4095 - in->xmax;
-			out->xmax = 4095 - in->xmin;
-			out->ymin = in->ymin;
-			out->ymax = in->ymax;
-            break;
-
-        case 1:
-			// swap X and Y
-			out->xmin = in->ymin;
-			out->xmax = in->ymax;
-			out->ymin = in->xmin;
-			out->ymax = in->xmax;
-            break;
-
-        case 2:
-			// reverse Y
-			out->xmin = in->xmin;
-			out->xmax = in->xmax;
-			out->ymin = 4095 - in->ymin;
-			out->ymax = 4095 - in->ymax;
-            break;
-
-        case 3:
-			// swap X and Y and reverse X and Y
-			out->xmin = 4095 - in->ymin;
-			out->xmax = 4095 - in->ymax;
-			out->ymin = 4095 - in->xmin;
-			out->ymax = 4095 - in->xmax;
-            break;
-	}
-}
-
-
-
-/// @brief  Apply calibration to X and Y results 
-/// @param[in] *X: X position
-/// @param[in] *Y: Y position
-/// return: 1 if values is in range or 0 on error
-void XPT2046_map(uint16_t *X, uint16_t *Y)
-{
-	int XO,YO,XW,YW;
-	int MX,MY;
-	xpt2046_win_t raw,map;
-
-	// rotate raw limits
-	XPT2046_rotate((xpt2046_win_t *) &raw, (xpt2046_win_t *) &xpt2046.raw, tft->rotation);
-	// rotate mapped limits limits
-	XPT2046_rotate((xpt2046_win_t *) &map, (xpt2046_win_t *) &xpt2046.map, tft->rotation);
-
-	// If we have a xpt2046 that reads 200,300 3600,3800 
-	// We want to scale this to the range 0,0 4095,4095
-
-	// Calibrate to 0 .. 4095;
-	// XC = (X - 200) * 4096 / (3600.0 - 200.0);
-	// YC = (Y - 300) * 4096 / (3800.0 - 300.0);
-
-	// ====================================================================
-	// MAP X 
-	MX = (((raw.xmax-raw.xmin+1) * ((int)*X-map.xmin)) / (map.xmax-map.xmin+1)) 
-		+ raw.xmin;
-	// Map Y
-	MY = (((raw.ymax-raw.ymin+1) * ((int)*Y-map.ymin)) / (map.ymax-map.ymin+1)) 
-		+ raw.ymin;
-
-	// Limits
-	if(MX < raw.xmin)
-		MX = raw.xmin;
-	if(MX > raw.xmax)
-		MX = raw.xmax;
-
-	// Limits
-	if(MY < raw.ymin)
-		MY = raw.ymin;
-	if(MY > raw.ymax)
-		MY = raw.ymax;
-
-	*X = (uint16_t) MX;
-	*Y = (uint16_t) MY;
-}
-
-/// @brief  Check touch state and return the X,Y value if true
-/// NO filtereing is done - use XPT2046_xy_filtered if you need filtering
-/// @param[out] *X: X value 
-/// @param[out] *Y: Y value 
-/// return: Touch state 1 = touch, 0 = no touch 
-MEMSPACE
-int XPT2046_xy_raw_mapped(uint16_t *X, uint16_t *Y)
-{
-	int ret = XPT2046_xy_raw(X, Y);
-	if(ret)
-		XPT2046_map(X, Y);
-	return(ret);
-}
-	
 
 #if 0
 /// @brief  Check Touch state - if touched then average a set of X and Y readings 
@@ -474,40 +354,27 @@ int XPT2046_xy_filtered(uint16_t *X, uint16_t *Y)
 		YS[i] = *Y;
 	}
 
-	Xavg = nearest_run((int *) &XS, i, 4, &xcount);
-	Yavg = nearest_run((int *) &YS, i, 4, &ycount);
+	if(i >= 3)
+	{
+		Xavg = nearest_run((int *) &XS, i, 3, &xcount);
+		Yavg = nearest_run((int *) &YS, i, 3, &ycount);
 
-	if(Xavg >= 0 && Yavg >= 0)
-	{	
-		*X = (uint16_t) Xavg;
-		*Y = (uint16_t) Yavg;
-        printf("X:%4d, Y:%4d, XN:%2d, YN:%d\n",
-            (int)Xavg, (int)Yavg, (int)xcount,(int)ycount);
-		return(i);
-    }
+		if(Xavg >= 0 && Yavg >= 0)
+		{	
+			*X = (uint16_t) Xavg;
+			*Y = (uint16_t) Yavg;
+	#if XPT2046_DEBUG & 2
+			printf("X:%4d, Y:%4d, XN:%2d, YN:%d\n",
+				(int)Xavg, (int)Yavg, (int)xcount,(int)ycount);
+	#endif
+			return(i);
+		}
+	}
 	return(0);
 }
 
 
 #endif
-
-/// @brief  Check Touch state - if touched then average a set of X and Y readings 
-/// Check at most XPT2046_SAMPLES that are within noise limits
-/// @param[out] *X: X position - ONLY if touched
-/// @param[out] *Y: Y position - ONLY if touched
-/// return: count of consecutive samples within noise limits - or 0 if not touched.
-///         Ideally we want count to be at least >= XPT2046_SAMPLES/2 
-MEMSPACE
-int XPT2046_xy_filtered_mapped(uint16_t *X, uint16_t *Y)
-{
-	if(XPT2046_xy_filtered(X, Y))
-	{
-		XPT2046_map(X,Y);	
-        printf("XM:%4d, YM:%4d\n", (int)*X, (int)*Y);
-		return(1);
-	}
-	return(0);
-}
 
 /// @brief  Test XPT2046_xy_filtered() to determine how long it takes a good read of X and Y within noise limits
 /// Warning: This is only used for testing because it can block for up to 100ms
@@ -616,10 +483,9 @@ void XPT2046_task()
 /// @param[in] *Y: Y position
 /// return: 1 on touch event in queue
 MEMSPACE
-int XPT2046_key_unmapped(uint16_t *X, uint16_t *Y)
+int XPT2046_key(uint16_t *X, uint16_t *Y)
 {
 	XPT2046_task();
-
 	if(xpt2046.ind > 0)
 	{
 		*X = (uint16_t) xpt2046.XQ[xpt2046.tail];
@@ -634,71 +500,6 @@ int XPT2046_key_unmapped(uint16_t *X, uint16_t *Y)
 	return(0);
 }
 
-
-
-// ===========================================================================
-/// #brief Calibration code
-
-/// @brief  Set raw calibration values
-/// @param[in] XL: lowest X
-/// @param[in] YL: lowest Y
-/// @param[in] XM: highest X
-/// @param[in] YM: highest Y
-/// return: void
-MEMSPACE
-void XPT2046_setcal(uint16_t xmin, uint16_t ymin, uint16_t xmax, uint16_t ymax)
-{
-	xpt2046.raw.xmin = xmin;
-	xpt2046.raw.ymin = ymin;
-	xpt2046.raw.xmax = xmax;
-	xpt2046.raw.ymax = ymax;
-}
-
-/// @brief  Set range to map to
-/// @param[in] XL: lowest X
-/// @param[in] YL: lowest Y
-/// @param[in] XM: highest X
-/// @param[in] YM: highest Y
-/// return: void
-MEMSPACE
-void XPT2046_setmap(uint16_t xmin, uint16_t ymin, uint16_t xmax, uint16_t ymax)
-{
-	xpt2046.map.xmin = xmin;
-	xpt2046.map.ymin = ymin;
-	xpt2046.map.xmax = xmax;
-	xpt2046.map.ymax = ymax;
-}
-
-
-/// @brief  Read current calibrated averaged X and Y state
-/// We want T to be more then 2 - ideally XPT2046_SAMPLES/2 for low noise measurements of X and Y
-/// @param[in] *X: X position
-/// @param[in] *Y: Y position
-/// return: 1 if touch state is true
-MEMSPACE
-int XPT2046_xy_mapped(uint16_t *X, uint16_t *Y)
-{
-	int T;
-	T = XPT2046_xy_filtered(X, Y);
-	XPT2046_map(X,Y);
-	return(T);
-}
-	
-
-/// @brief  return calibrated KEY press touch position 
-/// We want T to be more then 2 - ideally XPT2046_SAMPLES/2 for low noise measurements of X and Y
-/// @param[in] *X: X position
-/// @param[in] *Y: Y position
-/// return: 1 on touch event in queue
-MEMSPACE
-int XPT2046_key(uint16_t *X, uint16_t *Y)
-{
-
-	int T;
-	T = XPT2046_key_unmapped(X,Y);
-	XPT2046_map(X,Y);
-	return(T);
-}
 // ===========================================================================
 
 // 
@@ -750,3 +551,4 @@ int sdev(uint16_t *samples, int size, sdev_t *Z)
 }
 
 #endif // XPT2046
+#endif // DISPLAY

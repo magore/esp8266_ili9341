@@ -92,6 +92,8 @@ int font_attr ( window *win , int c , _fontc *f );
 void tft_drawChar ( window *win , uint8_t c );
 
 
+// ============================================================
+
 /* ili9341.c */
 void tft_Cmd ( uint8_t cmd );
 uint8_t tft_Data ( uint8_t data );
@@ -102,6 +104,10 @@ MEMSPACE uint32_t tft_readRegister ( uint8_t command , uint8_t parameter );
 MEMSPACE uint32_t tft_readId ( void );
 void tft_bit_blit ( window *win , uint8_t *ptr , int16_t x , int16_t y , int16_t w , int16_t h );
 void tft_fillWin ( window *win , uint16_t color );
+void tft_flood ( window *win , int16_t x , int16_t y , uint16_t old_color , uint16_t fill_color );
+int tft_push_xy ( int16_t x , int16_t y );
+int tft_pop_xy ( int16_t *x , int16_t *y );
+int tft_floodline ( window *win , int16_t x , int16_t y , uint16_t newColor , uint16_t oldColor );
 void tft_fillRectWH ( window *win , int16_t x , int16_t y , int16_t w , int16_t h , uint16_t color );
 void tft_fillRectXY ( window *win , int16_t x , int16_t y , int16_t xl , int16_t yl , uint16_t color );
 void tft_drawPixel ( window *win , int16_t x , int16_t y , int16_t color );
@@ -113,6 +119,7 @@ MEMSPACE void tft_setRotation ( uint8_t m );
 void tft_565toRGB ( uint16_t color , uint8_t *r , uint8_t *g , uint8_t *b );
 MEMSPACE void tft_invertDisplay ( int flag );
 MEMSPACE int tft_window_clip ( window *win );
+MEMSPACE void tft_clip_xy ( window *win , int16_t *X , int16_t *Y );
 MEMSPACE int tft_window_clip_args ( window *win , int16_t *x , int16_t *y , int16_t *w , int16_t *h );
 MEMSPACE void tft_window_init ( window *win , int16_t x , int16_t y , int16_t w , int16_t h );
 MEMSPACE void tft_setTextColor ( window *win , uint16_t fg , uint16_t bg );
@@ -129,6 +136,8 @@ MEMSPACE void tft_cleareol ( window *win );
 MEMSPACE void tft_clearline ( window *win );
 void tft_putch ( window *win , int c );
 
+
+// ============================================================
 /* ili9341_hal.c */
 void tft_spi_init ( uint32_t prescale );
 void tft_spi_begin ( void );

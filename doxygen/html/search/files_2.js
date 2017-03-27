@@ -1,6 +1,8 @@
 var searchData=
 [
   ['cal_5fdex_2ec',['cal_dex.c',['../cal__dex_8c.html',1,'']]],
+  ['calibrate_2ec',['calibrate.c',['../calibrate_8c.html',1,'']]],
+  ['calibrate_2eh',['calibrate.h',['../calibrate_8h.html',1,'']]],
   ['cc932_2ec',['cc932.c',['../cc932_8c.html',1,'']]],
   ['cc936_2ec',['cc936.c',['../cc936_8c.html',1,'']]],
   ['cc949_2ec',['cc949.c',['../cc949_8c.html',1,'']]],

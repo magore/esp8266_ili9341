@@ -45,6 +45,7 @@
 \begin{DoxyItemize}
 \item filtered read of XY
 \item debounced key press read of queued events
+\item 5 point calibration routines
 \end{DoxyItemize}
 \item B\+DF F\+O\+NT compiler tools and fonts sets
 \begin{DoxyItemize}
@@ -657,12 +658,20 @@ ld -\/ Linker scripts
 \end{DoxyItemize}
 \item xpt2046 -\/ touch screen code
 \begin{DoxyItemize}
-\item Serial command\+: calibrate 1
+\item Serial commands\+: calibrate N
 \begin{DoxyItemize}
-\item runs calibration demo then alows user to set 10 calibrated points
-\item uses \hyperlink{matrix_8c}{matrix.\+c} code
+\item N = 0 .. 3 for screen rotaion to set and calibrate
+\item uses 5 point calibration method -\/ see \hyperlink{matrix_8c}{matrix.\+c}
 \end{DoxyItemize}
-\item code is work in progress
+\item Serial commands\+: calibrate\+\_\+test 1
+\begin{DoxyItemize}
+\item N = 0 .. 3 for screen rotaion to set and calibrate
+\item uses 5 point calibration method -\/ see \hyperlink{matrix_8c}{matrix.\+c}
+\item runs calibration demo to show accuracy of calibration
+\end{DoxyItemize}
+\item T\+O\+DO store and read back values
+\item \hyperlink{calibrate_8c}{calibrate.\+c}
+\item \hyperlink{calibrate_8h}{calibrate.\+h}
 \item \hyperlink{xpt2046_8c}{xpt2046.\+c}
 \item \hyperlink{xpt2046_8h}{xpt2046.\+h}
 \end{DoxyItemize}

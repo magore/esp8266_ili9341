@@ -108,6 +108,7 @@ void MatFree(mat_t matF)
 			if(matF.data[i])
 			{
 				free(matF.data[i]);
+				matF.data[i] = NULL;
 			}
 			else
 			{
@@ -117,6 +118,7 @@ void MatFree(mat_t matF)
 			}
 		}
 		free(matF.data);
+		matF.data = NULL;
 	}
 	else
 	{

@@ -27,5 +27,6 @@ var searchData=
   ['xpt2046_5fread_5fy',['XPT2046_READ_Y',['../xpt2046_8h.html#aad6adcb00000ad4cdef14ece5e21bd81',1,'xpt2046.h']]],
   ['xpt2046_5fread_5fz1',['XPT2046_READ_Z1',['../xpt2046_8h.html#a1f7063812ae4edbb96165244ee717815',1,'xpt2046.h']]],
   ['xpt2046_5fread_5fz2',['XPT2046_READ_Z2',['../xpt2046_8h.html#aee315feb898d4f6f35389cb3068ad1eb',1,'xpt2046.h']]],
-  ['xpt2046_5fsamples',['XPT2046_SAMPLES',['../xpt2046_8h.html#a0f015f6bedcfd4583ed1133ed6d11963',1,'xpt2046.h']]]
+  ['xpt2046_5fsamples',['XPT2046_SAMPLES',['../xpt2046_8h.html#a0f015f6bedcfd4583ed1133ed6d11963',1,'xpt2046.h']]],
+  ['xystack',['XYSTACK',['../ili9341_8c.html#a71d0761bc813dbcb85353d2508693493',1,'ili9341.c']]]
 ];

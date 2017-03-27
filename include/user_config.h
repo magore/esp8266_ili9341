@@ -133,7 +133,8 @@ typedef enum { false, true } bool;
 //#include "adf4351.h"
 #endif
 
-#ifdef XPD2046
+#ifdef XPT2046
 //#include "xpd2046.h"
+//#include "calibrate.h"
 #endif
 #endif // __USER_CONFIG_H__

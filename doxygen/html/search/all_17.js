@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['x',['X',['../struct__fontspecs.html#a7273a891c79308389718266cb0b66f56',1,'_fontspecs::X()'],['../struct__font.html#a64a08fdbdaa19418a9b7a34a2db33150',1,'_font::X()'],['../struct__fontc.html#ad15d00ed46ebe52a085cf05b5ca5da90',1,'_fontc::x()'],['../structwindow.html#a879b99940dfc34772f0257f54c67b817',1,'window::x()'],['../structpoint.html#a9c6b34deaf4900ad4193c17935fd384a',1,'point::x()'],['../structwire__p.html#a7a555c323bd3699ff2db08a3b3e791ed',1,'wire_p::x()'],['../cordic_8c.html#a46b4b48ef8c0c01099eb3bcdde8aa8db',1,'X():&#160;cordic.c'],['../cordic2c_8c.html#a46b4b48ef8c0c01099eb3bcdde8aa8db',1,'X():&#160;cordic2c.c']]],
+  ['x',['x',['../struct__fontc.html#ad15d00ed46ebe52a085cf05b5ca5da90',1,'_fontc::x()'],['../structwindow.html#a879b99940dfc34772f0257f54c67b817',1,'window::x()'],['../structpoint.html#a9c6b34deaf4900ad4193c17935fd384a',1,'point::x()'],['../structwire__p.html#a7a555c323bd3699ff2db08a3b3e791ed',1,'wire_p::x()'],['../struct__fontspecs.html#a7273a891c79308389718266cb0b66f56',1,'_fontspecs::X()'],['../struct__font.html#a64a08fdbdaa19418a9b7a34a2db33150',1,'_font::X()'],['../cordic_8c.html#a46b4b48ef8c0c01099eb3bcdde8aa8db',1,'X():&#160;cordic.c'],['../cordic2c_8c.html#a46b4b48ef8c0c01099eb3bcdde8aa8db',1,'X():&#160;cordic2c.c'],['../ili9341_8c.html#a7e1c531941c89bac69fe489cc3ff0790',1,'x():&#160;ili9341.c']]],
   ['xchg_5fspi',['xchg_spi',['../mmc_8c.html#a38f29ae10012d1cdd2e694aa2c340e22',1,'mmc.c']]],
   ['xdir_5facctime',['XDIR_AccTime',['../ff_8c.html#af0a826e3f3902172e3ebd5a3132a0153',1,'ff.c']]],
   ['xdir_5facctz',['XDIR_AccTZ',['../ff_8c.html#ab12e9f890b539722562824d569969959',1,'ff.c']]],
@@ -56,5 +56,7 @@ var searchData=
   ['xpt2046_5fxy_5fraw',['XPT2046_xy_raw',['../xpt2046_8h.html#a02c4dcf896824df15a98acfbe045d19d',1,'xpt2046.h']]],
   ['xpt2046_5fxy_5fraw_5fmapped',['XPT2046_xy_raw_mapped',['../xpt2046_8h.html#a904b31f0f0d5c918769495890b91c53d',1,'xpt2046.h']]],
   ['xq',['XQ',['../struct__xpt2046.html#ac3f7953dda5a05a52276892bee461a29',1,'_xpt2046']]],
-  ['xx1',['xx1',['../structex__regs.html#a12379b0b3152b878eebc8f18a6efeaf0',1,'ex_regs']]]
+  ['xx1',['xx1',['../structex__regs.html#a12379b0b3152b878eebc8f18a6efeaf0',1,'ex_regs']]],
+  ['xy',['xy',['../ili9341_8c.html#ae23606278a84f872e936d3a005f528d6',1,'ili9341.c']]],
+  ['xystack',['XYSTACK',['../ili9341_8c.html#a71d0761bc813dbcb85353d2508693493',1,'ili9341.c']]]
 ];

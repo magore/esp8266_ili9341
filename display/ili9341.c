@@ -340,6 +340,134 @@ void tft_fillWin(window *win, uint16_t color)
     tft_fillRectWH(win, 0,0, win->w, win->h, color);
 }
 
+/// @brief Flood fill
+/// @see https://en.wikipedia.org/wiki/Flood_fill
+/// This method can eat all your ram with "busy" images and could crash
+/// @param[in] win*: window structure
+/// @param[in] border: Border color
+/// @param[in] color: Fill color
+void tft_flood(window *win, int16_t x, int16_t y, uint16_t old_color, uint16_t fill_color)
+{
+	uint16_t current = tft_readPixel(win,x,y);
+	if(current == old_color)
+	{
+		tft_drawPixel(win,x,y,fill_color);
+		tft_flood(win,x+1,y,old_color,fill_color);
+		tft_flood(win,x,y+1,old_color,fill_color);
+		tft_flood(win,x-1,y,old_color,fill_color);
+		tft_flood(win,x,y-1,old_color,fill_color);
+	}
+}
+
+
+
+/// @brief X,Y point stack
+#define XYSTACK 32
+static struct {
+	int16_t x[XYSTACK+1];
+	int16_t y[XYSTACK+1];
+	int ind;
+} xy;
+
+/// @brief point push
+/// @param[in] x: X
+/// @param[in] y: Y
+/// @ return true on success, 0 of stack overflow
+int tft_push_xy(int16_t x, int16_t y)
+{
+	if(xy.ind >= XYSTACK-1)
+		return(0);
+	xy.x[xy.ind] = x;
+	xy.y[xy.ind] = y;
+	xy.ind++;
+	return(1);
+}
+
+/// @brief point push
+/// @param[in] x: X
+/// @param[in] y: Y
+/// @ return true if data exists, 0 of none
+int tft_pop_xy(int16_t *x, int16_t *y)
+{
+	if(xy.ind <= 0)
+		return(0);
+	*x = xy.x[xy.ind];
+	*y = xy.y[xy.ind];
+	xy.ind--;
+	return(1);
+}
+
+/// @brief Flood using line fill method
+/// @see https://en.wikipedia.org/wiki/Flood_fill
+/// FIXME: not tested yet
+/// @param[in] win*: window structure
+/// @param[in] border: Border color
+/// @param[in] color: Fill color
+/// @ return true one success, 0 of stack overflow
+int tft_floodline(window *win, int16_t x, int16_t y, uint16_t newColor, uint16_t oldColor)
+{
+	int lineAbove, lineBelow;
+	int16_t  xoff;
+
+	if(oldColor == newColor) 
+		return(1);
+
+	// reset stack
+	xy.ind = 0;
+
+
+	// test for stack full
+	if(!xypush(x, y)) 
+		return(0);
+
+	// while we have stacked items
+	while(tft_pop_xy(&x, &y))
+	{
+		xoff = x;
+		// TODO use raw read code and terminate read
+		// save data in array
+		// this is faster then calling tft_readPixel()
+		while(xoff >= 0 && tft_readPixel(win,xoff,y) == oldColor) 
+			xoff--;
+		xoff++;
+		lineAbove = lineBelow = 0;
+		// TODO use raw read code and terminate read
+		// save data in array
+		// this is faster then calling tft_readPixel()
+		while(xoff < win->w && tft_readPixel(win,xoff,y) == oldColor )
+		{
+			// TODO we can write a line if we process all of the read pixels first
+			tft_drawPixel(win,xoff,y,newColor);
+
+			if(!lineAbove && y > 0 && tft_readPixel(win,xoff,y-1) == oldColor)
+			{
+				// test for stack full
+				if(!tft_push_xy(xoff, y - 1)) 
+					return(0);
+				lineAbove = 1;
+			}
+			else if(lineAbove && y > 0 && tft_readPixel(win,xoff,y-1) != oldColor)
+			{
+				lineAbove = 0;
+			}
+			if(!lineBelow && y < win->h && tft_readPixel(win,xoff,y+1) == oldColor)
+			{
+				// test for stack full
+				if(!xypush(xoff, y + 1)) 
+					return(0);
+				lineBelow = 1;
+			}
+			else if(lineBelow && y < win->h && tft_readPixel(win,xoff,y+1) != oldColor)
+			{
+				lineBelow = 0;
+			}
+			xoff++;
+		}
+	}
+	return(1);
+}
+
+
 /// @brief  Partial window Fill with color
 /// We clip the window to the current view
 /// @param[in] win*: window structure
@@ -624,6 +752,7 @@ void tft_readRect(window *win, int16_t x, int16_t y, int16_t w, int16_t h, uint1
 /// @param[in] win*: window structure
 /// @param[in] dir: direction and count
 /// TODO +/- scroll direction
+/// TODO +/- Horizontal scroll functions
 void tft_Vscroll(window *win, int dir)
 {
 	int i;
@@ -796,6 +925,7 @@ int tft_window_clip(window *win)
 		clipped++;
 	}
 
+	// CLIP X,Y first
 	// CLIP Y
 	if(win->y < tft->y)
 	{
@@ -809,6 +939,7 @@ int tft_window_clip(window *win)
 	}
 
 
+	// CLIP W,H last
 	// CLIP W
 	if( (win->x + win->w - 1 ) > (tft->x + tft->w - 1) )
 	{
@@ -824,6 +955,35 @@ int tft_window_clip(window *win)
 	}
 	return(clipped);
 }
+
+/**
+  @brief  Clip X,Y to fix inside specifiied window
+  @param[in] *win: window structure
+  @param[in] *X: X position in window
+  @param[in] *Y: Y position is window
+  return: void
+*/
+MEMSPACE
+void tft_clip_xy(window *win, int16_t *X, int16_t *Y)
+{
+
+    int16_t X1 = *X;
+    int16_t Y1 = *Y;
+
+    if(X1 < win->x)
+        X1 = win->x;
+    if(X1 > (win->x + win->w - 1))
+        X1 = (win->x + win->w - 1);
+
+    if(Y1 < win->y)
+        Y1 = win->y;
+    if(Y1 > (win->y + win->w - 1))
+        Y1 = (win->y + win->w - 1);
+    *X = X1;
+    *Y = Y1;
+}
+
+
 
 /// @brief clip arguments to window limits
 /// Arguments position x,y width w and height h to be clipped

@@ -119,6 +119,7 @@ README</h1>
 <li>xpt2046 touch controller<ul>
 <li>filtered read of XY</li>
 <li>debounced key press read of queued events</li>
+<li>5 point calibration routines</li>
 </ul>
 </li>
 <li>BDF FONT compiler tools and fonts sets<ul>
@@ -700,12 +701,20 @@ README</h1>
 </ul>
 </li>
 <li>xpt2046 - touch screen code<ul>
-<li>Serial command: calibrate 1<ul>
-<li>runs calibration demo then alows user to set 10 calibrated points</li>
-<li>uses <a class="el" href="matrix_8c.html" title="matrix functions ">matrix.c</a> code</li>
+<li>Serial commands: calibrate N<ul>
+<li>N = 0 .. 3 for screen rotaion to set and calibrate</li>
+<li>uses 5 point calibration method - see <a class="el" href="matrix_8c.html" title="matrix functions ">matrix.c</a></li>
 </ul>
 </li>
-<li>code is work in progress</li>
+<li>Serial commands: calibrate_test 1<ul>
+<li>N = 0 .. 3 for screen rotaion to set and calibrate</li>
+<li>uses 5 point calibration method - see <a class="el" href="matrix_8c.html" title="matrix functions ">matrix.c</a></li>
+<li>runs calibration demo to show accuracy of calibration</li>
+</ul>
+</li>
+<li>TODO store and read back values</li>
+<li><a class="el" href="calibrate_8c.html">calibrate.c</a></li>
+<li><a class="el" href="calibrate_8h.html" title="XPT2046 calibration code. ">calibrate.h</a></li>
 <li><a class="el" href="xpt2046_8c.html" title="XPT2046 drivers. ">xpt2046.c</a></li>
 <li><a class="el" href="xpt2046_8h.html">xpt2046.h</a></li>
 </ul>
@@ -812,7 +821,7 @@ README</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Mar 25 2017 19:48:45 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Mar 26 2017 23:12:24 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

@@ -25,6 +25,7 @@
    * xpt2046 touch controller 
      * filtered read of XY 
      * debounced key press read of queued events
+     * 5 point calibration routines
    * BDF FONT compiler tools and fonts sets 
      * Tools to creates C code used in the display drivers
    * Wireframe Viewer 
@@ -376,10 +377,16 @@ ___
          * earth_data.h
 
      * xpt2046 - touch screen code 
-         - Serial command: calibrate 1   
-           - runs calibration demo then alows user to set 10 calibrated points
-           - uses matrix.c code 
-         - code is work in progress 
+         - Serial commands: calibrate N   
+           - N = 0 .. 3 for screen rotaion to set and calibrate
+           - uses 5 point calibration method - see matrix.c
+         - Serial commands: calibrate_test 1   
+           - N = 0 .. 3 for screen rotaion to set and calibrate
+           - uses 5 point calibration method - see matrix.c
+           - runs calibration demo to show accuracy of calibration
+         - TODO store and read back values
+         * calibrate.c 
+         * calibrate.h
          * xpt2046.c 
          * xpt2046.h 
      * yield - Yield code from Arduino yield code

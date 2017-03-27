@@ -233,6 +233,12 @@ ADF4351 = 1
 # XPT2046 demo
 XPT2046 = 1
 
+# 0 no debugging
+# 1 error only
+# 2 information 
+# 4 mapped results
+XPT2046_DEBUG = 5
+
 # =========================
 # Yield function support thanks to Arduino Project 
 # You should always leave this on
@@ -296,6 +302,7 @@ endif
 ifdef XPT2046
 	CFLAGS += -DXPT2046
     CFLAGS += -DXPT2046_CS=2
+    CFLAGS += -DXPT2046_DEBUG=$(XPT2046_DEBUG)
 	MODULES	+= xpt2046
 endif
 

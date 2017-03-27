@@ -26,8 +26,8 @@
 #define _XPT2046_H_
 
 ///@brief number of time to read and average results
-#define XPT2046_SAMPLES 12 	/* number of samples to take */
-#define XPT2046_DEBOUNCE 10 /* Debound value in mS */
+#define XPT2046_SAMPLES 8 /* number of samples to take */
+#define XPT2046_DEBOUNCE 5 /* Debound value in mS */
 #define XPT2046_EVENTS 10 /* Number of queued touch events */
 
 ///@brief only need 4 commands for reading position or touch information

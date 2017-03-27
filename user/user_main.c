@@ -61,6 +61,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	
 	#ifdef XPT2046
 		#include "xpt2046.h"
+		#include "calibrate.h"
+		// Calibration status
+		extern int tft_is_calibrated;
 	#endif
 	
 	/* 
@@ -111,6 +114,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	LOCAL int rad;
 	LOCAL point V;
 	LOCAL point S;
+
 
 #endif
 
@@ -370,6 +374,9 @@ void user_loop(void)
 #ifdef ADF4351
 	ADF4351_task();
 #endif
+#ifdef XPT2046
+	XPT2046_task();
+#endif
 
 	// ========================================================
 	// Only run every 50mS
@@ -387,10 +394,14 @@ void user_loop(void)
 
 #ifdef DISPLAY
 	#ifdef XPT2046
-		// This dequeues touch events
-		// FIXME testing shows we need at least 2 samples in a row to be ok
-		//if( (ret = XPT2046_xy_mapped((uint16_t *)&X, (uint16_t *)&Y)) > 1 )
-		touched = XPT2046_xy_filtered_mapped((uint16_t *)&X, (uint16_t *)&Y);
+		if(tft_is_calibrated)
+		{
+			touched = tft_touch_key(master,(uint16_t *)&X, (uint16_t *)&Y);
+			#if XPT2046_DEBUG
+				if(touched)
+					tft_printf(winmsg,"X:%d,Y:%d\n",(int)X,(int)Y);
+			#endif
+		}
 	#endif
 
 	#ifdef NETWORK_TEST
@@ -596,198 +607,6 @@ void user_help()
 
 
 
-#ifdef DISPLAY
-void calibrate_3p(int rotate)
-{
-	int i;
-	uint16_t w,h,X1,X2,Y1,Y2;
-	mat_t MatX,MatY;
-	mat_t MatA,MatAI;
-	mat_t RX,RY;
-
-	float XF,YF;
-	float X[3][1];
-	float Y[3][1];
-	float A[3][3];
-
-	tft_setRotation(rotate);
-	tft_fillWin(master, master->bg);
-	tft_set_font(master,1);
-
-	w = master->w;
-	h = master->h;
-
-	X[0][0] = w / 4;
-	Y[0][0] = h / 2;
-	X[1][0] = w * 3 / 4;
-	Y[1][0] = h / 4;
-	X[2][0] = w * 3 / 4;
-	Y[2][0] = h * 3 / 4;
-
-	MatX = MatLoad(X,3,1);
-	printf("X\n");
-	MatPrint(MatX);
-	MatY = MatLoad(Y,3,1);
-	printf("Y\n");
-	MatPrint(MatY);
-
-	for(i=0;i<3;++i)
-	{
-		X1 = X[i][0];
-		Y1 = Y[i][0];
-		tft_drawPixel(master, X1, Y1, ILI9341_WHITE);
-		tft_set_textpos(master, 0,0);
-		tft_printf(master,"touch point %3d,%3d", (int)X1, (int)Y1);
-		tft_cleareol(master);
-		while( XPT2046_key_unmapped((uint16_t *)&X2, (uint16_t *)&Y2) == 0 )
-			optimistic_yield(1000);
-		A[i][0] = (float)X2;
-		A[i][1] = (float)Y2;
-		A[i][2] = 1.0;
-		// reset pixel
-		tft_drawPixel(master, X1, Y1, master->bg);
-	}
-
-	MatA = MatLoad(A,3,3);
-	printf("A\n");
-	MatPrint(MatA);
-
-	MatAI = Invert(MatA);
-	printf("Invert\n");
-	MatPrint(MatAI);
-
-	RX = MatMul(MatAI,MatX);
-	printf("X\n");
-	MatPrint(RX);
-
-	RY = MatMul(MatAI,MatY);
-	printf("Y\n");
-	MatPrint(RY);
-
-
-	for(i=0;i<10;++i)
-	{
-		while( XPT2046_key_unmapped((uint16_t *)&X1, (uint16_t *)&Y1) == 0 )
-			optimistic_yield(1000);
-		XF = (float)X1;
-		YF = (float)Y1;
-		printf("Touch: X:%.0f,Y:%.0f\n", (double)XF, (double)YF);
-		X2 = (uint16_t)(RX.data[0][0] * XF + RX.data[1][0] * YF + RX.data[2][0]);
-		Y2 = (uint16_t)(RY.data[0][0] * XF + RY.data[1][0] * YF + RY.data[2][0]);
-		printf("LCD: X:%d,Y:%d\n", (int)X2, (int)Y2);
-		tft_drawPixel(master, X2, Y2, ILI9341_WHITE);
-	}
-
-	MatFree(MatA);
-	MatFree(MatX);
-	MatFree(MatY);
-	MatFree(MatAI);
-	MatFree(RX);
-	MatFree(RY);
-
-	tft_fillWin(master, master->bg);
-}
-
-void calibrate_5p(int rotate)
-{
-	int i;
-	uint16_t w,h,X1,X2,Y1,Y2;
-	mat_t MatX,MatY;
-	mat_t MatA,MatAI;
-	mat_t RX,RY;
-
-	float XF,YF;
-	float X[5][1];
-	float Y[5][1];
-	float A[5][3];
-
-	tft_setRotation(rotate);
-	tft_fillWin(master, master->bg);
-	tft_set_font(master,1);
-
-	w = master->w;
-	h = master->h;
-
-	X[0][0] = w / 4;
-	Y[0][0] = h / 4;
-
-	X[1][0] = w * 3 / 4;
-	Y[1][0] = h / 4;
-
-	X[2][0] = w / 4;
-	Y[2][0] = h * 3 / 4;
-
-	X[3][0] = w * 3 / 4;
-	Y[3][0] = h * 3 / 4;
-
-	X[4][0] = w / 2;
-	Y[4][0] = h / 2;
-
-	MatX = MatLoad(X,5,1);
-	printf("X\n");
-	MatPrint(MatX);
-	MatY = MatLoad(Y,5,1);
-	printf("Y\n");
-	MatPrint(MatY);
-
-	for(i=0;i<5;++i)
-	{
-		X1 = X[i][0];
-		Y1 = Y[i][0];
-		tft_drawPixel(master, X1, Y1, ILI9341_WHITE);
-		tft_set_textpos(master, 0,0);
-		tft_printf(master,"touch point %3d,%3d", (int)X1, (int)Y1);
-		tft_cleareol(master);
-		while( XPT2046_key_unmapped((uint16_t *)&X2, (uint16_t *)&Y2) == 0 )
-			optimistic_yield(1000);
-		A[i][0] = (float)X2;
-		A[i][1] = (float)Y2;
-		A[i][2] = 1.0;
-		// reset pixel
-		tft_drawPixel(master, X1, Y1, master->bg);
-	}
-
-	MatA = MatLoad(A,5,3);
-	printf("A\n");
-	MatPrint(MatA);
-
-	MatAI = PseudoInvert(MatA);
-	printf("Invert\n");
-	MatPrint(MatAI);
-
-	RX = MatMul(MatAI,MatX);
-	printf("X\n");
-	MatPrint(RX);
-
-	RY = MatMul(MatAI,MatY);
-	printf("Y\n");
-	MatPrint(RY);
-
-	for(i=0;i<10;++i)
-	{
-		while( XPT2046_key_unmapped((uint16_t *)&X1, (uint16_t *)&Y1) == 0 )
-			optimistic_yield(1000);
-		XF = (float)X1;
-		YF = (float)Y1;
-		printf("Touch: X:%.0f,Y:%.0f\n", (double)XF, (double)YF);
-		X2 = (uint16_t)(RX.data[0][0] * XF + RX.data[1][0] * YF + RX.data[2][0]);
-		Y2 = (uint16_t)(RY.data[0][0] * XF + RY.data[1][0] * YF + RY.data[2][0]);
-		printf("LCD: X:%d,Y:%d\n", (int)X2, (int)Y2);
-		tft_drawPixel(master, X2, Y2, ILI9341_WHITE);
-	}
-
-	MatFree(MatA);
-	MatFree(MatX);
-	MatFree(MatY);
-	MatFree(MatAI);
-	MatFree(RX);
-	MatFree(RY);
-
-	tft_fillWin(master, master->bg);
-}
-#endif	//DISPLAY
-
-
 /// @brief help functions test parser
 ///
 /// - Keywords and arguments are matched against test functions
@@ -852,34 +671,32 @@ int user_tests(char *str)
 #ifdef DISPLAY
     else if ((len = token(ptr,"calibrate")) )
     {
-		extern xpt2046_t xpt2046;
-
         ptr += len;
 		ptr = skipspaces(ptr);
         ret = atoi(ptr);
-		calibrate_5p(ret & 3);
+		tft_setRotation(ret);
+		tft_touch_calibrate(master);
+		setup_windows(ret & 3,0);
+        return(1);
+    }
+    else if ((len = token(ptr,"calibrate_test")) )
+    {
+        ptr += len;
+		ptr = skipspaces(ptr);
+        ret = atoi(ptr);
+		tft_setRotation(ret);
+		tft_touch_calibrate(master);
+		tft_map_test(master, 10);
+		setup_windows(ret & 3,0);
         return(1);
     }
     else if ((len = token(ptr,"rotate")) )
     {
-		extern xpt2046_t xpt2046;
-
         ptr += len;
 		ptr = skipspaces(ptr);
         ret = atoi(ptr);
-		tft_fillWin(master, master->bg);
-		tft_setRotation(ret & 3);
-		printf("raw: xmin:%4d,ymin:%4d, xmax:%4d,ymax:%4d\n",
-			(int) xpt2046.raw.xmin,
-			(int) xpt2046.raw.ymin,
-			(int) xpt2046.raw.xmax,
-			(int) xpt2046.raw.ymax);
-		printf("map: xmin:%4d,ymin:%4d, xmax:%4d,ymax:%4d\n",
-			(int) xpt2046.map.xmin,
-			(int) xpt2046.map.ymin,
-			(int) xpt2046.map.xmax,
-			(int) xpt2046.map.ymax);
-        return(1);
+		tft_setRotation(ret);
+		setup_windows(ret & 3,0);
     }
 #endif	//DISPLAY
 	return(0);
@@ -945,6 +762,149 @@ test_types()
 
 }
 
+#if DISPLAY
+setup_windows(int rotation, int debug)
+{
+	int16_t x,y,w,h;
+	uint32_t ID;
+	extern uint16_t tft_ID;
+	ID = tft_ID;
+
+	// Set master rotation
+	tft_setRotation(rotation);
+	tft_setTextColor(master, ILI9341_WHITE,ILI9341_BLUE);
+	tft_fillWin(master, master->bg);
+
+	#if ILI9341_DEBUG & 1
+		if(debug)
+			printf("\nDisplay ID=%08lx\n",ID);
+	#endif
+
+	// Message window setup
+	#ifdef EARTH
+		w = master->w * 7 / 10;
+	#else
+		w = master->w;
+	#endif
+		// TOP
+	#ifdef DEBUG_STATS
+		tft_window_init(wintop,0,0, w, font_H(0)*4);
+		tft_setTextColor(wintop, ILI9341_WHITE, ILI9341_NAVY);
+	#else
+		tft_window_init(wintop,0,0, w, font_H(2)*2);
+		tft_setTextColor(wintop, ILI9341_WHITE, tft_RGBto565(0,64,255));
+	#endif
+	tft_set_font(wintop,0);
+	tft_font_var(wintop);
+	tft_fillWin(wintop, wintop->bg);
+	tft_set_textpos(wintop, 0,0);
+
+	#ifdef EARTH
+		tft_window_init(winearth,w,0, master->w - w + 1, wintop->h);
+		tft_setTextColor(winearth, ILI9341_WHITE, ILI9341_NAVY);
+		tft_fillWin(winearth, winearth->bg);
+	#endif
+
+	// BOTOM
+	// TIME,DATE
+	tft_window_init(winbottom, 0, master->h - 1 - font_H(2)*2, 
+		master->w, font_H(2)*2);
+	if(master->rotation & 1)
+		tft_set_font(winbottom,2);
+	else
+		tft_set_font(winbottom,1);
+	tft_font_var(winbottom);
+	tft_setTextColor(winbottom, 0, tft_RGBto565(0,255,0));
+	tft_fillWin(winbottom, winbottom->bg);
+	tft_set_textpos(winbottom, 0,0);
+
+	// Message window setup
+	#ifdef WIRECUBE
+		w = master->w * 7 / 10;
+	#else
+		w = master->w;
+	#endif
+
+	// MSG
+	tft_window_init(winmsg,0,wintop->h,
+			w, master->h - (wintop->h + winbottom->h));
+
+	tft_setTextColor(winmsg, ILI9341_WHITE,ILI9341_BLUE);
+	tft_fillWin(winmsg, winmsg->bg);
+	// write some text
+	tft_set_font(winmsg,0);
+	tft_font_var(winmsg);
+	tft_set_textpos(winmsg, 0,0);
+
+	// CUBE setup
+	#ifdef WIRECUBE
+		/* Setup cube/wireframe demo window */
+		/* This is to the right of the winmsg window and the same height */
+		tft_window_init(wincube, winmsg->w, wintop->h, master->w - winmsg->w, winmsg->h);
+		tft_setTextColor(wincube, ILI9341_WHITE,ILI9341_BLUE);
+		tft_fillWin(wincube, wincube->bg);
+	#endif
+
+	#ifdef DEBUG_STATS
+	if(debug)
+	{
+		// Display ID
+		tft_setTextColor(winmsg, ILI9341_RED,winmsg->bg);
+		tft_printf(winmsg, "DISP ID: %04lx\n", ID);
+		tft_setTextColor(winmsg, ILI9341_WHITE,winmsg->bg);
+		#ifdef XPT2046
+			if(!tft_is_calibrated)
+			{
+				tft_set_font(winmsg,0);
+				tft_printf(winmsg,"Please Calibrate Display\n");
+				tft_printf(winmsg,"serial command: calibrate N\n");
+				tft_printf(winmsg,"N is rotation, 0..3\n");
+				tft_printf(winmsg,"%d is current\n",master->rotation);
+			}
+		#endif
+	}
+	#endif
+
+
+	// Cube points were defined with sides of 1.0 
+	// We want a scale of +/- w/2
+	#ifdef WIRECUBE
+		if(wincube->w < wincube->h) 
+			dscale_max = wincube->w/2;
+		else
+			dscale_max = wincube->h/2;
+
+		dscale = dscale_max;
+		dscale_inc = dscale_max / 100;
+	#endif
+
+	#if ILI9341_DEBUG & 1
+	if(debug)
+	{
+		printf("Test Display Read\n");
+		read_tests(winmsg);
+	}
+	#endif
+
+	// Draw Wireframe earth in message area
+	#ifdef EARTH
+	// Earth points were defined with radius of 0.5, diameter of 1.0
+	// We want a scale of +/- w/2
+		double tscale_max;
+		if(winearth->w < winearth->h) 
+			tscale_max = winearth->w;
+		else
+			tscale_max = winearth->h;
+		V.x = -90;
+		V.y = -90;
+		V.z = -90;
+		// draw earth
+	// Earth points were defined over with a scale of -0.5/+0.5 scale - so scale must be 1 or less
+		wire_draw(winearth, earth_data, NULL, &V, winearth->w/2, winearth->h/2, tscale_max, winearth->fg);
+	#endif
+}
+#endif	//DISPLAY
+
 /**
  @brief main() Initialize user task
  @return void
@@ -956,8 +916,6 @@ void setup(void)
     char time[20];
 	int ret;
 	uint16_t *ptr;
-	uint32_t ID;
-	extern uint16_t tft_ID;
 	double ang;
 	extern web_init();
 	int w,h;
@@ -1024,120 +982,10 @@ void setup(void)
 
 	// Initialize TFT
 	master = tft_init();
-	ID = tft_ID;
-	// Set master rotation
-	tft_setRotation(1);
 
-	#if ILI9341_DEBUG & 1
-		printf("\nDisplay ID=%08lx\n",ID);
-	#endif
-
-	// Message window setup
-	#ifdef EARTH
-		w = master->w * 7 / 10;
-	#else
-		w = master->w;
-	#endif
-		// TOP
-	#ifdef DEBUG_STATS
-		tft_window_init(wintop,0,0, w, font_H(0)*4);
-		tft_setTextColor(wintop, ILI9341_WHITE, ILI9341_NAVY);
-	#else
-		tft_window_init(wintop,0,0, w, font_H(2)*2);
-		tft_setTextColor(wintop, ILI9341_WHITE, tft_RGBto565(0,64,255));
-	#endif
-	tft_set_font(wintop,0);
-	tft_font_var(wintop);
-	tft_fillWin(wintop, wintop->bg);
-	tft_set_textpos(wintop, 0,0);
-
-	#ifdef EARTH
-		tft_window_init(winearth,w,0, master->w - w + 1, wintop->h);
-		tft_setTextColor(winearth, ILI9341_WHITE, ILI9341_NAVY);
-		tft_fillWin(winearth, winearth->bg);
-	#endif
-
-	// BOTOM
-	// TIME,DATE
-	tft_window_init(winbottom, 0, master->h - 1 - font_H(2)*2, 
-		master->w, font_H(2)*2);
-	tft_set_font(winbottom,2);
-	tft_font_var(winbottom);
-	tft_setTextColor(winbottom, 0, tft_RGBto565(0,255,0));
-	tft_fillWin(winbottom, winbottom->bg);
-	tft_set_textpos(winbottom, 0,0);
-
-	// Message window setup
-	#ifdef WIRECUBE
-		w = master->w * 7 / 10;
-	#else
-		w = master->w;
-	#endif
-
-	// MSG
-	tft_window_init(winmsg,0,wintop->h,
-			w, master->h - (wintop->h + winbottom->h));
-
-	tft_setTextColor(winmsg, ILI9341_WHITE,ILI9341_BLUE);
-	tft_fillWin(winmsg, winmsg->bg);
-	// write some text
-	tft_set_font(winmsg,0);
-	tft_font_var(winmsg);
-	tft_set_textpos(winmsg, 0,0);
-
-	// CUBE setup
-	#ifdef WIRECUBE
-		/* Setup cube/wireframe demo window */
-		/* This is to the right of the winmsg window and the same height */
-		tft_window_init(wincube, winmsg->w, wintop->h, master->w - winmsg->w, winmsg->h);
-		tft_setTextColor(wincube, ILI9341_WHITE,ILI9341_BLUE);
-		tft_fillWin(wincube, wincube->bg);
-	#endif
-
-	#ifdef DEBUG_STATS
-		// Display ID
-		tft_setTextColor(winmsg, ILI9341_RED,winmsg->bg);
-		tft_printf(winmsg, "DISP ID: %04lx\n", ID);
-		tft_setTextColor(winmsg, ILI9341_WHITE,winmsg->bg);
-	#endif
-
-
-	// Cube points were defined with sides of 1.0 
-	// We want a scale of +/- w/2
-	#ifdef WIRECUBE
-		if(wincube->w < wincube->h) 
-			dscale_max = wincube->w/2;
-		else
-			dscale_max = wincube->h/2;
-
-		dscale = dscale_max;
-		dscale_inc = dscale_max / 100;
-	#endif
-
-	#if ILI9341_DEBUG & 1
-		printf("Test Display Read\n");
-		read_tests(winmsg);
-	#endif
-
-	// Draw Wireframe earth in message area
-	#ifdef EARTH
-		printf("Draw Earth\n");
-
-	// Earth points were defined with radius of 0.5, diameter of 1.0
-	// We want a scale of +/- w/2
-		double tscale_max;
-		if(winearth->w < winearth->h) 
-			tscale_max = winearth->w;
-		else
-			tscale_max = winearth->h;
-		V.x = -90;
-		V.y = -90;
-		V.z = -90;
-		// draw earth
-	// Earth points were defined over with a scale of -0.5/+0.5 scale - so scale must be 1 or less
-		wire_draw(winearth, earth_data, NULL, &V, winearth->w/2, winearth->h/2, tscale_max, winearth->fg);
-	#endif
-#endif	//DISPLAY
+	// rotateion = 1, debug = 1
+	setup_windows(1,1);
+#endif
 
 	wdt_reset();
 	printf("Setup Tasks\n");
