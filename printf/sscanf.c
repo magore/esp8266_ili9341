@@ -74,7 +74,15 @@ int sscanf(const char *strp, const char *fmt, ...)
 //
 // Skip non format characters - for now
 		if (spec != '%') 
+		{
+			if(spec == *strp)
+				++strp;
 			continue;
+		}
+
+		// we had a '%'
+		spec = *fmt;
+
 
 // Sync up input string to current argument we want in format spec
 // Skip white space and commas in input string - for now KLUDGE
@@ -100,8 +108,6 @@ int sscanf(const char *strp, const char *fmt, ...)
 			width += (spec - '0');
 			++fmt;
 		}
-
-
 
 // Init numeric control flags in case we have a number to process
 
@@ -176,6 +182,13 @@ int sscanf(const char *strp, const char *fmt, ...)
 			case 'u':
 			case 'd':
 				base = 10;
+//printf("sscanf: sizeof(long) = %d\n", sizeof(long));
+//printf("sscanf: sizeof(int) = %d\n", sizeof(int));
+//printf("sscanf: size = %d, base = %d\n", (int)SIZE, (int)base);
+//printf("sscanf strp:%s\n", strp);
+				break;
+			case 'f':
+					SIZE = sizeof(double);
 				break;
 			default:
 				break;
@@ -186,7 +199,7 @@ int sscanf(const char *strp, const char *fmt, ...)
 			num = 0;
 			SIGN = 0;
 			if (!width)
-				width = 127;
+				width = strlen(strp);
 
 			ch = *strp;
 			if (ch == '-')
@@ -226,6 +239,7 @@ int sscanf(const char *strp, const char *fmt, ...)
 				num += ch;
 				++strp;
 				--width;
+//printf("sscanf: %ld\n",num);
 			}				// END WHILE
 			if(SIZE == sizeof(long)) {
 				unsigned long *c;
@@ -252,6 +266,21 @@ int sscanf(const char *strp, const char *fmt, ...)
 					*c = (unsigned char) num;
 			}
 		}				// END IF(base && width)
+		else if(SIZE = sizeof(double))
+		{
+			// FIXME width
+			double *d = va_arg(ap,double *);
+			char *ptr,*endp;
+			int len = strlen(strp);
+			if(!width)
+				width = len;
+			if(width > len)
+				width = len;
+			ptr = stralloc((char *)strp);
+			*d = strtod(ptr, &endp);
+			free(ptr);
+			strp += (endp - ptr);
+		}
 		++args;
 	}					// END WHILE
 	return (args);

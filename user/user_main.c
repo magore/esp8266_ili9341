@@ -65,6 +65,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		// Calibration status
 		extern int tft_is_calibrated;
 	#endif
+
+	extern mat_t tft_calX,tft_calY;
 	
 	/* 
 	 * Window layouts    optional
@@ -676,6 +678,8 @@ int user_tests(char *str)
         ret = atoi(ptr);
 		tft_setRotation(ret);
 		tft_touch_calibrate(master);
+		MatWrite("/tft_calX",tft_calX);
+		MatWrite("/tft_calY",tft_calY);
 		setup_windows(ret & 3,0);
         return(1);
     }
@@ -686,6 +690,8 @@ int user_tests(char *str)
         ret = atoi(ptr);
 		tft_setRotation(ret);
 		tft_touch_calibrate(master);
+		MatWrite("/tft_calX",tft_calX);
+		MatWrite("/tft_calY",tft_calY);
 		tft_map_test(master, 10);
 		setup_windows(ret & 3,0);
         return(1);
@@ -695,6 +701,7 @@ int user_tests(char *str)
         ptr += len;
 		ptr = skipspaces(ptr);
         ret = atoi(ptr);
+// FIXME rotate calibration data ???
 		tft_setRotation(ret);
 		setup_windows(ret & 3,0);
     }
@@ -982,6 +989,14 @@ void setup(void)
 
 	// Initialize TFT
 	master = tft_init();
+
+ 	tft_calX = MatRead("/tft_calX");
+ 	tft_calY = MatRead("/tft_calY");
+	if(tft_calX.data == NULL || tft_calY.data == NULL)
+		tft_is_calibrated = 0;
+	else
+		tft_is_calibrated = 1;
+	printf("TFT calibration %s\n", tft_is_calibrated ?  "YES" : "NO");
 
 	// rotateion = 1, debug = 1
 	setup_windows(1,1);

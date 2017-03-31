@@ -51,8 +51,9 @@ int TestSquare(mat_t MatA)
 */
 mat_t MatAlloc(int rows, int cols)
 {
-	int i;
+	int r;
 	mat_t MatA;
+	float *fptr;
 
 	if(rows < 1)
 	{
@@ -72,8 +73,24 @@ mat_t MatAlloc(int rows, int cols)
 	}
 	
 	MatA.data = calloc(rows,sizeof(float *));
-	for (i=0;i<rows;i++)
-		MatA.data[i] = calloc(cols,sizeof(float));
+	if(MatA.data == NULL)
+	{
+		MatA.rows = 0;
+		MatA.cols = 0;
+		return(MatA);
+	}
+
+	for (r=0;r<rows;r++)
+	{
+		fptr = calloc(cols,sizeof(float));
+		if(fptr == NULL)
+		{
+			MatFree(MatA);
+			return(MatA);
+		}
+
+		MatA.data[r] = fptr;
+	}
 	MatA.rows = rows;
 	MatA.cols = cols;
 	if(cols == rows)
@@ -488,6 +505,114 @@ mat_t MatMul(mat_t MatA, mat_t MatB)
 		}
     }
 	return(MatR);
+}
+
+/**
+  @brief Read a matrix
+  @param[in] *name: matrix data 
+  @return mat_t matrix data
+  Note: on error rows and cols = 0, data = NULL;
+*/
+mat_t MatRead(char *name)
+{
+
+	FILE *fp;
+	char *ptr;
+	int r,c;
+	int rows = 0;
+	int cols = 0;
+	int cnt;
+	int lines = 0;
+	mat_t MatR;
+	char tmp[128];
+
+	MatR.rows = 0;
+	MatR.cols = 0;
+	MatR.data = NULL;
+
+	fp = fopen(name,"r");
+	if(fp == NULL)
+	{
+		return(MatR);
+	}
+
+	// Read Matrix header with rows and columns
+	ptr = fgets(tmp,253,fp);
+	if(ptr == NULL)
+	{
+		fclose(fp);
+		return(MatR);
+	}
+	//printf("line:%d, %s\n", lines, tmp);
+	++lines;
+	cnt = sscanf(ptr,"Matrix R:%d C:%d", (int *) &rows, (int *) &cols);
+	if(rows < 1 || cols < 1)
+	{
+		printf("sscanf: %d\n",cnt);
+		printf("MatRead expected header: Matrix R:%d C:%d\n",tmp);
+		fclose(fp);
+		return(MatR);
+	}
+
+	// FIXME set limts or just let alloc fail ???
+	MatR = MatAlloc(rows,cols);
+	if(MatR.data == NULL)
+	{
+		printf("MatRead(%s: &d,&d) could not alloc memory\n", name, rows,cols);
+		fclose(fp);
+		return(MatR);
+	}
+	
+	for(r=0;r<rows;++r)
+	{
+		// Read rows and columns
+		ptr = fgets(tmp,253,fp);
+		//printf("line:%d, %s\n", lines, tmp);
+		++lines;
+		if(ptr == NULL)
+		{
+			fclose(fp);
+			MatFree(MatR);
+			return(MatR);
+		}
+		for(c=0;c<cols;++c)
+		{
+			MatR.data[r][c] = strtod(ptr,&ptr);
+		}
+	}
+	fclose(fp);
+	return(MatR);
+}
+
+/**
+  @brief Write a matrix
+  @param[in] *name: matrix data 
+  @param[in] MatW: Matrix
+  @return status 1 = success, 0 = fail
+*/
+int MatWrite(char *name, mat_t MatW)
+{
+
+	FILE *fp;
+	int r,c;
+
+	fp = fopen(name,"w");
+	if(fp == NULL)
+	{
+		return(0);
+	}
+
+	fprintf(fp,"Matrix R:%d C:%d\n",MatW.rows,MatW.cols);
+	for(r=0;r<MatW.rows;++r)
+	{
+		for(c=0;c<MatW.cols;++c)
+		{
+			fprintf(fp,"%e ", (double) MatW.data[r][c]);
+		}
+		fprintf(fp,"\n");
+	}
+	fclose(fp);
+	return(1);
 }
 
 	

@@ -15,6 +15,8 @@ var searchData=
   ['matloadsq',['MatLoadSQ',['../matrix_8c.html#a6bf59fb52b8b93a1b23dc8864e305cab',1,'MatLoadSQ(void *V, int size):&#160;matrix.c'],['../matrix_8h.html#a6bf59fb52b8b93a1b23dc8864e305cab',1,'MatLoadSQ(void *V, int size):&#160;matrix.c']]],
   ['matmul',['MatMul',['../matrix_8c.html#a138294f3ec7022f4a14a4a98aa4cf364',1,'MatMul(mat_t MatA, mat_t MatB):&#160;matrix.c'],['../matrix_8h.html#a138294f3ec7022f4a14a4a98aa4cf364',1,'MatMul(mat_t MatA, mat_t MatB):&#160;matrix.c']]],
   ['matprint',['MatPrint',['../matrix_8c.html#ad7d7e2a3e3e380e4eed7d226973f04f7',1,'MatPrint(mat_t matrix):&#160;matrix.c'],['../matrix_8h.html#ad7d7e2a3e3e380e4eed7d226973f04f7',1,'MatPrint(mat_t matrix):&#160;matrix.c']]],
+  ['matread',['MatRead',['../matrix_8c.html#a38b6f29d8bc71ea76c1bcb0ade598ed4',1,'MatRead(char *name):&#160;matrix.c'],['../matrix_8h.html#a38b6f29d8bc71ea76c1bcb0ade598ed4',1,'MatRead(char *name):&#160;matrix.c']]],
+  ['matwrite',['MatWrite',['../matrix_8c.html#a158c5106c984db84774ee47e447098fb',1,'matrix.c']]],
   ['mctime',['mctime',['../posix_8c.html#a39eea0b104438afa9ca0500c2e8d6887',1,'mctime(time_t timev):&#160;posix.c'],['../posix_8h.html#a39eea0b104438afa9ca0500c2e8d6887',1,'mctime(time_t timev):&#160;posix.c']]],
   ['mem_5fcmp',['mem_cmp',['../ff_8c.html#a5d7ad73ef8624ad401d2b203ed68cf5c',1,'ff.c']]],
   ['mem_5fcpy',['mem_cpy',['../ff_8c.html#ab502bf68f83fa3db838786790286f36f',1,'ff.c']]],

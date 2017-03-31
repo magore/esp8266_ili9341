@@ -49,7 +49,9 @@ float \hyperlink{matrix_8h_a44a96ded1c77d0247a2d641371041ae5}{Determinant} (\hyp
 \hyperlink{matrix_8h_aff180987da2be77c8864e8c906bf04e6}{mat\+\_\+t} \hyperlink{matrix_8h_adcf312ca1762403fd593b4a562ff962a}{Pseudo\+Invert} (\hyperlink{matrix_8h_aff180987da2be77c8864e8c906bf04e6}{mat\+\_\+t} MatA)
 \begin{DoxyCompactList}\small\item\em Calculate Pseudo Matrix Inverse Used for least square fitting of non square matrix with excess solutions Pseudo Inverse matrix(\+A) = 1/(AT × A) × AT. \end{DoxyCompactList}\item 
 \hyperlink{matrix_8h_aff180987da2be77c8864e8c906bf04e6}{mat\+\_\+t} \hyperlink{matrix_8h_a138294f3ec7022f4a14a4a98aa4cf364}{Mat\+Mul} (\hyperlink{matrix_8h_aff180987da2be77c8864e8c906bf04e6}{mat\+\_\+t} MatA, \hyperlink{matrix_8h_aff180987da2be77c8864e8c906bf04e6}{mat\+\_\+t} MatB)
-\begin{DoxyCompactList}\small\item\em Multiply two matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Multiply two matrix. \end{DoxyCompactList}\item 
+\hyperlink{matrix_8h_aff180987da2be77c8864e8c906bf04e6}{mat\+\_\+t} \hyperlink{matrix_8h_a38b6f29d8bc71ea76c1bcb0ade598ed4}{Mat\+Read} (char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Read a matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -98,11 +100,11 @@ Adjugate or A
 \end{DoxyReturn}
 
 
-Definition at line 302 of file matrix.\+c.
+Definition at line 319 of file matrix.\+c.
 
 
 
-Referenced by Invert(), and Mat\+Mul().
+Referenced by Invert(), and Mat\+Write().
 
 \index{matrix.\+h@{matrix.\+h}!Cofactor@{Cofactor}}
 \index{Cofactor@{Cofactor}!matrix.\+h@{matrix.\+h}}
@@ -134,7 +136,7 @@ Determinate $\ast$ (-\/1)exp(row + col)
 \end{DoxyReturn}
 
 
-Definition at line 288 of file matrix.\+c.
+Definition at line 305 of file matrix.\+c.
 
 
 
@@ -167,7 +169,7 @@ submatrix
 \end{DoxyReturn}
 
 
-Definition at line 193 of file matrix.\+c.
+Definition at line 210 of file matrix.\+c.
 
 
 
@@ -197,7 +199,7 @@ Determinant or 0
 \end{DoxyReturn}
 
 
-Definition at line 326 of file matrix.\+c.
+Definition at line 343 of file matrix.\+c.
 
 
 
@@ -227,11 +229,11 @@ Inverse of MatA or error
 \end{DoxyReturn}
 
 
-Definition at line 374 of file matrix.\+c.
+Definition at line 391 of file matrix.\+c.
 
 
 
-Referenced by Mat\+Mul(), and Pseudo\+Invert().
+Referenced by Mat\+Write(), and Pseudo\+Invert().
 
 \index{matrix.\+h@{matrix.\+h}!Mat\+Alloc@{Mat\+Alloc}}
 \index{Mat\+Alloc@{Mat\+Alloc}!matrix.\+h@{matrix.\+h}}
@@ -259,7 +261,7 @@ Definition at line 52 of file matrix.\+c.
 
 
 
-Referenced by Adjugate(), Delete\+Row\+Col(), Mat\+Alloc\+S\+Q(), Mat\+Load(), Mat\+Mul(), and Transpose().
+Referenced by Adjugate(), Delete\+Row\+Col(), Mat\+Alloc\+S\+Q(), Mat\+Load(), Mat\+Mul(), Mat\+Read(), and Transpose().
 
 \index{matrix.\+h@{matrix.\+h}!Mat\+Alloc\+SQ@{Mat\+Alloc\+SQ}}
 \index{Mat\+Alloc\+SQ@{Mat\+Alloc\+SQ}!matrix.\+h@{matrix.\+h}}
@@ -282,7 +284,7 @@ float $\ast$$\ast$
 \end{DoxyReturn}
 
 
-Definition at line 91 of file matrix.\+c.
+Definition at line 108 of file matrix.\+c.
 
 \index{matrix.\+h@{matrix.\+h}!Mat\+Free@{Mat\+Free}}
 \index{Mat\+Free@{Mat\+Free}!matrix.\+h@{matrix.\+h}}
@@ -302,11 +304,11 @@ Free a matrix.
 \end{DoxyParams}
 
 
-Definition at line 101 of file matrix.\+c.
+Definition at line 118 of file matrix.\+c.
 
 
 
-Referenced by Mat\+Mul(), Minor(), and Pseudo\+Invert().
+Referenced by Mat\+Alloc(), Mat\+Read(), Mat\+Write(), Minor(), and Pseudo\+Invert().
 
 \index{matrix.\+h@{matrix.\+h}!Mat\+Load@{Mat\+Load}}
 \index{Mat\+Load@{Mat\+Load}!matrix.\+h@{matrix.\+h}}
@@ -330,11 +332,11 @@ Load a matrix.
 \end{DoxyParams}
 
 
-Definition at line 136 of file matrix.\+c.
+Definition at line 153 of file matrix.\+c.
 
 
 
-Referenced by Mat\+Load\+S\+Q(), and Mat\+Mul().
+Referenced by Mat\+Load\+S\+Q(), and Mat\+Write().
 
 \index{matrix.\+h@{matrix.\+h}!Mat\+Load\+SQ@{Mat\+Load\+SQ}}
 \index{Mat\+Load\+SQ@{Mat\+Load\+SQ}!matrix.\+h@{matrix.\+h}}
@@ -357,11 +359,11 @@ Load a square matrix.
 \end{DoxyParams}
 
 
-Definition at line 159 of file matrix.\+c.
+Definition at line 176 of file matrix.\+c.
 
 
 
-Referenced by Mat\+Mul().
+Referenced by Mat\+Write().
 
 \index{matrix.\+h@{matrix.\+h}!Mat\+Mul@{Mat\+Mul}}
 \index{Mat\+Mul@{Mat\+Mul}!matrix.\+h@{matrix.\+h}}
@@ -390,11 +392,11 @@ MatA $\ast$ MatB Result dimensions is (row size of A, column size of B)
 \end{DoxyReturn}
 
 
-Definition at line 463 of file matrix.\+c.
+Definition at line 480 of file matrix.\+c.
 
 
 
-Referenced by Mat\+Mul(), and Pseudo\+Invert().
+Referenced by Mat\+Write(), and Pseudo\+Invert().
 
 \index{matrix.\+h@{matrix.\+h}!Mat\+Print@{Mat\+Print}}
 \index{Mat\+Print@{Mat\+Print}!matrix.\+h@{matrix.\+h}}
@@ -414,11 +416,38 @@ Print a matrix.
 \end{DoxyParams}
 
 
-Definition at line 169 of file matrix.\+c.
+Definition at line 186 of file matrix.\+c.
 
 
 
-Referenced by Invert(), and Mat\+Mul().
+Referenced by Invert(), and Mat\+Write().
+
+\index{matrix.\+h@{matrix.\+h}!Mat\+Read@{Mat\+Read}}
+\index{Mat\+Read@{Mat\+Read}!matrix.\+h@{matrix.\+h}}
+\subsubsection[{\texorpdfstring{Mat\+Read(char $\ast$name)}{MatRead(char *name)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf mat\+\_\+t} Mat\+Read (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{name}
+\end{DoxyParamCaption}
+)}\hypertarget{matrix_8h_a38b6f29d8bc71ea76c1bcb0ade598ed4}{}\label{matrix_8h_a38b6f29d8bc71ea76c1bcb0ade598ed4}
+
+
+Read a matrix. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$name} & matrix data \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+mat\+\_\+t matrix data Note\+: on error rows and cols = 0, data = N\+U\+LL; 
+\end{DoxyReturn}
+
+
+Definition at line 516 of file matrix.\+c.
+
+
+
+Referenced by setup().
 
 \index{matrix.\+h@{matrix.\+h}!Minor@{Minor}}
 \index{Minor@{Minor}!matrix.\+h@{matrix.\+h}}
@@ -450,7 +479,7 @@ Determinate
 \end{DoxyReturn}
 
 
-Definition at line 270 of file matrix.\+c.
+Definition at line 287 of file matrix.\+c.
 
 
 
@@ -477,11 +506,11 @@ Pseudo Inverse of MatA or error
 \end{DoxyReturn}
 
 
-Definition at line 430 of file matrix.\+c.
+Definition at line 447 of file matrix.\+c.
 
 
 
-Referenced by Mat\+Mul().
+Referenced by Mat\+Write().
 
 \index{matrix.\+h@{matrix.\+h}!Test\+Square@{Test\+Square}}
 \index{Test\+Square@{Test\+Square}!matrix.\+h@{matrix.\+h}}
@@ -530,7 +559,7 @@ Transpose matrix
 \end{DoxyReturn}
 
 
-Definition at line 243 of file matrix.\+c.
+Definition at line 260 of file matrix.\+c.
 
 
 

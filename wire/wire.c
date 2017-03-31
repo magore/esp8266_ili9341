@@ -65,6 +65,7 @@ void wire_draw(window *win, const wire_p *wire, const wire_e *edge, point *view,
 	int y0 = 0;
 	int x1 = 0;
 	int y1 = 0;
+	int z = 0;
 	wire_p W;
 	wire_e E;
 	point P,R;
@@ -99,6 +100,7 @@ void wire_draw(window *win, const wire_p *wire, const wire_e *edge, point *view,
 			// CORDIC Rotate
 			rotate(&P,view);
 
+
 			// CORDIC Perspective Projection Offset and Scale
 			PerspectiveProjection(&P, scale, x,y);
 			x1 = P.x;
@@ -108,6 +110,7 @@ void wire_draw(window *win, const wire_p *wire, const wire_e *edge, point *view,
 			tft_drawLine(win, x0, y0, x1, y1, color);
 //printf("i:%d (x:%d,y:%d),(x1:%d,y1:%d),color:%04x\n", i,(int)x0, (int)y0, (int)x1, (int)y1, (int)color);
 
+			optimistic_yield(1000);
 			wdt_reset();
 		}
 		return;
@@ -136,12 +139,19 @@ void wire_draw(window *win, const wire_p *wire, const wire_e *edge, point *view,
 		// CORDIC Rotate
 		rotate(&P,view);
 
-		// FIXME - Add hidden line removal
+		// FIXME - Add proper hidden line removal
+		// 	add a flag for this
 		// Observation: for a sphere we can cut a plain parallel to the view plain
 		// intersecting the objects center at 0,0,0 point. 
 		// We then skip points below this plain (ie. away from the viewer).
-		// if(P.z > 0.0) ...
-		// 	continue;
+#if 0
+		if(P.z >= 0.0)
+		{
+			// force restart, we have no points
+			last = WIRE_SEP;
+			continue;
+		}
+#endif
 
 		// CORDIC Perspective Projection Offset and Scale
 		PerspectiveProjection(&P, scale, x,y);
@@ -158,15 +168,16 @@ void wire_draw(window *win, const wire_p *wire, const wire_e *edge, point *view,
 		y1 = P.y;
 		last = 0;
 
-		// tft_printf(0,300,1,"i:%d", i);
-//printf("i:%d,x:%d,y:%d-x1:%d,y1:%d,color:%04x", i,(int)x0, (int)y0, (int)x1, (int)y1, (int)color);
+		//printf("i:%d,x:%d,y:%d-x1:%d,y1:%d,color:%04x", i,(int)x0, (int)y0, (int)x1, (int)y1, (int)color);
 
 		// Draw line
 		tft_drawLine(win, x0, y0, x1, y1, color);
+
 		// First is Next
 		x0 = x1;
 		y0 = y1;
 
+		optimistic_yield(1000);
 		wdt_reset();
 	}
 //printf("i:%d,done\n",(int) i);

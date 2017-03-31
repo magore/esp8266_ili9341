@@ -32,6 +32,7 @@ typedef struct _mat {
 } mat_t;
 
 
+
 /* matrix.c */
 int TestSquare ( mat_t MatA );
 mat_t MatAlloc ( int rows , int cols );
@@ -49,6 +50,6 @@ float Determinant ( mat_t MatA );
 mat_t Invert ( mat_t MatA );
 mat_t PseudoInvert ( mat_t MatA );
 mat_t MatMul ( mat_t MatA , mat_t MatB );
-
+mat_t MatRead ( char *name );
 
 #endif // _MATRIX_H_
