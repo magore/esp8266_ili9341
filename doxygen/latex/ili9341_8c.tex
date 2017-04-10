@@ -12,11 +12,11 @@ ili9341 driver inspired by Adafruit ili9341 code All code in this file has been 
 {\ttfamily \#include $<$math.\+h$>$}\\*
 {\ttfamily \#include \char`\"{}display/font.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}display/ili9341.\+h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}driver/ili9341\+\_\+adafruit.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}3rd\+\_\+party/ili9341\+\_\+adafruit.\+h\char`\"{}}\\*
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#define \hyperlink{ili9341_8c_a71d0761bc813dbcb85353d2508693493}{X\+Y\+S\+T\+A\+CK}~32
+\#define \hyperlink{ili9341_8c_a71d0761bc813dbcb85353d2508693493}{X\+Y\+S\+T\+A\+CK}~64
 \begin{DoxyCompactList}\small\item\em X,Y point stack. \end{DoxyCompactList}\item 
 \#define \hyperlink{ili9341_8c_a4ae7ac40c6ea3d1e5a457adf60a6bf5b}{H\+S\+P\+I\+\_\+\+P\+IX}~((\hyperlink{hspi_8h_a1eaecab4a7e4f328f38ce57d4d3012d1}{H\+S\+P\+I\+\_\+\+F\+I\+F\+O\+\_\+\+S\+I\+ZE}-\/2)/3)
 \begin{DoxyCompactList}\small\item\em Read Rectangle and return 16bit color array in 565 R\+GB format We clip the window to the current view Note\+: T\+FT Chip Select must be asserted for each block read As soon as chip select goes high the read aborts! We break up the data into chunks with a Memory Read, followed by Memory Read Continue So we use Memory Read and Memory Read Continue. \end{DoxyCompactList}\item 
@@ -43,13 +43,13 @@ void \hyperlink{ili9341_8c_a9aedd26c42606ba58f2f0a483619f323}{tft\+\_\+bit\+\_\+
 \begin{DoxyCompactList}\small\item\em \subsection*{B\+L\+IT functions }\end{DoxyCompactList}\item 
 void \hyperlink{ili9341_8c_a90dda5b7ba495fcca6ab4e5259f6c6fe}{tft\+\_\+fill\+Win} (\hyperlink{structwindow}{window} $\ast$win, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} color)
 \begin{DoxyCompactList}\small\item\em \subsection*{Fill functions }\end{DoxyCompactList}\item 
-void \hyperlink{ili9341_8c_af6f6f2dc6669e9d966b886139b159974}{tft\+\_\+flood} (\hyperlink{structwindow}{window} $\ast$win, int16\+\_\+t \hyperlink{ili9341_8c_a7e1c531941c89bac69fe489cc3ff0790}{x}, int16\+\_\+t \hyperlink{ili9341_8c_ab82fda4a9377d83187ff1ebd806ea27c}{y}, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} old\+\_\+color, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} fill\+\_\+color)
+void \hyperlink{ili9341_8c_a70194eb517d3ef94b34695e4599168ab}{tft\+\_\+flood} (\hyperlink{structwindow}{window} $\ast$win, int16\+\_\+t \hyperlink{ili9341_8c_a7e1c531941c89bac69fe489cc3ff0790}{x}, int16\+\_\+t \hyperlink{ili9341_8c_ab82fda4a9377d83187ff1ebd806ea27c}{y}, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} border, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} fill)
 \begin{DoxyCompactList}\small\item\em Flood fill. \end{DoxyCompactList}\item 
 int \hyperlink{ili9341_8c_abeeeab813dc4bbff2e42b292748a69f6}{tft\+\_\+push\+\_\+xy} (int16\+\_\+t \hyperlink{ili9341_8c_a7e1c531941c89bac69fe489cc3ff0790}{x}, int16\+\_\+t \hyperlink{ili9341_8c_ab82fda4a9377d83187ff1ebd806ea27c}{y})
 \begin{DoxyCompactList}\small\item\em point push \end{DoxyCompactList}\item 
 int \hyperlink{ili9341_8c_a965b65255c70e4dfcdf3c80365bb1358}{tft\+\_\+pop\+\_\+xy} (int16\+\_\+t $\ast$\hyperlink{ili9341_8c_a7e1c531941c89bac69fe489cc3ff0790}{x}, int16\+\_\+t $\ast$\hyperlink{ili9341_8c_ab82fda4a9377d83187ff1ebd806ea27c}{y})
 \begin{DoxyCompactList}\small\item\em point push \end{DoxyCompactList}\item 
-int \hyperlink{ili9341_8c_a573161ececf3406e47fc0c7236913b28}{tft\+\_\+floodline} (\hyperlink{structwindow}{window} $\ast$win, int16\+\_\+t \hyperlink{ili9341_8c_a7e1c531941c89bac69fe489cc3ff0790}{x}, int16\+\_\+t \hyperlink{ili9341_8c_ab82fda4a9377d83187ff1ebd806ea27c}{y}, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} new\+Color, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} old\+Color)
+int \hyperlink{ili9341_8c_a6223a118e376e361d8278428d1dac4fb}{tft\+\_\+floodline} (\hyperlink{structwindow}{window} $\ast$win, int16\+\_\+t \hyperlink{ili9341_8c_a7e1c531941c89bac69fe489cc3ff0790}{x}, int16\+\_\+t \hyperlink{ili9341_8c_ab82fda4a9377d83187ff1ebd806ea27c}{y}, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} border, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} fill)
 \begin{DoxyCompactList}\small\item\em Flood using line fill method. \end{DoxyCompactList}\item 
 void \hyperlink{ili9341_8c_a3c9368b6d6f6388a7c7f9ed89743e47f}{tft\+\_\+fill\+Rect\+WH} (\hyperlink{structwindow}{window} $\ast$win, int16\+\_\+t \hyperlink{ili9341_8c_a7e1c531941c89bac69fe489cc3ff0790}{x}, int16\+\_\+t \hyperlink{ili9341_8c_ab82fda4a9377d83187ff1ebd806ea27c}{y}, int16\+\_\+t w, int16\+\_\+t h, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} color)
 \begin{DoxyCompactList}\small\item\em Partial window Fill with color We clip the window to the current view. \end{DoxyCompactList}\item 
@@ -99,6 +99,8 @@ void \hyperlink{ili9341_8c_ae425260d907faa87a1b8e336f24ba54c}{tft\+\_\+draw\+Fas
 \begin{DoxyCompactList}\small\item\em Fast virtical line drawing. \end{DoxyCompactList}\item 
 void \hyperlink{ili9341_8c_a7cef55bef133e9918955b4d2a53cf230}{tft\+\_\+draw\+Line} (\hyperlink{structwindow}{window} $\ast$win, int16\+\_\+t x0, int16\+\_\+t y0, int16\+\_\+t x1, int16\+\_\+t y1, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} color)
 \begin{DoxyCompactList}\small\item\em Draw line From my blit test code testit.\+c 1984 -\/ 1985 Mike Gore. \end{DoxyCompactList}\item 
+void \hyperlink{ili9341_8c_a0df0ea98b69b8974030b1182ee03be4b}{tft\+\_\+\+Bezier} (\hyperlink{structwindow}{window} $\ast$win, int16\+\_\+t SX, int16\+\_\+t SY, int16\+\_\+t CX, int16\+\_\+t CY, int16\+\_\+t TX, int16\+\_\+t TY, int steps, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} color)
+\begin{DoxyCompactList}\small\item\em Draw lines between points along Quadratic Bézier curve Quadratic Bézier with respect to t, see \href{https://en.wikipedia.org/wiki/B}{\tt https\+://en.\+wikipedia.\+org/wiki/B}ézier\+\_\+curve B(t) = (1-\/t)$\ast$(1-\/t)$\ast$S + 2$\ast$(1-\/t)$\ast$t$\ast$C + t$\ast$t$\ast$T, 0 $<$= t $<$= 1. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{ili9341_8c_a9e2f1c5c213183804492d12ab89a1b43}{tft\+\_\+cleareol} (\hyperlink{structwindow}{window} $\ast$win)
 \begin{DoxyCompactList}\small\item\em \subsection*{Character and String functions }\end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{ili9341_8c_ab2312256c9579261cfa1ed62c4e82410}{tft\+\_\+clearline} (\hyperlink{structwindow}{window} $\ast$win)
@@ -175,21 +177,21 @@ Read Rectangle and return 16bit color array in 565 R\+GB format We clip the wind
 \end{DoxyParams}
 
 
-Definition at line 688 of file ili9341.\+c.
+Definition at line 696 of file ili9341.\+c.
 
 \index{ili9341.\+c@{ili9341.\+c}!U\+S\+E\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+D\+R\+A\+W\+L\+I\+NE@{U\+S\+E\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+D\+R\+A\+W\+L\+I\+NE}}
 \index{U\+S\+E\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+D\+R\+A\+W\+L\+I\+NE@{U\+S\+E\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+D\+R\+A\+W\+L\+I\+NE}!ili9341.\+c@{ili9341.\+c}}
 \subsubsection[{\texorpdfstring{U\+S\+E\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+D\+R\+A\+W\+L\+I\+NE}{USE_OPTIMIZATION_DRAWLINE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define U\+S\+E\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+D\+R\+A\+W\+L\+I\+NE}\hypertarget{ili9341_8c_a3bc3999315888a41dcf1417cdae450e3}{}\label{ili9341_8c_a3bc3999315888a41dcf1417cdae450e3}
 \index{ili9341.\+c@{ili9341.\+c}!X\+Y\+S\+T\+A\+CK@{X\+Y\+S\+T\+A\+CK}}
 \index{X\+Y\+S\+T\+A\+CK@{X\+Y\+S\+T\+A\+CK}!ili9341.\+c@{ili9341.\+c}}
-\subsubsection[{\texorpdfstring{X\+Y\+S\+T\+A\+CK}{XYSTACK}}]{\setlength{\rightskip}{0pt plus 5cm}\#define X\+Y\+S\+T\+A\+CK~32}\hypertarget{ili9341_8c_a71d0761bc813dbcb85353d2508693493}{}\label{ili9341_8c_a71d0761bc813dbcb85353d2508693493}
+\subsubsection[{\texorpdfstring{X\+Y\+S\+T\+A\+CK}{XYSTACK}}]{\setlength{\rightskip}{0pt plus 5cm}\#define X\+Y\+S\+T\+A\+CK~64}\hypertarget{ili9341_8c_a71d0761bc813dbcb85353d2508693493}{}\label{ili9341_8c_a71d0761bc813dbcb85353d2508693493}
 
 
 X,Y point stack. 
 
 
 
-Definition at line 365 of file ili9341.\+c.
+Definition at line 372 of file ili9341.\+c.
 
 
 
@@ -225,7 +227,7 @@ Referenced by tft\+\_\+push\+\_\+xy().
 \end{DoxyParams}
 
 
-Definition at line 886 of file ili9341.\+c.
+Definition at line 894 of file ili9341.\+c.
 
 \index{ili9341.\+c@{ili9341.\+c}!tft\+\_\+abs\+\_\+window@{tft\+\_\+abs\+\_\+window}}
 \index{tft\+\_\+abs\+\_\+window@{tft\+\_\+abs\+\_\+window}!ili9341.\+c@{ili9341.\+c}}
@@ -265,6 +267,67 @@ Definition at line 101 of file ili9341.\+c.
 
 
 Referenced by tft\+\_\+rel\+\_\+window().
+
+\index{ili9341.\+c@{ili9341.\+c}!tft\+\_\+\+Bezier@{tft\+\_\+\+Bezier}}
+\index{tft\+\_\+\+Bezier@{tft\+\_\+\+Bezier}!ili9341.\+c@{ili9341.\+c}}
+\subsubsection[{\texorpdfstring{tft\+\_\+\+Bezier(window $\ast$win, int16\+\_\+t S\+X, int16\+\_\+t S\+Y, int16\+\_\+t C\+X, int16\+\_\+t C\+Y, int16\+\_\+t T\+X, int16\+\_\+t T\+Y, int steps, uint16\+\_\+t color)}{tft_Bezier(window *win, int16_t SX, int16_t SY, int16_t CX, int16_t CY, int16_t TX, int16_t TY, int steps, uint16_t color)}}]{\setlength{\rightskip}{0pt plus 5cm}void tft\+\_\+\+Bezier (
+\begin{DoxyParamCaption}
+\item[{{\bf window} $\ast$}]{win, }
+\item[{int16\+\_\+t}]{SX, }
+\item[{int16\+\_\+t}]{SY, }
+\item[{int16\+\_\+t}]{CX, }
+\item[{int16\+\_\+t}]{CY, }
+\item[{int16\+\_\+t}]{TX, }
+\item[{int16\+\_\+t}]{TY, }
+\item[{int}]{steps, }
+\item[{{\bf uint16\+\_\+t}}]{color}
+\end{DoxyParamCaption}
+)}\hypertarget{ili9341_8c_a0df0ea98b69b8974030b1182ee03be4b}{}\label{ili9341_8c_a0df0ea98b69b8974030b1182ee03be4b}
+
+
+Draw lines between points along Quadratic Bézier curve Quadratic Bézier with respect to t, see \href{https://en.wikipedia.org/wiki/B}{\tt https\+://en.\+wikipedia.\+org/wiki/B}ézier\+\_\+curve B(t) = (1-\/t)$\ast$(1-\/t)$\ast$S + 2$\ast$(1-\/t)$\ast$t$\ast$C + t$\ast$t$\ast$T, 0 $<$= t $<$= 1. 
+
+==================================== \subsection*{Interpolation functions }
+
+The path traced by the function B(t), given points S, C, and T, S = initial points C = control points T = target points
+
+Derivative of the Bézier curve with respect to t B\textquotesingle{}(t) = 2$\ast$(1-\/t)$\ast$(C-\/S) + 2$\ast$t$\ast$(T-\/C)
+
+Second derivative of the Bézier curve with respect to t is B"(t) = 2$\ast$(T-\/2$\ast$\+C+S)
+
+As t increases from 0 to 1, the curve departs from S in the direction of C, then bends to arrive at T from the direction of C. The tangents to the curve at S and T intersect at C.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$win} & Window Structure of active window \\
+\hline
+\mbox{\tt in}  & {\em SX} & Start X \\
+\hline
+\mbox{\tt in}  & {\em SY} & Start Y \\
+\hline
+\mbox{\tt in}  & {\em CX} & Control X \\
+\hline
+\mbox{\tt in}  & {\em CY} & Control Y \\
+\hline
+\mbox{\tt in}  & {\em TX} & Target X \\
+\hline
+\mbox{\tt in}  & {\em TY} & Target Y \\
+\hline
+\mbox{\tt in}  & {\em steps} & line segments along curve (1..N) \\
+\hline
+\mbox{\tt in}  & {\em color} & Line color \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 1338 of file ili9341.\+c.
+
+
+
+Referenced by draw\+S\+V\+G().
 
 \index{ili9341.\+c@{ili9341.\+c}!tft\+\_\+bit\+\_\+blit@{tft\+\_\+bit\+\_\+blit}}
 \index{tft\+\_\+bit\+\_\+blit@{tft\+\_\+bit\+\_\+blit}!ili9341.\+c@{ili9341.\+c}}
@@ -326,7 +389,7 @@ Referenced by tft\+\_\+draw\+Char().
 \end{DoxyParams}
 
 
-Definition at line 1303 of file ili9341.\+c.
+Definition at line 1384 of file ili9341.\+c.
 
 
 
@@ -350,7 +413,7 @@ Clear display text line.
 \end{DoxyParams}
 
 
-Definition at line 1323 of file ili9341.\+c.
+Definition at line 1404 of file ili9341.\+c.
 
 \index{ili9341.\+c@{ili9341.\+c}!tft\+\_\+clip\+\_\+xy@{tft\+\_\+clip\+\_\+xy}}
 \index{tft\+\_\+clip\+\_\+xy@{tft\+\_\+clip\+\_\+xy}!ili9341.\+c@{ili9341.\+c}}
@@ -376,7 +439,7 @@ Clip X,Y to fix inside specifiied window.
 \end{DoxyParams}
 
 
-Definition at line 967 of file ili9341.\+c.
+Definition at line 975 of file ili9341.\+c.
 
 \index{ili9341.\+c@{ili9341.\+c}!tft\+\_\+\+Cmd@{tft\+\_\+\+Cmd}}
 \index{tft\+\_\+\+Cmd@{tft\+\_\+\+Cmd}!ili9341.\+c@{ili9341.\+c}}
@@ -491,7 +554,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1182 of file ili9341.\+c.
+Definition at line 1190 of file ili9341.\+c.
 
 
 
@@ -530,7 +593,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1167 of file ili9341.\+c.
+Definition at line 1175 of file ili9341.\+c.
 
 
 
@@ -590,11 +653,11 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1242 of file ili9341.\+c.
+Definition at line 1250 of file ili9341.\+c.
 
 
 
-Referenced by tft\+\_\+draw\+Fast\+H\+Line(), tft\+\_\+draw\+Triangle(), and wire\+\_\+draw().
+Referenced by draw\+S\+V\+G(), tft\+\_\+\+Bezier(), tft\+\_\+draw\+Fast\+H\+Line(), tft\+\_\+draw\+Triangle(), and wire\+\_\+draw().
 
 \index{ili9341.\+c@{ili9341.\+c}!tft\+\_\+draw\+Pixel@{tft\+\_\+draw\+Pixel}}
 \index{tft\+\_\+draw\+Pixel@{tft\+\_\+draw\+Pixel}!ili9341.\+c@{ili9341.\+c}}
@@ -626,7 +689,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 570 of file ili9341.\+c.
+Definition at line 578 of file ili9341.\+c.
 
 
 
@@ -668,7 +731,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 480 of file ili9341.\+c.
+Definition at line 488 of file ili9341.\+c.
 
 
 
@@ -710,7 +773,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 543 of file ili9341.\+c.
+Definition at line 551 of file ili9341.\+c.
 
 
 
@@ -745,15 +808,15 @@ Referenced by test\+\_\+types(), tft\+\_\+init(), and tft\+\_\+putch().
 
 \index{ili9341.\+c@{ili9341.\+c}!tft\+\_\+flood@{tft\+\_\+flood}}
 \index{tft\+\_\+flood@{tft\+\_\+flood}!ili9341.\+c@{ili9341.\+c}}
-\subsubsection[{\texorpdfstring{tft\+\_\+flood(window $\ast$win, int16\+\_\+t x, int16\+\_\+t y, uint16\+\_\+t old\+\_\+color, uint16\+\_\+t fill\+\_\+color)}{tft_flood(window *win, int16_t x, int16_t y, uint16_t old_color, uint16_t fill_color)}}]{\setlength{\rightskip}{0pt plus 5cm}void tft\+\_\+flood (
+\subsubsection[{\texorpdfstring{tft\+\_\+flood(window $\ast$win, int16\+\_\+t x, int16\+\_\+t y, uint16\+\_\+t border, uint16\+\_\+t fill)}{tft_flood(window *win, int16_t x, int16_t y, uint16_t border, uint16_t fill)}}]{\setlength{\rightskip}{0pt plus 5cm}void tft\+\_\+flood (
 \begin{DoxyParamCaption}
 \item[{{\bf window} $\ast$}]{win, }
 \item[{int16\+\_\+t}]{x, }
 \item[{int16\+\_\+t}]{y, }
-\item[{{\bf uint16\+\_\+t}}]{old\+\_\+color, }
-\item[{{\bf uint16\+\_\+t}}]{fill\+\_\+color}
+\item[{{\bf uint16\+\_\+t}}]{border, }
+\item[{{\bf uint16\+\_\+t}}]{fill}
 \end{DoxyParamCaption}
-)}\hypertarget{ili9341_8c_af6f6f2dc6669e9d966b886139b159974}{}\label{ili9341_8c_af6f6f2dc6669e9d966b886139b159974}
+)}\hypertarget{ili9341_8c_a70194eb517d3ef94b34695e4599168ab}{}\label{ili9341_8c_a70194eb517d3ef94b34695e4599168ab}
 
 
 Flood fill. 
@@ -765,9 +828,9 @@ Flood fill.
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\tt in}  & {\em win$\ast$} & window structure \\
 \hline
-\mbox{\tt in}  & {\em border} & Border color \\
+\mbox{\tt in}  & {\em border} & border color \\
 \hline
-\mbox{\tt in}  & {\em color} & Fill color \\
+\mbox{\tt in}  & {\em fill} & Fill color \\
 \hline
 \end{DoxyParams}
 
@@ -780,15 +843,15 @@ Referenced by tft\+\_\+flood().
 
 \index{ili9341.\+c@{ili9341.\+c}!tft\+\_\+floodline@{tft\+\_\+floodline}}
 \index{tft\+\_\+floodline@{tft\+\_\+floodline}!ili9341.\+c@{ili9341.\+c}}
-\subsubsection[{\texorpdfstring{tft\+\_\+floodline(window $\ast$win, int16\+\_\+t x, int16\+\_\+t y, uint16\+\_\+t new\+Color, uint16\+\_\+t old\+Color)}{tft_floodline(window *win, int16_t x, int16_t y, uint16_t newColor, uint16_t oldColor)}}]{\setlength{\rightskip}{0pt plus 5cm}int tft\+\_\+floodline (
+\subsubsection[{\texorpdfstring{tft\+\_\+floodline(window $\ast$win, int16\+\_\+t x, int16\+\_\+t y, uint16\+\_\+t border, uint16\+\_\+t fill)}{tft_floodline(window *win, int16_t x, int16_t y, uint16_t border, uint16_t fill)}}]{\setlength{\rightskip}{0pt plus 5cm}int tft\+\_\+floodline (
 \begin{DoxyParamCaption}
 \item[{{\bf window} $\ast$}]{win, }
 \item[{int16\+\_\+t}]{x, }
 \item[{int16\+\_\+t}]{y, }
-\item[{{\bf uint16\+\_\+t}}]{new\+Color, }
-\item[{{\bf uint16\+\_\+t}}]{old\+Color}
+\item[{{\bf uint16\+\_\+t}}]{border, }
+\item[{{\bf uint16\+\_\+t}}]{fill}
 \end{DoxyParamCaption}
-)}\hypertarget{ili9341_8c_a573161ececf3406e47fc0c7236913b28}{}\label{ili9341_8c_a573161ececf3406e47fc0c7236913b28}
+)}\hypertarget{ili9341_8c_a6223a118e376e361d8278428d1dac4fb}{}\label{ili9341_8c_a6223a118e376e361d8278428d1dac4fb}
 
 
 Flood using line fill method. 
@@ -800,14 +863,18 @@ Flood using line fill method.
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\tt in}  & {\em win$\ast$} & window structure \\
 \hline
-\mbox{\tt in}  & {\em border} & Border color \\
+\mbox{\tt in}  & {\em x} & X position to fill from \\
 \hline
-\mbox{\tt in}  & {\em color} & Fill color @ return true one success, 0 of stack overflow \\
+\mbox{\tt in}  & {\em y} & Y position to fill from \\
+\hline
+\mbox{\tt in}  & {\em border} & border color \\
+\hline
+\mbox{\tt in}  & {\em fill} & Fill color @ return true one success, 0 of stack overflow \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 407 of file ili9341.\+c.
+Definition at line 419 of file ili9341.\+c.
 
 \index{ili9341.\+c@{ili9341.\+c}!tft\+\_\+font\+\_\+fixed@{tft\+\_\+font\+\_\+fixed}}
 \index{tft\+\_\+font\+\_\+fixed@{tft\+\_\+font\+\_\+fixed}!ili9341.\+c@{ili9341.\+c}}
@@ -823,7 +890,7 @@ Only works if font is proportional type
 \end{DoxyParams}
 
 
-Definition at line 1131 of file ili9341.\+c.
+Definition at line 1139 of file ili9341.\+c.
 
 
 
@@ -847,7 +914,7 @@ Set current font type to variable.
 \end{DoxyParams}
 
 
-Definition at line 1141 of file ili9341.\+c.
+Definition at line 1149 of file ili9341.\+c.
 
 
 
@@ -871,7 +938,7 @@ Get font height.
 \end{DoxyParams}
 
 
-Definition at line 1149 of file ili9341.\+c.
+Definition at line 1157 of file ili9341.\+c.
 
 \index{ili9341.\+c@{ili9341.\+c}!tft\+\_\+invert\+Display@{tft\+\_\+invert\+Display}}
 \index{tft\+\_\+invert\+Display@{tft\+\_\+invert\+Display}!ili9341.\+c@{ili9341.\+c}}
@@ -894,7 +961,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 898 of file ili9341.\+c.
+Definition at line 906 of file ili9341.\+c.
 
 \index{ili9341.\+c@{ili9341.\+c}!tft\+\_\+pop\+\_\+xy@{tft\+\_\+pop\+\_\+xy}}
 \index{tft\+\_\+pop\+\_\+xy@{tft\+\_\+pop\+\_\+xy}!ili9341.\+c@{ili9341.\+c}}
@@ -917,7 +984,7 @@ point push
 \end{DoxyParams}
 
 
-Definition at line 390 of file ili9341.\+c.
+Definition at line 400 of file ili9341.\+c.
 
 
 
@@ -944,7 +1011,7 @@ point push
 \end{DoxyParams}
 
 
-Definition at line 376 of file ili9341.\+c.
+Definition at line 383 of file ili9341.\+c.
 
 
 
@@ -971,7 +1038,7 @@ put character in current winoow
 \end{DoxyParams}
 
 
-Definition at line 1345 of file ili9341.\+c.
+Definition at line 1426 of file ili9341.\+c.
 
 
 
@@ -1029,7 +1096,7 @@ color in 565 format
 \end{DoxyReturn}
 
 
-Definition at line 805 of file ili9341.\+c.
+Definition at line 813 of file ili9341.\+c.
 
 
 
@@ -1049,7 +1116,7 @@ Referenced by tft\+\_\+flood(), and tft\+\_\+floodline().
 )}\hypertarget{ili9341_8c_a08bf5b6422229993b5d68e48c7b39619}{}\label{ili9341_8c_a08bf5b6422229993b5d68e48c7b39619}
 
 
-Definition at line 690 of file ili9341.\+c.
+Definition at line 698 of file ili9341.\+c.
 
 
 
@@ -1148,7 +1215,7 @@ Set current font size (per current rotation)
 \end{DoxyParams}
 
 
-Definition at line 1120 of file ili9341.\+c.
+Definition at line 1128 of file ili9341.\+c.
 
 
 
@@ -1178,7 +1245,7 @@ Set current window text pointer in characters (per current rotation) -\/ overall
 \end{DoxyParams}
 
 
-Definition at line 1107 of file ili9341.\+c.
+Definition at line 1115 of file ili9341.\+c.
 
 
 
@@ -1208,7 +1275,7 @@ Set current window text pointer in pixels (per current rotation)
 \end{DoxyParams}
 
 
-Definition at line 1094 of file ili9341.\+c.
+Definition at line 1102 of file ili9341.\+c.
 
 \index{ili9341.\+c@{ili9341.\+c}!tft\+\_\+set\+Rotation@{tft\+\_\+set\+Rotation}}
 \index{tft\+\_\+set\+Rotation@{tft\+\_\+set\+Rotation}!ili9341.\+c@{ili9341.\+c}}
@@ -1229,7 +1296,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 835 of file ili9341.\+c.
+Definition at line 843 of file ili9341.\+c.
 
 
 
@@ -1262,7 +1329,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1081 of file ili9341.\+c.
+Definition at line 1089 of file ili9341.\+c.
 
 
 
@@ -1289,7 +1356,7 @@ Scroll window up by dir lines We start at the top of the window and move down.
 \end{DoxyParams}
 
 
-Definition at line 756 of file ili9341.\+c.
+Definition at line 764 of file ili9341.\+c.
 
 
 
@@ -1316,7 +1383,7 @@ Clip window structure to T\+FT limits.
 \end{DoxyReturn}
 
 
-Definition at line 912 of file ili9341.\+c.
+Definition at line 920 of file ili9341.\+c.
 
 \index{ili9341.\+c@{ili9341.\+c}!tft\+\_\+window\+\_\+clip\+\_\+args@{tft\+\_\+window\+\_\+clip\+\_\+args}}
 \index{tft\+\_\+window\+\_\+clip\+\_\+args@{tft\+\_\+window\+\_\+clip\+\_\+args}!ili9341.\+c@{ili9341.\+c}}
@@ -1351,7 +1418,7 @@ void F\+I\+X\+ME check negitive offsets, etc
 \end{DoxyReturn}
 
 
-Definition at line 998 of file ili9341.\+c.
+Definition at line 1006 of file ili9341.\+c.
 
 
 
@@ -1390,7 +1457,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1051 of file ili9341.\+c.
+Definition at line 1059 of file ili9341.\+c.
 
 
 
@@ -1432,7 +1499,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 598 of file ili9341.\+c.
+Definition at line 606 of file ili9341.\+c.
 
 
 
@@ -1446,11 +1513,11 @@ Referenced by tft\+\_\+draw\+Bitmap(), and tft\+\_\+\+Vscroll().
 \subsubsection[{\texorpdfstring{ind}{ind}}]{\setlength{\rightskip}{0pt plus 5cm}int ind}\hypertarget{ili9341_8c_a4b00721003b8d35559a55c9098ff36c5}{}\label{ili9341_8c_a4b00721003b8d35559a55c9098ff36c5}
 
 
-Definition at line 369 of file ili9341.\+c.
+Definition at line 376 of file ili9341.\+c.
 
 
 
-Referenced by dirname(), fgets(), match\+\_\+headers(), p\+\_\+ntoa(), Read\+Bdf(), tft\+\_\+bit\+\_\+blit(), tft\+\_\+fill\+Rect\+W\+H(), and tft\+\_\+write\+Rect().
+Referenced by dirname(), draw\+S\+V\+G(), fgets(), match\+\_\+headers(), p\+\_\+ntoa(), Read\+Bdf(), tft\+\_\+bit\+\_\+blit(), tft\+\_\+fill\+Rect\+W\+H(), and tft\+\_\+write\+Rect().
 
 \index{ili9341.\+c@{ili9341.\+c}!tft@{tft}}
 \index{tft@{tft}!ili9341.\+c@{ili9341.\+c}}
@@ -1471,7 +1538,7 @@ Definition at line 44 of file ili9341.\+c.
 \subsubsection[{\texorpdfstring{x}{x}}]{\setlength{\rightskip}{0pt plus 5cm}int16\+\_\+t x\mbox{[}{\bf X\+Y\+S\+T\+A\+CK}+1\mbox{]}}\hypertarget{ili9341_8c_a7e1c531941c89bac69fe489cc3ff0790}{}\label{ili9341_8c_a7e1c531941c89bac69fe489cc3ff0790}
 
 
-Definition at line 367 of file ili9341.\+c.
+Definition at line 374 of file ili9341.\+c.
 
 
 
@@ -1489,7 +1556,7 @@ Referenced by tft\+\_\+floodline(), tft\+\_\+pop\+\_\+xy(), and tft\+\_\+push\+\
 \subsubsection[{\texorpdfstring{y}{y}}]{\setlength{\rightskip}{0pt plus 5cm}int16\+\_\+t y\mbox{[}{\bf X\+Y\+S\+T\+A\+CK}+1\mbox{]}}\hypertarget{ili9341_8c_ab82fda4a9377d83187ff1ebd806ea27c}{}\label{ili9341_8c_ab82fda4a9377d83187ff1ebd806ea27c}
 
 
-Definition at line 368 of file ili9341.\+c.
+Definition at line 375 of file ili9341.\+c.
 
 
 

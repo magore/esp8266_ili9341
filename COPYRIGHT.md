@@ -46,4 +46,9 @@ ___
 ___
  @par BDF Specification by Adobe
  @see https://partners.adobe.com/public/developer/en/font/5005.BDF_Spec.pdf
-
+___
+ @par GNU Free Fonts
+ @see https://www.gnu.org/software/freefont
+___
+ @par Vector font Generation code from font_to_svg project
+ @see https://github.com/donbright/font_to_svg

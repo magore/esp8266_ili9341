@@ -24,6 +24,8 @@ XTENSA_TOOLS_ROOT ?= $(ROOT_DIR)/xtensa-lx106-elf/bin
 # base directory of the ESP8266 SDK package, absolute
 SDK_BASE	?= $(ROOT_DIR)/sdk
 SDK_TOOLS	?= $(SDK_BASE)/tools
+DEF_INIT     ?= $(SDK_BASE)/bin/esp_init_data_default.bin
+
 #ESPTOOL		?= esptool-ck/esptool
 #ESPTOOL		?= $(SDK_TOOLS)/esptool.py
 ESPTOOL		?= esptool/esptool.py
@@ -82,7 +84,7 @@ FW				:= $(BUILD_BASE)/firmware.bin
 
 # ===============================================================
 # which modules (subdirectories) of the project to include in compiling
-MODULES	= esp8266 lib driver display cordic network user
+MODULES	= esp8266 lib 3rd_party display cordic network user
 
 # Project Include Directories
 EXTRA_INCDIR    = . user include $(SDK_BASE)/include 
@@ -511,6 +513,7 @@ support:
 	-@$(MAKE) -C cordic/make_cordic all
 	-@$(MAKE) -C earth all
 	-@$(MAKE) -C fonts all
+	-@$(MAKE) -C vfonts all
 
 checkdirs: $(BUILD_DIR) $(FW_BASE)
 
@@ -573,12 +576,11 @@ flash: all
 	$(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) write_flash $(FW_ARGS)  0 $(FW)
 	miniterm.py --parity N -e --rts 0 --dtr 0 /dev/ttyUSB0 115200
 
+flashinit:
+	$(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) write_flash 0x7c000 $(DEF_INIT)
+
 flashzero: checkdirs
-	dd if=/dev/zero of=$(FW_BASE)/zero1.bin bs=1024 count=1024
-	$(ESPTOOL) -p $(ESPPORT) -b $(BAUD) write_flash \
-		$(FW_ARGS) \
-		0x000000 $(FW_BASE)/zero1.bin 
-	# 0x000000 $(FW_BASE)/zero1.bin 0x100000 $(FW_BASE)/zero1.bin
+	$(ESPTOOL) -p $(ESPPORT) -b $(BAUD) erase_flash
 
 .PHONY: testflash
 testflash:
@@ -587,17 +589,15 @@ testflash:
 	@echo testing first megabyte
 	@echo
 	@echo Create megabyte size test file 
-	./testflash -s 0x100000 -w tmp/test1w.bin
+	./testflash -s 0x080000 -w tmp/test1w.bin
 	@echo Write file to ESP8266
 	$(ESPTOOL) -p $(ESPPORT) -b $(BAUD) write_flash \
-		$(FW_ARGS) \
 		0x000000 tmp/test1w.bin 
 	@echo read flash back from ESP8266
-	$(ESPTOOL) -p $(ESPPORT) -b $(BAUD) read_flash \
-		$(FW_ARGS) \
-		0x000000 0x100000 tmp/test1r.bin 
+	-$(ESPTOOL) -p $(ESPPORT) -b $(BAUD) read_flash \
+		0x000000 0x080000 tmp/test1r.bin 
 	@echo Verify data read back matches what we wrote
-	./testflash -s 0x100000 -r tmp/test1r.bin
+	./testflash -s 0x080000 -r tmp/test1r.bin
 
 rebuild: clean all
 
@@ -614,6 +614,7 @@ clean:
 	-@$(MAKE) -C cordic/make_cordic clean
 	-@$(MAKE) -C earth clean
 	-@$(MAKE) -C fonts clean
+	-@$(MAKE) -C vfonts clean
 	rm -f $(APP_AR)
 	rm -rf $(BUILD_DIR)
 	rm -rf $(BUILD_BASE)
@@ -630,7 +631,7 @@ $(foreach bdir,$(BUILD_DIR),$(eval $(call compile-objects,$(bdir))))
 
 # ===============================================================
 # If makefile changes, update doxygens list
-DOCDIRS := . $(MODULES) wire earth fonts include cordic/make_cordic
+DOCDIRS := . $(MODULES) wire earth fonts vfonts include cordic/make_cordic
 
 # If makefile changes, maybe the list of sources has changed, so update doxygens list
 .PHONY: doxyfile.inc

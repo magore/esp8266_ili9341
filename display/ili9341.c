@@ -38,7 +38,7 @@
 
 #include "display/font.h"
 #include "display/ili9341.h"
-#include "driver/ili9341_adafruit.h"
+#include "3rd_party/ili9341_adafruit.h"
 
 // TFT master window definition
 window tftwin;
@@ -344,25 +344,32 @@ void tft_fillWin(window *win, uint16_t color)
 /// @see https://en.wikipedia.org/wiki/Flood_fill
 /// This method can eat all your ram with "busy" images and could crash
 /// @param[in] win*: window structure
-/// @param[in] border: Border color
-/// @param[in] color: Fill color
-void tft_flood(window *win, int16_t x, int16_t y, uint16_t old_color, uint16_t fill_color)
+/// @param[in] border: border color
+/// @param[in] fill: Fill color
+void tft_flood(window *win, int16_t x, int16_t y, uint16_t border, uint16_t fill)
 {
-	uint16_t current = tft_readPixel(win,x,y);
-	if(current == old_color)
-	{
-		tft_drawPixel(win,x,y,fill_color);
-		tft_flood(win,x+1,y,old_color,fill_color);
-		tft_flood(win,x,y+1,old_color,fill_color);
-		tft_flood(win,x-1,y,old_color,fill_color);
-		tft_flood(win,x,y-1,old_color,fill_color);
-	}
+	uint16_t current;
+
+	if(x < 0 || x >= win->w)
+		return;
+	if(y < 0 || y >= win->h)
+		return;
+
+	current = tft_readPixel(win,x,y);
+	if(current == border || current == fill)
+		return;
+
+	tft_drawPixel(win,x,y,fill);
+	tft_flood(win,x+1,y,border,fill);
+	tft_flood(win,x,y+1,border,fill);
+	tft_flood(win,x-1,y,border,fill);
+	tft_flood(win,x,y-1,border,fill);
 }
 
 
 
 /// @brief X,Y point stack
-#define XYSTACK 32
+#define XYSTACK 64
 static struct {
 	int16_t x[XYSTACK+1];
 	int16_t y[XYSTACK+1];
@@ -375,8 +382,11 @@ static struct {
 /// @ return true on success, 0 of stack overflow
 int tft_push_xy(int16_t x, int16_t y)
 {
-	if(xy.ind >= XYSTACK-1)
+	if(xy.ind >= XYSTACK)
+	{
+		printf("xy.ind stack >= %d\n",XYSTACK);
 		return(0);
+	}
 	xy.x[xy.ind] = x;
 	xy.y[xy.ind] = y;
 	xy.ind++;
@@ -391,9 +401,9 @@ int tft_pop_xy(int16_t *x, int16_t *y)
 {
 	if(xy.ind <= 0)
 		return(0);
+	xy.ind--;
 	*x = xy.x[xy.ind];
 	*y = xy.y[xy.ind];
-	xy.ind--;
 	return(1);
 }
 
@@ -401,63 +411,61 @@ int tft_pop_xy(int16_t *x, int16_t *y)
 /// @see https://en.wikipedia.org/wiki/Flood_fill
 /// FIXME: not tested yet
 /// @param[in] win*: window structure
-/// @param[in] border: Border color
-/// @param[in] color: Fill color
+/// @param[in] x: X position to fill from
+/// @param[in] y: Y position to fill from
+/// @param[in] border: border color
+/// @param[in] fill: Fill color
 /// @ return true one success, 0 of stack overflow
-int tft_floodline(window *win, int16_t x, int16_t y, uint16_t newColor, uint16_t oldColor)
+int tft_floodline(window *win, int16_t x, int16_t y, uint16_t border, uint16_t fill)
 {
 	int lineAbove, lineBelow;
 	int16_t  xoff;
 
-	if(oldColor == newColor) 
-		return(1);
-
 	// reset stack
 	xy.ind = 0;
 
-
 	// test for stack full
-	if(!xypush(x, y)) 
+	if(!tft_push_xy(x, y)) 
 		return(0);
 
 	// while we have stacked items
+	// FIXME we can bypass readpixel - read any entire line interruped by the color check
 	while(tft_pop_xy(&x, &y))
 	{
+		if(x < 0 || x >= win->w)
+			continue;
+		if(y < 0 || y >= win->h)
+			continue;
+		
 		xoff = x;
-		// TODO use raw read code and terminate read
-		// save data in array
-		// this is faster then calling tft_readPixel()
-		while(xoff >= 0 && tft_readPixel(win,xoff,y) == oldColor) 
+		while(xoff >= 0 && tft_readPixel(win,xoff,y) != border ) 
 			xoff--;
 		xoff++;
 		lineAbove = lineBelow = 0;
-		// TODO use raw read code and terminate read
-		// save data in array
-		// this is faster then calling tft_readPixel()
-		while(xoff < win->w && tft_readPixel(win,xoff,y) == oldColor )
-		{
-			// TODO we can write a line if we process all of the read pixels first
-			tft_drawPixel(win,xoff,y,newColor);
 
-			if(!lineAbove && y > 0 && tft_readPixel(win,xoff,y-1) == oldColor)
+		while(xoff < win->w && tft_readPixel(win,xoff,y) != border)
+		{
+			tft_drawPixel(win,xoff,y,fill);
+
+			if(!lineAbove && y > 0 && tft_readPixel(win,xoff,y-1) != border)
 			{
 				// test for stack full
 				if(!tft_push_xy(xoff, y - 1)) 
 					return(0);
 				lineAbove = 1;
 			}
-			else if(lineAbove && y > 0 && tft_readPixel(win,xoff,y-1) != oldColor)
+			else if(lineAbove && y > 0 && tft_readPixel(win,xoff,y-1) == border )
 			{
 				lineAbove = 0;
 			}
-			if(!lineBelow && y < win->h && tft_readPixel(win,xoff,y+1) == oldColor)
+			if(!lineBelow && y < (win->h-1) && tft_readPixel(win,xoff,y+1) != border )
 			{
 				// test for stack full
-				if(!xypush(xoff, y + 1)) 
+				if(!tft_push_xy(xoff, y + 1)) 
 					return(0);
 				lineBelow = 1;
 			}
-			else if(lineBelow && y < win->h && tft_readPixel(win,xoff,y+1) != oldColor)
+			else if(lineBelow && y < (win->h-1) && tft_readPixel(win,xoff,y+1) == border)
 			{
 				lineBelow = 0;
 			}
@@ -804,25 +812,25 @@ void tft_Vscroll(window *win, int dir)
 /// @return color in 565 format
 uint16_t tft_readPixel(window *win, int16_t x, int16_t y)
 {
-    uint8_t data[5];
+    uint8_t data[3];
     uint16_t color;
-	// set window
 
-	// clips
-    if(tft_rel_window(win, x,y,1,1))
+	// set window, also clips
+    if(!tft_rel_window(win, x,y,1,1))
 		return(0);
 
 	tft_spi_begin();
 	
     tft_Cmd(0x2e);
     tft_Cmd(0);		// NOP
-    tft_spi_TXRX(data, 5, 0);
+    tft_spi_RX(data, 3, 1);
 
 	tft_spi_end();
-
-    color = tft_RGBto565(data[2],data[3],data[4]);
+	
+    color = tft_RGBto565(data[0],data[1],data[2]);
     return(color);
 }
+
 
 
 /// @brief Set Display rotation, applies to the master window only
@@ -1291,6 +1299,79 @@ void tft_drawLine(window *win, int16_t x0, int16_t y0, int16_t x1, int16_t y1, u
 #endif
 }
 #endif
+///  ====================================
+/// Interpolation functions
+///  ====================================
+
+/**
+   @brief Draw lines between points along Quadratic Bézier curve
+   Quadratic Bézier with respect to t, see https://en.wikipedia.org/wiki/Bézier_curve
+   		B(t) = (1-t)*(1-t)*S + 2*(1-t)*t*C + t*t*T, 0 <= t <= 1
+  
+   The path traced by the function B(t), given points S, C, and T,
+   		S = initial points
+   		C = control points
+   		T = target points
+  
+   Derivative of the Bézier curve with respect to t 
+        B'(t) = 2*(1-t)*(C-S) + 2*t*(T-C)
+  
+   Second derivative of the Bézier curve with respect to t is
+   		B"(t) = 2*(T-2*C+S)
+
+   As t increases from 0 to 1, the curve departs from S in the direction of C, 
+      then bends to arrive at T from the direction of C.
+   The tangents to the curve at S and T intersect at C. 
+
+   @param[in] *win: Window Structure of active window
+   @param[in] SX: Start X
+   @param[in] SY: Start Y
+   @param[in] CX: Control X
+   @param[in] CY: Control Y
+   @param[in] TX: Target X
+   @param[in] TY: Target Y
+   @param[in] steps: line segments along curve (1..N) 
+   @param[in] color: Line color
+   @return  void
+*/
+
+void tft_Bezier(window *win, int16_t SX, int16_t SY, int16_t CX, int16_t CY, int16_t TX, int16_t TY, int steps, uint16_t color)
+{
+	float t, tinc, t2,c0,c1,c2;
+	int16_t LX = SX;
+	int16_t LY = SY;
+	int16_t X,Y;
+	int i;
+
+	LX = SX;
+	LY = SY;
+	t = 0;
+
+	if(steps < 1)
+		steps = 1;
+
+	// FXIME we should compute a step size based on the start to end point distances
+	tinc = 1.0 / (float) steps;	// steps = 1 will just draw one line
+
+	// Quadratic Bezier http://en.wikipedia.org/wiki/Bézier_curve
+	// B(t) = (1-t)(1-t)S + 2(1-t)tC + t*tT, 0 <= t <= 1
+	for (i = 0; i < steps; ++i)
+	{
+		t += tinc;
+		c0 = (1.0 - t);
+		c1 = 2.0 * c0 * t;  // 2(1.0 - t)t = 2t - 2t*t
+		c0 *= c0; 			// (1.0 - t) (1.0 - t) = 1.0 -2t + t*t
+		c2 = t * t;
+		X = (int16_t) (c0 * (float)SX + c1 * (float)CX + c2 * (float)TX);
+		Y = (int16_t) (c0 * (float)SY + c1 * (float)CY + c2 * (float)TY);
+		// Do not plot a line until we actually move
+		if(LX == X && LY == Y)
+			continue;
+		tft_drawLine(win, LX, LY, X, Y, color);
+		LX = X;
+		LY = Y;
+	}
+}
 
 ///  ====================================
 /// @brief Character and String functions

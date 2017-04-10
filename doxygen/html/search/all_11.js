@@ -28,6 +28,7 @@ var searchData=
   ['readbdf',['ReadBdf',['../bdffontutil_8c.html#a49c59fe21a56b90ad6f8bcc5549e3dce',1,'ReadBdf(char *name, _font *font, int lower, int upper):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a49c59fe21a56b90ad6f8bcc5549e3dce',1,'ReadBdf(char *name, _font *font, int lower, int upper):&#160;bdffontutil.c']]],
   ['readdir',['readdir',['../posix_8c.html#a1508fedaef509d2976b43300306d1400',1,'readdir(DIR *dirp):&#160;posix.c'],['../posix_8h.html#a58257faf8b13b3f14558613c632b2373',1,'readdir(DIR *dirp):&#160;posix.c']]],
   ['readme_2emd',['README.md',['../README_8md.html',1,'']]],
+  ['readme_2emd',['README.md',['../vfonts_2README_8md.html',1,'']]],
   ['received',['received',['../structrwbuf__t.html#ac76412a0fbf9dc009ae3f8bb20660883',1,'rwbuf_t::received()'],['../network_8c.html#ac7c4860b47674f6bb351f6875e50533f',1,'received():&#160;network.c'],['../server_8c.html#a082fd9f55493d749cafc1e11ad84a2b6',1,'received():&#160;server.c']]],
   ['refindiv2',['REFinDIV2',['../structr2__t.html#aa036b7abbb6147e0c155101addc1490c',1,'r2_t']]],
   ['refinmul2',['REFinMUL2',['../structr2__t.html#aa675f6a674217e14be9e3e1754530a78',1,'r2_t']]],

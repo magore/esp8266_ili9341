@@ -44,6 +44,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #ifdef DISPLAY
 	#include "display/ili9341.h"
+	#include "display/vfont.h"
 	
 	#include "network/network.h"
 	
@@ -346,6 +347,121 @@ float adc_read()
 	// range 0 .. 1.0V
 	return( ((float)system_adc_read()) * VSCALE );
 }
+
+// working on vector fonts
+
+// ============================================================
+
+int16_t sx(float scale, int16_t xoff, int16_t X)
+{
+	float tx;
+	tx = (float)X - 80.0;
+	tx = (scale * tx) + xoff;
+	return((int16_t)tx);
+}
+
+int16_t sy(float scale, int16_t yoff, int16_t Y)
+{
+	float ty;
+	ty = (float)Y;
+	ty = (scale * ty) + yoff;
+	return((int16_t)ty);
+}
+
+	
+MEMSPACE
+void drawSVG(window *win, int16_t x, int16_t y, int16_t c, float scale, uint16_t color) 
+{
+
+	int16_t CX,CY,TX,TY;
+	int16_t CurX = 0;
+	int16_t CurY = 0;
+	int16_t MoveX = 0;
+	int16_t MoveY = 0;
+	int ind;
+	int t;
+
+	int16_t *v;
+
+	if( c >= 32 && c <= 127)
+	{
+		c -= 32;
+		v = vfont[c]->v;
+	}
+	else
+	{
+		printf("DrawSVG: invalid character\n");
+		return;
+	}
+	
+
+	printf("DrawSVG:(%d,%d) scale:%e)\n", x,y,(double)scale);
+
+	ind = 0;
+	while(1)
+	{
+		char t = v[ind];
+		if (t == 'M') 
+		{
+			// Move takes to move points
+			MoveX = sx(scale, x, v[ind + 1]);
+			MoveY = sy(scale, y, v[ind + 2]);
+			//printf("M: MoveX:%d,MoveY:%d\n", (int)MoveX,(int)MoveY);
+			CurX = MoveX;
+			CurY = MoveY;
+			ind += 3;
+		}
+		else if (t == 'L' ) 
+		{
+			// Line takes CurX,CurY and to target points
+			TX =sx(scale,x, v[ind + 1]);
+			TY =sy(scale,y, v[ind + 2]);
+			//printf("L: Curx:%d,Cury:%d,TX:%d,TY:%d\n", (int)CurX,(int)CurY,(int)TX,(int)TY);
+			tft_drawLine(win, CurX, CurY, TX, TY, color);
+			CurX = TX;
+			CurY = TY;
+			ind += 3;
+		}
+		else if (t == 'Q' ) 
+		{
+			// Q Bezier takes CurX,CurY, two control points and to target points
+			CX =  sx(scale,x, v[ind + 1]);
+			CY =  sy(scale,y, v[ind + 2]);
+			TX =  sx(scale,x, v[ind + 3]);
+			TY =  sy(scale,y, v[ind + 4]);
+			//printf("Q: CurX:%d,Cury:%d,CX:%d,CY:%d,TX:%d,TY:%d\n", (int)CurX,(int)CurY,(int)CX,(int)CY,(int)TX,(int)TY);
+			tft_Bezier(win, CurX, CurY, CX, CY, TX, TY, 10, color);
+			CurX = TX;
+			CurY = TY;
+			ind += 5;
+		}
+		else if (t == 'Z') 
+		{
+			// CLOSE takes no params
+			//printf("Z: Curx:%d,Cury:%d,MoveX:%d,MoveY:%d\n", (int)CurX,(int)CurY,(int)MoveX,(int)MoveY);
+			if(CurX != MoveX || CurY != MoveY)
+			{
+				tft_drawLine(win, CurX, CurY, MoveX, MoveY, color);
+			}
+			CurX = MoveX;
+			CurY = MoveY;
+			ind += 1;
+		}
+		else if (t == '.') 
+		{
+			break;
+		}
+		else
+		{
+			printf("bad type:%c @ index:%d\n", (int)t, (int)ind);
+			break;
+		}
+	}
+}
+
+
+
+// ============================================================
 
 // main task loop called by yield code
 void user_loop(void)
@@ -704,6 +820,14 @@ int user_tests(char *str)
 // FIXME rotate calibration data ???
 		tft_setRotation(ret);
 		setup_windows(ret & 3,0);
+		return(1);
+    }
+    else if ((len = token(ptr,"draw")) )
+    {
+        ptr += len;
+		ptr = skipspaces(ptr);
+		drawSVG(winmsg, 8, 24, *ptr, 0.1, ILI9341_WHITE);
+		return(1);
     }
 #endif	//DISPLAY
 	return(0);
@@ -909,6 +1033,7 @@ setup_windows(int rotation, int debug)
 	// Earth points were defined over with a scale of -0.5/+0.5 scale - so scale must be 1 or less
 		wire_draw(winearth, earth_data, NULL, &V, winearth->w/2, winearth->h/2, tscale_max, winearth->fg);
 	#endif
+
 }
 #endif	//DISPLAY
 

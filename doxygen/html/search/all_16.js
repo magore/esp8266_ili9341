@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['w',['w',['../struct__fontc.html#a9c2af0354d2b2009e7b6684e25fd479b',1,'_fontc::w()'],['../structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae',1,'window::w()']]],
+  ['w',['w',['../struct__fontc.html#a9c2af0354d2b2009e7b6684e25fd479b',1,'_fontc::w()'],['../structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae',1,'window::w()'],['../structpath__t.html#a8977017efd250c8fd0eb168f44c618eb',1,'path_t::w()']]],
   ['wait_5fready',['wait_ready',['../mmc_8c.html#ab7771efbbd1a015b449d838d7f09959a',1,'wait_ready(UINT wt):&#160;mmc.c'],['../mmc_8h.html#ab7771efbbd1a015b449d838d7f09959a',1,'wait_ready(UINT wt):&#160;mmc.c']]],
   ['wait_5fsend',['wait_send',['../web_8c.html#a6b59ca0b6eea0b246eb56ae2b37ee2d8',1,'wait_send(rwbuf_t *p):&#160;web.c'],['../web_8h.html#a6b59ca0b6eea0b246eb56ae2b37ee2d8',1,'wait_send(rwbuf_t *p):&#160;web.c']]],
   ['wbuf',['wbuf',['../structrwbuf__t.html#a68386231f3d907ec4508c090925782a2',1,'rwbuf_t']]],

@@ -1,8 +1,9 @@
 var searchData=
 [
-  ['h',['h',['../struct__fontc.html#a9feb8c838dfc1d4eebb15c8e53981944',1,'_fontc::h()'],['../structwindow.html#a822391abd5d09e6ce7152f68cff3ef2b',1,'window::h()']]],
+  ['h',['h',['../struct__fontc.html#a9feb8c838dfc1d4eebb15c8e53981944',1,'_fontc::h()'],['../structwindow.html#a822391abd5d09e6ce7152f68cff3ef2b',1,'window::h()'],['../structpath__t.html#a02d29349ef48169495440a754cad078f',1,'path_t::h()']]],
   ['hal_2ec',['hal.c',['../hal_8c.html',1,'']]],
   ['hal_2eh',['hal.h',['../hal_8h.html',1,'']]],
+  ['hby',['hby',['../structpath__t.html#ab2a7d0842a1706edb85f5bef4300a059',1,'path_t']]],
   ['head',['head',['../struct__xpt2046.html#a8b4e70a2d7a60543902ac8648c986a31',1,'_xpt2046']]],
   ['header_5ft',['header_t',['../structheader__t.html',1,'']]],
   ['heap_5fend',['HEAP_END',['../system_8c.html#a7437bbfa3a1415a7d91fded74239a762',1,'system.c']]],

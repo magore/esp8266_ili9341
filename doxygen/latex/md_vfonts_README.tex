@@ -1,0 +1,188 @@
+This code will convert a single character in a True\+Type(\+R) font file into an S\+VG \textquotesingle{}path\textquotesingle{} shape.
+
+\subsubsection*{basic usage\+:}
+
+Let\textquotesingle{}s say you have a True\+Type font file, such as the popular Free\+Sans.\+ttf. Let\textquotesingle{}s pull out the path information for the letter \char`\"{}\+B\char`\"{} and transform it into S\+VG. A simple C++ program code like the following can do that. \begin{DoxyVerb}#include <font_to_svg.hpp>
+int main()
+{
+    font_to_svg::glyph g( "FreeSans.ttf", 66 );
+    std::cout << g.outline();
+}
+\end{DoxyVerb}
+
+
+Compile and run, and the program will generate an S\+VG path out of the True\+Type information for the character of Unicode U+0066 (the Latin letter B), something like this\+: \begin{DoxyVerb}<svg>
+<path d='M 591,-180 Q 591,-150 580,-121 Q 569,-92 543,-63 ... Z />
+</svg>
+\end{DoxyVerb}
+
+
+\textquotesingle{}M\textquotesingle{} is \textquotesingle{}move to\textquotesingle{}, and \textquotesingle{}Q\textquotesingle{} is for Bezier curves. Open the resulting .svg file in a web browser and you get something like this\+:
+
+
+
+Another example\+: Floral Heart, Unicode 0x2766\+:
+
+
+
+\subsubsection*{Current Status}
+
+This project has some bugs but will handle \textquotesingle{}standard\textquotesingle{} fonts reasonably well.
+
+Currently this project consists of a C++ language header that can used in conjuction with the Freetype library to create a basic conversion program that will extract a single character from a .ttf file and create a matching .svg file.
+
+The program is stable for basic use. It can output plain glyph shapes or it can also output \textquotesingle{}debugging\textquotesingle{} information like the node points \& lines. There are some bugs with bounding boxes and other \textquotesingle{}typographic box\textquotesingle{} issues like Bearing. Also calculation of the S\+VG \char`\"{}g\char`\"{} tag has some issues with transforms/footers.
+
+The code does not currently support Open\+Type or it\textquotesingle{}s features, such as ligatures. It does not support creating an \char`\"{}\+S\+V\+G Font\char`\"{}. It only does very basic conversion of Truetype glyphs to S\+VG path shapes. It might not be useful for web fonts or other usages.
+
+\subsubsection*{More example programs}
+
+There are several example programs included. They use the cmake build system ( \href{http://www.cmake.org}{\tt http\+://www.\+cmake.\+org} ). For example\+: \begin{DoxyVerb} cmake .
+ make
+ ./example1 `locate tahoma.ttf` 66 > out.svg 
+ firefox out.svg
+\end{DoxyVerb}
+
+
+Example 1 and Example 2 just do basic output of a single character into a .svg path. The first argument is a truetype font filename, and the second argument is a Unicode codepoint number. For example\+: \begin{DoxyVerb}./example2 ./FreeSerif.ttf 66 > example2.svg 
+\end{DoxyVerb}
+
+
+In the line above, 66 = unicode/ascii for the letter \textquotesingle{}B\textquotesingle{}. You can use hexadecimal numbers as well. For example, the Cherokee Letter O has hexadecimal Unicode point 0x13\+A3\+: \begin{DoxyVerb}./example1 ./FreeSerif.ttf 0x13A3 > example2.cho.svg
+\end{DoxyVerb}
+
+
+To view the resulting svg file, it is easiest to use a browswer like Firefox. Go to \textquotesingle{}file/open\textquotesingle{} and point it to your output file. Or type something like \textquotesingle{}\href{file:///tmp/x.svg'}{\tt file\+:///tmp/x.\+svg\textquotesingle{}} into your address bar. You can also get the Firefox addon that can auto-\/reload files when they change on disk.
+
+Another option is to use svg view/edit programs like Inkscape.
+
+Example 3 was created by github user Ebraminio to generate multiple .svg files from a single G\+PL font of ancient Persian letters ( Xerxes.\+ttf, available by a web search )
+
+\subsubsection*{Detail on using in your own project}
+
+As noted, font\+\_\+to\+\_\+svg is a \textquotesingle{}header library\textquotesingle{} so you dont need to compile any libraries just include the header and use it. You will still need to link to Freetype however, using your build system.
+
+Freetype\textquotesingle{}s website is here\+: \href{http://www.freetype.org/}{\tt http\+://www.\+freetype.\+org/}
+
+font\+\_\+to\+\_\+svg uses freetype to deal with vaguaries and variations of Truetype file formats. font\+\_\+to\+\_\+svg does not use any of Freetype\textquotesingle{}s bitmap font-\/rendering code. font\+\_\+to\+\_\+svg is a pure \char`\"{}outline curve\char`\"{} renderer to be used for vector/curve based output.
+
+Font\+\_\+to\+\_\+svg comes with a very permissive B\+SD style copyright license described in the L\+I\+C\+E\+N\+SE file in this distribution. Acknowledgment in the product documentation would be appreciated but is not required.
+
+To understand the usage, look at the files named \textquotesingle{}example$\ast$.cpp\textquotesingle{} that come with the source code. You can output the bare svg path data, or a bunch of debugging information.
+
+Don\textquotesingle{}t forget that some fonts have restrictive copyright licenses that forbid this type of conversion. You can use fonts from \href{http://openfontlibrary.org}{\tt http\+://openfontlibrary.\+org} If you want to be safe from accusations of copyright violation.
+
+\subsubsection*{Finding cool Unicode points}
+
+\href{http://www.fileformat.info/info/unicode/block/index.htm}{\tt http\+://www.\+fileformat.\+info/info/unicode/block/index.\+htm}
+
+\subsubsection*{How does Truetype actually work then? How does this program work?}
+
+Truetype fonts consist of a group of characters layed out in a file. The truetype file format is very complicated, with various issues related to character sets, glyph indexes, duplicated positions, etc etc etc. font\+\_\+to\+\_\+svg uses the Freetype library to make it easy to deal with those problems and to load the file into memory.
+
+Each character in the Truetype file has a sequence of \textquotesingle{}contours\textquotesingle{}, which are basically a sequence of curves and lines that form a single shape. Some contours count as the \textquotesingle{}body\textquotesingle{} of the letter, while others are the \textquotesingle{}holes\textquotesingle{} of a letter. The letter \textquotesingle{}B\textquotesingle{} for example has a single contour for the \textquotesingle{}outside\textquotesingle{} shape, and two \textquotesingle{}hole\textquotesingle{} contours for the two inside shapes.
+
+Truetype marks these contours in a special way -\/ by the \textquotesingle{}clockwise\textquotesingle{} ness of the order in which it lists the points that make up a contour. The contours that have their points in \textquotesingle{}clockwise\textquotesingle{} order are considered \textquotesingle{}solid\textquotesingle{} The contours that have their points listed in \textquotesingle{}counter clockwise\textquotesingle{} (also called \textquotesingle{}anti-\/clockwise\textquotesingle{}) order are considered \textquotesingle{}holes\textquotesingle{}. For example, imagine the letter \textquotesingle{}o\textquotesingle{}. The points making up the \textquotesingle{}outside\textquotesingle{} contour are listed in clockwise order, while the points making up the \textquotesingle{}inside\textquotesingle{} contour are listed in counter-\/clockwise order.
+
+But what type of points make up a contour? They are simple 2-\/dimensional Cartesian points with integer coordinates. The points for a contour are listed in order in the Truetype file. The curves and lines of a contour are drawn between the points using the rules of Bezier Curves. This means there are actually two different types of points -\/ \textquotesingle{}on the curve\textquotesingle{} points and \textquotesingle{}off the curve\textquotesingle{} points. The \textquotesingle{}on the curve\textquotesingle{} points actually have lines or curves coming out of them and/or touching them. \textquotesingle{}Off the curve\textquotesingle{} curves represent the \textquotesingle{}control\textquotesingle{} points between the \textquotesingle{}on the curve\textquotesingle{} points.
+
+Now, Truetype doesn\textquotesingle{}t just use any old Bezier curve. It uses a type of Bezier called \textquotesingle{}Quadratic\textquotesingle{}, which consists of two endpoints \textquotesingle{}on the curve\textquotesingle{} and one \textquotesingle{}control point\textquotesingle{}. If you check the Wikipedia article for Bezier Curve, \href{http://en.wikipedia.org/wiki/B%C3%A9zier_curve}{\tt http\+://en.\+wikipedia.\+org/wiki/\+B\%\+C3\%\+A9zier\+\_\+curve} , you can see simple animated examples.
+
+In this example, p0 is \textquotesingle{}on the curve\textquotesingle{}, p2 is also \textquotesingle{}on the curve\textquotesingle{}, but p1 is \textquotesingle{}off the curve\textquotesingle{}. In other words, p1 is a \textquotesingle{}control point\textquotesingle{}.
+
+
+
+The math is not actually as complicated as it looks on the wiki page-\/ you can draw a Bezier Quadratic using only a ruler and a pencil. I.\+E. you can actually do it without any transcendental functions or complicated algebra, just using simple ratios and integer math. But I digress.
+
+Now... in Truetype there is a special feature in the way off-\/curve points are listed. If two are listed in a row, then there is actually a \textquotesingle{}hidden\textquotesingle{} or \textquotesingle{}implied\textquotesingle{} on-\/curve point at a position exactly halfway between them. font\+\_\+to\+\_\+svg does not draw these points but they are easy to imagine when looking at the debug code.
+
+Now. How does font\+\_\+to\+\_\+svg do S\+VG output? It basically just copies the point and contour information in the True\+Type file and splits it into S\+VG paths. The actual rendering of the S\+VG file to something on a computer screen is left to the S\+VG rendering programs, like web browsers or Inkscape. The most complicated thing that these renderers do is probably the \char`\"{}non-\/zero winding rule\char`\"{}, which is a geometry rule that determines how to properly draw the \textquotesingle{}holes\textquotesingle{} and \textquotesingle{}body\textquotesingle{} contours of a character glyph. font\+\_\+to\+\_\+svg doesn\textquotesingle{}t have to worry about that either -\/ it just inserts the svg property \textquotesingle{}non-\/zero\textquotesingle{} fill-\/type into the generated S\+VG and the S\+VG renderer should take care of the rest.
+
+Please see these sites for more info.
+
+
+\begin{DoxyItemize}
+\item Basic Terms\+: \href{http://www.freetype.org/freetype2/docs/glyphs/glyphs-3.html}{\tt http\+://www.\+freetype.\+org/freetype2/docs/glyphs/glyphs-\/3.\+html}
+\item F\+Type + outlines\+: \href{http://www.freetype.org/freetype2/docs/reference/ft2-outline_processing.html}{\tt http\+://www.\+freetype.\+org/freetype2/docs/reference/ft2-\/outline\+\_\+processing.\+html}
+\item F\+Type + contours\+: \href{http://www.freetype.org/freetype2/docs/glyphs/glyphs-6.html}{\tt http\+://www.\+freetype.\+org/freetype2/docs/glyphs/glyphs-\/6.\+html}
+\item T\+Type contours\+: \href{https://developer.apple.com/fonts/TTRefMan/RM01/Chap1.html}{\tt https\+://developer.\+apple.\+com/fonts/\+T\+T\+Ref\+Man/\+R\+M01/\+Chap1.\+html}
+\item T\+Type contours2\+: \href{http://www.truetype-typography.com/ttoutln.htm}{\tt http\+://www.\+truetype-\/typography.\+com/ttoutln.\+htm}
+\item Non-\/zero winding rule\+: \href{http://en.wikipedia.org/wiki/Nonzero-rule}{\tt http\+://en.\+wikipedia.\+org/wiki/\+Nonzero-\/rule}
+\item S\+VG paths\+: \href{http://www.w3schools.com/svg/svg_path.asp}{\tt http\+://www.\+w3schools.\+com/svg/svg\+\_\+path.\+asp}
+\item S\+VG paths + nonzero\+: \href{http://www.w3.org/TR/SVG/painting.html#FillProperties}{\tt http\+://www.\+w3.\+org/\+T\+R/\+S\+V\+G/painting.\+html\#\+Fill\+Properties}
+\end{DoxyItemize}
+
+\subsubsection*{What about rendering multiple characters?}
+
+To do this properly for all languages, you actually need a \textquotesingle{}layout engine\textquotesingle{}, like Harfbuzz and/or Pango. These are at present, far beyond the scope of this project.
+
+It may be possible to render strings of characters in \textquotesingle{}non-\/connected\textquotesingle{} scripts, for example English ( Latin alphabet), or Chinese, using the basic bounding box information. However this library, at present, is probably not very suitable for ligature + combination scripts like Arabic or Devanagari.
+
+\subsubsection*{Test characters}
+
+Nice characters that show unusual patterns. Good for testing. \begin{DoxyVerb}./example1 FreeSerif.ttf 67 > xa67.svg
+./example1 FreeSerif.ttf 68 > xa68.svg
+./example1 FreeSerif.ttf 0x2766 > x2766.svg
+./example1 FreeSerif.ttf 0x2767 > x2767.svg
+./example1 FreeSerif.ttf 0x1f01a > x1f01a.svg
+./example1 FreeSerif.ttf 0x48007 > x48007.svg
+\end{DoxyVerb}
+
+
+\subsubsection*{Other projects}
+
+Sean Barret\textquotesingle{}s amazing T\+TF parser + renderer\+: \href{https://github.com/nothings/stb/blob/master/stb_truetype.h}{\tt https\+://github.\+com/nothings/stb/blob/master/stb\+\_\+truetype.\+h}
+
+The \char`\"{}\+Batik\char`\"{} project does similar stuff. It is Java\+:
+
+\href{http://xmlgraphics.apache.org/batik/tools/font-converter.html}{\tt http\+://xmlgraphics.\+apache.\+org/batik/tools/font-\/converter.\+html}
+
+\subsubsection*{Finding A Unicode font}
+
+An easy resource is here\+:
+
+\href{http://openfontlibrary.org}{\tt http\+://openfontlibrary.\+org}
+
+If you have linux, you can explore as follows\+:
+
+Run \textquotesingle{}charmap\textquotesingle{}, under ubuntu, and then right click on interesting looking glyphs. It will give you some rough idea of the font name.
+
+Then do \textquotesingle{}locate ttf $\vert$ grep ttf\$\textquotesingle{} which will give a list of all Truetype font files (w .ttf extensions) on your system .
+
+You can match this up with what you did in Charmap, then maybe you can find the truetype you are looking for.
+
+\subsubsection*{Linux non-\/cmake build}
+
+\begin{DoxyVerb}# BSD/Linux - 
+
+# install freetype using your package manager
+# (something like sudo apt-get install libfreetype6-dev)
+# then copy a .ttf file to this directory for convenience
+cp `locate FreeSerif.ttf | tail -1 ` .
+./build.sh
+./example1 ./FreeSerif.ttf 66 > /tmp/x.svg 
+firefox /tmp/x.svg
+\end{DoxyVerb}
+
+
+\subsubsection*{font\+\_\+to\+\_\+svg2.\+hpp}
+
+patched up the font\+\_\+to\+\_\+svg.\+hpp file, it is available as a more up-\/to-\/date alternative called font\+\_\+to\+\_\+svg2.\+hpp for your experimentation. It is theoretically faster and easier to use, but contains less debug info.
+
+\subsubsection*{Todo}
+
+get real name of glyph (like unicode name)
+
+investigate linux\textquotesingle{}s auto-\/finding of unicode glyphs
+
+auto-\/find fonts on linux, not require cmdline fontname?
+
+accept U+4034 (hex) input format
+
+regression test
+
+Long term -\/ opentype? pango / harfbuzz?
+
+\subsubsection*{Trademark disclaimer}
+
+True\+Type is a trademark of Apple, Inc. This library is not in any way affiliated nor endorsed by Apple, Inc. 

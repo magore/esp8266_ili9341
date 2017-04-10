@@ -47,7 +47,7 @@ POSSIBILITY OF SUCH DAMAGE.
 
 #include "display/font.h"
 #include "display/ili9341.h"
-#include "driver/ili9341_adafruit.h"
+#include "3rd_party/ili9341_adafruit.h"
 
 // ============================================================
 

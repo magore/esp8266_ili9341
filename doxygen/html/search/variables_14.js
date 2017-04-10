@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['w',['w',['../struct__fontc.html#a9c2af0354d2b2009e7b6684e25fd479b',1,'_fontc::w()'],['../structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae',1,'window::w()']]],
+  ['w',['w',['../struct__fontc.html#a9c2af0354d2b2009e7b6684e25fd479b',1,'_fontc::w()'],['../structwindow.html#ad89fdeb11ce94e2e7501f7290372d6ae',1,'window::w()'],['../structpath__t.html#a8977017efd250c8fd0eb168f44c618eb',1,'path_t::w()']]],
   ['wbuf',['wbuf',['../structrwbuf__t.html#a68386231f3d907ec4508c090925782a2',1,'rwbuf_t']]],
   ['web_5fconnections',['web_connections',['../web_8c.html#a18c3cff4e8a9ff56871f13dfb3cd48ad',1,'web.c']]],
   ['webconn',['WebConn',['../web_8c.html#a96c7e595cf56145fc95dc2c66ac3930f',1,'web.c']]],

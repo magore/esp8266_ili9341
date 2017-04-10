@@ -58,6 +58,7 @@ var searchData=
   ['display_5fipv4',['display_ipv4',['../web_8c.html#a89dceabcd370d352c3efed0e689fd551',1,'display_ipv4(char *msg, uint8_t *ip, int port):&#160;web.c'],['../web_8h.html#a89dceabcd370d352c3efed0e689fd551',1,'display_ipv4(char *msg, uint8_t *ip, int port):&#160;web.c']]],
   ['display_5fts',['display_ts',['../timer_8c.html#a6802af23bc1fe764b975683a0b37fc91',1,'display_ts(ts_t *val):&#160;timer.c'],['../timer_8h.html#a6802af23bc1fe764b975683a0b37fc91',1,'display_ts(ts_t *val):&#160;timer.c']]],
   ['dptr',['dptr',['../structDIR.html#a0330e9554e1f38795debe4495156873e',1,'DIR']]],
+  ['drawsvg',['drawSVG',['../user__main_8c.html#acda9e14c9c4817d88b8a4d0e1384df04',1,'user_main.c']]],
   ['dresult',['DRESULT',['../diskio_8h.html#aacdfef1dad6565f65c26d12fe0ea4b2b',1,'diskio.h']]],
   ['drv',['drv',['../structFATFS.html#a6a791560e2687e8b1569bfce61208d2d',1,'FATFS']]],
   ['drv_5fmmc',['DRV_MMC',['../diskio_8c.html#a5eccf61399d126e38e5f2f7ec61bb29f',1,'diskio.c']]],

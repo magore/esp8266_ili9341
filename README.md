@@ -65,6 +65,10 @@
     @see http://www.cl.cam.ac.uk/~mgk25/ucs-fonts.html
     @see http://en.wikipedia.org/wiki/Glyph_Bitmap_Distribution_Format
     @see https://partners.adobe.com/public/developer/en/font/5005.BDF_Spec.pdf
+  * Vector font code 
+    @See https: https://github.com/donbright/font_to_svg
+  * Vector fonts
+    @See https://www.gnu.org/software/freefont
   * FatFS code is by ChaN:
     @see http://elm-chan.org/fsw/ff/00index_e.html
   * Yield Code extracted from ESP8266 Arduino Project
@@ -171,7 +175,7 @@ ___
 
     * docs - ili9431 and esp8266 related documents
   
-    * driver - third party code
+    * 3rd_party - third party code
         * cal_dex.c       
           * Debug exception support by cal (20150421, cal)
         * ili9341_adafruit.c  
@@ -349,6 +353,14 @@ ___
        * Initializes ESP8266 and sets up demo with 4 active windows with independent attributes
          * user_main.c
   
+     * vfont - Vector font generator code
+       * Based on https://github.com/donbright/font_to_svg
+         * LICENSE  
+         * README.md	
+         * Makefile  - build vfont Creates Vector outline fonts saved in ../display/vfonts.h
+         * vfont.cpp - Create C structure of TTF font
+         * vfont.hpp - modified verision of font_to_svg.hpp that outputs C structure data
+
      * web - Web server with FAT file system SD CARD support 
        * Features
          * web.c
