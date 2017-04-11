@@ -430,7 +430,7 @@ void drawSVG(window *win, int16_t x, int16_t y, int16_t c, float scale, uint16_t
 			TX =  sx(scale,x, v[ind + 3]);
 			TY =  sy(scale,y, v[ind + 4]);
 			//printf("Q: CurX:%d,Cury:%d,CX:%d,CY:%d,TX:%d,TY:%d\n", (int)CurX,(int)CurY,(int)CX,(int)CY,(int)TX,(int)TY);
-			tft_Bezier(win, CurX, CurY, CX, CY, TX, TY, 10, color);
+			tft_Bezier2(win, CurX, CurY, CX, CY, TX, TY, 10, color);
 			CurX = TX;
 			CurY = TY;
 			ind += 5;

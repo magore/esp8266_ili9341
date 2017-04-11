@@ -1335,9 +1335,9 @@ void tft_drawLine(window *win, int16_t x0, int16_t y0, int16_t x1, int16_t y1, u
    @return  void
 */
 
-void tft_Bezier(window *win, int16_t SX, int16_t SY, int16_t CX, int16_t CY, int16_t TX, int16_t TY, int steps, uint16_t color)
+void tft_Bezier2(window *win, int16_t SX, int16_t SY, int16_t CX, int16_t CY, int16_t TX, int16_t TY, int steps, uint16_t color)
 {
-	float t, tinc, t2,c0,c1,c2;
+	float t, tinc, t1,p1,p2,p3;
 	int16_t LX = SX;
 	int16_t LY = SY;
 	int16_t X,Y;
@@ -1358,12 +1358,14 @@ void tft_Bezier(window *win, int16_t SX, int16_t SY, int16_t CX, int16_t CY, int
 	for (i = 0; i < steps; ++i)
 	{
 		t += tinc;
-		c0 = (1.0 - t);
-		c1 = 2.0 * c0 * t;  // 2(1.0 - t)t = 2t - 2t*t
-		c0 *= c0; 			// (1.0 - t) (1.0 - t) = 1.0 -2t + t*t
-		c2 = t * t;
-		X = (int16_t) (c0 * (float)SX + c1 * (float)CX + c2 * (float)TX);
-		Y = (int16_t) (c0 * (float)SY + c1 * (float)CY + c2 * (float)TY);
+
+		t1 = (1.0 - t);
+		p1 = t1 * t1;		/* (1.0 - t) (1.0 - t) */
+		p2 = 2.0 * t1 * t;  /* 2(1.0 - t) * t */
+		p3 = t * t;			/* t * t */
+
+		X = (int16_t) (p1 * (float)SX + p2 * (float)CX + p3 * (float)TX);
+		Y = (int16_t) (p1 * (float)SY + p2 * (float)CY + p3 * (float)TY);
 		// Do not plot a line until we actually move
 		if(LX == X && LY == Y)
 			continue;
@@ -1372,6 +1374,88 @@ void tft_Bezier(window *win, int16_t SX, int16_t SY, int16_t CX, int16_t CY, int
 		LY = Y;
 	}
 }
+
+/**
+   @brief Draw lines between points along Cubic Bézier curve
+   Quadratic Bézier with respect to t, see https://en.wikipedia.org/wiki/Bézier_curve
+   		B(t) = (1-t)(1-t)*(1-t)*S + 3*(1-t)(1-t)*t*C1  + 3(1-t)*t*t*C2 + t*t*t*T, 0 <= t <= 1
+  
+   The path traced by the function B(t), given points S, C, and T,
+   		S = initial points
+   		C1 = control point 1
+   		C2 = control point 2
+   		T = target points
+  
+   Derivative of the Bézier curve with respect to t 
+        B'(t) = 3(1-t)*(1-t)*(C1-S) + 6*(1-t)*t*(C2-C1) + 3*t*t*(T-C2)
+  
+   Second derivative of the Bézier curve with respect to t is
+   		B"(t) = 6*(1-t)*(C2-2*C1+S) + 6*t*(T-2*C2+C1)
+
+  The curve starts at S and moves toward C1 and on to T from the direction of C2. 
+  Points C1 and C2 provide directional information and the distance between them determines 
+  "how far" and "how fast" the curve moves towards C1 before turning towards C2.
+
+
+   @param[in] *win: Window Structure of active window
+   @param[in] SX: Start X
+   @param[in] SY: Start Y
+   @param[in] C1X: Control 1 X
+   @param[in] C1Y: Control 1 Y
+   @param[in] C2X: Control 2 X
+   @param[in] C1Y: Control 2 Y
+   @param[in] TX: Target X
+   @param[in] TY: Target Y
+   @param[in] steps: line segments along curve (1..N) 
+   @param[in] color: Line color
+   @return  void
+*/
+
+void tft_Bezier3(window *win, int16_t SX, int16_t SY, int16_t C1X, int16_t C1Y, int16_t C2X, int16_t C2Y, int16_t TX, int16_t TY, int steps, uint16_t color)
+{
+	float t, tinc, c0, t1,t2,p1,p2,p3,p4;
+	int16_t LX = SX;
+	int16_t LY = SY;
+	int16_t X,Y;
+	int i;
+
+	LX = SX;
+	LY = SY;
+	t = 0;
+
+	if(steps < 1)
+		steps = 1;
+
+	// FXIME we should compute a step size based on the start to end point distances
+	tinc = 1.0 / (float) steps;	// steps = 1 will just draw one line
+
+	// Quadratic Bezier http://en.wikipedia.org/wiki/Bézier_curve
+	// B(t) = (1-t)(1-t)*(1-t)*S + 3*(1-t)(1-t)*t*C1  + 3(1-t)*t*t*C2 + t*t*t*T, 0 <= t <= 1
+	for (i = 0; i < steps; ++i)
+	{
+		t += tinc;
+		t1 = (1.0 - t);
+		t2 = t1 * t1;		/* (1-t)(1-t) */
+
+		c0 = 3.0 * t1 * t;	/* 3(1-t) * t */
+
+		p1 = t2 * t1;		/* (1-t)(1-t)(1-t) */
+		p2 = c0 * t1;       /* 3(1-t)(1-t) * t */
+		p3 = c0 * t;		/* 3(1-t) * t * t */
+		p4 = t * t * t;		/* t * t * t */
+
+		X = (int16_t) (p1 * (float)SX + p2 * (float)C1X + p3 * (float) C2X + p4 * (float)TX);
+		Y = (int16_t) (p3 * (float)SY + p2 * (float)C1Y + p3 * (float) C2Y + p4 * (float)TY);
+
+		// Do not plot a line until we actually move
+		if(LX == X && LY == Y)
+			continue;
+		tft_drawLine(win, LX, LY, X, Y, color);
+		LX = X;
+		LY = Y;
+	}
+}
+
 
 ///  ====================================
 /// @brief Character and String functions

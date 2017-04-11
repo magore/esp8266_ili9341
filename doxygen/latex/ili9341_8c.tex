@@ -99,8 +99,10 @@ void \hyperlink{ili9341_8c_ae425260d907faa87a1b8e336f24ba54c}{tft\+\_\+draw\+Fas
 \begin{DoxyCompactList}\small\item\em Fast virtical line drawing. \end{DoxyCompactList}\item 
 void \hyperlink{ili9341_8c_a7cef55bef133e9918955b4d2a53cf230}{tft\+\_\+draw\+Line} (\hyperlink{structwindow}{window} $\ast$win, int16\+\_\+t x0, int16\+\_\+t y0, int16\+\_\+t x1, int16\+\_\+t y1, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} color)
 \begin{DoxyCompactList}\small\item\em Draw line From my blit test code testit.\+c 1984 -\/ 1985 Mike Gore. \end{DoxyCompactList}\item 
-void \hyperlink{ili9341_8c_a0df0ea98b69b8974030b1182ee03be4b}{tft\+\_\+\+Bezier} (\hyperlink{structwindow}{window} $\ast$win, int16\+\_\+t SX, int16\+\_\+t SY, int16\+\_\+t CX, int16\+\_\+t CY, int16\+\_\+t TX, int16\+\_\+t TY, int steps, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} color)
+void \hyperlink{ili9341_8c_a05c9e989c1be6a1655bd20d521608652}{tft\+\_\+\+Bezier2} (\hyperlink{structwindow}{window} $\ast$win, int16\+\_\+t SX, int16\+\_\+t SY, int16\+\_\+t CX, int16\+\_\+t CY, int16\+\_\+t TX, int16\+\_\+t TY, int steps, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} color)
 \begin{DoxyCompactList}\small\item\em Draw lines between points along Quadratic Bézier curve Quadratic Bézier with respect to t, see \href{https://en.wikipedia.org/wiki/B}{\tt https\+://en.\+wikipedia.\+org/wiki/B}ézier\+\_\+curve B(t) = (1-\/t)$\ast$(1-\/t)$\ast$S + 2$\ast$(1-\/t)$\ast$t$\ast$C + t$\ast$t$\ast$T, 0 $<$= t $<$= 1. \end{DoxyCompactList}\item 
+void \hyperlink{ili9341_8c_a4d285bdcc49ff7337068f134034d45a5}{tft\+\_\+\+Bezier3} (\hyperlink{structwindow}{window} $\ast$win, int16\+\_\+t SX, int16\+\_\+t SY, int16\+\_\+t C1X, int16\+\_\+t C1Y, int16\+\_\+t C2X, int16\+\_\+t C2Y, int16\+\_\+t TX, int16\+\_\+t TY, int steps, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} color)
+\begin{DoxyCompactList}\small\item\em Draw lines between points along Cubic Bézier curve Quadratic Bézier with respect to t, see \href{https://en.wikipedia.org/wiki/B}{\tt https\+://en.\+wikipedia.\+org/wiki/B}ézier\+\_\+curve B(t) = (1-\/t)(1-\/t)$\ast$(1-\/t)$\ast$S + 3$\ast$(1-\/t)(1-\/t)$\ast$t$\ast$\+C1 + 3(1-\/t)$\ast$t$\ast$t$\ast$\+C2 + t$\ast$t$\ast$t$\ast$T, 0 $<$= t $<$= 1. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{ili9341_8c_a9e2f1c5c213183804492d12ab89a1b43}{tft\+\_\+cleareol} (\hyperlink{structwindow}{window} $\ast$win)
 \begin{DoxyCompactList}\small\item\em \subsection*{Character and String functions }\end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{ili9341_8c_ab2312256c9579261cfa1ed62c4e82410}{tft\+\_\+clearline} (\hyperlink{structwindow}{window} $\ast$win)
@@ -268,9 +270,9 @@ Definition at line 101 of file ili9341.\+c.
 
 Referenced by tft\+\_\+rel\+\_\+window().
 
-\index{ili9341.\+c@{ili9341.\+c}!tft\+\_\+\+Bezier@{tft\+\_\+\+Bezier}}
-\index{tft\+\_\+\+Bezier@{tft\+\_\+\+Bezier}!ili9341.\+c@{ili9341.\+c}}
-\subsubsection[{\texorpdfstring{tft\+\_\+\+Bezier(window $\ast$win, int16\+\_\+t S\+X, int16\+\_\+t S\+Y, int16\+\_\+t C\+X, int16\+\_\+t C\+Y, int16\+\_\+t T\+X, int16\+\_\+t T\+Y, int steps, uint16\+\_\+t color)}{tft_Bezier(window *win, int16_t SX, int16_t SY, int16_t CX, int16_t CY, int16_t TX, int16_t TY, int steps, uint16_t color)}}]{\setlength{\rightskip}{0pt plus 5cm}void tft\+\_\+\+Bezier (
+\index{ili9341.\+c@{ili9341.\+c}!tft\+\_\+\+Bezier2@{tft\+\_\+\+Bezier2}}
+\index{tft\+\_\+\+Bezier2@{tft\+\_\+\+Bezier2}!ili9341.\+c@{ili9341.\+c}}
+\subsubsection[{\texorpdfstring{tft\+\_\+\+Bezier2(window $\ast$win, int16\+\_\+t S\+X, int16\+\_\+t S\+Y, int16\+\_\+t C\+X, int16\+\_\+t C\+Y, int16\+\_\+t T\+X, int16\+\_\+t T\+Y, int steps, uint16\+\_\+t color)}{tft_Bezier2(window *win, int16_t SX, int16_t SY, int16_t CX, int16_t CY, int16_t TX, int16_t TY, int steps, uint16_t color)}}]{\setlength{\rightskip}{0pt plus 5cm}void tft\+\_\+\+Bezier2 (
 \begin{DoxyParamCaption}
 \item[{{\bf window} $\ast$}]{win, }
 \item[{int16\+\_\+t}]{SX, }
@@ -282,7 +284,7 @@ Referenced by tft\+\_\+rel\+\_\+window().
 \item[{int}]{steps, }
 \item[{{\bf uint16\+\_\+t}}]{color}
 \end{DoxyParamCaption}
-)}\hypertarget{ili9341_8c_a0df0ea98b69b8974030b1182ee03be4b}{}\label{ili9341_8c_a0df0ea98b69b8974030b1182ee03be4b}
+)}\hypertarget{ili9341_8c_a05c9e989c1be6a1655bd20d521608652}{}\label{ili9341_8c_a05c9e989c1be6a1655bd20d521608652}
 
 
 Draw lines between points along Quadratic Bézier curve Quadratic Bézier with respect to t, see \href{https://en.wikipedia.org/wiki/B}{\tt https\+://en.\+wikipedia.\+org/wiki/B}ézier\+\_\+curve B(t) = (1-\/t)$\ast$(1-\/t)$\ast$S + 2$\ast$(1-\/t)$\ast$t$\ast$C + t$\ast$t$\ast$T, 0 $<$= t $<$= 1. 
@@ -328,6 +330,67 @@ Definition at line 1338 of file ili9341.\+c.
 
 
 Referenced by draw\+S\+V\+G().
+
+\index{ili9341.\+c@{ili9341.\+c}!tft\+\_\+\+Bezier3@{tft\+\_\+\+Bezier3}}
+\index{tft\+\_\+\+Bezier3@{tft\+\_\+\+Bezier3}!ili9341.\+c@{ili9341.\+c}}
+\subsubsection[{\texorpdfstring{tft\+\_\+\+Bezier3(window $\ast$win, int16\+\_\+t S\+X, int16\+\_\+t S\+Y, int16\+\_\+t C1\+X, int16\+\_\+t C1\+Y, int16\+\_\+t C2\+X, int16\+\_\+t C2\+Y, int16\+\_\+t T\+X, int16\+\_\+t T\+Y, int steps, uint16\+\_\+t color)}{tft_Bezier3(window *win, int16_t SX, int16_t SY, int16_t C1X, int16_t C1Y, int16_t C2X, int16_t C2Y, int16_t TX, int16_t TY, int steps, uint16_t color)}}]{\setlength{\rightskip}{0pt plus 5cm}void tft\+\_\+\+Bezier3 (
+\begin{DoxyParamCaption}
+\item[{{\bf window} $\ast$}]{win, }
+\item[{int16\+\_\+t}]{SX, }
+\item[{int16\+\_\+t}]{SY, }
+\item[{int16\+\_\+t}]{C1X, }
+\item[{int16\+\_\+t}]{C1Y, }
+\item[{int16\+\_\+t}]{C2X, }
+\item[{int16\+\_\+t}]{C2Y, }
+\item[{int16\+\_\+t}]{TX, }
+\item[{int16\+\_\+t}]{TY, }
+\item[{int}]{steps, }
+\item[{{\bf uint16\+\_\+t}}]{color}
+\end{DoxyParamCaption}
+)}\hypertarget{ili9341_8c_a4d285bdcc49ff7337068f134034d45a5}{}\label{ili9341_8c_a4d285bdcc49ff7337068f134034d45a5}
+
+
+Draw lines between points along Cubic Bézier curve Quadratic Bézier with respect to t, see \href{https://en.wikipedia.org/wiki/B}{\tt https\+://en.\+wikipedia.\+org/wiki/B}ézier\+\_\+curve B(t) = (1-\/t)(1-\/t)$\ast$(1-\/t)$\ast$S + 3$\ast$(1-\/t)(1-\/t)$\ast$t$\ast$\+C1 + 3(1-\/t)$\ast$t$\ast$t$\ast$\+C2 + t$\ast$t$\ast$t$\ast$T, 0 $<$= t $<$= 1. 
+
+The path traced by the function B(t), given points S, C, and T, S = initial points C1 = control point 1 C2 = control point 2 T = target points
+
+Derivative of the Bézier curve with respect to t B\textquotesingle{}(t) = 3(1-\/t)$\ast$(1-\/t)$\ast$(C1-\/S) + 6$\ast$(1-\/t)$\ast$t$\ast$(C2-\/\+C1) + 3$\ast$t$\ast$t$\ast$(T-\/\+C2)
+
+Second derivative of the Bézier curve with respect to t is B"(t) = 6$\ast$(1-\/t)$\ast$(C2-\/2$\ast$\+C1+S) + 6$\ast$t$\ast$(T-\/2$\ast$\+C2+\+C1)
+
+The curve starts at S and moves toward C1 and on to T from the direction of C2. Points C1 and C2 provide directional information and the distance between them determines \char`\"{}how far\char`\"{} and \char`\"{}how fast\char`\"{} the curve moves towards C1 before turning towards C2.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$win} & Window Structure of active window \\
+\hline
+\mbox{\tt in}  & {\em SX} & Start X \\
+\hline
+\mbox{\tt in}  & {\em SY} & Start Y \\
+\hline
+\mbox{\tt in}  & {\em C1X} & Control 1 X \\
+\hline
+\mbox{\tt in}  & {\em C1Y} & Control 1 Y \\
+\hline
+\mbox{\tt in}  & {\em C2X} & Control 2 X \\
+\hline
+\mbox{\tt in}  & {\em C1Y} & Control 2 Y \\
+\hline
+\mbox{\tt in}  & {\em TX} & Target X \\
+\hline
+\mbox{\tt in}  & {\em TY} & Target Y \\
+\hline
+\mbox{\tt in}  & {\em steps} & line segments along curve (1..N) \\
+\hline
+\mbox{\tt in}  & {\em color} & Line color \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 1414 of file ili9341.\+c.
 
 \index{ili9341.\+c@{ili9341.\+c}!tft\+\_\+bit\+\_\+blit@{tft\+\_\+bit\+\_\+blit}}
 \index{tft\+\_\+bit\+\_\+blit@{tft\+\_\+bit\+\_\+blit}!ili9341.\+c@{ili9341.\+c}}
@@ -389,7 +452,7 @@ Referenced by tft\+\_\+draw\+Char().
 \end{DoxyParams}
 
 
-Definition at line 1384 of file ili9341.\+c.
+Definition at line 1468 of file ili9341.\+c.
 
 
 
@@ -413,7 +476,7 @@ Clear display text line.
 \end{DoxyParams}
 
 
-Definition at line 1404 of file ili9341.\+c.
+Definition at line 1488 of file ili9341.\+c.
 
 \index{ili9341.\+c@{ili9341.\+c}!tft\+\_\+clip\+\_\+xy@{tft\+\_\+clip\+\_\+xy}}
 \index{tft\+\_\+clip\+\_\+xy@{tft\+\_\+clip\+\_\+xy}!ili9341.\+c@{ili9341.\+c}}
@@ -657,7 +720,7 @@ Definition at line 1250 of file ili9341.\+c.
 
 
 
-Referenced by draw\+S\+V\+G(), tft\+\_\+\+Bezier(), tft\+\_\+draw\+Fast\+H\+Line(), tft\+\_\+draw\+Triangle(), and wire\+\_\+draw().
+Referenced by draw\+S\+V\+G(), tft\+\_\+\+Bezier2(), tft\+\_\+\+Bezier3(), tft\+\_\+draw\+Fast\+H\+Line(), tft\+\_\+draw\+Triangle(), and wire\+\_\+draw().
 
 \index{ili9341.\+c@{ili9341.\+c}!tft\+\_\+draw\+Pixel@{tft\+\_\+draw\+Pixel}}
 \index{tft\+\_\+draw\+Pixel@{tft\+\_\+draw\+Pixel}!ili9341.\+c@{ili9341.\+c}}
@@ -1038,7 +1101,7 @@ put character in current winoow
 \end{DoxyParams}
 
 
-Definition at line 1426 of file ili9341.\+c.
+Definition at line 1510 of file ili9341.\+c.
 
 
 

@@ -54,14 +54,6 @@ namespace font2svg {
 
 std::stringstream debug;
 
-FT_Vector halfway_between( FT_Vector p1, FT_Vector p2 )
-{
-	FT_Vector newv;
-	newv.x = p1.x + (p2.x-p1.x)/2.0;
-	newv.y = p1.y + (p2.y-p1.y)/2.0;
-	return newv;
-}
-
 class ttf_file
 {
 public:
@@ -117,21 +109,9 @@ There are three main components.
 std::string do_outline(std::vector<FT_Vector> points, std::vector<char> tags, std::vector<short> contours)
 {
 	std::stringstream debug, svg;
-#if 0
-	std::cout << "<!-- do outline -->\n";
-	if (points.size()==0) return "<!-- font had 0 points -->";
-	if (contours.size()==0) return "<!-- font had 0 contours -->";
-	svg.str("");
-	svg << "\n\n  <!-- draw actual outline using lines and Bezier curves-->";
-	svg	<< "\n  <path fill='black' stroke='black'"
-		<< " fill-opacity='0.45' "
-		<< " stroke-width='2' "
-		<< " d='";
-#else
 	if (points.size()==0) return "";
 	if (contours.size()==0) return "";
 	svg.str("");
-#endif
 
 	svg << "\t{\n";
 	/* tag bit 1 indicates whether its a control point on a bez curve
@@ -217,14 +197,9 @@ std::string do_outline(std::vector<FT_Vector> points, std::vector<char> tags, st
 		contour_starti = contour_endi+1;
 		svg << "\t\t'Z',\n";
 	}
-#if 0
-	svg << "\n  '/>";
-	std::cout << "\n<!--\n" << debug.str() << " \n-->\n";
-#else
 	svg << "\t\t'.'\n";
 	svg << "\t}\n";
 	svg << "};\n";
-#endif
 	return svg.str();
 }
 
@@ -308,6 +283,8 @@ public:
 		for ( int i = 0 ; i < ftoutline.n_points ; i++ )
 			ftpoints[i].y *= -1;
 #endif
+// MG
+///@brief Adjust Y for this character
 #if 1
 		for ( int i = 0 ; i < ftoutline.n_points ; i++ )
 		{
@@ -321,6 +298,8 @@ public:
 		contours = ftoutline.contours;
 		// std::cout << debug.str();
 
+		// MG
+		///@brief Dump font glyph header for this character
 		tmp.str("");
         tmp << "// Char: " << codepoint << "\n";
 		tmp << "// points: " << ftoutline.n_points << "\n";
@@ -339,144 +318,6 @@ public:
 		std::cout << tmp.str();
 	}
 
-	std::string svgheader() {
-		tmp.str("");
-
-		tmp << "\n<svg width='" << bbwidth << "px'"
-			<< " height='" << bbheight << "px'"
-			<< " xmlns='http://www.w3.org/2000/svg' version='1.1'>";
-
-		return tmp.str();
-	}
-
-	std::string svgborder()  {
-		tmp.str("");
-		tmp << "\n\n <!-- draw border -->";
-
-		tmp << "\n <rect fill='none' stroke='black'"
-			<< " width='" << bbwidth - 1 << "'"
-			<< " height='" << bbheight - 1 << "'/>";
-		return tmp.str();
-	}
-
-	std::string svgtransform() {
-		// TrueType points are not in the range usually visible by SVG.
-		// they often have negative numbers etc. So.. here we
-		// 'transform' to make visible.
-		//
-		// note also that y coords of all points have been flipped during
-		// init() so that SVG Y positive = Truetype Y positive
-		tmp.str("");
-		tmp << "\n\n <!-- make sure glyph is visible within svg window -->";
-		int yadj = gm.horiBearingY + gm.vertBearingY + 100;
-		int xadj = 100;
-		tmp << "\n <g fill-rule='nonzero' "
-			<< " transform='translate(" << xadj << " " << yadj << ")'"
-			<< ">";
-		return tmp.str();
-	}
-
-	std::string axes()  {
-		tmp.str("");
-		tmp << "\n\n  <!-- draw axes --> ";
-		tmp << "\n <path stroke='blue' stroke-dasharray='5,5' d='"
-			<< " M" << -bbwidth << "," << 0
-			<< " L" <<  bbwidth << "," << 0
-			<< " M" << 0 << "," << -bbheight
-			<< " L" << 0 << "," << bbheight
-			<< " '/>";
-		return tmp.str();
-	}
-
-	std::string typography_box()  {
-		tmp.str("");
-		tmp << "\n\n  <!-- draw bearing + advance box --> ";
-		int x1 = 0;
-		int x2 = gm.horiAdvance;
-		int y1 = -gm.vertBearingY-gm.height;
-		int y2 = y1 + gm.vertAdvance;
-		tmp << "\n <path stroke='blue' fill='none' stroke-dasharray='10,16' d='"
-			<< " M" << x1 << "," << y1
-			<< " M" << x1 << "," << y2
-			<< " L" << x2 << "," << y2
-			<< " L" << x2 << "," << y1
-			<< " L" << x1 << "," << y1
-			<< " '/>";
-
-		return tmp.str();
-	}
-
-	std::string points()  {
-		tmp.str("");
-		tmp << "\n\n  <!-- draw points as circles -->";
-		for ( int i = 0 ; i < ftoutline.n_points ; i++ ) {
-			bool this_is_ctrl_pt = !(tags[i] & 1);
-			bool next_is_ctrl_pt = !(tags[(i+1)%ftoutline.n_points] & 1);
-			int x = ftpoints[i].x;
-			int y = ftpoints[i].y;
-			int nx = ftpoints[(i+1)%ftoutline.n_points].x;
-			int ny = ftpoints[(i+1)%ftoutline.n_points].y;
-			int radius = 5;
-			if ( i == 0 ) radius = 10;
-			std::string color;
-			if (this_is_ctrl_pt) color = "none"; else color = "blue";
-			if (this_is_ctrl_pt && next_is_ctrl_pt) {
-				tmp << "\n  <!-- halfway pt between 2 ctrl pts -->";
-				tmp << "<circle"
-				  << " fill='" << "blue" << "'"
-				  << " stroke='black'"
-				  << " cx='" << (x+nx)/2 << "' cy='" << (y+ny)/2 << "'"
-				  << " r='" << 2 << "'"
-				  << "/>";
-			};
-			tmp << "\n  <!--" << i << "-->";
-			tmp << "<circle"
-				<< " fill='" << color << "'"
-				<< " stroke='black'"
-				<< " cx='" << ftpoints[i].x << "' cy='" << ftpoints[i].y << "'"
-				<< " r='" << radius << "'"
-				<< "/>";
-		}
-
-		return tmp.str();
-	}
-
-	std::string pointlines()  {
-		tmp.str("");
-		tmp << "\n\n  <!-- draw straight lines between points -->";
-		tmp << "\n  <path fill='none' stroke='green' d='";
-		tmp << "\n   M " << ftpoints[0].x << "," << ftpoints[0].y << "\n";
-		tmp << "\n  '/>";
-		for ( int i = 0 ; i < ftoutline.n_points-1 ; i++ ) {
-			std::string dash_mod("");
-			for (int j = 0 ; j < ftoutline.n_contours; j++ ) {
-				if (i==contours[j])
-					dash_mod = " stroke-dasharray='3'";
-			}
-			tmp << "\n  <path fill='none' stroke='green'";
-			tmp << dash_mod;
-			tmp << " d='";
- 			tmp << " M " << ftpoints[i].x << "," << ftpoints[i].y;
- 			tmp << " L " << ftpoints[(i+1)%ftoutline.n_points].x << "," << ftpoints[(i+1)%ftoutline.n_points].y;
-			tmp << "\n  '/>";
-		}
-		return tmp.str();
-	}
-
-	std::string labelpts() {
-		tmp.str("");
-		for ( int i = 0 ; i < ftoutline.n_points ; i++ ) {
-			tmp << "\n <g font-family='SVGFreeSansASCII,sans-serif' font-size='10'>\n";
-			tmp << "  <text id='revision'";
-			tmp << " x='" << ftpoints[i].x + 5 << "'";
-			tmp << " y='" << ftpoints[i].y - 5 << "'";
-			tmp << " stroke='none' fill='darkgreen'>\n";
-			tmp << "  " << ftpoints[i].x  << "," << ftpoints[i].y;
-			tmp << "  </text>\n";
-			tmp << " </g>\n";
-		}
-		return tmp.str();
-	}
 
 	std::string outline()  {
 		std::vector<FT_Vector> pointsv(ftpoints,ftpoints+ftoutline.n_points);
@@ -485,11 +326,6 @@ public:
 		return do_outline(pointsv, tagsv, contoursv);
 	}
 
-	std::string svgfooter()  {
-		tmp.str("");
-		tmp << "\n </g>\n</svg>\n";
-		return tmp.str();
-	}
 };
 
 } // namespace

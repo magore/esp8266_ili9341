@@ -47,6 +47,19 @@ typedef struct
 	uint8_t tabstop;
 } window;
 
+///@brief 2D display point - display coordinates are int16
+typedef struct {
+	int16_t X;
+	int16_t Y;
+} p2_int16_t;
+
+///@brief 3D display point - display coordinates are int16
+typedef struct {
+	int16_t X;
+	int16_t Y;
+	int16_t Z;
+} p3_int16_t;
+
 
 // Named address space
 #ifndef MEMSPACE
@@ -132,7 +145,8 @@ int tft_get_font_height ( window *win );
 void tft_drawFastVLine ( window *win , int16_t x , int16_t y , int16_t h , uint16_t color );
 void tft_drawFastHLine ( window *win , int16_t x , int16_t y , int16_t w , uint16_t color );
 void tft_drawLine ( window *win , int16_t x0 , int16_t y0 , int16_t x1 , int16_t y1 , uint16_t color );
-void tft_Bezier ( window *win , int16_t SX , int16_t SY , int16_t CX , int16_t CY , int16_t TX , int16_t TY , int steps , uint16_t color );
+void tft_Bezier2 ( window *win , int16_t SX , int16_t SY , int16_t CX , int16_t CY , int16_t TX , int16_t TY , int steps , uint16_t color );
+void tft_Bezier3 ( window *win , int16_t SX , int16_t SY , int16_t C1X , int16_t C1Y , int16_t C2X , int16_t C2Y , int16_t TX , int16_t TY , int steps , uint16_t color );
 MEMSPACE void tft_cleareol ( window *win );
 MEMSPACE void tft_clearline ( window *win );
 void tft_putch ( window *win , int c );
