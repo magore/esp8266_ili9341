@@ -51,6 +51,7 @@ int main( int argc, char * argv[] )
 
 	fname = argv[1];
 
+	printf("#ifdef VFONTS\n");
 	printf("#ifndef _VFONTS_H_\n");
 	printf("#define _VFONTS_H_\n");
 	printf("// Font file: %s\n", fname);
@@ -74,6 +75,7 @@ int main( int argc, char * argv[] )
 	printf("\tNULL\n");
 	printf("};\n");
 	printf("#endif /* _VFONTS_H_ */\n");
+	printf("#endif // VFONTS\n");
 
   return 0;
 }
