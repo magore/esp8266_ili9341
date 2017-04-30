@@ -118,6 +118,13 @@ MEMSPACE void _putc_buffer_fn ( struct _printf_t *p , char ch );
 MEMSPACE int vsnprintf ( char *str , size_t size , const char *format , va_list va );
 MEMSPACE int snprintf ( char *str , size_t size , const char *format , ...);
 MEMSPACE int printf ( const char *format , ...);
+#ifdef AVR
+MEMSPACE int vsnprintf_P ( char *str , size_t size , __memx const char *format , va_list va );
+MEMSPACE int snprintf_P ( char *str , size_t size , __memx const char *format , ...);
+MEMSPACE int sprintf_P ( char *str , __memx const char *format , ...);
+MEMSPACE int printf_P ( __memx const char *format , ...);
+#endif
+
 
 /* sscanf.c */
 int sscanf ( const char *strp , const char *fmt , ...);

@@ -4,7 +4,7 @@ var searchData=
   ['cal_5fdex_5fdump_5fhex',['cal_dex_dump_hex',['../cal__dex_8c.html#a62e59349b0d7b06518b2257c04bbfc1e',1,'cal_dex.c']]],
   ['cal_5fdex_5fdump_5fstack',['cal_dex_dump_stack',['../cal__dex_8c.html#a0e0d5f7ed6c4b3cca2869392a41627e8',1,'cal_dex.c']]],
   ['cal_5fdex_5fhandler',['cal_dex_handler',['../cal__dex_8c.html#aaa92f95616461785d7b1a7d7591ccaa1',1,'cal_dex.c']]],
-  ['calloc',['calloc',['../system_8c.html#ae148919146e88c7c40c7e2f781649b31',1,'calloc(size_t nmemb, size_t size):&#160;system.c'],['../system_8h.html#ae148919146e88c7c40c7e2f781649b31',1,'calloc(size_t nmemb, size_t size):&#160;system.c']]],
+  ['calloc',['calloc',['../system_8c.html#ae148919146e88c7c40c7e2f781649b31',1,'system.c']]],
   ['chdir',['chdir',['../posix_8c.html#a9c74403d1a11692bcab2c9ab7de4b0d3',1,'chdir(const char *pathname):&#160;posix.c'],['../posix_8h.html#a9c74403d1a11692bcab2c9ab7de4b0d3',1,'chdir(const char *pathname):&#160;posix.c']]],
   ['check_5ffs',['check_fs',['../ff_8c.html#a5a0aaea328e942cf6f21bae6e19e911b',1,'ff.c']]],
   ['chip_5faddr',['chip_addr',['../hal_8c.html#abc9be250079b2b3fb01b888e431ec207',1,'chip_addr(int addr):&#160;hal.c'],['../hal_8h.html#abc9be250079b2b3fb01b888e431ec207',1,'chip_addr(int addr):&#160;hal.c']]],

@@ -8,6 +8,7 @@ Master include file for project Includes all project includes and defines here.
 {\ttfamily \#include \char`\"{}esp8266/cpu.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}esp8266/system.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}stringsup.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}fatfs.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}queue.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}sort.\+h\char`\"{}}\\*
 {\ttfamily \#include $<$uart\+\_\+register.\+h$>$}\\*
@@ -28,12 +29,6 @@ Master include file for project Includes all project includes and defines here.
 \#define \hyperlink{user__config_8h_accba58d1237bfcb21e9f4bb040aebc4a}{Mem\+\_\+\+Set}(a,  b)~memset(a, (int) b, sizeof(a))
 \item 
 \#define \hyperlink{user__config_8h_afc9d928608fcb1799db678db541b3823}{S\+H\+A\+R\+E\+D\+\_\+\+F\+I\+L\+I\+N\+FO}
-\item 
-\#define \hyperlink{user__config_8h_a9d4b5df3530d1bc733070a4669ba6ebc}{free}(p)~\hyperlink{system_8h_a61f06ee340417c629633142e0a5db288}{safefree}(p)
-\item 
-\#define \hyperlink{user__config_8h_ad3a606b2415cc9127bbb52d8ed5d3191}{calloc}(n,  s)~\hyperlink{system_8h_a65ca18fba3d6cdb9ce8ca8040a96e0c5}{safecalloc}(n,s)
-\item 
-\#define \hyperlink{user__config_8h_a6bb12c9cae32ecd32a4584a86c4c6c99}{malloc}(s)~\hyperlink{system_8h_aca19f0f1e5d805c1e5f61101fa4690f1}{safemalloc}(s)
 \end{DoxyCompactItemize}
 \subsection*{Enumerations}
 \begin{DoxyCompactItemize}
@@ -67,40 +62,6 @@ You should have received a copy of the G\+NU General Public License along with t
 
 Definition at line 37 of file user\+\_\+config.\+h.
 
-\index{user\+\_\+config.\+h@{user\+\_\+config.\+h}!calloc@{calloc}}
-\index{calloc@{calloc}!user\+\_\+config.\+h@{user\+\_\+config.\+h}}
-\subsubsection[{\texorpdfstring{calloc}{calloc}}]{\setlength{\rightskip}{0pt plus 5cm}\#define calloc(
-\begin{DoxyParamCaption}
-\item[{}]{n, }
-\item[{}]{s}
-\end{DoxyParamCaption}
-)~{\bf safecalloc}(n,s)}\hypertarget{user__config_8h_ad3a606b2415cc9127bbb52d8ed5d3191}{}\label{user__config_8h_ad3a606b2415cc9127bbb52d8ed5d3191}
-
-
-Definition at line 60 of file user\+\_\+config.\+h.
-
-\index{user\+\_\+config.\+h@{user\+\_\+config.\+h}!free@{free}}
-\index{free@{free}!user\+\_\+config.\+h@{user\+\_\+config.\+h}}
-\subsubsection[{\texorpdfstring{free}{free}}]{\setlength{\rightskip}{0pt plus 5cm}\#define free(
-\begin{DoxyParamCaption}
-\item[{}]{p}
-\end{DoxyParamCaption}
-)~{\bf safefree}(p)}\hypertarget{user__config_8h_a9d4b5df3530d1bc733070a4669ba6ebc}{}\label{user__config_8h_a9d4b5df3530d1bc733070a4669ba6ebc}
-
-
-Definition at line 57 of file user\+\_\+config.\+h.
-
-\index{user\+\_\+config.\+h@{user\+\_\+config.\+h}!malloc@{malloc}}
-\index{malloc@{malloc}!user\+\_\+config.\+h@{user\+\_\+config.\+h}}
-\subsubsection[{\texorpdfstring{malloc}{malloc}}]{\setlength{\rightskip}{0pt plus 5cm}\#define malloc(
-\begin{DoxyParamCaption}
-\item[{}]{s}
-\end{DoxyParamCaption}
-)~{\bf safemalloc}(s)}\hypertarget{user__config_8h_a6bb12c9cae32ecd32a4584a86c4c6c99}{}\label{user__config_8h_a6bb12c9cae32ecd32a4584a86c4c6c99}
-
-
-Definition at line 63 of file user\+\_\+config.\+h.
-
 \index{user\+\_\+config.\+h@{user\+\_\+config.\+h}!Mem\+\_\+\+Clear@{Mem\+\_\+\+Clear}}
 \index{Mem\+\_\+\+Clear@{Mem\+\_\+\+Clear}!user\+\_\+config.\+h@{user\+\_\+config.\+h}}
 \subsubsection[{\texorpdfstring{Mem\+\_\+\+Clear}{Mem_Clear}}]{\setlength{\rightskip}{0pt plus 5cm}\#define Mem\+\_\+\+Clear(
@@ -114,7 +75,7 @@ macros to simplify filling buffers
 
 
 
-Definition at line 50 of file user\+\_\+config.\+h.
+Definition at line 49 of file user\+\_\+config.\+h.
 
 \index{user\+\_\+config.\+h@{user\+\_\+config.\+h}!Mem\+\_\+\+Set@{Mem\+\_\+\+Set}}
 \index{Mem\+\_\+\+Set@{Mem\+\_\+\+Set}!user\+\_\+config.\+h@{user\+\_\+config.\+h}}
@@ -126,14 +87,14 @@ Definition at line 50 of file user\+\_\+config.\+h.
 )~memset(a, (int) b, sizeof(a))}\hypertarget{user__config_8h_accba58d1237bfcb21e9f4bb040aebc4a}{}\label{user__config_8h_accba58d1237bfcb21e9f4bb040aebc4a}
 
 
-Definition at line 51 of file user\+\_\+config.\+h.
+Definition at line 50 of file user\+\_\+config.\+h.
 
 \index{user\+\_\+config.\+h@{user\+\_\+config.\+h}!S\+H\+A\+R\+E\+D\+\_\+\+F\+I\+L\+I\+N\+FO@{S\+H\+A\+R\+E\+D\+\_\+\+F\+I\+L\+I\+N\+FO}}
 \index{S\+H\+A\+R\+E\+D\+\_\+\+F\+I\+L\+I\+N\+FO@{S\+H\+A\+R\+E\+D\+\_\+\+F\+I\+L\+I\+N\+FO}!user\+\_\+config.\+h@{user\+\_\+config.\+h}}
 \subsubsection[{\texorpdfstring{S\+H\+A\+R\+E\+D\+\_\+\+F\+I\+L\+I\+N\+FO}{SHARED_FILINFO}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+H\+A\+R\+E\+D\+\_\+\+F\+I\+L\+I\+N\+FO}\hypertarget{user__config_8h_afc9d928608fcb1799db678db541b3823}{}\label{user__config_8h_afc9d928608fcb1799db678db541b3823}
 
 
-Definition at line 53 of file user\+\_\+config.\+h.
+Definition at line 52 of file user\+\_\+config.\+h.
 
 \index{user\+\_\+config.\+h@{user\+\_\+config.\+h}!S\+Y\+S\+T\+E\+M\+\_\+\+T\+A\+S\+K\+\_\+\+HZ@{S\+Y\+S\+T\+E\+M\+\_\+\+T\+A\+S\+K\+\_\+\+HZ}}
 \index{S\+Y\+S\+T\+E\+M\+\_\+\+T\+A\+S\+K\+\_\+\+HZ@{S\+Y\+S\+T\+E\+M\+\_\+\+T\+A\+S\+K\+\_\+\+HZ}!user\+\_\+config.\+h@{user\+\_\+config.\+h}}
@@ -144,7 +105,7 @@ user task rate for software timers
 
 
 
-Definition at line 46 of file user\+\_\+config.\+h.
+Definition at line 45 of file user\+\_\+config.\+h.
 
 
 

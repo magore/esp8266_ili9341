@@ -25,8 +25,8 @@ var searchData=
   ['glyphs',['Glyphs',['../struct__font.html#a1e89c06fc11a730eb602522dc8953491',1,'_font']]],
   ['gmtime',['gmtime',['../time_8c.html#a10fe08d03c4c3da23d1e1c059f4cf3a5',1,'gmtime(time_t *tp):&#160;time.c'],['../time_8h.html#a10fe08d03c4c3da23d1e1c059f4cf3a5',1,'gmtime(time_t *tp):&#160;time.c']]],
   ['gmtime_5fr',['gmtime_r',['../time_8c.html#af391cf18b3fab0e588c6c3f354b7ca18',1,'gmtime_r(time_t *t, tm_t *result):&#160;time.c'],['../time_8h.html#af391cf18b3fab0e588c6c3f354b7ca18',1,'gmtime_r(time_t *t, tm_t *result):&#160;time.c']]],
-  ['gpio16_5fdir',['gpio16_dir',['../hal_8h.html#a2fabc84e0be54fdece3cd20d41b12c74',1,'hal.h']]],
-  ['gpio_5fout',['gpio_out',['../hal_8c.html#a1c4b62a7c1986c9cb0dd75dc60891f07',1,'gpio_out(uint8_t pin, uint8_t val):&#160;hal.c'],['../hal_8h.html#a1c4b62a7c1986c9cb0dd75dc60891f07',1,'gpio_out(uint8_t pin, uint8_t val):&#160;hal.c']]],
-  ['gpio_5frd',['gpio_rd',['../hal_8c.html#ab370198edf8edb5b2239f9112b7593d8',1,'gpio_rd(uint8_t pin):&#160;hal.c'],['../hal_8h.html#ab370198edf8edb5b2239f9112b7593d8',1,'gpio_rd(uint8_t pin):&#160;hal.c']]],
-  ['gpio_5fsfr_5fmode',['gpio_sfr_mode',['../hal_8c.html#a03b79fdcce1ebff78364efc2b49ec568',1,'gpio_sfr_mode(int pin):&#160;hal.c'],['../hal_8h.html#a03b79fdcce1ebff78364efc2b49ec568',1,'gpio_sfr_mode(int pin):&#160;hal.c']]]
+  ['gpio16_5fpin_5fdir',['gpio16_pin_dir',['../hal_8h.html#a79f30eff50141a93c341181a9e088a6e',1,'hal.h']]],
+  ['gpio_5fpin_5fout',['gpio_pin_out',['../hal_8c.html#a89f38d9e708a2136d2347bd1aff73010',1,'gpio_pin_out(uint8_t pin, uint8_t val):&#160;hal.c'],['../hal_8h.html#a89f38d9e708a2136d2347bd1aff73010',1,'gpio_pin_out(uint8_t pin, uint8_t val):&#160;hal.c']]],
+  ['gpio_5fpin_5frd',['gpio_pin_rd',['../hal_8c.html#a63ffa405ecc5ed74cf654bc8f9b24023',1,'gpio_pin_rd(uint8_t pin):&#160;hal.c'],['../hal_8h.html#a63ffa405ecc5ed74cf654bc8f9b24023',1,'gpio_pin_rd(uint8_t pin):&#160;hal.c']]],
+  ['gpio_5fpin_5fsfr_5fmode',['gpio_pin_sfr_mode',['../hal_8c.html#aae4c3f2e10c806143c255941be7aef16',1,'gpio_pin_sfr_mode(int pin):&#160;hal.c'],['../hal_8h.html#aae4c3f2e10c806143c255941be7aef16',1,'gpio_pin_sfr_mode(int pin):&#160;hal.c']]]
 ];

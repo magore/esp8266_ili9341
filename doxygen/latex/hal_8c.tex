@@ -6,21 +6,19 @@ H\+AL layer S\+PI, G\+P\+IO, address and chip select.
 
 
 {\ttfamily \#include \char`\"{}user\+\_\+config.\+h\char`\"{}}\\*
-{\ttfamily \#include $<$eagle\+\_\+soc.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}hal.\+h\char`\"{}}\\*
 {\ttfamily \#include $<$stdint.\+h$>$}\\*
 {\ttfamily \#include $<$stdarg.\+h$>$}\\*
 {\ttfamily \#include $<$string.\+h$>$}\\*
 {\ttfamily \#include $<$math.\+h$>$}\\*
-{\ttfamily \#include \char`\"{}hspi.\+h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}gpio.\+h\char`\"{}}\\*
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{hal_8c_a03b79fdcce1ebff78364efc2b49ec568}{gpio\+\_\+sfr\+\_\+mode} (int pin)
+void \hyperlink{hal_8c_aae4c3f2e10c806143c255941be7aef16}{gpio\+\_\+pin\+\_\+sfr\+\_\+mode} (int pin)
 \begin{DoxyCompactList}\small\item\em G\+P\+IO H\+AL. \end{DoxyCompactList}\item 
-void \hyperlink{hal_8c_a1c4b62a7c1986c9cb0dd75dc60891f07}{gpio\+\_\+out} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} pin, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} val)
+void \hyperlink{hal_8c_a89f38d9e708a2136d2347bd1aff73010}{gpio\+\_\+pin\+\_\+out} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} pin, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} val)
 \begin{DoxyCompactList}\small\item\em set G\+P\+IO pin state HI or L\+OW \end{DoxyCompactList}\item 
-\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} \hyperlink{hal_8c_ab370198edf8edb5b2239f9112b7593d8}{gpio\+\_\+rd} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} pin)
+\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} \hyperlink{hal_8c_a63ffa405ecc5ed74cf654bc8f9b24023}{gpio\+\_\+pin\+\_\+rd} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} pin)
 \begin{DoxyCompactList}\small\item\em read G\+P\+IO pin \end{DoxyCompactList}\item 
 void \hyperlink{hal_8c_a9eaae771107e6e01ef45ebe31ca99fdb}{chip\+\_\+select\+\_\+init} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} pin)
 \begin{DoxyCompactList}\small\item\em C\+H\+IP select H\+AL. \end{DoxyCompactList}\item 
@@ -34,8 +32,10 @@ void \hyperlink{hal_8c_abc9be250079b2b3fb01b888e431ec207}{chip\+\_\+addr} (int a
 \begin{DoxyCompactList}\small\item\em set address on G\+P\+IO lines \end{DoxyCompactList}\item 
 void \hyperlink{hal_8c_a98abd8ed313db191648e1d7ae2720f83}{spi\+\_\+wait\+Ready} ()
 \begin{DoxyCompactList}\small\item\em S\+PI bus wrapper functions for multiple device support. \end{DoxyCompactList}\item 
-void \hyperlink{hal_8c_acd8b481ba21b545f53061c5ab7ff451e}{spi\+\_\+begin} (\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} clock, int pin)
+void \hyperlink{hal_8c_a07907128317cdc79a94c6970d487b636}{spi\+\_\+init} (\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} clock, int pin)
 \item 
+void \hyperlink{hal_8c_acd8b481ba21b545f53061c5ab7ff451e}{spi\+\_\+begin} (\hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} clock, int pin)
+\begin{DoxyCompactList}\small\item\em S\+PI chip enable function Function waits for current tranaction to finish before proceeding. \end{DoxyCompactList}\item 
 void \hyperlink{hal_8c_a38fdaad472c50237f3d8821a01cda360}{spi\+\_\+end} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} pin)
 \begin{DoxyCompactList}\small\item\em S\+PI chip disable function wait for current tranaction to finish! \end{DoxyCompactList}\item 
 \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} \hyperlink{hal_8c_a0ed6ea0ae738366c5da7c9e2da1649ea}{spi\+\_\+chip\+\_\+select\+\_\+status} ()
@@ -56,7 +56,7 @@ void \hyperlink{hal_8c_ae1df55cfc018c50c9aec77000eae858c}{spi\+\_\+\+TX} (\hyper
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} \hyperlink{hal_8c_a1d1ec6333b265b4dd659ee605a2421de}{\+\_\+cs\+\_\+pin} = 0xff
-\begin{DoxyCompactList}\small\item\em S\+PI chip enable function Function waits for current tranaction to finish before proceeding. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em S\+PI init function Function waits for current tranaction to finish before proceeding. \end{DoxyCompactList}\item 
 \hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} \hyperlink{hal_8c_a3f4bc3feab2b705606ef696eceb93fba}{\+\_\+spi\+\_\+clock} = -\/1L
 \end{DoxyCompactItemize}
 
@@ -101,7 +101,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 279 of file hal.\+c.
+Definition at line 271 of file hal.\+c.
 
 \index{hal.\+c@{hal.\+c}!chip\+\_\+addr\+\_\+init@{chip\+\_\+addr\+\_\+init}}
 \index{chip\+\_\+addr\+\_\+init@{chip\+\_\+addr\+\_\+init}!hal.\+c@{hal.\+c}}
@@ -119,7 +119,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 250 of file hal.\+c.
+Definition at line 242 of file hal.\+c.
 
 
 
@@ -146,11 +146,11 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 234 of file hal.\+c.
+Definition at line 227 of file hal.\+c.
 
 
 
-Referenced by spi\+\_\+end().
+Referenced by spi\+\_\+end(), and spi\+\_\+init().
 
 \index{hal.\+c@{hal.\+c}!chip\+\_\+select@{chip\+\_\+select}}
 \index{chip\+\_\+select@{chip\+\_\+select}!hal.\+c@{hal.\+c}}
@@ -173,7 +173,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 219 of file hal.\+c.
+Definition at line 213 of file hal.\+c.
 
 
 
@@ -200,20 +200,20 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 203 of file hal.\+c.
+Definition at line 198 of file hal.\+c.
 
 
 
 Referenced by A\+D\+F4351\+\_\+spi\+\_\+init(), mmc\+\_\+spi\+\_\+init(), setup(), tft\+\_\+reset\+\_\+init(), tft\+\_\+spi\+\_\+init\+\_\+fast(), and tft\+\_\+spi\+\_\+init\+\_\+slow().
 
-\index{hal.\+c@{hal.\+c}!gpio\+\_\+out@{gpio\+\_\+out}}
-\index{gpio\+\_\+out@{gpio\+\_\+out}!hal.\+c@{hal.\+c}}
-\subsubsection[{\texorpdfstring{gpio\+\_\+out(uint8\+\_\+t pin, uint8\+\_\+t val)}{gpio_out(uint8_t pin, uint8_t val)}}]{\setlength{\rightskip}{0pt plus 5cm}void gpio\+\_\+out (
+\index{hal.\+c@{hal.\+c}!gpio\+\_\+pin\+\_\+out@{gpio\+\_\+pin\+\_\+out}}
+\index{gpio\+\_\+pin\+\_\+out@{gpio\+\_\+pin\+\_\+out}!hal.\+c@{hal.\+c}}
+\subsubsection[{\texorpdfstring{gpio\+\_\+pin\+\_\+out(uint8\+\_\+t pin, uint8\+\_\+t val)}{gpio_pin_out(uint8_t pin, uint8_t val)}}]{\setlength{\rightskip}{0pt plus 5cm}void gpio\+\_\+pin\+\_\+out (
 \begin{DoxyParamCaption}
 \item[{{\bf uint8\+\_\+t}}]{pin, }
 \item[{{\bf uint8\+\_\+t}}]{val}
 \end{DoxyParamCaption}
-)}\hypertarget{hal_8c_a1c4b62a7c1986c9cb0dd75dc60891f07}{}\label{hal_8c_a1c4b62a7c1986c9cb0dd75dc60891f07}
+)}\hypertarget{hal_8c_a89f38d9e708a2136d2347bd1aff73010}{}\label{hal_8c_a89f38d9e708a2136d2347bd1aff73010}
 
 
 set G\+P\+IO pin state HI or L\+OW 
@@ -230,15 +230,15 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 147 of file hal.\+c.
+Definition at line 155 of file hal.\+c.
 
-\index{hal.\+c@{hal.\+c}!gpio\+\_\+rd@{gpio\+\_\+rd}}
-\index{gpio\+\_\+rd@{gpio\+\_\+rd}!hal.\+c@{hal.\+c}}
-\subsubsection[{\texorpdfstring{gpio\+\_\+rd(uint8\+\_\+t pin)}{gpio_rd(uint8_t pin)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint8\+\_\+t} gpio\+\_\+rd (
+\index{hal.\+c@{hal.\+c}!gpio\+\_\+pin\+\_\+rd@{gpio\+\_\+pin\+\_\+rd}}
+\index{gpio\+\_\+pin\+\_\+rd@{gpio\+\_\+pin\+\_\+rd}!hal.\+c@{hal.\+c}}
+\subsubsection[{\texorpdfstring{gpio\+\_\+pin\+\_\+rd(uint8\+\_\+t pin)}{gpio_pin_rd(uint8_t pin)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint8\+\_\+t} gpio\+\_\+pin\+\_\+rd (
 \begin{DoxyParamCaption}
 \item[{{\bf uint8\+\_\+t}}]{pin}
 \end{DoxyParamCaption}
-)}\hypertarget{hal_8c_ab370198edf8edb5b2239f9112b7593d8}{}\label{hal_8c_ab370198edf8edb5b2239f9112b7593d8}
+)}\hypertarget{hal_8c_a63ffa405ecc5ed74cf654bc8f9b24023}{}\label{hal_8c_a63ffa405ecc5ed74cf654bc8f9b24023}
 
 
 read G\+P\+IO pin 
@@ -255,13 +255,13 @@ read G\+P\+IO pin
 
 Definition at line 178 of file hal.\+c.
 
-\index{hal.\+c@{hal.\+c}!gpio\+\_\+sfr\+\_\+mode@{gpio\+\_\+sfr\+\_\+mode}}
-\index{gpio\+\_\+sfr\+\_\+mode@{gpio\+\_\+sfr\+\_\+mode}!hal.\+c@{hal.\+c}}
-\subsubsection[{\texorpdfstring{gpio\+\_\+sfr\+\_\+mode(int pin)}{gpio_sfr_mode(int pin)}}]{\setlength{\rightskip}{0pt plus 5cm}void gpio\+\_\+sfr\+\_\+mode (
+\index{hal.\+c@{hal.\+c}!gpio\+\_\+pin\+\_\+sfr\+\_\+mode@{gpio\+\_\+pin\+\_\+sfr\+\_\+mode}}
+\index{gpio\+\_\+pin\+\_\+sfr\+\_\+mode@{gpio\+\_\+pin\+\_\+sfr\+\_\+mode}!hal.\+c@{hal.\+c}}
+\subsubsection[{\texorpdfstring{gpio\+\_\+pin\+\_\+sfr\+\_\+mode(int pin)}{gpio_pin_sfr_mode(int pin)}}]{\setlength{\rightskip}{0pt plus 5cm}void gpio\+\_\+pin\+\_\+sfr\+\_\+mode (
 \begin{DoxyParamCaption}
 \item[{int}]{pin}
 \end{DoxyParamCaption}
-)}\hypertarget{hal_8c_a03b79fdcce1ebff78364efc2b49ec568}{}\label{hal_8c_a03b79fdcce1ebff78364efc2b49ec568}
+)}\hypertarget{hal_8c_aae4c3f2e10c806143c255941be7aef16}{}\label{hal_8c_aae4c3f2e10c806143c255941be7aef16}
 
 
 G\+P\+IO H\+AL. 
@@ -278,7 +278,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 43 of file hal.\+c.
+Definition at line 52 of file hal.\+c.
 
 \index{hal.\+c@{hal.\+c}!spi\+\_\+begin@{spi\+\_\+begin}}
 \index{spi\+\_\+begin@{spi\+\_\+begin}!hal.\+c@{hal.\+c}}
@@ -288,9 +288,28 @@ Definition at line 43 of file hal.\+c.
 \item[{int}]{pin}
 \end{DoxyParamCaption}
 )}\hypertarget{hal_8c_acd8b481ba21b545f53061c5ab7ff451e}{}\label{hal_8c_acd8b481ba21b545f53061c5ab7ff451e}
+
+
+S\+PI chip enable function Function waits for current tranaction to finish before proceeding. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{hal_8c_a98abd8ed313db191648e1d7ae2720f83}{spi\+\_\+wait\+Ready} 
+
+\hyperlink{hal_8c_aad867d10e56c181c12b29a8871b0898f}{chip\+\_\+select} 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em clock} & S\+PI clock rate \\
+\hline
+\mbox{\tt in}  & {\em pin} & G\+P\+IO CS pin \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
 initialize pin in case it has not been done yet @ we cache the clock frequency seeting for multiple device support 
 
-Definition at line 335 of file hal.\+c.
+Definition at line 356 of file hal.\+c.
 
 
 
@@ -309,7 +328,7 @@ S\+PI CS pin status return CS G\+P\+IO pin number or 0xff.
 
 
 
-Definition at line 391 of file hal.\+c.
+Definition at line 405 of file hal.\+c.
 
 
 
@@ -341,11 +360,27 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 375 of file hal.\+c.
+Definition at line 389 of file hal.\+c.
 
 
 
 Referenced by A\+D\+F4351\+\_\+spi\+\_\+end(), loop(), mmc\+\_\+spi\+\_\+end(), and tft\+\_\+spi\+\_\+end().
+
+\index{hal.\+c@{hal.\+c}!spi\+\_\+init@{spi\+\_\+init}}
+\index{spi\+\_\+init@{spi\+\_\+init}!hal.\+c@{hal.\+c}}
+\subsubsection[{\texorpdfstring{spi\+\_\+init(uint32\+\_\+t clock, int pin)}{spi_init(uint32_t clock, int pin)}}]{\setlength{\rightskip}{0pt plus 5cm}void spi\+\_\+init (
+\begin{DoxyParamCaption}
+\item[{{\bf uint32\+\_\+t}}]{clock, }
+\item[{int}]{pin}
+\end{DoxyParamCaption}
+)}\hypertarget{hal_8c_a07907128317cdc79a94c6970d487b636}{}\label{hal_8c_a07907128317cdc79a94c6970d487b636}
+
+
+Definition at line 328 of file hal.\+c.
+
+
+
+Referenced by spi\+\_\+begin().
 
 \index{hal.\+c@{hal.\+c}!spi\+\_\+\+RX@{spi\+\_\+\+RX}}
 \index{spi\+\_\+\+RX@{spi\+\_\+\+RX}!hal.\+c@{hal.\+c}}
@@ -363,7 +398,7 @@ uint8\+\_\+t value
 \end{DoxyReturn}
 
 
-Definition at line 441 of file hal.\+c.
+Definition at line 455 of file hal.\+c.
 
 \index{hal.\+c@{hal.\+c}!spi\+\_\+\+R\+X\+\_\+buffer@{spi\+\_\+\+R\+X\+\_\+buffer}}
 \index{spi\+\_\+\+R\+X\+\_\+buffer@{spi\+\_\+\+R\+X\+\_\+buffer}!hal.\+c@{hal.\+c}}
@@ -389,7 +424,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 415 of file hal.\+c.
+Definition at line 429 of file hal.\+c.
 
 
 
@@ -416,7 +451,11 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 456 of file hal.\+c.
+Definition at line 470 of file hal.\+c.
+
+
+
+Referenced by spi\+\_\+init().
 
 \index{hal.\+c@{hal.\+c}!spi\+\_\+\+T\+X\+\_\+buffer@{spi\+\_\+\+T\+X\+\_\+buffer}}
 \index{spi\+\_\+\+T\+X\+\_\+buffer@{spi\+\_\+\+T\+X\+\_\+buffer}!hal.\+c@{hal.\+c}}
@@ -442,7 +481,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 401 of file hal.\+c.
+Definition at line 415 of file hal.\+c.
 
 
 
@@ -469,7 +508,7 @@ uint8\+\_\+t value read
 \end{DoxyReturn}
 
 
-Definition at line 470 of file hal.\+c.
+Definition at line 484 of file hal.\+c.
 
 
 
@@ -499,7 +538,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 429 of file hal.\+c.
+Definition at line 443 of file hal.\+c.
 
 
 
@@ -521,11 +560,11 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 315 of file hal.\+c.
+Definition at line 307 of file hal.\+c.
 
 
 
-Referenced by spi\+\_\+begin(), spi\+\_\+end(), tft\+\_\+spi\+\_\+\+R\+X(), tft\+\_\+spi\+\_\+\+T\+X(), and tft\+\_\+spi\+\_\+\+T\+X\+R\+X().
+Referenced by spi\+\_\+begin(), spi\+\_\+end(), spi\+\_\+init(), tft\+\_\+spi\+\_\+\+R\+X(), tft\+\_\+spi\+\_\+\+T\+X(), and tft\+\_\+spi\+\_\+\+T\+X\+R\+X().
 
 
 
@@ -535,7 +574,7 @@ Referenced by spi\+\_\+begin(), spi\+\_\+end(), tft\+\_\+spi\+\_\+\+R\+X(), tft\
 \subsubsection[{\texorpdfstring{\+\_\+cs\+\_\+pin}{_cs_pin}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint8\+\_\+t} \+\_\+cs\+\_\+pin = 0xff}\hypertarget{hal_8c_a1d1ec6333b265b4dd659ee605a2421de}{}\label{hal_8c_a1d1ec6333b265b4dd659ee605a2421de}
 
 
-S\+PI chip enable function Function waits for current tranaction to finish before proceeding. 
+S\+PI init function Function waits for current tranaction to finish before proceeding. 
 
 \begin{DoxySeeAlso}{See also}
 \hyperlink{hal_8c_a98abd8ed313db191648e1d7ae2720f83}{spi\+\_\+wait\+Ready} 
@@ -554,20 +593,20 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 333 of file hal.\+c.
+Definition at line 326 of file hal.\+c.
 
 
 
-Referenced by spi\+\_\+begin(), spi\+\_\+chip\+\_\+select\+\_\+status(), and spi\+\_\+end().
+Referenced by spi\+\_\+begin(), spi\+\_\+chip\+\_\+select\+\_\+status(), spi\+\_\+end(), and spi\+\_\+init().
 
 \index{hal.\+c@{hal.\+c}!\+\_\+spi\+\_\+clock@{\+\_\+spi\+\_\+clock}}
 \index{\+\_\+spi\+\_\+clock@{\+\_\+spi\+\_\+clock}!hal.\+c@{hal.\+c}}
 \subsubsection[{\texorpdfstring{\+\_\+spi\+\_\+clock}{_spi_clock}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint32\+\_\+t} \+\_\+spi\+\_\+clock = -\/1L}\hypertarget{hal_8c_a3f4bc3feab2b705606ef696eceb93fba}{}\label{hal_8c_a3f4bc3feab2b705606ef696eceb93fba}
 
 
-Definition at line 334 of file hal.\+c.
+Definition at line 327 of file hal.\+c.
 
 
 
-Referenced by spi\+\_\+begin().
+Referenced by spi\+\_\+begin(), and spi\+\_\+init().
 

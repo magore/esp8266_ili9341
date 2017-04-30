@@ -24,19 +24,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "user_config.h"
+#include "fatfs.h"
 
 #ifdef AVR
-#include <stdio.h>
+//#include <stdio.h>
 #include <stdlib.h>
 #endif
 
-#include "esp8266/system.h"
 #include "lib/time.h"
 #include "lib/stringsup.h"
 
 #include "printf/mathio.h"
 
-#include "fatfs.sup/fatfs.h"
 #include "fatfs.sup/posix.h"
 
 
@@ -175,7 +174,7 @@ void fatfs_ls(char *ptr)
         printf(", %10luK bytes free\n", p1 * fs->csize / 2);
 }
 
-ls_info(char *name, int verbose)
+int ls_info(char *name, int verbose)
 {
 	int i;
     struct stat sp;
@@ -187,7 +186,7 @@ ls_info(char *name, int verbose)
 	if(!verbose)
 	{
 		printf("%s\n",name);
-		return;
+		return(0);
 	}
 
     if(stat(name, &sp) == -1) 
@@ -220,6 +219,7 @@ ls_info(char *name, int verbose)
         (long) sp.st_size, 
         mctime((time_t)sp.st_mtime),
         basename(name));
+	return(1);
 }
 
 void ls(char *path, int verbose)
@@ -249,10 +249,12 @@ void ls(char *path, int verbose)
 				printf("opendir failed\n");
 				return;
 			}
-			while (de = readdir(dirp)) 
+			while ( (de = readdir(dirp)) ) 
 			{
 				if(de->d_name[0] == 0)
 					break;
+
+//printf("name:[%s]\n", de->d_name);
 
 				// FIXME neeed beetter string length tests here
 				strncpy(name,path,MAX_NAME_LEN);

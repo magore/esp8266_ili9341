@@ -22,7 +22,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "user_config.h"
-#include "fatfs.h"
 
 #include "uart.h"
 #include "uart_register.h"

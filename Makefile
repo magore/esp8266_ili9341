@@ -25,6 +25,7 @@ XTENSA_TOOLS_ROOT ?= $(ROOT_DIR)/xtensa-lx106-elf/bin
 SDK_BASE	?= $(ROOT_DIR)/sdk
 SDK_TOOLS	?= $(SDK_BASE)/tools
 DEF_INIT     ?= $(SDK_BASE)/bin/esp_init_data_default.bin
+BLANK_INIT  ?= $(SDK_BASE)/bin/blank.bin
 
 #ESPTOOL		?= esptool-ck/esptool
 #ESPTOOL		?= $(SDK_TOOLS)/esptool.py
@@ -150,12 +151,12 @@ WEBSERVER = 1
 # 4 send/yield task information
 # 8 HTML processing
 # 16 characters from socket I/O
+# 32 file processing
 #WEB_DEBUG = 1+8
 WEB_DEBUG = 1
 
 # Maximum number of WEB connections
-MAX_CONNECTIONS = 8
-
+MAX_CONNECTIONS = 6
 
 # =========================
 # Matrix Debugging
@@ -283,6 +284,11 @@ VOLTAGE_TEST = 1
 #   voltage
 DEBUG_STATS = 1
 
+# Vector fonts
+#VFONTS = 1
+ifdef VFONTS
+	CFLAGS += -DVFONTS
+endif
 
 # TFT display DEBUG level
 ifdef ILI9341_DEBUG
@@ -513,7 +519,9 @@ support:
 	-@$(MAKE) -C cordic/make_cordic all
 	-@$(MAKE) -C earth all
 	-@$(MAKE) -C fonts all
+ifdef VFONTS
 	-@$(MAKE) -C vfonts all
+endif
 
 checkdirs: $(BUILD_DIR) $(FW_BASE)
 
@@ -569,18 +577,32 @@ $(FW):	$(ELF) size
 #  eagle.irom0text.bin        0x10000             0x10000              0x10000              0x10000
 # =================================================================================================
 
-
-
-
 flash: all
 	$(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) write_flash $(FW_ARGS)  0 $(FW)
+	$(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) verify_flash $(FW_ARGS) 0 $(FW)
 	miniterm.py --parity N -e --rts 0 --dtr 0 /dev/ttyUSB0 115200
 
-flashinit:
+verify: flash
+	$(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) verify_flash $(FW_ARGS) 0 $(FW)
+
+init: 
+	@echo Disabled untill the correct recovery steps from a blank fash can be determined
+	$(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) write_flash 0x7c000 $(BLANK_INIT)
+	$(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) write_flash 0x7d000 $(BLANK_INIT)
+	$(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) write_flash 0x7e000 $(BLANK_INIT)
+	$(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) write_flash 0x7f000 $(BLANK_INIT)
 	$(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) write_flash 0x7c000 $(DEF_INIT)
 
-flashzero: checkdirs
-	$(ESPTOOL) -p $(ESPPORT) -b $(BAUD) erase_flash
+verify-init: init
+	@echo Disabled untill the correct recovery steps from a blank fash can be determined
+	$(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) verify_flash 0x7c000 $(DEF_INIT)
+	$(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) verify_flash 0x7d000 $(BLANK_INIT)
+	$(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) verify_flash 0x7e000 $(BLANK_INIT)
+	$(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) verify_flash 0x7f000 $(BLANK_INIT)
+
+erase: checkdirs
+	@echo Disabled untill the correct recovery steps from a blank fash can be determined
+	$(ESPTOOL) --port $(ESPPORT) -b $(BAUD) erase_flash
 
 .PHONY: testflash
 testflash:
@@ -640,7 +662,7 @@ doxyfile.inc:
 	echo "FILE_PATTERNS =  *.h *.c *.md" >> doxyfile.inc
 
 .PHONY: doxy
-doxy:   doxyfile.inc $(SRCS)
+doxy:   doxyfile.inc 
 	#export PYTHONPATH=$(PYTHONPATH):/share/embedded/testgen-0.11/extras
 	doxygen Doxyfile
 # ===============================================================

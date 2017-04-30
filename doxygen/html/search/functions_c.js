@@ -1,7 +1,7 @@
 var searchData=
 [
   ['main',['main',['../send_8c.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main(int argc, char *argv[]):&#160;send.c'],['../testflash_8c.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main(int argc, char *argv[]):&#160;testflash.c'],['../earth2wireframe_8c.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main(int argc, char *argv[]):&#160;earth2wireframe.c'],['../bdffont2c_8c.html#af3ed9c200de85b53c94cd18764b246a2',1,'main(int argc, char *const argv[]):&#160;bdffont2c.c'],['../bdfview_8c.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main(int argc, char *argv[]):&#160;bdfview.c'],['../cordic2c_8c.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main(int argc, char *argv[]):&#160;cordic2c.c']]],
-  ['malloc',['malloc',['../system_8c.html#a22b308551dea873face80619301d5618',1,'malloc(size_t size):&#160;system.c'],['../system_8h.html#a22b308551dea873face80619301d5618',1,'malloc(size_t size):&#160;system.c']]],
+  ['malloc',['malloc',['../system_8c.html#a22b308551dea873face80619301d5618',1,'system.c']]],
   ['matalloc',['MatAlloc',['../matrix_8c.html#adf8d43659cfe0a22ec496504c7131044',1,'MatAlloc(int rows, int cols):&#160;matrix.c'],['../matrix_8h.html#adf8d43659cfe0a22ec496504c7131044',1,'MatAlloc(int rows, int cols):&#160;matrix.c']]],
   ['matallocsq',['MatAllocSQ',['../matrix_8c.html#a0151d7c31f203a5f972545a00b049ca8',1,'MatAllocSQ(int size):&#160;matrix.c'],['../matrix_8h.html#a0151d7c31f203a5f972545a00b049ca8',1,'MatAllocSQ(int size):&#160;matrix.c']]],
   ['match',['MATCH',['../stringsup_8c.html#a9fb9c5c9b25cdf504152f7610f0d118c',1,'MATCH(char *str, char *pat):&#160;stringsup.c'],['../stringsup_8h.html#a9fb9c5c9b25cdf504152f7610f0d118c',1,'MATCH(char *str, char *pat):&#160;stringsup.c']]],

@@ -11,6 +11,7 @@
 
 /* mmc.c */
 #include "user_config.h"
+#include "fatfs.h"
 //#include "mmc_hal.h"
 
 

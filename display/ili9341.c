@@ -111,20 +111,17 @@ int32_t tft_abs_window(window *win, int16_t x, int16_t y, int16_t w, int16_t h)
 
 	// Now We know the result will fit
 	xl = x + w - 1;
-	yl = y + h - 1;
-
     tmp[0] = x >> 8;
     tmp[1] = x & 0xff;
     tmp[2] = xl >> 8;
     tmp[3] = xl & 0xff;
-	
     tft_Cmd_Data_TX(0x2A, tmp, 4);
 
+	yl = y + h - 1;
     tmp[0] = y >> 8;
     tmp[1] = y & 0xff;
     tmp[2] = yl >> 8;
     tmp[3] = yl & 0xff;
-
     tft_Cmd_Data_TX(0x2B, tmp, 4);
 
 	bytes = w;
@@ -313,9 +310,9 @@ void tft_bit_blit(window *win, uint8_t *ptr, int16_t x, int16_t y, int16_t w, in
         for (xx=0;xx < w; ++xx)
         {
             if(bittestv(ptr, xx + off))
-                tft_drawPixel(x+xx,y+yy,fg);
+                tft_drawPixel(win,x+xx,y+yy,fg);
             else
-                tft_drawPixel(x+xx,y+yy,bg);
+                tft_drawPixel(win,x+xx,y+yy,bg);
         }
         off += w;
     }
@@ -371,8 +368,8 @@ void tft_flood(window *win, int16_t x, int16_t y, uint16_t border, uint16_t fill
 /// @brief X,Y point stack
 #define XYSTACK 64
 static struct {
-	int16_t x[XYSTACK+1];
-	int16_t y[XYSTACK+1];
+	int16_t x[XYSTACK+2];
+	int16_t y[XYSTACK+2];
 	int ind;
 } xy;
 
@@ -420,9 +417,21 @@ int tft_floodline(window *win, int16_t x, int16_t y, uint16_t border, uint16_t f
 {
 	int lineAbove, lineBelow;
 	int16_t  xoff;
+	int count = 0;
 
 	// reset stack
 	xy.ind = 0;
+
+	if(x < 0 || x >= win->w)
+	{
+		printf("tft_floodline: X out of range\n");
+		return(0);
+	}
+	if(y < 0 || y >= win->h)
+	{
+		printf("tft_floodline: Y out of range\n");
+		return(0);
+	}
 
 	// test for stack full
 	if(!tft_push_xy(x, y)) 
@@ -430,22 +439,34 @@ int tft_floodline(window *win, int16_t x, int16_t y, uint16_t border, uint16_t f
 
 	// while we have stacked items
 	// FIXME we can bypass readpixel - read any entire line interruped by the color check
-	while(tft_pop_xy(&x, &y))
+	while(tft_pop_xy((int16_t *)&x, (int16_t *)&y))
 	{
 		if(x < 0 || x >= win->w)
-			continue;
+		{
+			printf("tft_floodline: X out of range\n");
+			return(0);
+		}
 		if(y < 0 || y >= win->h)
-			continue;
-		
+		{
+			printf("tft_floodline: Y out of range\n");
+			return(0);
+		}
 		xoff = x;
 		while(xoff >= 0 && tft_readPixel(win,xoff,y) != border ) 
 			xoff--;
 		xoff++;
+
 		lineAbove = lineBelow = 0;
 
 		while(xoff < win->w && tft_readPixel(win,xoff,y) != border)
 		{
 			tft_drawPixel(win,xoff,y,fill);
+			if(++count >= 1000)
+			{
+				optimistic_yield(1000);
+				count = 0;
+			}
+
 
 			if(!lineAbove && y > 0 && tft_readPixel(win,xoff,y-1) != border)
 			{
@@ -475,6 +496,124 @@ int tft_floodline(window *win, int16_t x, int16_t y, uint16_t border, uint16_t f
 	return(1);
 }
 
+
+/// @brief find beginning and end of all non-matching color transitions in a line
+/// FIXME: not tested yet
+/// @param[in] win*: window structure
+/// @param[in] x: X position to start scan
+/// @param[in] y: Y line to scan
+/// @param[in] *vec: start and end of transition offsets
+/// @param[in] count: maximum size of transitions to save
+/// @param[in] color: match color
+/// @ return true count of saved transitions
+#define MAXVEC 24
+int tft_FillPolyLine(window *win, int16_t x, int16_t y, int w, uint16_t color)
+{
+	uint8_t data[3];
+	uint16_t val;
+	int pixels;
+	int ind,state;
+	int inside;
+	int count;
+	int16_t vec[MAXVEC+2];
+
+
+	// tft_rel_window() clips
+    pixels = tft_rel_window(win, x,y,w,1);
+	if(!pixels)
+		return(0);
+	if(pixels != w)
+	{
+			printf("FillPoly: w(%d) != pixels(%d)\n", (int) w, pixels);
+	}
+
+	// scan
+	tft_spi_begin();
+	tft_Cmd(0x2e);	// Memory Read
+	tft_Cmd(0);	// NOP
+
+	state = 0;
+	ind = 0;
+	inside = 0;
+	while(pixels > 0)
+	{
+		data[0] = 0;
+		data[1] = 0;
+		data[2] = 0;
+		tft_spi_RX(data, 3,1);
+		val = tft_RGBto565(data[0],data[1],data[2]);
+
+			switch(state)
+			{
+				case 0:
+					/* match state */
+					if(val == color)
+					{
+						/* go to wait for unmatched state */
+						state = 1;
+						++inside;
+					}
+					break;
+				case 1:	
+					/* wait for unmatched state */
+					/* match to unmatch state */
+					if(val != color)
+					{
+						if(inside & 1)
+						{
+							// Save offset of start of unset transition 
+							if(ind < MAXVEC)
+								vec[ind++] = x;
+						}
+						/* go to wait for matched state */
+						state = 2;
+					}
+
+					break;
+				case 2:
+					/* unmatch to match */
+					/* wait for matched state */
+					if(val == color)
+					{
+						if(inside & 1)
+						{
+							// Save offset of LAST unmatched state
+							if(ind < MAXVEC)
+								vec[ind++] = x-1;
+						}
+						/* go to wait for unmatched state */
+						++inside;
+						state = 1;
+						
+					}
+					break;
+			}
+		++x;
+		--pixels;
+	}
+	tft_spi_end();
+
+	count = ind;
+	if(count >= 2)
+	{
+#if 1
+		int j;
+		printf("count[%d] @ line %d\n", count, y);
+		for(j=0;j<ind;++j)
+			printf("%d \n", (int)vec[j]);
+		printf("\n");
+#endif
+		ind = 0;
+		while(count >= 2)
+		{
+			// tft_drawLine ( win , vec[ind], y, vec[ind+1], y, color );
+			tft_drawFastHLine ( win , vec[ind], y, vec[ind+1]-vec[ind]+1, color );
+			count -= 2;
+			ind += 2;
+		}
+	}
+	return(ind);
+}
 
 /// @brief  Partial window Fill with color
 /// We clip the window to the current view
@@ -1324,33 +1463,29 @@ void tft_drawLine(window *win, int16_t x0, int16_t y0, int16_t x1, int16_t y1, u
    The tangents to the curve at S and T intersect at C. 
 
    @param[in] *win: Window Structure of active window
-   @param[in] SX: Start X
-   @param[in] SY: Start Y
-   @param[in] CX: Control X
-   @param[in] CY: Control Y
-   @param[in] TX: Target X
-   @param[in] TY: Target Y
+   @param[in] S: Start 
+   @param[in] C: Control 
+   @param[in] T: Target 
    @param[in] steps: line segments along curve (1..N) 
    @param[in] color: Line color
-   @return  void
+   @return  count of line segments
 */
 
-void tft_Bezier2(window *win, int16_t SX, int16_t SY, int16_t CX, int16_t CY, int16_t TX, int16_t TY, int steps, uint16_t color)
+int tft_Bezier2(window *win, p2_int16_t S, p2_int16_t C, p2_int16_t T, int steps, uint16_t color)
 {
 	float t, tinc, t1,p1,p2,p3;
-	int16_t LX = SX;
-	int16_t LY = SY;
+	p2_int16_t Last,Point;
 	int16_t X,Y;
+	int ind = 0;
 	int i;
 
-	LX = SX;
-	LY = SY;
+	Last = S;
 	t = 0;
 
 	if(steps < 1)
 		steps = 1;
 
-	// FXIME we should compute a step size based on the start to end point distances
+	// FIXME we should compute a step size based on the start to end point distances
 	tinc = 1.0 / (float) steps;	// steps = 1 will just draw one line
 
 	// Quadratic Bezier http://en.wikipedia.org/wiki/Bézier_curve
@@ -1364,15 +1499,15 @@ void tft_Bezier2(window *win, int16_t SX, int16_t SY, int16_t CX, int16_t CY, in
 		p2 = 2.0 * t1 * t;  /* 2(1.0 - t) * t */
 		p3 = t * t;			/* t * t */
 
-		X = (int16_t) (p1 * (float)SX + p2 * (float)CX + p3 * (float)TX);
-		Y = (int16_t) (p1 * (float)SY + p2 * (float)CY + p3 * (float)TY);
+		Point.X = (int16_t) (p1 * (float)S.X + p2 * (float)C.X + p3 * (float)T.X);
+		Point.Y = (int16_t) (p1 * (float)S.Y + p2 * (float)C.Y + p3 * (float)T.Y);
 		// Do not plot a line until we actually move
-		if(LX == X && LY == Y)
+		if(Last.X == Point.X && Last.Y == Point.Y)
 			continue;
-		tft_drawLine(win, LX, LY, X, Y, color);
-		LX = X;
-		LY = Y;
+		tft_drawLine(win, Last.X, Last.Y, Point.X, Point.Y, color);
+		Last = Point;
 	}
+	return(ind);
 }
 
 /**
@@ -1398,34 +1533,31 @@ void tft_Bezier2(window *win, int16_t SX, int16_t SY, int16_t CX, int16_t CY, in
 
 
    @param[in] *win: Window Structure of active window
-   @param[in] SX: Start X
-   @param[in] SY: Start Y
-   @param[in] C1X: Control 1 X
-   @param[in] C1Y: Control 1 Y
-   @param[in] C2X: Control 2 X
-   @param[in] C1Y: Control 2 Y
-   @param[in] TX: Target X
-   @param[in] TY: Target Y
+   @param[in] S: Start 
+   @param[in] C1: Control 1 
+   @param[in] C2: Control 2 
+   @param[in] T: Target 
    @param[in] steps: line segments along curve (1..N) 
    @param[in] color: Line color
-   @return  void
+   @return  count of line segments
 */
 
-void tft_Bezier3(window *win, int16_t SX, int16_t SY, int16_t C1X, int16_t C1Y, int16_t C2X, int16_t C2Y, int16_t TX, int16_t TY, int steps, uint16_t color)
+int tft_Bezier3(window *win, p2_int16_t S, p2_int16_t C1, p2_int16_t C2, p2_int16_t T, int steps, uint16_t color)
 {
 	float t, tinc, c0, t1,t2,p1,p2,p3,p4;
-	int16_t LX = SX;
-	int16_t LY = SY;
+	p2_int16_t Last,Point;
 	int16_t X,Y;
 	int i;
+	int ind;
 
-	LX = SX;
-	LY = SY;
-	t = 0;
+	Last = S;
 
 	if(steps < 1)
 		steps = 1;
 
+	ind = 0;
+
+	t = 0;
 	// FXIME we should compute a step size based on the start to end point distances
 	tinc = 1.0 / (float) steps;	// steps = 1 will just draw one line
 
@@ -1444,16 +1576,17 @@ void tft_Bezier3(window *win, int16_t SX, int16_t SY, int16_t C1X, int16_t C1Y, 
 		p3 = c0 * t;		/* 3(1-t) * t * t */
 		p4 = t * t * t;		/* t * t * t */
 
-		X = (int16_t) (p1 * (float)SX + p2 * (float)C1X + p3 * (float) C2X + p4 * (float)TX);
-		Y = (int16_t) (p3 * (float)SY + p2 * (float)C1Y + p3 * (float) C2Y + p4 * (float)TY);
+		Point.X = (int16_t) (p1 * (float)S.X + p2 * (float)C1.X + p3 * (float) C2.X + p4 * (float)T.X);
+		Point.Y = (int16_t) (p3 * (float)S.Y + p2 * (float)C1.Y + p3 * (float) C2.Y + p4 * (float)T.Y);
 
 		// Do not plot a line until we actually move
-		if(LX == X && LY == Y)
+		if(Last.X == X && Last.Y == Y)
 			continue;
-		tft_drawLine(win, LX, LY, X, Y, color);
-		LX = X;
-		LY = Y;
+		tft_drawLine(win, Last.X, Last.Y, X, Y, color);
+		Last = Point;
+		++ind;
 	}
+	return(ind);
 }
 
 

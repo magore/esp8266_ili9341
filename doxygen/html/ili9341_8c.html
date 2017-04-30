@@ -114,6 +114,9 @@ Macros</h2></td></tr>
 <tr class="memitem:a71d0761bc813dbcb85353d2508693493"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#a71d0761bc813dbcb85353d2508693493">XYSTACK</a>&#160;&#160;&#160;64</td></tr>
 <tr class="memdesc:a71d0761bc813dbcb85353d2508693493"><td class="mdescLeft">&#160;</td><td class="mdescRight">X,Y point stack.  <a href="#a71d0761bc813dbcb85353d2508693493">More...</a><br /></td></tr>
 <tr class="separator:a71d0761bc813dbcb85353d2508693493"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8936d2dc66f704b60c78e65dc0d7244"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#ae8936d2dc66f704b60c78e65dc0d7244">MAXVEC</a>&#160;&#160;&#160;24</td></tr>
+<tr class="memdesc:ae8936d2dc66f704b60c78e65dc0d7244"><td class="mdescLeft">&#160;</td><td class="mdescRight">find beginning and end of all non-matching color transitions in a line FIXME: not tested yet  <a href="#ae8936d2dc66f704b60c78e65dc0d7244">More...</a><br /></td></tr>
+<tr class="separator:ae8936d2dc66f704b60c78e65dc0d7244"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ae7ac40c6ea3d1e5a457adf60a6bf5b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#a4ae7ac40c6ea3d1e5a457adf60a6bf5b">HSPI_PIX</a>&#160;&#160;&#160;((<a class="el" href="hspi_8h.html#a1eaecab4a7e4f328f38ce57d4d3012d1">HSPI_FIFO_SIZE</a>-2)/3)</td></tr>
 <tr class="memdesc:a4ae7ac40c6ea3d1e5a457adf60a6bf5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read Rectangle and return 16bit color array in 565 RGB format We clip the window to the current view Note: TFT Chip Select must be asserted for each block read As soon as chip select goes high the read aborts! We break up the data into chunks with a Memory Read, followed by Memory Read Continue So we use Memory Read and Memory Read Continue.  <a href="#a4ae7ac40c6ea3d1e5a457adf60a6bf5b">More...</a><br /></td></tr>
 <tr class="separator:a4ae7ac40c6ea3d1e5a457adf60a6bf5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -131,10 +134,10 @@ Functions</h2></td></tr>
 <tr class="memitem:a666fba3ffecff43f44c647bed2d012fe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#a666fba3ffecff43f44c647bed2d012fe">tft_Cmd_Data_TX</a> (<a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> cmd, <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> *data, int bytes)</td></tr>
 <tr class="memdesc:a666fba3ffecff43f44c647bed2d012fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transmit 8 bit command and optionally send data buffer.  <a href="#a666fba3ffecff43f44c647bed2d012fe">More...</a><br /></td></tr>
 <tr class="separator:a666fba3ffecff43f44c647bed2d012fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4f8e68425197b38f3c9889b64b24f362"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#a32f2e37ee053cf2ce8ca28d1f74630e5">int32_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#a4f8e68425197b38f3c9889b64b24f362">tft_abs_window</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t <a class="el" href="ili9341_8c.html#a7e1c531941c89bac69fe489cc3ff0790">x</a>, int16_t <a class="el" href="ili9341_8c.html#ab82fda4a9377d83187ff1ebd806ea27c">y</a>, int16_t w, int16_t h)</td></tr>
+<tr class="memitem:a4f8e68425197b38f3c9889b64b24f362"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#a32f2e37ee053cf2ce8ca28d1f74630e5">int32_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#a4f8e68425197b38f3c9889b64b24f362">tft_abs_window</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t <a class="el" href="ili9341_8c.html#a12ad102c2d1e7e119fdc040b0c922c7e">x</a>, int16_t <a class="el" href="ili9341_8c.html#afe490938209e0b6b15224c05a01f0b40">y</a>, int16_t w, int16_t h)</td></tr>
 <tr class="memdesc:a4f8e68425197b38f3c9889b64b24f362"><td class="mdescLeft">&#160;</td><td class="mdescRight">=============================================================  <a href="#a4f8e68425197b38f3c9889b64b24f362">More...</a><br /></td></tr>
 <tr class="separator:a4f8e68425197b38f3c9889b64b24f362"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a26f9b4da8c98bb40a55da447874a849c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#a32f2e37ee053cf2ce8ca28d1f74630e5">int32_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#a26f9b4da8c98bb40a55da447874a849c">tft_rel_window</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t <a class="el" href="ili9341_8c.html#a7e1c531941c89bac69fe489cc3ff0790">x</a>, int16_t <a class="el" href="ili9341_8c.html#ab82fda4a9377d83187ff1ebd806ea27c">y</a>, int16_t w, int16_t h)</td></tr>
+<tr class="memitem:a26f9b4da8c98bb40a55da447874a849c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#a32f2e37ee053cf2ce8ca28d1f74630e5">int32_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#a26f9b4da8c98bb40a55da447874a849c">tft_rel_window</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t <a class="el" href="ili9341_8c.html#a12ad102c2d1e7e119fdc040b0c922c7e">x</a>, int16_t <a class="el" href="ili9341_8c.html#afe490938209e0b6b15224c05a01f0b40">y</a>, int16_t w, int16_t h)</td></tr>
 <tr class="memdesc:a26f9b4da8c98bb40a55da447874a849c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the ili9341 working window by relative position and size Note: Function clips x,y,w,y.  <a href="#a26f9b4da8c98bb40a55da447874a849c">More...</a><br /></td></tr>
 <tr class="separator:a26f9b4da8c98bb40a55da447874a849c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3cbe26ff6bbd20f42551fcfa12351142"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="send_8c.html#a435d1572bf3f880d55459d9805097f62">uint32_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#a3cbe26ff6bbd20f42551fcfa12351142">tft_readRegister</a> (<a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> command, <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> parameter)</td></tr>
@@ -143,7 +146,7 @@ Functions</h2></td></tr>
 <tr class="memitem:a79545feceb8eca011c3f424b36035010"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="send_8c.html#a435d1572bf3f880d55459d9805097f62">uint32_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#a79545feceb8eca011c3f424b36035010">tft_readId</a> (void)</td></tr>
 <tr class="memdesc:a79545feceb8eca011c3f424b36035010"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read ILI9341 device ID should be 9341 This does not work for really high SPI clock speeds Make sure that when called the clock speed in reduced.  <a href="#a79545feceb8eca011c3f424b36035010">More...</a><br /></td></tr>
 <tr class="separator:a79545feceb8eca011c3f424b36035010"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9aedd26c42606ba58f2f0a483619f323"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#a9aedd26c42606ba58f2f0a483619f323">tft_bit_blit</a> (<a class="el" href="structwindow.html">window</a> *win, <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> *ptr, int16_t <a class="el" href="ili9341_8c.html#a7e1c531941c89bac69fe489cc3ff0790">x</a>, int16_t <a class="el" href="ili9341_8c.html#ab82fda4a9377d83187ff1ebd806ea27c">y</a>, int16_t w, int16_t h)</td></tr>
+<tr class="memitem:a9aedd26c42606ba58f2f0a483619f323"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#a9aedd26c42606ba58f2f0a483619f323">tft_bit_blit</a> (<a class="el" href="structwindow.html">window</a> *win, <a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> *ptr, int16_t <a class="el" href="ili9341_8c.html#a12ad102c2d1e7e119fdc040b0c922c7e">x</a>, int16_t <a class="el" href="ili9341_8c.html#afe490938209e0b6b15224c05a01f0b40">y</a>, int16_t w, int16_t h)</td></tr>
 <tr class="memdesc:a9aedd26c42606ba58f2f0a483619f323"><td class="mdescLeft">&#160;</td><td class="mdescRight"><h1>BLIT functions </h1>
  <a href="#a9aedd26c42606ba58f2f0a483619f323">More...</a><br /></td></tr>
 <tr class="separator:a9aedd26c42606ba58f2f0a483619f323"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -151,37 +154,39 @@ Functions</h2></td></tr>
 <tr class="memdesc:a90dda5b7ba495fcca6ab4e5259f6c6fe"><td class="mdescLeft">&#160;</td><td class="mdescRight"><h1>Fill functions </h1>
  <a href="#a90dda5b7ba495fcca6ab4e5259f6c6fe">More...</a><br /></td></tr>
 <tr class="separator:a90dda5b7ba495fcca6ab4e5259f6c6fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a70194eb517d3ef94b34695e4599168ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#a70194eb517d3ef94b34695e4599168ab">tft_flood</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t <a class="el" href="ili9341_8c.html#a7e1c531941c89bac69fe489cc3ff0790">x</a>, int16_t <a class="el" href="ili9341_8c.html#ab82fda4a9377d83187ff1ebd806ea27c">y</a>, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> border, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> fill)</td></tr>
+<tr class="memitem:a70194eb517d3ef94b34695e4599168ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#a70194eb517d3ef94b34695e4599168ab">tft_flood</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t <a class="el" href="ili9341_8c.html#a12ad102c2d1e7e119fdc040b0c922c7e">x</a>, int16_t <a class="el" href="ili9341_8c.html#afe490938209e0b6b15224c05a01f0b40">y</a>, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> border, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> fill)</td></tr>
 <tr class="memdesc:a70194eb517d3ef94b34695e4599168ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flood fill.  <a href="#a70194eb517d3ef94b34695e4599168ab">More...</a><br /></td></tr>
 <tr class="separator:a70194eb517d3ef94b34695e4599168ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abeeeab813dc4bbff2e42b292748a69f6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#abeeeab813dc4bbff2e42b292748a69f6">tft_push_xy</a> (int16_t <a class="el" href="ili9341_8c.html#a7e1c531941c89bac69fe489cc3ff0790">x</a>, int16_t <a class="el" href="ili9341_8c.html#ab82fda4a9377d83187ff1ebd806ea27c">y</a>)</td></tr>
+<tr class="memitem:abeeeab813dc4bbff2e42b292748a69f6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#abeeeab813dc4bbff2e42b292748a69f6">tft_push_xy</a> (int16_t <a class="el" href="ili9341_8c.html#a12ad102c2d1e7e119fdc040b0c922c7e">x</a>, int16_t <a class="el" href="ili9341_8c.html#afe490938209e0b6b15224c05a01f0b40">y</a>)</td></tr>
 <tr class="memdesc:abeeeab813dc4bbff2e42b292748a69f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">point push  <a href="#abeeeab813dc4bbff2e42b292748a69f6">More...</a><br /></td></tr>
 <tr class="separator:abeeeab813dc4bbff2e42b292748a69f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a965b65255c70e4dfcdf3c80365bb1358"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#a965b65255c70e4dfcdf3c80365bb1358">tft_pop_xy</a> (int16_t *<a class="el" href="ili9341_8c.html#a7e1c531941c89bac69fe489cc3ff0790">x</a>, int16_t *<a class="el" href="ili9341_8c.html#ab82fda4a9377d83187ff1ebd806ea27c">y</a>)</td></tr>
+<tr class="memitem:a965b65255c70e4dfcdf3c80365bb1358"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#a965b65255c70e4dfcdf3c80365bb1358">tft_pop_xy</a> (int16_t *<a class="el" href="ili9341_8c.html#a12ad102c2d1e7e119fdc040b0c922c7e">x</a>, int16_t *<a class="el" href="ili9341_8c.html#afe490938209e0b6b15224c05a01f0b40">y</a>)</td></tr>
 <tr class="memdesc:a965b65255c70e4dfcdf3c80365bb1358"><td class="mdescLeft">&#160;</td><td class="mdescRight">point push  <a href="#a965b65255c70e4dfcdf3c80365bb1358">More...</a><br /></td></tr>
 <tr class="separator:a965b65255c70e4dfcdf3c80365bb1358"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6223a118e376e361d8278428d1dac4fb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#a6223a118e376e361d8278428d1dac4fb">tft_floodline</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t <a class="el" href="ili9341_8c.html#a7e1c531941c89bac69fe489cc3ff0790">x</a>, int16_t <a class="el" href="ili9341_8c.html#ab82fda4a9377d83187ff1ebd806ea27c">y</a>, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> border, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> fill)</td></tr>
+<tr class="memitem:a6223a118e376e361d8278428d1dac4fb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#a6223a118e376e361d8278428d1dac4fb">tft_floodline</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t <a class="el" href="ili9341_8c.html#a12ad102c2d1e7e119fdc040b0c922c7e">x</a>, int16_t <a class="el" href="ili9341_8c.html#afe490938209e0b6b15224c05a01f0b40">y</a>, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> border, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> fill)</td></tr>
 <tr class="memdesc:a6223a118e376e361d8278428d1dac4fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flood using line fill method.  <a href="#a6223a118e376e361d8278428d1dac4fb">More...</a><br /></td></tr>
 <tr class="separator:a6223a118e376e361d8278428d1dac4fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3c9368b6d6f6388a7c7f9ed89743e47f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#a3c9368b6d6f6388a7c7f9ed89743e47f">tft_fillRectWH</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t <a class="el" href="ili9341_8c.html#a7e1c531941c89bac69fe489cc3ff0790">x</a>, int16_t <a class="el" href="ili9341_8c.html#ab82fda4a9377d83187ff1ebd806ea27c">y</a>, int16_t w, int16_t h, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> color)</td></tr>
+<tr class="memitem:a6ab93eb7f022a179fed29999a4affd2f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#a6ab93eb7f022a179fed29999a4affd2f">tft_FillPolyLine</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t <a class="el" href="ili9341_8c.html#a12ad102c2d1e7e119fdc040b0c922c7e">x</a>, int16_t <a class="el" href="ili9341_8c.html#afe490938209e0b6b15224c05a01f0b40">y</a>, int w, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> color)</td></tr>
+<tr class="separator:a6ab93eb7f022a179fed29999a4affd2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c9368b6d6f6388a7c7f9ed89743e47f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#a3c9368b6d6f6388a7c7f9ed89743e47f">tft_fillRectWH</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t <a class="el" href="ili9341_8c.html#a12ad102c2d1e7e119fdc040b0c922c7e">x</a>, int16_t <a class="el" href="ili9341_8c.html#afe490938209e0b6b15224c05a01f0b40">y</a>, int16_t w, int16_t h, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> color)</td></tr>
 <tr class="memdesc:a3c9368b6d6f6388a7c7f9ed89743e47f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Partial window Fill with color We clip the window to the current view.  <a href="#a3c9368b6d6f6388a7c7f9ed89743e47f">More...</a><br /></td></tr>
 <tr class="separator:a3c9368b6d6f6388a7c7f9ed89743e47f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49f75769b08991ac4a56bfb2f4e1fa05"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#a49f75769b08991ac4a56bfb2f4e1fa05">tft_fillRectXY</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t <a class="el" href="ili9341_8c.html#a7e1c531941c89bac69fe489cc3ff0790">x</a>, int16_t <a class="el" href="ili9341_8c.html#ab82fda4a9377d83187ff1ebd806ea27c">y</a>, int16_t xl, int16_t yl, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> color)</td></tr>
+<tr class="memitem:a49f75769b08991ac4a56bfb2f4e1fa05"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#a49f75769b08991ac4a56bfb2f4e1fa05">tft_fillRectXY</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t <a class="el" href="ili9341_8c.html#a12ad102c2d1e7e119fdc040b0c922c7e">x</a>, int16_t <a class="el" href="ili9341_8c.html#afe490938209e0b6b15224c05a01f0b40">y</a>, int16_t xl, int16_t yl, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> color)</td></tr>
 <tr class="memdesc:a49f75769b08991ac4a56bfb2f4e1fa05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fill rectangle with color We clip the window to the current view.  <a href="#a49f75769b08991ac4a56bfb2f4e1fa05">More...</a><br /></td></tr>
 <tr class="separator:a49f75769b08991ac4a56bfb2f4e1fa05"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a675036a93108cdafe0b1060ba024c485"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#a675036a93108cdafe0b1060ba024c485">tft_drawPixel</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t <a class="el" href="ili9341_8c.html#a7e1c531941c89bac69fe489cc3ff0790">x</a>, int16_t <a class="el" href="ili9341_8c.html#ab82fda4a9377d83187ff1ebd806ea27c">y</a>, int16_t color)</td></tr>
+<tr class="memitem:a675036a93108cdafe0b1060ba024c485"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#a675036a93108cdafe0b1060ba024c485">tft_drawPixel</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t <a class="el" href="ili9341_8c.html#a12ad102c2d1e7e119fdc040b0c922c7e">x</a>, int16_t <a class="el" href="ili9341_8c.html#afe490938209e0b6b15224c05a01f0b40">y</a>, int16_t color)</td></tr>
 <tr class="memdesc:a675036a93108cdafe0b1060ba024c485"><td class="mdescLeft">&#160;</td><td class="mdescRight"><h1>Pixel functions </h1>
  <a href="#a675036a93108cdafe0b1060ba024c485">More...</a><br /></td></tr>
 <tr class="separator:a675036a93108cdafe0b1060ba024c485"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2e70141c8de6a4199f9fc39d8cfc758c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#a2e70141c8de6a4199f9fc39d8cfc758c">tft_writeRect</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t <a class="el" href="ili9341_8c.html#a7e1c531941c89bac69fe489cc3ff0790">x</a>, int16_t <a class="el" href="ili9341_8c.html#ab82fda4a9377d83187ff1ebd806ea27c">y</a>, int16_t w, int16_t h, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> *color)</td></tr>
+<tr class="memitem:a2e70141c8de6a4199f9fc39d8cfc758c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#a2e70141c8de6a4199f9fc39d8cfc758c">tft_writeRect</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t <a class="el" href="ili9341_8c.html#a12ad102c2d1e7e119fdc040b0c922c7e">x</a>, int16_t <a class="el" href="ili9341_8c.html#afe490938209e0b6b15224c05a01f0b40">y</a>, int16_t w, int16_t h, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> *color)</td></tr>
 <tr class="memdesc:a2e70141c8de6a4199f9fc39d8cfc758c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a rectangle pixel array.  <a href="#a2e70141c8de6a4199f9fc39d8cfc758c">More...</a><br /></td></tr>
 <tr class="separator:a2e70141c8de6a4199f9fc39d8cfc758c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a08bf5b6422229993b5d68e48c7b39619"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#a08bf5b6422229993b5d68e48c7b39619">tft_readRect</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t <a class="el" href="ili9341_8c.html#a7e1c531941c89bac69fe489cc3ff0790">x</a>, int16_t <a class="el" href="ili9341_8c.html#ab82fda4a9377d83187ff1ebd806ea27c">y</a>, int16_t w, int16_t h, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> *color)</td></tr>
+<tr class="memitem:a08bf5b6422229993b5d68e48c7b39619"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#a08bf5b6422229993b5d68e48c7b39619">tft_readRect</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t <a class="el" href="ili9341_8c.html#a12ad102c2d1e7e119fdc040b0c922c7e">x</a>, int16_t <a class="el" href="ili9341_8c.html#afe490938209e0b6b15224c05a01f0b40">y</a>, int16_t w, int16_t h, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> *color)</td></tr>
 <tr class="separator:a08bf5b6422229993b5d68e48c7b39619"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a98e0ecaf3fc85ced7c0b7a2a504df02f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#a98e0ecaf3fc85ced7c0b7a2a504df02f">tft_Vscroll</a> (<a class="el" href="structwindow.html">window</a> *win, int dir)</td></tr>
 <tr class="memdesc:a98e0ecaf3fc85ced7c0b7a2a504df02f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scroll window up by dir lines We start at the top of the window and move down.  <a href="#a98e0ecaf3fc85ced7c0b7a2a504df02f">More...</a><br /></td></tr>
 <tr class="separator:a98e0ecaf3fc85ced7c0b7a2a504df02f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae282613acd29016b23947b0b053170b5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#ae282613acd29016b23947b0b053170b5">tft_readPixel</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t <a class="el" href="ili9341_8c.html#a7e1c531941c89bac69fe489cc3ff0790">x</a>, int16_t <a class="el" href="ili9341_8c.html#ab82fda4a9377d83187ff1ebd806ea27c">y</a>)</td></tr>
+<tr class="memitem:ae282613acd29016b23947b0b053170b5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#ae282613acd29016b23947b0b053170b5">tft_readPixel</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t <a class="el" href="ili9341_8c.html#a12ad102c2d1e7e119fdc040b0c922c7e">x</a>, int16_t <a class="el" href="ili9341_8c.html#afe490938209e0b6b15224c05a01f0b40">y</a>)</td></tr>
 <tr class="memdesc:ae282613acd29016b23947b0b053170b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read one pixel and return color in 1bit 565 RGB format We clip the window to the current view Note: Read Memory must be done in a continious write/read operation Chip select can not be deactivated for the transaction.  <a href="#ae282613acd29016b23947b0b053170b5">More...</a><br /></td></tr>
 <tr class="separator:ae282613acd29016b23947b0b053170b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4c1271aab64c58f75e6de6471f430bbe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#a4c1271aab64c58f75e6de6471f430bbe">tft_setRotation</a> (<a class="el" href="send_8c.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> m)</td></tr>
@@ -200,19 +205,19 @@ Functions</h2></td></tr>
 <tr class="memitem:adfcd8a18cff06d92e9d9c5959a66c9dd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#adfcd8a18cff06d92e9d9c5959a66c9dd">tft_clip_xy</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t *<a class="el" href="cordic2c_8c.html#a46b4b48ef8c0c01099eb3bcdde8aa8db">X</a>, int16_t *<a class="el" href="cordic2c_8c.html#ab746e677f466f17031e92ed577fc3c15">Y</a>)</td></tr>
 <tr class="memdesc:adfcd8a18cff06d92e9d9c5959a66c9dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clip X,Y to fix inside specifiied window.  <a href="#adfcd8a18cff06d92e9d9c5959a66c9dd">More...</a><br /></td></tr>
 <tr class="separator:adfcd8a18cff06d92e9d9c5959a66c9dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a04d77513a2a6464617b3effa276196ae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#a04d77513a2a6464617b3effa276196ae">tft_window_clip_args</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t *<a class="el" href="ili9341_8c.html#a7e1c531941c89bac69fe489cc3ff0790">x</a>, int16_t *<a class="el" href="ili9341_8c.html#ab82fda4a9377d83187ff1ebd806ea27c">y</a>, int16_t *w, int16_t *h)</td></tr>
+<tr class="memitem:a04d77513a2a6464617b3effa276196ae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#a04d77513a2a6464617b3effa276196ae">tft_window_clip_args</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t *<a class="el" href="ili9341_8c.html#a12ad102c2d1e7e119fdc040b0c922c7e">x</a>, int16_t *<a class="el" href="ili9341_8c.html#afe490938209e0b6b15224c05a01f0b40">y</a>, int16_t *w, int16_t *h)</td></tr>
 <tr class="memdesc:a04d77513a2a6464617b3effa276196ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">clip arguments to window limits Arguments position x,y width w and height h to be clipped  <a href="#a04d77513a2a6464617b3effa276196ae">More...</a><br /></td></tr>
 <tr class="separator:a04d77513a2a6464617b3effa276196ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a31e1132605d6a60b66c4e969b56b37"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#a5a31e1132605d6a60b66c4e969b56b37">tft_window_init</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t <a class="el" href="ili9341_8c.html#a7e1c531941c89bac69fe489cc3ff0790">x</a>, int16_t <a class="el" href="ili9341_8c.html#ab82fda4a9377d83187ff1ebd806ea27c">y</a>, int16_t w, int16_t h)</td></tr>
+<tr class="memitem:a5a31e1132605d6a60b66c4e969b56b37"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#a5a31e1132605d6a60b66c4e969b56b37">tft_window_init</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t <a class="el" href="ili9341_8c.html#a12ad102c2d1e7e119fdc040b0c922c7e">x</a>, int16_t <a class="el" href="ili9341_8c.html#afe490938209e0b6b15224c05a01f0b40">y</a>, int16_t w, int16_t h)</td></tr>
 <tr class="memdesc:a5a31e1132605d6a60b66c4e969b56b37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize window structure we default values FIXME check x+w, y+h absolute limits against TFT limuts.  <a href="#a5a31e1132605d6a60b66c4e969b56b37">More...</a><br /></td></tr>
 <tr class="separator:a5a31e1132605d6a60b66c4e969b56b37"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeedc758e5bf61e7ffb28d4a85de854e6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#aeedc758e5bf61e7ffb28d4a85de854e6">tft_setTextColor</a> (<a class="el" href="structwindow.html">window</a> *win, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> fg, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> bg)</td></tr>
 <tr class="memdesc:aeedc758e5bf61e7ffb28d4a85de854e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">====================================  <a href="#aeedc758e5bf61e7ffb28d4a85de854e6">More...</a><br /></td></tr>
 <tr class="separator:aeedc758e5bf61e7ffb28d4a85de854e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adaf98866e7cbd787fde096143d394699"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#adaf98866e7cbd787fde096143d394699">tft_setpos</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t <a class="el" href="ili9341_8c.html#a7e1c531941c89bac69fe489cc3ff0790">x</a>, int16_t <a class="el" href="ili9341_8c.html#ab82fda4a9377d83187ff1ebd806ea27c">y</a>)</td></tr>
+<tr class="memitem:adaf98866e7cbd787fde096143d394699"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#adaf98866e7cbd787fde096143d394699">tft_setpos</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t <a class="el" href="ili9341_8c.html#a12ad102c2d1e7e119fdc040b0c922c7e">x</a>, int16_t <a class="el" href="ili9341_8c.html#afe490938209e0b6b15224c05a01f0b40">y</a>)</td></tr>
 <tr class="memdesc:adaf98866e7cbd787fde096143d394699"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set current window text pointer in pixels (per current rotation)  <a href="#adaf98866e7cbd787fde096143d394699">More...</a><br /></td></tr>
 <tr class="separator:adaf98866e7cbd787fde096143d394699"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2eb6ca3fa55bfe5ecf510bc4b25916fc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#a2eb6ca3fa55bfe5ecf510bc4b25916fc">tft_set_textpos</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t <a class="el" href="ili9341_8c.html#a7e1c531941c89bac69fe489cc3ff0790">x</a>, int16_t <a class="el" href="ili9341_8c.html#ab82fda4a9377d83187ff1ebd806ea27c">y</a>)</td></tr>
+<tr class="memitem:a2eb6ca3fa55bfe5ecf510bc4b25916fc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#a2eb6ca3fa55bfe5ecf510bc4b25916fc">tft_set_textpos</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t <a class="el" href="ili9341_8c.html#a12ad102c2d1e7e119fdc040b0c922c7e">x</a>, int16_t <a class="el" href="ili9341_8c.html#afe490938209e0b6b15224c05a01f0b40">y</a>)</td></tr>
 <tr class="memdesc:a2eb6ca3fa55bfe5ecf510bc4b25916fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set current window text pointer in characters (per current rotation) - overall font bounding box.  <a href="#a2eb6ca3fa55bfe5ecf510bc4b25916fc">More...</a><br /></td></tr>
 <tr class="separator:a2eb6ca3fa55bfe5ecf510bc4b25916fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa530634bb661856089c9bc7d78f8805f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#aa530634bb661856089c9bc7d78f8805f">tft_set_font</a> (<a class="el" href="structwindow.html">window</a> *win, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> index)</td></tr>
@@ -226,21 +231,21 @@ Functions</h2></td></tr>
 <tr class="memitem:a616f9992d5ed309e96288a7e08b87bf3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#a616f9992d5ed309e96288a7e08b87bf3">tft_get_font_height</a> (<a class="el" href="structwindow.html">window</a> *win)</td></tr>
 <tr class="memdesc:a616f9992d5ed309e96288a7e08b87bf3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get font height.  <a href="#a616f9992d5ed309e96288a7e08b87bf3">More...</a><br /></td></tr>
 <tr class="separator:a616f9992d5ed309e96288a7e08b87bf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abbf471bb78e19ca798b644121089aeed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#abbf471bb78e19ca798b644121089aeed">tft_drawFastVLine</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t <a class="el" href="ili9341_8c.html#a7e1c531941c89bac69fe489cc3ff0790">x</a>, int16_t <a class="el" href="ili9341_8c.html#ab82fda4a9377d83187ff1ebd806ea27c">y</a>, int16_t h, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> color)</td></tr>
+<tr class="memitem:abbf471bb78e19ca798b644121089aeed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#abbf471bb78e19ca798b644121089aeed">tft_drawFastVLine</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t <a class="el" href="ili9341_8c.html#a12ad102c2d1e7e119fdc040b0c922c7e">x</a>, int16_t <a class="el" href="ili9341_8c.html#afe490938209e0b6b15224c05a01f0b40">y</a>, int16_t h, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> color)</td></tr>
 <tr class="memdesc:abbf471bb78e19ca798b644121089aeed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fast virtical line drawing.  <a href="#abbf471bb78e19ca798b644121089aeed">More...</a><br /></td></tr>
 <tr class="separator:abbf471bb78e19ca798b644121089aeed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae425260d907faa87a1b8e336f24ba54c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#ae425260d907faa87a1b8e336f24ba54c">tft_drawFastHLine</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t <a class="el" href="ili9341_8c.html#a7e1c531941c89bac69fe489cc3ff0790">x</a>, int16_t <a class="el" href="ili9341_8c.html#ab82fda4a9377d83187ff1ebd806ea27c">y</a>, int16_t w, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> color)</td></tr>
+<tr class="memitem:ae425260d907faa87a1b8e336f24ba54c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#ae425260d907faa87a1b8e336f24ba54c">tft_drawFastHLine</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t <a class="el" href="ili9341_8c.html#a12ad102c2d1e7e119fdc040b0c922c7e">x</a>, int16_t <a class="el" href="ili9341_8c.html#afe490938209e0b6b15224c05a01f0b40">y</a>, int16_t w, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> color)</td></tr>
 <tr class="memdesc:ae425260d907faa87a1b8e336f24ba54c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fast virtical line drawing.  <a href="#ae425260d907faa87a1b8e336f24ba54c">More...</a><br /></td></tr>
 <tr class="separator:ae425260d907faa87a1b8e336f24ba54c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7cef55bef133e9918955b4d2a53cf230"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#a7cef55bef133e9918955b4d2a53cf230">tft_drawLine</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t x0, int16_t y0, int16_t x1, int16_t y1, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> color)</td></tr>
 <tr class="memdesc:a7cef55bef133e9918955b4d2a53cf230"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw line From my blit test code testit.c 1984 - 1985 Mike Gore.  <a href="#a7cef55bef133e9918955b4d2a53cf230">More...</a><br /></td></tr>
 <tr class="separator:a7cef55bef133e9918955b4d2a53cf230"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a05c9e989c1be6a1655bd20d521608652"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#a05c9e989c1be6a1655bd20d521608652">tft_Bezier2</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t SX, int16_t SY, int16_t CX, int16_t CY, int16_t TX, int16_t TY, int steps, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> color)</td></tr>
-<tr class="memdesc:a05c9e989c1be6a1655bd20d521608652"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw lines between points along Quadratic Bézier curve Quadratic Bézier with respect to t, see <a href="https://en.wikipedia.org/wiki/B">https://en.wikipedia.org/wiki/B</a>ézier_curve B(t) = (1-t)*(1-t)*S + 2*(1-t)*t*C + t*t*T, 0 &lt;= t &lt;= 1.  <a href="#a05c9e989c1be6a1655bd20d521608652">More...</a><br /></td></tr>
-<tr class="separator:a05c9e989c1be6a1655bd20d521608652"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d285bdcc49ff7337068f134034d45a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#a4d285bdcc49ff7337068f134034d45a5">tft_Bezier3</a> (<a class="el" href="structwindow.html">window</a> *win, int16_t SX, int16_t SY, int16_t C1X, int16_t C1Y, int16_t C2X, int16_t C2Y, int16_t TX, int16_t TY, int steps, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> color)</td></tr>
-<tr class="memdesc:a4d285bdcc49ff7337068f134034d45a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw lines between points along Cubic Bézier curve Quadratic Bézier with respect to t, see <a href="https://en.wikipedia.org/wiki/B">https://en.wikipedia.org/wiki/B</a>ézier_curve B(t) = (1-t)(1-t)*(1-t)*S + 3*(1-t)(1-t)*t*C1 + 3(1-t)*t*t*C2 + t*t*t*T, 0 &lt;= t &lt;= 1.  <a href="#a4d285bdcc49ff7337068f134034d45a5">More...</a><br /></td></tr>
-<tr class="separator:a4d285bdcc49ff7337068f134034d45a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade9ab635e91789982bc86674b61611be"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#ade9ab635e91789982bc86674b61611be">tft_Bezier2</a> (<a class="el" href="structwindow.html">window</a> *win, <a class="el" href="structp2__int16__t.html">p2_int16_t</a> S, <a class="el" href="structp2__int16__t.html">p2_int16_t</a> C, <a class="el" href="structp2__int16__t.html">p2_int16_t</a> T, int steps, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> color)</td></tr>
+<tr class="memdesc:ade9ab635e91789982bc86674b61611be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw lines between points along Quadratic Bézier curve Quadratic Bézier with respect to t, see <a href="https://en.wikipedia.org/wiki/B">https://en.wikipedia.org/wiki/B</a>ézier_curve B(t) = (1-t)*(1-t)*S + 2*(1-t)*t*C + t*t*T, 0 &lt;= t &lt;= 1.  <a href="#ade9ab635e91789982bc86674b61611be">More...</a><br /></td></tr>
+<tr class="separator:ade9ab635e91789982bc86674b61611be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab70455710ab3ff401ead3f87c2e103fc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#ab70455710ab3ff401ead3f87c2e103fc">tft_Bezier3</a> (<a class="el" href="structwindow.html">window</a> *win, <a class="el" href="structp2__int16__t.html">p2_int16_t</a> S, <a class="el" href="structp2__int16__t.html">p2_int16_t</a> C1, <a class="el" href="structp2__int16__t.html">p2_int16_t</a> C2, <a class="el" href="structp2__int16__t.html">p2_int16_t</a> T, int steps, <a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> color)</td></tr>
+<tr class="memdesc:ab70455710ab3ff401ead3f87c2e103fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw lines between points along Cubic Bézier curve Quadratic Bézier with respect to t, see <a href="https://en.wikipedia.org/wiki/B">https://en.wikipedia.org/wiki/B</a>ézier_curve B(t) = (1-t)(1-t)*(1-t)*S + 3*(1-t)(1-t)*t*C1 + 3(1-t)*t*t*C2 + t*t*t*T, 0 &lt;= t &lt;= 1.  <a href="#ab70455710ab3ff401ead3f87c2e103fc">More...</a><br /></td></tr>
+<tr class="separator:ab70455710ab3ff401ead3f87c2e103fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9e2f1c5c213183804492d12ab89a1b43"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#a9e2f1c5c213183804492d12ab89a1b43">tft_cleareol</a> (<a class="el" href="structwindow.html">window</a> *win)</td></tr>
 <tr class="memdesc:a9e2f1c5c213183804492d12ab89a1b43"><td class="mdescLeft">&#160;</td><td class="mdescRight"><h1>Character and String functions </h1>
  <a href="#a9e2f1c5c213183804492d12ab89a1b43">More...</a><br /></td></tr>
@@ -259,10 +264,10 @@ Variables</h2></td></tr>
 <tr class="memitem:aa55d6901951c7fe057e8d32477b5e122"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structwindow.html">window</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#aa55d6901951c7fe057e8d32477b5e122">tft</a> = &amp;<a class="el" href="ili9341__hal_8c.html#a460d9cc0fd386002d9485f2a0ed585d8">tftwin</a></td></tr>
 <tr class="separator:aa55d6901951c7fe057e8d32477b5e122"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae23606278a84f872e936d3a005f528d6"><td class="memItemLeft" >struct {</td></tr>
-<tr class="memitem:a835afa878dc61d929b52d483743061fe"><td class="memItemLeft" >&#160;&#160;&#160;int16_t&#160;&#160;&#160;<a class="el" href="ili9341_8c.html#a7e1c531941c89bac69fe489cc3ff0790">x</a> [<a class="el" href="ili9341_8c.html#a71d0761bc813dbcb85353d2508693493">XYSTACK</a>+1]</td></tr>
-<tr class="separator:a835afa878dc61d929b52d483743061fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a577df79dff209fe221934d42763b9716"><td class="memItemLeft" >&#160;&#160;&#160;int16_t&#160;&#160;&#160;<a class="el" href="ili9341_8c.html#ab82fda4a9377d83187ff1ebd806ea27c">y</a> [<a class="el" href="ili9341_8c.html#a71d0761bc813dbcb85353d2508693493">XYSTACK</a>+1]</td></tr>
-<tr class="separator:a577df79dff209fe221934d42763b9716"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30bcfd28723a646c86fb7fa79d23d334"><td class="memItemLeft" >&#160;&#160;&#160;int16_t&#160;&#160;&#160;<a class="el" href="ili9341_8c.html#a12ad102c2d1e7e119fdc040b0c922c7e">x</a> [<a class="el" href="ili9341_8c.html#a71d0761bc813dbcb85353d2508693493">XYSTACK</a>+2]</td></tr>
+<tr class="separator:a30bcfd28723a646c86fb7fa79d23d334"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae70d3273bc0c0d948cd7e0686b04932e"><td class="memItemLeft" >&#160;&#160;&#160;int16_t&#160;&#160;&#160;<a class="el" href="ili9341_8c.html#afe490938209e0b6b15224c05a01f0b40">y</a> [<a class="el" href="ili9341_8c.html#a71d0761bc813dbcb85353d2508693493">XYSTACK</a>+2]</td></tr>
+<tr class="separator:ae70d3273bc0c0d948cd7e0686b04932e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a731938a4fccdd06759ad48bb717902ba"><td class="memItemLeft" >&#160;&#160;&#160;int&#160;&#160;&#160;<a class="el" href="ili9341_8c.html#a4b00721003b8d35559a55c9098ff36c5">ind</a></td></tr>
 <tr class="separator:a731938a4fccdd06759ad48bb717902ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae23606278a84f872e936d3a005f528d6"><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ili9341_8c.html#ae23606278a84f872e936d3a005f528d6">xy</a></td></tr>
@@ -305,7 +310,36 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00696">696</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00835">835</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae8936d2dc66f704b60c78e65dc0d7244"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAXVEC&#160;&#160;&#160;24</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>find beginning and end of all non-matching color transitions in a line FIXME: not tested yet </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">win*</td><td>window structure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>X position to start scan </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">y</td><td>Y line to scan </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">*vec</td><td>start and end of transition offsets </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">count</td><td>maximum size of transitions to save </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">color</td><td>match color @ return true count of saved transitions </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00509">509</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+
+<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00510">tft_FillPolyLine()</a>.</p>
 
 </div>
 </div>
@@ -333,9 +367,9 @@ Variables</h2></td></tr>
 
 <p>X,Y point stack. </p>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00372">372</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00369">369</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00383">tft_push_xy()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00380">tft_push_xy()</a>.</p>
 
 </div>
 </div>
@@ -388,7 +422,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00894">894</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01033">1033</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
 </div>
 </div>
@@ -449,16 +483,16 @@ Variables</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ili9341_8c_source.html#l00101">101</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00143">tft_rel_window()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00140">tft_rel_window()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a05c9e989c1be6a1655bd20d521608652"></a>
+<a class="anchor" id="ade9ab635e91789982bc86674b61611be"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void tft_Bezier2 </td>
+          <td class="memname">int tft_Bezier2 </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structwindow.html">window</a> *&#160;</td>
           <td class="paramname"><em>win</em>, </td>
@@ -466,38 +500,20 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int16_t&#160;</td>
-          <td class="paramname"><em>SX</em>, </td>
+          <td class="paramtype"><a class="el" href="structp2__int16__t.html">p2_int16_t</a>&#160;</td>
+          <td class="paramname"><em>S</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int16_t&#160;</td>
-          <td class="paramname"><em>SY</em>, </td>
+          <td class="paramtype"><a class="el" href="structp2__int16__t.html">p2_int16_t</a>&#160;</td>
+          <td class="paramname"><em>C</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int16_t&#160;</td>
-          <td class="paramname"><em>CX</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int16_t&#160;</td>
-          <td class="paramname"><em>CY</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int16_t&#160;</td>
-          <td class="paramname"><em>TX</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int16_t&#160;</td>
-          <td class="paramname"><em>TY</em>, </td>
+          <td class="paramtype"><a class="el" href="structp2__int16__t.html">p2_int16_t</a>&#160;</td>
+          <td class="paramname"><em>T</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -528,31 +544,26 @@ Variables</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">*win</td><td>Window Structure of active window </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">SX</td><td>Start X </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">SY</td><td>Start Y </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">CX</td><td>Control X </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">CY</td><td>Control Y </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">TX</td><td>Target X </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">TY</td><td>Target Y </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">S</td><td>Start </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">C</td><td>Control </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">T</td><td>Target </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">steps</td><td>line segments along curve (1..N) </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">color</td><td>Line color </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>count of line segments </dd></dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01338">1338</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
-
-<p>Referenced by <a class="el" href="user__main_8c_source.html#l00373">drawSVG()</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01474">1474</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a4d285bdcc49ff7337068f134034d45a5"></a>
+<a class="anchor" id="ab70455710ab3ff401ead3f87c2e103fc"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void tft_Bezier3 </td>
+          <td class="memname">int tft_Bezier3 </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structwindow.html">window</a> *&#160;</td>
           <td class="paramname"><em>win</em>, </td>
@@ -560,50 +571,26 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int16_t&#160;</td>
-          <td class="paramname"><em>SX</em>, </td>
+          <td class="paramtype"><a class="el" href="structp2__int16__t.html">p2_int16_t</a>&#160;</td>
+          <td class="paramname"><em>S</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int16_t&#160;</td>
-          <td class="paramname"><em>SY</em>, </td>
+          <td class="paramtype"><a class="el" href="structp2__int16__t.html">p2_int16_t</a>&#160;</td>
+          <td class="paramname"><em>C1</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int16_t&#160;</td>
-          <td class="paramname"><em>C1X</em>, </td>
+          <td class="paramtype"><a class="el" href="structp2__int16__t.html">p2_int16_t</a>&#160;</td>
+          <td class="paramname"><em>C2</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int16_t&#160;</td>
-          <td class="paramname"><em>C1Y</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int16_t&#160;</td>
-          <td class="paramname"><em>C2X</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int16_t&#160;</td>
-          <td class="paramname"><em>C2Y</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int16_t&#160;</td>
-          <td class="paramname"><em>TX</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int16_t&#160;</td>
-          <td class="paramname"><em>TY</em>, </td>
+          <td class="paramtype"><a class="el" href="structp2__int16__t.html">p2_int16_t</a>&#160;</td>
+          <td class="paramname"><em>T</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -633,22 +620,18 @@ Variables</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">*win</td><td>Window Structure of active window </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">SX</td><td>Start X </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">SY</td><td>Start Y </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">C1X</td><td>Control 1 X </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">C1Y</td><td>Control 1 Y </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">C2X</td><td>Control 2 X </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">C1Y</td><td>Control 2 Y </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">TX</td><td>Target X </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">TY</td><td>Target Y </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">S</td><td>Start </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">C1</td><td>Control 1 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">C2</td><td>Control 2 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">T</td><td>Target </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">steps</td><td>line segments along curve (1..N) </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">color</td><td>Line color </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>count of line segments </dd></dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01414">1414</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01545">1545</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
 </div>
 </div>
@@ -715,7 +698,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void TODO CLIP window - depends on blit array </dd></dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00237">237</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00234">234</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
 <p>Referenced by <a class="el" href="font_8c_source.html#l00200">tft_drawChar()</a>.</p>
 
@@ -744,9 +727,9 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01468">1468</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01601">1601</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341_8c_source.html#l01510">tft_putch()</a>, and <a class="el" href="user__main_8c_source.html#l00467">user_loop()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341_8c_source.html#l01643">tft_putch()</a>, and <a class="el" href="user__main_8c_source.html#l00357">user_loop()</a>.</p>
 
 </div>
 </div>
@@ -772,7 +755,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01488">1488</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01621">1621</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
 </div>
 </div>
@@ -816,7 +799,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00975">975</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01114">1114</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
 </div>
 </div>
@@ -845,7 +828,7 @@ Variables</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ili9341_8c_source.html#l00053">53</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00237">tft_bit_blit()</a>, <a class="el" href="ili9341_8c_source.html#l00072">tft_Cmd_Data_TX()</a>, <a class="el" href="ili9341_8c_source.html#l00488">tft_fillRectWH()</a>, <a class="el" href="ili9341_8c_source.html#l00906">tft_invertDisplay()</a>, <a class="el" href="ili9341_8c_source.html#l00813">tft_readPixel()</a>, <a class="el" href="ili9341_8c_source.html#l00698">tft_readRect()</a>, <a class="el" href="ili9341_8c_source.html#l00169">tft_readRegister()</a>, and <a class="el" href="ili9341_8c_source.html#l00606">tft_writeRect()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00234">tft_bit_blit()</a>, <a class="el" href="ili9341_8c_source.html#l00072">tft_Cmd_Data_TX()</a>, <a class="el" href="ili9341_8c_source.html#l00510">tft_FillPolyLine()</a>, <a class="el" href="ili9341_8c_source.html#l00627">tft_fillRectWH()</a>, <a class="el" href="ili9341_8c_source.html#l01045">tft_invertDisplay()</a>, <a class="el" href="ili9341_8c_source.html#l00952">tft_readPixel()</a>, <a class="el" href="ili9341_8c_source.html#l00837">tft_readRect()</a>, <a class="el" href="ili9341_8c_source.html#l00166">tft_readRegister()</a>, and <a class="el" href="ili9341_8c_source.html#l00745">tft_writeRect()</a>.</p>
 
 </div>
 </div>
@@ -891,7 +874,7 @@ Variables</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ili9341_8c_source.html#l00072">72</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00101">tft_abs_window()</a>, <a class="el" href="ili9341__adafruit_8c_source.html#l00057">tft_configRegister()</a>, <a class="el" href="ili9341_8c_source.html#l00578">tft_drawPixel()</a>, and <a class="el" href="ili9341_8c_source.html#l00843">tft_setRotation()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00101">tft_abs_window()</a>, <a class="el" href="ili9341__adafruit_8c_source.html#l00057">tft_configRegister()</a>, <a class="el" href="ili9341_8c_source.html#l00717">tft_drawPixel()</a>, and <a class="el" href="ili9341_8c_source.html#l00982">tft_setRotation()</a>.</p>
 
 </div>
 </div>
@@ -919,7 +902,7 @@ Variables</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ili9341_8c_source.html#l00061">61</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00169">tft_readRegister()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00166">tft_readRegister()</a>.</p>
 
 </div>
 </div>
@@ -978,9 +961,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01190">1190</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01329">1329</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341__adafruit_8c_source.html#l00363">tft_drawRect()</a>, <a class="el" href="ili9341__adafruit_8c_source.html#l00384">tft_drawRoundRect()</a>, and <a class="el" href="ili9341__adafruit_8c_source.html#l00458">tft_fillTriangle()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341__adafruit_8c_source.html#l00363">tft_drawRect()</a>, <a class="el" href="ili9341__adafruit_8c_source.html#l00384">tft_drawRoundRect()</a>, <a class="el" href="ili9341_8c_source.html#l00510">tft_FillPolyLine()</a>, and <a class="el" href="ili9341__adafruit_8c_source.html#l00458">tft_fillTriangle()</a>.</p>
 
 </div>
 </div>
@@ -1039,7 +1022,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01175">1175</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01314">1314</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
 <p>Referenced by <a class="el" href="ili9341__adafruit_8c_source.html#l00363">tft_drawRect()</a>, <a class="el" href="ili9341__adafruit_8c_source.html#l00384">tft_drawRoundRect()</a>, <a class="el" href="ili9341__adafruit_8c_source.html#l00346">tft_fillCircle()</a>, and <a class="el" href="ili9341__adafruit_8c_source.html#l00302">tft_fillCircleHelper()</a>.</p>
 
@@ -1119,9 +1102,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01250">1250</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01389">1389</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="user__main_8c_source.html#l00373">drawSVG()</a>, <a class="el" href="ili9341_8c_source.html#l01338">tft_Bezier2()</a>, <a class="el" href="ili9341_8c_source.html#l01414">tft_Bezier3()</a>, <a class="el" href="ili9341_8c_source.html#l01190">tft_drawFastHLine()</a>, <a class="el" href="ili9341__adafruit_8c_source.html#l00437">tft_drawTriangle()</a>, and <a class="el" href="wire_8c_source.html#l00060">wire_draw()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341_8c_source.html#l01474">tft_Bezier2()</a>, <a class="el" href="ili9341_8c_source.html#l01545">tft_Bezier3()</a>, <a class="el" href="ili9341_8c_source.html#l01329">tft_drawFastHLine()</a>, <a class="el" href="ili9341__adafruit_8c_source.html#l00437">tft_drawTriangle()</a>, and <a class="el" href="wire_8c_source.html#l00060">wire_draw()</a>.</p>
 
 </div>
 </div>
@@ -1174,9 +1157,55 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00578">578</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00717">717</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00237">tft_bit_blit()</a>, <a class="el" href="ili9341__adafruit_8c_source.html#l00201">tft_drawCircle()</a>, <a class="el" href="ili9341__adafruit_8c_source.html#l00248">tft_drawCircleHelper()</a>, <a class="el" href="ili9341_8c_source.html#l01190">tft_drawFastHLine()</a>, <a class="el" href="ili9341_8c_source.html#l00349">tft_flood()</a>, <a class="el" href="ili9341_8c_source.html#l00419">tft_floodline()</a>, and <a class="el" href="ili9341_8c_source.html#l00606">tft_writeRect()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00234">tft_bit_blit()</a>, <a class="el" href="ili9341__adafruit_8c_source.html#l00201">tft_drawCircle()</a>, <a class="el" href="ili9341__adafruit_8c_source.html#l00248">tft_drawCircleHelper()</a>, <a class="el" href="ili9341_8c_source.html#l01329">tft_drawFastHLine()</a>, <a class="el" href="ili9341_8c_source.html#l00346">tft_flood()</a>, <a class="el" href="ili9341_8c_source.html#l00416">tft_floodline()</a>, <a class="el" href="ili9341_8c_source.html#l00745">tft_writeRect()</a>, and <a class="el" href="user__main_8c_source.html#l00628">user_tests()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6ab93eb7f022a179fed29999a4affd2f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int tft_FillPolyLine </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structwindow.html">window</a> *&#160;</td>
+          <td class="paramname"><em>win</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int16_t&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int16_t&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>w</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="send_8c.html#a273cf69d639a59973b6019625df33e30">uint16_t</a>&#160;</td>
+          <td class="paramname"><em>color</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00510">510</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
 </div>
 </div>
@@ -1242,9 +1271,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00488">488</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00627">627</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341_8c_source.html#l01468">tft_cleareol()</a>, <a class="el" href="ili9341_8c_source.html#l01488">tft_clearline()</a>, <a class="el" href="font_8c_source.html#l00200">tft_drawChar()</a>, <a class="el" href="ili9341_8c_source.html#l01190">tft_drawFastHLine()</a>, <a class="el" href="ili9341_8c_source.html#l01175">tft_drawFastVLine()</a>, <a class="el" href="ili9341_8c_source.html#l00551">tft_fillRectXY()</a>, <a class="el" href="ili9341__adafruit_8c_source.html#l00414">tft_fillRoundRect()</a>, <a class="el" href="ili9341_8c_source.html#l00337">tft_fillWin()</a>, <a class="el" href="ili9341_8c_source.html#l01510">tft_putch()</a>, and <a class="el" href="ili9341_8c_source.html#l00764">tft_Vscroll()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341_8c_source.html#l01601">tft_cleareol()</a>, <a class="el" href="ili9341_8c_source.html#l01621">tft_clearline()</a>, <a class="el" href="font_8c_source.html#l00200">tft_drawChar()</a>, <a class="el" href="ili9341_8c_source.html#l01329">tft_drawFastHLine()</a>, <a class="el" href="ili9341_8c_source.html#l01314">tft_drawFastVLine()</a>, <a class="el" href="ili9341_8c_source.html#l00690">tft_fillRectXY()</a>, <a class="el" href="ili9341__adafruit_8c_source.html#l00414">tft_fillRoundRect()</a>, <a class="el" href="ili9341_8c_source.html#l00334">tft_fillWin()</a>, <a class="el" href="ili9341_8c_source.html#l01643">tft_putch()</a>, and <a class="el" href="ili9341_8c_source.html#l00903">tft_Vscroll()</a>.</p>
 
 </div>
 </div>
@@ -1310,9 +1339,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00551">551</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00690">690</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341_8c_source.html#l01190">tft_drawFastHLine()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341_8c_source.html#l01329">tft_drawFastHLine()</a>.</p>
 
 </div>
 </div>
@@ -1350,9 +1379,9 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00337">337</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00334">334</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="user__main_8c_source.html#l00857">test_types()</a>, <a class="el" href="ili9341__hal_8c_source.html#l00178">tft_init()</a>, and <a class="el" href="ili9341_8c_source.html#l01510">tft_putch()</a>.</p>
+<p>Referenced by <a class="el" href="user__main_8c_source.html#l00776">test_types()</a>, <a class="el" href="ili9341__hal_8c_source.html#l00178">tft_init()</a>, and <a class="el" href="ili9341_8c_source.html#l01643">tft_putch()</a>.</p>
 
 </div>
 </div>
@@ -1409,9 +1438,9 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00349">349</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00346">346</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00349">tft_flood()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00346">tft_flood()</a>.</p>
 
 </div>
 </div>
@@ -1470,7 +1499,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00419">419</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00416">416</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
 </div>
 </div>
@@ -1494,9 +1523,9 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01139">1139</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01278">1278</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="user__main_8c_source.html#l00467">user_loop()</a>.</p>
+<p>Referenced by <a class="el" href="user__main_8c_source.html#l00357">user_loop()</a>.</p>
 
 </div>
 </div>
@@ -1522,9 +1551,9 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01149">1149</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01288">1288</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="user__main_8c_source.html#l00857">test_types()</a>.</p>
+<p>Referenced by <a class="el" href="user__main_8c_source.html#l00776">test_types()</a>.</p>
 
 </div>
 </div>
@@ -1550,7 +1579,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01157">1157</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01296">1296</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
 </div>
 </div>
@@ -1577,7 +1606,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00906">906</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01045">1045</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
 </div>
 </div>
@@ -1614,9 +1643,9 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00400">400</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00397">397</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00419">tft_floodline()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00416">tft_floodline()</a>.</p>
 
 </div>
 </div>
@@ -1653,9 +1682,9 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00383">383</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00380">380</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00419">tft_floodline()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00416">tft_floodline()</a>.</p>
 
 </div>
 </div>
@@ -1692,7 +1721,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01510">1510</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01643">1643</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
 <p>Referenced by <a class="el" href="tft__printf_8c_source.html#l00034">_putc_win()</a>, and <a class="el" href="tft__printf_8c_source.html#l00040">_putc_win_len()</a>.</p>
 
@@ -1717,7 +1746,7 @@ Variables</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>32bit value with DIPLAY ID </dd></dl>
 <p>Paramter 0 is unused See Read ID4 Command ( 0xd3 ) for a description of the parameters </p>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00209">209</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00206">206</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
 <p>Referenced by <a class="el" href="ili9341__hal_8c_source.html#l00178">tft_init()</a>.</p>
 
@@ -1764,9 +1793,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>color in 565 format </dd></dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00813">813</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00952">952</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00349">tft_flood()</a>, and <a class="el" href="ili9341_8c_source.html#l00419">tft_floodline()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00346">tft_flood()</a>, <a class="el" href="ili9341_8c_source.html#l00416">tft_floodline()</a>, and <a class="el" href="user__main_8c_source.html#l00628">user_tests()</a>.</p>
 
 </div>
 </div>
@@ -1818,9 +1847,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00698">698</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00837">837</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="user__main_8c_source.html#l00652">loop()</a>, and <a class="el" href="ili9341_8c_source.html#l00764">tft_Vscroll()</a>.</p>
+<p>Referenced by <a class="el" href="user__main_8c_source.html#l00542">loop()</a>, and <a class="el" href="ili9341_8c_source.html#l00903">tft_Vscroll()</a>.</p>
 
 </div>
 </div>
@@ -1861,9 +1890,9 @@ Variables</h2></td></tr>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00169">169</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00166">166</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00209">tft_readId()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00206">tft_readId()</a>.</p>
 
 </div>
 </div>
@@ -1922,9 +1951,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>bytes w * h after clipping, 0 on error </dd></dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00143">143</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00140">140</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00237">tft_bit_blit()</a>, <a class="el" href="ili9341_8c_source.html#l00578">tft_drawPixel()</a>, <a class="el" href="ili9341_8c_source.html#l00488">tft_fillRectWH()</a>, <a class="el" href="ili9341_8c_source.html#l00813">tft_readPixel()</a>, <a class="el" href="ili9341_8c_source.html#l00698">tft_readRect()</a>, and <a class="el" href="ili9341_8c_source.html#l00606">tft_writeRect()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00234">tft_bit_blit()</a>, <a class="el" href="ili9341_8c_source.html#l00717">tft_drawPixel()</a>, <a class="el" href="ili9341_8c_source.html#l00510">tft_FillPolyLine()</a>, <a class="el" href="ili9341_8c_source.html#l00627">tft_fillRectWH()</a>, <a class="el" href="ili9341_8c_source.html#l00952">tft_readPixel()</a>, <a class="el" href="ili9341_8c_source.html#l00837">tft_readRect()</a>, and <a class="el" href="ili9341_8c_source.html#l00745">tft_writeRect()</a>.</p>
 
 </div>
 </div>
@@ -1961,9 +1990,9 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01128">1128</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01267">1267</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="user__main_8c_source.html#l00857">test_types()</a>, and <a class="el" href="user__main_8c_source.html#l00467">user_loop()</a>.</p>
+<p>Referenced by <a class="el" href="user__main_8c_source.html#l00776">test_types()</a>, and <a class="el" href="user__main_8c_source.html#l00357">user_loop()</a>.</p>
 
 </div>
 </div>
@@ -2007,9 +2036,9 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01115">1115</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01254">1254</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="user__main_8c_source.html#l00857">test_types()</a>, and <a class="el" href="user__main_8c_source.html#l00467">user_loop()</a>.</p>
+<p>Referenced by <a class="el" href="user__main_8c_source.html#l00776">test_types()</a>, and <a class="el" href="user__main_8c_source.html#l00357">user_loop()</a>.</p>
 
 </div>
 </div>
@@ -2053,7 +2082,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01102">1102</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01241">1241</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
 </div>
 </div>
@@ -2077,9 +2106,9 @@ Variables</h2></td></tr>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00843">843</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00982">982</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="user__main_8c_source.html#l00857">test_types()</a>, <a class="el" href="ili9341__hal_8c_source.html#l00178">tft_init()</a>, and <a class="el" href="user__main_8c_source.html#l00738">user_tests()</a>.</p>
+<p>Referenced by <a class="el" href="user__main_8c_source.html#l00776">test_types()</a>, <a class="el" href="ili9341__hal_8c_source.html#l00178">tft_init()</a>, and <a class="el" href="user__main_8c_source.html#l00628">user_tests()</a>.</p>
 
 </div>
 </div>
@@ -2124,9 +2153,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01089">1089</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01228">1228</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="user__main_8c_source.html#l00857">test_types()</a>.</p>
+<p>Referenced by <a class="el" href="user__main_8c_source.html#l00776">test_types()</a>.</p>
 
 </div>
 </div>
@@ -2163,7 +2192,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00764">764</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00903">903</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
 <p>Referenced by <a class="el" href="font_8c_source.html#l00200">tft_drawChar()</a>.</p>
 
@@ -2192,7 +2221,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 - or - count of clipped values FIXME check negitive offsets, etc </dd></dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00920">920</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01059">1059</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
 </div>
 </div>
@@ -2251,9 +2280,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void FIXME check negitive offsets, etc </dd></dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01006">1006</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01145">1145</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00101">tft_abs_window()</a>, <a class="el" href="ili9341_8c_source.html#l00237">tft_bit_blit()</a>, and <a class="el" href="ili9341_8c_source.html#l01059">tft_window_init()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00101">tft_abs_window()</a>, <a class="el" href="ili9341_8c_source.html#l00234">tft_bit_blit()</a>, and <a class="el" href="ili9341_8c_source.html#l01198">tft_window_init()</a>.</p>
 
 </div>
 </div>
@@ -2312,9 +2341,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01059">1059</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l01198">1198</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="user__main_8c_source.html#l00857">test_types()</a>, and <a class="el" href="ili9341__hal_8c_source.html#l00178">tft_init()</a>.</p>
+<p>Referenced by <a class="el" href="user__main_8c_source.html#l00776">test_types()</a>, and <a class="el" href="ili9341__hal_8c_source.html#l00178">tft_init()</a>.</p>
 
 </div>
 </div>
@@ -2380,9 +2409,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00606">606</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00745">745</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ili9341__adafruit_8c_source.html#l00184">tft_drawBitmap()</a>, and <a class="el" href="ili9341_8c_source.html#l00764">tft_Vscroll()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341__adafruit_8c_source.html#l00184">tft_drawBitmap()</a>, and <a class="el" href="ili9341_8c_source.html#l00903">tft_Vscroll()</a>.</p>
 
 </div>
 </div>
@@ -2397,9 +2426,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00376">376</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00373">373</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="posix_8c_source.html#l01495">dirname()</a>, <a class="el" href="user__main_8c_source.html#l00373">drawSVG()</a>, <a class="el" href="posix_8c_source.html#l00411">fgets()</a>, <a class="el" href="web_8c_source.html#l00993">match_headers()</a>, <a class="el" href="printf_8c_source.html#l00312">p_ntoa()</a>, <a class="el" href="bdffontutil_8c_source.html#l00790">ReadBdf()</a>, <a class="el" href="ili9341_8c_source.html#l00237">tft_bit_blit()</a>, <a class="el" href="ili9341_8c_source.html#l00488">tft_fillRectWH()</a>, and <a class="el" href="ili9341_8c_source.html#l00606">tft_writeRect()</a>.</p>
+<p>Referenced by <a class="el" href="posix_8c_source.html#l01495">dirname()</a>, <a class="el" href="posix_8c_source.html#l00411">fgets()</a>, <a class="el" href="web_8c_source.html#l00995">match_headers()</a>, <a class="el" href="printf_8c_source.html#l00312">p_ntoa()</a>, <a class="el" href="bdffontutil_8c_source.html#l00790">ReadBdf()</a>, <a class="el" href="ili9341_8c_source.html#l01474">tft_Bezier2()</a>, <a class="el" href="ili9341_8c_source.html#l01545">tft_Bezier3()</a>, <a class="el" href="ili9341_8c_source.html#l00234">tft_bit_blit()</a>, <a class="el" href="ili9341_8c_source.html#l00510">tft_FillPolyLine()</a>, <a class="el" href="ili9341_8c_source.html#l00627">tft_fillRectWH()</a>, and <a class="el" href="ili9341_8c_source.html#l00745">tft_writeRect()</a>.</p>
 
 </div>
 </div>
@@ -2431,19 +2460,19 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a7e1c531941c89bac69fe489cc3ff0790"></a>
+<a class="anchor" id="a12ad102c2d1e7e119fdc040b0c922c7e"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int16_t x[<a class="el" href="ili9341_8c.html#a71d0761bc813dbcb85353d2508693493">XYSTACK</a>+1]</td>
+          <td class="memname">int16_t x[<a class="el" href="ili9341_8c.html#a71d0761bc813dbcb85353d2508693493">XYSTACK</a>+2]</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00374">374</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00371">371</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="adf4351_8c_source.html#l00150">ADF4351_CHARGE_PUMP_uA()</a>, <a class="el" href="cordic2c_8c_source.html#l00292">asinCordic()</a>, <a class="el" href="bdffontutil_8c_source.html#l01726">bitclrxy()</a>, <a class="el" href="bdffontutil_8c_source.html#l01698">bitsetxy()</a>, <a class="el" href="flash_8c_source.html#l00166">bittestxy()</a>, <a class="el" href="cordic_8c_source.html#l00103">Circular()</a>, <a class="el" href="bdffontutil_8c_source.html#l01524">ComputeGapSize()</a>, <a class="el" href="cordic2c_8c_source.html#l00259">cordit1()</a>, <a class="el" href="bdffontutil_8c_source.html#l01240">FontAdjustFull()</a>, <a class="el" href="bdffontutil_8c_source.html#l01325">FontAdjustSmall()</a>, <a class="el" href="bdffontutil_8c_source.html#l01753">FontPreview()</a>, <a class="el" href="bdffontutil_8c_source.html#l01836">FontPreviewFull()</a>, <a class="el" href="bdffontutil_8c_source.html#l01938">FontPreviewProportional()</a>, <a class="el" href="user__main_8c_source.html#l00652">loop()</a>, <a class="el" href="earth2wireframe_8c_source.html#l00077">main()</a>, <a class="el" href="bdffontutil_8c_source.html#l00790">ReadBdf()</a>, <a class="el" href="cordic_8c_source.html#l00265">rotate()</a>, <a class="el" href="user__main_8c_source.html#l00857">test_types()</a>, <a class="el" href="ili9341_8c_source.html#l00975">tft_clip_xy()</a>, <a class="el" href="ili9341__adafruit_8c_source.html#l00201">tft_drawCircle()</a>, <a class="el" href="ili9341__adafruit_8c_source.html#l00248">tft_drawCircleHelper()</a>, <a class="el" href="ili9341__adafruit_8c_source.html#l00302">tft_fillCircleHelper()</a>, <a class="el" href="ili9341_8c_source.html#l00419">tft_floodline()</a>, <a class="el" href="ili9341_8c_source.html#l00383">tft_push_xy()</a>, <a class="el" href="ili9341_8c_source.html#l01102">tft_setpos()</a>, <a class="el" href="ili9341_8c_source.html#l01059">tft_window_init()</a>, and <a class="el" href="bdffontutil_8c_source.html#l00721">WriteCharacterBits()</a>.</p>
+<p>Referenced by <a class="el" href="adf4351_8c_source.html#l00150">ADF4351_CHARGE_PUMP_uA()</a>, <a class="el" href="cordic2c_8c_source.html#l00292">asinCordic()</a>, <a class="el" href="bdffontutil_8c_source.html#l01726">bitclrxy()</a>, <a class="el" href="bdffontutil_8c_source.html#l01698">bitsetxy()</a>, <a class="el" href="flash_8c_source.html#l00166">bittestxy()</a>, <a class="el" href="cordic_8c_source.html#l00103">Circular()</a>, <a class="el" href="bdffontutil_8c_source.html#l01524">ComputeGapSize()</a>, <a class="el" href="cordic2c_8c_source.html#l00259">cordit1()</a>, <a class="el" href="bdffontutil_8c_source.html#l01240">FontAdjustFull()</a>, <a class="el" href="bdffontutil_8c_source.html#l01325">FontAdjustSmall()</a>, <a class="el" href="bdffontutil_8c_source.html#l01753">FontPreview()</a>, <a class="el" href="bdffontutil_8c_source.html#l01836">FontPreviewFull()</a>, <a class="el" href="bdffontutil_8c_source.html#l01938">FontPreviewProportional()</a>, <a class="el" href="user__main_8c_source.html#l00542">loop()</a>, <a class="el" href="earth2wireframe_8c_source.html#l00077">main()</a>, <a class="el" href="bdffontutil_8c_source.html#l00790">ReadBdf()</a>, <a class="el" href="cordic_8c_source.html#l00265">rotate()</a>, <a class="el" href="user__main_8c_source.html#l00776">test_types()</a>, <a class="el" href="ili9341_8c_source.html#l01114">tft_clip_xy()</a>, <a class="el" href="ili9341__adafruit_8c_source.html#l00201">tft_drawCircle()</a>, <a class="el" href="ili9341__adafruit_8c_source.html#l00248">tft_drawCircleHelper()</a>, <a class="el" href="ili9341__adafruit_8c_source.html#l00302">tft_fillCircleHelper()</a>, <a class="el" href="ili9341_8c_source.html#l00510">tft_FillPolyLine()</a>, <a class="el" href="ili9341_8c_source.html#l00416">tft_floodline()</a>, <a class="el" href="ili9341_8c_source.html#l00380">tft_push_xy()</a>, <a class="el" href="ili9341_8c_source.html#l01241">tft_setpos()</a>, <a class="el" href="ili9341_8c_source.html#l01198">tft_window_init()</a>, <a class="el" href="user__main_8c_source.html#l00628">user_tests()</a>, and <a class="el" href="bdffontutil_8c_source.html#l00721">WriteCharacterBits()</a>.</p>
 
 </div>
 </div>
@@ -2457,30 +2486,30 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00419">tft_floodline()</a>, <a class="el" href="ili9341_8c_source.html#l00400">tft_pop_xy()</a>, and <a class="el" href="ili9341_8c_source.html#l00383">tft_push_xy()</a>.</p>
+<p>Referenced by <a class="el" href="ili9341_8c_source.html#l00416">tft_floodline()</a>, <a class="el" href="ili9341_8c_source.html#l00397">tft_pop_xy()</a>, and <a class="el" href="ili9341_8c_source.html#l00380">tft_push_xy()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ab82fda4a9377d83187ff1ebd806ea27c"></a>
+<a class="anchor" id="afe490938209e0b6b15224c05a01f0b40"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int16_t y[<a class="el" href="ili9341_8c.html#a71d0761bc813dbcb85353d2508693493">XYSTACK</a>+1]</td>
+          <td class="memname">int16_t y[<a class="el" href="ili9341_8c.html#a71d0761bc813dbcb85353d2508693493">XYSTACK</a>+2]</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00375">375</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+<p>Definition at line <a class="el" href="ili9341_8c_source.html#l00372">372</a> of file <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p>Referenced by <a class="el" href="cordic2c_8c_source.html#l00292">asinCordic()</a>, <a class="el" href="cordic_8c_source.html#l00103">Circular()</a>, <a class="el" href="bdffontutil_8c_source.html#l01524">ComputeGapSize()</a>, <a class="el" href="cordic2c_8c_source.html#l00259">cordit1()</a>, <a class="el" href="bdffontutil_8c_source.html#l01240">FontAdjustFull()</a>, <a class="el" href="bdffontutil_8c_source.html#l01325">FontAdjustSmall()</a>, <a class="el" href="bdffontutil_8c_source.html#l01753">FontPreview()</a>, <a class="el" href="bdffontutil_8c_source.html#l01836">FontPreviewFull()</a>, <a class="el" href="bdffontutil_8c_source.html#l01938">FontPreviewProportional()</a>, <a class="el" href="user__main_8c_source.html#l00652">loop()</a>, <a class="el" href="earth2wireframe_8c_source.html#l00077">main()</a>, <a class="el" href="cordic_8c_source.html#l00265">rotate()</a>, <a class="el" href="user__main_8c_source.html#l00857">test_types()</a>, <a class="el" href="ili9341_8c_source.html#l00975">tft_clip_xy()</a>, <a class="el" href="ili9341__adafruit_8c_source.html#l00201">tft_drawCircle()</a>, <a class="el" href="ili9341__adafruit_8c_source.html#l00248">tft_drawCircleHelper()</a>, <a class="el" href="ili9341__adafruit_8c_source.html#l00302">tft_fillCircleHelper()</a>, <a class="el" href="ili9341__adafruit_8c_source.html#l00458">tft_fillTriangle()</a>, <a class="el" href="ili9341_8c_source.html#l00383">tft_push_xy()</a>, <a class="el" href="ili9341_8c_source.html#l01102">tft_setpos()</a>, <a class="el" href="ili9341_8c_source.html#l01059">tft_window_init()</a>, and <a class="el" href="bdffontutil_8c_source.html#l00721">WriteCharacterBits()</a>.</p>
+<p>Referenced by <a class="el" href="cordic2c_8c_source.html#l00292">asinCordic()</a>, <a class="el" href="cordic_8c_source.html#l00103">Circular()</a>, <a class="el" href="bdffontutil_8c_source.html#l01524">ComputeGapSize()</a>, <a class="el" href="cordic2c_8c_source.html#l00259">cordit1()</a>, <a class="el" href="bdffontutil_8c_source.html#l01240">FontAdjustFull()</a>, <a class="el" href="bdffontutil_8c_source.html#l01325">FontAdjustSmall()</a>, <a class="el" href="bdffontutil_8c_source.html#l01753">FontPreview()</a>, <a class="el" href="bdffontutil_8c_source.html#l01836">FontPreviewFull()</a>, <a class="el" href="bdffontutil_8c_source.html#l01938">FontPreviewProportional()</a>, <a class="el" href="user__main_8c_source.html#l00542">loop()</a>, <a class="el" href="earth2wireframe_8c_source.html#l00077">main()</a>, <a class="el" href="cordic_8c_source.html#l00265">rotate()</a>, <a class="el" href="user__main_8c_source.html#l00776">test_types()</a>, <a class="el" href="ili9341_8c_source.html#l01114">tft_clip_xy()</a>, <a class="el" href="ili9341__adafruit_8c_source.html#l00201">tft_drawCircle()</a>, <a class="el" href="ili9341__adafruit_8c_source.html#l00248">tft_drawCircleHelper()</a>, <a class="el" href="ili9341__adafruit_8c_source.html#l00302">tft_fillCircleHelper()</a>, <a class="el" href="ili9341__adafruit_8c_source.html#l00458">tft_fillTriangle()</a>, <a class="el" href="ili9341_8c_source.html#l00380">tft_push_xy()</a>, <a class="el" href="ili9341_8c_source.html#l01241">tft_setpos()</a>, <a class="el" href="ili9341_8c_source.html#l01198">tft_window_init()</a>, <a class="el" href="user__main_8c_source.html#l00628">user_tests()</a>, and <a class="el" href="bdffontutil_8c_source.html#l00721">WriteCharacterBits()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Apr 10 2017 21:13:15 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Apr 29 2017 21:30:20 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

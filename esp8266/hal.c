@@ -21,16 +21,25 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "user_config.h"
+#include  "hal.h"
 
+#ifdef ESP8266
 #include <eagle_soc.h>
+#endif
 
 #include <stdint.h>
 #include <stdarg.h>
 #include <string.h>
 #include <math.h>
 
+#ifdef ESP8266
 #include "hspi.h"
 #include "gpio.h"
+#endif
+
+#ifdef AVR
+#include "hardware/iom1284p.h"
+#endif
 
 /// ==========================================================
 /// @brief GPIO HAL
@@ -40,12 +49,8 @@
  @return void
 */
 void 
-gpio_sfr_mode(int pin)
+gpio_pin_sfr_mode(int pin)
 {
-#ifdef AVR
-	// FIXME add special function pin settings here
-#endif
-
 #ifdef ESP8266
 	switch(pin)
 	{
@@ -111,6 +116,9 @@ gpio_sfr_mode(int pin)
 			break;
 	}
 #endif
+#ifdef AVR
+	//TODO
+#endif
 }
 
 #ifdef ESP8266
@@ -120,7 +128,7 @@ gpio_sfr_mode(int pin)
  @return void
 */
 void 
-gpio16_dir(uint8_t out)
+gpio16_pin_dir(uint8_t out)
 {
 // mux XPD_DCDC to rtc_gpio0
     WRITE_PERI_REG(PAD_XPD_DCDC_CONF,
@@ -144,30 +152,22 @@ gpio16_dir(uint8_t out)
  @param[in] val: 1 for output, 0 for input
  @return void
 */
-void gpio_out(uint8_t pin, uint8_t val)
+void gpio_pin_out(uint8_t pin, uint8_t val)
 {
 #ifdef ESP8266
 	if(pin == 16)
 	{
 		if(val)
-			GPIO16_HI();
+			GPIO16_PIN_HI();
 		else
-			GPIO16_LOW();
+			GPIO16_PIN_LOW();
 	}
-	else if(pin < 16)
-    {
-		if(val)
-			GPIO_HI(pin);
-		else
-			GPIO_LOW(pin);
-	}
-#endif
-#ifdef AVR
-	if(val)
-		GPIO_HI(pin);
 	else
-		GPIO_LOW(pin);
 #endif
+	if(val)
+		GPIO_PIN_HI(pin);
+	else
+		GPIO_PIN_LOW(pin);
 }
 
 /** 
@@ -175,21 +175,16 @@ void gpio_out(uint8_t pin, uint8_t val)
  @param[in] pin: GPIO pin number
  @return 1 or 0
 */
-uint8_t gpio_rd(uint8_t pin)
+uint8_t gpio_pin_rd(uint8_t pin)
 {
 #ifdef ESP8266
 	if(pin == 16)
 	{
-		return( GPIO16_RD() );
+		return( GPIO16_PIN_RD() );
 	}
-	else if(pin < 16)
-    {
-		return( GPIO_RD(pin) );
-	}
+	else 
 #endif
-#ifdef AVR
-	return( GPIO_RD(pin) );
-#endif
+	return( GPIO_PIN_RD(pin) );
 }
 
 
@@ -205,10 +200,9 @@ void chip_select_init(uint8_t pin)
 //FIXME add address decoder options
 #ifdef HAVE_DECODER
 #error add address decoder code
-#else
-	GPIO_HI(pin);
-	GPIO_MODE(pin);
 #endif
+	GPIO_PIN_HI(pin);
+	GPIO_PIN_MODE(pin);
 }
 
 /** 
@@ -221,9 +215,8 @@ void chip_select(uint8_t pin)
 //FIXME add address decoder options
 #ifdef HAVE_DECODER
 #error add address decoder code
-#else
-	GPIO_LATCH_LOW(pin);
 #endif
+	GPIO_PIN_LOW(pin);
 }
 
 /** 
@@ -236,9 +229,8 @@ void chip_deselect(uint8_t pin)
 //FIXME add address decoder options
 #ifdef HAVE_DECODER
 #error add address decoder code
-#else
-	GPIO_LATCH_HI(pin);
 #endif
+	GPIO_PIN_HI(pin);
 }
 
 /// ==========================================================
@@ -250,23 +242,23 @@ void chip_deselect(uint8_t pin)
 void chip_addr_init()
 {
 #ifdef ADDR_0
-	GPIO_LOW(ADDR_0);
-	GPIO_MODE(ADDR_0);
+	GPIO_PIN_LOW(ADDR_0);
+	GPIO_PIN_MODE(ADDR_0);
 #endif
 
 #ifdef ADDR_1
-	GPIO_LOW(ADDR_1);
-	GPIO_MODE(ADDR_1);
+	GPIO_PIN_LOW(ADDR_1);
+	GPIO_PIN_MODE(ADDR_1);
 #endif
 
 #ifdef ADDR_2
-	GPIO_LOW(ADDR_2);
-	GPIO_MODE(ADDR_2);
+	GPIO_PIN_LOW(ADDR_2);
+	GPIO_PIN_MODE(ADDR_2);
 #endif
 
 #ifdef ADDR_3
-	GPIO_LOW(ADDR_3);
-	GPIO_MODE(ADDR_3);
+	GPIO_PIN_LOW(ADDR_3);
+	GPIO_PIN_MODE(ADDR_3);
 #endif
 }
 
@@ -282,27 +274,27 @@ void chip_addr(int addr)
 #ifdef ADDR_0
 
 	if(addr & 1)
-		GPIO_HI(ADDR_0);
+		GPIO_PIN_HI(ADDR_0);
 	else
-		GPIO_LOW(ADDR_0);
+		GPIO_PIN_LOW(ADDR_0);
 #endif
 #ifdef ADDR_1
 	if(addr & 2)
-		GPIO_HI(ADDR_1);
+		GPIO_PIN_HI(ADDR_1);
 	else
-		GPIO_LOW(ADDR_1);
+		GPIO_PIN_LOW(ADDR_1);
 #endif
 #ifdef ADDR_2
 	if(addr & 4)
-		GPIO_HI(ADDR_2);
+		GPIO_PIN_HI(ADDR_2);
 	else
-		GPIO_LOW(ADDR_2);
+		GPIO_PIN_LOW(ADDR_2);
 #endif
 #ifdef ADDR_3
 	if(addr & 8)
-		GPIO_HI(ADDR_3);
+		GPIO_PIN_HI(ADDR_3);
 	else
-		GPIO_LOW(ADDR_3);
+		GPIO_PIN_LOW(ADDR_3);
 #endif
 }
 
@@ -321,8 +313,9 @@ void spi_waitReady()
 #endif
 }
 
+
 /** 
- @brief SPI chip enable function
+ @brief SPI init function
   Function waits for current tranaction to finish before proceeding
  @see spi_waitReady
  @see chip_select
@@ -332,6 +325,34 @@ void spi_waitReady()
 */
 uint8_t _cs_pin = 0xff;
 uint32_t _spi_clock = -1L;
+void spi_init(uint32_t clock, int pin)
+{
+    spi_waitReady();
+    chip_deselect(pin);
+    _cs_pin = 0xff;
+
+#ifdef AVR
+	SPI0_Init(clock);   // Initialize the SPI bus - does nothing if clock unchanged
+	SPI0_Mode(0);       // Set the clocking mode, etc
+#endif
+#ifdef ESP8266
+	hspi_init(clock,0); // Initialize the SPI bus - does nothing if clock unchanged
+#endif
+	spi_TX(0xff);
+	_spi_clock = clock;
+	// waits for any prior transactions to complete before updating
+    spi_waitReady();
+}
+
+/** 
+ @brief SPI chip enable function
+  Function waits for current tranaction to finish before proceeding
+ @see spi_waitReady
+ @see chip_select
+ @param[in] clock: SPI clock rate
+ @param[in] pin: GPIO CS pin
+ @return void
+*/
 void spi_begin(uint32_t clock, int pin)
 {
     // FIXME allow nesting by using an array of clock values for each pin
@@ -350,14 +371,7 @@ void spi_begin(uint32_t clock, int pin)
 	///@ we cache the clock frequency seeting for multiple device support
 	if(_spi_clock != clock)
 	{
-#ifdef AVR
-		SPI0_Init(clock);   // Initialize the SPI bus - does nothing if clock unchanged
-		SPI0_Mode(0);       // Set the clocking mode, etc
-#endif
-#ifdef ESP8266
-		hspi_init(clock,0); // Initialize the SPI bus - does nothing if clock unchanged
-#endif
-		_spi_clock = clock;
+		spi_init(clock,pin);
 	}
 
     chip_select(pin);

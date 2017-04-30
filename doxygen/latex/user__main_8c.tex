@@ -10,7 +10,6 @@ Main user and initialization code This initialize the platform and runs the main
 {\ttfamily \#include $<$string.\+h$>$}\\*
 {\ttfamily \#include $<$math.\+h$>$}\\*
 {\ttfamily \#include \char`\"{}user\+\_\+config.\+h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}fatfs.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}time.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}timer.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}matrix.\+h\char`\"{}}\\*
@@ -48,12 +47,6 @@ void \hyperlink{user__main_8c_a9aaa25ef08319cd23e2cdee0b6405de5}{ntp\+\_\+setup}
 \item 
 float \hyperlink{user__main_8c_ac9ad8e3830c026847c00b6d46591dbdb}{adc\+\_\+read} ()
 \begin{DoxyCompactList}\small\item\em return system\+\_\+adc\+\_\+read scaled to a float T\+\_\+\+O\+UT pin is connected to the junction of a voltage divider R1 and R2 R1 is connected to V\+CC R2 is connected to ground T\+\_\+\+O\+UT is connected to the junction of R1 and R2 F\+I\+X\+ME T\+\_\+\+O\+UT has a loading value \end{DoxyCompactList}\item 
-int16\+\_\+t \hyperlink{user__main_8c_a0aa9c4ef2ff8fad916fe2f748c139c59}{sx} (float scale, int16\+\_\+t xoff, int16\+\_\+t \hyperlink{cordic2c_8c_a46b4b48ef8c0c01099eb3bcdde8aa8db}{X})
-\item 
-int16\+\_\+t \hyperlink{user__main_8c_aade6a90a61d9ec9c45a7ad61180f9770}{sy} (float scale, int16\+\_\+t yoff, int16\+\_\+t \hyperlink{cordic2c_8c_ab746e677f466f17031e92ed577fc3c15}{Y})
-\item 
-\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{user__main_8c_acda9e14c9c4817d88b8a4d0e1384df04}{draw\+S\+VG} (\hyperlink{structwindow}{window} $\ast$win, int16\+\_\+t \hyperlink{ili9341_8c_a7e1c531941c89bac69fe489cc3ff0790}{x}, int16\+\_\+t \hyperlink{ili9341_8c_ab82fda4a9377d83187ff1ebd806ea27c}{y}, int16\+\_\+t c, float scale, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} color)
-\item 
 void \hyperlink{user__main_8c_a9c9fec92b60b251c275870d900294a4a}{user\+\_\+loop} (void)
 \item 
 void \hyperlink{user__main_8c_afe461d27b9c48d5921c00d521181f12f}{loop} ()
@@ -114,28 +107,28 @@ You should have received a copy of the G\+NU General Public License along with t
 \subsubsection[{\texorpdfstring{R1}{R1}}]{\setlength{\rightskip}{0pt plus 5cm}\#define R1~330000.\+0}\hypertarget{user__main_8c_a918f64eb53db8e8dc694f36a87646476}{}\label{user__main_8c_a918f64eb53db8e8dc694f36a87646476}
 
 
-Definition at line 324 of file user\+\_\+main.\+c.
+Definition at line 322 of file user\+\_\+main.\+c.
 
 \index{user\+\_\+main.\+c@{user\+\_\+main.\+c}!R2@{R2}}
 \index{R2@{R2}!user\+\_\+main.\+c@{user\+\_\+main.\+c}}
 \subsubsection[{\texorpdfstring{R2}{R2}}]{\setlength{\rightskip}{0pt plus 5cm}\#define R2~100000.\+0}\hypertarget{user__main_8c_a7a255a2815b9453060f51c6eb22cfed8}{}\label{user__main_8c_a7a255a2815b9453060f51c6eb22cfed8}
 
 
-Definition at line 326 of file user\+\_\+main.\+c.
+Definition at line 324 of file user\+\_\+main.\+c.
 
 \index{user\+\_\+main.\+c@{user\+\_\+main.\+c}!V\+E\+R\+R\+OR@{V\+E\+R\+R\+OR}}
 \index{V\+E\+R\+R\+OR@{V\+E\+R\+R\+OR}!user\+\_\+main.\+c@{user\+\_\+main.\+c}}
 \subsubsection[{\texorpdfstring{V\+E\+R\+R\+OR}{VERROR}}]{\setlength{\rightskip}{0pt plus 5cm}\#define V\+E\+R\+R\+OR~0.\+95}\hypertarget{user__main_8c_ab38143b778adc0376cef19233669453b}{}\label{user__main_8c_ab38143b778adc0376cef19233669453b}
 
 
-Definition at line 330 of file user\+\_\+main.\+c.
+Definition at line 328 of file user\+\_\+main.\+c.
 
 \index{user\+\_\+main.\+c@{user\+\_\+main.\+c}!V\+S\+C\+A\+LE@{V\+S\+C\+A\+LE}}
 \index{V\+S\+C\+A\+LE@{V\+S\+C\+A\+LE}!user\+\_\+main.\+c@{user\+\_\+main.\+c}}
 \subsubsection[{\texorpdfstring{V\+S\+C\+A\+LE}{VSCALE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define V\+S\+C\+A\+LE~({\bf V\+E\+R\+R\+OR}$\ast$(({\bf R1}+{\bf R2})/{\bf R2})/1024.\+0)}\hypertarget{user__main_8c_ac51ccb923f4c4f470f00c1f9aa6e2c2b}{}\label{user__main_8c_ac51ccb923f4c4f470f00c1f9aa6e2c2b}
 
 
-Definition at line 332 of file user\+\_\+main.\+c.
+Definition at line 330 of file user\+\_\+main.\+c.
 
 
 
@@ -160,31 +153,11 @@ float
 \end{DoxyReturn}
 
 
-Definition at line 343 of file user\+\_\+main.\+c.
+Definition at line 341 of file user\+\_\+main.\+c.
 
 
 
 Referenced by user\+\_\+loop().
-
-\index{user\+\_\+main.\+c@{user\+\_\+main.\+c}!draw\+S\+VG@{draw\+S\+VG}}
-\index{draw\+S\+VG@{draw\+S\+VG}!user\+\_\+main.\+c@{user\+\_\+main.\+c}}
-\subsubsection[{\texorpdfstring{draw\+S\+V\+G(window $\ast$win, int16\+\_\+t x, int16\+\_\+t y, int16\+\_\+t c, float scale, uint16\+\_\+t color)}{drawSVG(window *win, int16_t x, int16_t y, int16_t c, float scale, uint16_t color)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void draw\+S\+VG (
-\begin{DoxyParamCaption}
-\item[{{\bf window} $\ast$}]{win, }
-\item[{int16\+\_\+t}]{x, }
-\item[{int16\+\_\+t}]{y, }
-\item[{int16\+\_\+t}]{c, }
-\item[{float}]{scale, }
-\item[{{\bf uint16\+\_\+t}}]{color}
-\end{DoxyParamCaption}
-)}\hypertarget{user__main_8c_acda9e14c9c4817d88b8a4d0e1384df04}{}\label{user__main_8c_acda9e14c9c4817d88b8a4d0e1384df04}
-
-
-Definition at line 373 of file user\+\_\+main.\+c.
-
-
-
-Referenced by user\+\_\+tests().
 
 \index{user\+\_\+main.\+c@{user\+\_\+main.\+c}!ets\+\_\+timer\+\_\+disarm@{ets\+\_\+timer\+\_\+disarm}}
 \index{ets\+\_\+timer\+\_\+disarm@{ets\+\_\+timer\+\_\+disarm}!user\+\_\+main.\+c@{user\+\_\+main.\+c}}
@@ -211,7 +184,7 @@ Referenced by user\+\_\+tests().
 )}\hypertarget{user__main_8c_afe461d27b9c48d5921c00d521181f12f}{}\label{user__main_8c_afe461d27b9c48d5921c00d521181f12f}
 
 
-Definition at line 652 of file user\+\_\+main.\+c.
+Definition at line 542 of file user\+\_\+main.\+c.
 
 
 
@@ -233,7 +206,7 @@ void.
 \end{DoxyReturn}
 
 
-Definition at line 138 of file user\+\_\+main.\+c.
+Definition at line 136 of file user\+\_\+main.\+c.
 
 \index{user\+\_\+main.\+c@{user\+\_\+main.\+c}!ms\+\_\+init@{ms\+\_\+init}}
 \index{ms\+\_\+init@{ms\+\_\+init}!user\+\_\+main.\+c@{user\+\_\+main.\+c}}
@@ -251,7 +224,7 @@ void.
 \end{DoxyReturn}
 
 
-Definition at line 168 of file user\+\_\+main.\+c.
+Definition at line 166 of file user\+\_\+main.\+c.
 
 
 
@@ -273,7 +246,7 @@ time in milliseconds
 \end{DoxyReturn}
 
 
-Definition at line 148 of file user\+\_\+main.\+c.
+Definition at line 146 of file user\+\_\+main.\+c.
 
 
 
@@ -295,7 +268,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 160 of file user\+\_\+main.\+c.
+Definition at line 158 of file user\+\_\+main.\+c.
 
 
 
@@ -310,7 +283,7 @@ Referenced by ms\+\_\+init().
 )}\hypertarget{user__main_8c_a9aaa25ef08319cd23e2cdee0b6405de5}{}\label{user__main_8c_a9aaa25ef08319cd23e2cdee0b6405de5}
 
 
-Definition at line 178 of file user\+\_\+main.\+c.
+Definition at line 176 of file user\+\_\+main.\+c.
 
 
 
@@ -332,45 +305,11 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1045 of file user\+\_\+main.\+c.
+Definition at line 964 of file user\+\_\+main.\+c.
 
 
 
 Referenced by atexit(), loop\+\_\+wrapper(), and user\+\_\+init().
-
-\index{user\+\_\+main.\+c@{user\+\_\+main.\+c}!sx@{sx}}
-\index{sx@{sx}!user\+\_\+main.\+c@{user\+\_\+main.\+c}}
-\subsubsection[{\texorpdfstring{sx(float scale, int16\+\_\+t xoff, int16\+\_\+t X)}{sx(float scale, int16_t xoff, int16_t X)}}]{\setlength{\rightskip}{0pt plus 5cm}int16\+\_\+t sx (
-\begin{DoxyParamCaption}
-\item[{float}]{scale, }
-\item[{int16\+\_\+t}]{xoff, }
-\item[{int16\+\_\+t}]{X}
-\end{DoxyParamCaption}
-)}\hypertarget{user__main_8c_a0aa9c4ef2ff8fad916fe2f748c139c59}{}\label{user__main_8c_a0aa9c4ef2ff8fad916fe2f748c139c59}
-
-
-Definition at line 355 of file user\+\_\+main.\+c.
-
-
-
-Referenced by draw\+S\+V\+G(), and tft\+\_\+draw\+Fast\+H\+Line().
-
-\index{user\+\_\+main.\+c@{user\+\_\+main.\+c}!sy@{sy}}
-\index{sy@{sy}!user\+\_\+main.\+c@{user\+\_\+main.\+c}}
-\subsubsection[{\texorpdfstring{sy(float scale, int16\+\_\+t yoff, int16\+\_\+t Y)}{sy(float scale, int16_t yoff, int16_t Y)}}]{\setlength{\rightskip}{0pt plus 5cm}int16\+\_\+t sy (
-\begin{DoxyParamCaption}
-\item[{float}]{scale, }
-\item[{int16\+\_\+t}]{yoff, }
-\item[{int16\+\_\+t}]{Y}
-\end{DoxyParamCaption}
-)}\hypertarget{user__main_8c_aade6a90a61d9ec9c45a7ad61180f9770}{}\label{user__main_8c_aade6a90a61d9ec9c45a7ad61180f9770}
-
-
-Definition at line 363 of file user\+\_\+main.\+c.
-
-
-
-Referenced by draw\+S\+V\+G(), and tft\+\_\+draw\+Fast\+H\+Line().
 
 \index{user\+\_\+main.\+c@{user\+\_\+main.\+c}!test\+\_\+types@{test\+\_\+types}}
 \index{test\+\_\+types@{test\+\_\+types}!user\+\_\+main.\+c@{user\+\_\+main.\+c}}
@@ -381,7 +320,7 @@ Referenced by draw\+S\+V\+G(), and tft\+\_\+draw\+Fast\+H\+Line().
 )}\hypertarget{user__main_8c_ab4b988c39b8bd19b13221ca57e721f96}{}\label{user__main_8c_ab4b988c39b8bd19b13221ca57e721f96}
 test byte order and basic type sizes 
 
-Definition at line 857 of file user\+\_\+main.\+c.
+Definition at line 776 of file user\+\_\+main.\+c.
 
 
 
@@ -396,7 +335,7 @@ Referenced by setup().
 )}\hypertarget{user__main_8c_acf488387a6eadb21c378fffd6f4aae63}{}\label{user__main_8c_acf488387a6eadb21c378fffd6f4aae63}
 
 
-Definition at line 711 of file user\+\_\+main.\+c.
+Definition at line 601 of file user\+\_\+main.\+c.
 
 
 
@@ -411,7 +350,7 @@ Referenced by user\+\_\+tests().
 )}\hypertarget{user__main_8c_a9c9fec92b60b251c275870d900294a4a}{}\label{user__main_8c_a9c9fec92b60b251c275870d900294a4a}
 
 
-Definition at line 467 of file user\+\_\+main.\+c.
+Definition at line 357 of file user\+\_\+main.\+c.
 
 
 
@@ -426,7 +365,7 @@ Referenced by loop().
 )}\hypertarget{user__main_8c_a3142086fde2f8b44c81c6f78beff1cc2}{}\label{user__main_8c_a3142086fde2f8b44c81c6f78beff1cc2}
 second argument 1 = only report when an E\+OL is detected\+E\+OL 
 
-Definition at line 276 of file user\+\_\+main.\+c.
+Definition at line 274 of file user\+\_\+main.\+c.
 
 
 
@@ -458,7 +397,7 @@ help functions test parser
 
 \end{DoxyItemize}
 
-Definition at line 738 of file user\+\_\+main.\+c.
+Definition at line 628 of file user\+\_\+main.\+c.
 
 
 
@@ -472,7 +411,7 @@ Referenced by user\+\_\+tasks().
 \subsubsection[{\texorpdfstring{inloop}{inloop}}]{\setlength{\rightskip}{0pt plus 5cm}int inloop = 0}\hypertarget{user__main_8c_a0386f377ca8a674321b268989560fa2b}{}\label{user__main_8c_a0386f377ca8a674321b268989560fa2b}
 
 
-Definition at line 651 of file user\+\_\+main.\+c.
+Definition at line 541 of file user\+\_\+main.\+c.
 
 
 
@@ -501,7 +440,7 @@ Referenced by setup(), setup\+\_\+networking(), and wifi\+\_\+event\+\_\+cb().
 \subsubsection[{\texorpdfstring{last\+\_\+time10}{last_time10}}]{\setlength{\rightskip}{0pt plus 5cm}long last\+\_\+time10 = 0}\hypertarget{user__main_8c_a45ce2b1d7e9e1d263ef7e624ed7aefcf}{}\label{user__main_8c_a45ce2b1d7e9e1d263ef7e624ed7aefcf}
 
 
-Definition at line 317 of file user\+\_\+main.\+c.
+Definition at line 315 of file user\+\_\+main.\+c.
 
 
 
@@ -512,7 +451,7 @@ Referenced by user\+\_\+loop().
 \subsubsection[{\texorpdfstring{last\+\_\+time50}{last_time50}}]{\setlength{\rightskip}{0pt plus 5cm}long last\+\_\+time50 = 0}\hypertarget{user__main_8c_a7d885e2666c9e4d5e3a05031f68f431e}{}\label{user__main_8c_a7d885e2666c9e4d5e3a05031f68f431e}
 
 
-Definition at line 318 of file user\+\_\+main.\+c.
+Definition at line 316 of file user\+\_\+main.\+c.
 
 
 
@@ -523,14 +462,14 @@ Referenced by user\+\_\+loop().
 \subsubsection[{\texorpdfstring{loop\+\_\+cnt}{loop_cnt}}]{\setlength{\rightskip}{0pt plus 5cm}int loop\+\_\+cnt = 0}\hypertarget{user__main_8c_a8a01319d7589800db081ee759e210eda}{}\label{user__main_8c_a8a01319d7589800db081ee759e210eda}
 
 
-Definition at line 321 of file user\+\_\+main.\+c.
+Definition at line 319 of file user\+\_\+main.\+c.
 
 \index{user\+\_\+main.\+c@{user\+\_\+main.\+c}!ms\+\_\+time@{ms\+\_\+time}}
 \index{ms\+\_\+time@{ms\+\_\+time}!user\+\_\+main.\+c@{user\+\_\+main.\+c}}
 \subsubsection[{\texorpdfstring{ms\+\_\+time}{ms_time}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned long ms\+\_\+time = 0}\hypertarget{user__main_8c_ab3dd732d619a1e8ab21460d8c002a5e5}{}\label{user__main_8c_ab3dd732d619a1e8ab21460d8c002a5e5}
 
 
-Definition at line 129 of file user\+\_\+main.\+c.
+Definition at line 127 of file user\+\_\+main.\+c.
 
 
 
@@ -541,7 +480,7 @@ Referenced by ms\+\_\+clear(), ms\+\_\+init(), ms\+\_\+read(), and ms\+\_\+task(
 \subsubsection[{\texorpdfstring{ntp\+\_\+init}{ntp_init}}]{\setlength{\rightskip}{0pt plus 5cm}int ntp\+\_\+init = 0}\hypertarget{user__main_8c_ae406634b9e0b25eda1da44f1d4ec26c0}{}\label{user__main_8c_ae406634b9e0b25eda1da44f1d4ec26c0}
 
 
-Definition at line 177 of file user\+\_\+main.\+c.
+Definition at line 175 of file user\+\_\+main.\+c.
 
 
 
@@ -552,7 +491,7 @@ Referenced by ntp\+\_\+setup().
 \subsubsection[{\texorpdfstring{sec}{sec}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf time\+\_\+t} sec = 0}\hypertarget{user__main_8c_a1559c6c23b2e6367e59be081c3b76d54}{}\label{user__main_8c_a1559c6c23b2e6367e59be081c3b76d54}
 
 
-Definition at line 319 of file user\+\_\+main.\+c.
+Definition at line 317 of file user\+\_\+main.\+c.
 
 
 
@@ -563,7 +502,7 @@ Referenced by ntp\+\_\+setup(), tm2epoch(), and user\+\_\+loop().
 \subsubsection[{\texorpdfstring{seconds}{seconds}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf time\+\_\+t} seconds = 0}\hypertarget{user__main_8c_ae112d79896ed83ac05e155da60e85523}{}\label{user__main_8c_ae112d79896ed83ac05e155da60e85523}
 
 
-Definition at line 304 of file user\+\_\+main.\+c.
+Definition at line 302 of file user\+\_\+main.\+c.
 
 
 
@@ -574,14 +513,14 @@ Referenced by clock\+\_\+set(), setdate\+\_\+r(), timegm(), tm2epoch(), and user
 \subsubsection[{\texorpdfstring{signal\+\_\+loop}{signal_loop}}]{\setlength{\rightskip}{0pt plus 5cm}int signal\+\_\+loop = 0}\hypertarget{user__main_8c_a4b92bd10367d44d30a6d932d9f13b79b}{}\label{user__main_8c_a4b92bd10367d44d30a6d932d9f13b79b}
 
 
-Definition at line 302 of file user\+\_\+main.\+c.
+Definition at line 300 of file user\+\_\+main.\+c.
 
 \index{user\+\_\+main.\+c@{user\+\_\+main.\+c}!skip@{skip}}
 \index{skip@{skip}!user\+\_\+main.\+c@{user\+\_\+main.\+c}}
 \subsubsection[{\texorpdfstring{skip}{skip}}]{\setlength{\rightskip}{0pt plus 5cm}int skip = 0}\hypertarget{user__main_8c_a13f77b252237844d7b8b6e3c3047fe50}{}\label{user__main_8c_a13f77b252237844d7b8b6e3c3047fe50}
 
 
-Definition at line 315 of file user\+\_\+main.\+c.
+Definition at line 313 of file user\+\_\+main.\+c.
 
 
 

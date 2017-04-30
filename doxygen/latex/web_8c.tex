@@ -10,7 +10,6 @@ Small web server for esp8266.
 {\ttfamily \#include $<$stdarg.\+h$>$}\\*
 {\ttfamily \#include $<$string.\+h$>$}\\*
 {\ttfamily \#include $<$math.\+h$>$}\\*
-{\ttfamily \#include \char`\"{}fatfs.\+sup/fatfs.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}display/ili9341.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}web/web.\+h\char`\"{}}\\*
 \subsection*{Macros}
@@ -21,7 +20,7 @@ Small web server for esp8266.
 \#define \hyperlink{web_8c_a94854d8a062d4159f7610f11f0f7baf1}{C\+G\+I\+\_\+\+T\+O\+K\+E\+N\+\_\+\+S\+I\+ZE}~128
 \begin{DoxyCompactList}\small\item\em max size of C\+GI token \end{DoxyCompactList}\item 
 \#define \hyperlink{web_8c_a6b20d41d6252e9871430c242cb1a56e7}{B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}~1500
-\begin{DoxyCompactList}\small\item\em max size of read/write socket buffers \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em max size of read/write socket buffers Note\+: reducing this size below 1500 will slow down transfer a great deal \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -174,11 +173,11 @@ You should have received a copy of the G\+NU General Public License along with t
 \subsubsection[{\texorpdfstring{B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}{BUFFER_SIZE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE~1500}\hypertarget{web_8c_a6b20d41d6252e9871430c242cb1a56e7}{}\label{web_8c_a6b20d41d6252e9871430c242cb1a56e7}
 
 
-max size of read/write socket buffers 
+max size of read/write socket buffers Note\+: reducing this size below 1500 will slow down transfer a great deal 
 
 
 
-Definition at line 42 of file web.\+c.
+Definition at line 43 of file web.\+c.
 
 
 
@@ -237,7 +236,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 708 of file web.\+c.
+Definition at line 710 of file web.\+c.
 
 
 
@@ -264,7 +263,7 @@ argument name
 \end{DoxyReturn}
 
 
-Definition at line 1214 of file web.\+c.
+Definition at line 1216 of file web.\+c.
 
 
 
@@ -291,7 +290,7 @@ argument value
 \end{DoxyReturn}
 
 
-Definition at line 1262 of file web.\+c.
+Definition at line 1264 of file web.\+c.
 
 
 
@@ -318,7 +317,7 @@ Allocate read/write socket buffers and add it to the working pool.
 \end{DoxyReturn}
 
 
-Definition at line 469 of file web.\+c.
+Definition at line 471 of file web.\+c.
 
 
 
@@ -342,7 +341,7 @@ Delete a \hyperlink{structrwbuf__t}{rwbuf\+\_\+t} entry using its index.
 \end{DoxyParams}
 
 
-Definition at line 515 of file web.\+c.
+Definition at line 517 of file web.\+c.
 
 
 
@@ -375,7 +374,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 275 of file web.\+c.
+Definition at line 277 of file web.\+c.
 
 
 
@@ -402,7 +401,7 @@ index into mimetype table
 \end{DoxyReturn}
 
 
-Definition at line 913 of file web.\+c.
+Definition at line 915 of file web.\+c.
 
 \index{web.\+c@{web.\+c}!find\+\_\+cgitoken\+\_\+start@{find\+\_\+cgitoken\+\_\+start}}
 \index{find\+\_\+cgitoken\+\_\+start@{find\+\_\+cgitoken\+\_\+start}!web.\+c@{web.\+c}}
@@ -420,7 +419,7 @@ offset of start of token, or -\/1 if not found
 \end{DoxyReturn}
 
 
-Definition at line 1892 of file web.\+c.
+Definition at line 1895 of file web.\+c.
 
 \index{web.\+c@{web.\+c}!find\+\_\+connection@{find\+\_\+connection}}
 \index{find\+\_\+connection@{find\+\_\+connection}!web.\+c@{web.\+c}}
@@ -449,7 +448,7 @@ Find a read/write socket buffer for an espconn connection.
 \end{DoxyReturn}
 
 
-Definition at line 394 of file web.\+c.
+Definition at line 396 of file web.\+c.
 
 
 
@@ -476,7 +475,7 @@ argument value pair
 \end{DoxyReturn}
 
 
-Definition at line 1151 of file web.\+c.
+Definition at line 1153 of file web.\+c.
 
 
 
@@ -512,7 +511,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1434 of file web.\+c.
+Definition at line 1436 of file web.\+c.
 
 \index{web.\+c@{web.\+c}!html\+\_\+msg@{html\+\_\+msg}}
 \index{html\+\_\+msg@{html\+\_\+msg}!web.\+c@{web.\+c}}
@@ -547,7 +546,7 @@ bytes written, 0 on wrror
 \end{DoxyReturn}
 
 
-Definition at line 770 of file web.\+c.
+Definition at line 772 of file web.\+c.
 
 \index{web.\+c@{web.\+c}!html\+\_\+status@{html\+\_\+status}}
 \index{html\+\_\+status@{html\+\_\+status}!web.\+c@{web.\+c}}
@@ -570,7 +569,7 @@ http\+\_\+status entry mathing status, or 500 Internal Server Error
 \end{DoxyReturn}
 
 
-Definition at line 947 of file web.\+c.
+Definition at line 949 of file web.\+c.
 
 
 
@@ -600,7 +599,7 @@ argument value
 \end{DoxyReturn}
 
 
-Definition at line 1338 of file web.\+c.
+Definition at line 1340 of file web.\+c.
 
 \index{web.\+c@{web.\+c}!init\+\_\+hinfo@{init\+\_\+hinfo}}
 \index{init\+\_\+hinfo@{init\+\_\+hinfo}!web.\+c@{web.\+c}}
@@ -619,7 +618,7 @@ Initilize \hyperlink{structhinfo__t}{hinfo\+\_\+t} structure
 \end{DoxyReturn}
 
 
-Definition at line 972 of file web.\+c.
+Definition at line 974 of file web.\+c.
 
 
 
@@ -641,7 +640,7 @@ size of token or -\/1 on fail
 \end{DoxyReturn}
 
 
-Definition at line 1919 of file web.\+c.
+Definition at line 1922 of file web.\+c.
 
 \index{web.\+c@{web.\+c}!is\+\_\+cgitoken\+\_\+char@{is\+\_\+cgitoken\+\_\+char}}
 \index{is\+\_\+cgitoken\+\_\+char@{is\+\_\+cgitoken\+\_\+char}!web.\+c@{web.\+c}}
@@ -664,7 +663,7 @@ test to see if a character is a valid member of the C\+GI token character set C\
 \end{DoxyReturn}
 
 
-Definition at line 1867 of file web.\+c.
+Definition at line 1870 of file web.\+c.
 
 \index{web.\+c@{web.\+c}!is\+\_\+header@{is\+\_\+header}}
 \index{is\+\_\+header@{is\+\_\+header}!web.\+c@{web.\+c}}
@@ -690,7 +689,7 @@ Does the string look like a header token with a \textquotesingle{}\+:\textquotes
 \end{DoxyReturn}
 
 
-Definition at line 1367 of file web.\+c.
+Definition at line 1369 of file web.\+c.
 
 
 
@@ -717,7 +716,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 193 of file web.\+c.
+Definition at line 194 of file web.\+c.
 
 \index{web.\+c@{web.\+c}!led\+\_\+on@{led\+\_\+on}}
 \index{led\+\_\+on@{led\+\_\+on}!web.\+c@{web.\+c}}
@@ -728,7 +727,7 @@ Definition at line 193 of file web.\+c.
 )}\hypertarget{web_8c_aaaac061db0c7646d5b6c8bdfe3089ae7}{}\label{web_8c_aaaac061db0c7646d5b6c8bdfe3089ae7}
 
 
-Definition at line 183 of file web.\+c.
+Definition at line 184 of file web.\+c.
 
 \index{web.\+c@{web.\+c}!match\+\_\+headers@{match\+\_\+headers}}
 \index{match\+\_\+headers@{match\+\_\+headers}!web.\+c@{web.\+c}}
@@ -754,7 +753,7 @@ header index or -\/1 on no match
 \end{DoxyReturn}
 
 
-Definition at line 993 of file web.\+c.
+Definition at line 995 of file web.\+c.
 
 
 
@@ -782,7 +781,7 @@ pointer to string
 \end{DoxyReturn}
 
 
-Definition at line 869 of file web.\+c.
+Definition at line 871 of file web.\+c.
 
 
 
@@ -815,7 +814,7 @@ pointer to start of memory area (ptr)
 \end{DoxyReturn}
 
 
-Definition at line 850 of file web.\+c.
+Definition at line 852 of file web.\+c.
 
 
 
@@ -842,7 +841,7 @@ pointer to string, if out of range uses index P\+T\+Y\+P\+E\+\_\+\+E\+RR
 \end{DoxyReturn}
 
 
-Definition at line 900 of file web.\+c.
+Definition at line 902 of file web.\+c.
 
 
 
@@ -869,7 +868,7 @@ argument value pair
 \end{DoxyReturn}
 
 
-Definition at line 1163 of file web.\+c.
+Definition at line 1165 of file web.\+c.
 
 
 
@@ -896,7 +895,7 @@ first space or ? character
 \end{DoxyReturn}
 
 
-Definition at line 1392 of file web.\+c.
+Definition at line 1394 of file web.\+c.
 
 
 
@@ -926,7 +925,7 @@ Get arguments for a G\+ET or P\+O\+ST request.
 \end{DoxyReturn}
 
 
-Definition at line 1451 of file web.\+c.
+Definition at line 1453 of file web.\+c.
 
 \index{web.\+c@{web.\+c}!process\+\_\+args@{process\+\_\+args}}
 \index{process\+\_\+args@{process\+\_\+args}!web.\+c@{web.\+c}}
@@ -952,7 +951,7 @@ $\ast$ptr pointer that points to just past the header area.
 \end{DoxyReturn}
 
 
-Definition at line 1032 of file web.\+c.
+Definition at line 1034 of file web.\+c.
 
 
 
@@ -979,7 +978,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 2005 of file web.\+c.
+Definition at line 2008 of file web.\+c.
 
 \index{web.\+c@{web.\+c}!rewrite\+\_\+cgi\+\_\+token@{rewrite\+\_\+cgi\+\_\+token}}
 \index{rewrite\+\_\+cgi\+\_\+token@{rewrite\+\_\+cgi\+\_\+token}!web.\+c@{web.\+c}}
@@ -1005,7 +1004,7 @@ length of replaced text or 0 if no C\+GI handler was matched
 \end{DoxyReturn}
 
 
-Definition at line 1961 of file web.\+c.
+Definition at line 1964 of file web.\+c.
 
 \index{web.\+c@{web.\+c}!rwbuf\+\_\+create@{rwbuf\+\_\+create}}
 \index{rwbuf\+\_\+create@{rwbuf\+\_\+create}!web.\+c@{web.\+c}}
@@ -1023,7 +1022,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 330 of file web.\+c.
+Definition at line 332 of file web.\+c.
 
 
 
@@ -1050,7 +1049,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 292 of file web.\+c.
+Definition at line 294 of file web.\+c.
 
 
 
@@ -1077,7 +1076,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 244 of file web.\+c.
+Definition at line 246 of file web.\+c.
 
 
 
@@ -1104,7 +1103,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 258 of file web.\+c.
+Definition at line 260 of file web.\+c.
 
 
 
@@ -1137,7 +1136,7 @@ bytes written
 \end{DoxyReturn}
 
 
-Definition at line 747 of file web.\+c.
+Definition at line 749 of file web.\+c.
 
 
 
@@ -1173,7 +1172,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 209 of file web.\+c.
+Definition at line 210 of file web.\+c.
 
 \index{web.\+c@{web.\+c}!u5toa@{u5toa}}
 \index{u5toa@{u5toa}!web.\+c@{web.\+c}}
@@ -1199,7 +1198,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1413 of file web.\+c.
+Definition at line 1415 of file web.\+c.
 
 
 
@@ -1232,7 +1231,7 @@ bytes written
 \end{DoxyReturn}
 
 
-Definition at line 725 of file web.\+c.
+Definition at line 727 of file web.\+c.
 
 
 
@@ -1259,7 +1258,7 @@ Wait for buffer to send for this connection If the buffers have any data in them
 \end{DoxyReturn}
 
 
-Definition at line 600 of file web.\+c.
+Definition at line 602 of file web.\+c.
 
 
 
@@ -1286,7 +1285,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1821 of file web.\+c.
+Definition at line 1823 of file web.\+c.
 
 \index{web.\+c@{web.\+c}!web\+\_\+data\+\_\+disconnect\+\_\+callback@{web\+\_\+data\+\_\+disconnect\+\_\+callback}}
 \index{web\+\_\+data\+\_\+disconnect\+\_\+callback@{web\+\_\+data\+\_\+disconnect\+\_\+callback}!web.\+c@{web.\+c}}
@@ -1306,7 +1305,7 @@ Network disconnect callback function.
 \end{DoxyParams}
 
 
-Definition at line 1765 of file web.\+c.
+Definition at line 1767 of file web.\+c.
 
 
 
@@ -1339,7 +1338,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1638 of file web.\+c.
+Definition at line 1640 of file web.\+c.
 
 
 
@@ -1364,7 +1363,7 @@ Network disconnect callback function.
 \end{DoxyParams}
 
 
-Definition at line 1801 of file web.\+c.
+Definition at line 1803 of file web.\+c.
 
 
 
@@ -1391,7 +1390,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1710 of file web.\+c.
+Definition at line 1712 of file web.\+c.
 
 
 
@@ -1418,7 +1417,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 2346 of file web.\+c.
+Definition at line 2352 of file web.\+c.
 
 
 
@@ -1433,7 +1432,7 @@ Referenced by setup().
 )}\hypertarget{web_8c_aced225563307f62a9832c387fd78a0f8}{}\label{web_8c_aced225563307f62a9832c387fd78a0f8}
 
 
-Definition at line 2331 of file web.\+c.
+Definition at line 2337 of file web.\+c.
 
 \index{web.\+c@{web.\+c}!web\+\_\+task@{web\+\_\+task}}
 \index{web\+\_\+task@{web\+\_\+task}!web.\+c@{web.\+c}}
@@ -1454,7 +1453,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 2294 of file web.\+c.
+Definition at line 2300 of file web.\+c.
 
 
 
@@ -1481,7 +1480,7 @@ Write a byte (buffered) using the \hyperlink{structrwbuf__t}{rwbuf\+\_\+t} socke
 \end{DoxyParams}
 
 
-Definition at line 545 of file web.\+c.
+Definition at line 547 of file web.\+c.
 
 
 
@@ -1508,7 +1507,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 638 of file web.\+c.
+Definition at line 640 of file web.\+c.
 
 
 
@@ -1541,7 +1540,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 682 of file web.\+c.
+Definition at line 684 of file web.\+c.
 
 
 
@@ -1571,7 +1570,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 695 of file web.\+c.
+Definition at line 697 of file web.\+c.
 
 
 
@@ -1593,14 +1592,14 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 181 of file web.\+c.
+Definition at line 182 of file web.\+c.
 
 \index{web.\+c@{web.\+c}!connections@{connections}}
 \index{connections@{connections}!web.\+c@{web.\+c}}
 \subsubsection[{\texorpdfstring{connections}{connections}}]{\setlength{\rightskip}{0pt plus 5cm}int connections}\hypertarget{web_8c_a0ba17441c382732ee4172abce4f7b31c}{}\label{web_8c_a0ba17441c382732ee4172abce4f7b31c}
 
 
-Definition at line 2286 of file web.\+c.
+Definition at line 2292 of file web.\+c.
 
 
 
@@ -1615,7 +1614,7 @@ H\+T\+TP status code messages.
 
 
 
-Definition at line 83 of file web.\+c.
+Definition at line 84 of file web.\+c.
 
 
 
@@ -1648,7 +1647,7 @@ M\+I\+ME types.
 
 
 
-Definition at line 157 of file web.\+c.
+Definition at line 158 of file web.\+c.
 
 \index{web.\+c@{web.\+c}!msg\+\_\+headers@{msg\+\_\+headers}}
 \index{msg\+\_\+headers@{msg\+\_\+headers}!web.\+c@{web.\+c}}
@@ -1681,7 +1680,7 @@ H\+T\+TP headers we understand.
 
 
 
-Definition at line 58 of file web.\+c.
+Definition at line 59 of file web.\+c.
 
 \index{web.\+c@{web.\+c}!web\+\_\+connections@{web\+\_\+connections}}
 \index{web\+\_\+connections@{web\+\_\+connections}!web.\+c@{web.\+c}}
@@ -1692,7 +1691,7 @@ socket buffers for this connection
 
 
 
-Definition at line 47 of file web.\+c.
+Definition at line 48 of file web.\+c.
 
 \index{web.\+c@{web.\+c}!Web\+Conn@{Web\+Conn}}
 \index{Web\+Conn@{Web\+Conn}!web.\+c@{web.\+c}}
@@ -1703,7 +1702,7 @@ Master espconn structure of the web server.
 
 
 
-Definition at line 50 of file web.\+c.
+Definition at line 51 of file web.\+c.
 
 
 
@@ -1718,7 +1717,7 @@ Master network configuration for the web server.
 
 
 
-Definition at line 52 of file web.\+c.
+Definition at line 53 of file web.\+c.
 
 \index{web.\+c@{web.\+c}!winmsg@{winmsg}}
 \index{winmsg@{winmsg}!web.\+c@{web.\+c}}

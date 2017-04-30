@@ -28,7 +28,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <math.h>
 
 #include "user_config.h"
-#include "fatfs.h"
 
 #include "time.h"
 #include "timer.h"
@@ -44,7 +43,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #ifdef DISPLAY
 	#include "display/ili9341.h"
-	#include "display/vfont.h"
 	
 	#include "network/network.h"
 	
@@ -217,7 +215,7 @@ void ntp_setup(void)
 		{
 			printf("NTP: set_timeone OK\n");
 			sntp_init();
-            os_free(addr);
+            safefree(addr);
 		    ntp_init = 1;
             printf("NTP:1\n");
 		}
@@ -351,114 +349,6 @@ float adc_read()
 // working on vector fonts
 
 // ============================================================
-
-int16_t sx(float scale, int16_t xoff, int16_t X)
-{
-	float tx;
-	tx = (float)X - 80.0;
-	tx = (scale * tx) + xoff;
-	return((int16_t)tx);
-}
-
-int16_t sy(float scale, int16_t yoff, int16_t Y)
-{
-	float ty;
-	ty = (float)Y;
-	ty = (scale * ty) + yoff;
-	return((int16_t)ty);
-}
-
-	
-MEMSPACE
-void drawSVG(window *win, int16_t x, int16_t y, int16_t c, float scale, uint16_t color) 
-{
-
-	int16_t CX,CY,TX,TY;
-	int16_t CurX = 0;
-	int16_t CurY = 0;
-	int16_t MoveX = 0;
-	int16_t MoveY = 0;
-	int ind;
-	int t;
-
-	int16_t *v;
-
-	if( c >= 32 && c <= 127)
-	{
-		c -= 32;
-		v = vfont[c]->v;
-	}
-	else
-	{
-		printf("DrawSVG: invalid character\n");
-		return;
-	}
-	
-
-	printf("DrawSVG:(%d,%d) scale:%e)\n", x,y,(double)scale);
-
-	ind = 0;
-	while(1)
-	{
-		char t = v[ind];
-		if (t == 'M') 
-		{
-			// Move takes to move points
-			MoveX = sx(scale, x, v[ind + 1]);
-			MoveY = sy(scale, y, v[ind + 2]);
-			//printf("M: MoveX:%d,MoveY:%d\n", (int)MoveX,(int)MoveY);
-			CurX = MoveX;
-			CurY = MoveY;
-			ind += 3;
-		}
-		else if (t == 'L' ) 
-		{
-			// Line takes CurX,CurY and to target points
-			TX =sx(scale,x, v[ind + 1]);
-			TY =sy(scale,y, v[ind + 2]);
-			//printf("L: Curx:%d,Cury:%d,TX:%d,TY:%d\n", (int)CurX,(int)CurY,(int)TX,(int)TY);
-			tft_drawLine(win, CurX, CurY, TX, TY, color);
-			CurX = TX;
-			CurY = TY;
-			ind += 3;
-		}
-		else if (t == 'Q' ) 
-		{
-			// Q Bezier takes CurX,CurY, two control points and to target points
-			CX =  sx(scale,x, v[ind + 1]);
-			CY =  sy(scale,y, v[ind + 2]);
-			TX =  sx(scale,x, v[ind + 3]);
-			TY =  sy(scale,y, v[ind + 4]);
-			//printf("Q: CurX:%d,Cury:%d,CX:%d,CY:%d,TX:%d,TY:%d\n", (int)CurX,(int)CurY,(int)CX,(int)CY,(int)TX,(int)TY);
-			tft_Bezier2(win, CurX, CurY, CX, CY, TX, TY, 10, color);
-			CurX = TX;
-			CurY = TY;
-			ind += 5;
-		}
-		else if (t == 'Z') 
-		{
-			// CLOSE takes no params
-			//printf("Z: Curx:%d,Cury:%d,MoveX:%d,MoveY:%d\n", (int)CurX,(int)CurY,(int)MoveX,(int)MoveY);
-			if(CurX != MoveX || CurY != MoveY)
-			{
-				tft_drawLine(win, CurX, CurY, MoveX, MoveY, color);
-			}
-			CurX = MoveX;
-			CurY = MoveY;
-			ind += 1;
-		}
-		else if (t == '.') 
-		{
-			break;
-		}
-		else
-		{
-			printf("bad type:%c @ index:%d\n", (int)t, (int)ind);
-			break;
-		}
-	}
-}
-
 
 
 // ============================================================
@@ -822,11 +712,40 @@ int user_tests(char *str)
 		setup_windows(ret & 3,0);
 		return(1);
     }
+#ifdef VFONTS
     else if ((len = token(ptr,"draw")) )
     {
+		int c;
         ptr += len;
 		ptr = skipspaces(ptr);
-		drawSVG(winmsg, 8, 24, *ptr, 0.1, ILI9341_WHITE);
+		c = *ptr++;
+		if(c)
+		{
+			ptr = skipspaces(ptr);
+			if( *ptr == '1')
+				drawSVG(winmsg, 8, 24, c, 0.08, ILI9341_WHITE, 1);
+			else
+				drawSVG(winmsg, 8, 24, c, 0.08, ILI9341_WHITE, 0);
+		}
+		return(1);
+    }
+#endif
+    else if ((len = token(ptr,"pixel")) )
+    {
+		int c;
+		int x,y;
+        ptr += len;
+		ptr = skipspaces(ptr);
+
+		tft_drawPixel(winmsg, 8, 24, ILI9341_WHITE);
+		for(y=24;y<26;++y)
+		{
+			for(x=8;x<10;++x)
+			{
+				c = tft_readPixel(winmsg, x, y);
+				printf("pixel(%d,%d): %04x\n", x,y,c);
+			}
+		}
 		return(1);
     }
 #endif	//DISPLAY
@@ -1137,10 +1056,12 @@ void setup(void)
 		bridge_task_init(23);
 	#endif
 
-	if ( espconn_tcp_set_max_con(MAX_CONNECTIONS+2) )
-		printf("espconn_tcp_set_max_con(%d) - failed!\n", MAX_CONNECTIONS+2);
+	if ( espconn_tcp_set_max_con(MAX_CONNECTIONS+1) )
+		printf("espconn_tcp_set_max_con(%d) != (%d) - failed!\n", 
+			MAX_CONNECTIONS+1, espconn_tcp_get_max_con());
 	else
-		printf("espconn_tcp_set_max_con(%d) - success!\n", MAX_CONNECTIONS+2);
+		printf("espconn_tcp_set_max_con(%d) = (%d) - success!\n", 
+			MAX_CONNECTIONS+1, espconn_tcp_get_max_con());
 
 #ifdef NETWORK_TEST
 	printf("Setup Network TFT Display Client\n");

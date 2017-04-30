@@ -18,10 +18,10 @@
 /----------------------------------------------------------------------------*/
 
 #include "user_config.h"
+#include "fatfs.h"
 #ifdef AVR
 #include <stdlib.h>
 #endif
-#include "esp8266/system.h"
 #include "fatfs/ff.h"                                   /* Declarations of FatFs API */
 #include "fatfs.hal/diskio.h"                               /* Declarations of disk I/O functions */
 

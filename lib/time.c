@@ -29,8 +29,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <string.h>
 #endif
 
-#include "fatfs.h"
-
 #include "printf/mathio.h"
 
 #include "lib/time.h"
@@ -652,7 +650,7 @@ time_t normalize(tm_t *t, int normalize_to_timezone)
 {
 	time_t epoch;
 	int32_t offset;
-	int ret,isdst;
+	int isdst;
 
 // 	struct tm
 // 	{

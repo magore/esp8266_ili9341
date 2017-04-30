@@ -41,7 +41,6 @@ typedef unsigned long int size_t;
 typedef enum { false, true } bool;
 #endif
 
-
 /// @brief user task rate for software timers
 #define SYSTEM_TASK_HZ 1000L
 
@@ -52,21 +51,15 @@ typedef enum { false, true } bool;
 
 #define SHARED_FILINFO
 
-// sys.c defines alternative safe functions
-#ifndef free
-    #define free(p) safefree(p)
-#endif
-#ifndef calloc
-    #define calloc(n,s) safecalloc(n,s)
-#endif
-#ifndef malloc
-    #define malloc(s) safemalloc(s)
-#endif
-
 // low level memory and flash reading code
 #include "esp8266/system.h"
 
 #include "stringsup.h"
+
+
+// FATFS
+// MG
+#include "fatfs.h"
 
 // Simple queue reoutines
 #include "queue.h"

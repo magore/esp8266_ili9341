@@ -71,20 +71,29 @@ public:
 	{
 		filename = fname;
 		error = FT_Init_FreeType( &library );
-		debug << "Init error code: " << error;
+		if(error)
+		{
+			printf("Init error code: %d\n", error);
+			exit(1);
+		}
 
 		// Load a typeface
 		error = FT_New_Face( library, filename.c_str(), 0, &face );
-		debug << "\nFace load error code: " << error;
-		debug << "\nfont filename: " << filename;
-		if (error) {
-			std::cerr << "problem loading file " << filename << "\n";
+		if(error)
+		{
+			printf("Face load error code: %d\n", error);
 			exit(1);
 		}
-		debug << "\nFamily Name: " << face->family_name;
-		debug << "\nStyle Name: " << face->style_name;
-		debug << "\nNumber of faces: " << face->num_faces;
-		debug << "\nNumber of glyphs: " << face->num_glyphs;
+
+		if (error) {
+			printf("problem loading file %s\n", (char *) filename.c_str() );
+			exit(1);
+		}
+#if 0
+		printf("//File name: %s\n", (char *) filename.c_str() );
+		printf("//Number of faces: %d\n", (int)face->num_faces);
+		printf("//Number of glyphs: %d\n", (int)face->num_glyphs);
+#endif
 	}
 
 	void free()
@@ -108,9 +117,8 @@ There are three main components.
 */
 std::string do_outline(std::vector<FT_Vector> points, std::vector<char> tags, std::vector<short> contours)
 {
-	std::stringstream debug, svg;
-	if (points.size()==0) return "";
-	if (contours.size()==0) return "";
+	std::stringstream svg;
+
 	svg.str("");
 
 	svg << "\t{\n";
@@ -127,16 +135,20 @@ std::string do_outline(std::vector<FT_Vector> points, std::vector<char> tags, st
 
 	int contour_starti = 0;
 	int contour_endi = 0;
+
 	for ( int i = 0 ; i < contours.size() ; i++ ) {
 		contour_endi = contours.at(i);
-		debug << "new contour starting. startpt index, endpt index:";
-		debug << contour_starti << "," << contour_endi << "\n";
 		int offset = contour_starti;
 		int npts = contour_endi - contour_starti + 1;
-		debug << "number of points in this contour: " << npts << "\n";
-		debug << "moving to first pt " << points[offset].x << "," << points[offset].y << "\n";
+
+		// Start point index: contour_starti
+		// End point index: contour_endi
+		// Number of points in this contour: npts 
+		// First point points[offset].x, points[offset].y 
+
 		svg << "\t\t'M', " << points[contour_starti].x << "," << points[contour_starti].y << ",\n";
-		debug << "listing pts: [this pt index][isctrl] <next pt index><isctrl> [x,y] <nx,ny>\n";
+
+		// points for this contour
 		for ( int j = 0; j < npts; j++ ) {
 			int thisi = j%npts + offset;
 			int nexti = (j+1)%npts + offset;
@@ -153,45 +165,40 @@ std::string do_outline(std::vector<FT_Vector> points, std::vector<char> tags, st
 			bool this_isctl = !this_tagbit1;
 			bool next_isctl = !next_tagbit1;
 			bool nextnext_isctl = !nextnext_tagbit1;
-			debug << " [" << thisi << "]";
-			debug << "[" << !this_tagbit1 << "]";
-			debug << " <" << nexti << ">";
-			debug << "<" << !next_tagbit1 << ">";
-			debug << " <<" << nextnexti << ">>";
-			debug << "<<" << !nextnext_tagbit1 << ">>";
-			debug << " [" << x << "," << y << "]";
-			debug << " <" << nx << "," << ny << ">";
-			debug << " <<" << nnx << "," << nny << ">>";
-			debug << "\n";
+
+			// thisi is this point index
+			// nexti is thisi+1
+			// nextnexti is thisi+2
+			// this_tagbit1 is this tagbit
+			// next_tagbit1 is tagbit+1
+			// nextnext_tagbit1 is tagbit+2
 
 			if (this_isctl && next_isctl) {
-				debug << " two adjacent ctl pts. adding point halfway between " << thisi << " and " << nexti << ":";
-				debug << " reseting x and y to ";
+				// two adjacent ctl pts. adding point halfway between 
 				x = (x + nx) / 2;
 				y = (y + ny) / 2;
 				this_isctl = false;
-				debug << " [" << x << "," << y <<"]\n";
+
 				if (j==0) {
-					debug << "first pt in contour was ctrl pt. moving to non-ctrl pt\n";
+					// first pt in contour was ctrl pt. moving to non-ctrl pt
 					svg << "\t\t'M', " << x << "," << y << ",\n";
 				}
 			}
 
 			if (!this_isctl && next_isctl && !nextnext_isctl) {
+				// bezier 
 				svg << "\t\t'Q', " << nx << "," << ny << "," << nnx << "," << nny << ",\n";
-				debug << " bezier to " << nnx << "," << nny << " ctlx, ctly: " << nx << "," << ny << "\n";
 			} else if (!this_isctl && next_isctl && nextnext_isctl) {
-				debug << " two ctl pts coming. adding point halfway between " << nexti << " and " << nextnexti << ":";
-				debug << " reseting nnx and nny to halfway pt";
+				// two ctl pts coming. split bezier by adding point halfway between 
 				nnx = (nx + nnx) / 2;
 				nny = (ny + nny) / 2;
 				svg << "\t\t'Q', " << nx << "," << ny << "," << nnx << "," << nny << ",\n";
-				debug << " bezier to " << nnx << "," << nny << " ctlx, ctly: " << nx << "," << ny << "\n";
 			} else if (!this_isctl && !next_isctl) {
+				// Line
 				svg << "\t\t'L', " << nx << "," << ny << ",\n";
-				debug << " line to " << nx << "," << ny << "\n";			
 			} else if (this_isctl && !next_isctl) {
-				debug << " this is ctrl pt. skipping to " << nx << "," << ny << "\n";
+
+				// this is ctrl pt. skipping to nx,ny
 			}
 		}
 		contour_starti = contour_endi+1;
@@ -244,6 +251,13 @@ public:
 		file.free();
 	}
 
+
+	char *facename(char *str, int len)
+	{
+        snprintf(str,len, "%s%s", (char *) face->family_name, face->style_name);
+		return(str);
+	}
+
 	void init( std::string unicode_s )
 	{
 		face = file.face;
@@ -277,45 +291,38 @@ public:
 		// Invert y coordinates (SVG = neg at top, TType = neg at bottom)
 
 		ftpoints = ftoutline.points;
+
 // INVERT TTF to SVG Y axis
 
-#if 1
-		for ( int i = 0 ; i < ftoutline.n_points ; i++ )
-			ftpoints[i].y *= -1;
-#endif
-// MG
-///@brief Adjust Y for this character
-#if 1
 		for ( int i = 0 ; i < ftoutline.n_points ; i++ )
 		{
-			ftpoints[i].y += (gm.horiBearingY);
-
+			ftpoints[i].y = gm.height - ftpoints[i].y ;
 		}
-#endif
+
 		bbheight = face->bbox.yMax - face->bbox.yMin;
 		bbwidth = face->bbox.xMax - face->bbox.xMin;
 		tags = ftoutline.tags;
 		contours = ftoutline.contours;
-		// std::cout << debug.str();
 
+		char tmp[256+2];
 		// MG
 		///@brief Dump font glyph header for this character
-		tmp.str("");
-        tmp << "// Char: " << codepoint << "\n";
-		tmp << "// points: " << ftoutline.n_points << "\n";
-		tmp << "// bbheight: " << bbheight << "\n";
-		tmp << "// bbwidth: " << bbwidth << "\n";
-        tmp << "path_t _vec" << codepoint << " = {\n";
-		tmp << "\t/* X offset        */ " << 0 << ",\n";
-		tmp << "\t/* Y offset        */ " << 0 << ",\n";
-		tmp << "\t/* Width           */ " << gm.width << ",\n";
-		tmp << "\t/* Height          */ " << gm.height << ",\n";
-		tmp << "\t/* X INC           */ " << gm.horiAdvance << ",\n";
-		tmp << "\t/* Y INC           */ " << gm.vertAdvance << ",\n";
-		tmp << "\t/* gm.horiBearingY */ " << gm.horiBearingY << ",\n";
-		tmp << "\t/* gm.vertBearingY */ " << gm.vertBearingY << ",\n";
-		tmp << "\t /* Outline */\n";
-		std::cout << tmp.str();
+        printf("// Char: %02x\n", (int) codepoint);
+        printf("// Name: %s\n", glyph_name);
+		printf("// points: %d\n", (int) ftoutline.n_points);
+		printf("// bbheight: %d\n", (int) bbheight);
+		printf("// bbwidth: %d\n", (int) bbwidth);
+        printf("path_t %s_glyph_%02x = {\n", (char *) facename(tmp,256), (int)codepoint);
+		printf("\t/* X offset        */ %d,\n", 0 );
+		printf("\t/* Y offset        */ %d,\n", 0);
+		printf("\t/* Width           */ %d,\n", (int) gm.width);
+		printf("\t/* Height          */ %d,\n", (int) gm.height);
+		printf("\t/* X INC           */ %d,\n", (int) gm.horiAdvance);
+		printf("\t/* Y INC           */ %d,\n", (int) gm.vertAdvance);
+		printf("\t/* gm.horiBearingY */ %d,\n", (int) gm.horiBearingY);
+		printf("\t/* gm.vertBearingY */ %d,\n", (int) gm.vertBearingY);
+		printf("\t/* Contours */        %d,\n", (int) ftoutline.n_contours);
+		printf("\t/* Outline */\n");
 	}
 
 

@@ -21,6 +21,8 @@
 
 /* mmc.c */
 #include "user_config.h"
+#include "fatfs.h"
+
 #include "mmc_hal.h"
 
 #ifdef AVR
@@ -29,9 +31,9 @@
 
 #include "printf/mathio.h"
 
+#ifdef ESP8266
 #include "esp8266/hspi.h"
-
-#include "fatfs.sup/fatfs.h"
+#endif
 
 /* Peripheral controls (Platform dependent) */
 #define CS_LOW()        mmc_spi_begin()  /* Set MMC_CS = low */
@@ -534,7 +536,7 @@ DRESULT mmc_disk_ioctl (
 	void *buff		/* Buffer to send/receive control data */
 )
 {
-	DRESULT res;
+	DRESULT res = RES_NOTRDY;
 	BYTE n, csd[16], *ptr = buff;
 	DWORD *dp, st, ed, csize;
 #if _USE_ISDIO
@@ -543,7 +545,10 @@ DRESULT mmc_disk_ioctl (
 	UINT dc;
 #endif
 
-	if (Stat & STA_NOINIT) return RES_NOTRDY;
+	if (Stat & STA_NOINIT) 
+	{
+		return RES_NOTRDY;
+	}
 
 	res = RES_ERROR;
 	switch (cmd) {

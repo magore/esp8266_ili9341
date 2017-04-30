@@ -29,14 +29,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "system.h"
 
+#include "mathio.h"
+
 /// @brief calloc may be aliased to safecalloc
 #undef calloc
 /// @brief free may be aliased to safefree
 #undef free
 /// @brief malloc may be aliased to safecalloc
 #undef malloc
-
-#include "mathio.h"
 
 extern void * _heap_start;
 #define HEAP_START  ((uint32_t) & (_heap_start))
@@ -131,6 +131,7 @@ void *safecalloc(size_t nmemb, size_t size)
     if(!p)
     {
         printf("safecalloc(%d,%d) failed!\n", nmemb, size);
+		PrintRam();
     }
     return(p);
 }
@@ -144,12 +145,7 @@ void *safecalloc(size_t nmemb, size_t size)
 MEMSPACE 
 void *safemalloc(size_t size)
 {
-    void *p = calloc(size, 1);
-    if(!p)
-    {
-        printf("safemalloc(%d) failed!\n", size);
-    }
-    return(p);
+    return(safecalloc(size,1));
 }
 
 /// @brief Safe free -  Only free a pointer if it is in malloc memory range.

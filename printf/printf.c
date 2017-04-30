@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifdef USER_CONFIG
 #include "user_config.h"
 #else
-#include <stdio.h>
+//#include <stdio.h>
 #endif
 
 #include <stdint.h>
@@ -183,7 +183,7 @@ int bin2num(uint8_t *str, int strmax, int nummin, int base, uint8_t *nump, int n
 	// Add ASCII '0' or 'a' offsets to base string
 	for(i=0;i<nummin;++i)
 	{
-		if(str[i] >= 0 && str[i] < 10)
+		if(str[i] < 10)
 			str[i] += '0';
 		else str[i] += 'a'-10;
 	}
@@ -196,7 +196,7 @@ int bin2num(uint8_t *str, int strmax, int nummin, int base, uint8_t *nump, int n
 	}
 	str[i] = 0;		// Terminate string eith EOS
 		
-	reverse(str);	// Reverse in place to correct order
+	reverse((char *)str);	// Reverse in place to correct order
 
 	return(nummin);	// Return string size
 }
@@ -311,7 +311,7 @@ void print_flags(f_t f)
 MEMSPACE 
 int p_ntoa(uint8_t *nump, int numsize, char *str, int strmax, int radix, int width, int prec, f_t f)
 {
-		unsigned int sign_ch, mask,shift,digit;
+		unsigned int sign_ch;
 		int ind;
 		int digits;
 
@@ -364,7 +364,7 @@ int p_ntoa(uint8_t *nump, int numsize, char *str, int strmax, int radix, int wid
 					--digits;
 			}
 		}
-        ind = bin2num(str, strmax, digits, radix, nump, numsize, sign_ch);
+        ind = bin2num((uint8_t *)str, strmax, digits, radix, nump, numsize, sign_ch);
 		return(ind);
 }
 
@@ -739,7 +739,7 @@ void _puts_pad(printf_t *fn, char *s, int width, int count, int left)
 MEMSPACE 
 void _printf_fn(printf_t *fn, __memx const char *fmt, va_list va)
 {
-    int prec, width, intprec;
+    int prec, width;
 	int count;
     int spec;
 	int size;
@@ -784,7 +784,6 @@ void _printf_fn(printf_t *fn, __memx const char *fmt, va_list va)
 
 		prec = 0;	// minimum number of digits displayed 
 		width = 0;	// padded width
-		intprec = 0;// integer number of digits
 
 
 		// we accept multiple flag combinations	and duplicates as does GLIBC printf
@@ -875,6 +874,10 @@ Since the prototype doesn’t specify types for optional arguments, in a call to
 		sign = 0;
 		if(spec == 'd' || spec == 'D')
 			sign = 1;
+
+	
+		nump = (uint8_t *) &numi;
+
 		// process integer arguments
 		switch(spec) 
 		{
@@ -907,6 +910,7 @@ Since the prototype doesn’t specify types for optional arguments, in a call to
 				f.b.neg = 0;
 			case 'D':
 			case 'd':
+				// make lint shut up
 //FIXME vararg functions promote short - make this a conditional
 				if(size == sizeof(short))
 				{
@@ -1006,10 +1010,7 @@ Since the prototype doesn’t specify types for optional arguments, in a call to
 			// FIXME sign vs FILL
 		case 'd':
 		case 'D':
-//printf("<%ld, width:%d, prec:%d, sizeof(buff):%d, left:%d>\n", num, width, prec, (int)sizeof(buff), f.b.left);
-			//count = p_itoa(nump, size, buff, sizeof(buff), width, prec, f);
 			count = p_ntoa(nump, size, buff, sizeof(buff), 10, width, prec, f);
-//printf("[%s, width:%d, count:%d, left:%d]\n", buff, width, count, f.b.left);
 			_puts_pad(fn,buff, width, count, f.b.left);
 			break;
 		case 'b':
@@ -1168,7 +1169,73 @@ int snprintf(char* str, size_t size, const char *format, ...)
     return len;
 }
 
+#ifdef AVR
+/// @brief vsnprintf_P function
+/// @param[out] str: string buffer for result
+/// @param[in] size: maximum length of converted string
+/// @param[in] format: printf forat string
+/// @param[in] va: va_list list of arguments
+/// @return string size
+MEMSPACE 
+int vsnprintf_P(char* str, size_t size, __memx const char *format, va_list va)
+{
 
+    int len;
+    char *save = str;
+    printf_t fn;
+
+    *str = 0;
+
+    fn.put = _putc_buffer_fn;
+    fn.len = size;
+    fn.sent = 0;
+    fn.buffer = (void *) str;
+
+    _printf_fn(&fn, format, va);
+
+    // FIXME check size should == fn.size on exit
+    len = strlen(save);
+    return( len );
+}
+
+/// @brief snprintf_P function
+/// @param[out] str: string buffer for result
+/// @param[in] size: maximum length of converted string
+/// @param[in] format: printf forat string
+/// @param[in] ...: list of arguments
+/// @return string size
+MEMSPACE 
+int snprintf_P(char* str, size_t size, __memx const char *format, ...)
+{
+    int len;
+    va_list va;
+
+    va_start(va, format);
+    len = vsnprintf_P(str, size, format, va);
+    va_end(va);
+
+    return len;
+}
+
+/// @brief sprintf_P function
+/// @param[out] str: string buffer for result
+/// @param[in] format: printf forat string
+/// @param[in] ...: list of arguments
+/// @return string size
+MEMSPACE 
+int sprintf_P(char* str, __memx const char *format, ...)
+{
+    int len;
+    va_list va;
+
+    va_start(va, format);
+	// FIXME max string size limit !!!!
+    len = vsnprintf_P(str, 1024, format, va);
+    va_end(va);
+
+    return len;
+}
+#endif
 // ====================================================================
 /// @brief sprintf function is not recommended because it can overflow
 // ====================================================================
@@ -1211,5 +1278,31 @@ printf(const char *format, ...)
 
 	return ((int)fn.sent);
 }
+#ifdef AVR
+/// @brief printf_P function
+///  Example user defined printf function using fputc for I/O
+///  This method allows I/O to devices and strings without typical C++ overhead
+/// @param[in] fmt: printf forat string
+/// @param[in] va_list: vararg list or arguments
+/// @return size of printed string
+/// TODO create a devprintf using an array of function prointers ?
+MEMSPACE 
+int 
+printf_P(__memx const char *format, ...)
+{
+	int i;
+	printf_t fn;
+	va_list va;
+
+	fn.put = _putc_fn;
+	fn.sent = 0;
+
+	va_start(va, format);
+	_printf_fn(&fn, format, va);
+	va_end(va);
+
+	return ((int)fn.sent);
+}
+#endif
 #endif
 #endif

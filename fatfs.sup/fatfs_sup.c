@@ -24,6 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "user_config.h"
+#include "fatfs.sup/fatfs.h"
 
 #ifdef AVR
 #include <stdlib.h>
@@ -33,9 +34,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "lib/time.h"
 
-#include "esp8266/hspi.h"
-
-#include "fatfs.sup/fatfs.h"
 
 ///@brief FatFs Drive Volumes
 FATFS Fatfs[_VOLUMES];                            /* File system object for each logical drive */

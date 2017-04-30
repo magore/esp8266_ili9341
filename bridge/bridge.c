@@ -68,7 +68,12 @@ static void tcp_accept(struct espconn *esp_config, esp_tcp *esp_tcp_config,
 	esp_config->proto.tcp = esp_tcp_config;
 	espconn_regist_connectcb(esp_config, (espconn_connect_callback)connect_callback);
 	espconn_accept(esp_config);
-	espconn_tcp_set_max_con_allow(esp_config, 1);
+	if(espconn_tcp_set_max_con_allow(esp_config, 1))
+	{
+        printf("espconn_tcp_set_max_con_allow(%d) != (%d) failed\n",
+            1, espconn_tcp_get_max_con_allow(esp_config));
+	}
+
 }
 
 
@@ -171,7 +176,7 @@ bridge_task_init(int port)
 	if(!(bridge_receive_queue = queue_new(BUFFER_SIZE)))
 		reset();
 
-	if(!(tcp_data_send_buffer = malloc(BUFFER_SIZE)))
+	if(!(tcp_data_send_buffer = safecalloc(BUFFER_SIZE,1)))
 		reset();
 
 	wifi_set_sleep_type(NONE_SLEEP_T);

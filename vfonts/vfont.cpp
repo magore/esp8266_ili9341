@@ -41,6 +41,7 @@ int main( int argc, char * argv[] )
 {
 	const char *fname;
 	char name[32];
+	char tmp[256];
 	int i;
 
 	if (argc!=2) {
@@ -50,45 +51,29 @@ int main( int argc, char * argv[] )
 
 	fname = argv[1];
 
-	printf("#ifndef _VFONT_H_\n");
-	printf("#define _VFONT_H_\n");
-
-printf(
-    "typedef struct {\n"
-    "    int16_t xoff;   /* X offset */\n"
-    "    int16_t yff;    /* Y offset */\n"
-    "    int16_t w;      /* Width */\n"
-    "    int16_t h;      /* Height */\n"
-    "    int16_t xinc;   /* Distance to Next Character by X */\n"
-    "    int16_t yinc;   /* Distance to Next Character by Y */\n"
-    "    int16_t hby;    /* gm.horiBearingY */\n"
-    "    int16_t vby;    /* gm.vertBearingY */\n"
-    "    int16_t v[];    /* Data */\n"
-    "} path_t;\n"
-"\n");
-
-
+	printf("#ifndef _VFONTS_H_\n");
+	printf("#define _VFONTS_H_\n");
+	printf("// Font file: %s\n", fname);
 
 	for(i=32;i<128;++i)
 	{
+		printf("//MEMSPACE_FONT\n");
 		sprintf(name,"0x%02x",i);
 		font2svg::glyph g( fname, name );
+		if(i == 32)
+			strcpy(tmp,g.facename(tmp,256));
 		std::cout << g.outline();
 		g.free();
-		if(i == 32)
-		{
-			printf("\t{ '.' }\n");
-			printf("};\n");
-		}
 	}
 
 	printf("path_t *vfont[]= {\n");
 	for(i=32;i<128;++i)
 	{
-		printf("\t&_vec%d,\n",i);
+		printf("\t&%s_glyph_%02x,\n", tmp,i);
 	}
+	printf("\tNULL\n");
 	printf("};\n");
-	printf("#endif /* _VFONT_H_ */\n");
+	printf("#endif /* _VFONTS_H_ */\n");
 
   return 0;
 }

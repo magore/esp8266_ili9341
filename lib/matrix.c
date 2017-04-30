@@ -20,13 +20,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-#if MATDEBUG 
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
-#else
 #include "user_config.h"
-#endif
 
 #include "matrix.h"
 
@@ -72,7 +66,7 @@ mat_t MatAlloc(int rows, int cols)
 		cols = 1;
 	}
 	
-	MatA.data = calloc(rows,sizeof(float *));
+	MatA.data = safecalloc(rows,sizeof(float *));
 	if(MatA.data == NULL)
 	{
 		MatA.rows = 0;
@@ -82,7 +76,7 @@ mat_t MatAlloc(int rows, int cols)
 
 	for (r=0;r<rows;r++)
 	{
-		fptr = calloc(cols,sizeof(float));
+		fptr = safecalloc(cols,sizeof(float));
 		if(fptr == NULL)
 		{
 			MatFree(MatA);
@@ -124,7 +118,7 @@ void MatFree(mat_t matF)
 		{
 			if(matF.data[i])
 			{
-				free(matF.data[i]);
+				safefree(matF.data[i]);
 				matF.data[i] = NULL;
 			}
 			else
@@ -134,7 +128,7 @@ void MatFree(mat_t matF)
 #endif
 			}
 		}
-		free(matF.data);
+		safefree(matF.data);
 		matF.data = NULL;
 	}
 	else
@@ -616,7 +610,7 @@ int MatWrite(char *name, mat_t MatW)
 }
 
 	
-#if MATDEBUG 
+#ifdef MATTEST
 // ==================
 // test1
 // compute Adj(AJ)

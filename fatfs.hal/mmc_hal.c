@@ -31,7 +31,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "lib/time.h"
 #include "lib/timer.h"
 
+#ifdef ESP8266
 #include "esp8266/hspi.h"
+#endif
 
 #include "fatfs.sup/fatfs.h"
 
@@ -81,8 +83,8 @@ void mmc_install_timer( void )
 /// @return  void
 void mmc_spi_init()
 {
-    mmc_slow();
 	chip_select_init(MMC_CS);
+    mmc_slow();
 }
 
 
@@ -228,7 +230,7 @@ int mmc_init(int verbose)
 
     rc = disk_initialize(0);	// aliased to mmc_disk_initialize()
 
-    if( rc != RES_OK )
+    if( rc != RES_OK  || verbose )
     {
         put_rc(rc);
     }
@@ -238,7 +240,7 @@ int mmc_init(int verbose)
         rc = f_mount(&Fatfs[0],"/", 0);
     }
 
-    if( rc != RES_OK)
+    if( rc != RES_OK || verbose)
     {
         put_rc( rc );
     }

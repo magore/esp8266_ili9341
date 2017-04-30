@@ -43,7 +43,7 @@ queue_t *queue_new(size_t size)
 	q->buf = safecalloc(size+1,1);
 	if(!q->buf)
 	{
-		free(q);
+		safefree(q);
 		return(NULL);
 	}
 	q->in = 0;
@@ -65,7 +65,7 @@ void queue_del(queue_t *q)
 		return;
 	if(q->buf)
 	{
-		free(q->buf);
+		safefree(q->buf);
 		// This clear help prevents a freed pointer from being used by mistake
 		// can be removed in production
 		q->buf = NULL;
@@ -75,7 +75,7 @@ void queue_del(queue_t *q)
 		q->size = 0;
 		q->flags = 0;
 	}
-	free(q);
+	safefree(q);
 }
 
 

@@ -28,9 +28,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <string.h>
 #include <math.h>
 
-#include "fatfs.sup/fatfs.h"
 #include "display/ili9341.h"
 #include "web/web.h"
+
 
 // References: http://www.w3.org/Protocols/rfc2616/rfc2616.html
 
@@ -39,6 +39,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /// @brief max size of  CGI token
 #define CGI_TOKEN_SIZE 128
 /// @brief max size of read/write socket buffers
+/// Note: reducing this size below 1500 will slow down transfer a great deal
 #define BUFFER_SIZE 1500
 
 extern window *winmsg,*wintop;
@@ -226,9 +227,10 @@ static void tcp_accept(espconn_t *esp_config, esp_tcp *esp_tcp_config,
 	espconn_accept(esp_config);
 	ret = espconn_tcp_set_max_con_allow(esp_config, MAX_CONNECTIONS);
 	if(ret)
-		printf("espconn_tcp_set_max_con_allow(%d): failed\n", MAX_CONNECTIONS);
-	ret = espconn_tcp_get_max_con_allow(esp_config);
+		printf("espconn_tcp_set_max_con_allow(%d) != (%d) failed\n", 
+			MAX_CONNECTIONS, espconn_tcp_get_max_con_allow(esp_config));
 #if WEB_DEBUG & 2
+	ret = espconn_tcp_get_max_con_allow(esp_config);
 	printf("espconn_tcp_get_max_con_allow:(%d)\n", ret);
 #endif
 }
@@ -298,14 +300,14 @@ void rwbuf_delete(rwbuf_t *p)
 	// Free receive buffer
 	p->rsize = 0;
 	if(p->rbuf)
-		free(p->rbuf);
+		safefree(p->rbuf);
 	p->rbuf = NULL;
 	rwbuf_rinit(p);
 
 	// Free write buffer
 	p->wsize = 0;
 	if(p->wbuf)
-		free(p->wbuf);
+		safefree(p->wbuf);
 	p->wbuf = NULL;
 	rwbuf_winit(p);
 
@@ -318,7 +320,7 @@ void rwbuf_delete(rwbuf_t *p)
 	p->local_ip[0] = 0; p->local_ip[1] = 0; p->local_ip[2] = 0; p->local_ip[3] = 0;
 	p->local_port = 0;
 	// FIXME
-	free(p);
+	safefree(p);
 }
 
 
@@ -830,7 +832,7 @@ int html_msg(rwbuf_t *p, int status, char type, char *fmt, ...)
 	len = strlen(header);
 	write_len(p,header,len);
 
-	free(header);
+	safefree(header);
 	return(len);
 }
 
@@ -1844,9 +1846,10 @@ static void web_data_connect_callback(espconn_t *conn)
 	// disconnect will get the index into the connection pool
 	espconn_regist_disconcb(conn, web_data_disconnect_callback);
 	espconn_regist_reconcb(conn, web_data_reconnect_callback);
-	// FIXME
+
+	// FIXME we should REUSE!!!!!!!
 	// espconn_set_opt(conn, ESPCONN_REUSEADDR);
-	espconn_regist_time(conn, 5, 0);
+	espconn_regist_time(conn, 1, 0);
 	// FIXME
 	esp_schedule();
 }
@@ -2180,6 +2183,9 @@ static void process_requests(rwbuf_t *p)
 	// END OF CGI
 	
 	type = file_type(name);
+#if WEB_DEBUG & 32
+	printf("name: %s, type:%d\n",name,type);
+#endif
 
 	fi = fopen(name,"r");
 	/* Search the specified file in stored binaray html image */
@@ -2348,7 +2354,8 @@ void web_init(int port)
 	web_init_connections();
     wifi_set_sleep_type(NONE_SLEEP_T);
     tcp_accept(&WebConn, &WebTcp, port, web_data_connect_callback);
-    //espconn_regist_time(&WebConn, 0, 0);
+    //espconn_regist_time(&WebConn, 10, 0);
+	espconn_set_opt(&WebConn, ESPCONN_REUSEADDR);
 #if WEB_DEBUG & 2
     printf("\nWeb Server task init done\n");
 #endif

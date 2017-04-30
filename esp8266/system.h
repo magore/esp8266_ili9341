@@ -28,10 +28,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #undef calloc
 #undef free
 
-/* utils/sys.c */
-MEMSPACE void *malloc ( size_t size );
-MEMSPACE void *calloc ( size_t nmemb , size_t size );
-MEMSPACE void free ( void *p );
+// sys.c defines alternative safe functions
+#define free(p) safefree(p)
+#define calloc(n,s) safecalloc(n,s)
+#define malloc(s) safemalloc(s)
 
 #ifdef ESP8266
 MEMSPACE void reset ( void );
@@ -43,16 +43,8 @@ MEMSPACE void PrintRam ( void );
 MEMSPACE void *safecalloc ( size_t nmemb , size_t size );
 MEMSPACE void *safemalloc ( size_t size );
 MEMSPACE void safefree ( void *p );
+MEMSPACE void reset ( void );
+MEMSPACE void wdt_reset ( void );
 
-// sys.c defines alternative safe functions
-#ifndef free
-    #define free(p) safefree(p)
-#endif
-#ifndef calloc
-    #define calloc(n,s) safecalloc(n,s)
-#endif
-#ifndef malloc
-    #define malloc(s) safemalloc(s)
-#endif
 
 #endif // _SYSTEM_H_

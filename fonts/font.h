@@ -100,4 +100,19 @@ typedef struct
     uint8_t *ptr;
 } _fontc;
 
+#if 0
+typedef struct {
+	int16_t xoff;   /* X offset */
+	int16_t yff;    /* Y offset */
+	int16_t w;      /* Width */
+	int16_t h;      /* Height */
+	int16_t xinc;   /* Distance to Next Character by X */
+	int16_t yinc;   /* Distance to Next Character by Y */
+	int16_t hby;    /* gm.horiBearingY */
+	int16_t vby;    /* gm.vertBearingY */
+	int16_t contours; /* Contours */
+	int16_t v[];    /* Data */
+} path_t;
+#endif
+
 #endif                                            //_FONT_H_

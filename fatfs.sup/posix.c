@@ -1663,6 +1663,7 @@ int closedir(DIR *dirp)
         errno = fatfs_to_errno(res);
         return(-1);
     }
+	return(0);
 }
 
 /// @brief POSIX opendir
@@ -1691,7 +1692,7 @@ DIR *opendir(const char *pathdir)
 ///
 /// @return DIR * on sucess.
 /// @return NULL on error with errno set.
-static dirent_t _de;
+static	dirent_t _de;
 dirent_t * readdir(DIR *dirp)
 {
 	FILINFO fno;
@@ -1706,7 +1707,8 @@ dirent_t * readdir(DIR *dirp)
         return(NULL);
     }
 	len = strlen(fno.fname);
-	strcpy(_de.d_name,fno.fname);
+	strncpy(_de.d_name,fno.fname,len);
+	_de.d_name[len] = 0;
 	return( (dirent_t *) &_de);
 }
 
@@ -2302,7 +2304,6 @@ MEMSPACE
 int
 fprintf(FILE *fp, const char *format, ...)
 {
-    int i;
     printf_t fn;
     va_list va;
 

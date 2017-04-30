@@ -98,12 +98,16 @@ typedef struct {
 // ============================================================
 
 /* font.c */
-int font_max();
-int font_H(int font);
-int font_W(int font);
+int font_max ( void );
+int font_H ( int font );
+int font_W ( int font );
 int font_attr ( window *win , int c , _fontc *f );
-void tft_drawChar ( window *win , uint8_t c );
 
+// ============================================================
+/* vfont.c */
+int16_t sx ( float scale , int16_t xoff , int16_t X );
+int16_t sy ( float scale , int16_t yoff , int16_t Y );
+void drawSVG ( window *win , int16_t x , int16_t y , int16_t c , float scale , uint16_t color, int16_t fill );
 
 // ============================================================
 
@@ -121,6 +125,7 @@ void tft_flood ( window *win , int16_t x , int16_t y , uint16_t border , uint16_
 int tft_push_xy ( int16_t x , int16_t y );
 int tft_pop_xy ( int16_t *x , int16_t *y );
 int tft_floodline ( window *win , int16_t x , int16_t y , uint16_t border , uint16_t fill );
+int tft_FillPolyLine ( window *win , int16_t x , int16_t y , int w , uint16_t color );
 void tft_fillRectWH ( window *win , int16_t x , int16_t y , int16_t w , int16_t h , uint16_t color );
 void tft_fillRectXY ( window *win , int16_t x , int16_t y , int16_t xl , int16_t yl , uint16_t color );
 void tft_drawPixel ( window *win , int16_t x , int16_t y , int16_t color );
@@ -145,12 +150,11 @@ int tft_get_font_height ( window *win );
 void tft_drawFastVLine ( window *win , int16_t x , int16_t y , int16_t h , uint16_t color );
 void tft_drawFastHLine ( window *win , int16_t x , int16_t y , int16_t w , uint16_t color );
 void tft_drawLine ( window *win , int16_t x0 , int16_t y0 , int16_t x1 , int16_t y1 , uint16_t color );
-void tft_Bezier2 ( window *win , int16_t SX , int16_t SY , int16_t CX , int16_t CY , int16_t TX , int16_t TY , int steps , uint16_t color );
-void tft_Bezier3 ( window *win , int16_t SX , int16_t SY , int16_t C1X , int16_t C1Y , int16_t C2X , int16_t C2Y , int16_t TX , int16_t TY , int steps , uint16_t color );
+int tft_Bezier2 ( window *win , p2_int16_t S , p2_int16_t C , p2_int16_t T , int steps , uint16_t color );
+int tft_Bezier3 ( window *win , p2_int16_t S , p2_int16_t C1 , p2_int16_t C2 , p2_int16_t T , int steps , uint16_t color );
 MEMSPACE void tft_cleareol ( window *win );
 MEMSPACE void tft_clearline ( window *win );
 void tft_putch ( window *win , int c );
-
 
 // ============================================================
 /* ili9341_hal.c */
