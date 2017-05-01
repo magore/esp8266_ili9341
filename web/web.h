@@ -42,6 +42,7 @@ typedef struct {
     char *args;
     uint16_t args_length;
     char *html_encoding;
+	char *connection;
 // POST msg_pointers
 // Content-Type: application/x-www-form-urlencoded
 // Content-Length: 165

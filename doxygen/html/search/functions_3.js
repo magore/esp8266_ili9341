@@ -30,7 +30,7 @@ var searchData=
   ['clrerror',['clrerror',['../posix_8c.html#a03baa4d851a2a855656081a4b7c8d72c',1,'clrerror(FILE *stream):&#160;posix.c'],['../posix_8h.html#a03baa4d851a2a855656081a4b7c8d72c',1,'clrerror(FILE *stream):&#160;posix.c']]],
   ['clust2sect',['clust2sect',['../ff_8c.html#a45bbeb9d5097317ba431e90e2a9c45f8',1,'ff.c']]],
   ['cmp_5flfn',['cmp_lfn',['../ff_8c.html#adcedde346219d87f91e412c1efa9a7b5',1,'ff.c']]],
-  ['cofactor',['Cofactor',['../matrix_8c.html#af2847fd6933b17808bd3a4a9844c4d07',1,'Cofactor(mat_t MatA, int row, int col):&#160;matrix.c'],['../matrix_8h.html#af2847fd6933b17808bd3a4a9844c4d07',1,'Cofactor(mat_t MatA, int row, int col):&#160;matrix.c']]],
+  ['cofactor',['Cofactor',['../matrix_8c.html#aa96a1963cc354fe2a055eae3c846227c',1,'Cofactor(mat_t MatA, int row, int col):&#160;matrix.c'],['../matrix_8h.html#aa96a1963cc354fe2a055eae3c846227c',1,'Cofactor(mat_t MatA, int row, int col):&#160;matrix.c']]],
   ['computegapsize',['ComputeGapSize',['../bdffontutil_8c.html#a5452adc13af52bed8d199861362037e0',1,'ComputeGapSize(_font *font):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a5452adc13af52bed8d199861362037e0',1,'ComputeGapSize(_font *font):&#160;bdffontutil.c']]],
   ['cont_5fcan_5fyield',['cont_can_yield',['../cont_8h.html#a7a8b25ee2153c3033f4590b39197661b',1,'cont_can_yield(cont_t *cont):&#160;cont_util.c'],['../cont__util_8c.html#a7a8b25ee2153c3033f4590b39197661b',1,'cont_can_yield(cont_t *cont):&#160;cont_util.c']]],
   ['cont_5fcheck',['cont_check',['../cont_8h.html#a8795db353c660bc12f083742a906643c',1,'cont_check(cont_t *cont):&#160;cont_util.c'],['../cont__util_8c.html#a8795db353c660bc12f083742a906643c',1,'cont_check(cont_t *cont):&#160;cont_util.c']]],

@@ -25,7 +25,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 //This may be used to change user task stack size:
 // Can override stack in cont.h by defining it here
 // FIXME DEBUG
-#define CONT_STACKSIZE 4096
+#define CONT_STACKSIZE (1024*4)
 
 #include "user_task.h"
 

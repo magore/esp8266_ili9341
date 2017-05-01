@@ -47,6 +47,7 @@ typedef struct {
 freq_t frequency = { 100e6, 100e6, 100e6, 0.0, 0.0, 0 };
 
 // display frequency
+MEMSPACE
 void ADF4351_update(double freq)
 {
     printf("%4.3f\n", freq/1000000.0);
@@ -54,6 +55,7 @@ void ADF4351_update(double freq)
 }
 
 // update every 50 mS
+MEMSPACE
 void ADF4351_task()
 {
     int status;
@@ -82,6 +84,7 @@ void ADF4351_task()
 }
 #ifdef ADF4351
 // @brief  Help command
+MEMSPACE
 void adf4351_help()
 {
     printf("adf4351 frequency [spacing]\n"
@@ -95,6 +98,7 @@ void adf4351_help()
 ///
 /// @param[in] line - command line
 /// @return  void
+MEMSPACE
 int adf4351_cmd(char *line)
 {
     char *ptr;

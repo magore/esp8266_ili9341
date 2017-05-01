@@ -33,6 +33,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   @param[in] MatA: matrix A 
   @return 1 if ssquare, 0 if not
 */
+MEMSPACE
 int TestSquare(mat_t MatA)
 {
 	return( (MatA.rows == MatA.cols) ? 1 : 0 );
@@ -43,6 +44,7 @@ int TestSquare(mat_t MatA)
   @param[in] size: size of square matrix to allocate 
   @return float **
 */
+MEMSPACE
 mat_t MatAlloc(int rows, int cols)
 {
 	int r;
@@ -99,6 +101,7 @@ mat_t MatAlloc(int rows, int cols)
   @param[in] size: size of square matrix to allocate 
   @return float **
 */
+MEMSPACE
 mat_t MatAllocSQ(int size)
 {
 	return(MatAlloc(size,size));
@@ -109,6 +112,7 @@ mat_t MatAllocSQ(int size)
   @brief Free a matrix
   @param[in] **Mat: Matrix to free
 */
+MEMSPACE
 void MatFree(mat_t matF)
 {
 	int i;
@@ -144,6 +148,7 @@ void MatFree(mat_t matF)
   @param[in] *V: matrix data 
   @param[in] size: size of square matrix
 */
+MEMSPACE
 mat_t MatLoad(void *V, int rows, int cols)
 {
 	mat_t MatA = MatAlloc(rows,cols);
@@ -167,6 +172,7 @@ mat_t MatLoad(void *V, int rows, int cols)
   @param[in] *V: square matrix data 
   @param[in] size: size of square matrix
 */
+MEMSPACE
 mat_t MatLoadSQ(void *V, int size)
 {
 	return(MatLoad(V,size,size));
@@ -177,6 +183,7 @@ mat_t MatLoadSQ(void *V, int size)
   @brief Print a matrix
   @param[in] Mat: Matrix to print
 */
+MEMSPACE
 void MatPrint(mat_t matrix)
 {
 	int r,c;
@@ -201,6 +208,7 @@ void MatPrint(mat_t matrix)
   @param[in] col: col to delete
   @return submatrix 
 */
+MEMSPACE
 mat_t DeleteRowCol(mat_t MatA,int row,int col)
 {
 	int r,c;
@@ -251,6 +259,7 @@ mat_t DeleteRowCol(mat_t MatA,int row,int col)
   @param[in] MatA: matrix A 
   @return Transpose matrix
 */
+MEMSPACE
 mat_t Transpose(mat_t MatA)
 {
     int c,r;
@@ -278,6 +287,7 @@ mat_t Transpose(mat_t MatA)
   @param[in] col: col to delete
   @return Determinate
 */
+MEMSPACE
 float Minor(mat_t MatA, int row, int col)
 {
 	float D;
@@ -296,6 +306,7 @@ float Minor(mat_t MatA, int row, int col)
   @param[in] col: col to delete
   @return Determinate * (-1)exp(row + col)
 */
+MEMSPACE
 float Cofactor(mat_t MatA, int row, int col)
 {
 	float D = Minor(MatA, row, col);;
@@ -310,6 +321,7 @@ float Cofactor(mat_t MatA, int row, int col)
   @param[in] MatA: matrix A
   @return Adjugate or A
 */
+MEMSPACE
 mat_t Adjugate(mat_t MatA)
 {
 	int r,c;
@@ -334,6 +346,7 @@ mat_t Adjugate(mat_t MatA)
   @param[in] MatA: square matrix A
   @return Determinant or 0
 */
+MEMSPACE
 float Determinant(mat_t MatA)
 {
     int r,c,n,cc;
@@ -382,6 +395,7 @@ float Determinant(mat_t MatA)
   @param[in] MatA: square matrix A input
   @return Inverse of MatA or error
 */
+MEMSPACE
 mat_t Invert(mat_t MatA)
 {
 	int r,c;
@@ -438,6 +452,7 @@ mat_t Invert(mat_t MatA)
   @param[in] MatA: matrix A input - does not have to be square
   @return Pseudo Inverse of MatA or error
 */
+MEMSPACE
 mat_t PseudoInvert(mat_t MatA)
 {
 	// AT = Transpose(A)
@@ -471,6 +486,7 @@ mat_t PseudoInvert(mat_t MatA)
   @return MatA * MatB
   Result dimensions is (row size of A, column size of B)
 */
+MEMSPACE
 mat_t MatMul(mat_t MatA, mat_t MatB)
 {
 	float sum = 0;
@@ -507,6 +523,7 @@ mat_t MatMul(mat_t MatA, mat_t MatB)
   @return mat_t matrix data
   Note: on error rows and cols = 0, data = NULL;
 */
+MEMSPACE
 mat_t MatRead(char *name)
 {
 
@@ -584,6 +601,7 @@ mat_t MatRead(char *name)
   @param[in] MatW: Matrix
   @return status 1 = success, 0 = fail
 */
+MEMSPACE
 int MatWrite(char *name, mat_t MatW)
 {
 

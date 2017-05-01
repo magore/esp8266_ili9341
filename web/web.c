@@ -40,7 +40,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define CGI_TOKEN_SIZE 128
 /// @brief max size of read/write socket buffers
 /// Note: reducing this size below 1500 will slow down transfer a great deal
-#define BUFFER_SIZE 1500
+#define BUFFER_SIZE 1000
 
 extern window *winmsg,*wintop;
 
@@ -975,6 +975,7 @@ void init_hinfo(hinfo_t *hi)
 {
 	hi->type = -1;	// GET,PUT,HEADER
 	hi->filename = NULL;
+	hi->connection = NULL;
 	hi->args = NULL;
 	hi->arg_ptr = NULL;
 	hi->args_length = 0;
@@ -1521,6 +1522,18 @@ int parse_http_request(rwbuf_t *p, hinfo_t *hi)
 			continue;
 		}
 
+		// Process CONNECTION directive
+		if(type == TOKEN_CONNECTION)
+		{
+			hi->connection = (char *)ptr;
+			ptr = nextbreak(ptr);
+			if(*ptr)
+				*ptr++ = 0;	// Filename EOS
+#if WEB_DEBUG & 8
+			printf("connection: %s\n", hi->connection);
+#endif
+		}
+
 		// Process GET,POST or HEAD directive
 		// These methods put EOS characters withing the current string
 		if(type == TOKEN_GET)
@@ -1849,7 +1862,7 @@ static void web_data_connect_callback(espconn_t *conn)
 
 	// FIXME we should REUSE!!!!!!!
 	// espconn_set_opt(conn, ESPCONN_REUSEADDR);
-	espconn_regist_time(conn, 1, 0);
+	espconn_regist_time(conn, 10, 0);
 	// FIXME
 	esp_schedule();
 }
@@ -2278,6 +2291,7 @@ static void process_requests(rwbuf_t *p)
 	fclose(fi);
 	write_flush(p);
 
+///FIXME if we want to support keep-alive we have to change this
 	p->delete = 1;
 	espconn_disconnect(p->conn);
 

@@ -466,13 +466,17 @@ MEMSPACE double ADF4351_PFD ( double REFin , int R );
 MEMSPACE void ADF4351_display_error ( int error );
 MEMSPACE int ADF4351_Config( double RFout , double REFin , double ChannelSpacing , double *RFoutCalc );
 
+
+
+/* adf4351_cmd.c */
+MEMSPACE void ADF4351_update ( double freq );
+MEMSPACE void ADF4351_task ( void );
+MEMSPACE void adf4351_help ( void );
+MEMSPACE int adf4351_cmd ( char *line );
+
 /* adf4351_hal.c */
 MEMSPACE void ADF4351_spi_init ( void );
 void ADF4351_spi_begin ( void );
 void ADF4351_spi_end ( void );
 uint32_t ADF4351_spi_txrx ( uint32_t value );
 
-/* adf4351_cmd.c */
-MEMSPACE void ADF4351_update ( double freq );
-MEMSPACE void ADF4351_task ( void );
-MEMSPACE int adf4351_cmd ( char *line );

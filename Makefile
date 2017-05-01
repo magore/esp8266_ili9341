@@ -494,8 +494,7 @@ endef
 all: esptool support checkdirs $(FW) send status
 
 .PHONY: status
-status:
-	@if [ ! -d esptool ]; then git clone https://github.com/espressif/esptool; else cd esptool; git pull; cd ..; fi
+status:	esptool
 	@echo =============================================
 	@echo Note:
 	@if [ -n "$(SWAP45)" ]; then echo "GPIO pins 4 and 5 are swapped"; fi
@@ -509,10 +508,14 @@ status:
 esptool:
 	@echo =============================================
 	@echo "Updating $(ESPTOOL)"
-	@if [ ! -d esptool ]; then git clone https://github.com/espressif/esptool; else cd esptool; git pull; cd ..; fi
+	@if [ ! -d esptool ]; then git clone https://github.com/espressif/esptool; fi
 	#
 	#if [ ! -d esptool-ck ]; then git clone https://github.com/igrr/esptool-ck; cd esptool-ck; make; cd ..; else cd esptool-ck; git pull; make; cd .. fi
 	@echo =============================================
+
+.PHONY: esptool-update
+esptool-update:	esptool
+	@if [ -d esptool ]; then cd esptool; git pull; cd ..; fi
 
 .PHONY: support
 support:

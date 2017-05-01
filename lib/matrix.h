@@ -31,25 +31,25 @@ typedef struct _mat {
     int size;
 } mat_t;
 
-
-
 /* matrix.c */
-int TestSquare ( mat_t MatA );
-mat_t MatAlloc ( int rows , int cols );
-mat_t MatAllocSQ ( int size );
-void MatFree ( mat_t matF );
-mat_t MatLoad ( void *V , int rows , int cols );
-mat_t MatLoadSQ ( void *V , int size );
-void MatPrint ( mat_t matrix );
-mat_t DeleteRowCol ( mat_t MatA , int row , int col );
-mat_t Transpose ( mat_t MatA );
-float Minor ( mat_t MatA , int row , int col );
-float Cofactor ( mat_t MatA , int row , int col );
-mat_t Adjugate ( mat_t MatA );
-float Determinant ( mat_t MatA );
-mat_t Invert ( mat_t MatA );
-mat_t PseudoInvert ( mat_t MatA );
-mat_t MatMul ( mat_t MatA , mat_t MatB );
-mat_t MatRead ( char *name );
+MEMSPACE int TestSquare ( mat_t MatA );
+MEMSPACE mat_t MatAlloc ( int rows , int cols );
+MEMSPACE mat_t MatAllocSQ ( int size );
+MEMSPACE void MatFree ( mat_t matF );
+MEMSPACE mat_t MatLoad ( void *V , int rows , int cols );
+MEMSPACE mat_t MatLoadSQ ( void *V , int size );
+MEMSPACE void MatPrint ( mat_t matrix );
+MEMSPACE mat_t DeleteRowCol ( mat_t MatA , int row , int col );
+MEMSPACE mat_t Transpose ( mat_t MatA );
+MEMSPACE float Minor ( mat_t MatA , int row , int col );
+MEMSPACE float Cofactor ( mat_t MatA , int row , int col );
+MEMSPACE mat_t Adjugate ( mat_t MatA );
+MEMSPACE float Determinant ( mat_t MatA );
+MEMSPACE mat_t Invert ( mat_t MatA );
+MEMSPACE mat_t PseudoInvert ( mat_t MatA );
+MEMSPACE mat_t MatMul ( mat_t MatA , mat_t MatB );
+MEMSPACE mat_t MatRead ( char *name );
+MEMSPACE int MatWrite ( char *name , mat_t MatW );
+
 
 #endif // _MATRIX_H_

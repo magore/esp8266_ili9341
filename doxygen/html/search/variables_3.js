@@ -8,6 +8,7 @@ var searchData=
   ['clust',['clust',['../structFIL.html#aa41312aba551b9a6d1c9d3c8c7d2734b',1,'FIL::clust()'],['../structDIR.html#acfbb8ba2d6e73b6f999ceffd1857c190',1,'DIR::clust()']]],
   ['cols',['cols',['../struct__mat.html#a5ee73c0c8484d47a000464681b298762',1,'_mat']]],
   ['conn',['conn',['../structrwbuf__t.html#a15785240e32c27f7af7c4b0cb1a6e39b',1,'rwbuf_t']]],
+  ['connection',['connection',['../structhinfo__t.html#a3fbd7d81842222192fe8e8570451e89f',1,'hinfo_t']]],
   ['connections',['connections',['../web_8c.html#a0ba17441c382732ee4172abce4f7b31c',1,'web.c']]],
   ['content_5flength',['content_length',['../structhinfo__t.html#a6cf5714c0fe8e8e7f7819194274f9052',1,'hinfo_t']]],
   ['content_5ftype',['content_type',['../structhinfo__t.html#a87bad5ce6af7ed3613a61d01aef94d8d',1,'hinfo_t']]],

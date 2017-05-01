@@ -159,6 +159,7 @@ uint16_t XPT2046_read(uint8_t cmd)
 /// @param[out] *X: X value 
 /// @param[out] *Y: Y value 
 /// return: Touch state 1 = touch, 0 = no touch 
+//MEMSPACE
 int XPT2046_xy_raw(uint16_t *X, uint16_t *Y)
 {
 	int Z1,Z2,Z;
