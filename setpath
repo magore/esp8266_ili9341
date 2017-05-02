@@ -1,7 +1,14 @@
 #!/bin/bash
 #
+rm_path()
+{
+	export PATH
+	export PATH=$(echo "$PATH" | sed -e "s,$1:,,g")
+	export PATH=$(echo "$PATH" | sed -e "s/^://g" | sed -e "s/::/:/g")
+}
 export ROOT_DIR="/opt/Espressif"
 export SDK_HOME="/opt/Espressif/esp-open-sdk/sdk"
 export SDK_BIN="/opt/Espressif/esp-open-sdk/xtensa-lx106-elf/bin"
-export PATH="$SDK_BIN:$PATH"
 export COMPILE="gcc"
+rm_path "$SDK_BIN"
+export PATH="$SDK_BIN:$PATH"
