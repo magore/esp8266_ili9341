@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include <stdbool.h>
 
 #ifndef CONT_STACKSIZE
-#define CONT_STACKSIZE 4096
+#define CONT_STACKSIZE (1024*4)
 #endif
 
 typedef struct cont_

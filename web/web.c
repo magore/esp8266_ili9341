@@ -1529,6 +1529,7 @@ int parse_http_request(rwbuf_t *p, hinfo_t *hi)
 			ptr = nextbreak(ptr);
 			if(*ptr)
 				*ptr++ = 0;	// Filename EOS
+/// We must respond with Connection: keep-alive now
 #if WEB_DEBUG & 8
 			printf("connection: %s\n", hi->connection);
 #endif

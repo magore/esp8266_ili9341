@@ -106,27 +106,28 @@ check_files()
 		fi
 	done
 }
+
 set_path()
 {
-	# See: https://nurdspace.nl/ESP8266/First_setup
-	# https://github.com/esp8266/esp8266-wiki/wiki/Toolchain
-	export ROOT_DIR="/opt/Espressif"
-	export SDK_HOME="$ROOT_DIR/esp-open-sdk"
-	export SDK_BIN="$SDK_HOME/xtensa-lx106-elf/bin"
-	export PATH="$SDK_BIN:$PATH"
-	export COMPILE=gcc
+        # See: https://nurdspace.nl/ESP8266/First_setup
+        # https://github.com/esp8266/esp8266-wiki/wiki/Toolchain
+        export ROOT_DIR="/opt/Espressif"
+        export SDK_HOME="$ROOT_DIR/esp-open-sdk"
+        export SDK_BIN="$SDK_HOME/xtensa-lx106-elf/bin"
+        export PATH="$SDK_BIN:$PATH"
+        export COMPILE=gcc
 
-	echo "ROOT_DIR[$ROOT_DIR]"
-	echo "SDK_HOME[$SDK_HOME]"
-	echo "SDK_BIN[$SDK_BIN]"
-	echo "COMPILE[$COMPILE]"
-	sep
+        echo "ROOT_DIR[$ROOT_DIR]"
+        echo "SDK_HOME[$SDK_HOME]"
+        echo "SDK_BIN[$SDK_BIN]"
+        echo "COMPILE[$COMPILE]"
+        sep
 }
 
 make_path()
 {
-	set_path
-	cat <<EOF >"$SDK_HOME/setpath"
+        set_path
+        cat <<EOF >"$SDK_HOME/setpath"
 #!/bin/bash
 #
 export ROOT_DIR="$ROOT_DIR"
@@ -135,9 +136,11 @@ export SDK_BIN="$SDK_BIN"
 export PATH="\$SDK_BIN:\$PATH"
 export COMPILE="$COMPILE"
 EOF
-	chmod 755 "$SDK_HOME/setpath"
-	sep
+        chmod 755 "$SDK_HOME/setpath"
+        sep
 }
+
+
 
 
 #Save a list of libraries we can use in the sdk home directory
@@ -147,8 +150,16 @@ list_libs()
 
 	for i in $LIST
 	do
-		find "$SDK_HOME"/$i -type f | grep "\.a$" 
+		if [ -d "$SDK_HOME"/$i ]
+		then
+			find "$SDK_HOME"/$i -type f | grep "\.a$" 
+		fi
 	done
+}
+#Save a list of libraries we can use in the sdk home directory
+list_rtos_libs()
+{
+	find "$RTOS_HOME" -type f | grep "\.a$" 
 }
 
 install_open_sdk()
@@ -158,22 +169,51 @@ install_open_sdk()
 	echo Target is $SDK_HOME
 	declare DIR=$(basename $SDK_HOME)
 	echo "DIR:[$DIR]"
-	git clone --recursive https://github.com/pfalcon/esp-open-sdk.git
-	check_cd $SDK_HOME
-	make STANDALONE=y
 
+	if [ ! -d "$SDK_HOME" ]
+	then
+		git clone --recursive https://github.com/pfalcon/esp-open-sdk.git
+		check_cd $SDK_HOME
+			git submodule init
+			git submodule update
+			make STANDALONE=y
+		cd ..
+	fi
 	check_dir $SDK_HOME/esptool
+	sep
+}
+
+install_open_rtos()
+{
+	echo Installing Open SDK
+	check_cd $ROOT_DIR
+	echo Target is $SDK_HOME
+	declare DIR=$(basename $SDK_HOME)
+	echo "DIR:[$DIR]"
+	if [ ! -d "$RTOS_HOME" ]
+	then
+		git clone --recursive https://github.com/Superhouse/esp-open-rtos.git
+		check_cd $RTOS_HOME
+		git submodule init
+		git submodule update
+		cd ..
+	fi
+	check_dir $RTOS_HOME
 	sep
 }
 
 add_tools()
 {
-	check_dir $SDK_HOME/sdk/bin
-	cat $SDK_HOME/sdk/bin/blank.bin \
-		$SDK_HOME/sdk/bin/blank.bin \
-		$SDK_HOME/sdk/bin/blank.bin  >> $SDK_HOME/sdk/bin/clear_eep.bin
-	check_dir $ROOT_DIR
-	chmod 755 $SDK_HOME/sdk/tools/*
+	if [ -d "$SDK_HOME"/sdk/bin ]
+	then
+		cat $SDK_HOME/sdk/bin/blank.bin \
+			$SDK_HOME/sdk/bin/blank.bin \
+			$SDK_HOME/sdk/bin/blank.bin  >> $SDK_HOME/sdk/bin/clear_eep.bin
+		check_dir $ROOT_DIR
+		#get_git https://github.com/themadinventor esptool
+		#cp -p esptool/*.py $SDK_HOME/sdk/tools
+		chmod 755 $SDK_HOME/sdk/tools/*
+	fi
 }
 
 #  ==============================================================
@@ -228,8 +268,10 @@ set_path
 update_packages
 
 install_open_sdk
+#install_open_rtos
 
 list_libs >"$SDK_HOME"/libs.txt
+#list_rtos_libs >"$RTOS_HOME"/libs.txt
 
 add_tools
 
