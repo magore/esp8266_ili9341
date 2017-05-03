@@ -494,7 +494,7 @@ endef
 all: esptool support checkdirs $(FW) send status
 
 .PHONY: status
-status:	esptool
+status:	esptool esptool-size
 	@echo =============================================
 	@echo Note:
 	@if [ -n "$(SWAP45)" ]; then echo "GPIO pins 4 and 5 are swapped"; fi
@@ -597,6 +597,9 @@ flash: all
 	$(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) write_flash $(FW_ARGS)  0 $(FW)
 	$(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) verify_flash $(FW_ARGS) 0 $(FW)
 	miniterm.py --parity N -e --rts 0 --dtr 0 /dev/ttyUSB0 115200
+
+flash-size:	esptool
+	$(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) get_flash_size | grep -i "Flash size"
 
 verify: flash
 	$(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) verify_flash $(FW_ARGS) 0 $(FW)
