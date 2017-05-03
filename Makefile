@@ -503,19 +503,32 @@ status:	esptool
 	@echo =============================================
 	@echo
 
+# clean
+.PHONY: esptool-clean
+esptool-clean:
+	@echo removing esptool
+	rm -rf esptool
+
 #Update esptool
 .PHONY: esptool
-esptool:
-	@echo =============================================
-	@echo "Updating $(ESPTOOL)"
-	@if [ ! -d esptool ]; then git clone https://github.com/espressif/esptool; fi
-	#
+esptool:	esptool-fetch esptool-patch
+
+.PHONY:	esptool-fetch
+esptool-fetch:
+	@if [ ! -d esptool ]; then git clone https://github.com/espressif/esptool; else echo esptool already downloaded; fi
+
+.PHONY:	esptool-patch
+esptool-patch:	esptool-fetch
+	@if ! grep "get_flash_size" esptool/esptool.py >/dev/null 2>&1 ;then echo Patching esptool.py adding get_flash_size option; patch -p0 <esptool.patch.txt; else echo file already patched; fi
+
+# Delete
+.PHONY: esptool-update
+esptool-update:	esptool-clean esptool-fetch
+
+.PHONY: esptool-ck
+esptool-ck:
 	#if [ ! -d esptool-ck ]; then git clone https://github.com/igrr/esptool-ck; cd esptool-ck; make; cd ..; else cd esptool-ck; git pull; make; cd .. fi
 	@echo =============================================
-
-.PHONY: esptool-update
-esptool-update:	esptool
-	@if [ -d esptool ]; then cd esptool; git pull; cd ..; fi
 
 .PHONY: support
 support:

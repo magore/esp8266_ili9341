@@ -1,0 +1,31 @@
+--- esptool/esptool.py	2017-05-02 19:58:37.442607033 -0400
++++ esptool.new/esptool.py	2017-05-02 19:57:37.614675786 -0400
+@@ -1580,6 +1580,16 @@
+         else:
+             print('Auto-detected Flash size:', args.flash_size)
+ 
++def get_flash_size(esp, args):
++        flash_id = esp.flash_id()
++        size_id = flash_id >> 16
++        args.flash_size = {0x12: '256KB', 0x13: '512KB', 0x14: '1MB', 0x15: '2MB', 0x16: '4MB', 0x17: '8MB', 0x18: '16MB'}.get(size_id)
++        if args.flash_size is None:
++            print('Warning: Could not auto-detect Flash size (FlashID=0x%x, SizeID=0x%x), defaulting to 4MB' % (flash_id, size_id))
++            args.flash_size = '4MB'
++        else:
++            print('Auto-detected Flash size:', args.flash_size)
++
+ 
+ def _get_flash_params(esp, args):
+     """ Return binary flash parameters (bitstring length 2) for args """
+@@ -1992,6 +2002,11 @@
+         help='Read SPI flash manufacturer and device ID')
+     add_spi_connection_arg(parser_flash_id)
+ 
++    parser_get_flash_size = subparsers.add_parser(
++        'get_flash_size',
++        help='Read flash ID and convert to size')
++    add_spi_connection_arg(parser_get_flash_size)
++
+     parser_read_status = subparsers.add_parser(
+         'read_flash_status',
+         help='Read SPI flash status register')
