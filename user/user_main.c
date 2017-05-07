@@ -635,6 +635,7 @@ int user_tests(char *str)
     long p1, p2;
 	time_t t;
 	double freq;
+	extern int connections;
 
     ptr = skipspaces(str);
 
@@ -655,6 +656,11 @@ int user_tests(char *str)
     {
 		t = time(0);	
 		printf("TIME:%s\n", ctime(&t));
+        return(1);
+	}
+    else if ((len = token(ptr,"connections")) )
+    {
+		printf("connections:%d\n", connections);
         return(1);
 	}
     else if ((len = token(ptr,"mem")) )

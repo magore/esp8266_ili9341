@@ -494,7 +494,7 @@ endef
 all: esptool support checkdirs $(FW) send status
 
 .PHONY: status
-status:	esptool esptool-size
+status:	esptool flash-size
 	@echo =============================================
 	@echo Note:
 	@if [ -n "$(SWAP45)" ]; then echo "GPIO pins 4 and 5 are swapped"; fi
@@ -512,6 +512,8 @@ esptool-clean:
 #Update esptool
 .PHONY: esptool
 esptool:	esptool-fetch esptool-patch
+
+
 
 .PHONY:	esptool-fetch
 esptool-fetch:
