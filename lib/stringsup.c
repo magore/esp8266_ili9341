@@ -568,8 +568,8 @@ int token(char *str, char *pat)
     int len;
     char *ptr;
 
+    ptr = skipspaces(str);
     len = 0;
-    ptr = str;
     while(*ptr > ' ' && *ptr <= 0x7e )
     {
         ++len;
@@ -610,8 +610,15 @@ int set_value(char *str, char *pat, int minval, int maxval, int *val)
 
 	// default is 0
 	*val = 0;
-	
-	if(!strlen(str))
+
+//printf("set_value: str:[%s], pat:[%s]\n",str,pat);
+
+	// skip leading spaces
+	ptr = skipspaces(ptr);
+	// skip trailing spaces
+	trim_tail(ptr);
+
+	if(strlen(ptr) < strlen(pat))
 		return(0);
 
 	if( (ret = token(ptr, pat)) )
@@ -629,20 +636,20 @@ int set_value(char *str, char *pat, int minval, int maxval, int *val)
 		}
 		// convert number base 10, 16, 8 and 2
 		base = 10;
-		if(MATCHI_LEN(ptr,"0x"))
+		if( (ret = MATCHI_LEN(ptr,"0x")) )
 		{
 			base = 16;
-			ptr += 2;
+			ptr += ret;
 		}
-		else if(MATCHI_LEN(ptr,"0o"))
+		else if( (ret = MATCHI_LEN(ptr,"0o")) )
 		{
 			base = 8;
-			ptr += 2;
+			ptr += ret;
 		}
-		else if(MATCHI_LEN(ptr,"0b"))
+		else if( (ret = MATCHI_LEN(ptr,"0b")) )
 		{
 			base = 2;
-			ptr += 2;
+			ptr += ret;
 		}
 		tmp = strtol(ptr, (char **)&endptr, base);
 		// make sure we process at least one digit and the numver is in range

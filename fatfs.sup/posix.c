@@ -252,7 +252,7 @@ fgetc(FILE *stream)
     }
 
     stream->len++;
-    return (unsigned char)c;
+    return (c);
 }
 
 /// @brief Put a byte to TTY device or FatFs file stream
@@ -415,8 +415,10 @@ fgets(char *str, int size, FILE *stream)
     while(size--)
     {
         ret = fgetc(stream);
-        if(ret == EOF || ret == '\n')
-            break;
+        if(ret == EOF && ind == 0)
+            return(NULL);
+ 		if(ret == '\n')
+			break;
 		if(ret == 0x08)
 		{
 			 if(ind > 0)

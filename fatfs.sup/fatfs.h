@@ -1,7 +1,6 @@
 #ifndef _FATFS_H_
 #define _FATFS_H_
 
-#include "system.h"
 #include "time.h"
 #include "timer.h"
 
