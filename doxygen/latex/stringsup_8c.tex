@@ -58,6 +58,8 @@
 \begin{DoxyCompactList}\small\item\em return next token \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{stringsup_8c_ae9142769a957bcb8c0fad1934576f576}{token} (char $\ast$str, char $\ast$pat)
 \begin{DoxyCompactList}\small\item\em Search for token in a string matching user pattern. \end{DoxyCompactList}\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{stringsup_8c_a24819b9bacebff4d5720f49fb9b9639d}{set\+\_\+value} (char $\ast$str, char $\ast$pat, int minval, int maxval, int $\ast$val)
+\begin{DoxyCompactList}\small\item\em Set at configuration value. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{stringsup_8c_a11f9265694fbed4de67d91c6959a0d18}{strnalloc} (char $\ast$str, int len)
 \begin{DoxyCompactList}\small\item\em Allocate space for string with maximum size. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{stringsup_8c_a354472f280e9fe08820d6f32e0feddae}{stralloc} (char $\ast$str)
@@ -305,7 +307,7 @@ Definition at line 493 of file stringsup.\+c.
 
 
 
-Referenced by match\+\_\+headers().
+Referenced by match\+\_\+headers(), and set\+\_\+value().
 
 \index{stringsup.\+c@{stringsup.\+c}!memchr@{memchr}}
 \index{memchr@{memchr}!stringsup.\+c@{stringsup.\+c}}
@@ -386,6 +388,44 @@ string length
 
 Definition at line 204 of file stringsup.\+c.
 
+\index{stringsup.\+c@{stringsup.\+c}!set\+\_\+value@{set\+\_\+value}}
+\index{set\+\_\+value@{set\+\_\+value}!stringsup.\+c@{stringsup.\+c}}
+\subsubsection[{\texorpdfstring{set\+\_\+value(char $\ast$str, char $\ast$pat, int minval, int maxval, int $\ast$val)}{set_value(char *str, char *pat, int minval, int maxval, int *val)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int set\+\_\+value (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str, }
+\item[{char $\ast$}]{pat, }
+\item[{int}]{minval, }
+\item[{int}]{maxval, }
+\item[{int $\ast$}]{val}
+\end{DoxyParamCaption}
+)}\hypertarget{stringsup_8c_a24819b9bacebff4d5720f49fb9b9639d}{}\label{stringsup_8c_a24819b9bacebff4d5720f49fb9b9639d}
+
+
+Set at configuration value. 
+
+
+\begin{DoxyItemize}
+\item Used only for debugging 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & string to examine \\
+\hline
+\mbox{\tt in}  & {\em pat} & patern to match \\
+\hline
+\mbox{\tt in}  & {\em minval} & minimum value \\
+\hline
+\mbox{\tt in}  & {\em maxval} & maximum value \\
+\hline
+\mbox{\tt in}  & {\em $\ast$val} & value to set\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 is matched and value in range, 0 not matched or out of range 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+
+Definition at line 604 of file stringsup.\+c.
+
 \index{stringsup.\+c@{stringsup.\+c}!skipchars@{skipchars}}
 \index{skipchars@{skipchars}!stringsup.\+c@{stringsup.\+c}}
 \subsubsection[{\texorpdfstring{skipchars(char $\ast$str, char $\ast$pat)}{skipchars(char *str, char *pat)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} char$\ast$ skipchars (
@@ -437,7 +477,7 @@ Definition at line 264 of file stringsup.\+c.
 
 
 
-Referenced by adf4351\+\_\+cmd(), fatfs\+\_\+tests(), get\+\_\+token(), match\+\_\+headers(), parse\+\_\+http\+\_\+request(), timetests(), and user\+\_\+tests().
+Referenced by adf4351\+\_\+cmd(), fatfs\+\_\+tests(), get\+\_\+token(), match\+\_\+headers(), parse\+\_\+http\+\_\+request(), set\+\_\+value(), timetests(), and user\+\_\+tests().
 
 \index{stringsup.\+c@{stringsup.\+c}!stpcpy@{stpcpy}}
 \index{stpcpy@{stpcpy}!stringsup.\+c@{stringsup.\+c}}
@@ -493,7 +533,7 @@ N\+U\+LL on out of memory.
 \end{DoxyReturn}
 
 
-Definition at line 631 of file stringsup.\+c.
+Definition at line 703 of file stringsup.\+c.
 
 
 
@@ -614,7 +654,7 @@ Definition at line 138 of file stringsup.\+c.
 
 
 
-Referenced by arg\+\_\+name(), arg\+\_\+value(), escape(), fatfs\+\_\+cat(), fatfs\+\_\+scan\+\_\+files(), get\+\_\+date(), html\+\_\+msg(), main(), M\+A\+T\+C\+H(), match\+\_\+headers(), M\+A\+T\+C\+H\+\_\+\+L\+E\+N(), match\+\_\+token(), M\+A\+T\+C\+H\+I(), M\+A\+T\+C\+H\+I\+\_\+\+L\+E\+N(), mctime(), next\+\_\+arg(), parse\+\_\+http\+\_\+request(), process\+\_\+args(), Read\+Bdf(), readdir(), reverse(), send\+\_\+message(), stralloc(), token(), and trim\+\_\+tail().
+Referenced by arg\+\_\+name(), arg\+\_\+value(), escape(), fatfs\+\_\+cat(), fatfs\+\_\+scan\+\_\+files(), get\+\_\+date(), html\+\_\+msg(), main(), M\+A\+T\+C\+H(), match\+\_\+headers(), M\+A\+T\+C\+H\+\_\+\+L\+E\+N(), match\+\_\+token(), M\+A\+T\+C\+H\+I(), M\+A\+T\+C\+H\+I\+\_\+\+L\+E\+N(), mctime(), next\+\_\+arg(), parse\+\_\+http\+\_\+request(), process\+\_\+args(), Read\+Bdf(), readdir(), reverse(), send\+\_\+message(), set\+\_\+value(), stralloc(), token(), and trim\+\_\+tail().
 
 \index{stringsup.\+c@{stringsup.\+c}!strnalloc@{strnalloc}}
 \index{strnalloc@{strnalloc}!stringsup.\+c@{stringsup.\+c}}
@@ -645,7 +685,7 @@ pointer to alocated string.
 \end{DoxyReturn}
 
 
-Definition at line 607 of file stringsup.\+c.
+Definition at line 679 of file stringsup.\+c.
 
 \index{stringsup.\+c@{stringsup.\+c}!strncasecmp@{strncasecmp}}
 \index{strncasecmp@{strncasecmp}!stringsup.\+c@{stringsup.\+c}}
@@ -804,7 +844,7 @@ Definition at line 565 of file stringsup.\+c.
 
 
 
-Referenced by adf4351\+\_\+cmd(), fatfs\+\_\+tests(), rcvr\+\_\+datablock(), Read\+Bdf(), and user\+\_\+tests().
+Referenced by adf4351\+\_\+cmd(), fatfs\+\_\+tests(), rcvr\+\_\+datablock(), Read\+Bdf(), set\+\_\+value(), and user\+\_\+tests().
 
 \index{stringsup.\+c@{stringsup.\+c}!tolower@{tolower}}
 \index{tolower@{tolower}!stringsup.\+c@{stringsup.\+c}}

@@ -186,6 +186,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ae9142769a957bcb8c0fad1934576f576"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stringsup_8h.html#ae9142769a957bcb8c0fad1934576f576">token</a> (char *str, char *pat)</td></tr>
 <tr class="memdesc:ae9142769a957bcb8c0fad1934576f576"><td class="mdescLeft">&#160;</td><td class="mdescRight">Search for token in a string matching user pattern.  <a href="#ae9142769a957bcb8c0fad1934576f576">More...</a><br /></td></tr>
 <tr class="separator:ae9142769a957bcb8c0fad1934576f576"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24819b9bacebff4d5720f49fb9b9639d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stringsup_8h.html#a24819b9bacebff4d5720f49fb9b9639d">set_value</a> (char *str, char *pat, int minval, int maxval, int *val)</td></tr>
+<tr class="memdesc:a24819b9bacebff4d5720f49fb9b9639d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set at configuration value.  <a href="#a24819b9bacebff4d5720f49fb9b9639d">More...</a><br /></td></tr>
+<tr class="separator:a24819b9bacebff4d5720f49fb9b9639d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a11f9265694fbed4de67d91c6959a0d18"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stringsup_8h.html#a11f9265694fbed4de67d91c6959a0d18">strnalloc</a> (char *str, int len)</td></tr>
 <tr class="memdesc:a11f9265694fbed4de67d91c6959a0d18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate space for string with maximum size.  <a href="#a11f9265694fbed4de67d91c6959a0d18">More...</a><br /></td></tr>
 <tr class="separator:a11f9265694fbed4de67d91c6959a0d18"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -539,7 +542,7 @@ NULL if no token found</dd></dl>
 
 <p>Definition at line <a class="el" href="stringsup_8c_source.html#l00493">493</a> of file <a class="el" href="stringsup_8c_source.html">stringsup.c</a>.</p>
 
-<p>Referenced by <a class="el" href="web_8c_source.html#l00996">match_headers()</a>.</p>
+<p>Referenced by <a class="el" href="web_8c_source.html#l00996">match_headers()</a>, and <a class="el" href="stringsup_8c_source.html#l00604">set_value()</a>.</p>
 
 </div>
 </div>
@@ -644,6 +647,68 @@ NULL if no token found</dd></dl>
 
 </div>
 </div>
+<a class="anchor" id="a24819b9bacebff4d5720f49fb9b9639d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int set_value </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>pat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>minval</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>maxval</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>val</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set at configuration value. </p>
+<ul>
+<li>Used only for debugging <dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">str</td><td>string to examine </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pat</td><td>patern to match </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">minval</td><td>minimum value </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">maxval</td><td>maximum value </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">*val</td><td>value to set</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1 is matched and value in range, 0 not matched or out of range </dd></dl>
+</li>
+</ul>
+
+<p>Definition at line <a class="el" href="stringsup_8c_source.html#l00604">604</a> of file <a class="el" href="stringsup_8c_source.html">stringsup.c</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="aae86b90fc6ccc0c432de5c492cdcbaba"></a>
 <div class="memitem">
 <div class="memproto">
@@ -707,7 +772,7 @@ NULL if no token found</dd></dl>
 
 <p>Definition at line <a class="el" href="stringsup_8c_source.html#l00264">264</a> of file <a class="el" href="stringsup_8c_source.html">stringsup.c</a>.</p>
 
-<p>Referenced by <a class="el" href="adf4351__cmd_8c_source.html#l00102">adf4351_cmd()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00606">fatfs_tests()</a>, <a class="el" href="stringsup_8c_source.html#l00522">get_token()</a>, <a class="el" href="web_8c_source.html#l00996">match_headers()</a>, <a class="el" href="web_8c_source.html#l01454">parse_http_request()</a>, <a class="el" href="timetests_8c_source.html#l00098">timetests()</a>, and <a class="el" href="user__main_8c_source.html#l00628">user_tests()</a>.</p>
+<p>Referenced by <a class="el" href="adf4351__cmd_8c_source.html#l00102">adf4351_cmd()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00606">fatfs_tests()</a>, <a class="el" href="stringsup_8c_source.html#l00522">get_token()</a>, <a class="el" href="web_8c_source.html#l00996">match_headers()</a>, <a class="el" href="web_8c_source.html#l01454">parse_http_request()</a>, <a class="el" href="stringsup_8c_source.html#l00604">set_value()</a>, <a class="el" href="timetests_8c_source.html#l00099">timetests()</a>, and <a class="el" href="user__main_8c_source.html#l00628">user_tests()</a>.</p>
 
 </div>
 </div>
@@ -785,7 +850,7 @@ NULL on out of memory.</dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>: char * pointer to allocated string </dd></dl>
 
-<p>Definition at line <a class="el" href="stringsup_8c_source.html#l00631">631</a> of file <a class="el" href="stringsup_8c_source.html">stringsup.c</a>.</p>
+<p>Definition at line <a class="el" href="stringsup_8c_source.html#l00703">703</a> of file <a class="el" href="stringsup_8c_source.html">stringsup.c</a>.</p>
 
 </div>
 </div>
@@ -973,7 +1038,7 @@ NULL on out of memory.</dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>pointer to alocated string. </dd></dl>
 
-<p>Definition at line <a class="el" href="stringsup_8c_source.html#l00607">607</a> of file <a class="el" href="stringsup_8c_source.html">stringsup.c</a>.</p>
+<p>Definition at line <a class="el" href="stringsup_8c_source.html#l00679">679</a> of file <a class="el" href="stringsup_8c_source.html">stringsup.c</a>.</p>
 
 </div>
 </div>
@@ -1114,7 +1179,7 @@ NULL on out of memory.</dd></dl>
 
 <p>Definition at line <a class="el" href="stringsup_8c_source.html#l00169">169</a> of file <a class="el" href="stringsup_8c_source.html">stringsup.c</a>.</p>
 
-<p>Referenced by <a class="el" href="fatfs__utils_8c_source.html#l00225">ls()</a>, <a class="el" href="send_8c_source.html#l00148">main()</a>, <a class="el" href="posix_8c_source.html#l01696">readdir()</a>, <a class="el" href="posix_8c_source.html#l01798">strerror_r()</a>, <a class="el" href="stringsup_8c_source.html#l00607">strnalloc()</a>, and <a class="el" href="user__main_8c_source.html#l00357">user_loop()</a>.</p>
+<p>Referenced by <a class="el" href="fatfs__utils_8c_source.html#l00225">ls()</a>, <a class="el" href="send_8c_source.html#l00148">main()</a>, <a class="el" href="posix_8c_source.html#l01696">readdir()</a>, <a class="el" href="posix_8c_source.html#l01798">strerror_r()</a>, <a class="el" href="stringsup_8c_source.html#l00679">strnalloc()</a>, and <a class="el" href="user__main_8c_source.html#l00357">user_loop()</a>.</p>
 
 </div>
 </div>
@@ -1186,7 +1251,7 @@ NULL on out of memory.</dd></dl>
 
 <p>Definition at line <a class="el" href="stringsup_8c_source.html#l00565">565</a> of file <a class="el" href="stringsup_8c_source.html">stringsup.c</a>.</p>
 
-<p>Referenced by <a class="el" href="adf4351__cmd_8c_source.html#l00102">adf4351_cmd()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00606">fatfs_tests()</a>, <a class="el" href="mmc_8c_source.html#l00224">rcvr_datablock()</a>, <a class="el" href="bdffontutil_8c_source.html#l00790">ReadBdf()</a>, and <a class="el" href="user__main_8c_source.html#l00628">user_tests()</a>.</p>
+<p>Referenced by <a class="el" href="adf4351__cmd_8c_source.html#l00102">adf4351_cmd()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00606">fatfs_tests()</a>, <a class="el" href="mmc_8c_source.html#l00224">rcvr_datablock()</a>, <a class="el" href="bdffontutil_8c_source.html#l00790">ReadBdf()</a>, <a class="el" href="stringsup_8c_source.html#l00604">set_value()</a>, and <a class="el" href="user__main_8c_source.html#l00628">user_tests()</a>.</p>
 
 </div>
 </div>
@@ -1285,7 +1350,7 @@ NULL on out of memory.</dd></dl>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat May 6 2017 21:37:22 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed May 10 2017 13:57:31 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

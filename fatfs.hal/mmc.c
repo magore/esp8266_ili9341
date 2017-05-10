@@ -21,8 +21,6 @@
 
 /* mmc.c */
 #include "user_config.h"
-#include "fatfs.h"
-
 #include "mmc_hal.h"
 
 #ifdef AVR
@@ -34,6 +32,8 @@
 #ifdef ESP8266
 #include "esp8266/hspi.h"
 #endif
+
+#include "fatfs.sup/fatfs.h"
 
 /* Peripheral controls (Platform dependent) */
 #define CS_LOW()        mmc_spi_begin()  /* Set MMC_CS = low */
@@ -706,7 +706,10 @@ deselect();
 ///@brief mmc timer processes
 void mmc_disk_timerproc (void)
 {
-    BYTE n, s;
+    BYTE n;
+#ifdef DETECT_WP
+    BYTE s;
+#endif
 
     n = Timer1;             /* 100Hz decrement timer */
     if (n) Timer1 = --n;
@@ -715,7 +718,7 @@ void mmc_disk_timerproc (void)
 
 // FIXME our Micro SD card holder does not do WP or CD
 // We assign STA_NODISK if we get a timeout
-#if 0
+#ifdef DETECT_WP
     s = Stat;
 
     if (MMC_WP)             /* Write protected */

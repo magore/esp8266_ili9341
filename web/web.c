@@ -2035,7 +2035,7 @@ static void process_requests(rwbuf_t *p)
 	hi = &hibuff;
 	// a token like; $i_am_a_token_name$, must be less then this in length
 #define READBUFFSIZE 512
-	char buff[READBUFFSIZE+1];
+	char buff[READBUFFSIZE+4];
 
 	if(!p->conn )
 	{
@@ -2211,6 +2211,7 @@ static void process_requests(rwbuf_t *p)
 		espconn_disconnect(p->conn);
 		return;
 	}
+
 
 #if WEB_DEBUG & 8
 	printf("Found name: %s, type:%d\n",name,type);

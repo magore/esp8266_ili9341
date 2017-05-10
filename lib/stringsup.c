@@ -590,6 +590,78 @@ int token(char *str, char *pat)
 }
 // ==================================================
 
+/// @brief Set at configuration value 
+///
+/// - Used only for debugging
+/// @param[in] str: string to examine
+/// @param[in] pat: patern to match
+/// @param[in] minval: minimum value
+/// @param[in] maxval: maximum value
+/// @param[in] *val: value to set
+///
+/// @return  1 is matched and value in range, 0 not matched or out of range
+MEMSPACE
+int set_value(char *str, char *pat, int minval, int maxval, int *val)
+{
+	int tmp,ret;
+	char *ptr = str;
+	char *endptr;
+	int base;
+
+	// default is 0
+	*val = 0;
+	
+	if(!strlen(str))
+		return(0);
+
+	if( (ret = token(ptr, pat)) )
+	{
+		// skip matched pattern
+		ptr += ret;
+		// Skip spaces before assignment
+		ptr = skipspaces(ptr);
+		// Skip optional '='
+		if(*ptr == '=')
+		{
+			++ptr;
+			// skip spaces after assignment
+			ptr = skipspaces(ptr);
+		}
+		// convert number base 10, 16, 8 and 2
+		base = 10;
+		if(MATCHI_LEN(ptr,"0x"))
+		{
+			base = 16;
+			ptr += 2;
+		}
+		else if(MATCHI_LEN(ptr,"0o"))
+		{
+			base = 8;
+			ptr += 2;
+		}
+		else if(MATCHI_LEN(ptr,"0b"))
+		{
+			base = 2;
+			ptr += 2;
+		}
+		tmp = strtol(ptr, (char **)&endptr, base);
+		// make sure we process at least one digit and the numver is in range
+		if( (ptr != endptr) && (tmp >= minval && tmp <= maxval))
+		{
+			*val = tmp;
+			printf("%s=%d\n", pat, tmp);
+			// good value
+			return(1);
+		}
+		else
+		{
+			printf("%s=%d is out of expected range (%d to %d) not setting\n", pat, tmp, minval,maxval);
+		}
+	}
+	// fail
+	return(0);
+}
+
 // ==================================================
 // String memory allocation functions
 // ==================================================

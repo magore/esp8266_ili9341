@@ -85,7 +85,7 @@ var searchData=
   ['putc_5fbfd',['putc_bfd',['../ff_8c.html#ad8151a454444395529a19280ddfadde8',1,'ff.c']]],
   ['putc_5fflush',['putc_flush',['../ff_8c.html#a698074f026e34a99f67db156a9b343c2',1,'ff.c']]],
   ['putc_5finit',['putc_init',['../ff_8c.html#a021d016197091151b68cb9ae0492eec6',1,'ff.c']]],
-  ['putchar',['putchar',['../posix_8c.html#ac9195b3de02e450cfdeea1ce97b32da4',1,'putchar(int c):&#160;posix.c'],['../posix_8h.html#ac9195b3de02e450cfdeea1ce97b32da4',1,'putchar(int c):&#160;posix.c']]],
+  ['putchar',['putchar',['../mathio_8h.html#af4de2514b7778805db3815e8dd6cf09a',1,'putchar(int c):&#160;posix.c'],['../posix_8c.html#ac9195b3de02e450cfdeea1ce97b32da4',1,'putchar(int c):&#160;posix.c'],['../posix_8h.html#ac9195b3de02e450cfdeea1ce97b32da4',1,'putchar(int c):&#160;posix.c']]],
   ['puts',['puts',['../posix_8c.html#aa360dd5203b246757abc21253ed8eb2e',1,'puts(const char *str):&#160;posix.c'],['../posix_8h.html#aa360dd5203b246757abc21253ed8eb2e',1,'puts(const char *str):&#160;posix.c']]],
   ['pvportfree',['pvPortFree',['../ets__sys_8h.html#a15d182a947b2036039d082e94fac3ee5',1,'ets_sys.h']]],
   ['pvportmalloc',['pvPortMalloc',['../ets__sys_8h.html#a185abb084d1878cf3ac02f3d00368d38',1,'ets_sys.h']]],

@@ -382,14 +382,14 @@ int p_ftoa(double val, char *str, int max, int width, int prec, f_t f)
 {
 
 	char *save = str;
-	double iscale, fscale;
-	double ival, fval;
-	int idigits, fdigits, digits;
+	double fscale;
+	int idigits, digits;
 	int digit;
 
 	pch_init(str,max);
 
-/* FIXME 
+/* 
+FIXME 
 Notice rounding - testing will be tricky
 ERROR: [% 15.1f], [-10252956608208.250000]
     G[-10252956608208.2]
@@ -499,12 +499,11 @@ ERROR: [% 15.1f], [-10252956608208.250000]
 MEMSPACE 
 int p_etoa(double val,char *str, int max, int width, int prec, f_t f)
 {
-	char *save = str;
 	double fscale;
 	int digits;
 	int digit;
 	int exp10;
-	char exp10_str[7];	// +E123  and EOS
+	uint8_t exp10_str[7];	// +E123  and EOS
 	int  expsize;
 	int i;
 	int sign_ch;
@@ -1265,7 +1264,6 @@ MEMSPACE
 int 
 printf(const char *format, ...)
 {
-	int i;
 	printf_t fn;
 	va_list va;
 
@@ -1290,7 +1288,6 @@ MEMSPACE
 int 
 printf_P(__memx const char *format, ...)
 {
-	int i;
 	printf_t fn;
 	va_list va;
 

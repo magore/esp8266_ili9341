@@ -156,7 +156,7 @@ WEBSERVER = 1
 WEB_DEBUG = 1
 
 # Maximum number of WEB connections
-MAX_CONNECTIONS = 6
+MAX_CONNECTIONS = 8
 
 # =========================
 # Matrix Debugging

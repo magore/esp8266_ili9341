@@ -42,7 +42,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define WEAK_ATR __attribute__((weak))
 #endif
 
-
+extern int putchar(int c);
 
 // ====================================================================
 /* mathio.c */
