@@ -1,0 +1,15 @@
+#!/bin/bash
+#
+DIRS=". Documents fatfs fatfs.hal fatfs.sup gpib hardware lib printf sdcard"
+
+for i in $DIRS
+do
+FILES="$FILES $(find $i -maxdepth 1 -type f -printf "\"%p\"\n" \
+  | sed -e 's/"//g' | grep "\.[ch]$\|\.md$\|\.pdf$\|\.lif$\|.txt$\|\.cfg$" | sort -u)"
+done
+
+for i in $FILES
+do
+  echo "$i"
+done
+
