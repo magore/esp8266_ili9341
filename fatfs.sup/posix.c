@@ -415,8 +415,12 @@ fgets(char *str, int size, FILE *stream)
     while(size--)
     {
         ret = fgetc(stream);
-        if(ret == EOF && ind == 0)
-            return(NULL);
+        if(ret == EOF)
+		{
+			if( ind == 0)
+				return(NULL);
+			break;
+		}
  		if(ret == '\n')
 			break;
 		if(ret == 0x08)
