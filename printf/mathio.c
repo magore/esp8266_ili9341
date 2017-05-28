@@ -40,11 +40,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <math.h>
 #undef atof
 
-// ==================================================
+// =============================================
 // MATH/IO
-// ==================================================
+// =============================================
 
-// ==================================================
+// =============================================
 /// @brief Convert ASCII character to radix based digit , or -1
 /// @param[in] c: character
 /// @param[in] radix: radix
@@ -65,7 +65,7 @@ atodigit(int c,int radix)
 	return((ret >= radix) ? -1 : ret);
 }
 
-// ==================================================
+// =============================================
 ///@brief Convert ASCII hex string to long integer.
 ///
 ///@param[in] p: String to convert.
@@ -79,7 +79,7 @@ long atoh(const char *p)
 }
 
 
-// ==================================================
+// =============================================
 /// @brief Convert ASCII string to number in a given base
 /// @param[in] str: string
 /// @param[in] base: radix
@@ -96,7 +96,7 @@ aton(char *str, int base)
     return(num);
 }
 
-// ==================================================
+// =============================================
 /// @brief Fast multiply number of any size by 10 
 /// @param[in] str: string
 /// @param[in] size: string size
@@ -122,7 +122,7 @@ int mul10str(uint8_t *str, int size)
 	return(carry);
 }
 
-// ==================================================
+// =============================================
 /// @brief Convert ASCII string to number in a given base
 /// @param[in] nptr: string
 /// @param[in] endptr: pointer to string pointer return value
@@ -169,7 +169,7 @@ strtol(const char *nptr, char **endptr, int base)
 	return(num);
 }
 
-// ==================================================
+// =============================================
 /// @brief Convert ASCII string to number in a given base
 /// @param[in] nptr: string
 /// @param[in] endptr: pointer to string pointer return value
@@ -218,7 +218,7 @@ strtoll(const char *nptr, char **endptr, int base)
 
 
 #ifdef __SIZEOF_INT128__
-// ==================================================
+// =============================================
 /// @brief Convert ASCII string to number in a given base
 /// @param[in] nptr: string
 /// @param[in] endptr: pointer to string pointer return value
@@ -268,7 +268,7 @@ strto128(const char *nptr, char **endptr, int base)
   
 #endif 
 
-// ==================================================
+// =============================================
 /// @brief Convert ASCII string to number in base 10
 /// @param[in] str: string
 /// @return int value
@@ -282,7 +282,7 @@ atoi(const char *str)
 	return((int)num);
 }
 
-// ==================================================
+// =============================================
 /// @brief Convert ASCII string to number in base 10
 /// @param[in] str: string
 /// @return long value
@@ -296,9 +296,9 @@ atol(const char *str)
 	return(num);
 }
 
-// ==================================================
+// =============================================
 // Floating point I/O helper functions
-// ==================================================
+// =============================================
 #ifdef FLOATIO
 /// @brief Raise number to integer exponent power 
 /// The process is much like a bitwise multiply - and reduces operatiosn required
@@ -332,7 +332,7 @@ iexp(double num, int exp)
     return(num);
 }
 
-// ==================================================
+// =============================================
 /// @brief Scale a number to range 1.0 .. 9.99999... and return exponent
 /// @param[in] num: number
 /// @param[out] *exp: interger power of 10 for scale factor
@@ -388,7 +388,7 @@ scale10(double num, int *exp)
 	return(num);
 }
 
-// ==================================================
+// =============================================
 /// @brief Convert ASCII string to a double 
 /// @param[in] nptr: string
 /// @param[in] endptr: pointer to string pointer return value
@@ -470,7 +470,7 @@ strtod(const char *nptr, char **endptr)
 	return(num);
 }
 
-// ==================================================
+// =============================================
 /// @brief atof ASCII to float
 /// @param[in] str: string
 /// @return number

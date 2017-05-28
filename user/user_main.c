@@ -990,11 +990,23 @@ void setup(void)
 	// Configure the UART
 	uart_init(BIT_RATE_115200,BIT_RATE_115200);
 
-	printf("\n");
+	os_delay_us(200000L);	// Power Up dalay - lets power supplies and devices settle
+	os_delay_us(200000L);	// Power Up dalay - lets power supplies and devices settle
+	printf("\n\n\n\n");
+    sep();
 	printf("System init...\n");
+    printf("ESP8266 multidevice project\n");
+    printf(" (c) 2014-2017 by Mike Gore\n");
+    printf(" GNU version 3\n");
+    printf("-> https://github.com/magore/esp8266_ili9341\n");
+    printf("   GIT last pushed:   %s\n", GIT_VERSION);
+    printf("   Last updated file: %s\n", LOCAL_MOD);
 
+
+    sep();
     PrintRam();
 
+    sep();
 	printf("HSPI init...\n");
 	hspi_init(1,0);
 
@@ -1020,6 +1032,7 @@ void setup(void)
 
 // Make sure all other GPIO pins are initialized BEFORE SD card
 #ifdef FATFS_SUPPORT
+    sep();
 	// Functions manage chip selects
 	#ifdef MMC_CS
 		chip_select_init(MMC_CS);
@@ -1029,6 +1042,7 @@ void setup(void)
 #endif
 
 #ifdef DISPLAY
+    sep();
 	#ifdef ILI9341_CS
 		chip_select_init(ILI9341_CS);
 	#endif
@@ -1053,8 +1067,10 @@ void setup(void)
 #endif
 
 	wdt_reset();
+    sep();
 	printf("Setup Tasks\n");
 
+    sep();
 	setup_networking();
 
 	#ifdef TELNET_SERIAL
@@ -1079,6 +1095,7 @@ void setup(void)
 	web_init(80);
 #endif
 
+    sep();
     PrintRam();
 
 	system_set_os_print(0);

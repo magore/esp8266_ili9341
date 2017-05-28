@@ -35,7 +35,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #undef strerror_r
 #endif
 
-// ====================================================================
+// =============================================
 ///@brief Standard POSIX typedefs.
 ///
 /// - Using these makes code portable accross many acrchitectures
@@ -50,9 +50,9 @@ typedef uint32_t blkcnt_t;  /*< blkcnt_t for this architecture */
 typedef uint32_t blksize_t; /*< blksize_t for this architecture */
 typedef uint32_t time_t;    /*< time_t for this architecture */
 typedef int32_t  ssize_t;	/*< ssize_t for this architecture */
-// ====================================================================
+// =============================================
 
-// ====================================================================
+// =============================================
 
 // @brief posix errno values
 enum POSIX_errno
@@ -94,7 +94,7 @@ enum POSIX_errno
     ERANGE,    /*< 	34  Math result not representable */
     EBADMSG    /*< 	35  Bad Message */
 };
-// =============================================================
+// =============================================
 
 ///@brief POSIX stat structure
 ///@see stat()
@@ -140,7 +140,7 @@ typedef struct dirent dirent_t;
 ///@brief POSIX lstat()
 ///@see stat()
 #define lstat stat
-// ====================================================================
+// =============================================
 ///@brief FILE type structure
 struct __file {
     char    *buf;       /* buffer pointer */
@@ -168,7 +168,7 @@ struct __file {
 // FIXME add all low level functions here like _open, _close, ... like newlib does
     void    *udata;     /* User defined and accessible data. */
 };
-// ====================================================================
+// =============================================
 ///@brief POSIX open modes  - no other combination are allowed.
 /// - man page open(2)
 /// - Note: The POSIX correct test of O_RDONLY is: (mode & O_ACCMODE) == O_RDONLY.
@@ -221,18 +221,18 @@ struct __file {
 #define S_IWOTH (S_IWGRP >> 3)              /*< Write by others.  */
 #define S_IXOTH (S_IXGRP >> 3)              /*< Execute by others.  */
 #define S_IRWXO (S_IRWXG >> 3)				/*< Read,Write,Execute by other */
-// ====================================================================
+// =============================================
 
 ///@brief used in posix.c to compare to ascii file modes
 #define modecmp(str, pat) (strcmp(str, pat) == 0 ? 1: 0)
 
-// ====================================================================
+// =============================================
 ///@brief  FATFS open modes
 #define FATFS_R (S_IRUSR | S_IRGRP | S_IROTH)	/*< FatFs Read perms */
 #define FATFS_W (S_IWUSR | S_IWGRP | S_IWOTH)	/*< FatFs Write perms */
 #define FATFS_X (S_IXUSR | S_IXGRP | S_IXOTH)	/*< FatFs Execute perms */
 
-// =============================================================
+// =============================================
 ///@brief End of file or device read
 #define EOF (-1)
 
@@ -241,7 +241,7 @@ struct __file {
 #define SEEK_CUR 1
 #define SEEK_END 2
 
-// =============================================================
+// =============================================
 ///@brief define FILE type
 typedef struct __file FILE;
 
@@ -259,7 +259,7 @@ extern FILE *__iob[MAX_FILES];
 #define stdout (__iob[1])
 #define stderr (__iob[2])
 
-// =============================================================
+// =============================================
 //#define IO_MACROS
 #ifdef IO_MACROS
 ///@briefdefine putc, putchar and getc in terms of the posix fgetc() and fputc() interface
@@ -275,7 +275,7 @@ extern FILE *__iob[MAX_FILES];
 #define puts(__str) fputs(__str,stdout)
 #endif
 
-// =============================================================
+// =============================================
 ///@brief device IO udata
 #define fdev_set_udata(stream, u) do { (stream)->udata = u; } while(0)
 #define fdev_get_udata(stream) ((stream)->udata)
@@ -288,7 +288,7 @@ extern FILE *__iob[MAX_FILES];
 #define _FDEV_SETUP_WRITE __SWR /**< fdev_setup_stream() with write intent */
 #define _FDEV_SETUP_RW    (__SRD|__SWR) /**< fdev_setup_stream() with read/write intent */
 
-// ============================================================================
+// =============================================
 
 
 /* posix.c */
@@ -370,5 +370,5 @@ MEMSPACE int posix_fopen_modes_to_open ( const char *mode );
 MEMSPACE int fprintf(FILE *fp, const char *format, ...);
 
 
-// ============================================================================
+// =============================================
 #endif                                            //_POSIX_H_

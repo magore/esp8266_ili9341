@@ -211,7 +211,6 @@ int mmc_init(int verbose)
 
     if( verbose)
     {
-        printf("==============================\n");
         printf("START MMC INIT\n");
     }
     // we only install timers once!
@@ -266,7 +265,6 @@ int mmc_init(int verbose)
             }
         }
         printf("END MMC INIT\n");
-        printf("==============================\n");
 	}
     mmc_init_flag = 1;
 

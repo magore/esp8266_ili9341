@@ -44,7 +44,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 extern int putchar(int c);
 
-// ====================================================================
+// =============================================
 /* mathio.c */
 MEMSPACE int atodigit ( int c , int radix );
 MEMSPACE long atoh ( const char *p );
@@ -63,7 +63,7 @@ MEMSPACE double strtod ( const char *nptr , char **endptr );
 MEMSPACE double atof ( const char *str );
 
 
-// ====================================================================
+// =============================================
 
 #undef atof
 /// @brief undefine any potential macro version of these functions
@@ -72,7 +72,7 @@ MEMSPACE double atof ( const char *str );
 #undef vnsprintf
 #undef snprintf
 
-// =======================================================================
+// =============================================
 /* printf.c */
 ///@brief  We let printf use user defined I/O functions
 typedef struct _printf_t

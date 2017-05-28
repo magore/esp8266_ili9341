@@ -41,7 +41,7 @@
 #include "hardware/iom1284p.h"
 #endif
 
-/// ==========================================================
+// =============================================
 /// @brief GPIO HAL
 /** 
  @brief set GPIO SFR to permit normal GPIO mode
@@ -188,7 +188,7 @@ uint8_t gpio_pin_rd(uint8_t pin)
 }
 
 
-/// ==========================================================
+// =============================================
 /// @brief CHIP select HAL
 /** 
  @brief initilize GPIO as an active HI chip select
@@ -233,7 +233,7 @@ void chip_deselect(uint8_t pin)
 	GPIO_PIN_HI(pin);
 }
 
-/// ==========================================================
+// =============================================
 /// @brief ADDRESS select HAL
 /** 
  @brief initialize GPIO pin as address lines for a device
@@ -298,7 +298,7 @@ void chip_addr(int addr)
 #endif
 }
 
-/// ==========================================================
+// =============================================
 /// @brief SPI bus wrapper functions for multiple device support
 /** 
  @brief Function waits for current SPI tranaction to finish before proceeding

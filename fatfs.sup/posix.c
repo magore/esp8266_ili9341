@@ -173,7 +173,7 @@ const char *sys_errlist[] =
     NULL
 };
 
-/// ==============================================================
+// =============================================
 /// - POSIX character I/O functions
 /// @brief  Test POSIX fileno if it is a Serial Console/TTY.
 ///
@@ -194,7 +194,7 @@ int isatty(int fileno)
 
 /// @brief Get byte from a TTY device or FatFs file stream
 /// open() or fopen() sets stream->get = fatfs_getc() for FatFs functions
-/// fdevopen()        sets stream->get for TTY devices
+/// See fdevopen()        sets stream->get for TTY devices
 ///
 /// - man page fgetc (3).
 ///
@@ -257,7 +257,7 @@ fgetc(FILE *stream)
 
 /// @brief Put a byte to TTY device or FatFs file stream
 /// open() or fopen() sets stream->put = fatfs_outc() for FatFs functions
-/// fdevopen()        sets stream->put get for TTY devices
+/// See fdevopen()        sets stream->put get for TTY devices
 ///
 /// - man page fputc (3).
 ///
@@ -269,6 +269,7 @@ int
 fputc(int c, FILE *stream)
 {
     errno = 0;
+	int ret;
 
     if(stream == NULL)
     {
@@ -302,11 +303,10 @@ fputc(int c, FILE *stream)
 			printf("fputc stream->put NULL\n");
 			return(EOF);
 		}
-        if (stream->put(c, stream) == 0) {
+        ret = stream->put(c, stream);
+		if(ret != EOF)
             stream->len++;
-            return c;
-        } else
-            return EOF;
+		return(ret);
     }
 }
 
@@ -315,7 +315,7 @@ fputc(int c, FILE *stream)
 ///@brief functions normally defined as macros
 #ifndef IO_MACROS
 /// @brief get a character from stdin
-/// fdevopen()   sets stream->get for TTY devices
+/// See fdevopen()   sets stream->get for TTY devices
 ///
 /// - man page getchar (3).
 ///
@@ -330,7 +330,7 @@ getchar()
 }
 
 /// @brief put a character to stdout
-/// fdevopen()        sets stream->put get for TTY devices
+/// See fdevopen()        sets stream->put get for TTY devices
 ///
 /// - man page putchar (3).
 ///
@@ -379,9 +379,9 @@ ungetc(int c, FILE *stream)
 }
 
 #ifndef IO_MACROS
-/// ==================================================================
+// =============================================
 /// @brief Put a character to a stream
-/// fdevopen()  sets stream->put get for TTY devices
+/// See fdevopen()  sets stream->put get for TTY devices
 ///
 /// - man page putc (3).
 ///
@@ -396,10 +396,10 @@ putc(int c, FILE *stream)
 
 #endif
 
-/// ==============================================================
+// =============================================
 ///  POSIX string I/O
 /// @brief get a string from stdin
-/// fdevopen()        sets stream->put get for TTY devices
+/// See fdevopen()        sets stream->put get for TTY devices
 ///
 /// - man page fgets (3).
 ///
@@ -436,7 +436,7 @@ fgets(char *str, int size, FILE *stream)
 }
 
 /// @brief put a string to stdout
-/// fdevopen()        sets stream->put get for TTY devices
+/// See fdevopen()        sets stream->put get for TTY devices
 ///
 /// - man page fputs (3).
 ///
@@ -459,7 +459,7 @@ fputs(const char *str, FILE *stream)
 
 #ifndef IO_MACROS
 /// @brief put a string to stdout
-/// fdevopen()        sets stream->put get for TTY devices
+/// See fdevopen()        sets stream->put get for TTY devices
 ///
 /// - man page puts (3).
 ///
@@ -470,17 +470,23 @@ MEMSPACE
 int
 puts(const char *str)
 {
-	return ( fputs(str,stdout) );
+    while(*str)
+    {
+        if(fputc(*str, stdout) == EOF)
+            return(EOF);
+		++str;
+    }
+	return ( fputc('\n',stdout) );
 }
 
 #endif
 
 
-/// ====================================================================
-/// ====================================================================
+// =============================================
+// =============================================
 ///  - POSIX file position functions
-/// ====================================================================
-/// ====================================================================
+// =============================================
+// =============================================
 /// @brief feof reports if the stream is at EOF 
 /// - man page feof (3).
 ///
@@ -648,11 +654,11 @@ void rewind( FILE *stream)
     fseek(stream, 0L, SEEK_SET);
 }
 
-/// ====================================================================
-/// ====================================================================
+// =============================================
+// =============================================
 ///  - POSIX file functions
-/// ====================================================================
-/// ====================================================================
+// =============================================
+// =============================================
 /// @brief POSIX Close a file with fileno handel.
 ///
 /// - man page close (2).
@@ -1225,11 +1231,11 @@ int fclose(FILE *stream)
     return( close(fn) );
 }
 
-/// ====================================================================
-/// ====================================================================
+// =============================================
+// =============================================
 ///  - POSIX file information functions
-/// ====================================================================
-/// ====================================================================
+// =============================================
+// =============================================
 
 /// @brief Display struct stat, from POSIX stat(0 or fstat(), in ASCII.
 /// NOT POSIX
@@ -1380,11 +1386,11 @@ int stat(char *name, struct stat *buf)
 }
 
 
-/// ====================================================================
-/// ====================================================================
+// =============================================
+// =============================================
 ///  - POSIX file and directory manipulation
-/// ====================================================================
-/// ====================================================================
+// =============================================
+// =============================================
 /// @brief POSIX Basename of filename.
 ///
 /// - man page (3).
@@ -1649,11 +1655,11 @@ int unlink(const char *pathname)
     return(0);
 }
 
-/// ====================================================================
-/// ====================================================================
+// =============================================
+// =============================================
 ///   - POSIX - directory scanning functions
-/// ====================================================================
-/// ====================================================================
+// =============================================
+// =============================================
 /// @brief POSIX closedir
 /// - man page closedir (2).
 ///
@@ -1718,11 +1724,11 @@ dirent_t * readdir(DIR *dirp)
 	return( (dirent_t *) &_de);
 }
 
-/// ====================================================================
-/// ====================================================================
+// =============================================
+// =============================================
 ///  - POSIX error functions
-/// ====================================================================
-/// ====================================================================
+// =============================================
+// =============================================
 
 /// @brief clrerror resets stream EOF and error flags
 /// - man page clrerror(3).
@@ -1808,11 +1814,11 @@ char *strerror_r(int errnum, char *buf, size_t buflen)
 }
 
 
-/// ====================================================================
-/// ====================================================================
+// =============================================
+// =============================================
 ///  Device open functions
-/// ====================================================================
-/// ====================================================================
+// =============================================
+// =============================================
 /// @brief  Assign stdin,stdout,stderr or any use defined I/O
 /// NOT POSIX
 ///
@@ -1857,11 +1863,11 @@ fdevopen(int (*put)(char, FILE *), int (*get)(FILE *))
 }
 
 
-/// ====================================================================
-/// ====================================================================
+// =============================================
+// =============================================
 /// - FatFS to POSIX bridge functions
-/// ====================================================================
-/// ====================================================================
+// =============================================
+// =============================================
 
 /// @brief Private FatFs function called by fgetc() to get a byte from file stream
 /// NOT POSIX
@@ -2172,7 +2178,7 @@ int free_file_descriptor(int fileno)
 
 
 
-/// ====================================================================
+// =============================================
 /// @brief Allocate a POSIX FILE descriptor.
 /// NOT POSIX
 ///
@@ -2279,11 +2285,11 @@ int posix_fopen_modes_to_open(const char *mode)
     return(-1);                                   // nvalid mode
 }
 
-/// ====================================================================
-/// ====================================================================
+// =============================================
+// =============================================
 /// - POSIX fprintf function
-/// ====================================================================
-/// ====================================================================
+// =============================================
+// =============================================
 
 
 

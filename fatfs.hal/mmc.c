@@ -160,7 +160,7 @@ void xmit_spi_multi (
 
 
 
-// ===========================================
+// =============================================
 ///@brief wait for card ready
 ///@param [in] wt: ms to wait
 ///@return 1 Ready
@@ -352,7 +352,7 @@ DSTATUS mmc_disk_initialize (void)
     if (send_cmd(CMD0, 0) == 1)                	/* Enter Idle state */
     {
         //Timer1=100;			 					/* Initialization timeout of 1000 msec */
-        mmc_set_ms_timeout(1000);                   /* Initialization timeout of 1000 msec */
+        mmc_set_ms_timeout(2000);                   /* Initialization timeout of 1000 msec */
         if (send_cmd(CMD8, 0x1AA) == 1)           /* SDv2? */
         {
             for (n = 0; n < 4; n++)
@@ -376,6 +376,7 @@ DSTATUS mmc_disk_initialize (void)
         }
         else
         { 	/* SDv1 or MMCv3 */
+			mmc_set_ms_timeout(2000);                   /* Initialization timeout of 1000 msec */
             if (send_cmd(ACMD41, 0) <= 1)
             {
                 ty = CT_SD1; cmd = ACMD41;        /* SDv1 */

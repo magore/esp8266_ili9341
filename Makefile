@@ -397,6 +397,8 @@ endif
 	CFLAGS += -DUART_QUEUED_RX
 #	CFLAGS += -DUART_QUEUED_TX
 
+
+
 # ===============================================================
 # select which tools to use as compiler, librarian and linker
 CC		:= $(XTENSA_TOOLS_ROOT)/xtensa-lx106-elf-gcc
@@ -463,9 +465,22 @@ LIBS		:= $(addprefix -l,$(LIBS))
 APP_AR		:= $(addprefix $(BUILD_BASE)/,$(TARGET).a)
 ELF			:= $(addprefix $(BUILD_BASE)/,$(TARGET).elf)
 
+
+CFLAGS += -DGIT_VERSION="\"$(GIT_VERSION)\""
+CFLAGS += -DLOCAL_MOD="\"$(LOCAL_MOD)\""
+
 INCDIR	:= $(addprefix -I,$(SRC_DIR))
 EXTRA_INCDIR	:= $(addprefix -I,$(EXTRA_INCDIR))
 MODULE_INCDIR	:= $(addsuffix /include,$(INCDIR))
+# ===============================================================
+FILES := $(foreach sdir,$(SRC_DIR),$(wildcard $(sdir)/*.[cS])) 
+FILES += $(foreach sdir,$(SRC_DIR),$(wildcard $(sdir)/*.md)) 
+FILES += $(foreach sdir,$(SRC_DIR),$(wildcard $(sdir)/*.txt)) 
+# Use GIT last modify time if we have it
+# GIT_VERSION := $(shell git log -1 2>&1 | grep "^Date:")
+# update.last is safer to use, the file is touched by my git commit script
+GIT_VERSION := $(shell stat -c%x update.last 2>/dev/null)
+LOCAL_MOD := $(shell ls -rt $(FILES) | tail -1 | xargs stat -c%x)
 # ===============================================================
 
 ifeq ("$(VERBOSE)","1")

@@ -629,7 +629,7 @@ int MatWrite(char *name, mat_t MatW)
 
 	
 #ifdef MATTEST
-// ==================
+// =============================================
 // test1
 // compute Adj(AJ)
 
@@ -640,7 +640,7 @@ float AJ[3][3] =
 	{  3, -4, 1 }
 };
 
-// ==================
+// =============================================
 // test2
 // Matrix Multiplication
 // compute C * D
@@ -658,7 +658,7 @@ float D[3][3] =
 	{ 1, 2, 1 }
 };
 
-// ==================
+// =============================================
 // test3
 // Test functions required for 3 point screen calibration
 // See: https://www.maximintegrated.com/en/app-notes/index.mvp/id/5296
@@ -693,7 +693,7 @@ float Y3[3][1] =
 	{550}
 };
 
-// ==================
+// =============================================
 // test4
 // Test functions required for 5 point screen calibration
 // See: https://www.maximintegrated.com/en/app-notes/index.mvp/id/5296

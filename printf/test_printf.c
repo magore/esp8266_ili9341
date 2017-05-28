@@ -186,7 +186,7 @@ long long numcmp(uint8_t *str1, uint8_t *str2, int max)
 }
 
 
-// ====================================================================
+// =============================================
 /// @brief _putc_fn low level function that writes a character with putchar()
 /// @param[in] *p: structure with pointers to track number of bytes written
 /// @param[in] ch: character to write
@@ -220,7 +220,7 @@ int t_printf(const char *format, ...)
 }
 
 
-// ====================================================================
+// =============================================
 /// @brief Our vsnprintf function for testing
 /// @param[out] str: string buffer for result
 /// @param[in] size: maximum length of converted string
@@ -250,7 +250,7 @@ int t_vsnprintf(char* str, size_t size, const char *format, va_list va)
 }
 
 
-// ====================================================================
+// =============================================
 int display_good = 0;
 long tp_good = 0;	//@brief total good tests
 long tp_bad = 0;	//@brief total bad  tests
@@ -407,7 +407,7 @@ void tp(const char *format, ...)
 
 
 
-// ====================================================================
+// =============================================
 /// @brief Do random printf tests - glibc vc ours
 /// We use random width, an random optional precision
 /// @param[in] flag: 'f' or 'F' or 'e' or 'E'
@@ -558,7 +558,7 @@ void random_tests(int flag, char *size)
 	}
 }
 
-// ====================================================================
+// =============================================
 /// @brief Manual printf tests - glibc vc ours
 /// Compare printf results from gcc printf and this printf
 /// @return void

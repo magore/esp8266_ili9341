@@ -35,7 +35,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "mathio.h"
 
-// =======================================================================
+// =============================================
 
 // Below we included functions that are defined elsewhere
 // They are included within printf to allow this to be standalone
@@ -71,9 +71,9 @@ isdigit(int c)
 	return(0);
 }
 
-// =======================================================================
+// =============================================
 // start of support functions
-// =======================================================================
+// =============================================
 
 /// @brief Reverse a string in place
 ///  Example: abcdef -> fedcba
@@ -201,7 +201,7 @@ int bin2num(uint8_t *str, int strmax, int nummin, int base, uint8_t *nump, int n
 	return(nummin);	// Return string size
 }
 
-// ======================================================================
+// =============================================
 /// @brief Data structure for character buffer with limits
 typedef struct {
 	char *str; 			///@brief base of string to write to
@@ -258,9 +258,9 @@ int pch_max_ind()
 	return(_pch.max);
 }
 
-// ======================================================================
+// =============================================
 // end of support functions
-// ======================================================================
+// =============================================
 /// @brief print flags set in t_t structure
 /// @param[in] f: f_t flags structure
 /// @return void
@@ -668,7 +668,7 @@ ERROR: [% 15.1f], [-10252956608208.250000]
 
 
 
-// ====================================================================
+// =============================================
 // _puts_pad
 //   Put string count bytes long, padded up to width, left or right aligned
 // Padding is always done with spaces
@@ -1087,7 +1087,7 @@ Since the prototype doesn’t specify types for optional arguments, in a call to
 }
 
 
-// ====================================================================
+// =============================================
 /// @brief _putc_buffer_fn - character output to a string buffer
 /// Used by snprintf and vsnprintf
 /// You can make _printf_fn call this helper for each character
@@ -1119,7 +1119,7 @@ void _putc_buffer_fn(struct _printf_t *p, char ch)
 #endif
 
 #ifndef PRINTF_TEST
-// ====================================================================
+// =============================================
 /// @brief vsnprintf function
 /// @param[out] str: string buffer for result
 /// @param[in] size: maximum length of converted string
@@ -1148,7 +1148,7 @@ int vsnprintf(char* str, size_t size, const char *format, va_list va)
     return( len );
 }
 
-// ====================================================================
+// =============================================
 /// @brief snprintf function
 /// @param[out] str: string buffer for result
 /// @param[in] size: maximum length of converted string
@@ -1235,12 +1235,12 @@ int sprintf_P(char* str, __memx const char *format, ...)
     return len;
 }
 #endif
-// ====================================================================
+// =============================================
 /// @brief sprintf function is not recommended because it can overflow
-// ====================================================================
+// =============================================
 
 #ifdef DEFINE_PRINTF
-// ====================================================================
+// =============================================
 /// @brief _putc_fn - character output to fputs(c,stdout)
 /// You can make _printf_fn call this helper for each character
 /// @param[in] *p: structure function pointer, buffer, len and size 

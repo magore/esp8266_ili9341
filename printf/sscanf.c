@@ -1,4 +1,4 @@
-// ====================================================================
+// =============================================
 // Copyright © 2003 - 2016 Mike Gore, Waterloo, ON N2L 5N4, Canada
 //
 // Permission is hereby granted to use this Software for any purpose
@@ -10,17 +10,17 @@
 // THIS SOFTWARE IS PROVIDED "AS IS". THE AUTHOR MAKES NO
 // WARRANTIES REGARDING THIS SOFTWARE, EXPRESS OR IMPLIED, AS TO ITS
 // SUITABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
-// ====================================================================
+// =============================================
 // History
 // Written:  2 April 2003	Mike Gore <magore@icr1.uwater.loo.ca>
 // April 2 - April 8th extesive edits
 // April 8 Alpha Release
 // 12 Oct 2016
-// ====================================================================
-// ====================================================================
+// =============================================
+// =============================================
 // Note:!!!!
 // Use TAB STOPS to 4 or this document will look wrong
-// ====================================================================
+// =============================================
 
 #include "user_config.h"
 
@@ -33,7 +33,7 @@
 
 #ifdef SMALL_SSCANF
 
-// ====================================================================
+// =============================================
 //
 //
 // WRITTEN by MIKE GORE JUN 1999

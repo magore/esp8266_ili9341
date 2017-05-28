@@ -27,7 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "lib/time.h"
 #include "lib/timer.h"
 
-/// ======================================================================
+// =============================================
 /// @brief ESP8266 code
 #ifdef ESP8266
 static ETSTimer task_1ms;
@@ -56,9 +56,9 @@ MEMSPACE void install_timers_isr()
 	os_timer_setfn(&task_1ms, ( os_timer_func_t *) execute_timers, NULL );
 }
 #endif	// ifdef ESP8266
-// ======================================================================
+// =============================================
 
-/// ======================================================================
+// =============================================
 /// @brief AVR code
 #ifdef AVR
 /// @brief AVR specific code
@@ -195,5 +195,5 @@ int clock_gettime(clockid_t clk_id, struct timespec *ts)
 #endif	// ifdef HAVE_HIRES_TIMER
 
 #endif	// ifdef AVR
-// ======================================================================
+// =============================================
 
