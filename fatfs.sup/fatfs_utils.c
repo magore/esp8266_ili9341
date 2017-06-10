@@ -124,7 +124,6 @@ void mmc_test(void)
 }
 
 
-
 /// @brief  List files under a specified directory
 ///
 /// - Credit: part of FatFs avr example project (C)ChaN, 2013.
@@ -270,7 +269,6 @@ void ls(char *path, int verbose)
 			break;
 	  }
 }
-
 
 #ifdef FATFS_UTILS_FULL
 /// @brief Rename a file
