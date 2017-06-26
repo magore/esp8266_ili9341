@@ -49,32 +49,393 @@ MEMSPACE
 void fatfs_help( void )
 {
 	printf("\n"
-	"attrib p1 p2\n"
-	"cat file\n"
+		"fatfs_help\n"
+		"attrib file p1 p2\n"
+		"cat file\n"
 #ifdef FATFS_UTILS_FULL
-	"cd path\n"
-	"copy file1 file2\n"
-	"create file str\n"
+		"cd dir\n"
+		"copy file1 file2\n"
+		"create file str\n"
 #endif
-	"mmc_init\n"
-	"mmc_test\n"
-	"ls dir\n"
-	"uls dir\n"
+#ifdef POIX_WRAPPERS
+		"hexdump file\n");
+#endif
+		"mmc_test\n"
+		"ls dir\n"
 #ifdef FATFS_UTILS_FULL
-	"mkdir str\n"
-	"mkfs\n"
-	"pwd\n"
+		"mkdir dir\n"
+		"mkfs\n"
+		"pwd\n"
 #endif
-	"status str\n"
+		"status file\n"
 #ifdef FATFS_UTILS_FULL
-	"stat str\n"
-	"ustat str\n"
-	"rm str\n"
-	"rmdir str\n"
-	"rename file1 file2\n"
+		"stat file\n"
+#ifdef POSIX_WRAPPERS
+		"sum file\n"
 #endif
-	"fatfs_help\n");
+		"rm file\n"
+		"rmdir dir\n"
+		"rename old new\n"
+#endif
+#ifdef POSIX_WRAPPERS
+		"uls dir\n"
+		"upload file\n"
+#endif
+	);
 }
+
+/// @brief FatFs test parser
+///
+///
+/// - Keywords and arguments are matched against fatfs test functions
+/// If ther are matched the function along with its argements are called.
+///
+///
+/// @param[in] str: User supplied command line with FatFs test and arguments.
+///
+/// @return 1 The ruturn code indicates a command matched.
+/// @return 0 if no rules matched
+MEMSPACE
+int fatfs_tests(char *str)
+{
+
+    int len;
+    char *ptr;
+	char name1[128],name2[128];
+#ifdef FATFS_UTILS_FULL
+    long p1, p2;
+	int res;
+#endif
+
+    ptr = skipspaces(str);
+
+#ifdef FATFS_UTILS_FULL
+    if ((len = token(ptr,"attrib")) )
+    {
+        ptr += len;
+        ptr=skipspaces(ptr);
+        sscanf(ptr,"%lu %lu", &p1,&p2);
+        put_rc(f_chmod(ptr, p1, p2));
+        return(1);
+    }
+#endif
+    if ((len = token(ptr,"cat")) )
+    {
+        ptr += len;
+		ptr = get_token(ptr, name1, 126);
+        fatfs_cat(name1);
+        return(1);
+    }
+    if ((len = token(ptr,"create")) )
+    {
+        ptr += len;
+		ptr = get_token(ptr, name1, 126);
+        fatfs_create(name1,ptr);
+        return(1);
+    }
+#ifdef FATFS_UTILS_FULL
+    if ((len = token(ptr,"copy")) )
+    {
+        ptr += len;
+		ptr = get_token(ptr, name1, 126);
+		ptr = get_token(ptr, name2, 126);
+        fatfs_copy(name1,name2);
+        return(1);
+    }
+#endif
+
+#if _FS_RPATH
+    if ((len = token(ptr,"cd")) )
+    {
+        ptr += len;
+		ptr = get_token(ptr, name1, 126);
+        fatfs_cd(name1);
+        return(1);
+    }
+#if _FS_RPATH >= 2
+    if ((len = token(ptr,"pwd")) )
+    {
+        fatfs_pwd();
+        return(1);
+    }
+#endif // #if _FS_RPATH 
+#endif // #if _FS_RPATH >= 2
+
+    if ( (len = token(ptr,"fatfs_help")) )
+    {
+        fatfs_help();
+        return(1);
+    }
+
+#ifdef POSIX_WRAPPERS
+    if ((len = token(ptr,"hexdump")) )
+    {
+        ptr += len;
+        ptr=skipspaces(ptr);
+        hexdump(ptr);
+        return(1);
+    }
+#endif
+
+#ifdef FATFS_UTILS_FULL
+    if ((len = token(ptr,"mkfs")) )
+    {
+        FATFS fs;
+		uint8_t *mem;
+        ptr += len;
+		/* Register work area to the logical drive 0 */
+        res = f_mount(&fs, "0:", 0);                    
+		put_rc(res);
+		if (res)
+			return(1);
+		mem = safemalloc(1024);
+	   /* Create FAT volume on the logical drive 0. 2nd argument is ignored. */
+        res = f_mkfs("0:", FM_FAT32, 0, mem, 1024);
+		safefree(mem);
+		put_rc(res);
+        return(1);
+    }
+#endif
+    if ((len = token(ptr,"ls")) )
+    {
+        ptr += len;
+		ptr = get_token(ptr, name1, 126);
+        fatfs_ls(name1);
+        return(1);
+    }
+
+    if ((len = token(ptr,"mmc_test")) )
+    {
+        ptr += len;
+        mmc_test();
+        return(1);
+    }
+    if ((len = token(ptr,"mmc_init")) )
+    {
+        ptr += len;
+        mmc_init(1);
+        return(1);
+    }
+
+#ifdef FATFS_UTILS_FULL
+    if ((len = token(ptr,"mkdir")) )
+    {
+        ptr += len;
+		ptr = get_token(ptr, name1, 126);
+        fatfs_mkdir(name1);
+        return(1);
+    }
+#endif
+
+#ifdef POSIX_WRAPPERS
+    if ((len = token(ptr,"sum")) )
+    {
+        ptr += len;
+		ptr = get_token(ptr, name1, 126);
+        sum(name1);
+        return(1);
+    }
+    if ((len = token(ptr,"uls")) )
+    {
+        ptr += len;
+		ptr = get_token(ptr, name1, 126);
+        ls(name1,1);
+        return(1);
+    }
+    if ((len = token(ptr,"ustat")) )
+    {
+		struct stat p;	
+        ptr += len;
+		ptr = get_token(ptr, name1, 126);
+		stat(name1, &p);                        // POSIX test
+		dump_stat(&p);
+        return(1);
+    }
+#endif
+
+#ifdef FATFS_UTILS_FULL
+    if ((len = token(ptr,"rename")) )
+    {
+        ptr += len;
+		ptr = get_token(ptr, name1, 126);
+		ptr = get_token(ptr, name2, 126);
+        fatfs_rename(name1,name2);
+        return(1);
+    }
+    if ((len = token(ptr,"rm")) )
+    {
+        ptr += len;
+		ptr = get_token(ptr, name1, 126);
+        fatfs_rm(name1);
+        return(1);
+    }
+    if ((len = token(ptr,"rmdir")) )
+    {
+        ptr += len;
+		ptr = get_token(ptr, name1, 126);
+        fatfs_rmdir(name1);
+        return(1);
+    }
+#endif
+
+    if ((len = token(ptr,"status")) )
+    {
+        ptr += len;
+		ptr = get_token(ptr, name1, 126);
+        fatfs_status(name1);
+        return(1);
+    }
+
+#ifdef FATFS_UTILS_FULL
+    if ((len = token(ptr,"stat")) )
+    {
+        ptr += len;
+		ptr = get_token(ptr, name1, 126);
+        fatfs_stat(name1);
+        return(1);
+    }
+
+#endif // #ifdef FATFS_UTILS_FULL
+
+#ifdef POSIX_WRAPPERS
+    if ((len = token(ptr,"upload")) )
+    {
+        ptr += len;
+        ptr=skipspaces(ptr);
+        upload_file(ptr);
+        return(1);
+    }
+#endif
+
+    return(0);
+}
+
+#ifdef POSIX_WRAPPERS
+
+/// @brief Capture an ASCII file to sdcard
+/// First blank line exits capture
+/// @param[in] *name: file to save on sdcard
+/// @retrun void
+MEMSPACE
+void upload_file(char *name)
+{
+    int len,len2;
+    FILE *fp;
+    char buffer[256];
+
+    fp = fopen(name, "w");
+    if( fp == NULL)
+	{
+		printf("Can not open: %s\n", name);
+        return;
+	}
+
+    while(1)
+    {
+        if(fgets(buffer,254,stdin) == NULL)
+			break;
+		len = strlen(buffer);
+        if(len < 1)
+            break;
+        strcat(buffer,"\n");
+        len = strlen(buffer);
+        len2 = fwrite(buffer, 1, len,fp);
+        if(len != len2)
+            break;
+    }
+    fclose(fp);
+	sync();
+}
+
+/// @brief hex listing of file with paging, "q" exits
+/// @param[in] *name: file to hexdump
+/// @retrun void
+MEMSPACE
+void hexdump(char *name)
+{
+    long addr;
+	int i,c,len,count;
+
+    FILE *fi;
+    char buf[0x20];
+
+    fi=fopen(name,"r");
+    if(fi == NULL) 
+	{
+        printf("Can not open:%s\n",name);
+        return;
+    }
+
+	count = 0;
+	addr = 0;
+    while( (len = fread(buf,1, 16, fi)) > 0) 
+	{
+        printf("%08lx : ", addr);
+
+        for(i=0;i<len;++i) 
+            printf("%02x ",0xff & buf[i]);
+        for(;i<16;++i) 
+            printf("   ");
+
+        printf(" : ");
+
+        for(i=0;i<len;++i) 
+		{
+            if(buf[i] >= 0x20 && buf[i] <= 0x7e)
+                putchar(buf[i]);
+            else
+                putchar('.');
+        }
+        for(;i<16;++i) 
+			putchar('.');
+
+        printf("\n");
+        addr += len;
+		count += 16;
+		if(count >= 256)
+		{
+			printf("More..");
+			c = getchar();
+			printf("\r");
+
+			if(c == 'q')
+				break;
+			count = 0;
+		}
+			
+    }
+	printf("\n");
+    fclose(fi);
+}
+
+/// @brief sum of a file with 16bit hex and integer results
+/// @param[in] *name: file to sum
+/// @retrun void
+void sum(char *name)
+{
+
+    FILE *fi;
+	uint16_t sum;
+	int i,len;
+    uint8_t buffer[256];
+
+    fi=fopen(name,"r");
+    if(fi == NULL) 
+	{
+        printf("Can not open:%s\n",name);
+        return;
+    }
+    while( (len = fread(buffer,1, 256, fi)) > 0) 
+	{
+        for(i=0;i<len;++i) 
+            sum += (0xff & buffer[i]);
+    }
+    fclose(fi);
+	printf("Sum: %04Xh, %5d\n", (int) sum, (int) sum);
+}
+
+
+#endif 	// POSIX_WRAPPERS
 
 /// @brief Perform key FatFs diagnostics tests.
 ///
@@ -173,6 +534,8 @@ void fatfs_ls(char *ptr)
         printf(", %10luK bytes free\n", p1 * fs->csize / 2);
 }
 
+#ifdef POSIX_WRAPPERS
+MEMSPACE
 int ls_info(char *name, int verbose)
 {
 	int i;
@@ -220,7 +583,10 @@ int ls_info(char *name, int verbose)
         basename(name));
 	return(1);
 }
+#endif // #ifdef POSIX_WRAPPERS
 
+#ifdef POSIX_WRAPPERS
+MEMSPACE
 void ls(char *path, int verbose)
 {
 	struct stat st;
@@ -269,6 +635,7 @@ void ls(char *path, int verbose)
 			break;
 	  }
 }
+#endif // #ifdef POSIX_WRAPPERS
 
 #ifdef FATFS_UTILS_FULL
 /// @brief Rename a file
@@ -444,13 +811,12 @@ void fatfs_copy(char *from,char *to)
 /// @return  void.
 
 MEMSPACE
-void fatfs_create(char *name,char *str)
+void fatfs_create(char *name, char *str)
 {
     UINT s1;
     UINT len;
     int res;
     FIL fp;
-    len = strlen(str);
     printf("Creating [%s]\n", name);
     printf("Text[%s]\n", str);
     res = f_open(&fp, name, FA_CREATE_ALWAYS | FA_WRITE);
@@ -461,21 +827,26 @@ void fatfs_create(char *name,char *str)
         f_close(&fp);
         return;
     }
-    res = f_write(&fp, str, (UINT)len, &s1);
-    if (res)
-    {
-        printf("Write error\n");
-        put_rc(res);
-        return;
-    }
-    if (len != s1)
-    {
-        printf("Write error - wanted(%d) got(%d)\n",s1,len);
-        put_rc(res);
-        return;
-    }
-    f_close(&fp);
+
+	len = strlen(str);
+	res = f_write(&fp, str, (UINT)len, &s1);
+
+	if (res)
+	{
+		printf("Write error\n");
+		put_rc(res);
+		return;
+	}
+	if (len != s1)
+	{
+		printf("Write error - wanted(%d) got(%d)\n",s1,len);
+		put_rc(res);
+		return;
+	}
+
+	f_close(&fp);
 }
+
 
 /// @brief  Delete a file by name.
 ///
@@ -589,178 +960,3 @@ void fatfs_pwd(void)
 #endif
 
 
-/// @brief FatFs test parser
-///
-///
-/// - Keywords and arguments are matched against fatfs test functions
-/// If ther are matched the function along with its argements are called.
-///
-///
-/// @param[in] str: User supplied command line with FatFs test and arguments.
-///
-/// @return 1 The ruturn code indicates a command matched.
-/// @return 0 if no rules matched
-MEMSPACE
-int fatfs_tests(char *str)
-{
-
-    int len;
-    char *ptr;
-	char name1[128],name2[128];
-#ifdef FATFS_UTILS_FULL
-    long p1, p2;
-	int res;
-#endif
-
-    ptr = skipspaces(str);
-
-    if ((len = token(ptr,"mmc_test")) )
-    {
-        ptr += len;
-        mmc_test();
-        return(1);
-    }
-    else if ((len = token(ptr,"mmc_init")) )
-    {
-        ptr += len;
-        mmc_init(1);
-        return(1);
-    }
-    else if ((len = token(ptr,"ls")) )
-    {
-        ptr += len;
-		ptr = get_token(ptr, name1, 126);
-        fatfs_ls(name1);
-        return(1);
-    }
-    else if ((len = token(ptr,"uls")) )
-    {
-        ptr += len;
-		ptr = get_token(ptr, name1, 126);
-        ls(name1,1);
-        return(1);
-    }
-    else if ((len = token(ptr,"ustat")) )
-    {
-		struct stat p;	
-        ptr += len;
-		ptr = get_token(ptr, name1, 126);
-		stat(name1, &p);                        // POSIX test
-		dump_stat(&p);
-        return(1);
-    }
-    else if ((len = token(ptr,"cat")) )
-    {
-        ptr += len;
-		ptr = get_token(ptr, name1, 126);
-        fatfs_cat(name1);
-        return(1);
-    }
-    else if ((len = token(ptr,"status")) )
-    {
-        ptr += len;
-		ptr = get_token(ptr, name1, 126);
-        fatfs_status(name1);
-        return(1);
-    }
-#ifdef FATFS_UTILS_FULL
-    else if ((len = token(ptr,"mkfs")) )
-    {
-        FATFS fs;
-		uint8_t *mem;
-        ptr += len;
-		/* Register work area to the logical drive 0 */
-        res = f_mount(&fs, "0:", 0);                    
-		put_rc(res);
-		if (res)
-			return(1);
-		mem = safemalloc(1024);
-	   /* Create FAT volume on the logical drive 0. 2nd argument is ignored. */
-        res = f_mkfs("0:", FM_FAT32, 0, mem, 1024);
-		safefree(mem);
-		put_rc(res);
-        return(1);
-    }
-    else if ((len = token(ptr,"create")) )
-    {
-        ptr += len;
-		ptr = get_token(ptr, name1, 126);
-        fatfs_create(name1,ptr);
-        return(1);
-    }
-    else if ((len = token(ptr,"stat")) )
-    {
-        ptr += len;
-		ptr = get_token(ptr, name1, 126);
-        fatfs_stat(name1);
-        return(1);
-    }
-    else if ((len = token(ptr,"rm")) )
-    {
-        ptr += len;
-		ptr = get_token(ptr, name1, 126);
-        fatfs_rm(name1);
-        return(1);
-    }
-    else if ((len = token(ptr,"mkdir")) )
-    {
-        ptr += len;
-		ptr = get_token(ptr, name1, 126);
-        fatfs_mkdir(name1);
-        return(1);
-    }
-    else if ((len = token(ptr,"rmdir")) )
-    {
-        ptr += len;
-		ptr = get_token(ptr, name1, 126);
-        fatfs_rmdir(name1);
-        return(1);
-    }
-    else if ((len = token(ptr,"attrib")) )
-    {
-        ptr += len;
-        ptr=skipspaces(ptr);
-        sscanf(ptr,"%lu %lu", &p1,&p2);
-        put_rc(f_chmod(ptr, p1, p2));
-        return(1);
-    }
-    else if ((len = token(ptr,"copy")) )
-    {
-        ptr += len;
-		ptr = get_token(ptr, name1, 126);
-		ptr = get_token(ptr, name2, 126);
-        fatfs_copy(name1,name2);
-        return(1);
-    }
-    else if ((len = token(ptr,"rename")) )
-    {
-        ptr += len;
-		ptr = get_token(ptr, name1, 126);
-		ptr = get_token(ptr, name2, 126);
-        fatfs_rename(name1,name2);
-        return(1);
-    }
-#if _FS_RPATH
-    else if ((len = token(ptr,"cd")) )
-    {
-        ptr += len;
-		ptr = get_token(ptr, name1, 126);
-        fatfs_cd(name1);
-        return(1);
-    }
-#if _FS_RPATH >= 2
-    else if ((len = token(ptr,"pwd")) )
-    {
-        fatfs_pwd();
-        return(1);
-    }
-#endif // #if _FS_RPATH 
-#endif // #if _FS_RPATH >= 2
-#endif // #ifdef FATFS_UTILS_FULL
-    else if ( (len = token(ptr,"fatfs_help")) )
-    {
-        fatfs_help();
-        return(1);
-    }
-    return(0);
-}

@@ -1,0 +1,182 @@
+\hypertarget{buffer_8h}{}\section{fatfs.\+sup/buffer.h File Reference}
+\label{buffer_8h}\index{fatfs.\+sup/buffer.\+h@{fatfs.\+sup/buffer.\+h}}
+
+
+character read buffering wrappers for Fat\+FS W\+HY? Character at a time operation is in Fat\+FS are V\+E\+RY slow  
+
+
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structbuffer__t}{buffer\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structbuffer__t}{buffer\+\_\+t} $\ast$ \hyperlink{buffer_8h_a5a896998acd804cbb68c8c2b8aed3e3c}{buffer\+\_\+read\+\_\+open} (char $\ast$name, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} $\ast$buf, int size)
+\begin{DoxyCompactList}\small\item\em Fat\+FS does not have a f\+\_\+fgetc() function Using \hyperlink{ff_8c_ad55dbad62205065ba7e36ae5fc72dac6}{f\+\_\+read()} of just 1 byte is V\+E\+RY V\+E\+RY S\+L\+OW. \end{DoxyCompactList}\item 
+void \hyperlink{buffer_8h_a010cad6baf8e47ce65ddc90f7206b7b4}{buffer\+\_\+read\+\_\+close} (\hyperlink{structbuffer__t}{buffer\+\_\+t} $\ast$p)
+\begin{DoxyCompactList}\small\item\em buffered read close Fat\+FS does not have a f\+\_\+fgetc() and using \hyperlink{ff_8c_ad55dbad62205065ba7e36ae5fc72dac6}{f\+\_\+read()} of just 1 byte is V\+E\+RY S\+L\+OW \end{DoxyCompactList}\item 
+void \hyperlink{buffer_8h_ac376df96e4713216095e124c2ee1833c}{buffer\+\_\+ungetc} (\hyperlink{structbuffer__t}{buffer\+\_\+t} $\ast$p, int c)
+\begin{DoxyCompactList}\small\item\em buffered ungetc \end{DoxyCompactList}\item 
+int \hyperlink{buffer_8h_a0744278b18b865f275757ff28e492df8}{buffer\+\_\+getc} (\hyperlink{structbuffer__t}{buffer\+\_\+t} $\ast$p)
+\begin{DoxyCompactList}\small\item\em buffered getc \end{DoxyCompactList}\item 
+\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} $\ast$ \hyperlink{buffer_8h_ae6f43373941b4428aa8d639e663bb495}{buffer\+\_\+gets} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} $\ast$str, int size, \hyperlink{structbuffer__t}{buffer\+\_\+t} $\ast$p)
+\begin{DoxyCompactList}\small\item\em buffered getc \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+character read buffering wrappers for Fat\+FS W\+HY? Character at a time operation is in Fat\+FS are V\+E\+RY slow 
+
+character read buffering wrappers for Fat\+FS Character at a time operation is Fat\+FS are V\+E\+RY slow
+
+\begin{DoxyParagraph}{Copyright \copyright{} 2017 Mike Gore, G\+PL License}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{You are free to use this code under the terms of G\+PL}
+please retain a copy of this notice in any code you use it in.
+\end{DoxyParagraph}
+This is free software\+: you can redistribute it and/or modify it under the terms of the G\+NU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This software is distributed in the hope that it will be useful, but W\+I\+T\+H\+O\+UT A\+NY W\+A\+R\+R\+A\+N\+TY; without even the implied warranty of M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+TY or F\+I\+T\+N\+E\+SS F\+OR A P\+A\+R\+T\+I\+C\+U\+L\+AR P\+U\+R\+P\+O\+SE. See the G\+NU General Public License for more details.
+
+You should have received a copy of the G\+NU General Public License along with this program. If not, see \href{http://www.gnu.org/licenses/}{\tt http\+://www.\+gnu.\+org/licenses/}. 
+
+\subsection{Function Documentation}
+\index{buffer.\+h@{buffer.\+h}!buffer\+\_\+getc@{buffer\+\_\+getc}}
+\index{buffer\+\_\+getc@{buffer\+\_\+getc}!buffer.\+h@{buffer.\+h}}
+\subsubsection[{\texorpdfstring{buffer\+\_\+getc(buffer\+\_\+t $\ast$p)}{buffer_getc(buffer_t *p)}}]{\setlength{\rightskip}{0pt plus 5cm}int buffer\+\_\+getc (
+\begin{DoxyParamCaption}
+\item[{{\bf buffer\+\_\+t} $\ast$}]{p}
+\end{DoxyParamCaption}
+)}\hypertarget{buffer_8h_a0744278b18b865f275757ff28e492df8}{}\label{buffer_8h_a0744278b18b865f275757ff28e492df8}
+
+
+buffered getc 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em p} & buffer structure ppointer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+character or E\+OF 
+\end{DoxyReturn}
+
+
+Definition at line 96 of file buffer.\+c.
+
+
+
+Referenced by buffer\+\_\+gets().
+
+\index{buffer.\+h@{buffer.\+h}!buffer\+\_\+gets@{buffer\+\_\+gets}}
+\index{buffer\+\_\+gets@{buffer\+\_\+gets}!buffer.\+h@{buffer.\+h}}
+\subsubsection[{\texorpdfstring{buffer\+\_\+gets(uint8\+\_\+t $\ast$str, int size, buffer\+\_\+t $\ast$p)}{buffer_gets(uint8_t *str, int size, buffer_t *p)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint8\+\_\+t}$\ast$ buffer\+\_\+gets (
+\begin{DoxyParamCaption}
+\item[{{\bf uint8\+\_\+t} $\ast$}]{str, }
+\item[{int}]{size, }
+\item[{{\bf buffer\+\_\+t} $\ast$}]{p}
+\end{DoxyParamCaption}
+)}\hypertarget{buffer_8h_ae6f43373941b4428aa8d639e663bb495}{}\label{buffer_8h_ae6f43373941b4428aa8d639e663bb495}
+
+
+buffered getc 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em str} & string \\
+\hline
+ & {\em } & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 130 of file buffer.\+c.
+
+\index{buffer.\+h@{buffer.\+h}!buffer\+\_\+read\+\_\+close@{buffer\+\_\+read\+\_\+close}}
+\index{buffer\+\_\+read\+\_\+close@{buffer\+\_\+read\+\_\+close}!buffer.\+h@{buffer.\+h}}
+\subsubsection[{\texorpdfstring{buffer\+\_\+read\+\_\+close(buffer\+\_\+t $\ast$p)}{buffer_read_close(buffer_t *p)}}]{\setlength{\rightskip}{0pt plus 5cm}void buffer\+\_\+read\+\_\+close (
+\begin{DoxyParamCaption}
+\item[{{\bf buffer\+\_\+t} $\ast$}]{p}
+\end{DoxyParamCaption}
+)}\hypertarget{buffer_8h_a010cad6baf8e47ce65ddc90f7206b7b4}{}\label{buffer_8h_a010cad6baf8e47ce65ddc90f7206b7b4}
+
+
+buffered read close Fat\+FS does not have a f\+\_\+fgetc() and using \hyperlink{ff_8c_ad55dbad62205065ba7e36ae5fc72dac6}{f\+\_\+read()} of just 1 byte is V\+E\+RY S\+L\+OW 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em p} & buffer structure ppointer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 71 of file buffer.\+c.
+
+
+
+Referenced by buffer\+\_\+read\+\_\+open().
+
+\index{buffer.\+h@{buffer.\+h}!buffer\+\_\+read\+\_\+open@{buffer\+\_\+read\+\_\+open}}
+\index{buffer\+\_\+read\+\_\+open@{buffer\+\_\+read\+\_\+open}!buffer.\+h@{buffer.\+h}}
+\subsubsection[{\texorpdfstring{buffer\+\_\+read\+\_\+open(char $\ast$name, uint8\+\_\+t $\ast$buf, int size)}{buffer_read_open(char *name, uint8_t *buf, int size)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf buffer\+\_\+t}$\ast$ buffer\+\_\+read\+\_\+open (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{name, }
+\item[{{\bf uint8\+\_\+t} $\ast$}]{buf, }
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}\hypertarget{buffer_8h_a5a896998acd804cbb68c8c2b8aed3e3c}{}\label{buffer_8h_a5a896998acd804cbb68c8c2b8aed3e3c}
+
+
+Fat\+FS does not have a f\+\_\+fgetc() function Using \hyperlink{ff_8c_ad55dbad62205065ba7e36ae5fc72dac6}{f\+\_\+read()} of just 1 byte is V\+E\+RY V\+E\+RY S\+L\+OW. 
+
+buffered read open 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em name} & file name \\
+\hline
+\mbox{\tt in}  & {\em buf} & buffer to use when reading \\
+\hline
+\mbox{\tt in}  & {\em size} & buffer size \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{structbuffer__t}{buffer\+\_\+t} pointer, or N\+U\+LL on error 
+\end{DoxyReturn}
+Read and process into image file 
+
+Definition at line 40 of file buffer.\+c.
+
+\index{buffer.\+h@{buffer.\+h}!buffer\+\_\+ungetc@{buffer\+\_\+ungetc}}
+\index{buffer\+\_\+ungetc@{buffer\+\_\+ungetc}!buffer.\+h@{buffer.\+h}}
+\subsubsection[{\texorpdfstring{buffer\+\_\+ungetc(buffer\+\_\+t $\ast$p, int c)}{buffer_ungetc(buffer_t *p, int c)}}]{\setlength{\rightskip}{0pt plus 5cm}void buffer\+\_\+ungetc (
+\begin{DoxyParamCaption}
+\item[{{\bf buffer\+\_\+t} $\ast$}]{p, }
+\item[{int}]{c}
+\end{DoxyParamCaption}
+)}\hypertarget{buffer_8h_ac376df96e4713216095e124c2ee1833c}{}\label{buffer_8h_ac376df96e4713216095e124c2ee1833c}
+
+
+buffered ungetc 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em p} & buffer structure ppointer \\
+\hline
+\mbox{\tt in}  & {\em c} & character to unget \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 86 of file buffer.\+c.
+
+
+
+Referenced by buffer\+\_\+gets().
+

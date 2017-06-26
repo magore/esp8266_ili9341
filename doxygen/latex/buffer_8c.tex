@@ -1,0 +1,159 @@
+\hypertarget{buffer_8c}{}\section{fatfs.\+sup/buffer.c File Reference}
+\label{buffer_8c}\index{fatfs.\+sup/buffer.\+c@{fatfs.\+sup/buffer.\+c}}
+{\ttfamily \#include \char`\"{}user\+\_\+config.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}fatfs.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}posix.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}buffer.\+h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structbuffer__t}{buffer\+\_\+t} $\ast$ \hyperlink{buffer_8c_a5a896998acd804cbb68c8c2b8aed3e3c}{buffer\+\_\+read\+\_\+open} (char $\ast$name, \hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} $\ast$buf, int size)
+\begin{DoxyCompactList}\small\item\em Fat\+FS does not have a f\+\_\+fgetc() function Using \hyperlink{ff_8c_ad55dbad62205065ba7e36ae5fc72dac6}{f\+\_\+read()} of just 1 byte is V\+E\+RY V\+E\+RY S\+L\+OW. \end{DoxyCompactList}\item 
+void \hyperlink{buffer_8c_a010cad6baf8e47ce65ddc90f7206b7b4}{buffer\+\_\+read\+\_\+close} (\hyperlink{structbuffer__t}{buffer\+\_\+t} $\ast$p)
+\begin{DoxyCompactList}\small\item\em buffered read close Fat\+FS does not have a f\+\_\+fgetc() and using \hyperlink{ff_8c_ad55dbad62205065ba7e36ae5fc72dac6}{f\+\_\+read()} of just 1 byte is V\+E\+RY S\+L\+OW \end{DoxyCompactList}\item 
+void \hyperlink{buffer_8c_ac376df96e4713216095e124c2ee1833c}{buffer\+\_\+ungetc} (\hyperlink{structbuffer__t}{buffer\+\_\+t} $\ast$p, int c)
+\begin{DoxyCompactList}\small\item\em buffered ungetc \end{DoxyCompactList}\item 
+int \hyperlink{buffer_8c_a0744278b18b865f275757ff28e492df8}{buffer\+\_\+getc} (\hyperlink{structbuffer__t}{buffer\+\_\+t} $\ast$p)
+\begin{DoxyCompactList}\small\item\em buffered getc \end{DoxyCompactList}\item 
+\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} $\ast$ \hyperlink{buffer_8c_ae6f43373941b4428aa8d639e663bb495}{buffer\+\_\+gets} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} $\ast$str, int size, \hyperlink{structbuffer__t}{buffer\+\_\+t} $\ast$p)
+\begin{DoxyCompactList}\small\item\em buffered getc \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{buffer.\+c@{buffer.\+c}!buffer\+\_\+getc@{buffer\+\_\+getc}}
+\index{buffer\+\_\+getc@{buffer\+\_\+getc}!buffer.\+c@{buffer.\+c}}
+\subsubsection[{\texorpdfstring{buffer\+\_\+getc(buffer\+\_\+t $\ast$p)}{buffer_getc(buffer_t *p)}}]{\setlength{\rightskip}{0pt plus 5cm}int buffer\+\_\+getc (
+\begin{DoxyParamCaption}
+\item[{{\bf buffer\+\_\+t} $\ast$}]{p}
+\end{DoxyParamCaption}
+)}\hypertarget{buffer_8c_a0744278b18b865f275757ff28e492df8}{}\label{buffer_8c_a0744278b18b865f275757ff28e492df8}
+
+
+buffered getc 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em p} & buffer structure ppointer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+character or E\+OF 
+\end{DoxyReturn}
+
+
+Definition at line 96 of file buffer.\+c.
+
+
+
+Referenced by buffer\+\_\+gets().
+
+\index{buffer.\+c@{buffer.\+c}!buffer\+\_\+gets@{buffer\+\_\+gets}}
+\index{buffer\+\_\+gets@{buffer\+\_\+gets}!buffer.\+c@{buffer.\+c}}
+\subsubsection[{\texorpdfstring{buffer\+\_\+gets(uint8\+\_\+t $\ast$str, int size, buffer\+\_\+t $\ast$p)}{buffer_gets(uint8_t *str, int size, buffer_t *p)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint8\+\_\+t}$\ast$ buffer\+\_\+gets (
+\begin{DoxyParamCaption}
+\item[{{\bf uint8\+\_\+t} $\ast$}]{str, }
+\item[{int}]{size, }
+\item[{{\bf buffer\+\_\+t} $\ast$}]{p}
+\end{DoxyParamCaption}
+)}\hypertarget{buffer_8c_ae6f43373941b4428aa8d639e663bb495}{}\label{buffer_8c_ae6f43373941b4428aa8d639e663bb495}
+
+
+buffered getc 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em str} & string \\
+\hline
+ & {\em } & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 130 of file buffer.\+c.
+
+\index{buffer.\+c@{buffer.\+c}!buffer\+\_\+read\+\_\+close@{buffer\+\_\+read\+\_\+close}}
+\index{buffer\+\_\+read\+\_\+close@{buffer\+\_\+read\+\_\+close}!buffer.\+c@{buffer.\+c}}
+\subsubsection[{\texorpdfstring{buffer\+\_\+read\+\_\+close(buffer\+\_\+t $\ast$p)}{buffer_read_close(buffer_t *p)}}]{\setlength{\rightskip}{0pt plus 5cm}void buffer\+\_\+read\+\_\+close (
+\begin{DoxyParamCaption}
+\item[{{\bf buffer\+\_\+t} $\ast$}]{p}
+\end{DoxyParamCaption}
+)}\hypertarget{buffer_8c_a010cad6baf8e47ce65ddc90f7206b7b4}{}\label{buffer_8c_a010cad6baf8e47ce65ddc90f7206b7b4}
+
+
+buffered read close Fat\+FS does not have a f\+\_\+fgetc() and using \hyperlink{ff_8c_ad55dbad62205065ba7e36ae5fc72dac6}{f\+\_\+read()} of just 1 byte is V\+E\+RY S\+L\+OW 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em p} & buffer structure ppointer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 71 of file buffer.\+c.
+
+
+
+Referenced by buffer\+\_\+read\+\_\+open().
+
+\index{buffer.\+c@{buffer.\+c}!buffer\+\_\+read\+\_\+open@{buffer\+\_\+read\+\_\+open}}
+\index{buffer\+\_\+read\+\_\+open@{buffer\+\_\+read\+\_\+open}!buffer.\+c@{buffer.\+c}}
+\subsubsection[{\texorpdfstring{buffer\+\_\+read\+\_\+open(char $\ast$name, uint8\+\_\+t $\ast$buf, int size)}{buffer_read_open(char *name, uint8_t *buf, int size)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf buffer\+\_\+t}$\ast$ buffer\+\_\+read\+\_\+open (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{name, }
+\item[{{\bf uint8\+\_\+t} $\ast$}]{buf, }
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}\hypertarget{buffer_8c_a5a896998acd804cbb68c8c2b8aed3e3c}{}\label{buffer_8c_a5a896998acd804cbb68c8c2b8aed3e3c}
+
+
+Fat\+FS does not have a f\+\_\+fgetc() function Using \hyperlink{ff_8c_ad55dbad62205065ba7e36ae5fc72dac6}{f\+\_\+read()} of just 1 byte is V\+E\+RY V\+E\+RY S\+L\+OW. 
+
+buffered read open 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em name} & file name \\
+\hline
+\mbox{\tt in}  & {\em buf} & buffer to use when reading \\
+\hline
+\mbox{\tt in}  & {\em size} & buffer size \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{structbuffer__t}{buffer\+\_\+t} pointer, or N\+U\+LL on error 
+\end{DoxyReturn}
+Read and process into image file 
+
+Definition at line 40 of file buffer.\+c.
+
+\index{buffer.\+c@{buffer.\+c}!buffer\+\_\+ungetc@{buffer\+\_\+ungetc}}
+\index{buffer\+\_\+ungetc@{buffer\+\_\+ungetc}!buffer.\+c@{buffer.\+c}}
+\subsubsection[{\texorpdfstring{buffer\+\_\+ungetc(buffer\+\_\+t $\ast$p, int c)}{buffer_ungetc(buffer_t *p, int c)}}]{\setlength{\rightskip}{0pt plus 5cm}void buffer\+\_\+ungetc (
+\begin{DoxyParamCaption}
+\item[{{\bf buffer\+\_\+t} $\ast$}]{p, }
+\item[{int}]{c}
+\end{DoxyParamCaption}
+)}\hypertarget{buffer_8c_ac376df96e4713216095e124c2ee1833c}{}\label{buffer_8c_ac376df96e4713216095e124c2ee1833c}
+
+
+buffered ungetc 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em p} & buffer structure ppointer \\
+\hline
+\mbox{\tt in}  & {\em c} & character to unget \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 86 of file buffer.\+c.
+
+
+
+Referenced by buffer\+\_\+gets().
+

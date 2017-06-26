@@ -1,5 +1,5 @@
 /**
- @file fatfs/disk.h
+ @file fatfs/fatfs_sup.h
 
 @brief Allocate, Free and display FILINFO structurs, getfattime(), display error messages
 

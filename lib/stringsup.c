@@ -236,8 +236,7 @@ strupper(char *str)
 
     while(*str)
     {
-        if(*str >= 'a' && *str <= 'z')
-            *str -= 0x20;
+        *str = toupper(*str);
         ++str;
     }
 }

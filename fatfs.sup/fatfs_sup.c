@@ -118,7 +118,7 @@ uint32_t tm_to_fat(tm_t *t)
         | ((uint32_t)t->tm_sec >> 1);
     return(fat);
 }
-/// @brief Read DS1307 RTC and convert to FAT32 time.
+/// @brief Read time and convert to FAT32 time.
 ///
 /// @return FAT32 time.
 /// @see tm_to_fat().
@@ -126,7 +126,7 @@ MEMSPACE
 DWORD get_fattime (void)
 {
 	time_t t;
-/* Get time */
+/* Get GMT time */
     time(&t);
 	return( tm_to_fat(localtime(&t)));
 }
@@ -268,8 +268,6 @@ void fatfs_status(char *ptr)
     FATFS *fs;
 	char label[24+2];
 	DWORD vsn; // volume serial number
-
-    const BYTE ft[] = {0,12,16,32};
 
     while(*ptr == ' ' || *ptr == '\t')
         ++ptr;

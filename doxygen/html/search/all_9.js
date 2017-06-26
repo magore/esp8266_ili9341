@@ -71,7 +71,7 @@ var searchData=
   ['ili9341_5fwhite',['ILI9341_WHITE',['../ili9341__adafruit_8h.html#a604507ef031b95291b2d177088fe03e4',1,'ili9341_adafruit.h']]],
   ['ili9341_5fyellow',['ILI9341_YELLOW',['../ili9341__adafruit_8h.html#a0313d113622009bfd9b6011fc9bffcc9',1,'ili9341_adafruit.h']]],
   ['in',['in',['../structqueue__t.html#a7a6832e36c70a1db7fddc93fb6be9d63',1,'queue_t']]],
-  ['ind',['ind',['../structp__ch__t.html#a9d6834d749cd9232a16cb20b598fe90d',1,'p_ch_t::ind()'],['../struct__xpt2046.html#ae47d989b6ec543113fc386181ea6d98a',1,'_xpt2046::ind()'],['../ili9341_8c.html#a4b00721003b8d35559a55c9098ff36c5',1,'ind():&#160;ili9341.c']]],
+  ['ind',['ind',['../structp__ch__t.html#a9d6834d749cd9232a16cb20b598fe90d',1,'p_ch_t::ind()'],['../structbuffer__t.html#a59ea992e5006ead050862bae5c41670a',1,'buffer_t::ind()'],['../struct__xpt2046.html#ae47d989b6ec543113fc386181ea6d98a',1,'_xpt2046::ind()'],['../ili9341_8c.html#a4b00721003b8d35559a55c9098ff36c5',1,'ind():&#160;ili9341.c']]],
   ['index',['index',['../struct__fontc.html#a7cc0370744ff7ea964054d36917c9a2f',1,'_fontc::index()'],['../index.html',1,'(Global Namespace)']]],
   ['info',['info',['../struct__font.html#abf134e8a44e707d3b4e83ab76c952ed9',1,'_font::info()'],['../network_8c.html#a1202cd63c360958e6272f9a20fa90f8b',1,'info():&#160;network.c']]],
   ['init_5fdone',['init_done',['../user__task_8c.html#a5edab2a250321a1426438782d96287b1',1,'init_done():&#160;user_task.c'],['../user__task_8h.html#a18a8df71685bf4d19e642fccc5586374',1,'init_done(void):&#160;user_task.c']]],

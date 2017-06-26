@@ -21,7 +21,7 @@ var searchData=
   ['fnames',['fnames',['../bdffontutil_8c.html#ae75c11efb4dd449e4fcf9f1f78e9414c',1,'fnames():&#160;bdffontutil.c'],['../bdffontutil_8h.html#ae75c11efb4dd449e4fcf9f1f78e9414c',1,'fnames():&#160;bdffontutil.c']]],
   ['font',['font',['../structwindow.html#acee24e56db43557a46cbb5ca3fe35021',1,'window::font()'],['../bdffontutil_8h.html#a6d9c6f27190f0f04abf55678fe81080d',1,'font():&#160;bdffontutil.h']]],
   ['font_5fname',['FONT_NAME',['../struct__fontinfo.html#a6c0f76f2668446a1c37ecab8d4e286a5',1,'_fontinfo']]],
-  ['fp',['fp',['../structputbuff.html#a5c7baa85e569be17f4888f5d92f4453c',1,'putbuff']]],
+  ['fp',['fp',['../structbuffer__t.html#a00a55014e0827223c41b1b1d56e5be5d',1,'buffer_t::fp()'],['../structputbuff.html#a5c7baa85e569be17f4888f5d92f4453c',1,'putbuff::fp()']]],
   ['fptr',['fptr',['../structFIL.html#a088b03ab2e02f82e10e17bdd938190a6',1,'FIL']]],
   ['frac',['FRAC',['../structr0__t.html#adc22c0b86ef296065f01c8800d4f5d52',1,'r0_t']]],
   ['free_5fclst',['free_clst',['../structFATFS.html#ac834248773bf338df807f0d7e6b6a579',1,'FATFS']]],
