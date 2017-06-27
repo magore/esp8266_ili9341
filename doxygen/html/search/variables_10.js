@@ -18,7 +18,7 @@ var searchData=
   ['sp_5fret',['sp_ret',['../structcont__.html#a2f886d4182bed43aaf66d3a55a2d23b7',1,'cont_']]],
   ['sp_5fyield',['sp_yield',['../structcont__.html#a59ce8d64c25ff1d02ae24c61080bbf7c',1,'cont_']]],
   ['space',['space',['../unionf__t.html#aba20a97e95d14a076e9c175989022717',1,'f_t']]],
-  ['spacing',['SPACING',['../struct__fontinfo.html#a0e6fafc8f03c70ce9c506d7a506fbba4',1,'_fontinfo::SPACING()'],['../structfreq__t.html#a529edbab4fea39cfe32405d5f8c07ab4',1,'freq_t::spacing()']]],
+  ['spacing',['spacing',['../structfreq__t.html#a529edbab4fea39cfe32405d5f8c07ab4',1,'freq_t::spacing()'],['../struct__fontinfo.html#a0e6fafc8f03c70ce9c506d7a506fbba4',1,'_fontinfo::SPACING()']]],
   ['specs',['specs',['../struct__font.html#a76b5b07cf75a869627eca27d7a32836a',1,'_font']]],
   ['st_5fatime',['st_atime',['../structstat.html#ab74d1e7e345e88b9d0fb2688a97cba64',1,'stat']]],
   ['st_5fblksize',['st_blksize',['../structstat.html#a38d474e1ae3cf6fbdde89ac3c3e308f1',1,'stat']]],

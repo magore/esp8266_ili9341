@@ -167,6 +167,7 @@ var searchData=
   ['ungetc',['ungetc',['../structbuffer__t.html#aa1fbbf42ce5d6278b21a93647bef3ff1',1,'buffer_t::ungetc()'],['../posix_8c.html#af979e8f6598be71d68be7cc49a41626b',1,'ungetc(int c, FILE *stream):&#160;posix.c'],['../posix_8h.html#af979e8f6598be71d68be7cc49a41626b',1,'ungetc(int c, FILE *stream):&#160;posix.c']]],
   ['ungetf',['ungetf',['../structbuffer__t.html#a67c2edddeca1858c670ff57e049a9e0e',1,'buffer_t']]],
   ['unicode_2ec',['unicode.c',['../unicode_8c.html',1,'']]],
+  ['unix_5ftime_5fto_5ffat',['unix_time_to_fat',['../posix_8c.html#aa5666c514336f78c6d1ab6bc35c74ae0',1,'unix_time_to_fat(time_t epoch, uint16_t *date, uint16_t *time):&#160;posix.c'],['../posix_8h.html#aa5666c514336f78c6d1ab6bc35c74ae0',1,'unix_time_to_fat(time_t epoch, uint16_t *date, uint16_t *time):&#160;posix.c']]],
   ['unlink',['unlink',['../posix_8c.html#aa964d662c19b2021d9cfd0c71bc686bd',1,'unlink(const char *pathname):&#160;posix.c'],['../posix_8h.html#aa964d662c19b2021d9cfd0c71bc686bd',1,'unlink(const char *pathname):&#160;posix.c']]],
   ['unused1',['unused1',['../structcont__.html#ab61b08c26f5251cdb06e9b2173da911f',1,'cont_']]],
   ['unused2',['unused2',['../structcont__.html#a4571d78e98dbcf7547ea1dc49c7b7a58',1,'cont_']]],
@@ -184,5 +185,8 @@ var searchData=
   ['user_5ftask_2eh',['user_task.h',['../user__task_8h.html',1,'']]],
   ['user_5ftasks',['user_tasks',['../user__main_8c.html#a3142086fde2f8b44c81c6f78beff1cc2',1,'user_main.c']]],
   ['user_5ftests',['user_tests',['../user__main_8c.html#a1a52190bd844126271cd2caa94782ee5',1,'user_main.c']]],
-  ['user_5ftimer_5fhandler',['user_timer_handler',['../structTIMERS.html#a4326e05ca52d80147efafd0d246ecb41',1,'TIMERS']]]
+  ['user_5ftimer_5fhandler',['user_timer_handler',['../structTIMERS.html#a4326e05ca52d80147efafd0d246ecb41',1,'TIMERS']]],
+  ['utimbuf',['utimbuf',['../structutimbuf.html',1,'']]],
+  ['utime',['utime',['../posix_8c.html#a732642e09075838bbbca28b3529f13db',1,'utime(const char *filename, const struct utimbuf *times):&#160;posix.c'],['../posix_8h.html#a732642e09075838bbbca28b3529f13db',1,'utime(const char *filename, const struct utimbuf *times):&#160;posix.c']]],
+  ['utime_5ft',['utime_t',['../posix_8h.html#ab29c02d05027f32f3f17bee2e4839777',1,'posix.h']]]
 ];

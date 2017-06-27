@@ -74,6 +74,8 @@
 \begin{DoxyCompactList}\small\item\em Display Ascii formatted time from timev seconds N\+OT P\+O\+S\+IX. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_abef70bf7a4af8a1f4998db0035c51781}{stat} (char $\ast$name, struct \hyperlink{structstat}{stat} $\ast$buf)
 \begin{DoxyCompactList}\small\item\em P\+O\+S\+IX stat -\/ get file status of named file. \end{DoxyCompactList}\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a732642e09075838bbbca28b3529f13db}{utime} (const char $\ast$filename, const struct \hyperlink{structutimbuf}{utimbuf} $\ast$times)
+\begin{DoxyCompactList}\small\item\em Set Modification and Access time of a file. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{posix_8c_a4d3dfaf2f5a63e2e4eaa128477a9b5e7}{basename} (char $\ast$str)
 \begin{DoxyCompactList}\small\item\em P\+O\+S\+IX Basename of filename. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{posix_8c_a0b33c90b99d00a8bd2595f254d1409e1}{baseext} (char $\ast$str)
@@ -122,6 +124,8 @@ int \hyperlink{posix_8c_aaeac2b41e8c2c3a5f91c9bd511a8c0a6}{closedir} (\hyperlink
 \begin{DoxyCompactList}\small\item\em Convert Fat\+FS file handle to P\+O\+S\+IX fileno. N\+OT P\+O\+S\+IX. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{time_8h_a3346b04b0420b32ccf6b706551b70762}{time\+\_\+t} \hyperlink{posix_8c_a178d5d21b21c0f60d6ff8dfbbc0d86f5}{fat\+\_\+time\+\_\+to\+\_\+unix} (\hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} date, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} \hyperlink{time_8h_a32b1cbd925752f0cd61d202bbe204a69}{time})
 \begin{DoxyCompactList}\small\item\em Convert Fat\+Fs file date and time to P\+O\+S\+IX epoch seconds. N\+OT P\+O\+S\+IX. \end{DoxyCompactList}\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{posix_8c_aa5666c514336f78c6d1ab6bc35c74ae0}{unix\+\_\+time\+\_\+to\+\_\+fat} (\hyperlink{time_8h_a3346b04b0420b32ccf6b706551b70762}{time\+\_\+t} epoch, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} $\ast$date, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} $\ast$\hyperlink{time_8h_a32b1cbd925752f0cd61d202bbe204a69}{time})
+\begin{DoxyCompactList}\small\item\em Convert Linux P\+O\+S\+IX time\+\_\+t to F\+A\+T32 date and time. N\+OT P\+O\+S\+IX. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{structFIL}{F\+IL} $\ast$ \hyperlink{posix_8c_a9b859123258b36eb57f4f71d2606d8a5}{fileno\+\_\+to\+\_\+fatfs} (int \hyperlink{posix_8h_aceb657a1b3c10d576aed287714bfd5d1}{fileno})
 \begin{DoxyCompactList}\small\item\em Convert P\+O\+S\+IX fileno to Fat\+FS handle N\+OT P\+O\+S\+IX. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a38496612f759733234128893e4c60a89}{free\+\_\+file\+\_\+descriptor} (int \hyperlink{posix_8h_aceb657a1b3c10d576aed287714bfd5d1}{fileno})
@@ -174,7 +178,7 @@ fprintf character write function
 
 \end{DoxyItemize}
 
-Definition at line 2302 of file posix.\+c.
+Definition at line 2357 of file posix.\+c.
 
 
 
@@ -201,7 +205,7 @@ pointer to basename extension.
 \end{DoxyReturn}
 
 
-Definition at line 1422 of file posix.\+c.
+Definition at line 1455 of file posix.\+c.
 
 \index{posix.\+c@{posix.\+c}!basename@{basename}}
 \index{basename@{basename}!posix.\+c@{posix.\+c}}
@@ -229,7 +233,7 @@ pointer to basename of string.
 \end{DoxyReturn}
 
 
-Definition at line 1402 of file posix.\+c.
+Definition at line 1435 of file posix.\+c.
 
 
 
@@ -263,7 +267,7 @@ P\+O\+S\+IX change directory.
 \end{DoxyReturn}
 
 
-Definition at line 1444 of file posix.\+c.
+Definition at line 1477 of file posix.\+c.
 
 \index{posix.\+c@{posix.\+c}!chmod@{chmod}}
 \index{chmod@{chmod}!posix.\+c@{posix.\+c}}
@@ -296,7 +300,7 @@ fileno on success.
 \end{DoxyReturn}
 
 
-Definition at line 1469 of file posix.\+c.
+Definition at line 1502 of file posix.\+c.
 
 
 
@@ -330,7 +334,7 @@ P\+O\+S\+IX Close a file with fileno handel.
 \end{DoxyReturn}
 
 
-Definition at line 671 of file posix.\+c.
+Definition at line 674 of file posix.\+c.
 
 
 
@@ -364,7 +368,7 @@ P\+O\+S\+IX closedir.
 \end{DoxyReturn}
 
 
-Definition at line 1670 of file posix.\+c.
+Definition at line 1703 of file posix.\+c.
 
 
 
@@ -396,7 +400,7 @@ E\+OF on error with errno set.
 \end{DoxyReturn}
 
 
-Definition at line 1739 of file posix.\+c.
+Definition at line 1772 of file posix.\+c.
 
 \index{posix.\+c@{posix.\+c}!dirname@{dirname}}
 \index{dirname@{dirname}!posix.\+c@{posix.\+c}}
@@ -433,7 +437,7 @@ index of last \textquotesingle{}/\textquotesingle{} character.
 \end{DoxyReturn}
 
 
-Definition at line 1507 of file posix.\+c.
+Definition at line 1540 of file posix.\+c.
 
 \index{posix.\+c@{posix.\+c}!dump\+\_\+stat@{dump\+\_\+stat}}
 \index{dump\+\_\+stat@{dump\+\_\+stat}!posix.\+c@{posix.\+c}}
@@ -459,7 +463,7 @@ void.
 
 \end{DoxyItemize}
 
-Definition at line 1246 of file posix.\+c.
+Definition at line 1249 of file posix.\+c.
 
 
 
@@ -497,7 +501,7 @@ epoch seconds
 \end{DoxyReturn}
 
 
-Definition at line 2083 of file posix.\+c.
+Definition at line 2116 of file posix.\+c.
 
 
 
@@ -532,7 +536,7 @@ E\+OF on error with errno set.
 \end{DoxyReturn}
 
 
-Definition at line 1885 of file posix.\+c.
+Definition at line 1918 of file posix.\+c.
 
 
 
@@ -570,7 +574,7 @@ E\+OF on error with errno set.
 \end{DoxyReturn}
 
 
-Definition at line 1930 of file posix.\+c.
+Definition at line 1963 of file posix.\+c.
 
 
 
@@ -604,11 +608,11 @@ E\+B\+A\+D\+M\+SG if no conversion possible.
 \end{DoxyReturn}
 
 
-Definition at line 1970 of file posix.\+c.
+Definition at line 2003 of file posix.\+c.
 
 
 
-Referenced by chdir(), chmod(), close(), closedir(), fatfs\+\_\+getc(), fatfs\+\_\+putc(), ftruncate(), getcwd(), lseek(), mkdir(), open(), opendir(), read(), readdir(), rename(), rmdir(), stat(), syncfs(), truncate(), unlink(), and write().
+Referenced by chdir(), chmod(), close(), closedir(), fatfs\+\_\+getc(), fatfs\+\_\+putc(), ftruncate(), getcwd(), lseek(), mkdir(), open(), opendir(), read(), readdir(), rename(), rmdir(), stat(), syncfs(), truncate(), unlink(), utime(), and write().
 
 \index{posix.\+c@{posix.\+c}!fatfs\+\_\+to\+\_\+fileno@{fatfs\+\_\+to\+\_\+fileno}}
 \index{fatfs\+\_\+to\+\_\+fileno@{fatfs\+\_\+to\+\_\+fileno}!posix.\+c@{posix.\+c}}
@@ -633,7 +637,7 @@ fileno on success.
 \end{DoxyReturn}
 
 
-Definition at line 2046 of file posix.\+c.
+Definition at line 2079 of file posix.\+c.
 
 \index{posix.\+c@{posix.\+c}!fclose@{fclose}}
 \index{fclose@{fclose}!posix.\+c@{posix.\+c}}
@@ -663,7 +667,7 @@ P\+O\+S\+IX close a file stream.
 \end{DoxyReturn}
 
 
-Definition at line 1225 of file posix.\+c.
+Definition at line 1228 of file posix.\+c.
 
 
 
@@ -692,7 +696,7 @@ Assign stdin,stdout,stderr or any use defined I/O N\+OT P\+O\+S\+IX
 \end{DoxyParams}
 
 
-Definition at line 1829 of file posix.\+c.
+Definition at line 1862 of file posix.\+c.
 
 \index{posix.\+c@{posix.\+c}!feof@{feof}}
 \index{feof@{feof}!posix.\+c@{posix.\+c}}
@@ -720,7 +724,7 @@ feof reports if the stream is at E\+OF
 \end{DoxyReturn}
 
 
-Definition at line 496 of file posix.\+c.
+Definition at line 499 of file posix.\+c.
 
 \index{posix.\+c@{posix.\+c}!ferror@{ferror}}
 \index{ferror@{ferror}!posix.\+c@{posix.\+c}}
@@ -748,7 +752,7 @@ ferror reports if the stream has an error flag set
 \end{DoxyReturn}
 
 
-Definition at line 1751 of file posix.\+c.
+Definition at line 1784 of file posix.\+c.
 
 \index{posix.\+c@{posix.\+c}!fgetc@{fgetc}}
 \index{fgetc@{fgetc}!posix.\+c@{posix.\+c}}
@@ -778,7 +782,7 @@ E\+OF on error with errno set.
 \end{DoxyReturn}
 
 
-Definition at line 207 of file posix.\+c.
+Definition at line 210 of file posix.\+c.
 
 
 
@@ -815,7 +819,7 @@ P\+O\+S\+IX get position of file stream.
 \end{DoxyReturn}
 
 
-Definition at line 513 of file posix.\+c.
+Definition at line 516 of file posix.\+c.
 
 \index{posix.\+c@{posix.\+c}!fgets@{fgets}}
 \index{fgets@{fgets}!posix.\+c@{posix.\+c}}
@@ -845,7 +849,7 @@ character.
 \end{DoxyReturn}
 
 
-Definition at line 411 of file posix.\+c.
+Definition at line 414 of file posix.\+c.
 
 
 
@@ -877,7 +881,7 @@ int fileno on success
 
 \end{DoxyItemize}
 
-Definition at line 710 of file posix.\+c.
+Definition at line 713 of file posix.\+c.
 
 
 
@@ -911,7 +915,7 @@ N\+U\+LL if P\+O\+S\+IX fileno is invalid N\+U\+LL
 \end{DoxyReturn}
 
 
-Definition at line 2110 of file posix.\+c.
+Definition at line 2165 of file posix.\+c.
 
 
 
@@ -949,7 +953,7 @@ N\+U\+LL on error with errno set, N\+U\+LL if fileno out of bounds
 \end{DoxyReturn}
 
 
-Definition at line 740 of file posix.\+c.
+Definition at line 743 of file posix.\+c.
 
 
 
@@ -986,7 +990,7 @@ N\+U\+LL on error with errno set.
 \end{DoxyReturn}
 
 
-Definition at line 768 of file posix.\+c.
+Definition at line 771 of file posix.\+c.
 
 
 
@@ -1019,7 +1023,7 @@ size of printed result
 \end{DoxyReturn}
 
 
-Definition at line 2318 of file posix.\+c.
+Definition at line 2373 of file posix.\+c.
 
 
 
@@ -1052,7 +1056,7 @@ character.
 \end{DoxyReturn}
 
 
-Definition at line 269 of file posix.\+c.
+Definition at line 272 of file posix.\+c.
 
 
 
@@ -1085,7 +1089,7 @@ character.
 \end{DoxyReturn}
 
 
-Definition at line 448 of file posix.\+c.
+Definition at line 451 of file posix.\+c.
 
 \index{posix.\+c@{posix.\+c}!fread@{fread}}
 \index{fread@{fread}!posix.\+c@{posix.\+c}}
@@ -1124,7 +1128,7 @@ count on sucess.
 \end{DoxyReturn}
 
 
-Definition at line 789 of file posix.\+c.
+Definition at line 792 of file posix.\+c.
 
 
 
@@ -1153,7 +1157,7 @@ fileno on success.
 \end{DoxyReturn}
 
 
-Definition at line 2145 of file posix.\+c.
+Definition at line 2200 of file posix.\+c.
 
 
 
@@ -1198,7 +1202,7 @@ file position on sucess.
 \end{DoxyReturn}
 
 
-Definition at line 536 of file posix.\+c.
+Definition at line 539 of file posix.\+c.
 
 
 
@@ -1235,7 +1239,7 @@ P\+O\+S\+IX set position of file stream.
 \end{DoxyReturn}
 
 
-Definition at line 562 of file posix.\+c.
+Definition at line 565 of file posix.\+c.
 
 \index{posix.\+c@{posix.\+c}!ftell@{ftell}}
 \index{ftell@{ftell}!posix.\+c@{posix.\+c}}
@@ -1265,7 +1269,7 @@ file position on sucess.
 \end{DoxyReturn}
 
 
-Definition at line 576 of file posix.\+c.
+Definition at line 579 of file posix.\+c.
 
 
 
@@ -1302,7 +1306,7 @@ P\+O\+S\+IX truncate open file to length.
 \end{DoxyReturn}
 
 
-Definition at line 813 of file posix.\+c.
+Definition at line 816 of file posix.\+c.
 
 \index{posix.\+c@{posix.\+c}!fwrite@{fwrite}}
 \index{fwrite@{fwrite}!posix.\+c@{posix.\+c}}
@@ -1341,7 +1345,7 @@ count written on sucess.
 \end{DoxyReturn}
 
 
-Definition at line 854 of file posix.\+c.
+Definition at line 857 of file posix.\+c.
 
 
 
@@ -1375,7 +1379,7 @@ character.
 \end{DoxyReturn}
 
 
-Definition at line 327 of file posix.\+c.
+Definition at line 330 of file posix.\+c.
 
 
 
@@ -1410,7 +1414,7 @@ P\+O\+S\+IX get current working directory.
 \end{DoxyReturn}
 
 
-Definition at line 1552 of file posix.\+c.
+Definition at line 1585 of file posix.\+c.
 
 
 
@@ -1449,7 +1453,7 @@ Test P\+O\+S\+IX fileno if it is a Serial Console/\+T\+TY.
 \item[\hyperlink{todo__todo000003}{Todo}]Perhaps we should verify console functions have been added ? \end{DoxyRefDesc}
 
 
-Definition at line 187 of file posix.\+c.
+Definition at line 190 of file posix.\+c.
 
 
 
@@ -1494,7 +1498,7 @@ file position on sucess.
 \end{DoxyReturn}
 
 
-Definition at line 608 of file posix.\+c.
+Definition at line 611 of file posix.\+c.
 
 
 
@@ -1530,7 +1534,7 @@ ascii string pointer of P\+O\+S\+IX \hyperlink{time_8c_a77d6bba12950028852621634
 \end{DoxySeeAlso}
 
 
-Definition at line 1309 of file posix.\+c.
+Definition at line 1312 of file posix.\+c.
 
 
 
@@ -1565,7 +1569,7 @@ P\+O\+S\+IX make a directory.
 \end{DoxyReturn}
 
 
-Definition at line 1575 of file posix.\+c.
+Definition at line 1608 of file posix.\+c.
 
 \index{posix.\+c@{posix.\+c}!new\+\_\+file\+\_\+descriptor@{new\+\_\+file\+\_\+descriptor}}
 \index{new\+\_\+file\+\_\+descriptor@{new\+\_\+file\+\_\+descriptor}!posix.\+c@{posix.\+c}}
@@ -1585,7 +1589,7 @@ fileno on success.
 \end{DoxyReturn}
 
 
-Definition at line 2189 of file posix.\+c.
+Definition at line 2244 of file posix.\+c.
 
 
 
@@ -1622,7 +1626,7 @@ fileno on success.
 \end{DoxyReturn}
 Seek to end of the file 
 
-Definition at line 881 of file posix.\+c.
+Definition at line 884 of file posix.\+c.
 
 
 
@@ -1637,7 +1641,7 @@ Referenced by fopen().
 )}\hypertarget{posix_8c_a19051b9081dfef221d9bf4583e935031}{}\label{posix_8c_a19051b9081dfef221d9bf4583e935031}
 
 
-Definition at line 1689 of file posix.\+c.
+Definition at line 1722 of file posix.\+c.
 
 
 
@@ -1672,7 +1676,7 @@ void.
 \end{DoxyReturn}
 
 
-Definition at line 1767 of file posix.\+c.
+Definition at line 1800 of file posix.\+c.
 
 
 
@@ -1738,7 +1742,7 @@ read and write B\+O\+TH share the same stream buffer and buffer index pointers.
 \end{DoxyWarning}
 
 
-Definition at line 2252 of file posix.\+c.
+Definition at line 2307 of file posix.\+c.
 
 
 
@@ -1768,7 +1772,7 @@ Put a character to a stream See \hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e50
 \end{DoxyParams}
 
 
-Definition at line 392 of file posix.\+c.
+Definition at line 395 of file posix.\+c.
 
 \index{posix.\+c@{posix.\+c}!putchar@{putchar}}
 \index{putchar@{putchar}!posix.\+c@{posix.\+c}}
@@ -1796,7 +1800,7 @@ character.
 \end{DoxyReturn}
 
 
-Definition at line 342 of file posix.\+c.
+Definition at line 345 of file posix.\+c.
 
 
 
@@ -1828,7 +1832,7 @@ character.
 \end{DoxyReturn}
 
 
-Definition at line 471 of file posix.\+c.
+Definition at line 474 of file posix.\+c.
 
 \index{posix.\+c@{posix.\+c}!read@{read}}
 \index{read@{read}!posix.\+c@{posix.\+c}}
@@ -1864,7 +1868,7 @@ count on sucess.
 \end{DoxyReturn}
 
 
-Definition at line 992 of file posix.\+c.
+Definition at line 995 of file posix.\+c.
 
 
 
@@ -1879,7 +1883,7 @@ Referenced by fread(), rx\+\_\+fifo\+\_\+read(), and send\+\_\+message().
 )}\hypertarget{posix_8c_a1508fedaef509d2976b43300306d1400}{}\label{posix_8c_a1508fedaef509d2976b43300306d1400}
 
 
-Definition at line 1708 of file posix.\+c.
+Definition at line 1741 of file posix.\+c.
 
 
 
@@ -1916,7 +1920,7 @@ P\+O\+S\+IX rename a file by name.
 \end{DoxyReturn}
 
 
-Definition at line 1601 of file posix.\+c.
+Definition at line 1634 of file posix.\+c.
 
 \index{posix.\+c@{posix.\+c}!rewind@{rewind}}
 \index{rewind@{rewind}!posix.\+c@{posix.\+c}}
@@ -1944,7 +1948,7 @@ void.
 \end{DoxyReturn}
 
 
-Definition at line 652 of file posix.\+c.
+Definition at line 655 of file posix.\+c.
 
 \index{posix.\+c@{posix.\+c}!rmdir@{rmdir}}
 \index{rmdir@{rmdir}!posix.\+c@{posix.\+c}}
@@ -1974,7 +1978,7 @@ P\+O\+S\+IX delete a directory.
 \end{DoxyReturn}
 
 
-Definition at line 1624 of file posix.\+c.
+Definition at line 1657 of file posix.\+c.
 
 \index{posix.\+c@{posix.\+c}!stat@{stat}}
 \index{stat@{stat}!posix.\+c@{posix.\+c}}
@@ -2007,7 +2011,7 @@ P\+O\+S\+IX stat -\/ get file status of named file.
 \end{DoxyReturn}
 
 
-Definition at line 1330 of file posix.\+c.
+Definition at line 1333 of file posix.\+c.
 
 
 
@@ -2042,7 +2046,7 @@ char $\ast$
 \end{DoxyReturn}
 
 
-Definition at line 1793 of file posix.\+c.
+Definition at line 1826 of file posix.\+c.
 
 \index{posix.\+c@{posix.\+c}!strerror\+\_\+r@{strerror\+\_\+r}}
 \index{strerror\+\_\+r@{strerror\+\_\+r}!posix.\+c@{posix.\+c}}
@@ -2079,7 +2083,7 @@ char $\ast$
 \end{DoxyReturn}
 
 
-Definition at line 1810 of file posix.\+c.
+Definition at line 1843 of file posix.\+c.
 
 \index{posix.\+c@{posix.\+c}!sync@{sync}}
 \index{sync@{sync}!posix.\+c@{posix.\+c}}
@@ -2102,7 +2106,7 @@ void.
 \end{DoxyReturn}
 
 
-Definition at line 1055 of file posix.\+c.
+Definition at line 1058 of file posix.\+c.
 
 
 
@@ -2136,7 +2140,7 @@ P\+O\+S\+IX Sync pending file changes and metadata for specified fileno.
 \end{DoxyReturn}
 
 
-Definition at line 1082 of file posix.\+c.
+Definition at line 1085 of file posix.\+c.
 
 
 
@@ -2173,7 +2177,7 @@ P\+O\+S\+IX truncate named file to length.
 \end{DoxyReturn}
 
 
-Definition at line 1128 of file posix.\+c.
+Definition at line 1131 of file posix.\+c.
 
 \index{posix.\+c@{posix.\+c}!ungetc@{ungetc}}
 \index{ungetc@{ungetc}!posix.\+c@{posix.\+c}}
@@ -2206,7 +2210,43 @@ E\+OF on error with errno set.
 \end{DoxyReturn}
 
 
-Definition at line 359 of file posix.\+c.
+Definition at line 362 of file posix.\+c.
+
+\index{posix.\+c@{posix.\+c}!unix\+\_\+time\+\_\+to\+\_\+fat@{unix\+\_\+time\+\_\+to\+\_\+fat}}
+\index{unix\+\_\+time\+\_\+to\+\_\+fat@{unix\+\_\+time\+\_\+to\+\_\+fat}!posix.\+c@{posix.\+c}}
+\subsubsection[{\texorpdfstring{unix\+\_\+time\+\_\+to\+\_\+fat(time\+\_\+t epoch, uint16\+\_\+t $\ast$date, uint16\+\_\+t $\ast$time)}{unix_time_to_fat(time_t epoch, uint16_t *date, uint16_t *time)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void unix\+\_\+time\+\_\+to\+\_\+fat (
+\begin{DoxyParamCaption}
+\item[{{\bf time\+\_\+t}}]{epoch, }
+\item[{{\bf uint16\+\_\+t} $\ast$}]{date, }
+\item[{{\bf uint16\+\_\+t} $\ast$}]{time}
+\end{DoxyParamCaption}
+)}\hypertarget{posix_8c_aa5666c514336f78c6d1ab6bc35c74ae0}{}\label{posix_8c_aa5666c514336f78c6d1ab6bc35c74ae0}
+
+
+Convert Linux P\+O\+S\+IX time\+\_\+t to F\+A\+T32 date and time. N\+OT P\+O\+S\+IX. 
+
+
+\begin{DoxyItemize}
+\item man page gmtime (3). 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em epoch} & unix epoch seconds \\
+\hline
+\mbox{\tt in}  & {\em $\ast$date} & fat32 date \\
+\hline
+\mbox{\tt in}  & {\em $\ast$time} & fat32 time \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+
+Definition at line 2141 of file posix.\+c.
+
+
+
+Referenced by utime().
 
 \index{posix.\+c@{posix.\+c}!unlink@{unlink}}
 \index{unlink@{unlink}!posix.\+c@{posix.\+c}}
@@ -2236,7 +2276,30 @@ P\+O\+S\+IX delete a file.
 \end{DoxyReturn}
 
 
-Definition at line 1646 of file posix.\+c.
+Definition at line 1679 of file posix.\+c.
+
+\index{posix.\+c@{posix.\+c}!utime@{utime}}
+\index{utime@{utime}!posix.\+c@{posix.\+c}}
+\subsubsection[{\texorpdfstring{utime(const char $\ast$filename, const struct utimbuf $\ast$times)}{utime(const char *filename, const struct utimbuf *times)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int utime (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{filename, }
+\item[{const struct {\bf utimbuf} $\ast$}]{times}
+\end{DoxyParamCaption}
+)}\hypertarget{posix_8c_a732642e09075838bbbca28b3529f13db}{}\label{posix_8c_a732642e09075838bbbca28b3529f13db}
+
+
+Set Modification and Access time of a file. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em filename} & file name \\
+\hline
+ & {\em } & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1396 of file posix.\+c.
 
 \index{posix.\+c@{posix.\+c}!write@{write}}
 \index{write@{write}!posix.\+c@{posix.\+c}}
@@ -2272,7 +2335,7 @@ count on sucess.
 \end{DoxyReturn}
 
 
-Definition at line 1166 of file posix.\+c.
+Definition at line 1169 of file posix.\+c.
 
 
 
@@ -2297,7 +2360,7 @@ P\+O\+S\+IX fileno to P\+O\+S\+IX F\+I\+LE stream table.
 \item \+\_\+\+\_\+iob\mbox{[}2\mbox{]} = stderr. 
 \end{DoxyItemize}
 
-Definition at line 130 of file posix.\+c.
+Definition at line 133 of file posix.\+c.
 
 \index{posix.\+c@{posix.\+c}!\+\_\+de@{\+\_\+de}}
 \index{\+\_\+de@{\+\_\+de}!posix.\+c@{posix.\+c}}
@@ -2323,7 +2386,7 @@ N\+U\+LL on error with errno set.
 \end{DoxyReturn}
 
 
-Definition at line 1707 of file posix.\+c.
+Definition at line 1740 of file posix.\+c.
 
 \index{posix.\+c@{posix.\+c}!\+\_\+dp@{\+\_\+dp}}
 \index{\+\_\+dp@{\+\_\+dp}!posix.\+c@{posix.\+c}}
@@ -2349,7 +2412,7 @@ N\+U\+LL on error with errno set.
 \end{DoxyReturn}
 
 
-Definition at line 1688 of file posix.\+c.
+Definition at line 1721 of file posix.\+c.
 
 \index{posix.\+c@{posix.\+c}!errno@{errno}}
 \index{errno@{errno}!posix.\+c@{posix.\+c}}
@@ -2360,7 +2423,7 @@ Note\+: fdevopen assigns stdin,stdout,stderr.
 
 P\+O\+S\+IX errno. 
 
-Definition at line 120 of file posix.\+c.
+Definition at line 123 of file posix.\+c.
 
 
 
@@ -2378,7 +2441,7 @@ P\+O\+S\+IX error messages for each errno value.
 \item man page errno (3) 
 \end{DoxyItemize}
 
-Definition at line 135 of file posix.\+c.
+Definition at line 138 of file posix.\+c.
 
 
 

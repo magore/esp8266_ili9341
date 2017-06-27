@@ -51,6 +51,7 @@
    - POSIX file and directory manipulation
         - basename
         - baseext	- NOT POSIX
+        - chmod
         - chdir
         - dirname
         - getcwd
@@ -58,6 +59,7 @@
         - rename
         - rmdir
         - unlink
+        - utime
 
    - POSIX - directory scanning functions
 		- closedir
@@ -84,6 +86,7 @@
         - free_file_descriptor
         - new_file_descriptor
         - posix_fopen_modes_to_open
+        - unix_time_to_fat
 
  @par Copyright &copy; 2015 Mike Gore, GPL License
  @par You are free to use this code under the terms of GPL
@@ -245,7 +248,7 @@ fgetc(FILE *stream)
 		// get character from device or file
         c = stream->get(stream);
         if (c < 0) {
-            /* if != _FDEV_ERR, assume it's _FDEV_EOF */
+            /* if != _FDEV_ERR, assume its _FDEV_EOF */
             stream->flags |= (c == _FDEV_ERR)? __SERR: __SEOF;
             return EOF;
         }
@@ -421,7 +424,7 @@ fgets(char *str, int size, FILE *stream)
 				return(NULL);
 			break;
 		}
- 		if(c == '\n')
+ 		if(c == '\r' || c == '\n')
 			break;
 		if(c == 0x08)
 		{
@@ -1385,6 +1388,36 @@ int stat(char *name, struct stat *buf)
     return(0);
 }
 
+///@brief Set Modification and Access time of a file
+///@param[in] filename: file name
+///@param[in *times:  access and modication utimbuf structure, if NULL use current time
+///@return 0 if ok, -1 on error
+MEMSPACE
+int utime(const char *filename, const struct utimbuf *times)
+{
+
+    FILINFO fno;
+	uint16_t fdate,ftime;
+	time_t ut;
+	int res;
+
+	if(times)
+		ut = times->modtime;
+	else
+		ut = time(0);
+	
+	unix_time_to_fat(ut, (uint16_t *) &fdate, (uint16_t *) &ftime);
+	
+
+    fno.fdate = fdate;
+    fno.ftime = ftime;
+
+    res = f_utime(filename, (FILINFO *) &fno);
+
+	return( fatfs_to_errno(res) );
+}
+
+
 
 // =============================================
 // =============================================
@@ -2095,6 +2128,28 @@ time_t fat_time_to_unix(uint16_t date, uint16_t time)
     tp.tm_year = ((date >> 9) & 0x7f) + 80;
     unix = timegm( &tp );
     return( unix );
+}
+
+/// @brief Convert Linux POSIX time_t to FAT32 date and time.
+/// NOT POSIX
+/// - man page gmtime (3).
+/// @param[in] epoch: unix epoch seconds
+/// @param[in] *date: fat32 date
+/// @param[in] *time: fat32 time
+/// @return  void
+MEMSPACE
+void unix_time_to_fat(time_t epoch, uint16_t *date, uint16_t *time)
+{
+	tm_t *t = gmtime((time_t *) &epoch);
+
+/* Pack date and time into a uint32_t variable */
+    *date = ((uint16_t)(t->tm_year - 80) << 9)
+        | (((uint16_t)t->tm_mon+1) << 5)
+        | (((uint16_t)t->tm_mday));
+
+    *time = ((uint16_t)t->tm_hour << 11)
+        | ((uint16_t)t->tm_min << 5)
+        | ((uint16_t)t->tm_sec >> 1);
 }
 
 /// @brief  Convert POSIX fileno to FatFS handle

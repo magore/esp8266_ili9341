@@ -30,6 +30,7 @@ var searchData=
   ['uart_5ftx_5fdisable',['uart_tx_disable',['../uart_8c.html#a87198ab19fb4f97a978baf08b478d150',1,'uart_tx_disable(uint8_t uart_no):&#160;uart.c'],['../uart_8h.html#a87198ab19fb4f97a978baf08b478d150',1,'uart_tx_disable(uint8_t uart_no):&#160;uart.c']]],
   ['uart_5ftx_5fenable',['uart_tx_enable',['../uart_8c.html#a9fee6d0362cbec0ae882acb55d3a825f',1,'uart_tx_enable(uint8_t uart_no):&#160;uart.c'],['../uart_8h.html#a9fee6d0362cbec0ae882acb55d3a825f',1,'uart_tx_enable(uint8_t uart_no):&#160;uart.c']]],
   ['ungetc',['ungetc',['../posix_8c.html#af979e8f6598be71d68be7cc49a41626b',1,'ungetc(int c, FILE *stream):&#160;posix.c'],['../posix_8h.html#af979e8f6598be71d68be7cc49a41626b',1,'ungetc(int c, FILE *stream):&#160;posix.c']]],
+  ['unix_5ftime_5fto_5ffat',['unix_time_to_fat',['../posix_8c.html#aa5666c514336f78c6d1ab6bc35c74ae0',1,'unix_time_to_fat(time_t epoch, uint16_t *date, uint16_t *time):&#160;posix.c'],['../posix_8h.html#aa5666c514336f78c6d1ab6bc35c74ae0',1,'unix_time_to_fat(time_t epoch, uint16_t *date, uint16_t *time):&#160;posix.c']]],
   ['unlink',['unlink',['../posix_8c.html#aa964d662c19b2021d9cfd0c71bc686bd',1,'unlink(const char *pathname):&#160;posix.c'],['../posix_8h.html#aa964d662c19b2021d9cfd0c71bc686bd',1,'unlink(const char *pathname):&#160;posix.c']]],
   ['upload_5ffile',['upload_file',['../fatfs__utils_8h.html#ab26c70db434254f4b980768395d1f89f',1,'fatfs_utils.h']]],
   ['usage',['usage',['../bdffont2c_8c.html#aa4817482b1728bf62acf8030cab9842c',1,'bdffont2c.c']]],
@@ -37,5 +38,6 @@ var searchData=
   ['user_5finit',['user_init',['../user__task_8c.html#aa8253cd89ed4b268472ed62f4f2074ae',1,'user_init(void):&#160;user_task.c'],['../user__task_8h.html#aa8253cd89ed4b268472ed62f4f2074ae',1,'user_init(void):&#160;user_task.c']]],
   ['user_5floop',['user_loop',['../user__main_8c.html#a9c9fec92b60b251c275870d900294a4a',1,'user_main.c']]],
   ['user_5ftasks',['user_tasks',['../user__main_8c.html#a3142086fde2f8b44c81c6f78beff1cc2',1,'user_main.c']]],
-  ['user_5ftests',['user_tests',['../user__main_8c.html#a1a52190bd844126271cd2caa94782ee5',1,'user_main.c']]]
+  ['user_5ftests',['user_tests',['../user__main_8c.html#a1a52190bd844126271cd2caa94782ee5',1,'user_main.c']]],
+  ['utime',['utime',['../posix_8c.html#a732642e09075838bbbca28b3529f13db',1,'utime(const char *filename, const struct utimbuf *times):&#160;posix.c'],['../posix_8h.html#a732642e09075838bbbca28b3529f13db',1,'utime(const char *filename, const struct utimbuf *times):&#160;posix.c']]]
 ];

@@ -272,7 +272,6 @@ void chip_addr(int addr)
 {
 
 #ifdef ADDR_0
-
 	if(addr & 1)
 		GPIO_PIN_HI(ADDR_0);
 	else

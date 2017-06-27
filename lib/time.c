@@ -921,7 +921,6 @@ int setdate_r (char *buf)
 
     tm.tm_year=tm.tm_mon=tm.tm_mday=tm.tm_hour=tm.tm_min=tm.tm_sec=0;
 
-
 #ifdef SMALL_SSCANF
     sscanf(buf,"%d %d %d %d:%d:%d",
         &tm.tm_year,
@@ -931,26 +930,35 @@ int setdate_r (char *buf)
         &tm.tm_min,
         &tm.tm_sec);
 #else
-    while(*buf && *buf < '0' && *buf > '9')
+	// Year
+    while(*buf == ' ')
         ++buf;
     tm.tm_year = strtol(buf,&buf,10);
-    while(*buf && *buf < '0' && *buf > '9')
+
+	// Month
+    while(*buf == ' ')
         ++buf;
     tm.tm_mon = strtol(buf,&buf,10);
-    while(*buf && *buf < '0' && *buf > '9')
+
+	// Day of Month
+    while(*buf == ' ')
         ++buf;
     tm.tm_mday = strtol(buf,&buf,10);
-    while(*buf && *buf < '0' && *buf > '9')
+
+	// Hour
+    while(*buf == ' ')
         ++buf;
     tm.tm_hour = strtol(buf,&buf,10);
-    while(*buf && *buf < '0' && *buf > '9')
+
+	// Minute
+    if(*buf && (*buf == ' ' || *buf == ':'))
         ++buf;
     tm.tm_min = strtol(buf,&buf,10);
-    while(*buf && *buf < '0' && *buf > '9')
+
+	// Second
+    if(*buf && (*buf == ' ' || *buf == ':'))
         ++buf;
     tm.tm_sec = strtol(buf,&buf,10);
-    while(*buf && *buf < '0' && *buf > '9')
-        ++buf;
 #endif
 
     tm.tm_mon--;

@@ -116,6 +116,14 @@ struct stat
     time_t    st_ctime;  /*<  time of last status change */
 };
 
+///@brief POSIX utimbuf structure
+///@see utime()
+typedef struct utimbuf
+{
+   time_t actime;       /* access time */
+   time_t modtime;      /* modification time */
+} utime_t;
+
 #if _USE_LFN != 0
 #define MAX_NAME_LEN _MAX_LFN 
 #else
@@ -330,9 +338,11 @@ MEMSPACE int truncate ( const char *path , off_t length );
 MEMSPACE ssize_t write ( int fd , const void *buf , size_t count );
 MEMSPACE int fclose ( FILE *stream );
 MEMSPACE void dump_stat ( struct stat *sp );
+
 #if 0
 MEMSPACE int fstat ( int fd , struct stat *buf );
 #endif
+
 MEMSPACE char *mctime ( time_t timev );
 MEMSPACE int stat ( char *name , struct stat *buf );
 MEMSPACE char *basename ( char *str );
@@ -340,9 +350,12 @@ MEMSPACE char *baseext ( char *str );
 MEMSPACE int chdir ( const char *pathname );
 MEMSPACE int chmod ( const char *pathname , mode_t mode );
 MEMSPACE int dirname ( char *str );
+MEMSPACE int utime(const char *filename, const struct utimbuf *times);
+
 #if 0
 MEMSPACE int fchmod ( int fd , mode_t mode );
 #endif
+
 MEMSPACE char *getcwd ( char *pathname , int len );
 MEMSPACE int mkdir ( const char *pathname , mode_t mode );
 MEMSPACE int rename ( const char *oldpath , const char *newpath );
@@ -362,6 +375,7 @@ MEMSPACE int fatfs_putc ( char c , FILE *stream );
 MEMSPACE int fatfs_to_errno ( FRESULT Result );
 MEMSPACE int fatfs_to_fileno ( FIL *fh );
 MEMSPACE time_t fat_time_to_unix ( uint16_t date , uint16_t time );
+MEMSPACE void unix_time_to_fat(time_t epoch, uint16_t *date, uint16_t *time);
 MEMSPACE FIL *fileno_to_fatfs ( int fileno );
 MEMSPACE int free_file_descriptor ( int fileno );
 MEMSPACE int new_file_descriptor ( void );

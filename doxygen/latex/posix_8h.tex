@@ -5,6 +5,8 @@
 \item 
 struct \hyperlink{structstat}{stat}
 \begin{DoxyCompactList}\small\item\em P\+O\+S\+IX stat structure. \end{DoxyCompactList}\item 
+struct \hyperlink{structutimbuf}{utimbuf}
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX utimbuf structure. \end{DoxyCompactList}\item 
 struct \hyperlink{structdirent}{dirent}
 \item 
 struct \hyperlink{struct____file}{\+\_\+\+\_\+file}
@@ -177,6 +179,8 @@ typedef \hyperlink{send_8c_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t} \hy
 \item 
 typedef \hyperlink{earth2wireframe_8c_a32f2e37ee053cf2ce8ca28d1f74630e5}{int32\+\_\+t} \hyperlink{posix_8h_a170745d0d946e79c4c2a056d1d158996}{ssize\+\_\+t}
 \item 
+typedef struct \hyperlink{structutimbuf}{utimbuf} \hyperlink{posix_8h_ab29c02d05027f32f3f17bee2e4839777}{utime\+\_\+t}
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX utimbuf structure. \end{DoxyCompactList}\item 
 typedef struct \hyperlink{structdirent}{dirent} \hyperlink{posix_8h_a6673e8f64ca9ebd7e26e6289dca06e87}{dirent\+\_\+t}
 \item 
 typedef struct \hyperlink{struct____file}{\+\_\+\+\_\+file} \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE}
@@ -312,6 +316,8 @@ enum \hyperlink{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6a}{P\+O\+S\+I\+X\+\_\+e
 \begin{DoxyCompactList}\small\item\em P\+O\+S\+IX chmod function -\/ change file access permission Unfortunately file f\+\_\+open modes and f\+\_\+chmod modes are not the same Files that are open have way more options -\/ but only while the file is open. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8h_a26a07a3db060ffc5659fe03495a29a1c}{dirname} (char $\ast$str)
 \begin{DoxyCompactList}\small\item\em P\+O\+S\+IX directory name of a filename. Return the index of the last \textquotesingle{}/\textquotesingle{} character. \end{DoxyCompactList}\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8h_a732642e09075838bbbca28b3529f13db}{utime} (const char $\ast$filename, const struct \hyperlink{structutimbuf}{utimbuf} $\ast$times)
+\begin{DoxyCompactList}\small\item\em Set Modification and Access time of a file. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{posix_8h_a6411298bb01166960f5a0378ac0fdb82}{getcwd} (char $\ast$pathname, int len)
 \begin{DoxyCompactList}\small\item\em P\+O\+S\+IX get current working directory. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8h_a8b57a7ee1ba139c636477cf2998e8b1e}{mkdir} (const char $\ast$pathname, \hyperlink{posix_8h_af8f4385bb42836d1e3ad4fea9d71d1b9}{mode\+\_\+t} mode)
@@ -350,6 +356,8 @@ struct \hyperlink{structdirent}{dirent} $\ast$ \hyperlink{posix_8h_a58257faf8b13
 \begin{DoxyCompactList}\small\item\em Convert Fat\+FS file handle to P\+O\+S\+IX fileno. N\+OT P\+O\+S\+IX. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{time_8h_a3346b04b0420b32ccf6b706551b70762}{time\+\_\+t} \hyperlink{posix_8h_a178d5d21b21c0f60d6ff8dfbbc0d86f5}{fat\+\_\+time\+\_\+to\+\_\+unix} (\hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} date, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} \hyperlink{time_8h_a32b1cbd925752f0cd61d202bbe204a69}{time})
 \begin{DoxyCompactList}\small\item\em Convert Fat\+Fs file date and time to P\+O\+S\+IX epoch seconds. N\+OT P\+O\+S\+IX. \end{DoxyCompactList}\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{posix_8h_aa5666c514336f78c6d1ab6bc35c74ae0}{unix\+\_\+time\+\_\+to\+\_\+fat} (\hyperlink{time_8h_a3346b04b0420b32ccf6b706551b70762}{time\+\_\+t} epoch, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} $\ast$date, \hyperlink{send_8c_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t} $\ast$\hyperlink{time_8h_a32b1cbd925752f0cd61d202bbe204a69}{time})
+\begin{DoxyCompactList}\small\item\em Convert Linux P\+O\+S\+IX time\+\_\+t to F\+A\+T32 date and time. N\+OT P\+O\+S\+IX. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{structFIL}{F\+IL} $\ast$ \hyperlink{posix_8h_a9b859123258b36eb57f4f71d2606d8a5}{fileno\+\_\+to\+\_\+fatfs} (int \hyperlink{posix_8h_aceb657a1b3c10d576aed287714bfd5d1}{fileno})
 \begin{DoxyCompactList}\small\item\em Convert P\+O\+S\+IX fileno to Fat\+FS handle N\+OT P\+O\+S\+IX. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8h_a38496612f759733234128893e4c60a89}{free\+\_\+file\+\_\+descriptor} (int \hyperlink{posix_8h_aceb657a1b3c10d576aed287714bfd5d1}{fileno})
@@ -373,7 +381,7 @@ struct \hyperlink{structdirent}{dirent} $\ast$ \hyperlink{posix_8h_a58257faf8b13
 \subsubsection[{\texorpdfstring{\+\_\+\+\_\+\+S\+E\+OF}{__SEOF}}]{\setlength{\rightskip}{0pt plus 5cm}\#define \+\_\+\+\_\+\+S\+E\+OF~0x0020      /$\ast$ found E\+O\+F $\ast$/}\hypertarget{posix_8h_a63f42c2888ed9bd0f00ee25002ee3b02}{}\label{posix_8h_a63f42c2888ed9bd0f00ee25002ee3b02}
 
 
-Definition at line 154 of file posix.\+h.
+Definition at line 162 of file posix.\+h.
 
 
 
@@ -384,7 +392,7 @@ Referenced by clrerror(), fatfs\+\_\+getc(), fatfs\+\_\+putc(), feof(), fgetc(),
 \subsubsection[{\texorpdfstring{\+\_\+\+\_\+\+S\+E\+RR}{__SERR}}]{\setlength{\rightskip}{0pt plus 5cm}\#define \+\_\+\+\_\+\+S\+E\+RR~0x0010      /$\ast$ found error $\ast$/}\hypertarget{posix_8h_a37117409538ffeec47002d6580e4b703}{}\label{posix_8h_a37117409538ffeec47002d6580e4b703}
 
 
-Definition at line 153 of file posix.\+h.
+Definition at line 161 of file posix.\+h.
 
 
 
@@ -395,7 +403,7 @@ Referenced by clrerror(), ferror(), and fgetc().
 \subsubsection[{\texorpdfstring{\+\_\+\+\_\+\+S\+M\+A\+L\+L\+OC}{__SMALLOC}}]{\setlength{\rightskip}{0pt plus 5cm}\#define \+\_\+\+\_\+\+S\+M\+A\+L\+L\+OC~0x80      /$\ast$ handle is malloc()ed $\ast$/}\hypertarget{posix_8h_a910f0d9b3aff8a868393ce38fe91cc7d}{}\label{posix_8h_a910f0d9b3aff8a868393ce38fe91cc7d}
 
 
-Definition at line 156 of file posix.\+h.
+Definition at line 164 of file posix.\+h.
 
 
 
@@ -406,14 +414,14 @@ Referenced by fdevopen(), and free\+\_\+file\+\_\+descriptor().
 \subsubsection[{\texorpdfstring{\+\_\+\+\_\+\+S\+P\+GM}{__SPGM}}]{\setlength{\rightskip}{0pt plus 5cm}\#define \+\_\+\+\_\+\+S\+P\+GM~0x0008      /$\ast$ fmt string is in progmem $\ast$/}\hypertarget{posix_8h_a4f8a55506b9fec8dff9442bec5a86dee}{}\label{posix_8h_a4f8a55506b9fec8dff9442bec5a86dee}
 
 
-Definition at line 152 of file posix.\+h.
+Definition at line 160 of file posix.\+h.
 
 \index{posix.\+h@{posix.\+h}!\+\_\+\+\_\+\+S\+RD@{\+\_\+\+\_\+\+S\+RD}}
 \index{\+\_\+\+\_\+\+S\+RD@{\+\_\+\+\_\+\+S\+RD}!posix.\+h@{posix.\+h}}
 \subsubsection[{\texorpdfstring{\+\_\+\+\_\+\+S\+RD}{__SRD}}]{\setlength{\rightskip}{0pt plus 5cm}\#define \+\_\+\+\_\+\+S\+RD~0x0001      /$\ast$ O\+K to read $\ast$/}\hypertarget{posix_8h_a9a9bfdbe4548d021af62fb947d2b6b82}{}\label{posix_8h_a9a9bfdbe4548d021af62fb947d2b6b82}
 
 
-Definition at line 149 of file posix.\+h.
+Definition at line 157 of file posix.\+h.
 
 
 
@@ -424,7 +432,7 @@ Referenced by fdevopen(), fgetc(), and ungetc().
 \subsubsection[{\texorpdfstring{\+\_\+\+\_\+\+S\+S\+TR}{__SSTR}}]{\setlength{\rightskip}{0pt plus 5cm}\#define \+\_\+\+\_\+\+S\+S\+TR~0x0004      /$\ast$ this is an sprintf/snprintf string $\ast$/}\hypertarget{posix_8h_a7934343459dfe68ced51599a7b9a316f}{}\label{posix_8h_a7934343459dfe68ced51599a7b9a316f}
 
 
-Definition at line 151 of file posix.\+h.
+Definition at line 159 of file posix.\+h.
 
 
 
@@ -435,7 +443,7 @@ Referenced by fgetc(), and fputc().
 \subsubsection[{\texorpdfstring{\+\_\+\+\_\+\+S\+U\+N\+G\+ET}{__SUNGET}}]{\setlength{\rightskip}{0pt plus 5cm}\#define \+\_\+\+\_\+\+S\+U\+N\+G\+ET~0x040      /$\ast$ ungetc() happened $\ast$/}\hypertarget{posix_8h_ad541703cea6b378290dcf2ea448d2879}{}\label{posix_8h_ad541703cea6b378290dcf2ea448d2879}
 
 
-Definition at line 155 of file posix.\+h.
+Definition at line 163 of file posix.\+h.
 
 
 
@@ -446,7 +454,7 @@ Referenced by fgetc(), lseek(), read(), syncfs(), and ungetc().
 \subsubsection[{\texorpdfstring{\+\_\+\+\_\+\+S\+WR}{__SWR}}]{\setlength{\rightskip}{0pt plus 5cm}\#define \+\_\+\+\_\+\+S\+WR~0x0002      /$\ast$ O\+K to write $\ast$/}\hypertarget{posix_8h_af08f227b04a8833c49ce8b798ca7f403}{}\label{posix_8h_af08f227b04a8833c49ce8b798ca7f403}
 
 
-Definition at line 150 of file posix.\+h.
+Definition at line 158 of file posix.\+h.
 
 
 
@@ -461,14 +469,14 @@ device status flags
 
 
 
-Definition at line 284 of file posix.\+h.
+Definition at line 292 of file posix.\+h.
 
 \index{posix.\+h@{posix.\+h}!\+\_\+\+F\+D\+E\+V\+\_\+\+E\+RR@{\+\_\+\+F\+D\+E\+V\+\_\+\+E\+RR}}
 \index{\+\_\+\+F\+D\+E\+V\+\_\+\+E\+RR@{\+\_\+\+F\+D\+E\+V\+\_\+\+E\+RR}!posix.\+h@{posix.\+h}}
 \subsubsection[{\texorpdfstring{\+\_\+\+F\+D\+E\+V\+\_\+\+E\+RR}{_FDEV_ERR}}]{\setlength{\rightskip}{0pt plus 5cm}\#define \+\_\+\+F\+D\+E\+V\+\_\+\+E\+RR~(-\/2)}\hypertarget{posix_8h_a132917c782a0ba854c3ae9abe57c3b12}{}\label{posix_8h_a132917c782a0ba854c3ae9abe57c3b12}
 
 
-Definition at line 285 of file posix.\+h.
+Definition at line 293 of file posix.\+h.
 
 
 
@@ -479,7 +487,7 @@ Referenced by fgetc().
 \subsubsection[{\texorpdfstring{\+\_\+\+F\+D\+E\+V\+\_\+\+S\+E\+T\+U\+P\+\_\+\+R\+E\+AD}{_FDEV_SETUP_READ}}]{\setlength{\rightskip}{0pt plus 5cm}\#define \+\_\+\+F\+D\+E\+V\+\_\+\+S\+E\+T\+U\+P\+\_\+\+R\+E\+AD~{\bf \+\_\+\+\_\+\+S\+RD}}\hypertarget{posix_8h_a79826a1c733e4f67843256d34ad64352}{}\label{posix_8h_a79826a1c733e4f67843256d34ad64352}
 fdev\+\_\+setup\+\_\+stream() with read intent 
 
-Definition at line 287 of file posix.\+h.
+Definition at line 295 of file posix.\+h.
 
 
 
@@ -490,7 +498,7 @@ Referenced by open().
 \subsubsection[{\texorpdfstring{\+\_\+\+F\+D\+E\+V\+\_\+\+S\+E\+T\+U\+P\+\_\+\+RW}{_FDEV_SETUP_RW}}]{\setlength{\rightskip}{0pt plus 5cm}\#define \+\_\+\+F\+D\+E\+V\+\_\+\+S\+E\+T\+U\+P\+\_\+\+RW~({\bf \+\_\+\+\_\+\+S\+RD}$\vert${\bf \+\_\+\+\_\+\+S\+WR})}\hypertarget{posix_8h_a93db55caeeaf13488a635f8896a6bdf3}{}\label{posix_8h_a93db55caeeaf13488a635f8896a6bdf3}
 fdev\+\_\+setup\+\_\+stream() with read/write intent 
 
-Definition at line 289 of file posix.\+h.
+Definition at line 297 of file posix.\+h.
 
 
 
@@ -501,7 +509,7 @@ Referenced by open().
 \subsubsection[{\texorpdfstring{\+\_\+\+F\+D\+E\+V\+\_\+\+S\+E\+T\+U\+P\+\_\+\+W\+R\+I\+TE}{_FDEV_SETUP_WRITE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define \+\_\+\+F\+D\+E\+V\+\_\+\+S\+E\+T\+U\+P\+\_\+\+W\+R\+I\+TE~{\bf \+\_\+\+\_\+\+S\+WR}}\hypertarget{posix_8h_a822a791a1c06a12b95c14ace75b48ad2}{}\label{posix_8h_a822a791a1c06a12b95c14ace75b48ad2}
 fdev\+\_\+setup\+\_\+stream() with write intent 
 
-Definition at line 288 of file posix.\+h.
+Definition at line 296 of file posix.\+h.
 
 
 
@@ -516,7 +524,7 @@ End of file or device read.
 
 
 
-Definition at line 237 of file posix.\+h.
+Definition at line 245 of file posix.\+h.
 
 
 
@@ -531,7 +539,7 @@ Referenced by buffer\+\_\+getc(), buffer\+\_\+gets(), fatfs\+\_\+getc(), fatfs\+
 
 
 
-Definition at line 231 of file posix.\+h.
+Definition at line 239 of file posix.\+h.
 
 
 
@@ -542,7 +550,7 @@ Referenced by stat().
 \subsubsection[{\texorpdfstring{F\+A\+T\+F\+S\+\_\+W}{FATFS_W}}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\+A\+T\+F\+S\+\_\+W~({\bf S\+\_\+\+I\+W\+U\+SR} $\vert$ {\bf S\+\_\+\+I\+W\+G\+RP} $\vert$ {\bf S\+\_\+\+I\+W\+O\+TH})	/$\ast$$<$ {\bf Fat\+Fs} Write perms $\ast$/}\hypertarget{posix_8h_a58a8434d968e434626088e2dc6ae6124}{}\label{posix_8h_a58a8434d968e434626088e2dc6ae6124}
 
 
-Definition at line 232 of file posix.\+h.
+Definition at line 240 of file posix.\+h.
 
 
 
@@ -553,7 +561,7 @@ Referenced by stat().
 \subsubsection[{\texorpdfstring{F\+A\+T\+F\+S\+\_\+X}{FATFS_X}}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\+A\+T\+F\+S\+\_\+X~({\bf S\+\_\+\+I\+X\+U\+SR} $\vert$ {\bf S\+\_\+\+I\+X\+G\+RP} $\vert$ {\bf S\+\_\+\+I\+X\+O\+TH})	/$\ast$$<$ {\bf Fat\+Fs} Execute perms $\ast$/}\hypertarget{posix_8h_a0a88f1032e29e7cc97a96b40cdc996a5}{}\label{posix_8h_a0a88f1032e29e7cc97a96b40cdc996a5}
 
 
-Definition at line 233 of file posix.\+h.
+Definition at line 241 of file posix.\+h.
 
 
 
@@ -568,7 +576,7 @@ Referenced by stat().
 )~((stream)-\/$>$udata)}\hypertarget{posix_8h_ac04f5faa8e86a4ce4ae084d85386af40}{}\label{posix_8h_ac04f5faa8e86a4ce4ae084d85386af40}
 
 
-Definition at line 281 of file posix.\+h.
+Definition at line 289 of file posix.\+h.
 
 
 
@@ -588,7 +596,7 @@ device IO udata
 
 
 
-Definition at line 280 of file posix.\+h.
+Definition at line 288 of file posix.\+h.
 
 
 
@@ -606,7 +614,7 @@ P\+O\+S\+IX \hyperlink{posix_8h_ae730c85752284268b39560df693cb207}{lstat()}
 \end{DoxySeeAlso}
 
 
-Definition at line 142 of file posix.\+h.
+Definition at line 150 of file posix.\+h.
 
 \index{posix.\+h@{posix.\+h}!M\+A\+X\+\_\+\+F\+I\+L\+ES@{M\+A\+X\+\_\+\+F\+I\+L\+ES}}
 \index{M\+A\+X\+\_\+\+F\+I\+L\+ES@{M\+A\+X\+\_\+\+F\+I\+L\+ES}!posix.\+h@{posix.\+h}}
@@ -617,7 +625,7 @@ Maximum number of P\+O\+S\+IX file handles.
 
 
 
-Definition at line 249 of file posix.\+h.
+Definition at line 257 of file posix.\+h.
 
 
 
@@ -628,7 +636,7 @@ Referenced by fatfs\+\_\+to\+\_\+fileno(), fileno(), fileno\+\_\+to\+\_\+stream(
 \subsubsection[{\texorpdfstring{M\+A\+X\+\_\+\+N\+A\+M\+E\+\_\+\+L\+EN}{MAX_NAME_LEN}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+A\+X\+\_\+\+N\+A\+M\+E\+\_\+\+L\+EN~13}\hypertarget{posix_8h_afd709f201d7643c3909621f620ea648a}{}\label{posix_8h_afd709f201d7643c3909621f620ea648a}
 
 
-Definition at line 122 of file posix.\+h.
+Definition at line 130 of file posix.\+h.
 
 
 
@@ -648,7 +656,7 @@ used in \hyperlink{posix_8c}{posix.\+c} to compare to ascii file modes
 
 
 
-Definition at line 227 of file posix.\+h.
+Definition at line 235 of file posix.\+h.
 
 
 
@@ -667,7 +675,7 @@ P\+O\+S\+IX open modes -\/ no other combination are allowed.
 \item Note\+: The P\+O\+S\+IX correct test of O\+\_\+\+R\+D\+O\+N\+LY is\+: (mode \& O\+\_\+\+A\+C\+C\+M\+O\+DE) == O\+\_\+\+R\+D\+O\+N\+LY. 
 \end{DoxyItemize}
 
-Definition at line 175 of file posix.\+h.
+Definition at line 183 of file posix.\+h.
 
 
 
@@ -678,7 +686,7 @@ Referenced by open().
 \subsubsection[{\texorpdfstring{O\+\_\+\+A\+P\+P\+E\+ND}{O_APPEND}}]{\setlength{\rightskip}{0pt plus 5cm}\#define O\+\_\+\+A\+P\+P\+E\+ND~00002000 /$\ast$$<$ All writes are to {\bf E\+OF} $\ast$/}\hypertarget{posix_8h_ae036f789407d21f07b211552d67b3214}{}\label{posix_8h_ae036f789407d21f07b211552d67b3214}
 
 
-Definition at line 184 of file posix.\+h.
+Definition at line 192 of file posix.\+h.
 
 
 
@@ -689,14 +697,14 @@ Referenced by open(), and posix\+\_\+fopen\+\_\+modes\+\_\+to\+\_\+open().
 \subsubsection[{\texorpdfstring{O\+\_\+\+B\+I\+N\+A\+RY}{O_BINARY}}]{\setlength{\rightskip}{0pt plus 5cm}\#define O\+\_\+\+B\+I\+N\+A\+RY~00000004 /$\ast$$<$ Binary $\ast$/}\hypertarget{posix_8h_a36fa9b2e726512bc17a7a6d3e39002be}{}\label{posix_8h_a36fa9b2e726512bc17a7a6d3e39002be}
 
 
-Definition at line 186 of file posix.\+h.
+Definition at line 194 of file posix.\+h.
 
 \index{posix.\+h@{posix.\+h}!O\+\_\+\+C\+R\+E\+AT@{O\+\_\+\+C\+R\+E\+AT}}
 \index{O\+\_\+\+C\+R\+E\+AT@{O\+\_\+\+C\+R\+E\+AT}!posix.\+h@{posix.\+h}}
 \subsubsection[{\texorpdfstring{O\+\_\+\+C\+R\+E\+AT}{O_CREAT}}]{\setlength{\rightskip}{0pt plus 5cm}\#define O\+\_\+\+C\+R\+E\+AT~00000100 /$\ast$$<$ Create file only if it does not exist $\ast$/}\hypertarget{posix_8h_a1cf6b1de1fffedaa1d26b189e9a8d2cc}{}\label{posix_8h_a1cf6b1de1fffedaa1d26b189e9a8d2cc}
 
 
-Definition at line 179 of file posix.\+h.
+Definition at line 187 of file posix.\+h.
 
 
 
@@ -712,28 +720,28 @@ Referenced by open(), and posix\+\_\+fopen\+\_\+modes\+\_\+to\+\_\+open().
 \end{DoxyCode}
 
 
-Definition at line 180 of file posix.\+h.
+Definition at line 188 of file posix.\+h.
 
 \index{posix.\+h@{posix.\+h}!O\+\_\+\+N\+O\+C\+T\+TY@{O\+\_\+\+N\+O\+C\+T\+TY}}
 \index{O\+\_\+\+N\+O\+C\+T\+TY@{O\+\_\+\+N\+O\+C\+T\+TY}!posix.\+h@{posix.\+h}}
 \subsubsection[{\texorpdfstring{O\+\_\+\+N\+O\+C\+T\+TY}{O_NOCTTY}}]{\setlength{\rightskip}{0pt plus 5cm}\#define O\+\_\+\+N\+O\+C\+T\+TY~00000400 /$\ast$$<$ @todo $\ast$/}\hypertarget{posix_8h_a2e375ab32c7ef4581b026be28e4cc116}{}\label{posix_8h_a2e375ab32c7ef4581b026be28e4cc116}
 
 
-Definition at line 182 of file posix.\+h.
+Definition at line 190 of file posix.\+h.
 
 \index{posix.\+h@{posix.\+h}!O\+\_\+\+N\+O\+N\+B\+L\+O\+CK@{O\+\_\+\+N\+O\+N\+B\+L\+O\+CK}}
 \index{O\+\_\+\+N\+O\+N\+B\+L\+O\+CK@{O\+\_\+\+N\+O\+N\+B\+L\+O\+CK}!posix.\+h@{posix.\+h}}
 \subsubsection[{\texorpdfstring{O\+\_\+\+N\+O\+N\+B\+L\+O\+CK}{O_NONBLOCK}}]{\setlength{\rightskip}{0pt plus 5cm}\#define O\+\_\+\+N\+O\+N\+B\+L\+O\+CK~00004000 /$\ast$$<$ @todo $\ast$/}\hypertarget{posix_8h_a39d33ce33804efd4d52606d59071c6d8}{}\label{posix_8h_a39d33ce33804efd4d52606d59071c6d8}
 
 
-Definition at line 185 of file posix.\+h.
+Definition at line 193 of file posix.\+h.
 
 \index{posix.\+h@{posix.\+h}!O\+\_\+\+R\+D\+O\+N\+LY@{O\+\_\+\+R\+D\+O\+N\+LY}}
 \index{O\+\_\+\+R\+D\+O\+N\+LY@{O\+\_\+\+R\+D\+O\+N\+LY}!posix.\+h@{posix.\+h}}
 \subsubsection[{\texorpdfstring{O\+\_\+\+R\+D\+O\+N\+LY}{O_RDONLY}}]{\setlength{\rightskip}{0pt plus 5cm}\#define O\+\_\+\+R\+D\+O\+N\+LY~00000000 /$\ast$$<$ Read only $\ast$/}\hypertarget{posix_8h_a7a68c9ffaac7dbcd652225dd7c06a54b}{}\label{posix_8h_a7a68c9ffaac7dbcd652225dd7c06a54b}
 
 
-Definition at line 176 of file posix.\+h.
+Definition at line 184 of file posix.\+h.
 
 
 
@@ -744,7 +752,7 @@ Referenced by open(), and posix\+\_\+fopen\+\_\+modes\+\_\+to\+\_\+open().
 \subsubsection[{\texorpdfstring{O\+\_\+\+R\+D\+WR}{O_RDWR}}]{\setlength{\rightskip}{0pt plus 5cm}\#define O\+\_\+\+R\+D\+WR~00000002 /$\ast$$<$ Read/Write $\ast$/}\hypertarget{posix_8h_abb0586253488ee61072b73557eeb873b}{}\label{posix_8h_abb0586253488ee61072b73557eeb873b}
 
 
-Definition at line 178 of file posix.\+h.
+Definition at line 186 of file posix.\+h.
 
 
 
@@ -755,14 +763,14 @@ Referenced by open(), and posix\+\_\+fopen\+\_\+modes\+\_\+to\+\_\+open().
 \subsubsection[{\texorpdfstring{O\+\_\+\+T\+E\+XT}{O_TEXT}}]{\setlength{\rightskip}{0pt plus 5cm}\#define O\+\_\+\+T\+E\+XT~00000004 /$\ast$$<$ Text End Of Line translation $\ast$/}\hypertarget{posix_8h_a9abb6d01b83e0bc5a6e2adeceb7dffd7}{}\label{posix_8h_a9abb6d01b83e0bc5a6e2adeceb7dffd7}
 
 
-Definition at line 187 of file posix.\+h.
+Definition at line 195 of file posix.\+h.
 
 \index{posix.\+h@{posix.\+h}!O\+\_\+\+T\+R\+U\+NC@{O\+\_\+\+T\+R\+U\+NC}}
 \index{O\+\_\+\+T\+R\+U\+NC@{O\+\_\+\+T\+R\+U\+NC}!posix.\+h@{posix.\+h}}
 \subsubsection[{\texorpdfstring{O\+\_\+\+T\+R\+U\+NC}{O_TRUNC}}]{\setlength{\rightskip}{0pt plus 5cm}\#define O\+\_\+\+T\+R\+U\+NC~00001000 /$\ast$$<$ Truncate if exists $\ast$/}\hypertarget{posix_8h_ad1d67e453fb3031f40f8cd3403773813}{}\label{posix_8h_ad1d67e453fb3031f40f8cd3403773813}
 
 
-Definition at line 183 of file posix.\+h.
+Definition at line 191 of file posix.\+h.
 
 
 
@@ -773,7 +781,7 @@ Referenced by open(), and posix\+\_\+fopen\+\_\+modes\+\_\+to\+\_\+open().
 \subsubsection[{\texorpdfstring{O\+\_\+\+W\+R\+O\+N\+LY}{O_WRONLY}}]{\setlength{\rightskip}{0pt plus 5cm}\#define O\+\_\+\+W\+R\+O\+N\+LY~00000001 /$\ast$$<$ Write only $\ast$/}\hypertarget{posix_8h_a11b644a8526139c4cc1850dac1271ced}{}\label{posix_8h_a11b644a8526139c4cc1850dac1271ced}
 
 
-Definition at line 177 of file posix.\+h.
+Definition at line 185 of file posix.\+h.
 
 
 
@@ -791,28 +799,28 @@ Definition at line 27 of file posix.\+h.
 \subsubsection[{\texorpdfstring{S\+\_\+\+I\+E\+X\+EC}{S_IEXEC}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+\_\+\+I\+E\+X\+EC~0100     /$\ast$$<$ Execute by owner.  $\ast$/}\hypertarget{posix_8h_a49a6665b56f38f52ee9b157cefcf4d68}{}\label{posix_8h_a49a6665b56f38f52ee9b157cefcf4d68}
 
 
-Definition at line 200 of file posix.\+h.
+Definition at line 208 of file posix.\+h.
 
 \index{posix.\+h@{posix.\+h}!S\+\_\+\+I\+F\+B\+LK@{S\+\_\+\+I\+F\+B\+LK}}
 \index{S\+\_\+\+I\+F\+B\+LK@{S\+\_\+\+I\+F\+B\+LK}!posix.\+h@{posix.\+h}}
 \subsubsection[{\texorpdfstring{S\+\_\+\+I\+F\+B\+LK}{S_IFBLK}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+\_\+\+I\+F\+B\+LK~0060000  /$\ast$$<$ Block device.  $\ast$/}\hypertarget{posix_8h_a5c5b74a1cb1a1ae83572500b94e1938f}{}\label{posix_8h_a5c5b74a1cb1a1ae83572500b94e1938f}
 
 
-Definition at line 193 of file posix.\+h.
+Definition at line 201 of file posix.\+h.
 
 \index{posix.\+h@{posix.\+h}!S\+\_\+\+I\+F\+C\+HR@{S\+\_\+\+I\+F\+C\+HR}}
 \index{S\+\_\+\+I\+F\+C\+HR@{S\+\_\+\+I\+F\+C\+HR}!posix.\+h@{posix.\+h}}
 \subsubsection[{\texorpdfstring{S\+\_\+\+I\+F\+C\+HR}{S_IFCHR}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+\_\+\+I\+F\+C\+HR~0020000  /$\ast$$<$ Character device.  $\ast$/}\hypertarget{posix_8h_aef3a1d1ba22c83e30b5c834dd343b2a8}{}\label{posix_8h_aef3a1d1ba22c83e30b5c834dd343b2a8}
 
 
-Definition at line 192 of file posix.\+h.
+Definition at line 200 of file posix.\+h.
 
 \index{posix.\+h@{posix.\+h}!S\+\_\+\+I\+F\+D\+IR@{S\+\_\+\+I\+F\+D\+IR}}
 \index{S\+\_\+\+I\+F\+D\+IR@{S\+\_\+\+I\+F\+D\+IR}!posix.\+h@{posix.\+h}}
 \subsubsection[{\texorpdfstring{S\+\_\+\+I\+F\+D\+IR}{S_IFDIR}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+\_\+\+I\+F\+D\+IR~0040000  /$\ast$$<$ Directory.  $\ast$/}\hypertarget{posix_8h_a11fb0652b963a735f3377eb1c9239f2d}{}\label{posix_8h_a11fb0652b963a735f3377eb1c9239f2d}
 
 
-Definition at line 191 of file posix.\+h.
+Definition at line 199 of file posix.\+h.
 
 
 
@@ -823,14 +831,14 @@ Referenced by fatfs\+\_\+ls(), and stat().
 \subsubsection[{\texorpdfstring{S\+\_\+\+I\+F\+I\+FO}{S_IFIFO}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+\_\+\+I\+F\+I\+FO~0010000  /$\ast$$<$ F\+I\+F\+O.  $\ast$/}\hypertarget{posix_8h_a4966f25d9f03a7a06bc47ac729fd86cf}{}\label{posix_8h_a4966f25d9f03a7a06bc47ac729fd86cf}
 
 
-Definition at line 195 of file posix.\+h.
+Definition at line 203 of file posix.\+h.
 
 \index{posix.\+h@{posix.\+h}!S\+\_\+\+I\+F\+L\+NK@{S\+\_\+\+I\+F\+L\+NK}}
 \index{S\+\_\+\+I\+F\+L\+NK@{S\+\_\+\+I\+F\+L\+NK}!posix.\+h@{posix.\+h}}
 \subsubsection[{\texorpdfstring{S\+\_\+\+I\+F\+L\+NK}{S_IFLNK}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+\_\+\+I\+F\+L\+NK~0120000  /$\ast$$<$ Symbolic link.  $\ast$/}\hypertarget{posix_8h_afef163ce62372757e84bd9fc88c07aad}{}\label{posix_8h_afef163ce62372757e84bd9fc88c07aad}
 
 
-Definition at line 196 of file posix.\+h.
+Definition at line 204 of file posix.\+h.
 
 \index{posix.\+h@{posix.\+h}!S\+\_\+\+I\+F\+MT@{S\+\_\+\+I\+F\+MT}}
 \index{S\+\_\+\+I\+F\+MT@{S\+\_\+\+I\+F\+MT}!posix.\+h@{posix.\+h}}
@@ -841,7 +849,7 @@ P\+O\+S\+IX File types, see fstat and stat.
 
 
 
-Definition at line 190 of file posix.\+h.
+Definition at line 198 of file posix.\+h.
 
 
 
@@ -852,7 +860,7 @@ Referenced by fatfs\+\_\+ls().
 \subsubsection[{\texorpdfstring{S\+\_\+\+I\+F\+R\+EG}{S_IFREG}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+\_\+\+I\+F\+R\+EG~0100000  /$\ast$$<$ Regular file.  $\ast$/}\hypertarget{posix_8h_a1aaa48b192a5dd3b6d7ee91fc98cd17d}{}\label{posix_8h_a1aaa48b192a5dd3b6d7ee91fc98cd17d}
 
 
-Definition at line 194 of file posix.\+h.
+Definition at line 202 of file posix.\+h.
 
 
 
@@ -863,56 +871,56 @@ Referenced by fatfs\+\_\+ls(), and stat().
 \subsubsection[{\texorpdfstring{S\+\_\+\+I\+F\+S\+O\+CK}{S_IFSOCK}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+\_\+\+I\+F\+S\+O\+CK~0140000  /$\ast$$<$ Socket.  $\ast$/}\hypertarget{posix_8h_a28e80cd43106882904be148b2a397d42}{}\label{posix_8h_a28e80cd43106882904be148b2a397d42}
 
 
-Definition at line 197 of file posix.\+h.
+Definition at line 205 of file posix.\+h.
 
 \index{posix.\+h@{posix.\+h}!S\+\_\+\+I\+R\+E\+AD@{S\+\_\+\+I\+R\+E\+AD}}
 \index{S\+\_\+\+I\+R\+E\+AD@{S\+\_\+\+I\+R\+E\+AD}!posix.\+h@{posix.\+h}}
 \subsubsection[{\texorpdfstring{S\+\_\+\+I\+R\+E\+AD}{S_IREAD}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+\_\+\+I\+R\+E\+AD~0400     /$\ast$$<$ Read by owner.  $\ast$/}\hypertarget{posix_8h_a96c6486aa02a821aa4199525f5e79f60}{}\label{posix_8h_a96c6486aa02a821aa4199525f5e79f60}
 
 
-Definition at line 198 of file posix.\+h.
+Definition at line 206 of file posix.\+h.
 
 \index{posix.\+h@{posix.\+h}!S\+\_\+\+I\+R\+G\+RP@{S\+\_\+\+I\+R\+G\+RP}}
 \index{S\+\_\+\+I\+R\+G\+RP@{S\+\_\+\+I\+R\+G\+RP}!posix.\+h@{posix.\+h}}
 \subsubsection[{\texorpdfstring{S\+\_\+\+I\+R\+G\+RP}{S_IRGRP}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+\_\+\+I\+R\+G\+RP~({\bf S\+\_\+\+I\+R\+U\+SR} $>$$>$ 3)              /$\ast$$<$ Read by group.  $\ast$/}\hypertarget{posix_8h_a4f5f280b929768113739fb34d6f7be8a}{}\label{posix_8h_a4f5f280b929768113739fb34d6f7be8a}
 
 
-Definition at line 215 of file posix.\+h.
+Definition at line 223 of file posix.\+h.
 
 \index{posix.\+h@{posix.\+h}!S\+\_\+\+I\+R\+O\+TH@{S\+\_\+\+I\+R\+O\+TH}}
 \index{S\+\_\+\+I\+R\+O\+TH@{S\+\_\+\+I\+R\+O\+TH}!posix.\+h@{posix.\+h}}
 \subsubsection[{\texorpdfstring{S\+\_\+\+I\+R\+O\+TH}{S_IROTH}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+\_\+\+I\+R\+O\+TH~({\bf S\+\_\+\+I\+R\+G\+RP} $>$$>$ 3)              /$\ast$$<$ Read by others.  $\ast$/}\hypertarget{posix_8h_a071147a0cb995036967c80f64b1f74b9}{}\label{posix_8h_a071147a0cb995036967c80f64b1f74b9}
 
 
-Definition at line 220 of file posix.\+h.
+Definition at line 228 of file posix.\+h.
 
 \index{posix.\+h@{posix.\+h}!S\+\_\+\+I\+R\+U\+SR@{S\+\_\+\+I\+R\+U\+SR}}
 \index{S\+\_\+\+I\+R\+U\+SR@{S\+\_\+\+I\+R\+U\+SR}!posix.\+h@{posix.\+h}}
 \subsubsection[{\texorpdfstring{S\+\_\+\+I\+R\+U\+SR}{S_IRUSR}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+\_\+\+I\+R\+U\+SR~{\bf S\+\_\+\+I\+R\+E\+AD}                     /$\ast$$<$ Read by owner.  $\ast$/}\hypertarget{posix_8h_a84c7dbf5cf2fdfb690f76348b60a8cb7}{}\label{posix_8h_a84c7dbf5cf2fdfb690f76348b60a8cb7}
 
 
-Definition at line 210 of file posix.\+h.
+Definition at line 218 of file posix.\+h.
 
 \index{posix.\+h@{posix.\+h}!S\+\_\+\+I\+R\+W\+XG@{S\+\_\+\+I\+R\+W\+XG}}
 \index{S\+\_\+\+I\+R\+W\+XG@{S\+\_\+\+I\+R\+W\+XG}!posix.\+h@{posix.\+h}}
 \subsubsection[{\texorpdfstring{S\+\_\+\+I\+R\+W\+XG}{S_IRWXG}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+\_\+\+I\+R\+W\+XG~({\bf S\+\_\+\+I\+R\+W\+XU} $>$$>$ 3)				/$\ast$$<$ Read,Write,Execute by user $\ast$/}\hypertarget{posix_8h_a230c642d2bb81f15f85c122b1883de5c}{}\label{posix_8h_a230c642d2bb81f15f85c122b1883de5c}
 
 
-Definition at line 218 of file posix.\+h.
+Definition at line 226 of file posix.\+h.
 
 \index{posix.\+h@{posix.\+h}!S\+\_\+\+I\+R\+W\+XO@{S\+\_\+\+I\+R\+W\+XO}}
 \index{S\+\_\+\+I\+R\+W\+XO@{S\+\_\+\+I\+R\+W\+XO}!posix.\+h@{posix.\+h}}
 \subsubsection[{\texorpdfstring{S\+\_\+\+I\+R\+W\+XO}{S_IRWXO}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+\_\+\+I\+R\+W\+XO~({\bf S\+\_\+\+I\+R\+W\+XG} $>$$>$ 3)				/$\ast$$<$ Read,Write,Execute by other $\ast$/}\hypertarget{posix_8h_a5b93e0da7fe32bbd4926626bffad96b1}{}\label{posix_8h_a5b93e0da7fe32bbd4926626bffad96b1}
 
 
-Definition at line 223 of file posix.\+h.
+Definition at line 231 of file posix.\+h.
 
 \index{posix.\+h@{posix.\+h}!S\+\_\+\+I\+R\+W\+XU@{S\+\_\+\+I\+R\+W\+XU}}
 \index{S\+\_\+\+I\+R\+W\+XU@{S\+\_\+\+I\+R\+W\+XU}!posix.\+h@{posix.\+h}}
 \subsubsection[{\texorpdfstring{S\+\_\+\+I\+R\+W\+XU}{S_IRWXU}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+\_\+\+I\+R\+W\+XU~({\bf S\+\_\+\+I\+R\+E\+AD}$\vert${\bf S\+\_\+\+I\+W\+R\+I\+TE}$\vert${\bf S\+\_\+\+I\+E\+X\+EC})	/$\ast$$<$ Read,Write,Execute by owner $\ast$/}\hypertarget{posix_8h_afe3da42e762f6362c93454682fad5eb5}{}\label{posix_8h_afe3da42e762f6362c93454682fad5eb5}
 
 
-Definition at line 213 of file posix.\+h.
+Definition at line 221 of file posix.\+h.
 
 \index{posix.\+h@{posix.\+h}!S\+\_\+\+I\+S\+B\+LK@{S\+\_\+\+I\+S\+B\+LK}}
 \index{S\+\_\+\+I\+S\+B\+LK@{S\+\_\+\+I\+S\+B\+LK}!posix.\+h@{posix.\+h}}
@@ -923,7 +931,7 @@ Definition at line 213 of file posix.\+h.
 )~{\bf S\+\_\+\+I\+S\+T\+Y\+PE}((mode), {\bf S\+\_\+\+I\+F\+B\+LK})}\hypertarget{posix_8h_a8b86a24d84c3cfce39cc832a017656ba}{}\label{posix_8h_a8b86a24d84c3cfce39cc832a017656ba}
 
 
-Definition at line 206 of file posix.\+h.
+Definition at line 214 of file posix.\+h.
 
 \index{posix.\+h@{posix.\+h}!S\+\_\+\+I\+S\+C\+HR@{S\+\_\+\+I\+S\+C\+HR}}
 \index{S\+\_\+\+I\+S\+C\+HR@{S\+\_\+\+I\+S\+C\+HR}!posix.\+h@{posix.\+h}}
@@ -934,7 +942,7 @@ Definition at line 206 of file posix.\+h.
 )~{\bf S\+\_\+\+I\+S\+T\+Y\+PE}((mode), {\bf S\+\_\+\+I\+F\+C\+HR})}\hypertarget{posix_8h_aae33be85d242a1317f972cf2b189f03d}{}\label{posix_8h_aae33be85d242a1317f972cf2b189f03d}
 
 
-Definition at line 205 of file posix.\+h.
+Definition at line 213 of file posix.\+h.
 
 \index{posix.\+h@{posix.\+h}!S\+\_\+\+I\+S\+D\+IR@{S\+\_\+\+I\+S\+D\+IR}}
 \index{S\+\_\+\+I\+S\+D\+IR@{S\+\_\+\+I\+S\+D\+IR}!posix.\+h@{posix.\+h}}
@@ -945,7 +953,7 @@ Definition at line 205 of file posix.\+h.
 )~{\bf S\+\_\+\+I\+S\+T\+Y\+PE}((mode), {\bf S\+\_\+\+I\+F\+D\+IR})}\hypertarget{posix_8h_a3746cdc5aac871e6f6504fbcbd29ef1d}{}\label{posix_8h_a3746cdc5aac871e6f6504fbcbd29ef1d}
 
 
-Definition at line 204 of file posix.\+h.
+Definition at line 212 of file posix.\+h.
 
 
 
@@ -960,7 +968,7 @@ Referenced by dump\+\_\+stat(), and fatfs\+\_\+ls().
 )~{\bf S\+\_\+\+I\+S\+T\+Y\+PE}((mode), {\bf S\+\_\+\+I\+F\+R\+EG})}\hypertarget{posix_8h_aad0f32c2c182238f2ff71c83e6ab65a0}{}\label{posix_8h_aad0f32c2c182238f2ff71c83e6ab65a0}
 
 
-Definition at line 207 of file posix.\+h.
+Definition at line 215 of file posix.\+h.
 
 
 
@@ -980,14 +988,14 @@ P\+O\+S\+IX File type test macros.
 
 
 
-Definition at line 203 of file posix.\+h.
+Definition at line 211 of file posix.\+h.
 
 \index{posix.\+h@{posix.\+h}!S\+\_\+\+I\+W\+G\+RP@{S\+\_\+\+I\+W\+G\+RP}}
 \index{S\+\_\+\+I\+W\+G\+RP@{S\+\_\+\+I\+W\+G\+RP}!posix.\+h@{posix.\+h}}
 \subsubsection[{\texorpdfstring{S\+\_\+\+I\+W\+G\+RP}{S_IWGRP}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+\_\+\+I\+W\+G\+RP~({\bf S\+\_\+\+I\+W\+U\+SR} $>$$>$ 3)              /$\ast$$<$ Write by group.  $\ast$/}\hypertarget{posix_8h_ae6774871a90d9442f00abe18b87fee6e}{}\label{posix_8h_ae6774871a90d9442f00abe18b87fee6e}
 
 
-Definition at line 216 of file posix.\+h.
+Definition at line 224 of file posix.\+h.
 
 
 
@@ -998,7 +1006,7 @@ Referenced by chmod().
 \subsubsection[{\texorpdfstring{S\+\_\+\+I\+W\+O\+TH}{S_IWOTH}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+\_\+\+I\+W\+O\+TH~({\bf S\+\_\+\+I\+W\+G\+RP} $>$$>$ 3)              /$\ast$$<$ Write by others.  $\ast$/}\hypertarget{posix_8h_a5303f49f26293acdb9533756c78322fb}{}\label{posix_8h_a5303f49f26293acdb9533756c78322fb}
 
 
-Definition at line 221 of file posix.\+h.
+Definition at line 229 of file posix.\+h.
 
 
 
@@ -1009,14 +1017,14 @@ Referenced by chmod().
 \subsubsection[{\texorpdfstring{S\+\_\+\+I\+W\+R\+I\+TE}{S_IWRITE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+\_\+\+I\+W\+R\+I\+TE~0200     /$\ast$$<$ Write by owner.  $\ast$/}\hypertarget{posix_8h_a40eb4ad4bcc675d265615042657c37b7}{}\label{posix_8h_a40eb4ad4bcc675d265615042657c37b7}
 
 
-Definition at line 199 of file posix.\+h.
+Definition at line 207 of file posix.\+h.
 
 \index{posix.\+h@{posix.\+h}!S\+\_\+\+I\+W\+U\+SR@{S\+\_\+\+I\+W\+U\+SR}}
 \index{S\+\_\+\+I\+W\+U\+SR@{S\+\_\+\+I\+W\+U\+SR}!posix.\+h@{posix.\+h}}
 \subsubsection[{\texorpdfstring{S\+\_\+\+I\+W\+U\+SR}{S_IWUSR}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+\_\+\+I\+W\+U\+SR~{\bf S\+\_\+\+I\+W\+R\+I\+TE}                    /$\ast$$<$ Write by owner.  $\ast$/}\hypertarget{posix_8h_ad70001754261c15a1bdc8e876c6d09d7}{}\label{posix_8h_ad70001754261c15a1bdc8e876c6d09d7}
 
 
-Definition at line 211 of file posix.\+h.
+Definition at line 219 of file posix.\+h.
 
 
 
@@ -1027,28 +1035,28 @@ Referenced by chmod().
 \subsubsection[{\texorpdfstring{S\+\_\+\+I\+X\+G\+RP}{S_IXGRP}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+\_\+\+I\+X\+G\+RP~({\bf S\+\_\+\+I\+X\+U\+SR} $>$$>$ 3)              /$\ast$$<$ Execute by group.  $\ast$/}\hypertarget{posix_8h_a042e69ac0e7dd56e5cfcd9e97d010323}{}\label{posix_8h_a042e69ac0e7dd56e5cfcd9e97d010323}
 
 
-Definition at line 217 of file posix.\+h.
+Definition at line 225 of file posix.\+h.
 
 \index{posix.\+h@{posix.\+h}!S\+\_\+\+I\+X\+O\+TH@{S\+\_\+\+I\+X\+O\+TH}}
 \index{S\+\_\+\+I\+X\+O\+TH@{S\+\_\+\+I\+X\+O\+TH}!posix.\+h@{posix.\+h}}
 \subsubsection[{\texorpdfstring{S\+\_\+\+I\+X\+O\+TH}{S_IXOTH}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+\_\+\+I\+X\+O\+TH~({\bf S\+\_\+\+I\+X\+G\+RP} $>$$>$ 3)              /$\ast$$<$ Execute by others.  $\ast$/}\hypertarget{posix_8h_a40223db1b95a04f5b28cceb3c34cfebd}{}\label{posix_8h_a40223db1b95a04f5b28cceb3c34cfebd}
 
 
-Definition at line 222 of file posix.\+h.
+Definition at line 230 of file posix.\+h.
 
 \index{posix.\+h@{posix.\+h}!S\+\_\+\+I\+X\+U\+SR@{S\+\_\+\+I\+X\+U\+SR}}
 \index{S\+\_\+\+I\+X\+U\+SR@{S\+\_\+\+I\+X\+U\+SR}!posix.\+h@{posix.\+h}}
 \subsubsection[{\texorpdfstring{S\+\_\+\+I\+X\+U\+SR}{S_IXUSR}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+\_\+\+I\+X\+U\+SR~{\bf S\+\_\+\+I\+E\+X\+EC}                     /$\ast$$<$ Execute by owner.  $\ast$/}\hypertarget{posix_8h_af10a35e3950795d6ee4e07157d000131}{}\label{posix_8h_af10a35e3950795d6ee4e07157d000131}
 
 
-Definition at line 212 of file posix.\+h.
+Definition at line 220 of file posix.\+h.
 
 \index{posix.\+h@{posix.\+h}!S\+E\+E\+K\+\_\+\+C\+UR@{S\+E\+E\+K\+\_\+\+C\+UR}}
 \index{S\+E\+E\+K\+\_\+\+C\+UR@{S\+E\+E\+K\+\_\+\+C\+UR}!posix.\+h@{posix.\+h}}
 \subsubsection[{\texorpdfstring{S\+E\+E\+K\+\_\+\+C\+UR}{SEEK_CUR}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+E\+E\+K\+\_\+\+C\+UR~1}\hypertarget{posix_8h_a4c8d0b76b470ba65a43ca46a88320f39}{}\label{posix_8h_a4c8d0b76b470ba65a43ca46a88320f39}
 
 
-Definition at line 241 of file posix.\+h.
+Definition at line 249 of file posix.\+h.
 
 
 
@@ -1059,7 +1067,7 @@ Referenced by lseek().
 \subsubsection[{\texorpdfstring{S\+E\+E\+K\+\_\+\+E\+ND}{SEEK_END}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+E\+E\+K\+\_\+\+E\+ND~2}\hypertarget{posix_8h_ad2a2e6c114780c3071efd24f16c7f7d8}{}\label{posix_8h_ad2a2e6c114780c3071efd24f16c7f7d8}
 
 
-Definition at line 242 of file posix.\+h.
+Definition at line 250 of file posix.\+h.
 
 
 
@@ -1074,7 +1082,7 @@ Seek offset macros.
 
 
 
-Definition at line 240 of file posix.\+h.
+Definition at line 248 of file posix.\+h.
 
 
 
@@ -1085,7 +1093,7 @@ Referenced by fsetpos(), and rewind().
 \subsubsection[{\texorpdfstring{stderr}{stderr}}]{\setlength{\rightskip}{0pt plus 5cm}\#define stderr~({\bf \+\_\+\+\_\+iob}\mbox{[}2\mbox{]})}\hypertarget{posix_8h_a5ce35bd5ba5021fd3b2e951e8f497656}{}\label{posix_8h_a5ce35bd5ba5021fd3b2e951e8f497656}
 
 
-Definition at line 260 of file posix.\+h.
+Definition at line 268 of file posix.\+h.
 
 
 
@@ -1100,7 +1108,7 @@ define stdin, stdout and stderr
 
 
 
-Definition at line 258 of file posix.\+h.
+Definition at line 266 of file posix.\+h.
 
 
 
@@ -1111,7 +1119,7 @@ Referenced by fatfs\+\_\+tests(), fdevopen(), getchar(), read(), setdate(), user
 \subsubsection[{\texorpdfstring{stdout}{stdout}}]{\setlength{\rightskip}{0pt plus 5cm}\#define stdout~({\bf \+\_\+\+\_\+iob}\mbox{[}1\mbox{]})}\hypertarget{posix_8h_a0c0ef221f95f64e8632451312fd18cc8}{}\label{posix_8h_a0c0ef221f95f64e8632451312fd18cc8}
 
 
-Definition at line 259 of file posix.\+h.
+Definition at line 267 of file posix.\+h.
 
 
 
@@ -1155,7 +1163,7 @@ Definition at line 42 of file posix.\+h.
 \subsubsection[{\texorpdfstring{dirent\+\_\+t}{dirent_t}}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf dirent} {\bf dirent\+\_\+t}}\hypertarget{posix_8h_a6673e8f64ca9ebd7e26e6289dca06e87}{}\label{posix_8h_a6673e8f64ca9ebd7e26e6289dca06e87}
 
 
-Definition at line 136 of file posix.\+h.
+Definition at line 144 of file posix.\+h.
 
 \index{posix.\+h@{posix.\+h}!F\+I\+LE@{F\+I\+LE}}
 \index{F\+I\+LE@{F\+I\+LE}!posix.\+h@{posix.\+h}}
@@ -1166,7 +1174,7 @@ define F\+I\+LE type
 
 
 
-Definition at line 246 of file posix.\+h.
+Definition at line 254 of file posix.\+h.
 
 \index{posix.\+h@{posix.\+h}!gid\+\_\+t@{gid\+\_\+t}}
 \index{gid\+\_\+t@{gid\+\_\+t}!posix.\+h@{posix.\+h}}
@@ -1224,6 +1232,16 @@ Definition at line 51 of file posix.\+h.
 
 Definition at line 46 of file posix.\+h.
 
+\index{posix.\+h@{posix.\+h}!utime\+\_\+t@{utime\+\_\+t}}
+\index{utime\+\_\+t@{utime\+\_\+t}!posix.\+h@{posix.\+h}}
+\subsubsection[{\texorpdfstring{utime\+\_\+t}{utime_t}}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf utimbuf}  {\bf utime\+\_\+t}}\hypertarget{posix_8h_ab29c02d05027f32f3f17bee2e4839777}{}\label{posix_8h_ab29c02d05027f32f3f17bee2e4839777}
+
+
+P\+O\+S\+IX utimbuf structure. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{posix_8c_a732642e09075838bbbca28b3529f13db}{utime()} 
+\end{DoxySeeAlso}
 
 
 \subsection{Enumeration Type Documentation}
@@ -1335,7 +1353,7 @@ pointer to basename extension.
 \end{DoxyReturn}
 
 
-Definition at line 1422 of file posix.\+c.
+Definition at line 1455 of file posix.\+c.
 
 \index{posix.\+h@{posix.\+h}!basename@{basename}}
 \index{basename@{basename}!posix.\+h@{posix.\+h}}
@@ -1363,7 +1381,7 @@ pointer to basename of string.
 \end{DoxyReturn}
 
 
-Definition at line 1402 of file posix.\+c.
+Definition at line 1435 of file posix.\+c.
 
 
 
@@ -1397,7 +1415,7 @@ P\+O\+S\+IX change directory.
 \end{DoxyReturn}
 
 
-Definition at line 1444 of file posix.\+c.
+Definition at line 1477 of file posix.\+c.
 
 \index{posix.\+h@{posix.\+h}!chmod@{chmod}}
 \index{chmod@{chmod}!posix.\+h@{posix.\+h}}
@@ -1430,7 +1448,7 @@ fileno on success.
 \end{DoxyReturn}
 
 
-Definition at line 1469 of file posix.\+c.
+Definition at line 1502 of file posix.\+c.
 
 
 
@@ -1464,7 +1482,7 @@ P\+O\+S\+IX Close a file with fileno handel.
 \end{DoxyReturn}
 
 
-Definition at line 671 of file posix.\+c.
+Definition at line 674 of file posix.\+c.
 
 
 
@@ -1498,7 +1516,7 @@ P\+O\+S\+IX closedir.
 \end{DoxyReturn}
 
 
-Definition at line 1670 of file posix.\+c.
+Definition at line 1703 of file posix.\+c.
 
 
 
@@ -1530,7 +1548,7 @@ E\+OF on error with errno set.
 \end{DoxyReturn}
 
 
-Definition at line 1739 of file posix.\+c.
+Definition at line 1772 of file posix.\+c.
 
 \index{posix.\+h@{posix.\+h}!dirname@{dirname}}
 \index{dirname@{dirname}!posix.\+h@{posix.\+h}}
@@ -1567,7 +1585,7 @@ index of last \textquotesingle{}/\textquotesingle{} character.
 \end{DoxyReturn}
 
 
-Definition at line 1507 of file posix.\+c.
+Definition at line 1540 of file posix.\+c.
 
 \index{posix.\+h@{posix.\+h}!dump\+\_\+stat@{dump\+\_\+stat}}
 \index{dump\+\_\+stat@{dump\+\_\+stat}!posix.\+h@{posix.\+h}}
@@ -1593,7 +1611,7 @@ void.
 
 \end{DoxyItemize}
 
-Definition at line 1246 of file posix.\+c.
+Definition at line 1249 of file posix.\+c.
 
 
 
@@ -1631,7 +1649,7 @@ epoch seconds
 \end{DoxyReturn}
 
 
-Definition at line 2083 of file posix.\+c.
+Definition at line 2116 of file posix.\+c.
 
 
 
@@ -1666,7 +1684,7 @@ E\+OF on error with errno set.
 \end{DoxyReturn}
 
 
-Definition at line 1885 of file posix.\+c.
+Definition at line 1918 of file posix.\+c.
 
 
 
@@ -1704,7 +1722,7 @@ E\+OF on error with errno set.
 \end{DoxyReturn}
 
 
-Definition at line 1930 of file posix.\+c.
+Definition at line 1963 of file posix.\+c.
 
 
 
@@ -1738,11 +1756,11 @@ E\+B\+A\+D\+M\+SG if no conversion possible.
 \end{DoxyReturn}
 
 
-Definition at line 1970 of file posix.\+c.
+Definition at line 2003 of file posix.\+c.
 
 
 
-Referenced by chdir(), chmod(), close(), closedir(), fatfs\+\_\+getc(), fatfs\+\_\+putc(), ftruncate(), getcwd(), lseek(), mkdir(), open(), opendir(), read(), readdir(), rename(), rmdir(), stat(), syncfs(), truncate(), unlink(), and write().
+Referenced by chdir(), chmod(), close(), closedir(), fatfs\+\_\+getc(), fatfs\+\_\+putc(), ftruncate(), getcwd(), lseek(), mkdir(), open(), opendir(), read(), readdir(), rename(), rmdir(), stat(), syncfs(), truncate(), unlink(), utime(), and write().
 
 \index{posix.\+h@{posix.\+h}!fatfs\+\_\+to\+\_\+fileno@{fatfs\+\_\+to\+\_\+fileno}}
 \index{fatfs\+\_\+to\+\_\+fileno@{fatfs\+\_\+to\+\_\+fileno}!posix.\+h@{posix.\+h}}
@@ -1767,7 +1785,7 @@ fileno on success.
 \end{DoxyReturn}
 
 
-Definition at line 2046 of file posix.\+c.
+Definition at line 2079 of file posix.\+c.
 
 \index{posix.\+h@{posix.\+h}!fclose@{fclose}}
 \index{fclose@{fclose}!posix.\+h@{posix.\+h}}
@@ -1797,7 +1815,7 @@ P\+O\+S\+IX close a file stream.
 \end{DoxyReturn}
 
 
-Definition at line 1225 of file posix.\+c.
+Definition at line 1228 of file posix.\+c.
 
 
 
@@ -1826,7 +1844,7 @@ Assign stdin,stdout,stderr or any use defined I/O N\+OT P\+O\+S\+IX
 \end{DoxyParams}
 
 
-Definition at line 1829 of file posix.\+c.
+Definition at line 1862 of file posix.\+c.
 
 \index{posix.\+h@{posix.\+h}!feof@{feof}}
 \index{feof@{feof}!posix.\+h@{posix.\+h}}
@@ -1854,7 +1872,7 @@ feof reports if the stream is at E\+OF
 \end{DoxyReturn}
 
 
-Definition at line 496 of file posix.\+c.
+Definition at line 499 of file posix.\+c.
 
 \index{posix.\+h@{posix.\+h}!ferror@{ferror}}
 \index{ferror@{ferror}!posix.\+h@{posix.\+h}}
@@ -1882,7 +1900,7 @@ ferror reports if the stream has an error flag set
 \end{DoxyReturn}
 
 
-Definition at line 1751 of file posix.\+c.
+Definition at line 1784 of file posix.\+c.
 
 \index{posix.\+h@{posix.\+h}!fgetc@{fgetc}}
 \index{fgetc@{fgetc}!posix.\+h@{posix.\+h}}
@@ -1912,7 +1930,7 @@ E\+OF on error with errno set.
 \end{DoxyReturn}
 
 
-Definition at line 207 of file posix.\+c.
+Definition at line 210 of file posix.\+c.
 
 
 
@@ -1949,7 +1967,7 @@ P\+O\+S\+IX get position of file stream.
 \end{DoxyReturn}
 
 
-Definition at line 513 of file posix.\+c.
+Definition at line 516 of file posix.\+c.
 
 \index{posix.\+h@{posix.\+h}!fgets@{fgets}}
 \index{fgets@{fgets}!posix.\+h@{posix.\+h}}
@@ -1979,7 +1997,7 @@ character.
 \end{DoxyReturn}
 
 
-Definition at line 411 of file posix.\+c.
+Definition at line 414 of file posix.\+c.
 
 
 
@@ -2011,7 +2029,7 @@ int fileno on success
 
 \end{DoxyItemize}
 
-Definition at line 710 of file posix.\+c.
+Definition at line 713 of file posix.\+c.
 
 
 
@@ -2045,7 +2063,7 @@ N\+U\+LL if P\+O\+S\+IX fileno is invalid N\+U\+LL
 \end{DoxyReturn}
 
 
-Definition at line 2110 of file posix.\+c.
+Definition at line 2165 of file posix.\+c.
 
 
 
@@ -2083,7 +2101,7 @@ N\+U\+LL on error with errno set, N\+U\+LL if fileno out of bounds
 \end{DoxyReturn}
 
 
-Definition at line 740 of file posix.\+c.
+Definition at line 743 of file posix.\+c.
 
 
 
@@ -2120,7 +2138,7 @@ N\+U\+LL on error with errno set.
 \end{DoxyReturn}
 
 
-Definition at line 768 of file posix.\+c.
+Definition at line 771 of file posix.\+c.
 
 
 
@@ -2153,7 +2171,7 @@ size of printed result
 \end{DoxyReturn}
 
 
-Definition at line 2318 of file posix.\+c.
+Definition at line 2373 of file posix.\+c.
 
 
 
@@ -2186,7 +2204,7 @@ character.
 \end{DoxyReturn}
 
 
-Definition at line 269 of file posix.\+c.
+Definition at line 272 of file posix.\+c.
 
 
 
@@ -2219,7 +2237,7 @@ character.
 \end{DoxyReturn}
 
 
-Definition at line 448 of file posix.\+c.
+Definition at line 451 of file posix.\+c.
 
 \index{posix.\+h@{posix.\+h}!fread@{fread}}
 \index{fread@{fread}!posix.\+h@{posix.\+h}}
@@ -2258,7 +2276,7 @@ count on sucess.
 \end{DoxyReturn}
 
 
-Definition at line 789 of file posix.\+c.
+Definition at line 792 of file posix.\+c.
 
 
 
@@ -2287,7 +2305,7 @@ fileno on success.
 \end{DoxyReturn}
 
 
-Definition at line 2145 of file posix.\+c.
+Definition at line 2200 of file posix.\+c.
 
 
 
@@ -2332,7 +2350,7 @@ file position on sucess.
 \end{DoxyReturn}
 
 
-Definition at line 536 of file posix.\+c.
+Definition at line 539 of file posix.\+c.
 
 
 
@@ -2369,7 +2387,7 @@ P\+O\+S\+IX set position of file stream.
 \end{DoxyReturn}
 
 
-Definition at line 562 of file posix.\+c.
+Definition at line 565 of file posix.\+c.
 
 \index{posix.\+h@{posix.\+h}!ftell@{ftell}}
 \index{ftell@{ftell}!posix.\+h@{posix.\+h}}
@@ -2399,7 +2417,7 @@ file position on sucess.
 \end{DoxyReturn}
 
 
-Definition at line 576 of file posix.\+c.
+Definition at line 579 of file posix.\+c.
 
 
 
@@ -2436,7 +2454,7 @@ P\+O\+S\+IX truncate open file to length.
 \end{DoxyReturn}
 
 
-Definition at line 813 of file posix.\+c.
+Definition at line 816 of file posix.\+c.
 
 \index{posix.\+h@{posix.\+h}!fwrite@{fwrite}}
 \index{fwrite@{fwrite}!posix.\+h@{posix.\+h}}
@@ -2475,7 +2493,7 @@ count written on sucess.
 \end{DoxyReturn}
 
 
-Definition at line 854 of file posix.\+c.
+Definition at line 857 of file posix.\+c.
 
 
 
@@ -2509,7 +2527,7 @@ character.
 \end{DoxyReturn}
 
 
-Definition at line 327 of file posix.\+c.
+Definition at line 330 of file posix.\+c.
 
 
 
@@ -2544,7 +2562,7 @@ P\+O\+S\+IX get current working directory.
 \end{DoxyReturn}
 
 
-Definition at line 1552 of file posix.\+c.
+Definition at line 1585 of file posix.\+c.
 
 
 
@@ -2583,7 +2601,7 @@ Test P\+O\+S\+IX fileno if it is a Serial Console/\+T\+TY.
 \item[\hyperlink{todo__todo000003}{Todo}]Perhaps we should verify console functions have been added ? \end{DoxyRefDesc}
 
 
-Definition at line 187 of file posix.\+c.
+Definition at line 190 of file posix.\+c.
 
 
 
@@ -2628,7 +2646,7 @@ file position on sucess.
 \end{DoxyReturn}
 
 
-Definition at line 608 of file posix.\+c.
+Definition at line 611 of file posix.\+c.
 
 
 
@@ -2664,7 +2682,7 @@ ascii string pointer of P\+O\+S\+IX \hyperlink{time_8c_a77d6bba12950028852621634
 \end{DoxySeeAlso}
 
 
-Definition at line 1309 of file posix.\+c.
+Definition at line 1312 of file posix.\+c.
 
 
 
@@ -2699,7 +2717,7 @@ P\+O\+S\+IX make a directory.
 \end{DoxyReturn}
 
 
-Definition at line 1575 of file posix.\+c.
+Definition at line 1608 of file posix.\+c.
 
 \index{posix.\+h@{posix.\+h}!new\+\_\+file\+\_\+descriptor@{new\+\_\+file\+\_\+descriptor}}
 \index{new\+\_\+file\+\_\+descriptor@{new\+\_\+file\+\_\+descriptor}!posix.\+h@{posix.\+h}}
@@ -2719,7 +2737,7 @@ fileno on success.
 \end{DoxyReturn}
 
 
-Definition at line 2189 of file posix.\+c.
+Definition at line 2244 of file posix.\+c.
 
 
 
@@ -2756,7 +2774,7 @@ fileno on success.
 \end{DoxyReturn}
 Seek to end of the file 
 
-Definition at line 881 of file posix.\+c.
+Definition at line 884 of file posix.\+c.
 
 
 
@@ -2771,7 +2789,7 @@ Referenced by fopen().
 )}\hypertarget{posix_8h_a19051b9081dfef221d9bf4583e935031}{}\label{posix_8h_a19051b9081dfef221d9bf4583e935031}
 
 
-Definition at line 1689 of file posix.\+c.
+Definition at line 1722 of file posix.\+c.
 
 
 
@@ -2806,7 +2824,7 @@ void.
 \end{DoxyReturn}
 
 
-Definition at line 1767 of file posix.\+c.
+Definition at line 1800 of file posix.\+c.
 
 
 
@@ -2872,7 +2890,7 @@ read and write B\+O\+TH share the same stream buffer and buffer index pointers.
 \end{DoxyWarning}
 
 
-Definition at line 2252 of file posix.\+c.
+Definition at line 2307 of file posix.\+c.
 
 
 
@@ -2902,7 +2920,7 @@ Put a character to a stream See \hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e50
 \end{DoxyParams}
 
 
-Definition at line 392 of file posix.\+c.
+Definition at line 395 of file posix.\+c.
 
 \index{posix.\+h@{posix.\+h}!putchar@{putchar}}
 \index{putchar@{putchar}!posix.\+h@{posix.\+h}}
@@ -2930,7 +2948,7 @@ character.
 \end{DoxyReturn}
 
 
-Definition at line 342 of file posix.\+c.
+Definition at line 345 of file posix.\+c.
 
 \index{posix.\+h@{posix.\+h}!puts@{puts}}
 \index{puts@{puts}!posix.\+h@{posix.\+h}}
@@ -2958,7 +2976,7 @@ character.
 \end{DoxyReturn}
 
 
-Definition at line 471 of file posix.\+c.
+Definition at line 474 of file posix.\+c.
 
 \index{posix.\+h@{posix.\+h}!read@{read}}
 \index{read@{read}!posix.\+h@{posix.\+h}}
@@ -2994,7 +3012,7 @@ count on sucess.
 \end{DoxyReturn}
 
 
-Definition at line 992 of file posix.\+c.
+Definition at line 995 of file posix.\+c.
 
 
 
@@ -3009,7 +3027,7 @@ Referenced by fread(), rx\+\_\+fifo\+\_\+read(), and send\+\_\+message().
 )}\hypertarget{posix_8h_a58257faf8b13b3f14558613c632b2373}{}\label{posix_8h_a58257faf8b13b3f14558613c632b2373}
 
 
-Definition at line 1708 of file posix.\+c.
+Definition at line 1741 of file posix.\+c.
 
 
 
@@ -3046,7 +3064,7 @@ P\+O\+S\+IX rename a file by name.
 \end{DoxyReturn}
 
 
-Definition at line 1601 of file posix.\+c.
+Definition at line 1634 of file posix.\+c.
 
 \index{posix.\+h@{posix.\+h}!rewind@{rewind}}
 \index{rewind@{rewind}!posix.\+h@{posix.\+h}}
@@ -3074,7 +3092,7 @@ void.
 \end{DoxyReturn}
 
 
-Definition at line 652 of file posix.\+c.
+Definition at line 655 of file posix.\+c.
 
 \index{posix.\+h@{posix.\+h}!rmdir@{rmdir}}
 \index{rmdir@{rmdir}!posix.\+h@{posix.\+h}}
@@ -3104,7 +3122,7 @@ P\+O\+S\+IX delete a directory.
 \end{DoxyReturn}
 
 
-Definition at line 1624 of file posix.\+c.
+Definition at line 1657 of file posix.\+c.
 
 \index{posix.\+h@{posix.\+h}!stat@{stat}}
 \index{stat@{stat}!posix.\+h@{posix.\+h}}
@@ -3137,7 +3155,7 @@ P\+O\+S\+IX stat -\/ get file status of named file.
 \end{DoxyReturn}
 
 
-Definition at line 1330 of file posix.\+c.
+Definition at line 1333 of file posix.\+c.
 
 
 
@@ -3172,7 +3190,7 @@ char $\ast$
 \end{DoxyReturn}
 
 
-Definition at line 1793 of file posix.\+c.
+Definition at line 1826 of file posix.\+c.
 
 \index{posix.\+h@{posix.\+h}!strerror\+\_\+r@{strerror\+\_\+r}}
 \index{strerror\+\_\+r@{strerror\+\_\+r}!posix.\+h@{posix.\+h}}
@@ -3209,7 +3227,7 @@ char $\ast$
 \end{DoxyReturn}
 
 
-Definition at line 1810 of file posix.\+c.
+Definition at line 1843 of file posix.\+c.
 
 \index{posix.\+h@{posix.\+h}!sync@{sync}}
 \index{sync@{sync}!posix.\+h@{posix.\+h}}
@@ -3232,7 +3250,7 @@ void.
 \end{DoxyReturn}
 
 
-Definition at line 1055 of file posix.\+c.
+Definition at line 1058 of file posix.\+c.
 
 
 
@@ -3266,7 +3284,7 @@ P\+O\+S\+IX Sync pending file changes and metadata for specified fileno.
 \end{DoxyReturn}
 
 
-Definition at line 1082 of file posix.\+c.
+Definition at line 1085 of file posix.\+c.
 
 
 
@@ -3303,7 +3321,7 @@ P\+O\+S\+IX truncate named file to length.
 \end{DoxyReturn}
 
 
-Definition at line 1128 of file posix.\+c.
+Definition at line 1131 of file posix.\+c.
 
 \index{posix.\+h@{posix.\+h}!ungetc@{ungetc}}
 \index{ungetc@{ungetc}!posix.\+h@{posix.\+h}}
@@ -3336,7 +3354,43 @@ E\+OF on error with errno set.
 \end{DoxyReturn}
 
 
-Definition at line 359 of file posix.\+c.
+Definition at line 362 of file posix.\+c.
+
+\index{posix.\+h@{posix.\+h}!unix\+\_\+time\+\_\+to\+\_\+fat@{unix\+\_\+time\+\_\+to\+\_\+fat}}
+\index{unix\+\_\+time\+\_\+to\+\_\+fat@{unix\+\_\+time\+\_\+to\+\_\+fat}!posix.\+h@{posix.\+h}}
+\subsubsection[{\texorpdfstring{unix\+\_\+time\+\_\+to\+\_\+fat(time\+\_\+t epoch, uint16\+\_\+t $\ast$date, uint16\+\_\+t $\ast$time)}{unix_time_to_fat(time_t epoch, uint16_t *date, uint16_t *time)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void unix\+\_\+time\+\_\+to\+\_\+fat (
+\begin{DoxyParamCaption}
+\item[{{\bf time\+\_\+t}}]{epoch, }
+\item[{{\bf uint16\+\_\+t} $\ast$}]{date, }
+\item[{{\bf uint16\+\_\+t} $\ast$}]{time}
+\end{DoxyParamCaption}
+)}\hypertarget{posix_8h_aa5666c514336f78c6d1ab6bc35c74ae0}{}\label{posix_8h_aa5666c514336f78c6d1ab6bc35c74ae0}
+
+
+Convert Linux P\+O\+S\+IX time\+\_\+t to F\+A\+T32 date and time. N\+OT P\+O\+S\+IX. 
+
+
+\begin{DoxyItemize}
+\item man page gmtime (3). 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em epoch} & unix epoch seconds \\
+\hline
+\mbox{\tt in}  & {\em $\ast$date} & fat32 date \\
+\hline
+\mbox{\tt in}  & {\em $\ast$time} & fat32 time \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+
+Definition at line 2141 of file posix.\+c.
+
+
+
+Referenced by utime().
 
 \index{posix.\+h@{posix.\+h}!unlink@{unlink}}
 \index{unlink@{unlink}!posix.\+h@{posix.\+h}}
@@ -3366,7 +3420,30 @@ P\+O\+S\+IX delete a file.
 \end{DoxyReturn}
 
 
-Definition at line 1646 of file posix.\+c.
+Definition at line 1679 of file posix.\+c.
+
+\index{posix.\+h@{posix.\+h}!utime@{utime}}
+\index{utime@{utime}!posix.\+h@{posix.\+h}}
+\subsubsection[{\texorpdfstring{utime(const char $\ast$filename, const struct utimbuf $\ast$times)}{utime(const char *filename, const struct utimbuf *times)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int utime (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{filename, }
+\item[{const struct {\bf utimbuf} $\ast$}]{times}
+\end{DoxyParamCaption}
+)}\hypertarget{posix_8h_a732642e09075838bbbca28b3529f13db}{}\label{posix_8h_a732642e09075838bbbca28b3529f13db}
+
+
+Set Modification and Access time of a file. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em filename} & file name \\
+\hline
+ & {\em } & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1396 of file posix.\+c.
 
 \index{posix.\+h@{posix.\+h}!write@{write}}
 \index{write@{write}!posix.\+h@{posix.\+h}}
@@ -3402,7 +3479,7 @@ count on sucess.
 \end{DoxyReturn}
 
 
-Definition at line 1166 of file posix.\+c.
+Definition at line 1169 of file posix.\+c.
 
 
 
@@ -3427,5 +3504,5 @@ P\+O\+S\+IX fileno to P\+O\+S\+IX F\+I\+LE stream table.
 \item \+\_\+\+\_\+iob\mbox{[}2\mbox{]} = stderr. 
 \end{DoxyItemize}
 
-Definition at line 130 of file posix.\+c.
+Definition at line 133 of file posix.\+c.
 
