@@ -472,7 +472,7 @@ MEMSPACE int ADF4351_Config( double RFout , double REFin , double ChannelSpacing
 MEMSPACE void ADF4351_update ( double freq );
 MEMSPACE void ADF4351_task ( void );
 MEMSPACE void adf4351_help ( void );
-MEMSPACE int adf4351_cmd ( char *line );
+MEMSPACE int adf4351_cmd ( int argc , char *argv []);
 
 /* adf4351_hal.c */
 MEMSPACE void ADF4351_spi_init ( void );

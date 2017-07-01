@@ -442,6 +442,25 @@ int MATCH(char *str, char *pat)
         return(len);
     return(0);
 }
+///@brief Match two strings and compare argument index
+/// Display  message if the number of arguments is too few
+///@param str: string to test
+///@param pat: pattern to match
+///@param min: minumum number or arguments
+///@param argc: actual number of arguments
+///@return 1 on match, 0 on no match or too few arguments
+MEMSPACE
+int MATCHARGS(char *str, char *pat, int min, int argc)
+{
+    if(MATCH(str,pat))
+    {
+        if(argc >= min)
+            return(1);
+        else
+            printf("%s expected %d arguments only got %d\n", pat, min,argc);
+    }
+    return(0);
+}
 
 
 // =============================================
@@ -511,6 +530,68 @@ int MATCHI_LEN(char *str, char *pat)
             return(len);
     }
     return(0);
+}
+
+// =============================================
+///@brief Split string into arguments stored in argv[]
+///   We split source string into arguments
+/// Warning: source string is modified!
+///   To save memory each gap in the source string is terminated with an EOS
+///   This becomes the end of string for each argument returned
+/// Warning: Do NOT modify the source string or argument contents while using them
+///   You can reassign new pointers to the arguments if you like
+///@param[in|out] str: string to break up into arguments
+///@param[out] *argv[]: token array
+///@param[in] max: maximum argument count
+///@return count
+MEMSPACE
+int split_args(char *str, char *argv[], int max)
+{
+	int i;
+	int count = 0;
+    // NULL ?
+
+	for(i=1;i<max;++i)
+		argv[i] = NULL;	
+
+	// You may replace argv[0]
+	argv[count++] = "main";
+
+	if(!max)
+		return(0);
+
+    if(!str)
+        return(0);
+
+	while(*str && count < max)
+	{
+		str = skipspaces(str);
+		if(!*str)
+			break;
+
+		// string processing
+		if(*str == '"')
+		{
+			++str;
+			// Save string pointer
+			argv[count++] = str;
+			while(*str && *str != '"')
+				++str;
+			if(*str == '"')
+				*str++ = 0;
+			continue;
+		}
+
+		argv[count++] = str;
+		// Find size of token
+		while(*str > ' ' && *str <= 0x7e)
+			++str;
+		if(!*str)
+			break;
+		*str  = 0;
+		++str;
+	}
+	return(count);
 }
 
 // =============================================

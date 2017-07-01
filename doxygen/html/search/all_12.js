@@ -310,6 +310,7 @@ var searchData=
   ['spi_5fwp_5freg',['SPI_WP_REG',['../spi__register_8h.html#ae2e9196913362490499bc8d642fd4da1',1,'spi_register.h']]],
   ['spi_5fwr_5fbit_5foder',['SPI_WR_BIT_ODER',['../spi__register_8h.html#a19343b71bdb98235bbed13206fcec2b6',1,'spi_register.h']]],
   ['spi_5fwr_5fbyte_5forder',['SPI_WR_BYTE_ORDER',['../spi__register_8h.html#a2b6e3e187afb9d15a3b2805593e93a0a',1,'spi_register.h']]],
+  ['split_5fargs',['split_args',['../stringsup_8c.html#a84aa635d9cf4f3d41608b9e5639f71e9',1,'split_args(char *str, char *argv[], int max):&#160;stringsup.c'],['../stringsup_8h.html#a84aa635d9cf4f3d41608b9e5639f71e9',1,'split_args(char *str, char *argv[], int max):&#160;stringsup.c']]],
   ['sprintf',['sprintf',['../cpu_8h.html#ab99ed44389e722578695fa0065118fac',1,'cpu.h']]],
   ['ss',['SS',['../ff_8c.html#a42b5140fc5e09a53c8f4cba66dc0e6c1',1,'ff.c']]],
   ['sscanf',['sscanf',['../mathio_8h.html#a79c7a2e931845b0fb6b2fa6d63939de4',1,'mathio.h']]],

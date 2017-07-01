@@ -274,18 +274,23 @@ void ntp_setup(void)
 user_tasks()
 {
 	char buffer[260];
+	int argc;
+	char *argv[10];
+
 
 	if(kbhit(0, 1)) /// second argument 1 = only report when an EOL is detectedEOL
 	{
 		int flag = 0;
 		fgets(buffer,255,stdin);
+		argc = split_args(buffer, argv, 10);
+
 		printf("Command:[%s]\n",buffer);
-		if(!flag && user_tests(buffer))
+		if(!flag && user_tests(argc,argv))
 		{
 			flag = 1;
 		}
 #ifdef FATFS_SUPPORT
-		if(!flag && fatfs_tests(buffer))
+		if(!flag && fatfs_tests(argc,argv))
 		{
 			flag = 1;
 		}
@@ -625,7 +630,7 @@ void user_help()
 /// @return 1 The return code indicates a command matched.
 /// @return 0 if no rules matched
 MEMSPACE
-int user_tests(char *str)
+int user_tests(int argc, char *argv[])
 {
 
     int res;
@@ -636,71 +641,67 @@ int user_tests(char *str)
 	time_t t;
 	double freq;
 	extern int connections;
+	int ind;
 
-    ptr = skipspaces(str);
+	if(argc < 2)
+		return(0);
 
-    if ((len = token(ptr,"help")) )
+	ind = 1;
+    ptr = argv[ind++];
+
+
+    if (MATCHARGS(ptr,"help", (ind+0),argc ))
     {
-        ptr += len;
         user_help();
         return(1);
     }
-    else if ((len = token(ptr,"setdate")) )
+    if (MATCHARGS(ptr,"setdate", (ind + 1) ,argc))
     {
-        ptr += len;
-		ptr = skipspaces(ptr);
-        setdate_r(ptr);
+        setdate_r(argv[ind++]);
         return(1);
     }
-    else if ((len = token(ptr,"time")) )
+    if (MATCHARGS(ptr,"time", (ind + 0) ,argc))
     {
 		t = time(0);	
 		printf("TIME:%s\n", ctime(&t));
         return(1);
 	}
-    else if ((len = token(ptr,"connections")) )
+    if (MATCHARGS(ptr,"connection", (ind + 0) ,argc))
     {
 		printf("connections:%d\n", connections);
         return(1);
 	}
-    else if ((len = token(ptr,"mem")) )
+    if (MATCHARGS(ptr,"mem", (ind + 0) ,argc))
     {
 		PrintRam();
         return(1);
 	}
-    else if ((len = token(ptr,"timetest")) )
+    if (MATCHARGS(ptr,"timetest", (ind + 1) ,argc))
     {
-        ptr += len;
-		timetests(ptr,0);
+		timetests(argv[ind++],0);
         return(1);
 	}
 #ifdef ADF4351
-    else if ((len = token(ptr,"adf4351")) )
+    if (MATCHARGS(ptr,"adf4351", (ind + 1) ,argc))
     {
         ptr += len;
-		adf4351_cmd(ptr);
+		adf4351_cmd(argc,argv);
 		return(1);
 	}
 #endif
 #ifdef DISPLAY
-    else if ((len = token(ptr,"calibrate")) )
+    if (MATCHARGS(ptr,"calibrate", (ind + 1) ,argc))
     {
-        ptr += len;
-		ptr = skipspaces(ptr);
-        ret = atoi(ptr);
-		tft_setRotation(ret);
+		tft_setRotation(atoi(argv[ind++]));
 		tft_touch_calibrate(master);
 		MatWrite("/tft_calX",tft_calX);
 		MatWrite("/tft_calY",tft_calY);
 		setup_windows(ret & 3,0);
         return(1);
     }
-    else if ((len = token(ptr,"calibrate_test")) )
+    if (MATCHARGS(ptr,"calibrate_test", (ind + 1) ,argc))
     {
-        ptr += len;
-		ptr = skipspaces(ptr);
-        ret = atoi(ptr);
-		tft_setRotation(ret);
+		tft_setRotation(atoi(argv[ind++]));
 		tft_touch_calibrate(master);
 		MatWrite("/tft_calX",tft_calX);
 		MatWrite("/tft_calY",tft_calY);
@@ -708,40 +709,31 @@ int user_tests(char *str)
 		setup_windows(ret & 3,0);
         return(1);
     }
-    else if ((len = token(ptr,"rotate")) )
+    if (MATCHARGS(ptr,"rotate", (ind + 1) ,argc))
     {
-        ptr += len;
-		ptr = skipspaces(ptr);
-        ret = atoi(ptr);
 // FIXME rotate calibration data ???
-		tft_setRotation(ret);
+		tft_setRotation(atoi(argv[ind++]));
 		setup_windows(ret & 3,0);
 		return(1);
     }
 #ifdef VFONTS
-    else if ((len = token(ptr,"draw")) )
+    if (MATCHARGS(ptr,"draw", (ind + 1) ,argc))
     {
-		int c;
-        ptr += len;
-		ptr = skipspaces(ptr);
-		c = *ptr++;
-		if(c)
-		{
-			ptr = skipspaces(ptr);
-			if( *ptr == '1')
-				drawSVG(winmsg, 8, 24, c, 0.08, ILI9341_WHITE, 1);
-			else
-				drawSVG(winmsg, 8, 24, c, 0.08, ILI9341_WHITE, 0);
-		}
+		char *ptr = argv[ind++];
+		int c = *ptr++;
+		int n = *ptr++;
+		if( n == '1')
+
+			drawSVG(winmsg, 8, 24, c, 0.08, ILI9341_WHITE, 1);
+		else
+			drawSVG(winmsg, 8, 24, c, 0.08, ILI9341_WHITE, 0);
 		return(1);
     }
 #endif
-    else if ((len = token(ptr,"pixel")) )
+    if (MATCHARGS(ptr,"pixel", (ind + 0) ,argc))
     {
 		int c;
 		int x,y;
-        ptr += len;
-		ptr = skipspaces(ptr);
 
 		tft_drawPixel(winmsg, 8, 24, ILI9341_WHITE);
 		for(y=24;y<26;++y)

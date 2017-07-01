@@ -26,10 +26,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef _FATFS_UTILS_H
 #define _FATFS_UTILS_H
 
-
 /* fatfs_utils.c */
 MEMSPACE void fatfs_help ( void );
-MEMSPACE int fatfs_tests ( char *str );
+MEMSPACE int fatfs_tests ( int argc , char *argv []);
 MEMSPACE void upload_file ( char *name );
 MEMSPACE void hexdump ( char *name );
 MEMSPACE void sum ( char *name );
@@ -47,6 +46,7 @@ MEMSPACE void fatfs_rmdir ( char *name );
 MEMSPACE void fatfs_stat ( char *name );
 MEMSPACE void fatfs_cd ( char *name );
 MEMSPACE void fatfs_pwd ( void );
+
 
 
 #endif

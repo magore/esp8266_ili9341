@@ -41,7 +41,7 @@ var searchData=
   ['adf4351_5fclkdivmode_5foff',['ADF4351_CLKDIVMODE_OFF',['../adf4351_8h.html#aba01db17f4a2bfbc3db60dc172972a25ab7def279810406a2c01433ba61d3a4cb',1,'adf4351.h']]],
   ['adf4351_5fclkdivmode_5fresync',['ADF4351_CLKDIVMODE_RESYNC',['../adf4351_8h.html#aba01db17f4a2bfbc3db60dc172972a25a1251e63e427bda20a3804654f170a61c',1,'adf4351.h']]],
   ['adf4351_5fclock',['ADF4351_clock',['../adf4351__hal_8c.html#a4a5934b5485a69054e6af23fc9a0c018',1,'adf4351_hal.c']]],
-  ['adf4351_5fcmd',['adf4351_cmd',['../adf4351_8h.html#aa04820fdf56ad71c4d1680da0dda6634',1,'adf4351_cmd(char *line):&#160;adf4351_cmd.c'],['../adf4351__cmd_8c.html#aa04820fdf56ad71c4d1680da0dda6634',1,'adf4351_cmd(char *line):&#160;adf4351_cmd.c']]],
+  ['adf4351_5fcmd',['adf4351_cmd',['../adf4351_8h.html#ab12bd87478441e61080184fa9f551470',1,'adf4351_cmd(int argc, char *argv[]):&#160;adf4351_cmd.c'],['../adf4351__cmd_8c.html#ab12bd87478441e61080184fa9f551470',1,'adf4351_cmd(int argc, char *argv[]):&#160;adf4351_cmd.c']]],
   ['adf4351_5fcmd_2ec',['adf4351_cmd.c',['../adf4351__cmd_8c.html',1,'']]],
   ['adf4351_5fconfig',['ADF4351_Config',['../adf4351_8c.html#aa81dc41f60eb1698b3866deb0d2a31bc',1,'ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RFoutCalc):&#160;adf4351.c'],['../adf4351_8h.html#aa81dc41f60eb1698b3866deb0d2a31bc',1,'ADF4351_Config(double RFout, double REFin, double ChannelSpacing, double *RFoutCalc):&#160;adf4351.c']]],
   ['adf4351_5fdisable',['ADF4351_DISABLE',['../adf4351_8h.html#a0411cd49bb5b71852cecd93bcbf0ca2dac426af872d7676ac2e1810cc6b5e188a',1,'adf4351.h']]],

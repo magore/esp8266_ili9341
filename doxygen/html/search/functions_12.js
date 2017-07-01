@@ -38,6 +38,7 @@ var searchData=
   ['spi_5ftxrx',['spi_TXRX',['../hal_8c.html#a9617412610d280bbb4886674790d7d3e',1,'spi_TXRX(uint8_t data):&#160;hal.c'],['../hal_8h.html#a9617412610d280bbb4886674790d7d3e',1,'spi_TXRX(uint8_t data):&#160;hal.c']]],
   ['spi_5ftxrx_5fbuffer',['spi_TXRX_buffer',['../hal_8c.html#a79519dd3475dcb68112f162379287e20',1,'spi_TXRX_buffer(const uint8_t *data, int count):&#160;hal.c'],['../hal_8h.html#a79519dd3475dcb68112f162379287e20',1,'spi_TXRX_buffer(const uint8_t *data, int count):&#160;hal.c']]],
   ['spi_5fwaitready',['spi_waitReady',['../hal_8c.html#a98abd8ed313db191648e1d7ae2720f83',1,'spi_waitReady():&#160;hal.c'],['../hal_8h.html#a8e9642c8a1ccfc666d717835a6fab2bb',1,'spi_waitReady(void):&#160;hal.c']]],
+  ['split_5fargs',['split_args',['../stringsup_8c.html#a84aa635d9cf4f3d41608b9e5639f71e9',1,'split_args(char *str, char *argv[], int max):&#160;stringsup.c'],['../stringsup_8h.html#a84aa635d9cf4f3d41608b9e5639f71e9',1,'split_args(char *str, char *argv[], int max):&#160;stringsup.c']]],
   ['sscanf',['sscanf',['../mathio_8h.html#a79c7a2e931845b0fb6b2fa6d63939de4',1,'mathio.h']]],
   ['st_5fclust',['st_clust',['../ff_8c.html#af9229179c04736dc2052137f3f1aa1da',1,'ff.c']]],
   ['st_5fdword',['st_dword',['../ff_8c.html#af413a4e38a1ca8b203e332163d086d88',1,'ff.c']]],

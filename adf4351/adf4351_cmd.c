@@ -99,52 +99,53 @@ void adf4351_help()
 /// @param[in] line - command line
 /// @return  void
 MEMSPACE
-int adf4351_cmd(char *line)
+int adf4351_cmd(int argc,char *argv[])
 {
     char *ptr;
     int len;
     int status;
     double result;
 	char tmp[80];
+	int ind;
 
-	ptr = skipspaces(line);
+    if(argc < 2)
+        return(0);
+
+    ind = 1;
+    ptr = argv[ind++];
 
 	printf("adf4351_cmd:[%s]\n", ptr);
+	for(;ind<argc;++ind)
+		printf("%s ", argv[ind++]);
+	printf("\n");
 
-	if((len = token(ptr,"help")) )
+	if(MATCHARGS(ptr, "help", (ind+0) ,argc))
 	{
 		adf4351_help();
 		return(1);
 	}
 
-	else if((len = token(ptr,"stop")) )
+	if(MATCHARGS(ptr, "stop", (ind+0) ,argc))
 	{
 		printf("adf4351 scan stop:  %e\n",frequency.val);
 		frequency.scan = 0;
 		return(1);
 	}
 
-	else if((len = token(ptr,"start")) )
+	if(MATCHARGS(ptr, "start", (ind+0) ,argc))
 	{
 		frequency.scan = 1;
 		printf("adf4351 scan start: %e\n",frequency.val);
 		return(1);
 	}
-    else if ((len = token(ptr,"scan")) )
+	if(MATCHARGS(ptr, "scan", (ind+3) ,argc))
     {
 		/* stop scanning while doing an update */
 		frequency.scan = 0;
 
-        ptr += len;
-
-        ptr = get_token(ptr, tmp, 79);
-        frequency.low = atof(tmp);
-
-        ptr = get_token(ptr, tmp, 79);
-        frequency.hi = atof(tmp);
-
-        ptr = get_token(ptr, tmp, 79);
-        frequency.spacing = atof(tmp);
+        frequency.low = atof(argv[ind++]);
+        frequency.hi = atof(argv[ind++]);
+        frequency.spacing = atof(argv[ind++]);
 
         frequency.val = frequency.low;
         printf("frequency low:      %10.2f\n",frequency.low);
@@ -160,14 +161,16 @@ int adf4351_cmd(char *line)
 	frequency.scan = 0;
 
 	// frequency
-	ptr = get_token(ptr, tmp, 79);
-	frequency.val = atof(tmp);
+	if(ind+1 <= argc)
+		frequency.val = atof(argv[ind++]);
+	else
+		return(0);
+
 	printf("frequency: %.2f\n",frequency.val);
 
 	// spacing - if omitted 1000 is used
-	ptr = get_token(ptr, tmp, 79);
-	if(*tmp)
-		frequency.spacing = atof(tmp);
+	if(ind+1 <= argc)
+		frequency.spacing = atof(argv[ind++]);
 	else
 		frequency.spacing = 1000.0;
 
