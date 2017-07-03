@@ -108,9 +108,7 @@ typedef struct {
     time_t epoch;	///@brief epoch used to determine the year of DST start and end caluclulation - for caching
 } dst_t;
 
-
-
-/* lib/time.c */
+/* time.c */
 MEMSPACE char *tm_wday_to_ascii ( int i );
 MEMSPACE char *tm_mon_to_ascii ( int i );
 MEMSPACE int finddayofweek ( int year , int month , int day );
@@ -141,6 +139,10 @@ MEMSPACE void set_dst ( time_t epoch );
 MEMSPACE int is_dst ( time_t epoch );
 MEMSPACE void print_dst ( void );
 MEMSPACE void print_dst_gmt ( void );
+MEMSPACE void initialize_clock ( int minwest );
+MEMSPACE void display_clock ( void );
+
+
 
 
 #endif

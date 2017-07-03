@@ -1,5 +1,5 @@
 /**
- @file fatfs/posix.c
+ @file posix.c
 
  @brief POSIX wrapper for FatFS
    - Provides many of the common Posix/linux functions 
@@ -85,6 +85,7 @@
         - fileno_to_fatfs
         - free_file_descriptor
         - new_file_descriptor
+		- mkfs
         - posix_fopen_modes_to_open
         - unix_time_to_fat
 
@@ -108,6 +109,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "user_config.h"
 
+#include "stringsup.h"
 #include "fatfs.h"
 
 #include "posix.h"
@@ -424,7 +426,7 @@ fgets(char *str, int size, FILE *stream)
 				return(NULL);
 			break;
 		}
- 		if(c == '\r' || c == '\n')
+ 		if(c == '\n')
 			break;
 		if(c == 0x08)
 		{
@@ -1609,8 +1611,11 @@ int mkdir(const char *pathname, mode_t mode)
 {
     errno = 0;
 
-    if(chmod(pathname, mode))
-        return(-1);
+	if(mode)
+	{
+		if(chmod(pathname, mode))
+			return(-1);
+	}
 
     int res = f_mkdir(pathname);
     if(res != FR_OK)
@@ -1902,6 +1907,58 @@ fdevopen(int (*put)(char, FILE *), int (*get)(FILE *))
 // =============================================
 // =============================================
 
+/// @brief Formt SD card
+/// @param[in] *name: device name
+/// @retrun void
+int mkfs(char *name)
+{
+	FATFS fs;
+	uint8_t *mem;
+	int res;
+	int len;
+	int c;
+	char dev[4];
+
+	len = MATCH(name,"/dev/sd");
+	if(!len)
+	{
+		printf("Expected /dev/sda .. /dev/sdj\n");
+		return(0);
+	}
+	// Convert /dev/sd[a-j] to 0: .. 9:
+	dev[1] = ':';
+	dev[2] = 0;
+	c = tolower( name[len-1] );
+	if(c >= 'a' && c <= ('a' + 9))
+		dev[0] = (c - 'a');
+	dev[3] = 0;
+
+	// Register work area to the logical drive 0:
+	res = f_mount(&fs, dev, 0);                    
+	if(!res)
+	{
+		put_rc(res);
+		return(0);
+	}
+
+	// Allocate memory for mkfs function
+	mem = safemalloc(1024);
+	if(!mem)
+		return(0);
+
+	// Create FAT volume on the logical drive 0
+	// 2nd argument is ignored. */
+	res = f_mkfs(dev, FM_FAT32, 0, mem, 1024);
+	if(res)
+	{
+		put_rc(res);
+		safefree(mem);
+		return(0);
+	}
+	safefree(mem);
+	return(1);
+}
+
 /// @brief Private FatFs function called by fgetc() to get a byte from file stream
 /// FIXME buffer this function call
 /// NOT POSIX
@@ -1921,6 +1978,7 @@ int  fatfs_getc(FILE *stream)
     UINT size;
     int res;
     uint8_t c;
+	long pos;
 
     errno = 0;
 
@@ -1944,6 +2002,50 @@ int  fatfs_getc(FILE *stream)
         stream->flags |= __SEOF;
         return(EOF);
     }
+
+	// AUTOMATIC end of line METHOD detection
+	// ALWAYS return '\n' for ALL methods
+	// History: End of line (EOL) characters sometimes differ, mostly legacy systems, and modern UNIX (which uses just '\n')
+	//    '\r' ONLY 
+	//	  '\r\n' 
+	//	  '\n' 
+	// The difference was mostly from the way old mechanical printers were controlled.
+	//    '\n' (New Line = NL) advanced the line
+	//    '\r' (Charage Return = CR) moved the print head to start of line 
+	//    '\t' (Tabstop = TAB)
+	//    '\f' (Form feed = FF)
+	// The problem with mechanical devices is that each had differing control and time delays to deal with.
+    //  (TAB, CR, NL and FF) did different things and took differing times depending on the device.
+	//
+	// Long before DOS UNIX took the position that controlling physical devices must be a device drivers problem only.
+	// They reasoned if users had to worry about all the ugly controll and timing issues no code would be portable.
+	// Therefore they made NL just a SYMBOL for the driver to determine what to do.
+	// This design philosophy argued if you needed better control its better to use a real designed purposed tool for it.
+	// (ie. like curses or termcap).
+
+	// Here to deal with those other old ugly stupid pointless EOL methods we convert to just a symbol '\n'
+	// FROM '\n' OR '\r'char OR '\r\n' TO '\n'
+	// Note: char != '\n'
+	if(c == '\r')
+	{
+		// PEEK forward 1 character
+		pos = f_tell(fh);
+		// Check for trailing '\n' or EOF
+		res = f_read(fh, &c, 1, (UINT *) &size);
+		if(res != FR_OK || size != 1)
+		{
+			// '\r' with EOF impiles '\n'
+			return('\n');
+		}
+		// This file must be '\r' ONLY for end of line
+		if(c != '\n')
+		{
+			// Not '\n' or EOF o move file pointer back to just after the '\r'
+			f_lseek(fh, pos);
+			return('\n');
+		}
+		c = '\n';
+	}
     return(c & 0xff);
 }
 

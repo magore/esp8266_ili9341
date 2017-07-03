@@ -547,15 +547,26 @@ void uart1_queue_putc(char c)
 #endif
 
 /**
-	@brief high level function to see if we have input data available
+	@brief Has an EOL been read on stdin ?
 	@param[in] uart_no: uart number
 	@return byte read
 */
-int kbhit(int uart_no, int eol)
+int kbhiteol(int uart_no)
 {
-	if(eol && uart_rxq[uart_no]->flags & QUEUE_EOL )
+	if(uart_rxq[uart_no]->flags & QUEUE_EOL )
 			return(1);
-	if(!eol && !queue_empty(uart_rxq[uart_no]) )
+	if(!queue_empty(uart_rxq[uart_no]) )
+		return(1);
+	return(0);
+}
+/**
+	@brief Has ANY character been read in stdin 
+	@param[in] uart_no: uart number
+	@return byte read
+*/
+int kbhit(int uart_no)
+{
+	if(!queue_empty(uart_rxq[uart_no]) )
 		return(1);
 	return(0);
 }

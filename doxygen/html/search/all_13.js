@@ -16,6 +16,7 @@ var searchData=
   ['test_5fprintf_2ec',['test_printf.c',['../test__printf_8c.html',1,'']]],
   ['test_5ftypes',['test_types',['../user__main_8c.html#ab4b988c39b8bd19b13221ca57e721f96',1,'user_main.c']]],
   ['testflash_2ec',['testflash.c',['../testflash_8c.html',1,'']]],
+  ['testpage',['testpage',['../posix__tests_8c.html#a568ac783ed7c976d2832966dcbce607c',1,'testpage(int count):&#160;posix_tests.c'],['../posix__tests_8h.html#a568ac783ed7c976d2832966dcbce607c',1,'testpage(int count):&#160;posix_tests.c']]],
   ['testsquare',['TestSquare',['../matrix_8c.html#a533fea51f46e772b14ec519a9f36aef9',1,'TestSquare(mat_t MatA):&#160;matrix.c'],['../matrix_8h.html#a533fea51f46e772b14ec519a9f36aef9',1,'TestSquare(mat_t MatA):&#160;matrix.c']]],
   ['tft',['tft',['../ili9341_8c.html#aa55d6901951c7fe057e8d32477b5e122',1,'tft():&#160;ili9341.c'],['../ili9341__hal_8c.html#aa55d6901951c7fe057e8d32477b5e122',1,'tft():&#160;ili9341.c']]],
   ['tft_5f565torgb',['tft_565toRGB',['../ili9341_8c.html#aecac98906474a88c3017fc3761328506',1,'tft_565toRGB(uint16_t color, uint8_t *r, uint8_t *g, uint8_t *b):&#160;ili9341.c'],['../ili9341_8h.html#aecac98906474a88c3017fc3761328506',1,'tft_565toRGB(uint16_t color, uint8_t *r, uint8_t *g, uint8_t *b):&#160;ili9341.c']]],

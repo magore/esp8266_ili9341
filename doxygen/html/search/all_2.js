@@ -115,6 +115,7 @@ var searchData=
   ['buffer_5fsize',['BUFFER_SIZE',['../web_8c.html#a6b20d41d6252e9871430c242cb1a56e7',1,'web.c']]],
   ['buffer_5ft',['buffer_t',['../structbuffer__t.html',1,'']]],
   ['buffer_5fungetc',['buffer_ungetc',['../buffer_8c.html#ac376df96e4713216095e124c2ee1833c',1,'buffer_ungetc(buffer_t *p, int c):&#160;buffer.c'],['../buffer_8h.html#ac376df96e4713216095e124c2ee1833c',1,'buffer_ungetc(buffer_t *p, int c):&#160;buffer.c']]],
+  ['bufsize',['BUFSIZE',['../posix__tests_8c.html#aeca034f67218340ecb2261a22c2f3dcd',1,'posix_tests.c']]],
   ['byte',['BYTE',['../integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58',1,'integer.h']]],
   ['bytes',['bytes',['../structqueue__t.html#a58398d4ee60bc90ffba2bc3488fe185b',1,'queue_t::bytes()'],['../unionuint32__t__bytes.html#a50aeebe398ee3b740421f1cc8d8583b8',1,'uint32_t_bytes::bytes()'],['../struct__font.html#a13b0b0e4e91f4d663ba4c3c11bfbda8a',1,'_font::Bytes()']]]
 ];

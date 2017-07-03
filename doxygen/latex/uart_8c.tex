@@ -64,8 +64,10 @@ L\+O\+C\+AL \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+
 \begin{DoxyCompactList}\small\item\em Write a byte to uart1 with NL to C\+R/\+NL conversion Note\+: This function waits/blocks util the write can happen. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{uart_8c_a737b67ce3c8c77f547a29a06dd0b45b1}{uart1\+\_\+getc} ()
 \begin{DoxyCompactList}\small\item\em Read a byte from uart1 with NL to C\+R/\+NL conversion Note\+: This function waits/blocks util the read can happen. \end{DoxyCompactList}\item 
-int \hyperlink{uart_8c_ac5b65ec6f77f4b3dbefd863b767711b7}{kbhit} (int uart\+\_\+no, int eol)
-\begin{DoxyCompactList}\small\item\em high level function to see if we have input data available \end{DoxyCompactList}\item 
+int \hyperlink{uart_8c_adba60d396ad1ae85a31880b05758e460}{kbhiteol} (int uart\+\_\+no)
+\begin{DoxyCompactList}\small\item\em Has an E\+OL been read on stdin ? \end{DoxyCompactList}\item 
+int \hyperlink{uart_8c_a27dccd1929734deb5d318a0cf44bd7c5}{kbhit} (int uart\+\_\+no)
+\begin{DoxyCompactList}\small\item\em Has A\+NY character been read in stdin. \end{DoxyCompactList}\item 
 void \hyperlink{uart_8c_aa018dc93fd77400560f0ab7e8d78f59a}{uart\+\_\+callback} (void $\ast$p)
 \begin{DoxyCompactList}\small\item\em Uart interrupt callback function Process all receive and transmit events here. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{uart_8c_a83db8ea8db21280f74e2546414fc80f7}{U\+A\+R\+T\+\_\+\+Set\+Print\+Port} (uint8 uart\+\_\+no)
@@ -128,15 +130,41 @@ Definition at line 34 of file uart.\+c.
 \subsection{Function Documentation}
 \index{uart.\+c@{uart.\+c}!kbhit@{kbhit}}
 \index{kbhit@{kbhit}!uart.\+c@{uart.\+c}}
-\subsubsection[{\texorpdfstring{kbhit(int uart\+\_\+no, int eol)}{kbhit(int uart_no, int eol)}}]{\setlength{\rightskip}{0pt plus 5cm}int kbhit (
+\subsubsection[{\texorpdfstring{kbhit(int uart\+\_\+no)}{kbhit(int uart_no)}}]{\setlength{\rightskip}{0pt plus 5cm}int kbhit (
 \begin{DoxyParamCaption}
-\item[{int}]{uart\+\_\+no, }
-\item[{int}]{eol}
+\item[{int}]{uart\+\_\+no}
 \end{DoxyParamCaption}
-)}\hypertarget{uart_8c_ac5b65ec6f77f4b3dbefd863b767711b7}{}\label{uart_8c_ac5b65ec6f77f4b3dbefd863b767711b7}
+)}\hypertarget{uart_8c_a27dccd1929734deb5d318a0cf44bd7c5}{}\label{uart_8c_a27dccd1929734deb5d318a0cf44bd7c5}
 
 
-high level function to see if we have input data available 
+Has A\+NY character been read in stdin. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em uart\+\_\+no} & uart number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+byte read 
+\end{DoxyReturn}
+
+
+Definition at line 567 of file uart.\+c.
+
+
+
+Referenced by testpage().
+
+\index{uart.\+c@{uart.\+c}!kbhiteol@{kbhiteol}}
+\index{kbhiteol@{kbhiteol}!uart.\+c@{uart.\+c}}
+\subsubsection[{\texorpdfstring{kbhiteol(int uart\+\_\+no)}{kbhiteol(int uart_no)}}]{\setlength{\rightskip}{0pt plus 5cm}int kbhiteol (
+\begin{DoxyParamCaption}
+\item[{int}]{uart\+\_\+no}
+\end{DoxyParamCaption}
+)}\hypertarget{uart_8c_adba60d396ad1ae85a31880b05758e460}{}\label{uart_8c_adba60d396ad1ae85a31880b05758e460}
+
+
+Has an E\+OL been read on stdin ? 
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -574,7 +602,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 575 of file uart.\+c.
+Definition at line 586 of file uart.\+c.
 
 \index{uart.\+c@{uart.\+c}!uart\+\_\+config@{uart\+\_\+config}}
 \index{uart\+\_\+config@{uart\+\_\+config}!uart.\+c@{uart.\+c}}
@@ -609,7 +637,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 685 of file uart.\+c.
+Definition at line 696 of file uart.\+c.
 
 \index{uart.\+c@{uart.\+c}!uart\+\_\+getb@{uart\+\_\+getb}}
 \index{uart\+\_\+getb@{uart\+\_\+getb}!uart.\+c@{uart.\+c}}
@@ -689,7 +717,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 744 of file uart.\+c.
+Definition at line 755 of file uart.\+c.
 
 
 
@@ -753,7 +781,7 @@ Definition at line 323 of file uart.\+c.
 
 
 
-Referenced by \+\_\+uart0\+\_\+fn(), fatfs\+\_\+cat(), uart0\+\_\+putc(), and uart1\+\_\+putc().
+Referenced by \+\_\+uart0\+\_\+fn(), fatfs\+\_\+ls(), uart0\+\_\+putc(), and uart1\+\_\+putc().
 
 \index{uart.\+c@{uart.\+c}!uart\+\_\+reattach@{uart\+\_\+reattach}}
 \index{uart\+\_\+reattach@{uart\+\_\+reattach}!uart.\+c@{uart.\+c}}
@@ -771,7 +799,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 793 of file uart.\+c.
+Definition at line 804 of file uart.\+c.
 
 \index{uart.\+c@{uart.\+c}!uart\+\_\+rx\+\_\+disable@{uart\+\_\+rx\+\_\+disable}}
 \index{uart\+\_\+rx\+\_\+disable@{uart\+\_\+rx\+\_\+disable}!uart.\+c@{uart.\+c}}
@@ -835,7 +863,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 653 of file uart.\+c.
+Definition at line 664 of file uart.\+c.
 
 \index{uart.\+c@{uart.\+c}!uart\+\_\+tx\+\_\+disable@{uart\+\_\+tx\+\_\+disable}}
 \index{uart\+\_\+tx\+\_\+disable@{uart\+\_\+tx\+\_\+disable}!uart.\+c@{uart.\+c}}

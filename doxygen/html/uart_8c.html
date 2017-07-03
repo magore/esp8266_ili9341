@@ -183,9 +183,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a737b67ce3c8c77f547a29a06dd0b45b1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="earth2wireframe_8c.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a737b67ce3c8c77f547a29a06dd0b45b1">uart1_getc</a> ()</td></tr>
 <tr class="memdesc:a737b67ce3c8c77f547a29a06dd0b45b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a byte from uart1 with NL to CR/NL conversion Note: This function waits/blocks util the read can happen.  <a href="#a737b67ce3c8c77f547a29a06dd0b45b1">More...</a><br /></td></tr>
 <tr class="separator:a737b67ce3c8c77f547a29a06dd0b45b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac5b65ec6f77f4b3dbefd863b767711b7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#ac5b65ec6f77f4b3dbefd863b767711b7">kbhit</a> (int uart_no, int eol)</td></tr>
-<tr class="memdesc:ac5b65ec6f77f4b3dbefd863b767711b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">high level function to see if we have input data available  <a href="#ac5b65ec6f77f4b3dbefd863b767711b7">More...</a><br /></td></tr>
-<tr class="separator:ac5b65ec6f77f4b3dbefd863b767711b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adba60d396ad1ae85a31880b05758e460"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#adba60d396ad1ae85a31880b05758e460">kbhiteol</a> (int uart_no)</td></tr>
+<tr class="memdesc:adba60d396ad1ae85a31880b05758e460"><td class="mdescLeft">&#160;</td><td class="mdescRight">Has an EOL been read on stdin ?  <a href="#adba60d396ad1ae85a31880b05758e460">More...</a><br /></td></tr>
+<tr class="separator:adba60d396ad1ae85a31880b05758e460"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27dccd1929734deb5d318a0cf44bd7c5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a27dccd1929734deb5d318a0cf44bd7c5">kbhit</a> (int uart_no)</td></tr>
+<tr class="memdesc:a27dccd1929734deb5d318a0cf44bd7c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Has ANY character been read in stdin.  <a href="#a27dccd1929734deb5d318a0cf44bd7c5">More...</a><br /></td></tr>
+<tr class="separator:a27dccd1929734deb5d318a0cf44bd7c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa018dc93fd77400560f0ab7e8d78f59a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#aa018dc93fd77400560f0ab7e8d78f59a">uart_callback</a> (void *p)</td></tr>
 <tr class="memdesc:aa018dc93fd77400560f0ab7e8d78f59a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uart interrupt callback function Process all receive and transmit events here.  <a href="#aa018dc93fd77400560f0ab7e8d78f59a">More...</a><br /></td></tr>
 <tr class="separator:aa018dc93fd77400560f0ab7e8d78f59a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -239,7 +242,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="ac5b65ec6f77f4b3dbefd863b767711b7"></a>
+<a class="anchor" id="a27dccd1929734deb5d318a0cf44bd7c5"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -247,23 +250,42 @@ Variables</h2></td></tr>
           <td class="memname">int kbhit </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>uart_no</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><em>uart_no</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>eol</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>high level function to see if we have input data available </p>
+<p>Has ANY character been read in stdin. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">uart_no</td><td>uart number </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>byte read </dd></dl>
+
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00567">567</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+
+<p>Referenced by <a class="el" href="posix__tests_8c_source.html#l00438">testpage()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="adba60d396ad1ae85a31880b05758e460"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kbhiteol </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>uart_no</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Has an EOL been read on stdin ? </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">uart_no</td><td>uart number </td></tr>
@@ -781,7 +803,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00575">575</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00586">586</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
 </div>
 </div>
@@ -840,7 +862,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00685">685</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00696">696</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
 </div>
 </div>
@@ -936,9 +958,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00744">744</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00755">755</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
-<p>Referenced by <a class="el" href="user__main_8c_source.html#l00962">setup()</a>.</p>
+<p>Referenced by <a class="el" href="user__main_8c_source.html#l00971">setup()</a>.</p>
 
 </div>
 </div>
@@ -1018,7 +1040,7 @@ Variables</h2></td></tr>
 
 <p>Definition at line <a class="el" href="uart_8c_source.html#l00323">323</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
-<p>Referenced by <a class="el" href="debug_8c_source.html#l00037">_uart0_fn()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00649">fatfs_cat()</a>, <a class="el" href="uart_8c_source.html#l00358">uart0_putc()</a>, and <a class="el" href="uart_8c_source.html#l00382">uart1_putc()</a>.</p>
+<p>Referenced by <a class="el" href="debug_8c_source.html#l00037">_uart0_fn()</a>, <a class="el" href="fatfs__tests_8c_source.html#l00307">fatfs_ls()</a>, <a class="el" href="uart_8c_source.html#l00358">uart0_putc()</a>, and <a class="el" href="uart_8c_source.html#l00382">uart1_putc()</a>.</p>
 
 </div>
 </div>
@@ -1039,7 +1061,7 @@ Variables</h2></td></tr>
 <p>Reinitialize uart0 and uart1 calls <a class="el" href="uart_8c.html#a5afb95571d79d939651ef59768fde839" title="initialize uart0 and uart1 Defaults: 8 = data bits, 1 = stop bits, no parity ">uart_init()</a> </p>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00793">793</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00804">804</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
 </div>
 </div>
@@ -1114,7 +1136,7 @@ Variables</h2></td></tr>
 <p>Install debug uart. </p>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00653">653</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00664">664</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
 </div>
 </div>
@@ -1192,7 +1214,7 @@ Variables</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jul 1 2017 19:23:26 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jul 3 2017 17:50:20 for ESP8266 ILI9341 display support code with printf sources, wire-frame viewer and custom fonts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

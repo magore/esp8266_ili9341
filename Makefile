@@ -192,32 +192,41 @@ CFLAGS += -DFLOATIO
 endif
 
 # =========================
-# FatFS code support
-FATFS_SUPPORT = 1
+# POIX tests
+POSIX_TESTS = 1
 
-# POSIX FatFS wrappers
-POSIX_WRAPPERS=1
+# FatFS tests
+FATFS_SUPPORT = 1
+FATFS_TESTS = 1
+FATFS_DEBUG=1
+#FATFS_UTILS_FULL=1
 
 ifdef FATFS_SUPPORT
     CFLAGS  += -DFATFS_SUPPORT
-FATFS_UTILS_FULL=1
-FATFS_DEBUG=1
+
+ifdef FATFS_TESTS
+    CFLAGS  += -DFATFS_TESTS
+endif
+
+ifdef FATFS_UTILS_FULL
+    CFLAGS += -DFATFS_UTILS_FULL
+endif
+ifdef FATFS_DEBUG
     CFLAGS  += -DFATFS_DEBUG=$(FATFS_DEBUG)
+endif
+
+ifdef POSIX_TESTS
+    CFLAGS += -DPOSIX_TESTS
+	MODULES	+= posix
+endif
 
 ifdef SWAP45
 	MMC_CS=5
 else
 	MMC_CS=4
 endif
-
     CFLAGS  += -DMMC_CS=$(MMC_CS)
 
-ifdef POSIX_WRAPPERS
-    CFLAGS += -DPOSIX_WRAPPERS
-endif
-ifdef FATFS_UTILS_FULL
-    CFLAGS += -DFATFS_UTILS_FULL
-endif
 	MODULES	+= fatfs.sup
 	MODULES	+= fatfs
 	MODULES	+= fatfs/option
@@ -226,7 +235,7 @@ endif
 
 # =========================
 # DS1307 I2C real time clock
-#RTC = 1
+# RTC_SUPPORT = 1
 
 # =========================
 # ADF4351 demo

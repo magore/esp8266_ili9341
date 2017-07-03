@@ -50,9 +50,11 @@ MEMSPACE int WEAK_ATR tolower ( int c );
 MEMSPACE int WEAK_ATR toupper ( int c );
 MEMSPACE void *memchr ( const void *str , int c , size_t size );
 MEMSPACE size_t WEAK_ATR strlen ( const char *str );
-MEMSPACE char *strcpy ( char *dest , const char *src );
-MEMSPACE char *strncpy ( char *dest , const char *src , size_t size );
-MEMSPACE WEAK_ATR char *stpcpy ( char *dest , const char *src );
+MEMSPACE WEAK_ATR char *strcpy ( char *dest , const char *src );
+MEMSPACE WEAK_ATR char *strncpy ( char *dest , const char *src , size_t size );
+MEMSPACE WEAK_ATR char *strcpy ( char *dest , const char *src );
+MEMSPACE WEAK_ATR char *strcat ( char *dest , const char *src );
+MEMSPACE WEAK_ATR char *strncat ( char *dest , const char *src , size_t max );
 MEMSPACE void WEAK_ATR reverse ( char *str );
 MEMSPACE void WEAK_ATR strupper ( char *str );
 MEMSPACE void trim_tail ( char *str );
@@ -74,6 +76,7 @@ MEMSPACE int token ( char *str , char *pat );
 MEMSPACE int32_t get_value ( char *str );
 MEMSPACE char *strnalloc ( char *str , int len );
 MEMSPACE char *stralloc ( char *str );
+
 
 
 #endif

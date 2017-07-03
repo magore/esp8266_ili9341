@@ -10,6 +10,7 @@ Common Linux/\+P\+O\+S\+IX time functions.
 {\ttfamily \#include \char`\"{}printf/mathio.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}time.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}timer.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}posix.\+h\char`\"{}}\\*
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -80,7 +81,11 @@ static \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{time_8c_a4ccd9fbdf3321e8f5b7d4f13c1a7db71}{print\+\_\+dst} ()
 \begin{DoxyCompactList}\small\item\em print start/stop for D\+ST as localtime for this year \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{time_8c_a0a0d74ae196751888b6c149dc8f1ed75}{print\+\_\+dst\+\_\+gmt} ()
-\begin{DoxyCompactList}\small\item\em print start/stop for D\+ST as G\+MT for this year \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em print start/stop for D\+ST as G\+MT for this year \end{DoxyCompactList}\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{time_8c_a0be4566aa9ed3f590570de0787f2cc12}{initialize\+\_\+clock} (int minwest)
+\begin{DoxyCompactList}\small\item\em initialize system time -\/ if we have an R\+TC use it \end{DoxyCompactList}\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{time_8c_a45581e089f65467887592224ccb75612}{display\+\_\+clock} ()
+\begin{DoxyCompactList}\small\item\em Display system time and optionally R\+TC time. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -143,11 +148,11 @@ result is overwritten on each call.
 \end{DoxyWarning}
 
 
-Definition at line 392 of file time.\+c.
+Definition at line 394 of file time.\+c.
 
 
 
-Referenced by get\+\_\+date(), and ntp\+\_\+setup().
+Referenced by display\+\_\+clock(), get\+\_\+date(), and ntp\+\_\+setup().
 
 \index{time.\+c@{time.\+c}!asctime\+\_\+r@{asctime\+\_\+r}}
 \index{asctime\+\_\+r@{asctime\+\_\+r}!time.\+c@{time.\+c}}
@@ -178,7 +183,7 @@ buf string pointer.
 \end{DoxyReturn}
 
 
-Definition at line 365 of file time.\+c.
+Definition at line 367 of file time.\+c.
 
 
 
@@ -207,7 +212,7 @@ void.
 
 \end{DoxyItemize}
 
-Definition at line 880 of file time.\+c.
+Definition at line 882 of file time.\+c.
 
 \index{time.\+c@{time.\+c}!ctime@{ctime}}
 \index{ctime@{ctime}!time.\+c@{time.\+c}}
@@ -233,7 +238,7 @@ buf\mbox{[}\mbox{]}.
 \end{DoxyReturn}
 
 
-Definition at line 422 of file time.\+c.
+Definition at line 424 of file time.\+c.
 
 
 
@@ -269,7 +274,7 @@ result is overwritten on each call.
 \end{DoxyWarning}
 
 
-Definition at line 439 of file time.\+c.
+Definition at line 441 of file time.\+c.
 
 
 
@@ -302,7 +307,7 @@ buf string pointer.
 \end{DoxyReturn}
 
 
-Definition at line 408 of file time.\+c.
+Definition at line 410 of file time.\+c.
 
 \index{time.\+c@{time.\+c}!Days\+\_\+\+Per\+\_\+\+Month@{Days\+\_\+\+Per\+\_\+\+Month}}
 \index{Days\+\_\+\+Per\+\_\+\+Month@{Days\+\_\+\+Per\+\_\+\+Month}!time.\+c@{time.\+c}}
@@ -328,7 +333,7 @@ days in month including yeapyears
 \end{DoxyReturn}
 
 
-Definition at line 221 of file time.\+c.
+Definition at line 223 of file time.\+c.
 
 
 
@@ -367,11 +372,40 @@ days in a given year.
 \end{DoxySeeAlso}
 
 
-Definition at line 209 of file time.\+c.
+Definition at line 211 of file time.\+c.
 
 
 
 Referenced by time\+\_\+to\+\_\+tm().
+
+\index{time.\+c@{time.\+c}!display\+\_\+clock@{display\+\_\+clock}}
+\index{display\+\_\+clock@{display\+\_\+clock}!time.\+c@{time.\+c}}
+\subsubsection[{\texorpdfstring{display\+\_\+clock()}{display_clock()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void display\+\_\+clock (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{time_8c_a45581e089f65467887592224ccb75612}{}\label{time_8c_a45581e089f65467887592224ccb75612}
+
+
+Display system time and optionally R\+TC time. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\+: \hyperlink{rtc_8h_ab6c620f2f0bcbe90b65ecc723c03b645}{rtc\+\_\+read} 
+
+\+: \hyperlink{time_8c_a8386ff819a39512ea00cfc78ce5a27d5}{timegm()} 
+
+\+: ascitime() 
+\end{DoxySeeAlso}
+
+
+Definition at line 1227 of file time.\+c.
+
+
+
+Referenced by user\+\_\+tests().
 
 \index{time.\+c@{time.\+c}!find\+\_\+dst@{find\+\_\+dst}}
 \index{find\+\_\+dst@{find\+\_\+dst}!time.\+c@{time.\+c}}
@@ -409,7 +443,7 @@ Calculate G\+MT seconds of D\+ST transition given L\+O\+C\+AL time start / end t
 \end{DoxyParams}
 
 
-Definition at line 1036 of file time.\+c.
+Definition at line 1038 of file time.\+c.
 
 
 
@@ -439,7 +473,7 @@ return day of week for givenn day, month, year
 \end{DoxyParams}
 
 
-Definition at line 178 of file time.\+c.
+Definition at line 180 of file time.\+c.
 
 \index{time.\+c@{time.\+c}!gettimeofday@{gettimeofday}}
 \index{gettimeofday@{gettimeofday}!time.\+c@{time.\+c}}
@@ -465,7 +499,7 @@ Get current time struct timeval $\ast$tv and struct timezone $\ast$tz -\/ P\+O\+
 \end{DoxyReturn}
 
 
-Definition at line 820 of file time.\+c.
+Definition at line 822 of file time.\+c.
 
 
 
@@ -492,7 +526,7 @@ Get current timezone in struct timezone $\ast$tz -\/ P\+O\+S\+IX function.
 \end{DoxyReturn}
 
 
-Definition at line 790 of file time.\+c.
+Definition at line 792 of file time.\+c.
 
 
 
@@ -522,11 +556,11 @@ result is overwritten on each call.
 \end{DoxyWarning}
 
 
-Definition at line 469 of file time.\+c.
+Definition at line 471 of file time.\+c.
 
 
 
-Referenced by ntp\+\_\+setup(), rtc\+\_\+init(), and unix\+\_\+time\+\_\+to\+\_\+fat().
+Referenced by display\+\_\+clock(), ntp\+\_\+setup(), rtc\+\_\+init(), and unix\+\_\+time\+\_\+to\+\_\+fat().
 
 \index{time.\+c@{time.\+c}!gmtime\+\_\+r@{gmtime\+\_\+r}}
 \index{gmtime\+\_\+r@{gmtime\+\_\+r}!time.\+c@{time.\+c}}
@@ -552,11 +586,41 @@ tm\+\_\+t $\ast$result.
 \end{DoxyReturn}
 
 
-Definition at line 454 of file time.\+c.
+Definition at line 456 of file time.\+c.
 
 
 
 Referenced by ctime\+\_\+gm(), and gmtime().
+
+\index{time.\+c@{time.\+c}!initialize\+\_\+clock@{initialize\+\_\+clock}}
+\index{initialize\+\_\+clock@{initialize\+\_\+clock}!time.\+c@{time.\+c}}
+\subsubsection[{\texorpdfstring{initialize\+\_\+clock(int minwest)}{initialize_clock(int minwest)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void initialize\+\_\+clock (
+\begin{DoxyParamCaption}
+\item[{int}]{minwest}
+\end{DoxyParamCaption}
+)}\hypertarget{time_8c_a0be4566aa9ed3f590570de0787f2cc12}{}\label{time_8c_a0be4566aa9ed3f590570de0787f2cc12}
+
+
+initialize system time -\/ if we have an R\+TC use it 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em minwest} & your time zone as minute west \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\+: \hyperlink{timer_8c_a4ebca9883466f2cc6fea0547e0e64e79}{clock\+\_\+settime()} 
+\end{DoxySeeAlso}
+
+
+Definition at line 1178 of file time.\+c.
+
+
+
+Referenced by setup().
 
 \index{time.\+c@{time.\+c}!is\+\_\+dst@{is\+\_\+dst}}
 \index{is\+\_\+dst@{is\+\_\+dst}!time.\+c@{time.\+c}}
@@ -576,7 +640,7 @@ Test G\+MT epoch time to see if D\+ST applies in a local timezone.
 \end{DoxyParams}
 
 
-Definition at line 1145 of file time.\+c.
+Definition at line 1147 of file time.\+c.
 
 
 
@@ -615,7 +679,7 @@ Check if a year is a leap year.
 \end{DoxySeeAlso}
 
 
-Definition at line 133 of file time.\+c.
+Definition at line 135 of file time.\+c.
 
 
 
@@ -654,7 +718,7 @@ days.
 \end{DoxySeeAlso}
 
 
-Definition at line 154 of file time.\+c.
+Definition at line 156 of file time.\+c.
 
 
 
@@ -684,7 +748,7 @@ result is overwritten on each call.
 \end{DoxyWarning}
 
 
-Definition at line 520 of file time.\+c.
+Definition at line 522 of file time.\+c.
 
 
 
@@ -714,7 +778,7 @@ result.
 \end{DoxyReturn}
 
 
-Definition at line 497 of file time.\+c.
+Definition at line 499 of file time.\+c.
 
 
 
@@ -741,7 +805,7 @@ local epoch or -\/1 on failure out of range
 \end{DoxyReturn}
 
 
-Definition at line 532 of file time.\+c.
+Definition at line 534 of file time.\+c.
 
 
 
@@ -771,7 +835,7 @@ epoch since 1900 on sucess, -\/1 on failure out of range
 \end{DoxyReturn}
 
 
-Definition at line 652 of file time.\+c.
+Definition at line 654 of file time.\+c.
 
 
 
@@ -790,7 +854,7 @@ print start/stop for D\+ST as localtime for this year
 
 
 
-Definition at line 1156 of file time.\+c.
+Definition at line 1158 of file time.\+c.
 
 
 
@@ -809,7 +873,7 @@ print start/stop for D\+ST as G\+MT for this year
 
 
 
-Definition at line 1164 of file time.\+c.
+Definition at line 1166 of file time.\+c.
 
 
 
@@ -833,7 +897,7 @@ Set D\+ST start and end time for the given epoch year.
 \end{DoxyParams}
 
 
-Definition at line 1111 of file time.\+c.
+Definition at line 1113 of file time.\+c.
 
 
 
@@ -863,7 +927,7 @@ Set date and time by prompting user.
 \end{DoxyReturn}
 
 
-Definition at line 899 of file time.\+c.
+Definition at line 901 of file time.\+c.
 
 \index{time.\+c@{time.\+c}!setdate\+\_\+r@{setdate\+\_\+r}}
 \index{setdate\+\_\+r@{setdate\+\_\+r}!time.\+c@{time.\+c}}
@@ -888,7 +952,7 @@ Set date and time from string in this format \char`\"{}\+Y\+Y\+Y\+Y M\+M D\+D H\
 \end{DoxyReturn}
 
 
-Definition at line 917 of file time.\+c.
+Definition at line 919 of file time.\+c.
 
 
 
@@ -918,7 +982,7 @@ Set current time struct timeval $\ast$tv and struct timezone $\ast$tz -\/ P\+O\+
 \end{DoxyReturn}
 
 
-Definition at line 859 of file time.\+c.
+Definition at line 861 of file time.\+c.
 
 
 
@@ -945,11 +1009,11 @@ Set current timezone with struct timezone $\ast$tz -\/ P\+O\+S\+IX function.
 \end{DoxyReturn}
 
 
-Definition at line 804 of file time.\+c.
+Definition at line 806 of file time.\+c.
 
 
 
-Referenced by settimeofday().
+Referenced by initialize\+\_\+clock(), and settimeofday().
 
 \index{time.\+c@{time.\+c}!time@{time}}
 \index{time@{time}!time.\+c@{time.\+c}}
@@ -978,7 +1042,7 @@ time\+\_\+t seconds from epoch.
 \end{DoxySeeAlso}
 
 
-Definition at line 841 of file time.\+c.
+Definition at line 843 of file time.\+c.
 
 
 
@@ -1029,7 +1093,7 @@ epoch\+: time in seconds, $\ast$t has result.
 \end{DoxySeeAlso}
 
 
-Definition at line 260 of file time.\+c.
+Definition at line 262 of file time.\+c.
 
 
 
@@ -1067,11 +1131,11 @@ Seconds since E\+P\+O\+C\+H\+\_\+\+Y\+E\+AR Jan 1st.
 \end{DoxyReturn}
 
 
-Definition at line 345 of file time.\+c.
+Definition at line 347 of file time.\+c.
 
 
 
-Referenced by fat\+\_\+time\+\_\+to\+\_\+unix(), find\+\_\+dst(), and setdate\+\_\+r().
+Referenced by display\+\_\+clock(), fat\+\_\+time\+\_\+to\+\_\+unix(), find\+\_\+dst(), initialize\+\_\+clock(), and setdate\+\_\+r().
 
 \index{time.\+c@{time.\+c}!tm2epoch@{tm2epoch}}
 \index{tm2epoch@{tm2epoch}!time.\+c@{time.\+c}}
@@ -1100,7 +1164,7 @@ Seconds since G\+MT E\+P\+O\+C\+H\+\_\+\+Y\+E\+AR Jan 1st.
 \end{DoxyReturn}
 Note\+: To simplify we caculate Leap Day contributions in stages 
 
-Definition at line 550 of file time.\+c.
+Definition at line 552 of file time.\+c.
 
 
 
@@ -1132,7 +1196,7 @@ string pointer to month.
 \end{DoxySeeAlso}
 
 
-Definition at line 112 of file time.\+c.
+Definition at line 114 of file time.\+c.
 
 \index{time.\+c@{time.\+c}!tm\+\_\+wday\+\_\+to\+\_\+ascii@{tm\+\_\+wday\+\_\+to\+\_\+ascii}}
 \index{tm\+\_\+wday\+\_\+to\+\_\+ascii@{tm\+\_\+wday\+\_\+to\+\_\+ascii}!time.\+c@{time.\+c}}
@@ -1157,7 +1221,7 @@ string pointer to day.
 \end{DoxyReturn}
 
 
-Definition at line 85 of file time.\+c.
+Definition at line 87 of file time.\+c.
 
 
 
@@ -1196,7 +1260,7 @@ days in each month.
 
 \end{DoxyItemize}
 
-Definition at line 66 of file time.\+c.
+Definition at line 68 of file time.\+c.
 
 
 
@@ -1225,7 +1289,7 @@ accumulated days to the start of a month in a year.
 
 \end{DoxyItemize}
 
-Definition at line 57 of file time.\+c.
+Definition at line 59 of file time.\+c.
 
 
 
@@ -1251,7 +1315,7 @@ Short Name or each Month in a year.
 \item Month 0 .. 11 to string. 
 \end{DoxyItemize}
 
-Definition at line 98 of file time.\+c.
+Definition at line 100 of file time.\+c.
 
 
 
@@ -1266,7 +1330,7 @@ System Time Zone.
 
 
 
-Definition at line 47 of file time.\+c.
+Definition at line 49 of file time.\+c.
 
 \index{time.\+c@{time.\+c}!\+\_\+\+\_\+\+W\+Day@{\+\_\+\+\_\+\+W\+Day}}
 \index{\+\_\+\+\_\+\+W\+Day@{\+\_\+\+\_\+\+W\+Day}!time.\+c@{time.\+c}}
@@ -1285,7 +1349,7 @@ Short Name of each Day in a week.
 \end{DoxySeeAlso}
 
 
-Definition at line 76 of file time.\+c.
+Definition at line 78 of file time.\+c.
 
 
 
@@ -1300,5 +1364,5 @@ D\+ST start and stop in G\+MT epoch.
 
 
 
-Definition at line 50 of file time.\+c.
+Definition at line 52 of file time.\+c.
 

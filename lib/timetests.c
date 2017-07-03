@@ -30,7 +30,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "printf/mathio.h"
 #include "lib/time.h"
 #include "lib/timer.h"
-#ifdef RTC
+#ifdef RTC_SUPPORT
 #include "lib/rtc.h"
 #endif
 

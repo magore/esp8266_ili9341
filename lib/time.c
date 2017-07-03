@@ -36,9 +36,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "time.h"
 #include "timer.h"
 
-#ifdef RTC
+#ifdef RTC_SUPPORT
 #include "rtc.h"
 #endif
+
+#include "posix.h"
 
 /// @brief  System Clock Time
 extern volatile ts_t __clock;
@@ -998,7 +1000,7 @@ int setdate_r (char *buf)
     ts.tv_nsec = 0L;
     clock_settime(0, (ts_t *) &ts);
 
-#ifdef RTC
+#ifdef RTC_SUPPORT
     if( !rtc_init(1, (time_t) seconds ) )
     {
         printf("rtc force init failed\n");
@@ -1167,3 +1169,93 @@ void print_dst_gmt()
     printf("DST END         GMT: %s\n", ctime_gm(&dst.end));
 
 }
+
+/// @brief  initialize system time - if we have an RTC use it
+/// @param[in] minwest: your time zone as minute west
+///@return  void
+///@see: clock_settime()
+MEMSPACE
+void initialize_clock(int minwest)
+{
+    time_t seconds = 0;
+    tm_t tc;
+    ts_t ts;
+    tz_t tz;
+
+#ifdef RTC_SUPPORT
+    if(!rtc_init(0,0L))
+    {
+        printf("rtc uninitilized\n");
+        printf("attempting rtc init\n");
+        if( !rtc_init(1, (time_t) 0) )
+        {
+            printf("rtc force init failed\n");
+        }
+    }
+
+    if(rtc_read(&tc))
+    {
+        seconds = timegm(&tc);
+    }
+    else
+    {
+        seconds = 0;
+        printf("rtc read errorafter init\n");
+    }
+#else
+	printf("NO RTC\n");
+	seconds = 0;
+#endif	// RTC_SUPPORT
+	if(!seconds)
+		printf("use setdate command to change time\n");
+    tz.tz_minuteswest = minwest;
+    tz.tz_dsttime = 0;
+    settimezone( &tz );
+
+    ts.tv_sec = seconds;
+    ts.tv_nsec = 0L;
+    clock_settime(0, (ts_t *) &ts);
+}
+
+/// @brief  Display system time and optionally RTC time
+///
+/// @return  void
+/// @see: rtc_read
+/// @see: timegm()
+/// @see: ascitime()
+MEMSPACE
+void display_clock()
+{
+    time_t seconds;
+    tm_t tc;
+    ts_t ts;
+
+#ifdef RTC_SUPPORT
+    if(rtc_read(&tc))
+    {
+        seconds = timegm(&tc);
+        printf("rtc seconds: %lu\n",seconds);
+        printf("rtc time:    %s\n",asctime(&tc));
+#if RTC_DEBUG
+        printf("rtc_read:%d, day:%d,mon:%d,hour:%d,min:%d,sec:%d, wday:%d\n",
+            (int) tc.tm_year + 1900,
+            (int) tc.tm_mday,
+            (int) tc.tm_mon,
+            (int) tc.tm_hour,
+            (int) tc.tm_min,
+            (int) tc.tm_sec,
+            (int) tc.tm_wday);
+#endif
+    }
+    else
+    {
+        printf("RTC read failed\n");
+    }
+#endif	// RTC_SUPPORT
+
+    clock_gettime(0, (ts_t *) &ts);
+    seconds = ts.tv_sec;
+    printf("clk seconds: %lu\n",seconds);
+    printf("clk time:    %s\n", asctime(gmtime(&seconds)));
+}
+

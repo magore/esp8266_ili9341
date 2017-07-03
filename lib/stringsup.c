@@ -45,7 +45,7 @@ void sep()
 MEMSPACE
 int
 WEAK_ATR
-isdigit(int c)
+isdigit(int c) 
 {
     if(c >= '0' && c <= '9')
         return(1);
@@ -157,15 +157,16 @@ strlen(const char *str)
 /// @param[in] src: source string
 /// @return destination string
 MEMSPACE
-char *strcpy(char *dest, const char *src)
+ WEAK_ATR char *
+strcpy(char *dest, const char *src)
 {
-	char *base = dest;
+	char *ptr = dest;
 	while(*src)
 	{
-		*dest++ = *src++;
+		*ptr++ = *src++;
 	} 
-	*dest++ = 0;
-    return (base);
+	*ptr ++ = 0;
+    return (ptr);
 }
 
 /// @brief copy a string of at most N characters
@@ -174,30 +175,48 @@ char *strcpy(char *dest, const char *src)
 /// @param[in] size: maximum destination size
 /// @return destination string
 MEMSPACE
-char *strncpy(char *dest, const char *src, size_t size)
+ WEAK_ATR
+char * strncpy(char *dest, const char *src, size_t size)
 {
-	char *base = dest;
+	char *ptr = dest;
 	while(*src && size)
 	{
-		*dest++ = *src++;
+		*ptr++ = *src++;
 		size--;
 	} 
 	while(size--)
-		*dest++ = 0;
-    return (base);
+		*ptr++ = 0;
+    return (dest);
 }
 
 
-/// @brief copy a string returning a pointer to its end
+/// @brief Append string 
 /// @param[in] dest: string
 /// @param[in] src: string
 /// @return string length
 MEMSPACE
 WEAK_ATR
-char *stpcpy(char *dest, const char *src)
+char * strcat(char *dest, const char *src)
 {
-    while(*src)
-		*dest++ = *src++;
+	char *ptr = dest;
+	while(*ptr)
+		++ptr;
+    strcpy(ptr,src);
+	return(dest);
+}
+
+/// @brief Append string of at most N bytes from src
+/// @param[in] dest: string
+/// @param[in] src: string
+/// @return string length
+MEMSPACE
+WEAK_ATR
+char * strncat(char *dest, const char *src, size_t max)
+{
+	char *ptr = dest;
+	while(*ptr)
+		++ptr;
+    strncpy(ptr,src,max);
 	return(dest);
 }
 

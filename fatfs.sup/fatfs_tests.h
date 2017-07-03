@@ -23,30 +23,23 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef _FATFS_UTILS_H
-#define _FATFS_UTILS_H
+#ifndef _FATFS_TESTS_H
+#define _FATFS_TESTS_H
 
-/* fatfs_utils.c */
+/* fatfs_tests.c */
 MEMSPACE void fatfs_help ( void );
 MEMSPACE int fatfs_tests ( int argc , char *argv []);
-MEMSPACE void upload_file ( char *name );
-MEMSPACE void hexdump ( char *name );
-MEMSPACE void sum ( char *name );
 MEMSPACE void mmc_test ( void );
-MEMSPACE void fatfs_ls ( char *ptr );
-MEMSPACE int ls_info ( char *name , int verbose );
-MEMSPACE void ls ( char *path , int verbose );
-MEMSPACE void fatfs_rename ( const char *oldpath , const char *newpath );
 MEMSPACE void fatfs_cat ( char *name );
 MEMSPACE void fatfs_copy ( char *from , char *to );
 MEMSPACE void fatfs_create ( char *name , char *str );
-MEMSPACE void fatfs_rm ( char *name );
+MEMSPACE void fatfs_cd ( char *name );
+MEMSPACE void fatfs_ls ( char *name );
 MEMSPACE void fatfs_mkdir ( char *name );
+MEMSPACE void fatfs_pwd ( void );
+MEMSPACE void fatfs_rename ( const char *oldpath , const char *newpath );
+MEMSPACE void fatfs_rm ( char *name );
 MEMSPACE void fatfs_rmdir ( char *name );
 MEMSPACE void fatfs_stat ( char *name );
-MEMSPACE void fatfs_cd ( char *name );
-MEMSPACE void fatfs_pwd ( void );
-
-
 
 #endif

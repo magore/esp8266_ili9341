@@ -22,13 +22,7 @@
 #include "mmc_hal.h"
 #include "mmc.h"
 
-// FATFS POSIX WRAPPER
-#ifdef POSIX_WRAPPERS
-#include "posix.h"
-#endif
-
-
 // FATFS user tests and user interface
-#include "fatfs_utils.h"
+#include "fatfs_tests.h"
 
 #endif

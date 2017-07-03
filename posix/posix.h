@@ -370,6 +370,7 @@ MEMSPACE void perror ( const char *s );
 MEMSPACE char WEAK_ATR *strerror ( int errnum );
 MEMSPACE char *strerror_r ( int errnum , char *buf , size_t buflen );
 MEMSPACE FILE *fdevopen ( int (*put )(char ,FILE *), int (*get )(FILE *));
+MEMSPACE int mkfs(char *name );
 MEMSPACE int fatfs_getc ( FILE *stream );
 MEMSPACE int fatfs_putc ( char c , FILE *stream );
 MEMSPACE int fatfs_to_errno ( FRESULT Result );

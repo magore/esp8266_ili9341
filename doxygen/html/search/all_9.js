@@ -79,6 +79,7 @@ var searchData=
   ['init_5fnambuf',['INIT_NAMBUF',['../ff_8c.html#a9880dce2d33fe7708f982b5f80a31142',1,'ff.c']]],
   ['init_5ftimers',['init_timers',['../timer_8c.html#acb0c9c995c634465d7d1f534bd862f8e',1,'init_timers():&#160;timer.c'],['../timer_8h.html#a4a06b0b10204f441d18c79601b4ee13f',1,'init_timers(void):&#160;timer.c']]],
   ['initfonts',['InitFonts',['../bdffontutil_8c.html#a75b1f39c4e8755dca07fd291e52aaedb',1,'InitFonts(_font *font):&#160;bdffontutil.c'],['../bdffontutil_8h.html#a75b1f39c4e8755dca07fd291e52aaedb',1,'InitFonts(_font *font):&#160;bdffontutil.c']]],
+  ['initialize_5fclock',['initialize_clock',['../time_8c.html#a0be4566aa9ed3f590570de0787f2cc12',1,'initialize_clock(int minwest):&#160;time.c'],['../time_8h.html#a0be4566aa9ed3f590570de0787f2cc12',1,'initialize_clock(int minwest):&#160;time.c']]],
   ['initnames',['InitNames',['../bdffontutil_8c.html#a57e8372dbdb58858e67dfaad363b0ab0',1,'InitNames():&#160;bdffontutil.c'],['../bdffontutil_8h.html#a744559a23860d8af3812417dc9acff57',1,'InitNames(void):&#160;bdffontutil.c']]],
   ['inloop',['inloop',['../user__main_8c.html#a0386f377ca8a674321b268989560fa2b',1,'user_main.c']]],
   ['ino_5ft',['ino_t',['../posix_8h.html#aed4e918b44240739869c4bdb1c4787a9',1,'posix.h']]],

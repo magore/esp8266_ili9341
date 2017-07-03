@@ -56,10 +56,12 @@ typedef enum { false, true } bool;
 
 #include "stringsup.h"
 
-
 // FATFS
 // MG
 #include "fatfs.h"
+
+#include "posix.h"
+
 
 // Simple queue reoutines
 #include "queue.h"

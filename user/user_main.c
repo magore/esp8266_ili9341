@@ -278,27 +278,13 @@ user_tasks()
 	char *argv[10];
 
 
-	if(kbhit(0, 1)) /// second argument 1 = only report when an EOL is detectedEOL
+	if(kbhiteol(0)) /// second argument 1 = only report when an EOL is detectedEOL
 	{
-		int flag = 0;
 		fgets(buffer,255,stdin);
-		argc = split_args(buffer, argv, 10);
-
 		printf("Command:[%s]\n",buffer);
-		if(!flag && user_tests(argc,argv))
-		{
-			flag = 1;
-		}
-#ifdef FATFS_SUPPORT
-		if(!flag && fatfs_tests(argc,argv))
-		{
-			flag = 1;
-		}
-#endif
-		if(!flag)
-		{
+		argc = split_args(buffer, argv, 10);
+		if(!user_tests(argc,argv))
 			printf("unknown command:[%s]\n", buffer);
-		}
 	}
 }
 // Signal strength update interval
@@ -605,17 +591,29 @@ void loop()
 
 void user_help()
 {
-	#ifdef FATFS_SUPPORT
+	#ifdef POSIX_TESTS
+		posix_help();
+	#endif
+	#ifdef FATFS_TESTS
 		fatfs_help();
 	#endif
 	#ifdef ADF4351
 		adf4351_help();
 	#endif
-	printf("help\n");
-    printf("mem\n");
-	printf("time\n");
-	printf("setdate YYYY MM DD HH:MM:SS\n");
-	printf("\n");
+	printf(
+		"help\n"
+        "connection\n"
+        "calibrate N\n"
+        "calibrate_test N\n"
+		"display_clock\n"
+        "draw C[1]\n"
+        "mem\n"
+		"pixel\n"
+        "rotate N\n"
+		"setdate YYYY MM DD HH:MM:SS\n"
+		"time\n"
+		"timetest\n"
+		"\n");
 }
 
 
@@ -633,11 +631,7 @@ MEMSPACE
 int user_tests(int argc, char *argv[])
 {
 
-    int res;
-    int len;
-	int ret;
     char *ptr;
-    long p1, p2;
 	time_t t;
 	double freq;
 	extern int connections;
@@ -655,9 +649,29 @@ int user_tests(int argc, char *argv[])
         user_help();
         return(1);
     }
+#ifdef POSIX_TESTS
+	if(posix_tests(argc,argv))
+		return(1);
+#endif
+#ifdef FATFS_TESTS
+	if(fatfs_tests(argc,argv))
+		return(1);
+#endif
+#ifdef ADF4351
+    if (MATCHARGS(ptr,"adf4351", (ind + 1) ,argc))
+    {
+		adf4351_cmd(argc,argv);
+		return(1);
+	}
+#endif
     if (MATCHARGS(ptr,"setdate", (ind + 1) ,argc))
     {
         setdate_r(argv[ind++]);
+        return(1);
+    }
+    if (MATCHARGS(ptr,"display_clock", (ind + 0) ,argc))
+    {
+        display_clock();
         return(1);
     }
     if (MATCHARGS(ptr,"time", (ind + 0) ,argc))
@@ -681,18 +695,11 @@ int user_tests(int argc, char *argv[])
 		timetests(argv[ind++],0);
         return(1);
 	}
-#ifdef ADF4351
-    if (MATCHARGS(ptr,"adf4351", (ind + 1) ,argc))
-    {
-        ptr += len;
-		adf4351_cmd(argc,argv);
-		return(1);
-	}
-#endif
 #ifdef DISPLAY
     if (MATCHARGS(ptr,"calibrate", (ind + 1) ,argc))
     {
-		tft_setRotation(atoi(argv[ind++]));
+		int ret = atoi(argv[ind++]);
+		tft_setRotation(ret);
 		tft_touch_calibrate(master);
 		MatWrite("/tft_calX",tft_calX);
 		MatWrite("/tft_calY",tft_calY);
@@ -701,7 +708,8 @@ int user_tests(int argc, char *argv[])
     }
     if (MATCHARGS(ptr,"calibrate_test", (ind + 1) ,argc))
     {
-		tft_setRotation(atoi(argv[ind++]));
+		int ret = atoi(argv[ind++]);
+		tft_setRotation(ret);
 		tft_touch_calibrate(master);
 		MatWrite("/tft_calX",tft_calX);
 		MatWrite("/tft_calY",tft_calY);
@@ -712,7 +720,8 @@ int user_tests(int argc, char *argv[])
     if (MATCHARGS(ptr,"rotate", (ind + 1) ,argc))
     {
 // FIXME rotate calibration data ???
-		tft_setRotation(atoi(argv[ind++]));
+		int ret = atoi(argv[ind++]);
+		tft_setRotation(ret);
 		setup_windows(ret & 3,0);
 		return(1);
     }
@@ -823,35 +832,35 @@ setup_windows(int rotation, int debug)
 	tft_setTextColor(master, ILI9341_WHITE,ILI9341_BLUE);
 	tft_fillWin(master, master->bg);
 
-	#if ILI9341_DEBUG & 1
+#if ILI9341_DEBUG & 1
 		if(debug)
 			printf("\nDisplay ID=%08lx\n",ID);
-	#endif
+#endif
 
 	// Message window setup
-	#ifdef EARTH
+#ifdef EARTH
 		w = master->w * 7 / 10;
-	#else
+#else
 		w = master->w;
-	#endif
+#endif
 		// TOP
-	#ifdef DEBUG_STATS
+#ifdef DEBUG_STATS
 		tft_window_init(wintop,0,0, w, font_H(0)*4);
 		tft_setTextColor(wintop, ILI9341_WHITE, ILI9341_NAVY);
-	#else
+#else
 		tft_window_init(wintop,0,0, w, font_H(2)*2);
 		tft_setTextColor(wintop, ILI9341_WHITE, tft_RGBto565(0,64,255));
-	#endif
+#endif
 	tft_set_font(wintop,0);
 	tft_font_var(wintop);
 	tft_fillWin(wintop, wintop->bg);
 	tft_set_textpos(wintop, 0,0);
 
-	#ifdef EARTH
+#ifdef EARTH
 		tft_window_init(winearth,w,0, master->w - w + 1, wintop->h);
 		tft_setTextColor(winearth, ILI9341_WHITE, ILI9341_NAVY);
 		tft_fillWin(winearth, winearth->bg);
-	#endif
+#endif
 
 	// BOTOM
 	// TIME,DATE
@@ -867,11 +876,11 @@ setup_windows(int rotation, int debug)
 	tft_set_textpos(winbottom, 0,0);
 
 	// Message window setup
-	#ifdef WIRECUBE
+#ifdef WIRECUBE
 		w = master->w * 7 / 10;
-	#else
+#else
 		w = master->w;
-	#endif
+#endif
 
 	// MSG
 	tft_window_init(winmsg,0,wintop->h,
@@ -885,22 +894,22 @@ setup_windows(int rotation, int debug)
 	tft_set_textpos(winmsg, 0,0);
 
 	// CUBE setup
-	#ifdef WIRECUBE
+#ifdef WIRECUBE
 		/* Setup cube/wireframe demo window */
 		/* This is to the right of the winmsg window and the same height */
 		tft_window_init(wincube, winmsg->w, wintop->h, master->w - winmsg->w, winmsg->h);
 		tft_setTextColor(wincube, ILI9341_WHITE,ILI9341_BLUE);
 		tft_fillWin(wincube, wincube->bg);
-	#endif
+#endif
 
-	#ifdef DEBUG_STATS
+#ifdef DEBUG_STATS
 	if(debug)
 	{
 		// Display ID
 		tft_setTextColor(winmsg, ILI9341_RED,winmsg->bg);
 		tft_printf(winmsg, "DISP ID: %04lx\n", ID);
 		tft_setTextColor(winmsg, ILI9341_WHITE,winmsg->bg);
-		#ifdef XPT2046
+#ifdef XPT2046
 			if(!tft_is_calibrated)
 			{
 				tft_set_font(winmsg,0);
@@ -909,14 +918,14 @@ setup_windows(int rotation, int debug)
 				tft_printf(winmsg,"N is rotation, 0..3\n");
 				tft_printf(winmsg,"%d is current\n",master->rotation);
 			}
-		#endif
+#endif
 	}
-	#endif
+#endif
 
 
 	// Cube points were defined with sides of 1.0 
 	// We want a scale of +/- w/2
-	#ifdef WIRECUBE
+#ifdef WIRECUBE
 		if(wincube->w < wincube->h) 
 			dscale_max = wincube->w/2;
 		else
@@ -924,18 +933,18 @@ setup_windows(int rotation, int debug)
 
 		dscale = dscale_max;
 		dscale_inc = dscale_max / 100;
-	#endif
+#endif
 
-	#if ILI9341_DEBUG & 1
+#if ILI9341_DEBUG & 1
 	if(debug)
 	{
 		printf("Test Display Read\n");
 		read_tests(winmsg);
 	}
-	#endif
+#endif
 
 	// Draw Wireframe earth in message area
-	#ifdef EARTH
+#ifdef EARTH
 	// Earth points were defined with radius of 0.5, diameter of 1.0
 	// We want a scale of +/- w/2
 		double tscale_max;
@@ -949,7 +958,7 @@ setup_windows(int rotation, int debug)
 		// draw earth
 	// Earth points were defined over with a scale of -0.5/+0.5 scale - so scale must be 1 or less
 		wire_draw(winearth, earth_data, NULL, &V, winearth->w/2, winearth->h/2, tscale_max, winearth->fg);
-	#endif
+#endif
 
 }
 #endif	//DISPLAY
@@ -1012,6 +1021,8 @@ void setup(void)
 
 	// Functions manage user defined address pins
 	chip_addr_init();
+
+	initialize_clock(300);
 
 
 #ifdef ADF4351

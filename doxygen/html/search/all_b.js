@@ -32,6 +32,7 @@ var searchData=
   ['local_5fport',['local_port',['../structrwbuf__t.html#aac758cef289d022f4eb81d4c4fac7f04',1,'rwbuf_t']]],
   ['localtime',['localtime',['../time_8c.html#a08eb1818fa59b3e6e1f1470ca0888572',1,'localtime(time_t *tp):&#160;time.c'],['../time_8h.html#a08eb1818fa59b3e6e1f1470ca0888572',1,'localtime(time_t *tp):&#160;time.c']]],
   ['localtime_5fr',['localtime_r',['../time_8c.html#af05576742e2f8ad3924c02a6af70a86d',1,'localtime_r(time_t *t, tm_t *result):&#160;time.c'],['../time_8h.html#af05576742e2f8ad3924c02a6af70a86d',1,'localtime_r(time_t *t, tm_t *result):&#160;time.c']]],
+  ['logfile',['logfile',['../posix__tests_8c.html#a0e04c0a3e471dd3212246ad0e0f710ea',1,'logfile(char *name, char *str):&#160;posix_tests.c'],['../posix__tests_8h.html#a0e04c0a3e471dd3212246ad0e0f710ea',1,'logfile(char *name, char *str):&#160;posix_tests.c']]],
   ['long',['LONG',['../integer_8h.html#a2a3e0cda5f1249bef6db47c5eb8e3813',1,'integer.h']]],
   ['loop',['loop',['../user__main_8c.html#afe461d27b9c48d5921c00d521181f12f',1,'loop():&#160;user_main.c'],['../user__task_8c.html#afe461d27b9c48d5921c00d521181f12f',1,'loop():&#160;user_main.c']]],
   ['loop_5fcnt',['loop_cnt',['../user__main_8c.html#a8a01319d7589800db081ee759e210eda',1,'user_main.c']]],
@@ -40,8 +41,8 @@ var searchData=
   ['loop_5ftask_5fpriority',['LOOP_TASK_PRIORITY',['../user__task_8c.html#a61d0ab51c5d6bf65b8d4bec06352bfd8',1,'user_task.c']]],
   ['loop_5fwrapper',['loop_wrapper',['../user__task_8c.html#a6d42952a725206506581b013ced1810c',1,'loop_wrapper():&#160;user_task.c'],['../user__task_8h.html#a1972e93cc265b40cff77fa574d8715e1',1,'loop_wrapper(void):&#160;user_task.c']]],
   ['low',['low',['../structfreq__t.html#a05c64bd7de3b2d127f9c5b1850507220',1,'freq_t']]],
-  ['ls',['ls',['../fatfs__utils_8h.html#aa08b18a9357cb90672c19d5c420b2f12',1,'fatfs_utils.h']]],
-  ['ls_5finfo',['ls_info',['../fatfs__utils_8h.html#a573eb4f7de945139101e2cfb59111722',1,'fatfs_utils.h']]],
+  ['ls',['ls',['../posix__tests_8c.html#ad6e0550e9557209680b1640c814746d8',1,'ls(char *name, int verbose):&#160;posix_tests.c'],['../posix__tests_8h.html#ad6e0550e9557209680b1640c814746d8',1,'ls(char *name, int verbose):&#160;posix_tests.c']]],
+  ['ls_5finfo',['ls_info',['../posix__tests_8c.html#a573eb4f7de945139101e2cfb59111722',1,'ls_info(char *name, int verbose):&#160;posix_tests.c'],['../posix__tests_8h.html#a573eb4f7de945139101e2cfb59111722',1,'ls_info(char *name, int verbose):&#160;posix_tests.c']]],
   ['lseek',['lseek',['../posix_8c.html#ae4ea1b12797e3ba021a1af3cb4ba17bd',1,'lseek(int fileno, size_t position, int whence):&#160;posix.c'],['../posix_8h.html#ae4ea1b12797e3ba021a1af3cb4ba17bd',1,'lseek(int fileno, size_t position, int whence):&#160;posix.c']]],
   ['lstat',['lstat',['../posix_8h.html#ae730c85752284268b39560df693cb207',1,'posix.h']]]
 ];

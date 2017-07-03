@@ -25,6 +25,7 @@ var searchData=
   ['_5fmmc_5fclock',['_mmc_clock',['../mmc__hal_8c.html#a72ddc159b1a36ffda342f0f2d5c144f4',1,'mmc_hal.c']]],
   ['_5fmmc_5fpre',['_mmc_pre',['../mmc__hal_8c.html#adc0a07c5ad80e8ecbabee0cf04a1564e',1,'mmc_hal.c']]],
   ['_5fmmc_5ftimeout',['_mmc_timeout',['../mmc__hal_8c.html#abf71973875545f3b42702ac99d5d87ef',1,'mmc_hal.c']]],
+  ['_5fpagesize',['_pagesize',['../posix__tests_8c.html#a8103355735500cb8d1c1eea35e352cda',1,'posix_tests.c']]],
   ['_5fpch',['_pch',['../printf_8c.html#aa1e6944673f3194dc3fe8ba626deec55',1,'printf.c']]],
   ['_5frodata_5fend',['_rodata_end',['../cal__dex_8c.html#a9088afdf082e7273471de67d7a306299',1,'cal_dex.c']]],
   ['_5frodata_5fstart',['_rodata_start',['../cal__dex_8c.html#a9b0d08ce55c1dd45663ece989b591af3',1,'cal_dex.c']]],

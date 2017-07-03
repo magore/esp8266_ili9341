@@ -76,6 +76,7 @@ var searchData=
   ['_5fnortc_5fmday',['_NORTC_MDAY',['../ffconf_8h.html#aa3cf28aa915cb9081fa1aa5b44858dd6',1,'ffconf.h']]],
   ['_5fnortc_5fmon',['_NORTC_MON',['../ffconf_8h.html#a47a493ecf767b65199e1425795f1d61d',1,'ffconf.h']]],
   ['_5fnortc_5fyear',['_NORTC_YEAR',['../ffconf_8h.html#add853644b85a7633bb782dfddb51bda5',1,'ffconf.h']]],
+  ['_5fpagesize',['_pagesize',['../posix__tests_8c.html#a8103355735500cb8d1c1eea35e352cda',1,'posix_tests.c']]],
   ['_5fpch',['_pch',['../printf_8c.html#aa1e6944673f3194dc3fe8ba626deec55',1,'printf.c']]],
   ['_5fprintf_5ffn',['_printf_fn',['../mathio_8h.html#a1c2762f15e2ae4dea9b52ee9e3532372',1,'_printf_fn(printf_t *fn, __memx const char *fmt, va_list va):&#160;printf.c'],['../printf_8c.html#a1c2762f15e2ae4dea9b52ee9e3532372',1,'_printf_fn(printf_t *fn, __memx const char *fmt, va_list va):&#160;printf.c']]],
   ['_5fprintf_5ft',['_printf_t',['../struct__printf__t.html',1,'']]],

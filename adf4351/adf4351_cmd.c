@@ -87,10 +87,15 @@ void ADF4351_task()
 MEMSPACE
 void adf4351_help()
 {
-    printf("adf4351 frequency [spacing]\n"
+    printf(
+	"adf4351 help\n"
+    "adf4351 frequency [spacing]\n"
     "adf4351 scan low hi spacing\n"
+    "adf4351 set frequency spacing\n"
     "adf4351 start\n"
-    "adf4351 stop\n");
+    "adf4351 stop\n"
+	"\n"
+	);
 }
 #endif
 
@@ -156,41 +161,41 @@ int adf4351_cmd(int argc,char *argv[])
         frequency.scan = 1;
         return(1);
     }
+	if(MATCHARGS(ptr, "set", (ind+1) ,argc))
+    {
+		/* stop scanning - manual mode */
+		frequency.scan = 0;
 
-	/* stop scanning - manual mode */
-	frequency.scan = 0;
-
-	// frequency
-	if(ind+1 <= argc)
+		// frequency
 		frequency.val = atof(argv[ind++]);
-	else
-		return(0);
 
-	printf("frequency: %.2f\n",frequency.val);
+		if(ind+1 <= argc)
+			frequency.spacing = atof(argv[ind++]);
+		else
+			frequency.spacing = 1000.0;
 
-	// spacing - if omitted 1000 is used
-	if(ind+1 <= argc)
-		frequency.spacing = atof(argv[ind++]);
-	else
-		frequency.spacing = 1000.0;
+		printf("frequency: %.2f\n",frequency.val);
+		printf("spacing: %.2f\n",frequency.spacing);
 
-	frequency.scan = 0;
-	status = ADF4351_Config(frequency.val, 25000000.0, frequency.spacing, &result);
-	printf("calculated: %.2f\n",result);
+		frequency.scan = 0;
+		status = ADF4351_Config(frequency.val, 25000000.0, frequency.spacing, &result);
+		printf("calculated: %.2f\n",result);
 
-	if(status)
-		ADF4351_display_error ( status );
-	else
-		ADF4351_sync(1);
+		if(status)
+			ADF4351_display_error ( status );
+		else
+			ADF4351_sync(1);
 
-	// FIXME we treat a mismatch as non-fatal
-	// we should really be looking for an accuracy value
-	if(status == ADF4351_RFout_MISMATCH)
-	{
-		ADF4351_sync(1);
+		// FIXME we treat a mismatch as non-fatal
+		// we should really be looking for an accuracy value
+		if(status == ADF4351_RFout_MISMATCH)
+		{
+			ADF4351_sync(1);
+		}
+		return(1);
 	}
-
-	return(1);
+	printf("adf4351: command[%s] not understood\n");
+	adf4351_help();
 }
 
 
