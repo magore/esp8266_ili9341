@@ -45,27 +45,27 @@ MEMSPACE
 void posix_help()
 {
 	printf(
-		"posix help\n"
 #ifdef POSIX_TESTS
-		"The remaining tests may optionally start with \"posix\" keyword\n"
+		"posix prefix is optional\n"
 #endif
-		"chmod file NNN\n"
-		"cat file [-p]\n"
-		"cd dir\n"
-		"copy file1 file2\n"
-		"hexdump file [-p]\n"
-		"log str\n"
-		"ls dir [-l]\n"
-		"mkdir dir\n"
-		"mkfs\n"
-		"page NN"
-		"pwd\n"
-		"stat file\n"
-		"sum file\n"
-		"rm file\n"
-		"rmdir dir\n"
-		"rename old new\n"
-		"upload file\n"
+		"posix help\n"
+		"posix chmod file NNN\n"
+		"posix cat file [-p]\n"
+		"posix cd dir\n"
+		"posix copy file1 file2\n"
+		"posix hexdump file [-p]\n"
+		"posix log str\n"
+		"posix ls dir [-l]\n"
+		"posix mkdir dir\n"
+		"posix mkfs\n"
+		"posix page NN"
+		"posix pwd\n"
+		"posix stat file\n"
+		"posix sum file\n"
+		"posix rm file\n"
+		"posix rmdir dir\n"
+		"posix rename old new\n"
+		"posix upload file\n"
 		"\n" );
 }
 
@@ -161,23 +161,15 @@ int posix_tests(int argc,char *argv[])
     if (MATCHARGS(ptr,"ls", (ind + 0), argc))
 	{
 		int i;
-		int verbose = 0;
 		int args = 0;
 		for(i=ind;i<argc;++i)
 		{
-			if(MATCH(argv[i],"-l"))
-				verbose = 1;
-			else
-				++args;
-		}
-		for(i=ind;i<argc;++i)
-		{
-			if(!MATCH(argv[i],"-l") )
-				ls(argv[i], verbose);
+			if(!MATCH(argv[i],"-l"))
+				ls(argv[i],1);
 		}
 		if(!args)
 		{
-			ls("",verbose);
+			ls("",1);
 		}
         return(1);
     }

@@ -45,32 +45,32 @@ void fatfs_help( void )
 #ifdef POSIX_TESTS
 	"fatfs tests MUST start with \"fatfs\" keyword\n"
 #else
-	"fatfs tests may optionally start with \"fatfs\" keyword\n"
+	"fatfs prefix is optional\n"
 #endif
 		"fatfs help\n"
 #ifdef FATFS_UTILS_FULL
-		"attrib file p1 p2\n"
-		"cat file\n"
-		"cd dir\n"
-		"copy file1 file2\n"
-		"create file str\n"
+		"fatfs attrib file p1 p2\n"
+		"fatfs cat file\n"
+		"fatfs cd dir\n"
+		"fatfs copy file1 file2\n"
+		"fatfs create file str\n"
 #endif
-		"mmc_test\n"
-		"mmc_init\n"
-		"ls dir\n"
+		"fatfs mmc_test\n"
+		"fatfs mmc_init\n"
+		"fatfs ls dir\n"
 
 #ifdef FATFS_UTILS_FULL
-		"mkdir dir\n"
-		"mkfs\n"
-		"pwd\n"
+		"fatfs mkdir dir\n"
+		"fatfs mkfs\n"
+		"fatfs pwd\n"
 #endif
-		"status file\n"
+		"fatfs status file\n"
 
 #ifdef FATFS_UTILS_FULL
-		"stat file\n"
-		"rm file\n"
-		"rmdir dir\n"
-		"rename old new\n"
+		"fatfs stat file\n"
+		"fatfs rm file\n"
+		"fatfs rmdir dir\n"
+		"fatfs rename old new\n"
 #endif
 		"\n"
 	);
