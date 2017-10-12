@@ -7,7 +7,10 @@
 @brief character read buffering wrappers for FatFS 
        Character at a time operation is FatFS are VERY slow
 
- @par Copyright &copy; 2017 Mike Gore, GPL License
+ @par Copyright &copy; 2014-2017 Mike Gore, All rights reserved. GPL  License
+ @see http://github.com/magore/hp85disk
+ @see http://github.com/magore/hp85disk/COPYRIGHT.md for specific Copyright details
+
  @par You are free to use this code under the terms of GPL
    please retain a copy of this notice in any code you use it in.
 

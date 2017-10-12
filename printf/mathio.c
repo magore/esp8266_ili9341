@@ -4,7 +4,10 @@
 
  @brief String to number conversions with floating point support
 
- @par Copyright &copy; 2015-2106 Mike Gore, GPL License
+ @par Copyright &copy; 2014-2017 Mike Gore, All rights reserved. GPL  License
+ @see http://github.com/magore/hp85disk
+ @see http://github.com/magore/hp85disk/COPYRIGHT.md for specific Copyright details
+
  @par You are free to use this code under the terms of GPL
    please retain a copy of this notice in any code you use it in.
 
@@ -54,15 +57,15 @@ MEMSPACE
 int
 atodigit(int c,int radix)
 {
-	int ret = -1;
-	if(c >= '0' && c <= '9')
-			ret = c - '0';
-	else if(c >= 'A' && c <= 'F')
-			ret = c - 'A' + 10;
-	else if(c >= 'a' && c <= 'f')
-			ret = c - 'a' + 10;
-	else return (-1);
-	return((ret >= radix) ? -1 : ret);
+    int ret = -1;
+    if(c >= '0' && c <= '9')
+            ret = c - '0';
+    else if(c >= 'A' && c <= 'F')
+            ret = c - 'A' + 10;
+    else if(c >= 'a' && c <= 'f')
+            ret = c - 'a' + 10;
+    else return (-1);
+    return((ret >= radix) ? -1 : ret);
 }
 
 // =============================================
@@ -119,7 +122,7 @@ int mul10str(uint8_t *str, int size)
         carry = d >> 8;
         ++str;
     }
-	return(carry);
+    return(carry);
 }
 
 // =============================================
@@ -132,41 +135,41 @@ MEMSPACE
 long
 strtol(const char *nptr, char **endptr, int base)
 {
-	unsigned long num;
-	int sign;
-	int d;
+    unsigned long num;
+    int sign;
+    int d;
 
-	while(*nptr == ' ' || *nptr == '\t')
-		++nptr;
-	sign = 0;
-	if(*nptr == '-' ) 
-	{
-		sign = 1;
-		++nptr;
-	} 
-	else if(*nptr == '+' )
-		{
-			++nptr;
-		}
-	// skip leading zeros
-	while(*nptr == '0')
-		++nptr;
-	num = 0;
-	while(*nptr)
-	{
-		d = atodigit(*nptr,base);
-		if(d < 0)
-			break;
-		num = num*base;
-		num += d;
-		++nptr;
-	}
+    while(*nptr == ' ' || *nptr == '\t')
+        ++nptr;
+    sign = 0;
+    if(*nptr == '-' ) 
+    {
+        sign = 1;
+        ++nptr;
+    } 
+    else if(*nptr == '+' )
+        {
+            ++nptr;
+        }
+    // skip leading zeros
+    while(*nptr == '0')
+        ++nptr;
+    num = 0;
+    while(*nptr)
+    {
+        d = atodigit(*nptr,base);
+        if(d < 0)
+            break;
+        num = num*base;
+        num += d;
+        ++nptr;
+    }
 
-	if(sign)
-		num = -num;
-	if(endptr)
-		*endptr = (char *) nptr;
-	return(num);
+    if(sign)
+        num = -num;
+    if(endptr)
+        *endptr = (char *) nptr;
+    return(num);
 }
 
 // =============================================
@@ -195,9 +198,9 @@ strtoll(const char *nptr, char **endptr, int base)
         {
             ++nptr;
         }
-	// skip leading zeros
-	while(*nptr == '0')
-		++nptr;
+    // skip leading zeros
+    while(*nptr == '0')
+        ++nptr;
 
     num = 0;
     while(*nptr)
@@ -209,11 +212,11 @@ strtoll(const char *nptr, char **endptr, int base)
         num += d;
         ++nptr;
     }
-	if(sign)
-		num = -num;
-	if(endptr)
-		*endptr = (char *) nptr;
-	return(num);
+    if(sign)
+        num = -num;
+    if(endptr)
+        *endptr = (char *) nptr;
+    return(num);
 }
 
 
@@ -245,9 +248,9 @@ strto128(const char *nptr, char **endptr, int base)
             ++nptr;
         }
 
-	// skip leading zeros
-	while(*nptr == '0')
-		++nptr;
+    // skip leading zeros
+    while(*nptr == '0')
+        ++nptr;
 
     num = 0;
     while(*nptr)
@@ -259,11 +262,11 @@ strto128(const char *nptr, char **endptr, int base)
         num += d;
         ++nptr;
     }
-	if(sign)
-		num = -num;
-	if(endptr)
-		*endptr = (char *) nptr;
-	return(num);
+    if(sign)
+        num = -num;
+    if(endptr)
+        *endptr = (char *) nptr;
+    return(num);
 }
   
 #endif 
@@ -277,9 +280,9 @@ MEMSPACE
 int
 atoi(const char *str)
 {
-	unsigned long num;
-	num = strtol(str, NULL, 10);
-	return((int)num);
+    unsigned long num;
+    num = strtol(str, NULL, 10);
+    return((int)num);
 }
 
 // =============================================
@@ -291,9 +294,9 @@ MEMSPACE
 long
 atol(const char *str)
 {
-	unsigned long num;
-	num = strtol(str, NULL, 10);
-	return(num);
+    unsigned long num;
+    num = strtol(str, NULL, 10);
+    return(num);
 }
 
 // =============================================
@@ -341,51 +344,51 @@ MEMSPACE
 double
 scale10(double num, int *exp)
 {
-	int exp10,exp2;
-	int sign;
+    int exp10,exp2;
+    int sign;
 
-	double scale;
+    double scale;
 
-	if(!num)
-	{
-		*exp = 0;
-		return(0.0);
-	}
+    if(!num)
+    {
+        *exp = 0;
+        return(0.0);
+    }
 
-	sign = 0;
-	if(num < 0)
-	{
-		num = -num;
-		sign = 1;
-	}
-		
-	// extract exponent
-	frexp(num, &exp2);
-	// aproximate exponent in base 10
-	exp10 = ((double) exp2) / (double) 3.321928095;
+    sign = 0;
+    if(num < 0)
+    {
+        num = -num;
+        sign = 1;
+    }
+        
+    // extract exponent
+    frexp(num, &exp2);
+    // aproximate exponent in base 10
+    exp10 = ((double) exp2) / (double) 3.321928095;
 
-	// convert scale to 10.0**exp10
-	scale = iexp((double)10.0, exp10);
+    // convert scale to 10.0**exp10
+    scale = iexp((double)10.0, exp10);
 
-	// remove scale
-	num /= scale;
+    // remove scale
+    num /= scale;
 
-	// correct for over/under
-	while(num >= (double)10.0) 
-	{
-		num /= (double) 10.0;
-		++exp10;
-	}
-	while(num < (double) 1.0) 
-	{
-		num *= (double) 10.0;
-		--exp10;
-	}
+    // correct for over/under
+    while(num >= (double)10.0) 
+    {
+        num /= (double) 10.0;
+        ++exp10;
+    }
+    while(num < (double) 1.0) 
+    {
+        num *= (double) 10.0;
+        --exp10;
+    }
 
-	*exp = exp10;
-	if(sign)
-		return(-num);
-	return(num);
+    *exp = exp10;
+    if(sign)
+        return(-num);
+    return(num);
 }
 
 // =============================================
@@ -397,77 +400,77 @@ MEMSPACE
 double
 strtod(const char *nptr, char **endptr)
 {
-	double num;
-	double frac;
-	double tmp;
+    double num;
+    double frac;
+    double tmp;
 
-	int digit, power,sign;
+    int digit, power,sign;
 
-	while(*nptr == ' ' || *nptr == '\t' || *nptr == '\n')
-		++nptr;
-	sign = 1;
-	if(*nptr == '-')
-	{
-		++nptr;
-		sign = -1;
-	}
-	else if(*nptr == '+')
-	{
-		++nptr;
-	}
-	// skip leading zeros
-	while(*nptr == '0')
-		++nptr;
-	num = 0.0; 
-	while(*nptr && isdigit(*nptr)) 
-	{
-		num *= 10.0;	// make room for new digit
-		digit = (*nptr - '0');
-		num += (double) digit;
-		nptr++;
-	}
+    while(*nptr == ' ' || *nptr == '\t' || *nptr == '\n')
+        ++nptr;
+    sign = 1;
+    if(*nptr == '-')
+    {
+        ++nptr;
+        sign = -1;
+    }
+    else if(*nptr == '+')
+    {
+        ++nptr;
+    }
+    // skip leading zeros
+    while(*nptr == '0')
+        ++nptr;
+    num = 0.0; 
+    while(*nptr && isdigit(*nptr)) 
+    {
+        num *= 10.0;    // make room for new digit
+        digit = (*nptr - '0');
+        num += (double) digit;
+        nptr++;
+    }
 
-	if(*nptr == '.') 
-	{
-		++nptr;
-		frac = 0.1;
-		while(*nptr && isdigit(*nptr)) 
-		{
-			digit = (*nptr - '0');
-			tmp = (double) digit;
-			num += tmp * frac;
-			frac *= 0.1;
-			nptr++;
-		}
-	}
-	if(sign == -1)
-		num = -num;
+    if(*nptr == '.') 
+    {
+        ++nptr;
+        frac = 0.1;
+        while(*nptr && isdigit(*nptr)) 
+        {
+            digit = (*nptr - '0');
+            tmp = (double) digit;
+            num += tmp * frac;
+            frac *= 0.1;
+            nptr++;
+        }
+    }
+    if(sign == -1)
+        num = -num;
 
-	if(*nptr == 'E' || *nptr == 'e') 
-	{
-		nptr++;
-		sign = (*nptr == '-') ? -1 : 1;
-		if(sign == -1 || *nptr == '+') 
-			nptr++;
-		power=0;
-		while(isdigit(*nptr)) 
-		{
-			power *= 10.0;
-			digit = (*nptr - '0');
-			power += (double) digit; 
-			nptr++;
-		}
-		if(num)
-		{
-			if(sign<0)
-				power = -power;
-			// iexp - number to integer power
-			num *= iexp(10.0, power);
-		}
-	}
-	if(endptr)
-		*endptr = (char *) nptr;
-	return(num);
+    if(*nptr == 'E' || *nptr == 'e') 
+    {
+        nptr++;
+        sign = (*nptr == '-') ? -1 : 1;
+        if(sign == -1 || *nptr == '+') 
+            nptr++;
+        power=0;
+        while(isdigit(*nptr)) 
+        {
+            power *= 10.0;
+            digit = (*nptr - '0');
+            power += (double) digit; 
+            nptr++;
+        }
+        if(num)
+        {
+            if(sign<0)
+                power = -power;
+            // iexp - number to integer power
+            num *= iexp(10.0, power);
+        }
+    }
+    if(endptr)
+        *endptr = (char *) nptr;
+    return(num);
 }
 
 // =============================================
@@ -478,9 +481,9 @@ MEMSPACE
 double
 atof(const char *str)
 {
-	double num;
-	num = strtod(str, NULL);
-	return(num);
+    double num;
+    num = strtod(str, NULL);
+    return(num);
 }
   
 #endif // ifdef FLOATIO

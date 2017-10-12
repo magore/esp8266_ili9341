@@ -3,9 +3,13 @@
 
 @brief Allocate, Free and display FILINFO structurs, getfattime(), display error messages
 
- @par Copyright &copy; 2015 Mike Gore, GPL License
- @par Copyright &copy; 2013 ChaN.
+ @par Copyright &copy; 2014-2017 Mike Gore, All rights reserved. GPL  License
+ @see http://github.com/magore/hp85disk
+ @see http://github.com/magore/hp85disk/COPYRIGHT.md for specific Copyright details
+
  @par Credit: part of FatFs avr example project (C)ChaN, 2013.
+ @par Copyright &copy; 2013 ChaN.
+
  @par You are free to use this code under the terms of GPL
    please retain a copy of this notice in any code you use it in.
 
@@ -125,10 +129,10 @@ uint32_t tm_to_fat(tm_t *t)
 MEMSPACE
 DWORD get_fattime (void)
 {
-	time_t t;
+    time_t t;
 /* Get GMT time */
     time(&t);
-	return( tm_to_fat(localtime(&t)));
+    return( tm_to_fat(localtime(&t)));
 }
 
 /// @brief  display FatFs return code as ascii string
@@ -194,7 +198,7 @@ char* path                                        /* Pointer to the working buff
     DIR dirs;
     FRESULT fr;
     int i;
-	FILINFO info;
+    FILINFO info;
 
     fr = f_opendir(&dirs, path);
     if (fr == FR_OK) {
@@ -212,8 +216,8 @@ char* path                                        /* Pointer to the working buff
                 AccSize += info.fsize;
             }
 #ifdef ESP8266
-			optimistic_yield(1000);
-			wdt_reset();
+            optimistic_yield(1000);
+            wdt_reset();
 #endif
         }
     }
@@ -227,26 +231,26 @@ char* path                                        /* Pointer to the working buff
 MEMSPACE
 char *fatfs_fstype(int type)
 {
-	char *ptr;
-	switch(type)
-	{
-		case FS_FAT12:
-			ptr = "FAT12";
-			break;
-		case FS_FAT16:
-			ptr = "FAT16";
-			break;
-		case FS_FAT32:
-			ptr = "FAT32";
-			break;
-		case FS_EXFAT:
-			ptr = "EXFAT";
-			break;
-		default:
-			 ptr = "UNKNOWN";
-			break;
-	}
-	return(ptr);
+    char *ptr;
+    switch(type)
+    {
+        case FS_FAT12:
+            ptr = "FAT12";
+            break;
+        case FS_FAT16:
+            ptr = "FAT16";
+            break;
+        case FS_FAT32:
+            ptr = "FAT32";
+            break;
+        case FS_EXFAT:
+            ptr = "EXFAT";
+            break;
+        default:
+             ptr = "UNKNOWN";
+            break;
+    }
+    return(ptr);
 }
 
 /// @brief  Compute space used, number of directories and files contained used by a drive
@@ -266,8 +270,8 @@ void fatfs_status(char *ptr)
     long p2;
     int res;
     FATFS *fs;
-	char label[24+2];
-	DWORD vsn; // volume serial number
+    char label[24+2];
+    DWORD vsn; // volume serial number
 
     while(*ptr == ' ' || *ptr == '\t')
         ++ptr;
@@ -278,25 +282,25 @@ void fatfs_status(char *ptr)
         put_rc(res);
         return;
     }
-	printf("FAT type                = %s\n",  fatfs_fstype(fs->fs_type));
-	printf("Bytes/Cluster           = %lu\n", (DWORD)fs->csize * 512);
-	printf("Number of FATs          = %u\n",  fs->n_fats);
-	printf("Root DIR entries        = %u\n",  fs->n_rootdir);
-	printf("Sectors/FAT             = %lu\n", fs->fsize);
-	printf("Number of clusters      = %lu\n", fs->n_fatent - 2);
-	printf("FAT start (lba)         = %lu\n", fs->fatbase);
-	printf("DIR start (lba,clustor) = %lu\n", fs->dirbase);
-	printf("Data start (lba)        = %lu\n", fs->database);
+    printf("FAT type                = %s\n",  fatfs_fstype(fs->fs_type));
+    printf("Bytes/Cluster           = %lu\n", (DWORD)fs->csize * 512);
+    printf("Number of FATs          = %u\n",  fs->n_fats);
+    printf("Root DIR entries        = %u\n",  fs->n_rootdir);
+    printf("Sectors/FAT             = %lu\n", fs->fsize);
+    printf("Number of clusters      = %lu\n", fs->n_fatent - 2);
+    printf("FAT start (lba)         = %lu\n", fs->fatbase);
+    printf("DIR start (lba,clustor) = %lu\n", fs->dirbase);
+    printf("Data start (lba)        = %lu\n", fs->database);
 
 #if _USE_LABEL
-	res = f_getlabel(ptr, label, (DWORD*)&vsn);
+    res = f_getlabel(ptr, label, (DWORD*)&vsn);
     if (res)
     {
         put_rc(res);
         return;
     }
-	printf("Volume name             = %s\n", label[0] ? label : "<blank>");
-	printf("Volume S/N              = %04X-%04X\n", (WORD)((DWORD)vsn >> 16), (WORD)(vsn & 0xFFFF));
+    printf("Volume name             = %s\n", label[0] ? label : "<blank>");
+    printf("Volume S/N              = %04X-%04X\n", (WORD)((DWORD)vsn >> 16), (WORD)(vsn & 0xFFFF));
 #endif
 
     AccSize = AccFiles = AccDirs = 0;
@@ -306,11 +310,11 @@ void fatfs_status(char *ptr)
         put_rc(res);
         return;
     }
-	printf("%u files, %lu bytes.\n%u folders.\n"
-				 "%lu KB total disk space.\n%lu KB available.\n",
-			AccFiles, AccSize, AccDirs,
-			(fs->n_fatent - 2) * fs->csize / 2, p2 * fs->csize / 2
-	);
+    printf("%u files, %lu bytes.\n%u folders.\n"
+                 "%lu KB total disk space.\n%lu KB available.\n",
+            AccFiles, AccSize, AccDirs,
+            (fs->n_fatent - 2) * fs->csize / 2, p2 * fs->csize / 2
+    );
 
 }
 
@@ -330,19 +334,19 @@ void fatfs_status(char *ptr)
 MEMSPACE
 void fatfs_filinfo_list(FILINFO *info)
 {
-	char attrs[6];
+    char attrs[6];
     if(info->fname[0] == 0)
     {
         printf("fatfs_filinfo_list: empty\n");
         return;
     }
-	attrs[0] = (info->fattrib & AM_DIR) ? 'D' : '-';
-	attrs[1] = (info->fattrib & AM_RDO) ? 'R' : '-';
-	attrs[2] = (info->fattrib & AM_HID) ? 'H' : '-';
-	attrs[3] = (info->fattrib & AM_SYS) ? 'S' : '-';
-	attrs[4] = (info->fattrib & AM_ARC) ? 'A' : '-';
-	attrs[5] = 0;
-	printf("%s %u/%02u/%02u %02u:%02u %9lu %s",
+    attrs[0] = (info->fattrib & AM_DIR) ? 'D' : '-';
+    attrs[1] = (info->fattrib & AM_RDO) ? 'R' : '-';
+    attrs[2] = (info->fattrib & AM_HID) ? 'H' : '-';
+    attrs[3] = (info->fattrib & AM_SYS) ? 'S' : '-';
+    attrs[4] = (info->fattrib & AM_ARC) ? 'A' : '-';
+    attrs[5] = 0;
+    printf("%s %u/%02u/%02u %02u:%02u %9lu %s",
         attrs,
         (info->fdate >> 9) + 1980, (info->fdate >> 5) & 15, info->fdate & 31,
         (info->ftime >> 11), (info->ftime >> 5) & 63,

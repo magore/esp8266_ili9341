@@ -74,20 +74,21 @@
 
 /// @brief program output mode
 #define GPIO_PIN_DIR_OUT(pin)   BIT_SET(GPIO_PIN2SFR(pin,DDR_BASE), ((pin) & 7))
-#define GPIO_PIN_LOW(pin)       GPIO_PIN_LATCH_LOW(pin), GPIO_PIN_DIR_OUT(pin)
-#define GPIO_PIN_HI(pin)        GPIO_PIN_LATCH_HI(pin),  GPIO_PIN_DIR_OUT(pin)
-#define GPIO_PIN_WR(pin,level) (level) ? GPIO_PIN_HI(pin) : GPIO_PIN_LOW(pin) 
+#define GPIO_PIN_LOW(pin)       (GPIO_PIN_LATCH_LOW(pin), GPIO_PIN_DIR_OUT(pin))
+#define GPIO_PIN_HI(pin)        (GPIO_PIN_LATCH_HI(pin),  GPIO_PIN_DIR_OUT(pin))
+#define GPIO_PIN_WR(pin,level) ((level) ? GPIO_PIN_HI(pin) : GPIO_PIN_LOW(pin))
 
 //FIXME do pull up modes
 #define GPIO_PIN_FLOAT(pin)     GPIO_PIN_DIR_IN(pin)
 
-#define GPIO_PORT_DIR_OUT(port) GPIO_PORT2SFR(port,DDR_BASE) = 0xff
-#define GPIO_PORT_DIR_IN(port) 	GPIO_PORT2SFR(port,DDR_BASE) = 0x00
+#define GPIO_PORT_DIR_OUT(port) (GPIO_PORT2SFR(port,DDR_BASE) = 0xff)
+#define GPIO_PORT_DIR_IN(port) 	(GPIO_PORT2SFR(port,DDR_BASE) = 0x00)
 
 // GPIB
 #define GPIO_PORT_PINS_RD(port)  (GPIO_PORT2SFR(port,PIN_BASE) & 0xff)
 #define GPIO_PORT_DDR_RD(port)   (GPIO_PORT2SFR(port,DDR_BASE) & 0xff)
 #define GPIO_PORT_LATCH_WR(port,val)  (GPIO_PORT2SFR(port,PORT_BASE) = (val))
+#define GPIO_PORT_LATCH_RD(port,val)  GPIO_PORT2SFR(port,PORT_BASE)
 
 #define GPIO_PORT_RD(port)    	(GPIO_PORT_DIR_IN(port), GPIO_PORT_PINS_RD(port))
 #define GPIO_PORT_WR(port,val)  (GPIO_PORT_DIR_OUT(port), GPIO_PORT_LATCH_WR(port,val))

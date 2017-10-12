@@ -1,6 +1,26 @@
 /**
  @file posix.c
 
+ @par Copyright &copy; 2014-2017 Mike Gore, All rights reserved. GPL  License
+ @see http://github.com/magore/hp85disk
+ @see http://github.com/magore/hp85disk/COPYRIGHT.md for specific Copyright details
+
+ @par You are free to use this code under the terms of GPL
+   please retain a copy of this notice in any code you use it in.
+
+This is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.
+
+This software is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
  @brief POSIX wrapper for FatFS
    - Provides many of the common Posix/linux functions 
    - POSIX character I/O functions
@@ -29,7 +49,7 @@
    - POSIX file functions
         - close
         - fileno
-        - fileno_to_stream	NOT POSIX
+        - fileno_to_stream  NOT POSIX
         - fopen
         - fread
         - ftruncate
@@ -43,14 +63,14 @@
         - fclose
 
    - POSIX file information functions
-        - dump_stat	- NOT POSIX
+        - dump_stat - NOT POSIX
         - fstat
-        - mctime	- NOT POSIX
+        - mctime    - NOT POSIX
         - stat
 
    - POSIX file and directory manipulation
         - basename
-        - baseext	- NOT POSIX
+        - baseext   - NOT POSIX
         - chmod
         - chdir
         - dirname
@@ -62,8 +82,8 @@
         - utime
 
    - POSIX - directory scanning functions
-		- closedir
-		- opendir 
+        - closedir
+        - opendir 
         - readdir
 
    - POSIX error functions
@@ -74,7 +94,7 @@
         - strerror_r
 
    - Device open functions
-        - fdevopen	- NOT POSIX
+        - fdevopen  - NOT POSIX
 
    - FatFS to POSIX bridge functions - NOT POSIX
         - fatfs_getc
@@ -85,26 +105,10 @@
         - fileno_to_fatfs
         - free_file_descriptor
         - new_file_descriptor
-		- mkfs
+        - mkfs
         - posix_fopen_modes_to_open
         - unix_time_to_fat
 
- @par Copyright &copy; 2015 Mike Gore, GPL License
- @par You are free to use this code under the terms of GPL
-   please retain a copy of this notice in any code you use it in.
-
-This is free software: you can redistribute it and/or modify it under the
-terms of the GNU General Public License as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.
-
-This software is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "user_config.h"
@@ -242,12 +246,12 @@ fgetc(FILE *stream)
             stream->buf++;
         }
     } else {
-		if(!stream->get)
-		{
-			printf("fgetc stream->get NULL\n");
-			return(EOF);
-		}
-		// get character from device or file
+        if(!stream->get)
+        {
+            printf("fgetc stream->get NULL\n");
+            return(EOF);
+        }
+        // get character from device or file
         c = stream->get(stream);
         if (c < 0) {
             /* if != _FDEV_ERR, assume its _FDEV_EOF */
@@ -274,7 +278,7 @@ int
 fputc(int c, FILE *stream)
 {
     errno = 0;
-	int ret;
+    int ret;
 
     if(stream == NULL)
     {
@@ -283,16 +287,16 @@ fputc(int c, FILE *stream)
     }
 
 #ifdef ESP8266
-	optimistic_yield(1000);
-	wdt_reset();
+    optimistic_yield(1000);
+    wdt_reset();
 #endif
 
-	if(stream != stdout && stream != stderr)
-	{
+    if(stream != stdout && stream != stderr)
+    {
         return(fatfs_putc(c,stream));
     }
 
-	// TTY outputs
+    // TTY outputs
 
     if ((stream->flags & __SWR) == 0)
         return EOF;
@@ -303,15 +307,15 @@ fputc(int c, FILE *stream)
         stream->len++;
         return c;
     } else {
-		if(!stream->put)
-		{
-			printf("fputc stream->put NULL\n");
-			return(EOF);
-		}
+        if(!stream->put)
+        {
+            printf("fputc stream->put NULL\n");
+            return(EOF);
+        }
         ret = stream->put(c, stream);
-		if(ret != EOF)
+        if(ret != EOF)
             stream->len++;
-		return(ret);
+        return(ret);
     }
 }
 
@@ -363,24 +367,24 @@ MEMSPACE
 int
 ungetc(int c, FILE *stream)
 {
-	int fd = fileno(stream);
-	if(!isatty(fd))
+    int fd = fileno(stream);
+    if(!isatty(fd))
         return(EOF);
 
-	if(c == EOF)
-		return EOF;
-	if((stream->flags & __SUNGET) != 0 )
-		return EOF;
-	if ((stream->flags & __SRD) == 0 )
-		return EOF;
+    if(c == EOF)
+        return EOF;
+    if((stream->flags & __SUNGET) != 0 )
+        return EOF;
+    if ((stream->flags & __SRD) == 0 )
+        return EOF;
 
-	stream->flags |= __SUNGET;
-	stream->flags &= ~__SEOF;
+    stream->flags |= __SUNGET;
+    stream->flags &= ~__SEOF;
 
-	stream->unget = c;
-	stream->len--;
+    stream->unget = c;
+    stream->len--;
 
-	return (c);
+    return (c);
 }
 
 #ifndef IO_MACROS
@@ -416,24 +420,24 @@ char *
 fgets(char *str, int size, FILE *stream)
 {
     int c;
-	int ind = 0;
+    int ind = 0;
     while(size--)
     {
         c = fgetc(stream);
         if(c == EOF)
-		{
-			if( ind == 0)
-				return(NULL);
-			break;
-		}
- 		if(c == '\n')
-			break;
-		if(c == 0x08)
-		{
-			 if(ind > 0)
-				--ind;
-			continue;
-		}
+        {
+            if( ind == 0)
+                return(NULL);
+            break;
+        }
+        if(c == '\n')
+            break;
+        if(c == 0x08)
+        {
+             if(ind > 0)
+                --ind;
+            continue;
+        }
         str[ind++] = c;
     }
     str[ind] = 0;
@@ -456,7 +460,7 @@ fputs(const char *str, FILE *stream)
     {
         if(fputc(*str, stream) == EOF)
             return(EOF);
-		++str;
+        ++str;
     }
     return(0);
 }
@@ -479,9 +483,9 @@ puts(const char *str)
     {
         if(fputc(*str, stdout) == EOF)
             return(EOF);
-		++str;
+        ++str;
     }
-	return ( fputc('\n',stdout) );
+    return ( fputc('\n',stdout) );
 }
 
 #endif
@@ -500,9 +504,9 @@ puts(const char *str)
 MEMSPACE
 int feof(FILE *stream)
 {
-	if(stream->flags & __SEOF)
-		return(1);
-	return(0);
+    if(stream->flags & __SEOF)
+        return(1);
+    return(0);
 }
 
 /// @brief POSIX get position of file stream.
@@ -543,8 +547,8 @@ int fseek(FILE *stream, long offset, int whence)
     long ret;
 
     int fn = fileno(stream);
-	if(fn < 0)
-		return(-1);
+    if(fn < 0)
+        return(-1);
 
     ret  = lseek(fn, offset, whence);
 
@@ -583,9 +587,9 @@ long ftell(FILE *stream)
     errno = 0;
 
     int fn = fileno(stream);
-	if(isatty(fn))
+    if(isatty(fn))
         return(-1);
-	// fileno_to_fatfs checks for fd out of bounds
+    // fileno_to_fatfs checks for fd out of bounds
     FIL *fh = fileno_to_fatfs(fn);
     if ( fh == NULL )
     {
@@ -610,27 +614,27 @@ long ftell(FILE *stream)
 /// @return file position on sucess.
 /// @return -1 on error.
 MEMSPACE
-size_t lseek(int fileno, size_t position, int whence)
+off_t lseek(int fileno, off_t position, int whence)
 {
     FRESULT res;
     FIL *fh;
     errno = 0;
-	FILE *stream;
+    FILE *stream;
 
 
-	// fileno_to_fatfs checks for fd out of bounds
+    // fileno_to_fatfs checks for fd out of bounds
     fh = fileno_to_fatfs(fileno);
     if(fh == NULL)
     {
         errno = EMFILE;
         return(-1);
     }
-	if(isatty(fileno))
+    if(isatty(fileno))
         return(-1);
-	
+    
 
-	stream = fileno_to_stream(fileno);
-	stream->flags |= __SUNGET;
+    stream = fileno_to_stream(fileno);
+    stream->flags |= __SUNGET;
 
     if(whence == SEEK_END)
         position += f_size(fh);
@@ -642,6 +646,11 @@ size_t lseek(int fileno, size_t position, int whence)
     {
         errno = fatfs_to_errno(res);
         return -1;
+    }
+    if(position != f_tell(fh) )
+    {
+        printf("Seek failed");
+        return(-1L);
     }
     return (fh->fptr);
 }
@@ -681,14 +690,14 @@ int close(int fileno)
 
     errno = 0;
 
-	// checks if fileno out of bounds
+    // checks if fileno out of bounds
     stream = fileno_to_stream(fileno);
     if(stream == NULL)
     {
         return(-1);
     }
 
-	// fileno_to_fatfs checks for fileno out of bounds
+    // fileno_to_fatfs checks for fileno out of bounds
     fh = fileno_to_fatfs(fileno);
     if(fh == NULL)
     {
@@ -775,7 +784,7 @@ FILE *fopen(const char *path, const char *mode)
     int flags = posix_fopen_modes_to_open(mode);
     int fileno = open(path, flags);
 
-	// checks if fileno out of bounds
+    // checks if fileno out of bounds
     return( fileno_to_stream(fileno) );
 }
 
@@ -795,14 +804,14 @@ size_t fread(void *ptr, size_t size, size_t nmemb, FILE *stream)
 {
     size_t count = size * nmemb;
     int fn = fileno(stream);
-	ssize_t ret;
+    ssize_t ret;
 
-	// read() checks for fn out of bounds
-	ret = read(fn, ptr, count);
-	if(ret < 0)
-		return(0);
+    // read() checks for fn out of bounds
+    ret = read(fn, ptr, count);
+    if(ret < 0)
+        return(0);
 
-	return((size_t) ret);
+    return((size_t) ret);
 }
 
 /// @brief POSIX truncate open file to length.
@@ -821,9 +830,9 @@ int ftruncate(int fd, off_t length)
     FIL *fh;
     FRESULT rc;
 
-	if(isatty(fd))
+    if(isatty(fd))
         return(-1);
-	// fileno_to_fatfs checks for fd out of bounds
+    // fileno_to_fatfs checks for fd out of bounds
     fh = fileno_to_fatfs(fd);
     if(fh == NULL)
     {
@@ -860,15 +869,15 @@ size_t fwrite(const void *ptr, size_t size, size_t nmemb, FILE *stream)
 {
     size_t count = size * nmemb;
     int fn = fileno(stream);
-	ssize_t ret;
-	
-	// write () checks for fn out of bounds
-	ret =  write(fn, ptr, count);
+    ssize_t ret;
+    
+    // write () checks for fn out of bounds
+    ret =  write(fn, ptr, count);
 
-	if(ret < 0)
-		return(0);
+    if(ret < 0)
+        return(0);
 
-	return((size_t) ret);
+    return((size_t) ret);
 }
 
 
@@ -922,7 +931,7 @@ int open(const char *pathname, int flags)
 
     fileno = new_file_descriptor();
 
-	// checks if fileno out of bounds
+    // checks if fileno out of bounds
     stream = fileno_to_stream(fileno);
     if(stream == NULL)
     {
@@ -930,7 +939,7 @@ int open(const char *pathname, int flags)
         return(-1);
     }
 
-	// fileno_to_fatfs checks for fileno out of bounds
+    // fileno_to_fatfs checks for fileno out of bounds
     fh = fileno_to_fatfs(fileno);
     if(fh == NULL)
     {
@@ -945,7 +954,7 @@ int open(const char *pathname, int flags)
         free_file_descriptor(fileno);
         return(-1);
     }
-	if(flags & O_APPEND)
+    if(flags & O_APPEND)
     {
 ///  Seek to end of the file
         res = f_lseek(fh, f_size(fh));
@@ -960,21 +969,21 @@ int open(const char *pathname, int flags)
 
     if((flags & O_ACCMODE) == O_RDWR)
     {
-		// FIXME fdevopen should do this
+        // FIXME fdevopen should do this
         stream->put = fatfs_putc;
         stream->get = fatfs_getc;
         stream->flags = _FDEV_SETUP_RW;
     }
     else if((flags & O_ACCMODE) == O_RDONLY)
     {
-		// FIXME fdevopen should do this
+        // FIXME fdevopen should do this
         stream->put = NULL;
         stream->get = fatfs_getc;
         stream->flags = _FDEV_SETUP_READ;
     }
     else
     {
-		// FIXME fdevopen should do this
+        // FIXME fdevopen should do this
         stream->put = fatfs_putc;
         stream->get = NULL;
         stream->flags = _FDEV_SETUP_WRITE;
@@ -997,43 +1006,43 @@ MEMSPACE
 ssize_t read(int fd, const void *buf, size_t count)
 {
     UINT size;
-	UINT bytes = count;
+    UINT bytes = count;
     int res;
-	int ret;
+    int ret;
     FIL *fh;
-	FILE *stream;
+    FILE *stream;
 
-	//FIXME
-	*(char *) buf = 0;
+    //FIXME
+    *(char *) buf = 0;
 
     errno = 0;
 
-	// TTY read function
-	// FIXME should we really be blocking ???
-	stream = fileno_to_stream(fd);
-	if(stream == stdin)
-	{
-		char *ptr = (char *) buf;
-		// ungetc is undefined for read
-		stream->flags |= __SUNGET;
-		size = 0;
-		while(count--)
-		{
-			ret = fgetc(stream);
-			if(ret < 0)
-				break;
-			
-			*ptr++ = ret;
-			++size;
-		}
-		return(size);
-	}
-	if(stream == stdout || stream == stderr)
-	{
-		return(-1);
-	}
+    // TTY read function
+    // FIXME should we really be blocking ???
+    stream = fileno_to_stream(fd);
+    if(stream == stdin)
+    {
+        char *ptr = (char *) buf;
+        // ungetc is undefined for read
+        stream->flags |= __SUNGET;
+        size = 0;
+        while(count--)
+        {
+            ret = fgetc(stream);
+            if(ret < 0)
+                break;
+            
+            *ptr++ = ret;
+            ++size;
+        }
+        return(size);
+    }
+    if(stream == stdout || stream == stderr)
+    {
+        return(-1);
+    }
 
-	// fileno_to_fatfs checks for fd out of bounds
+    // fileno_to_fatfs checks for fd out of bounds
     fh = fileno_to_fatfs(fd);
     if ( fh == NULL )
     {
@@ -1067,7 +1076,7 @@ void sync(void)
         if(isatty(i))
             continue;
 
-		// fileno_to_fatfs checks for i out of bounds
+        // fileno_to_fatfs checks for i out of bounds
         fh = fileno_to_fatfs(i);
         if(fh == NULL)
             continue;
@@ -1088,7 +1097,7 @@ int syncfs(int fd)
 {
     FIL *fh;
     FRESULT res;
-	FILE *stream;
+    FILE *stream;
 
     errno = 0;
 
@@ -1097,11 +1106,11 @@ int syncfs(int fd)
         errno = EBADF;
         return(-1);
     }
-	stream = fileno_to_stream(fd);
-	// reset unget on sync
-	stream->flags |= __SUNGET;
+    stream = fileno_to_stream(fd);
+    // reset unget on sync
+    stream->flags |= __SUNGET;
 
-	// fileno_to_fatfs checks for fd out of bounds
+    // fileno_to_fatfs checks for fd out of bounds
     fh = fileno_to_fatfs(fd);
     if(fh == NULL)
     {
@@ -1171,21 +1180,21 @@ MEMSPACE
 ssize_t write(int fd, const void *buf, size_t count)
 {
     UINT size;
-	UINT bytes = count;
+    UINT bytes = count;
     FRESULT res;
     FIL *fh;
-	FILE *stream;
+    FILE *stream;
     errno = 0;
 
     // TTY read function
     stream = fileno_to_stream(fd);
     if(stream == stdout || stream == stderr)
     {
-		char *ptr = (char *) buf;	
+        char *ptr = (char *) buf;   
         size = 0;
         while(count--)
         {
-			int c,ret;
+            int c,ret;
             c = *ptr++;
             ret = fputc(c, stream);
             if(c != ret)
@@ -1195,12 +1204,12 @@ ssize_t write(int fd, const void *buf, size_t count)
         }
         return(size);
     }
-	if(stream == stdin)
-	{
-		return(-1);
-	}
+    if(stream == stdin)
+    {
+        return(-1);
+    }
 
-	// fileno_to_fatfs checks for fd out of bounds
+    // fileno_to_fatfs checks for fd out of bounds
     fh = fileno_to_fatfs(fd);
     if ( fh == NULL )
     {
@@ -1230,8 +1239,8 @@ MEMSPACE
 int fclose(FILE *stream)
 {
     int fn = fileno(stream);
-	if(fn < 0)
-		return(EOF);
+    if(fn < 0)
+        return(EOF);
 
     return( close(fn) );
 }
@@ -1292,11 +1301,11 @@ int fstat(int fd, struct stat *buf)
     FIL *fh;
     FRESULT rc;
 
-	if(isatty(fd))
+    if(isatty(fd))
         return(-1);
 
-	//FIXME TODO
-	return(-1);
+    //FIXME TODO
+    return(-1);
 
 }
 #endif
@@ -1340,18 +1349,18 @@ int stat(char *name, struct stat *buf)
     uint16_t mode;
     errno = 0;
 
-	// f_stat does not handle / or . as root directory
-	if (strcmp(name,"/") == 0 || strcmp(name,".") == 0)
-	{
-		buf->st_atime = 0;
-		buf->st_mtime = 0;
-		buf->st_ctime = 0;
+    // f_stat does not handle / or . as root directory
+    if (strcmp(name,"/") == 0 || strcmp(name,".") == 0)
+    {
+        buf->st_atime = 0;
+        buf->st_mtime = 0;
+        buf->st_ctime = 0;
         buf->st_uid= 0;
         buf->st_gid= 0;
-		buf->st_size = 0;
-		buf->st_mode = S_IFDIR;
-		return(0);
-	}
+        buf->st_size = 0;
+        buf->st_mode = S_IFDIR;
+        return(0);
+    }
 
     res = f_stat(name, &info);
     if(res != FR_OK)
@@ -1366,7 +1375,7 @@ int stat(char *name, struct stat *buf)
     buf->st_mtime = epoch;                        // Modification time
     buf->st_ctime = epoch;                        // Creation time
 
-	// We only handle read only case
+    // We only handle read only case
     mode = (FATFS_R | FATFS_X);
     if( !(info.fattrib & AM_RDO))
         mode |= (FATFS_W);                        // enable write if NOT read only
@@ -1399,24 +1408,24 @@ int utime(const char *filename, const struct utimbuf *times)
 {
 
     FILINFO fno;
-	uint16_t fdate,ftime;
-	time_t ut;
-	int res;
+    uint16_t fdate,ftime;
+    time_t ut;
+    int res;
 
-	if(times)
-		ut = times->modtime;
-	else
-		ut = time(0);
-	
-	unix_time_to_fat(ut, (uint16_t *) &fdate, (uint16_t *) &ftime);
-	
+    if(times)
+        ut = times->modtime;
+    else
+        ut = time(0);
+    
+    unix_time_to_fat(ut, (uint16_t *) &fdate, (uint16_t *) &ftime);
+    
 
     fno.fdate = fdate;
     fno.ftime = ftime;
 
     res = f_utime(filename, (FILINFO *) &fno);
 
-	return( fatfs_to_errno(res) );
+    return( fatfs_to_errno(res) );
 }
 
 
@@ -1503,24 +1512,24 @@ int chdir(const char *pathname)
 MEMSPACE
 int chmod(const char *pathname, mode_t mode)
 {
-	int rc;
+    int rc;
     errno = 0;
 
-	// FIXME for now we combine user,group and other perms and ask if anyone has write perms ?
+    // FIXME for now we combine user,group and other perms and ask if anyone has write perms ?
 
-	// Read only ???
-	if ( !( mode & ( S_IWUSR | S_IWGRP | S_IWOTH)))
-	{
-		// file is read only
-		rc = f_chmod(pathname, AM_RDO, AM_RDO);
-		if (rc != FR_OK)
-		{
-			errno = fatfs_to_errno(rc);
-			return(-1);
-		}
-	}
-	
-	return(0);
+    // Read only ???
+    if ( !( mode & ( S_IWUSR | S_IWGRP | S_IWOTH)))
+    {
+        // file is read only
+        rc = f_chmod(pathname, AM_RDO, AM_RDO);
+        if (rc != FR_OK)
+        {
+            errno = fatfs_to_errno(rc);
+            return(-1);
+        }
+    }
+    
+    return(0);
 }
 
 /// @brief POSIX directory name of a filename.
@@ -1570,8 +1579,8 @@ int dirname(char *str)
 MEMSPACE
 int fchmod(int fd, mode_t mode)
 {
-	//FIXME TODO
-	return (-1);
+    //FIXME TODO
+    return (-1);
 }
 #endif
 
@@ -1586,7 +1595,7 @@ int fchmod(int fd, mode_t mode)
 MEMSPACE
 char *getcwd(char *pathname, int len)
 {
-	int res;
+    int res;
     errno = 0;
 
     res = f_getcwd(pathname, len);
@@ -1611,11 +1620,11 @@ int mkdir(const char *pathname, mode_t mode)
 {
     errno = 0;
 
-	if(mode)
-	{
-		if(chmod(pathname, mode))
-			return(-1);
-	}
+    if(mode)
+    {
+        if(chmod(pathname, mode))
+            return(-1);
+    }
 
     int res = f_mkdir(pathname);
     if(res != FR_OK)
@@ -1707,13 +1716,13 @@ int unlink(const char *pathname)
 /// @return -1 on error with errno set.
 int closedir(DIR *dirp)
 {
-	int res = f_closedir (dirp);
+    int res = f_closedir (dirp);
     if(res != FR_OK)
     {
         errno = fatfs_to_errno(res);
         return(-1);
     }
-	return(0);
+    return(0);
 }
 
 /// @brief POSIX opendir
@@ -1726,13 +1735,13 @@ int closedir(DIR *dirp)
 static DIR _dp;
 DIR *opendir(const char *pathdir)
 {
-	int res = f_opendir((DIR *) &_dp, pathdir);
+    int res = f_opendir((DIR *) &_dp, pathdir);
     if(res != FR_OK)
     {
         errno = fatfs_to_errno(res);
         return(NULL);
     }
-	return ((DIR *) &_dp);
+    return ((DIR *) &_dp);
 }
 
 /// @brief POSIX opendir
@@ -1742,24 +1751,24 @@ DIR *opendir(const char *pathdir)
 ///
 /// @return DIR * on sucess.
 /// @return NULL on error with errno set.
-static	dirent_t _de;
+static  dirent_t _de;
 dirent_t * readdir(DIR *dirp)
 {
-	FILINFO fno;
-	int len;
-	int res;
+    FILINFO fno;
+    int len;
+    int res;
 
-	_de.d_name[0] = 0;
- 	res = f_readdir ( dirp, &fno );
+    _de.d_name[0] = 0;
+    res = f_readdir ( dirp, &fno );
     if(res != FR_OK)
     {
         errno = fatfs_to_errno(res);
         return(NULL);
     }
-	len = strlen(fno.fname);
-	strncpy(_de.d_name,fno.fname,len);
-	_de.d_name[len] = 0;
-	return( (dirent_t *) &_de);
+    len = strlen(fno.fname);
+    strncpy(_de.d_name,fno.fname,len);
+    _de.d_name[len] = 0;
+    return( (dirent_t *) &_de);
 }
 
 // =============================================
@@ -1776,8 +1785,8 @@ dirent_t * readdir(DIR *dirp)
 MEMSPACE
 void clrerror(FILE *stream)
 {
-	stream->flags &= ~__SEOF;
-	stream->flags &= ~__SERR;
+    stream->flags &= ~__SEOF;
+    stream->flags &= ~__SERR;
 }
 
 /// @brief ferror reports if the stream has an error flag set
@@ -1788,9 +1797,9 @@ void clrerror(FILE *stream)
 MEMSPACE
 int ferror(FILE *stream)
 {
-	if(stream->flags & __SERR)
-		return(1);
-	return(0);
+    if(stream->flags & __SERR)
+        return(1);
+    return(0);
 }
 
 /// @brief POSIX perror() -  convert POSIX errno to text with user message.
@@ -1830,7 +1839,7 @@ MEMSPACE
 char 
 WEAK_ATR *strerror(int errnum)
 {
-	return( (char *)sys_errlist[errnum] );
+    return( (char *)sys_errlist[errnum] );
 }
 
 
@@ -1847,8 +1856,8 @@ WEAK_ATR *strerror(int errnum)
 MEMSPACE
 char *strerror_r(int errnum, char *buf, size_t buflen)
 {
-		strncpy(buf, sys_errlist[errnum], buflen);
-		return(buf);
+        strncpy(buf, sys_errlist[errnum], buflen);
+        return(buf);
 }
 
 
@@ -1879,8 +1888,8 @@ fdevopen(int (*put)(char, FILE *), int (*get)(FILE *))
     if (get != 0) {
         s->get = get;
         s->flags |= __SRD;
-		// We assign the first device with a read discriptor to stdin
-		// Only assign once
+        // We assign the first device with a read discriptor to stdin
+        // Only assign once
         if (stdin == 0)
             stdin = s;
     }
@@ -1888,13 +1897,13 @@ fdevopen(int (*put)(char, FILE *), int (*get)(FILE *))
     if (put != 0) {
         s->put = put;
         s->flags |= __SWR;
-		// NOTE: We assign the first device with a write to both STDOUT andd STDERR
+        // NOTE: We assign the first device with a write to both STDOUT andd STDERR
 
-		// Only assign in unassigned
+        // Only assign in unassigned
         if (stdout == 0) 
             stdout = s;
-		if (stderr == 0)
-			stderr = s;
+        if (stderr == 0)
+            stderr = s;
     }
 
     return s;
@@ -1912,51 +1921,51 @@ fdevopen(int (*put)(char, FILE *), int (*get)(FILE *))
 /// @retrun void
 int mkfs(char *name)
 {
-	FATFS fs;
-	uint8_t *mem;
-	int res;
-	int len;
-	int c;
-	char dev[4];
+    FATFS fs;
+    uint8_t *mem;
+    int res;
+    int len;
+    int c;
+    char dev[4];
 
-	len = MATCH(name,"/dev/sd");
-	if(!len)
-	{
-		printf("Expected /dev/sda .. /dev/sdj\n");
-		return(0);
-	}
-	// Convert /dev/sd[a-j] to 0: .. 9:
-	dev[1] = ':';
-	dev[2] = 0;
-	c = tolower( name[len-1] );
-	if(c >= 'a' && c <= ('a' + 9))
-		dev[0] = (c - 'a');
-	dev[3] = 0;
+    len = MATCH(name,"/dev/sd");
+    if(!len)
+    {
+        printf("Expected /dev/sda .. /dev/sdj\n");
+        return(0);
+    }
+    // Convert /dev/sd[a-j] to 0: .. 9:
+    dev[1] = ':';
+    dev[2] = 0;
+    c = tolower( name[len-1] );
+    if(c >= 'a' && c <= ('a' + 9))
+        dev[0] = (c - 'a');
+    dev[3] = 0;
 
-	// Register work area to the logical drive 0:
-	res = f_mount(&fs, dev, 0);                    
-	if(!res)
-	{
-		put_rc(res);
-		return(0);
-	}
+    // Register work area to the logical drive 0:
+    res = f_mount(&fs, dev, 0);                    
+    if(!res)
+    {
+        put_rc(res);
+        return(0);
+    }
 
-	// Allocate memory for mkfs function
-	mem = safemalloc(1024);
-	if(!mem)
-		return(0);
+    // Allocate memory for mkfs function
+    mem = safemalloc(1024);
+    if(!mem)
+        return(0);
 
-	// Create FAT volume on the logical drive 0
-	// 2nd argument is ignored. */
-	res = f_mkfs(dev, FM_FAT32, 0, mem, 1024);
-	if(res)
-	{
-		put_rc(res);
-		safefree(mem);
-		return(0);
-	}
-	safefree(mem);
-	return(1);
+    // Create FAT volume on the logical drive 0
+    // 2nd argument is ignored. */
+    res = f_mkfs(dev, FM_FAT32, 0, mem, 1024);
+    if(res)
+    {
+        put_rc(res);
+        safefree(mem);
+        return(0);
+    }
+    safefree(mem);
+    return(1);
 }
 
 /// @brief Private FatFs function called by fgetc() to get a byte from file stream
@@ -1978,7 +1987,7 @@ int  fatfs_getc(FILE *stream)
     UINT size;
     int res;
     uint8_t c;
-	long pos;
+    long pos;
 
     errno = 0;
 
@@ -2003,49 +2012,49 @@ int  fatfs_getc(FILE *stream)
         return(EOF);
     }
 
-	// AUTOMATIC end of line METHOD detection
-	// ALWAYS return '\n' for ALL methods
-	// History: End of line (EOL) characters sometimes differ, mostly legacy systems, and modern UNIX (which uses just '\n')
-	//    '\r' ONLY 
-	//	  '\r\n' 
-	//	  '\n' 
-	// The difference was mostly from the way old mechanical printers were controlled.
-	//    '\n' (New Line = NL) advanced the line
-	//    '\r' (Charage Return = CR) moved the print head to start of line 
-	//    '\t' (Tabstop = TAB)
-	//    '\f' (Form feed = FF)
-	// The problem with mechanical devices is that each had differing control and time delays to deal with.
+    // AUTOMATIC end of line METHOD detection
+    // ALWAYS return '\n' for ALL methods
+    // History: End of line (EOL) characters sometimes differ, mostly legacy systems, and modern UNIX (which uses just '\n')
+    //    '\r' ONLY 
+    //    '\r\n' 
+    //    '\n' 
+    // The difference was mostly from the way old mechanical printers were controlled.
+    //    '\n' (New Line = NL) advanced the line
+    //    '\r' (Charage Return = CR) moved the print head to start of line 
+    //    '\t' (Tabstop = TAB)
+    //    '\f' (Form feed = FF)
+    // The problem with mechanical devices is that each had differing control and time delays to deal with.
     //  (TAB, CR, NL and FF) did different things and took differing times depending on the device.
-	//
-	// Long before DOS UNIX took the position that controlling physical devices must be a device drivers problem only.
-	// They reasoned if users had to worry about all the ugly controll and timing issues no code would be portable.
-	// Therefore they made NL just a SYMBOL for the driver to determine what to do.
-	// This design philosophy argued if you needed better control its better to use a real designed purposed tool for it.
-	// (ie. like curses or termcap).
+    //
+    // Long before DOS UNIX took the position that controlling physical devices must be a device drivers problem only.
+    // They reasoned if users had to worry about all the ugly controll and timing issues no code would be portable.
+    // Therefore they made NL just a SYMBOL for the driver to determine what to do.
+    // This design philosophy argued if you needed better control its better to use a real designed purposed tool for it.
+    // (ie. like curses or termcap).
 
-	// Here to deal with those other old ugly stupid pointless EOL methods we convert to just a symbol '\n'
-	// FROM '\n' OR '\r'char OR '\r\n' TO '\n'
-	// Note: char != '\n'
-	if(c == '\r')
-	{
-		// PEEK forward 1 character
-		pos = f_tell(fh);
-		// Check for trailing '\n' or EOF
-		res = f_read(fh, &c, 1, (UINT *) &size);
-		if(res != FR_OK || size != 1)
-		{
-			// '\r' with EOF impiles '\n'
-			return('\n');
-		}
-		// This file must be '\r' ONLY for end of line
-		if(c != '\n')
-		{
-			// Not '\n' or EOF o move file pointer back to just after the '\r'
-			f_lseek(fh, pos);
-			return('\n');
-		}
-		c = '\n';
-	}
+    // Here to deal with those other old ugly stupid pointless EOL methods we convert to just a symbol '\n'
+    // FROM '\n' OR '\r'char OR '\r\n' TO '\n'
+    // Note: char != '\n'
+    if(c == '\r')
+    {
+        // PEEK forward 1 character
+        pos = f_tell(fh);
+        // Check for trailing '\n' or EOF
+        res = f_read(fh, &c, 1, (UINT *) &size);
+        if(res != FR_OK || size != 1)
+        {
+            // '\r' with EOF impiles '\n'
+            return('\n');
+        }
+        // This file must be '\r' ONLY for end of line
+        if(c != '\n')
+        {
+            // Not '\n' or EOF o move file pointer back to just after the '\r'
+            f_lseek(fh, pos);
+            return('\n');
+        }
+        c = '\n';
+    }
     return(c & 0xff);
 }
 
@@ -2153,7 +2162,7 @@ int fatfs_to_errno( FRESULT Result )
             return (EBUSY);      /* POSIX Device or resource busy (POSIX.1) */
 
         case FR_LOCKED:          /* FatFS (16) The operation is rejected according to the file sharing policy */
-            return (EBUSY);		 /* POSIX Device or resource busy (POSIX.1) */
+            return (EBUSY);      /* POSIX Device or resource busy (POSIX.1) */
 
 
         case FR_NOT_ENOUGH_CORE: /* FatFS (17) LFN working buffer could not be allocated */
@@ -2166,7 +2175,7 @@ int fatfs_to_errno( FRESULT Result )
             return (EINVAL);     /* POSIX Invalid argument (POSIX.1) */
 
     }
-	return (EBADMSG);            /* POSIX Bad message (POSIX.1) */
+    return (EBADMSG);            /* POSIX Bad message (POSIX.1) */
 }
 
 
@@ -2242,7 +2251,7 @@ time_t fat_time_to_unix(uint16_t date, uint16_t time)
 MEMSPACE
 void unix_time_to_fat(time_t epoch, uint16_t *date, uint16_t *time)
 {
-	tm_t *t = gmtime((time_t *) &epoch);
+    tm_t *t = gmtime((time_t *) &epoch);
 
 /* Pack date and time into a uint32_t variable */
     *date = ((uint16_t)(t->tm_year - 80) << 9)
@@ -2275,7 +2284,7 @@ FIL *fileno_to_fatfs(int fileno)
         return(NULL);
     }
 
-	// checks if fileno out of bounds
+    // checks if fileno out of bounds
     stream = fileno_to_stream(fileno);
     if( stream == NULL )
         return(NULL);
@@ -2310,7 +2319,7 @@ int free_file_descriptor(int fileno)
         return(-1);
     }
 
-	// checks if fileno out of bounds
+    // checks if fileno out of bounds
     stream = fileno_to_stream(fileno);
     if(stream == NULL)
     {
@@ -2477,7 +2486,7 @@ fprintf(FILE *fp, const char *format, ...)
     printf_t fn;
     va_list va;
 
-	fn.put = _fprintf_putc;
+    fn.put = _fprintf_putc;
     fn.sent = 0;
     fn.buffer = (void *) fp;
 

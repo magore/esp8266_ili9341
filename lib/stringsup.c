@@ -79,7 +79,7 @@ int
 WEAK_ATR
 islower(int c)
 {
-    if(c >= 'a' && c <= 'a')
+    if(c >= 'a' && c <= 'z')
         return(1);
     return(0);
 }
@@ -124,12 +124,12 @@ toupper(int c)
 MEMSPACE
 void *memchr(const void *str, int c, size_t size)
 {
-	const uint8_t *ptr = str;
-	while(size--)
-	{
-		if (*ptr++ == (uint8_t) c) 
-			return (void *) (ptr - 1);
-	} 
+    const uint8_t *ptr = str;
+    while(size--)
+    {
+        if (*ptr++ == (uint8_t) c) 
+            return (void *) (ptr - 1);
+    } 
     return NULL;
 }
 
@@ -160,12 +160,12 @@ MEMSPACE
  WEAK_ATR char *
 strcpy(char *dest, const char *src)
 {
-	char *ptr = dest;
-	while(*src)
-	{
-		*ptr++ = *src++;
-	} 
-	*ptr ++ = 0;
+    char *ptr = dest;
+    while(*src)
+    {
+        *ptr++ = *src++;
+    } 
+    *ptr ++ = 0;
     return (ptr);
 }
 
@@ -178,14 +178,14 @@ MEMSPACE
  WEAK_ATR
 char * strncpy(char *dest, const char *src, size_t size)
 {
-	char *ptr = dest;
-	while(*src && size)
-	{
-		*ptr++ = *src++;
-		size--;
-	} 
-	while(size--)
-		*ptr++ = 0;
+    char *ptr = dest;
+    while(*src && size)
+    {
+        *ptr++ = *src++;
+        size--;
+    } 
+    while(size--)
+        *ptr++ = 0;
     return (dest);
 }
 
@@ -198,11 +198,11 @@ MEMSPACE
 WEAK_ATR
 char * strcat(char *dest, const char *src)
 {
-	char *ptr = dest;
-	while(*ptr)
-		++ptr;
+    char *ptr = dest;
+    while(*ptr)
+        ++ptr;
     strcpy(ptr,src);
-	return(dest);
+    return(dest);
 }
 
 /// @brief Append string of at most N bytes from src
@@ -213,11 +213,11 @@ MEMSPACE
 WEAK_ATR
 char * strncat(char *dest, const char *src, size_t max)
 {
-	char *ptr = dest;
-	while(*ptr)
-		++ptr;
+    char *ptr = dest;
+    while(*ptr)
+        ++ptr;
     strncpy(ptr,src,max);
-	return(dest);
+    return(dest);
 }
 
 // =============================================
@@ -252,7 +252,6 @@ void
 WEAK_ATR
 strupper(char *str)
 {
-
     while(*str)
     {
         *str = toupper(*str);
@@ -566,51 +565,51 @@ int MATCHI_LEN(char *str, char *pat)
 MEMSPACE
 int split_args(char *str, char *argv[], int max)
 {
-	int i;
-	int count = 0;
+    int i;
+    int count = 0;
     // NULL ?
 
-	for(i=1;i<max;++i)
-		argv[i] = NULL;	
+    for(i=0;i<max;++i)
+        argv[i] = NULL; 
 
-	// You may replace argv[0]
-	argv[count++] = "main";
+    // You may replace argv[0]
+    // argv[count++] = "main";
 
-	if(!max)
-		return(0);
+    if(!max)
+        return(0);
 
     if(!str)
         return(0);
 
-	while(*str && count < max)
-	{
-		str = skipspaces(str);
-		if(!*str)
-			break;
+    while(*str && count < max)
+    {
+        str = skipspaces(str);
+        if(!*str)
+            break;
 
-		// string processing
-		if(*str == '"')
-		{
-			++str;
-			// Save string pointer
-			argv[count++] = str;
-			while(*str && *str != '"')
-				++str;
-			if(*str == '"')
-				*str++ = 0;
-			continue;
-		}
+        // string processing
+        if(*str == '"')
+        {
+            ++str;
+            // Save string pointer
+            argv[count++] = str;
+            while(*str && *str != '"')
+                ++str;
+            if(*str == '"')
+                *str++ = 0;
+            continue;
+        }
 
-		argv[count++] = str;
-		// Find size of token
-		while(*str > ' ' && *str <= 0x7e)
-			++str;
-		if(!*str)
-			break;
-		*str  = 0;
-		++str;
-	}
-	return(count);
+        argv[count++] = str;
+        // Find size of token
+        while(*str > ' ' && *str <= 0x7e)
+            ++str;
+        if(!*str)
+            break;
+        *str  = 0;
+        ++str;
+    }
+    return(count);
 }
 
 // =============================================
@@ -706,32 +705,32 @@ int token(char *str, char *pat)
 MEMSPACE
 int32_t get_value(char *str)
 { 
-	int base;
-	int ret;
-	char *ptr;
-	char *endptr;
+    int base;
+    int ret;
+    char *ptr;
+    char *endptr;
 
 
-	ptr = skipspaces(str);
-	base = 10;
+    ptr = skipspaces(str);
+    base = 10;
 
-	// convert number base 10, 16, 8 and 2
-	if( (ret = MATCHI_LEN(ptr,"0x")) )
-	{
-		base = 16;
-		ptr += ret;
-	}
-	else if( (ret = MATCHI_LEN(ptr,"0o")) )
-	{
-		base = 8;
-		ptr += ret;
-	}
-	else if( (ret = MATCHI_LEN(ptr,"0b")) )
-	{
-		base = 2;
-		ptr += ret;
-	}
-	return(strtol(ptr, (char **)&endptr, base));
+    // convert number base 10, 16, 8 and 2
+    if( (ret = MATCHI_LEN(ptr,"0x")) )
+    {
+        base = 16;
+        ptr += ret;
+    }
+    else if( (ret = MATCHI_LEN(ptr,"0o")) )
+    {
+        base = 8;
+        ptr += ret;
+    }
+    else if( (ret = MATCHI_LEN(ptr,"0b")) )
+    {
+        base = 2;
+        ptr += ret;
+    }
+    return(strtol(ptr, (char **)&endptr, base));
 }
 
 // =============================================

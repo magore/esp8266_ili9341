@@ -36,7 +36,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 MEMSPACE
 int TestSquare(mat_t MatA)
 {
-	return( (MatA.rows == MatA.cols) ? 1 : 0 );
+    return( (MatA.rows == MatA.cols) ? 1 : 0 );
 }
 
 /**
@@ -47,53 +47,53 @@ int TestSquare(mat_t MatA)
 MEMSPACE
 mat_t MatAlloc(int rows, int cols)
 {
-	int r;
-	mat_t MatA;
-	float *fptr;
+    int r;
+    mat_t MatA;
+    float *fptr;
 
-	if(rows < 1)
-	{
+    if(rows < 1)
+    {
 #if MATDEBUG & 1
-		//FIXME
-		printf("MatAlloc: rows < 1\n");
+        //FIXME
+        printf("MatAlloc: rows < 1\n");
 #endif
-		rows = 1;
-	}
-	if(cols< 1)
-	{
+        rows = 1;
+    }
+    if(cols< 1)
+    {
 #if MATDEBUG & 1
-		//FIXME
-		printf("MatAlloc: cols < 1\n");
+        //FIXME
+        printf("MatAlloc: cols < 1\n");
 #endif
-		cols = 1;
-	}
-	
-	MatA.data = safecalloc(rows,sizeof(float *));
-	if(MatA.data == NULL)
-	{
-		MatA.rows = 0;
-		MatA.cols = 0;
-		return(MatA);
-	}
+        cols = 1;
+    }
+    
+    MatA.data = safecalloc(rows,sizeof(float *));
+    if(MatA.data == NULL)
+    {
+        MatA.rows = 0;
+        MatA.cols = 0;
+        return(MatA);
+    }
 
-	for (r=0;r<rows;r++)
-	{
-		fptr = safecalloc(cols,sizeof(float));
-		if(fptr == NULL)
-		{
-			MatFree(MatA);
-			return(MatA);
-		}
+    for (r=0;r<rows;r++)
+    {
+        fptr = safecalloc(cols,sizeof(float));
+        if(fptr == NULL)
+        {
+            MatFree(MatA);
+            return(MatA);
+        }
 
-		MatA.data[r] = fptr;
-	}
-	MatA.rows = rows;
-	MatA.cols = cols;
-	if(cols == rows)
-		MatA.size = cols;
-	else
-		MatA.size = 0;
-	return(MatA);
+        MatA.data[r] = fptr;
+    }
+    MatA.rows = rows;
+    MatA.cols = cols;
+    if(cols == rows)
+        MatA.size = cols;
+    else
+        MatA.size = 0;
+    return(MatA);
 }
 
 /**
@@ -104,7 +104,7 @@ mat_t MatAlloc(int rows, int cols)
 MEMSPACE
 mat_t MatAllocSQ(int size)
 {
-	return(MatAlloc(size,size));
+    return(MatAlloc(size,size));
 }
 
 
@@ -115,32 +115,32 @@ mat_t MatAllocSQ(int size)
 MEMSPACE
 void MatFree(mat_t matF)
 {
-	int i;
-	if(matF.data) 
-	{
-		for (i=0;i<matF.rows;i++)
-		{
-			if(matF.data[i])
-			{
-				safefree(matF.data[i]);
-				matF.data[i] = NULL;
-			}
-			else
-			{
+    int i;
+    if(matF.data) 
+    {
+        for (i=0;i<matF.rows;i++)
+        {
+            if(matF.data[i])
+            {
+                safefree(matF.data[i]);
+                matF.data[i] = NULL;
+            }
+            else
+            {
 #if MATDEBUG & 1
-				printf("MatFree: attempt to free null matF row: %d\n", i);
+                printf("MatFree: attempt to free null matF row: %d\n", i);
 #endif
-			}
-		}
-		safefree(matF.data);
-		matF.data = NULL;
-	}
-	else
-	{
+            }
+        }
+        safefree(matF.data);
+        matF.data = NULL;
+    }
+    else
+    {
 #if MATDEBUG & 1
-		printf("MatFree: attempt to free null matF\n");
+        printf("MatFree: attempt to free null matF\n");
 #endif
-	}
+    }
 }
 
 /**
@@ -151,20 +151,20 @@ void MatFree(mat_t matF)
 MEMSPACE
 mat_t MatLoad(void *V, int rows, int cols)
 {
-	mat_t MatA = MatAlloc(rows,cols);
-	float *f = (float *) V;
+    mat_t MatA = MatAlloc(rows,cols);
+    float *f = (float *) V;
 
-	int r,c,k;
-	
-	k = 0;
-	for(r=0;r<rows;++r)
-	{
-		for(c=0;c<cols;++c)
-		{
-			MatA.data[r][c] = f[k++];
-		}
-	}
-	return(MatA);
+    int r,c,k;
+    
+    k = 0;
+    for(r=0;r<rows;++r)
+    {
+        for(c=0;c<cols;++c)
+        {
+            MatA.data[r][c] = f[k++];
+        }
+    }
+    return(MatA);
 }
 
 /**
@@ -175,7 +175,7 @@ mat_t MatLoad(void *V, int rows, int cols)
 MEMSPACE
 mat_t MatLoadSQ(void *V, int size)
 {
-	return(MatLoad(V,size,size));
+    return(MatLoad(V,size,size));
 }
 
 
@@ -186,18 +186,18 @@ mat_t MatLoadSQ(void *V, int size)
 MEMSPACE
 void MatPrint(mat_t matrix)
 {
-	int r,c;
-	
-	printf("size: rows(%d), cols(%d)\n", matrix.rows,matrix.cols);
-	for(r=0;r<matrix.rows;++r)
-	{
-		for(c=0;c<matrix.cols;++c)
-		{
-			printf("%+e ", (double) matrix.data[r][c]);
-		}
-		printf("\n");
-	}
-	printf("\n");
+    int r,c;
+    
+    printf("size: rows(%d), cols(%d)\n", matrix.rows,matrix.cols);
+    for(r=0;r<matrix.rows;++r)
+    {
+        for(c=0;c<matrix.cols;++c)
+        {
+            printf("%+e ", (double) matrix.data[r][c]);
+        }
+        printf("\n");
+    }
+    printf("\n");
 }
 
 /**
@@ -211,47 +211,47 @@ void MatPrint(mat_t matrix)
 MEMSPACE
 mat_t DeleteRowCol(mat_t MatA,int row,int col)
 {
-	int r,c;
-	int rM, cM;
-	mat_t MatM;
-	int rows = MatA.rows;
-	int cols = MatA.cols;
-	if(cols < 2)
-	{
-		//FIXME user error
-		cols = 2;
+    int r,c;
+    int rM, cM;
+    mat_t MatM;
+    int rows = MatA.rows;
+    int cols = MatA.cols;
+    if(cols < 2)
+    {
+        //FIXME user error
+        cols = 2;
 #if MATDEBUG & 1
-		printf("DeleteRowCol cols:%d < 2 error\n",cols);
+        printf("DeleteRowCol cols:%d < 2 error\n",cols);
 #endif
-	}
-	if(rows < 2)
-	{
-		//FIXME user error
-		rows = 2;
+    }
+    if(rows < 2)
+    {
+        //FIXME user error
+        rows = 2;
 #if MATDEBUG & 1
-		printf("DeleteRowCol rows:%d < 2 error\n",rows);
+        printf("DeleteRowCol rows:%d < 2 error\n",rows);
 #endif
-	}
+    }
 
-	MatM = MatAlloc(rows-1,cols-1);
-	rM = 0;
-	for(r=0;r<MatA.rows;++r)
-	{
-		// delete row
-		if(r == row)
-			continue;
-		cM = 0;
-		for(c=0;c<MatA.cols;++c)
-		{
-			// delete col
-			if(c == col)
-				continue;
-			MatM.data[rM][cM] = MatA.data[r][c];
-			++cM;
-		}
-		++rM;
-	}
-	return(MatM);
+    MatM = MatAlloc(rows-1,cols-1);
+    rM = 0;
+    for(r=0;r<MatA.rows;++r)
+    {
+        // delete row
+        if(r == row)
+            continue;
+        cM = 0;
+        for(c=0;c<MatA.cols;++c)
+        {
+            // delete col
+            if(c == col)
+                continue;
+            MatM.data[rM][cM] = MatA.data[r][c];
+            ++cM;
+        }
+        ++rM;
+    }
+    return(MatM);
 }
 
 /**
@@ -263,19 +263,19 @@ MEMSPACE
 mat_t Transpose(mat_t MatA)
 {
     int c,r;
-	// allocate using transposed rows and columns
-	mat_t MatR = MatAlloc(MatA.cols, MatA.rows);
-	// row
-	for (r = 0; r < MatA.rows; r++)
-	{
-		// col
-		for( c = 0 ; c < MatA.cols ; c++ )
-		{
-			// transposed
-			MatR.data[c][r] = MatA.data[r][c];
-		}
-	}
-	return(MatR);
+    // allocate using transposed rows and columns
+    mat_t MatR = MatAlloc(MatA.cols, MatA.rows);
+    // row
+    for (r = 0; r < MatA.rows; r++)
+    {
+        // col
+        for( c = 0 ; c < MatA.cols ; c++ )
+        {
+            // transposed
+            MatR.data[c][r] = MatA.data[r][c];
+        }
+    }
+    return(MatR);
 }
 
 /**
@@ -290,11 +290,11 @@ mat_t Transpose(mat_t MatA)
 MEMSPACE
 float Minor(mat_t MatA, int row, int col)
 {
-	float D;
-	mat_t SubMat = DeleteRowCol(MatA, row, col);
-	D = Determinant(SubMat);
-	MatFree(SubMat);
-	return(D);
+    float D;
+    mat_t SubMat = DeleteRowCol(MatA, row, col);
+    D = Determinant(SubMat);
+    MatFree(SubMat);
+    return(D);
 }
 
 /**
@@ -309,10 +309,10 @@ float Minor(mat_t MatA, int row, int col)
 MEMSPACE
 float Cofactor(mat_t MatA, int row, int col)
 {
-	float D = Minor(MatA, row, col);;
-	// (-1)exp(row+col)  is -1 if (row+col) odd otherwise 1.0 if even
-	D *= ( ((row+col) & 1) ? -1.0 : 1.0);
-	return(D);
+    float D = Minor(MatA, row, col);;
+    // (-1)exp(row+col)  is -1 if (row+col) odd otherwise 1.0 if even
+    D *= ( ((row+col) & 1) ? -1.0 : 1.0);
+    return(D);
 }
 
 /**
@@ -324,22 +324,22 @@ float Cofactor(mat_t MatA, int row, int col)
 MEMSPACE
 mat_t Adjugate(mat_t MatA)
 {
-	int r,c;
-	// Since the result is the transpose we allocate switching rows and cols here
-	mat_t MatAdj = MatAlloc(MatA.cols,MatA.rows);
+    int r,c;
+    // Since the result is the transpose we allocate switching rows and cols here
+    mat_t MatAdj = MatAlloc(MatA.cols,MatA.rows);
 
-	for(r = 0; r< MatA.rows;++r)
-	{
-		for(c = 0; c < MatA.cols;++c)
-		{
-			// transpose rows and columns when storing Cofactors to get the Adjugate
-			MatAdj.data[c][r] = Cofactor(MatA,r,c);
-		}
-	}
-	return(MatAdj);
+    for(r = 0; r< MatA.rows;++r)
+    {
+        for(c = 0; c < MatA.cols;++c)
+        {
+            // transpose rows and columns when storing Cofactors to get the Adjugate
+            MatAdj.data[c][r] = Cofactor(MatA,r,c);
+        }
+    }
+    return(MatAdj);
 }
 
-	
+    
 /**
   @brief Determinant by recursion using Cofactors
   @see https://en.wikipedia.org/wiki/Determinant
@@ -352,39 +352,39 @@ float Determinant(mat_t MatA)
     int r,c,n,cc;
     float D = 0;
 
-	if(MatA.cols != MatA.rows)
-	{
-		//FIXME error
+    if(MatA.cols != MatA.rows)
+    {
+        //FIXME error
 #if MATDEBUG & 1
-		printf("Determinate: Matrix MUST be square!\n");
+        printf("Determinate: Matrix MUST be square!\n");
 #endif
         return(D);
-	}
+    }
 
     if (MatA.size < 1)
     {
 #if MATDEBUG & 1
-		printf("Determinate: Matrix size MUST be > 0!\n");
+        printf("Determinate: Matrix size MUST be > 0!\n");
 #endif
         return(D);
     }
-	// 1 x 1 case
-	if (MatA.size == 1)	 
+    // 1 x 1 case
+    if (MatA.size == 1)  
     {
         D = MatA.data[0][0];
-		return(D);
+        return(D);
     }
-	// 2 x 2 case
+    // 2 x 2 case
     if (MatA.size == 2)
     {
         D = MatA.data[0][0] * MatA.data[1][1] - MatA.data[1][0] * MatA.data[0][1];
-		return(D);
+        return(D);
     }
-	// solve > 2 cases by recursive Cofactor method
-	for (n=0;n<MatA.size;++n)
-	{
-		D += MatA.data[0][n] * Cofactor(MatA, 0, n);
-	}
+    // solve > 2 cases by recursive Cofactor method
+    for (n=0;n<MatA.size;++n)
+    {
+        D += MatA.data[0][n] * Cofactor(MatA, 0, n);
+    }
     return(D);
 }
  
@@ -398,51 +398,51 @@ float Determinant(mat_t MatA)
 MEMSPACE
 mat_t Invert(mat_t MatA)
 {
-	int r,c;
-	float D;
+    int r,c;
+    float D;
 
-	mat_t MatAdj;
+    mat_t MatAdj;
  
 #if MATDEBUG & 2
-	printf("MatA\n");
-	MatPrint(MatA);
+    printf("MatA\n");
+    MatPrint(MatA);
 #endif
 
-	D=Determinant(MatA);
+    D=Determinant(MatA);
 
-	if(!D)
-	{
-		//FIXME flag error somehow
-#if MATDEBUG & 1
-		printf("Determinant(MatA) = 0!\n\n");
-#endif
-		return(MatA);
-	}
-
-#if MATDEBUG & 2
-	printf("Determinant(MatA):\n%e\n\n", (double) D);
-#endif
-
-	MatAdj = Adjugate(MatA);
-#if MATDEBUG & 2
-	printf("Adjugate(MatA)\n");
-	MatPrint(MatAdj);
-#endif
-	// row
-	for (r=0;r<MatAdj.rows;++r)
+    if(!D)
     {
-		// col
-		for (c=0;c<MatAdj.cols;++c)
-		{
-        	MatAdj.data[r][c] /= D;
+        //FIXME flag error somehow
+#if MATDEBUG & 1
+        printf("Determinant(MatA) = 0!\n\n");
+#endif
+        return(MatA);
+    }
+
+#if MATDEBUG & 2
+    printf("Determinant(MatA):\n%e\n\n", (double) D);
+#endif
+
+    MatAdj = Adjugate(MatA);
+#if MATDEBUG & 2
+    printf("Adjugate(MatA)\n");
+    MatPrint(MatAdj);
+#endif
+    // row
+    for (r=0;r<MatAdj.rows;++r)
+    {
+        // col
+        for (c=0;c<MatAdj.cols;++c)
+        {
+            MatAdj.data[r][c] /= D;
         }
     }
 #if MATDEBUG & 2
-	printf("Adjugate(MatA)/Determinant(MatA)\n");
-	MatPrint(MatAdj);
+    printf("Adjugate(MatA)/Determinant(MatA)\n");
+    MatPrint(MatAdj);
 #endif
 
-	return(MatAdj);
+    return(MatAdj);
 }
 
 /**
@@ -455,23 +455,23 @@ mat_t Invert(mat_t MatA)
 MEMSPACE
 mat_t PseudoInvert(mat_t MatA)
 {
-	// AT = Transpose(A)
-	mat_t MatAT = Transpose(MatA);
+    // AT = Transpose(A)
+    mat_t MatAT = Transpose(MatA);
 
-	// AT * A
-	mat_t MatR = MatMul(MatAT,MatA);
+    // AT * A
+    mat_t MatR = MatMul(MatAT,MatA);
 
-	// 1/(AT * A)
-	mat_t MatI = Invert(MatR);
+    // 1/(AT * A)
+    mat_t MatI = Invert(MatR);
 
-	// Pseudo Inverse (AT × A)–1 × AT\n
-	mat_t MatPI = MatMul(MatI,MatAT);
+    // Pseudo Inverse (AT × A)–1 × AT\n
+    mat_t MatPI = MatMul(MatI,MatAT);
 
-	MatFree(MatR);
-	MatFree(MatI);
-	MatFree(MatAT);
-	
-	return(MatPI);
+    MatFree(MatR);
+    MatFree(MatI);
+    MatFree(MatAT);
+    
+    return(MatPI);
 }
 
 
@@ -489,32 +489,32 @@ mat_t PseudoInvert(mat_t MatA)
 MEMSPACE
 mat_t MatMul(mat_t MatA, mat_t MatB)
 {
-	float sum = 0;
-	mat_t MatR = MatAlloc(MatA.rows,MatB.cols);
+    float sum = 0;
+    mat_t MatR = MatAlloc(MatA.rows,MatB.cols);
 
-	int rA,cB,rB;
+    int rA,cB,rB;
 
-	if (MatA.cols != MatB.rows)
+    if (MatA.cols != MatB.rows)
 #if MATDEBUG & 1
-		printf("error MatA cols(%d) != MatB rows(%d)\n", MatA.cols, MatB.rows);
+        printf("error MatA cols(%d) != MatB rows(%d)\n", MatA.cols, MatB.rows);
 #endif
-	
-	// A row
+    
+    // A row
     for (rA = 0; rA < MatA.rows; ++rA) 
-	{
-		// col B
-		for (cB = 0; cB < MatB.cols; ++cB) 
-		{
-			// row B
-			for (rB = 0; rB < MatB.rows; ++rB) 
-			{
-				sum += (MatA.data[rA][rB] * MatB.data[rB][cB]);
-			}
-			MatR.data[rA][cB] = sum;
-			sum = 0;
-		}
+    {
+        // col B
+        for (cB = 0; cB < MatB.cols; ++cB) 
+        {
+            // row B
+            for (rB = 0; rB < MatB.rows; ++rB) 
+            {
+                sum += (MatA.data[rA][rB] * MatB.data[rB][cB]);
+            }
+            MatR.data[rA][cB] = sum;
+            sum = 0;
+        }
     }
-	return(MatR);
+    return(MatR);
 }
 
 /**
@@ -527,72 +527,72 @@ MEMSPACE
 mat_t MatRead(char *name)
 {
 
-	FILE *fp;
-	char *ptr;
-	int r,c;
-	int rows = 0;
-	int cols = 0;
-	int cnt;
-	int lines = 0;
-	mat_t MatR;
-	char tmp[128];
+    FILE *fp;
+    char *ptr;
+    int r,c;
+    int rows = 0;
+    int cols = 0;
+    int cnt;
+    int lines = 0;
+    mat_t MatR;
+    char tmp[128];
 
-	MatR.rows = 0;
-	MatR.cols = 0;
-	MatR.data = NULL;
+    MatR.rows = 0;
+    MatR.cols = 0;
+    MatR.data = NULL;
 
-	fp = fopen(name,"r");
-	if(fp == NULL)
-	{
-		return(MatR);
-	}
+    fp = fopen(name,"rb");
+    if(fp == NULL)
+    {
+        return(MatR);
+    }
 
-	// Read Matrix header with rows and columns
-	ptr = fgets(tmp,253,fp);
-	if(ptr == NULL)
-	{
-		fclose(fp);
-		return(MatR);
-	}
-	//printf("line:%d, %s\n", lines, tmp);
-	++lines;
-	cnt = sscanf(ptr,"Matrix R:%d C:%d", (int *) &rows, (int *) &cols);
-	if(rows < 1 || cols < 1)
-	{
-		printf("sscanf: %d\n",cnt);
-		printf("MatRead expected header: Matrix R:%d C:%d\n",tmp);
-		fclose(fp);
-		return(MatR);
-	}
+    // Read Matrix header with rows and columns
+    ptr = fgets(tmp,253,fp);
+    if(ptr == NULL)
+    {
+        fclose(fp);
+        return(MatR);
+    }
+    //printf("line:%d, %s\n", lines, tmp);
+    ++lines;
+    cnt = sscanf(ptr,"Matrix R:%d C:%d", (int *) &rows, (int *) &cols);
+    if(rows < 1 || cols < 1)
+    {
+        printf("sscanf: %d\n",cnt);
+        printf("MatRead expected header: Matrix R:%d C:%d\n",tmp);
+        fclose(fp);
+        return(MatR);
+    }
 
-	// FIXME set limts or just let alloc fail ???
-	MatR = MatAlloc(rows,cols);
-	if(MatR.data == NULL)
-	{
-		printf("MatRead(%s: &d,&d) could not alloc memory\n", name, rows,cols);
-		fclose(fp);
-		return(MatR);
-	}
-	
-	for(r=0;r<rows;++r)
-	{
-		// Read rows and columns
-		ptr = fgets(tmp,253,fp);
-		//printf("line:%d, %s\n", lines, tmp);
-		++lines;
-		if(ptr == NULL)
-		{
-			fclose(fp);
-			MatFree(MatR);
-			return(MatR);
-		}
-		for(c=0;c<cols;++c)
-		{
-			MatR.data[r][c] = strtod(ptr,&ptr);
-		}
-	}
-	fclose(fp);
-	return(MatR);
+    // FIXME set limts or just let alloc fail ???
+    MatR = MatAlloc(rows,cols);
+    if(MatR.data == NULL)
+    {
+        printf("MatRead(%s: &d,&d) could not alloc memory\n", name, rows,cols);
+        fclose(fp);
+        return(MatR);
+    }
+    
+    for(r=0;r<rows;++r)
+    {
+        // Read rows and columns
+        ptr = fgets(tmp,253,fp);
+        //printf("line:%d, %s\n", lines, tmp);
+        ++lines;
+        if(ptr == NULL)
+        {
+            fclose(fp);
+            MatFree(MatR);
+            return(MatR);
+        }
+        for(c=0;c<cols;++c)
+        {
+            MatR.data[r][c] = strtod(ptr,&ptr);
+        }
+    }
+    fclose(fp);
+    return(MatR);
 }
 
 /**
@@ -605,29 +605,29 @@ MEMSPACE
 int MatWrite(char *name, mat_t MatW)
 {
 
-	FILE *fp;
-	int r,c;
+    FILE *fp;
+    int r,c;
 
-	fp = fopen(name,"w");
-	if(fp == NULL)
-	{
-		return(0);
-	}
+    fp = fopen(name,"wb");
+    if(fp == NULL)
+    {
+        return(0);
+    }
 
-	fprintf(fp,"Matrix R:%d C:%d\n",MatW.rows,MatW.cols);
-	for(r=0;r<MatW.rows;++r)
-	{
-		for(c=0;c<MatW.cols;++c)
-		{
-			fprintf(fp,"%e ", (double) MatW.data[r][c]);
-		}
-		fprintf(fp,"\n");
-	}
-	fclose(fp);
-	return(1);
+    fprintf(fp,"Matrix R:%d C:%d\n",MatW.rows,MatW.cols);
+    for(r=0;r<MatW.rows;++r)
+    {
+        for(c=0;c<MatW.cols;++c)
+        {
+            fprintf(fp,"%e ", (double) MatW.data[r][c]);
+        }
+        fprintf(fp,"\n");
+    }
+    fclose(fp);
+    return(1);
 }
 
-	
+    
 #ifdef MATTEST
 // =============================================
 // test1
@@ -635,9 +635,9 @@ int MatWrite(char *name, mat_t MatW)
 
 float AJ[3][3] =
 {
-	{ -3, 2, -5 },
-	{ -1, 0, -2 },
-	{  3, -4, 1 }
+    { -3, 2, -5 },
+    { -1, 0, -2 },
+    {  3, -4, 1 }
 };
 
 // =============================================
@@ -647,15 +647,15 @@ float AJ[3][3] =
 
 float C[3][3] = 
 {
-	{ 1,2,0 },
-	{ 0, 1, 1 },
-	{ 2, 0, 1 }
+    { 1,2,0 },
+    { 0, 1, 1 },
+    { 2, 0, 1 }
 };
 float D[3][3] = 
 {
-	{ 1, 1, 2 },
-	{ 2, 1, 1 },
-	{ 1, 2, 1 }
+    { 1, 1, 2 },
+    { 2, 1, 1 },
+    { 1, 2, 1 }
 };
 
 // =============================================
@@ -671,26 +671,26 @@ float D[3][3] =
 // Answer should be
 // xd = 0.0635 x + 0.0024 y + 18.9116
 // yd = -0.0227 x + 0.1634 y + 37.8887
-// 	Where (x, y) are touch panel coordinates 
-// 	and (xd, yd) is the adjusted screen coordinate 
+//  Where (x, y) are touch panel coordinates 
+//  and (xd, yd) is the adjusted screen coordinate 
 float A3[3][3] = {
-	{ 650, 2000, 1 },
-	{ 2800, 1350, 1 },
-	{ 2640, 3500, 1 }
+    { 650, 2000, 1 },
+    { 2800, 1350, 1 },
+    { 2640, 3500, 1 }
 };
 
 float X3[3][1] = 
 { 
-	{65},
-	{200},
-	{195}
+    {65},
+    {200},
+    {195}
 };
 
 float Y3[3][1] = 
-{ 	
-	{350},
-	{195},
-	{550}
+{   
+    {350},
+    {195},
+    {550}
 };
 
 // =============================================
@@ -704,173 +704,173 @@ float Y3[3][1] =
 // (1/(AT * A) * AT) * Y
 //
 // Answer should be
-// 	xd = 0.0677 x + 0.0190 y - 33.7973
-// 	yd = -0.0347 x + 0.2100 y - 27.4030
-// 	Where (x, y) are touch panel coordinates 
-// 	and (xd, yd) is the adjusted screen coordinate 
+//  xd = 0.0677 x + 0.0190 y - 33.7973
+//  yd = -0.0347 x + 0.2100 y - 27.4030
+//  Where (x, y) are touch panel coordinates 
+//  and (xd, yd) is the adjusted screen coordinate 
 
 
 float A5[5][3] = {
-	{ 1700, 2250, 1 },
-	{ 750, 1200, 1 },
-	{ 3000, 1500, 1 },
-	{ 2500, 3400, 1 },
-	{ 600, 3000, 1 }
+    { 1700, 2250, 1 },
+    { 750, 1200, 1 },
+    { 3000, 1500, 1 },
+    { 2500, 3400, 1 },
+    { 600, 3000, 1 }
 };
 
 float X5[5][1] = 
 { 
-	{100},
-	{50},
-	{200},
-	{210},
-	{65}
+    {100},
+    {50},
+    {200},
+    {210},
+    {65}
 };
 
 float Y5[5][1] = 
-{ 	
-	{350},
-	{200},
-	{200},
-	{600},
-	{600}
+{   
+    {350},
+    {200},
+    {200},
+    {600},
+    {600}
 };
 
 int main(int argc, char *argv[])
 {
-	mat_t MatA,MatX,MatY;
-	mat_t MatI;
-	mat_t MatPI;
-	mat_t MatC,MatD;
-	mat_t MatR;
-	mat_t MatAdj;
+    mat_t MatA,MatX,MatY;
+    mat_t MatI;
+    mat_t MatPI;
+    mat_t MatC,MatD;
+    mat_t MatR;
+    mat_t MatAdj;
 
 
-	// =============================
-	// test Adjugate
-	printf("==========================================\n");
-	MatA = MatLoad(AJ,3,3);
-		printf("MatA\n");
-		MatPrint(MatA);
-	MatAdj = Adjugate(MatA);
-		printf("Adjugate(MatA)\n");
-		MatPrint(MatAdj);
-	MatFree(MatAdj);
-	MatFree(MatA);
-	printf("==========================================\n");
-	printf("\n");
+    // =============================
+    // test Adjugate
+    printf("==========================================\n");
+    MatA = MatLoad(AJ,3,3);
+        printf("MatA\n");
+        MatPrint(MatA);
+    MatAdj = Adjugate(MatA);
+        printf("Adjugate(MatA)\n");
+        MatPrint(MatAdj);
+    MatFree(MatAdj);
+    MatFree(MatA);
+    printf("==========================================\n");
+    printf("\n");
 
-	// =============================
-	// test MatMul
-	printf("==========================================\n");
-	MatC = MatLoadSQ(C,3);
-		printf("MatC\n");
-		MatPrint(MatC);
-	MatD = MatLoadSQ(D,3);
-		printf("MatD\n");
-		MatPrint(MatD);
-	MatR = MatMul(MatC,MatD);
-		printf("MatC * MatD\n");
-		MatPrint(MatR);
-	MatFree(MatC);
-	MatFree(MatD);
-	MatFree(MatR);
-	printf("==========================================\n");
-	printf("\n");
+    // =============================
+    // test MatMul
+    printf("==========================================\n");
+    MatC = MatLoadSQ(C,3);
+        printf("MatC\n");
+        MatPrint(MatC);
+    MatD = MatLoadSQ(D,3);
+        printf("MatD\n");
+        MatPrint(MatD);
+    MatR = MatMul(MatC,MatD);
+        printf("MatC * MatD\n");
+        MatPrint(MatR);
+    MatFree(MatC);
+    MatFree(MatD);
+    MatFree(MatR);
+    printf("==========================================\n");
+    printf("\n");
 
-	// ===============================================================
-	// ===============================================================
-	// Test functions required for 3 point screen calibration
-	// See: https://www.maximintegrated.com/en/app-notes/index.mvp/id/5296
-	//      Calibration in touch-screen systems
-	printf("==========================================\n");
-	printf("Set of three display positions\n");
-	MatX = MatLoad(X3,3,1);
-		printf("X\n");
-		MatPrint(MatX);
+    // ===============================================================
+    // ===============================================================
+    // Test functions required for 3 point screen calibration
+    // See: https://www.maximintegrated.com/en/app-notes/index.mvp/id/5296
+    //      Calibration in touch-screen systems
+    printf("==========================================\n");
+    printf("Set of three display positions\n");
+    MatX = MatLoad(X3,3,1);
+        printf("X\n");
+        MatPrint(MatX);
 
-	MatY = MatLoad(Y3,3,1);
-		printf("Y\n");
-		MatPrint(MatY);
+    MatY = MatLoad(Y3,3,1);
+        printf("Y\n");
+        MatPrint(MatY);
 
-	printf("Correponding touch screen positions, differing scale and skew\n");
-	MatA = MatLoadSQ(A3,3);
-		printf("A\n");
-		MatPrint(MatA);
+    printf("Correponding touch screen positions, differing scale and skew\n");
+    MatA = MatLoadSQ(A3,3);
+        printf("A\n");
+        MatPrint(MatA);
 
-	// 1/A
-	MatI = Invert(MatA);
-		printf("1/(A)\n");
-		MatPrint(MatI);
-	MatFree(MatA);
+    // 1/A
+    MatI = Invert(MatA);
+        printf("1/(A)\n");
+        MatPrint(MatI);
+    MatFree(MatA);
 
-	printf("Solution Matrix to translate touch screen to screen positions\n");
-	// MatR = 1/A * X
-	MatR = MatMul(MatI,MatX);
-		printf("1/A * X\n");
-		MatPrint(MatR);
-	MatFree(MatR);
-	MatFree(MatX);
+    printf("Solution Matrix to translate touch screen to screen positions\n");
+    // MatR = 1/A * X
+    MatR = MatMul(MatI,MatX);
+        printf("1/A * X\n");
+        MatPrint(MatR);
+    MatFree(MatR);
+    MatFree(MatX);
 
-	// MatR = 1/A * Y
-	MatR = MatMul(MatI,MatY);
-		printf("1/A * Y\n");
-		MatPrint(MatR);
-	MatFree(MatR);
-	MatFree(MatY);
+    // MatR = 1/A * Y
+    MatR = MatMul(MatI,MatY);
+        printf("1/A * Y\n");
+        MatPrint(MatR);
+    MatFree(MatR);
+    MatFree(MatY);
 
-	MatFree(MatI);
-	printf("==========================================\n");
-	printf("\n");
+    MatFree(MatI);
+    printf("==========================================\n");
+    printf("\n");
 
-	// ===============================================================
-	// ===============================================================
-	// Test functions required for N point screen calibration
+    // ===============================================================
+    // ===============================================================
+    // Test functions required for N point screen calibration
     // Use least square solution by Pseudo Invert method
-	// See: https://www.maximintegrated.com/en/app-notes/index.mvp/id/5296
-	//      Calibration in touch-screen systems
-	printf("==========================================\n");
-	printf("Set of five display positions\n");
-	MatX = MatLoad(X5,5,1);
-		printf("X\n");
-		MatPrint(MatX);
+    // See: https://www.maximintegrated.com/en/app-notes/index.mvp/id/5296
+    //      Calibration in touch-screen systems
+    printf("==========================================\n");
+    printf("Set of five display positions\n");
+    MatX = MatLoad(X5,5,1);
+        printf("X\n");
+        MatPrint(MatX);
 
-	MatY = MatLoad(Y5,5,1);
-		printf("Y\n");
-		MatPrint(MatY);
+    MatY = MatLoad(Y5,5,1);
+        printf("Y\n");
+        MatPrint(MatY);
 
-	printf("Correponding touch screen positions, differing scale and skew\n");
-	MatA = MatLoad(A5,5,3);
-		printf("A\n");
-		MatPrint(MatA);
+    printf("Correponding touch screen positions, differing scale and skew\n");
+    MatA = MatLoad(A5,5,3);
+        printf("A\n");
+        MatPrint(MatA);
 
-	printf("Compute pseudo-inverse matrix, 1/(AT × A) × AT\n");
-	MatPI = PseudoInvert(MatA);
-		printf("PI = Pseudo Invert(A)\n");
-		MatPrint(MatPI);
-	MatFree(MatA);
+    printf("Compute pseudo-inverse matrix, 1/(AT × A) × AT\n");
+    MatPI = PseudoInvert(MatA);
+        printf("PI = Pseudo Invert(A)\n");
+        MatPrint(MatPI);
+    MatFree(MatA);
 
-	printf("Solution Matrix to translate touch screen to screen positions\n");
-	// MatR = PI * X
-	MatR = MatMul(MatPI,MatX);
-		printf("(R = PI * X\n");
-		MatPrint(MatR);
-	MatFree(MatR);
-	MatFree(MatX);
+    printf("Solution Matrix to translate touch screen to screen positions\n");
+    // MatR = PI * X
+    MatR = MatMul(MatPI,MatX);
+        printf("(R = PI * X\n");
+        MatPrint(MatR);
+    MatFree(MatR);
+    MatFree(MatX);
 
-	// MatR = 1/A * Y
-	MatR = MatMul(MatPI,MatY);
-		printf("R = PI * Y\n");
-		MatPrint(MatR);
-	MatFree(MatR);
-	MatFree(MatY);
+    // MatR = 1/A * Y
+    MatR = MatMul(MatPI,MatY);
+        printf("R = PI * Y\n");
+        MatPrint(MatR);
+    MatFree(MatR);
+    MatFree(MatY);
 
-	MatFree(MatPI);
+    MatFree(MatPI);
 
-	printf("==========================================\n");
-	printf("\n");
-	
+    printf("==========================================\n");
+    printf("\n");
+    
 }
 #endif
 
-		
+        

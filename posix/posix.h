@@ -1,9 +1,12 @@
 /**
- @file fatfs/posix.h
+ @file posix.h
 
  @brief POSIX wrapper for FatFS
 
- @par Copyright &copy; 2015 Mike Gore, GPL License
+ @par Copyright &copy; 2014-2017 Mike Gore, All rights reserved. GPL  License
+ @see http://github.com/magore/hp85disk
+ @see http://github.com/magore/hp85disk/COPYRIGHT.md for specific Copyright details
+
  @par You are free to use this code under the terms of GPL
    please retain a copy of this notice in any code you use it in.
 
@@ -39,17 +42,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ///@brief Standard POSIX typedefs.
 ///
 /// - Using these makes code portable accross many acrchitectures
-typedef uint32_t dev_t;		/*< dev_t for this architecture */
-typedef uint32_t ino_t;		/*< ino_t for this architecture */
+typedef uint32_t dev_t;     /*< dev_t for this architecture */
+typedef uint32_t ino_t;     /*< ino_t for this architecture */
 typedef uint32_t mode_t;    /*< mode_t for this architecture */
-typedef uint32_t nlink_t;  	/*< nlink_t for this architecture */ 
+typedef uint32_t nlink_t;   /*< nlink_t for this architecture */ 
 typedef uint16_t uid_t;     /*< uid_t for this architecture */
 typedef uint16_t gid_t;     /*< gid_t for this architecture */
 typedef uint32_t off_t;     /*< off_t for this architecture */
 typedef uint32_t blkcnt_t;  /*< blkcnt_t for this architecture */
 typedef uint32_t blksize_t; /*< blksize_t for this architecture */
 typedef uint32_t time_t;    /*< time_t for this architecture */
-typedef int32_t  ssize_t;	/*< ssize_t for this architecture */
+typedef int32_t  ssize_t;   /*< ssize_t for this architecture */
 // =============================================
 
 // =============================================
@@ -57,42 +60,42 @@ typedef int32_t  ssize_t;	/*< ssize_t for this architecture */
 // @brief posix errno values
 enum POSIX_errno
 {
-    EOK,        /*< 	0   NO ERROR */
-    EPERM,     /*< 	1   Operation not permitted */
-    ENOENT,    /*< 	2   No such file or directory */
-    ESRCH,     /*< 	3   No such process */
-    EINTR,     /*< 	4   Interrupted system call */
-    EIO,       /*< 	5   I/O error */
-    ENXIO,     /*< 	6   No such device or address */
-    E2BIG,     /*< 	7   Argument list too long */
-    ENOEXEC,   /*< 	8   Exec format error */
-    EBADF,     /*< 	9   Bad file number */
-    ECHILD,    /*< 	10  No child processes */
-    EAGAIN,    /*< 	11  Try again */
-    ENOMEM,    /*< 	12  Out of memory */
-    EACCES,    /*< 	13  Permission denied */
-    EFAULT,    /*< 	14  Bad address */
-    ENOTBLK,   /*< 	15  Block device required */
-    EBUSY,     /*< 	16  Device or resource busy */
-    EEXIST,    /*< 	17  File exists */
-    EXDEV,     /*< 	18  Cross-device link */
-    ENODEV,    /*< 	19  No such device */
-    ENOTDIR,   /*< 	20  Not a directory */
-    EISDIR,    /*< 	21  Is a directory */
-    EINVAL,    /*< 	22  Invalid argument */
-    ENFILE,    /*< 	23  File table overflow */
-    EMFILE,    /*< 	24  Too many open files */
-    ENOTTY,    /*< 	25  Not a typewriter */
-    ETXTBSY,   /*< 	26  Text file busy */
-    EFBIG,     /*< 	27  File too large */
-    ENOSPC,    /*< 	28  No space left on device */
-    ESPIPE,    /*< 	29  Illegal seek */
-    EROFS,     /*< 	30  Read-only file system */
-    EMLINK,    /*< 	31  Too many links */
-    EPIPE,     /*< 	32  Broken pipe */
-    EDOM,      /*< 	33  Math argument out of domain of func */
-    ERANGE,    /*< 	34  Math result not representable */
-    EBADMSG    /*< 	35  Bad Message */
+    EOK,        /*<     0   NO ERROR */
+    EPERM,     /*<  1   Operation not permitted */
+    ENOENT,    /*<  2   No such file or directory */
+    ESRCH,     /*<  3   No such process */
+    EINTR,     /*<  4   Interrupted system call */
+    EIO,       /*<  5   I/O error */
+    ENXIO,     /*<  6   No such device or address */
+    E2BIG,     /*<  7   Argument list too long */
+    ENOEXEC,   /*<  8   Exec format error */
+    EBADF,     /*<  9   Bad file number */
+    ECHILD,    /*<  10  No child processes */
+    EAGAIN,    /*<  11  Try again */
+    ENOMEM,    /*<  12  Out of memory */
+    EACCES,    /*<  13  Permission denied */
+    EFAULT,    /*<  14  Bad address */
+    ENOTBLK,   /*<  15  Block device required */
+    EBUSY,     /*<  16  Device or resource busy */
+    EEXIST,    /*<  17  File exists */
+    EXDEV,     /*<  18  Cross-device link */
+    ENODEV,    /*<  19  No such device */
+    ENOTDIR,   /*<  20  Not a directory */
+    EISDIR,    /*<  21  Is a directory */
+    EINVAL,    /*<  22  Invalid argument */
+    ENFILE,    /*<  23  File table overflow */
+    EMFILE,    /*<  24  Too many open files */
+    ENOTTY,    /*<  25  Not a typewriter */
+    ETXTBSY,   /*<  26  Text file busy */
+    EFBIG,     /*<  27  File too large */
+    ENOSPC,    /*<  28  No space left on device */
+    ESPIPE,    /*<  29  Illegal seek */
+    EROFS,     /*<  30  Read-only file system */
+    EMLINK,    /*<  31  Too many links */
+    EPIPE,     /*<  32  Broken pipe */
+    EDOM,      /*<  33  Math argument out of domain of func */
+    ERANGE,    /*<  34  Math result not representable */
+    EBADMSG    /*<  35  Bad Message */
 };
 // =============================================
 
@@ -136,7 +139,7 @@ struct dirent {
    off_t          d_off;       /* not an offset; see NOTES */
    unsigned short d_reclen;    /* length of this record */
    unsigned char  d_type;      /* type of file; not supported
-								  by all filesystem types */
+                                  by all filesystem types */
 #endif
    char           d_name[MAX_NAME_LEN]; /* filename */
 };
@@ -163,16 +166,16 @@ struct __file {
 #define __SUNGET 0x040      /* ungetc() happened */
 #define __SMALLOC 0x80      /* handle is malloc()ed */
 #if 0
-	/* possible future extensions, will require uint16_t flags */
-	#define __SRW   0x0100      /* open for reading & writing */
-	#define __SLBF  0x0200      /* line buffered */
-	#define __SNBF  0x0400      /* unbuffered */
-	#define __SMBF  0x0800      /* buf is from malloc */
+    /* possible future extensions, will require uint16_t flags */
+    #define __SRW   0x0100      /* open for reading & writing */
+    #define __SLBF  0x0200      /* line buffered */
+    #define __SNBF  0x0400      /* unbuffered */
+    #define __SMBF  0x0800      /* buf is from malloc */
 #endif
     int size;       /* size of buffer */
     int len;        /* characters read or written so far */
-    int (*put)(char, struct __file *);  				/* write one char to device */
-    int (*get)(struct __file *);    					/* read one char from device */
+    int (*put)(char, struct __file *);                  /* write one char to device */
+    int (*get)(struct __file *);                        /* read one char from device */
 // FIXME add all low level functions here like _open, _close, ... like newlib does
     void    *udata;     /* User defined and accessible data. */
 };
@@ -218,17 +221,17 @@ struct __file {
 #define S_IRUSR S_IREAD                     /*< Read by owner.  */
 #define S_IWUSR S_IWRITE                    /*< Write by owner.  */
 #define S_IXUSR S_IEXEC                     /*< Execute by owner.  */
-#define S_IRWXU (S_IREAD|S_IWRITE|S_IEXEC)	/*< Read,Write,Execute by owner */
+#define S_IRWXU (S_IREAD|S_IWRITE|S_IEXEC)  /*< Read,Write,Execute by owner */
 
 #define S_IRGRP (S_IRUSR >> 3)              /*< Read by group.  */
 #define S_IWGRP (S_IWUSR >> 3)              /*< Write by group.  */
 #define S_IXGRP (S_IXUSR >> 3)              /*< Execute by group.  */
-#define S_IRWXG (S_IRWXU >> 3)				/*< Read,Write,Execute by user */
+#define S_IRWXG (S_IRWXU >> 3)              /*< Read,Write,Execute by user */
 
 #define S_IROTH (S_IRGRP >> 3)              /*< Read by others.  */
 #define S_IWOTH (S_IWGRP >> 3)              /*< Write by others.  */
 #define S_IXOTH (S_IXGRP >> 3)              /*< Execute by others.  */
-#define S_IRWXO (S_IRWXG >> 3)				/*< Read,Write,Execute by other */
+#define S_IRWXO (S_IRWXG >> 3)              /*< Read,Write,Execute by other */
 // =============================================
 
 ///@brief used in posix.c to compare to ascii file modes
@@ -236,9 +239,9 @@ struct __file {
 
 // =============================================
 ///@brief  FATFS open modes
-#define FATFS_R (S_IRUSR | S_IRGRP | S_IROTH)	/*< FatFs Read perms */
-#define FATFS_W (S_IWUSR | S_IWGRP | S_IWOTH)	/*< FatFs Write perms */
-#define FATFS_X (S_IXUSR | S_IXGRP | S_IXOTH)	/*< FatFs Execute perms */
+#define FATFS_R (S_IRUSR | S_IRGRP | S_IROTH)   /*< FatFs Read perms */
+#define FATFS_W (S_IWUSR | S_IWGRP | S_IWOTH)   /*< FatFs Write perms */
+#define FATFS_X (S_IXUSR | S_IXGRP | S_IXOTH)   /*< FatFs Execute perms */
 
 // =============================================
 ///@brief End of file or device read
@@ -321,7 +324,7 @@ MEMSPACE int fgetpos ( FILE *stream , size_t *pos );
 MEMSPACE int fseek ( FILE *stream , long offset , int whence );
 MEMSPACE int fsetpos ( FILE *stream , size_t *pos );
 MEMSPACE long ftell ( FILE *stream );
-MEMSPACE size_t lseek ( int fileno , size_t position , int whence );
+MEMSPACE off_t lseek ( int fileno , off_t position , int whence );
 MEMSPACE void rewind ( FILE *stream );
 MEMSPACE int close ( int fileno );
 MEMSPACE int fileno ( FILE *stream );

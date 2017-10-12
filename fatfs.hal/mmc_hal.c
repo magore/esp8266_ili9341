@@ -1,8 +1,12 @@
 /**
  @file fatfs/posix.c
 
- @brief PRovides hardware abstraction layer to MMC.C
- @par Copyright &copy; 2015 Mike Gore, GPL License
+ @brief Provides hardware abstraction layer to MMC.C
+
+ @par Copyright &copy; 2014-2017 Mike Gore, All rights reserved. GPL  License
+ @see http://github.com/magore/hp85disk
+ @see http://github.com/magore/hp85disk/COPYRIGHT.md for specific Copyright details
+
  @par You are free to use this code under the terms of GPL
    please retain a copy of this notice in any code you use it in.
 
@@ -54,16 +58,16 @@ uint16_t _mmc_pre = 0;
 */
 static void mmc_task(void)
 {
-	if(_mmc_timeout)
-		_mmc_timeout--;
+    if(_mmc_timeout)
+        _mmc_timeout--;
 
-	// 100HZ
+    // 100HZ
     if(_mmc_pre++  < 10)
-		return;
+        return;
 
-	_mmc_pre = 0;
+    _mmc_pre = 0;
 
-	mmc_disk_timerproc();
+    mmc_disk_timerproc();
 
 }
 
@@ -83,7 +87,7 @@ void mmc_install_timer( void )
 /// @return  void
 void mmc_spi_init()
 {
-	chip_select_init(MMC_CS);
+    chip_select_init(MMC_CS);
     mmc_slow();
 }
 
@@ -99,7 +103,7 @@ void mmc_spi_begin()
 /// @return  void
 void mmc_spi_end()
 {
-	spi_end(MMC_CS);
+    spi_end(MMC_CS);
 }
 
 /// @brief  MMC set slow SPI bus speed
@@ -108,7 +112,7 @@ void mmc_spi_end()
 /// @return  void
 void mmc_slow()
 {
-	_mmc_clock = MMC_SLOW;
+    _mmc_clock = MMC_SLOW;
 }
 
 
@@ -118,7 +122,7 @@ void mmc_slow()
 /// @return  void
 void mmc_fast()
 {
-	_mmc_clock = MMC_FAST;
+    _mmc_clock = MMC_FAST;
 }
 
 
@@ -156,9 +160,9 @@ uint8_t mmc_spi_TXRX(uint8_t data)
 MEMSPACE
 void mmc_set_ms_timeout(uint16_t ms)
 {
-	mmc_cli();
+    mmc_cli();
     _mmc_timeout = ms;
-	mmc_sei();
+    mmc_sei();
 }
 
 ///@brief Wait for timeout
@@ -189,9 +193,9 @@ int  mmc_test_timeout()
 MEMSPACE
 void mmc_ms_wait(int ms)
 {
-	mmc_set_ms_timeout(ms);
-	while(!mmc_test_timeout())
-		;
+    mmc_set_ms_timeout(ms);
+    while(!mmc_test_timeout())
+        ;
 }
 
 /// @brief has the MMC interface been initialized yet ?
@@ -207,7 +211,7 @@ int mmc_init(int verbose)
 
     Stat = 0;
 
-	mmc_spi_init();
+    mmc_spi_init();
 
     if( verbose)
     {
@@ -227,7 +231,7 @@ int mmc_init(int verbose)
         printf(", Code page: %u\n", _CODE_PAGE);
     }
 
-    rc = disk_initialize(0);	// aliased to mmc_disk_initialize()
+    rc = disk_initialize(0);    // aliased to mmc_disk_initialize()
 
     if( rc != RES_OK  || verbose )
     {
@@ -265,7 +269,7 @@ int mmc_init(int verbose)
             }
         }
         printf("END MMC INIT\n");
-	}
+    }
     mmc_init_flag = 1;
 
     return( rc ) ;

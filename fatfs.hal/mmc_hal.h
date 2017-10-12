@@ -3,10 +3,12 @@
 
  @brief MMC Hardware Layer for FatFs.
 
+ @par Copyright &copy; 2014-2017 Mike Gore, All rights reserved. GPL  License
+ @see http://github.com/magore/hp85disk
+ @see http://github.com/magore/hp85disk/COPYRIGHT.md for specific Copyright details
+
  @par Edit History
  - [1.0]   [Mike Gore]  Initial revision of file.
-
- @par Copyright &copy; 2014-2017 Mike Gore, Inc. All rights reserved.
 
 */
 
@@ -24,13 +26,13 @@
 #endif
 
 #ifdef ESP8266
-	// FIXME
-	#define mmc_cli() /*< interrupt disable */
-	// FIXME
-	#define mmc_sei() /*< interrupt enable */
+    // FIXME
+    #define mmc_cli() /*< interrupt disable */
+    // FIXME
+    #define mmc_sei() /*< interrupt enable */
 #else
-	#define mmc_cli() cli() /*< interrupt disable */
-	#define mmc_sei() sei() /*< interrupt enable */
+    #define mmc_cli() cli() /*< interrupt disable */
+    #define mmc_sei() sei() /*< interrupt enable */
 #endif
 
 /* mmc_hal.c */

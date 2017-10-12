@@ -3,7 +3,10 @@
 
  @brief Math IO functions, and verious conversion code with floating point support
 
- @par Copyright &copy; 2016 Mike Gore, GPL License
+ @par Copyright &copy; 2014-2017 Mike Gore, All rights reserved. GPL  License
+ @see http://github.com/magore/hp85disk
+ @see http://github.com/magore/hp85disk/COPYRIGHT.md for specific Copyright details
+
  @par You are free to use this code under the terms of GPL
    please retain a copy of this notice in any code you use it in.
 
@@ -80,7 +83,7 @@ typedef struct _printf_t
     void (*put)(struct _printf_t *, char);
     void *buffer;
     int len;
-	int sent;
+    int sent;
 } printf_t;
 
 ///@brief format specifier flags
@@ -129,4 +132,4 @@ MEMSPACE int printf_P ( __memx const char *format , ...);
 /* sscanf.c */
 int sscanf ( const char *strp , const char *fmt , ...);
 
-#endif	// ifndef _MATHIO_H_
+#endif  // ifndef _MATHIO_H_

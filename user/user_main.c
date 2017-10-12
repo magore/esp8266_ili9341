@@ -595,7 +595,7 @@ void user_help()
 		posix_help();
 	#endif
 	#ifdef FATFS_TESTS
-		fatfs_help();
+		fatfs_help(1);
 	#endif
 	#ifdef ADF4351
 		adf4351_help();
