@@ -749,6 +749,7 @@ void _printf_fn(printf_t *fn, __memx const char *fmt, va_list va)
     int numi;
     long numl;
     long long numll;
+    void * numv;
 #ifdef __SIZEOF_INT128__
     __uint128_t num128;
 #endif
@@ -882,6 +883,9 @@ Since the prototype doesn’t specify types for optional arguments, in a call to
         // process integer arguments
         switch(spec) 
         {
+            case 'p':
+            case 'P':
+                size = sizeof(void *);
             // Unsigned numbers
             case 'b':
             case 'B':
@@ -889,7 +893,6 @@ Since the prototype doesn’t specify types for optional arguments, in a call to
             case 'O':
             case 'x':
             case 'X':
-            case 'p':
                 if(f.b.zero && f.b.left)
                     f.b.zero = 0;
                 if(f.b.zero && f.b.prec)
@@ -965,6 +968,11 @@ Since the prototype doesn’t specify types for optional arguments, in a call to
                     nump = (uint8_t *) &num128;
                 }
 #endif
+                else if(size == sizeof(void *))
+                {
+                    numv = (void *) va_arg(va, void *);  
+                    nump = (uint8_t *) &numv;
+                }
                 else
                 {
                     spec = 0;
@@ -1024,10 +1032,11 @@ Since the prototype doesn’t specify types for optional arguments, in a call to
             count = p_ntoa(nump, size, buff, sizeof(buff), 8, width, prec,f);
             _puts_pad(fn,buff, width, count, f.b.left);
             break;
-        case 'x':
-        case 'X':
         case 'p':
         case 'P':
+                // size = sizeof(void *);
+        case 'x':
+        case 'X':
             count = p_ntoa(nump, size, buff, sizeof(buff), 16, width, prec,f);
             if(spec == 'X' || spec == 'P')
                 strupper(buff);

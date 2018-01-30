@@ -396,6 +396,24 @@ int uart1_getc()
 }
 
 // =================================================================
+
+/**
+	@brief Flush TX buffer
+	Note: This function waits/blocks util the write happen
+	@return void
+*/
+MEMSPACE
+void uart_flush(uint8_t uart_no)
+{
+#ifdef UART_QUEUED_TX
+	while(!queue_empty(uart_txq[uart_no]) && tx_fifo_used(uart_no))
+	    ;
+#else
+	while(tx_fifo_used(uart_no))
+	    ;
+#endif
+}
+
 // =================================================================
 #ifdef UART_QUEUED
 

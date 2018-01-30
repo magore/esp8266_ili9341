@@ -7,7 +7,6 @@ var searchData=
   ['index',['index',['../struct__fontc.html#a7cc0370744ff7ea964054d36917c9a2f',1,'_fontc']]],
   ['info',['info',['../struct__font.html#abf134e8a44e707d3b4e83ab76c952ed9',1,'_font::info()'],['../network_8c.html#a1202cd63c360958e6272f9a20fa90f8b',1,'info():&#160;network.c']]],
   ['inloop',['inloop',['../user__main_8c.html#a0386f377ca8a674321b268989560fa2b',1,'user_main.c']]],
-  ['int',['INT',['../structr0__t.html#a1d7f06769cdf259c9858033cb164e31d',1,'r0_t']]],
   ['ip_5fmsg',['ip_msg',['../network_8c.html#ab09a3ef6a7cb9dabda17af1c09d36cc2',1,'ip_msg():&#160;network.c'],['../user__main_8c.html#ab95878c62fafac494a81c106d05c209a',1,'ip_msg():&#160;network.c']]],
   ['ip_5fmsg_5fstate',['ip_msg_state',['../network_8c.html#aeceba101b4877f92b9c39706420d26a3',1,'network.c']]]
 ];

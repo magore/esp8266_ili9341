@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['debug_2ec',['debug.c',['../debug_8c.html',1,'']]],
-  ['debug_2eh',['debug.h',['../debug_8h.html',1,'']]],
-  ['diskio_2ec',['diskio.c',['../diskio_8c.html',1,'']]],
-  ['diskio_2eh',['diskio.h',['../diskio_8h.html',1,'']]]
+  ['earth2wireframe_2ec',['earth2wireframe.c',['../earth2wireframe_8c.html',1,'']]],
+  ['earth_5fdata_2eh',['earth_data.h',['../earth__data_8h.html',1,'']]],
+  ['ets_5fsys_2eh',['ets_sys.h',['../ets__sys_8h.html',1,'']]]
 ];

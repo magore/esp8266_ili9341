@@ -2,8 +2,6 @@ var searchData=
 [
   ['cardtype',['CardType',['../mmc_8c.html#ae9edfbb60df250acb70f5f287eb1497a',1,'mmc.c']]],
   ['cdir',['cdir',['../structFATFS.html#a217d0ce0c8cec84aa7f0c142679412c6',1,'FATFS']]],
-  ['clkdiv',['ClkDiv',['../structr3__t.html#ad53a3132e2a6601f80cb4e455a4dea49',1,'r3_t']]],
-  ['clkdivmode',['ClkDivMode',['../structr3__t.html#a29d101adb2cb66623bba16d9783cf752',1,'r3_t']]],
   ['cltbl',['cltbl',['../structFIL.html#a28a30613d48cefcf9efbd334cd861fc8',1,'FIL']]],
   ['clust',['clust',['../structFIL.html#aa41312aba551b9a6d1c9d3c8c7d2734b',1,'FIL::clust()'],['../structDIR.html#acfbb8ba2d6e73b6f999ceffd1857c190',1,'DIR::clust()']]],
   ['cols',['cols',['../struct__mat.html#a5ee73c0c8484d47a000464681b298762',1,'_mat']]],
@@ -13,12 +11,8 @@ var searchData=
   ['content_5flength',['content_length',['../structhinfo__t.html#a6cf5714c0fe8e8e7f7819194274f9052',1,'hinfo_t']]],
   ['content_5ftype',['content_type',['../structhinfo__t.html#a87bad5ce6af7ed3613a61d01aef94d8d',1,'hinfo_t']]],
   ['contours',['contours',['../structpath__t.html#a9a9cee636fe5ce261fab53ef94064529',1,'path_t']]],
-  ['controlbits',['ControlBits',['../structr0__t.html#aad2911768ed7dd38e899b81d517dda08',1,'r0_t::ControlBits()'],['../structr1__t.html#a5335bbd53d06ad7afb879d919033404c',1,'r1_t::ControlBits()'],['../structr2__t.html#a3afba2088cc33e95e833436e6a111a6a',1,'r2_t::ControlBits()'],['../structr3__t.html#a4d5d480a6e629c07e0bb5575fb0023bb',1,'r3_t::ControlBits()'],['../structr4__t.html#a9f03fbb2e74ac5c97c73cd70755d95eb',1,'r4_t::ControlBits()'],['../structr5__t.html#aa71c458a3167da85d477b00cf0ae346a',1,'r5_t::ControlBits()']]],
   ['copyright',['COPYRIGHT',['../struct__fontinfo.html#a7f4b0949fe49cf3fac04f225e1f36ed2',1,'_fontinfo']]],
-  ['cp3s',['CP3S',['../structr2__t.html#a378d00b9682aa05bffb1a3e61da036e4',1,'r2_t']]],
-  ['cpc',['CPC',['../structr2__t.html#a71530b2c7c16577560cd14f14f320572',1,'r2_t::CPC()'],['../structr3__t.html#a61a4e7b02af2c11e18e823eac349fabf',1,'r3_t::CPC()']]],
   ['csize',['csize',['../structFATFS.html#ad7fa7a509f8d097a9ab182d6c47be568',1,'FATFS']]],
-  ['csr',['CSR',['../structr3__t.html#a295a90a5720da8b88db8bf1420c806e2',1,'r3_t']]],
   ['cube_5fedges',['cube_edges',['../cube__data_8h.html#a78d7d928e1e362be3b768f133f3af968',1,'cube_data.h']]],
   ['cube_5fpoints',['cube_points',['../cube__data_8h.html#a7fcb338af61341ce6748fc19915891ae',1,'cube_data.h']]]
 ];

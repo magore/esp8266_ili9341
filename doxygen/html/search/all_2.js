@@ -5,8 +5,6 @@ var searchData=
   ['b1',['b1',['../unionuint32__t__bytes.html#a91fb31482a2ce44b454fca964dcd556b',1,'uint32_t_bytes']]],
   ['b2',['b2',['../unionuint32__t__bytes.html#a462312b99de0c6d1c497064902196e1d',1,'uint32_t_bytes']]],
   ['b3',['b3',['../unionuint32__t__bytes.html#abd7739cae59fab7cf712d53f337b378a',1,'uint32_t_bytes']]],
-  ['bandclkdiv',['BandClkDiv',['../structr4__t.html#af9bbf20145437bb5913e815a71cc3eb5',1,'r4_t']]],
-  ['bandclkmode',['BandClkMode',['../structr3__t.html#a47117d4da83d72bd3e84a4f1f9804120',1,'r3_t']]],
   ['baseext',['baseext',['../posix_8c.html#a0b33c90b99d00a8bd2595f254d1409e1',1,'baseext(char *str):&#160;posix.c'],['../posix_8h.html#a0b33c90b99d00a8bd2595f254d1409e1',1,'baseext(char *str):&#160;posix.c']]],
   ['basename',['basename',['../posix_8c.html#a4d3dfaf2f5a63e2e4eaa128477a9b5e7',1,'basename(char *str):&#160;posix.c'],['../posix_8h.html#a4d3dfaf2f5a63e2e4eaa128477a9b5e7',1,'basename(char *str):&#160;posix.c']]],
   ['bcdtobin',['BCDtoBIN',['../rtc_8c.html#a67b98d6ab52f9bfdd37f8ab0e706e3dd',1,'BCDtoBIN(uint8_t data):&#160;rtc.c'],['../rtc_8h.html#a67b98d6ab52f9bfdd37f8ab0e706e3dd',1,'BCDtoBIN(uint8_t data):&#160;rtc.c']]],

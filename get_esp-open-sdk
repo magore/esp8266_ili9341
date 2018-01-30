@@ -14,68 +14,6 @@ sep()
 	echo
 }
 
-# What: Echo ERROR: and arguments
-# Arguments: $*
-# Returns: Exit 1
-# Example:
-# fatal we failed 
-fatal()
-{
-	echo "$*"; exit 1;
-}
-
-
-set_path()
-{
-        # See: https://nurdspace.nl/ESP8266/First_setup
-        # https://github.com/esp8266/esp8266-wiki/wiki/Toolchain
-        export ROOT_DIR="/opt/Espressif"
-        export SDK_HOME="$ROOT_DIR/esp-open-sdk"
-        export SDK_BIN="$SDK_HOME/xtensa-lx106-elf/bin"
-		rm_path "$BIN_PATH"
-        export COMPILE=gcc
-
-        echo "ROOT_DIR[$ROOT_DIR]"
-        echo "SDK_HOME[$SDK_HOME]"
-        echo "SDK_BIN[$SDK_BIN]"
-        echo "COMPILE[$COMPILE]"
-        sep
-}
-
-rm_path()
-{
-	export PATH
-    export PATH=$(echo "$PATH" | sed -e "s,$1:,,g")
-    export PATH=$(echo "$PATH" | sed -e "s/^://g" | sed -e "s/::/:/g")
-}
-
-# Creaate a script that set the enviornment and edits the path when run
-make_path()
-{
-        set_path
-        cat <<EOF >"$SDK_HOME/setpath"
-#!/bin/bash
-#
-rm_path()
-{
-	export PATH
-	export PATH=\$(echo "\$PATH" | sed -e "s,\$1:,,g")
-	export PATH=\$(echo "\$PATH" | sed -e "s/^://g" | sed -e "s/::/:/g")
-}
-export ROOT_DIR="$ROOT_DIR"
-export SDK_HOME="$SDK_HOME/sdk"
-export SDK_BIN="$SDK_BIN"
-export COMPILE="$COMPILE"
-rm_path "\$SDK_BIN"
-export PATH="\$SDK_BIN:\$PATH"
-EOF
-        chmod 755 "$SDK_HOME/setpath"
-		cp -p "$SDK_HOME/setpath" .
-        sep
-}
-
-
-
 update_packages()
 {
 
@@ -85,6 +23,16 @@ update_packages()
 		libexpat-dev python-dev python python-serial \
 		sed git unzip bash help2man wget bzip2 
 	sep
+}
+
+# What: Echo ERROR: and arguments
+# Arguments: $*
+# Returns: Exit 1
+# Example:
+# fatal we failed 
+fatal()
+{
+	echo "$*"; exit 1;
 }
 
 # What: Display the absolute path of a file - uses echo
@@ -108,7 +56,6 @@ absolute()
 	# Our full path name
 	echo -n "$(readlink -f "$1")"
 }
-
 
 # What: Change directory and verify we actually end up there
 # Argument: directory
@@ -159,6 +106,69 @@ check_files()
 	done
 }
 
+
+rm_path()
+{
+    export PATH
+    export PATH=$(echo "$PATH" | sed -e "s,$1:,,g")
+    export PATH=$(echo "$PATH" | sed -e "s/^://g" | sed -e "s/::/:/g")
+}
+
+set_path()
+{
+
+	# See: https://nurdspace.nl/ESP8266/First_setup
+	# https://github.com/esp8266/esp8266-wiki/wiki/Toolchain
+
+	export COMPILE=gcc
+	export ROOT_DIR="/opt/Espressif"
+	export SDK_BASE="$ROOT_DIR/esp-open-sdk"
+	export SDK_HOME="$SDK_BASE/sdk"
+	export SDK_BIN="$SDK_BASE/xtensa-lx106-elf/bin"
+
+    # remove old SDK path
+    rm_path "$SDK_BIN"
+	export PATH="$SDK_BIN:$PATH"
+
+	echo "COMPILE[$COMPILE]"
+	echo "ROOT_DIR[$ROOT_DIR]"
+	echo "SDK_BASE[$SDK_BASE]"
+	echo "SDK_HOME[$SDK_HOME]"
+	echo "SDK_BIN[$SDK_BIN]"
+	sep
+}
+
+
+# Creaate a script that set the enviornment and edits the path when run
+make_path()
+{
+    set_path
+
+	cat <<EOF >"$SDK_BASE/setpath"
+#!/bin/bash
+#
+rm_path()
+{
+    export PATH
+    export PATH=\$(echo "\$PATH" | sed -e "s,\$1:,,g")
+    export PATH=\$(echo "\$PATH" | sed -e "s/^://g" | sed -e "s/::/:/g")
+}
+# if we export SDK_BASE the compiles break - the sdk uses it somewhere
+export COMPILE="$COMPILE"
+export ROOT_DIR="$ROOT_DIR"
+export SDK_BASE="$SDK_HOME"
+export SDK_HOME="$SDK_HOME"
+export SDK_BIN="$SDK_BIN"
+
+rm_path "\$SDK_BIN"
+export PATH="\$SDK_BIN:\$PATH"
+
+EOF
+	chmod 755 "$SDK_BASE/setpath"
+	sep
+}
+
+
 #Save a list of libraries we can use in the sdk home directory
 list_libs()
 {
@@ -166,71 +176,57 @@ list_libs()
 
 	for i in $LIST
 	do
-		if [ -d "$SDK_HOME"/$i ]
+		if [ -d "$SDK_BASE"/$i ]
 		then
-			find "$SDK_HOME"/$i -type f | grep "\.a$" 
+			find "$SDK_BASE"/$i -type f | grep "\.a$" 
 		fi
 	done
-}
-#Save a list of libraries we can use in the sdk home directory
-list_rtos_libs()
-{
-	find "$RTOS_HOME" -type f | grep "\.a$" 
 }
 
 install_open_sdk()
 {
+    set_path 
+
 	echo Installing Open SDK
 	check_cd $ROOT_DIR
-		echo Target is $SDK_HOME
-		declare DIR=$(basename $SDK_HOME)
-		echo "DIR:[$DIR]"
+        echo Target is $SDK_BASE
+        declare DIR=$(basename $SDK_BASE)
+        echo "DIR:[$DIR]"
 
-		if [ ! -d "$SDK_HOME" ]
-		then
-			git clone --recursive https://github.com/pfalcon/esp-open-sdk.git
-			check_cd $SDK_HOME
-				git submodule init
-				git submodule update
-				make STANDALONE=y
-			popd
-		fi
-		check_dir $SDK_HOME/esptool
-		sep
-	popd
-}
-
-install_open_rtos()
-{
-	echo Installing Open SDK
-	check_cd $ROOT_DIR
-		echo Target is $SDK_HOME
-		declare DIR=$(basename $SDK_HOME)
-		echo "DIR:[$DIR]"
-		if [ ! -d "$RTOS_HOME" ]
-		then
-			git clone --recursive https://github.com/Superhouse/esp-open-rtos.git
-			check_cd $RTOS_HOME
-			git submodule init
-			git submodule update
-			popd
-		fi
-		check_dir $RTOS_HOME
-		sep
-	popd
+        if [ ! -d "$SDK_BASE" ]
+        then
+            # Grab OPEN SDK 
+            git clone --recursive https://github.com/pfalcon/esp-open-sdk.git
+            # Grab RTOS libraries and examples while we are at it
+            git clone --recursive https://github.com/Superhouse/esp-open-rtos.git
+            check_cd $SDK_BASE
+                git submodule init
+                git submodule update
+                # for stand alone
+                make STANDALONE=y
+                # Need for RTOS version libs
+                # make toolchain esptool libhal STANDALONE=n
+                # Install SDK for all remaining include files and libraries not in the open SDK
+                # make sdk
+            popd	
+        fi
+        check_dir $SDK_BASE/esptool
+        sep
+    make_path 
+    popd
 }
 
 add_tools()
 {
-	if [ -d "$SDK_HOME"/sdk/bin ]
+	if [ -d "$SDK_HOME"/bin ]
 	then
-		cat $SDK_HOME/sdk/bin/blank.bin \
-			$SDK_HOME/sdk/bin/blank.bin \
-			$SDK_HOME/sdk/bin/blank.bin  >> $SDK_HOME/sdk/bin/clear_eep.bin
+		cat $SDK_HOME/bin/blank.bin \
+			$SDK_HOME/bin/blank.bin \
+			$SDK_HOME/bin/blank.bin  >> $SDK_HOME/bin/clear_eep.bin
 		check_dir $ROOT_DIR
 		#get_git https://github.com/themadinventor esptool
-		#cp -p esptool/*.py $SDK_HOME/sdk/tools
-		chmod 755 $SDK_HOME/sdk/tools/*
+		#cp -p esptool/*.py $SDK_HOME/tools
+		chmod 755 $SDK_HOME/tools/*
 	fi
 }
 
@@ -241,34 +237,34 @@ build_examples()
 {
 	echo Building Exampless
 	check_cd $SDK_HOME
-		get_git https://github.com/esp8266 source-code-examples
-		if [ ! -d source-code-examples/blinky ]
-		then
-			echo "source-code-examples missing"
-			exit 1
-		fi
+        get_git https://github.com/esp8266 source-code-examples
+        if [ ! -d source-code-examples/blinky ]
+        then
+            echo "source-code-examples missing"
+            exit 1
+        fi
 
-		check_cd source-code-examples/blinky
-			sed -i -e "s;^XTENSA_TOOLS_ROOT.*$;XTENSA_TOOLS_ROOT=$SDK_BIN;" Makefile
-			sed -i -e "s;^SDK_BASE.*$;SDK_BASE=$SDK_HOME/sdk;" Makefile
-			sed -i -e "s;^EXTRA_INCDIR.*$;EXTRA_INCDIR= $SDK_HOME/sdk/include;" Makefile
-			make clean
-			make
-			sep
-		popd
-	popd
+        check_cd source-code-examples/blinky
+            sed -i -e "s;^XTENSA_TOOLS_ROOT.*$;XTENSA_TOOLS_ROOT=$SDK_BIN;" Makefile
+            sed -i -e "s;^SDK_BASE.*$;SDK_BASE=$SDK_HOME/sdk;" Makefile
+            sed -i -e "s;^EXTRA_INCDIR.*$;EXTRA_INCDIR= $SDK_HOME/include;" Makefile
+            make clean
+            make
+            sep
+        popd
+    popd
 }
 
 build_nodemcu()
 {
 	echo "Building Nodemcu Firemware"
 	check_cd "$ROOT_DIR"
-		get_git https://github.com/nodemcu nodemcu-firmware
-		check_cd "$ROOT_DIR/nodemcu-firmware"
-			make
-			sep
-		popd
-	popd
+        get_git https://github.com/nodemcu nodemcu-firmware
+        check_cd "$ROOT_DIR/nodemcu-firmware"
+            make
+            sep
+        popd
+    popd
 }
 
 
@@ -277,26 +273,23 @@ flash_nodemcu()
 {
 	echo "Flashinf Nodemcu Firemware"
  	check_cd "$ROOT_DIR/nodemcu-firmware"
-		make flash
-		sep
-	popd
+        make flash
+        sep
+    popd
 }
 
 # ===================================================================
 
-set_path
 
 update_packages
 
 install_open_sdk
-#install_open_rtos
 
-list_libs >"$SDK_HOME"/libs.txt
-#list_rtos_libs >"$RTOS_HOME"/libs.txt
+make_path 
+
+list_libs >"$SDK_BASE"/libs.txt
 
 add_tools
-
-make_path
 
 #build_examples
 

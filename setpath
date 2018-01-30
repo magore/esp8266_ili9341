@@ -2,13 +2,17 @@
 #
 rm_path()
 {
-	export PATH
-	export PATH=$(echo "$PATH" | sed -e "s,$1:,,g")
-	export PATH=$(echo "$PATH" | sed -e "s/^://g" | sed -e "s/::/:/g")
+    export PATH
+    export PATH=$(echo "$PATH" | sed -e "s,$1:,,g")
+    export PATH=$(echo "$PATH" | sed -e "s/^://g" | sed -e "s/::/:/g")
 }
+# if we export SDK_BASE the compiles break - the sdk uses it somewhere
+export COMPILE="gcc"
 export ROOT_DIR="/opt/Espressif"
+export SDK_BASE="/opt/Espressif/esp-open-sdk/sdk"
 export SDK_HOME="/opt/Espressif/esp-open-sdk/sdk"
 export SDK_BIN="/opt/Espressif/esp-open-sdk/xtensa-lx106-elf/bin"
-export COMPILE="gcc"
+
 rm_path "$SDK_BIN"
 export PATH="$SDK_BIN:$PATH"
+

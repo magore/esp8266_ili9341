@@ -24,6 +24,16 @@ Small web server for esp8266.
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{web_8c_a32080fe9d866898d9fb3dce10079b1ff}{web\+\_\+sep} (void)
+\begin{DoxyCompactList}\small\item\em printer seperator \end{DoxyCompactList}\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{web_8c_a6b59ca0b6eea0b246eb56ae2b37ee2d8}{wait\+\_\+send} (\hyperlink{structrwbuf__t}{rwbuf\+\_\+t} $\ast$p)
+\begin{DoxyCompactList}\small\item\em Wait for buffer to send for this connection If write\+\_\+buffer sending flag is set then wait for it to clear. \end{DoxyCompactList}\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{web_8c_ab32eaeba7482e80dde268638c1514a6d}{write\+\_\+buffer} (\hyperlink{structrwbuf__t}{rwbuf\+\_\+t} $\ast$p)
+\begin{DoxyCompactList}\small\item\em Socket write buffer for this connection We wait for previous send to complete -\/ then send any new data We do not wait for new data to finish sending -\/ you use flush for that. \end{DoxyCompactList}\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{web_8c_a5e0970f0d980f87fb5524a757f96fa84}{write\+\_\+flush} (\hyperlink{structrwbuf__t}{rwbuf\+\_\+t} $\ast$p)
+\begin{DoxyCompactList}\small\item\em Write all outstanding data and wait for it to send. \end{DoxyCompactList}\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{web_8c_a50c911d56af7c50bc045cffb983d76f0}{write\+\_\+byte} (\hyperlink{structrwbuf__t}{rwbuf\+\_\+t} $\ast$p, int c)
+\begin{DoxyCompactList}\small\item\em Write a byte (buffered) using the \hyperlink{structrwbuf__t}{rwbuf\+\_\+t} socket buffers for this connection If the buffers are full the socket is written using write\+\_\+flush. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{web_8c_aaaac061db0c7646d5b6c8bdfe3089ae7}{led\+\_\+on} (int led)
 \item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{web_8c_aec67a5a0b10a3ad2bbfe81de832ef239}{led\+\_\+off} (int led)
@@ -44,14 +54,8 @@ static \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\
 \begin{DoxyCompactList}\small\item\em Find a read/write socket buffer for an espconn connection. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{structrwbuf__t}{rwbuf\+\_\+t} $\ast$ \hyperlink{web_8c_aef2853a921eb49702f064eaa925b16e1}{create\+\_\+connection} (\hyperlink{web_8h_a6dae30cd245bde804cf3e2c09e39a4b6}{espconn\+\_\+t} $\ast$conn)
 \begin{DoxyCompactList}\small\item\em Allocate read/write socket buffers and add it to the working pool. \end{DoxyCompactList}\item 
-\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{web_8c_ae8b95c674148542469e51d10c4cbaf0a}{delete\+\_\+connection} (\hyperlink{structrwbuf__t}{rwbuf\+\_\+t} $\ast$p)
-\begin{DoxyCompactList}\small\item\em Delete a \hyperlink{structrwbuf__t}{rwbuf\+\_\+t} entry using its index. \end{DoxyCompactList}\item 
-\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{web_8c_abd703ce6226c13df800f38c7bc4c3807}{write\+\_\+byte} (\hyperlink{structrwbuf__t}{rwbuf\+\_\+t} $\ast$p, int c)
-\begin{DoxyCompactList}\small\item\em Write a byte (buffered) using the \hyperlink{structrwbuf__t}{rwbuf\+\_\+t} socket buffers for this connection If the buffers are full the socket is written using espconn\+\_\+send. \end{DoxyCompactList}\item 
-\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{web_8c_a6b59ca0b6eea0b246eb56ae2b37ee2d8}{wait\+\_\+send} (\hyperlink{structrwbuf__t}{rwbuf\+\_\+t} $\ast$p)
-\begin{DoxyCompactList}\small\item\em Wait for buffer to send for this connection If the buffers have any data in them it is written using espconn\+\_\+send. \end{DoxyCompactList}\item 
-\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{web_8c_ab224823f1d3f5c81a78949da4345ed87}{write\+\_\+flush} (\hyperlink{structrwbuf__t}{rwbuf\+\_\+t} $\ast$p)
-\begin{DoxyCompactList}\small\item\em Flush the the socket write buffers for this connection If the buffers have any data in them it is written using espconn\+\_\+send. \end{DoxyCompactList}\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{web_8c_a7f82234178b3e152072e979c17b40af2}{delete\+\_\+connection} (\hyperlink{structrwbuf__t}{rwbuf\+\_\+t} $\ast$p)
+\begin{DoxyCompactList}\small\item\em Delete our main connection structure and connection buffers. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{web_8c_a751d54408d691ebc079108ffc42ee436}{write\+\_\+len} (\hyperlink{structrwbuf__t}{rwbuf\+\_\+t} $\ast$p, char $\ast$str, int len)
 \begin{DoxyCompactList}\small\item\em Write data using buffered write\+\_\+byte function. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{web_8c_a2a5efc80e175181baf607f7f9a1358e5}{write\+\_\+str} (\hyperlink{structrwbuf__t}{rwbuf\+\_\+t} $\ast$p, char $\ast$str)
@@ -107,8 +111,8 @@ static \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\
 \begin{DoxyCompactList}\small\item\em Network sent callback function. \end{DoxyCompactList}\item 
 static \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{web_8c_af1da928cd361e8d3135aa1ce10da1773}{web\+\_\+data\+\_\+disconnect\+\_\+callback} (void $\ast$arg)
 \begin{DoxyCompactList}\small\item\em Network disconnect callback function. \end{DoxyCompactList}\item 
-static \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{web_8c_a7d15ce2e1a490be8780d1da3932f9dd5}{web\+\_\+data\+\_\+reconnect\+\_\+callback} (void $\ast$arg, \hyperlink{earth2wireframe_8c_aef44329758059c91c76d334e8fc09700}{int8\+\_\+t} err)
-\begin{DoxyCompactList}\small\item\em Network disconnect callback function. \end{DoxyCompactList}\item 
+static \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{web_8c_a9f50310615d41544e16983f80c97c0f0}{web\+\_\+data\+\_\+error\+\_\+callback} (void $\ast$arg, \hyperlink{earth2wireframe_8c_aef44329758059c91c76d334e8fc09700}{int8\+\_\+t} err)
+\begin{DoxyCompactList}\small\item\em Network Error callback function. \end{DoxyCompactList}\item 
 static \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{web_8c_a7548202d4a868f3c988014ffb969dee5}{web\+\_\+data\+\_\+connect\+\_\+callback} (\hyperlink{web_8h_a6dae30cd245bde804cf3e2c09e39a4b6}{espconn\+\_\+t} $\ast$conn)
 \begin{DoxyCompactList}\small\item\em incomming connection setup callbacks \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{web_8c_a4abb48d4494fe24bdb3966a30a380f94}{is\+\_\+cgitoken\+\_\+char} (int c)
@@ -130,6 +134,8 @@ static \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
+int \hyperlink{web_8c_a0ba17441c382732ee4172abce4f7b31c}{connections}
+\item 
 \hyperlink{structwindow}{window} $\ast$ \hyperlink{web_8c_a91a5294702debbeba1acf3cc43784ce9}{winmsg}
 \item 
 \hyperlink{structwindow}{window} $\ast$ \hyperlink{web_8c_aff6226bcabba958e69ff897ec86a13b2}{wintop}
@@ -147,9 +153,7 @@ char $\ast$ \hyperlink{web_8c_a81bbe3cdfc6aad2405aaa9432ae49b92}{http\+\_\+statu
 \hyperlink{structmime__t}{mime\+\_\+t} \hyperlink{web_8c_a8239fd1b0c1007f135d8d95e8183981b}{mimes} \mbox{[}$\,$\mbox{]}
 \begin{DoxyCompactList}\small\item\em M\+I\+ME types. \end{DoxyCompactList}\item 
 static \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{web_8c_a9caaaad7e2fdc8c9f2e927980c57d639}{\+\_\+led} = 0
-\begin{DoxyCompactList}\small\item\em Turn on virtual L\+ED. \end{DoxyCompactList}\item 
-int \hyperlink{web_8c_a0ba17441c382732ee4172abce4f7b31c}{connections}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Turn on virtual L\+ED. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -236,7 +240,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 710 of file web.\+c.
+Definition at line 790 of file web.\+c.
 
 
 
@@ -263,7 +267,7 @@ argument name
 \end{DoxyReturn}
 
 
-Definition at line 1217 of file web.\+c.
+Definition at line 1298 of file web.\+c.
 
 
 
@@ -290,7 +294,7 @@ argument value
 \end{DoxyReturn}
 
 
-Definition at line 1265 of file web.\+c.
+Definition at line 1346 of file web.\+c.
 
 
 
@@ -317,7 +321,7 @@ Allocate read/write socket buffers and add it to the working pool.
 \end{DoxyReturn}
 
 
-Definition at line 471 of file web.\+c.
+Definition at line 669 of file web.\+c.
 
 
 
@@ -325,14 +329,14 @@ Referenced by web\+\_\+data\+\_\+connect\+\_\+callback().
 
 \index{web.\+c@{web.\+c}!delete\+\_\+connection@{delete\+\_\+connection}}
 \index{delete\+\_\+connection@{delete\+\_\+connection}!web.\+c@{web.\+c}}
-\subsubsection[{\texorpdfstring{delete\+\_\+connection(rwbuf\+\_\+t $\ast$p)}{delete_connection(rwbuf_t *p)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void delete\+\_\+connection (
+\subsubsection[{\texorpdfstring{delete\+\_\+connection(rwbuf\+\_\+t $\ast$p)}{delete_connection(rwbuf_t *p)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int delete\+\_\+connection (
 \begin{DoxyParamCaption}
 \item[{{\bf rwbuf\+\_\+t} $\ast$}]{p}
 \end{DoxyParamCaption}
-)}\hypertarget{web_8c_ae8b95c674148542469e51d10c4cbaf0a}{}\label{web_8c_ae8b95c674148542469e51d10c4cbaf0a}
+)}\hypertarget{web_8c_a7f82234178b3e152072e979c17b40af2}{}\label{web_8c_a7f82234178b3e152072e979c17b40af2}
 
 
-Delete a \hyperlink{structrwbuf__t}{rwbuf\+\_\+t} entry using its index. 
+Delete our main connection structure and connection buffers. 
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -341,7 +345,7 @@ Delete a \hyperlink{structrwbuf__t}{rwbuf\+\_\+t} entry using its index.
 \end{DoxyParams}
 
 
-Definition at line 517 of file web.\+c.
+Definition at line 715 of file web.\+c.
 
 
 
@@ -374,11 +378,11 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 277 of file web.\+c.
+Definition at line 470 of file web.\+c.
 
 
 
-Referenced by delete\+\_\+connection(), find\+\_\+connection(), web\+\_\+data\+\_\+connect\+\_\+callback(), web\+\_\+data\+\_\+disconnect\+\_\+callback(), web\+\_\+data\+\_\+receive\+\_\+callback(), web\+\_\+data\+\_\+reconnect\+\_\+callback(), and web\+\_\+data\+\_\+sent\+\_\+callback().
+Referenced by delete\+\_\+connection(), find\+\_\+connection(), web\+\_\+data\+\_\+connect\+\_\+callback(), web\+\_\+data\+\_\+disconnect\+\_\+callback(), web\+\_\+data\+\_\+error\+\_\+callback(), web\+\_\+data\+\_\+receive\+\_\+callback(), and web\+\_\+data\+\_\+sent\+\_\+callback().
 
 \index{web.\+c@{web.\+c}!file\+\_\+type@{file\+\_\+type}}
 \index{file\+\_\+type@{file\+\_\+type}!web.\+c@{web.\+c}}
@@ -401,7 +405,7 @@ index into mimetype table
 \end{DoxyReturn}
 
 
-Definition at line 915 of file web.\+c.
+Definition at line 996 of file web.\+c.
 
 \index{web.\+c@{web.\+c}!find\+\_\+cgitoken\+\_\+start@{find\+\_\+cgitoken\+\_\+start}}
 \index{find\+\_\+cgitoken\+\_\+start@{find\+\_\+cgitoken\+\_\+start}!web.\+c@{web.\+c}}
@@ -419,7 +423,7 @@ offset of start of token, or -\/1 if not found
 \end{DoxyReturn}
 
 
-Definition at line 1909 of file web.\+c.
+Definition at line 2024 of file web.\+c.
 
 \index{web.\+c@{web.\+c}!find\+\_\+connection@{find\+\_\+connection}}
 \index{find\+\_\+connection@{find\+\_\+connection}!web.\+c@{web.\+c}}
@@ -448,11 +452,11 @@ Find a read/write socket buffer for an espconn connection.
 \end{DoxyReturn}
 
 
-Definition at line 396 of file web.\+c.
+Definition at line 590 of file web.\+c.
 
 
 
-Referenced by web\+\_\+data\+\_\+disconnect\+\_\+callback(), web\+\_\+data\+\_\+receive\+\_\+callback(), web\+\_\+data\+\_\+reconnect\+\_\+callback(), and web\+\_\+data\+\_\+sent\+\_\+callback().
+Referenced by web\+\_\+data\+\_\+disconnect\+\_\+callback(), web\+\_\+data\+\_\+error\+\_\+callback(), web\+\_\+data\+\_\+receive\+\_\+callback(), and web\+\_\+data\+\_\+sent\+\_\+callback().
 
 \index{web.\+c@{web.\+c}!first\+\_\+arg@{first\+\_\+arg}}
 \index{first\+\_\+arg@{first\+\_\+arg}!web.\+c@{web.\+c}}
@@ -475,7 +479,7 @@ argument value pair
 \end{DoxyReturn}
 
 
-Definition at line 1154 of file web.\+c.
+Definition at line 1235 of file web.\+c.
 
 
 
@@ -511,7 +515,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1437 of file web.\+c.
+Definition at line 1518 of file web.\+c.
 
 \index{web.\+c@{web.\+c}!html\+\_\+msg@{html\+\_\+msg}}
 \index{html\+\_\+msg@{html\+\_\+msg}!web.\+c@{web.\+c}}
@@ -546,7 +550,7 @@ bytes written, 0 on wrror
 \end{DoxyReturn}
 
 
-Definition at line 772 of file web.\+c.
+Definition at line 853 of file web.\+c.
 
 \index{web.\+c@{web.\+c}!html\+\_\+status@{html\+\_\+status}}
 \index{html\+\_\+status@{html\+\_\+status}!web.\+c@{web.\+c}}
@@ -569,7 +573,7 @@ http\+\_\+status entry mathing status, or 500 Internal Server Error
 \end{DoxyReturn}
 
 
-Definition at line 949 of file web.\+c.
+Definition at line 1030 of file web.\+c.
 
 
 
@@ -599,7 +603,7 @@ argument value
 \end{DoxyReturn}
 
 
-Definition at line 1341 of file web.\+c.
+Definition at line 1422 of file web.\+c.
 
 \index{web.\+c@{web.\+c}!init\+\_\+hinfo@{init\+\_\+hinfo}}
 \index{init\+\_\+hinfo@{init\+\_\+hinfo}!web.\+c@{web.\+c}}
@@ -618,7 +622,7 @@ Initilize \hyperlink{structhinfo__t}{hinfo\+\_\+t} structure
 \end{DoxyReturn}
 
 
-Definition at line 974 of file web.\+c.
+Definition at line 1055 of file web.\+c.
 
 
 
@@ -640,7 +644,7 @@ size of token or -\/1 on fail
 \end{DoxyReturn}
 
 
-Definition at line 1936 of file web.\+c.
+Definition at line 2051 of file web.\+c.
 
 \index{web.\+c@{web.\+c}!is\+\_\+cgitoken\+\_\+char@{is\+\_\+cgitoken\+\_\+char}}
 \index{is\+\_\+cgitoken\+\_\+char@{is\+\_\+cgitoken\+\_\+char}!web.\+c@{web.\+c}}
@@ -663,7 +667,7 @@ test to see if a character is a valid member of the C\+GI token character set C\
 \end{DoxyReturn}
 
 
-Definition at line 1884 of file web.\+c.
+Definition at line 1999 of file web.\+c.
 
 \index{web.\+c@{web.\+c}!is\+\_\+header@{is\+\_\+header}}
 \index{is\+\_\+header@{is\+\_\+header}!web.\+c@{web.\+c}}
@@ -689,7 +693,7 @@ Does the string look like a header token with a \textquotesingle{}\+:\textquotes
 \end{DoxyReturn}
 
 
-Definition at line 1370 of file web.\+c.
+Definition at line 1451 of file web.\+c.
 
 
 
@@ -716,7 +720,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 194 of file web.\+c.
+Definition at line 384 of file web.\+c.
 
 \index{web.\+c@{web.\+c}!led\+\_\+on@{led\+\_\+on}}
 \index{led\+\_\+on@{led\+\_\+on}!web.\+c@{web.\+c}}
@@ -727,7 +731,7 @@ Definition at line 194 of file web.\+c.
 )}\hypertarget{web_8c_aaaac061db0c7646d5b6c8bdfe3089ae7}{}\label{web_8c_aaaac061db0c7646d5b6c8bdfe3089ae7}
 
 
-Definition at line 184 of file web.\+c.
+Definition at line 374 of file web.\+c.
 
 \index{web.\+c@{web.\+c}!match\+\_\+headers@{match\+\_\+headers}}
 \index{match\+\_\+headers@{match\+\_\+headers}!web.\+c@{web.\+c}}
@@ -753,7 +757,7 @@ header index or -\/1 on no match
 \end{DoxyReturn}
 
 
-Definition at line 996 of file web.\+c.
+Definition at line 1077 of file web.\+c.
 
 
 
@@ -781,7 +785,7 @@ pointer to string
 \end{DoxyReturn}
 
 
-Definition at line 871 of file web.\+c.
+Definition at line 952 of file web.\+c.
 
 
 
@@ -814,7 +818,7 @@ pointer to start of memory area (ptr)
 \end{DoxyReturn}
 
 
-Definition at line 852 of file web.\+c.
+Definition at line 933 of file web.\+c.
 
 
 
@@ -841,7 +845,7 @@ pointer to string, if out of range uses index P\+T\+Y\+P\+E\+\_\+\+E\+RR
 \end{DoxyReturn}
 
 
-Definition at line 902 of file web.\+c.
+Definition at line 983 of file web.\+c.
 
 
 
@@ -868,7 +872,7 @@ argument value pair
 \end{DoxyReturn}
 
 
-Definition at line 1166 of file web.\+c.
+Definition at line 1247 of file web.\+c.
 
 
 
@@ -895,7 +899,7 @@ first space or ? character
 \end{DoxyReturn}
 
 
-Definition at line 1395 of file web.\+c.
+Definition at line 1476 of file web.\+c.
 
 
 
@@ -925,7 +929,7 @@ Get arguments for a G\+ET or P\+O\+ST request.
 \end{DoxyReturn}
 We must respond with Connection\+: keep-\/alive now 
 
-Definition at line 1454 of file web.\+c.
+Definition at line 1535 of file web.\+c.
 
 \index{web.\+c@{web.\+c}!process\+\_\+args@{process\+\_\+args}}
 \index{process\+\_\+args@{process\+\_\+args}!web.\+c@{web.\+c}}
@@ -951,7 +955,7 @@ $\ast$ptr pointer that points to just past the header area.
 \end{DoxyReturn}
 
 
-Definition at line 1035 of file web.\+c.
+Definition at line 1116 of file web.\+c.
 
 
 
@@ -978,7 +982,7 @@ void
 \end{DoxyReturn}
 F\+I\+X\+ME if we want to support keep-\/alive we have to change this 
 
-Definition at line 2022 of file web.\+c.
+Definition at line 2137 of file web.\+c.
 
 \index{web.\+c@{web.\+c}!rewrite\+\_\+cgi\+\_\+token@{rewrite\+\_\+cgi\+\_\+token}}
 \index{rewrite\+\_\+cgi\+\_\+token@{rewrite\+\_\+cgi\+\_\+token}!web.\+c@{web.\+c}}
@@ -1004,7 +1008,7 @@ length of replaced text or 0 if no C\+GI handler was matched
 \end{DoxyReturn}
 
 
-Definition at line 1978 of file web.\+c.
+Definition at line 2093 of file web.\+c.
 
 \index{web.\+c@{web.\+c}!rwbuf\+\_\+create@{rwbuf\+\_\+create}}
 \index{rwbuf\+\_\+create@{rwbuf\+\_\+create}!web.\+c@{web.\+c}}
@@ -1022,7 +1026,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 332 of file web.\+c.
+Definition at line 526 of file web.\+c.
 
 
 
@@ -1049,11 +1053,11 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 294 of file web.\+c.
+Definition at line 487 of file web.\+c.
 
 
 
-Referenced by delete\+\_\+connection(), rwbuf\+\_\+create(), and web\+\_\+data\+\_\+sent\+\_\+callback().
+Referenced by delete\+\_\+connection(), and rwbuf\+\_\+create().
 
 \index{web.\+c@{web.\+c}!rwbuf\+\_\+rinit@{rwbuf\+\_\+rinit}}
 \index{rwbuf\+\_\+rinit@{rwbuf\+\_\+rinit}!web.\+c@{web.\+c}}
@@ -1076,7 +1080,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 246 of file web.\+c.
+Definition at line 439 of file web.\+c.
 
 
 
@@ -1103,7 +1107,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 260 of file web.\+c.
+Definition at line 453 of file web.\+c.
 
 
 
@@ -1136,7 +1140,7 @@ bytes written
 \end{DoxyReturn}
 
 
-Definition at line 749 of file web.\+c.
+Definition at line 830 of file web.\+c.
 
 
 
@@ -1172,7 +1176,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 210 of file web.\+c.
+Definition at line 400 of file web.\+c.
 
 \index{web.\+c@{web.\+c}!u5toa@{u5toa}}
 \index{u5toa@{u5toa}!web.\+c@{web.\+c}}
@@ -1198,7 +1202,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1416 of file web.\+c.
+Definition at line 1497 of file web.\+c.
 
 
 
@@ -1231,7 +1235,7 @@ bytes written
 \end{DoxyReturn}
 
 
-Definition at line 727 of file web.\+c.
+Definition at line 808 of file web.\+c.
 
 
 
@@ -1246,7 +1250,7 @@ Referenced by sock\+\_\+printf().
 )}\hypertarget{web_8c_a6b59ca0b6eea0b246eb56ae2b37ee2d8}{}\label{web_8c_a6b59ca0b6eea0b246eb56ae2b37ee2d8}
 
 
-Wait for buffer to send for this connection If the buffers have any data in them it is written using espconn\+\_\+send. 
+Wait for buffer to send for this connection If write\+\_\+buffer sending flag is set then wait for it to clear. 
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -1254,15 +1258,15 @@ Wait for buffer to send for this connection If the buffers have any data in them
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-1 on success, 0 on error 
+sent buffer size or -\/1 on error 
 \end{DoxyReturn}
 
 
-Definition at line 602 of file web.\+c.
+Definition at line 195 of file web.\+c.
 
 
 
-Referenced by write\+\_\+flush().
+Referenced by write\+\_\+buffer(), and write\+\_\+flush().
 
 \index{web.\+c@{web.\+c}!web\+\_\+data\+\_\+connect\+\_\+callback@{web\+\_\+data\+\_\+connect\+\_\+callback}}
 \index{web\+\_\+data\+\_\+connect\+\_\+callback@{web\+\_\+data\+\_\+connect\+\_\+callback}!web.\+c@{web.\+c}}
@@ -1285,7 +1289,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1837 of file web.\+c.
+Definition at line 1928 of file web.\+c.
 
 \index{web.\+c@{web.\+c}!web\+\_\+data\+\_\+disconnect\+\_\+callback@{web\+\_\+data\+\_\+disconnect\+\_\+callback}}
 \index{web\+\_\+data\+\_\+disconnect\+\_\+callback@{web\+\_\+data\+\_\+disconnect\+\_\+callback}!web.\+c@{web.\+c}}
@@ -1305,7 +1309,32 @@ Network disconnect callback function.
 \end{DoxyParams}
 
 
-Definition at line 1781 of file web.\+c.
+Definition at line 1854 of file web.\+c.
+
+
+
+Referenced by web\+\_\+data\+\_\+connect\+\_\+callback().
+
+\index{web.\+c@{web.\+c}!web\+\_\+data\+\_\+error\+\_\+callback@{web\+\_\+data\+\_\+error\+\_\+callback}}
+\index{web\+\_\+data\+\_\+error\+\_\+callback@{web\+\_\+data\+\_\+error\+\_\+callback}!web.\+c@{web.\+c}}
+\subsubsection[{\texorpdfstring{web\+\_\+data\+\_\+error\+\_\+callback(void $\ast$arg, int8\+\_\+t err)}{web_data_error_callback(void *arg, int8_t err)}}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf M\+E\+M\+S\+P\+A\+CE} void web\+\_\+data\+\_\+error\+\_\+callback (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{arg, }
+\item[{{\bf int8\+\_\+t}}]{err}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{web_8c_a9f50310615d41544e16983f80c97c0f0}{}\label{web_8c_a9f50310615d41544e16983f80c97c0f0}
+
+
+Network Error callback function. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$arg} & connection pointer F\+I\+X\+ME T\+O\+DO -\/ we just disconnect on error \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1895 of file web.\+c.
 
 
 
@@ -1338,32 +1367,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1654 of file web.\+c.
-
-
-
-Referenced by web\+\_\+data\+\_\+connect\+\_\+callback().
-
-\index{web.\+c@{web.\+c}!web\+\_\+data\+\_\+reconnect\+\_\+callback@{web\+\_\+data\+\_\+reconnect\+\_\+callback}}
-\index{web\+\_\+data\+\_\+reconnect\+\_\+callback@{web\+\_\+data\+\_\+reconnect\+\_\+callback}!web.\+c@{web.\+c}}
-\subsubsection[{\texorpdfstring{web\+\_\+data\+\_\+reconnect\+\_\+callback(void $\ast$arg, int8\+\_\+t err)}{web_data_reconnect_callback(void *arg, int8_t err)}}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf M\+E\+M\+S\+P\+A\+CE} void web\+\_\+data\+\_\+reconnect\+\_\+callback (
-\begin{DoxyParamCaption}
-\item[{void $\ast$}]{arg, }
-\item[{{\bf int8\+\_\+t}}]{err}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{web_8c_a7d15ce2e1a490be8780d1da3932f9dd5}{}\label{web_8c_a7d15ce2e1a490be8780d1da3932f9dd5}
-
-
-Network disconnect callback function. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em $\ast$arg} & connection pointer F\+I\+X\+ME T\+O\+DO \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 1817 of file web.\+c.
+Definition at line 1735 of file web.\+c.
 
 
 
@@ -1390,7 +1394,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1726 of file web.\+c.
+Definition at line 1810 of file web.\+c.
 
 
 
@@ -1417,7 +1421,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 2368 of file web.\+c.
+Definition at line 2490 of file web.\+c.
 
 
 
@@ -1432,7 +1436,29 @@ Referenced by setup().
 )}\hypertarget{web_8c_aced225563307f62a9832c387fd78a0f8}{}\label{web_8c_aced225563307f62a9832c387fd78a0f8}
 
 
-Definition at line 2353 of file web.\+c.
+Definition at line 2475 of file web.\+c.
+
+\index{web.\+c@{web.\+c}!web\+\_\+sep@{web\+\_\+sep}}
+\index{web\+\_\+sep@{web\+\_\+sep}!web.\+c@{web.\+c}}
+\subsubsection[{\texorpdfstring{web\+\_\+sep(void)}{web_sep(void)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void web\+\_\+sep (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{web_8c_a32080fe9d866898d9fb3dce10079b1ff}{}\label{web_8c_a32080fe9d866898d9fb3dce10079b1ff}
+
+
+printer seperator 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 182 of file web.\+c.
+
+
+
+Referenced by tcp\+\_\+accept().
 
 \index{web.\+c@{web.\+c}!web\+\_\+task@{web\+\_\+task}}
 \index{web\+\_\+task@{web\+\_\+task}!web.\+c@{web.\+c}}
@@ -1453,34 +1479,61 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 2316 of file web.\+c.
+Definition at line 2441 of file web.\+c.
 
 
 
 Referenced by loop\+\_\+wrapper().
 
-\index{web.\+c@{web.\+c}!write\+\_\+byte@{write\+\_\+byte}}
-\index{write\+\_\+byte@{write\+\_\+byte}!web.\+c@{web.\+c}}
-\subsubsection[{\texorpdfstring{write\+\_\+byte(rwbuf\+\_\+t $\ast$p, int c)}{write_byte(rwbuf_t *p, int c)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} {\bf M\+E\+M\+S\+P\+A\+CE} int write\+\_\+byte (
+\index{web.\+c@{web.\+c}!write\+\_\+buffer@{write\+\_\+buffer}}
+\index{write\+\_\+buffer@{write\+\_\+buffer}!web.\+c@{web.\+c}}
+\subsubsection[{\texorpdfstring{write\+\_\+buffer(rwbuf\+\_\+t $\ast$p)}{write_buffer(rwbuf_t *p)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int write\+\_\+buffer (
 \begin{DoxyParamCaption}
-\item[{{\bf rwbuf\+\_\+t} $\ast$}]{p, }
-\item[{int}]{c}
+\item[{{\bf rwbuf\+\_\+t} $\ast$}]{p}
 \end{DoxyParamCaption}
-)}\hypertarget{web_8c_abd703ce6226c13df800f38c7bc4c3807}{}\label{web_8c_abd703ce6226c13df800f38c7bc4c3807}
+)}\hypertarget{web_8c_ab32eaeba7482e80dde268638c1514a6d}{}\label{web_8c_ab32eaeba7482e80dde268638c1514a6d}
 
 
-Write a byte (buffered) using the \hyperlink{structrwbuf__t}{rwbuf\+\_\+t} socket buffers for this connection If the buffers are full the socket is written using espconn\+\_\+send. 
+Socket write buffer for this connection We wait for previous send to complete -\/ then send any new data We do not wait for new data to finish sending -\/ you use flush for that. 
 
 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\tt in}  & {\em $\ast$p} & \hyperlink{structrwbuf__t}{rwbuf\+\_\+t} pointer for this socket buffer \\
 \hline
-\mbox{\tt in}  & {\em c} & character to write \\
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+size of data in buffer or -\/1 on error 
+\end{DoxyReturn}
+
+
+Definition at line 266 of file web.\+c.
+
+
+
+Referenced by write\+\_\+flush().
+
+\index{web.\+c@{web.\+c}!write\+\_\+byte@{write\+\_\+byte}}
+\index{write\+\_\+byte@{write\+\_\+byte}!web.\+c@{web.\+c}}
+\subsubsection[{\texorpdfstring{write\+\_\+byte(rwbuf\+\_\+t $\ast$p, int c)}{write_byte(rwbuf_t *p, int c)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int write\+\_\+byte (
+\begin{DoxyParamCaption}
+\item[{{\bf rwbuf\+\_\+t} $\ast$}]{p, }
+\item[{int}]{c}
+\end{DoxyParamCaption}
+)}\hypertarget{web_8c_a50c911d56af7c50bc045cffb983d76f0}{}\label{web_8c_a50c911d56af7c50bc045cffb983d76f0}
+
+
+Write a byte (buffered) using the \hyperlink{structrwbuf__t}{rwbuf\+\_\+t} socket buffers for this connection If the buffers are full the socket is written using write\+\_\+flush. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$p} & \hyperlink{structrwbuf__t}{rwbuf\+\_\+t} pointer for this socket buffer \\
+\hline
+\mbox{\tt in}  & {\em 1} & on success 0 on fail \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 547 of file web.\+c.
+Definition at line 339 of file web.\+c.
 
 
 
@@ -1488,14 +1541,14 @@ Referenced by \+\_\+write\+\_\+byte\+\_\+fn(), write\+\_\+len(), and write\+\_\+
 
 \index{web.\+c@{web.\+c}!write\+\_\+flush@{write\+\_\+flush}}
 \index{write\+\_\+flush@{write\+\_\+flush}!web.\+c@{web.\+c}}
-\subsubsection[{\texorpdfstring{write\+\_\+flush(rwbuf\+\_\+t $\ast$p)}{write_flush(rwbuf_t *p)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void write\+\_\+flush (
+\subsubsection[{\texorpdfstring{write\+\_\+flush(rwbuf\+\_\+t $\ast$p)}{write_flush(rwbuf_t *p)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int write\+\_\+flush (
 \begin{DoxyParamCaption}
 \item[{{\bf rwbuf\+\_\+t} $\ast$}]{p}
 \end{DoxyParamCaption}
-)}\hypertarget{web_8c_ab224823f1d3f5c81a78949da4345ed87}{}\label{web_8c_ab224823f1d3f5c81a78949da4345ed87}
+)}\hypertarget{web_8c_a5e0970f0d980f87fb5524a757f96fa84}{}\label{web_8c_a5e0970f0d980f87fb5524a757f96fa84}
 
 
-Flush the the socket write buffers for this connection If the buffers have any data in them it is written using espconn\+\_\+send. 
+Write all outstanding data and wait for it to send. 
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -1507,7 +1560,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 640 of file web.\+c.
+Definition at line 323 of file web.\+c.
 
 
 
@@ -1540,7 +1593,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 684 of file web.\+c.
+Definition at line 758 of file web.\+c.
 
 
 
@@ -1570,7 +1623,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 697 of file web.\+c.
+Definition at line 774 of file web.\+c.
 
 
 
@@ -1592,18 +1645,18 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 182 of file web.\+c.
+Definition at line 372 of file web.\+c.
 
 \index{web.\+c@{web.\+c}!connections@{connections}}
 \index{connections@{connections}!web.\+c@{web.\+c}}
 \subsubsection[{\texorpdfstring{connections}{connections}}]{\setlength{\rightskip}{0pt plus 5cm}int connections}\hypertarget{web_8c_a0ba17441c382732ee4172abce4f7b31c}{}\label{web_8c_a0ba17441c382732ee4172abce4f7b31c}
 
 
-Definition at line 2308 of file web.\+c.
+Definition at line 45 of file web.\+c.
 
 
 
-Referenced by user\+\_\+loop(), and user\+\_\+tests().
+Referenced by tcp\+\_\+accept(), user\+\_\+loop(), user\+\_\+tests(), web\+\_\+data\+\_\+connect\+\_\+callback(), web\+\_\+data\+\_\+disconnect\+\_\+callback(), web\+\_\+data\+\_\+error\+\_\+callback(), web\+\_\+data\+\_\+receive\+\_\+callback(), and web\+\_\+data\+\_\+sent\+\_\+callback().
 
 \index{web.\+c@{web.\+c}!http\+\_\+status@{http\+\_\+status}}
 \index{http\+\_\+status@{http\+\_\+status}!web.\+c@{web.\+c}}
@@ -1614,7 +1667,7 @@ H\+T\+TP status code messages.
 
 
 
-Definition at line 84 of file web.\+c.
+Definition at line 86 of file web.\+c.
 
 
 
@@ -1647,7 +1700,7 @@ M\+I\+ME types.
 
 
 
-Definition at line 158 of file web.\+c.
+Definition at line 160 of file web.\+c.
 
 \index{web.\+c@{web.\+c}!msg\+\_\+headers@{msg\+\_\+headers}}
 \index{msg\+\_\+headers@{msg\+\_\+headers}!web.\+c@{web.\+c}}
@@ -1680,7 +1733,7 @@ H\+T\+TP headers we understand.
 
 
 
-Definition at line 59 of file web.\+c.
+Definition at line 61 of file web.\+c.
 
 \index{web.\+c@{web.\+c}!web\+\_\+connections@{web\+\_\+connections}}
 \index{web\+\_\+connections@{web\+\_\+connections}!web.\+c@{web.\+c}}
@@ -1691,7 +1744,7 @@ socket buffers for this connection
 
 
 
-Definition at line 48 of file web.\+c.
+Definition at line 50 of file web.\+c.
 
 \index{web.\+c@{web.\+c}!Web\+Conn@{Web\+Conn}}
 \index{Web\+Conn@{Web\+Conn}!web.\+c@{web.\+c}}
@@ -1702,7 +1755,7 @@ Master espconn structure of the web server.
 
 
 
-Definition at line 51 of file web.\+c.
+Definition at line 53 of file web.\+c.
 
 
 
@@ -1717,7 +1770,7 @@ Master network configuration for the web server.
 
 
 
-Definition at line 53 of file web.\+c.
+Definition at line 55 of file web.\+c.
 
 \index{web.\+c@{web.\+c}!winmsg@{winmsg}}
 \index{winmsg@{winmsg}!web.\+c@{web.\+c}}

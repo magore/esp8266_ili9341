@@ -74,7 +74,7 @@ typedef enum
 #endif
 
 
-/* esp8266/uart.c */
+/* uart.c */
 void uart_rx_enable ( uint8 uart_no );
 void uart_rx_disable ( uint8 uart_no );
 void uart_tx_enable ( uint8_t uart_no );
@@ -99,15 +99,16 @@ MEMSPACE int uart0_putc ( uint8 c );
 MEMSPACE int uart0_getc ( void );
 MEMSPACE int uart1_putc ( uint8 c );
 MEMSPACE int uart1_getc ( void );
-LOCAL MEMSPACE void uart_queue_putb ( uint8 uart_no , uint8 data );
-void uart_task ( void );
+MEMSPACE void uart_flush ( uint8_t uart_no );
 LOCAL MEMSPACE int uart_queue_getb ( uint8_t uart_no );
-MEMSPACE void uart_queue_putc ( uint8_t uart_no , char c );
-MEMSPACE void uart0_queue_putc ( char c );
-MEMSPACE void uart1_queue_putc ( char c );
 MEMSPACE uint8_t uart_queue_getc ( uint8_t uart_no );
 MEMSPACE uint8_t uart0_queue_getc ( void );
 MEMSPACE uint8_t uart1_queue_getc ( void );
+void uart_task ( void );
+LOCAL MEMSPACE void uart_queue_putb ( uint8 uart_no , uint8 data );
+MEMSPACE void uart_queue_putc ( uint8_t uart_no , char c );
+MEMSPACE void uart0_queue_putc ( char c );
+MEMSPACE void uart1_queue_putc ( char c );
 int kbhiteol ( int uart_no );
 int kbhit ( int uart_no );
 void uart_callback ( void *p );

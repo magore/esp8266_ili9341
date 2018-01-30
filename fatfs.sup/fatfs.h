@@ -11,7 +11,7 @@
 #endif
 #ifdef ESP8266
 #define MMC_SLOW (F_CPU/500000UL)
-#define MMC_FAST (F_CPU/2500000UL)
+#define MMC_FAST (F_CPU/2000000UL)
 #endif
 
 #include "ffconf.h"

@@ -64,6 +64,8 @@ L\+O\+C\+AL \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+
 \begin{DoxyCompactList}\small\item\em Write a byte to uart1 with NL to C\+R/\+NL conversion Note\+: This function waits/blocks util the write can happen. \end{DoxyCompactList}\item 
 \hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{uart_8c_a737b67ce3c8c77f547a29a06dd0b45b1}{uart1\+\_\+getc} ()
 \begin{DoxyCompactList}\small\item\em Read a byte from uart1 with NL to C\+R/\+NL conversion Note\+: This function waits/blocks util the read can happen. \end{DoxyCompactList}\item 
+\hyperlink{earth2wireframe_8c_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{uart_8c_a735a90ff2c030a454e0e08d1cd4d79e9}{uart\+\_\+flush} (\hyperlink{send_8c_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t} uart\+\_\+no)
+\begin{DoxyCompactList}\small\item\em Flush TX buffer Note\+: This function waits/blocks util the write happen. \end{DoxyCompactList}\item 
 int \hyperlink{uart_8c_adba60d396ad1ae85a31880b05758e460}{kbhiteol} (int uart\+\_\+no)
 \begin{DoxyCompactList}\small\item\em Has an E\+OL been read on stdin ? \end{DoxyCompactList}\item 
 int \hyperlink{uart_8c_a27dccd1929734deb5d318a0cf44bd7c5}{kbhit} (int uart\+\_\+no)
@@ -149,7 +151,7 @@ byte read
 \end{DoxyReturn}
 
 
-Definition at line 567 of file uart.\+c.
+Definition at line 585 of file uart.\+c.
 
 
 
@@ -176,7 +178,7 @@ byte read
 \end{DoxyReturn}
 
 
-Definition at line 554 of file uart.\+c.
+Definition at line 572 of file uart.\+c.
 
 
 
@@ -363,7 +365,7 @@ Definition at line 143 of file uart.\+c.
 
 
 
-Referenced by uart1\+\_\+getc().
+Referenced by uart\+\_\+flush().
 
 \index{uart.\+c@{uart.\+c}!tx\+\_\+fifo\+\_\+flush@{tx\+\_\+fifo\+\_\+flush}}
 \index{tx\+\_\+fifo\+\_\+flush@{tx\+\_\+fifo\+\_\+flush}!uart.\+c@{uart.\+c}}
@@ -467,6 +469,10 @@ bytes in use
 
 
 Definition at line 118 of file uart.\+c.
+
+
+
+Referenced by uart\+\_\+flush().
 
 \index{uart.\+c@{uart.\+c}!tx\+\_\+fifo\+\_\+write@{tx\+\_\+fifo\+\_\+write}}
 \index{tx\+\_\+fifo\+\_\+write@{tx\+\_\+fifo\+\_\+write}!uart.\+c@{uart.\+c}}
@@ -602,7 +608,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 586 of file uart.\+c.
+Definition at line 604 of file uart.\+c.
 
 \index{uart.\+c@{uart.\+c}!uart\+\_\+config@{uart\+\_\+config}}
 \index{uart\+\_\+config@{uart\+\_\+config}!uart.\+c@{uart.\+c}}
@@ -637,7 +643,25 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 696 of file uart.\+c.
+Definition at line 714 of file uart.\+c.
+
+\index{uart.\+c@{uart.\+c}!uart\+\_\+flush@{uart\+\_\+flush}}
+\index{uart\+\_\+flush@{uart\+\_\+flush}!uart.\+c@{uart.\+c}}
+\subsubsection[{\texorpdfstring{uart\+\_\+flush(uint8\+\_\+t uart\+\_\+no)}{uart_flush(uint8_t uart_no)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void uart\+\_\+flush (
+\begin{DoxyParamCaption}
+\item[{{\bf uint8\+\_\+t}}]{uart\+\_\+no}
+\end{DoxyParamCaption}
+)}\hypertarget{uart_8c_a735a90ff2c030a454e0e08d1cd4d79e9}{}\label{uart_8c_a735a90ff2c030a454e0e08d1cd4d79e9}
+
+
+Flush TX buffer Note\+: This function waits/blocks util the write happen. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 406 of file uart.\+c.
 
 \index{uart.\+c@{uart.\+c}!uart\+\_\+getb@{uart\+\_\+getb}}
 \index{uart\+\_\+getb@{uart\+\_\+getb}!uart.\+c@{uart.\+c}}
@@ -717,7 +741,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 755 of file uart.\+c.
+Definition at line 773 of file uart.\+c.
 
 
 
@@ -799,7 +823,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 804 of file uart.\+c.
+Definition at line 822 of file uart.\+c.
 
 \index{uart.\+c@{uart.\+c}!uart\+\_\+rx\+\_\+disable@{uart\+\_\+rx\+\_\+disable}}
 \index{uart\+\_\+rx\+\_\+disable@{uart\+\_\+rx\+\_\+disable}!uart.\+c@{uart.\+c}}
@@ -863,7 +887,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 664 of file uart.\+c.
+Definition at line 682 of file uart.\+c.
 
 \index{uart.\+c@{uart.\+c}!uart\+\_\+tx\+\_\+disable@{uart\+\_\+tx\+\_\+disable}}
 \index{uart\+\_\+tx\+\_\+disable@{uart\+\_\+tx\+\_\+disable}!uart.\+c@{uart.\+c}}
@@ -913,7 +937,7 @@ Definition at line 72 of file uart.\+c.
 
 
 
-Referenced by tx\+\_\+fifo\+\_\+putb(), tx\+\_\+fifo\+\_\+write(), and uart1\+\_\+getc().
+Referenced by tx\+\_\+fifo\+\_\+putb(), tx\+\_\+fifo\+\_\+write(), and uart\+\_\+flush().
 
 
 

@@ -1869,8 +1869,8 @@ char *strerror_r(int errnum, char *buf, size_t buflen)
 /// @brief  Assign stdin,stdout,stderr or any use defined I/O
 /// NOT POSIX
 ///
-/// @param[in] *put: uart putc function pointer
-/// @param[in] *get: uart gutc function pointer
+/// @param[in] *put: putc function pointer
+/// @param[in] *get: gutc function pointer
 MEMSPACE
 FILE *
 fdevopen(int (*put)(char, FILE *), int (*get)(FILE *))

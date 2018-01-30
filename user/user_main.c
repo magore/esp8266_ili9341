@@ -989,7 +989,8 @@ void setup(void)
 	os_delay_us(200000L);	// Power Up dalay - lets power supplies and devices settle
 
 	// Configure the UART
-	uart_init(BIT_RATE_115200,BIT_RATE_115200);
+	//uart_init(BIT_RATE_115200,BIT_RATE_115200);
+	uart_init(BIT_RATE_74880,BIT_RATE_74880);
 
 	os_delay_us(200000L);	// Power Up dalay - lets power supplies and devices settle
 	os_delay_us(200000L);	// Power Up dalay - lets power supplies and devices settle

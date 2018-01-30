@@ -163,6 +163,11 @@ typedef struct {
 
 // ============================================================
 /* web.c */
+MEMSPACE void web_sep ( void );
+MEMSPACE int wait_send ( rwbuf_t *p );
+MEMSPACE int write_buffer ( rwbuf_t *p );
+MEMSPACE int write_flush ( rwbuf_t *p );
+MEMSPACE int write_byte ( rwbuf_t *p , int c );
 MEMSPACE void led_on ( int led );
 MEMSPACE void led_off ( int led );
 MEMSPACE void rwbuf_rinit ( rwbuf_t *p );
@@ -172,10 +177,7 @@ MEMSPACE void rwbuf_delete ( rwbuf_t *p );
 MEMSPACE rwbuf_t *rwbuf_create ( void );
 MEMSPACE rwbuf_t *find_connection ( espconn_t *conn , int *index , char *msg );
 MEMSPACE rwbuf_t *create_connection ( espconn_t *conn );
-MEMSPACE void delete_connection ( rwbuf_t *p );
-MEMSPACE MEMSPACE int write_byte ( rwbuf_t *p , int c );
-MEMSPACE int wait_send ( rwbuf_t *p );
-MEMSPACE void write_flush ( rwbuf_t *p );
+MEMSPACE int delete_connection ( rwbuf_t *p );
 MEMSPACE void write_len ( rwbuf_t *p , char *str , int len );
 MEMSPACE void write_str ( rwbuf_t *p , char *str );
 MEMSPACE int vsock_printf ( rwbuf_t *p , const char *fmt , va_list va );
@@ -206,6 +208,7 @@ MEMSPACE int rewrite_cgi_token ( rwbuf_t *p , char *src );
 MEMSPACE void web_task ( void );
 MEMSPACE void web_init_connections ( void );
 MEMSPACE void web_init ( int port );
+
 
 // ============================================================
 

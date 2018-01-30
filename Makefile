@@ -11,29 +11,29 @@
 
 # ===============================================================
 # Make Verbose messages while compiling
-VERBOSE = 0
+VERBOSE = 1
 # ===============================================================
 # Project Path definitions
-PROJECT_DIR ?=/opt/Espressif/projects/esp8266_ili9341
+PROJECT_DIR =/opt/Espressif/projects/esp8266_ili9341
 
 # ===============================================================
 # ESP OPEN SDK path definitions
-ROOT_DIR=/opt/Espressif/esp-open-sdk
+ROOT_DIR    = /opt/Espressif/esp-open-sdk
 # Base directory for the compiler
-XTENSA_TOOLS_ROOT ?= $(ROOT_DIR)/xtensa-lx106-elf/bin
+XTENSA_TOOLS_ROOT = ${ROOT_DIR}/xtensa-lx106-elf/bin
 # base directory of the ESP8266 SDK package, absolute
-SDK_BASE	?= $(ROOT_DIR)/sdk
-SDK_TOOLS	?= $(SDK_BASE)/tools
-DEF_INIT     ?= $(SDK_BASE)/bin/esp_init_data_default.bin
-BLANK_INIT  ?= $(SDK_BASE)/bin/blank.bin
+SDK_BASE	= ${ROOT_DIR}/sdk
+SDK_TOOLS	= ${SDK_BASE}/tools
+DEF_INIT     = ${SDK_BASE}/bin/esp_init_data_default.bin
+BLANK_INIT  = ${SDK_BASE}/bin/blank.bin
 
-#ESPTOOL		?= esptool-ck/esptool
-#ESPTOOL		?= $(SDK_TOOLS)/esptool.py
-ESPTOOL		?= esptool/esptool.py
-ESPPORT		?= /dev/ttyUSB0
+#ESPTOOL		= esptool-ck/esptool
+#ESPTOOL		= ${SDK_TOOLS}/esptool.py
+ESPTOOL		= esptool/esptool.py
+ESPPORT		= /dev/ttyUSB0
 
 # Export path
-export PATH := $(XTENSA_TOOLS_ROOT):$(PATH)
+export PATH := ${XTENSA_TOOLS_ROOT}:$(PATH)
 
 # esptool baud rate 
 #BAUD=115200
@@ -78,17 +78,17 @@ endif
 
 ADDR_IRAM		= 0x00000
 ADDR_IROM		= 0x10000
-FILE_IRAM		:= $(BUILD_BASE)/region-$(ADDR_IRAM).bin
-FILE_IRAM_PAD	:= $(BUILD_BASE)/region-$(ADDR_IRAM)-padded.bin
-FILE_IROM		:= $(BUILD_BASE)/region-$(ADDR_IROM).bin
-FW				:= $(BUILD_BASE)/firmware.bin
+FILE_IRAM		:= ${BUILD_BASE}/region-$(ADDR_IRAM).bin
+FILE_IRAM_PAD	:= ${BUILD_BASE}/region-$(ADDR_IRAM)-padded.bin
+FILE_IROM		:= ${BUILD_BASE}/region-$(ADDR_IROM).bin
+FW				:= ${BUILD_BASE}/firmware.bin
 
 # ===============================================================
 # which modules (subdirectories) of the project to include in compiling
 MODULES	= esp8266 lib 3rd_party display cordic network user
 
 # Project Include Directories
-EXTRA_INCDIR    = . user include $(SDK_BASE)/include 
+EXTRA_INCDIR    = . user include ${SDK_BASE}/include 
 
 # ===============================================================
 
@@ -239,7 +239,7 @@ endif
 
 # =========================
 # ADF4351 demo
-ADF4351 = 1
+#ADF4351 = 1
 
 # =========================
 # XPT2046 demo
@@ -294,7 +294,7 @@ VOLTAGE_TEST = 1
 DEBUG_STATS = 1
 
 # Vector fonts
-#VFONTS = 1
+# VFONTS = 1
 ifdef VFONTS
 	CFLAGS += -DVFONTS
 endif
@@ -410,12 +410,12 @@ endif
 
 # ===============================================================
 # select which tools to use as compiler, librarian and linker
-CC		:= $(XTENSA_TOOLS_ROOT)/xtensa-lx106-elf-gcc
-NM		:= $(XTENSA_TOOLS_ROOT)/xtensa-lx106-elf-nm
-AR		:= $(XTENSA_TOOLS_ROOT)/xtensa-lx106-elf-ar
-LD		:= $(XTENSA_TOOLS_ROOT)/xtensa-lx106-elf-gcc
-OBJCOPY := $(XTENSA_TOOLS_ROOT)/xtensa-lx106-elf-objcopy
-OBJDUMP := $(XTENSA_TOOLS_ROOT)/xtensa-lx106-elf-objdump
+CC		:= ${XTENSA_TOOLS_ROOT}/xtensa-lx106-elf-gcc
+NM		:= ${XTENSA_TOOLS_ROOT}/xtensa-lx106-elf-nm
+AR		:= ${XTENSA_TOOLS_ROOT}/xtensa-lx106-elf-ar
+LD		:= ${XTENSA_TOOLS_ROOT}/xtensa-lx106-elf-gcc
+OBJCOPY := ${XTENSA_TOOLS_ROOT}/xtensa-lx106-elf-objcopy
+OBJDUMP := ${XTENSA_TOOLS_ROOT}/xtensa-lx106-elf-objdump
 
 # various paths from the SDK used in this project
 SDK_LIBDIR	= lib
@@ -460,19 +460,19 @@ LD_SCRIPT	:= $(addprefix -T$(PROJECT_DIR)/ld/,$(LD_SCRIPT))
 
 # no user configurable options below here
 SRC_DIR		:= $(MODULES)
-BUILD_DIR	:= $(addprefix $(BUILD_BASE)/,$(MODULES))
+BUILD_DIR	:= $(addprefix ${BUILD_BASE}/,$(MODULES))
 
-SDK_LIBDIR	:= $(addprefix $(SDK_BASE)/,$(SDK_LIBDIR))
-SDK_INCDIR	:= $(addprefix -I$(SDK_BASE)/,$(SDK_INCDIR))
+SDK_LIBDIR	:= $(addprefix ${SDK_BASE}/,$(SDK_LIBDIR))
+SDK_INCDIR	:= $(addprefix -I${SDK_BASE}/,$(SDK_INCDIR))
 
 SRC			:= $(foreach sdir,$(SRC_DIR),$(wildcard $(sdir)/*.[cS])) 
 C_OBJ		:= $(patsubst %.c,%.o,$(SRC))
 S_OBJ		:= $(patsubst %.S,%.o,$(C_OBJ))
-OBJ		    := $(patsubst %.o,$(BUILD_BASE)/%.o,$(S_OBJ))
+OBJ		    := $(patsubst %.o,${BUILD_BASE}/%.o,$(S_OBJ))
 LIBS		:= $(addprefix -l,$(LIBS))
 
-APP_AR		:= $(addprefix $(BUILD_BASE)/,$(TARGET).a)
-ELF			:= $(addprefix $(BUILD_BASE)/,$(TARGET).elf)
+APP_AR		:= $(addprefix ${BUILD_BASE}/,$(TARGET).a)
+ELF			:= $(addprefix ${BUILD_BASE}/,$(TARGET).elf)
 
 
 CFLAGS += -DGIT_VERSION="\"$(GIT_VERSION)\""
@@ -565,16 +565,16 @@ ifdef VFONTS
 	-@$(MAKE) -C vfonts all
 endif
 
-checkdirs: $(BUILD_DIR) $(FW_BASE)
+checkdirs: ${BUILD_DIR} $(FW_BASE)
 
 
-$(APP_AR): $(OBJ)
+${APP_AR}: $(OBJ)
 	$(vecho) "AR $@"
 	$(Q) $(AR) cru $@ $^
 
-$(ELF):	$(APP_AR)
+$(ELF):	${APP_AR}
 	$(vecho) "LD $@"
-	$(Q) $(LD) -L$(SDK_LIBDIR) $(LD_SCRIPT) $(LDFLAGS) -Wl,--start-group $(LIBS) $(APP_AR) -Wl,--end-group -o $@
+	$(Q) $(LD) -L$(SDK_LIBDIR) $(LD_SCRIPT) $(LDFLAGS) -Wl,--start-group $(LIBS) ${APP_AR} -Wl,--end-group -o $@
 
 size:	$(ELF)
 	$(vecho) "Section info:"
@@ -600,7 +600,7 @@ size:	$(ELF)
 
 $(FW):	$(ELF) size
 	$(vecho) "Firmware $@"
-	$(ESPTOOL) elf2image $(ELF) -o $(BUILD_BASE)/region-
+	$(ESPTOOL) elf2image $(ELF) -o ${BUILD_BASE}/region-
 	$(Q) dd if=$(FILE_IRAM) of=$(FILE_IRAM_PAD) ibs=64K conv=sync 2>&1 >/dev/null
 	$(Q) cat $(FILE_IRAM_PAD) $(FILE_IROM) > $(FW)
 
@@ -622,13 +622,19 @@ $(FW):	$(ELF) size
 flash: all
 	$(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) write_flash $(FW_ARGS)  0 $(FW)
 	$(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) verify_flash $(FW_ARGS) 0 $(FW)
-	miniterm.py --parity N -e --rts 0 --dtr 0 /dev/ttyUSB0 115200
+	#miniterm.py --parity N -e --rts 0 --dtr 0 /dev/ttyUSB0 115200
+	miniterm.py --parity N -e --rts 0 --dtr 0 /dev/ttyUSB0 74480
 
 flash-size:	esptool
 	$(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) get_flash_size | grep -i "Flash size"
 
 verify: flash
 	$(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) verify_flash $(FW_ARGS) 0 $(FW)
+
+testinit: 
+	@echo Disabled untill the correct recovery steps from a blank fash can be determined
+	$(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) write_flash 0x7c000 $(DEF_INIT)
+	#$(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) write_flash 0x7e000 $(BLANK_INIT)
 
 init: 
 	@echo Disabled untill the correct recovery steps from a blank fash can be determined
@@ -668,7 +674,7 @@ testflash:
 
 rebuild: clean all
 
-$(BUILD_DIR):
+${BUILD_DIR}:
 	$(Q) mkdir -p $@
 
 $(FW_BASE):
@@ -682,9 +688,9 @@ clean:
 	-@$(MAKE) -C earth clean
 	-@$(MAKE) -C fonts clean
 	-@$(MAKE) -C vfonts clean
-	rm -f $(APP_AR)
-	rm -rf $(BUILD_DIR)
-	rm -rf $(BUILD_BASE)
+	rm -f ${APP_AR}
+	rm -rf ${BUILD_DIR}
+	rm -rf ${BUILD_BASE}
 	rm -rf $(FW_BASE)
 	rm -f linkmap
 	rm -f log
@@ -694,7 +700,7 @@ clean:
 	rm -f testflash
 	rm -rf doxygen/*
 
-$(foreach bdir,$(BUILD_DIR),$(eval $(call compile-objects,$(bdir))))
+$(foreach bdir,${BUILD_DIR},$(eval $(call compile-objects,$(bdir))))
 
 # ===============================================================
 # If makefile changes, update doxygens list

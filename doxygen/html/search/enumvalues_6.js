@@ -1,16 +1,8 @@
 var searchData=
 [
-  ['ptype_5fcgi',['PTYPE_CGI',['../web_8h.html#a61dadd085c1777f559549e05962b2c9ea96590ec99e2f5ce52c16218c19441c77',1,'web.h']]],
-  ['ptype_5fcss',['PTYPE_CSS',['../web_8h.html#a61dadd085c1777f559549e05962b2c9ea319eff9f0f2a8e6f74c5a319fc1cb4e4',1,'web.h']]],
-  ['ptype_5ferr',['PTYPE_ERR',['../web_8h.html#a61dadd085c1777f559549e05962b2c9ea8a75b468753c30e47935e8db26c91680',1,'web.h']]],
-  ['ptype_5fflash',['PTYPE_FLASH',['../web_8h.html#a61dadd085c1777f559549e05962b2c9eafb13489a2aca6e1485d8f1b36aab9bd5',1,'web.h']]],
-  ['ptype_5fgif',['PTYPE_GIF',['../web_8h.html#a61dadd085c1777f559549e05962b2c9ea30f126f9623d527070097095a12e69d6',1,'web.h']]],
-  ['ptype_5fhtml',['PTYPE_HTML',['../web_8h.html#a61dadd085c1777f559549e05962b2c9ea4bd960e514f0585643742b8bd4b77f3b',1,'web.h']]],
-  ['ptype_5fico',['PTYPE_ICO',['../web_8h.html#a61dadd085c1777f559549e05962b2c9eacbda84af249fa4ef414b6b5c32eec998',1,'web.h']]],
-  ['ptype_5fjpeg',['PTYPE_JPEG',['../web_8h.html#a61dadd085c1777f559549e05962b2c9eaabae39c4d39e7574d9e0459d6ada9675',1,'web.h']]],
-  ['ptype_5fjs',['PTYPE_JS',['../web_8h.html#a61dadd085c1777f559549e05962b2c9ea68ab53191252e14d5f4b4025b956cadf',1,'web.h']]],
-  ['ptype_5fmpeg',['PTYPE_MPEG',['../web_8h.html#a61dadd085c1777f559549e05962b2c9eae45f3c9fce9b5c96bf27fb291662b0cb',1,'web.h']]],
-  ['ptype_5fpdf',['PTYPE_PDF',['../web_8h.html#a61dadd085c1777f559549e05962b2c9ea30057776e71c48725f93b464b45c9a21',1,'web.h']]],
-  ['ptype_5ftext',['PTYPE_TEXT',['../web_8h.html#a61dadd085c1777f559549e05962b2c9ea90b1e6aa374cea27cc6fb55c5feba5c6',1,'web.h']]],
-  ['ptype_5fxml',['PTYPE_XML',['../web_8h.html#a61dadd085c1777f559549e05962b2c9eae0868088fd938478331ae365e481a2d3',1,'web.h']]]
+  ['res_5ferror',['RES_ERROR',['../diskio_8h.html#aacdfef1dad6565f65c26d12fe0ea4b2ba78011f5557679ec178fb40bd21e89840',1,'diskio.h']]],
+  ['res_5fnotrdy',['RES_NOTRDY',['../diskio_8h.html#aacdfef1dad6565f65c26d12fe0ea4b2baad64c27c69eb1ff39ae67c5f77bb2b1d',1,'diskio.h']]],
+  ['res_5fok',['RES_OK',['../diskio_8h.html#aacdfef1dad6565f65c26d12fe0ea4b2ba2ea4b6ef3fffc17dd1d38ab5c2837737',1,'diskio.h']]],
+  ['res_5fparerr',['RES_PARERR',['../diskio_8h.html#aacdfef1dad6565f65c26d12fe0ea4b2baf4dcc07fd46310b5495fa8025c89a9f3',1,'diskio.h']]],
+  ['res_5fwrprt',['RES_WRPRT',['../diskio_8h.html#aacdfef1dad6565f65c26d12fe0ea4b2ba442a6d4393dc404827067bc4e981b322',1,'diskio.h']]]
 ];

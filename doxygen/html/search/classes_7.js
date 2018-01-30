@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['header_5ft',['header_t',['../structheader__t.html',1,'']]],
-  ['hinfo_5ft',['hinfo_t',['../structhinfo__t.html',1,'']]]
+  ['mem_5ft',['mem_t',['../structmem__t.html',1,'']]],
+  ['mime_5ft',['mime_t',['../structmime__t.html',1,'']]]
 ];

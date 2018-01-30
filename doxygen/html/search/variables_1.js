@@ -15,13 +15,11 @@ var searchData=
   ['a7',['a7',['../structex__regs.html#a73f04b635c3699e9b83fadeacdb1eda2',1,'ex_regs']]],
   ['a8',['a8',['../structex__regs.html#a4a700b056da9b3ea0917603b9c4f9b28',1,'ex_regs']]],
   ['a9',['a9',['../structex__regs.html#a513f72e66ad69090bdbb06fb37f177d1',1,'ex_regs']]],
-  ['abpw',['ABPW',['../structr3__t.html#a5f81f8e2e2dedd4c4b7d939e51ae2c4c',1,'r3_t']]],
   ['accdirs',['AccDirs',['../fatfs__sup_8c.html#a4fb5ebb5ee82d1ddf3fdcf88329dd5d3',1,'AccDirs():&#160;fatfs_sup.c'],['../fatfs__sup_8h.html#a4fb5ebb5ee82d1ddf3fdcf88329dd5d3',1,'AccDirs():&#160;fatfs_sup.c']]],
   ['accfiles',['AccFiles',['../fatfs__sup_8c.html#a8886578bc67fc71837328a1ee237d10c',1,'AccFiles():&#160;fatfs_sup.c'],['../fatfs__sup_8h.html#a8886578bc67fc71837328a1ee237d10c',1,'AccFiles():&#160;fatfs_sup.c']]],
   ['accsize',['AccSize',['../fatfs__sup_8c.html#a1e9c5ddcfdf89c9a42c96ee1d2196876',1,'AccSize():&#160;fatfs_sup.c'],['../fatfs__sup_8h.html#a1e9c5ddcfdf89c9a42c96ee1d2196876',1,'AccSize():&#160;fatfs_sup.c']]],
   ['actime',['actime',['../structutimbuf.html#aa39cf0bad7eff4df6239528506a557df',1,'utimbuf']]],
   ['addr',['addr',['../structSDIO__CTRL.html#a15025848d3f3733f366504d30a1d9bb2',1,'SDIO_CTRL']]],
-  ['adf4351_5fclock',['ADF4351_clock',['../adf4351__hal_8c.html#a4a5934b5485a69054e6af23fc9a0c018',1,'adf4351_hal.c']]],
   ['all',['all',['../unionuint32__t__bytes.html#a83b0c87830b60d185365dbadf8efd4a0',1,'uint32_t_bytes::all()'],['../unionf__t.html#aab0615c9ada80b0f986b58639ea8c480',1,'f_t::all()']]],
   ['allfonts',['allfonts',['../font_8c.html#ad30601ef15ca84a341c6a7a1dc1d61b1',1,'allfonts():&#160;fonts.h'],['../fonts_8h.html#a9d1e0a6f0f6bc558e1eda2217515d1c5',1,'allfonts():&#160;fonts.h']]],
   ['alt',['alt',['../unionf__t.html#a907a8d8af4803c9a18bc0586d22d6881',1,'f_t']]],
@@ -30,8 +28,5 @@ var searchData=
   ['args',['args',['../structhinfo__t.html#a62bf198b939a9d932bcac763ebc51443',1,'hinfo_t']]],
   ['args_5flength',['args_length',['../structhinfo__t.html#a003130c9489dfe54a76df23a85fae62f',1,'hinfo_t']]],
   ['ascent',['Ascent',['../struct__font.html#a998e54724f56879aa85c5ec169873f39',1,'_font']]],
-  ['attr',['attr',['../struct__FDID.html#a6912cfc1ea914d7b68a18b846065d790',1,'_FDID']]],
-  ['auxoutenable',['AuxOutEnable',['../structr4__t.html#ab6c43ed3da1189c3de8cf2cafafb03f3',1,'r4_t']]],
-  ['auxoutpower',['AuxOutPower',['../structr4__t.html#a92b00824868c7911a73217cbdd48ca96',1,'r4_t']]],
-  ['auxoutsel',['AuxOutSel',['../structr4__t.html#af75cec4d15f4f2e086db3be6d4c3c215',1,'r4_t']]]
+  ['attr',['attr',['../struct__FDID.html#a6912cfc1ea914d7b68a18b846065d790',1,'_FDID']]]
 ];

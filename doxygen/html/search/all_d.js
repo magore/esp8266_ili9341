@@ -19,7 +19,6 @@ var searchData=
   ['nextspace',['nextspace',['../stringsup_8c.html#a205ab859e76086c5239a49effa3281dd',1,'nextspace(char *ptr):&#160;stringsup.c'],['../stringsup_8h.html#a205ab859e76086c5239a49effa3281dd',1,'nextspace(char *ptr):&#160;stringsup.c']]],
   ['nlink_5ft',['nlink_t',['../posix_8h.html#a9e3c03dae15b90102eb1770dd95adadc',1,'posix.h']]],
   ['no_5fparity',['NO_PARITY',['../uart_8h.html#acb045cca45821ff8ef1e749914313198a4bffe960d7eae89d5b85412e4edfd453',1,'uart.h']]],
-  ['noisespurmode',['NoiseSpurMode',['../structr2__t.html#a40bc8b8cb7d9e77e57abd0e8be4f01af',1,'r2_t']]],
   ['normalize',['normalize',['../time_8c.html#a3b1394c042dadbb7086e4facb6c87186',1,'normalize(tm_t *t, int normalize_to_timezone):&#160;time.c'],['../time_8h.html#a3b1394c042dadbb7086e4facb6c87186',1,'normalize(tm_t *t, int normalize_to_timezone):&#160;time.c']]],
   ['ns_5fbody',['NS_BODY',['../ff_8c.html#a4a0e89b504dece19e2e4b02c83782ca2',1,'ff.c']]],
   ['ns_5fdot',['NS_DOT',['../ff_8c.html#a2db528782a021797b34bdc6e9e9de1c3',1,'ff.c']]],

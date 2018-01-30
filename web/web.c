@@ -42,6 +42,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /// Note: reducing this size below 1500 will slow down transfer a great deal
 #define BUFFER_SIZE 1000
 
+int connections;
+
 extern window *winmsg,*wintop;
 
 ///@brief socket buffers for this connection
@@ -171,6 +173,194 @@ mime_t mimes[] = {
 	{ PTYPE_ERR, 	"text/html", NULL , NULL }
 };
 
+// =======================================================
+/**
+  @brief printer seperator
+  @return void
+*/
+MEMSPACE
+void web_sep(void)
+{
+    printf("\n==========================================\n");
+}
+
+// =======================================================
+/**
+  @brief Wait for buffer to send for this connection
+  If write_buffer sending flag is set then wait for it to clear
+  @param[in] *p: rwbuf_t pointer for this socket buffer
+  @return sent buffer size or -1 on error
+*/
+MEMSPACE
+int wait_send(rwbuf_t *p)
+{
+    int len;
+
+ 	if(!p)
+	{
+#if WEB_DEBUG & 1
+		printf("wait_send: p = NULL\n");
+#endif
+		return (-1);
+	}
+
+ 	if(!p->conn)
+	{
+#if WEB_DEBUG & 1
+		printf("wait_send: conn=NULL\n");
+#endif
+		return (-1);
+	}
+
+ 	if(!p->wbuf)
+	{
+#if WEB_DEBUG & 1
+		printf("wait_send: p->wbuf = NULL\n");
+#endif
+		return (-1);
+	}
+
+    // The send socket is NOT busy so nothing to do
+	if(!p->send)
+    {
+		return 0;
+    }
+
+    // The send socket is busy
+#if WEB_DEBUG & 4
+    printf("wait_send: waiting conn=%p, len:%d\n", (void *)p->conn, p->send);
+#endif
+
+    // send socket is busy with the last send request
+    len = p->send;
+    while(p && p->send )
+    {
+        optimistic_yield(1000);
+    }
+
+    if(!p)
+    {
+#if WEB_DEBUG & 4
+        printf("wait_send: p = NULL after wait\n");
+        printf("\n");
+#endif
+        return(-1);
+    }
+#if WEB_DEBUG & 4
+    printf("wait_send: done conn=%p, len:%d\n", (void *)p->conn, len);
+    printf("\n");
+#endif
+    return(len);
+}
+
+
+// =======================================================
+/**
+  @brief Socket write buffer for this connection
+  We wait for previous send to complete - then send any new data
+  We do not wait for new data to finish sending - you use flush for that
+  @param[in] *p: rwbuf_t pointer for this socket buffer
+  @return size of data in buffer or -1 on error
+*/
+MEMSPACE
+int write_buffer(rwbuf_t *p)
+{
+	int i;
+	int ret;
+    int len;
+
+
+    if(wait_send(p) == -1)
+        return(-1);
+
+    if(p->delete)
+        return(0);
+
+    // wait for existing buffers to send before filling new one
+ 	if(!p->wind )
+        return(0);
+
+    len = p->wind;
+
+#if WEB_DEBUG & 16
+    for(i=0;i<p->wind;++i)
+        putchar(p->wbuf[i]);
+#endif
+    // sent callback resets send and wind for us
+    ret = espconn_send(p->conn, (uint8_t *)p->wbuf, p->wind );
+
+    if( !ret )
+    {
+        // flag that send socket is busy with the last send request
+        p->send = p->wind;
+        return( p->send );
+    }
+
+    // failed!
+#if WEB_DEBUG & 1
+    printf("write_buffer: espconn_send(%d bytes) error:%d\n", p->wind, ret);
+    printf("\tconn=%p, p->wbuf:%08p\n", (long)p->conn, (long)p->wbuf);
+    if(ret == ESPCONN_MEM)
+        printf("\tOut of memory;n");
+    if(ret == ESPCONN_ARG)
+        printf("\tillegal argument; cannot find network transmission according to structure espconn\n");
+    if(ret == ESPCONN_MAXNUM)
+        printf("\tbuffer (or 8 packets at most) of sending data is full\n");
+    if(ret == ESPCONN_IF)
+        printf("fail to send UDP data.\n");
+#endif
+    p->delete = 1;
+    espconn_disconnect(p->conn);
+    return(-1);
+}
+
+/**
+  @brief Write all outstanding data and wait for it to send
+  @param[in] *p: rwbuf_t pointer for this socket buffer
+  @return void
+*/
+MEMSPACE
+int write_flush(rwbuf_t *p)
+{
+    int ret =  write_buffer(p);
+    if(ret == -1)
+        return(ret);
+    // The send code clears the bufferi, index and send flag
+    return( wait_send(p) );
+}
+
+/**
+  @brief Write a byte (buffered) using the rwbuf_t socket buffers for this connection
+  If the buffers are full the socket is written using write_flush
+  @param[in] *p: rwbuf_t pointer for this socket buffer
+  @param[in] 1 on success 0 on fail
+*/
+MEMSPACE
+int write_byte(rwbuf_t *p, int c)
+{
+	int i;
+	int ret;
+
+    // We let the routines that call us report errors
+ 	if(!p || !p->conn || !p->wbuf)
+	{
+		return (0);
+	}
+    
+    if(p->delete)
+    {
+        return(0);
+    }
+
+    p->wbuf[p->wind++] = c;
+ 	if(p->wind >= p->wsize)
+	{
+        if( write_flush(p) == -1)
+            return(0);
+	}
+	return(1);
+}
+
 
 // =======================================================
 MEMSPACE
@@ -213,7 +403,11 @@ static void tcp_accept(espconn_t *esp_config, esp_tcp *esp_tcp_config,
 
 	int ret;
 #if WEB_DEBUG & 2
-	printf("\n=================================\n");
+    printf("memory free:%ld, connections:%d\n", system_get_free_heap_size(), connections);
+#endif
+
+#if WEB_DEBUG & 2
+	web_sep();
 	printf("tcp_accept: %p\n", esp_config);
 #endif
 
@@ -230,8 +424,7 @@ static void tcp_accept(espconn_t *esp_config, esp_tcp *esp_tcp_config,
 		printf("espconn_tcp_set_max_con_allow(%d) != (%d) failed\n", 
 			MAX_CONNECTIONS, espconn_tcp_get_max_con_allow(esp_config));
 #if WEB_DEBUG & 2
-	ret = espconn_tcp_get_max_con_allow(esp_config);
-	printf("espconn_tcp_get_max_con_allow:(%d)\n", ret);
+	printf("espconn_tcp_get_max_con_allow:(%d)\n", (int)  espconn_tcp_get_max_con_allow(esp_config));
 #endif
 }
 // =======================================================
@@ -311,16 +504,17 @@ void rwbuf_delete(rwbuf_t *p)
 	p->wbuf = NULL;
 	rwbuf_winit(p);
 
-	if( p->conn != &WebConn)
-	{
-		p->conn = NULL;
-	}
 	p->remote_ip[0] = 0; p->remote_ip[1] = 0; p->remote_ip[2] = 0; p->remote_ip[3] = 0;
 	p->remote_port = 0;
 	p->local_ip[0] = 0; p->local_ip[1] = 0; p->local_ip[2] = 0; p->local_ip[3] = 0;
 	p->local_port = 0;
+
 	// FIXME
-	safefree(p);
+	if( p->conn != &WebConn)
+	{
+		p->conn = NULL;
+        safefree(p);
+	}
 }
 
 
@@ -402,7 +596,7 @@ rwbuf_t *find_connection(espconn_t *conn, int *index, char *msg)
 	if(!conn)
 	{
 #if WEB_DEBUG & 1
-	printf("%s: find_connection: conn = NULL\n",msg);
+        printf("%s: find_connection: conn=NULL\n",msg);
 #endif
 		return(NULL);
 	}
@@ -410,17 +604,19 @@ rwbuf_t *find_connection(espconn_t *conn, int *index, char *msg)
 	if(conn == &WebConn)
 	{
 #if WEB_DEBUG & 2
-	printf("%s: find_connection: conn == &WebConn\n",msg);
+        printf("%s: find_connection:(%08p == &WebConn)\n",msg, conn);
 #endif
 	}
+
 	if(!conn->proto.tcp || !conn->proto.tcp->remote_ip || !conn->proto.tcp->remote_port)
 	{
 #if WEB_DEBUG & 1
-	printf("%s: find_connection: conn->proto.tcp NULL\n",msg);
+        printf("%s: find_connection: conn->proto.tcp NULL\n",msg);
 #endif
 		return(NULL);
 	}
 
+// FIXME TODO make sure only one matches !!!!
 	for(i=0;i<MAX_CONNECTIONS;++i)
 	{
 		if( (p = web_connections[i]) )
@@ -444,6 +640,7 @@ rwbuf_t *find_connection(espconn_t *conn, int *index, char *msg)
 			// 	the IP and ports
 			if( memcmp( conn->proto.tcp->remote_ip, p->remote_ip,4) != 0)
 				continue;
+
 			// If the structure pointer does not match check
 			// 	the IP and ports
 			if( memcmp( conn->proto.tcp->local_ip, p->local_ip,4) != 0)
@@ -457,6 +654,7 @@ rwbuf_t *find_connection(espconn_t *conn, int *index, char *msg)
 	printf("%s: find_connection: mismatch conn=%p\n", msg, conn );
 	display_ipv4("local  ", conn->proto.tcp->local_ip, conn->proto.tcp->local_port);
 	display_ipv4("remote ", conn->proto.tcp->remote_ip, conn->proto.tcp->remote_port);
+    printf("\n");
 #endif
 
 	return(NULL);
@@ -510,13 +708,20 @@ rwbuf_t *create_connection(espconn_t *conn)
 
 
 /**
-  @brief Delete a rwbuf_t entry using its index
+  @brief Delete our main connection structure and connection buffers
   @param[in] p: rwbuf_t pointer
 */
 MEMSPACE
-void delete_connection(rwbuf_t *p)
+int delete_connection(rwbuf_t *p)
 {
 	int i;
+
+    if(!p)
+    {
+        printf("delete_connection: NULL STRUCTURE NOT FOUND!!!!\n");
+        return(0);
+
+    }
 
 	for(i=0;i<MAX_CONNECTIONS;++i)
 	{
@@ -529,149 +734,18 @@ void delete_connection(rwbuf_t *p)
 #endif
 			rwbuf_delete(p);
 			web_connections[i] = NULL;
+            return(1);
 		}
 	}
+#if WEB_DEBUG & 2
+    printf("delete_connection: conn=%p NOT FOUND!!!!\n",p->conn);
+    printf("\n");
+#endif
+    return(0);
 }
 
 
 // =======================================================
-
-/**
-  @brief Write a byte (buffered) using the rwbuf_t socket buffers for this connection
-  If the buffers are full the socket is written using espconn_send
-  @param[in] *p: rwbuf_t pointer for this socket buffer
-  @param[in] c: character to write
-*/
-MEMSPACE
-MEMSPACE
-int write_byte(rwbuf_t *p, int c)
-{
-	int i;
-	int ret;
-
- 	if(!p || !p->wbuf || !p->conn)
-	{
-#if WEB_DEBUG & 1
-		//printf("\nwrite_byte: send Unexpected NULL\n");
-#endif
-		return(0);
-	}
-
-	// send socket is busy with the last send request
-	// sent callback resets this
-	if(p->send)
-	{
-		write_flush(p);
-		if(!p || !p->wbuf || !p->conn)
-		{
-#if WEB_DEBUG & 1
-			//printf("\nwrite_byte: send Unexpected NULL after wait\n");
-#endif
-			return(0);
-		}
-	}
-
-	p->wbuf[p->wind++] = c;
- 	if(p->wind >= p->wsize)
-	{
-		// sent callback resets send and wind for us
-		ret = espconn_send(p->conn, (uint8_t *)p->wbuf, p->wind );
-		if( ret )
-		{
-#if WEB_DEBUG & 1
-			printf("write_byte: espconn_send(%d bytes) error:%d\n", p->wind, ret);
-#endif
-		}
-		// flag that send socket is busy with the last send request
-		p->send = p->wind;
-#if WEB_DEBUG & 16
-		for(i=0;i<p->wind;++i)
-			putchar(p->wbuf[i]);
-#endif
-	}
-	return(c);
-}
-
-/**
-  @brief Wait for buffer to send for this connection
-  If the buffers have any data in them it is written using espconn_send
-  @param[in] *p: rwbuf_t pointer for this socket buffer
-  @return 1 on success, 0 on error
-*/
-MEMSPACE
-int wait_send(rwbuf_t *p)
-{
-	int i;
-	int ret;
-
- 	if(!p || !p->wbuf)
-	{
-#if WEB_DEBUG & 1
-		printf("wait_buff: no sendbuffer\n");
-#endif
-		return 0;
-	}
-
-	// send socket is busy with the last send request
-	if(p && p->send)
-	{
-#if WEB_DEBUG & 4
-		printf("waiting for send\n");
-#endif
-		// send socket is busy with the last send request
-		while(p && p->send)
-		{
-			optimistic_yield(1000);
-		}
-#if WEB_DEBUG & 4
-		printf("wait_buff: ...sent\n");
-#endif
-	}
-	return(1);
-}
-
-/**
-  @brief Flush the the socket write buffers for this connection
-  If the buffers have any data in them it is written using espconn_send
-  @param[in] *p: rwbuf_t pointer for this socket buffer
-  @return void
-*/
-MEMSPACE
-void write_flush(rwbuf_t *p)
-{
-	int i;
-	int ret;
-	int wait;
-
- 	if(!p || !p->wbuf)
-		return;
-
-	if(!wait_send(p))
-	{
-		return;
-	}
- 	if(p && p->wind)
-	{
-#if WEB_DEBUG & 16
-// FIXME DEBUG
-		for(i=0;i<p->wind;++i)
-			putchar(p->wbuf[i]);
-#endif
-		// sent callback resets send and wind for us
-		ret = espconn_send(p->conn, (uint8_t *)p->wbuf, p->wind );
-		if( ret )
-		{
-#if WEB_DEBUG & 1
-			printf("write_flush: espconn_send(%d bytes) error:%d\n", p->wind, ret);
-			return;
-#endif
-		}
-		// flag that send socket is busy with the last send request
-		p->send = p->wind;
-	}
-	
-	wait_send(p);
-}
 
 /**
   @brief Write data using buffered write_byte function
@@ -684,7 +758,10 @@ MEMSPACE
 void write_len(rwbuf_t *p, char *str, int len)
 {
 	while(len--) 
-		write_byte(p,*str++);
+    {
+		if( write_byte(p,*str++) == -1)
+            return;
+    }
 }
 
 /**
@@ -697,7 +774,10 @@ MEMSPACE
 void write_str(rwbuf_t *p, char *str)
 {
 	while(*str) 
-		write_byte(p,*str++);
+    {
+		if( write_byte(p,*str++) == -1)
+            return;
+    }
 }
 
 /**
@@ -711,7 +791,8 @@ static void _write_byte_fn(struct _printf_t *pr, char c)
 {
 		rwbuf_t *p = (rwbuf_t *) pr->buffer;
 
-        write_byte(p,c);
+        // if errors happen they will not get sent
+        (void) write_byte(p,c);
         pr->sent++;
 }
 
@@ -1349,7 +1430,7 @@ char *http_value(hinfo_t *hi, char *str)
 			if(!value)
 				return(NULL);
 #if WEB_DEBUG & 8
-		printf("http_value:%s=%s\n",str,value);
+		    printf("http_value:%s=%s\n",str,value);
 #endif
 			return(value);
 		}
@@ -1657,6 +1738,9 @@ static void web_data_receive_callback(void *arg, char *data, unsigned short leng
     int index;
     rwbuf_t *p = find_connection(conn, &index, "web_data_receive_callback");
 
+#if WEB_DEBUG & 2
+    printf("memory free:%ld, connections:%d\n", system_get_free_heap_size(), connections);
+#endif
 
 	if(!p)
 	{
@@ -1665,7 +1749,7 @@ static void web_data_receive_callback(void *arg, char *data, unsigned short leng
 #endif
 		// delete the bad connection
 		espconn_disconnect(conn);
-		// esp_schedule();
+		esp_schedule();
 		return;
 	}
 
@@ -1699,7 +1783,7 @@ static void web_data_receive_callback(void *arg, char *data, unsigned short leng
 		memcpy(p->rbuf,data,length);
 		p->received = length;
 #if WEB_DEBUG & 2
-		printf("web_data_receive_callback: received:%d\n",length);
+		printf("web_data_receive_callback: conn=%p, received:%d\n",conn,length);
 #endif
 	}
 	else
@@ -1709,9 +1793,9 @@ static void web_data_receive_callback(void *arg, char *data, unsigned short leng
 #endif
 	}
 #if WEB_DEBUG & 2
-    printf("web_data_receive_callback: conn=%p\n", conn);
     display_ipv4("local  ", conn->proto.tcp->local_ip, conn->proto.tcp->local_port);
     display_ipv4("remote ", conn->proto.tcp->remote_ip, conn->proto.tcp->remote_port);
+    printf("\n");
 #endif
 
 	esp_schedule();
@@ -1730,6 +1814,10 @@ static void web_data_sent_callback(void *arg)
     int index;
     rwbuf_t *p = find_connection(conn, &index,"web_data_sent_callback");
 
+#if WEB_DEBUG & 2
+    printf("memory free:%ld, connections:%d\n", system_get_free_heap_size(), connections);
+#endif
+
 	if(!p)
 	{
 #if WEB_DEBUG & 1
@@ -1746,28 +1834,13 @@ static void web_data_sent_callback(void *arg)
 		return;
 	}
 
-	if(p->delete)
-	{
-#if WEB_DEBUG & 1
-		printf("web_data_send_callback: Delete\n");
-#endif
-#if WEB_DEBUG & 2
-		printf("web_data_sent_callback: delete_connection: conn=%p\n",p->conn);
-		display_ipv4("local  ", p->local_ip, p->local_port);
-		display_ipv4("remote ", p->remote_ip, p->remote_port);
-#endif
-		espconn_disconnect(conn);
-		rwbuf_delete(p);
-		esp_schedule();
-		return;
-	}
 
 #if WEB_DEBUG & 2
-	printf("web_data_send_callback: sent:%d\n",p->send);
+	printf("web_data_send_callback: conn=%p sent:%d\n",p->conn, p->send);
     display_ipv4("local  ", conn->proto.tcp->local_ip, conn->proto.tcp->local_port);
     display_ipv4("remote ", conn->proto.tcp->remote_ip, conn->proto.tcp->remote_port);
-
 #endif
+
 	rwbuf_winit(p);
 	esp_schedule();
 }
@@ -1784,48 +1857,66 @@ static void web_data_disconnect_callback(void *arg)
     int i, index;
     rwbuf_t *p;
 
+#if WEB_DEBUG & 2
+    printf("memory free:%ld, connections:%d\n", system_get_free_heap_size(), connections);
+#endif
+
 	if(!conn)
 		return;
-
     p = find_connection(conn, &index, "web_data_disconnect_callback");
-
-	if(p)
-	{
-		p->delete = 1;
-		delete_connection(p);
-	}
-	else
-	{
+    if(p)
+    {
 #if WEB_DEBUG & 2
-		printf("web_data_disconnect_callback: disconnect mismatch %p\n", conn);
-		display_ipv4("local  ", conn->proto.tcp->local_ip, conn->proto.tcp->local_port);
-		display_ipv4("remote ", conn->proto.tcp->remote_ip, conn->proto.tcp->remote_port);
+		printf("web_data_disconnect_callback: disconnect %p\n", conn);
 #endif
-	}
+        delete_connection(p);
+        esp_schedule();
+    }
 
-	esp_schedule();
+#if WEB_DEBUG & 2
+    printf("****************************************************\n");
+    printf("web_data_disconnect_callback: disconnect mismatch %p\n", conn);
+    display_ipv4("local  ", conn->proto.tcp->local_ip, conn->proto.tcp->local_port);
+    display_ipv4("remote ", conn->proto.tcp->remote_ip, conn->proto.tcp->remote_port);
+    printf("****************************************************\n");
+    printf("\n");
+#endif
+    esp_schedule();
 }
 
 
 
 /**
-  @brief Network disconnect callback function
+  @brief Network Error callback function
   @param[in] *arg: connection pointer
-  FIXME TODO
+  FIXME TODO - we just disconnect on error
 */
 MEMSPACE
-static void web_data_reconnect_callback(void *arg, int8_t err)
+static void web_data_error_callback(void *arg, int8_t err)
 {
     struct espconn *conn = arg;
 	int index;
-	rwbuf_t *p = find_connection(conn,&index, "web_data_reconnect_callback");
-  // FIXME TODO
+
 #if WEB_DEBUG & 2
-    printf("web_data_reconnect_callback: conn=%p\n", conn);
-    display_ipv4("local  ", conn->proto.tcp->local_ip, conn->proto.tcp->local_port);
-    display_ipv4("remote ", conn->proto.tcp->remote_ip, conn->proto.tcp->remote_port);
+    printf("memory free:%ld, connections:%d\n", system_get_free_heap_size(), connections);
 #endif
 
+	rwbuf_t *p = find_connection(conn,&index, "web_data_error_callback");
+#if WEB_DEBUG & 2
+    printf("************************************************\n");
+    printf("web_data_error_callback: connection %p\n", conn);
+	if(!p)
+	{
+        printf("\tNOT found\n");
+    }
+    display_ipv4("\tlocal  ", conn->proto.tcp->local_ip, conn->proto.tcp->local_port);
+    display_ipv4("\tremote ", conn->proto.tcp->remote_ip, conn->proto.tcp->remote_port);
+    printf("************************************************\n");
+    printf("\n");
+#endif
+    // delete the bad connection
+    espconn_disconnect(conn);
+	esp_schedule();
 }
 
 /**
@@ -1836,8 +1927,30 @@ static void web_data_reconnect_callback(void *arg, int8_t err)
 MEMSPACE
 static void web_data_connect_callback(espconn_t *conn)
 {
+	long mem = system_get_free_heap_size();
+	if( mem < 12000)
+    {
+#if WEB_DEBUG & 1
+		printf("**************************************************\n");
+		printf("**************************************************\n");
+        printf("rejecting connection: %p, memory:%ld\n", conn, mem);
+		printf("**************************************************\n");
+		printf("**************************************************\n");
+#endif
+		esp_schedule();
+        return;
+    }
+
 	// FIXME *** really broken *** 
 	// we need to malloc conn (we just have the one) and copy it (see tcp_accept!)
+#if WEB_DEBUG & 2
+    printf("memory free:%ld, connections:%d\n", system_get_free_heap_size(), connections);
+#endif
+
+#if WEB_DEBUG & 2
+    printf("web_data_connect_callback: conn=%p\n", conn);
+#endif
+
 	// MUST BE MAX_CONNECTIONS - attach rwbuf_t stuff to that
 
 	rwbuf_t *p = create_connection(conn);
@@ -1849,20 +1962,22 @@ static void web_data_connect_callback(espconn_t *conn)
 		esp_schedule();
 		return;
 	}
+
 #if WEB_DEBUG & 2
-    printf("web_data_connect_callback: conn=%p\n", conn);
     display_ipv4("local  ", conn->proto.tcp->local_ip, conn->proto.tcp->local_port);
     display_ipv4("remote ", conn->proto.tcp->remote_ip, conn->proto.tcp->remote_port);
+    printf("\n");
 #endif
 
 	espconn_regist_recvcb(conn, web_data_receive_callback);
 	espconn_regist_sentcb(conn, web_data_sent_callback);
 	// disconnect will get the index into the connection pool
 	espconn_regist_disconcb(conn, web_data_disconnect_callback);
-	espconn_regist_reconcb(conn, web_data_reconnect_callback);
+	espconn_regist_reconcb(conn, web_data_error_callback);
 
 	// FIXME we should REUSE!!!!!!!
 	// espconn_set_opt(conn, ESPCONN_REUSEADDR);
+
 	espconn_regist_time(conn, 10, 0);
 	// FIXME
 	esp_schedule();
@@ -2031,6 +2146,7 @@ static void process_requests(rwbuf_t *p)
 	FILE *fi;
 	hinfo_t hibuff;
 	hinfo_t *hi;
+    struct stat sp;
 
 	hi = &hibuff;
 	// a token like; $i_am_a_token_name$, must be less then this in length
@@ -2052,20 +2168,17 @@ static void process_requests(rwbuf_t *p)
 		return;
 	}
 #if WEB_DEBUG & 2+8
-	printf("\n==========================================\n");
+	web_sep();
 	printf("Process Requests\n");
 	printf("%d\n", system_get_free_heap_size());
 	printf("length:%d\n", p->received);
 	printf("[%s]\n", p->rbuf);
-	printf("conn:%p\n", p->conn);
+	printf("conn=%p\n", p->conn);
 #endif
 
 	if(!parse_http_request(p,hi))
 	{
 		html_msg(p, STATUS_BAD_REQ, PTYPE_HTML, "Not Understood Type:%d",type );
-		write_flush(p);
-		p->delete = 1;
-		espconn_disconnect(p->conn);
 		return;
 	}
 
@@ -2135,6 +2248,7 @@ static void process_requests(rwbuf_t *p)
 #if WEB_DEBUG & 8
 				printf("msg.cgi: %s\n",param);
 #endif
+
 #ifdef DEBUG_STATS
 				tft_printf(winmsg, "%s\n", param);
 #else
@@ -2201,14 +2315,18 @@ static void process_requests(rwbuf_t *p)
 	printf("name: %s, type:%d\n",name,type);
 #endif
 
+    if(stat(name, &sp) == -1)
+    {
+		html_msg(p, STATUS_NOT_FOUND, PTYPE_HTML, "File: %s not found\n", name);
+		return;
+    }
+    len = (long) sp.st_size;
+
 	fi = fopen(name,"r");
 	/* Search the specified file in stored binaray html image */
 	if(!fi)
 	{
 		html_msg(p, STATUS_NOT_FOUND, PTYPE_HTML, "File: %s not found\n", name);
-		write_flush(p);
-		p->delete = 1;
-		espconn_disconnect(p->conn);
 		return;
 	}
 
@@ -2218,9 +2336,18 @@ static void process_requests(rwbuf_t *p)
 #endif
 	if(type == PTYPE_HTML || type == PTYPE_CGI || type == PTYPE_TEXT)
 	{
+        // Content length is not required for text and HTML files
+
+        sock_printf(p,"HTTP/1.1 %s\nContent-Type: %s\n\n\n",
+            html_status(200),
+            mime_type(type));
 		// socket write buffering
 		while( 1 )
 		{
+            optimistic_yield(1000);
+
+            // Yeild happens when sending
+            //
 			// keep track of file position
 			pos = ftell(fi);
 			memset(buff,0,READBUFFSIZE);
@@ -2228,7 +2355,6 @@ static void process_requests(rwbuf_t *p)
 			if(len == 0)
 				break;
 
-			optimistic_yield(1000);
 
 			// make sure that string operations stop at end of read data
 			buff[len] = 0;
@@ -2241,7 +2367,6 @@ static void process_requests(rwbuf_t *p)
 			{
 				// Write all data in buffer
 				write_len(p, buff, len);
-				continue;
 			}
 
 			if(ind > 0)	// FOUND a token start header ahead of this position
@@ -2279,33 +2404,33 @@ static void process_requests(rwbuf_t *p)
 	}
 	else 
 	{	// NON CGI read and echo
+        // Content length is required for all other files
+        html_head(p, 200, type, len   );
 
 		while(1)
 		{
+            optimistic_yield(1000);
+            // Yeild happens when sending
 			// FIXME
 			len = fread(buff, 1, READBUFFSIZE,fi);
 			if(!len)
 				break;
-			optimistic_yield(1000);
 			write_len(p, buff, len);
 		}
 	}
+    write_flush(p);
+#if WEB_DEBUG & 2+8
+	web_sep();
+	printf("\nDone: ftell:%ld, len:%ld, feof%d\n",ftell(fi),len,feof(fi));
+	web_sep();
+#endif
 	fclose(fi);
-	write_flush(p);
 
 ///FIXME if we want to support keep-alive we have to change this
-	p->delete = 1;
-	espconn_disconnect(p->conn);
-
-#if WEB_DEBUG & 2+8
-	printf("\nDone: ftell:%ld, len:%ld, feof%d\n",ftell(fi),len,feof(fi));
-	printf("\n==========================================\n");
-#endif
 }
 
 // =======================================================
 
-int connections;
 
 /**
     @brief Process ALL incoming HTTP requests
@@ -2328,20 +2453,17 @@ void web_task()
 			continue;
 
 		++connections;
-		// FIXME do we need to process the reqquest before delete ????
-		if(p->delete)
-		{
-			delete_connection(p);
-			continue;
-		}
 
 		if(p->received)
 		{
+
 #if WEB_DEBUG & 2
+            web_sep();
 			printf("web_task: received:%d\n",p->received);
 #endif
 			process_requests(p);
 			p->received = 0;
+            espconn_disconnect(p->conn);
 			optimistic_yield(1000);
 		}
 	}
@@ -2370,7 +2492,7 @@ void web_init(int port)
 	web_init_connections();
     wifi_set_sleep_type(NONE_SLEEP_T);
     tcp_accept(&WebConn, &WebTcp, port, web_data_connect_callback);
-    //espconn_regist_time(&WebConn, 10, 0);
+    espconn_regist_time(&WebConn, 10, 0);
 	espconn_set_opt(&WebConn, ESPCONN_REUSEADDR);
 #if WEB_DEBUG & 2
     printf("\nWeb Server task init done\n");
