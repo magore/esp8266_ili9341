@@ -683,7 +683,6 @@ verify-init: flash-size
 	$(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) verify_flash $(BLANK_INIT_ADDR) $(BLANK_INIT) $(FW_ARGS)
 
 erase: flash-size 
-	@echo Disabled untill the correct recovery steps from a blank fash can be determined
 	@echo $(ESPTOOL) --port $(ESPPORT) -b $(BAUD) erase_flash
 	$(ESPTOOL) --port $(ESPPORT) -b $(BAUD) erase_flash
 
