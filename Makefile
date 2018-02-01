@@ -18,13 +18,13 @@ PROJECT_DIR =/opt/Espressif/projects/esp8266_ili9341
 
 # ===============================================================
 # ESP OPEN SDK path definitions
-ROOT_DIR    = /opt/Espressif/esp-open-sdk
+ROOT_DIR	= /opt/Espressif/esp-open-sdk
 # Base directory for the compiler
 XTENSA_TOOLS_ROOT = ${ROOT_DIR}/xtensa-lx106-elf/bin
 # base directory of the ESP8266 SDK package, absolute
 SDK_BASE	= ${ROOT_DIR}/sdk
 SDK_TOOLS	= ${SDK_BASE}/tools
-DEF_INIT     = ${SDK_BASE}/bin/esp_init_data_default.bin
+DEF_INIT	 = ${SDK_BASE}/bin/esp_init_data_default.bin
 BLANK_INIT  = ${SDK_BASE}/bin/blank.bin
 
 #ESPTOOL		= esptool-ck/esptool
@@ -44,7 +44,65 @@ BAUD=921600
 F_CPU=80000000UL
 
 # ===============================================================
+# The ipaddress of the module - either fixed or by DHCP
+IPADDR=192.168.200.110
 
+# ===============================================================
+#SPI flash mode and speed
+FW_ARGS := -ff 80m -fm qio 
+# ===============================================================
+# The settings in this section are related to the flash size of the ESP board
+# esptool.py flash arguments for 512K SPI flash
+# WARNING ADDR_IROM MUST match settings in LD_SCRIPT!
+# =================================================================================================
+#  4.1.2. Download Addresses
+#  
+#  Table 4-2 lists the download addresses for Non-FOTA firmware.
+#  
+#  Table 4-2. Download Addresses for Non-FOTA Firmware (unit: kB)
+#  Binaries 	Download addresses in flash of different capacities
+#								 512				1024				 2048				 4096
+#  master_device_key.bin	  0x3E000			 0x3E000			 0x3E0000			 0x3E0000
+#  esp_init_data_default.bin  0x7C000			 0xFC000			 0x1FC000			 0x3FC000
+#  blank.bin				  0x7E000			 0xFE000			 0x1FE000			 0x3FE000
+#  eagle.flash.bin			  0x00000			 0x00000			  0x00000			  0x00000
+#  eagle.irom0text.bin		  0x10000			 0x10000			  0x10000			  0x10000
+# =================================================================================================
+
+# Get flash size
+FSIZE=$(shell $(ESPTOOL) --port $(ESPPORT) -b $(BAUD) get_flash_size | grep -i 'Flash size' | sed -e 's/^Auto-detected Flash size: //')
+
+ifeq ("$(FSIZE)","512KB")
+    DEF_INIT_ADDR="0x7c000"
+    BLANK_INIT_ADDR="0x7e000"
+	LD_SCRIPT=eagle.app.v6.new.512.ld
+    FLASH_SIZE=0x80000
+endif
+ifeq ("${FSIZE}","1MB")
+    DEF_INIT_ADDR="0xfc000"
+    BLANK_INIT_ADDR="0xfe000"
+	LD_SCRIPT=eagle.app.v6.new.1024.ld
+    FLASH_SIZE=0x100000
+endif
+ifeq ("${FSIZE}","2MB")
+    DEF_INIT_ADDR="0x1fc000"
+    BLANK_INIT_ADDR="0x1fe000"
+	LD_SCRIPT=eagle.app.v6.new.2048.ld
+    FLASH_SIZE=0x200000
+endif
+ifeq ("${FSIZE}","4MB")
+    DEF_INIT_ADDR="0x3fc000"
+    BLANK_INIT_ADDR="0x3fe000"
+	LD_SCRIPT=eagle.app.v6.new.2048.ld
+    FLASH_SIZE=0x400000
+endif
+ifeq ("${FSIZE}","16MB")
+    DEF_INIT_ADDR="0xffc000"
+    BLANK_INIT_ADDR="0xffe000"
+	LD_SCRIPT=eagle.app.v6.new.2048.ld
+    FLASH_SIZE=0x400000
+endif
+	
 # ===============================================================
 # Build Directory
 BUILD_BASE	= build
@@ -55,9 +113,6 @@ FW_BASE		= firmware
 
 
 # ===============================================================
-# The settings in this section are related to the flash size of the ESP board
-# esptool.py flash arguments for 512K SPI flash
-# WARNING ADDR_IROM MUST match settings in LD_SCRIPT!
 
 
 #ESP12=1
@@ -65,15 +120,6 @@ FW_BASE		= firmware
 # My board is reversed
 ifdef ESP12
 	SWAP45=1
-	FW_ARGS := -ff 80m -fm qio 
-	LD_SCRIPT		= eagle.app.v6.new.2048.ld
-	# The ipaddress of the module - either fixed or by DHCP
-	IPADDR=192.168.200.110
-else
-	# Default 512K boards
-	FW_ARGS := -ff 80m -fm qio 
-	IPADDR=192.168.200.110
-	LD_SCRIPT		= eagle.app.v6.new.512.ld
 endif
 
 ADDR_IRAM		= 0x00000
@@ -88,7 +134,7 @@ FW				:= ${BUILD_BASE}/firmware.bin
 MODULES	= esp8266 lib 3rd_party display cordic network user
 
 # Project Include Directories
-EXTRA_INCDIR    = . user include ${SDK_BASE}/include 
+EXTRA_INCDIR	= . user include ${SDK_BASE}/include 
 
 # ===============================================================
 
@@ -99,14 +145,14 @@ CFLAGS	= -Os \
 	-Wpointer-arith \
 	-Wundef \
 	-Wl,-EL \
-    -fno-inline-functions \
+	-fno-inline-functions \
 	-nostdlib \
 	-mlongcalls \
 	-mtext-section-literals  \
 	-D__ets__ \
 	-DICACHE_FLASH \
 	-ffunction-sections \
-    -fdata-sections \
+	-fdata-sections \
 	-DF_CPU=$(F_CPU)
 	# -Werror \
 
@@ -184,7 +230,7 @@ endif
 
 ifdef SSCANF
 	MODULES	+= io
-    CFLAGS += -DSMALL_SSCANF
+	CFLAGS += -DSMALL_SSCANF
 endif
 
 ifdef FLOATIO
@@ -202,21 +248,21 @@ FATFS_DEBUG=1
 #FATFS_UTILS_FULL=1
 
 ifdef FATFS_SUPPORT
-    CFLAGS  += -DFATFS_SUPPORT
+	CFLAGS  += -DFATFS_SUPPORT
 
 ifdef FATFS_TESTS
-    CFLAGS  += -DFATFS_TESTS
+	CFLAGS  += -DFATFS_TESTS
 endif
 
 ifdef FATFS_UTILS_FULL
-    CFLAGS += -DFATFS_UTILS_FULL
+	CFLAGS += -DFATFS_UTILS_FULL
 endif
 ifdef FATFS_DEBUG
-    CFLAGS  += -DFATFS_DEBUG=$(FATFS_DEBUG)
+	CFLAGS  += -DFATFS_DEBUG=$(FATFS_DEBUG)
 endif
 
 ifdef POSIX_TESTS
-    CFLAGS += -DPOSIX_TESTS
+	CFLAGS += -DPOSIX_TESTS
 	MODULES	+= posix
 endif
 
@@ -225,7 +271,7 @@ ifdef SWAP45
 else
 	MMC_CS=4
 endif
-    CFLAGS  += -DMMC_CS=$(MMC_CS)
+	CFLAGS  += -DMMC_CS=$(MMC_CS)
 
 	MODULES	+= fatfs.sup
 	MODULES	+= fatfs
@@ -260,16 +306,16 @@ YIELD_TASK = 1
 # =========================
 DISPLAY = 1
 ifdef DISPLAY
-    CFLAGS  += -DDISPLAY
+	CFLAGS  += -DDISPLAY
 # ILI9341 Display support
 	ILI9341_CS = 15
-    CFLAGS  += -DILI9341_CS=$(ILI9341_CS)
+	CFLAGS  += -DILI9341_CS=$(ILI9341_CS)
 ifdef SWAP45
 	ADDR_0 = 4
 else
 	ADDR_0 = 5
 endif
-    CFLAGS  += -DADDR_0=$(ADDR_0)
+	CFLAGS  += -DADDR_0=$(ADDR_0)
 
 # Display Debug messages via serial
 ILI9341_DEBUG = 0 
@@ -318,8 +364,8 @@ endif
 
 ifdef XPT2046
 	CFLAGS += -DXPT2046
-    CFLAGS += -DXPT2046_CS=2
-    CFLAGS += -DXPT2046_DEBUG=$(XPT2046_DEBUG)
+	CFLAGS += -DXPT2046_CS=2
+	CFLAGS += -DXPT2046_DEBUG=$(XPT2046_DEBUG)
 	MODULES	+= xpt2046
 endif
 
@@ -468,7 +514,7 @@ SDK_INCDIR	:= $(addprefix -I${SDK_BASE}/,$(SDK_INCDIR))
 SRC			:= $(foreach sdir,$(SRC_DIR),$(wildcard $(sdir)/*.[cS])) 
 C_OBJ		:= $(patsubst %.c,%.o,$(SRC))
 S_OBJ		:= $(patsubst %.S,%.o,$(C_OBJ))
-OBJ		    := $(patsubst %.o,${BUILD_BASE}/%.o,$(S_OBJ))
+OBJ			:= $(patsubst %.o,${BUILD_BASE}/%.o,$(S_OBJ))
 LIBS		:= $(addprefix -l,$(LIBS))
 
 APP_AR		:= $(addprefix ${BUILD_BASE}/,$(TARGET).a)
@@ -515,7 +561,7 @@ endef
 # ===============================================================
 .PHONY: all checkdirs clean
 
-all: esptool support checkdirs $(FW) send status
+all: esptool flash-size support checkdirs $(FW) send status
 
 .PHONY: status
 status:	esptool flash-size
@@ -604,73 +650,59 @@ $(FW):	$(ELF) size
 	$(Q) dd if=$(FILE_IRAM) of=$(FILE_IRAM_PAD) ibs=64K conv=sync 2>&1 >/dev/null
 	$(Q) cat $(FILE_IRAM_PAD) $(FILE_IROM) > $(FW)
 
-# =================================================================================================
-#  4.1.2. Download Addresses
-#  
-#  Table 4-2 lists the download addresses for Non-FOTA firmware.
-#  
-#  Table 4-2. Download Addresses for Non-FOTA Firmware (unit: kB)
-#  Binaries 	Download addresses in flash of different capacities
-#                                 512                1024                 2048                 4096
-#  master_device_key.bin      0x3E000             0x3E000             0x3E0000             0x3E0000
-#  esp_init_data_default.bin  0x7C000             0xFC000             0x1FC000             0x3FC000
-#  blank.bin                  0x7E000             0xFE000             0x1FE000             0x3FE000
-#  eagle.flash.bin            0x00000             0x00000              0x00000              0x00000
-#  eagle.irom0text.bin        0x10000             0x10000              0x10000              0x10000
-# =================================================================================================
 
 flash: all
+	@echo $(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) write_flash $(FW_ARGS)  0 $(FW)
 	$(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) write_flash $(FW_ARGS)  0 $(FW)
+	@echo $(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) verify_flash $(FW_ARGS) 0 $(FW)
 	$(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) verify_flash $(FW_ARGS) 0 $(FW)
 	#miniterm.py --parity N -e --rts 0 --dtr 0 /dev/ttyUSB0 115200
 	miniterm.py --parity N -e --rts 0 --dtr 0 /dev/ttyUSB0 74480
 
 flash-size:	esptool
-	$(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) get_flash_size | grep -i "Flash size"
+	echo "Flash size: $(FSIZE)"
 
-verify: flash
+verify: flash-size 
+	echo "Flash size: ${FSIZE}"
 	$(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) verify_flash $(FW_ARGS) 0 $(FW)
 
-testinit: 
-	@echo Disabled untill the correct recovery steps from a blank fash can be determined
-	$(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) write_flash 0x7c000 $(DEF_INIT)
-	#$(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) write_flash 0x7e000 $(BLANK_INIT)
+init: flash-size erase
+	@echo Initializing configuration areas
+	@echo "Flash size: ${FSIZE}"
+	@echo $(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) write_flash $(DEF_INIT_ADDR) $(DEF_INIT) $(FW_ARGS)
+	$(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) write_flash $(DEF_INIT_ADDR) $(DEF_INIT) $(FW_ARGS)
+	@echo $(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) write_flash $(BLANK_INIT_ADDR) $(BLANK_INIT) $(FW_ARGS)
+	$(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) write_flash $(BLANK_INIT_ADDR) $(BLANK_INIT) $(FW_ARGS)
+	
+verify-init: flash-size
+	echo "Flash size: ${FSIZE}"
+	@echo Verifying init areas
+	@echo $(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) verify_flash $(DEF_INIT_ADDR) $(DEF_INIT) $(FW_ARGS)
+	$(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) verify_flash $(DEF_INIT_ADDR) $(DEF_INIT) $(FW_ARGS)
+	@echo $(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) verify_flash $(BLANK_INIT_ADDR) $(BLANK_INIT) $(FW_ARGS)
+	$(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) verify_flash $(BLANK_INIT_ADDR) $(BLANK_INIT) $(FW_ARGS)
 
-init: 
+erase: flash-size 
 	@echo Disabled untill the correct recovery steps from a blank fash can be determined
-	$(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) write_flash 0x7c000 $(BLANK_INIT)
-	$(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) write_flash 0x7d000 $(BLANK_INIT)
-	$(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) write_flash 0x7e000 $(BLANK_INIT)
-	$(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) write_flash 0x7f000 $(BLANK_INIT)
-	$(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) write_flash 0x7c000 $(DEF_INIT)
-
-verify-init: init
-	@echo Disabled untill the correct recovery steps from a blank fash can be determined
-	$(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) verify_flash 0x7c000 $(DEF_INIT)
-	$(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) verify_flash 0x7d000 $(BLANK_INIT)
-	$(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) verify_flash 0x7e000 $(BLANK_INIT)
-	$(ESPTOOL) --port $(ESPPORT)  -b $(BAUD) verify_flash 0x7f000 $(BLANK_INIT)
-
-erase: checkdirs
-	@echo Disabled untill the correct recovery steps from a blank fash can be determined
+	@echo $(ESPTOOL) --port $(ESPPORT) -b $(BAUD) erase_flash
 	$(ESPTOOL) --port $(ESPPORT) -b $(BAUD) erase_flash
 
 .PHONY: testflash
-testflash:
+testflash: flash-size
 	gcc testflash.c -o testflash
 	-mkdir tmp
 	@echo testing first megabyte
 	@echo
 	@echo Create megabyte size test file 
-	./testflash -s 0x080000 -w tmp/test1w.bin
+	./testflash -s $(FLASH_SIZE) -w tmp/test1w.bin
 	@echo Write file to ESP8266
 	$(ESPTOOL) -p $(ESPPORT) -b $(BAUD) write_flash \
 		0x000000 tmp/test1w.bin 
 	@echo read flash back from ESP8266
 	-$(ESPTOOL) -p $(ESPPORT) -b $(BAUD) read_flash \
-		0x000000 0x080000 tmp/test1r.bin 
+		0x000000 $(FLASH_SIZE) tmp/test1r.bin 
 	@echo Verify data read back matches what we wrote
-	./testflash -s 0x080000 -r tmp/test1r.bin
+	./testflash -s $(FLASH_SIZE) -r tmp/test1r.bin
 
 rebuild: clean all
 
@@ -709,7 +741,7 @@ DOCDIRS := . $(MODULES) wire earth fonts vfonts include cordic/make_cordic
 # If makefile changes, maybe the list of sources has changed, so update doxygens list
 .PHONY: doxyfile.inc
 doxyfile.inc:
-	echo "INPUT         =  $(DOCDIRS)" > doxyfile.inc
+	echo "INPUT		 =  $(DOCDIRS)" > doxyfile.inc
 	echo "FILE_PATTERNS =  *.h *.c *.md" >> doxyfile.inc
 
 .PHONY: doxy
